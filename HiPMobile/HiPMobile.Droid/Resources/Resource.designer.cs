@@ -9,9 +9,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: global::Android.Runtime.ResourceDesignerAttribute("HiPMobile.Droid.Resource", IsApplication=true)]
+[assembly: global::Android.Runtime.ResourceDesignerAttribute("de.upb.hip.mobile.droid.Resource", IsApplication=true)]
 
-namespace HiPMobile.Droid
+namespace de.upb.hip.mobile.droid
 {
 	
 	

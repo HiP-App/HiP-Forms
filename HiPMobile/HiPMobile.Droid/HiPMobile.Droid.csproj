@@ -6,7 +6,7 @@
     <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <ProjectGuid>{48BA26A4-61FC-41B2-BC65-4BD249DC6CDA}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>HiPMobile.Droid</RootNamespace>
+    <RootNamespace>de.upb.hip.mobile.droid</RootNamespace>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <AndroidResgenClass>Resource</AndroidResgenClass>

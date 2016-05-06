@@ -7,7 +7,7 @@
     <ProjectGuid>{C77222C5-D163-4905-9FB9-448AD6580E66}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>HiPMobile.WinPhone</RootNamespace>
+    <RootNamespace>de.upb.hip.mobile.winphone</RootNamespace>
     <AssemblyName>HiPMobile.WinPhone</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformVersion>8.1</TargetPlatformVersion>
