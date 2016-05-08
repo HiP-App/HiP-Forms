@@ -1,0 +1,8 @@
+version: 1.0.{build}
+xamarin:
+  email: stubbi@mail.uni-paderborn.de
+  password:
+    secure: 5L9TcgoYm1nvv2EAbAETlg==
+  android: true
+build:
+  verbosity: minimal
