@@ -6,3 +6,5 @@ xamarin:
   android: true
 build:
   verbosity: minimal
+  
+os: Visual Studio 2015
