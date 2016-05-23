@@ -1,6 +1,8 @@
 ﻿using Android.App;
 using Android.OS;
 using Android.Widget;
+using de.upb.hip.mobile.pcl.BusinessLayer.Models;
+using Realms;
 
 namespace de.upb.hip.mobile.droid {
     [Activity (Label = "HiPMobile.Droid", MainLauncher = true, Icon = "@drawable/icon")]
@@ -17,9 +19,7 @@ namespace de.upb.hip.mobile.droid {
 
             // Get our button from the layout resource,
             // and attach an event to it
-            var button = FindViewById<Button> (Resource.Id.myButton);
-
-            button.Click += delegate { button.Text = $"{count++} clicks!"; };
+            var button = FindViewById<Button> (Resource.Id.myButton); 
         }
 
     }
