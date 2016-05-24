@@ -33,7 +33,26 @@
     <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="BusinessLayer\Models\GeneratedCode\AppertizerPage.cs" />
+    <Compile Include="BusinessLayer\Models\GeneratedCode\Audio.cs" />
+    <Compile Include="BusinessLayer\Models\GeneratedCode\Exhibit.cs" />
+    <Compile Include="BusinessLayer\Models\GeneratedCode\ExhibitSet.cs" />
+    <Compile Include="BusinessLayer\Models\GeneratedCode\GeoPoint.cs" />
     <Compile Include="BusinessLayer\Models\GeneratedCode\IIdentifiable.cs" />
+    <Compile Include="BusinessLayer\Models\GeneratedCode\Image.cs" />
+    <Compile Include="BusinessLayer\Models\GeneratedCode\ImagePage.cs" />
+    <Compile Include="BusinessLayer\Models\GeneratedCode\LongElement.cs" />
+    <Compile Include="BusinessLayer\Models\GeneratedCode\Page.cs" />
+    <Compile Include="BusinessLayer\Models\GeneratedCode\Rectangle.cs" />
+    <Compile Include="BusinessLayer\Models\GeneratedCode\Route.cs" />
+    <Compile Include="BusinessLayer\Models\GeneratedCode\RouteSet.cs" />
+    <Compile Include="BusinessLayer\Models\GeneratedCode\RouteTag.cs" />
+    <Compile Include="BusinessLayer\Models\GeneratedCode\SliderImage.cs" />
+    <Compile Include="BusinessLayer\Models\GeneratedCode\StringElement.cs" />
+    <Compile Include="BusinessLayer\Models\GeneratedCode\TextPage.cs" />
+    <Compile Include="BusinessLayer\Models\GeneratedCode\TimeSliderPage.cs" />
+    <Compile Include="BusinessLayer\Models\GeneratedCode\ViaPointData.cs" />
+    <Compile Include="BusinessLayer\Models\GeneratedCode\Waypoint.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

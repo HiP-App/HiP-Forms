@@ -39,6 +39,18 @@ namespace <#= classNamespace #>
     PushIndent("\t");
 
     // Write Attributes
+    WriteLine ("//Attributes");
+
+    WriteLine ("[ObjectId]");
+    WriteLine ("private string _id{ get; set; }");
+    WriteLine ("public string Id{");
+    PushIndent ("\t");
+    WriteLine ("get{ return _id; }");
+    WriteLine ("set{ Realm.GetInstance ().Write (() => _id = value); }");
+    PopIndent ();
+    WriteLine ("}");
+    WriteLine ("");
+
     var ownedAttributes = this.Element.OwnedAttributes;
     foreach(IProperty attribute in ownedAttributes)
     {
@@ -49,8 +61,9 @@ namespace <#= classNamespace #>
 #>
 <#
     // Write Associations
+    WriteLine ("//Associations");
     var navigableOwnedEnds = GetNavigableOwnedEnds(this.Element, ownedAttributes);
-    foreach(IProperty ownedEnd in navigableOwnedEnds) 
+    foreach(IProperty ownedEnd in navigableOwnedEnds)
     {
         WriteSummaryComment(ownedEnd.OwningAssociation.Description);
         WriteSummaryComment(ownedEnd.Description);
@@ -65,6 +78,7 @@ namespace <#= classNamespace #>
 #>
 <#
 	// Write constructor
+    WriteLine ("// Contructor");
 	WriteLine("protected " + ClassifierName(this.Element) + "(){");
 	WriteLine("}");
 #>
@@ -140,7 +154,7 @@ namespace <#= classNamespace #>
     private static string ImplementedAndInheritedList(IClass aClass)
     {
         var list = ImplementedAndInheritedTypes(aClass);
-        string result = " : RealmObject";
+        string result = " : RealmObject, IIdentifiable";
 		if(list.Any()){
 			result += ", " + string.Join(", ", list.Select(t => ElementType(t)));
 		}

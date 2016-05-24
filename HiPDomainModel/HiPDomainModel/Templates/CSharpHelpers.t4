@@ -1407,7 +1407,14 @@
         string fieldName = "_" + property.Name.ToLower();
 		Write(typeName + " ");
 		Write(fieldName);
-        WriteLine("{ get; set; }");
+	    if (IsEnumerable (property))
+	    {
+	        WriteLine ("{ get; }");
+	    }
+	    else
+	    {
+	        WriteLine("{ get; set; }");
+	    }
 	}
 
 	private void WritePublicRealmPart(IProperty property){
@@ -1419,7 +1426,7 @@
 		WriteLine("{");
 		PushIndent("\t");
 		WriteLine("get{ return _" + fieldName.ToLower() + "; }");
-		WriteLine("set{ Realm.GetInstance ().Write (() => _"+fieldName.ToLower()+" = value); }");
+		if(!IsEnumerable (property))WriteLine("set{ Realm.GetInstance ().Write (() => _"+fieldName.ToLower()+" = value); }");
 		PopIndent();
 		WriteLine("}");
 	}
