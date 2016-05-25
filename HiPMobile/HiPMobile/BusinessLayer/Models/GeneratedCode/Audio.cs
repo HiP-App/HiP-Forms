@@ -28,9 +28,21 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models
 			set{ Realm.GetInstance ().Write (() => _path = value); }
 		}
 
+		private string _description{ get; set; }
+		public string Description{
+			get{ return _description; }
+			set{ Realm.GetInstance ().Write (() => _description = value); }
+		}
+
+		private string _title{ get; set; }
+		public string Title{
+			get{ return _title; }
+			set{ Realm.GetInstance ().Write (() => _title = value); }
+		}
+
 		//Associations
 		// Contructor
-		protected Audio(){
+		public Audio(){
 		}
 	}
 }

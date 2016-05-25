@@ -42,7 +42,7 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models
 
 		//Associations
 		// Contructor
-		protected Image(){
+		public Image(){
 		}
 	}
 }

@@ -47,7 +47,7 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models
 		}
 
 		//Associations
-		private RealmList<RouteTag> _routetags = new RealmList<RouteTag> ();
+		private RealmList<RouteTag> _routetags;
 		public IList<RouteTag> RouteTags{
 			 get{ return _routetags; }
 		}
@@ -55,7 +55,7 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models
 		public virtual Image Image{ get; set; }
 
 		// Contructor
-		protected Route(){
+		public Route(){
 		}
 	}
 }

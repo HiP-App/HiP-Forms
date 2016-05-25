@@ -23,13 +23,13 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models
 		}
 
 		//Associations
-		private RealmList<Route> _routes = new RealmList<Route> ();
+		private RealmList<Route> _routes;
 		public IList<Route> Routes{
 			 get{ return _routes; }
 		}
 
 		// Contructor
-		protected RouteSet(){
+		public RouteSet(){
 		}
 	}
 }

@@ -36,7 +36,7 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models
 
 		//Associations
 		// Contructor
-		protected SliderImage(){
+		public SliderImage(){
 		}
 	}
 }

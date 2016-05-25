@@ -36,7 +36,7 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models
 		public virtual Image Image{ get; set; }
 
 		// Contructor
-		protected ImagePage(){
+		public ImagePage(){
 		}
 	}
 }

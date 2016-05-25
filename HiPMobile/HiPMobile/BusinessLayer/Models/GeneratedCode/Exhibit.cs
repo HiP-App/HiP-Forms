@@ -12,7 +12,7 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models
 	using System.Linq;
 	using System.Text;
 
-	public class Exhibit : RealmObject, IIdentifiable
+	public partial class Exhibit : RealmObject, IIdentifiable
 	{
 		//Attributes
 		[ObjectId]
@@ -50,20 +50,16 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models
 			get{ return _tags; }
 		}
 
-		private string _imagepath{ get; set; }
-		public string ImagePath{
-			get{ return _imagepath; }
-			set{ Realm.GetInstance ().Write (() => _imagepath = value); }
-		}
-
 		//Associations
-		private RealmList<Page> _pages = new RealmList<Page> ();
+		private RealmList<Page> _pages;
 		public IList<Page> Pages{
 			 get{ return _pages; }
 		}
 
+		public virtual Image Image{ get; set; }
+
 		// Contructor
-		protected Exhibit(){
+		public Exhibit(){
 		}
 	}
 }

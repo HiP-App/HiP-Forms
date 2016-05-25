@@ -28,15 +28,11 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models
 			set{ Realm.GetInstance ().Write (() => _text = value); }
 		}
 
-		private string _imagepath{ get; set; }
-		public string ImagePath{
-			get{ return _imagepath; }
-			set{ Realm.GetInstance ().Write (() => _imagepath = value); }
-		}
-
 		//Associations
+		public virtual Image Image{ get; set; }
+
 		// Contructor
-		protected AppertizerPage(){
+		public AppertizerPage(){
 		}
 	}
 }

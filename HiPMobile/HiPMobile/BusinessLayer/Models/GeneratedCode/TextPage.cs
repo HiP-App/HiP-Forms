@@ -32,7 +32,7 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models
 		public virtual Audio Audio{ get; set; }
 
 		// Contructor
-		protected TextPage(){
+		public TextPage(){
 		}
 	}
 }

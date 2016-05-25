@@ -32,7 +32,7 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models
 		public virtual TimeSliderPage TimeSliderPage{ get; set; }
 
 		// Contructor
-		protected Page(){
+		public Page(){
 		}
 	}
 }

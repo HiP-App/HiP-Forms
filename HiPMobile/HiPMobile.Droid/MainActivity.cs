@@ -1,4 +1,5 @@
-﻿using Android.App;
+﻿using System;
+using Android.App;
 using Android.OS;
 using Android.Widget;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
@@ -19,7 +20,14 @@ namespace de.upb.hip.mobile.droid {
 
             // Get our button from the layout resource,
             // and attach an event to it
-            var button = FindViewById<Button> (Resource.Id.myButton); 
+            var button = FindViewById<Button> (Resource.Id.myButton);
+
+            //Realm.GetInstance ().RemoveAll ();
+
+            button.Click += (sender, args) => {
+                var exhibit = BusinessEntitiyFactory.CreateBusinessObject<Exhibit> ();
+                button.Text = exhibit.Id;
+            };
         }
 
     }

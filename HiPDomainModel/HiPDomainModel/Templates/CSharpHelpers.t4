@@ -1184,7 +1184,7 @@
 
         Write("}");
 		if(IsEnumerable(property)){
-			WriteLine(" = new RealmList<"+ElementType(property)+"> ();");
+			WriteLine(";");
 		}
 		else{
 			WriteLine("");
@@ -1439,7 +1439,7 @@
     private void WriteToManyProperty(IProperty property, string overloadOption = "") 
     {
 		// Write private part
-		WriteLine("private RealmList<"+ElementType(property)+"> _"+property.Name.ToLower()+" = new RealmList<"+ElementType(property)+"> ();");
+		WriteLine("private RealmList<"+ElementType(property)+"> _"+property.Name.ToLower()+";");
 
 		// Write public part
         Write(PropertyUnsafeOption(property));

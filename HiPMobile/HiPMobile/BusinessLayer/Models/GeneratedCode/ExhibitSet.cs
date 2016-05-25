@@ -12,7 +12,7 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models
 	using System.Linq;
 	using System.Text;
 
-	public class ExhibitSet : RealmObject, IIdentifiable
+	public partial class ExhibitSet : RealmObject, IIdentifiable
 	{
 		//Attributes
 		[ObjectId]
@@ -27,19 +27,25 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models
 			get{ return _categories; }
 		}
 
+		private GeoPoint _position{ get; set; }
+		public GeoPoint Position{
+			get{ return _position; }
+			set{ Realm.GetInstance ().Write (() => _position = value); }
+		}
+
 		//Associations
-		private RealmList<Exhibit> _activeset = new RealmList<Exhibit> ();
+		private RealmList<Exhibit> _activeset;
 		public IList<Exhibit> ActiveSet{
 			 get{ return _activeset; }
 		}
 
-		private RealmList<Exhibit> _initset = new RealmList<Exhibit> ();
+		private RealmList<Exhibit> _initset;
 		public IList<Exhibit> InitSet{
 			 get{ return _initset; }
 		}
 
 		// Contructor
-		protected ExhibitSet(){
+		public ExhibitSet(){
 		}
 	}
 }

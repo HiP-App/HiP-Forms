@@ -34,11 +34,6 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models
 			set{ Realm.GetInstance ().Write (() => _text = value); }
 		}
 
-		private RealmList<StringElement> _imagepaths{ get; }
-		public IList<StringElement> ImagePaths{
-			get{ return _imagepaths; }
-		}
-
 		private RealmList<LongElement> _dates{ get; }
 		public IList<LongElement> Dates{
 			get{ return _dates; }
@@ -47,8 +42,13 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models
 		//Associations
 		public virtual Audio Audio{ get; set; }
 
+		private RealmList<Image> _images;
+		public IList<Image> Images{
+			 get{ return _images; }
+		}
+
 		// Contructor
-		protected TimeSliderPage(){
+		public TimeSliderPage(){
 		}
 	}
 }

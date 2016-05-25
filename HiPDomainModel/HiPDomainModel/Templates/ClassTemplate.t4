@@ -79,7 +79,7 @@ namespace <#= classNamespace #>
 <#
 	// Write constructor
     WriteLine ("// Contructor");
-	WriteLine("protected " + ClassifierName(this.Element) + "(){");
+	WriteLine("public " + ClassifierName(this.Element) + "(){");
 	WriteLine("}");
 #>
 <#

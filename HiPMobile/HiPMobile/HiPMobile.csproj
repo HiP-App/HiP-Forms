@@ -33,6 +33,7 @@
     <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="BusinessLayer\Models\BusinessEntitiyFactory.cs" />
     <Compile Include="BusinessLayer\Models\GeneratedCode\AppertizerPage.cs" />
     <Compile Include="BusinessLayer\Models\GeneratedCode\Audio.cs" />
     <Compile Include="BusinessLayer\Models\GeneratedCode\Exhibit.cs" />
@@ -53,6 +54,9 @@
     <Compile Include="BusinessLayer\Models\GeneratedCode\TimeSliderPage.cs" />
     <Compile Include="BusinessLayer\Models\GeneratedCode\ViaPointData.cs" />
     <Compile Include="BusinessLayer\Models\GeneratedCode\Waypoint.cs" />
+    <Compile Include="BusinessLayer\Models\NonGenerated\Exhibit.cs" />
+    <Compile Include="BusinessLayer\Models\NonGenerated\ExhibitSet.cs" />
+    <Compile Include="BusinessLayer\Models\NonGenerated\GeoPoint.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -65,7 +69,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="BusinessLayer\Models\NonGenerated\" />
     <Folder Include="DataAccessLayer\" />
     <Folder Include="DataLayer\" />
   </ItemGroup>
