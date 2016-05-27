@@ -13,16 +13,32 @@
 // limitations under the License.
 
 using System;
+using System.Linq;
 using Realms;
 
 namespace de.upb.hip.mobile.pcl.BusinessLayer.Models {
     public class BusinessEntitiyFactory {
 
+        /// <summary>
+        /// Creates an object of type T that is synced to the database.
+        /// </summary>
+        /// <typeparam name="T">The type of the object being created. T needs to be subtype of RealmObject and implement the IIdentifiable interface.</typeparam>
+        /// <returns>The instance.</returns>
         public static T CreateBusinessObject<T> () where T : RealmObject, IIdentifiable, new ()
         {
+            // create the instance
             T instance = null;
-            Realm.GetInstance ().Write (() => instance = new T());
-            instance.Id = GenerateId ();
+            Realm.GetInstance ().Write (() => instance = Realm.GetInstance ().CreateObject<T> ());
+
+            // generate a unique id
+            string id;
+            do
+            {
+                id = GenerateId ();
+            } while (Realm.GetInstance ().All<T> ().Count (element => element.Id == id) > 0);
+
+            // assign the id and return the instance
+            instance.Id = id;
             return instance;
         }
 

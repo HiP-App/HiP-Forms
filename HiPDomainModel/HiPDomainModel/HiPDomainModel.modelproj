@@ -22,6 +22,9 @@
   </PropertyGroup>
   <Import Project="$(VSToolsPath)\ArchitectureTools\Microsoft.VisualStudio.TeamArchitect.ModelingProject.targets" Condition="'$(VSToolsPath)' != ''" />
   <ItemGroup>
+    <Content Include="LICENSE">
+      <SubType>Content</SubType>
+    </Content>
     <Content Include="ModelDefinition\Package_1525.uml">
       <SubType>Content</SubType>
     </Content>

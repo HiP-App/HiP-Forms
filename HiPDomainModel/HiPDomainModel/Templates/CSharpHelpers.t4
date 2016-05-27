@@ -3,6 +3,9 @@
 <#@ Import Namespace="Microsoft.VisualStudio.Uml.Classes" #>
 <#@ Import Namespace="Microsoft.VisualStudio.ArchitectureTools.Extensibility.Uml" #>
 <#@ Import Namespace="System" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Reflection" #>
+<#@ import namespace="System.IO" #>
 <#@ Include File="CSharpStereotypeHelpers.t4" #><#+
     /// <summary>
     /// Get the element's type if set, otherwise "object".
@@ -1439,7 +1442,7 @@
     private void WriteToManyProperty(IProperty property, string overloadOption = "") 
     {
 		// Write private part
-		WriteLine("private RealmList<"+ElementType(property)+"> _"+property.Name.ToLower()+";");
+		WriteLine("private RealmList<"+ElementType(property)+"> _"+property.Name.ToLower()+"{ get; }");
 
 		// Write public part
         Write(PropertyUnsafeOption(property));
@@ -1485,5 +1488,14 @@
         }
 
         return text;
+    }
+
+    private void WriteApacheLicense ()
+    {
+		string projectDir = System.IO.Path.GetDirectoryName(Host.TemplateFile);
+        projectDir = projectDir.Substring (0, projectDir.Length - 9);
+        projectDir = Path.Combine (projectDir, "LICENSE");
+        string licenseText = File.ReadAllText (projectDir);
+        WriteLine ("/*"+licenseText+"*/");
     }
 #>
