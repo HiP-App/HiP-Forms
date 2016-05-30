@@ -11,6 +11,8 @@
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Profile111</TargetFrameworkProfile>
     <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -31,15 +33,35 @@
     <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="BusinessLayer\Models\BusinessEntitiyFactory.cs" />
+    <Compile Include="BusinessLayer\Models\GeneratedCode\AppertizerPage.cs" />
+    <Compile Include="BusinessLayer\Models\GeneratedCode\Audio.cs" />
+    <Compile Include="BusinessLayer\Models\GeneratedCode\Exhibit.cs" />
+    <Compile Include="BusinessLayer\Models\GeneratedCode\ExhibitSet.cs" />
+    <Compile Include="BusinessLayer\Models\GeneratedCode\GeoPoint.cs" />
+    <Compile Include="BusinessLayer\Models\GeneratedCode\IIdentifiable.cs" />
+    <Compile Include="BusinessLayer\Models\GeneratedCode\Image.cs" />
+    <Compile Include="BusinessLayer\Models\GeneratedCode\ImagePage.cs" />
+    <Compile Include="BusinessLayer\Models\GeneratedCode\LongElement.cs" />
+    <Compile Include="BusinessLayer\Models\GeneratedCode\Page.cs" />
+    <Compile Include="BusinessLayer\Models\GeneratedCode\Rectangle.cs" />
+    <Compile Include="BusinessLayer\Models\GeneratedCode\Route.cs" />
+    <Compile Include="BusinessLayer\Models\GeneratedCode\RouteSet.cs" />
+    <Compile Include="BusinessLayer\Models\GeneratedCode\RouteTag.cs" />
+    <Compile Include="BusinessLayer\Models\GeneratedCode\SliderImage.cs" />
+    <Compile Include="BusinessLayer\Models\GeneratedCode\StringElement.cs" />
+    <Compile Include="BusinessLayer\Models\GeneratedCode\TextPage.cs" />
+    <Compile Include="BusinessLayer\Models\GeneratedCode\TimeSliderPage.cs" />
+    <Compile Include="BusinessLayer\Models\GeneratedCode\ViaPointData.cs" />
+    <Compile Include="BusinessLayer\Models\GeneratedCode\Waypoint.cs" />
+    <Compile Include="BusinessLayer\Models\NonGenerated\Exhibit.cs" />
+    <Compile Include="BusinessLayer\Models\NonGenerated\ExhibitSet.cs" />
+    <Compile Include="BusinessLayer\Models\NonGenerated\GeoPoint.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="SQLite-net, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\sqlite-net-pcl.1.1.1\lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10\SQLite-net.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="SQLitePCL.raw, Version=0.8.5.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SQLitePCL.raw.0.8.6\lib\portable-net45+netcore45+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\SQLitePCL.raw.dll</HintPath>
+    <Reference Include="Realm, Version=0.74.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Realm.0.74.1\lib\portable-net45+sl5+wp8+wpa81+win8+monoandroid+Xamarin.iOS10+monotouch+Xamarin.Mac\Realm.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>
@@ -47,9 +69,20 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="BusinessLayer\" />
     <Folder Include="DataAccessLayer\" />
     <Folder Include="DataLayer\" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="FodyWeavers.xml" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <Import Project="..\..\packages\Fody.1.29.4\build\portable-net+sl+win+wpa+wp\Fody.targets" Condition="Exists('..\..\packages\Fody.1.29.4\build\portable-net+sl+win+wpa+wp\Fody.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\..\packages\Fody.1.29.4\build\portable-net+sl+win+wpa+wp\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Fody.1.29.4\build\portable-net+sl+win+wpa+wp\Fody.targets'))" />
+    <Error Condition="!Exists('..\..\packages\Realm.0.74.1\build\Realm.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Realm.0.74.1\build\Realm.targets'))" />
+  </Target>
+  <Import Project="..\..\packages\Realm.0.74.1\build\Realm.targets" Condition="Exists('..\..\packages\Realm.0.74.1\build\Realm.targets')" />
 </Project>
