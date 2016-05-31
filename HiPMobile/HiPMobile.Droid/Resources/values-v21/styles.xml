@@ -13,10 +13,27 @@ See the License for the specific language governing permissions and
 limitations under the License.-->
 <resources>
   <!-- Inherit from the light Material Theme -->
-  <style name="Theme" parent="android:Theme.Material.Light">
-    <!-- Override the app bar color -->
-    <item name="android:colorPrimary">@color/my_purple</item>
-    <!-- Override the color of UI controls -->
-    <item name="android:colorAccent">@color/my_purple</item>
+  <style name="AppTheme" parent="AppTheme.Base">
+    <!--   your app's branding color   <! the app bar) -->
+    <item name="android:colorPrimary">@color/colorPrimary</item>
+    <!--   darker variant of colorPrimary (for status bar, contextual app bars) -->
+    <item name="android:colorPrimaryDark">@color/colorPrimaryDark</item>
+    <!--   theme UI controls like checkboxes and text fields -->
+    <item name="android:colorAccent">@color/colorAccent</item>
+
+    <!-- enable window content transitions -->
+    <item name="android:windowContentTransitions">true</item>
+    <item name="android:windowActivityTransitions">true</item>
+    <item name="android:windowAllowEnterTransitionOverlap">true</item>
+
+  </style>
+
+  <style name="Theme.Transparent" parent="AppTheme">
+    <item name="android:windowIsTranslucent">true</item>
+    <item name="android:windowBackground">@android:color/transparent</item>
+    <item name="android:windowContentOverlay">@null</item>
+    <item name="android:windowNoTitle">true</item>
+    <item name="android:windowIsFloating">false</item>
+    <item name="android:backgroundDimEnabled">false</item>
   </style>
 </resources>

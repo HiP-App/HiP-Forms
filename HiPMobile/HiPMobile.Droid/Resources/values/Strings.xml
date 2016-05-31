@@ -1,5 +1,82 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<string name="hello">Hello World, Click Me!</string>
-	<string name="app_name">HiPMobile.Droid</string>
+	    <string name="app_name">History in Paderborn</string>
+    <string name="title_activity_main">History in Paderborn</string>
+    <string name="title_activity_display_single_image">Detailansicht</string>
+    <string name="title_activity_display_image_slider">Zeitachsenansicht</string>
+    <string name="title_activity_route">Routen</string>
+    <string name="title_activity_route_filter">Routenfilter</string>
+
+    <string name="menu_activity_route_filter">Filter</string>
+
+    <string name="route_tag_label">Tags</string>
+    <string name="route_tag_close_without_save_label">Ohne Speichern Schließen</string>
+    <string name="route_tag_close_with_save_label">Speichern und Schließen</string>
+
+    <plurals name="route_activity_duration_minutes">
+        <item quantity="one">%d Minute</item>
+        <item quantity="other">%d Minuten</item>
+    </plurals>
+    <string name="title_activity_route_details">Routendetails</string>
+    <string name="route_activity_details_start">Tour beginnen</string>
+    <string name="route_activity_duration">Dauer:\u0020</string>
+    <string name="route_activity_distance">Distanz:\u0020</string>
+    <string name="route_activity_distance_kilometer">%s km</string>
+    <string name="route_activity_description">Beschreibung</string>
+    <string name="route_activity_title">Titel</string>
+
+    <string name="splash_screen_loading">Historisches Paderborn wird geladen.</string>
+    <string name="splash_screen_waiting">Einen Moment bitte…</string>
+    <string name="splash_screen_retry">Erneut versuchen</string>
+    <string name="splash_screen_no_connection">Keine Internetverbindung.</string>
+    <string name="splash_screen_no_connection_error_message">Bitte stellen Sie sicher, dass Sie über eine aktive Internetverbindung verfügen.</string>
+    <string name="splash_screen_check_connection">Prüfe Internetverbindung.</string>
+
+    <!-- string for route navigation -->
+    <string name="drawer_open">Öffne Navigation</string>
+    <string name="drawer_close">Schließe Navigation</string>
+    <string name="departure">Abfahrt</string>
+    <string name="via_point">Wegpunkt</string>
+    <string name="destination">Ziel</string>
+    <string name="start_point">"Startpunkt in"</string>
+    <string name="step">Schritt</string>
+    <string name="itinerary_markers_title">Route Via-Punkte</string>
+    <string name="route">Route</string>
+    <string name="no_route">Keine mögliche Route hier</string>
+    <string name="empty_route">Route ist leer</string>
+    <string name="technical_issue">Technische Probleme eine Route zu bekommen</string>
+    <string name="download_road">Straße herunterladen…</string>
+    <string name="creating_map">Erstellen der Karte…</string>
+    <string name="osm_contributors">&#169; OpenStreetMap contributors</string>
+
+    <string name="map_quest_key">WRWdd9j02K8tGtERI2LtFiCLsRUKyJnJ</string>
+
+    <!-- string for GPSTracker -->
+    <string name="gps_settings">GPS Einstellungen</string>
+    <string name="settings">Einstellungen</string>
+    <string name="cancel">Abbrechen</string>
+    <string name="gps_not_enabled_message">GPS ist nicht aktiviert. Wollen Sie das Einstellungsmenü öffnen?</string>
+
+    <!-- string for network connection -->
+    <string name="network_connection">Netzwerkverbindung</string>
+    <string name="network_message">Internetverbindung erforderlich</string>
+
+    <!-- Strings for licensing -->
+    <string name="licensing_title">Lizenzen</string>
+    <string name="licensing_google_material_title_text">Material Icons</string>
+    <string name="licensing_google_material_body_text">Von <a href="https://design.google.com/icons/">Google</a>, lizensiert unter <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>. Es wurden keine Änderungen vorgenommen.</string>
+    <string name="licensing_osmdroid_title_text">osmdroid</string>
+    <string name="licensing_osmdroid_body_text">Von <a href="https://github.com/osmdroid/osmdroid">osmdroid</a>, lizensiert unter <a href="https://raw.githubusercontent.com/osmdroid/osmdroid/master/LICENSE">Apache License 2.0</a>. Es wurden keine Änderungen vorgenommen.</string>
+    <string name="licensing_osmbonuspack_title_text">OSMBonusPack</string>
+    <string name="licensing_osmbonuspack_body_text">Von <a href="https://github.com/MKergall/osmbonuspack">MKergall</a>, lizensiert unter <a href="https://raw.githubusercontent.com/MKergall/osmbonuspack/master/LICENSE.md">GNU Lesser General Public License 3.0 (LGPL 3.0)</a> (ohne §5.d und §5.e). Es wurden keine Änderungen vorgenommen.</string>
+    <string name="licensing_couchbase_title_text">Couchbase-Lite-Android</string>
+    <string name="licensing_couchbase_body_text">Von <a href="https://github.com/couchbase/couchbase-lite-android">Couchbase</a>, lizensiert unter <a href="https://raw.githubusercontent.com/couchbase/couchbase-lite-android/master/LICENSE.TXT">Apache License 2.0</a>. Es wurden keine Änderungen vorgenommen.</string>
+
+
+    <string-array name="nav_drawer_entries">
+        <item>Übersicht</item>
+        <item>Routen</item>
+        <item>@string/licensing_title</item>
+    </string-array>
 </resources>

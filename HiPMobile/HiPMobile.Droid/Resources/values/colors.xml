@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+<!--  Copyright (C) 2016 History in Paderborn App - Universität Paderborn
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.-->
+  <resources>
+    <!-- brand color: blue -->
+    <item name="colorPrimary" type="color">#3F51B5</item>
+    <item name="colorPrimaryDark" type="color">#303F9F</item>
+    <!-- accent color: red -->
+    <item name="colorAccent" type="color">#FF4081</item>
+
+    <!-- text color: white -->
+    <item name="textColorPrimary" type="color">#FFFFFF</item>
+    <item name="textColorSecondary" type="color">#9E9E9E</item>
+    <!-- inverse text color: 87% black -->
+    <item name="textColorPrimaryInverse" type="color">#DE000000</item>
+    <item name="textColorSecondaryInverse" type="color">#9E9E9E</item>
+
+    <!-- white text for the image overlay -->
+    <item name="textOverlayForImage" type="color">#FFFFFF</item>
+
+    <drawable name="semitransparent_gray">#779E9E9E</drawable>
+</resources>

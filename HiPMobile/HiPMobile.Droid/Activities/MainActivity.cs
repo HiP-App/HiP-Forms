@@ -21,9 +21,9 @@ using Android.Widget;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using Realms;
 
-namespace de.upb.hip.mobile.droid {
-    [Activity(Theme = "@style/Theme",
-          Label = "HiPMobile.Droid", MainLauncher = true, Icon = "@drawable/icon")]
+namespace de.upb.hip.mobile.droid.Activities {
+    [Activity(Theme = "@style/AppTheme",
+          Label = "HiPMobile.Droid", MainLauncher = false, Icon = "@drawable/icon")]
 
     public class MainActivity : Activity {
 
