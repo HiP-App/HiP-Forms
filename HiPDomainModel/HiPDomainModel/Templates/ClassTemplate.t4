@@ -73,7 +73,7 @@ namespace <#= classNamespace #>
 			WriteToManyProperty(ownedEnd);
 		}
 		else{
-			WriteClassUmlPropertyDefinition(ownedEnd);
+			WriteClassRealmPropertyDefinition(ownedEnd);
 		}
         WriteLine("");
     }

@@ -69,7 +69,11 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models
 			 get{ return _pages; }
 		}
 
-		public virtual Image Image{ get; set; }
+		private Image _image{ get; set; }
+		public Image Image{
+			get{ return _image; }
+			set{ Realm.GetInstance ().Write (() => _image = value); }
+		}
 
 		// Contructor
 		public Exhibit(){
