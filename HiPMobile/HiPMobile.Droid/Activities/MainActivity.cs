@@ -19,6 +19,9 @@ using Android.App;
 using Android.OS;
 using Android.Widget;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
+using Osmdroid.TileProvider.TileSource;
+using Osmdroid.Util;
+using Osmdroid.Views;
 using Realms;
 
 namespace de.upb.hip.mobile.droid.Activities {
@@ -34,27 +37,24 @@ namespace de.upb.hip.mobile.droid.Activities {
             // Set our view from the "main" layout resource
             SetContentView (Resource.Layout.Main);
 
-            // Get our button from the layout resource,
-            // and attach an event to it
-            var button = FindViewById<Button> (Resource.Id.myButton);
 
             //Delete current database to avoid migration issues, remove this when wanting persistent database usage
             Realm.DeleteRealm (new RealmConfiguration ());
 
-            button.Click += (sender, args) => {
-                // Testing BusinessEntities
-                /*Exhibit exhibit = BusinessEntitiyFactory.CreateBusinessObject<Exhibit> ();
-                button.Text = Realm.GetInstance ().All<Exhibit> ().Count ().ToString();
-                exhibit.Name = "Dom";
-                StringElement category = BusinessEntitiyFactory.CreateBusinessObject<StringElement> ();
-                category.Value = "Categorie";
-                exhibit.Categories.Add (category);
-                Page page = BusinessEntitiyFactory.CreateBusinessObject<Page> ();
-                AppertizerPage appertizerPage = BusinessEntitiyFactory.CreateBusinessObject<AppertizerPage> ();
-                page.AppertizerPage = appertizerPage;
-                exhibit.Pages.Add (page);*/
 
-            };
+            var mapView = FindViewById<MapView>(Resource.Id.mapview);
+            mapView.SetTileSource(TileSourceFactory.DefaultTileSource);
+            mapView.SetBuiltInZoomControls(true);
+
+            var mapController = mapView.Controller;
+            mapController.SetZoom(25);
+
+            //Geopoint of osmdroid has conlfict with geopoint from model classe
+            //rename geopoint from model classes for testing
+            // var centreOfMap = new GeoPoint(51496994, -134733);
+            var centreOfMap = new GeoPoint(51.716819, 8.764343);
+            
+            mapController.SetCenter(centreOfMap);
         }
 
     }

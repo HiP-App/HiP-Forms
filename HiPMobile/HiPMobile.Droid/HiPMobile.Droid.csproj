@@ -59,6 +59,10 @@
       <HintPath>..\..\packages\Unity.4.0.1\lib\portable-net45+wp80+win8+wpa81+MonoAndroid10+MonoTouch10\Microsoft.Practices.Unity.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="OsmdroidAndroidBinding, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\osmdroid-android-binding-5.0.1\lib\android\OsmdroidAndroidBinding.dll</HintPath>
+    </Reference>
     <Reference Include="Realm, Version=0.74.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Realm.0.74.1\lib\MonoAndroid44\Realm.dll</HintPath>
       <Private>True</Private>

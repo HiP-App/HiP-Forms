@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 namespace de.upb.hip.mobile.pcl.BusinessLayer.Models {
-    public partial class GeoPoint {
+    public partial class CustomGeoPoint {
 
         public override string ToString ()
         {

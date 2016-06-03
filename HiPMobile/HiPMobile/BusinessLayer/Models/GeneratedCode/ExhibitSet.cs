@@ -40,8 +40,8 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models
 			get{ return _categories; }
 		}
 
-		private GeoPoint _position{ get; set; }
-		public GeoPoint Position{
+		private CustomGeoPoint _position{ get; set; }
+		public CustomGeoPoint Position{
 			get{ return _position; }
 			set{ Realm.GetInstance ().Write (() => _position = value); }
 		}

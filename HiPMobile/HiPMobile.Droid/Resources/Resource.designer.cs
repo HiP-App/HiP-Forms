@@ -151,7 +151,7 @@ namespace de.upb.hip.mobile.droid
 		{
 			
 			// aapt resource value: 0x7f0a0004
-			public const int myButton = 2131361796;
+			public const int mapview = 2131361796;
 			
 			// aapt resource value: 0x7f0a0000
 			public const int splashScreenActionText = 2131361792;

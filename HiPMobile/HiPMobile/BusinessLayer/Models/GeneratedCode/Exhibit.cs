@@ -47,8 +47,8 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models
 			set{ Realm.GetInstance ().Write (() => _description = value); }
 		}
 
-		private GeoPoint _location{ get; set; }
-		public GeoPoint Location{
+		private CustomGeoPoint _location{ get; set; }
+		public CustomGeoPoint Location{
 			get{ return _location; }
 			set{ Realm.GetInstance ().Write (() => _location = value); }
 		}

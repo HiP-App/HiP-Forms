@@ -25,7 +25,7 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models
 	using System.Linq;
 	using System.Text;
 
-	public partial class GeoPoint : RealmObject, IIdentifiable
+	public partial class CustomGeoPoint : RealmObject, IIdentifiable
 	{
 		//Attributes
 		[ObjectId]
@@ -49,7 +49,7 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models
 
 		//Associations
 		// Contructor
-		public GeoPoint(){
+		public CustomGeoPoint(){
 		}
 	}
 }

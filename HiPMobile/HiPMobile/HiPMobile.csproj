@@ -38,7 +38,7 @@
     <Compile Include="BusinessLayer\Models\GeneratedCode\Audio.cs" />
     <Compile Include="BusinessLayer\Models\GeneratedCode\Exhibit.cs" />
     <Compile Include="BusinessLayer\Models\GeneratedCode\ExhibitSet.cs" />
-    <Compile Include="BusinessLayer\Models\GeneratedCode\GeoPoint.cs" />
+    <Compile Include="BusinessLayer\Models\GeneratedCode\CustomGeoPoint.cs" />
     <Compile Include="BusinessLayer\Models\GeneratedCode\IIdentifiable.cs" />
     <Compile Include="BusinessLayer\Models\GeneratedCode\Image.cs" />
     <Compile Include="BusinessLayer\Models\GeneratedCode\ImagePage.cs" />
@@ -56,7 +56,7 @@
     <Compile Include="BusinessLayer\Models\GeneratedCode\Waypoint.cs" />
     <Compile Include="BusinessLayer\Models\NonGenerated\Exhibit.cs" />
     <Compile Include="BusinessLayer\Models\NonGenerated\ExhibitSet.cs" />
-    <Compile Include="BusinessLayer\Models\NonGenerated\GeoPoint.cs" />
+    <Compile Include="BusinessLayer\Models\NonGenerated\CustomGeoPoint.cs" />
     <Compile Include="Common\IoCManager.cs" />
     <Compile Include="DataAccessLayer\IDataAccess.cs" />
     <Compile Include="DataLayer\RealmDataAccess.cs" />

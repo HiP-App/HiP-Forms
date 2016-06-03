@@ -91,7 +91,7 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models {
             }
         }
 
-        public void updatePosition (GeoPoint position)
+        public void updatePosition (CustomGeoPoint position)
         {
             this.Position = position;
 
