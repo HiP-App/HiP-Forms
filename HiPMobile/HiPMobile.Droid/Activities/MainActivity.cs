@@ -25,7 +25,7 @@ using Osmdroid.Views;
 using Realms;
 
 namespace de.upb.hip.mobile.droid.Activities {
-    [Activity(Theme = "@style/AppTheme",
+    [Activity(Theme = "@style/AppTheme.WithActionBar",
           Label = "HiPMobile.Droid", MainLauncher = false, Icon = "@drawable/icon")]
 
     public class MainActivity : Activity {

@@ -22,12 +22,13 @@
   <dimen name="trackingmode_button_size">56dp</dimen>
 
   <!--
-    /*
-     * Should be deleted if no FAB would be used in the future
-     * Floating Action Button (FAB) size
-     * Dimen for FAB animation
-     */
+    
+      Should be deleted if no FAB would be used in the future
+      Floating Action Button (FAB) size
+      Dimen for FAB animation
+     
     -->
+  
   <dimen name="fab_size">56dp</dimen>
   <dimen name="button_elevation">2dp</dimen>
   <dimen name="button_press_elevation">4dp</dimen>

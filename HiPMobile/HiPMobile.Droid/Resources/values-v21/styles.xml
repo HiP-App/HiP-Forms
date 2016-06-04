@@ -21,6 +21,7 @@ limitations under the License.-->
     <!--   theme UI controls like checkboxes and text fields -->
     <item name="android:colorAccent">@color/colorAccent</item>
 
+
     <!-- enable window content transitions -->
     <item name="android:windowContentTransitions">true</item>
     <item name="android:windowActivityTransitions">true</item>

@@ -28,5 +28,6 @@ limitations under the License.-->
     <!-- white text for the image overlay -->
     <item name="textOverlayForImage" type="color">#FFFFFF</item>
 
+    <item name="my_purple" type="color">#B455B6</item>
     <drawable name="semitransparent_gray">#779E9E9E</drawable>
 </resources>

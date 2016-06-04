@@ -17,6 +17,7 @@
     <!--   theme UI controls like checkboxes and text fields -->
     <item name="android:colorAccent">@color/colorAccent</item>
 
+
     <item name="android:windowNoTitle">true</item>
     <item name="android:windowActionBar">false</item>
   </style>
