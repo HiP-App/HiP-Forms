@@ -1,6 +1,7 @@
 bin
 obj
 .vs/
+*.htm
 *.user
 packages/
 **/CodeGeneration.Log.xml
