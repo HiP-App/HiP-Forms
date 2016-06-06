@@ -36,13 +36,29 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models
 		}
 
 		//Associations
-		public virtual AppertizerPage AppertizerPage{ get; set; }
+		private AppertizerPage _appertizerpage{ get; set; }
+		public AppertizerPage AppertizerPage{
+			get{ return _appertizerpage; }
+			set{ Realm.GetInstance ().Write (() => _appertizerpage = value); }
+		}
 
-		public virtual ImagePage ImagePage{ get; set; }
+		private ImagePage _imagepage{ get; set; }
+		public ImagePage ImagePage{
+			get{ return _imagepage; }
+			set{ Realm.GetInstance ().Write (() => _imagepage = value); }
+		}
 
-		public virtual TextPage TextPage{ get; set; }
+		private TextPage _textpage{ get; set; }
+		public TextPage TextPage{
+			get{ return _textpage; }
+			set{ Realm.GetInstance ().Write (() => _textpage = value); }
+		}
 
-		public virtual TimeSliderPage TimeSliderPage{ get; set; }
+		private TimeSliderPage _timesliderpage{ get; set; }
+		public TimeSliderPage TimeSliderPage{
+			get{ return _timesliderpage; }
+			set{ Realm.GetInstance ().Write (() => _timesliderpage = value); }
+		}
 
 		// Contructor
 		public Page(){
