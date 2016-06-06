@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<component format="1" id="osmdroid-android-binding">
+  <name>osmdroid-android-binding</name>
+  <publisher>Neil Boyd</publisher>
+  <publisher-url>https://github.com/osmdroid/OsmdroidXamarin</publisher-url>
+  <version>5.0.1</version>
+  <summary>OpenStreetMap-Tools for Android</summary>
+  <samples>
+    <sample id="ComponentSample">
+      <name>Simple example.</name>
+      <summary>Shows how to include osmdroid in your app.</summary>
+    </sample>
+  </samples>
+</component>

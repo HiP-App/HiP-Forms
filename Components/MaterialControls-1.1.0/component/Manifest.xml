@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<component format="1" id="MaterialControls">
+  <name>MaterialControls</name>
+  <publisher>FPT Software</publisher>
+  <publisher-url>http://fpt-software.com</publisher-url>
+  <version>1.1.0</version>
+  <summary>Google Material Design Controls for Xamarin iOS</summary>
+  <screenshots>
+    <img src="screenshots/Button.png" title="Button" />
+    <img src="screenshots/Progress.png" title="Progress" />
+    <img src="screenshots/Slider.png" title="Slider" />
+    <img src="screenshots/Switch.png" title="Switch" />
+    <img src="screenshots/DatePicker.png" title="DatePicker" />
+  </screenshots>
+  <samples>
+    <sample id="MaterialControlsSample">
+      <name>iOS Sample</name>
+      <summary>iOS Sample</summary>
+    </sample>
+  </samples>
+</component>
