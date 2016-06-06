@@ -34,6 +34,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="BusinessLayer\Managers\ExhibitManager.cs" />
+    <Compile Include="BusinessLayer\Managers\RouteManager.cs" />
     <Compile Include="BusinessLayer\Models\BusinessEntitiyFactory.cs" />
     <Compile Include="BusinessLayer\Models\GeneratedCode\AppertizerPage.cs" />
     <Compile Include="BusinessLayer\Models\GeneratedCode\Audio.cs" />

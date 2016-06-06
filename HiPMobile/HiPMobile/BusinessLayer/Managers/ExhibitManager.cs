@@ -65,13 +65,13 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Managers {
         }
 
         /// <summary>
-        /// Get an exhibitSet with a specific id.
+        /// Get an exhibit with a specific id.
         /// </summary>
-        /// <param name="id">The id of the exhibitSet to be retrived.</param>
-        /// <returns>The exhibitSet with the given id. If no exhibitSet exists, null is returned.</returns>
+        /// <param name="id">The id of the exhibit to be retrived.</param>
+        /// <returns>The exhibit with the given id. If no exhibit exists, null is returned.</returns>
         public static Exhibit GetExhibit (string id)
         {
-            if (string.IsNullOrEmpty (id))
+            if (!string.IsNullOrEmpty (id))
             {
                 return dataAccess.GetItem<Exhibit> (id);
             }
@@ -88,9 +88,9 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Managers {
         }
 
         /// <summary>
-        /// Deletes the exhibitSet from the app.
+        /// Deletes the exhibit from the app.
         /// </summary>
-        /// <param name="exhibit">The exhibitSet to be deleted.</param>
+        /// <param name="exhibit">The exhibit to be deleted.</param>
         /// <returns>True, if deletion was succesful, false otherwise.</returns>
         public static bool DeleteExhibit(Exhibit exhibit)
         {
