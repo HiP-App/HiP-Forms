@@ -53,7 +53,11 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models
 		}
 
 		//Associations
-		public virtual Audio Audio{ get; set; }
+		private Audio _audio{ get; set; }
+		public Audio Audio{
+			get{ return _audio; }
+			set{ Realm.GetInstance ().Write (() => _audio = value); }
+		}
 
 		private RealmList<Image> _images{ get; }
 		public IList<Image> Images{

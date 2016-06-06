@@ -24,18 +24,25 @@ namespace de.upb.hip.mobile.pcl.DataLayer {
     /// <summary>
     ///     Class encapsulating the access to the Realm Database
     /// </summary>
-    internal class RealmDataAccess : IDataAccess {
+    public class RealmDataAccess : IDataAccess {
 
         /// <summary>
         ///     Object used for mutual exclusion.
         /// </summary>
-        private static object locker;
+        private static object locker = new object ();
 
         public T GetItem<T> (string id) where T : RealmObject, IIdentifiable
         {
             lock (locker)
             {
-                return Realm.GetInstance ().All<T> ().First (element => element.Id == id);
+                // Realm has problems when using LINQ expression here
+                var objects = Realm.GetInstance ().All<T> ();
+                foreach (T realmResult in objects)
+                {
+                    if (realmResult.Id.Equals (id))
+                        return realmResult;
+                }
+                return null;
             }
         }
 

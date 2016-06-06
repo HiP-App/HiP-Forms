@@ -14,10 +14,15 @@
 
 using System;
 using System.Linq;
+using de.upb.hip.mobile.pcl.Common;
+using de.upb.hip.mobile.pcl.DataAccessLayer;
+using Microsoft.Practices.Unity;
 using Realms;
 
 namespace de.upb.hip.mobile.pcl.BusinessLayer.Models {
     public class BusinessEntitiyFactory {
+
+        private static readonly IDataAccess dataAccess = IoCManager.UnityContainer.Resolve<IDataAccess> ();
 
         /// <summary>
         /// Creates an object of type T that is synced to the database.
@@ -35,11 +40,20 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models {
             do
             {
                 id = GenerateId ();
-            } while (Realm.GetInstance ().All<T> ().Count (element => element.Id == id) > 0);
+            } while (dataAccess.GetItem<T> (id) != null);
 
             // assign the id and return the instance
             instance.Id = id;
             return instance;
+        }
+
+        public static bool DeleteBusinessEntity<T> (T entitiy) where T : RealmObject, IIdentifiable
+        {
+            if (entitiy != null)
+            {
+                return dataAccess.DeleteItem<T> (entitiy.Id);
+            }
+            return true;
         }
 
         private static string GenerateId ()
