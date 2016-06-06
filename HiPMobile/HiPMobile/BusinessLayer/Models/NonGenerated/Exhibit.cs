@@ -22,7 +22,7 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models {
         /// </summary>
         /// <param name="location">The location to calculate the distance to.</param>
         /// <returns>The distance.</returns>
-        public double GetDistance (GeoPoint location)
+        public double GetDistance (GeoLocation location)
         {
             // Harversine formula
             double R = 6373;

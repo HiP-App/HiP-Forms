@@ -571,7 +571,7 @@
             <type_NamedElement>
               <classMoniker
                 Id="1a1c8f48-d04c-4e79-8fc2-3570bf3d6e1a"
-                LastKnownName="GeoPoint"
+                LastKnownName="GeoLocation"
                 LastKnownLocation="Package_1525.uml" />
             </type_NamedElement>
           </property>
@@ -755,7 +755,7 @@
     <packageHasNamedElement>
       <class
         Id="1a1c8f48-d04c-4e79-8fc2-3570bf3d6e1a"
-        name="GeoPoint"
+        name="GeoLocation"
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false">
@@ -3287,7 +3287,7 @@
             <type_NamedElement>
               <classMoniker
                 Id="1a1c8f48-d04c-4e79-8fc2-3570bf3d6e1a"
-                LastKnownName="GeoPoint"
+                LastKnownName="GeoLocation"
                 LastKnownLocation="Package_1525.uml" />
             </type_NamedElement>
           </property>
@@ -4825,7 +4825,7 @@
             <type_NamedElement>
               <classMoniker
                 Id="1a1c8f48-d04c-4e79-8fc2-3570bf3d6e1a"
-                LastKnownName="GeoPoint"
+                LastKnownName="GeoLocation"
                 LastKnownLocation="Package_1525.uml" />
             </type_NamedElement>
           </property>
@@ -5179,7 +5179,7 @@
             <type_NamedElement>
               <classMoniker
                 Id="1a1c8f48-d04c-4e79-8fc2-3570bf3d6e1a"
-                LastKnownName="GeoPoint"
+                LastKnownName="GeoLocation"
                 LastKnownLocation="Package_1525.uml" />
             </type_NamedElement>
           </property>

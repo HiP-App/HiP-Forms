@@ -486,7 +486,7 @@
                   </appliedStereotypesInternal>
                   <elementDefinition Id="8293ebff-7903-4387-aa43-9789eaff58f8" />
                   <type_NamedElement>
-                    <referencedTypeMoniker Id="a11b71ff-161b-4c87-9a53-59da71964c3d" LastKnownName="GeoPoint" />
+                    <referencedTypeMoniker Id="a11b71ff-161b-4c87-9a53-59da71964c3d" LastKnownName="GeoLocation" />
                   </type_NamedElement>
                 </property>
                 <property Id="1f184cba-3b0e-42b6-91b7-ebc43b3e53ee" name="Categories" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
@@ -623,7 +623,7 @@
             </class>
           </packageHasNamedElement>
           <packageHasNamedElement>
-            <class Id="f5219bb6-d957-4d44-b50d-db82627a2ae1" name="GeoPoint" isAbstract="false" isLeaf="false" isActiveClass="false">
+            <class Id="f5219bb6-d957-4d44-b50d-db82627a2ae1" name="GeoLocation" isAbstract="false" isLeaf="false" isActiveClass="false">
               <appliedStereotypesInternal>
                 <stereotypeInstance Id="72330845-7a54-45c7-9925-7da4b7ecc535" name="class" profile="CSharpProfile">
                   <elementDefinition Id="c2a0b6de-1ab6-454b-ae3c-4fac966c48a8" />
@@ -2397,7 +2397,7 @@
                   </appliedStereotypesInternal>
                   <elementDefinition Id="92565b0b-b430-43e9-99b4-b82d6eb2621e" />
                   <type_NamedElement>
-                    <referencedTypeMoniker Id="3d6f00c1-3d78-4918-842f-c16fa6031602" LastKnownName="GeoPoint" />
+                    <referencedTypeMoniker Id="3d6f00c1-3d78-4918-842f-c16fa6031602" LastKnownName="GeoLocation" />
                   </type_NamedElement>
                 </property>
               </ownedAttributesInternal>
@@ -3508,7 +3508,7 @@
                   </appliedStereotypesInternal>
                   <elementDefinition Id="9d9ac536-ea2a-4b04-8c49-036fa1f0c098" />
                   <type_NamedElement>
-                    <referencedTypeMoniker Id="611adaed-49e4-409a-a244-6c9df5e11750" LastKnownName="GeoPoint" />
+                    <referencedTypeMoniker Id="611adaed-49e4-409a-a244-6c9df5e11750" LastKnownName="GeoLocation" />
                   </type_NamedElement>
                 </property>
                 <property Id="812ca745-5afd-4a95-9bf4-1837ee101245" name="Title" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
@@ -3772,7 +3772,7 @@
                   </appliedStereotypesInternal>
                   <elementDefinition Id="7e41eb51-c72b-499d-a724-ea271d6c1228" />
                   <type_NamedElement>
-                    <referencedTypeMoniker Id="afed4963-4c65-4580-81b0-71d9ff25cd90" LastKnownName="GeoPoint" />
+                    <referencedTypeMoniker Id="afed4963-4c65-4580-81b0-71d9ff25cd90" LastKnownName="GeoLocation" />
                   </type_NamedElement>
                 </property>
                 <property Id="71821fbb-0fc4-4ccb-ab40-940cc87d4553" name="ExhibitId" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
@@ -3872,7 +3872,7 @@
       </referencedType>
     </packageHasNamedElement>
     <packageHasNamedElement>
-      <referencedType Id="a11b71ff-161b-4c87-9a53-59da71964c3d" name="GeoPoint" isAbstract="false" isLeaf="false" cachedFullName="HiPDomainModel::de.upb.hip.mobile.pcl.BusinessLayer.Models::GeoPoint">
+      <referencedType Id="a11b71ff-161b-4c87-9a53-59da71964c3d" name="GeoLocation" isAbstract="false" isLeaf="false" cachedFullName="HiPDomainModel::de.upb.hip.mobile.pcl.BusinessLayer.Models::GeoLocation">
         <elementDefinition Id="1a1c8f48-d04c-4e79-8fc2-3570bf3d6e1a" />
       </referencedType>
     </packageHasNamedElement>
@@ -4022,7 +4022,7 @@
       </referencedType>
     </packageHasNamedElement>
     <packageHasNamedElement>
-      <referencedType Id="611adaed-49e4-409a-a244-6c9df5e11750" name="GeoPoint" isAbstract="false" isLeaf="false" cachedFullName="HiPDomainModel::de.upb.hip.mobile.pcl.BusinessLayer.Models::GeoPoint">
+      <referencedType Id="611adaed-49e4-409a-a244-6c9df5e11750" name="GeoLocation" isAbstract="false" isLeaf="false" cachedFullName="HiPDomainModel::de.upb.hip.mobile.pcl.BusinessLayer.Models::GeoLocation">
         <elementDefinition Id="1a1c8f48-d04c-4e79-8fc2-3570bf3d6e1a" />
       </referencedType>
     </packageHasNamedElement>
@@ -4047,12 +4047,12 @@
       </referencedType>
     </packageHasNamedElement>
     <packageHasNamedElement>
-      <referencedType Id="afed4963-4c65-4580-81b0-71d9ff25cd90" name="GeoPoint" isAbstract="false" isLeaf="false" cachedFullName="HiPDomainModel::de.upb.hip.mobile.pcl.BusinessLayer.Models::GeoPoint">
+      <referencedType Id="afed4963-4c65-4580-81b0-71d9ff25cd90" name="GeoLocation" isAbstract="false" isLeaf="false" cachedFullName="HiPDomainModel::de.upb.hip.mobile.pcl.BusinessLayer.Models::GeoLocation">
         <elementDefinition Id="1a1c8f48-d04c-4e79-8fc2-3570bf3d6e1a" />
       </referencedType>
     </packageHasNamedElement>
     <packageHasNamedElement>
-      <referencedType Id="3d6f00c1-3d78-4918-842f-c16fa6031602" name="GeoPoint" isAbstract="false" isLeaf="false" cachedFullName="HiPDomainModel::de.upb.hip.mobile.pcl.BusinessLayer.Models::GeoPoint">
+      <referencedType Id="3d6f00c1-3d78-4918-842f-c16fa6031602" name="GeoLocation" isAbstract="false" isLeaf="false" cachedFullName="HiPDomainModel::de.upb.hip.mobile.pcl.BusinessLayer.Models::GeoLocation">
         <elementDefinition Id="1a1c8f48-d04c-4e79-8fc2-3570bf3d6e1a" />
       </referencedType>
     </packageHasNamedElement>
