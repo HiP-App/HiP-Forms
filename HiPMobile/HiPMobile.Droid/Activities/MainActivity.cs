@@ -19,6 +19,7 @@ using Android.App;
 using Android.OS;
 using Android.Widget;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
+using Osmdroid.TileProvider;
 using Osmdroid.TileProvider.TileSource;
 using Osmdroid.Util;
 using Osmdroid.Views;
@@ -43,8 +44,13 @@ namespace de.upb.hip.mobile.droid.Activities {
 
 
             var mapView = FindViewById<MapView>(Resource.Id.mapview);
-            mapView.SetTileSource(TileSourceFactory.DefaultTileSource);
+           // mapView.SetTileSource(TileSourceFactory.DefaultTileSource);
             mapView.SetBuiltInZoomControls(true);
+
+            mapView.SetTileSource(new XYTileSource("OSM", 0, 18, 1024, ".png", 
+              new string[] { "http://tile.openstreetmap.org/"})); 
+
+
 
             var mapController = mapView.Controller;
             mapController.SetZoom(25);

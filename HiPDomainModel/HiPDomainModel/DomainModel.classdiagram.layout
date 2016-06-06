@@ -34,7 +34,7 @@
           </nestedChildShapes>
         </classShape>
         <classShape Id="c4bcc56f-6c35-4669-b6bd-698d471e4e12" isExpanded="false" absoluteBounds="9.625, 11, 1.5, 0.50533563931783043" hideQualifiedName="false" increaseHeight="0.18800345897674561" customColor="181, 193, 223">
-          <classMoniker Id="f5219bb6-d957-4d44-b50d-db82627a2ae1" LastKnownName="GeoPoint" />
+          <classMoniker Id="f5219bb6-d957-4d44-b50d-db82627a2ae1" LastKnownName="GeoLocation" />
           <nestedChildShapes>
             <AttributeElementListCompartment Id="07d58f8d-099c-4004-a77d-fe8252693b73" absoluteBounds="9.64, 11.39, 1.4700000000000002, 0.52148435761531187" name="AttributesCompartment" titleTextColor="Black" itemTextColor="Black" />
             <OperationElementListCompartment Id="41045b2b-5de5-4c55-897b-59af459626e3" absoluteBounds="9.64, 11.921484357615313, 1.4700000000000002, 0.20117186754941951" name="OperationsCompartment" titleTextColor="Black" itemTextColor="Black" />
@@ -252,7 +252,7 @@
         <classShapeMoniker Id="4b62d8eb-5ac1-4cb7-946b-4cecb6e7790c" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(4.75 : 10.0556663375338); (3.5 : 10.0556663375338); (3.5 : 9.27046167217135); (2.75 : 9.27046167217135)]" fixedFrom="NotFixed" fixedTo="NotFixed" customColor="113, 111, 110" sourceMultiplicity="1" targetMultiplicity="*">
+    <associationConnector edgePoints="[(4.75 : 10.0556663375338); (4.11458333333333 : 10.0556663375338 : JumpStart); (3.94791666666667 : 10.0556663375338 : JumpEnd); (3.5 : 10.0556663375338); (3.5 : 9.27046167217135); (2.75 : 9.27046167217135)]" fixedFrom="NotFixed" fixedTo="NotFixed" customColor="113, 111, 110" sourceMultiplicity="1" targetMultiplicity="*">
       <associationMoniker Id="4c78a815-f29d-4bf4-9767-21d8191c55ca" />
       <relativeChildShapes />
       <nodes>
