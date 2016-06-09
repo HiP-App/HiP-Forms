@@ -9,6 +9,11 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using de.upb.hip.mobile.pcl.BusinessLayer.Models;
+using de.upb.hip.mobile.pcl.Common;
+using de.upb.hip.mobile.pcl.DataAccessLayer;
+using de.upb.hip.mobile.pcl.DataLayer;
+using Microsoft.Practices.Unity;
 
 namespace de.upb.hip.mobile.droid.Activities
 {
@@ -37,6 +42,11 @@ namespace de.upb.hip.mobile.droid.Activities
             mTextWaiting.SetText(Resource.String.splash_screen_waiting);
 
             action = new Action(startMainActivity);
+
+            IoCManager.UnityContainer.RegisterType<IDataAccess, RealmDataAccess> ();
+
+            Image audio = BusinessEntitiyFactory.CreateBusinessObject<Image> ();
+            audio.Data = new byte[] { 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20 };
 
             Handler handler = new Handler();
             handler.PostDelayed (action, MStartupDelay);

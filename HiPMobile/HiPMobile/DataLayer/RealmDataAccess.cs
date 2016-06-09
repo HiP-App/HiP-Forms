@@ -39,7 +39,7 @@ namespace de.upb.hip.mobile.pcl.DataLayer {
                 var objects = Realm.GetInstance ().All<T> ();
                 foreach (T realmResult in objects)
                 {
-                    if (realmResult.Id.Equals (id))
+                    if (!string.IsNullOrEmpty(realmResult.Id) && realmResult.Id.Equals (id))
                         return realmResult;
                 }
                 return null;
