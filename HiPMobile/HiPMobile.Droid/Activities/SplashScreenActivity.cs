@@ -43,11 +43,6 @@ namespace de.upb.hip.mobile.droid.Activities
 
             action = new Action(startMainActivity);
 
-            IoCManager.UnityContainer.RegisterType<IDataAccess, RealmDataAccess> ();
-
-            Image audio = BusinessEntitiyFactory.CreateBusinessObject<Image> ();
-            audio.Data = new byte[] { 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20 };
-
             Handler handler = new Handler();
             handler.PostDelayed (action, MStartupDelay);
         }
