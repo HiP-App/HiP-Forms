@@ -2363,7 +2363,7 @@
         <ownedAttributesInternal>
           <property
             Id="e9ab6198-08da-4ade-902a-2a673acfb9b8"
-            name="Path"
+            name="Data"
             isLeaf="false"
             isStatic="false"
             isReadOnly="false"
@@ -2430,9 +2430,9 @@
               </stereotypeInstance>
             </appliedStereotypesInternal>
             <type_NamedElement>
-              <primitiveTypeMoniker
-                Id="59259974-6d55-42c6-b7bd-763d77ac8ef9"
-                LastKnownName="String"
+              <classMoniker
+                Id="436dfd1b-1ea4-4598-9763-cd2509ded265"
+                LastKnownName="byte[]"
                 LastKnownLocation="HiPDomainModel.uml" />
             </type_NamedElement>
           </property>
@@ -3626,7 +3626,7 @@
           </property>
           <property
             Id="7c4df730-ec7d-4846-8cfc-24bf8fd64e55"
-            name="ImagePath"
+            name="Data"
             isLeaf="false"
             isStatic="false"
             isReadOnly="false"
@@ -3693,9 +3693,9 @@
               </stereotypeInstance>
             </appliedStereotypesInternal>
             <type_NamedElement>
-              <primitiveTypeMoniker
-                Id="59259974-6d55-42c6-b7bd-763d77ac8ef9"
-                LastKnownName="String"
+              <classMoniker
+                Id="436dfd1b-1ea4-4598-9763-cd2509ded265"
+                LastKnownName="byte[]"
                 LastKnownLocation="HiPDomainModel.uml" />
             </type_NamedElement>
           </property>
