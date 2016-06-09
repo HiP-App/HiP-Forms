@@ -174,6 +174,9 @@ namespace de.upb.hip.mobile.droid
 			// aapt resource value: 0x7f050005
 			public const int mainActivityDrawerLayout = 2131034117;
 			
+			// aapt resource value: 0x7f050008
+			public const int mainRecyclerView = 2131034120;
+			
 			// aapt resource value: 0x7f050007
 			public const int mainSwipeContainer = 2131034119;
 			

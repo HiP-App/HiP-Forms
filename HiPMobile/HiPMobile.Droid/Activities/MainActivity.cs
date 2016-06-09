@@ -17,6 +17,7 @@
 using System;
 using Android.App;
 using Android.OS;
+using Android.Support.V7.Widget;
 using Android.Widget;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using Osmdroid.TileProvider;
@@ -30,6 +31,10 @@ namespace de.upb.hip.mobile.droid.Activities {
           Label = "HiPMobile.Droid", MainLauncher = false, Icon = "@drawable/icon")]
 
     public class MainActivity : Activity {
+
+        // Recycler View: MainList
+        private RecyclerView mRecyclerView;
+        private RecyclerView.Adapter mAdapter;
 
         protected override void OnCreate (Bundle bundle)
         {
@@ -61,6 +66,13 @@ namespace de.upb.hip.mobile.droid.Activities {
             var centreOfMap = new GeoPoint(51.716819, 8.764343);
             
             mapController.SetCenter(centreOfMap);
+
+            // Recyler View
+            mRecyclerView = (RecyclerView)FindViewById(Resource.Id.mainRecyclerView);
+
+            // use a linear layout manager
+            RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
+            mRecyclerView.SetLayoutManager(mLayoutManager);
         }
 
     }
