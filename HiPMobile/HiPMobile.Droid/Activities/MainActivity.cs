@@ -19,6 +19,8 @@ using Android.App;
 using Android.OS;
 using Android.Support.V7.Widget;
 using Android.Widget;
+using de.upb.hip.mobile.droid.Adapters;
+using de.upb.hip.mobile.droid.Listeners;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using HockeyApp;
 using Osmdroid.TileProvider;
@@ -36,6 +38,8 @@ namespace de.upb.hip.mobile.droid.Activities {
         // Recycler View: MainList
         private RecyclerView mRecyclerView;
         private RecyclerView.Adapter mAdapter;
+        private ExhibitSet mExhibitSet;
+
 
         protected override void OnCreate (Bundle bundle)
         {
@@ -65,7 +69,11 @@ namespace de.upb.hip.mobile.droid.Activities {
             //rename geopoint from model classes for testing
             // var centreOfMap = new GeoPoint(51496994, -134733);
             var centreOfMap = new GeoPoint(51.716819, 8.764343);
-            
+            GeoLocation location = new GeoLocation ();
+            location.Latitude = 51.716819;
+            location.Longitude = 8.764343;
+
+
             mapController.SetCenter(centreOfMap);
 
             // Recyler View
@@ -74,6 +82,15 @@ namespace de.upb.hip.mobile.droid.Activities {
             // use a linear layout manager
             RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
             mRecyclerView.SetLayoutManager(mLayoutManager);
+
+
+            /*
+             * There is no exhibitset until now so outcommented that teh app still starts
+            */
+          //  mAdapter = new MainRecyclerAdapter(this.mExhibitSet,location);
+           // mRecyclerView.SetAdapter(mAdapter);
+
+           // mRecyclerView.AddOnItemTouchListener(new RecyclerItemClickListener(this));
 
             // hockeyapp code
             CheckForUpdates ();
