@@ -15,8 +15,12 @@
 //  */
 
 using System;
+using Android;
 using Android.App;
+using Android.Content.PM;
 using Android.OS;
+using Android.Support.V4.App;
+using Android.Support.V4.Content;
 using Android.Support.V7.Widget;
 using Android.Widget;
 using de.upb.hip.mobile.droid.Adapters;
@@ -39,6 +43,7 @@ namespace de.upb.hip.mobile.droid.Activities {
         private RecyclerView mRecyclerView;
         private RecyclerView.Adapter mAdapter;
         private ExhibitSet mExhibitSet;
+        private GeoLocation mGeoLocation;
 
 
         protected override void OnCreate (Bundle bundle)
@@ -48,9 +53,30 @@ namespace de.upb.hip.mobile.droid.Activities {
             // Set our view from the "main" layout resource
             SetContentView (Resource.Layout.Main);
 
+            // Check if we have the necessary permissions and request them if we don't
+            // Note that the app will still fail on first launch and needs to be restarted
+            if (ContextCompat.CheckSelfPermission(this,
+                    Manifest.Permission.AccessFineLocation)
+                    != Permission.Granted || ContextCompat.CheckSelfPermission(this,
+                    Manifest.Permission.ReadExternalStorage)
+                    != Permission.Granted || ContextCompat.CheckSelfPermission(this,
+                    Manifest.Permission.WriteExternalStorage)
+                    != Permission.Granted)
+            {
+
+                ActivityCompat.RequestPermissions(this,
+                        new String[] { Manifest.Permission.AccessFineLocation, Manifest.Permission.ReadExternalStorage, Manifest.Permission.WriteExternalStorage },
+                        0);
+            }
 
             //Delete current database to avoid migration issues, remove this when wanting persistent database usage
             Realm.DeleteRealm (new RealmConfiguration ());
+
+
+            mGeoLocation = new GeoLocation();
+            mGeoLocation.Latitude = 51.71352;
+            mGeoLocation.Longitude = 8.74021;
+
 
 
             var mapView = FindViewById<MapView>(Resource.Id.mapview);
@@ -68,10 +94,7 @@ namespace de.upb.hip.mobile.droid.Activities {
             //Geopoint of osmdroid has conlfict with geopoint from model classe
             //rename geopoint from model classes for testing
             // var centreOfMap = new GeoPoint(51496994, -134733);
-            var centreOfMap = new GeoPoint(51.716819, 8.764343);
-            GeoLocation location = new GeoLocation ();
-            location.Latitude = 51.716819;
-            location.Longitude = 8.764343;
+            var centreOfMap = new GeoPoint (mGeoLocation.Latitude, mGeoLocation.Longitude);
 
 
             mapController.SetCenter(centreOfMap);
@@ -87,7 +110,7 @@ namespace de.upb.hip.mobile.droid.Activities {
             /*
              * There is no exhibitset until now so outcommented that teh app still starts
             */
-          //  mAdapter = new MainRecyclerAdapter(this.mExhibitSet,location);
+          // mAdapter = new MainRecyclerAdapter(this.mExhibitSet,mGeoLocation, Android.App.Application.Context);
            // mRecyclerView.SetAdapter(mAdapter);
 
            // mRecyclerView.AddOnItemTouchListener(new RecyclerItemClickListener(this));

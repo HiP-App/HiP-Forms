@@ -87,11 +87,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Activities\DetailsActivity.cs" />
     <Compile Include="Activities\MainActivity.cs" />
     <Compile Include="Activities\SplashScreenActivity.cs" />
     <Compile Include="Adapters\MainRecyclerAdapter.cs" />
-    <Compile Include="Adapters\ViewHolder.cs" />
     <Compile Include="Helpers\ImageManipulation.cs" />
     <Compile Include="Listeners\RecyclerItemClickListener.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
@@ -108,9 +106,6 @@
       <SubType>AndroidResource</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\activity_main_row_item.axml">
-      <SubType>AndroidResource</SubType>
-    </AndroidResource>
-    <AndroidResource Include="Resources\layout\activity_details.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
   </ItemGroup>

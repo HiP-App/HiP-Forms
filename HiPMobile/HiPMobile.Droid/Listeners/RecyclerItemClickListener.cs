@@ -17,7 +17,7 @@ using Java.Lang;
 
 namespace de.upb.hip.mobile.droid.Listeners
 {
-    class RecyclerItemClickListener : RecyclerView.IOnItemTouchListener {
+    class RecyclerItemClickListener {/* : RecyclerView.IOnItemTouchListener {
 
         private MainActivity mMainActivity;
         private GestureDetector mGestureDetector;
@@ -78,6 +78,6 @@ namespace de.upb.hip.mobile.droid.Listeners
         public void Dispose()
         {
             throw new NotImplementedException();
-        }
+        }*/
     }
 }

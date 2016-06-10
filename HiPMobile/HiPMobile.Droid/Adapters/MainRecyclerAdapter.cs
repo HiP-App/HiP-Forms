@@ -23,7 +23,7 @@ namespace de.upb.hip.mobile.droid.Adapters {
 
         private ExhibitSet mExhibitSet;
         private GeoLocation location;
-        public ViewHolder view;
+        private Context mContext;
 
 
 
@@ -34,10 +34,11 @@ namespace de.upb.hip.mobile.droid.Adapters {
      * @param exhibitSet set of Exhibits to be shown
      */
 
-        public MainRecyclerAdapter (ExhibitSet exhibitSet, GeoLocation location)
+        public MainRecyclerAdapter (ExhibitSet exhibitSet, GeoLocation location,Context context)
         {
             this.mExhibitSet = exhibitSet;
             this.location = location;
+            this.mContext = context;
         }
 
 
@@ -61,6 +62,7 @@ namespace de.upb.hip.mobile.droid.Adapters {
 
             // update the holder with new data
             vh.mName.SetText(exhibit.Name, TextView.BufferType.Normal);
+
             double doubleDistance = exhibit.GetDistance(location);
 
             int intDistance;

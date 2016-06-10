@@ -16,10 +16,17 @@ limitations under the License.-->
     <item name="colorPrimary" type="color">#3F51B5</item>
     <item name="colorPrimaryDark" type="color">#303F9F</item>
     <!-- accent color: red -->
-    <item name="colorAccent" type="color">#FF4081</item>
+    <item name="colorAccent" type="color">#FF9800</item>
 
-    <!-- text color: white -->
-    <item name="textColorPrimary" type="color">#FFFFFF</item>
+    <!-- Exhibit Page colors -->
+    <item name="colorExhibitBackground" type="color">#FFFFFF</item>
+    <item name="colorBottomSheetBackground" type="color">#FFFFFF</item>
+    <item name="colorExhibitFont" type="color">@android:color/black</item>
+    <item name="colorBottomSheetFont" type="color">@android:color/black</item>
+
+
+    <!-- text color: black -->
+    <item name="textColorPrimary" type="color">#DE000000</item>
     <item name="textColorSecondary" type="color">#9E9E9E</item>
     <!-- inverse text color: 87% black -->
     <item name="textColorPrimaryInverse" type="color">#DE000000</item>
@@ -28,6 +35,8 @@ limitations under the License.-->
     <!-- white text for the image overlay -->
     <item name="textOverlayForImage" type="color">#FFFFFF</item>
 
-    <item name="my_purple" type="color">#B455B6</item>
     <drawable name="semitransparent_gray">#779E9E9E</drawable>
+
+    <!-- background for chevrons in the ExhibitDetailsActivity -->
+    <item name="chevronBackground" type="color">#AAFFFFFF</item>
 </resources>
