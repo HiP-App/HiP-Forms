@@ -9,6 +9,11 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using de.upb.hip.mobile.pcl.BusinessLayer.Models;
+using de.upb.hip.mobile.pcl.Common;
+using de.upb.hip.mobile.pcl.DataAccessLayer;
+using de.upb.hip.mobile.pcl.DataLayer;
+using Microsoft.Practices.Unity;
 
 namespace de.upb.hip.mobile.droid.Activities
 {
