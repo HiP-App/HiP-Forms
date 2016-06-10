@@ -41,14 +41,17 @@ namespace de.upb.hip.mobile.droid.Activities
             mTextAction.SetText(Resource.String.splash_screen_loading);
             mTextWaiting.SetText(Resource.String.splash_screen_waiting);
 
-            action = new Action(startMainActivity);
+            // setup IoCManager
+            IoCManager.UnityContainer.RegisterType<IDataAccess, RealmDataAccess> ();
+
+            action = new Action(StartMainActivity);
 
             Handler handler = new Handler();
             handler.PostDelayed (action, MStartupDelay);
         }
 
 
-        private void startMainActivity ()
+        private void StartMainActivity ()
         {
             StartActivity (typeof (MainActivity));
         }

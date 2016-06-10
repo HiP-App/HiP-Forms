@@ -27,3 +27,5 @@ using Android.App;
 //[assembly: AssemblyDelaySign(false)]
 //[assembly: AssemblyKeyFile("")]
 
+[assembly: MetaData("net.hockeyapp.android.appIdentifier", Value = "9947e2434fe64d318214cfc6972d4800")]
+

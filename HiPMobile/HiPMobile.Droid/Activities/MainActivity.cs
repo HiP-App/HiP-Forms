@@ -20,6 +20,7 @@ using Android.OS;
 using Android.Support.V7.Widget;
 using Android.Widget;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
+using HockeyApp;
 using Osmdroid.TileProvider;
 using Osmdroid.TileProvider.TileSource;
 using Osmdroid.Util;
@@ -73,7 +74,54 @@ namespace de.upb.hip.mobile.droid.Activities {
             // use a linear layout manager
             RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
             mRecyclerView.SetLayoutManager(mLayoutManager);
+
+            // hockeyapp code
+            CheckForUpdates ();
         }
 
+        protected override void OnDestroy ()
+        {
+            base.OnDestroy ();
+
+            // hockeyapp code
+            UnregisterManagers ();
+        }
+
+        protected override void OnResume ()
+        {
+            base.OnResume ();
+
+            // hockeyapp code
+            CheckForCrashes ();
+        }
+
+        protected override void OnPause ()
+        {
+            base.OnPause ();
+
+            // hockeyapp code
+            UnregisterManagers ();
+        }
+
+        /// <summary>
+        /// Methods for hockeyapp
+        /// </summary>
+        #region
+        private void CheckForCrashes()
+        {
+            CrashManager.Register(this);
+        } 
+
+        private void CheckForUpdates()
+        {
+            // Remove this for store builds! 
+            UpdateManager.Register(this);
+        }  
+ 
+         private void UnregisterManagers()
+        {
+            UpdateManager.Unregister();
+        }
+        #endregion
     }
 }
