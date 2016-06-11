@@ -17,7 +17,7 @@ using Microsoft.Practices.Unity;
 
 namespace de.upb.hip.mobile.droid.Activities
 {
-    [Activity(Theme = "@style/AppTheme",Label = "SplashScreenActivity",MainLauncher = true, Icon = "@drawable/icon")]
+    [Activity(Theme = "@style/AppTheme", MainLauncher = true)]
     public class SplashScreenActivity : Activity
     {
 

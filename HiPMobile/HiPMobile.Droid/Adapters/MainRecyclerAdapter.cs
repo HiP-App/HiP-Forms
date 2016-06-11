@@ -75,14 +75,15 @@ namespace de.upb.hip.mobile.droid.Adapters {
 
 
 
-            vh.View.Id = Integer.ParseInt (exhibit.Id);
+            //vh.View.Id = Integer.ParseInt (exhibit.Id);
 
             vh.Distance.SetText (distance, TextView.BufferType.Normal);
 
-           /* byte[] d = exhibit.Image.Data;
-            BitmapDrawable bitmapDrawable = (BitmapDrawable) d;
+            byte[] d = exhibit.Image.Data;
+            Bitmap bm = BitmapFactory.DecodeByteArray(d, 0, d.Length);
+            BitmapDrawable bitmapDrawable = new BitmapDrawable(bm);
             Bitmap bmp = bitmapDrawable.Bitmap;
-            vh.Image.SetImageBitmap (ImageManipulation.getCroppedImage (bmp, 100));*/
+            vh.Image.SetImageBitmap (ImageManipulation.getCroppedImage (bmp, 100));
         }
 
 

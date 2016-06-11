@@ -15,17 +15,21 @@
 //  */
 
 using System;
+using System.IO;
 using System.Linq;
 using Android;
 using Android.App;
 using Android.Content.PM;
+using Android.Content.Res;
 using Android.OS;
 using Android.Support.V4.App;
 using Android.Support.V4.Content;
 using Android.Support.V7.Widget;
 using Android.Widget;
 using de.upb.hip.mobile.droid.Adapters;
+using de.upb.hip.mobile.droid.Helpers;
 using de.upb.hip.mobile.droid.Listeners;
+using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using HockeyApp;
 using Osmdroid.TileProvider;
@@ -79,34 +83,9 @@ namespace de.upb.hip.mobile.droid.Activities {
             mGeoLocation.Latitude = 51.71352;
             mGeoLocation.Longitude = 8.74021;
 
-            var exhibitSet = BusinessEntitiyFactory.CreateBusinessObject<ExhibitSet>();
-            var exhibit = BusinessEntitiyFactory.CreateBusinessObject<Exhibit>();
-            exhibitSet.InitSet.Add(exhibit);
-            exhibit.Name = "HNI";
-            exhibit.Description = "Gelände am Museumsforum";
-            exhibit.Id = "1";
-            var hni = BusinessEntitiyFactory.CreateBusinessObject<GeoLocation>();
-            exhibit.Location = hni;
-            exhibit.Location.Latitude = 51.732098;
-            exhibit.Location.Longitude = 8.735268;
-            
-
-
-            var exhibit2 = BusinessEntitiyFactory.CreateBusinessObject<Exhibit>();
-            exhibit2.Name = "Uni";
-            exhibit2.Description = "Campus";
-            exhibit2.Id = "2";
-            var uni = BusinessEntitiyFactory.CreateBusinessObject<GeoLocation>();
-            exhibit2.Location = uni;
-            exhibit2.Location.Latitude = 51.709473;
-            exhibit2.Location.Longitude = 8.773463;
-
-            
-            exhibitSet.InitSet.Add(exhibit2);
-            this.mExhibitSet = exhibitSet;
-
-            int i = this.mExhibitSet.InitSet.Count;
-            Exhibit e = mExhibitSet.InitSet.ElementAt (1);
+            DbDummyDataFiller filler=new DbDummyDataFiller(this.Assets);
+            filler.InsertData();
+            this.mExhibitSet = ExhibitManager.GetExhibitSets().First();
 
             var mapView = FindViewById<MapView>(Resource.Id.mapview);
            // mapView.SetTileSource(TileSourceFactory.DefaultTileSource);
@@ -120,8 +99,6 @@ namespace de.upb.hip.mobile.droid.Activities {
             var mapController = mapView.Controller;
             mapController.SetZoom(25);
 
-            //Geopoint of osmdroid has conlfict with geopoint from model classe
-            //rename geopoint from model classes for testing
             // var centreOfMap = new GeoPoint(51496994, -134733);
             var centreOfMap = new GeoPoint (mGeoLocation.Latitude, mGeoLocation.Longitude);
            
