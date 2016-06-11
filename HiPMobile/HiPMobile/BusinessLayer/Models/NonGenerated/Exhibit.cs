@@ -14,6 +14,7 @@
 
 using System;
 
+
 namespace de.upb.hip.mobile.pcl.BusinessLayer.Models {
     public partial class Exhibit {
 

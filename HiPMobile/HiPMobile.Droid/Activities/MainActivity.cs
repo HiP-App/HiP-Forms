@@ -15,6 +15,7 @@
 //  */
 
 using System;
+using System.Linq;
 using Android;
 using Android.App;
 using Android.Content.PM;
@@ -72,12 +73,40 @@ namespace de.upb.hip.mobile.droid.Activities {
             //Delete current database to avoid migration issues, remove this when wanting persistent database usage
             Realm.DeleteRealm (new RealmConfiguration ());
 
+            
 
             mGeoLocation = new GeoLocation();
             mGeoLocation.Latitude = 51.71352;
             mGeoLocation.Longitude = 8.74021;
 
+            var exhibitSet = BusinessEntitiyFactory.CreateBusinessObject<ExhibitSet>();
+            var exhibit = BusinessEntitiyFactory.CreateBusinessObject<Exhibit>();
+            exhibitSet.InitSet.Add(exhibit);
+            exhibit.Name = "HNI";
+            exhibit.Description = "Gelände am Museumsforum";
+            exhibit.Id = "1";
+            var hni = BusinessEntitiyFactory.CreateBusinessObject<GeoLocation>();
+            exhibit.Location = hni;
+            exhibit.Location.Latitude = 51.732098;
+            exhibit.Location.Longitude = 8.735268;
+            
 
+
+            var exhibit2 = BusinessEntitiyFactory.CreateBusinessObject<Exhibit>();
+            exhibit2.Name = "Uni";
+            exhibit2.Description = "Campus";
+            exhibit2.Id = "2";
+            var uni = BusinessEntitiyFactory.CreateBusinessObject<GeoLocation>();
+            exhibit2.Location = uni;
+            exhibit2.Location.Latitude = 51.709473;
+            exhibit2.Location.Longitude = 8.773463;
+
+            
+            exhibitSet.InitSet.Add(exhibit2);
+            this.mExhibitSet = exhibitSet;
+
+            int i = this.mExhibitSet.InitSet.Count;
+            Exhibit e = mExhibitSet.InitSet.ElementAt (1);
 
             var mapView = FindViewById<MapView>(Resource.Id.mapview);
            // mapView.SetTileSource(TileSourceFactory.DefaultTileSource);
@@ -95,6 +124,7 @@ namespace de.upb.hip.mobile.droid.Activities {
             //rename geopoint from model classes for testing
             // var centreOfMap = new GeoPoint(51496994, -134733);
             var centreOfMap = new GeoPoint (mGeoLocation.Latitude, mGeoLocation.Longitude);
+           
 
 
             mapController.SetCenter(centreOfMap);
@@ -110,8 +140,8 @@ namespace de.upb.hip.mobile.droid.Activities {
             /*
              * There is no exhibitset until now so outcommented that teh app still starts
             */
-          // mAdapter = new MainRecyclerAdapter(this.mExhibitSet,mGeoLocation, Android.App.Application.Context);
-           // mRecyclerView.SetAdapter(mAdapter);
+          mAdapter = new MainRecyclerAdapter(this.mExhibitSet,mGeoLocation, Android.App.Application.Context);
+          mRecyclerView.SetAdapter(mAdapter);
 
            // mRecyclerView.AddOnItemTouchListener(new RecyclerItemClickListener(this));
 

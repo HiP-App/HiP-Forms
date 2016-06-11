@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
 using Android.App;
 using Android.Content;
 using Android.Graphics;
@@ -26,15 +25,13 @@ namespace de.upb.hip.mobile.droid.Adapters {
         private Context mContext;
 
 
-
-
         /**
      * Constructor for the MainRecyclerAdapter
      *
      * @param exhibitSet set of Exhibits to be shown
      */
 
-        public MainRecyclerAdapter (ExhibitSet exhibitSet, GeoLocation location,Context context)
+        public MainRecyclerAdapter (ExhibitSet exhibitSet, GeoLocation location, Context context)
         {
             this.mExhibitSet = exhibitSet;
             this.location = location;
@@ -42,61 +39,54 @@ namespace de.upb.hip.mobile.droid.Adapters {
         }
 
 
-
-        public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)
+        public override RecyclerView.ViewHolder OnCreateViewHolder (ViewGroup parent, int viewType)
         {
             // create a new view
-            View v = LayoutInflater.From(parent.Context).Inflate(
+            View v = LayoutInflater.From (parent.Context).Inflate (
                 Resource.Layout.activity_main_row_item, parent, false);
 
-            return new ViewHolder(v);
+            return new ViewHolder (v);
         }
 
-        public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
+        public override void OnBindViewHolder (RecyclerView.ViewHolder holder, int position)
         {
-
             MainRecyclerAdapter.ViewHolder vh = holder as MainRecyclerAdapter.ViewHolder;
 
             // get Exhibit from mExhibitSet at position
-            Exhibit exhibit = this.mExhibitSet.ActiveSet.ElementAt(position);
+            Exhibit exhibit = this.mExhibitSet.InitSet.ElementAt (position);
 
             // update the holder with new data
-            vh.mName.SetText(exhibit.Name, TextView.BufferType.Normal);
+            vh.Name.SetText (exhibit.Name, TextView.BufferType.Normal);
 
-            double doubleDistance = exhibit.GetDistance(location);
+            double doubleDistance = (exhibit.GetDistance (location))*1000;
 
-            int intDistance;
+            double intDistance;
             String distance;
             if (doubleDistance > 1000)
             {
-                if (doubleDistance < 10000)
-                {
-                    intDistance = (int)(doubleDistance / 100);
-                    distance = (double)(intDistance) / 10 + "km";
-                }
-                else
-                {
-                    distance = (int)doubleDistance / 1000 + "km";
-                }
+                
+                    distance = System.Math.Round((decimal)doubleDistance/1000, 2) + "km";
+                
             }
             else
             {
-                distance = (int)doubleDistance + "m";
+                distance = System.Math.Round((decimal)doubleDistance, 2) + "m";
             }
 
-            vh.mView.Id = Integer.ParseInt(exhibit.Id);
 
-            vh.mDistance.SetText(distance, TextView.BufferType.Normal);
 
-            byte[] d = exhibit.Image.Data;
-            BitmapDrawable bitmapDrawable = (BitmapDrawable)d;
+            vh.View.Id = Integer.ParseInt (exhibit.Id);
+
+            vh.Distance.SetText (distance, TextView.BufferType.Normal);
+
+           /* byte[] d = exhibit.Image.Data;
+            BitmapDrawable bitmapDrawable = (BitmapDrawable) d;
             Bitmap bmp = bitmapDrawable.Bitmap;
-            vh.mImage.SetImageBitmap(ImageManipulation.getCroppedImage(bmp, 100));
+            vh.Image.SetImageBitmap (ImageManipulation.getCroppedImage (bmp, 100));*/
         }
 
 
-
-       /* public ViewHolder OnCreateViewHolder (ViewGroup parent, int viewType)
+        /* public ViewHolder OnCreateViewHolder (ViewGroup parent, int viewType)
       
 
         /**
@@ -105,35 +95,30 @@ namespace de.upb.hip.mobile.droid.Adapters {
      * @return size of mExhibitSet
      */
 
-        public override int ItemCount
-        {
-            get
-            {
-                return mExhibitSet.ActiveSet.Count();
-            }
+        public override int ItemCount {
+            get { return mExhibitSet.InitSet.Count (); }
         }
 
         /*      Provide a reference to the views for each data item
       * Complex data items may need more than one view per item, and
       * you provide access to all the views for a data item in a view holder
       */
-        public class ViewHolder : RecyclerView.ViewHolder
-        {
+
+        public class ViewHolder : RecyclerView.ViewHolder {
 
             // each data item is just a string in this case
-            public View mView { get; set; }
-            public ImageView mImage { get; set; }
-            public TextView mName { get; set; }
-            public TextView mDistance { get; set; }
+            public View View { get; set; }
+            public ImageView Image { get; set; }
+            public TextView Name { get; set; }
+            public TextView Distance { get; set; }
 
 
-            public ViewHolder(View v) : base(v)
+            public ViewHolder (View v) : base (v)
             {
-
-                this.mView = v;
-                this.mImage = (ImageView)v.FindViewById(Resource.Id.mainRowItemImage);
-                this.mName = (TextView)v.FindViewById(Resource.Id.mainRowItemName);
-                this.mDistance = (TextView)v.FindViewById(Resource.Id.mainRowItemDistance);
+                this.View = v;
+                this.Image = (ImageView) v.FindViewById (Resource.Id.mainRowItemImage);
+                this.Name = (TextView) v.FindViewById (Resource.Id.mainRowItemName);
+                this.Distance = (TextView) v.FindViewById (Resource.Id.mainRowItemDistance);
             }
 
         }
