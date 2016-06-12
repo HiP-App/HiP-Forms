@@ -22,9 +22,12 @@ using Android.App;
 using Android.Content.PM;
 using Android.Content.Res;
 using Android.OS;
+using Android.Support.Design.Widget;
 using Android.Support.V4.App;
 using Android.Support.V4.Content;
+using Android.Support.V4.Widget;
 using Android.Support.V7.Widget;
+using Android.Views;
 using Android.Widget;
 using de.upb.hip.mobile.droid.Adapters;
 using de.upb.hip.mobile.droid.Helpers;
@@ -39,9 +42,8 @@ using Osmdroid.Views;
 using Realms;
 
 namespace de.upb.hip.mobile.droid.Activities {
-    [Activity(Theme = "@style/AppTheme.WithActionBar",
-          Label = "HiPMobile.Droid", MainLauncher = false, Icon = "@drawable/icon")]
-
+    [Activity (Theme = "@style/AppTheme.WithActionBar",
+        Label = "HiPMobile.Droid", MainLauncher = false, Icon = "@drawable/icon")]
     public class MainActivity : Activity {
 
         // Recycler View: MainList
@@ -60,70 +62,73 @@ namespace de.upb.hip.mobile.droid.Activities {
 
             // Check if we have the necessary permissions and request them if we don't
             // Note that the app will still fail on first launch and needs to be restarted
-            if (ContextCompat.CheckSelfPermission(this,
-                    Manifest.Permission.AccessFineLocation)
-                    != Permission.Granted || ContextCompat.CheckSelfPermission(this,
-                    Manifest.Permission.ReadExternalStorage)
-                    != Permission.Granted || ContextCompat.CheckSelfPermission(this,
-                    Manifest.Permission.WriteExternalStorage)
-                    != Permission.Granted)
+            if (ContextCompat.CheckSelfPermission (this,
+                                                   Manifest.Permission.AccessFineLocation)
+                != Permission.Granted || ContextCompat.CheckSelfPermission (this,
+                                                                            Manifest.Permission.ReadExternalStorage)
+                != Permission.Granted || ContextCompat.CheckSelfPermission (this,
+                                                                            Manifest.Permission.WriteExternalStorage)
+                != Permission.Granted)
             {
-
-                ActivityCompat.RequestPermissions(this,
-                        new String[] { Manifest.Permission.AccessFineLocation, Manifest.Permission.ReadExternalStorage, Manifest.Permission.WriteExternalStorage },
-                        0);
+                ActivityCompat.RequestPermissions (this,
+                                                   new String[]
+                                                   {Manifest.Permission.AccessFineLocation, Manifest.Permission.ReadExternalStorage, Manifest.Permission.WriteExternalStorage},
+                                                   0);
             }
 
             //Delete current database to avoid migration issues, remove this when wanting persistent database usage
             Realm.DeleteRealm (new RealmConfiguration ());
 
-            
 
-            mGeoLocation = new GeoLocation();
+            mGeoLocation = new GeoLocation ();
             mGeoLocation.Latitude = 51.71352;
             mGeoLocation.Longitude = 8.74021;
 
-            DbDummyDataFiller filler=new DbDummyDataFiller(this.Assets);
-            filler.InsertData();
-            this.mExhibitSet = ExhibitManager.GetExhibitSets().First();
+            DbDummyDataFiller filler = new DbDummyDataFiller (this.Assets);
+            filler.InsertData ();
+            this.mExhibitSet = ExhibitManager.GetExhibitSets ().First ();
 
-            var mapView = FindViewById<MapView>(Resource.Id.mapview);
-           // mapView.SetTileSource(TileSourceFactory.DefaultTileSource);
-            mapView.SetBuiltInZoomControls(true);
+            //Map
+            SetUpMap ();
 
-            mapView.SetTileSource(new XYTileSource("OSM", 0, 18, 1024, ".png", 
-              new string[] { "http://tile.openstreetmap.org/"})); 
-
-
-
-            var mapController = mapView.Controller;
-            mapController.SetZoom(25);
-
-            // var centreOfMap = new GeoPoint(51496994, -134733);
-            var centreOfMap = new GeoPoint (mGeoLocation.Latitude, mGeoLocation.Longitude);
-           
-
-
-            mapController.SetCenter(centreOfMap);
 
             // Recyler View
-            mRecyclerView = (RecyclerView)FindViewById(Resource.Id.mainRecyclerView);
+            mRecyclerView = (RecyclerView) FindViewById (Resource.Id.mainRecyclerView);
 
             // use a linear layout manager
-            RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
-            mRecyclerView.SetLayoutManager(mLayoutManager);
+            RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager (this);
+            mRecyclerView.SetLayoutManager (mLayoutManager);
 
 
-            /*
-             * There is no exhibitset until now so outcommented that teh app still starts
-            */
-          mAdapter = new MainRecyclerAdapter(this.mExhibitSet,mGeoLocation, Android.App.Application.Context);
-          mRecyclerView.SetAdapter(mAdapter);
+            //RecycleAdapter
+            mAdapter = new MainRecyclerAdapter (this.mExhibitSet, mGeoLocation, Android.App.Application.Context);
+            mRecyclerView.SetAdapter (mAdapter);
 
-           // mRecyclerView.AddOnItemTouchListener(new RecyclerItemClickListener(this));
+            // mRecyclerView.AddOnItemTouchListener(new RecyclerItemClickListener(this));
 
             // hockeyapp code
             CheckForUpdates ();
+        }
+
+
+        private void SetUpMap ()
+        {
+            var mapView = FindViewById<MapView> (Resource.Id.mapview);
+            // mapView.SetTileSource(TileSourceFactory.DefaultTileSource);
+            mapView.SetBuiltInZoomControls (true);
+
+            mapView.SetTileSource (new XYTileSource ("OSM", 0, 18, 1024, ".png",
+                                                     new string[] {"http://tile.openstreetmap.org/"}));
+
+
+            var mapController = mapView.Controller;
+            mapController.SetZoom (25);
+
+            // var centreOfMap = new GeoPoint(51496994, -134733);
+            var centreOfMap = new GeoPoint (mGeoLocation.Latitude, mGeoLocation.Longitude);
+
+
+            mapController.SetCenter (centreOfMap);
         }
 
         protected override void OnDestroy ()
@@ -153,22 +158,24 @@ namespace de.upb.hip.mobile.droid.Activities {
         /// <summary>
         /// Methods for hockeyapp
         /// </summary>
-        #region
-        private void CheckForCrashes()
-        {
-            CrashManager.Register(this);
-        } 
 
-        private void CheckForUpdates()
+        #region
+        private void CheckForCrashes ()
+        {
+            CrashManager.Register (this);
+        }
+
+        private void CheckForUpdates ()
         {
             // Remove this for store builds! 
-            UpdateManager.Register(this);
-        }  
- 
-         private void UnregisterManagers()
-        {
-            UpdateManager.Unregister();
+            UpdateManager.Register (this);
         }
+
+        private void UnregisterManagers ()
+        {
+            UpdateManager.Unregister ();
+        }
+
         #endregion
     }
 }

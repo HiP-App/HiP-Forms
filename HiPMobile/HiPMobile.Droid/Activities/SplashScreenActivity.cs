@@ -31,7 +31,7 @@ namespace de.upb.hip.mobile.droid.Activities
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            SetContentView(Resource.Layout.activity_splash_screen);
+            SetContentView (Resource.Layout.activity_splash_screen);
 
             mTextAction = (TextView)FindViewById(Resource.Id.splashScreenActionText);
             mTextWaiting = (TextView)FindViewById(Resource.Id.splashScreenWaitingText);

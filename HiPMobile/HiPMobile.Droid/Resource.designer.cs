@@ -1886,8 +1886,8 @@ namespace de.upb.hip.mobile.droid
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f060098
-			public const int action0 = 2131099800;
+			// aapt resource value: 0x7f060099
+			public const int action0 = 2131099801;
 			
 			// aapt resource value: 0x7f06005a
 			public const int action_bar = 2131099738;
@@ -1913,8 +1913,8 @@ namespace de.upb.hip.mobile.droid
 			// aapt resource value: 0x7f06005b
 			public const int action_context_bar = 2131099739;
 			
-			// aapt resource value: 0x7f06009c
-			public const int action_divider = 2131099804;
+			// aapt resource value: 0x7f06009d
+			public const int action_divider = 2131099805;
 			
 			// aapt resource value: 0x7f060003
 			public const int action_menu_divider = 2131099651;
@@ -1967,8 +1967,8 @@ namespace de.upb.hip.mobile.droid
 			// aapt resource value: 0x7f06008d
 			public const int button_update = 2131099789;
 			
-			// aapt resource value: 0x7f060099
-			public const int cancel_action = 2131099801;
+			// aapt resource value: 0x7f06009a
+			public const int cancel_action = 2131099802;
 			
 			// aapt resource value: 0x7f06002b
 			public const int center = 2131099691;
@@ -1982,8 +1982,8 @@ namespace de.upb.hip.mobile.droid
 			// aapt resource value: 0x7f060052
 			public const int checkbox = 2131099730;
 			
-			// aapt resource value: 0x7f06009f
-			public const int chronometer = 2131099807;
+			// aapt resource value: 0x7f0600a0
+			public const int chronometer = 2131099808;
 			
 			// aapt resource value: 0x7f060033
 			public const int clip_horizontal = 2131099699;
@@ -2030,8 +2030,8 @@ namespace de.upb.hip.mobile.droid
 			// aapt resource value: 0x7f06001b
 			public const int end = 2131099675;
 			
-			// aapt resource value: 0x7f0600a4
-			public const int end_padder = 2131099812;
+			// aapt resource value: 0x7f0600a5
+			public const int end_padder = 2131099813;
 			
 			// aapt resource value: 0x7f060023
 			public const int enterAlways = 2131099683;
@@ -2075,8 +2075,8 @@ namespace de.upb.hip.mobile.droid
 			// aapt resource value: 0x7f06003f
 			public const int image = 2131099711;
 			
-			// aapt resource value: 0x7f0600a3
-			public const int info = 2131099811;
+			// aapt resource value: 0x7f0600a4
+			public const int info = 2131099812;
 			
 			// aapt resource value: 0x7f06007b
 			public const int input_email = 2131099771;
@@ -2120,11 +2120,11 @@ namespace de.upb.hip.mobile.droid
 			// aapt resource value: 0x7f06002f
 			public const int left = 2131099695;
 			
-			// aapt resource value: 0x7f06009d
-			public const int line1 = 2131099805;
+			// aapt resource value: 0x7f06009e
+			public const int line1 = 2131099806;
 			
-			// aapt resource value: 0x7f0600a1
-			public const int line3 = 2131099809;
+			// aapt resource value: 0x7f0600a2
+			public const int line3 = 2131099810;
 			
 			// aapt resource value: 0x7f06000b
 			public const int listMode = 2131099659;
@@ -2159,8 +2159,8 @@ namespace de.upb.hip.mobile.droid
 			// aapt resource value: 0x7f060094
 			public const int mapview = 2131099796;
 			
-			// aapt resource value: 0x7f06009b
-			public const int media_actions = 2131099803;
+			// aapt resource value: 0x7f06009c
+			public const int media_actions = 2131099804;
 			
 			// aapt resource value: 0x7f06001c
 			public const int middle = 2131099676;
@@ -2171,8 +2171,20 @@ namespace de.upb.hip.mobile.droid
 			// aapt resource value: 0x7f060015
 			public const int multiply = 2131099669;
 			
+			// aapt resource value: 0x7f0600a6
+			public const int nav_direction = 2131099814;
+			
+			// aapt resource value: 0x7f0600a7
+			public const int nav_gavel = 2131099815;
+			
+			// aapt resource value: 0x7f0600a8
+			public const int nav_home = 2131099816;
+			
 			// aapt resource value: 0x7f060097
-			public const int navigation_drawer = 2131099799;
+			public const int nav_view = 2131099799;
+			
+			// aapt resource value: 0x7f060098
+			public const int navigation_drawer = 2131099800;
 			
 			// aapt resource value: 0x7f060072
 			public const int navigation_header_container = 2131099762;
@@ -2309,8 +2321,8 @@ namespace de.upb.hip.mobile.droid
 			// aapt resource value: 0x7f060031
 			public const int start = 2131099697;
 			
-			// aapt resource value: 0x7f06009a
-			public const int status_bar_latest_event_content = 2131099802;
+			// aapt resource value: 0x7f06009b
+			public const int status_bar_latest_event_content = 2131099803;
 			
 			// aapt resource value: 0x7f060065
 			public const int submit_area = 2131099749;
@@ -2318,11 +2330,11 @@ namespace de.upb.hip.mobile.droid
 			// aapt resource value: 0x7f06000d
 			public const int tabMode = 2131099661;
 			
-			// aapt resource value: 0x7f0600a2
-			public const int text = 2131099810;
+			// aapt resource value: 0x7f0600a3
+			public const int text = 2131099811;
 			
-			// aapt resource value: 0x7f0600a0
-			public const int text2 = 2131099808;
+			// aapt resource value: 0x7f0600a1
+			public const int text2 = 2131099809;
 			
 			// aapt resource value: 0x7f06004d
 			public const int textSpacerNoButtons = 2131099725;
@@ -2330,8 +2342,8 @@ namespace de.upb.hip.mobile.droid
 			// aapt resource value: 0x7f060087
 			public const int text_headline = 2131099783;
 			
-			// aapt resource value: 0x7f06009e
-			public const int time = 2131099806;
+			// aapt resource value: 0x7f06009f
+			public const int time = 2131099807;
 			
 			// aapt resource value: 0x7f060043
 			public const int title = 2131099715;
@@ -2605,6 +2617,22 @@ namespace de.upb.hip.mobile.droid
 			}
 			
 			private Layout()
+			{
+			}
+		}
+		
+		public partial class Menu
+		{
+			
+			// aapt resource value: 0x7f0e0000
+			public const int nav_menu = 2131623936;
+			
+			static Menu()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
+			private Menu()
 			{
 			}
 		}

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.widget.ListView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/navigation_drawer"
+    android:layout_width="240dp"
+    android:layout_height="match_parent"
+    android:layout_gravity="start"
+    android:background="@android:color/background_light"
+    android:choiceMode="singleChoice"
+    android:divider="@android:color/holo_blue_light"
+    android:dividerHeight="0dp" />
