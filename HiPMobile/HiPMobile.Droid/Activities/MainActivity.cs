@@ -15,27 +15,19 @@
 //  */
 
 using System;
-using System.IO;
 using System.Linq;
 using Android;
 using Android.App;
 using Android.Content.PM;
-using Android.Content.Res;
 using Android.OS;
-using Android.Support.Design.Widget;
 using Android.Support.V4.App;
 using Android.Support.V4.Content;
-using Android.Support.V4.Widget;
 using Android.Support.V7.Widget;
-using Android.Views;
-using Android.Widget;
 using de.upb.hip.mobile.droid.Adapters;
 using de.upb.hip.mobile.droid.Helpers;
-using de.upb.hip.mobile.droid.Listeners;
 using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using HockeyApp;
-using Osmdroid.TileProvider;
 using Osmdroid.TileProvider.TileSource;
 using Osmdroid.Util;
 using Osmdroid.Views;
@@ -47,10 +39,10 @@ namespace de.upb.hip.mobile.droid.Activities {
     public class MainActivity : Activity {
 
         // Recycler View: MainList
-        private RecyclerView mRecyclerView;
-        private RecyclerView.Adapter mAdapter;
-        private ExhibitSet mExhibitSet;
-        private GeoLocation mGeoLocation;
+        private RecyclerView recyclerView;
+        private RecyclerView.Adapter adapter;
+        private ExhibitSet exhibitSet;
+        private GeoLocation geoLocation;
 
 
         protected override void OnCreate (Bundle bundle)
@@ -80,31 +72,31 @@ namespace de.upb.hip.mobile.droid.Activities {
             Realm.DeleteRealm (new RealmConfiguration ());
 
 
-            mGeoLocation = new GeoLocation ();
-            mGeoLocation.Latitude = 51.71352;
-            mGeoLocation.Longitude = 8.74021;
+            geoLocation = new GeoLocation ();
+            geoLocation.Latitude = 51.71352;
+            geoLocation.Longitude = 8.74021;
 
             DbDummyDataFiller filler = new DbDummyDataFiller (this.Assets);
             filler.InsertData ();
-            this.mExhibitSet = ExhibitManager.GetExhibitSets ().First ();
+            this.exhibitSet = ExhibitManager.GetExhibitSets ().First ();
 
             //Map
             SetUpMap ();
 
 
             // Recyler View
-            mRecyclerView = (RecyclerView) FindViewById (Resource.Id.mainRecyclerView);
+            recyclerView = (RecyclerView) FindViewById (Resource.Id.mainRecyclerView);
 
             // use a linear layout manager
             RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager (this);
-            mRecyclerView.SetLayoutManager (mLayoutManager);
+            recyclerView.SetLayoutManager (mLayoutManager);
 
 
             //RecycleAdapter
-            mAdapter = new MainRecyclerAdapter (this.mExhibitSet, mGeoLocation, Android.App.Application.Context);
-            mRecyclerView.SetAdapter (mAdapter);
+            adapter = new MainRecyclerAdapter (this.exhibitSet, geoLocation, Android.App.Application.Context);
+            recyclerView.SetAdapter (adapter);
 
-            // mRecyclerView.AddOnItemTouchListener(new RecyclerItemClickListener(this));
+            // recyclerView.AddOnItemTouchListener(new RecyclerItemClickListener(this));
 
             // hockeyapp code
             CheckForUpdates ();
@@ -125,7 +117,7 @@ namespace de.upb.hip.mobile.droid.Activities {
             mapController.SetZoom (25);
 
             // var centreOfMap = new GeoPoint(51496994, -134733);
-            var centreOfMap = new GeoPoint (mGeoLocation.Latitude, mGeoLocation.Longitude);
+            var centreOfMap = new GeoPoint (geoLocation.Latitude, geoLocation.Longitude);
 
 
             mapController.SetCenter (centreOfMap);
@@ -158,7 +150,6 @@ namespace de.upb.hip.mobile.droid.Activities {
         /// <summary>
         /// Methods for hockeyapp
         /// </summary>
-
         #region
         private void CheckForCrashes ()
         {

@@ -1,48 +1,61 @@
+// Copyright (C) 2016 History in Paderborn App - Universität Paderborn
+// 
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+// 
+//      http://www.apache.org/licenses/LICENSE-2.0
+// 
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using Android.App;
 using Android.Content;
 using Android.Graphics;
 using Android.Graphics.Drawables;
-using Android.OS;
-using Android.Runtime;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
 using de.upb.hip.mobile.droid.Helpers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
-using de.upb.hip.mobile.pcl.DataLayer;
-using Java.Lang;
-using String = System.String;
 
 namespace de.upb.hip.mobile.droid.Adapters {
-    class MainRecyclerAdapter : RecyclerView.Adapter {
+    internal class MainRecyclerAdapter : RecyclerView.Adapter {
 
-        private ExhibitSet mExhibitSet;
-        private GeoLocation location;
-        private Context mContext;
+        private Context context;
 
+        private readonly ExhibitSet displayedExhibitSet;
+        private readonly GeoLocation location;
 
-        /**
-     * Constructor for the MainRecyclerAdapter
-     *
-     * @param exhibitSet set of Exhibits to be shown
-     */
-
+        /// <summary>
+        ///     Constructor for the MainRecyclerAdapter
+        /// </summary>
+        /// <param name="exhibitSet">The displayed exhibitSet.</param>
+        /// <param name="location">The location of the device.</param>
+        /// <param name="context"></param>
         public MainRecyclerAdapter (ExhibitSet exhibitSet, GeoLocation location, Context context)
         {
-            this.mExhibitSet = exhibitSet;
+            displayedExhibitSet = exhibitSet;
             this.location = location;
-            this.mContext = context;
+            this.context = context;
+        }
+
+
+        /// <summary>
+        ///     Calculates the size of displayedExhibitSet (invoked by the layout manager).
+        /// </summary>
+        public override int ItemCount {
+            get { return displayedExhibitSet.InitSet.Count (); }
         }
 
 
         public override RecyclerView.ViewHolder OnCreateViewHolder (ViewGroup parent, int viewType)
         {
             // create a new view
-            View v = LayoutInflater.From (parent.Context).Inflate (
+            var v = LayoutInflater.From (parent.Context).Inflate (
                 Resource.Layout.activity_main_row_item, parent, false);
 
             return new ViewHolder (v);
@@ -50,77 +63,59 @@ namespace de.upb.hip.mobile.droid.Adapters {
 
         public override void OnBindViewHolder (RecyclerView.ViewHolder holder, int position)
         {
-            MainRecyclerAdapter.ViewHolder vh = holder as MainRecyclerAdapter.ViewHolder;
+            var vh = holder as ViewHolder;
 
-            // get Exhibit from mExhibitSet at position
-            Exhibit exhibit = this.mExhibitSet.InitSet.ElementAt (position);
+            // get Exhibit from displayedExhibitSet at position
+            var exhibit = displayedExhibitSet.InitSet.ElementAt (position);
 
             // update the holder with new data
             vh.Name.SetText (exhibit.Name, TextView.BufferType.Normal);
 
-            double doubleDistance = (exhibit.GetDistance (location))*1000;
+            var doubleDistance = exhibit.GetDistance (location) * 1000;
 
-            double intDistance;
-            String distance;
+            string distance;
             if (doubleDistance > 1000)
             {
-                
-                    distance = System.Math.Round((decimal)doubleDistance/1000, 2) + "km";
-                
+                distance = Math.Round ((decimal) doubleDistance / 1000, 2) + "km";
             }
             else
             {
-                distance = System.Math.Round((decimal)doubleDistance, 2) + "m";
+                distance = Math.Round ((decimal) doubleDistance, 2) + "m";
             }
 
-
-
+            //Remove this if not needed
             //vh.View.Id = Integer.ParseInt (exhibit.Id);
 
             vh.Distance.SetText (distance, TextView.BufferType.Normal);
 
-            byte[] d = exhibit.Image.Data;
-            Bitmap bm = BitmapFactory.DecodeByteArray(d, 0, d.Length);
-            BitmapDrawable bitmapDrawable = new BitmapDrawable(bm);
-            Bitmap bmp = bitmapDrawable.Bitmap;
-            vh.Image.SetImageBitmap (ImageManipulation.getCroppedImage (bmp, 100));
+            var d = exhibit.Image.Data;
+            var bm = BitmapFactory.DecodeByteArray (d, 0, d.Length);
+            var bitmapDrawable = new BitmapDrawable (bm);
+            var bmp = bitmapDrawable.Bitmap;
+            vh.Image.SetImageBitmap (ImageManipulation.GetCroppedImage (bmp, 100));
         }
 
 
-        /* public ViewHolder OnCreateViewHolder (ViewGroup parent, int viewType)
-      
-
-        /**
-     * Calculates the size of mExhibitSet (invoked by the layout manager)
-     *
-     * @return size of mExhibitSet
-     */
-
-        public override int ItemCount {
-            get { return mExhibitSet.InitSet.Count (); }
-        }
-
-        /*      Provide a reference to the views for each data item
-      * Complex data items may need more than one view per item, and
-      * you provide access to all the views for a data item in a view holder
-      */
-
+        /// <summary>
+        ///     Provide a reference to the views for each data item
+        ///     Complex data items may need more than one view per item, and
+        ///     you provide access to all the views for a data item in a view holder
+        /// </summary>
         public class ViewHolder : RecyclerView.ViewHolder {
+
+            public ViewHolder (View v) : base (v)
+            {
+                View = v;
+                Image = (ImageView) v.FindViewById (Resource.Id.mainRowItemImage);
+                Name = (TextView) v.FindViewById (Resource.Id.mainRowItemName);
+                Distance = (TextView) v.FindViewById (Resource.Id.mainRowItemDistance);
+            }
 
             // each data item is just a string in this case
             public View View { get; set; }
             public ImageView Image { get; set; }
             public TextView Name { get; set; }
             public TextView Distance { get; set; }
-
-
-            public ViewHolder (View v) : base (v)
-            {
-                this.View = v;
-                this.Image = (ImageView) v.FindViewById (Resource.Id.mainRowItemImage);
-                this.Name = (TextView) v.FindViewById (Resource.Id.mainRowItemName);
-                this.Distance = (TextView) v.FindViewById (Resource.Id.mainRowItemDistance);
-            }
 
         }
 
