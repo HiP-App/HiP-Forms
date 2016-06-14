@@ -26,8 +26,8 @@ namespace de.upb.hip.mobile.droid.Activities
 {
     public class ExhibitDetailsActivity : AppCompatActivity
     {
-        
 
+        #region Fields
         /// <summary>
         /// The id of the displayed exhibit.
         /// </summary>
@@ -61,7 +61,7 @@ namespace de.upb.hip.mobile.droid.Activities
         /// <summary>
         /// Extras contained in the Intent that started this activity.
         /// </summary>
-        private Bundle extra;
+        private Bundle extras;
 
         /// <summary>
         /// Stores the current action associated with the FAB.
@@ -77,7 +77,7 @@ namespace de.upb.hip.mobile.droid.Activities
         private static readonly string Tag = "ExhibitDetailsActivity";
 
         // keys for saving/accessing the state
-        private static readonly string KEY_EXHIBIT_NAME = "ExhibitDetailsActivity.ExhibitId";
+        private static readonly string KEY_EXHIBIT_ID = "ExhibitDetailsActivity.ExhibitId";
         private static readonly string KEY_CURRENT_PAGE_INDEX = "ExhibitDetailsActivity.currentPageIndex";
         private static readonly string KEY_AUDIO_PLAYING = "ExhibitDetailsActivity.isAudioPlaying";
         private static readonly string KEY_AUDIO_TOOLBAR_HIDDEN = "ExhibitDetailsActivity.isAudioToolbarHidden";
@@ -91,15 +91,27 @@ namespace de.upb.hip.mobile.droid.Activities
         private ImageButton btnPlayPause;
         private ImageButton btnPreviousPage;
         private ImageButton btnNextPage;
+        #endregion
 
         protected override void OnSaveInstanceState(Bundle outState)
         {
+            outState.PutString(KEY_EXHIBIT_ID, exhibit.Id);
+            outState.PutInt(KEY_CURRENT_PAGE_INDEX, currentPageIndex);
+            outState.PutBoolean(KEY_AUDIO_PLAYING, isAudioPlaying);
+            outState.PutBoolean(KEY_AUDIO_TOOLBAR_HIDDEN, isAudioToolbarHidden);
+            outState.PutBundle(KEY_EXTRAS, extras);
+
             base.OnSaveInstanceState(outState);
         }
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+            //Resource.String.abcdefg
+            //SetContentView(Resource.Layout.activity_exhibit_details);
+            /*Toolbar toolbar = (Toolbar)findViewById(Resource.Id.toolbar);
+            toolbar.setNavigationIcon(R.drawable.ic_clear_white_24dp);
+            setSupportActionBar(toolbar);*/
         }
 
         public void DisplayCurrenExhibitPage()
