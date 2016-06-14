@@ -13,6 +13,7 @@ See the License for the specific language governing permissions and
 limitations under the License.-->
 <resources>
 
+  <string name="test">Foo</string>
   <string name="app_name">History in Paderborn</string>
   <string name="title_activity_main">Karlsroute</string>
   <string name="title_activity_display_single_image">Detailansicht</string>

@@ -25,7 +25,7 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models
 	using System.Linq;
 	using System.Text;
 
-	public class Page : RealmObject, IIdentifiable
+	public partial class Page : RealmObject, IIdentifiable
 	{
 		//Attributes
 		[ObjectId]
@@ -36,10 +36,10 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models
 		}
 
 		//Associations
-		private AppertizerPage _appertizerpage{ get; set; }
-		public AppertizerPage AppertizerPage{
-			get{ return _appertizerpage; }
-			set{ Realm.GetInstance ().Write (() => _appertizerpage = value); }
+		private AppetizerPage _appetizerpage{ get; set; }
+		public AppetizerPage AppetizerPage{
+			get{ return _appetizerpage; }
+			set{ Realm.GetInstance ().Write (() => _appetizerpage = value); }
 		}
 
 		private ImagePage _imagepage{ get; set; }

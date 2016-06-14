@@ -36,26 +36,26 @@ namespace de.upb.hip.mobile.droid.Helpers
         /// <summary>
         /// Indicates whether the bottom sheet should be displayed (true) or not (false).
         /// </summary>
-        public bool DisplayBottomSheet { get; private set; } = true;
+        public bool DisplayBottomSheet { get; set; } = true;
 
         /// <summary>
         /// Fragment that is displayed in the bottom sheet.
         /// </summary>
-        public BottomSheetFragment BottomSheetFragment { get; private set; }
+        public BottomSheetFragment BottomSheetFragment { get; set; }
 
         /// <summary>
         /// The maximum height of the bottom sheet (in dp).
         /// </summary>
-        public int MaxHeight { get; private set; } = 220;
+        public int MaxHeight { get; set; } = 220;
 
         /// <summary>
         /// The height of the bottom sheet when it is collapsed (in dp).
         /// </summary>
-        public int PeekHeight { get; private set; } = 80;
+        public int PeekHeight { get; set; } = 80;
 
         /// <summary>
         /// The action associated with the FAB.
         /// </summary>
-        public FabAction fabAction { get; private set; } = FabAction.Expand;
+        public FabAction fabAction { get; set; } = FabAction.Expand;
     }
 }

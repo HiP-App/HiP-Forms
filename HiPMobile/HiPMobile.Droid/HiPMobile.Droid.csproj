@@ -113,13 +113,20 @@
     <Compile Include="Activities\SplashScreenActivity.cs" />
     <Compile Include="Adapters\MainRecyclerAdapter.cs" />
     <Compile Include="fragments\bottomsheetfragment\BottomSheetFragment.cs" />
+    <Compile Include="fragments\bottomsheetfragment\SimpleBottomSheetFragment.cs" />
+    <Compile Include="fragments\exhibitpagefragment\AppetizerExhibitPageFragment.cs" />
+    <Compile Include="fragments\exhibitpagefragment\ExhibitPageFragment.cs" />
+    <Compile Include="fragments\exhibitpagefragment\TextExhibitPageFragment.cs" />
+    <Compile Include="fragments\exhibitpagefragment\TimeSliderExhibitPageFragment.cs" />
     <Compile Include="Helpers\BottomSheetConfig.cs" />
+    <Compile Include="Helpers\CustomSeekBar.cs" />
     <Compile Include="Helpers\DbDummyDataFiller.cs" />
+    <Compile Include="Helpers\ExtensionMethods.cs" />
     <Compile Include="Helpers\ImageManipulation.cs" />
     <Compile Include="Helpers\MediaPlayerService.cs" />
     <Compile Include="Listeners\RecyclerItemClickListener.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Resource.designer.cs" />
+    <Compile Include="Resources\Resource.designer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -165,6 +172,23 @@
     <AndroidResource Include="Resources\drawable-xhdpi\ic_directions_black_48dp.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\ic_gavel_black_48dp.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\ic_home_black_48dp.png" />
+    <AndroidResource Include="Resources\layout\activity_exhibit_details.xml" />
+    <AndroidResource Include="Resources\layout\activity_exhibit_details_audio_toolbar.xml" />
+    <AndroidResource Include="Resources\layout\activity_exhibit_details_bottom_sheet.xml" />
+    <AndroidResource Include="Resources\layout\activity_exhibit_details_caption_dialog.xml" />
+    <AndroidResource Include="Resources\layout\activity_exhibit_details_content_main.xml" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_chevron_left_black_48dp.xml" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_chevron_right_black_48dp.xml" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_closed_caption_black_24dp.xml" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_expand_less_white_48dp.xml" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_play_arrow_black_36dp.xml" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_clear_white_24dp.xml" />
+    <AndroidResource Include="Resources\layout\fragment_exhibitpage_appetizer.xml" />
+    <AndroidResource Include="Resources\layout\fragment_bottom_sheet_simple.xml" />
+    <AndroidResource Include="Resources\layout\fragment_exhibitpage_text.xml" />
+    <AndroidResource Include="Resources\layout\fragment_exhibitpage_timeslider.xml" />
+    <AndroidResource Include="Resources\drawable-hdpi\thumb.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\customseekbar.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

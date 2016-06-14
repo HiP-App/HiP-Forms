@@ -25,7 +25,7 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models
 	using System.Linq;
 	using System.Text;
 
-	public class AppertizerPage : RealmObject, IIdentifiable
+	public class AppetizerPage : RealmObject, IIdentifiable
 	{
 		//Attributes
 		[ObjectId]
@@ -49,7 +49,7 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models
 		}
 
 		// Contructor
-		public AppertizerPage(){
+		public AppetizerPage(){
 		}
 	}
 }

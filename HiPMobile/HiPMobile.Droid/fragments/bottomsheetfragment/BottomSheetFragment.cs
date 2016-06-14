@@ -26,7 +26,7 @@ namespace de.upb.hip.mobile.droid.fragments.bottomsheetfragment
         /// Called by ExhibitDetailsActivity when the bottom sheet has been expanded.
         /// Subclasses should override this method if they require individual behaviour
         /// </summary>
-        public void OnBottomSheetExpand()
+        public virtual void OnBottomSheetExpand()
         {
             // intentionally left blank
         }
@@ -35,7 +35,7 @@ namespace de.upb.hip.mobile.droid.fragments.bottomsheetfragment
         /// Called by ExhibitDetailsActivity when the bottom sheet has been collapsed.
         /// Subclasses should override this method if they require individual behaviour.
         /// </summary>
-        public void OnBottomSheetCollapse()
+        public virtual void OnBottomSheetCollapse()
         {
             // intentionally left blank
         }

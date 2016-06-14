@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
   dslVersion="1.0.0.0"
   Id="3caf1348-0e28-421b-b4e6-66859b824a75"
   name="de.upb.hip.mobile.pcl.BusinessLayer.Models" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
@@ -1109,7 +1109,7 @@
                 <propertyInstance
                   Id="77f2c464-9ec0-465b-98c6-ffeca55bfe7a"
                   name="IsPartial"
-                  value="false" />
+                  value="true" />
               </stereotypeInstanceHasPropertyInstances>
               <stereotypeInstanceHasPropertyInstances
                 Id="1b247f59-58fe-4716-b5bd-7dcc3b5be996">
@@ -1140,12 +1140,12 @@
             Id="7bf0cae9-501c-4417-a6a5-ea5e40204b9a"
             isDerived="false"
             sourceEndRoleName="Page"
-            targetEndRoleName="AppertizerPage"
+            targetEndRoleName="AppetizerPage"
             isLeaf="false"
             isAbstract="false">
             <classMoniker
               Id="85574dbb-5f00-478f-967a-ff7d17ca46c8"
-              LastKnownName="AppertizerPage"
+              LastKnownName="AppetizerPage"
               LastKnownLocation="Package_1525.uml" />
             <relationshipOwnedElementsInternal>
               <associationHasOwnedEnds>
@@ -1164,7 +1164,7 @@
               <associationHasOwnedEnds>
                 <memberEnd
                   Id="949d0e69-c0d4-473c-b7b2-a50ca1f31980"
-                  name="AppertizerPage"
+                  name="AppetizerPage"
                   isLeaf="false"
                   isStatic="false"
                   isReadOnly="false"
@@ -1350,7 +1350,7 @@
     <packageHasNamedElement>
       <class
         Id="85574dbb-5f00-478f-967a-ff7d17ca46c8"
-        name="AppertizerPage"
+        name="AppetizerPage"
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false">
@@ -1880,7 +1880,7 @@
         <ownedAttributesInternal>
           <property
             Id="a807ceeb-15ab-4b37-85ec-be9c58b267d5"
-            name="String"
+            name="Text"
             isLeaf="false"
             isStatic="false"
             isReadOnly="false"

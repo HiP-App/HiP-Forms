@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" dslVersion="1.0.0.0" Id="6b05da09-e50e-49a4-b7cd-067c54ec5237" name="DomainModel" linkedPackageId="1d07aa28-da84-4248-8417-a1263c2ba8bf" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
+<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" dslVersion="1.0.0.0" Id="6b05da09-e50e-49a4-b7cd-067c54ec5237" name="DomainModel" linkedPackageId="1d07aa28-da84-4248-8417-a1263c2ba8bf" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
   <appliedStereotypesInternal>
     <stereotypeInstance Id="fb053eca-b839-49a2-8ced-e4d803ff45fa" name="namespace" profile="CSharpProfile">
       <elementDefinition Id="0f9065fc-a3ba-4906-bdc4-899451c2267d" />
@@ -888,7 +888,7 @@
                       <elementDefinition Id="5891d2ca-c5e6-4a15-8d3a-0265ef77a8fe" />
                     </stereotypeInstanceHasPropertyInstances>
                     <stereotypeInstanceHasPropertyInstances Id="77bd8bba-8259-4b92-963e-c2a6ad3eb942">
-                      <propertyInstance Id="17a87cbe-d481-4b8c-950d-db511e454856" name="IsPartial" value="false">
+                      <propertyInstance Id="17a87cbe-d481-4b8c-950d-db511e454856" name="IsPartial" value="true">
                         <elementDefinition Id="77f2c464-9ec0-465b-98c6-ffeca55bfe7a" />
                       </propertyInstance>
                       <elementDefinition Id="75889edc-2a60-4425-a5b6-fbbb1b082a6a" />
@@ -916,8 +916,8 @@
               </appliedStereotypesInternal>
               <elementDefinition Id="40de2827-37be-49c2-bbb5-8673332b19fe" />
               <targetEnds>
-                <association Id="49048ef9-f800-4817-b6ed-ba9cf995633f" isDerived="false" sourceEndRoleName="Page" targetEndRoleName="AppertizerPage" isLeaf="false" isAbstract="false">
-                  <classMoniker Id="d0301dd8-0794-404b-80b5-298ce2ddb1b7" LastKnownName="AppertizerPage" />
+                <association Id="49048ef9-f800-4817-b6ed-ba9cf995633f" isDerived="false" sourceEndRoleName="Page" targetEndRoleName="AppetizerPage" isLeaf="false" isAbstract="false">
+                  <classMoniker Id="d0301dd8-0794-404b-80b5-298ce2ddb1b7" LastKnownName="AppetizerPage" />
                   <relationshipOwnedElementsInternal>
                     <associationHasOwnedEnds>
                       <memberEnd Id="c1508b75-6c1b-4461-a2ec-87c73f10b77b" name="Page" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Shared" isComposite="false" isNavigableOwned="false">
@@ -925,7 +925,7 @@
                       </memberEnd>
                     </associationHasOwnedEnds>
                     <associationHasOwnedEnds>
-                      <memberEnd Id="6692ff7a-743f-49eb-8394-57320313655c" name="AppertizerPage" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                      <memberEnd Id="6692ff7a-743f-49eb-8394-57320313655c" name="AppetizerPage" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
                         <lowerValueInternal>
                           <literalString Id="3801c8da-d043-489c-b1ae-aaba1288cd67" name="Lower" value="0">
                             <elementDefinition Id="49394432-3811-4d43-bd46-0cd96061088f" />
@@ -1024,7 +1024,7 @@
             </class>
           </packageHasNamedElement>
           <packageHasNamedElement>
-            <class Id="d0301dd8-0794-404b-80b5-298ce2ddb1b7" name="AppertizerPage" isAbstract="false" isLeaf="false" isActiveClass="false">
+            <class Id="d0301dd8-0794-404b-80b5-298ce2ddb1b7" name="AppetizerPage" isAbstract="false" isLeaf="false" isActiveClass="false">
               <appliedStereotypesInternal>
                 <stereotypeInstance Id="11404485-76b7-45d7-be1f-9fc4ed126920" name="class" profile="CSharpProfile">
                   <elementDefinition Id="db96185d-395e-4bd0-bc4d-51bf6c24dd51" />
@@ -1391,7 +1391,7 @@
                 </association>
               </targetEnds>
               <ownedAttributesInternal>
-                <property Id="9afa7d49-512b-41c1-94ca-f65f0c05c0c4" name="String" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                <property Id="9afa7d49-512b-41c1-94ca-f65f0c05c0c4" name="Text" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
                   <appliedStereotypesInternal>
                     <stereotypeInstance Id="b886aa3b-9fc8-4641-9aee-b95b4f9343b6" name="property" profile="CSharpProfile">
                       <elementDefinition Id="df3fe412-8853-4259-9e98-9af7fd056696" />

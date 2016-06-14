@@ -62,7 +62,7 @@
           </nestedChildShapes>
         </classShape>
         <classShape Id="d3610908-47bf-4e57-b33c-cfa55ee58e79" absoluteBounds="0.75, 4.875, 1.5, 1.1878356194496149" hideQualifiedName="false" increaseHeight="0.18800345897674561" customColor="181, 193, 223">
-          <classMoniker Id="d0301dd8-0794-404b-80b5-298ce2ddb1b7" LastKnownName="AppertizerPage" />
+          <classMoniker Id="d0301dd8-0794-404b-80b5-298ce2ddb1b7" LastKnownName="AppetizerPage" />
           <nestedChildShapes>
             <AttributeElementListCompartment Id="b6a0d0b0-70bc-4f30-82b1-13c14c2d215d" absoluteBounds="0.765, 5.39033563931783, 1.4700000000000002, 0.36132811258236563" name="AttributesCompartment" titleTextColor="Black" itemTextColor="Black" />
             <OperationElementListCompartment Id="97e3cfca-a68e-42f6-91ab-cc01889a0b09" absoluteBounds="0.765, 5.7616637519001959, 1.4700000000000002, 0.2011718675494194" name="OperationsCompartment" titleTextColor="Black" itemTextColor="Black" />
