@@ -50,7 +50,8 @@ namespace de.upb.hip.mobile.droid.Activities
 
         private void startMainActivity ()
         {
-            StartActivity (typeof (MainActivity));
+            // StartActivity (typeof (MainActivity));
+            StartActivity(typeof(LicensingActivity));
         }
 
     }

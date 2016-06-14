@@ -168,29 +168,53 @@ namespace de.upb.hip.mobile.droid
 		public partial class Id
 		{
 			
+			// aapt resource value: 0x7f050001
+			public const int drawer_layout = 2131034113;
+			
 			// aapt resource value: 0x7f050000
 			public const int item_touch_helper_previous_elevation = 2131034112;
 			
-			// aapt resource value: 0x7f050005
-			public const int mainActivityDrawerLayout = 2131034117;
-			
-			// aapt resource value: 0x7f050007
-			public const int mainSwipeContainer = 2131034119;
+			// aapt resource value: 0x7f050002
+			public const int licensingGoogleMaterialBody = 2131034114;
 			
 			// aapt resource value: 0x7f050006
-			public const int mapview = 2131034118;
-			
-			// aapt resource value: 0x7f050001
-			public const int splashScreenActionText = 2131034113;
-			
-			// aapt resource value: 0x7f050003
-			public const int splashScreenProgressBar = 2131034115;
+			public const int licensingMapiconsBody = 2131034118;
 			
 			// aapt resource value: 0x7f050004
-			public const int splashScreenRetryButton = 2131034116;
+			public const int licensingOSMBonusPackBody = 2131034116;
 			
-			// aapt resource value: 0x7f050002
-			public const int splashScreenWaitingText = 2131034114;
+			// aapt resource value: 0x7f050003
+			public const int licensingOSMDroidBody = 2131034115;
+			
+			// aapt resource value: 0x7f050007
+			public const int licensingPhotoviewBody = 2131034119;
+			
+			// aapt resource value: 0x7f050005
+			public const int licensingRealmBody = 2131034117;
+			
+			// aapt resource value: 0x7f05000c
+			public const int mainActivityDrawerLayout = 2131034124;
+			
+			// aapt resource value: 0x7f05000e
+			public const int mainSwipeContainer = 2131034126;
+			
+			// aapt resource value: 0x7f05000d
+			public const int mapview = 2131034125;
+			
+			// aapt resource value: 0x7f05000f
+			public const int navigation_drawer = 2131034127;
+			
+			// aapt resource value: 0x7f050008
+			public const int splashScreenActionText = 2131034120;
+			
+			// aapt resource value: 0x7f05000a
+			public const int splashScreenProgressBar = 2131034122;
+			
+			// aapt resource value: 0x7f05000b
+			public const int splashScreenRetryButton = 2131034123;
+			
+			// aapt resource value: 0x7f050009
+			public const int splashScreenWaitingText = 2131034121;
 			
 			static Id()
 			{
@@ -206,10 +230,16 @@ namespace de.upb.hip.mobile.droid
 		{
 			
 			// aapt resource value: 0x7f030000
-			public const int activity_splash_screen = 2130903040;
+			public const int activity_licensing = 2130903040;
 			
 			// aapt resource value: 0x7f030001
-			public const int Main = 2130903041;
+			public const int activity_splash_screen = 2130903041;
+			
+			// aapt resource value: 0x7f030002
+			public const int Main = 2130903042;
+			
+			// aapt resource value: 0x7f030003
+			public const int navigation_drawer = 2130903043;
 			
 			static Layout()
 			{
@@ -279,17 +309,17 @@ namespace de.upb.hip.mobile.droid
 			// aapt resource value: 0x7f07001f
 			public const int itinerary_markers_title = 2131165215;
 			
-			// aapt resource value: 0x7f070036
-			public const int licensing_couchbase_body_text = 2131165238;
-			
-			// aapt resource value: 0x7f070035
-			public const int licensing_couchbase_title_text = 2131165237;
-			
 			// aapt resource value: 0x7f070030
 			public const int licensing_google_material_body_text = 2131165232;
 			
 			// aapt resource value: 0x7f07002f
 			public const int licensing_google_material_title_text = 2131165231;
+			
+			// aapt resource value: 0x7f070038
+			public const int licensing_mapicons_body_text = 2131165240;
+			
+			// aapt resource value: 0x7f070037
+			public const int licensing_mapicons_title_text = 2131165239;
 			
 			// aapt resource value: 0x7f070034
 			public const int licensing_osmbonuspack_body_text = 2131165236;
@@ -302,6 +332,18 @@ namespace de.upb.hip.mobile.droid
 			
 			// aapt resource value: 0x7f070031
 			public const int licensing_osmdroid_title_text = 2131165233;
+			
+			// aapt resource value: 0x7f07003a
+			public const int licensing_photoview_body_text = 2131165242;
+			
+			// aapt resource value: 0x7f070039
+			public const int licensing_photoview_title_text = 2131165241;
+			
+			// aapt resource value: 0x7f070036
+			public const int licensing_realm_body_text = 2131165238;
+			
+			// aapt resource value: 0x7f070035
+			public const int licensing_realm_title_text = 2131165237;
 			
 			// aapt resource value: 0x7f07002e
 			public const int licensing_title = 2131165230;
