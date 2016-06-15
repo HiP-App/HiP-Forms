@@ -167,7 +167,8 @@ namespace de.upb.hip.mobile.droid.Activities {
             mapController.SetCenter (centreOfMap);
 
             List<OverlayItem> anotherOverlayItemArray = new List<OverlayItem>();
-            anotherOverlayItemArray.Add(new OverlayItem("Hauptbahnhof", "Hauptbahnhof", new GeoPoint(geoLocation.Latitude, geoLocation.Longitude)));
+            anotherOverlayItemArray.Add(new OverlayItem("Germany", "Germany", new GeoPoint(52.516667, 13.383333)));
+            anotherOverlayItemArray.Add(new OverlayItem("Germany", "Germany", new GeoPoint(geoLocation.Latitude, geoLocation.Longitude)));
 
             ItemizedIconOverlay anotherItemizedIconOverlay = new ItemizedIconOverlay(this, anotherOverlayItemArray, null);
             mapView.OverlayManager.Add (anotherItemizedIconOverlay);
@@ -177,7 +178,6 @@ namespace de.upb.hip.mobile.droid.Activities {
 
             myLocationOverlay = new MyLocationOverlay(this, mapView);
             mapView.OverlayManager.Add (myLocationOverlay);
-            mapView.PostInvalidate();
 
 
         }
@@ -213,8 +213,6 @@ namespace de.upb.hip.mobile.droid.Activities {
         protected override void OnResume ()
         {
             base.OnResume ();
-            myLocationOverlay.EnableMyLocation ();
-            myLocationOverlay.EnableCompass ();
 
             // hockeyapp code
             CheckForCrashes ();
@@ -223,8 +221,6 @@ namespace de.upb.hip.mobile.droid.Activities {
         protected override void OnPause ()
         {
             base.OnPause ();
-            myLocationOverlay.DisableMyLocation();
-            myLocationOverlay.DisableCompass();
 
             // hockeyapp code
             UnregisterManagers ();
