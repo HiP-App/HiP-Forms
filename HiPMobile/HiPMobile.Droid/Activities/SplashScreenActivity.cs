@@ -57,6 +57,7 @@ namespace de.upb.hip.mobile.droid.Activities {
         private void StartMainActivity ()
         {
             StartActivity (typeof (MainActivity));
+            Finish ();
         }
 
     }

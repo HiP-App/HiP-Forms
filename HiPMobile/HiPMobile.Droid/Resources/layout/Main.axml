@@ -9,6 +9,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+      <android.support.v7.widget.Toolbar
+           android:id="@+id/toolbar"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:minHeight="?attr/actionBarSize"
+           android:background="?attr/colorPrimary"
+           android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+           app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -38,6 +46,13 @@
                 android:scrollbars="vertical" />
         </android.support.v4.widget.SwipeRefreshLayout>
     </LinearLayout>
+  <android.support.design.widget.NavigationView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:id="@+id/nav_view"
+        app:menu="@menu/navmenu"
+        app:headerLayout="@layout/header" />
 <!-- The navigation drawer 
   <include layout="@layout/navigation_drawer" />-->
 </android.support.v4.widget.DrawerLayout>
