@@ -35,28 +35,28 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models
 			set{ Realm.GetInstance ().Write (() => _id = value); }
 		}
 
-		private int _topleft{ get; set; }
-		public int TopLeft{
-			get{ return _topleft; }
-			set{ Realm.GetInstance ().Write (() => _topleft = value); }
+		private int _top{ get; set; }
+		public int Top{
+			get{ return _top; }
+			set{ Realm.GetInstance ().Write (() => _top = value); }
 		}
 
-		private int _topright{ get; set; }
-		public int TopRight{
-			get{ return _topright; }
-			set{ Realm.GetInstance ().Write (() => _topright = value); }
+		private int _bottom{ get; set; }
+		public int Bottom{
+			get{ return _bottom; }
+			set{ Realm.GetInstance ().Write (() => _bottom = value); }
 		}
 
-		private int _bottomleft{ get; set; }
-		public int BottomLeft{
-			get{ return _bottomleft; }
-			set{ Realm.GetInstance ().Write (() => _bottomleft = value); }
+		private int _left{ get; set; }
+		public int Left{
+			get{ return _left; }
+			set{ Realm.GetInstance ().Write (() => _left = value); }
 		}
 
-		private int _bottomright{ get; set; }
-		public int BottomRight{
-			get{ return _bottomright; }
-			set{ Realm.GetInstance ().Write (() => _bottomright = value); }
+		private int _right{ get; set; }
+		public int Right{
+			get{ return _right; }
+			set{ Realm.GetInstance ().Write (() => _right = value); }
 		}
 
 		//Associations

@@ -115,12 +115,16 @@
     <Compile Include="fragments\bottomsheetfragment\BottomSheetFragment.cs" />
     <Compile Include="fragments\bottomsheetfragment\SimpleBottomSheetFragment.cs" />
     <Compile Include="fragments\exhibitpagefragment\AppetizerExhibitPageFragment.cs" />
+    <Compile Include="fragments\exhibitpagefragment\DummyExhibitPageFragment.cs" />
     <Compile Include="fragments\exhibitpagefragment\ExhibitPageFragment.cs" />
+    <Compile Include="fragments\exhibitpagefragment\ExhibitPageFragmentFactory.cs" />
+    <Compile Include="fragments\exhibitpagefragment\ImagePageExhibitFragment.cs" />
     <Compile Include="fragments\exhibitpagefragment\TextExhibitPageFragment.cs" />
     <Compile Include="fragments\exhibitpagefragment\TimeSliderExhibitPageFragment.cs" />
     <Compile Include="Helpers\BottomSheetConfig.cs" />
     <Compile Include="Helpers\CustomSeekBar.cs" />
     <Compile Include="Helpers\DbDummyDataFiller.cs" />
+    <Compile Include="Helpers\DrawView.cs" />
     <Compile Include="Helpers\ExtensionMethods.cs" />
     <Compile Include="Helpers\ImageManipulation.cs" />
     <Compile Include="Helpers\MediaPlayerService.cs" />
@@ -189,6 +193,9 @@
     <AndroidResource Include="Resources\layout\fragment_exhibitpage_timeslider.xml" />
     <AndroidResource Include="Resources\drawable-hdpi\thumb.png" />
     <AndroidResource Include="Resources\drawable-hdpi\customseekbar.xml" />
+    <AndroidResource Include="Resources\layout\fragment_exhibitpage_image.xml" />
+    <AndroidResource Include="Resources\layout\fragment_exhibitpage_dummy.xml" />
+    <AndroidResource Include="Resources\drawable-hdpi\kaiserpfalz_teaser.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

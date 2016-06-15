@@ -32,5 +32,23 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models
             }
             return false;
         }
+
+        public bool IsTimeSliderPage()
+        {
+            if (TimeSliderPage != null)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public bool IsImagePage()
+        {
+            if (ImagePage != null)
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

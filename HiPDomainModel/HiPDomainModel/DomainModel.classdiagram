@@ -1490,7 +1490,7 @@
               </appliedStereotypesInternal>
               <elementDefinition Id="0113d17b-303a-4098-b043-917a215d6d64" />
               <ownedAttributesInternal>
-                <property Id="bf3431f1-f535-44df-8db6-7ce725196f5a" name="TopLeft" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                <property Id="bf3431f1-f535-44df-8db6-7ce725196f5a" name="Top" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
                   <appliedStereotypesInternal>
                     <stereotypeInstance Id="4b3267b6-15f8-4858-a79b-d7401feb65ea" name="property" profile="CSharpProfile">
                       <elementDefinition Id="3f48bdc2-e268-4a8b-aaa3-307a5134b575" />
@@ -1542,10 +1542,10 @@
                   </appliedStereotypesInternal>
                   <elementDefinition Id="2c47cbe3-e99b-4a6f-bfa1-4375bd58c624" />
                   <type_NamedElement>
-                    <referencedTypeMoniker Id="bce3348a-6dc1-4f75-81f7-803022ab77c9" LastKnownName="Integer" />
+                    <referencedTypeMoniker Id="e778b029-f39e-49f3-b8bb-3ad5156a106f" LastKnownName="Integer" />
                   </type_NamedElement>
                 </property>
-                <property Id="99bca8a1-224d-44ac-9276-b53ab73547a3" name="TopRight" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                <property Id="99bca8a1-224d-44ac-9276-b53ab73547a3" name="Bottom" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
                   <appliedStereotypesInternal>
                     <stereotypeInstance Id="924e8068-ed7d-4342-8ad8-681d2f1a1426" name="property" profile="CSharpProfile">
                       <elementDefinition Id="93eec883-7def-46b6-a183-39b0b4651641" />
@@ -1597,10 +1597,10 @@
                   </appliedStereotypesInternal>
                   <elementDefinition Id="0145e536-749d-46be-a26c-e510e9e6fd2f" />
                   <type_NamedElement>
-                    <referencedTypeMoniker Id="b90a71dd-7b22-40f9-a3a3-168c1d344760" LastKnownName="Integer" />
+                    <referencedTypeMoniker Id="83b29e86-295b-426f-b658-8b8aa159107b" LastKnownName="Integer" />
                   </type_NamedElement>
                 </property>
-                <property Id="5c63be2e-d893-4548-a693-33bcb531e183" name="BottomLeft" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                <property Id="5c63be2e-d893-4548-a693-33bcb531e183" name="Left" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
                   <appliedStereotypesInternal>
                     <stereotypeInstance Id="cfb99bf7-51ab-4aaf-800d-4861208ab108" name="property" profile="CSharpProfile">
                       <elementDefinition Id="7ccce5f2-25ff-4264-9ce9-2b2b80436bce" />
@@ -1652,10 +1652,10 @@
                   </appliedStereotypesInternal>
                   <elementDefinition Id="77fd7eaf-3acd-49b1-9307-7e9a7ddb2593" />
                   <type_NamedElement>
-                    <referencedTypeMoniker Id="495b66c1-3f21-45ff-afca-96369cc6b191" LastKnownName="Integer" />
+                    <referencedTypeMoniker Id="66db7fe7-d057-471b-9d32-12f5966d21b7" LastKnownName="Integer" />
                   </type_NamedElement>
                 </property>
-                <property Id="a0adb18e-f1e6-40df-beb4-7d3b45b81572" name="BottomRight" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                <property Id="a0adb18e-f1e6-40df-beb4-7d3b45b81572" name="Right" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
                   <appliedStereotypesInternal>
                     <stereotypeInstance Id="1e506b0a-9c8b-4c3d-85b2-811868833c5e" name="property" profile="CSharpProfile">
                       <elementDefinition Id="1efdad0b-0262-49cb-b655-5b15810e9d5b" />
@@ -1707,7 +1707,7 @@
                   </appliedStereotypesInternal>
                   <elementDefinition Id="afc12e00-fa0d-4362-a121-bf94b6c7af42" />
                   <type_NamedElement>
-                    <referencedTypeMoniker Id="1cc82845-d321-422f-b996-089afb91a2f4" LastKnownName="Integer" />
+                    <referencedTypeMoniker Id="a1e47b22-12d6-4112-b60b-a7482e0ef699" LastKnownName="Integer" />
                   </type_NamedElement>
                 </property>
               </ownedAttributesInternal>
@@ -3902,26 +3902,6 @@
       </referencedType>
     </packageHasNamedElement>
     <packageHasNamedElement>
-      <referencedType Id="b90a71dd-7b22-40f9-a3a3-168c1d344760" name="Integer" isAbstract="false" isLeaf="false" cachedFullName="Integer">
-        <elementDefinition Id="220a3521-e091-4221-bae9-3ef9018e845c" />
-      </referencedType>
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <referencedType Id="bce3348a-6dc1-4f75-81f7-803022ab77c9" name="Integer" isAbstract="false" isLeaf="false" cachedFullName="Integer">
-        <elementDefinition Id="220a3521-e091-4221-bae9-3ef9018e845c" />
-      </referencedType>
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <referencedType Id="495b66c1-3f21-45ff-afca-96369cc6b191" name="Integer" isAbstract="false" isLeaf="false" cachedFullName="Integer">
-        <elementDefinition Id="220a3521-e091-4221-bae9-3ef9018e845c" />
-      </referencedType>
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <referencedType Id="1cc82845-d321-422f-b996-089afb91a2f4" name="Integer" isAbstract="false" isLeaf="false" cachedFullName="Integer">
-        <elementDefinition Id="220a3521-e091-4221-bae9-3ef9018e845c" />
-      </referencedType>
-    </packageHasNamedElement>
-    <packageHasNamedElement>
       <referencedType Id="6db9ba9e-90ec-4715-9b30-357ad9c93fc3" name="Rectangle" isAbstract="false" isLeaf="false" cachedFullName="HiPDomainModel::de.upb.hip.mobile.pcl.BusinessLayer.Models::Rectangle">
         <elementDefinition Id="0113d17b-303a-4098-b043-917a215d6d64" />
       </referencedType>
@@ -4069,6 +4049,26 @@
     <packageHasNamedElement>
       <referencedType Id="739b5a03-468b-42f0-a391-c5c2629da3fe" name="byte[]" isAbstract="false" isLeaf="false" cachedFullName="HiPDomainModel::byte[]">
         <elementDefinition Id="436dfd1b-1ea4-4598-9763-cd2509ded265" />
+      </referencedType>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <referencedType Id="a1e47b22-12d6-4112-b60b-a7482e0ef699" name="Integer" isAbstract="false" isLeaf="false" cachedFullName="Integer">
+        <elementDefinition Id="220a3521-e091-4221-bae9-3ef9018e845c" />
+      </referencedType>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <referencedType Id="66db7fe7-d057-471b-9d32-12f5966d21b7" name="Integer" isAbstract="false" isLeaf="false" cachedFullName="Integer">
+        <elementDefinition Id="220a3521-e091-4221-bae9-3ef9018e845c" />
+      </referencedType>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <referencedType Id="e778b029-f39e-49f3-b8bb-3ad5156a106f" name="Integer" isAbstract="false" isLeaf="false" cachedFullName="Integer">
+        <elementDefinition Id="220a3521-e091-4221-bae9-3ef9018e845c" />
+      </referencedType>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <referencedType Id="83b29e86-295b-426f-b658-8b8aa159107b" name="Integer" isAbstract="false" isLeaf="false" cachedFullName="Integer">
+        <elementDefinition Id="220a3521-e091-4221-bae9-3ef9018e845c" />
       </referencedType>
     </packageHasNamedElement>
   </packagedElements>

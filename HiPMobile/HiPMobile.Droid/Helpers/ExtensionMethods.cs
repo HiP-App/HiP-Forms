@@ -25,5 +25,11 @@ namespace de.upb.hip.mobile.droid.Helpers
         {
             return new BitmapDrawable(BitmapFactory.DecodeByteArray(img.Data, 0, img.Data.Length));
         }
+
+        public static int[] GetDimensions(this Image img)
+        {
+            var bmp = (BitmapFactory.DecodeByteArray(img.Data, 0, img.Data.Length);
+            return new[] {bmp.Width, bmp.Height};
+        }
     }
 }

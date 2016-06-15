@@ -2009,7 +2009,7 @@
         <ownedAttributesInternal>
           <property
             Id="2c47cbe3-e99b-4a6f-bfa1-4375bd58c624"
-            name="TopLeft"
+            name="Top"
             isLeaf="false"
             isStatic="false"
             isReadOnly="false"
@@ -2084,7 +2084,7 @@
           </property>
           <property
             Id="0145e536-749d-46be-a26c-e510e9e6fd2f"
-            name="TopRight"
+            name="Bottom"
             isLeaf="false"
             isStatic="false"
             isReadOnly="false"
@@ -2159,7 +2159,7 @@
           </property>
           <property
             Id="77fd7eaf-3acd-49b1-9307-7e9a7ddb2593"
-            name="BottomLeft"
+            name="Left"
             isLeaf="false"
             isStatic="false"
             isReadOnly="false"
@@ -2234,7 +2234,7 @@
           </property>
           <property
             Id="afc12e00-fa0d-4362-a121-bf94b6c7af42"
-            name="BottomRight"
+            name="Right"
             isLeaf="false"
             isStatic="false"
             isReadOnly="false"

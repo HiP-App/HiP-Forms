@@ -12,7 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using Android.Graphics.Drawables;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
@@ -22,37 +21,23 @@ using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 
 namespace de.upb.hip.mobile.droid.fragments.exhibitpagefragment
 {
-    public class AppetizerExhibitPageFragment : ExhibitPageFragment
+    public class DummyExhibitPageFragment: ExhibitPageFragment
     {
-        /// <summary>
-        /// Title for the appetizer bottom sheet
-        /// </summary>
-        public string AppetizerTitle { set; get; } = "Default Appetizer Title";
 
-        /// <summary>
-        /// Stores the model instance for this page.
-        /// </summary>
-        private AppetizerPage page = null;
-
-        /// <summary>
-        /// Height of the Bottom Sheet in dp.
-        /// </summary>
-        private readonly int BOTTOM_SHEET_HEIGHT = 200;
-
-
+        // for testing purposes
+        static int count = 0;
 
         public override BottomSheetConfig GetBottomSheetConfig()
         {
             SimpleBottomSheetFragment bsFragment = new SimpleBottomSheetFragment();
-            bsFragment.Title = AppetizerTitle;
-            if (page != null)
-                bsFragment.Description = page.Text;
-
-            var bottomSheetConfig = new BottomSheetConfig
+            //        bsFragment.setTitle("SimpleBottomSheetFragment #" + count);
+            bsFragment.Title = "Außenansicht";
+            bsFragment.Description =
+                    "Beschreibung zur Außenansicht (ist eigentlich der Abdinghof...). \n\n" +
+                            "(c) XYZ   \n\nyou cannot use getString(id) here because the fragment is not " +
+                            "yet attached to an Activity!...";
+            var bottomSheetConfig=new BottomSheetConfig()
             {
-                MaxHeight = BOTTOM_SHEET_HEIGHT,
-                PeekHeight = BOTTOM_SHEET_HEIGHT,
-                fabAction = BottomSheetConfig.FabAction.Next,
                 BottomSheetFragment = bsFragment
             };
             return bottomSheetConfig;
@@ -60,24 +45,16 @@ namespace de.upb.hip.mobile.droid.fragments.exhibitpagefragment
 
         public override void SetPage(Page page)
         {
-            this.page = page.AppetizerPage;
+            // intentionally left blank for this dummy implementation
         }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             // Inflate the layout for this fragment
-            View v = inflater.Inflate(Resource.Layout.fragment_exhibitpage_appetizer, container, false);
-
-            // set image
-            ImageView imgView = (ImageView)v.FindViewById(Resource.Id.imgAppetizer);
-            if (imgView != null && page != null)
-            {
-                Image img = page.Image;
-                Drawable drawable = img.GetDrawable();
-                imgView.SetImageDrawable(drawable);
-            }
-
-            return v;
+            View view = inflater.Inflate(Resource.Layout.fragment_exhibitpage_dummy, container, false);
+            ImageView mImageView = (ImageView)view.FindViewById(Resource.Id.imageView2);
+            //new PhotoViewAttacher(mImageView); // TODO Replace this?
+            return view;
         }
     }
 }
