@@ -11,70 +11,85 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using Android.Content;
+using Android.Support.V4.App;
+using Android.Support.V7.Widget;
+using Android.Views;
+using Android.Widget;
+using de.upb.hip.mobile.droid.Activities;
+using de.upb.hip.mobile.pcl.BusinessLayer.Models;
+
 namespace de.upb.hip.mobile.droid.Listeners {
-    internal class RecyclerItemClickListener {
+    public class RecyclerItemClickListener : Java.Lang.Object, RecyclerView.IOnItemTouchListener  {
 
-/* : RecyclerView.IOnItemTouchListener {
+        private MainActivity mainActivity;
+        private ExhibitSet exhibitSet;
+        private GestureDetector gestureDetector;
 
-        private MainActivity mMainActivity;
-        private GestureDetector mGestureDetector;
-
-        public RecyclerItemClickListener (MainActivity mMainActivity)
+        public RecyclerItemClickListener (MainActivity mainActivity, ExhibitSet exhibitSet)
         {
-            this.mMainActivity = mMainActivity;
-            mGestureDetector = new GestureDetector (mMainActivity,new GestureDetector.SimpleOnGestureListener ());
+            this.mainActivity = mainActivity;
+            this.exhibitSet = exhibitSet;
+            gestureDetector = new GestureDetector (mainActivity, new MyCustomSimpleOnGestureListener());
         }
 
-
-
-        public IntPtr Handle
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
 
         public bool OnInterceptTouchEvent(RecyclerView view, MotionEvent e)
         {
-            View childView = view.FindChildViewUnder(e.RawX, e.RawY);
-            if (childView != null && mGestureDetector.OnTouchEvent(e))
+            View childView = view.FindChildViewUnder(e.GetX(), e.GetY());
+            if (childView != null && gestureDetector.OnTouchEvent(e))
             {
+                Intent intent = new Intent(this.mainActivity, typeof (ExhibitDetailsActivity));
 
-                Intent intent = new Intent(mMainActivity, typeof(DetailsActivity));
+                Exhibit exhibit = null;
+                for (int i = 0; i < exhibitSet.ActiveSet.Count; ++i)
+                {
+                //TODO does this work
+                    exhibit = exhibitSet.ActiveSet[i];
+                    if (exhibit.Id == childView.ContentDescription)
+                        break;
+                }
 
-
-
-                    ActivityOptionsCompat activityOptions =
-                    ActivityOptionsCompat.MakeSceneTransitionAnimation(
-                            this.mMainActivity,
-                            // Now we provide a list of Pair items which contain the view we can
-                            // transitioning from, and the name of the view it is transitioning to,
-                            // in the launched activity
-                            new Pair(childView.FindViewById(Resource.Id.mainRowItemImage),
-                                    DetailsActivity.VIEW_NAME_IMAGE),
-                            new Pair(childView.FindViewById(Resource.Id.mainRowItemName),
-                                    DetailsActivity.VIEW_NAME_TITLE));
-
-        intent.PutExtra(DetailsActivity.INTENT_EXHIBIT_ID, childView.Id);
-            ActivityCompat.StartActivity(this.mMainActivity, intent, activityOptions.ToBundle());
-        }
-        return false;
+                if (exhibit != null)
+                {
+                    var pageList = exhibit.Pages;
+                    if (pageList == null || !pageList.Any())
+                    {
+                        Toast.MakeText(mainActivity,
+                            mainActivity.GetString(Resource.String.currently_no_further_info),
+                            ToastLength.Short)
+                            .Show();
+                        return false;
+                    }
+                    intent.PutExtra(ExhibitDetailsActivity.INTENT_EXTRA_EXHIBIT_ID, exhibit.Id);
+                    ActivityCompat.StartActivity(this.mainActivity, intent, null);
+                }
+            }
+            return false;
         }
 
         public void OnRequestDisallowInterceptTouchEvent(bool disallowIntercept)
         {
-            throw new NotImplementedException();
         }
 
         public void OnTouchEvent(RecyclerView rv, MotionEvent @event)
         {
-            throw new NotImplementedException();
         }
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+        }
+
+        /*public class MyCustomSimpleOnGestureListener : GestureDetector.SimpleOnGestureListener
+        {
+            public override bool OnSingleTapUp(MotionEvent e)
+            {
+                return true;
+            }
         }*/
 
     }

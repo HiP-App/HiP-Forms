@@ -25,6 +25,7 @@ using Android.Support.V4.Content;
 using Android.Support.V7.Widget;
 using de.upb.hip.mobile.droid.Adapters;
 using de.upb.hip.mobile.droid.Helpers;
+using de.upb.hip.mobile.droid.Listeners;
 using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using HockeyApp;
@@ -96,7 +97,7 @@ namespace de.upb.hip.mobile.droid.Activities {
             adapter = new MainRecyclerAdapter (this.exhibitSet, geoLocation, Android.App.Application.Context);
             recyclerView.SetAdapter (adapter);
 
-            // recyclerView.AddOnItemTouchListener(new RecyclerItemClickListener(this));
+            recyclerView.AddOnItemTouchListener(new RecyclerItemClickListener(this, exhibitSet));
 
             // hockeyapp code
             CheckForUpdates ();

@@ -12,24 +12,15 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using Android.Graphics;
-using Android.Graphics.Drawables;
-using Android.Text;
-using de.upb.hip.mobile.pcl.BusinessLayer.Models;
+using Android.Views;
 
-namespace de.upb.hip.mobile.droid.Helpers
+namespace de.upb.hip.mobile.droid.Activities
 {
-    public static class ExtensionMethods
+    public class MyCustomSimpleOnGestureListener : GestureDetector.SimpleOnGestureListener
     {
-        public static Drawable GetDrawable(this Image img)
+        public override bool OnSingleTapUp(MotionEvent e)
         {
-            return new BitmapDrawable(BitmapFactory.DecodeByteArray(img.Data, 0, img.Data.Length));
-        }
-
-        public static int[] GetDimensions(this Image img)
-        {
-            var bmp = (BitmapFactory.DecodeByteArray(img.Data, 0, img.Data.Length));
-            return new[] {bmp.Width, bmp.Height};
+            return true;
         }
     }
 }

@@ -34,8 +34,18 @@ namespace de.upb.hip.mobile.droid.Helpers {
                                      "Die Universität Paderborn in Paderborn, Deutschland, ist eine 1972 gegründete Universität in Nordrhein-Westfalen.",
                                      51.706768, 8.771104, "uni.jpg", new[] {"Uni"}, new[] {"Universität"});
             var exhibits = BusinessEntitiyFactory.CreateBusinessObject<ExhibitSet> ();
+            var page = BusinessEntitiyFactory.CreateBusinessObject<Page>();
+            var appertizerpage = BusinessEntitiyFactory.CreateBusinessObject<AppetizerPage>();
+            page.AppetizerPage = appertizerpage;
+            appertizerpage.Text = "Fooooo";
+            var img = BusinessEntitiyFactory.CreateBusinessObject<Image>();
+            img.Data = LoadImageAsset("uni.jpg");
+            appertizerpage.Image = img;
+            dom.Pages.Add(page);
             exhibits.InitSet.Add (dom);
             exhibits.InitSet.Add (uni);
+            exhibits.ActiveSet.Add(dom);
+            exhibits.ActiveSet.Add(uni);
         }
 
         private Exhibit CreateExhibit (string name, string description, double latitude, double longitude,

@@ -14,23 +14,32 @@
 
 using System;
 using System.Linq;
+using Android.Animation;
+using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Support.Design.Widget;
 using Android.Support.V7.App;
 using Android.Util;
 using Android.Views;
+using Android.Views.Animations;
 using Android.Widget;
 using de.upb.hip.mobile.droid.fragments.bottomsheetfragment;
 using de.upb.hip.mobile.droid.fragments.exhibitpagefragment;
 using de.upb.hip.mobile.droid.Helpers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
+using IO.Codetail.Animation;
 using Java.Lang;
+using FragmentTransaction = Android.Support.V4.App.FragmentTransaction;
+using Math = System.Math;
 using Toolbar = Android.Support.V7.Widget.Toolbar;
+using ViewAnimationUtils = IO.Codetail.Animation.ViewAnimationUtils;
 
 namespace de.upb.hip.mobile.droid.Activities
 {
+    [Activity(Theme = "@style/AppTheme.WithActionBar",
+        Label = "HiPMobile.Droid", MainLauncher = false, Icon = "@drawable/icon")]
     public class ExhibitDetailsActivity : AppCompatActivity
     {
 
@@ -70,6 +79,12 @@ namespace de.upb.hip.mobile.droid.Activities
         /// </summary>
         private Bundle extras;
 
+        MediaPlayerService mediaPlayerService;
+        bool isBound = false;
+
+        //Subclass for media player binding
+        private IServiceConnection mediaPlayerConnection;
+
         /// <summary>
         /// Stores the current action associated with the FAB.
         /// </summary>
@@ -84,7 +99,7 @@ namespace de.upb.hip.mobile.droid.Activities
         private static readonly string Tag = "ExhibitDetailsActivity";
 
         // keys for saving/accessing the state
-        private static readonly string INTENT_EXTRA_EXHIBIT_ID = "de.upb.hip.mobile.extra.exhibit_id";
+        public static readonly string INTENT_EXTRA_EXHIBIT_ID = "de.upb.hip.mobile.extra.exhibit_id";
         private static readonly string KEY_EXHIBIT_ID = "ExhibitDetailsActivity.ExhibitId";
         private static readonly string KEY_CURRENT_PAGE_INDEX = "ExhibitDetailsActivity.currentPageIndex";
         private static readonly string KEY_AUDIO_PLAYING = "ExhibitDetailsActivity.isAudioPlaying";
@@ -100,6 +115,11 @@ namespace de.upb.hip.mobile.droid.Activities
         private ImageButton btnPreviousPage;
         private ImageButton btnNextPage;
         #endregion
+
+        public ExhibitDetailsActivity()
+        {
+            this.mediaPlayerConnection = new CustomServiceConnection(this);
+        }
 
         protected override void OnSaveInstanceState(Bundle outState)
         {
@@ -240,57 +260,277 @@ namespace de.upb.hip.mobile.droid.Activities
                 btnNextPage.Visibility = ViewStates.Visible;
 
             // get ExhibitPageFragment for Page
-            /*ExhibitPageFragment pageFragment =
-                    ExhibitPageFragmentFactory.getFragmentForExhibitPage(page, exhibitName);*/
+            ExhibitPageFragment pageFragment =
+                    ExhibitPageFragmentFactory.GetFragmentForExhibitPage(page, exhibit.Name);
+
+            if (pageFragment == null)
+            {
+                Log.Error(Tag, "pageFragment is null!");
+                return;
+            }
+
+            pageFragment.Arguments = extras;
+
+            // TODO: this seems to take some time. would it help to do this in a separate thread?
+            // remove old fragment and display new fragment
+            if (FindViewById(Resource.Id.content_fragment_container) != null)
+            {
+                FragmentTransaction transaction = SupportFragmentManager.BeginTransaction();
+                transaction.Replace(Resource.Id.content_fragment_container, pageFragment);
+                transaction.Commit();
+            }
+
+            // configure bottom sheet
+            BottomSheetConfig config = pageFragment.GetBottomSheetConfig();
+
+            if (config == null)
+            {
+                Log.Error(Tag, "BottomSheetConfig cannot be null!");
+                return;
+            }
+
+            if (config.DisplayBottomSheet)
+            {
+
+                bottomSheet.Visibility = ViewStates.Visible;
+
+                // configure peek height and max height
+                int peekHeightInPixels = (int)PixelDpConversion.ConvertDpToPixel(config.PeekHeight);
+                bottomSheetBehavior.PeekHeight = peekHeightInPixels;
+
+                int maxHeightInPixels = (int)PixelDpConversion.ConvertDpToPixel(config.MaxHeight);
+                ViewGroup.LayoutParams parameters = bottomSheet.LayoutParameters;
+                parameters.Height = maxHeightInPixels;
+                bottomSheet.LayoutParameters = parameters;
+
+                // set content
+                bottomSheetFragment = config.BottomSheetFragment;
+
+                if (bottomSheetFragment == null)
+                {
+                    Log.Error(Tag, "bottomSheetFragment is null!");
+                }
+                else
+                {
+                    // FIXME: adding the new fragment somehow fails if the BottomSheet is expanded
+                    // TODO: this seems to take some time. would it help to do this in a separate thread?
+                    // remove old fragment and display new fragment
+                    if (FindViewById(Resource.Id.bottom_sheet_fragment_container) != null)
+                    {
+                        FragmentTransaction transaction = SupportFragmentManager.BeginTransaction();
+                        transaction.Replace(Resource.Id.bottom_sheet_fragment_container, bottomSheetFragment);
+                        transaction.Commit();
+                    }
+                }
+
+                // configure FAB (includes expanded/collapsed state)
+                SetFabAction(config.fabAction);
+
+            }
+            else
+            {    // config.displayBottomSheet == false
+                bottomSheet.Visibility = ViewStates.Gone;
+            }
+
+            // display audio action only if page provides audio
+            if (page.Audio == null)
+            {
+                DisplayAudioAction(false);
+            }
+            else
+            {
+                DisplayAudioAction(true);
+            }
         }
 
+        /// <summary>
+        /// Displays the next exhibit page.
+        /// </summary>
         public void DisplayNextExhibitPage()
         {
-            
+            currentPageIndex++;
+
+            if (currentPageIndex >= exhibit.Pages.Count())
+            {
+                Toast.MakeText(ApplicationContext,
+                        Resource.String.currently_no_further_info, ToastLength.Long).Show();
+                currentPageIndex--;
+                Log.Warn(Tag, "currentPageIndex >= exhibitPages.size()");
+            }
+            else
+            {
+                bottomSheetBehavior.State = BottomSheetBehavior.StateCollapsed;
+                UpdateAudioFile();
+
+                DisplayCurrenExhibitPage();
+            }
         }
 
+        /// <summary>
+        /// Displays the previous exhibit page (for currentPageIndex > 0).
+        /// </summary>
         public void DisplayPreviousExhibitPage()
         {
-            
+            currentPageIndex--;
+            if (currentPageIndex < 0)
+            {
+                Log.Warn(Tag, "currentPageIndex < 0");
+                currentPageIndex++;
+                return;
+            }
+            UpdateAudioFile();
+            bottomSheetBehavior.State = BottomSheetBehavior.StateCollapsed;
+            DisplayCurrenExhibitPage();
         }
 
+        /// <summary>
+        /// Everytime the page is changed, the audio file needs to be updated to the new page.
+        /// </summary>
         private void UpdateAudioFile()
         {
-            
+            StopAudioPlayback();
+            mediaPlayerService.SetAudioFile(exhibit.Pages[currentPageIndex].Audio);
+            UpdatePlayPauseButtonIcon();
         }
 
+        /// <summary>
+        /// Sets the action of the FAB. Adjusts the appearance (visibility and icon) of the FAB
+        /// and the state of the bottom sheet accordingly.
+        /// </summary>
+        /// <param name="action">FAB action to set.</param>
         public void SetFabAction(BottomSheetConfig.FabAction action)
         {
-            
+            fabAction = action;
+            fab.Visibility = ViewStates.Visible;
+
+            switch (action)
+            {
+                case BottomSheetConfig.FabAction.None:
+                    fab.Visibility = ViewStates.Gone;
+                    break;
+                case BottomSheetConfig.FabAction.Next:
+                    fab.SetImageResource(Resource.Drawable.ic_arrow_forward_48dp);
+                    break;
+                case BottomSheetConfig.FabAction.Collapse:
+                    bottomSheetBehavior.State = BottomSheetBehavior.StateExpanded;
+                    fab.SetImageResource(Resource.Drawable.ic_expand_more_white_48dp);
+                    break;
+                case BottomSheetConfig.FabAction.Expand:
+                    bottomSheetBehavior.State = BottomSheetBehavior.StateCollapsed;
+                    fab.SetImageResource(Resource.Drawable.ic_expand_less_white_48dp);
+                    break;
+                default:
+                    throw new IllegalArgumentException("Unsupported FAB action!");
+            }
         }
 
+        /// <summary>
+        /// Shows the audio toolbar.
+        /// </summary>
+        /// <returns>true if the toolbar has been revealed, false otherwise.</returns>
         private bool ShowAudioToolbar()
         {
+            // check only if mRevealView != null. If isAudioToolbarHidden == true is also checked,
+            // the toolbar cannot be displayed on savedInstanceState
+            if (revealView != null)
+            {
+                int cx = (revealView.Left + revealView.Right);
+                int cy = revealView.Top;
+                int radius = Math.Max(revealView.Width, revealView.Height);
+
+                if (Build.VERSION.SdkInt < BuildVersionCodes.Lollipop)
+                {
+
+                    SupportAnimator animator =
+                            ViewAnimationUtils.CreateCircularReveal(revealView, cx, cy, 0, radius);
+                    animator.SetInterpolator(new AccelerateDecelerateInterpolator());
+                    animator.SetDuration(800);
+
+                    revealView.Visibility = ViewStates.Invisible;
+                    animator.Start();
+
+                }
+                else
+                {
+                    SupportAnimator anim = ViewAnimationUtils
+                            .CreateCircularReveal(revealView, cx, cy, 0, radius);
+                    revealView.Visibility = ViewStates.Visible;
+                    anim.Start();
+                }
+
+                isAudioToolbarHidden = false;
+                return true;
+            }
+
             return false;
         }
 
+        /// <summary>
+        /// Hides the audio toolbar.
+        /// </summary>
+        /// <returns>If the audio toolbar was hidden, false otherwise</returns>
         private bool HideAudioToolBar()
         {
-            return false;
+            if (revealView != null)
+            {
+                int cx = (revealView.Left + revealView.Right);
+                int cy = revealView.Top;
+                int radius = Math.Max(revealView.Width, revealView.Height);
+
+                if (Build.VERSION.SdkInt < BuildVersionCodes.Lollipop)
+                {
+
+                    SupportAnimator animator =
+                            IO.Codetail.Animation.ViewAnimationUtils.CreateCircularReveal(revealView, cx, cy, 0, radius);
+                    animator.SetInterpolator(new AccelerateDecelerateInterpolator());
+                    animator.SetDuration(800);
+
+                    SupportAnimator animatorReverse = animator.Reverse();
+                    animatorReverse.AddListener(new CustomAnimatorListener(this));
+                    animatorReverse.Start();
+                } else {
+                Animator anim = Android.Views.ViewAnimationUtils.CreateCircularReveal(revealView, cx, cy, radius, 0);
+                anim.AddListener(new CustomAnimatorListenerAdapter(this));
+                anim.Start();
+
+            }
+
+            return true;
         }
 
-        public override void OnBackPressed()
-        {
-            base.OnBackPressed();
+        return false;
         }
 
         public override bool OnCreateOptionsMenu(IMenu menu)
         {
-            return base.OnCreateOptionsMenu(menu);
+            // Inflate the menu; this adds items to the action bar if it is present.
+            MenuInflater.Inflate(Resource.Menu.activity_exhibit_details_menu_main, menu);
+            return true;
         }
 
         public override bool OnPrepareOptionsMenu(IMenu menu)
         {
+            menu.FindItem(Resource.Id.action_audio).SetVisible(showAudioAction);
             return base.OnPrepareOptionsMenu(menu);
         }
 
         public override bool OnOptionsItemSelected(IMenuItem item)
         {
+            switch (item.ItemId)
+            {
+
+                case Resource.Id.action_audio:
+                    if (isAudioToolbarHidden)
+                        ShowAudioToolbar();
+                    else
+                        HideAudioToolBar();
+                    return true;
+
+                case Android.Resource.Id.Home:
+                    SupportFinishAfterTransition();
+                    return true;
+            }
+
             return base.OnOptionsItemSelected(item);
         }
 
@@ -298,48 +538,155 @@ namespace de.upb.hip.mobile.droid.Activities
 
         private void UpdatePlayPauseButtonIcon()
         {
-            
+            // remove old image first
+            btnPlayPause.SetImageResource(Android.Resource.Color.Transparent);
+
+            if (isAudioPlaying)
+                btnPlayPause.SetImageResource(Resource.Drawable.ic_pause_black_36dp);
+            else
+                btnPlayPause.SetImageResource(Resource.Drawable.ic_play_arrow_black_36dp);
         }
 
-        private void DisplayAudioAction()
+        private void DisplayAudioAction(bool visible)
         {
-            
+            showAudioAction = visible;
+            InvalidateOptionsMenu();
         }
 
         private void ShowCaptions()
         {
-            
+            // TODO: adapt this to retrieved data
+            string caption = exhibit.Pages[this.currentPageIndex].Audio.Caption;
+
+            /*** Uncomment this to test the footnote support ***/
+            //        caption = "Dies ist ein Satz.<fn>Dies ist eine Fußnote</fn> " +
+            //                "Dies ist ein zweiter Satz.<fn>Dies ist eine zweite Fußnote</fn> " +
+            //                "Dies ist ein dritter Satz.";
+
+            // IMPORTANT: the dialog and custom view creation has to be repeated every time, reusing
+            // the view or the dialog will result in an error ("child already has a parent")
+
+            // create dialog
+            Dialog dialog = new Dialog(this);
+            dialog.SetTitle(Resource.String.audio_toolbar_cc);
+            dialog.SetContentView(Resource.Layout.activity_exhibit_details_caption_dialog);
+
+            // setup text view for captions with clickable footnotes
+            TextView tv = (TextView)dialog.FindViewById(Resource.Id.captionTextView);
+            if (tv != null)
+            {
+                tv.Text = caption;
+                CoordinatorLayout coordinatorLayout =
+                        (CoordinatorLayout)dialog.FindViewById(Resource.Id.captionDialogCoordinatorLayout);
+                //ClickableFootnotes.createFootnotes(tv, coordinatorLayout); // TODO implement this
+            }
+            else
+            {
+                Log.Error(Tag, "cannot access TextView in caption dialog!");
+                return;
+            }
+
+            // add click listener to close button that dismisses the dialog
+            Button closeBtn = (Button)dialog.FindViewById(Resource.Id.captionDialogCloseButton);
+            if (closeBtn != null)
+                closeBtn.Click += (sender, args) => { dialog.Dismiss(); };
+
+            dialog.Show();
         }
 
+        /// <summary>
+        /// Initializes the service and binds it.
+        /// </summary>
         public void DoBindService()
         {
-            
-        }
-
-        protected override void OnStop()
-        {
-            base.OnStop();
-        }
+            Intent intent = new Intent(this, typeof(MediaPlayerService));
+            StartService(new Intent(this, typeof(MediaPlayerService)));
+            isBound = BindService(intent, mediaPlayerConnection, 0);
+    }
 
         protected override void OnDestroy()
         {
             base.OnDestroy();
+            if (IsFinishing)
+            {
+                //Only stop sound when activity is getting killed, not when rotated
+                mediaPlayerService.StopSound(); //if this isn't done, the media player will keep playing
+                StopService(new Intent(this, typeof (MediaPlayerService)));
+            }
+            UnbindService(mediaPlayerConnection);
         }
 
         #region AudioControls
+        /// <summary>
+        /// Starts the playback of the audio associated with the page.
+        /// </summary>
         private void StartAudioPlayback()
         {
-
+            Toast.MakeText(this, Resource.String.audio_playing_indicator, ToastLength.Short).Show();
+            try
+            {
+                if (!mediaPlayerService.GetAudioFileIsSet())
+                {
+                    mediaPlayerService.SetAudioFile(exhibit.Pages[currentPageIndex].Audio);
+                }
+                mediaPlayerService.StartSound();
+            }
+            catch (IllegalStateException e)
+            {
+                isAudioPlaying = false;
+            }
+            catch (NullPointerException e)
+            {
+                isAudioPlaying = false;
+            }
+            catch (Java.Lang.Exception e)
+            {
+                isAudioPlaying = false;
+            }
         }
 
+        /// <summary>
+        /// Pauses the playback of the audio.
+        /// </summary>
         private void PauseAudioPlayback()
         {
-
+            Toast.MakeText(this, Resource.String.audio_pausing_indicator, ToastLength.Short).Show();
+            try
+            {
+                mediaPlayerService.PauseSound();
+            }
+            catch (IllegalStateException e)
+            {
+            }
+            catch (NullPointerException e)
+            {
+            }
+            catch (Java.Lang.Exception e)
+            {
+            }
+            isAudioPlaying = false;
         }
 
+        /// <summary>
+        /// Stops the playback of audio. this is needed, when changing the page and therefore the
+        /// audio file
+        /// </summary>
         private void StopAudioPlayback()
         {
-
+            try
+            {
+                mediaPlayerService.StopSound();
+            }
+            catch (IllegalStateException e)
+            {
+            }
+            catch (NullPointerException e)
+            {
+            }
+            catch (Java.Lang.Exception e)
+            {
+            }
+            isAudioPlaying = false;
         }
         #endregion
 
@@ -381,6 +728,86 @@ namespace de.upb.hip.mobile.droid.Activities
                 }
             }
         }
+
+        private class CustomAnimatorListener : SupportAnimator.IAnimatorListener
+        {
+            private ExhibitDetailsActivity parent;
+
+            public CustomAnimatorListener(ExhibitDetailsActivity parent)
+            {
+                this.parent = parent;
+            }
+            public void Dispose()
+            {
+            }
+
+            public IntPtr Handle { get; }
+            public void OnAnimationCancel()
+            {
+            }
+
+            public void OnAnimationEnd()
+            {
+                parent.revealView.Visibility = ViewStates.Invisible;
+                parent.isAudioToolbarHidden = true;
+            }
+
+            public void OnAnimationRepeat()
+            {
+            }
+
+            public void OnAnimationStart()
+            {
+            }
+        }
+
+        private class CustomAnimatorListenerAdapter : AnimatorListenerAdapter
+        {
+            private ExhibitDetailsActivity parent;
+
+            public CustomAnimatorListenerAdapter(ExhibitDetailsActivity parent)
+            {
+                this.parent = parent;
+            }
+            public override void OnAnimationEnd(Animator animation)
+            {
+                base.OnAnimationEnd(animation);
+                parent.revealView.Visibility = ViewStates.Invisible;
+                parent.isAudioToolbarHidden = true;
+            }
+        }
+
+        private class CustomServiceConnection : IServiceConnection
+        {
+            private ExhibitDetailsActivity parent;
+
+            public CustomServiceConnection(ExhibitDetailsActivity parent)
+            {
+                this.parent = parent;
+            }
+            public void Dispose()
+            {
+            }
+
+            public IntPtr Handle { get; }
+            public void OnServiceConnected(ComponentName name, IBinder service)
+            {
+                MediaPlayerService.MediaPlayerBinder binder =
+                    (MediaPlayerService.MediaPlayerBinder)service;
+                parent.mediaPlayerService = binder.GetService();
+                if (parent.mediaPlayerService == null)
+                {
+                    //this case should not happen. add error handling
+                }
+                parent.isBound = true;
+            }
+
+            public void OnServiceDisconnected(ComponentName name)
+            {
+                parent.isBound = false;
+            }
+        }
+
         #endregion
     }
 }

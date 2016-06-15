@@ -51,7 +51,8 @@
     <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CircularRevealBinding">
+    <Reference Include="CircularRevealBinding, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Bindings\CircularRevealBinding\CircularRevealBinding\bin\Debug\CircularRevealBinding.dll</HintPath>
     </Reference>
     <Reference Include="HockeySDK">
@@ -110,6 +111,7 @@
   <ItemGroup>
     <Compile Include="Activities\ExhibitDetailsActivity.cs" />
     <Compile Include="Activities\MainActivity.cs" />
+    <Compile Include="Listeners\MyCustomSimpleOnGestureListener.cs" />
     <Compile Include="Activities\SplashScreenActivity.cs" />
     <Compile Include="Adapters\MainRecyclerAdapter.cs" />
     <Compile Include="fragments\bottomsheetfragment\BottomSheetFragment.cs" />
@@ -128,6 +130,7 @@
     <Compile Include="Helpers\ExtensionMethods.cs" />
     <Compile Include="Helpers\ImageManipulation.cs" />
     <Compile Include="Helpers\MediaPlayerService.cs" />
+    <Compile Include="Helpers\PixelDpConversion.cs" />
     <Compile Include="Listeners\RecyclerItemClickListener.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
@@ -196,7 +199,13 @@
     <AndroidResource Include="Resources\layout\fragment_exhibitpage_image.xml" />
     <AndroidResource Include="Resources\layout\fragment_exhibitpage_dummy.xml" />
     <AndroidResource Include="Resources\drawable-hdpi\kaiserpfalz_teaser.jpg" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_arrow_forward_48dp.xml" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_expand_more_white_48dp.xml" />
+    <AndroidResource Include="Resources\menu\activity_exhibit_details_menu_main.xml" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_headset_white_24dp.xml" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_pause_black_36dp.xml" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

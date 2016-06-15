@@ -84,7 +84,7 @@ namespace de.upb.hip.mobile.droid.Adapters {
             }
 
             //Remove this if not needed
-            //vh.View.Id = Integer.ParseInt (exhibit.Id);
+            vh.View.ContentDescription = exhibit.Id;
 
             vh.Distance.SetText (distance, TextView.BufferType.Normal);
 

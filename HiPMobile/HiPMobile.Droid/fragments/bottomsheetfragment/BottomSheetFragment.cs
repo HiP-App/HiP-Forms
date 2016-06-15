@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using Android.App;
+using Android.Support.V4.App;
 using de.upb.hip.mobile.droid.Activities;
 
 namespace de.upb.hip.mobile.droid.fragments.bottomsheetfragment
