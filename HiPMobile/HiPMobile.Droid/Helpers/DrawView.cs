@@ -73,9 +73,9 @@ namespace de.upb.hip.mobile.droid.Helpers
                 double heightScalingFactor = (double)Height / (double)OriginalImageDimensions[1];
 
                 canvas.DrawRect((int)(rect.Left * widthScalingFactor),
-                        (int)(rect.Bottom * heightScalingFactor),
-                        (int)(rect.Right * widthScalingFactor),
                         (int)(rect.Top * heightScalingFactor),
+                        (int)(rect.Right * widthScalingFactor),
+                        (int)(rect.Bottom * heightScalingFactor),
                         paint);
             }
         }

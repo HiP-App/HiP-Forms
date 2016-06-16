@@ -179,7 +179,7 @@
     <AndroidResource Include="Resources\drawable-xhdpi\ic_directions_black_48dp.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\ic_gavel_black_48dp.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\ic_home_black_48dp.png" />
-    <AndroidResource Include="Resources\layout\activity_exhibit_details.xml" />
+    <AndroidResource Include="Resources\layout\activity_exhibit_details.axml" />
     <AndroidResource Include="Resources\layout\activity_exhibit_details_audio_toolbar.xml" />
     <AndroidResource Include="Resources\layout\activity_exhibit_details_bottom_sheet.xml" />
     <AndroidResource Include="Resources\layout\activity_exhibit_details_caption_dialog.xml" />

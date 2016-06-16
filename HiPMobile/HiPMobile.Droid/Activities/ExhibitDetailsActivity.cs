@@ -160,6 +160,7 @@ namespace de.upb.hip.mobile.droid.Activities
                 exhibitId = intent.GetStringExtra(INTENT_EXTRA_EXHIBIT_ID);
                 exhibit = ExhibitManager.GetExhibit(exhibitId);
             }
+            this.Title = exhibit.Name;
 
             if (exhibit.Pages.Count == 0)
             {
@@ -318,7 +319,7 @@ namespace de.upb.hip.mobile.droid.Activities
                     if (FindViewById(Resource.Id.bottom_sheet_fragment_container) != null)
                     {
                         FragmentTransaction transaction = SupportFragmentManager.BeginTransaction();
-                        transaction.Add(Resource.Id.bottom_sheet_fragment_container, bottomSheetFragment);
+                        transaction.Replace(Resource.Id.bottom_sheet_fragment_container, bottomSheetFragment);
                         transaction.Commit();
                     }
                 }
@@ -732,7 +733,7 @@ namespace de.upb.hip.mobile.droid.Activities
             }
         }
 
-        private class CustomAnimatorListener : SupportAnimator.IAnimatorListener
+        private class CustomAnimatorListener : Java.Lang.Object, SupportAnimator.IAnimatorListener
         {
             private ExhibitDetailsActivity parent;
 
@@ -740,11 +741,6 @@ namespace de.upb.hip.mobile.droid.Activities
             {
                 this.parent = parent;
             }
-            public void Dispose()
-            {
-            }
-
-            public IntPtr Handle { get; }
             public void OnAnimationCancel()
             {
             }
@@ -780,7 +776,7 @@ namespace de.upb.hip.mobile.droid.Activities
             }
         }
 
-        private class CustomServiceConnection : IServiceConnection
+        private class CustomServiceConnection : Java.Lang.Object, IServiceConnection
         {
             private ExhibitDetailsActivity parent;
 
@@ -788,11 +784,6 @@ namespace de.upb.hip.mobile.droid.Activities
             {
                 this.parent = parent;
             }
-            public void Dispose()
-            {
-            }
-
-            public IntPtr Handle { get; }
             public void OnServiceConnected(ComponentName name, IBinder service)
             {
                 MediaPlayerService.MediaPlayerBinder binder =

@@ -52,9 +52,8 @@
             android:layout_height="wrap_content"
             android:textColor="@color/textColorSecondary" />
 
-        <view
+      <de.upb.hip.mobile.droid.Helpers.CustomSeekBar
             android:id="@+id/seekBar"
-            class="de.upb.hip.mobile.helpers.CustomSeekBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
@@ -63,6 +62,18 @@
             android:maxHeight="3dp"
             android:minHeight="3dp"
             android:thumb="@drawable/thumb" />
+
+      <!--<view
+            android:id="@+id/seekBar"
+            class="de.upb.hip.mobile.droid.Helpers.CustomSeekBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="20dp"
+            android:maxHeight="3dp"
+            android:minHeight="3dp"
+            android:thumb="@drawable/thumb" />-->
 
         <TextView
             android:id="@+id/displayImageSliderSeekBarFirstText"

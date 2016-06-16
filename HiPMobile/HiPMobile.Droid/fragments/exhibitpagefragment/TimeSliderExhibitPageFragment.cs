@@ -198,7 +198,7 @@ namespace de.upb.hip.mobile.droid.fragments.exhibitpagefragment
             }
         }
 
-        private class CustomOnSeekBarChangeListener : SeekBar.IOnSeekBarChangeListener
+        private class CustomOnSeekBarChangeListener : Java.Lang.Object, SeekBar.IOnSeekBarChangeListener
         {
             private TimeSliderExhibitPageFragment parent;
             int progressStart = 0;
@@ -372,13 +372,6 @@ namespace de.upb.hip.mobile.droid.fragments.exhibitpagefragment
 
                 return closestNode;
             }
-
-            public void Dispose()
-            {
-                
-            }
-
-            public IntPtr Handle { get; }
         }
     }
 }

@@ -38,6 +38,11 @@ namespace de.upb.hip.mobile.droid.Helpers
             Init();
         }
 
+        public CustomSeekBar(Context context, IAttributeSet attrs) : base(context, attrs)
+        {
+            Init();
+        }
+
         private void Init()
         {
             selectedColor = new Paint(PaintFlags.AntiAlias);

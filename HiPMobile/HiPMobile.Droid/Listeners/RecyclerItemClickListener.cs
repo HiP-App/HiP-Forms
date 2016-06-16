@@ -80,10 +80,6 @@ namespace de.upb.hip.mobile.droid.Listeners {
         {
         }
 
-        public void Dispose()
-        {
-        }
-
         /*public class MyCustomSimpleOnGestureListener : GestureDetector.SimpleOnGestureListener
         {
             public override bool OnSingleTapUp(MotionEvent e)

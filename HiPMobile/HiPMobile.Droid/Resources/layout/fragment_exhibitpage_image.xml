@@ -21,8 +21,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <de.upb.hip.mobile.helpers.DrawView
-        android:id="@+id/fragment_exhibitpage_image_imageview"
+  <de.upb.hip.mobile.droid.Helpers.DrawView
+      android:id="@+id/fragment_exhibitpage_image_imageview"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_alignParentBottom="false"

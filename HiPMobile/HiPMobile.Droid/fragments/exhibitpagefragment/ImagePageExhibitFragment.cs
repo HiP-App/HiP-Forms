@@ -17,6 +17,7 @@ using Android.App;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
+using de.upb.hip.mobile.droid.Activities;
 using de.upb.hip.mobile.droid.fragments.bottomsheetfragment;
 using de.upb.hip.mobile.droid.Helpers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
@@ -109,7 +110,7 @@ namespace de.upb.hip.mobile.droid.fragments.exhibitpagefragment
             };
         }
 
-        private class CustomOnTouchListener: View.IOnTouchListener
+        private class CustomOnTouchListener: Java.Lang.Object, View.IOnTouchListener
         {
             private ImagePageExhibitFragment parent;
 
@@ -117,11 +118,6 @@ namespace de.upb.hip.mobile.droid.fragments.exhibitpagefragment
             {
                 this.parent = parent;
             }
-            public void Dispose()
-            {
-            }
-
-            public IntPtr Handle { get; }
             public bool OnTouch(View v, MotionEvent e)
             {
                 if (e.Action != MotionEventActions.Down || parent.page == null)
@@ -134,9 +130,9 @@ namespace de.upb.hip.mobile.droid.fragments.exhibitpagefragment
                 int y = (int)(((double) e.GetY()) * parent.GetImageScalingFactor()[1]);
                 for (int i = 0; i<parent.page.Areas.Count; i++) {
                     Rectangle rect = parent.page.Areas[i];
-                    if (x >= rect.Left && x <= rect.Right && y >= rect.Bottom && y <= rect.Top) {
+                    if (x >= rect.Left && x <= rect.Right && y <= rect.Bottom && y >= rect.Top) {
                         //We hit an rectangle, display further information about it
-                        new AlertDialog.Builder(Application.Context)
+                        new AlertDialog.Builder(parent.Context)
                                 .SetTitle(Resource.String.information)
                                 .SetMessage(parent.page.Texts[i].Value)
                                 .SetPositiveButton(Android.Resource.String.Ok, (sender, args) => { })
