@@ -38,7 +38,7 @@ using ViewAnimationUtils = IO.Codetail.Animation.ViewAnimationUtils;
 
 namespace de.upb.hip.mobile.droid.Activities
 {
-    [Activity(Theme = "@style/AppTheme.WithActionBar",
+    [Activity(Theme = "@style/AppTheme.NoActionBar",
         Label = "HiPMobile.Droid", MainLauncher = false, Icon = "@drawable/icon")]
     public class ExhibitDetailsActivity : AppCompatActivity
     {
@@ -181,7 +181,7 @@ namespace de.upb.hip.mobile.droid.Activities
             // see also: http://stackoverflow.com/questions/7289827/how-to-start-animation-immediately-after-oncreate
 
             //initialize media player
-            DoBindService();
+            //DoBindService(); // TODO fix error
             // set up play / pause toggle
             btnPlayPause = (ImageButton)FindViewById(Resource.Id.btnPlayPause);
             btnPlayPause.Click += (sender, args) =>
@@ -233,20 +233,20 @@ namespace de.upb.hip.mobile.droid.Activities
             DisplayCurrenExhibitPage();
         }
 
-        public void DisplayCurrenExhibitPage()
+        public void DisplayCurrenExhibitPage ()
         {
-            if (currentPageIndex >= exhibit.Pages.Count())
+            if (currentPageIndex >= exhibit.Pages.Count ())
             {
-                Log.Warn(Tag, "currentPageIndex >= exhibitPages.size() !");
+                Log.Warn (Tag, "currentPageIndex >= exhibitPages.size() !");
                 return;
             }
 
             if (!isAudioToolbarHidden)
             {
-                HideAudioToolBar(); // TODO: generalize to audio playing
+                HideAudioToolBar (); // TODO: generalize to audio playing
             }
 
-            Page page = exhibit.Pages[currentPageIndex];
+            Page page = exhibit.Pages [currentPageIndex];
 
             // set previous & next button
             if (currentPageIndex == 0)
@@ -254,18 +254,18 @@ namespace de.upb.hip.mobile.droid.Activities
             else
                 btnPreviousPage.Visibility = ViewStates.Visible;
 
-            if (currentPageIndex >= exhibit.Pages.Count() - 1 || page.IsAppetizerPage())
+            if (currentPageIndex >= exhibit.Pages.Count () - 1 || page.IsAppetizerPage ())
                 btnNextPage.Visibility = ViewStates.Gone;
             else
                 btnNextPage.Visibility = ViewStates.Visible;
 
             // get ExhibitPageFragment for Page
             ExhibitPageFragment pageFragment =
-                    ExhibitPageFragmentFactory.GetFragmentForExhibitPage(page, exhibit.Name);
+                ExhibitPageFragmentFactory.GetFragmentForExhibitPage (page, exhibit.Name);
 
             if (pageFragment == null)
             {
-                Log.Error(Tag, "pageFragment is null!");
+                Log.Error (Tag, "pageFragment is null!");
                 return;
             }
 
@@ -273,14 +273,14 @@ namespace de.upb.hip.mobile.droid.Activities
 
             // TODO: this seems to take some time. would it help to do this in a separate thread?
             // remove old fragment and display new fragment
-            if (FindViewById(Resource.Id.content_fragment_container) != null)
+            if (FindViewById (Resource.Id.content_fragment_container) != null)
             {
-                FragmentTransaction transaction = SupportFragmentManager.BeginTransaction();
-                transaction.Replace(Resource.Id.content_fragment_container, pageFragment);
-                transaction.Commit();
+                FragmentTransaction transaction = SupportFragmentManager.BeginTransaction ();
+                transaction.Replace (Resource.Id.content_fragment_container, pageFragment);
+                transaction.Commit ();
             }
 
-            // configure bottom sheet
+        // configure bottom sheet
             BottomSheetConfig config = pageFragment.GetBottomSheetConfig();
 
             if (config == null)
@@ -318,7 +318,7 @@ namespace de.upb.hip.mobile.droid.Activities
                     if (FindViewById(Resource.Id.bottom_sheet_fragment_container) != null)
                     {
                         FragmentTransaction transaction = SupportFragmentManager.BeginTransaction();
-                        transaction.Replace(Resource.Id.bottom_sheet_fragment_container, bottomSheetFragment);
+                        transaction.Add(Resource.Id.bottom_sheet_fragment_container, bottomSheetFragment);
                         transaction.Commit();
                     }
                 }
@@ -341,6 +341,9 @@ namespace de.upb.hip.mobile.droid.Activities
             {
                 DisplayAudioAction(true);
             }
+
+            FindViewById<CoordinatorLayout>(Resource.Id.coordinatorLayout).ForceLayout();
+            var a = FindViewById<FrameLayout> (Resource.Id.bottom_sheet_fragment_container);
         }
 
         /// <summary>
@@ -389,7 +392,7 @@ namespace de.upb.hip.mobile.droid.Activities
         private void UpdateAudioFile()
         {
             StopAudioPlayback();
-            mediaPlayerService.SetAudioFile(exhibit.Pages[currentPageIndex].Audio);
+            //mediaPlayerService.SetAudioFile(exhibit.Pages[currentPageIndex].Audio); TODO fix bug
             UpdatePlayPauseButtonIcon();
         }
 
@@ -610,10 +613,10 @@ namespace de.upb.hip.mobile.droid.Activities
             if (IsFinishing)
             {
                 //Only stop sound when activity is getting killed, not when rotated
-                mediaPlayerService.StopSound(); //if this isn't done, the media player will keep playing
+                //mediaPlayerService.StopSound(); //if this isn't done, the media player will keep playing TODO fix bug
                 StopService(new Intent(this, typeof (MediaPlayerService)));
             }
-            UnbindService(mediaPlayerConnection);
+            //UnbindService(mediaPlayerConnection); TODO fix bug
         }
 
         #region AudioControls
@@ -683,7 +686,7 @@ namespace de.upb.hip.mobile.droid.Activities
             catch (NullPointerException e)
             {
             }
-            catch (Java.Lang.Exception e)
+            catch (System.Exception e)
             {
             }
             isAudioPlaying = false;

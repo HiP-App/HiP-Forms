@@ -31,7 +31,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingBottom="8dp"
-        android:textStyle="bold" />
+        android:textStyle="bold" 
+        android:textColor="@color/textColorPrimary"/>
 
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -43,7 +44,8 @@
             android:id="@+id/tvBsDescription"
             style="@style/TextAppearance.AppCompat.Small"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent" 
+            android:textColor="@color/textColorPrimary"/>
 
     </android.support.v4.widget.NestedScrollView>
 

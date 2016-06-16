@@ -3407,14 +3407,17 @@ namespace de.upb.hip.mobile.droid
 			// aapt resource value: 0x7f09015a
 			public const int AppTheme = 2131296602;
 			
-			// aapt resource value: 0x7f09015d
-			public const int AppTheme_AppBarOverlay = 2131296605;
+			// aapt resource value: 0x7f09015e
+			public const int AppTheme_AppBarOverlay = 2131296606;
 			
 			// aapt resource value: 0x7f09015c
 			public const int AppTheme_Base = 2131296604;
 			
-			// aapt resource value: 0x7f09015e
-			public const int AppTheme_PopupOverlay = 2131296606;
+			// aapt resource value: 0x7f09015d
+			public const int AppTheme_NoActionBar = 2131296605;
+			
+			// aapt resource value: 0x7f09015f
+			public const int AppTheme_PopupOverlay = 2131296607;
 			
 			// aapt resource value: 0x7f09015b
 			public const int AppTheme_WithActionBar = 2131296603;
@@ -4187,8 +4190,8 @@ namespace de.upb.hip.mobile.droid
 			// aapt resource value: 0x7f09014d
 			public const int Theme_Design_NoActionBar = 2131296589;
 			
-			// aapt resource value: 0x7f09015f
-			public const int Theme_Transparent = 2131296607;
+			// aapt resource value: 0x7f090160
+			public const int Theme_Transparent = 2131296608;
 			
 			// aapt resource value: 0x7f0900f3
 			public const int ThemeOverlay_AppCompat = 2131296499;
