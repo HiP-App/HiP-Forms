@@ -186,7 +186,7 @@ namespace de.upb.hip.mobile.droid.Helpers {
             string filepath = "";
             try
             {
-                File tempMp3 = File.CreateTempFile("kurchina", ".mp3", CacheDir);
+                File tempMp3 = File.CreateTempFile("temp", ".mp3", CacheDir);
                 tempMp3.DeleteOnExit();
                 FileOutputStream fos = new FileOutputStream(tempMp3);
                 fos.Write(audio.Data);
