@@ -164,6 +164,7 @@
   <ItemGroup>
     <AndroidAsset Include="Assets\dom.jpg" />
     <AndroidAsset Include="Assets\uni.jpg" />
+    <AndroidAsset Include="Assets\sprechertext.mp3" />
     <Content Include="FodyWeavers.xml" />
     <AndroidResource Include="Resources\values\colors.xml">
       <SubType>Designer</SubType>

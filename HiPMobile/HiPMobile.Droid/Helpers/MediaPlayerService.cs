@@ -17,7 +17,10 @@ using Android.App;
 using Android.Content;
 using Android.Media;
 using Android.OS;
+using Android.Util;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
+using Java.IO;
+using Java.Net;
 
 namespace de.upb.hip.mobile.droid.Helpers {
     /// <summary>
@@ -25,6 +28,7 @@ namespace de.upb.hip.mobile.droid.Helpers {
     /// and also while the screen is off, this needs to be a service.The service should be started from one activity
 	///	and then be given to the other activities in which it is used, otherwise a good control is impossible.
     /// </summary>
+    [Service]
     public class MediaPlayerService : Android.App.Service, MediaPlayer.IOnPreparedListener, MediaPlayer.IOnErrorListener
     {
 
@@ -100,7 +104,7 @@ namespace de.upb.hip.mobile.droid.Helpers {
         {
             if (!AudioFileIsSet)
             {
-                //mediaPlayer = MediaPlayer.create(this, a1.getAudioDir());
+                mediaPlayer = new MediaPlayer();
             }
             mediaPlayer.Start();
         }
@@ -132,10 +136,17 @@ namespace de.upb.hip.mobile.droid.Helpers {
         {
             try
             {
-                mediaPlayer.Stop();
-                mediaPlayer.Reset();
+                if (mediaPlayer != null)
+                {
+                    mediaPlayer.Stop();
+                    mediaPlayer.Reset();
+                }
                 //may be needed for handling audio files later. until know, leave this commented in here.
-                //mediaPlayer = MediaPlayer.create(this, audio.getAudioDir());
+                string path = CopyAudioToTemp(audio);
+                mediaPlayer = new MediaPlayer();
+                mediaPlayer.SetAudioStreamType(Stream.Music);
+                mediaPlayer.SetDataSource(path);
+                mediaPlayer.Prepare();
                 AudioFileIsSet = true;
             }
             catch (Exception e)
@@ -168,6 +179,25 @@ namespace de.upb.hip.mobile.droid.Helpers {
             //because it couldn't be set before, so this needs to be checked and an audio file can then
             //be set if necessary
             return AudioFileIsSet;
+        }
+
+        private string CopyAudioToTemp(Audio audio)
+        {
+            string filepath = "";
+            try
+            {
+                File tempMp3 = File.CreateTempFile("kurchina", ".mp3", CacheDir);
+                tempMp3.DeleteOnExit();
+                FileOutputStream fos = new FileOutputStream(tempMp3);
+                fos.Write(audio.Data);
+                fos.Close();
+                filepath = tempMp3.AbsolutePath;
+            }
+            catch (IOException ioe)
+            {
+                Log.Warn("MedialPlayerService", "Could not write audio to temp file");
+            }
+            return filepath;
         }
 
         public class MediaPlayerBinder : Binder {

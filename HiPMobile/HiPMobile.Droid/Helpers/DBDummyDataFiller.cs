@@ -59,7 +59,7 @@ namespace de.upb.hip.mobile.droid.Helpers {
                 "uni.jpg");
             dom.Pages.Add(CreateAppetizerPage("Der Dom von außen", domImg));
             dom.Pages.Add(CreateImagePage(domImg, new []{CreateRectangle(100, 80, 250, 180)}, new []{"Der 93 Meter hohe Kirchturm."}));
-            dom.Pages.Add(CreateTextPage(lorem));
+            dom.Pages.Add(CreateTextPage(lorem, CreateAudio("sprechertext.mp3", lorem, "sprechertext")));
             dom.Pages.Add(CreateTimeSliderPage("Timeslider", "Ein Test für die Timesliderpage mit zwei Bildern", new []{1000L, 1973}, new []{domImg, uniImg}));
         }
 
@@ -74,7 +74,7 @@ namespace de.upb.hip.mobile.droid.Helpers {
             position.Longitude = longitude;
             exhibit.Location = position;
             var image = BusinessEntitiyFactory.CreateBusinessObject<Image> ();
-            image.Data = LoadImageAsset (imagePath);
+            image.Data = LoadByteAsset (imagePath);
             exhibit.Image = image;
             foreach (var tag in tags)
             {
@@ -107,7 +107,7 @@ namespace de.upb.hip.mobile.droid.Helpers {
             var textpage = BusinessEntitiyFactory.CreateBusinessObject<TextPage>();
             page.TextPage = textpage;
             textpage.Text = text;
-            if (audio != null) textpage.Audio = audio;
+            if (audio != null) page.Audio = audio;
             return page;
         }
 
@@ -169,11 +169,20 @@ namespace de.upb.hip.mobile.droid.Helpers {
             var img = BusinessEntitiyFactory.CreateBusinessObject<Image>();
             img.Title = title;
             img.Description = description;
-            img.Data = LoadImageAsset(path);
+            img.Data = LoadByteAsset(path);
             return img;
         }
 
-        private byte[] LoadImageAsset (string name)
+        private Audio CreateAudio(string path, string caption, string title)
+        {
+            var audio = BusinessEntitiyFactory.CreateBusinessObject<Audio>();
+            audio.Data = LoadByteAsset(path);
+            audio.Caption = caption;
+            audio.Title = title;
+            return audio;
+        }
+
+        private byte[] LoadByteAsset (string name)
         {
             var buffer = new byte[16 * 1024];
             byte[] data;

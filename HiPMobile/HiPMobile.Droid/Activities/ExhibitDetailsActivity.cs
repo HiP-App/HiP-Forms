@@ -177,12 +177,12 @@ namespace de.upb.hip.mobile.droid.Activities
             revealView.Visibility = ViewStates.Invisible;
 
             // display audio toolbar on savedInstanceState:
-            // if (! isAudioToolbarHidden) showAudioToolbar();
+             //if (! isAudioToolbarHidden) ShowAudioToolbar();
             // does not work because activity creation has not been completed?!
             // see also: http://stackoverflow.com/questions/7289827/how-to-start-animation-immediately-after-oncreate
 
             //initialize media player
-            //DoBindService(); // TODO fix error
+            DoBindService(); // TODO fix error
             // set up play / pause toggle
             btnPlayPause = (ImageButton)FindViewById(Resource.Id.btnPlayPause);
             btnPlayPause.Click += (sender, args) =>
@@ -342,9 +342,6 @@ namespace de.upb.hip.mobile.droid.Activities
             {
                 DisplayAudioAction(true);
             }
-
-            FindViewById<CoordinatorLayout>(Resource.Id.coordinatorLayout).ForceLayout();
-            var a = FindViewById<FrameLayout> (Resource.Id.bottom_sheet_fragment_container);
         }
 
         /// <summary>
@@ -393,7 +390,7 @@ namespace de.upb.hip.mobile.droid.Activities
         private void UpdateAudioFile()
         {
             StopAudioPlayback();
-            //mediaPlayerService.SetAudioFile(exhibit.Pages[currentPageIndex].Audio); TODO fix bug
+            mediaPlayerService.SetAudioFile(exhibit.Pages[currentPageIndex].Audio); //TODO fix bug
             UpdatePlayPauseButtonIcon();
         }
 
@@ -434,6 +431,9 @@ namespace de.upb.hip.mobile.droid.Activities
         /// <returns>true if the toolbar has been revealed, false otherwise.</returns>
         private bool ShowAudioToolbar()
         {
+            revealView.Visibility = ViewStates.Visible;
+            isAudioToolbarHidden = false;
+            return true;
             // check only if mRevealView != null. If isAudioToolbarHidden == true is also checked,
             // the toolbar cannot be displayed on savedInstanceState
             if (revealView != null)
@@ -441,7 +441,7 @@ namespace de.upb.hip.mobile.droid.Activities
                 int cx = (revealView.Left + revealView.Right);
                 int cy = revealView.Top;
                 int radius = Math.Max(revealView.Width, revealView.Height);
-
+                
                 if (Build.VERSION.SdkInt < BuildVersionCodes.Lollipop)
                 {
 
@@ -475,6 +475,9 @@ namespace de.upb.hip.mobile.droid.Activities
         /// <returns>If the audio toolbar was hidden, false otherwise</returns>
         private bool HideAudioToolBar()
         {
+            revealView.Visibility = ViewStates.Invisible;
+            isAudioToolbarHidden = true;
+            return true;
             if (revealView != null)
             {
                 int cx = (revealView.Left + revealView.Right);
@@ -617,7 +620,7 @@ namespace de.upb.hip.mobile.droid.Activities
                 //mediaPlayerService.StopSound(); //if this isn't done, the media player will keep playing TODO fix bug
                 StopService(new Intent(this, typeof (MediaPlayerService)));
             }
-            //UnbindService(mediaPlayerConnection); TODO fix bug
+            UnbindService(mediaPlayerConnection); //TODO fix bug
         }
 
         #region AudioControls
