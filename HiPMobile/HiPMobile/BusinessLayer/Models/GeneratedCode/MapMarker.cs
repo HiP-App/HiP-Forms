@@ -25,7 +25,7 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models
 	using System.Linq;
 	using System.Text;
 
-	public class Rectangle : RealmObject, IIdentifiable
+	public partial class MapMarker : RealmObject, IIdentifiable
 	{
 		//Attributes
 		[ObjectId]
@@ -35,33 +35,21 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models
 			set{ Realm.GetInstance ().Write (() => _id = value); }
 		}
 
-		private int _topleft{ get; set; }
-		public int TopLeft{
-			get{ return _topleft; }
-			set{ Realm.GetInstance ().Write (() => _topleft = value); }
+		private string _title{ get; set; }
+		public string Title{
+			get{ return _title; }
+			set{ Realm.GetInstance ().Write (() => _title = value); }
 		}
 
-		private int _topright{ get; set; }
-		public int TopRight{
-			get{ return _topright; }
-			set{ Realm.GetInstance ().Write (() => _topright = value); }
-		}
-
-		private int _bottomleft{ get; set; }
-		public int BottomLeft{
-			get{ return _bottomleft; }
-			set{ Realm.GetInstance ().Write (() => _bottomleft = value); }
-		}
-
-		private int _bottomright{ get; set; }
-		public int BottomRight{
-			get{ return _bottomright; }
-			set{ Realm.GetInstance ().Write (() => _bottomright = value); }
+		private string _text{ get; set; }
+		public string Text{
+			get{ return _text; }
+			set{ Realm.GetInstance ().Write (() => _text = value); }
 		}
 
 		//Associations
 		// Contructor
-		public Rectangle(){
+		public MapMarker(){
 		}
 	}
 }

@@ -21,6 +21,7 @@ using Android;
 using Android.App;
 using Android.Content.PM;
 using Android.Graphics;
+using Android.Graphics.Drawables;
 using Android.OS;
 using Android.Support.Design.Widget;
 using Android.Support.V4.App;
@@ -55,6 +56,10 @@ namespace de.upb.hip.mobile.droid.Activities {
         private GeoLocation geoLocation;
         private DrawerLayout drawerLayout;
         private MyLocationOverlay myLocationOverlay;
+        private List<OverlayItem> mapMarkerArray;
+        private MapView mapView;
+        private Drawable mapMarkerIcon;
+        private ItemizedIconOverlay mapMarkerItemizedOverlay;
 
         protected override void OnCreate (Bundle bundle)
         {
@@ -149,7 +154,7 @@ namespace de.upb.hip.mobile.droid.Activities {
 
         private void SetUpMap ()
         {
-            var mapView = FindViewById<MapView> (Resource.Id.mapview);
+            mapView = FindViewById<MapView> (Resource.Id.mapview);
             // mapView.SetTileSource(TileSourceFactory.DefaultTileSource);
             mapView.SetBuiltInZoomControls (true);
 
@@ -158,7 +163,7 @@ namespace de.upb.hip.mobile.droid.Activities {
 
 
             var mapController = mapView.Controller;
-            mapController.SetZoom (25);
+            mapController.SetZoom (13);
 
             // var centreOfMap = new GeoPoint(51496994, -134733);
             var centreOfMap = new GeoPoint (geoLocation.Latitude, geoLocation.Longitude);
@@ -166,20 +171,33 @@ namespace de.upb.hip.mobile.droid.Activities {
 
             mapController.SetCenter (centreOfMap);
 
-            List<OverlayItem> anotherOverlayItemArray = new List<OverlayItem>();
-            anotherOverlayItemArray.Add(new OverlayItem("Hauptbahnhof", "Hauptbahnhof", new GeoPoint(geoLocation.Latitude, geoLocation.Longitude)));
+            SetAllMarkers ();
 
-            ItemizedIconOverlay anotherItemizedIconOverlay = new ItemizedIconOverlay(this, anotherOverlayItemArray, null);
-            mapView.OverlayManager.Add (anotherItemizedIconOverlay);
+        }
 
-            ScaleBarOverlay myScaleBarOverlay = new ScaleBarOverlay(this);
-            mapView.OverlayManager.Add (myScaleBarOverlay);
 
+        private void SetAllMarkers()
+        {
+            //SetUp Markers
+            mapMarkerArray = new List<OverlayItem>();
             myLocationOverlay = new MyLocationOverlay(this, mapView);
-            mapView.OverlayManager.Add (myLocationOverlay);
+            mapMarkerIcon = ContextCompat.GetDrawable(this, Resource.Drawable.marker_blue);
+            var myScaleBarOverlay = new ScaleBarOverlay(this);
+
+            foreach (var e in exhibitSet.InitSet)
+            {
+                //One Marker Object
+                var marker = new OverlayItem(e.Marker.Title, e.Marker.Text, new GeoPoint(e.Location.Latitude, e.Location.Longitude));
+                marker.SetMarker(mapMarkerIcon);
+                mapMarkerArray.Add(marker);
+            }
+
+            //Initialize this after markers are added to 
+            mapMarkerItemizedOverlay = new ItemizedIconOverlay(this, mapMarkerArray, null);
+            mapView.OverlayManager.Add(mapMarkerItemizedOverlay);
+            mapView.OverlayManager.Add(myScaleBarOverlay);
+            mapView.OverlayManager.Add(myLocationOverlay);
             mapView.PostInvalidate();
-
-
         }
 
         //handles the action when touching the menuitems in navigationview

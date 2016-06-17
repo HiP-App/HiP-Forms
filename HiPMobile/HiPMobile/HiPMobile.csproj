@@ -45,6 +45,7 @@
     <Compile Include="BusinessLayer\Models\GeneratedCode\Image.cs" />
     <Compile Include="BusinessLayer\Models\GeneratedCode\ImagePage.cs" />
     <Compile Include="BusinessLayer\Models\GeneratedCode\LongElement.cs" />
+    <Compile Include="BusinessLayer\Models\GeneratedCode\MapMarker.cs" />
     <Compile Include="BusinessLayer\Models\GeneratedCode\Page.cs" />
     <Compile Include="BusinessLayer\Models\GeneratedCode\Rectangle.cs" />
     <Compile Include="BusinessLayer\Models\GeneratedCode\Route.cs" />

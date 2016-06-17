@@ -51,6 +51,10 @@ namespace de.upb.hip.mobile.droid.Helpers {
             var image = BusinessEntitiyFactory.CreateBusinessObject<Image> ();
             image.Data = LoadImageAsset (imagePath);
             exhibit.Image = image;
+            var marker = BusinessEntitiyFactory.CreateBusinessObject<MapMarker> ();
+            marker.Title = name;
+            marker.Text = description;
+            exhibit.Marker = marker;
             foreach (var tag in tags)
             {
                 var stringelement = BusinessEntitiyFactory.CreateBusinessObject<StringElement> ();
