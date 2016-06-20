@@ -25,7 +25,7 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models
 	using System.Linq;
 	using System.Text;
 
-	public class TextPage : RealmObject, IIdentifiable
+	public class MapMarker : RealmObject, IIdentifiable
 	{
 		//Attributes
 		[ObjectId]
@@ -35,6 +35,12 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models
 			set{ Realm.GetInstance ().Write (() => _id = value); }
 		}
 
+		private string _title{ get; set; }
+		public string Title{
+			get{ return _title; }
+			set{ Realm.GetInstance ().Write (() => _title = value); }
+		}
+
 		private string _text{ get; set; }
 		public string Text{
 			get{ return _text; }
@@ -42,14 +48,8 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models
 		}
 
 		//Associations
-		private Audio _audio{ get; set; }
-		public Audio Audio{
-			get{ return _audio; }
-			set{ Realm.GetInstance ().Write (() => _audio = value); }
-		}
-
 		// Contructor
-		public TextPage(){
+		public MapMarker(){
 		}
 	}
 }

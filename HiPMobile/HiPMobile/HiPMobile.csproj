@@ -41,10 +41,12 @@
     <Compile Include="BusinessLayer\Models\GeneratedCode\Exhibit.cs" />
     <Compile Include="BusinessLayer\Models\GeneratedCode\ExhibitSet.cs" />
     <Compile Include="BusinessLayer\Models\GeneratedCode\GeoLocation.cs" />
+    <Compile Include="BusinessLayer\Models\GeneratedCode\GeoLocation1.cs" />
     <Compile Include="BusinessLayer\Models\GeneratedCode\IIdentifiable.cs" />
     <Compile Include="BusinessLayer\Models\GeneratedCode\Image.cs" />
     <Compile Include="BusinessLayer\Models\GeneratedCode\ImagePage.cs" />
     <Compile Include="BusinessLayer\Models\GeneratedCode\LongElement.cs" />
+    <Compile Include="BusinessLayer\Models\GeneratedCode\MapMarker.cs" />
     <Compile Include="BusinessLayer\Models\GeneratedCode\Page.cs" />
     <Compile Include="BusinessLayer\Models\GeneratedCode\Rectangle.cs" />
     <Compile Include="BusinessLayer\Models\GeneratedCode\Route.cs" />

@@ -14,7 +14,6 @@
 //  * limitations under the License.
 //  */
 
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,7 +21,6 @@ using Android;
 using Android.App;
 using Android.Content.PM;
 using Android.Graphics;
-using Android.Graphics.Drawables;
 using Android.OS;
 using Android.Support.Design.Widget;
 using Android.Support.V4.App;
@@ -33,7 +31,6 @@ using Android.Support.V7.App;
 using Android.Support.V7.Widget;
 using de.upb.hip.mobile.droid.Adapters;
 using de.upb.hip.mobile.droid.Helpers;
-using de.upb.hip.mobile.droid.Listeners;
 using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using HockeyApp;
@@ -51,21 +48,13 @@ namespace de.upb.hip.mobile.droid.Activities {
         Label = "HiPMobile.Droid", MainLauncher = false, Icon = "@drawable/icon")]
     public class MainActivity : AppCompatActivity {
 
+        // Recycler View: MainList
+        private RecyclerView recyclerView;
         private RecyclerView.Adapter adapter;
         private ExhibitSet exhibitSet;
         private GeoLocation geoLocation;
         private DrawerLayout drawerLayout;
         private MyLocationOverlay myLocationOverlay;
-        private List<OverlayItem> mapMarkerArray;
-        private MapView mapView;
-        private Drawable mapMarkerIcon;
-        private ItemizedIconOverlay mapMarkerItemizedOverlay;
-
-
-        // Recycler View: MainList
-        private RecyclerView recyclerView;
-
-
 
         protected override void OnCreate (Bundle bundle)
         {
@@ -74,24 +63,6 @@ namespace de.upb.hip.mobile.droid.Activities {
             // Set our view from the "main" layout resource
             SetContentView (Resource.Layout.Main);
 
-
-            // Check if we have the necessary permissions and request them if we don't
-            // Note that the app will still fail on first launch and needs to be restarted
-            if (ContextCompat.CheckSelfPermission (this,
-                                                   Manifest.Permission.AccessFineLocation)
-                != Permission.Granted || ContextCompat.CheckSelfPermission (this,
-                                                                            Manifest.Permission.ReadExternalStorage)
-                != Permission.Granted || ContextCompat.CheckSelfPermission (this,
-                                                                            Manifest.Permission.WriteExternalStorage)
-                != Permission.Granted)
-            {
-                ActivityCompat.RequestPermissions (this,
-                                                   new[]
-                                                   {Manifest.Permission.AccessFineLocation, Manifest.Permission.ReadExternalStorage, Manifest.Permission.WriteExternalStorage},
-                                                   0);
-            }
-
-
             //Delete current database to avoid migration issues, remove this when wanting persistent database usage
             Realm.DeleteRealm (new RealmConfiguration ());
 
@@ -99,9 +70,9 @@ namespace de.upb.hip.mobile.droid.Activities {
             geoLocation.Latitude = 51.71352;
             geoLocation.Longitude = 8.74021;
 
-            var filler = new DbDummyDataFiller (Assets);
+            DbDummyDataFiller filler = new DbDummyDataFiller (this.Assets);
             filler.InsertData ();
-            exhibitSet = ExhibitManager.GetExhibitSets ().First ();
+            this.exhibitSet = ExhibitManager.GetExhibitSets ().First ();
 
 
             //Permissions
@@ -170,28 +141,24 @@ namespace de.upb.hip.mobile.droid.Activities {
 
 
             //RecycleAdapter
-            adapter = new MainRecyclerAdapter (exhibitSet, geoLocation, Application.Context);
+            adapter = new MainRecyclerAdapter (this.exhibitSet, geoLocation, Android.App.Application.Context);
             recyclerView.SetAdapter (adapter);
 
-            recyclerView.AddOnItemTouchListener (new RecyclerItemClickListener (this, exhibitSet));
-
-            // hockeyapp code
-            CheckForUpdates ();
-
+            // recyclerView.AddOnItemTouchListener(new RecyclerItemClickListener(this));
         }
 
         private void SetUpMap ()
         {
-            mapView = FindViewById<MapView> (Resource.Id.mapview);
+            var mapView = FindViewById<MapView> (Resource.Id.mapview);
             // mapView.SetTileSource(TileSourceFactory.DefaultTileSource);
             mapView.SetBuiltInZoomControls (true);
 
             mapView.SetTileSource (new XYTileSource ("OSM", 0, 18, 1024, ".png",
-                                                     new[] {"http://tile.openstreetmap.org/"}));
+                                                     new string[] {"http://tile.openstreetmap.org/"}));
 
 
             var mapController = mapView.Controller;
-            mapController.SetZoom (13);
+            mapController.SetZoom (25);
 
             // var centreOfMap = new GeoPoint(51496994, -134733);
             var centreOfMap = new GeoPoint (geoLocation.Latitude, geoLocation.Longitude);
@@ -199,33 +166,20 @@ namespace de.upb.hip.mobile.droid.Activities {
 
             mapController.SetCenter (centreOfMap);
 
-            SetAllMarkers ();
+            List<OverlayItem> anotherOverlayItemArray = new List<OverlayItem>();
+            anotherOverlayItemArray.Add(new OverlayItem("Germany", "Germany", new GeoPoint(52.516667, 13.383333)));
+            anotherOverlayItemArray.Add(new OverlayItem("Germany", "Germany", new GeoPoint(geoLocation.Latitude, geoLocation.Longitude)));
 
-        }
+            ItemizedIconOverlay anotherItemizedIconOverlay = new ItemizedIconOverlay(this, anotherOverlayItemArray, null);
+            mapView.OverlayManager.Add (anotherItemizedIconOverlay);
 
+            ScaleBarOverlay myScaleBarOverlay = new ScaleBarOverlay(this);
+            mapView.OverlayManager.Add (myScaleBarOverlay);
 
-        private void SetAllMarkers()
-        {
-            //SetUp Markers
-            mapMarkerArray = new List<OverlayItem>();
             myLocationOverlay = new MyLocationOverlay(this, mapView);
-            mapMarkerIcon = ContextCompat.GetDrawable(this, Resource.Drawable.marker_blue);
-            var myScaleBarOverlay = new ScaleBarOverlay(this);
+            mapView.OverlayManager.Add (myLocationOverlay);
 
-            foreach (var e in exhibitSet.InitSet)
-            {
-                //One Marker Object
-                var marker = new OverlayItem(e.Marker.Title, e.Marker.Text, new GeoPoint(e.Location.Latitude, e.Location.Longitude));
-                marker.SetMarker(mapMarkerIcon);
-                mapMarkerArray.Add(marker);
-            }
 
-            //Initialize this after markers are added to 
-            mapMarkerItemizedOverlay = new ItemizedIconOverlay(this, mapMarkerArray, null);
-            mapView.OverlayManager.Add(mapMarkerItemizedOverlay);
-            mapView.OverlayManager.Add(myScaleBarOverlay);
-            mapView.OverlayManager.Add(myLocationOverlay);
-            mapView.PostInvalidate();
         }
 
         //handles the action when touching the menuitems in navigationview
@@ -240,7 +194,7 @@ namespace de.upb.hip.mobile.droid.Activities {
                     // React on 'Messages' selection
                     break;
                 case (Resource.Id.nav_licenses):
-                    StartActivity (typeof(LicensingActivity));
+                    // React on 'Friends' selection
                     break;
             }
 
@@ -259,8 +213,6 @@ namespace de.upb.hip.mobile.droid.Activities {
         protected override void OnResume ()
         {
             base.OnResume ();
-            myLocationOverlay.EnableMyLocation ();
-            myLocationOverlay.EnableCompass ();
 
             // hockeyapp code
             CheckForCrashes ();
@@ -269,8 +221,6 @@ namespace de.upb.hip.mobile.droid.Activities {
         protected override void OnPause ()
         {
             base.OnPause ();
-            myLocationOverlay.DisableMyLocation();
-            myLocationOverlay.DisableCompass();
 
             // hockeyapp code
             UnregisterManagers ();
@@ -289,7 +239,7 @@ namespace de.upb.hip.mobile.droid.Activities {
         }
 
         /// <summary>
-        ///     Methods for hockeyapp
+        /// Methods for hockeyapp
         /// </summary>
 
         #region
