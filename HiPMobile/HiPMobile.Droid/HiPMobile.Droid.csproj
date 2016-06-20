@@ -109,6 +109,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Activities\LicensingActivity.cs" />
     <Compile Include="Activities\ExhibitDetailsActivity.cs" />
     <Compile Include="Activities\MainActivity.cs" />
     <Compile Include="Listeners\MyCustomSimpleOnGestureListener.cs" />
@@ -145,6 +146,7 @@
     <AndroidResource Include="Resources\layout\activity_splash_screen.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\layout\activity_licensing.axml" />
     <AndroidResource Include="Resources\layout\activity_main_row_item.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
