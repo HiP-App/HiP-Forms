@@ -11,6 +11,7 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+
 using Android.Content;
 using Android.Graphics;
 
@@ -18,7 +19,7 @@ namespace de.upb.hip.mobile.droid.Helpers {
     internal class ImageManipulation {
 
         /// <summary>
-        /// Get a round cropped version of the image.
+        ///     Get a round cropped version of the image.
         /// </summary>
         /// <param name="bitmap">The image bitmap.</param>
         /// <param name="radius">The radius of the cropped part.</param>

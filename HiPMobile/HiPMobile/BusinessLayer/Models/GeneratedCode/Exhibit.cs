@@ -78,7 +78,6 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models
 		// Contructor
 		public Exhibit(){
 		}
-
 	}
 }
 

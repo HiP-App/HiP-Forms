@@ -35,10 +35,10 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models
 			set{ Realm.GetInstance ().Write (() => _id = value); }
 		}
 
-		private string _string{ get; set; }
-		public string String{
-			get{ return _string; }
-			set{ Realm.GetInstance ().Write (() => _string = value); }
+		private string _text{ get; set; }
+		public string Text{
+			get{ return _text; }
+			set{ Realm.GetInstance ().Write (() => _text = value); }
 		}
 
 		//Associations

@@ -14,7 +14,6 @@
 //  * limitations under the License.
 //  */
 
-using System;
 using System.Linq;
 using Android;
 using Android.App;
@@ -25,6 +24,7 @@ using Android.Support.V4.Content;
 using Android.Support.V7.Widget;
 using de.upb.hip.mobile.droid.Adapters;
 using de.upb.hip.mobile.droid.Helpers;
+using de.upb.hip.mobile.droid.Listeners;
 using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using HockeyApp;
@@ -38,11 +38,12 @@ namespace de.upb.hip.mobile.droid.Activities {
         Label = "HiPMobile.Droid", MainLauncher = false, Icon = "@drawable/icon")]
     public class MainActivity : Activity {
 
-        // Recycler View: MainList
-        private RecyclerView recyclerView;
         private RecyclerView.Adapter adapter;
         private ExhibitSet exhibitSet;
         private GeoLocation geoLocation;
+
+        // Recycler View: MainList
+        private RecyclerView recyclerView;
 
 
         protected override void OnCreate (Bundle bundle)
@@ -63,7 +64,7 @@ namespace de.upb.hip.mobile.droid.Activities {
                 != Permission.Granted)
             {
                 ActivityCompat.RequestPermissions (this,
-                                                   new String[]
+                                                   new[]
                                                    {Manifest.Permission.AccessFineLocation, Manifest.Permission.ReadExternalStorage, Manifest.Permission.WriteExternalStorage},
                                                    0);
             }
@@ -76,9 +77,9 @@ namespace de.upb.hip.mobile.droid.Activities {
             geoLocation.Latitude = 51.71352;
             geoLocation.Longitude = 8.74021;
 
-            DbDummyDataFiller filler = new DbDummyDataFiller (this.Assets);
+            var filler = new DbDummyDataFiller (Assets);
             filler.InsertData ();
-            this.exhibitSet = ExhibitManager.GetExhibitSets ().First ();
+            exhibitSet = ExhibitManager.GetExhibitSets ().First ();
 
             //Map
             SetUpMap ();
@@ -93,10 +94,10 @@ namespace de.upb.hip.mobile.droid.Activities {
 
 
             //RecycleAdapter
-            adapter = new MainRecyclerAdapter (this.exhibitSet, geoLocation, Android.App.Application.Context);
+            adapter = new MainRecyclerAdapter (exhibitSet, geoLocation, Application.Context);
             recyclerView.SetAdapter (adapter);
 
-            // recyclerView.AddOnItemTouchListener(new RecyclerItemClickListener(this));
+            recyclerView.AddOnItemTouchListener (new RecyclerItemClickListener (this, exhibitSet));
 
             // hockeyapp code
             CheckForUpdates ();
@@ -110,7 +111,7 @@ namespace de.upb.hip.mobile.droid.Activities {
             mapView.SetBuiltInZoomControls (true);
 
             mapView.SetTileSource (new XYTileSource ("OSM", 0, 18, 1024, ".png",
-                                                     new string[] {"http://tile.openstreetmap.org/"}));
+                                                     new[] {"http://tile.openstreetmap.org/"}));
 
 
             var mapController = mapView.Controller;
@@ -148,8 +149,9 @@ namespace de.upb.hip.mobile.droid.Activities {
         }
 
         /// <summary>
-        /// Methods for hockeyapp
+        ///     Methods for hockeyapp
         /// </summary>
+
         #region
         private void CheckForCrashes ()
         {

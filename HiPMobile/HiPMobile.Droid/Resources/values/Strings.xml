@@ -1,4 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
+
 <!--  Copyright (C) 2016 History in Paderborn App - Universität Paderborn
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -13,6 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.-->
 <resources>
 
+  <string name="test">Foo</string>
   <string name="app_name">History in Paderborn</string>
   <string name="title_activity_main">Karlsroute</string>
   <string name="title_activity_display_single_image">Detailansicht</string>
@@ -78,27 +80,35 @@ limitations under the License.-->
   <string name="licensing_title">Lizenzen</string>
   <string name="licensing_google_material_title_text">Material Icons</string>
   <string name="licensing_google_material_body_text">
-    Von <a href="https://design.google.com/icons/">Google</a>, lizensiert unter <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>. Es wurden keine Änderungen vorgenommen.
+    Von <a href="https://design.google.com/icons/">Google</a>, lizensiert unter
+    <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>. Es wurden keine Änderungen vorgenommen.
   </string>
   <string name="licensing_osmdroid_title_text">osmdroid</string>
   <string name="licensing_osmdroid_body_text">
-    Von <a href="https://github.com/osmdroid/osmdroid">osmdroid</a>, lizensiert unter <a href="https://raw.githubusercontent.com/osmdroid/osmdroid/master/LICENSE">Apache License 2.0</a>. Es wurden keine Änderungen vorgenommen.
+    Von <a href="https://github.com/osmdroid/osmdroid">osmdroid</a>, lizensiert unter
+    <a href="https://raw.githubusercontent.com/osmdroid/osmdroid/master/LICENSE">Apache License 2.0</a>. Es wurden keine Änderungen vorgenommen.
   </string>
   <string name="licensing_osmbonuspack_title_text">OSMBonusPack</string>
   <string name="licensing_osmbonuspack_body_text">
-    Von <a href="https://github.com/MKergall/osmbonuspack">MKergall</a>, lizensiert unter <a href="https://raw.githubusercontent.com/MKergall/osmbonuspack/master/LICENSE.md">GNU Lesser General Public License 3.0 (LGPL 3.0)</a> (ohne §5.d und §5.e). Es wurden keine Änderungen vorgenommen.
+    Von <a href="https://github.com/MKergall/osmbonuspack">MKergall</a>, lizensiert unter
+    <a href="https://raw.githubusercontent.com/MKergall/osmbonuspack/master/LICENSE.md">GNU Lesser General Public License 3.0 (LGPL 3.0)</a>
+    (ohne §5.d und §5.e). Es wurden keine Änderungen vorgenommen.
   </string>
   <string name="licensing_couchbase_title_text">Couchbase-Lite-Android</string>
   <string name="licensing_couchbase_body_text">
-    Von <a href="https://github.com/couchbase/couchbase-lite-android">Couchbase</a>, lizensiert unter <a href="https://raw.githubusercontent.com/couchbase/couchbase-lite-android/master/LICENSE.TXT">Apache License 2.0</a>. Es wurden keine Änderungen vorgenommen.
+    Von <a href="https://github.com/couchbase/couchbase-lite-android">Couchbase</a>, lizensiert unter
+    <a href="https://raw.githubusercontent.com/couchbase/couchbase-lite-android/master/LICENSE.TXT">Apache License 2.0</a>
+    . Es wurden keine Änderungen vorgenommen.
   </string>
   <string name="licensing_mapicons_title_text">Map Icons</string>
   <string name="licensing_mapicons_body_text">
-    Von <a href="https://mapicons.mapsmarker.com/">Maps Icons Collection</a>, lizensiert unter <a href="http://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA 3.0</a>. Es wurden keine Änderungen vorgenommen.
+    Von <a href="https://mapicons.mapsmarker.com/">Maps Icons Collection</a>, lizensiert unter
+    <a href="http://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA 3.0</a>. Es wurden keine Änderungen vorgenommen.
   </string>
   <string name="licensing_photoview_title_text">PhotoView</string>
   <string name="licensing_photoview_body_text">
-    Von <a href="https://github.com/chrisbanes/PhotoView">ChrisBanes</a>, lizensiert unter <a href="https://raw.githubusercontent.com/chrisbanes/PhotoView/master/LICENSE">Apache License 2.0</a>. Es wurden keine Änderungen vorgenommen.
+    Von <a href="https://github.com/chrisbanes/PhotoView">ChrisBanes</a>, lizensiert unter
+    <a href="https://raw.githubusercontent.com/chrisbanes/PhotoView/master/LICENSE">Apache License 2.0</a>. Es wurden keine Änderungen vorgenommen.
   </string>
 
   <string name="action_audio">Audio</string>
