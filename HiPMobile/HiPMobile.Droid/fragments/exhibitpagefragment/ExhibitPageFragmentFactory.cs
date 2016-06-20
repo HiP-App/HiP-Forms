@@ -15,43 +15,48 @@
 using Android.Util;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 
-namespace de.upb.hip.mobile.droid.fragments.exhibitpagefragment
-{
-    public class ExhibitPageFragmentFactory
-    {
+namespace de.upb.hip.mobile.droid.fragments.exhibitpagefragment {
+    public class ExhibitPageFragmentFactory {
+
         /// <summary>
-        /// Creates an ExhibitPageFragment for the specified Page.
+        ///     Creates an ExhibitPageFragment for the specified Page.
         /// </summary>
         /// <param name="page">Page to create an ExhibitPageFragment for.</param>
         /// <param name="exhibitName">Name of the exhibit.</param>
         /// <returns>the created ExhibitPageFragment.</returns>
-        public static ExhibitPageFragment GetFragmentForExhibitPage(Page page, string exhibitName)
+        public static ExhibitPageFragment GetFragmentForExhibitPage (Page page, string exhibitName)
         {
             // TODO: update this when new pages are available
-            if (page.IsAppetizerPage()) {
-                AppetizerExhibitPageFragment fragment = new AppetizerExhibitPageFragment();
-                fragment.SetPage(page);
-                if (!string.IsNullOrEmpty(exhibitName))
+            if (page.IsAppetizerPage ())
+            {
+                var fragment = new AppetizerExhibitPageFragment ();
+                fragment.SetPage (page);
+                if (!string.IsNullOrEmpty (exhibitName))
                     fragment.AppetizerTitle = exhibitName;
                 return fragment;
-            } else if (page.IsTextPage()) {
-                TextExhibitPageFragment fragment = new TextExhibitPageFragment();
-                fragment.SetPage(page);
-                return fragment;
-            } else if (page.IsTimeSliderPage()) {
-                TimeSliderExhibitPageFragment fragment = new TimeSliderExhibitPageFragment();
-                fragment.SetPage(page);
-                return fragment;
-            } else if (page.IsImagePage()) {
-                ImagePageExhibitFragment fragment = new ImagePageExhibitFragment();
-                fragment.SetPage(page);
-                return fragment;
-            } else {
-                Log.Info("PageFragmentFactory", "Got unknown type of page: " + page.ToString()
-                        + " for exhibit " + exhibitName);
-                return new DummyExhibitPageFragment();
-
             }
+            if (page.IsTextPage ())
+            {
+                var fragment = new TextExhibitPageFragment ();
+                fragment.SetPage (page);
+                return fragment;
+            }
+            if (page.IsTimeSliderPage ())
+            {
+                var fragment = new TimeSliderExhibitPageFragment ();
+                fragment.SetPage (page);
+                return fragment;
+            }
+            if (page.IsImagePage ())
+            {
+                var fragment = new ImagePageExhibitFragment ();
+                fragment.SetPage (page);
+                return fragment;
+            }
+            Log.Info ("PageFragmentFactory", "Got unknown type of page: " + page
+                                             + " for exhibit " + exhibitName);
+            return new DummyExhibitPageFragment ();
         }
+
     }
 }

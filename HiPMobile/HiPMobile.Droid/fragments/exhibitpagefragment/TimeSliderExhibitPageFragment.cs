@@ -22,32 +22,31 @@ using Android.Widget;
 using de.upb.hip.mobile.droid.fragments.bottomsheetfragment;
 using de.upb.hip.mobile.droid.Helpers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
+using Object = Java.Lang.Object;
 
-namespace de.upb.hip.mobile.droid.fragments.exhibitpagefragment
-{
+namespace de.upb.hip.mobile.droid.fragments.exhibitpagefragment {
     /// <summary>
-    /// A <see cref="ExhibitPageFragment"/> subclass for the <see cref="TimeSliderPage"/>.
+    ///     A <see cref="ExhibitPageFragment" /> subclass for the <see cref="TimeSliderPage" />.
     /// </summary>
-    public class TimeSliderExhibitPageFragment : ExhibitPageFragment
-    {
+    public class TimeSliderExhibitPageFragment : ExhibitPageFragment {
 
         public static readonly string INSTANCE_STATE_PAGE = "insanceStatePage";
 
-        private TimeSliderPage page;
-
         private ImageView mFirstImageView;
-        private ImageView mNextImageView;
-        private TextView mThumbSlidingText;
         private TextView mImageDescription;
+        private ImageView mNextImageView;
+
+        private readonly List<PictureData> mPicDataList = new List<PictureData> ();
         private CustomSeekBar mSeekBar;
+        private TextView mThumbSlidingText;
+
+        private TimeSliderPage page;
 
         private View view;
 
-        private List<PictureData> mPicDataList = new List<PictureData>();
-
-        public override BottomSheetConfig GetBottomSheetConfig()
+        public override BottomSheetConfig GetBottomSheetConfig ()
         {
-            SimpleBottomSheetFragment bottomSheetFragment = new SimpleBottomSheetFragment();
+            var bottomSheetFragment = new SimpleBottomSheetFragment ();
             bottomSheetFragment.Title = page.Title;
             bottomSheetFragment.Description = page.Text;
             var bottomSheetConfig = new BottomSheetConfig
@@ -58,206 +57,208 @@ namespace de.upb.hip.mobile.droid.fragments.exhibitpagefragment
             return bottomSheetConfig;
         }
 
-        public override void SetPage(Page page)
+        public override void SetPage (Page page)
         {
             this.page = page.TimeSliderPage;
         }
 
-        public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+        public override View OnCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             // Inflate the layout for this fragment
-            view = inflater.Inflate(Resource.Layout.fragment_exhibitpage_timeslider, container, false);
+            view = inflater.Inflate (Resource.Layout.fragment_exhibitpage_timeslider, container, false);
 
 
-            if (savedInstanceState != null && savedInstanceState.GetSerializable(INSTANCE_STATE_PAGE) != null)
+            if (savedInstanceState != null && savedInstanceState.GetSerializable (INSTANCE_STATE_PAGE) != null)
             {
-                page = (TimeSliderPage)savedInstanceState.GetSerializable(INSTANCE_STATE_PAGE);
+                page = (TimeSliderPage) savedInstanceState.GetSerializable (INSTANCE_STATE_PAGE);
             }
-            SetData();
-            Init();
+            SetData ();
+            Init ();
 
             return view;
         }
 
         /// <summary>
-        /// initializes the activity, calculates and sets the dots on the slider
+        ///     initializes the activity, calculates and sets the dots on the slider
         /// </summary>
-        private void Init()
+        private void Init ()
         {
-            CalcDotPositions(mPicDataList);
+            CalcDotPositions (mPicDataList);
 
             // set the dots
-            mSeekBar = (CustomSeekBar)view.FindViewById(Resource.Id.seekBar);
-            mSeekBar.DotList = GetListOfDotPositions(mPicDataList);
-            mSeekBar.ProgressDrawable = view.Resources.GetDrawable(Resource.Drawable.customseekbar);
+            mSeekBar = (CustomSeekBar) view.FindViewById (Resource.Id.seekBar);
+            mSeekBar.DotList = GetListOfDotPositions (mPicDataList);
+            mSeekBar.ProgressDrawable = view.Resources.GetDrawable (Resource.Drawable.customseekbar);
 
             // set the first picture
-            mFirstImageView = (ImageView)view.FindViewById(Resource.Id.displayImageSliderFirstImageView);
-            mFirstImageView.SetImageDrawable(mPicDataList[0].Drawable);
+            mFirstImageView = (ImageView) view.FindViewById (Resource.Id.displayImageSliderFirstImageView);
+            mFirstImageView.SetImageDrawable (mPicDataList [0].Drawable);
 
             // set the next picture
-            mNextImageView = (ImageView)view.FindViewById(Resource.Id.displayImageSliderNextImageView);
-            mNextImageView.SetImageDrawable(mPicDataList[1].Drawable);
-            mFirstImageView.BringToFront();
+            mNextImageView = (ImageView) view.FindViewById (Resource.Id.displayImageSliderNextImageView);
+            mNextImageView.SetImageDrawable (mPicDataList [1].Drawable);
+            mFirstImageView.BringToFront ();
 
             // set start year on the slider
-            TextView seekBarFirstText =
-                    (TextView)view.FindViewById(Resource.Id.displayImageSliderSeekBarFirstText);
-            seekBarFirstText.Text = mPicDataList[0].Year.ToString() + " " + GetString(Resource.String.after_christ);
+            var seekBarFirstText =
+                (TextView) view.FindViewById (Resource.Id.displayImageSliderSeekBarFirstText);
+            seekBarFirstText.Text = mPicDataList [0].Year + " " + GetString (Resource.String.after_christ);
 
             // set end year on the slider
-            TextView seekBarEndText = (TextView)view.FindViewById(Resource.Id.displayImageSliderSeekBarEndText);
-            seekBarEndText.Text = mPicDataList[(mPicDataList.Count() - 1)].Year + " " + GetString(Resource.String.after_christ);
+            var seekBarEndText = (TextView) view.FindViewById (Resource.Id.displayImageSliderSeekBarEndText);
+            seekBarEndText.Text = mPicDataList [mPicDataList.Count () - 1].Year + " " + GetString (Resource.String.after_christ);
 
-            mThumbSlidingText = (TextView)view.FindViewById(Resource.Id.displayImageSliderThumbSlidingText);
+            mThumbSlidingText = (TextView) view.FindViewById (Resource.Id.displayImageSliderThumbSlidingText);
 
-            mImageDescription = (TextView)view.FindViewById(Resource.Id.displayImageSliderDescriptionText);
+            mImageDescription = (TextView) view.FindViewById (Resource.Id.displayImageSliderDescriptionText);
 
-            AddSeekBarListener();
+            AddSeekBarListener ();
 
-            mImageDescription.Text = page.Images[0].Description;
+            mImageDescription.Text = page.Images [0].Description;
         }
 
         /// <summary>
-        /// Calculates the positions of the dots on the slider regarding the years of the pictures
+        ///     Calculates the positions of the dots on the slider regarding the years of the pictures
         /// </summary>
         /// <param name="list">List of PictureData Elements</param>
-        private void CalcDotPositions(List<PictureData> list)
+        private void CalcDotPositions (List<PictureData> list)
         {
             // set progress for the first picture
-            list[0].DotPosition = 0;
+            list [0].DotPosition = 0;
 
             // set progress for other pictures
-            int lSize = list.Count();
-            for (int i = 1; i < lSize; i++)
+            var lSize = list.Count ();
+            for (var i = 1; i < lSize; i++)
             {
                 if (i + 1 < lSize)
                 {
-                    int progress = 100 * (list[i].Year - list[i - 1].Year) /
-                            (list[lSize - 1].Year - list[0].Year);
-                    list[i].DotPosition = (progress + list[i - 1].DotPosition);
+                    var progress = 100 * (list [i].Year - list [i - 1].Year) /
+                                   (list [lSize - 1].Year - list [0].Year);
+                    list [i].DotPosition = progress + list [i - 1].DotPosition;
                 }
                 else
                 {
                     // set progress for last picture
-                    list[i].DotPosition = 100;
+                    list [i].DotPosition = 100;
                 }
             }
         }
 
         /// <summary>
-        /// add a Listener to the Slider to react to changes
+        ///     add a Listener to the Slider to react to changes
         /// </summary>
-        private void AddSeekBarListener()
+        private void AddSeekBarListener ()
         {
-            mSeekBar.SetOnSeekBarChangeListener(new CustomOnSeekBarChangeListener(this));
+            mSeekBar.SetOnSeekBarChangeListener (new CustomOnSeekBarChangeListener (this));
         }
 
         /// <summary>
-        /// Set the mPicDataList Array with data of the database
+        ///     Set the mPicDataList Array with data of the database
         /// </summary>
-        private void SetData()
+        private void SetData ()
         {
-            for (int i = 0; i < page.Images.Count; i++)
+            for (var i = 0; i < page.Images.Count; i++)
             {
-                PictureData picture = new PictureData(page.Images[i].GetDrawable(), Convert.ToInt32(page.Dates[i].Value));
-                mPicDataList.Add(picture);
+                var picture = new PictureData (page.Images [i].GetDrawable (), Convert.ToInt32 (page.Dates [i].Value));
+                mPicDataList.Add (picture);
             }
         }
 
         /// <summary>
-        /// creates a list for setting dots on Slider bar
+        ///     creates a list for setting dots on Slider bar
         /// </summary>
         /// <param name="list">List of PictureData</param>
         /// <returns>list of dot points</returns>
-        private List<int> GetListOfDotPositions(List<PictureData> list)
+        private List<int> GetListOfDotPositions (List<PictureData> list)
         {
-            List<int> mPicDataProgressList = new List<int>();
+            var mPicDataProgressList = new List<int> ();
 
-            for (int i = 0; i < list.Count(); i++)
+            for (var i = 0; i < list.Count (); i++)
             {
-                mPicDataProgressList.Add(list[i].DotPosition);
+                mPicDataProgressList.Add (list [i].DotPosition);
             }
             return mPicDataProgressList;
         }
 
         /// <summary>
-        /// helper class for PictureData information
+        ///     helper class for PictureData information
         /// </summary>
-        private class PictureData
-        {
-            internal Drawable Drawable;
-            internal int Year;
-            internal int DotPosition;
+        private class PictureData {
 
-            public PictureData(Drawable drawable, int year)
+            internal int DotPosition;
+            internal readonly Drawable Drawable;
+            internal readonly int Year;
+
+            public PictureData (Drawable drawable, int year)
             {
-                this.Drawable = drawable;
-                this.Year = year;
+                Drawable = drawable;
+                Year = year;
                 DotPosition = 0;
             }
+
         }
 
-        private class CustomOnSeekBarChangeListener : Java.Lang.Object, SeekBar.IOnSeekBarChangeListener
-        {
-            private TimeSliderExhibitPageFragment parent;
-            int progressStart = 0;
-            bool forward = true;
-            int nearest = 0;
+        private class CustomOnSeekBarChangeListener : Object, SeekBar.IOnSeekBarChangeListener {
 
-            public CustomOnSeekBarChangeListener(TimeSliderExhibitPageFragment parent)
+            private bool forward = true;
+            private int nearest;
+            private readonly TimeSliderExhibitPageFragment parent;
+            private int progressStart;
+
+            public CustomOnSeekBarChangeListener (TimeSliderExhibitPageFragment parent)
             {
                 this.parent = parent;
             }
 
             /// <summary>
-            /// called when the slider is moved
+            ///     called when the slider is moved
             /// </summary>
             /// <param name="seekBar">slider bar</param>
             /// <param name="progressValue">new progress value</param>
             /// <param name="fromUser">user, who changed it</param>
-            public void OnProgressChanged(SeekBar seekBar, int progressValue, bool fromUser)
+            public void OnProgressChanged (SeekBar seekBar, int progressValue, bool fromUser)
             {
                 int startNode, nextNode;
-                int range = (parent.mPicDataList[parent.mPicDataList.Count() - 1].Year) - parent.mPicDataList[0].Year;
+                var range = parent.mPicDataList [parent.mPicDataList.Count () - 1].Year - parent.mPicDataList [0].Year;
 
                 // decide the direction (forward or backward)
                 forward = progressStart <= progressValue;
 
                 // find closest startNode and nextNode, according to the direction
                 // (forward or backward)
-                int[] result = GetNodes(progressValue, forward);
-                startNode = result[0];
-                nextNode = result[1];
+                var result = GetNodes (progressValue, forward);
+                startNode = result [0];
+                nextNode = result [1];
 
-                int actProgressAccordingStartNextNode = Math.Abs(progressValue - parent.mPicDataList[startNode].DotPosition);
-                int differenceStartNextNode = Math.Abs(parent.mPicDataList[nextNode].DotPosition -
-                        parent.mPicDataList[startNode].DotPosition);
-                float alpha =
-                        (float)actProgressAccordingStartNextNode / differenceStartNextNode;
+                var actProgressAccordingStartNextNode = Math.Abs (progressValue - parent.mPicDataList [startNode].DotPosition);
+                var differenceStartNextNode = Math.Abs (parent.mPicDataList [nextNode].DotPosition -
+                                                        parent.mPicDataList [startNode].DotPosition);
+                var alpha =
+                    (float) actProgressAccordingStartNextNode / differenceStartNextNode;
 
                 // set current image
-                parent.mFirstImageView.SetImageDrawable(parent.mPicDataList[startNode].Drawable);
+                parent.mFirstImageView.SetImageDrawable (parent.mPicDataList [startNode].Drawable);
                 parent.mFirstImageView.Alpha = 1 - alpha;
 
                 // set next image
-                parent.mNextImageView.SetImageDrawable(parent.mPicDataList[nextNode].Drawable);
+                parent.mNextImageView.SetImageDrawable (parent.mPicDataList [nextNode].Drawable);
                 parent.mNextImageView.Alpha = alpha;
 
-                parent.mFirstImageView.BringToFront();
+                parent.mFirstImageView.BringToFront ();
 
                 // for showcase image: get the closest node to actual progress
-                nearest = FindClosestNode(result, progressValue);
+                nearest = FindClosestNode (result, progressValue);
 
-                parent.mImageDescription.Text = parent.page.Images[nearest].Description;
+                parent.mImageDescription.Text = parent.page.Images [nearest].Description;
 
                 // set year over the thumb except first and last picture
                 if (progressValue != 0 && progressValue != 100)
                 {
-                    int xPos = ((seekBar.Right - seekBar.Left) / seekBar.Max) *
-                            seekBar.Progress;
-                    parent.mThumbSlidingText.SetPadding(xPos, 0, 0, 0);
-                    parent.mThumbSlidingText.Text = (int)(parent.mPicDataList[0].Year + range * ((float)progressValue) / 100.0) + " " + parent.GetString(Resource.String.after_christ);
+                    var xPos = (seekBar.Right - seekBar.Left) / seekBar.Max *
+                               seekBar.Progress;
+                    parent.mThumbSlidingText.SetPadding (xPos, 0, 0, 0);
+                    parent.mThumbSlidingText.Text = (int) (parent.mPicDataList [0].Year + range * (float) progressValue / 100.0) + " " +
+                                                    parent.GetString (Resource.String.after_christ);
                 }
                 else
                 {
@@ -267,88 +268,89 @@ namespace de.upb.hip.mobile.droid.fragments.exhibitpagefragment
             }
 
             /// <summary>
-            /// Sets the start point of the movement on the slider
+            ///     Sets the start point of the movement on the slider
             /// </summary>
             /// <param name="seekBar">Slider bar</param>
-            public void OnStartTrackingTouch(SeekBar seekBar)
+            public void OnStartTrackingTouch (SeekBar seekBar)
             {
                 progressStart = seekBar.Progress;
             }
 
             /// <summary>
-            /// Set the image if fading is disabled
+            ///     Set the image if fading is disabled
             /// </summary>
             /// <param name="seekBar">Slider bar</param>
-            public void OnStopTrackingTouch(SeekBar seekBar)
+            public void OnStopTrackingTouch (SeekBar seekBar)
             {
-                seekBar.Progress = parent.mPicDataList[nearest].DotPosition;
-                parent.mFirstImageView.SetImageDrawable(parent.mPicDataList[nearest].Drawable);
+                seekBar.Progress = parent.mPicDataList [nearest].DotPosition;
+                parent.mFirstImageView.SetImageDrawable (parent.mPicDataList [nearest].Drawable);
             }
 
             /// <summary>
-            /// returns the two pictures left and right of the current position on the slider
+            ///     returns the two pictures left and right of the current position on the slider
             /// </summary>
             /// <param name="progressStop">endpoint of the movement on the slider</param>
             /// <param name="forward">indicates the direction of the movement</param>
             /// <returns>the two ids of the pictures left and right of the current position</returns>
-            private int[] GetNodes(int progressStop, bool forward)
+            private int[] GetNodes (int progressStop, bool forward)
             {
-                for (int i = 0; i < parent.mPicDataList.Count(); i++)
+                for (var i = 0; i < parent.mPicDataList.Count (); i++)
                 {
                     if (forward)
                     {
-                        if ((progressStop >= parent.mPicDataList[i].DotPosition) &&
-                                (progressStop <= parent.mPicDataList[i + 1].DotPosition))
+                        if ((progressStop >= parent.mPicDataList [i].DotPosition) &&
+                            (progressStop <= parent.mPicDataList [i + 1].DotPosition))
                         {
-                            return new int[] { i, i + 1 };
+                            return new[] {i, i + 1};
                         }
                     }
                     else
                     {
-                        if (i == 0) i = 1;
+                        if (i == 0)
+                            i = 1;
 
-                        if (progressStop <= parent.mPicDataList[i].DotPosition &&
-                                (progressStop >= parent.mPicDataList[i - 1].DotPosition))
+                        if (progressStop <= parent.mPicDataList [i].DotPosition &&
+                            (progressStop >= parent.mPicDataList [i - 1].DotPosition))
                         {
-                            return new int[] { i, i - 1 };
+                            return new[] {i, i - 1};
                         }
                     }
                 }
-                return new int[] { 0, 0 };
+                return new[] {0, 0};
             }
 
             /// <summary>
-            /// find the closest node in the array to progress
+            ///     find the closest node in the array to progress
             /// </summary>
             /// <param name="array">array array of points on the slider</param>
             /// <param name="progress">progress current progress on the slider</param>
             /// <returns>id of the closest point on slider</returns>
-            private int FindClosestNode(int[] array, int progress)
+            private int FindClosestNode (int[] array, int progress)
             {
                 int min = 0, max = 0, closestNode;
 
                 // calculate left node of progress (min) and right node of progress (max)
-                foreach (int anArray in array)
+                foreach (var anArray in array)
                 {
-                    if (parent.mPicDataList[anArray].DotPosition < progress)
+                    if (parent.mPicDataList [anArray].DotPosition < progress)
                     {
                         if (min == 0)
                         {
                             min = anArray;
                         }
-                        else if (parent.mPicDataList[anArray].DotPosition > parent.mPicDataList[min].DotPosition)
+                        else if (parent.mPicDataList [anArray].DotPosition > parent.mPicDataList [min].DotPosition)
                         {
                             min = anArray;
                         }
                     }
-                    else if (parent.mPicDataList[anArray].DotPosition > progress)
+                    else if (parent.mPicDataList [anArray].DotPosition > progress)
                     {
                         if (max == 0)
                         {
                             max = anArray;
                         }
-                        else if (parent.mPicDataList[anArray].DotPosition <
-                              parent.mPicDataList[max].DotPosition)
+                        else if (parent.mPicDataList [anArray].DotPosition <
+                                 parent.mPicDataList [max].DotPosition)
                         {
                             max = anArray;
                         }
@@ -360,8 +362,8 @@ namespace de.upb.hip.mobile.droid.fragments.exhibitpagefragment
                 }
 
                 // calculate which node is nearest to progress (min or max)
-                if (Math.Abs(progress - parent.mPicDataList[min].DotPosition) <
-                        Math.Abs(progress - parent.mPicDataList[max].DotPosition))
+                if (Math.Abs (progress - parent.mPicDataList [min].DotPosition) <
+                    Math.Abs (progress - parent.mPicDataList [max].DotPosition))
                 {
                     closestNode = min;
                 }
@@ -372,6 +374,8 @@ namespace de.upb.hip.mobile.droid.fragments.exhibitpagefragment
 
                 return closestNode;
             }
+
         }
+
     }
 }

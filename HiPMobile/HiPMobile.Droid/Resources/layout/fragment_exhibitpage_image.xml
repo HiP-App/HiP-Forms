@@ -1,4 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?><!--
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<!--
 /*
  * Copyright (c) 2016 History in Paderborn App - Universität Paderborn
  *
@@ -17,28 +19,28 @@
 -->
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
   <de.upb.hip.mobile.droid.Helpers.DrawView
-      android:id="@+id/fragment_exhibitpage_image_imageview"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_alignParentBottom="false"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="false"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="0dp"
-        android:layout_marginTop="0dp"
-        android:adjustViewBounds="true" />
+    android:id="@+id/fragment_exhibitpage_image_imageview"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_alignParentBottom="false"
+    android:layout_alignParentLeft="true"
+    android:layout_alignParentRight="false"
+    android:layout_alignParentTop="true"
+    android:layout_marginLeft="0dp"
+    android:layout_marginTop="0dp"
+    android:adjustViewBounds="true" />
 
-    <Button
-        android:id="@+id/fragment_exhibitpage_image_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:gravity="right"
-        android:text="@string/fragment_exhibitpage_image_button_text" />
+  <Button
+    android:id="@+id/fragment_exhibitpage_image_button"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentRight="true"
+    android:gravity="right"
+    android:text="@string/fragment_exhibitpage_image_button_text" />
 
 </RelativeLayout>

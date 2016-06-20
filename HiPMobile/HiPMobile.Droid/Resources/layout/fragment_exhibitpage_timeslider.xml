@@ -1,4 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?><!--
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<!--
 
 /*
  * Copyright (C) 2016 History in Paderborn App - Universität Paderborn
@@ -17,53 +19,53 @@
  */
 -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:focusable="true"
+              android:orientation="vertical">
+
+  <FrameLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:focusable="true"
+    android:layout_height="0dp"
+    android:layout_weight="3"
     android:orientation="vertical">
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="3"
-        android:orientation="vertical">
+    <ImageView
+      android:id="@+id/displayImageSliderFirstImageView"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:scaleType="fitCenter" />
 
-        <ImageView
-            android:id="@+id/displayImageSliderFirstImageView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="fitCenter" />
+    <ImageView
+      android:id="@+id/displayImageSliderNextImageView"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:scaleType="fitCenter" />
 
-        <ImageView
-            android:id="@+id/displayImageSliderNextImageView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="fitCenter" />
+  </FrameLayout>
 
-    </FrameLayout>
+  <FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    <TextView
+      android:id="@+id/displayImageSliderThumbSlidingText"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:textColor="@color/textColorSecondary" />
 
-        <TextView
-            android:id="@+id/displayImageSliderThumbSlidingText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/textColorSecondary" />
+    <de.upb.hip.mobile.droid.Helpers.CustomSeekBar
+      android:id="@+id/seekBar"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_gravity="bottom"
+      android:layout_marginBottom="20dp"
+      android:layout_marginTop="20dp"
+      android:maxHeight="3dp"
+      android:minHeight="3dp"
+      android:thumb="@drawable/thumb" />
 
-      <de.upb.hip.mobile.droid.Helpers.CustomSeekBar
-            android:id="@+id/seekBar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:layout_marginBottom="20dp"
-            android:layout_marginTop="20dp"
-            android:maxHeight="3dp"
-            android:minHeight="3dp"
-            android:thumb="@drawable/thumb" />
-
-      <!--<view
+    <!--<view
             android:id="@+id/seekBar"
             class="de.upb.hip.mobile.droid.Helpers.CustomSeekBar"
             android:layout_width="match_parent"
@@ -75,39 +77,39 @@
             android:minHeight="3dp"
             android:thumb="@drawable/thumb" />-->
 
-        <TextView
-            android:id="@+id/displayImageSliderSeekBarFirstText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left|bottom"
-            android:layout_marginLeft="5dp"
-            android:textColor="@color/textColorSecondary" />
+    <TextView
+      android:id="@+id/displayImageSliderSeekBarFirstText"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="left|bottom"
+      android:layout_marginLeft="5dp"
+      android:textColor="@color/textColorSecondary" />
 
-        <TextView
-            android:id="@+id/displayImageSliderSeekBarEndText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|right"
-            android:layout_marginRight="5dp"
-            android:textColor="@color/textColorSecondary" />
+    <TextView
+      android:id="@+id/displayImageSliderSeekBarEndText"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="bottom|right"
+      android:layout_marginRight="5dp"
+      android:textColor="@color/textColorSecondary" />
 
-    </FrameLayout>
+  </FrameLayout>
 
-    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1">
+  <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_weight="1">
 
-        <TextView
-            android:id="@+id/displayImageSliderDescriptionText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:paddingTop="10dp"
-            android:scrollbars="vertical"
-            android:text="test" />
+    <TextView
+      android:id="@+id/displayImageSliderDescriptionText"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:paddingLeft="20dp"
+      android:paddingRight="20dp"
+      android:paddingTop="10dp"
+      android:scrollbars="vertical"
+      android:text="test" />
 
-    </ScrollView>
+  </ScrollView>
 
 </LinearLayout>

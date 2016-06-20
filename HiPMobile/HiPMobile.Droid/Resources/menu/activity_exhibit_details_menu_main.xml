@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 
 <!--
   ~ Copyright (c) 2016 History in Paderborn App - Universität Paderborn
@@ -17,20 +17,20 @@
   -->
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+      xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item
-        android:id="@+id/action_audio"
-        android:icon="@drawable/ic_headset_white_24dp"
-        android:title="@string/action_audio"
-        app:showAsAction="ifRoom" />
+  <item
+    android:id="@+id/action_audio"
+    android:icon="@drawable/ic_headset_white_24dp"
+    android:title="@string/action_audio"
+    app:showAsAction="ifRoom" />
 
-    <!-- "More" Option -->
+  <!-- "More" Option -->
 
-    <!--<item-->
-    <!--android:id="@+id/action_settings"-->
-    <!--android:orderInCategory="100"-->
-    <!--android:title="@string/action_settings"-->
-    <!--app:showAsAction="never" />-->
+  <!--<item-->
+  <!--android:id="@+id/action_settings"-->
+  <!--android:orderInCategory="100"-->
+  <!--android:title="@string/action_settings"-->
+  <!--app:showAsAction="never" />-->
 
 </menu>

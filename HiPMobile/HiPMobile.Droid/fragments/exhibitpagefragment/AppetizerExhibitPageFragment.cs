@@ -12,7 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using Android.Graphics.Drawables;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
@@ -20,30 +19,28 @@ using de.upb.hip.mobile.droid.fragments.bottomsheetfragment;
 using de.upb.hip.mobile.droid.Helpers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 
-namespace de.upb.hip.mobile.droid.fragments.exhibitpagefragment
-{
-    public class AppetizerExhibitPageFragment : ExhibitPageFragment
-    {
-        /// <summary>
-        /// Title for the appetizer bottom sheet
-        /// </summary>
-        public string AppetizerTitle { set; get; } = "Default Appetizer Title";
+namespace de.upb.hip.mobile.droid.fragments.exhibitpagefragment {
+    public class AppetizerExhibitPageFragment : ExhibitPageFragment {
 
         /// <summary>
-        /// Stores the model instance for this page.
-        /// </summary>
-        private AppetizerPage page = null;
-
-        /// <summary>
-        /// Height of the Bottom Sheet in dp.
+        ///     Height of the Bottom Sheet in dp.
         /// </summary>
         private readonly int BOTTOM_SHEET_HEIGHT = 200;
 
+        /// <summary>
+        ///     Stores the model instance for this page.
+        /// </summary>
+        private AppetizerPage page;
+
+        /// <summary>
+        ///     Title for the appetizer bottom sheet
+        /// </summary>
+        public string AppetizerTitle { set; get; } = "Default Appetizer Title";
 
 
-        public override BottomSheetConfig GetBottomSheetConfig()
+        public override BottomSheetConfig GetBottomSheetConfig ()
         {
-            SimpleBottomSheetFragment bsFragment = new SimpleBottomSheetFragment();
+            var bsFragment = new SimpleBottomSheetFragment ();
             bsFragment.Title = AppetizerTitle;
             if (page != null)
                 bsFragment.Description = page.Text;
@@ -58,26 +55,27 @@ namespace de.upb.hip.mobile.droid.fragments.exhibitpagefragment
             return bottomSheetConfig;
         }
 
-        public override void SetPage(Page page)
+        public override void SetPage (Page page)
         {
             this.page = page.AppetizerPage;
         }
 
-        public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+        public override View OnCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             // Inflate the layout for this fragment
-            View v = inflater.Inflate(Resource.Layout.fragment_exhibitpage_appetizer, container, false);
+            var v = inflater.Inflate (Resource.Layout.fragment_exhibitpage_appetizer, container, false);
 
             // set image
-            ImageView imgView = (ImageView)v.FindViewById(Resource.Id.imgAppetizer);
+            var imgView = (ImageView) v.FindViewById (Resource.Id.imgAppetizer);
             if (imgView != null && page != null)
             {
-                Image img = page.Image;
-                Drawable drawable = img.GetDrawable();
-                imgView.SetImageDrawable(drawable);
+                var img = page.Image;
+                var drawable = img.GetDrawable ();
+                imgView.SetImageDrawable (drawable);
             }
 
             return v;
         }
+
     }
 }

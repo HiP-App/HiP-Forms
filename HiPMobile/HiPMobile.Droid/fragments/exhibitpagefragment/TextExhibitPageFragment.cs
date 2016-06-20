@@ -19,36 +19,35 @@ using de.upb.hip.mobile.droid.Helpers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using Java.Lang;
 
-namespace de.upb.hip.mobile.droid.fragments.exhibitpagefragment
-{
-    public class TextExhibitPageFragment : ExhibitPageFragment
-    {
+namespace de.upb.hip.mobile.droid.fragments.exhibitpagefragment {
+    public class TextExhibitPageFragment : ExhibitPageFragment {
 
         private TextPage page;
 
-        public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+        public override View OnCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             // Inflate the layout for this fragment
-            View v = inflater.Inflate(Resource.Layout.fragment_exhibitpage_text, container, false);
+            var v = inflater.Inflate (Resource.Layout.fragment_exhibitpage_text, container, false);
 
-            TextView textView = (TextView)v.FindViewById(Resource.Id.tvText);
+            var textView = (TextView) v.FindViewById (Resource.Id.tvText);
             textView.Text = page.Text;
 
             return v;
         }
 
-        public override BottomSheetConfig GetBottomSheetConfig()
+        public override BottomSheetConfig GetBottomSheetConfig ()
         {
             var bottomSheetConfig = new BottomSheetConfig {DisplayBottomSheet = false};
             return bottomSheetConfig;
         }
 
-        public override void SetPage(Page page)
+        public override void SetPage (Page page)
         {
-            if (page.IsTextPage())
+            if (page.IsTextPage ())
                 this.page = page.TextPage;
             else
-                throw new IllegalArgumentException("Page has to be an instance of TextPage!");
+                throw new IllegalArgumentException ("Page has to be an instance of TextPage!");
         }
+
     }
 }

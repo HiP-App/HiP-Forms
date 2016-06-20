@@ -16,39 +16,39 @@ using Android.OS;
 using Android.Views;
 using Android.Widget;
 
-namespace de.upb.hip.mobile.droid.fragments.bottomsheetfragment
-{
-    public class SimpleBottomSheetFragment : BottomSheetFragment
-    {
+namespace de.upb.hip.mobile.droid.fragments.bottomsheetfragment {
+    public class SimpleBottomSheetFragment : BottomSheetFragment {
+
         /// <summary>
-        /// Title displayed in the bottom sheet (should be ~30 characters long).
+        ///     Title displayed in the bottom sheet (should be ~30 characters long).
         /// </summary>
         public string Title { set; private get; } = "default title";
 
         /// <summary>
-        /// Description displayed in the bottom sheet.
+        ///     Description displayed in the bottom sheet.
         /// </summary>
         public string Description { set; private get; } = "default description";
 
-        public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+        public override View OnCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             // Inflate the layout for this fragment
-            View v = inflater.Inflate(Resource.Layout.fragment_bottom_sheet_simple, container, false);
+            var v = inflater.Inflate (Resource.Layout.fragment_bottom_sheet_simple, container, false);
 
             // set title and description
-            TextView tv = (TextView)v.FindViewById(Resource.Id.tvBsTitle);
+            var tv = (TextView) v.FindViewById (Resource.Id.tvBsTitle);
             tv.Text = Title;
-            tv = (TextView)v.FindViewById(Resource.Id.tvBsDescription);
+            tv = (TextView) v.FindViewById (Resource.Id.tvBsDescription);
             tv.Text = Description;
 
             return v;
         }
 
-        public override void OnBottomSheetExpand()
+        public override void OnBottomSheetExpand ()
         {
-            base.OnBottomSheetExpand();
+            base.OnBottomSheetExpand ();
 
             // TODO:  flash scrollbars of NestedScrollView if possible?
         }
+
     }
 }

@@ -11,6 +11,7 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+
 using System.IO;
 using Android.Content.Res;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
@@ -18,8 +19,6 @@ using Java.Lang;
 
 namespace de.upb.hip.mobile.droid.Helpers {
     public class DbDummyDataFiller {
-
-        private readonly AssetManager manager;
 
         private readonly string lorem =
             "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet." +
@@ -29,6 +28,8 @@ namespace de.upb.hip.mobile.droid.Helpers {
             "Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis." +
             "At vero eos et accusam et justo duo dolores et ea rebum.Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, At accusam aliquyam diam diam dolore dolores duo eirmod eos erat, et nonumy sed tempor et et invidunt justo labore Stet clita ea et gubergren, kasd magna no rebum. sanctus sea sed takimata ut vero voluptua.est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat." +
             "Consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.At vero eos et accusam et justo duo dolores et ea rebum. Stet clita";
+
+        private readonly AssetManager manager;
 
         public DbDummyDataFiller (AssetManager manager)
         {
@@ -46,21 +47,21 @@ namespace de.upb.hip.mobile.droid.Helpers {
             var exhibits = BusinessEntitiyFactory.CreateBusinessObject<ExhibitSet> ();
             exhibits.InitSet.Add (dom);
             exhibits.InitSet.Add (uni);
-            exhibits.ActiveSet.Add(dom);
-            exhibits.ActiveSet.Add(uni);
+            exhibits.ActiveSet.Add (dom);
+            exhibits.ActiveSet.Add (uni);
 
             // create dummy pages
-            Image domImg = CreateImage("Paderborner Dom",
-                "Der Hohe Dom Ss. Maria, Liborius und Kilian ist die Kathedralkirche des Erzbistums Paderborn und liegt im Zentrum der Paderborner Innenstadt, oberhalb der Paderquellen.",
-                "dom.jpg");
-            Image uniImg =
-            CreateImage("Universität Paderborn",
-                "Die Universität Paderborn in Paderborn, Deutschland, ist eine 1972 gegründete Universität in Nordrhein-Westfalen.",
-                "uni.jpg");
-            dom.Pages.Add(CreateAppetizerPage("Der Dom von außen", domImg));
-            dom.Pages.Add(CreateImagePage(domImg, new []{CreateRectangle(100, 80, 250, 180)}, new []{"Der 93 Meter hohe Kirchturm."}));
-            dom.Pages.Add(CreateTextPage(lorem, CreateAudio("sprechertext.mp3", lorem, "sprechertext")));
-            dom.Pages.Add(CreateTimeSliderPage("Timeslider", "Ein Test für die Timesliderpage mit zwei Bildern", new []{1000L, 1973}, new []{domImg, uniImg}));
+            var domImg = CreateImage ("Paderborner Dom",
+                                      "Der Hohe Dom Ss. Maria, Liborius und Kilian ist die Kathedralkirche des Erzbistums Paderborn und liegt im Zentrum der Paderborner Innenstadt, oberhalb der Paderquellen.",
+                                      "dom.jpg");
+            var uniImg =
+                CreateImage ("Universität Paderborn",
+                             "Die Universität Paderborn in Paderborn, Deutschland, ist eine 1972 gegründete Universität in Nordrhein-Westfalen.",
+                             "uni.jpg");
+            dom.Pages.Add (CreateAppetizerPage ("Der Dom von außen", domImg));
+            dom.Pages.Add (CreateImagePage (domImg, new[] {CreateRectangle (100, 80, 250, 180)}, new[] {"Der 93 Meter hohe Kirchturm."}));
+            dom.Pages.Add (CreateTextPage (lorem, CreateAudio ("sprechertext.mp3", lorem, "sprechertext")));
+            dom.Pages.Add (CreateTimeSliderPage ("Timeslider", "Ein Test für die Timesliderpage mit zwei Bildern", new[] {1000L, 1973}, new[] {domImg, uniImg}));
         }
 
         private Exhibit CreateExhibit (string name, string description, double latitude, double longitude,
@@ -91,72 +92,77 @@ namespace de.upb.hip.mobile.droid.Helpers {
             return exhibit;
         }
 
-        private Page CreateAppetizerPage(string text, Image img=null)
+        private Page CreateAppetizerPage (string text, Image img = null)
         {
-            var page = BusinessEntitiyFactory.CreateBusinessObject<Page>();
-            var appetizer = BusinessEntitiyFactory.CreateBusinessObject<AppetizerPage>();
+            var page = BusinessEntitiyFactory.CreateBusinessObject<Page> ();
+            var appetizer = BusinessEntitiyFactory.CreateBusinessObject<AppetizerPage> ();
             page.AppetizerPage = appetizer;
             appetizer.Text = text;
-            if (img != null) appetizer.Image = img;
+            if (img != null)
+                appetizer.Image = img;
             return page;
         }
 
-        private Page CreateTextPage(string text, Audio audio=null)
+        private Page CreateTextPage (string text, Audio audio = null)
         {
-            var page = BusinessEntitiyFactory.CreateBusinessObject<Page>();
-            var textpage = BusinessEntitiyFactory.CreateBusinessObject<TextPage>();
+            var page = BusinessEntitiyFactory.CreateBusinessObject<Page> ();
+            var textpage = BusinessEntitiyFactory.CreateBusinessObject<TextPage> ();
             page.TextPage = textpage;
             textpage.Text = text;
-            if (audio != null) page.Audio = audio;
+            if (audio != null)
+                page.Audio = audio;
             return page;
         }
 
-        private Page CreateTimeSliderPage(string title, string text, long[] dates, Image[] images)
+        private Page CreateTimeSliderPage (string title, string text, long[] dates, Image[] images)
         {
-            if(dates.Length<2 || images.Length<2) throw new IllegalArgumentException("At least two images and dates are necessary.");
-            if(dates.Length != images.Length) throw new IllegalArgumentException("There must be equally many dates and images.");
+            if (dates.Length < 2 || images.Length < 2)
+                throw new IllegalArgumentException ("At least two images and dates are necessary.");
+            if (dates.Length != images.Length)
+                throw new IllegalArgumentException ("There must be equally many dates and images.");
 
-            var page = BusinessEntitiyFactory.CreateBusinessObject<Page>();
-            var tsPage = BusinessEntitiyFactory.CreateBusinessObject<TimeSliderPage>();
+            var page = BusinessEntitiyFactory.CreateBusinessObject<Page> ();
+            var tsPage = BusinessEntitiyFactory.CreateBusinessObject<TimeSliderPage> ();
             page.TimeSliderPage = tsPage;
             tsPage.Title = title;
             tsPage.Text = text;
             foreach (var value in dates)
             {
-                var longElement = BusinessEntitiyFactory.CreateBusinessObject<LongElement>();
+                var longElement = BusinessEntitiyFactory.CreateBusinessObject<LongElement> ();
                 longElement.Value = value;
-                tsPage.Dates.Add(longElement);
+                tsPage.Dates.Add (longElement);
             }
             foreach (var image in images)
             {
-                tsPage.Images.Add(image);
+                tsPage.Images.Add (image);
             }
             return page;
         }
 
-        private Page CreateImagePage(Image img, Rectangle[] areas, string[] texts)
+        private Page CreateImagePage (Image img, Rectangle[] areas, string[] texts)
         {
-            if(areas.Length != texts.Length) throw new IllegalArgumentException("There must be equally many texts and areas.");
-            var page = BusinessEntitiyFactory.CreateBusinessObject<Page>();
-            var imagePage = BusinessEntitiyFactory.CreateBusinessObject<ImagePage>();
+            if (areas.Length != texts.Length)
+                throw new IllegalArgumentException ("There must be equally many texts and areas.");
+            var page = BusinessEntitiyFactory.CreateBusinessObject<Page> ();
+            var imagePage = BusinessEntitiyFactory.CreateBusinessObject<ImagePage> ();
             page.ImagePage = imagePage;
             imagePage.Image = img;
             foreach (var rectangle in areas)
             {
-                imagePage.Areas.Add(rectangle);
+                imagePage.Areas.Add (rectangle);
             }
-            foreach (string text in texts)
+            foreach (var text in texts)
             {
-                var stringElement = BusinessEntitiyFactory.CreateBusinessObject<StringElement>();
+                var stringElement = BusinessEntitiyFactory.CreateBusinessObject<StringElement> ();
                 stringElement.Value = text;
-                imagePage.Texts.Add(stringElement);
+                imagePage.Texts.Add (stringElement);
             }
             return page;
         }
 
-        private Rectangle CreateRectangle(int top, int left, int bottom, int right)
+        private Rectangle CreateRectangle (int top, int left, int bottom, int right)
         {
-            var rect = BusinessEntitiyFactory.CreateBusinessObject<Rectangle>();
+            var rect = BusinessEntitiyFactory.CreateBusinessObject<Rectangle> ();
             rect.Top = top;
             rect.Left = left;
             rect.Bottom = bottom;
@@ -164,19 +170,19 @@ namespace de.upb.hip.mobile.droid.Helpers {
             return rect;
         }
 
-        private Image CreateImage(string title, string description, string path)
+        private Image CreateImage (string title, string description, string path)
         {
-            var img = BusinessEntitiyFactory.CreateBusinessObject<Image>();
+            var img = BusinessEntitiyFactory.CreateBusinessObject<Image> ();
             img.Title = title;
             img.Description = description;
-            img.Data = LoadByteAsset(path);
+            img.Data = LoadByteAsset (path);
             return img;
         }
 
-        private Audio CreateAudio(string path, string caption, string title)
+        private Audio CreateAudio (string path, string caption, string title)
         {
-            var audio = BusinessEntitiyFactory.CreateBusinessObject<Audio>();
-            audio.Data = LoadByteAsset(path);
+            var audio = BusinessEntitiyFactory.CreateBusinessObject<Audio> ();
+            audio.Data = LoadByteAsset (path);
             audio.Caption = caption;
             audio.Title = title;
             return audio;

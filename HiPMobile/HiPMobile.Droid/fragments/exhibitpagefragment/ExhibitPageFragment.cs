@@ -17,24 +17,23 @@ using Android.Support.V4.App;
 using de.upb.hip.mobile.droid.Helpers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 
-namespace de.upb.hip.mobile.droid.fragments.exhibitpagefragment
-{
+namespace de.upb.hip.mobile.droid.fragments.exhibitpagefragment {
     /// <summary>
-    /// Abstract superclass for Fragments that are displayed as pages in the ExhibitDetailsActivity.
+    ///     Abstract superclass for Fragments that are displayed as pages in the ExhibitDetailsActivity.
     /// </summary>
-    public abstract class ExhibitPageFragment : Fragment
-    {
-        /// <summary>
-        /// Returns the BottomSheetConfig for the PageFragment.
-        /// </summary>
-        /// <returns></returns>
-        public abstract BottomSheetConfig GetBottomSheetConfig();
+    public abstract class ExhibitPageFragment : Fragment {
 
         /// <summary>
-        /// Sets the instance of the model class.
+        ///     Returns the BottomSheetConfig for the PageFragment.
+        /// </summary>
+        /// <returns></returns>
+        public abstract BottomSheetConfig GetBottomSheetConfig ();
+
+        /// <summary>
+        ///     Sets the instance of the model class.
         /// </summary>
         /// <param name="page"></param>
-        public abstract void SetPage(Page page);
+        public abstract void SetPage (Page page);
 
     }
 }

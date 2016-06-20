@@ -20,31 +20,41 @@ using Android.OS;
 using Android.Util;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using Java.IO;
-using Java.Net;
 
 namespace de.upb.hip.mobile.droid.Helpers {
     /// <summary>
-    /// This class controls playing audio files. As the audio needs to be playable regardless of the screen activity 
-    /// and also while the screen is off, this needs to be a service.The service should be started from one activity
-	///	and then be given to the other activities in which it is used, otherwise a good control is impossible.
+    ///     This class controls playing audio files. As the audio needs to be playable regardless of the screen activity
+    ///     and also while the screen is off, this needs to be a service.The service should be started from one activity
+    ///     and then be given to the other activities in which it is used, otherwise a good control is impossible.
     /// </summary>
     [Service]
-    public class MediaPlayerService : Android.App.Service, MediaPlayer.IOnPreparedListener, MediaPlayer.IOnErrorListener
-    {
+    public class MediaPlayerService : Service, MediaPlayer.IOnPreparedListener, MediaPlayer.IOnErrorListener {
 
-        public static readonly string ACTION_PLAY = "de.upb.hip.mobile.PLAY";  //the intentions can probably be erased
+        public static readonly string ACTION_PLAY = "de.upb.hip.mobile.PLAY"; //the intentions can probably be erased
         public static readonly string ACTION_STOP = "de.upb.hip.mobile.STOP";
 
-        bool AudioFileIsSet = false;
+        private Audio a1 = BusinessEntitiyFactory.CreateBusinessObject<Audio> ();
+
+        private bool AudioFileIsSet;
+        private readonly IBinder binder;
 
         private MediaPlayer mediaPlayer;
-        private IBinder binder;
-
-        private Audio a1 = BusinessEntitiyFactory.CreateBusinessObject<Audio> ();
 
         public MediaPlayerService ()
         {
             binder = new MediaPlayerBinder (this);
+        }
+
+        public bool OnError (MediaPlayer mp, MediaError what, int extra)
+        {
+            return false;
+        }
+
+        public void OnPrepared (MediaPlayer mp)
+        {
+            //the media player will be prepared when starting an activity,
+            // but that may not be the right time to start the audio
+            //therefore this is empty
         }
 
         public override IBinder OnBind (Intent intent)
@@ -65,18 +75,17 @@ namespace de.upb.hip.mobile.droid.Helpers {
             }
             catch (Exception e)
             {
-                
             }
         }
 
-        public int OnStartCommand(Intent intent, int flags, int startId)
+        public int OnStartCommand (Intent intent, int flags, int startId)
         {
             try
             {
                 //            mMediaPlayer = MediaPlayer.create(this, songList[current].getAudioDir());
-                mediaPlayer.SetAudioStreamType(Stream.Music);
-                mediaPlayer.SetOnPreparedListener(this);
-                mediaPlayer.PrepareAsync();
+                mediaPlayer.SetAudioStreamType (Stream.Music);
+                mediaPlayer.SetOnPreparedListener (this);
+                mediaPlayer.PrepareAsync ();
             }
             catch (Exception e)
             {
@@ -87,36 +96,24 @@ namespace de.upb.hip.mobile.droid.Helpers {
             // 1 = START_STICKY
         }
 
-        public void OnPrepared (MediaPlayer mp)
-        {
-            //the media player will be prepared when starting an activity,
-            // but that may not be the right time to start the audio
-            //therefore this is empty
-        }
-
-        public bool OnError (MediaPlayer mp, MediaError what, int extra)
-        {
-            return false;
-        }
-
         //following are the functions for the app to use to control the media player
-        public void StartSound()
+        public void StartSound ()
         {
             if (!AudioFileIsSet)
             {
-                mediaPlayer = new MediaPlayer();
+                mediaPlayer = new MediaPlayer ();
             }
-            mediaPlayer.Start();
+            mediaPlayer.Start ();
         }
 
-        public void StopSound()
+        public void StopSound ()
         {
-            mediaPlayer.Stop();
+            mediaPlayer.Stop ();
         }
 
-        public void PauseSound()
+        public void PauseSound ()
         {
-            mediaPlayer.Pause();
+            mediaPlayer.Pause ();
         }
 
         public void changeAudioFile ()
@@ -127,26 +124,26 @@ namespace de.upb.hip.mobile.droid.Helpers {
             }
             catch (Exception e)
             {
-                
             }
         }
 
         /** sets a specific audio file*/
-        public void SetAudioFile(Audio audio)
+
+        public void SetAudioFile (Audio audio)
         {
             try
             {
                 if (mediaPlayer != null)
                 {
-                    mediaPlayer.Stop();
-                    mediaPlayer.Reset();
+                    mediaPlayer.Stop ();
+                    mediaPlayer.Reset ();
                 }
                 //may be needed for handling audio files later. until know, leave this commented in here.
-                string path = CopyAudioToTemp(audio);
-                mediaPlayer = new MediaPlayer();
-                mediaPlayer.SetAudioStreamType(Stream.Music);
-                mediaPlayer.SetDataSource(path);
-                mediaPlayer.Prepare();
+                var path = CopyAudioToTemp (audio);
+                mediaPlayer = new MediaPlayer ();
+                mediaPlayer.SetAudioStreamType (Stream.Music);
+                mediaPlayer.SetDataSource (path);
+                mediaPlayer.Prepare ();
                 AudioFileIsSet = true;
             }
             catch (Exception e)
@@ -156,12 +153,13 @@ namespace de.upb.hip.mobile.droid.Helpers {
         }
 
         /** sets a specific audio file*/
-        public void SetAudioFile(int audio)
+
+        public void SetAudioFile (int audio)
         {
             try
             {
-                mediaPlayer.Stop();
-                mediaPlayer.Reset();
+                mediaPlayer.Stop ();
+                mediaPlayer.Reset ();
                 //mediaPlayer = MediaPlayer.create(this, audio);
                 AudioFileIsSet = true;
             }
@@ -171,7 +169,7 @@ namespace de.upb.hip.mobile.droid.Helpers {
             }
         }
 
-        public bool GetAudioFileIsSet()
+        public bool GetAudioFileIsSet ()
         {
             //since the mediaplayer is used as a service, in the beginning it can't yet be called
             //as it is not yet created. however, as soon as the play button is used, the media player
@@ -181,38 +179,40 @@ namespace de.upb.hip.mobile.droid.Helpers {
             return AudioFileIsSet;
         }
 
-        private string CopyAudioToTemp(Audio audio)
+        private string CopyAudioToTemp (Audio audio)
         {
-            string filepath = "";
+            var filepath = "";
             try
             {
-                File tempMp3 = File.CreateTempFile("temp", ".mp3", CacheDir);
-                tempMp3.DeleteOnExit();
-                FileOutputStream fos = new FileOutputStream(tempMp3);
-                fos.Write(audio.Data);
-                fos.Close();
+                var tempMp3 = File.CreateTempFile ("temp", ".mp3", CacheDir);
+                tempMp3.DeleteOnExit ();
+                var fos = new FileOutputStream (tempMp3);
+                fos.Write (audio.Data);
+                fos.Close ();
                 filepath = tempMp3.AbsolutePath;
             }
             catch (IOException ioe)
             {
-                Log.Warn("MedialPlayerService", "Could not write audio to temp file");
+                Log.Warn ("MedialPlayerService", "Could not write audio to temp file");
             }
             return filepath;
         }
 
         public class MediaPlayerBinder : Binder {
 
+            private readonly MediaPlayerService service;
+
             public MediaPlayerBinder (MediaPlayerService service)
             {
                 this.service = service;
             }
 
-            private readonly MediaPlayerService service;
-            public MediaPlayerService GetService()
+            public MediaPlayerService GetService ()
             {
                 return service;
             }
+
         }
 
-}
+    }
 }

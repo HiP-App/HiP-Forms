@@ -14,22 +14,21 @@
 
 using Android.Graphics;
 using Android.Graphics.Drawables;
-using Android.Text;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 
-namespace de.upb.hip.mobile.droid.Helpers
-{
-    public static class ExtensionMethods
-    {
-        public static Drawable GetDrawable(this Image img)
+namespace de.upb.hip.mobile.droid.Helpers {
+    public static class ExtensionMethods {
+
+        public static Drawable GetDrawable (this Image img)
         {
-            return new BitmapDrawable(BitmapFactory.DecodeByteArray(img.Data, 0, img.Data.Length));
+            return new BitmapDrawable (BitmapFactory.DecodeByteArray (img.Data, 0, img.Data.Length));
         }
 
-        public static int[] GetDimensions(this Image img)
+        public static int[] GetDimensions (this Image img)
         {
-            var bmp = (BitmapFactory.DecodeByteArray(img.Data, 0, img.Data.Length));
+            var bmp = BitmapFactory.DecodeByteArray (img.Data, 0, img.Data.Length);
             return new[] {bmp.Width, bmp.Height};
         }
+
     }
 }

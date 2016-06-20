@@ -14,13 +14,13 @@
 
 using Android.Views;
 
-namespace de.upb.hip.mobile.droid.Activities
-{
-    public class MyCustomSimpleOnGestureListener : GestureDetector.SimpleOnGestureListener
-    {
-        public override bool OnSingleTapUp(MotionEvent e)
+namespace de.upb.hip.mobile.droid.Activities {
+    public class MyCustomSimpleOnGestureListener : GestureDetector.SimpleOnGestureListener {
+
+        public override bool OnSingleTapUp (MotionEvent e)
         {
             return true;
         }
+
     }
 }

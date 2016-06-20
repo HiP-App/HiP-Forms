@@ -1,4 +1,4 @@
-<!--
+﻿<!--
   ~ Copyright (c) 2016 History in Paderborn App - Universität Paderborn
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,23 +15,22 @@
   -->
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                tools:context=".ExhibitDetailsActivity"
+                tools:showIn="@layout/activity_exhibit_details">
+
+  <ImageView
+    android:id="@+id/imageView2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".ExhibitDetailsActivity"
-    tools:showIn="@layout/activity_exhibit_details">
-
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:scaleType="fitXY"
-        android:src="@drawable/kaiserpfalz_teaser" />
+    android:layout_alignParentLeft="true"
+    android:layout_alignParentStart="true"
+    android:layout_alignParentTop="true"
+    android:scaleType="fitXY"
+    android:src="@drawable/kaiserpfalz_teaser" />
 
 </RelativeLayout>
-

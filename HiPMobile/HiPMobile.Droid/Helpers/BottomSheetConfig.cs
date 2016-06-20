@@ -15,47 +15,48 @@
 using de.upb.hip.mobile.droid.Activities;
 using de.upb.hip.mobile.droid.fragments.bottomsheetfragment;
 
-namespace de.upb.hip.mobile.droid.Helpers
-{
+namespace de.upb.hip.mobile.droid.Helpers {
     /// <summary>
-    /// Contains information for the <see cref="ExhibitDetailsActivity"/> on how to display the bottom sheet.
+    ///     Contains information for the <see cref="ExhibitDetailsActivity" /> on how to display the bottom sheet.
     /// </summary>
-    public class BottomSheetConfig
-    {
+    public class BottomSheetConfig {
+
         /// <summary>
-        /// Describes the action the FAB should perform on click
+        ///     Describes the action the FAB should perform on click
         /// </summary>
-        public enum FabAction
-        {
+        public enum FabAction {
+
             None,
             Expand,
             Collapse,
             Next
+
         }
 
         /// <summary>
-        /// Indicates whether the bottom sheet should be displayed (true) or not (false).
+        ///     Indicates whether the bottom sheet should be displayed (true) or not (false).
         /// </summary>
         public bool DisplayBottomSheet { get; set; } = true;
 
         /// <summary>
-        /// Fragment that is displayed in the bottom sheet.
+        ///     Fragment that is displayed in the bottom sheet.
         /// </summary>
         public BottomSheetFragment BottomSheetFragment { get; set; }
 
         /// <summary>
-        /// The maximum height of the bottom sheet (in dp).
+        ///     The maximum height of the bottom sheet (in dp).
         /// </summary>
         public int MaxHeight { get; set; } = 220;
 
         /// <summary>
-        /// The height of the bottom sheet when it is collapsed (in dp).
+        ///     The height of the bottom sheet when it is collapsed (in dp).
         /// </summary>
         public int PeekHeight { get; set; } = 80;
 
         /// <summary>
-        /// The action associated with the FAB.
+        ///     The action associated with the FAB.
         /// </summary>
         public FabAction fabAction { get; set; } = FabAction.Expand;
+
     }
 }

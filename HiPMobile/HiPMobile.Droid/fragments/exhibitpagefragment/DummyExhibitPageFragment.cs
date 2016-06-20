@@ -19,42 +19,41 @@ using de.upb.hip.mobile.droid.fragments.bottomsheetfragment;
 using de.upb.hip.mobile.droid.Helpers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 
-namespace de.upb.hip.mobile.droid.fragments.exhibitpagefragment
-{
-    public class DummyExhibitPageFragment: ExhibitPageFragment
-    {
+namespace de.upb.hip.mobile.droid.fragments.exhibitpagefragment {
+    public class DummyExhibitPageFragment : ExhibitPageFragment {
 
         // for testing purposes
-        static int count = 0;
+        private static int count = 0;
 
-        public override BottomSheetConfig GetBottomSheetConfig()
+        public override BottomSheetConfig GetBottomSheetConfig ()
         {
-            SimpleBottomSheetFragment bsFragment = new SimpleBottomSheetFragment();
+            var bsFragment = new SimpleBottomSheetFragment ();
             //        bsFragment.setTitle("SimpleBottomSheetFragment #" + count);
             bsFragment.Title = "Außenansicht";
             bsFragment.Description =
-                    "Beschreibung zur Außenansicht (ist eigentlich der Abdinghof...). \n\n" +
-                            "(c) XYZ   \n\nyou cannot use getString(id) here because the fragment is not " +
-                            "yet attached to an Activity!...";
-            var bottomSheetConfig=new BottomSheetConfig()
+                "Beschreibung zur Außenansicht (ist eigentlich der Abdinghof...). \n\n" +
+                "(c) XYZ   \n\nyou cannot use getString(id) here because the fragment is not " +
+                "yet attached to an Activity!...";
+            var bottomSheetConfig = new BottomSheetConfig
             {
                 BottomSheetFragment = bsFragment
             };
             return bottomSheetConfig;
         }
 
-        public override void SetPage(Page page)
+        public override void SetPage (Page page)
         {
             // intentionally left blank for this dummy implementation
         }
 
-        public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+        public override View OnCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             // Inflate the layout for this fragment
-            View view = inflater.Inflate(Resource.Layout.fragment_exhibitpage_dummy, container, false);
-            ImageView mImageView = (ImageView)view.FindViewById(Resource.Id.imageView2);
+            var view = inflater.Inflate (Resource.Layout.fragment_exhibitpage_dummy, container, false);
+            var mImageView = (ImageView) view.FindViewById (Resource.Id.imageView2);
             //new PhotoViewAttacher(mImageView); // TODO Replace this?
             return view;
         }
+
     }
 }

@@ -12,72 +12,68 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System;
-using Android.App;
 using Android.OS;
+using Android.Support.V7.App;
 using Android.Views;
 using Android.Widget;
-using de.upb.hip.mobile.droid.Activities;
 using de.upb.hip.mobile.droid.fragments.bottomsheetfragment;
 using de.upb.hip.mobile.droid.Helpers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
-using AlertDialog = Android.Support.V7.App.AlertDialog;
+using Java.Lang;
 
-namespace de.upb.hip.mobile.droid.fragments.exhibitpagefragment
-{
+namespace de.upb.hip.mobile.droid.fragments.exhibitpagefragment {
     /// <summary>
-    /// A fragment for displaying an image with selectable areas.
+    ///     A fragment for displaying an image with selectable areas.
     /// </summary>
-    public class ImagePageExhibitFragment : ExhibitPageFragment
-    {
+    public class ImagePageExhibitFragment : ExhibitPageFragment {
 
         public static readonly string INSTANCE_STATE_PAGE = "insanceStatePage";
 
-        private ImagePage page;
-
         private DrawView drawView;
 
-        public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+        private ImagePage page;
+
+        public override View OnCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             // Inflate the layout for this fragment
-            View v = inflater.Inflate(Resource.Layout.fragment_exhibitpage_image, container, false);
+            var v = inflater.Inflate (Resource.Layout.fragment_exhibitpage_image, container, false);
 
-            if (savedInstanceState != null && savedInstanceState.GetSerializable(INSTANCE_STATE_PAGE) != null)
+            if (savedInstanceState != null && savedInstanceState.GetSerializable (INSTANCE_STATE_PAGE) != null)
             {
-                page = (ImagePage)savedInstanceState.GetSerializable(INSTANCE_STATE_PAGE);
+                page = (ImagePage) savedInstanceState.GetSerializable (INSTANCE_STATE_PAGE);
             }
 
-            drawView = (DrawView)v.FindViewById(Resource.Id.fragment_exhibitpage_image_imageview);
-            drawView.SetImageDrawable(this.page.Image.GetDrawable());
+            drawView = (DrawView) v.FindViewById (Resource.Id.fragment_exhibitpage_image_imageview);
+            drawView.SetImageDrawable (page.Image.GetDrawable ());
             if (page.Areas != null)
             {
-                drawView.Rectangles.AddRange(page.Areas);
+                drawView.Rectangles.AddRange (page.Areas);
             }
             else
             {
                 //There are no areas to highlight, don't show button
-                Button button = (Button)v.FindViewById(Resource.Id.fragment_exhibitpage_image_button);
+                var button = (Button) v.FindViewById (Resource.Id.fragment_exhibitpage_image_button);
                 button.Visibility = ViewStates.Invisible;
             }
-            drawView.OriginalImageDimensions = page.Image.GetDimensions();
+            drawView.OriginalImageDimensions = page.Image.GetDimensions ();
 
-            InitListeners(v);
+            InitListeners (v);
 
             return v;
         }
 
-        public override void OnSaveInstanceState(Bundle bundle)
+        public override void OnSaveInstanceState (Bundle bundle)
         {
-            base.OnSaveInstanceState(bundle);
+            base.OnSaveInstanceState (bundle);
             //bundle.PutSerializable(INSTANCE_STATE_PAGE, page); // TODO handle recreation?
         }
 
-        public override BottomSheetConfig GetBottomSheetConfig()
+        public override BottomSheetConfig GetBottomSheetConfig ()
         {
-            SimpleBottomSheetFragment bottomSheetFragment = new SimpleBottomSheetFragment();
+            var bottomSheetFragment = new SimpleBottomSheetFragment ();
             bottomSheetFragment.Title = page.Image.Title;
             bottomSheetFragment.Description = page.Image.Description;
-            var bottomSheetConfig = new BottomSheetConfig()
+            var bottomSheetConfig = new BottomSheetConfig
             {
                 DisplayBottomSheet = true,
                 BottomSheetFragment = bottomSheetFragment
@@ -85,40 +81,40 @@ namespace de.upb.hip.mobile.droid.fragments.exhibitpagefragment
             return bottomSheetConfig;
         }
 
-        public override void SetPage(Page page)
+        public override void SetPage (Page page)
         {
             this.page = page.ImagePage;
         }
 
-        private double[] GetImageScalingFactor()
+        private double[] GetImageScalingFactor ()
         {
-            int[] originalImageDimensions = page.Image.GetDimensions();
-            double widthScalingFactor = ((double)originalImageDimensions[0]) / ((double)drawView.Width);
-            double heightScalingFactor = ((double)originalImageDimensions[1]) / ((double)drawView.Height);
-            return new[] { widthScalingFactor, heightScalingFactor };
+            var originalImageDimensions = page.Image.GetDimensions ();
+            var widthScalingFactor = originalImageDimensions [0] / (double) drawView.Width;
+            var heightScalingFactor = originalImageDimensions [1] / (double) drawView.Height;
+            return new[] {widthScalingFactor, heightScalingFactor};
         }
 
-        private void InitListeners(View v)
+        private void InitListeners (View v)
         {
-            drawView.SetOnTouchListener(new CustomOnTouchListener(this));
+            drawView.SetOnTouchListener (new CustomOnTouchListener (this));
 
-            Button button = (Button)v.FindViewById(Resource.Id.fragment_exhibitpage_image_button);
-            button.Click += (sender, args) =>
-            {
+            var button = (Button) v.FindViewById (Resource.Id.fragment_exhibitpage_image_button);
+            button.Click += (sender, args) => {
                 drawView.DrawOnImage = !drawView.DrawOnImage;
-                drawView.Invalidate();
+                drawView.Invalidate ();
             };
         }
 
-        private class CustomOnTouchListener: Java.Lang.Object, View.IOnTouchListener
-        {
-            private ImagePageExhibitFragment parent;
+        private class CustomOnTouchListener : Object, View.IOnTouchListener {
 
-            public CustomOnTouchListener(ImagePageExhibitFragment parent)
+            private readonly ImagePageExhibitFragment parent;
+
+            public CustomOnTouchListener (ImagePageExhibitFragment parent)
             {
                 this.parent = parent;
             }
-            public bool OnTouch(View v, MotionEvent e)
+
+            public bool OnTouch (View v, MotionEvent e)
             {
                 if (e.Action != MotionEventActions.Down || parent.page == null)
                 {
@@ -126,24 +122,27 @@ namespace de.upb.hip.mobile.droid.fragments.exhibitpagefragment
                     //areas that the user can press
                     return false;
                 }
-                int x = (int)(((double) e.GetX()) * parent.GetImageScalingFactor()[0]);
-                int y = (int)(((double) e.GetY()) * parent.GetImageScalingFactor()[1]);
-                for (int i = 0; i<parent.page.Areas.Count; i++) {
-                    Rectangle rect = parent.page.Areas[i];
-                    if (x >= rect.Left && x <= rect.Right && y <= rect.Bottom && y >= rect.Top) {
+                var x = (int) (e.GetX () * parent.GetImageScalingFactor () [0]);
+                var y = (int) (e.GetY () * parent.GetImageScalingFactor () [1]);
+                for (var i = 0; i < parent.page.Areas.Count; i++)
+                {
+                    var rect = parent.page.Areas [i];
+                    if (x >= rect.Left && x <= rect.Right && y <= rect.Bottom && y >= rect.Top)
+                    {
                         //We hit an rectangle, display further information about it
-                        new AlertDialog.Builder(parent.Context)
-                                .SetTitle(Resource.String.information)
-                                .SetMessage(parent.page.Texts[i].Value)
-                                .SetPositiveButton(Android.Resource.String.Ok, (sender, args) => { })
-                                .SetIcon(Android.Resource.Drawable.IcDialogInfo)
-                                .Show();
+                        new AlertDialog.Builder (parent.Context)
+                            .SetTitle (Resource.String.information)
+                            .SetMessage (parent.page.Texts [i].Value)
+                            .SetPositiveButton (Android.Resource.String.Ok, (sender, args) => { })
+                            .SetIcon (Android.Resource.Drawable.IcDialogInfo)
+                            .Show ();
                         return true;
                     }
-}
+                }
                 return false;
             }
-            
+
         }
+
     }
 }

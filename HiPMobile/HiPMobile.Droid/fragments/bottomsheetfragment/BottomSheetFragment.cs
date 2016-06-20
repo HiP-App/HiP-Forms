@@ -15,29 +15,29 @@
 using Android.Support.V4.App;
 using de.upb.hip.mobile.droid.Activities;
 
-namespace de.upb.hip.mobile.droid.fragments.bottomsheetfragment
-{
+namespace de.upb.hip.mobile.droid.fragments.bottomsheetfragment {
     /// <summary>
-    /// Abstract class for fragments that are included in the bottom sheet of <see cref="ExhibitDetailsActivity"/>
+    ///     Abstract class for fragments that are included in the bottom sheet of <see cref="ExhibitDetailsActivity" />
     /// </summary>
-    public abstract class BottomSheetFragment : Fragment
-    {
+    public abstract class BottomSheetFragment : Fragment {
+
         /// <summary>
-        /// Called by ExhibitDetailsActivity when the bottom sheet has been expanded.
-        /// Subclasses should override this method if they require individual behaviour
+        ///     Called by ExhibitDetailsActivity when the bottom sheet has been expanded.
+        ///     Subclasses should override this method if they require individual behaviour
         /// </summary>
-        public virtual void OnBottomSheetExpand()
+        public virtual void OnBottomSheetExpand ()
         {
             // intentionally left blank
         }
 
         /// <summary>
-        /// Called by ExhibitDetailsActivity when the bottom sheet has been collapsed.
-        /// Subclasses should override this method if they require individual behaviour.
+        ///     Called by ExhibitDetailsActivity when the bottom sheet has been collapsed.
+        ///     Subclasses should override this method if they require individual behaviour.
         /// </summary>
-        public virtual void OnBottomSheetCollapse()
+        public virtual void OnBottomSheetCollapse ()
         {
             // intentionally left blank
         }
+
     }
 }
