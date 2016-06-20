@@ -41,7 +41,6 @@
     <Compile Include="BusinessLayer\Models\GeneratedCode\Exhibit.cs" />
     <Compile Include="BusinessLayer\Models\GeneratedCode\ExhibitSet.cs" />
     <Compile Include="BusinessLayer\Models\GeneratedCode\GeoLocation.cs" />
-    <Compile Include="BusinessLayer\Models\GeneratedCode\GeoLocation1.cs" />
     <Compile Include="BusinessLayer\Models\GeneratedCode\IIdentifiable.cs" />
     <Compile Include="BusinessLayer\Models\GeneratedCode\Image.cs" />
     <Compile Include="BusinessLayer\Models\GeneratedCode\ImagePage.cs" />
