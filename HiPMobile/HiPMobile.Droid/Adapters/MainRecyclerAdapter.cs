@@ -11,6 +11,7 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+
 using System;
 using System.Linq;
 using Android.Content;
@@ -25,10 +26,10 @@ using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 namespace de.upb.hip.mobile.droid.Adapters {
     internal class MainRecyclerAdapter : RecyclerView.Adapter {
 
-        private Context context;
-
         private readonly ExhibitSet displayedExhibitSet;
         private readonly GeoLocation location;
+
+        private Context context;
 
         /// <summary>
         ///     Constructor for the MainRecyclerAdapter
@@ -84,7 +85,7 @@ namespace de.upb.hip.mobile.droid.Adapters {
             }
 
             //Remove this if not needed
-            //vh.View.Id = Integer.ParseInt (exhibit.Id);
+            vh.View.ContentDescription = exhibit.Id;
 
             vh.Distance.SetText (distance, TextView.BufferType.Normal);
 

@@ -36,11 +36,12 @@
     <Compile Include="BusinessLayer\Managers\ExhibitManager.cs" />
     <Compile Include="BusinessLayer\Managers\RouteManager.cs" />
     <Compile Include="BusinessLayer\Models\BusinessEntitiyFactory.cs" />
-    <Compile Include="BusinessLayer\Models\GeneratedCode\AppertizerPage.cs" />
+    <Compile Include="BusinessLayer\Models\GeneratedCode\AppetizerPage.cs" />
     <Compile Include="BusinessLayer\Models\GeneratedCode\Audio.cs" />
     <Compile Include="BusinessLayer\Models\GeneratedCode\Exhibit.cs" />
     <Compile Include="BusinessLayer\Models\GeneratedCode\ExhibitSet.cs" />
     <Compile Include="BusinessLayer\Models\GeneratedCode\GeoLocation.cs" />
+    <Compile Include="BusinessLayer\Models\GeneratedCode\GeoLocation1.cs" />
     <Compile Include="BusinessLayer\Models\GeneratedCode\IIdentifiable.cs" />
     <Compile Include="BusinessLayer\Models\GeneratedCode\Image.cs" />
     <Compile Include="BusinessLayer\Models\GeneratedCode\ImagePage.cs" />
@@ -60,6 +61,7 @@
     <Compile Include="BusinessLayer\Models\NonGenerated\Exhibit.cs" />
     <Compile Include="BusinessLayer\Models\NonGenerated\ExhibitSet.cs" />
     <Compile Include="BusinessLayer\Models\NonGenerated\CustomGeoPoint.cs" />
+    <Compile Include="BusinessLayer\Models\NonGenerated\Page.cs" />
     <Compile Include="Common\IoCManager.cs" />
     <Compile Include="DataAccessLayer\IDataAccess.cs" />
     <Compile Include="DataLayer\RealmDataAccess.cs" />

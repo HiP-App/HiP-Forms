@@ -1,5 +1,4 @@
 ﻿using System.Reflection;
-using System.Runtime.CompilerServices;
 using Android.App;
 
 // Information about this assembly is defined by the following attributes.
@@ -27,5 +26,4 @@ using Android.App;
 //[assembly: AssemblyDelaySign(false)]
 //[assembly: AssemblyKeyFile("")]
 
-[assembly: MetaData("net.hockeyapp.android.appIdentifier", Value = "9947e2434fe64d318214cfc6972d4800")]
-
+[assembly: MetaData ("net.hockeyapp.android.appIdentifier", Value = "9947e2434fe64d318214cfc6972d4800")]

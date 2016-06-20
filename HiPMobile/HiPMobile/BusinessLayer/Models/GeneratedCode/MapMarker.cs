@@ -25,7 +25,7 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models
 	using System.Linq;
 	using System.Text;
 
-	public partial class MapMarker : RealmObject, IIdentifiable
+	public class MapMarker : RealmObject, IIdentifiable
 	{
 		//Attributes
 		[ObjectId]

@@ -41,16 +41,16 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models
 			set{ Realm.GetInstance ().Write (() => _data = value); }
 		}
 
-		private string _description{ get; set; }
-		public string Description{
-			get{ return _description; }
-			set{ Realm.GetInstance ().Write (() => _description = value); }
-		}
-
 		private string _title{ get; set; }
 		public string Title{
 			get{ return _title; }
 			set{ Realm.GetInstance ().Write (() => _title = value); }
+		}
+
+		private string _caption{ get; set; }
+		public string Caption{
+			get{ return _caption; }
+			set{ Realm.GetInstance ().Write (() => _caption = value); }
 		}
 
 		//Associations
