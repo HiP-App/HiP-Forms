@@ -206,7 +206,7 @@ namespace de.upb.hip.mobile.droid.Activities {
 
         private void SetAllMarkers()
         {
-            //SetUp Markers
+            //SetUp Markers TODO rewrite with markers from bonuspack
             mapMarkerArray = new List<OverlayItem>();
             myLocationOverlay = new MyLocationOverlay(this, mapView);
             mapMarkerIcon = ContextCompat.GetDrawable(this, Resource.Drawable.marker_blue);
