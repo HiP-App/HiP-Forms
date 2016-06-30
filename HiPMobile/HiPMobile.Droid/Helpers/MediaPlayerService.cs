@@ -20,6 +20,7 @@ using Android.OS;
 using Android.Util;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using Java.IO;
+using Java.Util.Logging;
 
 namespace de.upb.hip.mobile.droid.Helpers {
     /// <summary>
@@ -37,8 +38,10 @@ namespace de.upb.hip.mobile.droid.Helpers {
 
         private bool AudioFileIsSet;
         private readonly IBinder binder;
-
+        
         private MediaPlayer mediaPlayer;
+
+        private AudioTrack audiotrack;
 
         public MediaPlayerService ()
         {
@@ -69,9 +72,10 @@ namespace de.upb.hip.mobile.droid.Helpers {
             {
                 //the service is bound, therefore this function is used rather than OnStartCommand
                 //mediaPlayer = MediaPlayer.Create(this, a1.getAudioDir());
-                mediaPlayer.SetAudioStreamType (Stream.Music);
+                
+                /*mediaPlayer.SetAudioStreamType (Stream.Music);
                 mediaPlayer.SetOnPreparedListener (this);
-                mediaPlayer.PrepareAsync ();
+                mediaPlayer.PrepareAsync ();*/
             }
             catch (Exception e)
             {
@@ -83,9 +87,9 @@ namespace de.upb.hip.mobile.droid.Helpers {
             try
             {
                 //            mMediaPlayer = MediaPlayer.create(this, songList[current].getAudioDir());
-                mediaPlayer.SetAudioStreamType (Stream.Music);
+                /*mediaPlayer.SetAudioStreamType (Stream.Music);
                 mediaPlayer.SetOnPreparedListener (this);
-                mediaPlayer.PrepareAsync ();
+                mediaPlayer.PrepareAsync ();*/
             }
             catch (Exception e)
             {
@@ -99,56 +103,47 @@ namespace de.upb.hip.mobile.droid.Helpers {
         //following are the functions for the app to use to control the media player
         public void StartSound ()
         {
-            if (!AudioFileIsSet)
+            if (audiotrack != null)
             {
-                mediaPlayer = new MediaPlayer ();
+                audiotrack.Play ();
             }
-            mediaPlayer.Start ();
         }
 
         public void StopSound ()
         {
-            mediaPlayer.Stop ();
+            audiotrack.Stop ();
         }
 
         public void PauseSound ()
         {
-            mediaPlayer.Pause ();
-        }
-
-        public void changeAudioFile ()
-        {
-            try
-            {
-                mediaPlayer.Reset ();
-            }
-            catch (Exception e)
-            {
-            }
+            audiotrack.Pause ();
         }
 
         /** sets a specific audio file*/
-
         public void SetAudioFile (Audio audio)
         {
             try
             {
-                if (mediaPlayer != null)
+                if (audiotrack != null)
                 {
-                    mediaPlayer.Stop ();
-                    mediaPlayer.Reset ();
+                    audiotrack.Stop ();
+                    audiotrack.Release ();
                 }
                 //may be needed for handling audio files later. until know, leave this commented in here.
-                var path = CopyAudioToTemp (audio);
-                mediaPlayer = new MediaPlayer ();
-                mediaPlayer.SetAudioStreamType (Stream.Music);
-                mediaPlayer.SetDataSource (path);
-                mediaPlayer.Prepare ();
-                AudioFileIsSet = true;
+                if (audio != null)
+                {
+                    var streamType = Stream.Music;
+                    var sampleSize = AudioTrack.GetNativeOutputSampleRate (streamType);
+                    var buffer = AudioTrack.GetMinBufferSize (sampleSize, ChannelOut.Mono, Encoding.Pcm16bit)*2;
+                    audiotrack = new AudioTrack (streamType, sampleSize, ChannelOut.Mono, Encoding.Pcm16bit, buffer, AudioTrackMode.Stream);
+                    audiotrack.SetVolume (1.0f);
+                    var r=audiotrack.Write (audio.Data, 0, audio.Data.Length);
+                }
             }
             catch (Exception e)
             {
                 //            add an exception handling
+                Log.Error ("Mediaplayerservice", e.Message);
             }
         }
 
