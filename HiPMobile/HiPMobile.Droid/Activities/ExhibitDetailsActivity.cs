@@ -618,7 +618,7 @@ namespace de.upb.hip.mobile.droid.Activities {
             Toast.MakeText (this, Resource.String.audio_playing_indicator, ToastLength.Short).Show ();
             try
             {
-                if (!mediaPlayerService.GetAudioFileIsSet ())
+                if (!mediaPlayerService.AudioFileIsSet )
                 {
                     mediaPlayerService.SetAudioFile (exhibit.Pages [currentPageIndex].Audio);
                 }
