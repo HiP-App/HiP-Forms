@@ -89,7 +89,7 @@ namespace de.upb.hip.mobile.droid.Helpers {
         }
 
         /// <summary>
-        /// Sets a specific audio file and prepares it for beeing played
+        ///     Sets a specific audio file and prepares it for beeing played
         /// </summary>
         /// <param name="audio"></param>
         public void SetAudioFile (Audio audio)
@@ -135,30 +135,30 @@ namespace de.upb.hip.mobile.droid.Helpers {
         }
 
         /// <summary>
-        /// Gets the total time for the currently playing audio.
+        ///     Gets the total time for the currently playing audio.
         /// </summary>
         /// <returns>The total duration of the audio.</returns>
-        public long GetTimeTotal()
+        public long GetTimeTotal ()
         {
             return mediaPlayer.Duration;
         }
 
         /// <summary>
-        /// Gets the currently played time for the audio.
+        ///     Gets the currently played time for the audio.
         /// </summary>
         /// <returns>The already played duration of the audio.</returns>
-        public long GetTimeCurrent()
+        public long GetTimeCurrent ()
         {
             return mediaPlayer.CurrentPosition;
         }
 
         /// <summary>
-        /// Seeks to the given time in the audio.
+        ///     Seeks to the given time in the audio.
         /// </summary>
         /// <param name="time">The time in miliseconds to seek to.</param>
-        public void SeekTo(int time)
+        public void SeekTo (int time)
         {
-            mediaPlayer.SeekTo(time);
+            mediaPlayer.SeekTo (time);
         }
 
         public void AddOnCompleteListener (EventHandler del)

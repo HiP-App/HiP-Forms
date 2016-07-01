@@ -12,7 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System;
 using System.Linq;
 using Android.Animation;
 using Android.App;
@@ -31,9 +30,7 @@ using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using IO.Codetail.Animation;
 using Java.Lang;
-using Exception = Java.Lang.Exception;
 using Math = System.Math;
-using Object = Java.Lang.Object;
 using Toolbar = Android.Support.V7.Widget.Toolbar;
 using ViewAnimationUtils = IO.Codetail.Animation.ViewAnimationUtils;
 
@@ -584,19 +581,19 @@ namespace de.upb.hip.mobile.droid.Activities {
         private bool isBound;
 
         /// <summary>
-        /// The progressbar in the audio menu.
+        ///     The progressbar in the audio menu.
         /// </summary>
         private SeekBar audioSeekbar;
 
         /// <summary>
-        /// Used for audio playing.
+        ///     Used for audio playing.
         /// </summary>
-        private double startTime = 0;
+        private double startTime;
 
         /// <summary>
-        /// Handler is needed for UI updates (especially media player - audio progress bar)
+        ///     Handler is needed for UI updates (especially media player - audio progress bar)
         /// </summary>
-        private Handler handler = new Handler();
+        private readonly Handler handler = new Handler ();
 
         //Subclass for media player binding
         private readonly IServiceConnection mediaPlayerConnection;
@@ -643,7 +640,7 @@ namespace de.upb.hip.mobile.droid.Activities {
             Toast.MakeText (this, Resource.String.audio_playing_indicator, ToastLength.Short).Show ();
             try
             {
-                if (!mediaPlayerService.AudioFileIsSet )
+                if (!mediaPlayerService.AudioFileIsSet)
                 {
                     mediaPlayerService.SetAudioFile (exhibit.Pages [currentPageIndex].Audio);
                 }
@@ -671,9 +668,9 @@ namespace de.upb.hip.mobile.droid.Activities {
 
         private void UpdateProgressbar ()
         {
-            startTime = mediaPlayerService.GetTimeCurrent();
-            audioSeekbar.Progress = (int)startTime;
-            handler.PostDelayed(UpdateProgressbar, 100);
+            startTime = mediaPlayerService.GetTimeCurrent ();
+            audioSeekbar.Progress = (int) startTime;
+            handler.PostDelayed (UpdateProgressbar, 100);
         }
 
         /// <summary>
