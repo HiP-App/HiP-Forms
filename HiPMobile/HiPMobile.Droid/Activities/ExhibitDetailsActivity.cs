@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System;
 using System.Linq;
 using Android.Animation;
 using Android.App;
@@ -30,7 +31,9 @@ using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using IO.Codetail.Animation;
 using Java.Lang;
+using Exception = Java.Lang.Exception;
 using Math = System.Math;
+using Object = Java.Lang.Object;
 using Toolbar = Android.Support.V7.Widget.Toolbar;
 using ViewAnimationUtils = IO.Codetail.Animation.ViewAnimationUtils;
 
@@ -62,6 +65,13 @@ namespace de.upb.hip.mobile.droid.Activities {
             var toolbar = (Toolbar) FindViewById (Resource.Id.toolbar);
             toolbar.SetNavigationIcon (Resource.Drawable.ic_clear_white_24dp);
             SetSupportActionBar (toolbar);
+            audioSeekbar = FindViewById<SeekBar> (Resource.Id.audio_progress_bar);
+            audioSeekbar.ProgressChanged += (sender, args) => {
+                if (mediaPlayerService != null && args.FromUser)
+                {
+                    mediaPlayerService.SeekTo (args.Progress);
+                }
+            };
 
             SupportActionBar.SetDisplayHomeAsUpEnabled (true);
 
@@ -573,6 +583,21 @@ namespace de.upb.hip.mobile.droid.Activities {
         private MediaPlayerService mediaPlayerService;
         private bool isBound;
 
+        /// <summary>
+        /// The progressbar in the audio menu.
+        /// </summary>
+        private SeekBar audioSeekbar;
+
+        /// <summary>
+        /// Used for audio playing.
+        /// </summary>
+        private double startTime = 0;
+
+        /// <summary>
+        /// Handler is needed for UI updates (especially media player - audio progress bar)
+        /// </summary>
+        private Handler handler = new Handler();
+
         //Subclass for media player binding
         private readonly IServiceConnection mediaPlayerConnection;
 
@@ -622,7 +647,13 @@ namespace de.upb.hip.mobile.droid.Activities {
                 {
                     mediaPlayerService.SetAudioFile (exhibit.Pages [currentPageIndex].Audio);
                 }
+                mediaPlayerService.AddOnCompleteListener ((sender, args) => {
+                    isAudioPlaying = false;
+                    UpdatePlayPauseButtonIcon ();
+                });
                 mediaPlayerService.StartSound ();
+                audioSeekbar.Max = (int) mediaPlayerService.GetTimeTotal ();
+                handler.PostDelayed (UpdateProgressbar, 100);
             }
             catch (IllegalStateException e)
             {
@@ -636,6 +667,13 @@ namespace de.upb.hip.mobile.droid.Activities {
             {
                 isAudioPlaying = false;
             }
+        }
+
+        private void UpdateProgressbar ()
+        {
+            startTime = mediaPlayerService.GetTimeCurrent();
+            audioSeekbar.Progress = (int)startTime;
+            handler.PostDelayed(UpdateProgressbar, 100);
         }
 
         /// <summary>

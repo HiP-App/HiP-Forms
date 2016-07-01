@@ -191,7 +191,7 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\activity_exhibit_details.axml" />
-    <AndroidResource Include="Resources\layout\activity_exhibit_details_audio_toolbar.xml" />
+    <AndroidResource Include="Resources\layout\activity_exhibit_details_audio_toolbar.axml" />
     <AndroidResource Include="Resources\layout\activity_exhibit_details_bottom_sheet.xml" />
     <AndroidResource Include="Resources\layout\activity_exhibit_details_caption_dialog.xml" />
     <AndroidResource Include="Resources\layout\activity_exhibit_details_content_main.xml" />
@@ -215,6 +215,7 @@
     <AndroidResource Include="Resources\menu\activity_exhibit_details_menu_main.xml" />
     <AndroidResource Include="Resources\drawable-hdpi\ic_headset_white_24dp.xml" />
     <AndroidResource Include="Resources\drawable-hdpi\ic_pause_black_36dp.xml" />
+    <AndroidResource Include="Resources\drawable-hdpi\audioseekbar.xml" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
