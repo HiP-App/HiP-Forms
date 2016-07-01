@@ -15,13 +15,11 @@
 //  */
 
 
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using Android;
 using Android.App;
 using Android.Content.PM;
-using Android.Graphics;
 using Android.Graphics.Drawables;
 using Android.OS;
 using Android.Support.Design.Widget;
@@ -37,14 +35,12 @@ using de.upb.hip.mobile.droid.Listeners;
 using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using HockeyApp;
-using Java.Util;
-using Osmdroid;
-using Osmdroid.Api;
 using Osmdroid.TileProvider.TileSource;
 using Osmdroid.Util;
+using Osmdroid.Views;
 using Osmdroid.Views.Overlay;
 using Realms;
-using MapView = Osmdroid.Views.MapView;
+using ActionBarDrawerToggle = Android.Support.V7.App.ActionBarDrawerToggle;
 
 namespace de.upb.hip.mobile.droid.Activities {
     [Activity (Theme = "@style/AppTheme",
@@ -52,19 +48,18 @@ namespace de.upb.hip.mobile.droid.Activities {
     public class MainActivity : AppCompatActivity {
 
         private RecyclerView.Adapter adapter;
+        private DrawerLayout drawerLayout;
         private ExhibitSet exhibitSet;
         private GeoLocation geoLocation;
-        private DrawerLayout drawerLayout;
-        private MyLocationOverlay myLocationOverlay;
         private List<OverlayItem> mapMarkerArray;
-        private MapView mapView;
         private Drawable mapMarkerIcon;
         private ItemizedIconOverlay mapMarkerItemizedOverlay;
+        private MapView mapView;
+        private MyLocationOverlay myLocationOverlay;
 
 
         // Recycler View: MainList
         private RecyclerView recyclerView;
-
 
 
         protected override void OnCreate (Bundle bundle)
@@ -124,19 +119,18 @@ namespace de.upb.hip.mobile.droid.Activities {
         {
             drawerLayout = FindViewById<DrawerLayout> (Resource.Id.mainActivityDrawerLayout);
 
-            
 
             // Init toolbar
             var toolbar = FindViewById<Toolbar> (Resource.Id.toolbar);
             SetSupportActionBar (toolbar);
-            base.SupportActionBar.Title = "History in Paderborn";
+            SupportActionBar.Title = "History in Paderborn";
 
             // Attach item selected handler to navigation view
             var navigationView = FindViewById<NavigationView> (Resource.Id.nav_view);
             navigationView.NavigationItemSelected += NavigationView_NavigationItemSelected;
 
             // Create ActionBarDrawerToggle button and add it to the toolbar
-            var drawerToggle = new Android.Support.V7.App.ActionBarDrawerToggle (this, drawerLayout, toolbar, Resource.String.drawer_open, Resource.String.drawer_close);
+            var drawerToggle = new ActionBarDrawerToggle (this, drawerLayout, toolbar, Resource.String.drawer_open, Resource.String.drawer_close);
             drawerLayout.SetDrawerListener (drawerToggle);
             drawerToggle.SyncState ();
         }
@@ -154,7 +148,7 @@ namespace de.upb.hip.mobile.droid.Activities {
                 != Permission.Granted)
             {
                 ActivityCompat.RequestPermissions (this,
-                                                   new String[]
+                                                   new[]
                                                    {Manifest.Permission.AccessFineLocation, Manifest.Permission.ReadExternalStorage, Manifest.Permission.WriteExternalStorage},
                                                    0);
             }
@@ -177,7 +171,6 @@ namespace de.upb.hip.mobile.droid.Activities {
 
             // hockeyapp code
             CheckForUpdates ();
-
         }
 
         private void SetUpMap ()
@@ -200,47 +193,46 @@ namespace de.upb.hip.mobile.droid.Activities {
             mapController.SetCenter (centreOfMap);
 
             SetAllMarkers ();
-
         }
 
 
-        private void SetAllMarkers()
+        private void SetAllMarkers ()
         {
             //SetUp Markers TODO rewrite with markers from bonuspack
-            mapMarkerArray = new List<OverlayItem>();
-            myLocationOverlay = new MyLocationOverlay(this, mapView);
-            mapMarkerIcon = ContextCompat.GetDrawable(this, Resource.Drawable.marker_blue);
-            var myScaleBarOverlay = new ScaleBarOverlay(this);
+            mapMarkerArray = new List<OverlayItem> ();
+            myLocationOverlay = new MyLocationOverlay (this, mapView);
+            mapMarkerIcon = ContextCompat.GetDrawable (this, Resource.Drawable.marker_blue);
+            var myScaleBarOverlay = new ScaleBarOverlay (this);
 
             foreach (var e in exhibitSet.InitSet)
             {
                 //One Marker Object
-                var marker = new OverlayItem(e.Marker.Title, e.Marker.Text, new GeoPoint(e.Location.Latitude, e.Location.Longitude));
-                marker.SetMarker(mapMarkerIcon);
-                mapMarkerArray.Add(marker);
+                var marker = new OverlayItem (e.Marker.Title, e.Marker.Text, new GeoPoint (e.Location.Latitude, e.Location.Longitude));
+                marker.SetMarker (mapMarkerIcon);
+                mapMarkerArray.Add (marker);
             }
 
             //Initialize this after markers are added to 
-            mapMarkerItemizedOverlay = new ItemizedIconOverlay(this, mapMarkerArray, null);
-            mapView.OverlayManager.Add(mapMarkerItemizedOverlay);
-            mapView.OverlayManager.Add(myScaleBarOverlay);
-            mapView.OverlayManager.Add(myLocationOverlay);
-            mapView.PostInvalidate();
+            mapMarkerItemizedOverlay = new ItemizedIconOverlay (this, mapMarkerArray, null);
+            mapView.OverlayManager.Add (mapMarkerItemizedOverlay);
+            mapView.OverlayManager.Add (myScaleBarOverlay);
+            mapView.OverlayManager.Add (myLocationOverlay);
+            mapView.PostInvalidate ();
         }
 
         //handles the action when touching the menuitems in navigationview
-        void NavigationView_NavigationItemSelected (object sender, NavigationView.NavigationItemSelectedEventArgs e)
+        private void NavigationView_NavigationItemSelected (object sender, NavigationView.NavigationItemSelectedEventArgs e)
         {
             switch (e.MenuItem.ItemId)
             {
-                case (Resource.Id.nav_home):
+                case Resource.Id.nav_home:
                     // React on 'Home' selection
                     break;
-                case (Resource.Id.nav_route):
+                case Resource.Id.nav_route:
                     // React on 'Messages' selection
                     break;
-                case (Resource.Id.nav_licenses):
-                    StartActivity (typeof(LicensingActivity));
+                case Resource.Id.nav_licenses:
+                    StartActivity (typeof (LicensingActivity));
                     break;
             }
 
@@ -269,22 +261,22 @@ namespace de.upb.hip.mobile.droid.Activities {
         protected override void OnPause ()
         {
             base.OnPause ();
-            myLocationOverlay.DisableMyLocation();
-            myLocationOverlay.DisableCompass();
+            myLocationOverlay.DisableMyLocation ();
+            myLocationOverlay.DisableCompass ();
 
             // hockeyapp code
             UnregisterManagers ();
         }
 
-        public override void OnBackPressed()
+        public override void OnBackPressed ()
         {
-            if (this.drawerLayout.IsDrawerOpen(GravityCompat.Start))
+            if (drawerLayout.IsDrawerOpen (GravityCompat.Start))
             {
-                this.drawerLayout.CloseDrawer(GravityCompat.Start);
+                drawerLayout.CloseDrawer (GravityCompat.Start);
             }
             else
             {
-               base.OnBackPressed();
+                base.OnBackPressed ();
             }
         }
 
