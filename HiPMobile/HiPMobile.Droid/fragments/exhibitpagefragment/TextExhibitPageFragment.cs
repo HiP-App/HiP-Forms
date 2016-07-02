@@ -16,6 +16,7 @@ using Android.OS;
 using Android.Views;
 using Android.Widget;
 using de.upb.hip.mobile.droid.Helpers;
+using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using Java.Lang;
 
@@ -24,8 +25,16 @@ namespace de.upb.hip.mobile.droid.fragments.exhibitpagefragment {
 
         private TextPage page;
 
+        private readonly string INSTANCE_STATE_PAGE = "instanceStatePage";
+
         public override View OnCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
+            if (savedInstanceState?.GetString (INSTANCE_STATE_PAGE) != null)
+            {
+                string pageId = savedInstanceState.GetString (INSTANCE_STATE_PAGE);
+                page = PageManager.GetTextPage (pageId);
+            }
+
             // Inflate the layout for this fragment
             var v = inflater.Inflate (Resource.Layout.fragment_exhibitpage_text, container, false);
 
@@ -33,6 +42,13 @@ namespace de.upb.hip.mobile.droid.fragments.exhibitpagefragment {
             textView.Text = page.Text;
 
             return v;
+        }
+
+        public override void OnSaveInstanceState (Bundle outState)
+        {
+            base.OnSaveInstanceState (outState);
+            outState.PutString (INSTANCE_STATE_PAGE, page.Id);
+
         }
 
         public override BottomSheetConfig GetBottomSheetConfig ()

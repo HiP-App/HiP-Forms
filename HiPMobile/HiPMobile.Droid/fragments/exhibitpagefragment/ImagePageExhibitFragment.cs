@@ -18,6 +18,7 @@ using Android.Views;
 using Android.Widget;
 using de.upb.hip.mobile.droid.fragments.bottomsheetfragment;
 using de.upb.hip.mobile.droid.Helpers;
+using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using Java.Lang;
 
@@ -27,7 +28,7 @@ namespace de.upb.hip.mobile.droid.fragments.exhibitpagefragment {
     /// </summary>
     public class ImagePageExhibitFragment : ExhibitPageFragment {
 
-        public static readonly string INSTANCE_STATE_PAGE = "insanceStatePage";
+        public static readonly string INSTANCE_STATE_PAGE = "instanceStatePage";
 
         private DrawView drawView;
 
@@ -38,9 +39,10 @@ namespace de.upb.hip.mobile.droid.fragments.exhibitpagefragment {
             // Inflate the layout for this fragment
             var v = inflater.Inflate (Resource.Layout.fragment_exhibitpage_image, container, false);
 
-            if (savedInstanceState != null && savedInstanceState.GetSerializable (INSTANCE_STATE_PAGE) != null)
+            if (savedInstanceState?.GetString (INSTANCE_STATE_PAGE) != null)
             {
-                page = (ImagePage) savedInstanceState.GetSerializable (INSTANCE_STATE_PAGE);
+                var pageId = savedInstanceState.GetString (INSTANCE_STATE_PAGE);
+                page = PageManager.GetImagePage (pageId);
             }
 
             drawView = (DrawView) v.FindViewById (Resource.Id.fragment_exhibitpage_image_imageview);
@@ -65,7 +67,7 @@ namespace de.upb.hip.mobile.droid.fragments.exhibitpagefragment {
         public override void OnSaveInstanceState (Bundle bundle)
         {
             base.OnSaveInstanceState (bundle);
-            //bundle.PutSerializable(INSTANCE_STATE_PAGE, page); // TODO handle recreation?
+            bundle.PutString(INSTANCE_STATE_PAGE, page.Id);
         }
 
         public override BottomSheetConfig GetBottomSheetConfig ()
