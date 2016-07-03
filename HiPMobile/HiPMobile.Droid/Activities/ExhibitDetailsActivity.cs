@@ -488,6 +488,12 @@ namespace de.upb.hip.mobile.droid.Activities {
             dialog.SetTitle (Resource.String.audio_toolbar_cc);
             dialog.SetContentView (Resource.Layout.activity_exhibit_details_caption_dialog);
 
+            //Prevent dialogue from being too small
+            DisplayMetrics metrics = getResources().getDisplayMetrics();
+            int width = metrics.widthPixels;
+            int height = metrics.heightPixels;
+            dialog.getWindow().setLayout((6 * width) / 7, (4 * height) / 5);
+
             // setup text view for captions with clickable footnotes
             var tv = (TextView) dialog.FindViewById (Resource.Id.captionTextView);
             if (tv != null)
