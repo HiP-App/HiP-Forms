@@ -30,13 +30,8 @@ namespace de.upb.hip.mobile.droid.Helpers {
     [Service]
     public class MediaPlayerService : Service, MediaPlayer.IOnPreparedListener, MediaPlayer.IOnErrorListener {
 
-        public static readonly string ACTION_PLAY = "de.upb.hip.mobile.PLAY"; //the intentions can probably be erased
-        public static readonly string ACTION_STOP = "de.upb.hip.mobile.STOP";
-
-        private Audio a1 = BusinessEntitiyFactory.CreateBusinessObject<Audio> ();
-
-        private bool AudioFileIsSet;
         private readonly IBinder binder;
+        private readonly string logtag = "MEDIAPLAYERSERVICE";
 
         private MediaPlayer mediaPlayer;
 
@@ -44,6 +39,8 @@ namespace de.upb.hip.mobile.droid.Helpers {
         {
             binder = new MediaPlayerBinder (this);
         }
+
+        public bool AudioFileIsSet { get; private set; }
 
         public bool OnError (MediaPlayer mp, MediaError what, int extra)
         {
@@ -64,71 +61,37 @@ namespace de.upb.hip.mobile.droid.Helpers {
 
         public override void OnCreate ()
         {
-            // is this the onCreate in android?
-            try
-            {
-                //the service is bound, therefore this function is used rather than OnStartCommand
-                //mediaPlayer = MediaPlayer.Create(this, a1.getAudioDir());
-                mediaPlayer.SetAudioStreamType (Stream.Music);
-                mediaPlayer.SetOnPreparedListener (this);
-                mediaPlayer.PrepareAsync ();
-            }
-            catch (Exception e)
-            {
-            }
-        }
-
-        public int OnStartCommand (Intent intent, int flags, int startId)
-        {
-            try
-            {
-                //            mMediaPlayer = MediaPlayer.create(this, songList[current].getAudioDir());
-                mediaPlayer.SetAudioStreamType (Stream.Music);
-                mediaPlayer.SetOnPreparedListener (this);
-                mediaPlayer.PrepareAsync ();
-            }
-            catch (Exception e)
-            {
-                //            add an exception handling
-            }
-
-            return 1; //keeps the service running until told otherwise
-            // 1 = START_STICKY
         }
 
         //following are the functions for the app to use to control the media player
         public void StartSound ()
         {
-            if (!AudioFileIsSet)
+            if (AudioFileIsSet)
             {
-                mediaPlayer = new MediaPlayer ();
+                mediaPlayer.Start ();
             }
-            mediaPlayer.Start ();
         }
 
         public void StopSound ()
         {
-            mediaPlayer.Stop ();
+            if (AudioFileIsSet)
+            {
+                mediaPlayer.Stop ();
+            }
         }
 
         public void PauseSound ()
         {
-            mediaPlayer.Pause ();
-        }
-
-        public void changeAudioFile ()
-        {
-            try
+            if (AudioFileIsSet)
             {
-                mediaPlayer.Reset ();
-            }
-            catch (Exception e)
-            {
+                mediaPlayer.Pause ();
             }
         }
 
-        /** sets a specific audio file*/
-
+        /// <summary>
+        ///     Sets a specific audio file and prepares it for beeing played
+        /// </summary>
+        /// <param name="audio"></param>
         public void SetAudioFile (Audio audio)
         {
             try
@@ -138,7 +101,7 @@ namespace de.upb.hip.mobile.droid.Helpers {
                     mediaPlayer.Stop ();
                     mediaPlayer.Reset ();
                 }
-                //may be needed for handling audio files later. until know, leave this commented in here.
+
                 var path = CopyAudioToTemp (audio);
                 mediaPlayer = new MediaPlayer ();
                 mediaPlayer.SetAudioStreamType (Stream.Music);
@@ -148,35 +111,8 @@ namespace de.upb.hip.mobile.droid.Helpers {
             }
             catch (Exception e)
             {
-                //            add an exception handling
+                Log.Error (logtag, e.Message);
             }
-        }
-
-        /** sets a specific audio file*/
-
-        public void SetAudioFile (int audio)
-        {
-            try
-            {
-                mediaPlayer.Stop ();
-                mediaPlayer.Reset ();
-                //mediaPlayer = MediaPlayer.create(this, audio);
-                AudioFileIsSet = true;
-            }
-            catch (Exception e)
-            {
-                //            add an exception handling
-            }
-        }
-
-        public bool GetAudioFileIsSet ()
-        {
-            //since the mediaplayer is used as a service, in the beginning it can't yet be called
-            //as it is not yet created. however, as soon as the play button is used, the media player
-            //surely is existend. the first time, it is pushed, there is not yet set an audiofile
-            //because it couldn't be set before, so this needs to be checked and an audio file can then
-            //be set if necessary
-            return AudioFileIsSet;
         }
 
         private string CopyAudioToTemp (Audio audio)
@@ -193,9 +129,44 @@ namespace de.upb.hip.mobile.droid.Helpers {
             }
             catch (IOException ioe)
             {
-                Log.Warn ("MedialPlayerService", "Could not write audio to temp file");
+                Log.Warn (logtag, "Could not write audio to temp file, exception message:" + ioe.Message);
             }
             return filepath;
+        }
+
+        /// <summary>
+        ///     Gets the total time for the currently playing audio.
+        /// </summary>
+        /// <returns>The total duration of the audio.</returns>
+        public long GetTimeTotal ()
+        {
+            return mediaPlayer.Duration;
+        }
+
+        /// <summary>
+        ///     Gets the currently played time for the audio.
+        /// </summary>
+        /// <returns>The already played duration of the audio.</returns>
+        public long GetTimeCurrent ()
+        {
+            return mediaPlayer.CurrentPosition;
+        }
+
+        /// <summary>
+        ///     Seeks to the given time in the audio.
+        /// </summary>
+        /// <param name="time">The time in miliseconds to seek to.</param>
+        public void SeekTo (int time)
+        {
+            mediaPlayer.SeekTo (time);
+        }
+
+        public void AddOnCompleteListener (EventHandler del)
+        {
+            if (mediaPlayer != null)
+            {
+                mediaPlayer.Completion += del;
+            }
         }
 
         public class MediaPlayerBinder : Binder {

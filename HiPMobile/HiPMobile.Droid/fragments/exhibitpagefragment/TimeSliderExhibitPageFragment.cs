@@ -32,11 +32,11 @@ namespace de.upb.hip.mobile.droid.fragments.exhibitpagefragment {
 
         public static readonly string INSTANCE_STATE_PAGE = "insanceStatePage";
 
+        private readonly List<PictureData> mPicDataList = new List<PictureData> ();
+
         private ImageView mFirstImageView;
         private TextView mImageDescription;
         private ImageView mNextImageView;
-
-        private readonly List<PictureData> mPicDataList = new List<PictureData> ();
         private CustomSeekBar mSeekBar;
         private TextView mThumbSlidingText;
 
@@ -185,9 +185,10 @@ namespace de.upb.hip.mobile.droid.fragments.exhibitpagefragment {
         /// </summary>
         private class PictureData {
 
-            internal int DotPosition;
             internal readonly Drawable Drawable;
             internal readonly int Year;
+
+            internal int DotPosition;
 
             public PictureData (Drawable drawable, int year)
             {
@@ -200,9 +201,10 @@ namespace de.upb.hip.mobile.droid.fragments.exhibitpagefragment {
 
         private class CustomOnSeekBarChangeListener : Object, SeekBar.IOnSeekBarChangeListener {
 
+            private readonly TimeSliderExhibitPageFragment parent;
+
             private bool forward = true;
             private int nearest;
-            private readonly TimeSliderExhibitPageFragment parent;
             private int progressStart;
 
             public CustomOnSeekBarChangeListener (TimeSliderExhibitPageFragment parent)
