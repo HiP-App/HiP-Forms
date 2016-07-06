@@ -146,8 +146,8 @@
     <ITunesArtwork Include="Resources\ITunesArtwork%402x" />
   </ItemGroup>
   <ItemGroup>
-    <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
-    <InterfaceDefinition Include="Main.storyboard" />
+    <InterfaceDefinition Include="Soryboards\LaunchScreen.storyboard" />
+    <InterfaceDefinition Include="Soryboards\Main.storyboard" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -155,21 +155,33 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ProgressIndicatorViewController.cs" />
+    <Compile Include="ProgressIndicatorViewController.designer.cs">
+      <DependentUpon>ProgressIndicatorViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewCotrollers\LaunchScreenViewController.cs" />
+    <Compile Include="ViewCotrollers\LaunchScreenViewController.designer.cs">
+      <DependentUpon>LaunchScreenViewController.cs</DependentUpon>
+    </Compile>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="ViewController.cs" />
-    <Compile Include="ViewController.designer.cs">
+    <Compile Include="ViewCotrollers\ViewController.cs" />
+    <Compile Include="ViewCotrollers\ViewController.designer.cs">
       <DependentUpon>ViewController.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="FodyWeavers.xml" />
+    <BundleResource Include="Resources\hiphop.jpg" />
   </ItemGroup>
   <ItemGroup>
     <XamarinComponentReference Include="MaterialControls">
       <Visible>False</Visible>
       <Version>1.1.0</Version>
     </XamarinComponentReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
