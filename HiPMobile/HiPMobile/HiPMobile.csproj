@@ -34,6 +34,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="BusinessLayer\Managers\ExhibitManager.cs" />
+    <Compile Include="BusinessLayer\Managers\PageManager.cs" />
     <Compile Include="BusinessLayer\Managers\RouteManager.cs" />
     <Compile Include="BusinessLayer\Models\BusinessEntitiyFactory.cs" />
     <Compile Include="BusinessLayer\Models\GeneratedCode\AppetizerPage.cs" />

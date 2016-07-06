@@ -21,6 +21,7 @@ using Android.Views;
 using Android.Widget;
 using de.upb.hip.mobile.droid.fragments.bottomsheetfragment;
 using de.upb.hip.mobile.droid.Helpers;
+using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using Object = Java.Lang.Object;
 
@@ -32,11 +33,11 @@ namespace de.upb.hip.mobile.droid.fragments.exhibitpagefragment {
 
         public static readonly string INSTANCE_STATE_PAGE = "insanceStatePage";
 
+        private readonly List<PictureData> mPicDataList = new List<PictureData> ();
+
         private ImageView mFirstImageView;
         private TextView mImageDescription;
         private ImageView mNextImageView;
-
-        private readonly List<PictureData> mPicDataList = new List<PictureData> ();
         private CustomSeekBar mSeekBar;
         private TextView mThumbSlidingText;
 
@@ -68,14 +69,21 @@ namespace de.upb.hip.mobile.droid.fragments.exhibitpagefragment {
             view = inflater.Inflate (Resource.Layout.fragment_exhibitpage_timeslider, container, false);
 
 
-            if (savedInstanceState != null && savedInstanceState.GetSerializable (INSTANCE_STATE_PAGE) != null)
+            if (savedInstanceState?.GetString (INSTANCE_STATE_PAGE) != null)
             {
-                page = (TimeSliderPage) savedInstanceState.GetSerializable (INSTANCE_STATE_PAGE);
+                var pageId = savedInstanceState.GetString (INSTANCE_STATE_PAGE);
+                page = PageManager.GetTimesliderPage (pageId);
             }
             SetData ();
             Init ();
 
             return view;
+        }
+
+        public override void OnSaveInstanceState (Bundle outState)
+        {
+            base.OnSaveInstanceState (outState);
+            outState.PutString (INSTANCE_STATE_PAGE, page.Id);
         }
 
         /// <summary>
@@ -185,9 +193,10 @@ namespace de.upb.hip.mobile.droid.fragments.exhibitpagefragment {
         /// </summary>
         private class PictureData {
 
-            internal int DotPosition;
             internal readonly Drawable Drawable;
             internal readonly int Year;
+
+            internal int DotPosition;
 
             public PictureData (Drawable drawable, int year)
             {
@@ -200,9 +209,10 @@ namespace de.upb.hip.mobile.droid.fragments.exhibitpagefragment {
 
         private class CustomOnSeekBarChangeListener : Object, SeekBar.IOnSeekBarChangeListener {
 
+            private readonly TimeSliderExhibitPageFragment parent;
+
             private bool forward = true;
             private int nearest;
-            private readonly TimeSliderExhibitPageFragment parent;
             private int progressStart;
 
             public CustomOnSeekBarChangeListener (TimeSliderExhibitPageFragment parent)

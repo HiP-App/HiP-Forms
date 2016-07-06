@@ -18,7 +18,7 @@ limitations under the License.-->
   <style name="AppTheme" parent="AppTheme.Base" />
 
 
-  <style name="AppTheme.WithActionBar" parent = "AppTheme">
+  <style name="AppTheme.WithActionBar" parent="AppTheme">
     <item name="windowActionBar">false</item>
   </style>
 
@@ -37,7 +37,7 @@ limitations under the License.-->
   </style>
 
   <!-- added for ExhibitDetailsActivity -->
-  <style name="AppTheme.NoActionBar" parent="Theme.AppCompat">
+  <style name="AppTheme.NoActionBar" parent="Theme.AppCompat.Light.DarkActionBar">
     <item name="windowActionBar">false</item>
     <item name="windowNoTitle">true</item>
     <item name="colorPrimary">@color/colorPrimary</item>
