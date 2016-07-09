@@ -47,7 +47,7 @@ namespace de.upb.hip.mobile.droid.fragments.exhibitpagefragment {
 
             drawView = (DrawView) v.FindViewById (Resource.Id.fragment_exhibitpage_image_imageview);
             drawView.SetImageDrawable (page.Image.GetDrawable ());
-            if (page.Areas != null)
+            if (page.Areas != null && page.Areas.Count > 0)
             {
                 drawView.Rectangles.AddRange (page.Areas);
             }
