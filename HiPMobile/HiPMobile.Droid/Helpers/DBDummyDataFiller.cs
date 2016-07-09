@@ -61,7 +61,7 @@ namespace de.upb.hip.mobile.droid.Helpers {
             dom.Pages.Add (CreateAppetizerPage ("Der Dom von außen", domImg));
             dom.Pages.Add (CreateImagePage (domImg, new[] {CreateRectangle (100, 80, 250, 180)}, new[] {"Der 93 Meter hohe Kirchturm."}));
             dom.Pages.Add (CreateTextPage (lorem, CreateAudio ("sprechertext.mp3", lorem, "sprechertext")));
-            dom.Pages.Add (CreateTimeSliderPage ("Timeslider", "Ein Test für die Timesliderpage mit zwei Bildern", new[] {1000L, 1973}, new[] {domImg, uniImg}));
+            dom.Pages.Add (CreateTimeSliderPage ("Timeslider", "Ein Test für die Timesliderpage mit zwei Bildern", new[] {1000L, 1973}, new[] {domImg, uniImg}, false));
         }
 
         private Exhibit CreateExhibit (string name, string description, double latitude, double longitude,
@@ -118,7 +118,7 @@ namespace de.upb.hip.mobile.droid.Helpers {
             return page;
         }
 
-        private Page CreateTimeSliderPage (string title, string text, long[] dates, Image[] images)
+        private Page CreateTimeSliderPage (string title, string text, long[] dates, Image[] images, bool hideYearNumbers)
         {
             if (dates.Length < 2 || images.Length < 2)
                 throw new IllegalArgumentException ("At least two images and dates are necessary.");
@@ -130,6 +130,7 @@ namespace de.upb.hip.mobile.droid.Helpers {
             page.TimeSliderPage = tsPage;
             tsPage.Title = title;
             tsPage.Text = text;
+            tsPage.HideYearNumbers = hideYearNumbers;
             foreach (var value in dates)
             {
                 var longElement = BusinessEntitiyFactory.CreateBusinessObject<LongElement> ();

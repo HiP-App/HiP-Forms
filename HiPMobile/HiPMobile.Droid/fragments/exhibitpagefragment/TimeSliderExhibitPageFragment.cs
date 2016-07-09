@@ -77,6 +77,12 @@ namespace de.upb.hip.mobile.droid.fragments.exhibitpagefragment {
             SetData ();
             Init ();
 
+            if (page.HideYearNumbers)
+            {
+                view.FindViewById(Resource.Id.displayImageSliderSeekBarFirstText).Visibility = ViewStates.Invisible;
+                view.FindViewById(Resource.Id.displayImageSliderSeekBarEndText).Visibility = ViewStates.Invisible;
+            }
+
             return view;
         }
 
@@ -267,8 +273,11 @@ namespace de.upb.hip.mobile.droid.fragments.exhibitpagefragment {
                     var xPos = (seekBar.Right - seekBar.Left) / seekBar.Max *
                                seekBar.Progress;
                     parent.mThumbSlidingText.SetPadding (xPos, 0, 0, 0);
-                    parent.mThumbSlidingText.Text = (int) (parent.mPicDataList [0].Year + range * (float) progressValue / 100.0) + " " +
-                                                    parent.GetString (Resource.String.after_christ);
+                    if (!parent.page.HideYearNumbers)
+                    {
+                        parent.mThumbSlidingText.Text = (int)(parent.mPicDataList[0].Year + range * (float)progressValue / 100.0) + " " +
+                                                    parent.GetString(Resource.String.after_christ);
+                    }
                 }
                 else
                 {
