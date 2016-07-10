@@ -49,7 +49,7 @@ namespace de.upb.hip.mobile.droid.Adapters {
         ///     Calculates the size of displayedExhibitSet (invoked by the layout manager).
         /// </summary>
         public override int ItemCount {
-            get { return displayedExhibitSet.InitSet.Count (); }
+            get { return displayedExhibitSet.ActiveSet.Count (); }
         }
 
 
@@ -67,7 +67,7 @@ namespace de.upb.hip.mobile.droid.Adapters {
             var vh = holder as ViewHolder;
 
             // get Exhibit from displayedExhibitSet at position
-            var exhibit = displayedExhibitSet.InitSet.ElementAt (position);
+            var exhibit = displayedExhibitSet.ActiveSet.ElementAt (position);
 
             // update the holder with new data
             vh.Name.SetText (exhibit.Name, TextView.BufferType.Normal);
