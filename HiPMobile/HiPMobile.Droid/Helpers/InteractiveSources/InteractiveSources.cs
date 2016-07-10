@@ -38,7 +38,8 @@ namespace de.upb.hip.mobile.droid.Helpers.InteractiveSources {
         /// <param name="substitute">Text that is substituted for the original source.</param>
         /// <param name="action">Action that should be started when the user interacts with the source.</param>
         /// <returns>A SpannableString parsed from the text. Returns null, if a parameter is null.</returns>
-        public SpannableString Parse (string text, string substitute, IInteractiveSourceAction action)
+        public SpannableString Parse (string text, 
+            IInteractiveSourceSubstitute substitute, IInteractiveSourceAction action)
         {
             if (text == null || substitute == null || action == null)
                 return null;
@@ -49,6 +50,8 @@ namespace de.upb.hip.mobile.droid.Helpers.InteractiveSources {
 
             // used to store the starting index of the source and the source itself
             List<Source> sources = new List<Source> ();
+
+            string sub = "";
 
             // collect sources
             while (matcher.Find ())
@@ -64,7 +67,9 @@ namespace de.upb.hip.mobile.droid.Helpers.InteractiveSources {
                 sources.Add (new Source (source, matcher.Start ()));
 
                 // replace footnote markup with substitute
-                text = text.Replace (match, substitute);
+
+                sub = substitute.NextSubstitute ();
+                text = text.Replace (match, sub);
                 matcher = pattern.Matcher (text); // working with new text to get correct start 
             }
 
@@ -79,7 +84,7 @@ namespace de.upb.hip.mobile.droid.Helpers.InteractiveSources {
                 str.SetSpan (
                     ConvertSrcToClickableSpan (src, action),
                     src.StartIndex,
-                    src.StartIndex + substitute.Length,
+                    src.StartIndex + sub.Length,
                     SpanTypes.ExclusiveExclusive);
             }
 

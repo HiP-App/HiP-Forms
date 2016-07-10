@@ -517,7 +517,7 @@ namespace de.upb.hip.mobile.droid.Activities {
                 var parser = new InteractiveSources ();
                 tv.TextFormatted = parser.Parse (
                     caption,
-                    GetString (Resource.String.source_substitute),
+                    new ConsecutiveNumberInteractiveSourceSubstitute (0), // alternatively: new ConstantInteractiveSourceSubstitute (GetString(Resource.String.source_substitute)),
                     new SnackbarInteractiveSourceAction (coordinatorLayout));
                 
             }
