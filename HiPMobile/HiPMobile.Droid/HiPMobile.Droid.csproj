@@ -128,6 +128,10 @@
     <Compile Include="Activities\LicensingActivity.cs" />
     <Compile Include="Activities\ExhibitDetailsActivity.cs" />
     <Compile Include="Activities\MainActivity.cs" />
+    <Compile Include="Helpers\InteractiveSources\IInteractiveSourceAction.cs" />
+    <Compile Include="Helpers\InteractiveSources\InteractiveSources.cs" />
+    <Compile Include="Helpers\InteractiveSources\SnackbarInteractiveSourceAction.cs" />
+    <Compile Include="Helpers\InteractiveSources\ToastInteractiveSourceAction.cs" />
     <Compile Include="Listeners\MyCustomSimpleOnGestureListener.cs" />
     <Compile Include="Activities\SplashScreenActivity.cs" />
     <Compile Include="Adapters\MainRecyclerAdapter.cs" />
