@@ -14,10 +14,17 @@
 
 
 namespace de.upb.hip.mobile.droid.Helpers.InteractiveSources {
+    /// <summary>
+    /// Implements IInteractiveSourceSubstitute by returning a constant substitute text.
+    /// </summary>
     public class ConstantInteractiveSourceSubstitute : IInteractiveSourceSubstitute {
 
         private readonly string substitute;
 
+        /// <summary>
+        /// Sets the substitute text.
+        /// </summary>
+        /// <param name="sub">Substitute text that will be returned on every call of NextSubstitute().</param>
         public ConstantInteractiveSourceSubstitute (string sub)
         {
             substitute = sub;

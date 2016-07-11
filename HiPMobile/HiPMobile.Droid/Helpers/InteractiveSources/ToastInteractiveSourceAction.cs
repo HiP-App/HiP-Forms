@@ -16,10 +16,18 @@ using Android.Content;
 using Android.Widget;
 
 namespace de.upb.hip.mobile.droid.Helpers.InteractiveSources {
+    /// <summary>
+    /// Implements IInteractiveSourceAction by displaying a Toast with 
+    /// the source's text.
+    /// </summary>
     public class ToastInteractiveSourceAction : IInteractiveSourceAction {
 
-        private Context context = null;
+        private readonly Context context = null;
 
+        /// <summary>
+        /// Sets the context that is used to display the Toast.
+        /// </summary>
+        /// <param name="context"></param>
         public ToastInteractiveSourceAction (Context context)
         {
             this.context = context;

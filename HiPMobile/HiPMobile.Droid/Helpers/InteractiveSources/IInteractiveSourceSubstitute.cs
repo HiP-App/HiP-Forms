@@ -14,8 +14,16 @@
 
 
 namespace de.upb.hip.mobile.droid.Helpers.InteractiveSources {
+    /// <summary>
+    /// Uses to determine the substitute that replaces the source markdown 
+    /// of an InteractiveSource
+    /// </summary>
     public interface IInteractiveSourceSubstitute {
 
+        /// <summary>
+        /// Returns the next substitute.
+        /// </summary>
+        /// <returns>Next substitute string.</returns>
         string NextSubstitute ();
 
     }

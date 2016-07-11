@@ -13,13 +13,18 @@
 // limitations under the License.
 
 
-using System;
-
 namespace de.upb.hip.mobile.droid.Helpers.InteractiveSources {
+    /// <summary>
+    /// Implements IInteractiveSourceSubstitute by returning a consecutive number enclosed in brackets.
+    /// </summary>
     public class ConsecutiveNumberInteractiveSourceSubstitute : IInteractiveSourceSubstitute {
 
         private int number;
 
+        /// <summary>
+        /// Sets the starting number.
+        /// </summary>
+        /// <param name="start">Starting number.</param>
         public ConsecutiveNumberInteractiveSourceSubstitute (int start)
         {
             number = start;

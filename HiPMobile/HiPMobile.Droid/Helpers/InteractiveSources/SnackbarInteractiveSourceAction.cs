@@ -16,10 +16,19 @@ using Android.Support.Design.Widget;
 using Android.Views;
 
 namespace de.upb.hip.mobile.droid.Helpers.InteractiveSources {
+    /// <summary>
+    /// Implements IInteractiveSourceAction by displaying the source's text
+    /// in a Snackbar.
+    /// </summary>
     public class SnackbarInteractiveSourceAction : IInteractiveSourceAction {
 
-        private View view;
+        private readonly View view;
 
+        /// <summary>
+        /// Sets the view the Snackbar is associated with. An instance of 
+        /// CoordinatorLayout is recommended.
+        /// </summary>
+        /// <param name="v">View the Snackbar is associated with.</param>
         public SnackbarInteractiveSourceAction (View v)
         {
             view = v;

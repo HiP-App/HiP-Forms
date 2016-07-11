@@ -13,8 +13,16 @@
 // limitations under the License.
 
 namespace de.upb.hip.mobile.droid.Helpers.InteractiveSources {
+    /// <summary>
+    /// Interface for actions that are triggered when an InteractiveSource 
+    /// is triggered (clicked).
+    /// </summary>
     public interface IInteractiveSourceAction {
 
+        /// <summary>
+        /// Displays the provided source text.
+        /// </summary>
+        /// <param name="src">Source text to display.</param>
         void Display (string src);
 
     }
