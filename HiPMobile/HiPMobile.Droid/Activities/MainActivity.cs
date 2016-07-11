@@ -229,7 +229,7 @@ namespace de.upb.hip.mobile.droid.Activities {
                     // React on 'Home' selection
                     break;
                 case Resource.Id.nav_route:
-                    // React on 'Messages' selection
+                    StartActivity (typeof (RouteActivity));
                     break;
                 case Resource.Id.nav_licenses:
                     StartActivity (typeof (LicensingActivity));

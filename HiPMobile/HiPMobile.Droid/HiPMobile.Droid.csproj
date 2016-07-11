@@ -121,6 +121,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Activities\RouteActivity.cs" />
     <Compile Include="Activities\LicensingActivity.cs" />
     <Compile Include="Activities\ExhibitDetailsActivity.cs" />
     <Compile Include="Activities\MainActivity.cs" />
@@ -227,6 +228,8 @@
     <AndroidResource Include="Resources\drawable-hdpi\ic_headset_white_24dp.xml" />
     <AndroidResource Include="Resources\drawable-hdpi\ic_pause_black_36dp.xml" />
     <AndroidResource Include="Resources\drawable-hdpi\audioseekbar.xml" />
+    <AndroidResource Include="Resources\layout\activity_route.axml" />
+    <AndroidResource Include="Resources\layout\activity_route_row_item.axml" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
