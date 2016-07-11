@@ -30,7 +30,6 @@ using Android.Support.V4.Widget;
 using Android.Support.V7.App;
 using Android.Support.V7.Widget;
 using de.upb.hip.mobile.droid.Adapters;
-using de.upb.hip.mobile.droid.Helpers;
 using de.upb.hip.mobile.droid.Listeners;
 using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
@@ -39,7 +38,6 @@ using Osmdroid.TileProvider.TileSource;
 using Osmdroid.Util;
 using Osmdroid.Views;
 using Osmdroid.Views.Overlay;
-using Realms;
 using ActionBarDrawerToggle = Android.Support.V7.App.ActionBarDrawerToggle;
 
 namespace de.upb.hip.mobile.droid.Activities {
@@ -72,30 +70,12 @@ namespace de.upb.hip.mobile.droid.Activities {
 
             // Check if we have the necessary permissions and request them if we don't
             // Note that the app will still fail on first launch and needs to be restarted
-            if (ContextCompat.CheckSelfPermission (this,
-                                                   Manifest.Permission.AccessFineLocation)
-                != Permission.Granted || ContextCompat.CheckSelfPermission (this,
-                                                                            Manifest.Permission.ReadExternalStorage)
-                != Permission.Granted || ContextCompat.CheckSelfPermission (this,
-                                                                            Manifest.Permission.WriteExternalStorage)
-                != Permission.Granted)
-            {
-                ActivityCompat.RequestPermissions (this,
-                                                   new[]
-                                                   {Manifest.Permission.AccessFineLocation, Manifest.Permission.ReadExternalStorage, Manifest.Permission.WriteExternalStorage},
-                                                   0);
-            }
-
-
-            //Delete current database to avoid migration issues, remove this when wanting persistent database usage
-            Realm.DeleteRealm (new RealmConfiguration ());
+            SetUpPermissions ();
 
             geoLocation = new GeoLocation ();
             geoLocation.Latitude = 51.71352;
             geoLocation.Longitude = 8.74021;
 
-            var filler = new DbDummyDataFiller (Assets);
-            filler.InsertData ();
             exhibitSet = ExhibitManager.GetExhibitSets ().First ();
 
 
@@ -169,8 +149,9 @@ namespace de.upb.hip.mobile.droid.Activities {
 
             recyclerView.AddOnItemTouchListener (new RecyclerItemClickListener (this, exhibitSet));
 
-            // hockeyapp code
-            CheckForUpdates ();
+            // Disable refreshing
+            var swipeRefreshLayout = FindViewById<SwipeRefreshLayout> (Resource.Id.mainSwipeContainer);
+            swipeRefreshLayout.Enabled = false;
         }
 
         private void SetUpMap ()
@@ -283,7 +264,6 @@ namespace de.upb.hip.mobile.droid.Activities {
         /// <summary>
         ///     Methods for hockeyapp
         /// </summary>
-
         #region
         private void CheckForCrashes ()
         {
