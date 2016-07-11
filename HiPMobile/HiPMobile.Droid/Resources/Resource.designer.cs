@@ -3364,6 +3364,9 @@ namespace de.upb.hip.mobile.droid
 			// aapt resource value: 0x7f070086
 			public const int settings = 2131165318;
 			
+			// aapt resource value: 0x7f0700a4
+			public const int source_substitute = 2131165348;
+			
 			// aapt resource value: 0x7f070074
 			public const int splash_screen_check_connection = 2131165300;
 			
