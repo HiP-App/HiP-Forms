@@ -192,32 +192,6 @@ namespace de.upb.hip.mobile.droid.Helpers {
                     waypoints, 60 * 30, 5.2, ringrouteTags, new Image(101, "", "route_ring.jpg", ""));
 
             insertRoute(ringroute);*/
-
-
-            /*var dom = CreateExhibit ("Paderborner Dom",
-                                     "Der Hohe Dom Ss. Maria, Liborius und Kilian ist die Kathedralkirche des Erzbistums Paderborn und liegt im Zentrum der Paderborner Innenstadt, oberhalb der Paderquellen.",
-                                     51.718953, 8.75583, "dom.jpg", new[] {"Kirche"}, new[] {"Dom"});
-            var uni = CreateExhibit ("Universität Paderborn",
-                                     "Die Universität Paderborn in Paderborn, Deutschland, ist eine 1972 gegründete Universität in Nordrhein-Westfalen.",
-                                     51.706768, 8.771104, "uni.jpg", new[] {"Uni"}, new[] {"Universität"});
-            var exhibits = BusinessEntitiyFactory.CreateBusinessObject<ExhibitSet> ();
-            exhibits.InitSet.Add (dom);
-            exhibits.InitSet.Add (uni);
-            exhibits.ActiveSet.Add (dom);
-            exhibits.ActiveSet.Add (uni);
-
-            // create dummy pages
-            var domImg = CreateImage ("Paderborner Dom",
-                                      "Der Hohe Dom Ss. Maria, Liborius und Kilian ist die Kathedralkirche des Erzbistums Paderborn und liegt im Zentrum der Paderborner Innenstadt, oberhalb der Paderquellen.",
-                                      "dom.jpg");
-            var uniImg =
-                CreateImage ("Universität Paderborn",
-                             "Die Universität Paderborn in Paderborn, Deutschland, ist eine 1972 gegründete Universität in Nordrhein-Westfalen.",
-                             "uni.jpg");
-            dom.Pages.Add (CreateAppetizerPage ("Der Dom von außen", domImg));
-            dom.Pages.Add (CreateImagePage (domImg, new[] {CreateRectangle (100, 80, 250, 180)}, new[] {"Der 93 Meter hohe Kirchturm."}));
-            dom.Pages.Add (CreateTextPage (lorem, CreateAudio ("sprechertext.mp3", lorem, "sprechertext")));
-            dom.Pages.Add (CreateTimeSliderPage ("Timeslider", "Ein Test für die Timesliderpage mit zwei Bildern", new[] {1000L, 1973}, new[] {domImg, uniImg}, false));*/
         }
 
         private Exhibit CreateExhibit (string name, string description, double latitude, double longitude,
