@@ -204,7 +204,7 @@ namespace de.upb.hip.mobile.droid.Activities {
             mapMarkerIcon = ContextCompat.GetDrawable (this, Resource.Drawable.marker_blue);
             var myScaleBarOverlay = new ScaleBarOverlay (this);
 
-            foreach (var e in exhibitSet.InitSet)
+            foreach (var e in exhibitSet.ActiveSet)
             {
                 //One Marker Object
                 var marker = new OverlayItem (e.Marker.Title, e.Marker.Text, new GeoPoint (e.Location.Latitude, e.Location.Longitude));
