@@ -30,6 +30,7 @@ using Android.Support.V4.Widget;
 using Android.Support.V7.App;
 using Android.Support.V7.Widget;
 using de.upb.hip.mobile.droid.Adapters;
+using de.upb.hip.mobile.droid.fragments;
 using de.upb.hip.mobile.droid.Listeners;
 using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
@@ -83,15 +84,29 @@ namespace de.upb.hip.mobile.droid.Activities {
             SetUpPermissions ();
 
             //Map
-            SetUpMap ();
+            //SetUpMap ();
 
             SetUpNavigationDrawer ();
 
             // Recyler View
-            SetUpRecycleView ();
+            //SetUpRecycleView ();
 
             // hockeyapp code
             CheckForUpdates ();
+
+            // Fragments 
+
+            ExhibitListFragment exhibitListFragment = new ExhibitListFragment ();
+            exhibitListFragment.ExhibitSet = exhibitSet;
+            exhibitListFragment.GeoLocation = geoLocation;
+
+            // remove old fragment and display new fragment
+            if (FindViewById(Resource.Id.main_fragment_container) != null)
+            {
+                var transaction = FragmentManager.BeginTransaction();
+                transaction.Add (Resource.Id.main_fragment_container, exhibitListFragment);
+                transaction.Commit();
+            }
         }
 
 
@@ -134,7 +149,7 @@ namespace de.upb.hip.mobile.droid.Activities {
             }
         }
 
-        private void SetUpRecycleView ()
+/*        private void SetUpRecycleView ()
         {
             recyclerView = (RecyclerView) FindViewById (Resource.Id.mainRecyclerView);
 
@@ -152,9 +167,9 @@ namespace de.upb.hip.mobile.droid.Activities {
             // Disable refreshing
             var swipeRefreshLayout = FindViewById<SwipeRefreshLayout> (Resource.Id.mainSwipeContainer);
             swipeRefreshLayout.Enabled = false;
-        }
+        }*/
 
-        private void SetUpMap ()
+/*        private void SetUpMap ()
         {
             mapView = FindViewById<MapView> (Resource.Id.mapview);
             // mapView.SetTileSource(TileSourceFactory.DefaultTileSource);
@@ -174,7 +189,7 @@ namespace de.upb.hip.mobile.droid.Activities {
             mapController.SetCenter (centreOfMap);
 
             SetAllMarkers ();
-        }
+        }*/
 
 
         private void SetAllMarkers ()
@@ -232,8 +247,8 @@ namespace de.upb.hip.mobile.droid.Activities {
         protected override void OnResume ()
         {
             base.OnResume ();
-            myLocationOverlay.EnableMyLocation ();
-            myLocationOverlay.EnableCompass ();
+/*            myLocationOverlay.EnableMyLocation ();
+            myLocationOverlay.EnableCompass ();*/
 
             // hockeyapp code
             CheckForCrashes ();
@@ -242,8 +257,8 @@ namespace de.upb.hip.mobile.droid.Activities {
         protected override void OnPause ()
         {
             base.OnPause ();
-            myLocationOverlay.DisableMyLocation ();
-            myLocationOverlay.DisableCompass ();
+/*            myLocationOverlay.DisableMyLocation ();
+            myLocationOverlay.DisableCompass ();*/
 
             // hockeyapp code
             UnregisterManagers ();
