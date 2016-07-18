@@ -83,43 +83,23 @@ namespace de.upb.hip.mobile.droid.Activities {
             //Permissions
             SetUpPermissions ();
 
-            //Map
-            //SetUpMap ();
-
+            // Navigation Drawer
             SetUpNavigationDrawer ();
 
-            // Recyler View
-            //SetUpRecycleView ();
+            // Set overview fragment
+            var fragment = new ExhibitsOverviewFragment ();
+            fragment.ExhibitSet = exhibitSet;
+            fragment.GeoLocation = geoLocation;
 
-            // hockeyapp code
-            CheckForUpdates ();
-
-            // Fragments 
-
-/*            ExhibitListFragment exhibitListFragment = new ExhibitListFragment ();
-            exhibitListFragment.ExhibitSet = exhibitSet;
-            exhibitListFragment.GeoLocation = geoLocation;
-
-            // remove old fragment and display new fragment
-            if (FindViewById(Resource.Id.main_fragment_container) != null)
+            if (FindViewById (Resource.Id.main_fragment_container) != null)
             {
                 var transaction = FragmentManager.BeginTransaction();
-                transaction.Add (Resource.Id.main_fragment_container, exhibitListFragment);
-                transaction.Commit();
-            }*/
-
-            MapFragment mapFragment = new MapFragment ();
-            mapFragment.ExhibitSet = exhibitSet;
-            mapFragment.GeoLocation = geoLocation;
-
-            // remove old fragment and display new fragment
-            if (FindViewById(Resource.Id.main_fragment_container) != null)
-            {
-                var transaction = FragmentManager.BeginTransaction();
-                transaction.Add(Resource.Id.main_fragment_container, mapFragment);
+                transaction.Replace(Resource.Id.main_fragment_container, fragment);
                 transaction.Commit();
             }
 
+            // hockeyapp code
+            CheckForUpdates ();
         }
 
 
@@ -226,6 +206,7 @@ namespace de.upb.hip.mobile.droid.Activities {
         /// <summary>
         ///     Methods for hockeyapp
         /// </summary>
+
         #region
         private void CheckForCrashes ()
         {

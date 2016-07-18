@@ -129,6 +129,7 @@
     <Compile Include="Activities\ExhibitDetailsActivity.cs" />
     <Compile Include="Activities\MainActivity.cs" />
     <Compile Include="fragments\ExhibitListFragment.cs" />
+    <Compile Include="fragments\ExhibitsOverviewFragment.cs" />
     <Compile Include="fragments\MapFragment.cs" />
     <Compile Include="Helpers\InteractiveSources\ConsecutiveNumberInteractiveSourceSubstitute.cs" />
     <Compile Include="Helpers\InteractiveSources\ConstantInteractiveSourceSubstitute.cs" />
@@ -182,6 +183,9 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\fragment_map.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\fragment_overview_exhibits.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
