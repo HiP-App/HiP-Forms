@@ -13,22 +13,23 @@
 // limitations under the License.
 
 using System;
+using System.Threading;
 using Android.App;
 using Android.OS;
 using Android.Widget;
+using de.upb.hip.mobile.droid.Helpers;
 using de.upb.hip.mobile.pcl.Common;
 using de.upb.hip.mobile.pcl.DataAccessLayer;
 using de.upb.hip.mobile.pcl.DataLayer;
 using Microsoft.Practices.Unity;
+using Realms;
 
 namespace de.upb.hip.mobile.droid.Activities {
     [Activity (Theme = "@style/AppTheme", MainLauncher = true)]
     public class SplashScreenActivity : Activity {
 
-        private const int StartupDelay = 2000;
+        private const int StartupDelay = 0;
         private Action action;
-        private Button buttonRetry;
-        private ProgressBar progressBar;
         private TextView textAction;
         private TextView textWaiting;
 
@@ -39,19 +40,30 @@ namespace de.upb.hip.mobile.droid.Activities {
 
             textAction = (TextView) FindViewById (Resource.Id.splashScreenActionText);
             textWaiting = (TextView) FindViewById (Resource.Id.splashScreenWaitingText);
-            progressBar = (ProgressBar) FindViewById (Resource.Id.splashScreenProgressBar);
-            buttonRetry = (Button) FindViewById (Resource.Id.splashScreenRetryButton);
 
             textAction.SetText (Resource.String.splash_screen_loading);
             textWaiting.SetText (Resource.String.splash_screen_waiting);
 
-            // setup IoCManager
-            IoCManager.UnityContainer.RegisterType<IDataAccess, RealmDataAccess> ();
+            ThreadPool.QueueUserWorkItem (state => {
+                // setup IoCManager
+                IoCManager.UnityContainer.RegisterType<IDataAccess, RealmDataAccess>();
 
-            action = StartMainActivity;
+                // Delete current database to avoid migration issues, remove this when wanting persistent database usage
+                Realm.DeleteRealm(new RealmConfiguration());
 
-            var handler = new Handler ();
-            handler.PostDelayed (action, StartupDelay);
+                // Insert Data
+                var filler = new DbDummyDataFiller(Assets);
+                filler.InsertData();
+
+                action = StartMainActivity;
+
+                RunOnUiThread (() => {
+                    var handler = new Handler();
+                    handler.PostDelayed(action, StartupDelay);
+                });  
+            });
+
+            
         }
 
 
