@@ -30,10 +30,24 @@ namespace de.upb.hip.mobile.droid.fragments {
         /// </summary>
         public GeoLocation GeoLocation { get; set; }
 
+        private const string KeyExhibitSet = "de.upb.hip.mobile.droid.fragments.ExhibitsOverviewFragment.ExhibitSet";
+        private const string KeyGeoLocation = "de.upb.hip.mobile.droid.fragments.ExhibitsOverviewFragment.GeoLocation";
 
+
+        public override void OnSaveInstanceState (Bundle outState)
+        {
+            base.OnSaveInstanceState (outState);
+
+            // outState.PutSerializable (KeyExhibitSet, ExhibitSet);
+            // outState.PutSerializable (KeyGeoLocation, GeoLocation);
+        }
+        
         public override void OnCreate (Bundle savedInstanceState)
         {
             base.OnCreate (savedInstanceState);
+
+            savedInstanceState?.GetSerializable (KeyExhibitSet);
+            savedInstanceState?.GetSerializable (KeyGeoLocation);
         }
 
         public override View OnCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
