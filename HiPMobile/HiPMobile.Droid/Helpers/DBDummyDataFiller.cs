@@ -17,6 +17,7 @@ using System.IO;
 using Android.Content.Res;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using Java.Lang;
+using Realms;
 
 namespace de.upb.hip.mobile.droid.Helpers {
     public class DbDummyDataFiller {
@@ -166,10 +167,14 @@ namespace de.upb.hip.mobile.droid.Helpers {
             Exhibit theodoranium = CreateExhibit("Karl der Große macht Schule!", "", 51.71601, 8.754249999999956,
                     new [] { "Kirche" }, new [] { "Dom" }, theoImage);
             theodoranium.Pages.Add(CreateAppetizerPage("Was hat Karl der Große mit Schule, Schrift und Bildung zu tun?",
-                    theoImage));          
+                    theoImage));
+                 
             karlsrouteSet.ActiveSet.Add(theodoranium);
 
             karlsrouteSet.ActiveSet.Add(kaiserpfalz);
+
+            // do an empty write, otherwise not all changes to the db are visible in other threads
+            Realm.GetInstance().Write(() => {});
 
             /*LinkedList<Waypoint> waypoints = new LinkedList<>();
             waypoints.add(new Waypoint(51.7189826, 8.754652599999986, 1));
