@@ -36,6 +36,11 @@ namespace de.upb.hip.mobile.droid.fragments {
         /// </summary>
         public GeoLocation GeoLocation { get; set; }
 
+        /// <summary>
+        /// LocationOverlay used for the map.
+        /// </summary>
+        private MyLocationOverlay LocationOverlay { get; set; }
+
 
         public override void OnCreate (Bundle savedInstanceState)
         {
@@ -58,8 +63,6 @@ namespace de.upb.hip.mobile.droid.fragments {
 
             // var centreOfMap = new GeoPoint(51496994, -134733);
             var centreOfMap = new GeoPoint (GeoLocation.Latitude, GeoLocation.Longitude);
-
-
             mapController.SetCenter (centreOfMap);
 
             SetAllMarkers (mapView);
@@ -71,7 +74,7 @@ namespace de.upb.hip.mobile.droid.fragments {
         {
             //SetUp Markers TODO rewrite with markers from bonuspack
             var mapMarkerArray = new List<OverlayItem> ();
-            var myLocationOverlay = new MyLocationOverlay (this.Activity, mapView);
+            LocationOverlay = new MyLocationOverlay (this.Activity, mapView);
             var mapMarkerIcon = ContextCompat.GetDrawable (this.Activity, Resource.Drawable.marker_blue);
             var myScaleBarOverlay = new ScaleBarOverlay (this.Activity);
 
@@ -87,8 +90,22 @@ namespace de.upb.hip.mobile.droid.fragments {
             var mapMarkerItemizedOverlay = new ItemizedIconOverlay (this.Activity, mapMarkerArray, null);
             mapView.OverlayManager.Add (mapMarkerItemizedOverlay);
             mapView.OverlayManager.Add (myScaleBarOverlay);
-            mapView.OverlayManager.Add (myLocationOverlay);
+            mapView.OverlayManager.Add (LocationOverlay);
             mapView.PostInvalidate ();
+        }
+
+        public override void OnResume ()
+        {
+            base.OnResume ();
+            LocationOverlay.EnableMyLocation ();
+            LocationOverlay.EnableCompass ();
+        }
+
+        public override void OnPause ()
+        {
+            base.OnPause ();
+            LocationOverlay.DisableMyLocation ();
+            LocationOverlay.DisableCompass ();
         }
 
     }
