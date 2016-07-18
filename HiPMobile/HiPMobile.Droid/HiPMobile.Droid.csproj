@@ -188,6 +188,9 @@
     <AndroidResource Include="Resources\layout\fragment_overview_exhibits.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\layout-land\fragment_overview_exhibits.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Main.axml">
