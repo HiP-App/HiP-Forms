@@ -20,6 +20,7 @@ using Android.Views;
 using de.upb.hip.mobile.droid.Activities;
 using de.upb.hip.mobile.droid.Adapters;
 using de.upb.hip.mobile.droid.Listeners;
+using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 
 namespace de.upb.hip.mobile.droid.fragments
@@ -36,9 +37,37 @@ namespace de.upb.hip.mobile.droid.fragments
         /// </summary>
         public GeoLocation GeoLocation { get; set; }
 
-        public override void OnCreate (Bundle savedInstanceState)
+        private const string KeyGeoLocationLatitude = "GeoLocation.Latitude";
+        private const string KeyGeoLocationLongitude = "GeoLocation.Longitude";
+        private const string KeyExhibitSetId = "ExhibitSet";
+
+
+        public override void OnSaveInstanceState(Bundle outState)
         {
-            base.OnCreate (savedInstanceState);
+            base.OnSaveInstanceState(outState);
+
+            outState.PutString(KeyExhibitSetId, ExhibitSet.Id);
+            outState.PutDouble(KeyGeoLocationLatitude, GeoLocation.Latitude);
+            outState.PutDouble(KeyGeoLocationLongitude, GeoLocation.Longitude);
+        }
+
+        public override void OnCreate(Bundle savedInstanceState)
+        {
+            base.OnCreate(savedInstanceState);
+
+            if (savedInstanceState != null)
+            {
+                var latitude = savedInstanceState.GetDouble(KeyGeoLocationLatitude);
+                var longitude = savedInstanceState.GetDouble(KeyGeoLocationLongitude);
+                GeoLocation = new GeoLocation
+                {
+                    Latitude = latitude,
+                    Longitude = longitude
+                };
+
+                var exhibitId = savedInstanceState.GetString(KeyExhibitSetId);
+                ExhibitSet = ExhibitManager.GetExhibitSet(exhibitId);
+            }
         }
 
         public override View OnCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)

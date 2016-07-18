@@ -43,9 +43,9 @@ namespace de.upb.hip.mobile.droid.Activities {
         private GeoLocation geoLocation;
 
 
-        protected override void OnCreate (Bundle bundle)
+        protected override void OnCreate (Bundle savedInstanceState)
         {
-            base.OnCreate (bundle);
+            base.OnCreate (savedInstanceState);
 
             // Set our view from the "main" layout resource
             SetContentView (Resource.Layout.Main);
@@ -70,17 +70,23 @@ namespace de.upb.hip.mobile.droid.Activities {
             // Navigation Drawer
             SetUpNavigationDrawer ();
 
-            // Set overview fragment
-            var fragment = new ExhibitsOverviewFragment ();
-            fragment.ExhibitSet = exhibitSet;
-            fragment.GeoLocation = geoLocation;
-
-            if (FindViewById (Resource.Id.main_fragment_container) != null)
+            if (savedInstanceState == null)
             {
-                var transaction = FragmentManager.BeginTransaction();
-                transaction.Replace(Resource.Id.main_fragment_container, fragment);
-                transaction.Commit();
+                // Set overview fragment
+                var fragment = new ExhibitsOverviewFragment
+                {
+                    ExhibitSet = exhibitSet,
+                    GeoLocation = geoLocation
+                };
+
+                if (FindViewById (Resource.Id.main_fragment_container) != null)
+                {
+                    var transaction = FragmentManager.BeginTransaction ();
+                    transaction.Replace (Resource.Id.main_fragment_container, fragment);
+                    transaction.Commit ();
+                }
             }
+
 
             // hockeyapp code
             CheckForUpdates ();

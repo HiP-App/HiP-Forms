@@ -15,6 +15,7 @@
 using Android.App;
 using Android.OS;
 using Android.Views;
+using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 
 namespace de.upb.hip.mobile.droid.fragments {
@@ -30,58 +31,73 @@ namespace de.upb.hip.mobile.droid.fragments {
         /// </summary>
         public GeoLocation GeoLocation { get; set; }
 
-        private const string KeyExhibitSet = "de.upb.hip.mobile.droid.fragments.ExhibitsOverviewFragment.ExhibitSet";
-        private const string KeyGeoLocation = "de.upb.hip.mobile.droid.fragments.ExhibitsOverviewFragment.GeoLocation";
+        private const string KeyExhibitSetId = "ExhibitSetId";
+        private const string KeyGeoLocationLatitude = "GeoLocation.Latitude";
+        private const string KeyGeoLocationLongitude = "GeoLocation.Longitude";
 
 
         public override void OnSaveInstanceState (Bundle outState)
         {
             base.OnSaveInstanceState (outState);
 
-            // outState.PutSerializable (KeyExhibitSet, ExhibitSet);
-            // outState.PutSerializable (KeyGeoLocation, GeoLocation);
+            outState.PutString(KeyExhibitSetId, ExhibitSet.Id);
+            outState.PutDouble(KeyGeoLocationLatitude, GeoLocation.Latitude);
+            outState.PutDouble(KeyGeoLocationLongitude, GeoLocation.Longitude);
         }
         
         public override void OnCreate (Bundle savedInstanceState)
         {
             base.OnCreate (savedInstanceState);
 
-            savedInstanceState?.GetSerializable (KeyExhibitSet);
-            savedInstanceState?.GetSerializable (KeyGeoLocation);
+            if (savedInstanceState != null)
+            {
+                var latitude = savedInstanceState.GetDouble(KeyGeoLocationLatitude);
+                var longitude = savedInstanceState.GetDouble(KeyGeoLocationLongitude);
+                GeoLocation = new GeoLocation
+                {
+                    Latitude = latitude,
+                    Longitude = longitude
+                };
+
+                var exhibitId = savedInstanceState.GetString(KeyExhibitSetId);
+                ExhibitSet = ExhibitManager.GetExhibitSet(exhibitId);
+            }
+
         }
 
         public override View OnCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             var view = inflater.Inflate (Resource.Layout.fragment_overview_exhibits, container, false);
 
-            //// IMPORTANT: The order of fragment creation below also reflects the order in the UI!  ////
-
-            var mapFragment = new MapFragment
+            if (savedInstanceState == null)
             {
-                ExhibitSet = ExhibitSet,
-                GeoLocation = GeoLocation
-            };
+                var mapFragment = new MapFragment
+                {
+                    ExhibitSet = ExhibitSet,
+                    GeoLocation = GeoLocation
+                };
 
-            // remove old fragment and display new fragment
-            if (view.FindViewById (Resource.Id.overview_map_fragment_container) != null)
-            {
-                var transaction = FragmentManager.BeginTransaction ();
-                transaction.Add (Resource.Id.overview_map_fragment_container, mapFragment);
-                transaction.Commit ();
-            }
+                // remove old fragment and display new fragment
+                if (view.FindViewById (Resource.Id.overview_map_fragment_container) != null)
+                {
+                    var transaction = FragmentManager.BeginTransaction ();
+                    transaction.Add (Resource.Id.overview_map_fragment_container, mapFragment);
+                    transaction.Commit ();
+                }
 
-            var exhibitListFragment = new ExhibitListFragment
-            {
-                ExhibitSet = ExhibitSet,
-                GeoLocation = GeoLocation
-            };
+                var exhibitListFragment = new ExhibitListFragment
+                {
+                    ExhibitSet = ExhibitSet,
+                    GeoLocation = GeoLocation
+                };
 
-            // remove old fragment and display new fragment
-            if (view.FindViewById (Resource.Id.overview_exhibitlist_fragment_container) != null)
-            {
-                var transaction = FragmentManager.BeginTransaction ();
-                transaction.Add (Resource.Id.overview_exhibitlist_fragment_container, exhibitListFragment);
-                transaction.Commit ();
+                // remove old fragment and display new fragment
+                if (view.FindViewById (Resource.Id.overview_exhibitlist_fragment_container) != null)
+                {
+                    var transaction = FragmentManager.BeginTransaction ();
+                    transaction.Add (Resource.Id.overview_exhibitlist_fragment_container, exhibitListFragment);
+                    transaction.Commit ();
+                }
             }
 
             return view;
