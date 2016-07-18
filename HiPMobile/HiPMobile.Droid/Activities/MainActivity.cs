@@ -96,7 +96,7 @@ namespace de.upb.hip.mobile.droid.Activities {
 
             // Fragments 
 
-            ExhibitListFragment exhibitListFragment = new ExhibitListFragment ();
+/*            ExhibitListFragment exhibitListFragment = new ExhibitListFragment ();
             exhibitListFragment.ExhibitSet = exhibitSet;
             exhibitListFragment.GeoLocation = geoLocation;
 
@@ -106,7 +106,20 @@ namespace de.upb.hip.mobile.droid.Activities {
                 var transaction = FragmentManager.BeginTransaction();
                 transaction.Add (Resource.Id.main_fragment_container, exhibitListFragment);
                 transaction.Commit();
+            }*/
+
+            MapFragment mapFragment = new MapFragment ();
+            mapFragment.ExhibitSet = exhibitSet;
+            mapFragment.GeoLocation = geoLocation;
+
+            // remove old fragment and display new fragment
+            if (FindViewById(Resource.Id.main_fragment_container) != null)
+            {
+                var transaction = FragmentManager.BeginTransaction();
+                transaction.Add(Resource.Id.main_fragment_container, mapFragment);
+                transaction.Commit();
             }
+
         }
 
 
@@ -149,72 +162,6 @@ namespace de.upb.hip.mobile.droid.Activities {
             }
         }
 
-/*        private void SetUpRecycleView ()
-        {
-            recyclerView = (RecyclerView) FindViewById (Resource.Id.mainRecyclerView);
-
-            // use a linear layout manager
-            RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager (this);
-            recyclerView.SetLayoutManager (mLayoutManager);
-
-
-            //RecycleAdapter
-            adapter = new MainRecyclerAdapter (exhibitSet, geoLocation, Application.Context);
-            recyclerView.SetAdapter (adapter);
-
-            recyclerView.AddOnItemTouchListener (new RecyclerItemClickListener (this, exhibitSet));
-
-            // Disable refreshing
-            var swipeRefreshLayout = FindViewById<SwipeRefreshLayout> (Resource.Id.mainSwipeContainer);
-            swipeRefreshLayout.Enabled = false;
-        }*/
-
-/*        private void SetUpMap ()
-        {
-            mapView = FindViewById<MapView> (Resource.Id.mapview);
-            // mapView.SetTileSource(TileSourceFactory.DefaultTileSource);
-            mapView.SetBuiltInZoomControls (true);
-
-            mapView.SetTileSource (new XYTileSource ("OSM", 0, 18, 1024, ".png",
-                                                     new[] {"http://tile.openstreetmap.org/"}));
-
-
-            var mapController = mapView.Controller;
-            mapController.SetZoom (13);
-
-            // var centreOfMap = new GeoPoint(51496994, -134733);
-            var centreOfMap = new GeoPoint (geoLocation.Latitude, geoLocation.Longitude);
-
-
-            mapController.SetCenter (centreOfMap);
-
-            SetAllMarkers ();
-        }*/
-
-
-        private void SetAllMarkers ()
-        {
-            //SetUp Markers TODO rewrite with markers from bonuspack
-            mapMarkerArray = new List<OverlayItem> ();
-            myLocationOverlay = new MyLocationOverlay (this, mapView);
-            mapMarkerIcon = ContextCompat.GetDrawable (this, Resource.Drawable.marker_blue);
-            var myScaleBarOverlay = new ScaleBarOverlay (this);
-
-            foreach (var e in exhibitSet.ActiveSet)
-            {
-                //One Marker Object
-                var marker = new OverlayItem (e.Marker.Title, e.Marker.Text, new GeoPoint (e.Location.Latitude, e.Location.Longitude));
-                marker.SetMarker (mapMarkerIcon);
-                mapMarkerArray.Add (marker);
-            }
-
-            //Initialize this after markers are added to 
-            mapMarkerItemizedOverlay = new ItemizedIconOverlay (this, mapMarkerArray, null);
-            mapView.OverlayManager.Add (mapMarkerItemizedOverlay);
-            mapView.OverlayManager.Add (myScaleBarOverlay);
-            mapView.OverlayManager.Add (myLocationOverlay);
-            mapView.PostInvalidate ();
-        }
 
         //handles the action when touching the menuitems in navigationview
         private void NavigationView_NavigationItemSelected (object sender, NavigationView.NavigationItemSelectedEventArgs e)
