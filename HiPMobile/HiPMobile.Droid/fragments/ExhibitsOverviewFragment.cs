@@ -19,6 +19,9 @@ using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 
 namespace de.upb.hip.mobile.droid.fragments {
+    /// <summary>
+    /// Fragment displaying a map and a list for an ExhibitSet.
+    /// </summary>
     public class ExhibitsOverviewFragment : Fragment {
 
         /// <summary>
@@ -31,38 +34,41 @@ namespace de.upb.hip.mobile.droid.fragments {
         /// </summary>
         public GeoLocation GeoLocation { get; set; }
 
+        #region
+
+        // Keys to save/restore instance state.
         private const string KeyExhibitSetId = "ExhibitSetId";
         private const string KeyGeoLocationLatitude = "GeoLocation.Latitude";
         private const string KeyGeoLocationLongitude = "GeoLocation.Longitude";
 
+        #endregion
 
         public override void OnSaveInstanceState (Bundle outState)
         {
             base.OnSaveInstanceState (outState);
 
-            outState.PutString(KeyExhibitSetId, ExhibitSet.Id);
-            outState.PutDouble(KeyGeoLocationLatitude, GeoLocation.Latitude);
-            outState.PutDouble(KeyGeoLocationLongitude, GeoLocation.Longitude);
+            outState.PutString (KeyExhibitSetId, ExhibitSet.Id);
+            outState.PutDouble (KeyGeoLocationLatitude, GeoLocation.Latitude);
+            outState.PutDouble (KeyGeoLocationLongitude, GeoLocation.Longitude);
         }
-        
+
         public override void OnCreate (Bundle savedInstanceState)
         {
             base.OnCreate (savedInstanceState);
 
             if (savedInstanceState != null)
             {
-                var latitude = savedInstanceState.GetDouble(KeyGeoLocationLatitude);
-                var longitude = savedInstanceState.GetDouble(KeyGeoLocationLongitude);
+                var latitude = savedInstanceState.GetDouble (KeyGeoLocationLatitude);
+                var longitude = savedInstanceState.GetDouble (KeyGeoLocationLongitude);
                 GeoLocation = new GeoLocation
                 {
                     Latitude = latitude,
                     Longitude = longitude
                 };
 
-                var exhibitId = savedInstanceState.GetString(KeyExhibitSetId);
-                ExhibitSet = ExhibitManager.GetExhibitSet(exhibitId);
+                var exhibitId = savedInstanceState.GetString (KeyExhibitSetId);
+                ExhibitSet = ExhibitManager.GetExhibitSet (exhibitId);
             }
-
         }
 
         public override View OnCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)

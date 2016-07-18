@@ -23,8 +23,10 @@ using de.upb.hip.mobile.droid.Listeners;
 using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 
-namespace de.upb.hip.mobile.droid.fragments
-{
+namespace de.upb.hip.mobile.droid.fragments {
+    /// <summary>
+    /// Fragment displaying a list of exhibits contained in an ExhibitSet.
+    /// </summary>
     public class ExhibitListFragment : Fragment {
 
         /// <summary>
@@ -37,58 +39,61 @@ namespace de.upb.hip.mobile.droid.fragments
         /// </summary>
         public GeoLocation GeoLocation { get; set; }
 
+        #region
+
+        // Keys to save/restore instance state.
+        private const string KeyExhibitSetId = "ExhibitSetId";
         private const string KeyGeoLocationLatitude = "GeoLocation.Latitude";
         private const string KeyGeoLocationLongitude = "GeoLocation.Longitude";
-        private const string KeyExhibitSetId = "ExhibitSet";
 
+        #endregion
 
-        public override void OnSaveInstanceState(Bundle outState)
+        public override void OnSaveInstanceState (Bundle outState)
         {
-            base.OnSaveInstanceState(outState);
+            base.OnSaveInstanceState (outState);
 
-            outState.PutString(KeyExhibitSetId, ExhibitSet.Id);
-            outState.PutDouble(KeyGeoLocationLatitude, GeoLocation.Latitude);
-            outState.PutDouble(KeyGeoLocationLongitude, GeoLocation.Longitude);
+            outState.PutString (KeyExhibitSetId, ExhibitSet.Id);
+            outState.PutDouble (KeyGeoLocationLatitude, GeoLocation.Latitude);
+            outState.PutDouble (KeyGeoLocationLongitude, GeoLocation.Longitude);
         }
 
-        public override void OnCreate(Bundle savedInstanceState)
+        public override void OnCreate (Bundle savedInstanceState)
         {
-            base.OnCreate(savedInstanceState);
+            base.OnCreate (savedInstanceState);
 
             if (savedInstanceState != null)
             {
-                var latitude = savedInstanceState.GetDouble(KeyGeoLocationLatitude);
-                var longitude = savedInstanceState.GetDouble(KeyGeoLocationLongitude);
+                var latitude = savedInstanceState.GetDouble (KeyGeoLocationLatitude);
+                var longitude = savedInstanceState.GetDouble (KeyGeoLocationLongitude);
                 GeoLocation = new GeoLocation
                 {
                     Latitude = latitude,
                     Longitude = longitude
                 };
 
-                var exhibitId = savedInstanceState.GetString(KeyExhibitSetId);
-                ExhibitSet = ExhibitManager.GetExhibitSet(exhibitId);
+                var exhibitId = savedInstanceState.GetString (KeyExhibitSetId);
+                ExhibitSet = ExhibitManager.GetExhibitSet (exhibitId);
             }
         }
 
         public override View OnCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-            View view = inflater.Inflate (Resource.Layout.fragment_exhibitlist, container, false);
+            var view = inflater.Inflate (Resource.Layout.fragment_exhibitlist, container, false);
 
-            var recyclerView = (RecyclerView) view.FindViewById(Resource.Id.exhibitListRecyclerView);
+            var recyclerView = (RecyclerView) view.FindViewById (Resource.Id.exhibitListRecyclerView);
 
             // use a linear layout manager
-            RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this.Activity);
-            recyclerView.SetLayoutManager(layoutManager);
-
+            RecyclerView.LayoutManager layoutManager = new LinearLayoutManager (this.Activity);
+            recyclerView.SetLayoutManager (layoutManager);
 
             //RecycleAdapter
-            var adapter = new MainRecyclerAdapter(ExhibitSet, GeoLocation, Application.Context);
-            recyclerView.SetAdapter(adapter);
+            var adapter = new MainRecyclerAdapter (ExhibitSet, GeoLocation, Application.Context);
+            recyclerView.SetAdapter (adapter);
 
-            recyclerView.AddOnItemTouchListener(new RecyclerItemClickListener((MainActivity) this.Activity, ExhibitSet));
+            recyclerView.AddOnItemTouchListener (new RecyclerItemClickListener ((MainActivity) this.Activity, ExhibitSet));
 
             // Disable refreshing
-            var swipeRefreshLayout = view.FindViewById<SwipeRefreshLayout>(Resource.Id.exhibitListSwipeContainer);
+            var swipeRefreshLayout = view.FindViewById<SwipeRefreshLayout> (Resource.Id.exhibitListSwipeContainer);
             swipeRefreshLayout.Enabled = false;
 
             return view;

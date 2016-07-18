@@ -12,7 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System;
 using System.Collections.Generic;
 using Android.App;
 using Android.OS;
@@ -26,6 +25,9 @@ using Osmdroid.Views;
 using Osmdroid.Views.Overlay;
 
 namespace de.upb.hip.mobile.droid.fragments {
+    /// <summary>
+    /// Fragment displaying a map, including markers for exhibits contained in an ExhibitSet.
+    /// </summary>
     public class MapFragment : Fragment {
 
         /// <summary>
@@ -43,10 +45,14 @@ namespace de.upb.hip.mobile.droid.fragments {
         /// </summary>
         private MyLocationOverlay LocationOverlay { get; set; }
 
+        #region
+
+        // Keys to save/restore instance state.
+        private const string KeyExhibitSetId = "ExhibitSetId";
         private const string KeyGeoLocationLatitude = "GeoLocation.Latitude";
         private const string KeyGeoLocationLongitude = "GeoLocation.Longitude";
-        private const string KeyExhibitSetId = "ExhibitSet";
 
+        #endregion
 
         public override void OnSaveInstanceState (Bundle outState)
         {
@@ -78,7 +84,7 @@ namespace de.upb.hip.mobile.droid.fragments {
 
         public override View OnCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-            View view = inflater.Inflate (Resource.Layout.fragment_map, container, false);
+            var view = inflater.Inflate (Resource.Layout.fragment_map, container, false);
 
             var mapView = view.FindViewById<MapView> (Resource.Id.mapview);
             // mapView.SetTileSource(TileSourceFactory.DefaultTileSource);
@@ -99,6 +105,10 @@ namespace de.upb.hip.mobile.droid.fragments {
             return view;
         }
 
+        /// <summary>
+        /// Adds all markers of the current ExhibitSet to the specified map.
+        /// </summary>
+        /// <param name="mapView">MapView where the markers should be displayed.</param>
         private void SetAllMarkers (MapView mapView)
         {
             //SetUp Markers TODO rewrite with markers from bonuspack
