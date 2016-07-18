@@ -17,10 +17,8 @@ using Android.OS;
 using Android.Views;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 
-namespace de.upb.hip.mobile.droid.fragments
-{
-    public class ExhibitsOverviewFragment : Fragment
-    {
+namespace de.upb.hip.mobile.droid.fragments {
+    public class ExhibitsOverviewFragment : Fragment {
 
         /// <summary>
         /// ExhibitSet containing the exhibit that should be displayed in the RecyclerView.
@@ -33,46 +31,47 @@ namespace de.upb.hip.mobile.droid.fragments
         public GeoLocation GeoLocation { get; set; }
 
 
-        public override void OnCreate(Bundle savedInstanceState)
+        public override void OnCreate (Bundle savedInstanceState)
         {
-            base.OnCreate(savedInstanceState);
-
-            // Create your fragment here
+            base.OnCreate (savedInstanceState);
         }
 
-        public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+        public override View OnCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-            View view = inflater.Inflate(Resource.Layout.fragment_overview_exhibits, container, false);
+            var view = inflater.Inflate (Resource.Layout.fragment_overview_exhibits, container, false);
 
-            ExhibitListFragment exhibitListFragment = new ExhibitListFragment
+            //// IMPORTANT: The order of fragment creation below also reflects the order in the UI!  ////
+
+            var mapFragment = new MapFragment
             {
                 ExhibitSet = ExhibitSet,
                 GeoLocation = GeoLocation
             };
 
             // remove old fragment and display new fragment
-            if (view.FindViewById(Resource.Id.overview_map_fragment_container) != null)
+            if (view.FindViewById (Resource.Id.overview_map_fragment_container) != null)
             {
-                var transaction = FragmentManager.BeginTransaction();
-                transaction.Add (Resource.Id.overview_map_fragment_container, exhibitListFragment);
-                transaction.Commit();
+                var transaction = FragmentManager.BeginTransaction ();
+                transaction.Add (Resource.Id.overview_map_fragment_container, mapFragment);
+                transaction.Commit ();
             }
 
-            MapFragment mapFragment = new MapFragment
+            var exhibitListFragment = new ExhibitListFragment
             {
                 ExhibitSet = ExhibitSet,
                 GeoLocation = GeoLocation
             };
 
             // remove old fragment and display new fragment
-            if (view.FindViewById(Resource.Id.overview_exhibitlist_fragment_container) != null)
+            if (view.FindViewById (Resource.Id.overview_exhibitlist_fragment_container) != null)
             {
-                var transaction = FragmentManager.BeginTransaction();
-                transaction.Add(Resource.Id.overview_exhibitlist_fragment_container, mapFragment);
-                transaction.Commit();
+                var transaction = FragmentManager.BeginTransaction ();
+                transaction.Add (Resource.Id.overview_exhibitlist_fragment_container, exhibitListFragment);
+                transaction.Commit ();
             }
 
             return view;
         }
+
     }
 }
