@@ -15,12 +15,10 @@
 //  */
 
 
-using System.Collections.Generic;
 using System.Linq;
 using Android;
 using Android.App;
 using Android.Content.PM;
-using Android.Graphics.Drawables;
 using Android.OS;
 using Android.Support.Design.Widget;
 using Android.Support.V4.App;
@@ -29,15 +27,10 @@ using Android.Support.V4.View;
 using Android.Support.V4.Widget;
 using Android.Support.V7.App;
 using Android.Support.V7.Widget;
-using de.upb.hip.mobile.droid.Adapters;
-using de.upb.hip.mobile.droid.Listeners;
+using de.upb.hip.mobile.droid.fragments;
 using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using HockeyApp;
-using Osmdroid.TileProvider.TileSource;
-using Osmdroid.Util;
-using Osmdroid.Views;
-using Osmdroid.Views.Overlay;
 using ActionBarDrawerToggle = Android.Support.V7.App.ActionBarDrawerToggle;
 
 namespace de.upb.hip.mobile.droid.Activities {
@@ -45,24 +38,14 @@ namespace de.upb.hip.mobile.droid.Activities {
         Label = "HiPMobile.Droid", MainLauncher = false, Icon = "@drawable/icon")]
     public class MainActivity : AppCompatActivity {
 
-        private RecyclerView.Adapter adapter;
         private DrawerLayout drawerLayout;
         private ExhibitSet exhibitSet;
         private GeoLocation geoLocation;
-        private List<OverlayItem> mapMarkerArray;
-        private Drawable mapMarkerIcon;
-        private ItemizedIconOverlay mapMarkerItemizedOverlay;
-        private MapView mapView;
-        private MyLocationOverlay myLocationOverlay;
 
 
-        // Recycler View: MainList
-        private RecyclerView recyclerView;
-
-
-        protected override void OnCreate (Bundle bundle)
+        protected override void OnCreate (Bundle savedInstanceState)
         {
-            base.OnCreate (bundle);
+            base.OnCreate (savedInstanceState);
 
             // Set our view from the "main" layout resource
             SetContentView (Resource.Layout.Main);
@@ -72,9 +55,11 @@ namespace de.upb.hip.mobile.droid.Activities {
             // Note that the app will still fail on first launch and needs to be restarted
             SetUpPermissions ();
 
-            geoLocation = new GeoLocation ();
-            geoLocation.Latitude = 51.71352;
-            geoLocation.Longitude = 8.74021;
+            geoLocation = new GeoLocation
+            {
+                Latitude = 51.71352,
+                Longitude = 8.74021
+            };
 
             exhibitSet = ExhibitManager.GetExhibitSets ().First ();
 
@@ -82,13 +67,26 @@ namespace de.upb.hip.mobile.droid.Activities {
             //Permissions
             SetUpPermissions ();
 
-            //Map
-            SetUpMap ();
-
+            // Navigation Drawer
             SetUpNavigationDrawer ();
 
-            // Recyler View
-            SetUpRecycleView ();
+            if (savedInstanceState == null)
+            {
+                // Set overview fragment
+                var fragment = new ExhibitsOverviewFragment
+                {
+                    ExhibitSet = exhibitSet,
+                    GeoLocation = geoLocation
+                };
+
+                if (FindViewById (Resource.Id.main_fragment_container) != null)
+                {
+                    var transaction = FragmentManager.BeginTransaction ();
+                    transaction.Replace (Resource.Id.main_fragment_container, fragment);
+                    transaction.Commit ();
+                }
+            }
+
 
             // hockeyapp code
             CheckForUpdates ();
@@ -134,72 +132,6 @@ namespace de.upb.hip.mobile.droid.Activities {
             }
         }
 
-        private void SetUpRecycleView ()
-        {
-            recyclerView = (RecyclerView) FindViewById (Resource.Id.mainRecyclerView);
-
-            // use a linear layout manager
-            RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager (this);
-            recyclerView.SetLayoutManager (mLayoutManager);
-
-
-            //RecycleAdapter
-            adapter = new MainRecyclerAdapter (exhibitSet, geoLocation, Application.Context);
-            recyclerView.SetAdapter (adapter);
-
-            recyclerView.AddOnItemTouchListener (new RecyclerItemClickListener (this, exhibitSet));
-
-            // Disable refreshing
-            var swipeRefreshLayout = FindViewById<SwipeRefreshLayout> (Resource.Id.mainSwipeContainer);
-            swipeRefreshLayout.Enabled = false;
-        }
-
-        private void SetUpMap ()
-        {
-            mapView = FindViewById<MapView> (Resource.Id.mapview);
-            // mapView.SetTileSource(TileSourceFactory.DefaultTileSource);
-            mapView.SetBuiltInZoomControls (true);
-
-            mapView.SetTileSource (new XYTileSource ("OSM", 0, 18, 1024, ".png",
-                                                     new[] {"http://tile.openstreetmap.org/"}));
-
-
-            var mapController = mapView.Controller;
-            mapController.SetZoom (13);
-
-            // var centreOfMap = new GeoPoint(51496994, -134733);
-            var centreOfMap = new GeoPoint (geoLocation.Latitude, geoLocation.Longitude);
-
-
-            mapController.SetCenter (centreOfMap);
-
-            SetAllMarkers ();
-        }
-
-
-        private void SetAllMarkers ()
-        {
-            //SetUp Markers TODO rewrite with markers from bonuspack
-            mapMarkerArray = new List<OverlayItem> ();
-            myLocationOverlay = new MyLocationOverlay (this, mapView);
-            mapMarkerIcon = ContextCompat.GetDrawable (this, Resource.Drawable.marker_blue);
-            var myScaleBarOverlay = new ScaleBarOverlay (this);
-
-            foreach (var e in exhibitSet.ActiveSet)
-            {
-                //One Marker Object
-                var marker = new OverlayItem (e.Marker.Title, e.Marker.Text, new GeoPoint (e.Location.Latitude, e.Location.Longitude));
-                marker.SetMarker (mapMarkerIcon);
-                mapMarkerArray.Add (marker);
-            }
-
-            //Initialize this after markers are added to 
-            mapMarkerItemizedOverlay = new ItemizedIconOverlay (this, mapMarkerArray, null);
-            mapView.OverlayManager.Add (mapMarkerItemizedOverlay);
-            mapView.OverlayManager.Add (myScaleBarOverlay);
-            mapView.OverlayManager.Add (myLocationOverlay);
-            mapView.PostInvalidate ();
-        }
 
         //handles the action when touching the menuitems in navigationview
         private void NavigationView_NavigationItemSelected (object sender, NavigationView.NavigationItemSelectedEventArgs e)
@@ -232,8 +164,6 @@ namespace de.upb.hip.mobile.droid.Activities {
         protected override void OnResume ()
         {
             base.OnResume ();
-            myLocationOverlay.EnableMyLocation ();
-            myLocationOverlay.EnableCompass ();
 
             // hockeyapp code
             CheckForCrashes ();
@@ -242,8 +172,6 @@ namespace de.upb.hip.mobile.droid.Activities {
         protected override void OnPause ()
         {
             base.OnPause ();
-            myLocationOverlay.DisableMyLocation ();
-            myLocationOverlay.DisableCompass ();
 
             // hockeyapp code
             UnregisterManagers ();
@@ -264,6 +192,7 @@ namespace de.upb.hip.mobile.droid.Activities {
         /// <summary>
         ///     Methods for hockeyapp
         /// </summary>
+
         #region
         private void CheckForCrashes ()
         {
