@@ -304,6 +304,9 @@
     <AndroidResource Include="Resources\drawable-hdpi\ic_pause_black_36dp.xml" />
     <AndroidResource Include="Resources\drawable-hdpi\audioseekbar.xml" />
     <AndroidResource Include="Resources\layout\activity_route_details.axml" />
+    <AndroidResource Include="Resources\drawable-hdpi\marker_departure.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\marker_via.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\marker_destination.png" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />

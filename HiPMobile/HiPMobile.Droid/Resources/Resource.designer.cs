@@ -1972,14 +1972,23 @@ namespace de.upb.hip.mobile.droid
 			// aapt resource value: 0x7f020061
 			public const int marker_blue = 2130837601;
 			
+			// aapt resource value: 0x7f020062
+			public const int marker_departure = 2130837602;
+			
 			// aapt resource value: 0x7f020063
-			public const int notification_template_icon_bg = 2130837603;
+			public const int marker_destination = 2130837603;
 			
 			// aapt resource value: 0x7f020064
-			public const int semitransparent_gray = 2130837604;
+			public const int marker_via = 2130837604;
 			
-			// aapt resource value: 0x7f020062
-			public const int thumb = 2130837602;
+			// aapt resource value: 0x7f020066
+			public const int notification_template_icon_bg = 2130837606;
+			
+			// aapt resource value: 0x7f020067
+			public const int semitransparent_gray = 2130837607;
+			
+			// aapt resource value: 0x7f020065
+			public const int thumb = 2130837605;
 			
 			static Drawable()
 			{
