@@ -2448,7 +2448,7 @@ namespace de.upb.hip.mobile.droid
 			public const int routeDetailsTagsLayout = 2131099781;
 			
 			// aapt resource value: 0x7f060086
-			public const int route_map_container = 2131099782;
+			public const int routedetails_mapview = 2131099782;
 			
 			// aapt resource value: 0x7f060017
 			public const int screen = 2131099671;

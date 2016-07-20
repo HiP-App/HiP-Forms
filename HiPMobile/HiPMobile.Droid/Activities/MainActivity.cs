@@ -146,7 +146,7 @@ namespace de.upb.hip.mobile.droid.Activities {
                     // React on 'Messages' selection
                     Intent intent= new Intent(this, typeof(RouteDetailsActivity));
                     intent.PutExtra(RouteDetailsActivity.KEY_ROUTE_ID, RouteManager.GetRoutes().First().Id);
-                    StartActivity(intent);
+                    ActivityCompat.StartActivity(this, intent, null);
                     break;
                 case Resource.Id.nav_licenses:
                     StartActivity (typeof (LicensingActivity));

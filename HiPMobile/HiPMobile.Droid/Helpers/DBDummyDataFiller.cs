@@ -173,7 +173,7 @@ namespace de.upb.hip.mobile.droid.Helpers {
 
             karlsrouteSet.ActiveSet.Add(kaiserpfalz);
 
-            var karlsroute = CreateRoute("Karlsroute", "Auf der Spur Karls des Großen!", 30, 4.2,
+            var karlsroute = CreateRoute("Karlsroute", "Auf der Spur Karls des Großen!", 30*60, 4.2,
                 CreateImage("", "", "theo_teaser.jpg"));
             foreach (var exhibit in karlsrouteSet.ActiveSet)
             {

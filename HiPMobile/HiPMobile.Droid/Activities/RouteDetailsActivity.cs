@@ -2,16 +2,22 @@
 using Android.App;
 using Android.OS;
 using Android.Support.V7.App;
+using Android.Views;
 using Android.Widget;
 using de.upb.hip.mobile.droid.fragments;
 using de.upb.hip.mobile.droid.Helpers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
+using Java.Lang;
 using Microsoft.Practices.ObjectBuilder2;
+using Osmdroid.TileProvider.TileSource;
+using Osmdroid.Util;
+using Osmdroid.Views;
+using Toolbar = Android.Support.V7.Widget.Toolbar;
 
 namespace de.upb.hip.mobile.droid.Activities
 {
-    [Activity(Theme = "@style/AppTheme")]
+    [Activity(Theme = "@style/AppTheme.NoActionBar")]
     public class RouteDetailsActivity : AppCompatActivity
     {
         private Route route;
@@ -22,38 +28,24 @@ namespace de.upb.hip.mobile.droid.Activities
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.activity_route_details);
 
+            var toolbar = (Toolbar)FindViewById(Resource.Id.toolbar);
+            toolbar.SetNavigationIcon(Resource.Drawable.ic_clear_white_24dp);
+            SetSupportActionBar(toolbar);
+
             var extras = Intent.Extras;
             string routeId = extras.GetString(KEY_ROUTE_ID);
             route = RouteManager.GetRoute(routeId);
 
             if (route != null)
             {
+                Title = route.Title;
                 initRouteInfo();
+                InitMap();
             }
             else
             {
                 Toast.MakeText(this, Resource.String.empty_route, ToastLength.Short).Show();
             }
-
-            /*if (FindViewById(Resource.Id.route_map_container) != null)
-            {
-                // create temporary exhibitset
-                ExhibitSet set = new ExhibitSet();
-                route.Waypoints.ForEach(wp => set.ActiveSet.Add(wp.Exhibit));
-
-                MapFragment fragment = new MapFragment
-                {
-                    ExhibitSet = set,
-                    GeoLocation = new GeoLocation()
-                    {
-                        Latitude = 51.71352,
-                        Longitude = 8.74021
-                    }
-                };
-                var transaction = FragmentManager.BeginTransaction();
-                transaction.Replace(Resource.Id.route_map_container, fragment);
-                transaction.Commit();
-            }*/
 
             Button button = (Button)this.FindViewById(Resource.Id.routeDetailsStartNavigationButton);
             button.Click += (sender, args) =>
@@ -77,7 +69,7 @@ namespace de.upb.hip.mobile.droid.Activities
             int durationInMinutes = route.Duration / 60;
             durationView.Text = Resources.GetQuantityString(
                 Resource.Plurals.route_activity_duration_minutes, durationInMinutes, durationInMinutes);
-            distanceView.Text = string.Format(Resources.GetString(Resource.String.route_activity_distance_kilometer), route.Distance);
+            distanceView.Text = String.Format(Resources.GetString(Resource.String.route_activity_distance_kilometer), route.Distance);
 
             //Add tags
             if (route.RouteTags.Any())
@@ -90,6 +82,34 @@ namespace de.upb.hip.mobile.droid.Activities
                     tagsLayout.AddView(tagImageView);
                 }
             }
+        }
+
+        private void InitMap()
+        {
+            var mapView = FindViewById<MapView>(Resource.Id.routedetails_mapview);
+             mapView.SetTileSource(TileSourceFactory.DefaultTileSource);
+            mapView.SetMultiTouchControls(true);
+
+            /*mapView.SetTileSource(new XYTileSource("OSM", 0, 18, 1024, ".png",
+                                                     new[] { "http://tile.openstreetmap.org/" }));*/
+
+            var mapController = mapView.Controller;
+            mapController.SetZoom(13);
+
+            var centreOfMap = new GeoPoint(51.71352, 8.74021);
+            //var centreOfMap = new GeoPoint(GeoLocation.Latitude, GeoLocation.Longitude);
+            mapController.SetCenter(centreOfMap);
+        }
+
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            if (item.ItemId.Equals(Android.Resource.Id.Home))
+            {
+                SupportFinishAfterTransition();
+                return true;
+            }
+
+            return base.OnOptionsItemSelected(item);
         }
     }
 }
