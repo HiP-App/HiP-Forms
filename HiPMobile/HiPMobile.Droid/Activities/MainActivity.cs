@@ -18,6 +18,7 @@
 using System.Linq;
 using Android;
 using Android.App;
+using Android.Content;
 using Android.Content.PM;
 using Android.OS;
 using Android.Support.Design.Widget;
@@ -143,6 +144,9 @@ namespace de.upb.hip.mobile.droid.Activities {
                     break;
                 case Resource.Id.nav_route:
                     // React on 'Messages' selection
+                    Intent intent= new Intent(this, typeof(RouteDetailsActivity));
+                    intent.PutExtra(RouteDetailsActivity.KEY_ROUTE_ID, RouteManager.GetRoutes().First().Id);
+                    StartActivity(intent);
                     break;
                 case Resource.Id.nav_licenses:
                     StartActivity (typeof (LicensingActivity));

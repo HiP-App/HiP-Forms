@@ -41,7 +41,7 @@
     android:layout_centerVertical="true"
     android:background="@color/chevronBackground"
     android:padding="0dp"
-    android:src="@drawable/ic_chevron_left_black_48dp" />
+    app:srcCompat="@drawable/ic_chevron_left_black_48dp" />
 
   <ImageButton
     android:id="@+id/buttonNext"
@@ -51,6 +51,6 @@
     android:layout_centerVertical="true"
     android:background="@color/chevronBackground"
     android:padding="0dp"
-    android:src="@drawable/ic_chevron_right_black_48dp" />
+    app:srcCompat="@drawable/ic_chevron_right_black_48dp" />
 
 </RelativeLayout>

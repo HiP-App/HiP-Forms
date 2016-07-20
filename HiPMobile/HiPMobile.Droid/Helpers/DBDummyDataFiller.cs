@@ -173,8 +173,18 @@ namespace de.upb.hip.mobile.droid.Helpers {
 
             karlsrouteSet.ActiveSet.Add(kaiserpfalz);
 
+            var karlsroute = CreateRoute("Karlsroute", "Auf der Spur Karls des Großen!", 30, 4.2,
+                CreateImage("", "", "theo_teaser.jpg"));
+            foreach (var exhibit in karlsrouteSet.ActiveSet)
+            {
+                karlsroute.Waypoints.Add(CreateWayPoint(exhibit));
+            }
+
+            karlsroute.RouteTags.Add(CreateRouteTag("Bar", "bar", CreateImage("", "", "route_tag_bar.png")));
+            karlsroute.RouteTags.Add(CreateRouteTag("Restaurant", "restaurant", CreateImage("", "", "route_tag_restaurant.png")));
+
             // do an empty write, otherwise not all changes to the db are visible in other threads
-            Realm.GetInstance().Write(() => {});
+            Realm.GetInstance().Write(() => { });
 
             /*LinkedList<Waypoint> waypoints = new LinkedList<>();
             waypoints.add(new Waypoint(51.7189826, 8.754652599999986, 1));
@@ -328,6 +338,35 @@ namespace de.upb.hip.mobile.droid.Helpers {
             audio.Caption = caption;
             audio.Title = title;
             return audio;
+        }
+
+        private Route CreateRoute(string title, string description, int duration, double distance, Image image)
+        {
+            var route = BusinessEntitiyFactory.CreateBusinessObject<Route>();
+            route.Title = title;
+            route.Description = description;
+            route.Duration = duration;
+            route.Distance = distance;
+            route.Image = image;
+            
+            return route;
+        }
+
+        private Waypoint CreateWayPoint(Exhibit exhibit)
+        {
+            var waypoint = BusinessEntitiyFactory.CreateBusinessObject<Waypoint>();
+            waypoint.Exhibit = exhibit;
+            waypoint.Location = exhibit.Location;
+            return waypoint;
+        }
+
+        private RouteTag CreateRouteTag(string name, string tag, Image image)
+        {
+            var routetag = BusinessEntitiyFactory.CreateBusinessObject<RouteTag>();
+            routetag.Name = name;
+            routetag.Tag = tag;
+            routetag.Image = image;
+            return routetag;
         }
 
         private byte[] LoadByteAsset (string name)
