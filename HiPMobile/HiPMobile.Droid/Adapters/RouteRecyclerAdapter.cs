@@ -32,7 +32,7 @@ namespace de.upb.hip.mobile.droid.Adapters {
 
 
         public override int ItemCount {
-            get { throw new NotImplementedException (); }
+            get { return getFilteredRoutes().Count; }
         }
 
         public Filter Filter {
@@ -41,7 +41,7 @@ namespace de.upb.hip.mobile.droid.Adapters {
 
         public override void OnBindViewHolder (RecyclerView.ViewHolder holder, int position)
         {
-            Route route = getFilteredRoutes ().getRouteByPosition (position);
+            Route route = getFilteredRoutes () [position];
 
             ((ViewHolder) holder).Title.Text = route.Title;
 
@@ -73,17 +73,14 @@ namespace de.upb.hip.mobile.droid.Adapters {
             ((ViewHolder) holder).View.Id = route.Id.GetHashCode ();
         }
 
-        /**
- * Filters routes for activeTags
- *
- * @return routes which contains activeTags
- */
 
-        public RouteSet getFilteredRoutes ()
+        /// <summary>
+        ///     Returns only the routes which match the current filters
+        /// </summary>
+        public IList<Route> getFilteredRoutes ()
         {
             List<Route> result = new List<Route> ();
 
-            //routeLoop:
             foreach (Route route in this.RouteSet.Routes)
             {
                 foreach (RouteTag tag in route.RouteTags)
@@ -91,44 +88,43 @@ namespace de.upb.hip.mobile.droid.Adapters {
                     if (ActiveTags.Contains (tag.Tag))
                     {
                         result.Add (route);
-                        //continue routeLoop;
+                        //Is implemented like this in Java, maybe should be made nicer
+                        goto ROUTELOOP;
                     }
                 }
+            ROUTELOOP:;
             }
-
-            RouteSet set = new RouteSet ();
-            set.Routes = result;
-
-            return set;
+            return result;
         }
 
         public override RecyclerView.ViewHolder OnCreateViewHolder (ViewGroup parent, int viewType)
         {
             View v = LayoutInflater.From (parent.Context)
                                    .Inflate (Resource.Layout.activity_route_row_item, parent, false);
-            return new ViewHolder (v);
+            return new ViewHolder (v, this);
         }
 
 
-        /**
-         * Register the listener for routeSelection
-         *
-         * @param listener RouteSelectedListener that should be added
-         */
 
         public void registerRouteSelectedListener (IRouteSelectedListener listener)
         {
             RouteSelectedListeners.Add (listener);
         }
 
-        /**
-         * Notifies listeners when a route was selected
-         *
-         * @param route Route for which the listeners should be notified
-         */
 
-        private void notifyRouteSelectedListeners (Route route)
+        public void notifyRouteSelectedListeners (int RouteId)
         {
+            //Find the route
+            Route route = null;
+            foreach(Route routeIt in RouteSet.Routes)
+            {
+                if (routeIt.Id.GetHashCode() == RouteId)
+                    route = routeIt;
+            }
+            if(route == null)
+            {
+                return;
+            }
             foreach (IRouteSelectedListener listener in RouteSelectedListeners)
             {
                 listener.OnRouteSelected (route);
@@ -138,10 +134,9 @@ namespace de.upb.hip.mobile.droid.Adapters {
     }
 
 
-/**
-    * Interface for the routeSelectedListener
-    */
-
+    /// <summary>
+    ///     An interface for all objects which want to be notified when a route is selected.
+    /// </summary>
     public interface IRouteSelectedListener {
 
         void OnRouteSelected (Route route);
@@ -155,7 +150,7 @@ namespace de.upb.hip.mobile.droid.Adapters {
     /// </summary>
     public class ViewHolder : RecyclerView.ViewHolder {
 
-        public ViewHolder (View v) : base (v)
+        public ViewHolder (View v, RouteRecyclerAdapter adapter) : base (v)
         {
             View = v;
             Image = (ImageView) v.FindViewById (Resource.Id.routeRowItemImage);
@@ -164,11 +159,9 @@ namespace de.upb.hip.mobile.droid.Adapters {
             Duration = (TextView) v.FindViewById (Resource.Id.routeRowItemDuration);
             Distance = (TextView) v.FindViewById (Resource.Id.routeRowItemDistance);
             TagsLayout = (LinearLayout) v.FindViewById (Resource.Id.routeRowItemTagsLayout);
+            this.adapter = adapter;
 
-            /**
-             * TODO: Call NotifyRoute SelectedListeners
-             * 
-             */
+            v.SetOnClickListener(new ViewOnClickListener(adapter));
         }
 
         public View View { get; set; }
@@ -179,11 +172,13 @@ namespace de.upb.hip.mobile.droid.Adapters {
         public TextView Duration { get; set; }
         public TextView Distance { get; set; }
         public LinearLayout TagsLayout { get; set; }
+        public RouteRecyclerAdapter adapter { get; }
 
     }
 
 
-    public class FilterImpl : Filter {
+    public class FilterImpl : Filter
+    {
 
         protected override FilterResults PerformFiltering (ICharSequence constraint)
         {
@@ -195,5 +190,34 @@ namespace de.upb.hip.mobile.droid.Adapters {
             //Empty on purpose
         }
 
+    }
+
+    public class ViewOnClickListener : View.IOnClickListener
+    {
+
+        public ViewOnClickListener( RouteRecyclerAdapter adapter) 
+        {
+            this.adapter = adapter;
+        }
+
+        public RouteRecyclerAdapter adapter { get; }
+
+        public IntPtr Handle
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public void Dispose()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void OnClick(View v)
+        {
+            adapter.notifyRouteSelectedListeners(v.Id);
+        }
     }
 }
