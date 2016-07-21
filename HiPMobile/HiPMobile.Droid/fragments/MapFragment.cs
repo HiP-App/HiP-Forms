@@ -19,10 +19,11 @@ using Android.Support.V4.Content;
 using Android.Views;
 using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
-using Osmdroid.TileProvider.TileSource;
-using Osmdroid.Util;
-using Osmdroid.Views;
-using Osmdroid.Views.Overlay;
+using Org.Osmdroid.Tileprovider.Tilesource;
+using Org.Osmdroid.Util;
+using Org.Osmdroid.Views;
+using Org.Osmdroid.Views.Overlay;
+
 
 namespace de.upb.hip.mobile.droid.fragments {
     /// <summary>
@@ -87,11 +88,10 @@ namespace de.upb.hip.mobile.droid.fragments {
             var view = inflater.Inflate (Resource.Layout.fragment_map, container, false);
 
             var mapView = view.FindViewById<MapView> (Resource.Id.mapview);
-            // mapView.SetTileSource(TileSourceFactory.DefaultTileSource);
+            mapView.SetTileSource(TileSourceFactory.DefaultTileSource);
+            mapView.TilesScaledToDpi = true;
             mapView.SetBuiltInZoomControls (true);
 
-            mapView.SetTileSource (new XYTileSource ("OSM", 0, 18, 1024, ".png",
-                                                     new[] {"http://tile.openstreetmap.org/"}));
 
             var mapController = mapView.Controller;
             mapController.SetZoom (13);
