@@ -12,6 +12,7 @@ using Android.Views;
 using Android.Widget;
 using de.upb.hip.mobile.droid.Helpers;
 using de.upb.hip.mobile.droid.Listeners;
+using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using Org.Osmdroid.Api;
 using Org.Osmdroid.Bonuspack.Overlays;
@@ -27,10 +28,13 @@ namespace de.upb.hip.mobile.droid.Activities {
     [Activity (Theme = "@style/AppTheme",Label = "RouteNavigationActivity")]
     public class RouteNavigationActivity : Activity {
 
+        public const String INTENT_ROUTE = "route";
+
         protected MapView mapView;
         private ProgressDialog progressDialog;
         private GeoPoint geoLocation;
         protected ExtendedLocationListener mGpsTracker;
+        private Route route;
 
         protected override void OnCreate (Bundle savedInstanceState)
         {
@@ -39,8 +43,8 @@ namespace de.upb.hip.mobile.droid.Activities {
 
 
             // getting location
-            mGpsTracker = new ExtendedLocationListener(RouteNavigationActivity.this);
-             geoLocation = new GeoPoint(mGpsTracker.Latitude, mGpsTracker.Longitude);
+            mGpsTracker = new ExtendedLocationListener(Application.Context);
+            geoLocation = new GeoPoint(mGpsTracker.Latitude, mGpsTracker.Longitude);
 
             // TODO Remove this as soon as no needs to run in emulator
             // set default coordinats for emulator
@@ -51,6 +55,14 @@ namespace de.upb.hip.mobile.droid.Activities {
                 geoLocation = new GeoPoint(ExtendedLocationListener.PADERBORN_HBF.Latitude,
                         ExtendedLocationListener.PADERBORN_HBF.Longitude);
             }
+
+            if(geoLocation.Latitude == 0f && geoLocation.Longitude == 0f)
+                geoLocation = new GeoPoint(ExtendedLocationListener.PADERBORN_HBF.Latitude,
+                        ExtendedLocationListener.PADERBORN_HBF.Longitude);
+
+            var extras = Intent.Extras;
+            string routeId = extras.GetString(INTENT_ROUTE);
+            route = RouteManager.GetRoute (routeId);
 
             SetUpMap ();
 
@@ -74,11 +86,11 @@ namespace de.upb.hip.mobile.droid.Activities {
 
             mapView.SetTileSource(TileSourceFactory.Mapnik);
             mapView.TilesScaledToDpi = (true);
-            //mapView.SetMaxZoomLevel(RouteDetailsActivity.MAX_ZOOM_LEVEL);
+           // mapView.SetMaxZoomLevel(RouteDetailsActivity.MAX_ZOOM_LEVEL);
 
             // mMap prefs:
             IMapController mapController = mapView.Controller;
-            mapController.SetZoom(13);
+            mapController.SetZoom(16);
             mapController.SetCenter(geoLocation);
         }
 
@@ -91,13 +103,20 @@ namespace de.upb.hip.mobile.droid.Activities {
             RoadManager roadManager = new MapQuestRoadManager("WRWdd9j02K8tGtERI2LtFiCLsRUKyJnJ");
             roadManager.AddRequestOption("routeType=pedestrian");
 
+            IList<Waypoint> wayPoints = route.Waypoints;
+            List<GeoPoint> geoPoints = new List<GeoPoint>();
 
-            GeoPoint startPoint = new GeoPoint(51.71352, 8.74021);
-            List<GeoPoint> waypoints = new List<GeoPoint>();
-            waypoints.Add(startPoint);
-            GeoPoint endPoint = new GeoPoint(51.7199006, 8.754952000000003);
-            waypoints.Add(endPoint);
-            Road road = roadManager.GetRoad (waypoints);
+            geoPoints.Add(new GeoPoint(geoLocation.Latitude, geoLocation.Longitude));
+
+            foreach (Waypoint w in wayPoints)
+            {
+                GeoPoint point = new GeoPoint (w.Location.Latitude,w.Location.Longitude);
+                geoPoints.Add (point);
+            }
+
+
+
+            Road road = roadManager.GetRoad (geoPoints);
             if (road.MStatus != Road.StatusOk)
                 Toast.MakeText(Application.Context, "Error when loading the road - status=" + road.MStatus, ToastLength.Short).Show();
 
