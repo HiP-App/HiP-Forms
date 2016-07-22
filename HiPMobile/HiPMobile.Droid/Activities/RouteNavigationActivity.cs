@@ -11,6 +11,7 @@ using Android.Support.V4.Content.Res;
 using Android.Views;
 using Android.Widget;
 using de.upb.hip.mobile.droid.Helpers;
+using de.upb.hip.mobile.droid.Listeners;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using Org.Osmdroid.Api;
 using Org.Osmdroid.Bonuspack.Overlays;
@@ -29,13 +30,27 @@ namespace de.upb.hip.mobile.droid.Activities {
         protected MapView mapView;
         private ProgressDialog progressDialog;
         private GeoPoint geoLocation;
+        protected ExtendedLocationListener mGpsTracker;
 
         protected override void OnCreate (Bundle savedInstanceState)
         {
             base.OnCreate (savedInstanceState);
             SetContentView (Resource.Layout.activity_route_navigation);
 
-            geoLocation = new GeoPoint (51.71352, 8.74021);
+
+            // getting location
+            mGpsTracker = new ExtendedLocationListener(RouteNavigationActivity.this);
+             geoLocation = new GeoPoint(mGpsTracker.Latitude, mGpsTracker.Longitude);
+
+            // TODO Remove this as soon as no needs to run in emulator
+            // set default coordinats for emulator
+            if (Build.Model.Contains("google_sdk") ||
+                    Build.Model.Contains("Emulator") ||
+                    Build.Model.Contains("Android SDK"))
+            {
+                geoLocation = new GeoPoint(ExtendedLocationListener.PADERBORN_HBF.Latitude,
+                        ExtendedLocationListener.PADERBORN_HBF.Longitude);
+            }
 
             SetUpMap ();
 
@@ -72,10 +87,11 @@ namespace de.upb.hip.mobile.droid.Activities {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().PermitAll().Build();
             StrictMode.SetThreadPolicy(policy);
 
-            //1. "Hello, Routing World"
-            //2. Playing with the RoadManager
+
             RoadManager roadManager = new MapQuestRoadManager("WRWdd9j02K8tGtERI2LtFiCLsRUKyJnJ");
             roadManager.AddRequestOption("routeType=pedestrian");
+
+
             GeoPoint startPoint = new GeoPoint(51.71352, 8.74021);
             List<GeoPoint> waypoints = new List<GeoPoint>();
             waypoints.Add(startPoint);
@@ -88,7 +104,8 @@ namespace de.upb.hip.mobile.droid.Activities {
             Polyline roadOverlay = RoadManager.BuildRoadOverlay(road, Application.Context);
             mapView.Overlays.Add(roadOverlay);
 
-            //3. Showing the Route steps on the map
+
+
             FolderOverlay roadMarkers = new FolderOverlay(Application.Context);
             mapView.Overlays.Add(roadMarkers);
             Drawable nodeIcon = ResourcesCompat.GetDrawable(Resources, Resource.Drawable.marker_node, null);
