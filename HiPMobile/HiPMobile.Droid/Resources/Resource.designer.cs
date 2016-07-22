@@ -2922,7 +2922,10 @@ namespace de.upb.hip.mobile.droid
 			public const int activity_exhibit_details_menu_main = 2131623936;
 			
 			// aapt resource value: 0x7f0e0001
-			public const int NavMenu = 2131623937;
+			public const int ActivityRouteMenu = 2131623937;
+			
+			// aapt resource value: 0x7f0e0002
+			public const int NavMenu = 2131623938;
 			
 			static Menu()
 			{

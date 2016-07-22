@@ -23,15 +23,19 @@ using Android.Text.Method;
 using Android.Widget;
 using de.upb.hip.mobile.droid.Adapters;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
+using System.Collections.Generic;
+using Android.Support.V7.Widget;
+using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
+using Android.Views;
+using Android.Content;
 
 namespace de.upb.hip.mobile.droid.Activities {
     [Activity (Theme = "@style/AppTheme", Label = "RouteActivity", MainLauncher = false, Icon = "@drawable/icon")]
     public class RouteActivity : AppCompatActivity, IRouteSelectedListener
     {
-        public static final int ACTIVITY_FILTER_RESULT = 0;
-        private final HashSet<String> activeTags = new HashSet<>();
-        private DBAdapter mDatabase;
-        private RouteSet mRouteSet;
+        public const int ACTIVITY_FILTER_RESULT = 0;
+        private ISet<string> ActiveTags = new HashSet<string>();
+        private ISet<Route> Routes = new HashSet<Route>();
         private RecyclerView mRecyclerView;
         private RecyclerView.Adapter mAdapter;
         private RecyclerView.LayoutManager mLayoutManager;
@@ -42,37 +46,36 @@ namespace de.upb.hip.mobile.droid.Activities {
             base.OnCreate (savedInstanceState);
             SetContentView (Resource.Layout.activity_route);
 
+            //Init the available routes
+            foreach (Route route in RouteManager.GetRoutes())
+            {
+                Routes.Add(route);
+            }
 
-            mDatabase = new DBAdapter(this);
-            mRouteSet = new RouteSet(mDatabase.getView("routes"));
 
             // start with every tag allowed
-            for (Route route : mRouteSet.getRoutes())
+            foreach (Route route in Routes)
             {
-                for (RouteTag tag : route.getTags())
+                foreach (RouteTag tag in route.RouteTags)
                 {
-                    activeTags.add(tag.getTag());
+                    ActiveTags.Add(tag.Tag);
                 }
             }
 
             // Recyler View
-            mRecyclerView = (RecyclerView)findViewById(R.id.routeRecyclerView);
-            mRecyclerView.setHasFixedSize(true);
+            mRecyclerView = (RecyclerView)FindViewById(Resource.Id.routeRecyclerView);
+            mRecyclerView.HasFixedSize = true;
 
             // use a linear layout manager
             mLayoutManager = new LinearLayoutManager(this);
-            mRecyclerView.setLayoutManager(mLayoutManager);
+            mRecyclerView.SetLayoutManager(mLayoutManager);
 
             // specify an adapter
             RouteRecyclerAdapter adapter =
-                    new RouteRecyclerAdapter(this.mRouteSet, getApplicationContext(), activeTags);
+                    new RouteRecyclerAdapter(this.Routes, ApplicationContext, ActiveTags);
             mAdapter = adapter;
-            mRecyclerView.setAdapter(mAdapter);
+            mRecyclerView.SetAdapter(mAdapter);
             adapter.registerRouteSelectedListener(this);
-
-            // setUp navigation drawer
-            mDrawerLayout = (DrawerLayout)findViewById(R.id.routeActivityDrawerLayout);
-            super.setUpNavigationDrawer(this, mDrawerLayout);
         }
 
         /**
@@ -82,24 +85,19 @@ namespace de.upb.hip.mobile.droid.Activities {
  * @return boolean Return false to allow normal menu processing to
  * proceed, true to consume it here.
  */
-        @Override
-    public boolean onOptionsItemSelected(MenuItem item)
+    public override bool OnOptionsItemSelected(IMenuItem item)
         {
-            switch (item.getItemId())
+            switch (item.ItemId)
             {
-                case R.id.action_route_filter:
-                    Intent intent = new Intent(getApplicationContext(), RouteFilterActivity.class);
-                intent.putExtra("RouteSet", mRouteSet);
-                intent.putExtra("activeTags", activeTags);
-                startActivityForResult(intent, ACTIVITY_FILTER_RESULT);
-                return true;
-            default:
-                return public void OnRouteSelected(Route route)
-        {
-            throw new NotImplementedException();
-        }
-
-        super.onOptionsItemSelected(item);
+                //TODO: Comment this in again when RouteFilterActivity is ported
+                /*case Resource.Id.action_route_filter:
+                    Intent intent = new Intent(ApplicationContext, typeof(RouteFilterActivity));
+                    intent.PutExtra("RouteSet", Routes);
+                    intent.PutExtra("activeTags", activeTags);
+                    StartActivityForResult(intent, ACTIVITY_FILTER_RESULT);
+                    return true;*/
+                default:
+                    return Parent.OnOptionsItemSelected(item);
         }
 }
 
@@ -110,11 +108,11 @@ namespace de.upb.hip.mobile.droid.Activities {
  * @param resultCode  integer as result code
  * @param data        Intent with data
  */
-@Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
 {
-    super.onActivityResult(requestCode, resultCode, data);
-
+    base.OnActivityResult(requestCode, resultCode, data);
+     //TODO: Comment this in again when Route Filter activity is ported
+    /*
     switch (requestCode)
     {
         case ACTIVITY_FILTER_RESULT:
@@ -132,37 +130,28 @@ namespace de.upb.hip.mobile.droid.Activities {
             }
             break;
         default:
-            super.onActivityResult(requestCode, resultCode, data);
+            Parent.OnActivityResult(requestCode, resultCode, data);
     }
+    */
 
 }
+
+
+
 
 /**
  * Starts the RouteDetailsActivity for a specific route
  *
  * @param route Route for which the DetailsActivity should be called
  */
-@Override
-    public void onRouteSelected(Route route)
-{
-    Intent intent = new Intent(getApplicationContext(), RouteDetailsActivity.class);
-        intent.putExtra("route", route);
-        startActivity(intent);
-    }
-
-    /**
-     * Getter for RouteSet
-     *
-     * @return RouteSet
-     */
-    public RouteSet getRouteSet()
-{
-    return mRouteSet;
-}
-
 public void OnRouteSelected(Route route)
         {
-            throw new NotImplementedException();
+            //TODO: Comment this in when Route Details Activity is ported
+            /*
+        Intent intent = new Intent(GetApplicationContext(), RouteDetailsActivity.class);
+        intent.putExtra("route", route);
+        startActivity(intent);
+        */
         }
 
 

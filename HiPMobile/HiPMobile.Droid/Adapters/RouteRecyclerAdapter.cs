@@ -13,7 +13,7 @@ namespace de.upb.hip.mobile.droid.Adapters {
     public class RouteRecyclerAdapter : RecyclerView.Adapter, IFilterable {
 
         private readonly ISet<string> ActiveTags;
-        private readonly RouteSet RouteSet;
+        private readonly ISet<Route> RouteSet;
         private readonly Context Context;
         private readonly List<IRouteSelectedListener> RouteSelectedListeners = new List<IRouteSelectedListener> ();
 
@@ -23,7 +23,7 @@ namespace de.upb.hip.mobile.droid.Adapters {
         /// <param name="exhibitSet">The displayed exhibitSet.</param>
         /// <param name="location">The location of the device.</param>
         /// <param name="context"></param>
-        public RouteRecyclerAdapter (RouteSet RouteSet, Context Context, ISet<string> ActiveTags)
+        public RouteRecyclerAdapter (ISet<Route> RouteSet, Context Context, ISet<string> ActiveTags)
         {
             this.RouteSet = RouteSet;
             this.Context = Context;
@@ -81,7 +81,7 @@ namespace de.upb.hip.mobile.droid.Adapters {
         {
             List<Route> result = new List<Route> ();
 
-            foreach (Route route in this.RouteSet.Routes)
+            foreach (Route route in this.RouteSet)
             {
                 foreach (RouteTag tag in route.RouteTags)
                 {
@@ -116,7 +116,7 @@ namespace de.upb.hip.mobile.droid.Adapters {
         {
             //Find the route
             Route route = null;
-            foreach(Route routeIt in RouteSet.Routes)
+            foreach(Route routeIt in RouteSet)
             {
                 if (routeIt.Id.GetHashCode() == RouteId)
                     route = routeIt;
