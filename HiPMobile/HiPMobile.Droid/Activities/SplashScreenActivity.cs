@@ -49,11 +49,11 @@ namespace de.upb.hip.mobile.droid.Activities {
                 IoCManager.UnityContainer.RegisterType<IDataAccess, RealmDataAccess>();
 
                 // Delete current database to avoid migration issues, remove this when wanting persistent database usage
-                //Realm.DeleteRealm(new RealmConfiguration());
+                Realm.DeleteRealm(new RealmConfiguration());
 
                 // Insert Data
                 var filler = new DbDummyDataFiller(Assets);
-                //filler.InsertData();
+                filler.InsertData();
 
                 action = StartMainActivity;
 

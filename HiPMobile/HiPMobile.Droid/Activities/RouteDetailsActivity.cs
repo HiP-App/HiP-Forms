@@ -9,6 +9,7 @@ using Android.Views;
 using Android.Widget;
 using de.upb.hip.mobile.droid.fragments;
 using de.upb.hip.mobile.droid.Helpers;
+using de.upb.hip.mobile.droid.Listeners;
 using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using Java.Lang;
@@ -30,6 +31,9 @@ namespace de.upb.hip.mobile.droid.Activities
         private GeoPoint currentUserLocation = new GeoPoint(51.71352, 8.74021);
         private MapView map;
         private ItemizedIconOverlay mapMarkerItemizedOverlay;
+        private ExtendedLocationListener gpsTracker;
+        public static readonly int MAX_ZOOM_LEVEL = 16;
+        public static readonly int ZOOM_LEVEL = 16;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -43,9 +47,21 @@ namespace de.upb.hip.mobile.droid.Activities
             var extras = Intent.Extras;
             string routeId = extras.GetString(KEY_ROUTE_ID);
             route = RouteManager.GetRoute(routeId);
+            gpsTracker = new ExtendedLocationListener(this);
 
             if (route != null)
             {
+                // getting location
+                if (gpsTracker.CanGetLocation)
+                {
+                    currentUserLocation = new GeoPoint(
+                            gpsTracker.Latitude, gpsTracker.Longitude);
+                }
+
+                // remove this for reals usage
+                currentUserLocation = new GeoPoint(ExtendedLocationListener.PADERBORN_HBF.Latitude,
+                    ExtendedLocationListener.PADERBORN_HBF.Longitude);
+
                 Title = route.Title;
                 InitRouteInfo();
                 InitMap();
@@ -106,19 +122,18 @@ namespace de.upb.hip.mobile.droid.Activities
         private void InitMap()
         {
             map = FindViewById<MapView>(Resource.Id.routedetails_mapview);
-             map.SetTileSource(TileSourceFactory.DefaultTileSource);
+            map.SetTileSource(TileSourceFactory.DefaultTileSource);
+            map.SetBuiltInZoomControls(true);
             map.SetMultiTouchControls(true);
-
-            /*mapView.SetTileSource(new XYTileSource("OSM", 0, 18, 1024, ".png",
-                                                     new[] { "http://tile.openstreetmap.org/" }));*/
+            map.TilesScaledToDpi = true;
+            map.SetMaxZoomLevel(MAX_ZOOM_LEVEL);
 
             var mapController = map.Controller;
-            mapController.SetZoom(13);
+            
+            mapController.SetZoom(ZOOM_LEVEL);
+            mapController.SetCenter(currentUserLocation);
 
-            var centreOfMap = new GeoPoint(51.71352, 8.74021);
-            //var centreOfMap = new GeoPoint(GeoLocation.Latitude, GeoLocation.Longitude);
-            mapController.SetCenter(centreOfMap);
-
+            // Initialize marker overlay
             mapMarkerItemizedOverlay = new ItemizedIconOverlay(this, new List<OverlayItem>(), null);
         }
 
