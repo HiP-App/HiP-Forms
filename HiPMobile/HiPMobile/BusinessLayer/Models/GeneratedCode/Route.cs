@@ -53,8 +53,8 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models
 			set{ Realm.GetInstance ().Write (() => _duration = value); }
 		}
 
-		private int _distance{ get; set; }
-		public int Distance{
+		private double _distance{ get; set; }
+		public double Distance{
 			get{ return _distance; }
 			set{ Realm.GetInstance ().Write (() => _distance = value); }
 		}
@@ -69,6 +69,11 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models
 		public Image Image{
 			get{ return _image; }
 			set{ Realm.GetInstance ().Write (() => _image = value); }
+		}
+
+		private RealmList<Waypoint> _waypoints{ get; }
+		public IList<Waypoint> Waypoints{
+			 get{ return _waypoints; }
 		}
 
 		// Contructor

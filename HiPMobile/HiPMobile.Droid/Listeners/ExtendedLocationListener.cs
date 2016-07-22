@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Android.App;
 using Android.Content;
 using Android.Locations;
@@ -14,7 +14,7 @@ namespace de.upb.hip.mobile.droid.Listeners
     {
         // The minimum distance to change Updates in meters
         public static readonly long MIN_DISTANCE_CHANGE_FOR_UPDATES = 2; // 2 meters
-                                                                         // The minimum time between updates in milliseconds
+                                                                      // The minimum time between updates in milliseconds
         public static readonly long MIN_TIME_BW_UPDATES = 2000; // 2 sec
         private Context context;
         // Declaring a Location Manager
@@ -35,7 +35,7 @@ namespace de.upb.hip.mobile.droid.Listeners
         }
 
         public ExtendedLocationListener(Context context)
-        {
+        {  
             this.context = context;
             GetLocation();
         }
@@ -114,9 +114,9 @@ namespace de.upb.hip.mobile.droid.Listeners
             LocationManager?.RemoveUpdates(this);
         }
 
-        /// <summary>
-        /// The longitude of the last know location or 0 otherwise.
-        /// </summary>
+       /// <summary>
+       /// The longitude of the last know location or 0 otherwise.
+       /// </summary>
         public double Longitude
         {
             get
@@ -127,7 +127,7 @@ namespace de.upb.hip.mobile.droid.Listeners
                 }
 
                 return 0;
-            }
+            }      
         }
 
         /// <summary>
@@ -143,7 +143,7 @@ namespace de.upb.hip.mobile.droid.Listeners
                 }
 
                 return 0;
-            }
+            }       
         }
 
         public void showSettingsAlert()
@@ -169,9 +169,9 @@ namespace de.upb.hip.mobile.droid.Listeners
                 alertDialog.Dispose(); // TODO this seems wrong
             });
 
-            // Showing Alert Message
-            alertDialog.Show();
-        }
+        // Showing Alert Message
+        alertDialog.Show();
+    }
 
         /// <summary>
         /// Method that must be declared because of the inheritance of the Service class,
@@ -187,12 +187,11 @@ namespace de.upb.hip.mobile.droid.Listeners
         public void OnLocationChanged(Location location)
         {
             Activity activity = (Activity)ApplicationContext;
-            if (activity.GetType() == typeof(MainActivity))
-            {
-                MainActivity mainActivity = (MainActivity)activity;
-                //mainActivity.UpdatePosition(location);
-            }
+            if (activity.GetType() == typeof(MainActivity)) {
+            MainActivity mainActivity = (MainActivity)activity;
+            //mainActivity.UpdatePosition(location);
         }
+}
 
         public void OnProviderDisabled(string provider)
         {
