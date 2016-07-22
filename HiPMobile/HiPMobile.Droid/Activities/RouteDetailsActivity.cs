@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Android.App;
+using Android.Content;
 using Android.Graphics.Drawables;
+using Android.Net;
 using Android.OS;
 using Android.Support.V4.Content;
 using Android.Support.V7.App;
@@ -29,7 +31,7 @@ namespace de.upb.hip.mobile.droid.Activities
         private Route route;
         public static readonly string KEY_ROUTE_ID = "route";
         private GeoPoint currentUserLocation = new GeoPoint(51.71352, 8.74021);
-        private MapView map;
+        internal MapView map;
         private ItemizedIconOverlay mapMarkerItemizedOverlay;
         private ExtendedLocationListener gpsTracker;
         public static readonly int MAX_ZOOM_LEVEL = 16;
@@ -88,6 +90,9 @@ namespace de.upb.hip.mobile.droid.Activities
                 // Shows no internet connection if internet not available.
 
             };
+
+            View view = this.FindViewById(Resource.Id.routedetails_mapview);
+            view.ViewTreeObserver.AddOnGlobalLayoutListener(new MapViewGlobalLayoutListener(this));
         }
 
         private void InitRouteInfo()
@@ -123,7 +128,7 @@ namespace de.upb.hip.mobile.droid.Activities
         {
             map = FindViewById<MapView>(Resource.Id.routedetails_mapview);
             map.SetTileSource(TileSourceFactory.DefaultTileSource);
-            map.SetBuiltInZoomControls(true);
+            //map.SetBuiltInZoomControls(true);
             map.SetMultiTouchControls(true);
             map.TilesScaledToDpi = true;
             map.SetMaxZoomLevel(MAX_ZOOM_LEVEL);
@@ -162,7 +167,6 @@ namespace de.upb.hip.mobile.droid.Activities
             GeoPoint geoLocation = null;
             string title = Resources.GetString(Resource.String.departure);
             string description = "";
-            string exhibitId = "";
             Drawable drawable = null;
 
             if (this.currentUserLocation != null)
@@ -182,7 +186,6 @@ namespace de.upb.hip.mobile.droid.Activities
                     Exhibit exhibit = route.Waypoints[0].Exhibit;
                     title = exhibit.Name;
                     description = exhibit.Description;
-                    exhibitId = exhibit.Id;
 
                     drawable = exhibit.Image.GetDrawable();
                 }
@@ -197,8 +200,7 @@ namespace de.upb.hip.mobile.droid.Activities
                 }
 
                 // set and fill start point with data
-                AddMarker(geoLocation, drawable, title, description,
-                        exhibitId);
+                AddMarker(geoLocation, drawable, title, description);
             }
         }
 
@@ -246,7 +248,7 @@ namespace de.upb.hip.mobile.droid.Activities
 
                         // add marker on map for waypoint
                         AddMarker(geoPoint, Resources.GetDrawable(Resource.Drawable.marker_via), exhibit.Name,
-                                exhibit.Description, exhibit.Id);
+                                exhibit.Description);
                     }
                 }
             }
@@ -262,7 +264,6 @@ namespace de.upb.hip.mobile.droid.Activities
             GeoPoint geoLocation;
             string title = Resources.GetString(Resource.String.destination);
             string description = "";
-            string exhibitId = "";
             Drawable drawable;
 
             int waypointIndex = -1;
@@ -294,7 +295,6 @@ namespace de.upb.hip.mobile.droid.Activities
                     Exhibit exhibit = route.Waypoints[waypointIndex].Exhibit;
                     title = exhibit.Name;
                     description = exhibit.Description;
-                    exhibitId = exhibit.Id;
 
                     drawable = exhibit.Image.GetDrawable();
                 }
@@ -304,8 +304,7 @@ namespace de.upb.hip.mobile.droid.Activities
                 }
 
                 // set final point
-                AddMarker(geoLocation, Resources.GetDrawable(Resource.Drawable.marker_destination), title, description,
-                        exhibitId);
+                AddMarker(geoLocation, Resources.GetDrawable(Resource.Drawable.marker_destination), title, description);
             }
         }
 
@@ -336,6 +335,30 @@ namespace de.upb.hip.mobile.droid.Activities
             map.Invalidate();
         }
 
+        /// <summary>
+        /// Getting bounding box to fit all marker on the map
+        /// </summary>
+        /// <returns>BoundingBoxE6</returns>
+        public BoundingBoxE6 GetBoundingBoxE6()
+        {
+            List<GeoPoint> points = new List<GeoPoint>();
+
+            if (currentUserLocation != null)
+            {
+                points.Add(currentUserLocation);
+            }
+
+            if (route != null && route.Waypoints.Any())
+            {
+                foreach (Waypoint waypoint in route.Waypoints)
+                {
+                    points.Add(new GeoPoint(waypoint.Location.Latitude, waypoint.Location.Longitude));
+                }
+            }
+
+            return BoundingBoxE6.FromGeoPoints(points);
+        }
+
         public override bool OnOptionsItemSelected(IMenuItem item)
         {
             if (item.ItemId.Equals(Android.Resource.Id.Home))
@@ -357,7 +380,7 @@ namespace de.upb.hip.mobile.droid.Activities
         /// <param name="description">String, description of the exhibit</param>
         /// <param name="exhibitId">int, exhibit id</param>
         private void AddMarker(GeoPoint geoLocation, Drawable drawable, string title,
-                           string description, string exhibitId)
+                           string description)
         {
             var marker = new OverlayItem(title, description, geoLocation);
             marker.SetMarker(drawable);
@@ -366,6 +389,39 @@ namespace de.upb.hip.mobile.droid.Activities
             data.put(title, exhibitId);
 
             mMarker.addMarker(null, title, description, geoLocation, drawable, icon, data);*/
+        }
+
+        /// <summary>
+        /// Check for internet connection.
+        /// </summary>
+        /// <returns>true, if internet is available.</returns>
+        private bool IsNetworkAvailable()
+        {
+            ConnectivityManager connectivityManager
+                    = (ConnectivityManager)GetSystemService(Context.ConnectivityService);
+            NetworkInfo activeNetworkInfo = connectivityManager.ActiveNetworkInfo;
+            return activeNetworkInfo != null && activeNetworkInfo.IsConnected;
+        }
+    }
+
+    internal class MapViewGlobalLayoutListener : Java.Lang.Object, ViewTreeObserver.IOnGlobalLayoutListener
+    {
+        private readonly RouteDetailsActivity parent;
+
+        public MapViewGlobalLayoutListener(RouteDetailsActivity parent)
+        {
+            this.parent = parent;
+        }
+        public void OnGlobalLayout()
+        {
+            View view = parent.FindViewById(Resource.Id.routedetails_mapview);
+            view.ViewTreeObserver.RemoveOnGlobalLayoutListener(this);
+
+            BoundingBoxE6 boundingBoxE6 = parent.GetBoundingBoxE6();
+            if (boundingBoxE6 != null)
+            {
+                parent.map.ZoomToBoundingBox(boundingBoxE6);
+            }
         }
     }
 }
