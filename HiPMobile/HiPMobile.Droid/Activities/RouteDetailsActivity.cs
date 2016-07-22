@@ -43,8 +43,8 @@ namespace de.upb.hip.mobile.droid.Activities
             SetContentView(Resource.Layout.activity_route_details);
 
             var toolbar = (Toolbar)FindViewById(Resource.Id.toolbar);
-            toolbar.SetNavigationIcon(Resource.Drawable.ic_clear_white_24dp);
             SetSupportActionBar(toolbar);
+            SupportActionBar.SetDisplayHomeAsUpEnabled(true);
 
             var extras = Intent.Extras;
             string routeId = extras.GetString(KEY_ROUTE_ID);
