@@ -186,12 +186,12 @@ namespace de.upb.hip.mobile.droid.Listeners
 
         public void OnLocationChanged(Location location)
         {
-            Activity activity = (Activity)ApplicationContext;
+           /* Activity activity = (Activity)ApplicationContext;
             if (activity.GetType() == typeof(MainActivity)) {
             MainActivity mainActivity = (MainActivity)activity;
-            //mainActivity.UpdatePosition(location);
+            //mainActivity.UpdatePosition(location);*/
         }
-}
+
 
         public void OnProviderDisabled(string provider)
         {
