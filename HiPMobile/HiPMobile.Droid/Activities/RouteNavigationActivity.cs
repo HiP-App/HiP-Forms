@@ -555,13 +555,13 @@ public class RouteNavigationActivity : Activity, ILocationListener, ISensorEvent
         if (mReachedNode == mNextNode)
         {
             mNextNode += 1;
-            setNextStepToAlert (newLocation);
+            SetNextStepToAlert (newLocation);
         }
         else
             if (mReachedNode == -1 && mUpdateStartPointOnce)
             {
                 // start node is not reached, update only once
-                setNextStepToAlert (newLocation);
+                SetNextStepToAlert (newLocation);
             }
 
         recalculateRoute (newLocation);
@@ -802,50 +802,50 @@ public class RouteNavigationActivity : Activity, ILocationListener, ISensorEvent
     private void DrawStepInfo (Drawable drawable, string instructions, string length)
     {
         // set maneuver icon
-        updateManeuverIcon (drawable);
+        UpdateManeuverIcon (drawable);
 
         // set maneuver instruction
-        updateInstructionInfo (instructions);
+        UpdateInstructionInfo (instructions);
 
         // set maneuver distance
-        updateDistanceInfo (length);
+        UpdateDistanceInfo (length);
     }
 
 /**
  * update maneuver icon until the next step
  */
 
-    private void updateManeuverIcon (Drawable drawable)
+    private void UpdateManeuverIcon (Drawable drawable)
     {
-        ImageView ivManeuverIcon = (ImageView) findViewById (R.id.routeNavigationManeuverIcon);
-        ivManeuverIcon.setImageBitmap (((BitmapDrawable) drawable).getBitmap ());
+        ImageView ivManeuverIcon = (ImageView) FindViewById (Resource.Id.routeNavigationManeuverIcon);
+        ivManeuverIcon.SetImageBitmap (((BitmapDrawable) drawable).Bitmap);
     }
 
 /**
  * update textual instruction until the next step
  */
 //TODO calculate position for instruction if instruction too long for one line
-    private void updateInstructionInfo (String instructions)
+    private void UpdateInstructionInfo (string instructions)
     {
-        TextView ivManeuverInstruction = (TextView) findViewById (R.id.routeNavigationInstruction);
-        ivManeuverInstruction.setText (instructions);
+        TextView ivManeuverInstruction = (TextView) FindViewById (Resource.Id.routeNavigationInstruction);
+        ivManeuverInstruction.Text = instructions;
     }
 
 /**
  * update textual distance for user information
  */
 
-    private void updateDistanceInfo (String length)
+    private void UpdateDistanceInfo (string length)
     {
-        TextView ivManeuverDistance = (TextView) findViewById (R.id.routeNavigationDistance);
-        ivManeuverDistance.setText (length);
+        TextView ivManeuverDistance = (TextView) FindViewById (Resource.Id.routeNavigationDistance);
+        ivManeuverDistance.Text = length;
     }
 
 /**
  * update all itinenary markers
  */
 
-    public void updateUIWithItineraryMarkers ()
+    public void UpdateUIWithItineraryMarkers ()
     {
         updateUIWithItineraryMarkers (0);
     }
@@ -854,10 +854,10 @@ public class RouteNavigationActivity : Activity, ILocationListener, ISensorEvent
  * update itinenary markers from specific one
  */
 
-    public void updateUIWithItineraryMarkers (int iVia)
+    public void UpdateUIWithItineraryMarkers (int iVia)
     {
-        mItineraryMarkers.closeAllInfoWindows ();
-        mItineraryMarkers.getItems ().clear ();
+        mItineraryMarkers.CloseAllInfoWindows ();
+        mItineraryMarkers.Items.Clear();
 
         //Start marker:
         if (mStartPoint != null)
