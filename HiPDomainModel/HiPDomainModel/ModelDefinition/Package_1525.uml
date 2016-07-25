@@ -4071,6 +4071,58 @@
               </associationHasOwnedEnds>
             </relationshipOwnedElementsInternal>
           </association>
+          <association
+            Id="13fb2bc1-d10b-4f4a-b816-cf6d870df83e"
+            isDerived="false"
+            sourceEndRoleName="Route"
+            targetEndRoleName="Waypoints"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="8975e7b8-deb3-4a36-82f5-4eeffaad4442"
+              LastKnownName="Waypoint"
+              LastKnownLocation="Package_1525.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="747425e4-d5a8-4431-87cf-746c630f6e8a"
+                  name="Route"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="82419568-72ae-42ad-a68a-f57765cd6aa7"
+                  name="Waypoints"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="4565556d-54fc-43d3-9c92-dad62604e9c8"
+                      name="Lower"
+                      value="*" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="3be46050-0bb8-43eb-be6a-e530dbcbd725"
+                      name="Upper"
+                      value="*" />
+                  </upperValueInternal>
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
         </targetEnds>
         <ownedAttributesInternal>
           <property
@@ -4367,9 +4419,9 @@
               </stereotypeInstance>
             </appliedStereotypesInternal>
             <type_NamedElement>
-              <primitiveTypeMoniker
-                Id="220a3521-e091-4221-bae9-3ef9018e845c"
-                LastKnownName="Integer"
+              <classMoniker
+                Id="e9a1f9c5-a9a7-4b27-8e15-fb3118c01617"
+                LastKnownName="double"
                 LastKnownLocation="HiPDomainModel.uml" />
             </type_NamedElement>
           </property>
@@ -5334,6 +5386,47 @@
             </propertyInstances>
           </stereotypeInstance>
         </appliedStereotypesInternal>
+        <targetEnds>
+          <association
+            Id="5d878ed2-58da-4375-be90-4d1fb4c69d1d"
+            isDerived="false"
+            sourceEndRoleName="Waypoint"
+            targetEndRoleName="Exhibit"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="33bd8304-b8fe-4206-85c0-737592dd248a"
+              LastKnownName="Exhibit"
+              LastKnownLocation="Package_1525.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="3d69691e-2bba-41cc-8d44-9ab013f98b9b"
+                  name="Waypoint"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="0319d698-078c-4807-abd3-522354468c76"
+                  name="Exhibit"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
         <ownedAttributesInternal>
           <property
             Id="7e41eb51-c72b-499d-a724-ea271d6c1228"
@@ -5408,81 +5501,6 @@
                 Id="1a1c8f48-d04c-4e79-8fc2-3570bf3d6e1a"
                 LastKnownName="GeoLocation"
                 LastKnownLocation="Package_1525.uml" />
-            </type_NamedElement>
-          </property>
-          <property
-            Id="595a6293-1ff8-480e-9e39-ce19633a6af2"
-            name="ExhibitId"
-            isLeaf="false"
-            isStatic="false"
-            isReadOnly="false"
-            isUnique="false"
-            isDerived="false"
-            isDerivedUnion="false"
-            aggregation="None"
-            isComposite="false">
-            <appliedStereotypesInternal>
-              <stereotypeInstance
-                Id="eab43017-2759-4bc5-8a85-9f4fda9cb1bb"
-                name="property"
-                profile="CSharpProfile">
-                <propertyInstances>
-                  <stereotypeInstanceHasPropertyInstances
-                    Id="85513ddd-60a9-4bcc-8c52-cd783cd2f62d">
-                    <propertyInstance
-                      Id="a8d296fb-0ee6-4864-ae13-3faea2f5386c"
-                      name="ClrAttributes" />
-                  </stereotypeInstanceHasPropertyInstances>
-                  <stereotypeInstanceHasPropertyInstances
-                    Id="5b50cfeb-f79f-419e-90c5-59490a060f2e">
-                    <propertyInstance
-                      Id="712f54f0-7c20-4ad6-b851-90880f7b25fa"
-                      name="Get"
-                      value="none" />
-                  </stereotypeInstanceHasPropertyInstances>
-                  <stereotypeInstanceHasPropertyInstances
-                    Id="97adb75d-b056-4931-b9a7-7270cab01e8d">
-                    <propertyInstance
-                      Id="98b660d0-124a-44f3-ae96-45284a3f8cb4"
-                      name="HasBody"
-                      value="false" />
-                  </stereotypeInstanceHasPropertyInstances>
-                  <stereotypeInstanceHasPropertyInstances
-                    Id="b242168f-330b-4137-9513-46a442af8840">
-                    <propertyInstance
-                      Id="cc01bc23-b9ee-4a3c-b6fc-56f4b79df917"
-                      name="IsUnsafe"
-                      value="false" />
-                  </stereotypeInstanceHasPropertyInstances>
-                  <stereotypeInstanceHasPropertyInstances
-                    Id="fa775395-99d0-4f91-8925-371d57cfe1fd">
-                    <propertyInstance
-                      Id="28ca7f06-8c9f-4f31-b6d6-d11e4df94464"
-                      name="Inheritance"
-                      value="none" />
-                  </stereotypeInstanceHasPropertyInstances>
-                  <stereotypeInstanceHasPropertyInstances
-                    Id="808a9d8a-8579-44f7-a042-ccbdd6eee131">
-                    <propertyInstance
-                      Id="8cf42eef-e45f-4a3c-aa51-1a21044eff27"
-                      name="PackageVisibility"
-                      value="internal" />
-                  </stereotypeInstanceHasPropertyInstances>
-                  <stereotypeInstanceHasPropertyInstances
-                    Id="7e59d159-cda2-4090-9311-0a624a1d27dc">
-                    <propertyInstance
-                      Id="328c8b1f-a3c6-4527-94bf-4ed04cd8c368"
-                      name="Set"
-                      value="none" />
-                  </stereotypeInstanceHasPropertyInstances>
-                </propertyInstances>
-              </stereotypeInstance>
-            </appliedStereotypesInternal>
-            <type_NamedElement>
-              <primitiveTypeMoniker
-                Id="59259974-6d55-42c6-b7bd-763d77ac8ef9"
-                LastKnownName="String"
-                LastKnownLocation="HiPDomainModel.uml" />
             </type_NamedElement>
           </property>
         </ownedAttributesInternal>
