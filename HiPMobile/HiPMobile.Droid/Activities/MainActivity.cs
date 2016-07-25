@@ -82,9 +82,9 @@ namespace de.upb.hip.mobile.droid.Activities
 
                 if (FindViewById(Resource.Id.main_fragment_container) != null)
                 {
-                    var transaction = FragmentManager.BeginTransaction();
-                    transaction.Replace(Resource.Id.main_fragment_container, fragment);
-                    transaction.Commit();
+                    var transaction = SupportFragmentManager.BeginTransaction ();
+                    transaction.Replace (Resource.Id.main_fragment_container, fragment);
+                    transaction.Commit ();
                 }
             }
 
