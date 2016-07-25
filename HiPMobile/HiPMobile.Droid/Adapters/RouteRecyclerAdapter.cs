@@ -192,7 +192,7 @@ namespace de.upb.hip.mobile.droid.Adapters {
 
     }
 
-    public class ViewOnClickListener : View.IOnClickListener
+    public class ViewOnClickListener : Java.Lang.Object, View.IOnClickListener
     {
 
         public ViewOnClickListener( RouteRecyclerAdapter adapter) 
@@ -201,19 +201,6 @@ namespace de.upb.hip.mobile.droid.Adapters {
         }
 
         public RouteRecyclerAdapter adapter { get; }
-
-        public IntPtr Handle
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        public void Dispose()
-        {
-            throw new NotImplementedException();
-        }
 
         public void OnClick(View v)
         {

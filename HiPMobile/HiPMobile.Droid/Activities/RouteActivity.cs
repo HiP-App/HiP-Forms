@@ -45,6 +45,10 @@ namespace de.upb.hip.mobile.droid.Activities {
             base.OnCreate (savedInstanceState);
             SetContentView (Resource.Layout.activity_route);
 
+            var toolbar = (Android.Support.V7.Widget.Toolbar)FindViewById(Resource.Id.toolbar);
+            SetSupportActionBar(toolbar);
+            SupportActionBar.SetDisplayHomeAsUpEnabled(true);
+
             //Init the available routes
             foreach (Route route in RouteManager.GetRoutes())
             {
