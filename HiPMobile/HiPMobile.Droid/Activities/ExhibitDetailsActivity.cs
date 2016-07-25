@@ -16,9 +16,11 @@ using System.Linq;
 using Android.Animation;
 using Android.App;
 using Android.Content;
+using Android.Graphics;
 using Android.OS;
 using Android.Support.Design.Widget;
 using Android.Support.V7.App;
+using Android.Text.Method;
 using Android.Util;
 using Android.Views;
 using Android.Views.Animations;
@@ -26,6 +28,7 @@ using Android.Widget;
 using de.upb.hip.mobile.droid.fragments.bottomsheetfragment;
 using de.upb.hip.mobile.droid.fragments.exhibitpagefragment;
 using de.upb.hip.mobile.droid.Helpers;
+using de.upb.hip.mobile.droid.Helpers.InteractiveSources;
 using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using IO.Codetail.Animation;
@@ -499,16 +502,25 @@ namespace de.upb.hip.mobile.droid.Activities {
             var metrics = Resources.DisplayMetrics;
             var width = metrics.WidthPixels;
             var height = metrics.HeightPixels;
-            dialog.Window.SetLayout((6 * width) / 7, (4 * height) / 5);
+            dialog.Window.SetLayout ((6 * width) / 7, (4 * height) / 5);
 
-            // setup text view for captions with clickable footnotes
+            // setup text view for captions with clickable sources
             var tv = (TextView) dialog.FindViewById (Resource.Id.captionTextView);
             if (tv != null)
             {
-                tv.Text = caption;
                 var coordinatorLayout =
                     (CoordinatorLayout) dialog.FindViewById (Resource.Id.captionDialogCoordinatorLayout);
-                //ClickableFootnotes.createFootnotes(tv, coordinatorLayout); // TODO implement this
+
+                tv.MovementMethod = LinkMovementMethod.Instance;
+                tv.SetHighlightColor(Color.Transparent);
+
+                var parser = new InteractiveSources ();
+                tv.TextFormatted = parser.Parse (
+                    caption,
+                    new ConstantInteractiveSourceSubstitute(GetString(Resource.String.source_substitute)),
+                    // alternatively: new ConsecutiveNumberInteractiveSourceSubstitute (1), 
+                    new SnackbarInteractiveSourceAction (coordinatorLayout));
+                
             }
             else
             {

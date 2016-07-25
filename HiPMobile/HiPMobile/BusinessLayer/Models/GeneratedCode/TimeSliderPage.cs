@@ -52,6 +52,12 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models
 			get{ return _dates; }
 		}
 
+		private bool _hideyearnumbers{ get; set; }
+		public bool HideYearNumbers{
+			get{ return _hideyearnumbers; }
+			set{ Realm.GetInstance ().Write (() => _hideyearnumbers = value); }
+		}
+
 		//Associations
 		private Audio _audio{ get; set; }
 		public Audio Audio{

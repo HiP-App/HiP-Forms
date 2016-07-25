@@ -62,8 +62,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Bindings\CircularRevealBinding\CircularRevealBinding\bin\Debug\CircularRevealBinding.dll</HintPath>
     </Reference>
-    <Reference Include="DotNetCross.Memory.Unsafe, Version=0.2.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\DotNetCross.Memory.Unsafe.0.2.2\lib\dotnet\DotNetCross.Memory.Unsafe.dll</HintPath>
+    <Reference Include="DotNetCross.Memory.Unsafe, Version=0.2.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\DotNetCross.Memory.Unsafe.0.2.3.2\lib\netstandard1.0\DotNetCross.Memory.Unsafe.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="HockeySDK">
@@ -95,27 +95,27 @@
     <Reference Include="System.Core" />
     <Reference Include="Mono.Android" />
     <Reference Include="Xamarin.Android.Support.Animated.Vector.Drawable, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Xamarin.Android.Support.Animated.Vector.Drawable.23.4.0.1\lib\MonoAndroid403\Xamarin.Android.Support.Animated.Vector.Drawable.dll</HintPath>
+      <HintPath>..\..\packages\Xamarin.Android.Support.Animated.Vector.Drawable.23.4.0\lib\MonoAndroid403\Xamarin.Android.Support.Animated.Vector.Drawable.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Xamarin.Android.Support.Design, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Xamarin.Android.Support.Design.23.4.0.1\lib\MonoAndroid43\Xamarin.Android.Support.Design.dll</HintPath>
+      <HintPath>..\..\packages\Xamarin.Android.Support.Design.23.4.0\lib\MonoAndroid43\Xamarin.Android.Support.Design.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Xamarin.Android.Support.v4, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Xamarin.Android.Support.v4.23.4.0.1\lib\MonoAndroid403\Xamarin.Android.Support.v4.dll</HintPath>
+      <HintPath>..\..\packages\Xamarin.Android.Support.v4.23.4.0\lib\MonoAndroid403\Xamarin.Android.Support.v4.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Xamarin.Android.Support.v7.AppCompat, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Xamarin.Android.Support.v7.AppCompat.23.4.0.1\lib\MonoAndroid403\Xamarin.Android.Support.v7.AppCompat.dll</HintPath>
+      <HintPath>..\..\packages\Xamarin.Android.Support.v7.AppCompat.23.4.0\lib\MonoAndroid403\Xamarin.Android.Support.v7.AppCompat.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Xamarin.Android.Support.v7.RecyclerView, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Xamarin.Android.Support.v7.RecyclerView.23.4.0.1\lib\MonoAndroid403\Xamarin.Android.Support.v7.RecyclerView.dll</HintPath>
+      <HintPath>..\..\packages\Xamarin.Android.Support.v7.RecyclerView.23.4.0\lib\MonoAndroid403\Xamarin.Android.Support.v7.RecyclerView.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Xamarin.Android.Support.Vector.Drawable, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Xamarin.Android.Support.Vector.Drawable.23.4.0.1\lib\MonoAndroid403\Xamarin.Android.Support.Vector.Drawable.dll</HintPath>
+      <HintPath>..\..\packages\Xamarin.Android.Support.Vector.Drawable.23.4.0\lib\MonoAndroid403\Xamarin.Android.Support.Vector.Drawable.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>
@@ -125,11 +125,19 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Activities\RouteActivity.cs" />
     <Compile Include="Activities\LicensingActivity.cs" />
     <Compile Include="Activities\ExhibitDetailsActivity.cs" />
     <Compile Include="Activities\MainActivity.cs" />
-    <Compile Include="Adapters\RouteRecyclerAdapter.cs" />
+    <Compile Include="fragments\ExhibitListFragment.cs" />
+    <Compile Include="fragments\ExhibitsOverviewFragment.cs" />
+    <Compile Include="fragments\MapFragment.cs" />
+    <Compile Include="Helpers\InteractiveSources\ConsecutiveNumberInteractiveSourceSubstitute.cs" />
+    <Compile Include="Helpers\InteractiveSources\ConstantInteractiveSourceSubstitute.cs" />
+    <Compile Include="Helpers\InteractiveSources\IInteractiveSourceAction.cs" />
+    <Compile Include="Helpers\InteractiveSources\IInteractiveSourceSubstitute.cs" />
+    <Compile Include="Helpers\InteractiveSources\InteractiveSources.cs" />
+    <Compile Include="Helpers\InteractiveSources\SnackbarInteractiveSourceAction.cs" />
+    <Compile Include="Helpers\InteractiveSources\ToastInteractiveSourceAction.cs" />
     <Compile Include="Listeners\MyCustomSimpleOnGestureListener.cs" />
     <Compile Include="Activities\SplashScreenActivity.cs" />
     <Compile Include="Adapters\MainRecyclerAdapter.cs" />
@@ -171,7 +179,16 @@
     <AndroidResource Include="Resources\layout\Header.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\menu\ActivityRouteMenu.xml">
+    <AndroidResource Include="Resources\layout\fragment_exhibitlist.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\fragment_map.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\fragment_overview_exhibits.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout-land\fragment_overview_exhibits.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
@@ -190,6 +207,53 @@
     <AndroidAsset Include="Assets\dom.jpg" />
     <AndroidAsset Include="Assets\uni.jpg" />
     <AndroidAsset Include="Assets\sprechertext.mp3" />
+    <AndroidAsset Include="Assets\abdinghof.jpg" />
+    <AndroidAsset Include="Assets\abdinghof_highlighted.jpg" />
+    <AndroidAsset Include="Assets\bibliothek_teaser.jpg" />
+    <AndroidAsset Include="Assets\bruecke_teaser.jpg" />
+    <AndroidAsset Include="Assets\busdorfkirche_aussen.jpg" />
+    <AndroidAsset Include="Assets\denkmalkdg.jpg" />
+    <AndroidAsset Include="Assets\dom_teaser.jpg" />
+    <AndroidAsset Include="Assets\garten_teaser.jpg" />
+    <AndroidAsset Include="Assets\hnf.jpg" />
+    <AndroidAsset Include="Assets\kaiserpfalz_image_2.jpg" />
+    <AndroidAsset Include="Assets\kaiserpfalz_image_3_1.jpg" />
+    <AndroidAsset Include="Assets\kaiserpfalz_image_3_2.jpg" />
+    <AndroidAsset Include="Assets\kaiserpfalz_image_4.jpg" />
+    <AndroidAsset Include="Assets\kaiserpfalz_image_5_1.jpg" />
+    <AndroidAsset Include="Assets\kaiserpfalz_image_5_2.jpg" />
+    <AndroidAsset Include="Assets\kaiserpfalz_image_5_3.jpg" />
+    <AndroidAsset Include="Assets\kaiserpfalz_image_7_1.jpg" />
+    <AndroidAsset Include="Assets\kaiserpfalz_slider_1_1.jpg" />
+    <AndroidAsset Include="Assets\kaiserpfalz_slider_1_2.jpg" />
+    <AndroidAsset Include="Assets\kaiserpfalz_slider_1_3.jpg" />
+    <AndroidAsset Include="Assets\kaiserpfalz_slider_1_4.jpg" />
+    <AndroidAsset Include="Assets\kaiserpfalz_slider_1_5.jpg" />
+    <AndroidAsset Include="Assets\kaiserpfalz_slider_7_1.jpg" />
+    <AndroidAsset Include="Assets\kaiserpfalz_slider_7_2.jpg" />
+    <AndroidAsset Include="Assets\kaiserpfalz_slider_7_3.jpg" />
+    <AndroidAsset Include="Assets\kaiserpfalz_teaser.jpg" />
+    <AndroidAsset Include="Assets\karlsschule.jpg" />
+    <AndroidAsset Include="Assets\liboriuskapelle.jpg" />
+    <AndroidAsset Include="Assets\mariensaeule_teaser.jpg" />
+    <AndroidAsset Include="Assets\pfalz.jpg" />
+    <AndroidAsset Include="Assets\quellen1_teaser.jpg" />
+    <AndroidAsset Include="Assets\quellen2_teaser.jpg" />
+    <AndroidAsset Include="Assets\quellen3_teaser.jpg" />
+    <AndroidAsset Include="Assets\route_karl.jpg" />
+    <AndroidAsset Include="Assets\sprechertext_1.mp3" />
+    <AndroidAsset Include="Assets\sprechertext_2_1.mp3" />
+    <AndroidAsset Include="Assets\sprechertext_2_2.mp3" />
+    <AndroidAsset Include="Assets\sprechertext_3_1.mp3" />
+    <AndroidAsset Include="Assets\sprechertext_3_2.mp3" />
+    <AndroidAsset Include="Assets\sprechertext_4.mp3" />
+    <AndroidAsset Include="Assets\sprechertext_5_1.mp3" />
+    <AndroidAsset Include="Assets\sprechertext_5_2.mp3" />
+    <AndroidAsset Include="Assets\sprechertext_5_3.mp3" />
+    <AndroidAsset Include="Assets\sprechertext_7_1.mp3" />
+    <AndroidAsset Include="Assets\sprechertext_7_2.mp3" />
+    <AndroidAsset Include="Assets\sprechertext_8.mp3" />
+    <AndroidAsset Include="Assets\theo_teaser.jpg" />
     <Content Include="FodyWeavers.xml" />
     <AndroidResource Include="Resources\values\colors.xml">
       <SubType>Designer</SubType>
@@ -236,8 +300,6 @@
     <AndroidResource Include="Resources\drawable-hdpi\ic_headset_white_24dp.xml" />
     <AndroidResource Include="Resources\drawable-hdpi\ic_pause_black_36dp.xml" />
     <AndroidResource Include="Resources\drawable-hdpi\audioseekbar.xml" />
-    <AndroidResource Include="Resources\layout\activity_route.axml" />
-    <AndroidResource Include="Resources\layout\activity_route_row_item.axml" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
@@ -247,9 +309,7 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\..\packages\Fody.1.29.4\build\dotnet\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Fody.1.29.4\build\dotnet\Fody.targets'))" />
     <Error Condition="!Exists('..\..\packages\Realm.0.76.1\build\Realm.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Realm.0.76.1\build\Realm.targets'))" />
-    <Error Condition="!Exists('..\..\packages\Xamarin.Android.Support.Vector.Drawable.23.4.0.1\build\Xamarin.Android.Support.Vector.Drawable.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Xamarin.Android.Support.Vector.Drawable.23.4.0.1\build\Xamarin.Android.Support.Vector.Drawable.targets'))" />
   </Target>
   <Import Project="..\..\packages\Fody.1.29.4\build\dotnet\Fody.targets" Condition="Exists('..\..\packages\Fody.1.29.4\build\dotnet\Fody.targets')" />
   <Import Project="..\..\packages\Realm.0.76.1\build\Realm.targets" Condition="Exists('..\..\packages\Realm.0.76.1\build\Realm.targets')" />
-  <Import Project="..\..\packages\Xamarin.Android.Support.Vector.Drawable.23.4.0.1\build\Xamarin.Android.Support.Vector.Drawable.targets" Condition="Exists('..\..\packages\Xamarin.Android.Support.Vector.Drawable.23.4.0.1\build\Xamarin.Android.Support.Vector.Drawable.targets')" />
 </Project>
