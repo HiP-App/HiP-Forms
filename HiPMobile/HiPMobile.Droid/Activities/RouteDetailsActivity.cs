@@ -85,7 +85,7 @@ namespace de.upb.hip.mobile.droid.Activities
             button.Click += (sender, args) =>
             {
             Intent intent = new Intent(this, typeof(RouteNavigationActivity));
-            intent.PutExtra(RouteNavigationActivity.INTENT_ROUTE, route.Id);
+            intent.PutExtra(RouteNavigationActivity.IntentRoute, route.Id);
             StartActivityForResult(intent, 1);
 
     };

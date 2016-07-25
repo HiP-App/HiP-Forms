@@ -128,10 +128,8 @@
     <Compile Include="Activities\LicensingActivity.cs" />
     <Compile Include="Activities\ExhibitDetailsActivity.cs" />
     <Compile Include="Activities\MainActivity.cs" />
-
     <Compile Include="Activities\RouteNavigationActivity.cs" />
     <Compile Include="Activities\RouteDetailsActivity.cs" />
-
     <Compile Include="fragments\ExhibitListFragment.cs" />
     <Compile Include="fragments\ExhibitsOverviewFragment.cs" />
     <Compile Include="fragments\MapFragment.cs" />
@@ -315,12 +313,11 @@
     <AndroidResource Include="Resources\drawable-hdpi\btn_tracking_on.png" />
     <AndroidResource Include="Resources\drawable-hdpi\ic_continue.png" />
     <AndroidResource Include="Resources\drawable-hdpi\marker_node.png" />
-
     <AndroidResource Include="Resources\layout\activity_route_details.axml" />
     <AndroidResource Include="Resources\drawable-hdpi\marker_departure.png" />
     <AndroidResource Include="Resources\drawable-hdpi\marker_via.png" />
     <AndroidResource Include="Resources\drawable-hdpi\marker_destination.png" />
-
+    <AndroidResource Include="Resources\values\direction_icons.xml" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
