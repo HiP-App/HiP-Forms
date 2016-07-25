@@ -41,13 +41,13 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models
 			set{ Realm.GetInstance ().Write (() => _location = value); }
 		}
 
-		private string _exhibitid{ get; set; }
-		public string ExhibitId{
-			get{ return _exhibitid; }
-			set{ Realm.GetInstance ().Write (() => _exhibitid = value); }
+		//Associations
+		private Exhibit _exhibit{ get; set; }
+		public Exhibit Exhibit{
+			get{ return _exhibit; }
+			set{ Realm.GetInstance ().Write (() => _exhibit = value); }
 		}
 
-		//Associations
 		// Contructor
 		public Waypoint(){
 		}
