@@ -319,6 +319,17 @@
     <AndroidResource Include="Resources\drawable-hdpi\marker_via.png" />
     <AndroidResource Include="Resources\drawable-hdpi\marker_destination.png" />
     <AndroidResource Include="Resources\values\direction_icons.xml" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_empty.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_roundabout.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_sharp_left.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_sharp_right.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_slight_left.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_turn_left.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_turn_right.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_u_turn.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_slight_right.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_arrived.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\bonuspack_bubble.9.png" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
