@@ -13,7 +13,6 @@
 // limitations under the License.
 
 using System.Collections.Generic;
-using Android.App;
 using Android.OS;
 using Android.Support.V4.Content;
 using Android.Views;

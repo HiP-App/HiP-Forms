@@ -12,7 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using Android.App;
 using Android.OS;
 using Android.Views;
 using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
