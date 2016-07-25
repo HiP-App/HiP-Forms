@@ -18,7 +18,7 @@ namespace de.upb.hip.mobile.droid.Listeners
         public static readonly long MIN_TIME_BW_UPDATES = 2000; // 2 sec
         private Context context;
         // Declaring a Location Manager
-        protected LocationManager LocationManager { get; private set; }
+        public LocationManager LocationManager { get; private set; }
         // Flag for GPS status
         public bool CanGetLocation { get; private set; } = false;
         private Location location; // Location

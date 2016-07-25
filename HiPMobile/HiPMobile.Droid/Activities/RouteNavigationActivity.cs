@@ -789,9 +789,9 @@ public class RouteNavigationActivity : Activity, ILocationListener, ISensorEvent
                 break;
         }
 
-        if (mProgressDialog.isShowing ())
+        if (mProgressDialog.IsShowing)
         {
-            mProgressDialog.dismiss ();
+            mProgressDialog.Dismiss ();
         }
     }
 
@@ -845,16 +845,16 @@ public class RouteNavigationActivity : Activity, ILocationListener, ISensorEvent
  * update all itinenary markers
  */
 
-    public void UpdateUIWithItineraryMarkers ()
+    /*public void UpdateUIWithItineraryMarkers ()
     {
         updateUIWithItineraryMarkers (0);
-    }
+    }*/
 
 /**
  * update itinenary markers from specific one
  */
 
-    public void UpdateUIWithItineraryMarkers (int iVia)
+    /*public void UpdateUIWithItineraryMarkers (int iVia)
     {
         mItineraryMarkers.CloseAllInfoWindows ();
         mItineraryMarkers.Items.Clear();
@@ -863,61 +863,61 @@ public class RouteNavigationActivity : Activity, ILocationListener, ISensorEvent
         if (mStartPoint != null)
         {
             ViaPointData viaPointData = new ViaPointData ();
-            viaPointData.setViaPointData (mStartPoint,
-                                          getResources ().getString (R.
-            string.departure),
-            "",
-            -1)
-            ;
+            viaPointData.Location.Latitude = mStartPoint.Latitude;
+            viaPointData.Location.Longitude = mStartPoint.Longitude;
+            viaPointData.Title = Resources.GetString (Resource.String.departure);
+            viaPointData.Description = "";
+            viaPointData.Id = "-1";
+
             if (mReachedNode >= 0)
             {
                 // set start marker as visited if we reached the first node
-                updateItineraryMarker (null, viaPointData, R.drawable.marker_departure_visited);
+                updateItineraryMarker (null, viaPointData, Resource.Drawable.marker_departure_visited);
             }
             else
             {
-                updateItineraryMarker (null, viaPointData, R.drawable.marker_departure);
+                updateItineraryMarker (null, viaPointData, Resource.Drawable.marker_departure);
             }
         }
 
         // update via markers before specific one as visited
         for (int index = 0; index < iVia; index++)
         {
-            updateItineraryMarker (null, mViaPoints.get (index), R.drawable.marker_via_visited);
+            updateItineraryMarker (null, mViaPoints.ElementAt(index), Resource.Drawable.marker_via_visited);
         }
         // update via markers after specific one as non-visited
-        for (int index = iVia; index < mViaPoints.size () - 1; index++)
+        for (int index = iVia; index < mViaPoints.Count - 1; index++)
         {
-            updateItineraryMarker (null, mViaPoints.get (index), R.drawable.marker_via);
+            updateItineraryMarker (null, mViaPoints.ElementAt(index), Resource.Drawable.marker_via);
         }
 
         // Destination marker: (as visited would be set
-        updateItineraryMarker (null, mViaPoints.get (mViaPoints.size () - 1),
-                               R.drawable.marker_destination);
+        updateItineraryMarker (null, mViaPoints.ElementAt (mViaPoints.Count - 1),
+                               Resource.Drawable.marker_destination);
 
-        if (mViaPoints.size () > 0 && mRoads != null)
+        if (mViaPoints.Count > 0 && mRoads != null)
         {
-            if (mNextNode >= mRoads [0].mNodes.size ())
+            if (mNextNode >= mRoads [0].MNodes.Count)
             {
-                updateItineraryMarker (null, mViaPoints.get (mViaPoints.size () - 1),
-                                       R.drawable.marker_destination_visited);
+                updateItineraryMarker (null, mViaPoints.ElementAt (mViaPoints.Count - 1),
+                                       Resource.Drawable.marker_destination_visited);
             }
         }
-    }
+    }*/
 
 /**
  * Update (or create if null) a marker in itineraryMarkers.
  */
 
-    public Marker updateItineraryMarker (Marker marker, ViaPointData viaPointData, int markerResId)
+   /* public Marker UpdateItineraryMarker (Marker marker, ViaPointData viaPointData, int markerResId)
     {
-        Drawable icon = ContextCompat.getDrawable (this, markerResId);
+        Drawable icon = ContextCompat.GetDrawable (this, markerResId);
         Drawable drawable = null;
 
-        Map<String, Integer> data = new HashMap<> ();
-        data.put (viaPointData.getTitle (), viaPointData.getExhibitsId ());
+        Dictionary<string, int> data = new Dictionary<string, int> ( );
+        data.put (viaPointData.Title, viaPointData.ExhibitId);
 
-        if (viaPointData.getExhibitsId () > -1)
+        if (viaPointData.ExhibitId > -1)
         {
             drawable = DBAdapter.getImage (viaPointData.getExhibitsId (), "image.jpg", 65);
         }
@@ -926,40 +926,38 @@ public class RouteNavigationActivity : Activity, ILocationListener, ISensorEvent
                                     viaPointData.getGeoPoint (), drawable, icon, data);
 
         return marker;
-    }
+    }*/
 
 /**
  * setup map orientation if tracking mode is on
  */
 
-    void updateUIWithTrackingMode ()
+    void UpdateUIWithTrackingMode ()
     {
-        if (mTrackingMode)
+        if (TrackingMode)
         {
-            mTrackingModeButton.setBackgroundResource (R.drawable.btn_tracking_on);
-            if (mLocationOverlay.isEnabled () && mLocationOverlay.getLocation () != null)
+            TrackingModeButton.SetBackgroundResource (Resource.Drawable.btn_tracking_on);
+            if (mLocationOverlay.Enabled && mLocationOverlay.Location != null)
             {
-                mMap.getController ().animateTo (mLocationOverlay.getLocation ());
+                mMap.Controller.AnimateTo (mLocationOverlay.Location );
             }
-            mMap.setMapOrientation (-mAzimuthAngleSpeed);
-            mTrackingModeButton.setKeepScreenOn (true);
+            mMap.MapOrientation = (-mAzimuthAngleSpeed);
+            TrackingModeButton.KeepScreenOn = (true);
         }
         else
         {
-            mTrackingModeButton.setBackgroundResource (R.drawable.btn_tracking_off);
-            mMap.setMapOrientation (0.0f);
-            mTrackingModeButton.setKeepScreenOn (false);
+            TrackingModeButton.SetBackgroundResource (Resource.Drawable.btn_tracking_off);
+            mMap.MapOrientation = (0.0f);
+            TrackingModeButton.KeepScreenOn  = (false);
         }
     }
 
-    boolean startLocationUpdates ()
+    bool StartLocationUpdates ()
     {
-        boolean result = false;
-        for (final String 
-            provider :
-        mGpsTracker.getLocationManager ().getProviders (true))
+        bool result = false;
+        foreach ( string provider in mGpsTracker.LocationManager.GetProviders (true))
         {
-            mGpsTracker.getLocationManager ().requestLocationUpdates (
+            mGpsTracker.LocationManager.RequestLocationUpdates (
                 provider,
                 ExtendedLocationListener.MIN_TIME_BW_UPDATES,
                 ExtendedLocationListener.MIN_DISTANCE_CHANGE_FOR_UPDATES,
@@ -973,82 +971,78 @@ public class RouteNavigationActivity : Activity, ILocationListener, ISensorEvent
  * show all nodes on map overlay
  */
 
-    private void putRoadNodes (Road road)
+    private void PutRoadNodes (Road road)
     {
-        updateRoadNodes (road, 0);
+        UpdateRoadNodes (road, 0);
     }
 
 /**
  * update nodes on map overlay from specific one
  */
 
-    private void updateRoadNodes (Road road, int index)
+    private void UpdateRoadNodes (Road road, int index)
     {
-        mRoadNodeMarkers.getItems ().clear ();
-        Drawable icon = ContextCompat.getDrawable (this, R.drawable.marker_node);
-        int n = road.mNodes.size ();
+        mRoadNodeMarkers.Items.Clear ();
+        Drawable icon = ContextCompat.GetDrawable (this, Resource.Drawable.marker_node);
+        int n = road.MNodes.Count;
 
-        MarkerInfoWindow infoWindow = new MarkerInfoWindow (
-            org.osmdroid.bonuspack.R.layout.bonuspack_bubble, mMap);
-        TypedArray iconIds = getResources ().obtainTypedArray (R.array.direction_icons);
+        /*MarkerInfoWindow infoWindow = new MarkerInfoWindow (
+            Org.Osmdroid.Bonuspack.Resources.layout.bonuspack_bubble, mMap);*/
+        TypedArray iconIds = Resources.ObtainTypedArray (Resource.Array.direction_icons);
 
         for (int i = index; i < n; i++)
         {
-            RoadNode node = road.mNodes.get (i);
-            String instructions = (node.mInstructions == null ? "" : node.mInstructions);
+            RoadNode node = (RoadNode)road.MNodes [i];
+            string instructions = (node.MInstructions == null ? "" : node.MInstructions);
             Marker nodeMarker = new Marker (mMap);
-            nodeMarker.setTitle (getString (R.
-            string.step)
-            +" " + (i + 1))
+            nodeMarker.Title = (Resources.GetString (Resource.String.step)+" " + (i + 1))
             ;
-            nodeMarker.setSnippet (instructions);
-            nodeMarker.setSubDescription (
-                Road.getLengthDurationText (this, node.mLength, node.mDuration));
-            nodeMarker.setPosition (node.mLocation);
-            nodeMarker.setIcon (icon);
-            nodeMarker.setInfoWindow (infoWindow); //use a shared infowindow.
-            int iconId = iconIds.getResourceId (node.mManeuverType, R.drawable.ic_empty);
-            if (iconId != R.drawable.ic_empty)
+            nodeMarker.Snippet = (instructions);
+            nodeMarker.SubDescription = (
+                Road.GetLengthDurationText (node.MLength, node.MDuration));
+            nodeMarker.Position  = (node.MLocation);
+            nodeMarker.SetIcon (icon);
+            nodeMarker.SetInfoWindow (infoWindow); //use a shared infowindow.
+            int iconId = iconIds.GetResourceId (node.MManeuverType, Resource.Drawable.ic_empty);
+            if (iconId != Resource.Drawable.ic_empty)
             {
-                Drawable image = ContextCompat.getDrawable (this, iconId);
-                nodeMarker.setImage (image);
+                Drawable image = ContextCompat.GetDrawable (this, iconId);
+                nodeMarker.Image = (image);
             }
-            mRoadNodeMarkers.add (nodeMarker);
+            mRoadNodeMarkers.Add (nodeMarker);
         }
-        iconIds.recycle ();
+        iconIds.Recycle ();
     }
 
 /**
  * paint road lines with colors blue or red
  */
 
-    void selectRoad (int roadIndex)
+    void SelectRoad (int roadIndex)
     {
         mSelectedRoad = roadIndex;
-        putRoadNodes (mRoads [roadIndex]);
+        PutRoadNodes (mRoads [roadIndex]);
 
-        for (int i = 0; i < mRoadOverlays.length; i++)
+        for (int i = 0; i < mRoadOverlays.Length; i++)
         {
-            Paint p = mRoadOverlays [i].getPaint ();
+            Paint p = mRoadOverlays [i].Paint;
             if (i == roadIndex)
-                p.setColor (getResources ().getColor (R.color.colorPrimaryDark)); //blue
+                p.Color = (Resources.GetColor (Resource.Color.colorPrimaryDark)); //blue
             else
-                p.setColor (getResources ().getColor (R.color.colorAccent)); // red
+                p.Color  = (Resources.GetColor (Resource.Color.colorAccent)); // red
         }
         mMap.invalidate ();
     }
 
     void updateUiWithRoads (Road[] roads)
     {
-        mRoadNodeMarkers.getItems ().clear ();
-        List<Overlay> mapOverlays = mMap.getOverlays ();
+        mRoadNodeMarkers.Items.Clear();
+        IList<Overlay> mapOverlays = mMap.Overlays;
         if (mRoadOverlays != null)
         {
-            for (Polyline
-                mRoadOverlay :
-            mRoadOverlays)
+            foreach (Polyline mRoadOverlay in mRoadOverlays)
             {
-                mapOverlays.remove (mRoadOverlay);
+                mapOverlays.Remove (mRoadOverlay);
             }
             mRoadOverlays = null;
         }
@@ -1057,36 +1051,27 @@ public class RouteNavigationActivity : Activity, ILocationListener, ISensorEvent
             return;
         }
 
-        if (roads [0].mStatus == Road.STATUS_TECHNICAL_ISSUE)
-            Toast.makeText (mMap.getContext (), R.
-        string.technical_issue,
-        Toast.LENGTH_SHORT).
-        show ();
+        if (roads [0].MStatus == Road.StatusTechnicalIssue)
+            Toast.MakeText (mMap.Context, Resource.String.technical_issue, ToastLength.Short).Show ();
     else
-        if (roads [0].mStatus > Road.STATUS_TECHNICAL_ISSUE) //functional issues
-            Toast.makeText (mMap.getContext (), R.
-        string.no_route,
-        Toast.LENGTH_SHORT).
-        show ();
-        mRoadOverlays = new Polyline[roads.length];
-        for (int i = 0; i < roads.length; i++)
+        if (roads [0].MStatus > Road.StatusTechnicalIssue) //functional issues
+            Toast.MakeText (mMap.Context , Resource.String.no_route,ToastLength.Short).Show ();
+
+        mRoadOverlays = new Polyline[roads.Length];
+        for (int i = 0; i < roads.Length; i++)
         {
-            Polyline roadPolyline = RoadManager.buildRoadOverlay (roads [i], this);
+            Polyline roadPolyline = RoadManager.BuildRoadOverlay (roads [i], this);
             mRoadOverlays [i] = roadPolyline;
 
-            String routeDesc = roads [i].getLengthDurationText (this, -1);
-            roadPolyline.setTitle (getString (R.
-            string.route)
-            +" - " + routeDesc)
-            ;
-            roadPolyline.setInfoWindow (
-                new BasicInfoWindow (org.osmdroid.bonuspack.R.layout.bonuspack_bubble, mMap));
-            roadPolyline.setRelatedObject (i);
-            mapOverlays.add (1, roadPolyline);
+            string routeDesc = roads [i].GetLengthDurationText (-1);
+            roadPolyline.Title =  (Resources.GetString (Resource.String.route) + " - " + routeDesc);
+            roadPolyline.InfoWindow  = (new BasicInfoWindow (Org.Osmdroid.Bonuspack.Resource.layout.bonuspack_bubble, mMap));
+            //roadPolyline.RelatedObject (i);
+            mapOverlays.Add (roadPolyline);
             //we insert the road overlays at the "bottom", just above the MapEventsOverlay,
             //to avoid covering the other overlays.
         }
-        selectRoad (0);
+        SelectRoad (0);
     }
 
 
