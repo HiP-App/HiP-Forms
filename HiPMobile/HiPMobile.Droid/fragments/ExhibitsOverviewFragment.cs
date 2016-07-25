@@ -12,11 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using Android.App;
 using Android.OS;
 using Android.Views;
 using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
+using Fragment = Android.Support.V4.App.Fragment;
 
 namespace de.upb.hip.mobile.droid.fragments {
     /// <summary>

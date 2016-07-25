@@ -13,7 +13,6 @@
 // limitations under the License.
 
 using System.Collections.Generic;
-using Android.App;
 using Android.OS;
 using Android.Support.V4.Content;
 using Android.Views;
@@ -23,6 +22,7 @@ using Osmdroid.TileProvider.TileSource;
 using Osmdroid.Util;
 using Osmdroid.Views;
 using Osmdroid.Views.Overlay;
+using Fragment = Android.Support.V4.App.Fragment;
 
 namespace de.upb.hip.mobile.droid.fragments {
     /// <summary>
