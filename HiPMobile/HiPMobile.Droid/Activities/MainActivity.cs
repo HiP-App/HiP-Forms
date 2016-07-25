@@ -15,6 +15,7 @@
 //  */
 
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Android;
@@ -67,7 +68,16 @@ namespace de.upb.hip.mobile.droid.Activities {
             base.OnCreate (bundle);
 
             // Set our view from the "main" layout resource
-            SetContentView (Resource.Layout.Main);
+            try
+            {
+                SetContentView(Resource.Layout.Main);
+            }
+            catch (Exception)
+            {
+                var view = FindViewById (Android.Resource.Id.Content);
+                throw;
+            }
+            
 
 
             // Check if we have the necessary permissions and request them if we don't

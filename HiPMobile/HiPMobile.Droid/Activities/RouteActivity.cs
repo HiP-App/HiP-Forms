@@ -39,7 +39,6 @@ namespace de.upb.hip.mobile.droid.Activities {
         private RecyclerView mRecyclerView;
         private RecyclerView.Adapter mAdapter;
         private RecyclerView.LayoutManager mLayoutManager;
-        private DrawerLayout mDrawerLayout;
 
         protected override void OnCreate (Bundle savedInstanceState)
         {

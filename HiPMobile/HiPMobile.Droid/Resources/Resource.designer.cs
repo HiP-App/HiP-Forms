@@ -2042,6 +2042,9 @@ namespace de.upb.hip.mobile.droid
 			// aapt resource value: 0x7f06003c
 			public const int action_mode_close_button = 2131099708;
 			
+			// aapt resource value: 0x7f0600d4
+			public const int action_route_filter = 2131099860;
+			
 			// aapt resource value: 0x7f06003d
 			public const int activity_chooser_view_content = 2131099709;
 			
@@ -2375,14 +2378,14 @@ namespace de.upb.hip.mobile.droid
 			// aapt resource value: 0x7f060016
 			public const int multiply = 2131099670;
 			
-			// aapt resource value: 0x7f0600d4
-			public const int nav_home = 2131099860;
+			// aapt resource value: 0x7f0600d5
+			public const int nav_home = 2131099861;
+			
+			// aapt resource value: 0x7f0600d7
+			public const int nav_licenses = 2131099863;
 			
 			// aapt resource value: 0x7f0600d6
-			public const int nav_licenses = 2131099862;
-			
-			// aapt resource value: 0x7f0600d5
-			public const int nav_route = 2131099861;
+			public const int nav_route = 2131099862;
 			
 			// aapt resource value: 0x7f0600c5
 			public const int nav_view = 2131099845;
