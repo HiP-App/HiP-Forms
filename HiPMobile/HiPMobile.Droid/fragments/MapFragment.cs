@@ -23,6 +23,7 @@ using Osmdroid.TileProvider.TileSource;
 using Osmdroid.Util;
 using Osmdroid.Views;
 using Osmdroid.Views.Overlay;
+using Fragment = Android.Support.V4.App.Fragment;
 
 namespace de.upb.hip.mobile.droid.fragments {
     /// <summary>
