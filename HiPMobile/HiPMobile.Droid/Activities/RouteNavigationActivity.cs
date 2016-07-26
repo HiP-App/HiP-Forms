@@ -438,24 +438,19 @@ namespace de.upb.hip.mobile.droid.Activities {
             var wayPoints = route.Waypoints;
             var geoPoints = new List<GeoPoint>();
 
-            geoPoints.Add(new GeoPoint(geoLocation.Latitude, geoLocation.Longitude));
-
-            foreach (var w in wayPoints)
+           /* foreach (var w in wayPoints)
             {
                 var point = new GeoPoint(w.Location.Latitude, w.Location.Longitude);
                 geoPoints.Add(point);
-            }
+            }*/
 
 
-            var road = roadManager.GetRoad(geoPoints);
-            if (road.MStatus != Road.StatusOk)
-                Toast.MakeText(Application.Context, "Error when loading the road - status=" + road.MStatus, ToastLength.Short).Show();
+            
 
-            var roadOverlay = RoadManager.BuildRoadOverlay(road, Application.Context);
-            mMap.Overlays.Add(roadOverlay);
+            mStartPoint = geoLocation;
 
             // init start
-            mStartPoint = geoLocation;
+           
 
             // add viapoints
             mViaPoints = new List<ViaPointData>();
@@ -505,6 +500,22 @@ namespace de.upb.hip.mobile.droid.Activities {
                 }
                 mViaPoints.Add(viaPointsData);
             }
+
+           foreach (var w in mViaPoints)
+          {
+              var point = new GeoPoint(w.Location.Latitude, w.Location.Longitude);
+              geoPoints.Add(point);
+          }
+
+
+            var road = roadManager.GetRoad(geoPoints);
+            if (road.MStatus != Road.StatusOk)
+                Toast.MakeText(Application.Context, "Error when loading the road - status=" + road.MStatus, ToastLength.Short).Show();
+
+            var roadOverlay = RoadManager.BuildRoadOverlay(road, Application.Context);
+            mMap.Overlays.Add(roadOverlay);
+            mRoads = new Road[1];
+            mRoads[0] = road;
         }
 
         //TODO is not async not sure if still necessary
