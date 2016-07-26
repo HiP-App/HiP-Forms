@@ -362,7 +362,7 @@ namespace de.upb.hip.mobile.droid.Activities {
             mItineraryMarkers.Name = (Resource.String.itinerary_markers_title).ToString ();
             mMap.Overlays.Add (mItineraryMarkers);
             /*mViaPointInfoWindow = new ViaPointInfoWindow(R.layout.navigation_info_window, mMap, this);
-        mMarker = new SetMarker(mMap, mItineraryMarkers, mViaPointInfoWindow);*/
+            mMarker = new SetMarker(mMap, mItineraryMarkers, mViaPointInfoWindow);*/
             mLocationOverlay = new DirectedLocationOverlay (this);
             mMap.Overlays.Add (mLocationOverlay);
 
@@ -398,40 +398,48 @@ namespace de.upb.hip.mobile.droid.Activities {
 
             // add viapoints
             mViaPoints = new List<ViaPointData> ();
+            
             for (int i = 0; i < route.Waypoints.Count; i++)
             {
                 GeoPoint geoPoint = new GeoPoint (route.Waypoints.ElementAt (i).Location.Latitude,
                                                   route.Waypoints.ElementAt (i).Location.Longitude);
 
-                ViaPointData viaPointsData = new ViaPointData ();
+                var viaPointsData = BusinessEntitiyFactory.CreateBusinessObject<ViaPointData>();
+                var position = BusinessEntitiyFactory.CreateBusinessObject<GeoLocation>();
                 // add related data to marker if start point is first waypoint
                 if (route.Waypoints.ElementAt (i).Exhibit.Id != null)
                 {
                     Exhibit exhibit = route.Waypoints.ElementAt (i).Exhibit;
+                    
+                    position.Longitude = geoPoint.Longitude;
+                    position.Latitude = geoPoint.Latitude;
 
-                    viaPointsData.Location.Longitude = geoPoint.Longitude;
-                    viaPointsData.Location.Latitude = geoPoint.Latitude;
+                    viaPointsData.Location = position;
                     viaPointsData.Title = exhibit.Name;
                     viaPointsData.Description = exhibit.Description;
-                    viaPointsData.Id = exhibit.Id;
+                    viaPointsData.ExhibitId = exhibit.Id;
                 }
                 else
                 {
                     if (i == route.Waypoints.Count - 1)
                     {
-                        viaPointsData.Location.Longitude = geoPoint.Longitude;
-                        viaPointsData.Location.Latitude = geoPoint.Latitude;
-                        viaPointsData.Title = Resource.String.destination.ToString ();
+                        position.Longitude = geoPoint.Longitude;
+                        position.Latitude = geoPoint.Latitude;
+
+                        viaPointsData.Location = position;
+                        viaPointsData.Title = Resources.GetString (Resource.String.destination);
                         viaPointsData.Description = "";
-                        viaPointsData.Id = "-1";
+                        viaPointsData.ExhibitId  = "-1";
                     }
                     else
                     {
-                        viaPointsData.Location.Longitude = geoPoint.Longitude;
-                        viaPointsData.Location.Latitude = geoPoint.Latitude;
-                        viaPointsData.Title = Resource.String.via_point.ToString ();
+                        position.Longitude = geoPoint.Longitude;
+                        position.Latitude = geoPoint.Latitude;
+
+                        viaPointsData.Location = position;
+                        viaPointsData.Title = Resources.GetString (Resource.String.via_point);
                         viaPointsData.Description = "";
-                        viaPointsData.Id = "-1";
+                        viaPointsData.ExhibitId = "-1";
                     }
                 }
                 mViaPoints.Add (viaPointsData);
