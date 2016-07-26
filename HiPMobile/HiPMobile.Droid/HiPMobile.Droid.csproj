@@ -330,6 +330,7 @@
     <AndroidResource Include="Resources\drawable-hdpi\ic_slight_right.png" />
     <AndroidResource Include="Resources\drawable-hdpi\ic_arrived.png" />
     <AndroidResource Include="Resources\drawable-hdpi\bonuspack_bubble.9.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\map_restaurant.png" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />

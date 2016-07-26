@@ -247,6 +247,7 @@ using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using Java.Lang;
 using Org.Osmdroid.Api;
+using Org.Osmdroid.Bonuspack.Location;
 using Org.Osmdroid.Bonuspack.Overlays;
 using Org.Osmdroid.Bonuspack.Routing;
 using Org.Osmdroid.Tileprovider;
@@ -321,6 +322,7 @@ namespace de.upb.hip.mobile.droid.Activities {
             mProgressDialog = new ProgressDialog (this);
             mProgressDialog.SetCancelable (true);
 
+            //Get the Rout from NavigationDetailsActivity
             var extras = Intent.Extras;
             var routeId = extras.GetString (INTENT_ROUTE);
             route = RouteManager.GetRoute (routeId);
@@ -332,7 +334,6 @@ namespace de.upb.hip.mobile.droid.Activities {
             mMap = genericMap.GetMapView ();
             mMap.SetBuiltInZoomControls (true);
             mMap.SetMultiTouchControls (true);
-
             mMap.SetTileSource (TileSourceFactory.Mapnik);
             mMap.TilesScaledToDpi = true;
             //mMap.SetMaxZoomLevel(RouteDetailsActivity.MAX_ZOOM_LEVEL);
@@ -366,51 +367,111 @@ namespace de.upb.hip.mobile.droid.Activities {
             mLocationOverlay = new DirectedLocationOverlay (this);
             mMap.Overlays.Add (mLocationOverlay);
 
-
             var policy = new StrictMode.ThreadPolicy.Builder ().PermitAll ().Build ();
             StrictMode.SetThreadPolicy (policy);
 
+            GenerateRoute (geoLocation);
 
-            RoadManager roadManager = new MapQuestRoadManager ("WRWdd9j02K8tGtERI2LtFiCLsRUKyJnJ");
-            roadManager.AddRequestOption ("routeType=pedestrian");
+           /* if (savedInstanceState == null)
+            {
+                GetRoadAsync (0);
+            }
+            else
+            {
+                mLocationOverlay.Location = ((GeoPoint) savedInstanceState
+                    .GetParcelable (SAVEDSTATE_LOCATION));
+                mStartPoint = (GeoPoint) savedInstanceState.GetParcelable (SAVEDSTATE_START);
+                //mDestinationPoint = savedInstanceState.getParcelable(SAVEDSTATE_DESTINATION);
+                //mViaPoints = savedInstanceState.getParcelableArrayList(SAVEDSTATE_VIAPOINTS);
+                mReachedNode = savedInstanceState.GetInt (SAVEDSTATE_REACHED_NODE);
+                mNextNode = savedInstanceState.GetInt (SAVEDSTATE_NEXT_NODE);
+                mNextViaPoint = savedInstanceState.GetInt (SAVEDSTATE_NEXT_VIA_POINT);
+            }*/
+
+            // calculate distance between current location and start point
+            // if the start location was not reached
+            mDistanceBetweenLoc = geoLocation.DistanceTo (mStartPoint);
+
+            // UpdateUIWithItineraryMarkers ();
+
+            //Add the POIs around the starting point of the map
+            if (route.Waypoints.Count > 0)
+            {
+                AddPoIsToMap (mMap, new GeoPoint (route.Waypoints.ElementAt (0).Location.Latitude,
+                                                  route.Waypoints.ElementAt (0).Location.Longitude));
+            }
+
+            // a scale bar in the top-left corner of the screen
+            ScaleBarOverlay scaleBarOverlay = new ScaleBarOverlay (mMap.Context);
+            mMap.Overlays.Add (scaleBarOverlay);
+
+            //Tracking system:
+            TrackingModeButton = (Button) FindViewById (Resource.Id.routeNavigationTrackingModeButton);
+            TrackingModeButton.Click += (sender, args) => {
+                TrackingMode = !TrackingMode;
+                UpdateUiWithTrackingMode ();
+            };
+
+            if (savedInstanceState != null)
+            {
+                TrackingMode = savedInstanceState.GetBoolean (SAVEDSTATE_TRACKING_MODE);
+                UpdateUiWithTrackingMode ();
+            }
+            else
+                TrackingMode = false;
+
+            mRoadNodeMarkers = new FolderOverlay (this);
+            //mRoadNodeMarkers.setName("Route Steps");
+            mMap.Overlays.Add (mRoadNodeMarkers);
+
+            if (savedInstanceState != null)
+            {
+                UpdateUiWithRoads (mRoads);
+            }
+        }
+
+        private void GenerateRoute (GeoPoint geoLocation)
+        {
+            RoadManager roadManager = new MapQuestRoadManager("WRWdd9j02K8tGtERI2LtFiCLsRUKyJnJ");
+            roadManager.AddRequestOption("routeType=pedestrian");
 
             var wayPoints = route.Waypoints;
-            var geoPoints = new List<GeoPoint> ();
+            var geoPoints = new List<GeoPoint>();
 
-            geoPoints.Add (new GeoPoint (geoLocation.Latitude, geoLocation.Longitude));
+            geoPoints.Add(new GeoPoint(geoLocation.Latitude, geoLocation.Longitude));
 
             foreach (var w in wayPoints)
             {
-                var point = new GeoPoint (w.Location.Latitude, w.Location.Longitude);
-                geoPoints.Add (point);
+                var point = new GeoPoint(w.Location.Latitude, w.Location.Longitude);
+                geoPoints.Add(point);
             }
 
 
-            var road = roadManager.GetRoad (geoPoints);
+            var road = roadManager.GetRoad(geoPoints);
             if (road.MStatus != Road.StatusOk)
-                Toast.MakeText (Application.Context, "Error when loading the road - status=" + road.MStatus, ToastLength.Short).Show ();
+                Toast.MakeText(Application.Context, "Error when loading the road - status=" + road.MStatus, ToastLength.Short).Show();
 
-            var roadOverlay = RoadManager.BuildRoadOverlay (road, Application.Context);
-            mMap.Overlays.Add (roadOverlay);
+            var roadOverlay = RoadManager.BuildRoadOverlay(road, Application.Context);
+            mMap.Overlays.Add(roadOverlay);
 
             // init start
             mStartPoint = geoLocation;
 
             // add viapoints
-            mViaPoints = new List<ViaPointData> ();
-            
+            mViaPoints = new List<ViaPointData>();
+
             for (int i = 0; i < route.Waypoints.Count; i++)
             {
-                GeoPoint geoPoint = new GeoPoint (route.Waypoints.ElementAt (i).Location.Latitude,
-                                                  route.Waypoints.ElementAt (i).Location.Longitude);
+                GeoPoint geoPoint = new GeoPoint(route.Waypoints.ElementAt(i).Location.Latitude,
+                                                  route.Waypoints.ElementAt(i).Location.Longitude);
 
                 var viaPointsData = BusinessEntitiyFactory.CreateBusinessObject<ViaPointData>();
                 var position = BusinessEntitiyFactory.CreateBusinessObject<GeoLocation>();
                 // add related data to marker if start point is first waypoint
-                if (route.Waypoints.ElementAt (i).Exhibit.Id != null)
+                if (route.Waypoints.ElementAt(i).Exhibit.Id != null)
                 {
-                    Exhibit exhibit = route.Waypoints.ElementAt (i).Exhibit;
-                    
+                    Exhibit exhibit = route.Waypoints.ElementAt(i).Exhibit;
+
                     position.Longitude = geoPoint.Longitude;
                     position.Latitude = geoPoint.Latitude;
 
@@ -427,9 +488,9 @@ namespace de.upb.hip.mobile.droid.Activities {
                         position.Latitude = geoPoint.Latitude;
 
                         viaPointsData.Location = position;
-                        viaPointsData.Title = Resources.GetString (Resource.String.destination);
+                        viaPointsData.Title = Resources.GetString(Resource.String.destination);
                         viaPointsData.Description = "";
-                        viaPointsData.ExhibitId  = "-1";
+                        viaPointsData.ExhibitId = "-1";
                     }
                     else
                     {
@@ -437,119 +498,44 @@ namespace de.upb.hip.mobile.droid.Activities {
                         position.Latitude = geoPoint.Latitude;
 
                         viaPointsData.Location = position;
-                        viaPointsData.Title = Resources.GetString (Resource.String.via_point);
+                        viaPointsData.Title = Resources.GetString(Resource.String.via_point);
                         viaPointsData.Description = "";
                         viaPointsData.ExhibitId = "-1";
                     }
                 }
-                mViaPoints.Add (viaPointsData);
-            }
-
-            if (savedInstanceState == null)
-            {
-                GetRoadAsync (0);
-            }
-            else
-            {
-                mLocationOverlay.Location = ((GeoPoint) savedInstanceState
-                    .GetParcelable (SAVEDSTATE_LOCATION));
-                mStartPoint = (GeoPoint) savedInstanceState.GetParcelable (SAVEDSTATE_START);
-                //mDestinationPoint = savedInstanceState.getParcelable(SAVEDSTATE_DESTINATION);
-                //mViaPoints = savedInstanceState.getParcelableArrayList(SAVEDSTATE_VIAPOINTS);
-                mReachedNode = savedInstanceState.GetInt (SAVEDSTATE_REACHED_NODE);
-                mNextNode = savedInstanceState.GetInt (SAVEDSTATE_NEXT_NODE);
-                mNextViaPoint = savedInstanceState.GetInt (SAVEDSTATE_NEXT_VIA_POINT);
-            }
-
-            // calculate distance between current location and start point
-            // if the start location was not reached
-            mDistanceBetweenLoc = geoLocation.DistanceTo (mStartPoint);
-
-            // UpdateUIWithItineraryMarkers ();
-
-            //Add the POIs around the starting point of the map
-            if (route.Waypoints.Count > 0)
-            {
-                AddPOIsToMap (mMap, new GeoPoint (route.Waypoints.ElementAt (0).Location.Latitude,
-                                                  route.Waypoints.ElementAt (0).Location.Longitude));
-            }
-
-            // a scale bar in the top-left corner of the screen
-            ScaleBarOverlay scaleBarOverlay = new ScaleBarOverlay (mMap.Context);
-            mMap.Overlays.Add (scaleBarOverlay);
-
-            //Tracking system:
-            TrackingModeButton = (Button) FindViewById (Resource.Id.routeNavigationTrackingModeButton);
-            TrackingModeButton.Click += (sender, args) => {
-                TrackingMode = !TrackingMode;
-                // UpdateUiWithTrackingMode ();
-            };
-
-            if (savedInstanceState != null)
-            {
-                TrackingMode = savedInstanceState.GetBoolean (SAVEDSTATE_TRACKING_MODE);
-                //  UpdateUiWithTrackingMode ();
-            }
-            else
-                TrackingMode = false;
-
-            mRoadNodeMarkers = new FolderOverlay (this);
-            //mRoadNodeMarkers.setName("Route Steps");
-            mMap.Overlays.Add (mRoadNodeMarkers);
-
-            if (savedInstanceState != null)
-            {
-                UpdateUiWithRoads (mRoads);
+                mViaPoints.Add(viaPointsData);
             }
         }
 
-        private void AddPOIsToMap (MapView map, GeoPoint position)
+        //TODO is not async not sure if still necessary
+        private void AddPoIsToMap (MapView map, GeoPoint position)
         {
-            //        new AsyncTask ()
-            //        {
-            //            @Override
-            //        protected Object doInBackground(Object[] params)
-            //{
-            //    NominatimPOIProvider poiProvider = new NominatimPOIProvider("Uni-Paderborn HiP App");
-            //    final ArrayList< POI > pois = poiProvider.getPOICloseTo(position,
-            //            "restaurant",
-            //            50,
-            //            0.05);
-
-            //    final FolderOverlay poiMarkers = new FolderOverlay(RouteNavigationActivity.this);
-            //    RouteNavigationActivity.this.runOnUiThread(new Runnable() {
-            //    @Override
-            //    public void run()
-            //{
-            //    map.getOverlays().add(poiMarkers);
-
-            //    Drawable poiIcon = getResources().getDrawable(R.drawable.map_restaurant);
-            //    for (POI poi : pois)
-            //{
-            //    Marker poiMarker = new Marker(map);
-            //    poiMarker.setTitle(poi.mType);
-            //    poiMarker.setSnippet(poi.mDescription);
-            //    poiMarker.setPosition(poi.mLocation);
-            //    poiMarker.setIcon(poiIcon);
-            //    /*if (poi.mThumbnail != null){
-            //            poiItem.setImage(new BitmapDrawable(poi.mThumbnail));
-            //        }*/
-            //    poiMarker.setInfoWindow(new CustomInfoWindow(map));
-            //    poiMarker.setRelatedObject(poi);
-            //    poiMarkers.add(poiMarker);
-            //        }
-            //    }
-            //    }
-            //    )
-            //        ;
+            NominatimPOIProvider poiProvider = new NominatimPOIProvider ();
 
 
-            //        return null;
-            //    }
-            //    }
-            //    .
-            //        execute ();
+            IList<POI> pois = poiProvider.GetPOICloseTo (position, "restaurant", 50, 0.05);
+
+            FolderOverlay poiMarkers = new FolderOverlay (Application.Context);
+
+            map.Overlays.Add (poiMarkers);
+
+            Drawable poiIcon = ContextCompat.GetDrawable (this, Resource.Drawable.map_restaurant);
+            foreach (POI poi in pois)
+            {
+                Marker poiMarker = new Marker (map);
+                poiMarker.Title = (poi.MType);
+                poiMarker.Snippet = (poi.MDescription);
+                poiMarker.Position = (poi.MLocation);
+                poiMarker.SetIcon (poiIcon);
+                /*if (poi.mThumbnail != null){
+                        poiItem.setImage(new BitmapDrawable(poi.mThumbnail));
+                    }*/
+                //  poiMarker.SetInfoWindow (new CustomInfoWindow (map));
+                poiMarker.RelatedObject = (poi);
+                poiMarkers.Add (poiMarker);
+            }
         }
+
 
 
         /**
@@ -580,13 +566,13 @@ namespace de.upb.hip.mobile.droid.Activities {
                     SetNextStepToAlert (newLocation);
                 }
 
-            recalculateRoute (newLocation);
+            RecalculateRoute (newLocation);
 
             GeoPoint prevLocation = mLocationOverlay.Location;
             mLocationOverlay.Location = (newLocation);
             mLocationOverlay.SetAccuracy ((int) location.Accuracy);
 
-            GeoPoint nextNearestLocation = getNextNodeLocation ();
+            GeoPoint nextNearestLocation = GetNextNodeLocation ();
             if (nextNearestLocation != null && prevLocation != null)
             {
                 if (location.Provider.Equals (LocationManager.GpsProvider))
@@ -614,7 +600,7 @@ namespace de.upb.hip.mobile.droid.Activities {
      * Returns the geopoint of next node
      */
 
-        private GeoPoint getNextNodeLocation ()
+        private GeoPoint GetNextNodeLocation ()
         {
             if (mRoads == null)
             {
@@ -642,9 +628,9 @@ namespace de.upb.hip.mobile.droid.Activities {
      * distance between reached node and and next node
      */
 
-        private void recalculateRoute (GeoPoint currentLoc)
+        private void RecalculateRoute (GeoPoint currentLoc)
         {
-            GeoPoint nextLoc = getNextNodeLocation ();
+            GeoPoint nextLoc = GetNextNodeLocation ();
             if (nextLoc == null)
             {
                 return;
@@ -695,7 +681,7 @@ namespace de.upb.hip.mobile.droid.Activities {
                 var node = (RoadNode) mRoads [0].MNodes [mNextNode];
 
                 GeoPoint nextLocation = new GeoPoint (node.MLocation.Latitude, node.MLocation.Longitude);
-                addProximityAlert (nextLocation.Latitude, nextLocation.Longitude);
+                AddProximityAlert (nextLocation.Latitude, nextLocation.Longitude);
                 int distToStartLoc = geo.DistanceTo (nextLocation);
 
                 DrawStepInfo (ContextCompat.GetDrawable (this, Resource.Drawable.marker_departure), Resources.GetString (Resource.String.start_point), distToStartLoc + " m");
@@ -773,7 +759,7 @@ namespace de.upb.hip.mobile.droid.Activities {
                 mDistanceBetweenLoc = prevReachedNodeLoc.DistanceTo (lastReachedNodeLoc);
 
                 // add alert for the last point
-                addProximityAlert (lastReachedNodeLoc.Latitude, lastReachedNodeLoc.Longitude);
+                AddProximityAlert (lastReachedNodeLoc.Latitude, lastReachedNodeLoc.Longitude);
             }
 
             switch (type)
@@ -794,7 +780,7 @@ namespace de.upb.hip.mobile.droid.Activities {
                     // add alert for next location
                     n = (RoadNode) mRoads [0].MNodes [mNextNode];
                     GeoPoint nextNodeLocation = n.MLocation;
-                    addProximityAlert (nextNodeLocation.Latitude, nextNodeLocation.Longitude);
+                    AddProximityAlert (nextNodeLocation.Latitude, nextNodeLocation.Longitude);
 
 
                     n = (RoadNode) mRoads [0].MNodes [mReachedNode];
@@ -949,7 +935,7 @@ namespace de.upb.hip.mobile.droid.Activities {
      * setup map orientation if tracking mode is on
      */
 
-        void UpdateUIWithTrackingMode ()
+       private  void UpdateUiWithTrackingMode ()
         {
             if (TrackingMode)
             {
@@ -1035,7 +1021,7 @@ namespace de.upb.hip.mobile.droid.Activities {
      * paint road lines with colors blue or red
      */
 
-        void SelectRoad (int roadIndex)
+        private void SelectRoad (int roadIndex)
         {
             mSelectedRoad = roadIndex;
             PutRoadNodes (mRoads [roadIndex]);
@@ -1051,7 +1037,7 @@ namespace de.upb.hip.mobile.droid.Activities {
             mMap.Invalidate ();
         }
 
-        void UpdateUiWithRoads (Road[] roads)
+       private void UpdateUiWithRoads (Road[] roads)
         {
             mRoadNodeMarkers.Items.Clear ();
             IList<Overlay> mapOverlays = mMap.Overlays;
@@ -1116,7 +1102,7 @@ namespace de.upb.hip.mobile.droid.Activities {
             if (roadStartPoint == null)
             {
                 UpdateUiWithRoads (null);
-                UpdateUIWithPolygon (mViaPoints, "");
+                UpdateUiWithPolygon (mViaPoints, "");
                 return;
             }
             IList<GeoPoint> waypoints = new List<GeoPoint> ();
@@ -1136,7 +1122,7 @@ namespace de.upb.hip.mobile.droid.Activities {
      * add or replace the polygon overlay
      */
 
-        public void UpdateUIWithPolygon (IList<ViaPointData> viaPoints, string name)
+        public void UpdateUiWithPolygon (IList<ViaPointData> viaPoints, string name)
         {
             IList<Overlay> mapOverlays = mMap.Overlays;
             int location = -1;
@@ -1178,7 +1164,7 @@ namespace de.upb.hip.mobile.droid.Activities {
      * @param longitude the longitude of the alert point
      */
 
-        private void addProximityAlert (double latitude, double longitude)
+        private void AddProximityAlert (double latitude, double longitude)
         {
             Intent intent = new Intent (PROX_ALERT);
 

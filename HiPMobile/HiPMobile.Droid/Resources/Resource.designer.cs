@@ -2015,28 +2015,31 @@ namespace de.upb.hip.mobile.droid
 			public const int kaiserpfalz_teaser = 2130837614;
 			
 			// aapt resource value: 0x7f02006f
-			public const int marker_blue = 2130837615;
+			public const int map_restaurant = 2130837615;
 			
 			// aapt resource value: 0x7f020070
-			public const int marker_departure = 2130837616;
+			public const int marker_blue = 2130837616;
 			
 			// aapt resource value: 0x7f020071
-			public const int marker_destination = 2130837617;
+			public const int marker_departure = 2130837617;
 			
 			// aapt resource value: 0x7f020072
-			public const int marker_node = 2130837618;
+			public const int marker_destination = 2130837618;
 			
 			// aapt resource value: 0x7f020073
-			public const int marker_via = 2130837619;
-			
-			// aapt resource value: 0x7f020075
-			public const int notification_template_icon_bg = 2130837621;
-			
-			// aapt resource value: 0x7f020076
-			public const int semitransparent_gray = 2130837622;
+			public const int marker_node = 2130837619;
 			
 			// aapt resource value: 0x7f020074
-			public const int thumb = 2130837620;
+			public const int marker_via = 2130837620;
+			
+			// aapt resource value: 0x7f020076
+			public const int notification_template_icon_bg = 2130837622;
+			
+			// aapt resource value: 0x7f020077
+			public const int semitransparent_gray = 2130837623;
+			
+			// aapt resource value: 0x7f020075
+			public const int thumb = 2130837621;
 			
 			static Drawable()
 			{
