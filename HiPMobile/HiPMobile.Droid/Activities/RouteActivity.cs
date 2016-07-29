@@ -45,10 +45,6 @@ namespace de.upb.hip.mobile.droid.Activities {
             base.OnCreate (savedInstanceState);
             SetContentView (Resource.Layout.activity_route);
 
-            var toolbar = (Android.Support.V7.Widget.Toolbar)FindViewById(Resource.Id.toolbar);
-            SetSupportActionBar(toolbar);
-            SupportActionBar.SetDisplayHomeAsUpEnabled(true);
-
             //Init the available routes
             foreach (Route route in RouteManager.GetRoutes())
             {
@@ -149,12 +145,10 @@ namespace de.upb.hip.mobile.droid.Activities {
  */
 public void OnRouteSelected(Route route)
         {
-            //TODO: Comment this in when Route Details Activity is ported
-            /*
-        Intent intent = new Intent(GetApplicationContext(), RouteDetailsActivity.class);
-        intent.putExtra("route", route);
-        startActivity(intent);
-        */
+
+        Intent intent = new Intent(ApplicationContext, typeof(RouteDetailsActivity));
+        intent.PutExtra(RouteDetailsActivity.KEY_ROUTE_ID, route.Id);
+        StartActivity(intent);
         }
 
 
