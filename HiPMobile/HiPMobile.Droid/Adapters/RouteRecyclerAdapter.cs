@@ -12,27 +12,27 @@ using Java.Lang;
 namespace de.upb.hip.mobile.droid.Adapters {
     public class RouteRecyclerAdapter : RecyclerView.Adapter, IFilterable {
 
-        private readonly ISet<string> ActiveTags;
-        private readonly ISet<Route> RouteSet;
-        private readonly Context Context;
-        private readonly List<IRouteSelectedListener> RouteSelectedListeners = new List<IRouteSelectedListener> ();
+        private readonly ISet<string> activeTags;
+        private readonly ISet<Route> routeSet;
+        private readonly Context context;
+        private readonly List<IRouteSelectedListener> routeSelectedListeners = new List<IRouteSelectedListener> ();
 
         /// <summary>
         ///     Constructor for the RouteRecyclerAdapter
         /// </summary>
-        /// <param name="exhibitSet">The displayed exhibitSet.</param>
-        /// <param name="location">The location of the device.</param>
-        /// <param name="context"></param>
-        public RouteRecyclerAdapter (ISet<Route> RouteSet, Context Context, ISet<string> ActiveTags)
+        /// <param name="routeSet">The displayed set of routes</param>
+        /// <param name="context">The location of the device.</param>
+        /// <param name="activeTags"></param>
+        public RouteRecyclerAdapter (ISet<Route> routeSet, Context context, ISet<string> activeTags)
         {
-            this.RouteSet = RouteSet;
-            this.Context = Context;
-            this.ActiveTags = ActiveTags;
+            this.routeSet = routeSet;
+            this.context = context;
+            this.activeTags = activeTags;
         }
 
 
         public override int ItemCount {
-            get { return getFilteredRoutes().Count; }
+            get { return GetFilteredRoutes ().Count; }
         }
 
         public Filter Filter {
@@ -41,20 +41,20 @@ namespace de.upb.hip.mobile.droid.Adapters {
 
         public override void OnBindViewHolder (RecyclerView.ViewHolder holder, int position)
         {
-            Route route = getFilteredRoutes () [position];
+            Route route = GetFilteredRoutes () [position];
 
             ((ViewHolder) holder).Title.Text = route.Title;
 
             ((ViewHolder) holder).Description.Text = route.Description;
 
             int durationInMinutes = route.Duration / 60;
-            ((ViewHolder) holder).Duration.Text = Context.Resources.GetQuantityString (
+            ((ViewHolder) holder).Duration.Text = context.Resources.GetQuantityString (
                 Resource.Plurals.route_activity_duration_minutes,
                 durationInMinutes,
                 durationInMinutes
                 );
 
-            ((ViewHolder) holder).Distance.Text = Java.Lang.String.Format (Context.Resources.
+            ((ViewHolder) holder).Distance.Text = Java.Lang.String.Format (context.Resources.
                                                                                    GetString (Resource.String.route_activity_distance_kilometer), route.Distance);
 
             // Check if there are actually tags for this route
@@ -63,7 +63,7 @@ namespace de.upb.hip.mobile.droid.Adapters {
                 ((ViewHolder) holder).TagsLayout.RemoveAllViews ();
                 foreach (RouteTag tag in route.RouteTags)
                 {
-                    ImageView tagImageView = new ImageView (Context);
+                    ImageView tagImageView = new ImageView (context);
                     tagImageView.SetImageDrawable (tag.Image.GetDrawable ());
                     ((ViewHolder) holder).TagsLayout.AddView (tagImageView);
                 }
@@ -77,22 +77,23 @@ namespace de.upb.hip.mobile.droid.Adapters {
         /// <summary>
         ///     Returns only the routes which match the current filters
         /// </summary>
-        public IList<Route> getFilteredRoutes ()
+        public IList<Route> GetFilteredRoutes ()
         {
             List<Route> result = new List<Route> ();
 
-            foreach (Route route in this.RouteSet)
+            foreach (Route route in this.routeSet)
             {
                 foreach (RouteTag tag in route.RouteTags)
                 {
-                    if (ActiveTags.Contains (tag.Tag))
+                    if (activeTags.Contains (tag.Tag))
                     {
                         result.Add (route);
                         //Is implemented like this in Java, maybe should be made nicer
                         goto ROUTELOOP;
                     }
                 }
-            ROUTELOOP:;
+                ROUTELOOP:
+                ;
             }
             return result;
         }
@@ -105,27 +106,30 @@ namespace de.upb.hip.mobile.droid.Adapters {
         }
 
 
-
-        public void registerRouteSelectedListener (IRouteSelectedListener listener)
+        public void RegisterRouteSelectedListener (IRouteSelectedListener listener)
         {
-            RouteSelectedListeners.Add (listener);
+            routeSelectedListeners.Add (listener);
         }
 
 
-        public void notifyRouteSelectedListeners (int RouteId)
+        /// <summary>
+        ///     For notifying the route selected listeners about a new route selection
+        /// </summary>
+        /// <param name="routeId">The hash code of the id of the selected route</param>
+        public void NotifyRouteSelectedListeners (int routeId)
         {
             //Find the route
             Route route = null;
-            foreach(Route routeIt in RouteSet)
+            foreach (Route routeIt in routeSet)
             {
-                if (routeIt.Id.GetHashCode() == RouteId)
+                if (routeIt.Id.GetHashCode () == routeId)
                     route = routeIt;
             }
-            if(route == null)
+            if (route == null)
             {
                 return;
             }
-            foreach (IRouteSelectedListener listener in RouteSelectedListeners)
+            foreach (IRouteSelectedListener listener in routeSelectedListeners)
             {
                 listener.OnRouteSelected (route);
             }
@@ -161,7 +165,7 @@ namespace de.upb.hip.mobile.droid.Adapters {
             TagsLayout = (LinearLayout) v.FindViewById (Resource.Id.routeRowItemTagsLayout);
             this.adapter = adapter;
 
-            v.SetOnClickListener(new ViewOnClickListener(adapter));
+            v.SetOnClickListener (new ViewOnClickListener (adapter));
         }
 
         public View View { get; set; }
@@ -177,8 +181,7 @@ namespace de.upb.hip.mobile.droid.Adapters {
     }
 
 
-    public class FilterImpl : Filter
-    {
+    public class FilterImpl : Filter {
 
         protected override FilterResults PerformFiltering (ICharSequence constraint)
         {
@@ -192,19 +195,19 @@ namespace de.upb.hip.mobile.droid.Adapters {
 
     }
 
-    public class ViewOnClickListener : Java.Lang.Object, View.IOnClickListener
-    {
+    public class ViewOnClickListener : Java.Lang.Object, View.IOnClickListener {
 
-        public ViewOnClickListener( RouteRecyclerAdapter adapter) 
+        public ViewOnClickListener (RouteRecyclerAdapter adapter)
         {
             this.adapter = adapter;
         }
 
         public RouteRecyclerAdapter adapter { get; }
 
-        public void OnClick(View v)
+        public void OnClick (View v)
         {
-            adapter.notifyRouteSelectedListeners(v.Id);
+            adapter.NotifyRouteSelectedListeners (v.Id);
         }
+
     }
 }

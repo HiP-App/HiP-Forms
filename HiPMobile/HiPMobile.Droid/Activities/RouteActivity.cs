@@ -31,11 +31,11 @@ using Android.Content;
 
 namespace de.upb.hip.mobile.droid.Activities {
     [Activity (Theme = "@style/AppTheme", Label = "RouteActivity", MainLauncher = false, Icon = "@drawable/icon")]
-    public class RouteActivity : AppCompatActivity, IRouteSelectedListener
-    {
-        public const int ACTIVITY_FILTER_RESULT = 0;
-        private ISet<string> ActiveTags = new HashSet<string>();
-        private ISet<Route> Routes = new HashSet<Route>();
+    public class RouteActivity : AppCompatActivity, IRouteSelectedListener {
+
+        public const int ActivityFilterResult = 0;
+        private ISet<string> ActiveTags = new HashSet<string> ();
+        private readonly ISet<Route> Routes = new HashSet<Route> ();
         private RecyclerView mRecyclerView;
         private RecyclerView.Adapter mAdapter;
         private RecyclerView.LayoutManager mLayoutManager;
@@ -46,9 +46,9 @@ namespace de.upb.hip.mobile.droid.Activities {
             SetContentView (Resource.Layout.activity_route);
 
             //Init the available routes
-            foreach (Route route in RouteManager.GetRoutes())
+            foreach (Route route in RouteManager.GetRoutes ())
             {
-                Routes.Add(route);
+                Routes.Add (route);
             }
 
 
@@ -57,34 +57,28 @@ namespace de.upb.hip.mobile.droid.Activities {
             {
                 foreach (RouteTag tag in route.RouteTags)
                 {
-                    ActiveTags.Add(tag.Tag);
+                    ActiveTags.Add (tag.Tag);
                 }
             }
 
             // Recyler View
-            mRecyclerView = (RecyclerView)FindViewById(Resource.Id.routeRecyclerView);
+            mRecyclerView = (RecyclerView) FindViewById (Resource.Id.routeRecyclerView);
             mRecyclerView.HasFixedSize = true;
 
             // use a linear layout manager
-            mLayoutManager = new LinearLayoutManager(this);
-            mRecyclerView.SetLayoutManager(mLayoutManager);
+            mLayoutManager = new LinearLayoutManager (this);
+            mRecyclerView.SetLayoutManager (mLayoutManager);
 
             // specify an adapter
             RouteRecyclerAdapter adapter =
-                    new RouteRecyclerAdapter(this.Routes, ApplicationContext, ActiveTags);
+                new RouteRecyclerAdapter (this.Routes, ApplicationContext, ActiveTags);
             mAdapter = adapter;
-            mRecyclerView.SetAdapter(mAdapter);
-            adapter.registerRouteSelectedListener(this);
+            mRecyclerView.SetAdapter (mAdapter);
+            adapter.RegisterRouteSelectedListener (this);
         }
 
-        /**
- * Switch for the filtering of the routes
- *
- * @param item Menu item
- * @return boolean Return false to allow normal menu processing to
- * proceed, true to consume it here.
- */
-    public override bool OnOptionsItemSelected(IMenuItem item)
+
+        public override bool OnOptionsItemSelected (IMenuItem item)
         {
             switch (item.ItemId)
             {
@@ -93,28 +87,21 @@ namespace de.upb.hip.mobile.droid.Activities {
                     Intent intent = new Intent(ApplicationContext, typeof(RouteFilterActivity));
                     intent.PutExtra("RouteSet", Routes);
                     intent.PutExtra("activeTags", activeTags);
-                    StartActivityForResult(intent, ACTIVITY_FILTER_RESULT);
+                    StartActivityForResult(intent, ActivityFilterResult);
                     return true;*/
                 default:
-                    return Parent.OnOptionsItemSelected(item);
+                    return Parent.OnOptionsItemSelected (item);
+            }
         }
-}
 
-/**
- * Method for saving the selected tags
- *
- * @param requestCode integer as request code
- * @param resultCode  integer as result code
- * @param data        Intent with data
- */
-    protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
-{
-    base.OnActivityResult(requestCode, resultCode, data);
-     //TODO: Comment this in again when Route Filter activity is ported
-    /*
+        protected override void OnActivityResult (int requestCode, Result resultCode, Intent data)
+        {
+            base.OnActivityResult (requestCode, resultCode, data);
+            //TODO: Comment this in again when Route Filter activity is ported
+            /*
     switch (requestCode)
     {
-        case ACTIVITY_FILTER_RESULT:
+        case ActivityFilterResult:
             if (resultCode == RouteFilterActivity.RETURN_NOSAVE)
             {
                 // User choosed not to save changes, don't do anything
@@ -132,26 +119,15 @@ namespace de.upb.hip.mobile.droid.Activities {
             Parent.OnActivityResult(requestCode, resultCode, data);
     }
     */
-
-}
-
-
-
-
-/**
- * Starts the RouteDetailsActivity for a specific route
- *
- * @param route Route for which the DetailsActivity should be called
- */
-public void OnRouteSelected(Route route)
-        {
-
-        Intent intent = new Intent(ApplicationContext, typeof(RouteDetailsActivity));
-        intent.PutExtra(RouteDetailsActivity.KEY_ROUTE_ID, route.Id);
-        StartActivity(intent);
         }
 
 
+        public void OnRouteSelected (Route route)
+        {
+            Intent intent = new Intent (ApplicationContext, typeof (RouteDetailsActivity));
+            intent.PutExtra (RouteDetailsActivity.KEY_ROUTE_ID, route.Id);
+            StartActivity (intent);
+        }
 
     }
 }
