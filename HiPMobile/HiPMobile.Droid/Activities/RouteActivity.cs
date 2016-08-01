@@ -100,6 +100,9 @@ namespace de.upb.hip.mobile.droid.Activities {
                     intent.PutExtra("activeTags", activeTags);
                     StartActivityForResult(intent, ActivityFilterResult);
                     return true;*/
+                case Android.Resource.Id.Home:
+                    SupportFinishAfterTransition();
+                    return true;
                 default:
                     return base.OnOptionsItemSelected (item);
             }
