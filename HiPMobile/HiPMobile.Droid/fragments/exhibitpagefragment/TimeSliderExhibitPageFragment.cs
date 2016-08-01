@@ -173,7 +173,7 @@ namespace de.upb.hip.mobile.droid.fragments.exhibitpagefragment {
         {
             for (var i = 0; i < page.Images.Count; i++)
             {
-                var picture = new PictureData (page.Images [i].GetDrawable (), Convert.ToInt32 (page.Dates [i].Value));
+                var picture = new PictureData (page.Images [i].GetDrawable (Context), Convert.ToInt32 (page.Dates [i].Value));
                 mPicDataList.Add (picture);
             }
         }

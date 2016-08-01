@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using Android.Content;
 using Android.Graphics;
 using Android.Graphics.Drawables;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
@@ -19,9 +20,9 @@ using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 namespace de.upb.hip.mobile.droid.Helpers {
     public static class ExtensionMethods {
 
-        public static Drawable GetDrawable (this Image img)
+        public static Drawable GetDrawable (this Image img, Context context)
         {
-            return new BitmapDrawable (BitmapFactory.DecodeByteArray (img.Data, 0, img.Data.Length));
+            return new BitmapDrawable (context.Resources, BitmapFactory.DecodeByteArray (img.Data, 0, img.Data.Length));
         }
 
         public static int[] GetDimensions (this Image img)

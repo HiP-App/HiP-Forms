@@ -15,12 +15,10 @@
 //  */
 
 
-using System.Collections.Generic;
 using System.Linq;
 using Android;
 using Android.App;
 using Android.Content.PM;
-using Android.Graphics.Drawables;
 using Android.OS;
 using Android.Support.Design.Widget;
 using Android.Support.V4.App;
@@ -29,199 +27,120 @@ using Android.Support.V4.View;
 using Android.Support.V4.Widget;
 using Android.Support.V7.App;
 using Android.Support.V7.Widget;
-using de.upb.hip.mobile.droid.Adapters;
-using de.upb.hip.mobile.droid.Helpers;
-using de.upb.hip.mobile.droid.Listeners;
+using de.upb.hip.mobile.droid.fragments;
 using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using HockeyApp;
-using Osmdroid.TileProvider.TileSource;
-using Osmdroid.Util;
-using Osmdroid.Views;
-using Osmdroid.Views.Overlay;
-using Realms;
 using ActionBarDrawerToggle = Android.Support.V7.App.ActionBarDrawerToggle;
 
-namespace de.upb.hip.mobile.droid.Activities {
-    [Activity (Theme = "@style/AppTheme",
+namespace de.upb.hip.mobile.droid.Activities
+{
+    [Activity(Theme = "@style/AppTheme",
         Label = "HiPMobile.Droid", MainLauncher = false, Icon = "@drawable/icon")]
-    public class MainActivity : AppCompatActivity {
-
-        private RecyclerView.Adapter adapter;
+    public class MainActivity : AppCompatActivity
+    {
         private DrawerLayout drawerLayout;
         private ExhibitSet exhibitSet;
         private GeoLocation geoLocation;
-        private List<OverlayItem> mapMarkerArray;
-        private Drawable mapMarkerIcon;
-        private ItemizedIconOverlay mapMarkerItemizedOverlay;
-        private MapView mapView;
-        private MyLocationOverlay myLocationOverlay;
 
 
-        // Recycler View: MainList
-        private RecyclerView recyclerView;
-
-
-        protected override void OnCreate (Bundle bundle)
+        protected override void OnCreate(Bundle savedInstanceState)
         {
-            base.OnCreate (bundle);
+            base.OnCreate(savedInstanceState);
 
             // Set our view from the "main" layout resource
-            SetContentView (Resource.Layout.Main);
+            SetContentView(Resource.Layout.Main);
 
 
             // Check if we have the necessary permissions and request them if we don't
             // Note that the app will still fail on first launch and needs to be restarted
-            if (ContextCompat.CheckSelfPermission (this,
-                                                   Manifest.Permission.AccessFineLocation)
-                != Permission.Granted || ContextCompat.CheckSelfPermission (this,
-                                                                            Manifest.Permission.ReadExternalStorage)
-                != Permission.Granted || ContextCompat.CheckSelfPermission (this,
-                                                                            Manifest.Permission.WriteExternalStorage)
-                != Permission.Granted)
+            SetUpPermissions();
+
+            geoLocation = new GeoLocation
             {
-                ActivityCompat.RequestPermissions (this,
-                                                   new[]
-                                                   {Manifest.Permission.AccessFineLocation, Manifest.Permission.ReadExternalStorage, Manifest.Permission.WriteExternalStorage},
-                                                   0);
-            }
+                Latitude = 51.71352,
+                Longitude = 8.74021
+            };
 
-
-            //Delete current database to avoid migration issues, remove this when wanting persistent database usage
-            Realm.DeleteRealm (new RealmConfiguration ());
-
-            geoLocation = new GeoLocation ();
-            geoLocation.Latitude = 51.71352;
-            geoLocation.Longitude = 8.74021;
-
-            var filler = new DbDummyDataFiller (Assets);
-            filler.InsertData ();
-            exhibitSet = ExhibitManager.GetExhibitSets ().First ();
+            exhibitSet = ExhibitManager.GetExhibitSets().First();
 
 
             //Permissions
-            SetUpPermissions ();
+            SetUpPermissions();
 
-            //Map
-            SetUpMap ();
+            // Navigation Drawer
+            SetUpNavigationDrawer();
 
-            SetUpNavigationDrawer ();
+            if (savedInstanceState == null)
+            {
+                // Set overview fragment
+                var fragment = new ExhibitsOverviewFragment
+                {
+                    ExhibitSet = exhibitSet,
+                    GeoLocation = geoLocation
+                };
 
-            // Recyler View
-            SetUpRecycleView ();
+                if (FindViewById(Resource.Id.main_fragment_container) != null)
+                {
+                    var transaction = SupportFragmentManager.BeginTransaction ();
+                    transaction.Replace (Resource.Id.main_fragment_container, fragment);
+                    transaction.Commit ();
+                }
+            }
+
 
             // hockeyapp code
-            CheckForUpdates ();
+            CheckForUpdates();
         }
 
 
-        private void SetUpNavigationDrawer ()
+        private void SetUpNavigationDrawer()
         {
-            drawerLayout = FindViewById<DrawerLayout> (Resource.Id.mainActivityDrawerLayout);
+            drawerLayout = FindViewById<DrawerLayout>(Resource.Id.mainActivityDrawerLayout);
 
 
             // Init toolbar
-            var toolbar = FindViewById<Toolbar> (Resource.Id.toolbar);
-            SetSupportActionBar (toolbar);
+            var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
+            SetSupportActionBar(toolbar);
             SupportActionBar.Title = "History in Paderborn";
 
             // Attach item selected handler to navigation view
-            var navigationView = FindViewById<NavigationView> (Resource.Id.nav_view);
+            var navigationView = FindViewById<NavigationView>(Resource.Id.nav_view);
             navigationView.NavigationItemSelected += NavigationView_NavigationItemSelected;
 
             // Create ActionBarDrawerToggle button and add it to the toolbar
-            var drawerToggle = new ActionBarDrawerToggle (this, drawerLayout, toolbar, Resource.String.drawer_open, Resource.String.drawer_close);
-            drawerLayout.SetDrawerListener (drawerToggle);
-            drawerToggle.SyncState ();
+            var drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, Resource.String.drawer_open,
+                Resource.String.drawer_close);
+            drawerLayout.SetDrawerListener(drawerToggle);
+            drawerToggle.SyncState();
         }
 
-        private void SetUpPermissions ()
+        private void SetUpPermissions()
         {
             // Check if we have the necessary permissions and request them if we don't
             // Note that the app will still fail on first launch and needs to be restarted
-            if (ContextCompat.CheckSelfPermission (this,
-                                                   Manifest.Permission.AccessFineLocation)
-                != Permission.Granted || ContextCompat.CheckSelfPermission (this,
-                                                                            Manifest.Permission.ReadExternalStorage)
-                != Permission.Granted || ContextCompat.CheckSelfPermission (this,
-                                                                            Manifest.Permission.WriteExternalStorage)
+            if (ContextCompat.CheckSelfPermission(this,
+                Manifest.Permission.AccessFineLocation)
+                != Permission.Granted || ContextCompat.CheckSelfPermission(this,
+                    Manifest.Permission.ReadExternalStorage)
+                != Permission.Granted || ContextCompat.CheckSelfPermission(this,
+                    Manifest.Permission.WriteExternalStorage)
                 != Permission.Granted)
             {
-                ActivityCompat.RequestPermissions (this,
-                                                   new[]
-                                                   {Manifest.Permission.AccessFineLocation, Manifest.Permission.ReadExternalStorage, Manifest.Permission.WriteExternalStorage},
-                                                   0);
+                ActivityCompat.RequestPermissions(this,
+                    new[]
+                    {
+                        Manifest.Permission.AccessFineLocation, Manifest.Permission.ReadExternalStorage,
+                        Manifest.Permission.WriteExternalStorage
+                    },
+                    0);
             }
         }
 
-        private void SetUpRecycleView ()
-        {
-            recyclerView = (RecyclerView) FindViewById (Resource.Id.mainRecyclerView);
-
-            // use a linear layout manager
-            RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager (this);
-            recyclerView.SetLayoutManager (mLayoutManager);
-
-
-            //RecycleAdapter
-            adapter = new MainRecyclerAdapter (exhibitSet, geoLocation, Application.Context);
-            recyclerView.SetAdapter (adapter);
-
-            recyclerView.AddOnItemTouchListener (new RecyclerItemClickListener (this, exhibitSet));
-
-            // hockeyapp code
-            CheckForUpdates ();
-        }
-
-        private void SetUpMap ()
-        {
-            mapView = FindViewById<MapView> (Resource.Id.mapview);
-            // mapView.SetTileSource(TileSourceFactory.DefaultTileSource);
-            mapView.SetBuiltInZoomControls (true);
-
-            mapView.SetTileSource (new XYTileSource ("OSM", 0, 18, 1024, ".png",
-                                                     new[] {"http://tile.openstreetmap.org/"}));
-
-
-            var mapController = mapView.Controller;
-            mapController.SetZoom (13);
-
-            // var centreOfMap = new GeoPoint(51496994, -134733);
-            var centreOfMap = new GeoPoint (geoLocation.Latitude, geoLocation.Longitude);
-
-
-            mapController.SetCenter (centreOfMap);
-
-            SetAllMarkers ();
-        }
-
-
-        private void SetAllMarkers ()
-        {
-            //SetUp Markers TODO rewrite with markers from bonuspack
-            mapMarkerArray = new List<OverlayItem> ();
-            myLocationOverlay = new MyLocationOverlay (this, mapView);
-            mapMarkerIcon = ContextCompat.GetDrawable (this, Resource.Drawable.marker_blue);
-            var myScaleBarOverlay = new ScaleBarOverlay (this);
-
-            foreach (var e in exhibitSet.ActiveSet)
-            {
-                //One Marker Object
-                var marker = new OverlayItem (e.Marker.Title, e.Marker.Text, new GeoPoint (e.Location.Latitude, e.Location.Longitude));
-                marker.SetMarker (mapMarkerIcon);
-                mapMarkerArray.Add (marker);
-            }
-
-            //Initialize this after markers are added to 
-            mapMarkerItemizedOverlay = new ItemizedIconOverlay (this, mapMarkerArray, null);
-            mapView.OverlayManager.Add (mapMarkerItemizedOverlay);
-            mapView.OverlayManager.Add (myScaleBarOverlay);
-            mapView.OverlayManager.Add (myLocationOverlay);
-            mapView.PostInvalidate ();
-        }
 
         //handles the action when touching the menuitems in navigationview
-        private void NavigationView_NavigationItemSelected (object sender, NavigationView.NavigationItemSelectedEventArgs e)
+        private void NavigationView_NavigationItemSelected(object sender,
+            NavigationView.NavigationItemSelectedEventArgs e)
         {
             switch (e.MenuItem.ItemId)
             {
@@ -229,54 +148,50 @@ namespace de.upb.hip.mobile.droid.Activities {
                     // React on 'Home' selection
                     break;
                 case Resource.Id.nav_route:
-                    // React on 'Messages' selection
+                    StartActivity(typeof(RouteActivity));
                     break;
                 case Resource.Id.nav_licenses:
-                    StartActivity (typeof (LicensingActivity));
+                    StartActivity(typeof(LicensingActivity));
                     break;
             }
 
             // Close drawer
-            drawerLayout.CloseDrawers ();
+            drawerLayout.CloseDrawers();
         }
 
-        protected override void OnDestroy ()
+        protected override void OnDestroy()
         {
-            base.OnDestroy ();
+            base.OnDestroy();
 
             // hockeyapp code
-            UnregisterManagers ();
+            UnregisterManagers();
         }
 
-        protected override void OnResume ()
+        protected override void OnResume()
         {
-            base.OnResume ();
-            myLocationOverlay.EnableMyLocation ();
-            myLocationOverlay.EnableCompass ();
+            base.OnResume();
 
             // hockeyapp code
-            CheckForCrashes ();
+            CheckForCrashes();
         }
 
-        protected override void OnPause ()
+        protected override void OnPause()
         {
-            base.OnPause ();
-            myLocationOverlay.DisableMyLocation ();
-            myLocationOverlay.DisableCompass ();
+            base.OnPause();
 
             // hockeyapp code
-            UnregisterManagers ();
+            UnregisterManagers();
         }
 
-        public override void OnBackPressed ()
+        public override void OnBackPressed()
         {
-            if (drawerLayout.IsDrawerOpen (GravityCompat.Start))
+            if (drawerLayout.IsDrawerOpen(GravityCompat.Start))
             {
-                drawerLayout.CloseDrawer (GravityCompat.Start);
+                drawerLayout.CloseDrawer(GravityCompat.Start);
             }
             else
             {
-                base.OnBackPressed ();
+                base.OnBackPressed();
             }
         }
 
@@ -285,20 +200,20 @@ namespace de.upb.hip.mobile.droid.Activities {
         /// </summary>
 
         #region
-        private void CheckForCrashes ()
+        private void CheckForCrashes()
         {
-            CrashManager.Register (this);
+            CrashManager.Register(this);
         }
 
-        private void CheckForUpdates ()
+        private void CheckForUpdates()
         {
             // Remove this for store builds! 
-            UpdateManager.Register (this);
+            UpdateManager.Register(this);
         }
 
-        private void UnregisterManagers ()
+        private void UnregisterManagers()
         {
-            UpdateManager.Unregister ();
+            UpdateManager.Unregister();
         }
 
         #endregion
