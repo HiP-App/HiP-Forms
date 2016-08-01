@@ -5,15 +5,14 @@
 // Manual changes to this file will not be maintained.
 //
 using Foundation;
-using MaterialControls;
 using System;
 using System.CodeDom.Compiler;
 using UIKit;
 
 namespace HiPMobile.iOS
 {
-    [Register ("LaunchScreenViewController")]
-    partial class LaunchScreenViewController
+    [Register ("LicenseScreenViewController")]
+    partial class LicenseScreenViewController
     {
         void ReleaseDesignerOutlets ()
         {

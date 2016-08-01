@@ -11,18 +11,18 @@ using UIKit;
 
 namespace HiPMobile.iOS
 {
-    [Register ("ProgressIndicatorViewController")]
-    partial class ProgressIndicatorViewController
+    [Register ("InitialContainerViewController")]
+    partial class InitialContainerViewController
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        MaterialControls.MDProgress progressIndicator { get; set; }
+        UIKit.UIView containerView { get; set; }
 
         void ReleaseDesignerOutlets ()
         {
-            if (progressIndicator != null) {
-                progressIndicator.Dispose ();
-                progressIndicator = null;
+            if (containerView != null) {
+                containerView.Dispose ();
+                containerView = null;
             }
         }
     }
