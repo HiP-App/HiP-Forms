@@ -45,6 +45,10 @@ namespace de.upb.hip.mobile.droid.Activities {
             base.OnCreate (savedInstanceState);
             SetContentView (Resource.Layout.activity_route);
 
+            var toolbar = (Android.Support.V7.Widget.Toolbar)FindViewById(Resource.Id.toolbar);
+            SetSupportActionBar(toolbar);
+            SupportActionBar.SetDisplayHomeAsUpEnabled(true);
+
             //Init the available routes
             foreach (Route route in RouteManager.GetRoutes ())
             {
@@ -77,6 +81,13 @@ namespace de.upb.hip.mobile.droid.Activities {
             adapter.RegisterRouteSelectedListener (this);
         }
 
+        public override bool OnCreateOptionsMenu(IMenu menu)
+        {
+            MenuInflater.Inflate (Resource.Menu.activity_route_menu, menu);
+            return true;
+        }
+
+
 
         public override bool OnOptionsItemSelected (IMenuItem item)
         {
@@ -90,7 +101,7 @@ namespace de.upb.hip.mobile.droid.Activities {
                     StartActivityForResult(intent, ActivityFilterResult);
                     return true;*/
                 default:
-                    return Parent.OnOptionsItemSelected (item);
+                    return base.OnOptionsItemSelected (item);
             }
         }
 
