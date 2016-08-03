@@ -94,12 +94,13 @@ namespace de.upb.hip.mobile.droid.Activities {
             switch (item.ItemId)
             {
                 //TODO: Comment this in again when RouteFilterActivity is ported
-                /*case Resource.Id.action_route_filter:
+                case Resource.Id.action_route_filter:
                     Intent intent = new Intent(ApplicationContext, typeof(RouteFilterActivity));
-                    intent.PutExtra("RouteSet", Routes);
-                    intent.PutExtra("activeTags", activeTags);
+                    string[] tags = new string[ActiveTags.Count];
+                    ActiveTags.CopyTo (tags, 0);
+                    intent.PutExtra("activeTags", tags);
                     StartActivityForResult(intent, ActivityFilterResult);
-                    return true;*/
+                    return true;
                 case Android.Resource.Id.Home:
                     SupportFinishAfterTransition();
                     return true;

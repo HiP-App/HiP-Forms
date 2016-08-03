@@ -5,8 +5,12 @@ using Android.OS;
 using Android.Support.V7.App;
 using Android.Views;
 using Android.Widget;
+using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using Java.Lang;
+using Java.Util;
+using de.upb.hip.mobile.droid;
+using System;
 
 namespace de.upb.hip.mobile.droid.Activities {
     public class RouteFilterActivity : AppCompatActivity
@@ -21,63 +25,49 @@ namespace de.upb.hip.mobile.droid.Activities {
             SetContentView(Resource.Layout.activity_route_filter);
             Intent intent = Intent;
 
-            // Get routes
-            RouteSet routeSet = (RouteSet)intent.GetSerializableExtra("RouteSet");
-                HashSet<String> activeTags = (HashSet<String>)intent.getSerializableExtra("activeTags");
+            
+            ISet<Route> routes = new HashSet<Route>();
+            //Init the available routes
+            foreach (Route route in RouteManager.GetRoutes())
+            {
+                routes.Add(route);
+            }
+
+            ISet<string> activeTags = new HashSet<string>();
+            string[] tags = intent.GetStringArrayExtra ("activeTags");
+            foreach (string tag in tags)
+            {
+                activeTags.Add (tag);
+            }
 
             //There will be duplicates in the route set so we have to remove them
-            HashMap<String, RouteTagHolder> uniqueTags = new HashMap<>();
-            for (Route route : routeSet.getRoutes())
+            var uniqueTags = new Dictionary<string, RouteTagHolder>();
+            foreach (Route route in routes)
             {
-                for (RouteTag tag : route.getTags())
+                foreach (RouteTag tag in route.RouteTags)
                 {
-                    if (!uniqueTags.containsKey(tag.getTag()))
+                    if (!uniqueTags.ContainsKey(tag.Tag))
                     {
-                        uniqueTags.put(tag.getTag(),
-                                new RouteTagHolder(activeTags.contains(tag.getTag()), tag));
+                        uniqueTags.Add (tag.Tag,
+                                new RouteTagHolder(activeTags.Contains(tag.Tag), tag));
                     }
                 }
             }
 
             // Add tags
-            ListView listView = (ListView)findViewById(R.id.routeFilterTagList);
-            final ArrayAdapter< RouteTagHolder > adapter =
-                    new RouteTagArrayAdapter(getApplicationContext(),
-                            new ArrayList<>(uniqueTags.values()));
-            listView.setAdapter(adapter);
+            ListView listView = (ListView)FindViewById(Resource.Id.routeFilterTagList);
+            ArrayAdapter< RouteTagHolder > adapter =
+                    new RouteTagArrayAdapter(ApplicationContext,
+                            new ArrayList<>(uniqueTags.Values.));
+            listView.Adapter = adapter;
 
             // Add buttons
-            Button closeWithoutSave = (Button)findViewById(R.id.routeFilterCloseWithoutSaveButton);
-            Button closeWithSave = (Button)findViewById(R.id.routeFilterCloseWithSaveButton);
+            Button closeWithoutSave = (Button)FindViewById(Resource.Id.routeFilterCloseWithoutSaveButton);
+            Button closeWithSave = (Button)FindViewById(Resource.Id.routeFilterCloseWithSaveButton);
 
-            closeWithoutSave.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v)
-        {
-            setResult(RETURN_NOSAVE);
-            finish();
-        }
-    });
+            closeWithoutSave.SetOnClickListener(new CloseWithoutSaveOnClickListener ());
 
-        closeWithSave.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v)
-    {
-        HashSet<String> activeTags = new HashSet<>();
-        for (int i = 0; i < adapter.getCount(); i++)
-        {
-            RouteTagHolder tagHolder = adapter.getItem(i);
-            if (tagHolder.mIsSelected)
-            {
-                activeTags.add(tagHolder.getRouteTag().getTag());
-            }
-        }
-        Intent intent = new Intent();
-        intent.putExtra("activeTags", activeTags);
-        setResult(RETURN_SAVE, intent);
-        finish();
-    }
-});
+        closeWithSave.SetOnClickListener(new CloseWithSaveOnClickListener ());
 
         // Set back button on actionbar
         ActionBar actionBar = getSupportActionBar();
@@ -86,17 +76,16 @@ namespace de.upb.hip.mobile.droid.Activities {
         }
     }
 
-    @Override
-    public boolean onSupportNavigateUp()
+    public override bool OnSupportNavigateUp()
 {
-    finish();
+    Finish();
     return true;
 }
 
 /**
  * Helper class for one RouteTagView
  */
-private static class RouteTagViewHolder
+class RouteTagViewHolder
 {
     private CheckBox mCheckBox;
     private ImageView mImageView;
@@ -128,9 +117,9 @@ private static class RouteTagViewHolder
 /**
  * Helper class for a route tag
  */
-private static class RouteTagHolder
+ class RouteTagHolder
 {
-    private boolean mIsSelected;
+    private bool mIsSelected;
     private RouteTag mRouteTag;
 
     /**
@@ -139,18 +128,18 @@ private static class RouteTagHolder
      * @param isSelected if the tag is currently selected
      * @param routeTag   the tag
      */
-    public RouteTagHolder(boolean isSelected, RouteTag routeTag)
+    public RouteTagHolder(bool isSelected, RouteTag routeTag)
     {
         this.mIsSelected = isSelected;
         this.mRouteTag = routeTag;
     }
 
-    public boolean isSelected()
+    public bool isSelected()
     {
         return mIsSelected;
     }
 
-    public void setSelected(boolean isSelected)
+    public void setSelected(bool isSelected)
     {
         this.mIsSelected = isSelected;
     }
@@ -164,7 +153,7 @@ private static class RouteTagHolder
 /**
  * Helper class for a route tag array
  */
-private static class RouteTagArrayAdapter extends ArrayAdapter<RouteTagHolder> {
+class RouteTagArrayAdapter : ArrayAdapter<RouteTagHolder> {
 
         private LayoutInflater mInflater;
 
@@ -174,18 +163,13 @@ private static class RouteTagArrayAdapter extends ArrayAdapter<RouteTagHolder> {
  * @param context current context
  * @param tags    list of tags as RouteTagHolder
  */
-public RouteTagArrayAdapter(Context context, List<RouteTagHolder> tags)
+public RouteTagArrayAdapter(Context context, List<RouteTagHolder> tags) : base (context, Resource.Layout.activity_route_filter_row_item, tags)
 {
-    super(context, R.layout.activity_route_filter_row_item, tags);
-    mInflater = LayoutInflater.from(context);
+    mInflater = LayoutInflater.From(context);
 }
-
-        @SuppressLint("InflateParams") /* there are no view parameters on the root element,
-        passing null to the inflater is valid */
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent)
+        public override View GetView(int position, View convertView, ViewGroup parent)
 {
-    RouteTagHolder tagHolder = this.getItem(position);
+    RouteTagHolder tagHolder = this.GetItem(position);
     RouteTag tag = tagHolder.getRouteTag();
 
     CheckBox checkBox;
@@ -193,23 +177,15 @@ public RouteTagArrayAdapter(Context context, List<RouteTagHolder> tags)
 
     if (convertView == null)
     {
-        convertView = mInflater.inflate(R.layout.activity_route_filter_row_item, null);
+        convertView = mInflater.Inflate(Resource.Layout.activity_route_filter_row_item, null);
 
-        checkBox = (CheckBox)convertView.findViewById(R.id.routeFilterRowItemCheckBox);
-        imageView = (ImageView)convertView.findViewById(
-                R.id.routeFilterRowItemImage);
+        checkBox = (CheckBox)convertView.FindViewById(Resource.Id.routeFilterRowItemCheckBox);
+        imageView = (ImageView)convertView.FindViewById(
+                Resource.Id.routeFilterRowItemImage);
 
-        convertView.setTag(new RouteTagViewHolder(checkBox, imageView));
+        convertView.SetTag(new RouteTagViewHolder(checkBox, imageView));
 
-        checkBox.setOnClickListener(new View.OnClickListener()
-        {
-                    public void onClick(View v)
-{
-    CheckBox cb = (CheckBox)v;
-    RouteTagHolder tagHolder = (RouteTagHolder)v.getTag();
-    tagHolder.setSelected(cb.isChecked());
-}
-                });
+        checkBox.SetOnClickListener(new CheckBoxViewOnClickListener());
             } else {
                 RouteTagViewHolder viewHolder = (RouteTagViewHolder)convertView.getTag();
 checkBox = viewHolder.getCheckBox();
@@ -224,6 +200,47 @@ checkBox = viewHolder.getCheckBox();
             return convertView;
         }
     }
+
+
+    class CheckBoxViewOnClickListener : Java.Lang.Object, View.IOnClickListener
+{
+
+
+    public void OnClick(View v)
+    {
+        CheckBox cb = (CheckBox)v;
+        RouteTagHolder tagHolder = (RouteTagHolder)v.getTag();
+        tagHolder.setSelected(cb.isChecked());
+    }
+}
+
+class CloseWithoutSaveOnClickListener : Java.Lang.Object, View.IOnClickListener
+{
+    public void OnClick(View v)
+    {
+        SetResult(RETURN_NOSAVE);
+        Finish();
+    }
+}
+
+class CloseWithSaveOnClickListener : Java.Lang.Object, View.IOnClickListener
+{
+    public void OnClick(View v)
+    {
+                HashSet<String> activeTags = new HashSet<>();
+                for (int i = 0; i < adapter.getCount(); i++)
+                {
+                    RouteTagHolder tagHolder = adapter.getItem(i);
+                    if (tagHolder.mIsSelected)
+                    {
+                        activeTags.add(tagHolder.getRouteTag().getTag());
+                    }
+                }
+                Intent intent = new Intent();
+                intent.putExtra("activeTags", activeTags);
+                setResult(RETURN_SAVE, intent);
+                finish();
+            }
 }
 
 }
