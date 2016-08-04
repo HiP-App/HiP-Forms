@@ -79,7 +79,7 @@ namespace HiPMobile.iOS
 
         }
 
-        //actions baed on the menu item selection
+        //actions based on the menu item selection
         void MenuSelected(string menuSelected)
         {
             SwipeRightToLeft();

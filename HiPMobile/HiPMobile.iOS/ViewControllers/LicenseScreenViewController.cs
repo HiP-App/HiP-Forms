@@ -10,7 +10,10 @@ namespace HiPMobile.iOS
 {
     public partial class LicenseScreenViewController : UIViewController {
 
-        private int NumberOfLinebreaks = 2;
+        /// <summary>
+        /// Number of linebreaks between two license entries.
+        /// </summary>
+        private int LinesBetweenEntries = 1;
 
         /// <summary>
         /// Style of links.
@@ -47,14 +50,32 @@ namespace HiPMobile.iOS
         {
             base.ViewDidLoad ();
 
-            var localizedTitle = NSBundle.MainBundle.LocalizedString("licensing_google_material_title_text", "");
-            var localizedBody = NSBundle.MainBundle.LocalizedString ("licensing_google_material_body_text", "");
-
-            NSMutableAttributedString content = CreateEntry (localizedTitle, localizedBody);
-            for (int i = 1; i < 20; i++)
+            NSMutableAttributedString content = new NSMutableAttributedString();
+            bool first = true;
+            string interEntryLinebreaks = "";
+            for (int i = 0; i < LinesBetweenEntries; i++)
             {
-                content.Append (CreateEntry(localizedTitle, localizedBody));
+                interEntryLinebreaks += Environment.NewLine;
             }
+
+            foreach (var licenseStringKey in Constants.LicenseStringKeys)
+            {
+                // Add the desired amout of linebreaks between entries, but not before first entry
+                if (first)
+                {
+                    first = false;
+                }
+                else
+                {
+                    content.Append (new NSAttributedString(interEntryLinebreaks));
+                }
+
+                // Construct and add the entry
+                var title = NSBundle.MainBundle.LocalizedString (licenseStringKey + "_title_text", "");
+                var body = NSBundle.MainBundle.LocalizedString (licenseStringKey + "_body_text", "");
+                content.Append (CreateEntry (title, body));
+            }
+
             LicenseTextView.AttributedText = content;
 
             LicenseTextView.FlashScrollIndicators ();
