@@ -186,34 +186,35 @@
     <ITunesArtwork Include="Resources\ITunesArtwork%402x" />
   </ItemGroup>
   <ItemGroup>
-    <InterfaceDefinition Include="Soryboards\LaunchScreen.storyboard" />
-    <InterfaceDefinition Include="Soryboards\Main.storyboard" />
+    <InterfaceDefinition Include="Storyboards\LaunchScreen.storyboard" />
+    <InterfaceDefinition Include="Storyboards\Main.storyboard" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
     <None Include="Entitlements.plist" />
     <None Include="packages.config" />
+    <BundleResource Include="Resources\base.lproj\Localizable.strings" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="LicenseScreenViewController.cs" />
-    <Compile Include="LicenseScreenViewController.designer.cs">
+    <Compile Include="ViewControllers\LicenseScreenViewController.cs" />
+    <Compile Include="ViewControllers\LicenseScreenViewController.designer.cs">
       <DependentUpon>LicenseScreenViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="ViewCotrollers\HomeScreenViewController.cs" />
-    <Compile Include="ViewCotrollers\HomeScreenViewController.designer.cs">
+    <Compile Include="ViewControllers\HomeScreenViewController.cs" />
+    <Compile Include="ViewControllers\HomeScreenViewController.designer.cs">
       <DependentUpon>HomeScreenViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="ViewCotrollers\Constants.cs" />
-    <Compile Include="ViewCotrollers\MenuTableViewCell.cs" />
-    <Compile Include="ViewCotrollers\MenuTableViewCell.designer.cs">
+    <Compile Include="ViewControllers\Constants.cs" />
+    <Compile Include="ViewControllers\MenuTableViewCell.cs" />
+    <Compile Include="ViewControllers\MenuTableViewCell.designer.cs">
       <DependentUpon>MenuTableViewCell.cs</DependentUpon>
     </Compile>
-    <Compile Include="ViewCotrollers\MainViewController.cs" />
-    <Compile Include="ViewCotrollers\MainViewController.designer.cs">
+    <Compile Include="ViewControllers\MainViewController.cs" />
+    <Compile Include="ViewControllers\MainViewController.designer.cs">
       <DependentUpon>MainViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="ViewCotrollers\LaunchScreenViewController.cs" />
-    <Compile Include="ViewCotrollers\LaunchScreenViewController.designer.cs">
+    <Compile Include="ViewControllers\LaunchScreenViewController.cs" />
+    <Compile Include="ViewControllers\LaunchScreenViewController.designer.cs">
       <DependentUpon>LaunchScreenViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="Main.cs" />
