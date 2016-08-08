@@ -128,6 +128,7 @@
     <Compile Include="Activities\LicensingActivity.cs" />
     <Compile Include="Activities\ExhibitDetailsActivity.cs" />
     <Compile Include="Activities\MainActivity.cs" />
+    <Compile Include="Activities\RouteFilterActivity.cs" />
     <Compile Include="Activities\RouteActivity.cs" />
     <Compile Include="Adapters\RouteRecyclerAdapter.cs" />
     <Compile Include="Activities\RouteDetailsActivity.cs" />
@@ -310,6 +311,8 @@
     <AndroidResource Include="Resources\drawable-hdpi\ic_headset_white_24dp.xml" />
     <AndroidResource Include="Resources\drawable-hdpi\ic_pause_black_36dp.xml" />
     <AndroidResource Include="Resources\drawable-hdpi\audioseekbar.xml" />
+    <AndroidResource Include="Resources\layout\activity_route_filter.xml" />
+    <AndroidResource Include="Resources\layout\activity_route_filter_row_item.xml" />
     <AndroidResource Include="Resources\layout\activity_route_details.axml" />
     <AndroidResource Include="Resources\drawable-hdpi\marker_departure.png" />
     <AndroidResource Include="Resources\drawable-hdpi\marker_via.png" />
