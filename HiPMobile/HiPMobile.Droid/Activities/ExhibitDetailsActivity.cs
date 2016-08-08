@@ -552,7 +552,7 @@ namespace de.upb.hip.mobile.droid.Activities {
             if (IsFinishing)
             {
                 //Only stop sound when activity is getting killed, not when rotated
-                mediaPlayerService.StopSound(); //if this isn't done, the media player will keep playing TODO fix bug
+                mediaPlayerService.StopSound();
                 StopService (new Intent (this, typeof (MediaPlayerService)));
             }
             UnbindService (mediaPlayerConnection);
