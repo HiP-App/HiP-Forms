@@ -2,6 +2,7 @@ using CoreAnimation;
 using Foundation;
 using HiPMobile.iOS;
 using System;
+using CoreGraphics;
 using UIKit;
 
 // slide out feature with the help of http://www.appliedcodelog.com/2015/09/sliding-menu-in-xamarinios-using.html
@@ -10,6 +11,7 @@ namespace HiPMobile.iOS
 {
     public partial class MainViewController : UIViewController
     {
+        private UIViewController containerViewController;
         public MainViewController (IntPtr handle) : base (handle)
         {
         }
@@ -23,11 +25,13 @@ namespace HiPMobile.iOS
             menuTableViewSource.MenuSelected += MenuSelected;
             InitializeView();
             menuTableView.Hidden = true;
+            shadowView.Hidden = true;
         }
 
         partial void TapMenuBarButton(UIBarButtonItem sender)
         {
             PerformTableTransition();
+            shadowView.Hidden = !shadowView.Hidden;
         }
 
         void InitializeView()
@@ -46,6 +50,7 @@ namespace HiPMobile.iOS
         {
             if (menuTableView.Hidden)
             {
+                shadowView.Hidden = false;
                 PerformTableTransition();
             }
         }
@@ -55,6 +60,7 @@ namespace HiPMobile.iOS
             if (!menuTableView.Hidden)
             {
                 PerformTableTransition();
+                shadowView.Hidden = true;
             }
         }
 
@@ -80,15 +86,26 @@ namespace HiPMobile.iOS
         }
 
         //actions based on the menu item selection
-        void MenuSelected(string menuSelected)
+        void MenuSelected(NSIndexPath menuItemIndexPath)
         {
+            UIStoryboard mainStoryboard = UIStoryboard.FromName("Main", NSBundle.MainBundle);
+            UIViewController viewController =
+                mainStoryboard.InstantiateViewController(Constants.menuItemsViewControllers[menuItemIndexPath.Row]);
+            viewController.WillMoveToParentViewController(this);
+            this.containerView.AddSubview(viewController.View);
+            this.AddChildViewController(viewController);
+            viewController.DidMoveToParentViewController(this);
+            containerViewController = viewController;
+
             SwipeRightToLeft();
         }
     }
 
     public class MenuTableViewSource : UITableViewSource
     {
-        public event Action<string> MenuSelected;
+        internal event Action<NSIndexPath> MenuSelected;
+        private NSIndexPath selectedIndexPath = NSIndexPath.FromRowSection(0,0);//home screen index
+
         public override nint RowsInSection(UITableView tableview, nint section)
         {
             return Constants.menuItems.Length;
@@ -97,11 +114,11 @@ namespace HiPMobile.iOS
         public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
         {
             MenuTableViewCell cell = tableView.DequeueReusableCell(MenuTableViewCell.key) as MenuTableViewCell;
-            //if (cell == null)
-            //{
-            //    cell = new UITableViewCell(UITableViewCellStyle.Default, MenuTableViewCell.key) as MenuTableViewCell;
-            //}
             cell.InitCell(Constants.menuItems[indexPath.Row], Constants.menuItemsImages[indexPath.Row]);
+            if (indexPath.Equals(selectedIndexPath))
+            {
+                cell.SetSelected(true, false);
+            }
             return cell;
         }
 
@@ -109,9 +126,9 @@ namespace HiPMobile.iOS
         {
             if (MenuSelected != null)
             {
-                MenuSelected(Constants.menuItems[indexPath.Row]);
+                MenuSelected(indexPath);
+                selectedIndexPath = indexPath;
             }
-            tableView.DeselectRow(indexPath, true);
         }
 
     }

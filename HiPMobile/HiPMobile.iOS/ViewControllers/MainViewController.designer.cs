@@ -23,6 +23,10 @@ namespace HiPMobile.iOS
         UIKit.UIBarButtonItem menuBarButton { get; set; }
 
         [Outlet]
+        [GeneratedCode("iOS Designer", "1.0")]
+        UIKit.UIView shadowView { get; set; }
+
+        [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UITableView menuTableView { get; set; }
 
@@ -40,6 +44,12 @@ namespace HiPMobile.iOS
             if (menuBarButton != null) {
                 menuBarButton.Dispose ();
                 menuBarButton = null;
+            }
+
+            if (shadowView != null)
+            {
+                shadowView.Dispose();
+                shadowView = null;
             }
 
             if (menuTableView != null) {
