@@ -14,13 +14,9 @@
 //  * limitations under the License.
 //  */
 
-using System;
 using Android.App;
 using Android.OS;
-using Android.Support.V4.Widget;
 using Android.Support.V7.App;
-using Android.Text.Method;
-using Android.Widget;
 using de.upb.hip.mobile.droid.Adapters;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using System.Collections.Generic;
@@ -29,8 +25,9 @@ using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using Android.Views;
 using Android.Content;
 
-namespace de.upb.hip.mobile.droid.Activities {
-    [Activity (Theme = "@style/AppTheme", Label = "RouteActivity", MainLauncher = false, Icon = "@drawable/icon")]
+namespace de.upb.hip.mobile.droid.Activities
+{
+    [Activity (Theme = "@style/AppTheme", Label = "Routen", MainLauncher = false, Icon = "@drawable/icon")]
     public class RouteActivity : AppCompatActivity, IRouteSelectedListener {
 
         public const int ActivityFilterResult = 0;
@@ -113,27 +110,30 @@ namespace de.upb.hip.mobile.droid.Activities {
         {
             base.OnActivityResult (requestCode, resultCode, data);
             //TODO: Comment this in again when Route Filter activity is ported
-            /*
+            
     switch (requestCode)
     {
         case ActivityFilterResult:
-            if (resultCode == RouteFilterActivity.RETURN_NOSAVE)
+            if (resultCode == Result.Canceled)
             {
                 // User choosed not to save changes, don't do anything
             }
-            else if (resultCode == RouteFilterActivity.RETURN_SAVE)
+            else if (resultCode == Result.Ok)
             {
-                HashSet<String> activeTags =
-                        (HashSet<String>)data.getSerializableExtra("activeTags");
-                this.activeTags.clear();
-                this.activeTags.addAll(activeTags);
-                mAdapter.notifyDataSetChanged();
+                string[] activeTags = data.GetStringArrayExtra (RouteFilterActivity.IntentActiveTags);
+                        this.ActiveTags.Clear ();
+                foreach (string tag in activeTags)
+                {
+                    this.ActiveTags.Add (tag);
+                }
+                mAdapter.NotifyDataSetChanged();
             }
             break;
         default:
-            Parent.OnActivityResult(requestCode, resultCode, data);
+            base.OnActivityResult(requestCode, resultCode, data);
+            break;
     }
-    */
+    
         }
 
 
