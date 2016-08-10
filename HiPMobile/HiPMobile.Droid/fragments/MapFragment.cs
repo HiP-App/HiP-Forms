@@ -87,11 +87,13 @@ namespace de.upb.hip.mobile.droid.fragments {
             var view = inflater.Inflate (Resource.Layout.fragment_map, container, false);
 
             var mapView = view.FindViewById<MapView> (Resource.Id.mapview);
-            // mapView.SetTileSource(TileSourceFactory.DefaultTileSource);
-            mapView.SetBuiltInZoomControls (true);
+            mapView.SetTileSource(TileSourceFactory.DefaultTileSource);
+            mapView.SetBuiltInZoomControls (false);
+            mapView.SetMultiTouchControls (true);
+            mapView.TilesScaledToDpi = true;
 
-            mapView.SetTileSource (new XYTileSource ("OSM", 0, 18, 1024, ".png",
-                                                     new[] {"http://tile.openstreetmap.org/"}));
+            //mapView.SetTileSource (new XYTileSource ("OSM", 0, 18, 1024, ".png",
+                                                     //new[] {"http://tile.openstreetmap.org/"}));
 
             var mapController = mapView.Controller;
             mapController.SetZoom (13);
