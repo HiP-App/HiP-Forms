@@ -3,6 +3,7 @@ using Foundation;
 using HiPMobile.iOS;
 using System;
 using CoreGraphics;
+using MediaToolbox;
 using UIKit;
 
 // slide out feature with the help of http://www.appliedcodelog.com/2015/09/sliding-menu-in-xamarinios-using.html
@@ -26,6 +27,15 @@ namespace HiPMobile.iOS
             InitializeView();
             menuTableView.Hidden = true;
             shadowView.Hidden = true;
+        }
+
+        public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
+        {
+            base.PrepareForSegue(segue, sender);
+            if (segue.Identifier.Equals("mainScreenEmbedSegue"))
+            {
+                containerViewController = segue.DestinationViewController;
+            }
         }
 
         partial void TapMenuBarButton(UIBarButtonItem sender)
@@ -88,15 +98,24 @@ namespace HiPMobile.iOS
         //actions based on the menu item selection
         void MenuSelected(NSIndexPath menuItemIndexPath)
         {
-            UIStoryboard mainStoryboard = UIStoryboard.FromName("Main", NSBundle.MainBundle);
-            UIViewController viewController =
-                mainStoryboard.InstantiateViewController(Constants.menuItemsViewControllers[menuItemIndexPath.Row]);
-            viewController.WillMoveToParentViewController(this);
-            this.containerView.AddSubview(viewController.View);
-            this.AddChildViewController(viewController);
-            viewController.DidMoveToParentViewController(this);
-            containerViewController = viewController;
+            if (!containerViewController.GetType().Name.Equals(Constants.menuItemsViewControllers[menuItemIndexPath.Row]))
+            {
+                //remove the current ViewController from the container view
+                containerViewController.WillMoveToParentViewController(null);
+                containerViewController.View.RemoveFromSuperview();
+                containerViewController.RemoveFromParentViewController();
 
+                //add new ViewController to the container view
+                UIStoryboard mainStoryboard = UIStoryboard.FromName("Main", NSBundle.MainBundle);
+                UIViewController viewController =
+                    mainStoryboard.InstantiateViewController(Constants.menuItemsViewControllers[menuItemIndexPath.Row]);
+                viewController.WillMoveToParentViewController(this);
+                this.containerView.AddSubview(viewController.View);
+                this.AddChildViewController(viewController);
+                viewController.DidMoveToParentViewController(this);
+
+                containerViewController = viewController;
+            }
             SwipeRightToLeft();
         }
     }

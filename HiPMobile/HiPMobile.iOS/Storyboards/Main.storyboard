@@ -21,7 +21,7 @@
                                 <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <connections>
-                                    <segue id="2307" destination="14" kind="embed"/>
+                                    <segue id="2307" destination="14" kind="embed" identifier="mainScreenEmbedSegue"/>
                                 </connections>
                             </containerView>
                             <view contentMode="scaleToFill" id="2119" translatesAutoresizingMaskIntoConstraints="NO" alpha="0.5" opaque="NO" userInteractionEnabled="NO" horizontalCompressionResistancePriority="748">
