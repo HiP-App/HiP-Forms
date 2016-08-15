@@ -83,13 +83,9 @@ namespace de.upb.hip.mobile.droid.Activities
 
             if (newConfig.Orientation == Android.Content.Res.Orientation.Portrait)
             {
-                //_tv.LayoutParameters = _layoutParamsPortrait;
-                //_tv.Text = "Changed to portrait";
             }
             else if (newConfig.Orientation == Android.Content.Res.Orientation.Landscape)
             {
-                //_tv.LayoutParameters = _layoutParamsLandscape;
-                //_tv.Text = "Changed to landscape";
             }
         }
 
