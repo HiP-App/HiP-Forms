@@ -42,11 +42,13 @@ namespace de.upb.hip.mobile.droid.Activities {
         private Road road;
         private RoadManager roadManager;
         private Overlay roadOverlay;
+        private Marker position;
 
         protected override void OnCreate (Bundle savedInstanceState)
         {
             base.OnCreate (savedInstanceState);
             SetContentView (Resource.Layout.activity_route_navigation);
+
 
             geoPoints = new List<GeoPoint> ();
             // getting location
@@ -99,18 +101,24 @@ namespace de.upb.hip.mobile.droid.Activities {
 
             ShowRoute ();
 
-            //initalize distance to first waypoint to track changes
-            oldDistance = geoLocation.DistanceTo (new GeoPoint (route.Waypoints.ElementAt (IndexNextWaypointNode).Location.Latitude, route.Waypoints.ElementAt (IndexNextWaypointNode).Location.Longitude));
 
+            var tempNode = (RoadNode) road.MNodes [0];
+
+            position = new Marker (MapView);
+            position.SetIcon (ResourcesCompat.GetDrawable (Resources, Resource.Drawable.thumb, null));
+            position.Position = geoLocation;
+
+            MapView.Overlays.Add (position);
+            //initalize distance to first waypoint to track changes
+            oldDistance = geoLocation.DistanceTo (tempNode.MLocation);
 
 
             //Example how route can be shown on the map. we need to walk over all MNodes 
-            var tempNode = (RoadNode) road.MNodes [0];
+
 
             FindViewById<TextView> (Resource.Id.routeNavigationInstruction).Text = tempNode.MInstructions;
-            FindViewById<TextView>(Resource.Id.routeNavigationDistance).Text = Road.GetLengthDurationText(tempNode.MLength, tempNode.MDuration);
-            FindViewById<ImageView>(Resource.Id.routeNavigationManeuverIcon).SetImageResource (Resource.Drawable.ic_continue);
-
+            FindViewById<TextView> (Resource.Id.routeNavigationDistance).Text = Road.GetLengthDurationText (tempNode.MLength, tempNode.MDuration);
+            FindViewById<ImageView> (Resource.Id.routeNavigationManeuverIcon).SetImageResource (Resource.Drawable.ic_continue);
         }
 
 
@@ -151,7 +159,7 @@ namespace de.upb.hip.mobile.droid.Activities {
             //Creates the RoadManager
             roadManager = new MapQuestRoadManager ("WRWdd9j02K8tGtERI2LtFiCLsRUKyJnJ");
             roadManager.AddRequestOption ("routeType=pedestrian");
-            roadManager.AddRequestOption("locale=de_DE");
+            roadManager.AddRequestOption ("locale=de_DE");
 
             wayPoints = route.Waypoints;
 
@@ -172,42 +180,42 @@ namespace de.upb.hip.mobile.droid.Activities {
             MapView.Overlays.Add (roadOverlay);
 
             //Add Markers as in NavigationDetailsActivity
-            var wayPointMarkers = new FolderOverlay(Application.Context);
-            MapView.Overlays.Add(wayPointMarkers);
-            var wayPointIcon = ResourcesCompat.GetDrawable(Resources, Resource.Drawable.marker_via, null);
+            var wayPointMarkers = new FolderOverlay (Application.Context);
+            MapView.Overlays.Add (wayPointMarkers);
+            var wayPointIcon = ResourcesCompat.GetDrawable (Resources, Resource.Drawable.marker_via, null);
             for (int i = 0; i < route.Waypoints.Count; i++)
             {
                 //Set different marker vor last waypoint
-                if(i == route.Waypoints.Count-1)
-                    wayPointIcon = ResourcesCompat.GetDrawable(Resources, Resource.Drawable.marker_destination, null);
+                if (i == route.Waypoints.Count - 1)
+                    wayPointIcon = ResourcesCompat.GetDrawable (Resources, Resource.Drawable.marker_destination, null);
 
-                var nodeMarker = new Marker(MapView);
-                nodeMarker.Position = new GeoPoint(route.Waypoints.ElementAt(i).Location.Latitude, route.Waypoints.ElementAt(i).Location.Longitude);
-                nodeMarker.SetIcon(wayPointIcon);
-                wayPointMarkers.Add(nodeMarker);
+                var nodeMarker = new Marker (MapView);
+                nodeMarker.Position = new GeoPoint (route.Waypoints.ElementAt (i).Location.Latitude, route.Waypoints.ElementAt (i).Location.Longitude);
+                nodeMarker.SetIcon (wayPointIcon);
+                wayPointMarkers.Add (nodeMarker);
             }
 
-           /* var roadMarkers = new FolderOverlay (Application.Context);
+             var roadMarkers = new FolderOverlay (Application.Context);
             MapView.Overlays.Add (roadMarkers);
             var nodeIcon = ResourcesCompat.GetDrawable (Resources, Resource.Drawable.marker_node, null);
             for (var i = 0; i < road.MNodes.Count; i++)
             {
                 var node = (RoadNode) road.MNodes [i];
                var nodeMarker = new Marker (MapView);
-            //    nodeMarker.Position = node.MLocation;
-            //    nodeMarker.SetIcon (nodeIcon);
+                nodeMarker.Position = node.MLocation;
+                nodeMarker.SetIcon(nodeIcon);
 
 
-            //    //4. Filling the bubbles
-            //    nodeMarker.Title = "Step " + i;
+                //4. Filling the bubbles
+                nodeMarker.Title = "Step " + i;
                 Console.WriteLine(nodeMarker.Snippet = node.MInstructions);
-            //    nodeMarker.SubDescription = Road.GetLengthDurationText (node.MLength, node.MDuration);
-            //    var iconContinue = ResourcesCompat.GetDrawable (Resources, Resource.Drawable.ic_continue, null);
-            //    nodeMarker.Image = iconContinue;
-            //    //4. end
+                nodeMarker.SubDescription = Road.GetLengthDurationText(node.MLength, node.MDuration);
+                var iconContinue = ResourcesCompat.GetDrawable(Resources, Resource.Drawable.ic_continue, null);
+                nodeMarker.Image = iconContinue;
+                //4. end
 
-            //    roadMarkers.Add (nodeMarker);
-            }*/
+                roadMarkers.Add(nodeMarker);
+            }
         }
 
         /**
@@ -248,38 +256,55 @@ namespace de.upb.hip.mobile.droid.Activities {
 
         public void OnLocationChanged (Location location)
         {
+            var tempNode = (RoadNode) road.MNodes [IndexNextWaypointNode];
             var newLocation = new GeoPoint (location);
 
             //if gps position changes update distance
             double distanceToNextNode =
-                newLocation.DistanceTo (new GeoPoint (route.Waypoints.ElementAt (IndexNextWaypointNode).Location.Latitude,
-                                                      route.Waypoints.ElementAt (IndexNextWaypointNode).Location.Longitude));
+                newLocation.DistanceTo (new GeoPoint (tempNode.MLocation.Latitude,
+                                                      tempNode.MLocation.Longitude));
+
 
             if (distanceToNextNode != oldDistance)
             {
+                if (distanceToNextNode < 25)
+                {
+                    FindViewById<TextView>(Resource.Id.routeNavigationInstruction).Text = tempNode.MInstructions;
+                    FindViewById<TextView>(Resource.Id.routeNavigationDistance).Text = Road.GetLengthDurationText(tempNode.MLength, tempNode.MDuration);
+                    FindViewById<ImageView>(Resource.Id.routeNavigationManeuverIcon).SetImageResource(Resource.Drawable.ic_continue);
 
-                //if distance changes we have to update the polyline here we should add a buffer because else we get every m the 
-                //gps position changes a new route -> too many requests to mapquest
-                geoPoints.RemoveAt (0);
-                geoPoints.Insert (0,newLocation);
-                route.Waypoints.ElementAt(0).Location.Longitude = newLocation.Longitude;
-                road = roadManager.GetRoad (geoPoints);
-                MapView.Overlays.Remove (roadOverlay);
-                roadOverlay = RoadManager.BuildRoadOverlay(road, Application.Context);
-                MapView.Overlays.Add (roadOverlay);
-                MapView.Invalidate();
+                    //IndexNextWaypointNode++;
+                }
+                else
+                {
+                    //if distance changes we have to update the polyline here we should add a buffer because else we get every m the 
+                    //gps position changes a new route -> too many requests to mapquest
+
+                    geoPoints.RemoveAt (0);
+                    geoPoints.Insert (0, newLocation);
+                   
+                    road = roadManager.GetRoad (geoPoints);
+                    MapView.Overlays.Remove (roadOverlay);
+                    roadOverlay = RoadManager.BuildRoadOverlay (road, Application.Context);
+                    MapView.Overlays.Add (roadOverlay);
+                    MapView.Invalidate ();
 
 
+                    position.Position = newLocation;
+                    MapView.Overlays.Remove (position);
+                    MapView.Overlays.Add (position);
 
-                FindViewById<TextView> (Resource.Id.routeNavigationDistance).Text = distanceToNextNode+"m";
+                    tempNode = (RoadNode)road.MNodes[IndexNextWaypointNode-1];
 
+                    FindViewById<TextView>(Resource.Id.routeNavigationInstruction).Text = tempNode.MInstructions;
+                    FindViewById<TextView>(Resource.Id.routeNavigationDistance).Text = Road.GetLengthDurationText(tempNode.MLength, tempNode.MDuration);
+                    FindViewById<ImageView>(Resource.Id.routeNavigationManeuverIcon).SetImageResource(Resource.Drawable.ic_continue);
+                }
 
-
-
+                
+                MapView.Invalidate ();
                 oldDistance = distanceToNextNode;
             }
-
-
         }
 
         #region notImplented
