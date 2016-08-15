@@ -22,22 +22,48 @@ using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 namespace de.upb.hip.mobile.droid.Helpers {
     public static class ExtensionMethods {
 
+        /// <summary>
+        /// Loads the drawable from the given image. The whole image is loaded into memory. For saving memory please use the other method overload.
+        /// </summary>
+        /// <param name="img"></param>
+        /// <param name="context">The context of the drawable.</param>
+        /// <returns></returns>
         public static Drawable GetDrawable (this Image img, Context context)
         {
             return new BitmapDrawable (context.Resources, BitmapFactory.DecodeByteArray (img.Data, 0, img.Data.Length));
         }
 
-        public static BitmapDrawable GetDrawable(this Image img, Context context, int width, int size)
+        /// <summary>
+        /// Loads the drawable from the given image in the given height.
+        /// </summary>
+        /// <param name="img"></param>
+        /// <param name="context">The context of the drawable.</param>
+        /// <param name="width">The desired width.</param>
+        /// <param name="height">The desired height.</param>
+        /// <returns></returns>
+        public static BitmapDrawable GetDrawable(this Image img, Context context, int width, int height)
         {
-            return new BitmapDrawable(context.Resources, LoadScaledDownBitmapForDisplayAsync (img, new BitmapFactory.Options (), width, size));
+            return new BitmapDrawable(context.Resources, LoadScaledDownBitmapForDisplayAsync (img, new BitmapFactory.Options (), width, height));
         }
 
+        /// <summary>
+        /// Gets the dimensions for the given image.
+        /// </summary>
+        /// <param name="img">The image to get the dimensions from.</param>
+        /// <returns>The dimension of the image.</returns>
         public static int[] GetDimensions (this Image img)
         {
             var bmp = BitmapFactory.DecodeByteArray (img.Data, 0, img.Data.Length);
             return new[] {bmp.Width, bmp.Height};
         }
 
+        /// <summary>
+        /// https://developer.xamarin.com/recipes/android/resources/general/load_large_bitmaps_efficiently/
+        /// </summary>
+        /// <param name="options"></param>
+        /// <param name="reqWidth"></param>
+        /// <param name="reqHeight"></param>
+        /// <returns></returns>
         public static int CalculateInSampleSize(BitmapFactory.Options options, int reqWidth, int reqHeight)
         {
             // Raw height and width of image
@@ -60,6 +86,14 @@ namespace de.upb.hip.mobile.droid.Helpers {
             return (int)inSampleSize;
         }
 
+        /// <summary>
+        /// Adapted from https://developer.xamarin.com/recipes/android/resources/general/load_large_bitmaps_efficiently/
+        /// </summary>
+        /// <param name="img"></param>
+        /// <param name="options"></param>
+        /// <param name="reqWidth"></param>
+        /// <param name="reqHeight"></param>
+        /// <returns></returns>
         public static Bitmap LoadScaledDownBitmapForDisplayAsync(this Image img, BitmapFactory.Options options, int reqWidth, int reqHeight)
         {
             // Calculate inSampleSize
