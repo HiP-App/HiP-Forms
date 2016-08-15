@@ -26,7 +26,7 @@ using Realms;
 
 namespace de.upb.hip.mobile.droid.Activities
 {
-    [Activity(Theme = "@style/AppTheme", MainLauncher = true)]
+    [Activity(Theme = "@style/AppTheme", MainLauncher = true, Label = "CodeLayoutActivity", ConfigurationChanges = Android.Content.PM.ConfigChanges.Orientation | Android.Content.PM.ConfigChanges.ScreenSize)]
     public class SplashScreenActivity : Activity
     {
 
@@ -75,6 +75,22 @@ namespace de.upb.hip.mobile.droid.Activities
         {
             StartActivity(typeof(MainActivity));
             Finish();
+        }
+
+        public override void OnConfigurationChanged(Android.Content.Res.Configuration newConfig)
+        {
+            base.OnConfigurationChanged(newConfig);
+
+            if (newConfig.Orientation == Android.Content.Res.Orientation.Portrait)
+            {
+                //_tv.LayoutParameters = _layoutParamsPortrait;
+                //_tv.Text = "Changed to portrait";
+            }
+            else if (newConfig.Orientation == Android.Content.Res.Orientation.Landscape)
+            {
+                //_tv.LayoutParameters = _layoutParamsLandscape;
+                //_tv.Text = "Changed to landscape";
+            }
         }
 
         protected override void OnDestroy()
