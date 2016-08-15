@@ -74,8 +74,9 @@ namespace de.upb.hip.mobile.droid.fragments.exhibitpagefragment {
                 var pageId = savedInstanceState.GetString (INSTANCE_STATE_PAGE);
                 page = PageManager.GetTimesliderPage (pageId);
             }
+            
             SetData ();
-            Init ();
+            Init();
 
             if (page.HideYearNumbers)
             {

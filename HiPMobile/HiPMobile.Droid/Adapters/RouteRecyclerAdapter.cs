@@ -64,7 +64,7 @@ namespace de.upb.hip.mobile.droid.Adapters {
                 foreach (RouteTag tag in route.RouteTags)
                 {
                     ImageView tagImageView = new ImageView (context);
-                    tagImageView.SetImageDrawable (tag.Image.GetDrawable (context));
+                    tagImageView.SetImageDrawable (tag.Image.GetDrawable (context, tagImageView.Width, tagImageView.Height));
                     ((ViewHolder) holder).TagsLayout.AddView (tagImageView);
                 }
             }
