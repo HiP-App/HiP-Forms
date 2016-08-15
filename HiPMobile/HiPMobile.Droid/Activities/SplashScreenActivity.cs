@@ -24,27 +24,30 @@ using de.upb.hip.mobile.pcl.DataLayer;
 using Microsoft.Practices.Unity;
 using Realms;
 
-namespace de.upb.hip.mobile.droid.Activities {
-    [Activity (Theme = "@style/AppTheme", MainLauncher = true)]
-    public class SplashScreenActivity : Activity {
+namespace de.upb.hip.mobile.droid.Activities
+{
+    [Activity(Theme = "@style/AppTheme", MainLauncher = true)]
+    public class SplashScreenActivity : Activity
+    {
 
         private const int StartupDelay = 0;
         private Action action;
         private TextView textAction;
         private TextView textWaiting;
 
-        protected override void OnCreate (Bundle savedInstanceState)
+        protected override void OnCreate(Bundle savedInstanceState)
         {
-            base.OnCreate (savedInstanceState);
-            SetContentView (Resource.Layout.activity_splash_screen);
+            base.OnCreate(savedInstanceState);
+            SetContentView(Resource.Layout.activity_splash_screen);
 
-            textAction = (TextView) FindViewById (Resource.Id.splashScreenActionText);
-            textWaiting = (TextView) FindViewById (Resource.Id.splashScreenWaitingText);
+            textAction = (TextView)FindViewById(Resource.Id.splashScreenActionText);
+            textWaiting = (TextView)FindViewById(Resource.Id.splashScreenWaitingText);
 
-            textAction.SetText (Resource.String.splash_screen_loading);
-            textWaiting.SetText (Resource.String.splash_screen_waiting);
+            textAction.SetText(Resource.String.splash_screen_loading);
+            textWaiting.SetText(Resource.String.splash_screen_waiting);
 
-            ThreadPool.QueueUserWorkItem (state => {
+            ThreadPool.QueueUserWorkItem(state =>
+            {
                 // setup IoCManager
                 IoCManager.UnityContainer.RegisterType<IDataAccess, RealmDataAccess>();
 
@@ -57,21 +60,26 @@ namespace de.upb.hip.mobile.droid.Activities {
 
                 action = StartMainActivity;
 
-                RunOnUiThread (() => {
+                RunOnUiThread(() =>
+                {
                     var handler = new Handler();
                     handler.PostDelayed(action, StartupDelay);
-                });  
+                });
             });
 
-            
+
         }
 
 
-        private void StartMainActivity ()
+        private void StartMainActivity()
         {
-            StartActivity (typeof (MainActivity));
-            Finish ();
+            StartActivity(typeof(MainActivity));
+            Finish();
         }
 
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+        }
     }
 }
