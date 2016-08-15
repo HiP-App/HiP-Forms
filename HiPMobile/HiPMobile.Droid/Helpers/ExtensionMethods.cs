@@ -12,7 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System.Threading.Tasks;
 using Android.Content;
+using Android.Content.Res;
 using Android.Graphics;
 using Android.Graphics.Drawables;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
@@ -25,10 +27,48 @@ namespace de.upb.hip.mobile.droid.Helpers {
             return new BitmapDrawable (context.Resources, BitmapFactory.DecodeByteArray (img.Data, 0, img.Data.Length));
         }
 
+        public static BitmapDrawable GetDrawable(this Image img, Context context, int width, int size)
+        {
+            return new BitmapDrawable(context.Resources, LoadScaledDownBitmapForDisplayAsync (img, new BitmapFactory.Options (), width, size));
+        }
+
         public static int[] GetDimensions (this Image img)
         {
             var bmp = BitmapFactory.DecodeByteArray (img.Data, 0, img.Data.Length);
             return new[] {bmp.Width, bmp.Height};
+        }
+
+        public static int CalculateInSampleSize(BitmapFactory.Options options, int reqWidth, int reqHeight)
+        {
+            // Raw height and width of image
+            float height = options.OutHeight;
+            float width = options.OutWidth;
+            double inSampleSize = 1D;
+
+            if (height > reqHeight || width > reqWidth)
+            {
+                int halfHeight = (int)(height / 2);
+                int halfWidth = (int)(width / 2);
+
+                // Calculate a inSampleSize that is a power of 2 - the decoder will use a value that is a power of two anyway.
+                while ((halfHeight / inSampleSize) > reqHeight && (halfWidth / inSampleSize) > reqWidth)
+                {
+                    inSampleSize *= 2;
+                }
+            }
+
+            return (int)inSampleSize;
+        }
+
+        public static Bitmap LoadScaledDownBitmapForDisplayAsync(this Image img, BitmapFactory.Options options, int reqWidth, int reqHeight)
+        {
+            // Calculate inSampleSize
+            options.InSampleSize = CalculateInSampleSize(options, reqWidth, reqHeight);
+
+            // Decode bitmap with inSampleSize set
+            options.InJustDecodeBounds = false;
+
+            return BitmapFactory.DecodeByteArray(img.Data, 0, img.Data.Length);
         }
 
     }
