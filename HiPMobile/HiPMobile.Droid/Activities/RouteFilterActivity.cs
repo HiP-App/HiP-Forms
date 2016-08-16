@@ -224,7 +224,7 @@ namespace de.upb.hip.mobile.droid.Activities {
                 checkBox.Tag = tagHolder;
                 checkBox.Text = tag.Name;
                 checkBox.Checked = tagHolder.isSelected ();
-                imageView.SetImageDrawable (tag.Image.GetDrawable (Context));
+                imageView.SetImageDrawable (tag.Image.GetDrawable (Context, imageView.Width, imageView.Height));
 
                 return convertView;
             }

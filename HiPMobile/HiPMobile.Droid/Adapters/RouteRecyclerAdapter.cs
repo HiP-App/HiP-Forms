@@ -42,35 +42,37 @@ namespace de.upb.hip.mobile.droid.Adapters {
         public override void OnBindViewHolder (RecyclerView.ViewHolder holder, int position)
         {
             Route route = GetFilteredRoutes () [position];
+            var viewHolder = ((ViewHolder)holder);
 
-            ((ViewHolder) holder).Title.Text = route.Title;
+            viewHolder.Title.Text = route.Title;
 
-            ((ViewHolder) holder).Description.Text = route.Description;
+            viewHolder.Description.Text = route.Description;
 
             int durationInMinutes = route.Duration / 60;
-            ((ViewHolder) holder).Duration.Text = context.Resources.GetQuantityString (
+            viewHolder.Duration.Text = context.Resources.GetQuantityString (
                 Resource.Plurals.route_activity_duration_minutes,
                 durationInMinutes,
                 durationInMinutes
                 );
 
-            ((ViewHolder) holder).Distance.Text = Java.Lang.String.Format (context.Resources.
+            viewHolder.Distance.Text = Java.Lang.String.Format (context.Resources.
                                                                                    GetString (Resource.String.route_activity_distance_kilometer), route.Distance);
 
             // Check if there are actually tags for this route
             if (route.RouteTags != null)
             {
-                ((ViewHolder) holder).TagsLayout.RemoveAllViews ();
+                viewHolder.TagsLayout.RemoveAllViews ();
                 foreach (RouteTag tag in route.RouteTags)
                 {
                     ImageView tagImageView = new ImageView (context);
-                    tagImageView.SetImageDrawable (tag.Image.GetDrawable (context));
-                    ((ViewHolder) holder).TagsLayout.AddView (tagImageView);
+                    tagImageView.SetImageDrawable (tag.Image.GetDrawable (context, tagImageView.Width, tagImageView.Height));
+                    viewHolder.TagsLayout.AddView (tagImageView);
                 }
             }
 
-            ((ViewHolder) holder).Image.SetImageDrawable (route.Image.GetDrawable (context));
-            ((ViewHolder) holder).View.Id = route.Id.GetHashCode ();
+
+            viewHolder.Image.SetImageDrawable (route.Image.GetDrawable (context, viewHolder.Image.Width, viewHolder.Image.Height));
+            viewHolder.View.Id = route.Id.GetHashCode ();
         }
 
 
