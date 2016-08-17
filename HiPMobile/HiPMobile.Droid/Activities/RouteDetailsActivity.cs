@@ -115,7 +115,7 @@ namespace de.upb.hip.mobile.droid.Activities
                 foreach (RouteTag tag in route.RouteTags)
                 {
                     ImageView tagImageView = new ImageView(ApplicationContext);
-                    tagImageView.SetImageDrawable(tag.Image.GetDrawable(this));
+                    tagImageView.SetImageDrawable(tag.Image.GetDrawable(this, tagImageView.Width, tagImageView.Height));
                     tagsLayout.AddView(tagImageView);
                 }
             }
