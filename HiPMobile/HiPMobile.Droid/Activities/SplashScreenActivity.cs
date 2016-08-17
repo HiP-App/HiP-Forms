@@ -17,8 +17,10 @@ using System.Threading;
 using Android.App;
 using Android.OS;
 using Android.Widget;
+using de.upb.hip.mobile.droid.Contracts;
 using de.upb.hip.mobile.droid.Helpers;
 using de.upb.hip.mobile.pcl.Common;
+using de.upb.hip.mobile.pcl.Common.Contracts;
 using de.upb.hip.mobile.pcl.DataAccessLayer;
 using de.upb.hip.mobile.pcl.DataLayer;
 using Microsoft.Practices.Unity;
@@ -50,6 +52,7 @@ namespace de.upb.hip.mobile.droid.Activities
             {
                 // setup IoCManager
                 IoCManager.UnityContainer.RegisterType<IDataAccess, RealmDataAccess>();
+                IoCManager.UnityContainer.RegisterType<IImageDimension, AndroidImageDimension> ();
 
                 // Delete current database to avoid migration issues, remove this when wanting persistent database usage
                 Realm.DeleteRealm(new RealmConfiguration());

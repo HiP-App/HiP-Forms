@@ -132,6 +132,7 @@
     <Compile Include="Activities\RouteActivity.cs" />
     <Compile Include="Adapters\RouteRecyclerAdapter.cs" />
     <Compile Include="Activities\RouteDetailsActivity.cs" />
+    <Compile Include="Contracts\AndroidImageDimension.cs" />
     <Compile Include="fragments\ExhibitListFragment.cs" />
     <Compile Include="fragments\ExhibitsOverviewFragment.cs" />
     <Compile Include="fragments\MapFragment.cs" />
