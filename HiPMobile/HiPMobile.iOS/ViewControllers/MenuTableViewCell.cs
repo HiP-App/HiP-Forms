@@ -16,5 +16,6 @@ namespace HiPMobile.iOS
             ImageView.Image = UIImage.FromBundle(imageName);
             TextLabel.Text = labelText;
         }
+
     }
 }

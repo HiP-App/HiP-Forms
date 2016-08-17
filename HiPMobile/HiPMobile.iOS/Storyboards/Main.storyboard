@@ -97,10 +97,34 @@
                     <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="16">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
-                        <subviews/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" id="2315" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="298"/>
+                            </mapView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="2319" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="0.0" y="298" width="600" height="238"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" colorSpace="calibratedWhite" white="1" alpha="1"/>
+                        <constraints>
+                            <constraint id="2316" firstItem="2315" firstAttribute="leading" secondItem="16" secondAttribute="leading"/>
+                            <constraint id="2317" firstItem="2315" firstAttribute="top" secondItem="10" secondAttribute="bottom"/>
+                            <constraint id="2318" firstItem="16" firstAttribute="trailing" secondItem="2315" secondAttribute="trailing"/>
+                            <constraint id="2326" firstItem="16" firstAttribute="trailing" secondItem="2319" secondAttribute="trailing"/>
+                            <constraint id="2327" firstItem="16" firstAttribute="bottom" secondItem="2319" secondAttribute="bottom"/>
+                            <constraint id="2328" firstItem="2319" firstAttribute="leading" secondItem="16" secondAttribute="leading"/>
+                            <constraint id="2329" firstItem="2319" firstAttribute="top" secondItem="2315" secondAttribute="bottom"/>
+                            <constraint id="2330" firstItem="2319" firstAttribute="height" secondItem="2315" secondAttribute="height" multiplier="0.8"/>
+                        </constraints>
                     </view>
                     <toolbarItems/>
+                    <connections>
+                        <outlet property="mapView" destination="2315" id="name-outlet-2315"/>
+                        <segue id="2755" destination="2339" kind="presentation" identifier="showExhibitDetailsSegue"/>
+                        <outlet property="exhibitsTableView" destination="2319" id="name-outlet-2319"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="17" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -141,6 +165,23 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="55" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="171" y="298"/>
+        </scene>
+        <scene sceneID="2338">
+            <objects>
+                <viewController id="2339" sceneMemberID="viewController" customClass="ExhibitDetailsViewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="2336"/>
+                        <viewControllerLayoutGuide type="bottom" id="2337"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="2340">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2341" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1053" y="-412"/>
         </scene>
     </scenes>
     <resources>

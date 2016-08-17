@@ -13,7 +13,8 @@ namespace HiPMobile.iOS
     public partial class MainViewController : UIViewController
     {
         private UIViewController containerViewController;
-        public MainViewController (IntPtr handle) : base (handle)
+
+        public MainViewController(IntPtr handle) : base(handle)
         {
         }
 
@@ -98,7 +99,9 @@ namespace HiPMobile.iOS
         //actions based on the menu item selection
         void MenuSelected(NSIndexPath menuItemIndexPath)
         {
-            if (!containerViewController.GetType().Name.Equals(Constants.menuItemsViewControllers[menuItemIndexPath.Row]))
+            if (
+                !containerViewController.GetType()
+                    .Name.Equals(Constants.menuItemsViewControllers[menuItemIndexPath.Row]))
             {
                 //remove the current ViewController from the container view
                 containerViewController.WillMoveToParentViewController(null);
@@ -118,37 +121,37 @@ namespace HiPMobile.iOS
             }
             SwipeRightToLeft();
         }
-    }
 
-    public class MenuTableViewSource : UITableViewSource
-    {
-        internal event Action<NSIndexPath> MenuSelected;
-        private NSIndexPath selectedIndexPath = NSIndexPath.FromRowSection(0,0);//home screen index
-
-        public override nint RowsInSection(UITableView tableview, nint section)
+        private class MenuTableViewSource : UITableViewSource
         {
-            return Constants.menuItems.Length;
-        }
+            internal event Action<NSIndexPath> MenuSelected;
+            private NSIndexPath selectedIndexPath = NSIndexPath.FromRowSection(0, 0); //home screen index
 
-        public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
-        {
-            MenuTableViewCell cell = tableView.DequeueReusableCell(MenuTableViewCell.key) as MenuTableViewCell;
-            cell.InitCell(Constants.menuItems[indexPath.Row], Constants.menuItemsImages[indexPath.Row]);
-            if (indexPath.Equals(selectedIndexPath))
+            public override nint RowsInSection(UITableView tableview, nint section)
             {
-                cell.SetSelected(true, false);
+                return Constants.menuItems.Length;
             }
-            return cell;
-        }
 
-        public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
-        {
-            if (MenuSelected != null)
+            public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
             {
-                MenuSelected(indexPath);
-                selectedIndexPath = indexPath;
+                MenuTableViewCell cell = tableView.DequeueReusableCell(MenuTableViewCell.key) as MenuTableViewCell;
+                cell.InitCell(Constants.menuItems[indexPath.Row], Constants.menuItemsImages[indexPath.Row]);
+                if (indexPath.Equals(selectedIndexPath))
+                {
+                    cell.SetSelected(true, false);
+                }
+                return cell;
             }
-        }
 
+            public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
+            {
+                if (MenuSelected != null)
+                {
+                    MenuSelected(indexPath);
+                    selectedIndexPath = indexPath;
+                }
+            }
+
+        }
     }
 }

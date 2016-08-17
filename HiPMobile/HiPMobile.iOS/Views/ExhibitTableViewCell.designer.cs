@@ -11,27 +11,27 @@ using UIKit;
 
 namespace HiPMobile.iOS
 {
-    [Register ("HomeScreenViewController")]
-    partial class HomeScreenViewController
+    [Register ("ExhibitTableViewCell")]
+    partial class ExhibitTableViewCell
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UITableView exhibitsTableView { get; set; }
+        UIKit.UIImageView exhibitImageView { get; set; }
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        MapKit.MKMapView mapView { get; set; }
+        UIKit.UILabel exhibitName { get; set; }
 
         void ReleaseDesignerOutlets ()
         {
-            if (exhibitsTableView != null) {
-                exhibitsTableView.Dispose ();
-                exhibitsTableView = null;
+            if (exhibitImageView != null) {
+                exhibitImageView.Dispose ();
+                exhibitImageView = null;
             }
 
-            if (mapView != null) {
-                mapView.Dispose ();
-                mapView = null;
+            if (exhibitName != null) {
+                exhibitName.Dispose ();
+                exhibitName = null;
             }
         }
     }
