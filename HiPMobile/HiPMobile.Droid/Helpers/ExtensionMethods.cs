@@ -47,17 +47,6 @@ namespace de.upb.hip.mobile.droid.Helpers {
         }
 
         /// <summary>
-        /// Gets the dimensions for the given image.
-        /// </summary>
-        /// <param name="img">The image to get the dimensions from.</param>
-        /// <returns>The dimension of the image.</returns>
-        public static int[] GetDimensions (this Image img)
-        {
-            var bmp = BitmapFactory.DecodeByteArray (img.Data, 0, img.Data.Length);
-            return new[] {bmp.Width, bmp.Height};
-        }
-
-        /// <summary>
         /// https://developer.xamarin.com/recipes/android/resources/general/load_large_bitmaps_efficiently/
         /// </summary>
         /// <param name="options"></param>

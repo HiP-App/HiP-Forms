@@ -25,7 +25,7 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models
 	using System.Linq;
 	using System.Text;
 
-	public class Image : RealmObject, IIdentifiable
+	public partial class Image : RealmObject, IIdentifiable
 	{
 		//Attributes
 		[ObjectId]

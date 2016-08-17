@@ -57,7 +57,7 @@ namespace de.upb.hip.mobile.droid.fragments.exhibitpagefragment {
                 var button = (Button) v.FindViewById (Resource.Id.fragment_exhibitpage_image_button);
                 button.Visibility = ViewStates.Invisible;
             }
-            drawView.OriginalImageDimensions = page.Image.GetDimensions ();
+            drawView.OriginalImageDimensions = new []{page.Image.Width, page.Image.Height};
 
             InitListeners (v);
 
@@ -90,7 +90,7 @@ namespace de.upb.hip.mobile.droid.fragments.exhibitpagefragment {
 
         private double[] GetImageScalingFactor ()
         {
-            var originalImageDimensions = page.Image.GetDimensions ();
+            var originalImageDimensions = new int[] {page.Image.Width, page.Image.Height};
             var widthScalingFactor = originalImageDimensions [0] / (double) drawView.Width;
             var heightScalingFactor = originalImageDimensions [1] / (double) drawView.Height;
             return new[] {widthScalingFactor, heightScalingFactor};
