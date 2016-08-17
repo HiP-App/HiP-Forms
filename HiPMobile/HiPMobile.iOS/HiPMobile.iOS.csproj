@@ -194,8 +194,23 @@
     <None Include="Entitlements.plist" />
     <None Include="packages.config" />
     <BundleResource Include="Resources\base.lproj\Localizable.strings" />
+    <InterfaceDefinition Include="Views\ExhibitTableViewCell.xib" />
+    <InterfaceDefinition Include="Views\OsmMapView.xib" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Delegates\OsmMapViewDelegate.cs" />
+    <Compile Include="Views\OsmMapView.cs" />
+    <Compile Include="Views\OsmMapView.designer.cs">
+      <DependentUpon>OsmMapView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\ExhibitDetailsViewController.cs" />
+    <Compile Include="ViewControllers\ExhibitDetailsViewController.designer.cs">
+      <DependentUpon>ExhibitDetailsViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ExhibitTableViewCell.cs" />
+    <Compile Include="Views\ExhibitTableViewCell.designer.cs">
+      <DependentUpon>ExhibitTableViewCell.cs</DependentUpon>
+    </Compile>
     <Compile Include="ViewControllers\LicenseScreenViewController.cs" />
     <Compile Include="ViewControllers\LicenseScreenViewController.designer.cs">
       <DependentUpon>LicenseScreenViewController.cs</DependentUpon>
@@ -219,6 +234,7 @@
     </Compile>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
+    <Compile Include="ViewModels\ExhibitCellViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="FodyWeavers.xml" />
@@ -230,9 +246,7 @@
       <Version>1.1.0</Version>
     </XamarinComponentReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
