@@ -53,12 +53,13 @@ namespace de.upb.hip.mobile.droid.Activities
                 // setup IoCManager
                 IoCManager.UnityContainer.RegisterType<IDataAccess, RealmDataAccess>();
                 IoCManager.UnityContainer.RegisterType<IImageDimension, AndroidImageDimension> ();
+                IoCManager.UnityContainer.RegisterInstance (typeof(IDataLoader), new AndroidDataLoader (Assets));
 
                 // Delete current database to avoid migration issues, remove this when wanting persistent database usage
                 Realm.DeleteRealm(new RealmConfiguration());
 
                 // Insert Data
-                var filler = new DbDummyDataFiller(Assets);
+                var filler = new DbDummyDataFiller();
                 filler.InsertData();
 
                 action = StartMainActivity;

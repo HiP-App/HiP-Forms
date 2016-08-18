@@ -63,7 +63,9 @@
     <Compile Include="BusinessLayer\Models\NonGenerated\CustomGeoPoint.cs" />
     <Compile Include="BusinessLayer\Models\NonGenerated\Image.cs" />
     <Compile Include="BusinessLayer\Models\NonGenerated\Page.cs" />
+    <Compile Include="Common\Contracts\IDataLoader.cs" />
     <Compile Include="Common\Contracts\IImageDimension.cs" />
+    <Compile Include="Common\DbDummyDataFiller.cs" />
     <Compile Include="Common\IoCManager.cs" />
     <Compile Include="DataAccessLayer\IDataAccess.cs" />
     <Compile Include="DataAccessLayer\BaseTransaction.cs" />

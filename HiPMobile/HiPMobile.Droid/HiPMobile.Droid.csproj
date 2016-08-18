@@ -132,6 +132,7 @@
     <Compile Include="Activities\RouteActivity.cs" />
     <Compile Include="Adapters\RouteRecyclerAdapter.cs" />
     <Compile Include="Activities\RouteDetailsActivity.cs" />
+    <Compile Include="Contracts\AndroidDataLoader.cs" />
     <Compile Include="Contracts\AndroidImageDimension.cs" />
     <Compile Include="fragments\ExhibitListFragment.cs" />
     <Compile Include="fragments\ExhibitsOverviewFragment.cs" />
@@ -158,7 +159,6 @@
     <Compile Include="fragments\exhibitpagefragment\TimeSliderExhibitPageFragment.cs" />
     <Compile Include="Helpers\BottomSheetConfig.cs" />
     <Compile Include="Helpers\CustomSeekBar.cs" />
-    <Compile Include="Helpers\DbDummyDataFiller.cs" />
     <Compile Include="Helpers\DrawView.cs" />
     <Compile Include="Helpers\ExtensionMethods.cs" />
     <Compile Include="Helpers\ImageManipulation.cs" />
