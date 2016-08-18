@@ -137,6 +137,7 @@
     <Compile Include="fragments\ExhibitListFragment.cs" />
     <Compile Include="fragments\ExhibitsOverviewFragment.cs" />
     <Compile Include="fragments\MapFragment.cs" />
+    <Compile Include="Helpers\AndroidConstants.cs" />
     <Compile Include="Helpers\InteractiveSources\ConsecutiveNumberInteractiveSourceSubstitute.cs" />
     <Compile Include="Helpers\InteractiveSources\ConstantInteractiveSourceSubstitute.cs" />
     <Compile Include="Helpers\InteractiveSources\IInteractiveSourceAction.cs" />
