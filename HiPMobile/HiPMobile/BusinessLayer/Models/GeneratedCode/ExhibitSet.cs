@@ -29,33 +29,16 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models
 	{
 		//Attributes
 		[ObjectId]
-		private string _id{ get; set; }
-		public string Id{
-			get{ return _id; }
-			set{ Realm.GetInstance ().Write (() => _id = value); }
-		}
+		public string Id{ get; set; }
 
-		private RealmList<StringElement> _categories{ get; }
-		public IList<StringElement> Categories{
-			get{ return _categories; }
-		}
+		public virtual IList<StringElement> Categories{ get; }
 
-		private GeoLocation _position{ get; set; }
-		public GeoLocation Position{
-			get{ return _position; }
-			set{ Realm.GetInstance ().Write (() => _position = value); }
-		}
+		public virtual GeoLocation Position{ get; set; }
 
 		//Associations
-		private RealmList<Exhibit> _activeset{ get; }
-		public IList<Exhibit> ActiveSet{
-			 get{ return _activeset; }
-		}
+		public virtual IList<Exhibit> ActiveSet{ get; }
 
-		private RealmList<Exhibit> _initset{ get; }
-		public IList<Exhibit> InitSet{
-			 get{ return _initset; }
-		}
+		public virtual IList<Exhibit> InitSet{ get; }
 
 		// Contructor
 		public ExhibitSet(){

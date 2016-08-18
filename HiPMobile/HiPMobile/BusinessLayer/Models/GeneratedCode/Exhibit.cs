@@ -29,57 +29,24 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models
 	{
 		//Attributes
 		[ObjectId]
-		private string _id{ get; set; }
-		public string Id{
-			get{ return _id; }
-			set{ Realm.GetInstance ().Write (() => _id = value); }
-		}
+		public string Id{ get; set; }
 
-		private string _name{ get; set; }
-		public string Name{
-			get{ return _name; }
-			set{ Realm.GetInstance ().Write (() => _name = value); }
-		}
+		public virtual string Name{ get; set; }
 
-		private string _description{ get; set; }
-		public string Description{
-			get{ return _description; }
-			set{ Realm.GetInstance ().Write (() => _description = value); }
-		}
+		public virtual string Description{ get; set; }
 
-		private GeoLocation _location{ get; set; }
-		public GeoLocation Location{
-			get{ return _location; }
-			set{ Realm.GetInstance ().Write (() => _location = value); }
-		}
+		public virtual GeoLocation Location{ get; set; }
 
-		private RealmList<StringElement> _categories{ get; }
-		public IList<StringElement> Categories{
-			get{ return _categories; }
-		}
+		public IList<StringElement> Categories{ get; }
 
-		private RealmList<StringElement> _tags{ get; }
-		public IList<StringElement> Tags{
-			get{ return _tags; }
-		}
+		public virtual IList<StringElement> Tags{ get; }
 
-		private MapMarker _marker{ get; set; }
-		public MapMarker Marker{
-			get{ return _marker; }
-			set{ Realm.GetInstance ().Write (() => _marker = value); }
-		}
+		public virtual MapMarker Marker{ get; set; }
 
 		//Associations
-		private RealmList<Page> _pages{ get; }
-		public IList<Page> Pages{
-			 get{ return _pages; }
-		}
+		public virtual IList<Page> Pages{ get; }
 
-		private Image _image{ get; set; }
-		public Image Image{
-			get{ return _image; }
-			set{ Realm.GetInstance ().Write (() => _image = value); }
-		}
+		public virtual Image Image{ get; set; }
 
 		// Contructor
 		public Exhibit(){

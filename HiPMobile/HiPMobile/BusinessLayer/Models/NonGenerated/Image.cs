@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.Common;
 using de.upb.hip.mobile.pcl.Common.Contracts;
 using Microsoft.Practices.Unity;
@@ -20,7 +21,6 @@ using Realms;
 namespace de.upb.hip.mobile.pcl.BusinessLayer.Models {
     public partial class Image {
 
-        [Ignored]
         private readonly IImageDimension imgDimension = IoCManager.UnityContainer.Resolve<IImageDimension>();
 
         private int _width { get; set; }
@@ -34,7 +34,10 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models {
                 else
                 {
                     var w = imgDimension.GetDimensions (this) [0];
-                    Realm.GetInstance().Write (() => this._width = w);
+                    using (DbManager.StartTransaction ())
+                    {
+                        this._width = w;
+                    }
                     return w;
                 }
             }
@@ -54,7 +57,10 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models {
                 else
                 {
                     var h = imgDimension.GetDimensions(this)[1];
-                    Realm.GetInstance().Write(() => this._height = h);
+                    using (DbManager.StartTransaction ())
+                    {
+                        this._height = h;
+                    }
                     return h;
                 }
             }

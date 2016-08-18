@@ -38,7 +38,8 @@
 
         if(!string.IsNullOrWhiteSpace(text) && isEnumerable)
         {
-            text = "IList<" + text + ">";
+            //text = "IList<" + text + ">";
+			text = "IList<" + text + ">";
         }
 
         return text;
@@ -1182,12 +1183,15 @@
             Write(PropertySetVisibility(property));
         }
 
-        Write("set");
-        WritePropertyAccessorBody(property);
+		if(!IsEnumerable(property)){
+						Write("set");
+						WritePropertyAccessorBody(property);
+		}
 
         Write("}");
 		if(IsEnumerable(property)){
-			WriteLine(";");
+			//WriteLine(";");
+			WriteLine("");
 		}
 		else{
 			WriteLine("");
@@ -1483,8 +1487,9 @@
 
         if(!string.IsNullOrWhiteSpace(text) && isEnumerable)
         {
-			if(usePrivate) text = "RealmList<" + text + ">";
-            else text = "IList<" + text + ">";
+			//if(usePrivate) text = "RealmList<" + text + ">";
+            //else text = "IList<" + text + ">";
+			text = "RealmList<" + text + ">";
         }
 
         return text;

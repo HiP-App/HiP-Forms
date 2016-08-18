@@ -14,6 +14,7 @@
 //  * limitations under the License.
 //  */
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
@@ -64,11 +65,52 @@ namespace de.upb.hip.mobile.pcl.DataLayer {
             return false;
         }
 
+        public BaseTransaction StartTransaction ()
+        {
+            var transaction = GetInstance ().BeginWrite ();
+            return  new RealmTransaction (transaction);
+        }
+
+        public T CreateObject<T> () where T : RealmObject, IIdentifiable, new ()
+        {
+            // create the instance
+            T instance = null;
+            instance = Realm.GetInstance().CreateObject<T>();
+
+            // generate a unique id
+            string id;
+            do
+            {
+                id = GenerateId();
+            } while (GetItem<T>(id) != null);
+
+            // assign the id and return the instance
+            instance.Id = id;
+            return instance;
+        }
+
+        private static string GenerateId()
+        {
+            return Guid.NewGuid().ToString();
+        }
+
         // Singleton pattern
 
-        public static Realm GetInstance ()
+        public Realm GetInstance ()
         {
-            return Realm.GetInstance ();
+            return Instance;
+        }
+
+        private Realm _instance;
+        private Realm Instance {
+            get {
+                if (false &&_instance == null)
+                {
+                    _instance = Realm.GetInstance ();
+                }
+                _instance = Realm.GetInstance();
+                return _instance;
+            }
         }
 
     }
