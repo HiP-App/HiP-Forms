@@ -15,6 +15,7 @@
 using System.Collections.Generic;
 using System.IO;
 using Android.Content.Res;
+using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using Java.Lang;
 using Realms;
@@ -42,7 +43,7 @@ namespace de.upb.hip.mobile.droid.Helpers {
 
         public void InsertData ()
         {
-            ExhibitSet karlsrouteSet = BusinessEntitiyFactory.CreateBusinessObject<ExhibitSet>();
+            ExhibitSet karlsrouteSet = DbManager.CreateBusinessObject<ExhibitSet>();
             Image kaiserPfalzImage = CreateImage("Die Pfalz Karls des Großen", "Die Überreste der Kaiserpflaz von Westen aus betrachtet.", "kaiserpfalz_teaser.jpg");
             Exhibit kaiserpfalz = CreateExhibit( "Die Pfalz Karls des Großen", "", 51.7189826, 8.754652599999986,
                     new [] { "Kirche" }, new [] { "Dom" }, kaiserPfalzImage);
@@ -212,27 +213,27 @@ namespace de.upb.hip.mobile.droid.Helpers {
         private Exhibit CreateExhibit (string name, string description, double latitude, double longitude,
                                        string[] tags, string[] categories, Image image)
         {
-            var exhibit = BusinessEntitiyFactory.CreateBusinessObject<Exhibit> ();
+            var exhibit = DbManager.CreateBusinessObject<Exhibit> ();
             exhibit.Name = name;
             exhibit.Description = description;
-            var position = BusinessEntitiyFactory.CreateBusinessObject<GeoLocation> ();
+            var position = DbManager.CreateBusinessObject<GeoLocation> ();
             position.Latitude = latitude;
             position.Longitude = longitude;
             exhibit.Location = position;
             exhibit.Image = image;
-            var marker = BusinessEntitiyFactory.CreateBusinessObject<MapMarker> ();
+            var marker = DbManager.CreateBusinessObject<MapMarker> ();
             marker.Title = name;
             marker.Text = description;
             exhibit.Marker = marker;
             foreach (var tag in tags)
             {
-                var stringelement = BusinessEntitiyFactory.CreateBusinessObject<StringElement> ();
+                var stringelement = DbManager.CreateBusinessObject<StringElement> ();
                 stringelement.Value = tag;
                 exhibit.Tags.Add (stringelement);
             }
             foreach (var category in categories)
             {
-                var stringelement = BusinessEntitiyFactory.CreateBusinessObject<StringElement> ();
+                var stringelement = DbManager.CreateBusinessObject<StringElement> ();
                 stringelement.Value = category;
                 exhibit.Categories.Add (stringelement);
             }
@@ -241,8 +242,8 @@ namespace de.upb.hip.mobile.droid.Helpers {
 
         private Page CreateAppetizerPage (string text, Image img = null)
         {
-            var page = BusinessEntitiyFactory.CreateBusinessObject<Page> ();
-            var appetizer = BusinessEntitiyFactory.CreateBusinessObject<AppetizerPage> ();
+            var page = DbManager.CreateBusinessObject<Page> ();
+            var appetizer = DbManager.CreateBusinessObject<AppetizerPage> ();
             page.AppetizerPage = appetizer;
             appetizer.Text = text;
             if (img != null)
@@ -252,8 +253,8 @@ namespace de.upb.hip.mobile.droid.Helpers {
 
         private Page CreateTextPage (string text, Audio audio = null)
         {
-            var page = BusinessEntitiyFactory.CreateBusinessObject<Page> ();
-            var textpage = BusinessEntitiyFactory.CreateBusinessObject<TextPage> ();
+            var page = DbManager.CreateBusinessObject<Page> ();
+            var textpage = DbManager.CreateBusinessObject<TextPage> ();
             page.TextPage = textpage;
             textpage.Text = text;
             if (audio != null)
@@ -268,8 +269,8 @@ namespace de.upb.hip.mobile.droid.Helpers {
             if (dates.Length != images.Length)
                 throw new IllegalArgumentException ("There must be equally many dates and images.");
 
-            var page = BusinessEntitiyFactory.CreateBusinessObject<Page> ();
-            var tsPage = BusinessEntitiyFactory.CreateBusinessObject<TimeSliderPage> ();
+            var page = DbManager.CreateBusinessObject<Page> ();
+            var tsPage = DbManager.CreateBusinessObject<TimeSliderPage> ();
             page.TimeSliderPage = tsPage;
             tsPage.Title = title;
             tsPage.Text = text;
@@ -277,7 +278,7 @@ namespace de.upb.hip.mobile.droid.Helpers {
             page.Audio = audio;
             foreach (var value in dates)
             {
-                var longElement = BusinessEntitiyFactory.CreateBusinessObject<LongElement> ();
+                var longElement = DbManager.CreateBusinessObject<LongElement> ();
                 longElement.Value = value;
                 tsPage.Dates.Add (longElement);
             }
@@ -292,8 +293,8 @@ namespace de.upb.hip.mobile.droid.Helpers {
         {
             if (areas?.Length != texts?.Length)
                 throw new IllegalArgumentException ("There must be equally many texts and areas.");
-            var page = BusinessEntitiyFactory.CreateBusinessObject<Page> ();
-            var imagePage = BusinessEntitiyFactory.CreateBusinessObject<ImagePage> ();
+            var page = DbManager.CreateBusinessObject<Page> ();
+            var imagePage = DbManager.CreateBusinessObject<ImagePage> ();
             page.ImagePage = imagePage;
             imagePage.Image = img;
             page.Audio = audio;
@@ -305,7 +306,7 @@ namespace de.upb.hip.mobile.droid.Helpers {
             if (texts != null)
                 foreach (var text in texts)
                 {
-                    var stringElement = BusinessEntitiyFactory.CreateBusinessObject<StringElement> ();
+                    var stringElement = DbManager.CreateBusinessObject<StringElement> ();
                     stringElement.Value = text;
                     imagePage.Texts.Add (stringElement);
                 }
@@ -314,7 +315,7 @@ namespace de.upb.hip.mobile.droid.Helpers {
 
         private Rectangle CreateRectangle (int top, int left, int bottom, int right)
         {
-            var rect = BusinessEntitiyFactory.CreateBusinessObject<Rectangle> ();
+            var rect = DbManager.CreateBusinessObject<Rectangle> ();
             rect.Top = top;
             rect.Left = left;
             rect.Bottom = bottom;
@@ -324,7 +325,7 @@ namespace de.upb.hip.mobile.droid.Helpers {
 
         private Image CreateImage (string title, string description, string path)
         {
-            var img = BusinessEntitiyFactory.CreateBusinessObject<Image> ();
+            var img = DbManager.CreateBusinessObject<Image> ();
             img.Title = title;
             img.Description = description;
             img.Data = LoadByteAsset (path);
@@ -333,7 +334,7 @@ namespace de.upb.hip.mobile.droid.Helpers {
 
         private Audio CreateAudio (string path, string caption, string title)
         {
-            var audio = BusinessEntitiyFactory.CreateBusinessObject<Audio> ();
+            var audio = DbManager.CreateBusinessObject<Audio> ();
             audio.Data = LoadByteAsset (path);
             audio.Caption = caption;
             audio.Title = title;
@@ -342,7 +343,7 @@ namespace de.upb.hip.mobile.droid.Helpers {
 
         private Route CreateRoute(string title, string description, int duration, double distance, Image image)
         {
-            var route = BusinessEntitiyFactory.CreateBusinessObject<Route>();
+            var route = DbManager.CreateBusinessObject<Route>();
             route.Title = title;
             route.Description = description;
             route.Duration = duration;
@@ -354,7 +355,7 @@ namespace de.upb.hip.mobile.droid.Helpers {
 
         private Waypoint CreateWayPoint(Exhibit exhibit)
         {
-            var waypoint = BusinessEntitiyFactory.CreateBusinessObject<Waypoint>();
+            var waypoint = DbManager.CreateBusinessObject<Waypoint>();
             waypoint.Exhibit = exhibit;
             waypoint.Location = exhibit.Location;
             return waypoint;
@@ -362,7 +363,7 @@ namespace de.upb.hip.mobile.droid.Helpers {
 
         private RouteTag CreateRouteTag(string name, string tag, Image image)
         {
-            var routetag = BusinessEntitiyFactory.CreateBusinessObject<RouteTag>();
+            var routetag = DbManager.CreateBusinessObject<RouteTag>();
             routetag.Name = name;
             routetag.Tag = tag;
             routetag.Image = image;

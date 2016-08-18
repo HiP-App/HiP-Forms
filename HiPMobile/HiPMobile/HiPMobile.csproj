@@ -33,10 +33,10 @@
     <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="BusinessLayer\Managers\DbManager.cs" />
     <Compile Include="BusinessLayer\Managers\ExhibitManager.cs" />
     <Compile Include="BusinessLayer\Managers\PageManager.cs" />
     <Compile Include="BusinessLayer\Managers\RouteManager.cs" />
-    <Compile Include="BusinessLayer\Models\BusinessEntitiyFactory.cs" />
     <Compile Include="BusinessLayer\Models\GeneratedCode\AppetizerPage.cs" />
     <Compile Include="BusinessLayer\Models\GeneratedCode\Audio.cs" />
     <Compile Include="BusinessLayer\Models\GeneratedCode\Exhibit.cs" />
@@ -66,7 +66,9 @@
     <Compile Include="Common\Contracts\IImageDimension.cs" />
     <Compile Include="Common\IoCManager.cs" />
     <Compile Include="DataAccessLayer\IDataAccess.cs" />
+    <Compile Include="DataAccessLayer\BaseTransaction.cs" />
     <Compile Include="DataLayer\RealmDataAccess.cs" />
+    <Compile Include="DataLayer\RealmTransaction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
