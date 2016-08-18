@@ -75,7 +75,7 @@ namespace de.upb.hip.mobile.pcl.DataLayer {
         {
             // create the instance
             T instance = null;
-            Realm.GetInstance().Write(() => instance = Realm.GetInstance().CreateObject<T>());
+            instance = Realm.GetInstance().CreateObject<T>();
 
             // generate a unique id
             string id;
@@ -96,9 +96,21 @@ namespace de.upb.hip.mobile.pcl.DataLayer {
 
         // Singleton pattern
 
-        public static Realm GetInstance ()
+        public Realm GetInstance ()
         {
-            return Realm.GetInstance ();
+            return Instance;
+        }
+
+        private Realm _instance;
+        private Realm Instance {
+            get {
+                if (false &&_instance == null)
+                {
+                    _instance = Realm.GetInstance ();
+                }
+                _instance = Realm.GetInstance();
+                return _instance;
+            }
         }
 
     }

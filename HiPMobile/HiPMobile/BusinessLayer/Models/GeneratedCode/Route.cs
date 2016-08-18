@@ -29,52 +29,22 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models
 	{
 		//Attributes
 		[ObjectId]
-		private string _id{ get; set; }
-		public string Id{
-			get{ return _id; }
-			set{ Realm.GetInstance ().Write (() => _id = value); }
-		}
+		public string Id{ get; set; }
 
-		private string _title{ get; set; }
-		public string Title{
-			get{ return _title; }
-			set{ Realm.GetInstance ().Write (() => _title = value); }
-		}
+		public virtual string Title{ get; set; }
 
-		private string _description{ get; set; }
-		public string Description{
-			get{ return _description; }
-			set{ Realm.GetInstance ().Write (() => _description = value); }
-		}
+		public virtual string Description{ get; set; }
 
-		private int _duration{ get; set; }
-		public int Duration{
-			get{ return _duration; }
-			set{ Realm.GetInstance ().Write (() => _duration = value); }
-		}
+		public virtual int Duration{ get; set; }
 
-		private double _distance{ get; set; }
-		public double Distance{
-			get{ return _distance; }
-			set{ Realm.GetInstance ().Write (() => _distance = value); }
-		}
+		public virtual double Distance{ get; set; }
 
 		//Associations
-		private RealmList<RouteTag> _routetags{ get; }
-		public IList<RouteTag> RouteTags{
-			 get{ return _routetags; }
-		}
+		public virtual IList<RouteTag> RouteTags{ get; }
 
-		private Image _image{ get; set; }
-		public Image Image{
-			get{ return _image; }
-			set{ Realm.GetInstance ().Write (() => _image = value); }
-		}
+		public virtual Image Image{ get; set; }
 
-		private RealmList<Waypoint> _waypoints{ get; }
-		public IList<Waypoint> Waypoints{
-			 get{ return _waypoints; }
-		}
+		public virtual IList<Waypoint> Waypoints{ get; }
 
 		// Contructor
 		public Route(){

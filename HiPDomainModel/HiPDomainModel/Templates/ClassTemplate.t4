@@ -44,20 +44,24 @@ namespace <#= classNamespace #>
     WriteLine ("//Attributes");
 
     WriteLine ("[ObjectId]");
-    WriteLine ("private string _id{ get; set; }");
-    WriteLine ("public string Id{");
-    PushIndent ("\t");
-    WriteLine ("get{ return _id; }");
-    WriteLine ("set{ Realm.GetInstance ().Write (() => _id = value); }");
-    PopIndent ();
-    WriteLine ("}");
-    WriteLine ("");
+    //WriteLine ("private string _id{ get; set; }");
+    //WriteLine ("public string Id{");
+    //PushIndent ("\t");
+    //WriteLine ("get{ return _id; }");
+    //WriteLine ("set{ Realm.GetInstance ().Write (() => _id = value); }");
+    //PopIndent ();
+    //WriteLine ("}");
+    //WriteLine ("");
+
+	WriteLine("public string Id{ get; set; }");
+	WriteLine("");
 
     var ownedAttributes = this.Element.OwnedAttributes;
     foreach(IProperty attribute in ownedAttributes)
     {
         WriteSummaryComment(attribute.Description);
-        WriteClassRealmPropertyDefinition(attribute);	
+        //WriteClassRealmPropertyDefinition(attribute);	
+		WriteClassUmlPropertyDefinition(attribute);
         WriteLine("");
     }
 #>
@@ -70,10 +74,12 @@ namespace <#= classNamespace #>
         WriteSummaryComment(ownedEnd.OwningAssociation.Description);
         WriteSummaryComment(ownedEnd.Description);
 		if(IsEnumerable(ownedEnd)){
-			WriteToManyProperty(ownedEnd);
+			//WriteToManyProperty(ownedEnd);
+			WriteClassUmlPropertyDefinition(ownedEnd);
 		}
 		else{
-			WriteClassRealmPropertyDefinition(ownedEnd);
+			//WriteClassRealmPropertyDefinition(ownedEnd);
+			WriteClassUmlPropertyDefinition(ownedEnd);
 		}
         WriteLine("");
     }
@@ -879,8 +885,8 @@ namespace <#= classNamespace #>
     private void WriteClassRealmPropertyDefinition(IProperty property)
     {
         string overloadOption = ClassPropertyOverloadOption(property, this.Element);
-        //WriteUmlPropertyDefinition(property, overloadOption);
-		WriteRealmProperty(property);
+        WriteUmlPropertyDefinition(property, overloadOption);
+		//WriteRealmProperty(property);
     }
 
     protected override bool AppliesToElement()

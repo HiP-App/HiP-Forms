@@ -29,46 +29,20 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models
 	{
 		//Attributes
 		[ObjectId]
-		private string _id{ get; set; }
-		public string Id{
-			get{ return _id; }
-			set{ Realm.GetInstance ().Write (() => _id = value); }
-		}
+		public string Id{ get; set; }
 
-		private string _title{ get; set; }
-		public string Title{
-			get{ return _title; }
-			set{ Realm.GetInstance ().Write (() => _title = value); }
-		}
+		public virtual string Title{ get; set; }
 
-		private string _text{ get; set; }
-		public string Text{
-			get{ return _text; }
-			set{ Realm.GetInstance ().Write (() => _text = value); }
-		}
+		public virtual string Text{ get; set; }
 
-		private RealmList<LongElement> _dates{ get; }
-		public IList<LongElement> Dates{
-			get{ return _dates; }
-		}
+		public virtual IList<LongElement> Dates{ get; }
 
-		private bool _hideyearnumbers{ get; set; }
-		public bool HideYearNumbers{
-			get{ return _hideyearnumbers; }
-			set{ Realm.GetInstance ().Write (() => _hideyearnumbers = value); }
-		}
+		public virtual bool HideYearNumbers{ get; set; }
 
 		//Associations
-		private Audio _audio{ get; set; }
-		public Audio Audio{
-			get{ return _audio; }
-			set{ Realm.GetInstance ().Write (() => _audio = value); }
-		}
+		public virtual Audio Audio{ get; set; }
 
-		private RealmList<Image> _images{ get; }
-		public IList<Image> Images{
-			 get{ return _images; }
-		}
+		public virtual IList<Image> Images{ get; }
 
 		// Contructor
 		public TimeSliderPage(){

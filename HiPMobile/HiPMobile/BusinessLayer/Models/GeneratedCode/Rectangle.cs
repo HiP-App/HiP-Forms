@@ -29,35 +29,15 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models
 	{
 		//Attributes
 		[ObjectId]
-		private string _id{ get; set; }
-		public string Id{
-			get{ return _id; }
-			set{ Realm.GetInstance ().Write (() => _id = value); }
-		}
+		public string Id{ get; set; }
 
-		private int _top{ get; set; }
-		public int Top{
-			get{ return _top; }
-			set{ Realm.GetInstance ().Write (() => _top = value); }
-		}
+		public virtual int Top{ get; set; }
 
-		private int _bottom{ get; set; }
-		public int Bottom{
-			get{ return _bottom; }
-			set{ Realm.GetInstance ().Write (() => _bottom = value); }
-		}
+		public virtual int Bottom{ get; set; }
 
-		private int _left{ get; set; }
-		public int Left{
-			get{ return _left; }
-			set{ Realm.GetInstance ().Write (() => _left = value); }
-		}
+		public virtual int Left{ get; set; }
 
-		private int _right{ get; set; }
-		public int Right{
-			get{ return _right; }
-			set{ Realm.GetInstance ().Write (() => _right = value); }
-		}
+		public virtual int Right{ get; set; }
 
 		//Associations
 		// Contructor

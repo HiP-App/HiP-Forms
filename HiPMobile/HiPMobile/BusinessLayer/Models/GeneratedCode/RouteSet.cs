@@ -29,17 +29,10 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models
 	{
 		//Attributes
 		[ObjectId]
-		private string _id{ get; set; }
-		public string Id{
-			get{ return _id; }
-			set{ Realm.GetInstance ().Write (() => _id = value); }
-		}
+		public string Id{ get; set; }
 
 		//Associations
-		private RealmList<Route> _routes{ get; }
-		public IList<Route> Routes{
-			 get{ return _routes; }
-		}
+		public virtual IList<Route> Routes{ get; }
 
 		// Contructor
 		public RouteSet(){

@@ -18,7 +18,7 @@ using Realms;
 namespace de.upb.hip.mobile.pcl.DataLayer {
     public class RealmTransaction : BaseTransaction {
 
-        private Transaction Transaction { get; set; }
+        public Transaction Transaction { get; set; }
 
         public RealmTransaction (Transaction transaction)
         {
