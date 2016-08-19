@@ -199,10 +199,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Delegates\OsmMapViewDelegate.cs" />
-    <Compile Include="MapView.cs" />
-    <Compile Include="MapView.designer.cs">
-      <DependentUpon>MapView.cs</DependentUpon>
-    </Compile>
     <Compile Include="Views\OsmMapView.cs" />
     <Compile Include="Views\OsmMapView.designer.cs">
       <DependentUpon>OsmMapView.cs</DependentUpon>
