@@ -13,7 +13,6 @@
 // limitations under the License.
 
 using System.Collections.Generic;
-using Android.App;
 using Android.OS;
 using Android.Support.V4.Content;
 using Android.Views;
@@ -23,7 +22,7 @@ using Org.Osmdroid.Tileprovider.Tilesource;
 using Org.Osmdroid.Util;
 using Org.Osmdroid.Views;
 using Org.Osmdroid.Views.Overlay;
-
+using Fragment = Android.Support.V4.App.Fragment;
 
 namespace de.upb.hip.mobile.droid.fragments {
     /// <summary>
@@ -89,9 +88,12 @@ namespace de.upb.hip.mobile.droid.fragments {
 
             var mapView = view.FindViewById<MapView> (Resource.Id.mapview);
             mapView.SetTileSource(TileSourceFactory.DefaultTileSource);
+            mapView.SetBuiltInZoomControls (false);
+            mapView.SetMultiTouchControls (true);
             mapView.TilesScaledToDpi = true;
-            mapView.SetBuiltInZoomControls (true);
 
+            //mapView.SetTileSource (new XYTileSource ("OSM", 0, 18, 1024, ".png",
+                                                     //new[] {"http://tile.openstreetmap.org/"}));
 
             var mapController = mapView.Controller;
             mapController.SetZoom (13);

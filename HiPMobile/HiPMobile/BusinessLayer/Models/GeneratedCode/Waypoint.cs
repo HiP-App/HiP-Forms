@@ -29,24 +29,12 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models
 	{
 		//Attributes
 		[ObjectId]
-		private string _id{ get; set; }
-		public string Id{
-			get{ return _id; }
-			set{ Realm.GetInstance ().Write (() => _id = value); }
-		}
+		public string Id{ get; set; }
 
-		private GeoLocation _location{ get; set; }
-		public GeoLocation Location{
-			get{ return _location; }
-			set{ Realm.GetInstance ().Write (() => _location = value); }
-		}
+		public virtual GeoLocation Location{ get; set; }
 
 		//Associations
-		private Exhibit _exhibit{ get; set; }
-		public Exhibit Exhibit{
-			get{ return _exhibit; }
-			set{ Realm.GetInstance ().Write (() => _exhibit = value); }
-		}
+		public virtual Exhibit Exhibit{ get; set; }
 
 		// Contructor
 		public Waypoint(){

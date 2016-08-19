@@ -29,30 +29,14 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models
 	{
 		//Attributes
 		[ObjectId]
-		private string _id{ get; set; }
-		public string Id{
-			get{ return _id; }
-			set{ Realm.GetInstance ().Write (() => _id = value); }
-		}
+		public string Id{ get; set; }
 
-		private string _tag{ get; set; }
-		public string Tag{
-			get{ return _tag; }
-			set{ Realm.GetInstance ().Write (() => _tag = value); }
-		}
+		public virtual string Tag{ get; set; }
 
-		private string _name{ get; set; }
-		public string Name{
-			get{ return _name; }
-			set{ Realm.GetInstance ().Write (() => _name = value); }
-		}
+		public virtual string Name{ get; set; }
 
 		//Associations
-		private Image _image{ get; set; }
-		public Image Image{
-			get{ return _image; }
-			set{ Realm.GetInstance ().Write (() => _image = value); }
-		}
+		public virtual Image Image{ get; set; }
 
 		// Contructor
 		public RouteTag(){

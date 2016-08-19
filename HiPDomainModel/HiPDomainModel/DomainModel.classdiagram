@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" dslVersion="1.0.0.0" Id="6b05da09-e50e-49a4-b7cd-067c54ec5237" name="DomainModel" linkedPackageId="1d07aa28-da84-4248-8417-a1263c2ba8bf" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
+<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" dslVersion="1.0.0.0" Id="6b05da09-e50e-49a4-b7cd-067c54ec5237" name="DomainModel" linkedPackageId="1d07aa28-da84-4248-8417-a1263c2ba8bf" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
   <appliedStereotypesInternal>
     <stereotypeInstance Id="fb053eca-b839-49a2-8ced-e4d803ff45fa" name="namespace" profile="CSharpProfile">
       <elementDefinition Id="0f9065fc-a3ba-4906-bdc4-899451c2267d" />
@@ -2682,7 +2682,7 @@
                       <elementDefinition Id="3da4a892-5a4d-44dc-9cf1-7ebf6ed4def4" />
                     </stereotypeInstanceHasPropertyInstances>
                     <stereotypeInstanceHasPropertyInstances Id="869091bd-f73f-4ddf-b62d-f7eb88846f54">
-                      <propertyInstance Id="f72eeb09-3b1d-40f8-ac85-5ce9cbb41772" name="IsPartial" value="false">
+                      <propertyInstance Id="f72eeb09-3b1d-40f8-ac85-5ce9cbb41772" name="IsPartial" value="true">
                         <elementDefinition Id="0a6a817f-7417-48f4-bced-8a33895dd25f" />
                       </propertyInstance>
                       <elementDefinition Id="2c09e1d0-ca28-463f-8535-5bcd62b448d1" />

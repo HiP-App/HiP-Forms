@@ -17,9 +17,14 @@ namespace HiPMobile.iOS
 
 		public override bool FinishedLaunching (UIApplication application, NSDictionary launchOptions)
 		{
-			// Override point for customization after application launch.
-			// If not required for your application you can safely delete this method
-			return true;
+            // Override point for customization after application launch.
+            // If not required for your application you can safely delete this method
+
+            //setup default colors for all navigation bars in the app
+            UINavigationBar.Appearance.BarTintColor = UIColor.FromRGB(25, 32, 71);
+            UINavigationBar.Appearance.TintColor = UIColor.White;
+
+            return true;
 		}
 
 		public override void OnResignActivation (UIApplication application)

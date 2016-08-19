@@ -89,10 +89,8 @@ namespace de.upb.hip.mobile.droid.Adapters {
 
             vh.Distance.SetText (distance, TextView.BufferType.Normal);
 
-            var d = exhibit.Image.Data;
-            var bm = BitmapFactory.DecodeByteArray (d, 0, d.Length);
-            var bitmapDrawable = new BitmapDrawable (bm);
-            var bmp = bitmapDrawable.Bitmap;
+            BitmapDrawable drawable = exhibit.Image.GetDrawable (context, 100, 100);
+            Bitmap bmp = drawable.Bitmap;
             vh.Image.SetImageBitmap (ImageManipulation.GetCroppedImage (bmp, 100));
         }
 

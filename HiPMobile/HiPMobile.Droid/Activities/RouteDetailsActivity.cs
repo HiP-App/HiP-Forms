@@ -43,8 +43,8 @@ namespace de.upb.hip.mobile.droid.Activities
             SetContentView(Resource.Layout.activity_route_details);
 
             var toolbar = (Toolbar)FindViewById(Resource.Id.toolbar);
-            toolbar.SetNavigationIcon(Resource.Drawable.ic_clear_white_24dp);
             SetSupportActionBar(toolbar);
+            SupportActionBar.SetDisplayHomeAsUpEnabled(true);
 
             var extras = Intent.Extras;
             string routeId = extras.GetString(KEY_ROUTE_ID);
@@ -114,7 +114,7 @@ namespace de.upb.hip.mobile.droid.Activities
                 foreach (RouteTag tag in route.RouteTags)
                 {
                     ImageView tagImageView = new ImageView(ApplicationContext);
-                    tagImageView.SetImageDrawable(tag.Image.GetDrawable());
+                    tagImageView.SetImageDrawable(tag.Image.GetDrawable(this, tagImageView.Width, tagImageView.Height));
                     tagsLayout.AddView(tagImageView);
                 }
             }
@@ -186,7 +186,7 @@ namespace de.upb.hip.mobile.droid.Activities
                     title = exhibit.Name;
                     description = exhibit.Description;
 
-                    drawable = exhibit.Image.GetDrawable();
+                    drawable = exhibit.Image.GetDrawable(this);
                 }
             }
 
@@ -243,7 +243,7 @@ namespace de.upb.hip.mobile.droid.Activities
                                 new GeoPoint(waypoint.Location.Latitude, waypoint.Location.Longitude);
                         Exhibit exhibit = waypoint.Exhibit;
 
-                        Drawable drawable = exhibit.Image.GetDrawable();
+                        Drawable drawable = exhibit.Image.GetDrawable(this);
 
                         // add marker on map for waypoint
                         AddMarker(geoPoint, Resources.GetDrawable(Resource.Drawable.marker_via), exhibit.Name,
@@ -295,7 +295,7 @@ namespace de.upb.hip.mobile.droid.Activities
                     title = exhibit.Name;
                     description = exhibit.Description;
 
-                    drawable = exhibit.Image.GetDrawable();
+                    drawable = exhibit.Image.GetDrawable(this);
                 }
                 else
                 {

@@ -107,9 +107,14 @@ limitations under the License.-->
     Von <a href="https://github.com/chrisbanes/PhotoView">ChrisBanes</a>, lizensiert unter
     <a href="https://raw.githubusercontent.com/chrisbanes/PhotoView/master/LICENSE">Apache License 2.0</a>. Es wurden keine Änderungen vorgenommen.
   </string>
+  <string name="licensing_unity_title_text">Unity</string>
+  <string name="licensing_unity_body_text">
+    Von <a href="https://github.com/unitycontainer/unity\">Microsoft</a>, lizensiert unter
+    <a href="https://opensource.org/licenses/Apache-2.0">Apache License 2.0</a>. Es wurden keine Änderungen vorgenommen.
+  </string>
 
 
-  <string name="action_audio">Audio</string>
+      <string name="action_audio">Audio</string>
 
   <!-- Strings for the audio toolbar captions -->
   <string name="audio_toolbar_play_pause">Play/Pause</string>

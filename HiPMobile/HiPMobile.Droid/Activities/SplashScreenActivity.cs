@@ -15,63 +15,106 @@
 using System;
 using System.Threading;
 using Android.App;
+using Android.Content;
 using Android.OS;
+using Android.Preferences;
 using Android.Widget;
+using de.upb.hip.mobile.droid.Contracts;
 using de.upb.hip.mobile.droid.Helpers;
 using de.upb.hip.mobile.pcl.Common;
+using de.upb.hip.mobile.pcl.Common.Contracts;
 using de.upb.hip.mobile.pcl.DataAccessLayer;
 using de.upb.hip.mobile.pcl.DataLayer;
 using Microsoft.Practices.Unity;
 using Realms;
 
-namespace de.upb.hip.mobile.droid.Activities {
-    [Activity (Theme = "@style/AppTheme", MainLauncher = true)]
-    public class SplashScreenActivity : Activity {
+namespace de.upb.hip.mobile.droid.Activities
+{
+    [Activity(Theme = "@style/AppTheme", MainLauncher = true, ConfigurationChanges = Android.Content.PM.ConfigChanges.Orientation | Android.Content.PM.ConfigChanges.ScreenSize)]
+    public class SplashScreenActivity : Activity
+    {
 
         private const int StartupDelay = 0;
         private Action action;
         private TextView textAction;
         private TextView textWaiting;
+        private string DatabaseVersionKey = "DBVersion";
 
-        protected override void OnCreate (Bundle savedInstanceState)
+        protected override void OnCreate(Bundle savedInstanceState)
         {
-            base.OnCreate (savedInstanceState);
-            SetContentView (Resource.Layout.activity_splash_screen);
+            base.OnCreate(savedInstanceState);
+            SetContentView(Resource.Layout.activity_splash_screen);
 
-            textAction = (TextView) FindViewById (Resource.Id.splashScreenActionText);
-            textWaiting = (TextView) FindViewById (Resource.Id.splashScreenWaitingText);
+            textAction = (TextView)FindViewById(Resource.Id.splashScreenActionText);
+            textWaiting = (TextView)FindViewById(Resource.Id.splashScreenWaitingText);
 
-            textAction.SetText (Resource.String.splash_screen_loading);
-            textWaiting.SetText (Resource.String.splash_screen_waiting);
+            textAction.SetText(Resource.String.splash_screen_loading);
+            textWaiting.SetText(Resource.String.splash_screen_waiting);
 
-            ThreadPool.QueueUserWorkItem (state => {
+            ThreadPool.QueueUserWorkItem(state =>
+            {
                 // setup IoCManager
                 IoCManager.UnityContainer.RegisterType<IDataAccess, RealmDataAccess>();
+                IoCManager.UnityContainer.RegisterType<IImageDimension, AndroidImageDimension> ();
+                IoCManager.UnityContainer.RegisterInstance (typeof(IDataLoader), new AndroidDataLoader (Assets));
 
-                // Delete current database to avoid migration issues, remove this when wanting persistent database usage
-                Realm.DeleteRealm(new RealmConfiguration());
+                if (!IsDatabaseUpToDate ())
+                {
+                    // Delete current database to avoid migration issues
+                    Realm.DeleteRealm (new RealmConfiguration ());
 
-                // Insert Data
-                var filler = new DbDummyDataFiller(Assets);
-               filler.InsertData();
+                    // Insert Data
+                    var filler = new DbDummyDataFiller ();
+                    filler.InsertData ();
+
+                    // Update preferences indicating which database version is present
+                    ISharedPreferences pref = PreferenceManager.GetDefaultSharedPreferences (Application);
+                    var edit = pref.Edit ();
+                    edit.PutInt (DatabaseVersionKey, AndroidConstants.DatabaseVersion);
+                    edit.Apply ();
+                }
 
                 action = StartMainActivity;
 
-                RunOnUiThread (() => {
+                RunOnUiThread(() =>
+                {
                     var handler = new Handler();
                     handler.PostDelayed(action, StartupDelay);
-                });  
+                });
             });
 
-            
+
         }
 
 
-        private void StartMainActivity ()
+        private void StartMainActivity()
         {
-            StartActivity (typeof (MainActivity));
-            Finish ();
+            StartActivity(typeof(MainActivity));
+            Finish();
         }
 
+        public override void OnConfigurationChanged(Android.Content.Res.Configuration newConfig)
+        {
+            base.OnConfigurationChanged(newConfig);
+
+            if (newConfig.Orientation == Android.Content.Res.Orientation.Portrait)
+            {
+            }
+            else if (newConfig.Orientation == Android.Content.Res.Orientation.Landscape)
+            {
+            }
+        }
+
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+        }
+
+        private bool IsDatabaseUpToDate ()
+        {
+            ISharedPreferences pref = PreferenceManager.GetDefaultSharedPreferences(Application);
+            var storedVersion = pref.GetInt (DatabaseVersionKey, -1);
+            return storedVersion == AndroidConstants.DatabaseVersion;
+        }
     }
 }

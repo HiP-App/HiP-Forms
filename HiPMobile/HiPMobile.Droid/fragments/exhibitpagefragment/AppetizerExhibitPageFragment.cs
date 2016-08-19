@@ -70,7 +70,7 @@ namespace de.upb.hip.mobile.droid.fragments.exhibitpagefragment {
             if (imgView != null && page != null)
             {
                 var img = page.Image;
-                var drawable = img.GetDrawable ();
+                var drawable = img.GetDrawable (Context, imgView.Width, imgView.Height);
                 imgView.SetImageDrawable (drawable);
             }
 
