@@ -1,5 +1,7 @@
 using Foundation;
 using System;
+using CoreGraphics;
+using CoreLocation;
 using UIKit;
 using MapKit;
 
@@ -18,10 +20,20 @@ namespace HiPMobile.iOS
             MapViewDelegate mapDelegate = new MapViewDelegate();
             mapView.Delegate = mapDelegate;
 
-            string template = "http://tile.openstreetmap.org/{0}/{1}/{2}.png/";
+            string template = "http://tile.openstreetmap.org/{z}/{x}/{y}.png";
             MKTileOverlay overlay = new MKTileOverlay(template);
             overlay.CanReplaceMapContent = true;
             mapView.AddOverlay(overlay, MKOverlayLevel.AboveLabels);
+
+            // Center the map, for development purposes
+            MKCoordinateRegion region = mapView.Region;
+            region.Span.LatitudeDelta = 0.05;
+            region.Span.LongitudeDelta = 0.05;
+            region.Center = new CLLocationCoordinate2D(51.7166700, 8.7666700);
+            mapView.Region = region;
+
+            // Disable rotation programatically because value of designer is somehow ignored
+            mapView.RotateEnabled = false;
 
             //tableView
             exhibitsTableView.RegisterNibForCellReuse(UINib.FromName("ExhibitTableViewCell", null),

@@ -20,7 +20,7 @@ namespace HiPMobile.iOS
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        MapKit.MKMapView mapView { get; set; }
+        HiPMobile.iOS.OsmMapView mapView { get; set; }
 
         void ReleaseDesignerOutlets ()
         {
