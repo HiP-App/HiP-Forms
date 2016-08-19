@@ -53,7 +53,7 @@ namespace de.upb.hip.mobile.droid.Activities {
 
                 // Insert Data
                 var filler = new DbDummyDataFiller(Assets);
-                filler.InsertData();
+               filler.InsertData();
 
                 action = StartMainActivity;
 
