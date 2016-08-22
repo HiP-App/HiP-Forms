@@ -18,10 +18,10 @@ using Android.Support.V4.Content;
 using Android.Views;
 using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
-using Osmdroid.TileProvider.TileSource;
-using Osmdroid.Util;
-using Osmdroid.Views;
-using Osmdroid.Views.Overlay;
+using Org.Osmdroid.Tileprovider.Tilesource;
+using Org.Osmdroid.Util;
+using Org.Osmdroid.Views;
+using Org.Osmdroid.Views.Overlay;
 using Fragment = Android.Support.V4.App.Fragment;
 
 namespace de.upb.hip.mobile.droid.fragments {

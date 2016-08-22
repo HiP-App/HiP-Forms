@@ -16,11 +16,11 @@ using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using Java.Lang;
 using Microsoft.Practices.ObjectBuilder2;
-using Osmdroid;
-using Osmdroid.TileProvider.TileSource;
-using Osmdroid.Util;
-using Osmdroid.Views;
-using Osmdroid.Views.Overlay;
+using Org.Osmdroid;
+using Org.Osmdroid.Tileprovider.Tilesource;
+using Org.Osmdroid.Util;
+using Org.Osmdroid.Views;
+using Org.Osmdroid.Views.Overlay;
 using Toolbar = Android.Support.V7.Widget.Toolbar;
 
 namespace de.upb.hip.mobile.droid.Activities
@@ -84,12 +84,11 @@ namespace de.upb.hip.mobile.droid.Activities
             Button button = (Button)this.FindViewById(Resource.Id.routeDetailsStartNavigationButton);
             button.Click += (sender, args) =>
             {
-                // When clicking on button, check if GPS and internet is available, if both available
-                // the routing is started.
-                // Shows dialog for GPS settings if not available.
-                // Shows no internet connection if internet not available.
+            Intent intent = new Intent(this, typeof(RouteNavigationActivity));
+            intent.PutExtra(RouteNavigationActivity.IntentRoute, route.Id);
+            StartActivityForResult(intent, 1);
 
-            };
+    };
 
             View view = this.FindViewById(Resource.Id.routedetails_mapview);
             view.ViewTreeObserver.AddOnGlobalLayoutListener(new MapViewGlobalLayoutListener(this));
@@ -131,7 +130,7 @@ namespace de.upb.hip.mobile.droid.Activities
             //map.SetBuiltInZoomControls(true);
             map.SetMultiTouchControls(true);
             map.TilesScaledToDpi = true;
-            map.SetMaxZoomLevel(MAX_ZOOM_LEVEL);
+
 
             var mapController = map.Controller;
             
