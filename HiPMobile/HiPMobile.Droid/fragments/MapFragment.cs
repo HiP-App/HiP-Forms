@@ -12,47 +12,40 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System.Collections.Generic;
 using Android.OS;
+using Android.Support.V4.App;
 using Android.Support.V4.Content;
 using Android.Views;
+using de.upb.hip.mobile.droid.Helpers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using Org.Osmdroid.Tileprovider.Tilesource;
 using Org.Osmdroid.Util;
 using Org.Osmdroid.Views;
 using Org.Osmdroid.Views.Overlay;
-using Fragment = Android.Support.V4.App.Fragment;
 
 namespace de.upb.hip.mobile.droid.fragments {
     /// <summary>
-    /// Fragment displaying a map, including markers for exhibits contained in an ExhibitSet.
+    ///     Fragment displaying a map, including markers for exhibits contained in an ExhibitSet.
     /// </summary>
     public class MapFragment : Fragment {
 
         /// <summary>
-        /// ExhibitSet containing the exhibit that should be displayed in the RecyclerView.
+        ///     ExhibitSet containing the exhibit that should be displayed in the RecyclerView.
         /// </summary>
         public ExhibitSet ExhibitSet { get; set; }
 
         /// <summary>
-        /// GeoLocation for the current position of the user.
+        ///     GeoLocation for the current position of the user.
         /// </summary>
         public GeoLocation GeoLocation { get; set; }
 
         /// <summary>
-        /// LocationOverlay used for the map.
+        ///     LocationOverlay used for the map.
         /// </summary>
         private MyLocationOverlay LocationOverlay { get; set; }
 
-        #region
-
-        // Keys to save/restore instance state.
-        private const string KeyExhibitSetId = "ExhibitSetId";
-        private const string KeyGeoLocationLatitude = "GeoLocation.Latitude";
-        private const string KeyGeoLocationLongitude = "GeoLocation.Longitude";
-
-        #endregion
+        private ScaleBarOverlay MyScaleBarOverlay { get; set; }
 
         public override void OnSaveInstanceState (Bundle outState)
         {
@@ -87,13 +80,13 @@ namespace de.upb.hip.mobile.droid.fragments {
             var view = inflater.Inflate (Resource.Layout.fragment_map, container, false);
 
             var mapView = view.FindViewById<MapView> (Resource.Id.mapview);
-            mapView.SetTileSource(TileSourceFactory.DefaultTileSource);
+            mapView.SetTileSource (TileSourceFactory.DefaultTileSource);
             mapView.SetBuiltInZoomControls (false);
             mapView.SetMultiTouchControls (true);
             mapView.TilesScaledToDpi = true;
 
             //mapView.SetTileSource (new XYTileSource ("OSM", 0, 18, 1024, ".png",
-                                                     //new[] {"http://tile.openstreetmap.org/"}));
+            //new[] {"http://tile.openstreetmap.org/"}));
 
             var mapController = mapView.Controller;
             mapController.SetZoom (13);
@@ -108,29 +101,27 @@ namespace de.upb.hip.mobile.droid.fragments {
         }
 
         /// <summary>
-        /// Adds all markers of the current ExhibitSet to the specified map.
+        ///     Adds all markers of the current ExhibitSet to the specified map.
         /// </summary>
         /// <param name="mapView">MapView where the markers should be displayed.</param>
         private void SetAllMarkers (MapView mapView)
         {
-            //SetUp Markers TODO rewrite with markers from bonuspack
-            var mapMarkerArray = new List<OverlayItem> ();
-            LocationOverlay = new MyLocationOverlay (this.Activity, mapView);
-            var mapMarkerIcon = ContextCompat.GetDrawable (this.Activity, Resource.Drawable.marker_blue);
-            var myScaleBarOverlay = new ScaleBarOverlay (this.Activity);
+            LocationOverlay = new MyLocationOverlay (Activity, mapView);
+            MyScaleBarOverlay = new ScaleBarOverlay (Activity);
+
+            var markerInfoWindow = new ViaPointInfoWindow (Resource.Layout.navigation_info_window, mapView, Activity);
+            var mapMarkerIcon = ContextCompat.GetDrawable (Activity, Resource.Drawable.marker_blue);
+            var setMarker = new SetMarker (mapView, markerInfoWindow);
 
             foreach (var e in ExhibitSet.ActiveSet)
             {
                 //One Marker Object
-                var marker = new OverlayItem (e.Marker.Title, e.Marker.Text, new GeoPoint (e.Location.Latitude, e.Location.Longitude));
-                marker.SetMarker (mapMarkerIcon);
-                mapMarkerArray.Add (marker);
+                var geoPoint = new GeoPoint (e.Location.Latitude, e.Location.Longitude);
+                var marker = setMarker.AddMarker (null, e.Name, e.Description, geoPoint, mapMarkerIcon, e.Id);
+                mapView.OverlayManager.Add (marker);
             }
 
-            //Initialize this after markers are added to 
-            var mapMarkerItemizedOverlay = new ItemizedIconOverlay (this.Activity, mapMarkerArray, null);
-            mapView.OverlayManager.Add (mapMarkerItemizedOverlay);
-            mapView.OverlayManager.Add (myScaleBarOverlay);
+            mapView.OverlayManager.Add (MyScaleBarOverlay);
             mapView.OverlayManager.Add (LocationOverlay);
             mapView.PostInvalidate ();
         }
@@ -149,5 +140,13 @@ namespace de.upb.hip.mobile.droid.fragments {
             LocationOverlay.DisableCompass ();
         }
 
+        #region
+
+        // Keys to save/restore instance state.
+        private const string KeyExhibitSetId = "ExhibitSetId";
+        private const string KeyGeoLocationLatitude = "GeoLocation.Latitude";
+        private const string KeyGeoLocationLongitude = "GeoLocation.Longitude";
+
+        #endregion
     }
 }
