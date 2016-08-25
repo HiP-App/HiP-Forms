@@ -148,6 +148,8 @@
     <Compile Include="Helpers\InteractiveSources\InteractiveSources.cs" />
     <Compile Include="Helpers\InteractiveSources\SnackbarInteractiveSourceAction.cs" />
     <Compile Include="Helpers\InteractiveSources\ToastInteractiveSourceAction.cs" />
+    <Compile Include="Helpers\SetMarker.cs" />
+    <Compile Include="Helpers\ViaPointInfoWindow.cs" />
     <Compile Include="Listeners\ExtendedLocationListener.cs" />
     <Compile Include="Listeners\MyCustomSimpleOnGestureListener.cs" />
     <Compile Include="Activities\SplashScreenActivity.cs" />
@@ -201,16 +203,15 @@
     <AndroidResource Include="Resources\layout-land\fragment_overview_exhibits.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
-
     <AndroidResource Include="Resources\layout\activity_route_navigation.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
-
     <AndroidResource Include="Resources\layout\activity_route.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\activity_route_row_item.axml" />
-
+    <AndroidResource Include="Resources\layout\navigation_info_window.axml" />
+    <AndroidResource Include="Resources\layout\bonuspack_bubble.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Main.axml">
@@ -326,10 +327,8 @@
     <AndroidResource Include="Resources\drawable-hdpi\btn_tracking_on.png" />
     <AndroidResource Include="Resources\drawable-hdpi\ic_continue.png" />
     <AndroidResource Include="Resources\drawable-hdpi\marker_node.png" />
-
     <AndroidResource Include="Resources\layout\activity_route_filter.xml" />
     <AndroidResource Include="Resources\layout\activity_route_filter_row_item.xml" />
-
     <AndroidResource Include="Resources\layout\activity_route_details.axml" />
     <AndroidResource Include="Resources\drawable-hdpi\marker_departure.png" />
     <AndroidResource Include="Resources\drawable-hdpi\marker_via.png" />
@@ -345,18 +344,35 @@
     <AndroidResource Include="Resources\drawable-hdpi\ic_u_turn.png" />
     <AndroidResource Include="Resources\drawable-hdpi\ic_slight_right.png" />
     <AndroidResource Include="Resources\drawable-hdpi\ic_arrived.png" />
-    <AndroidResource Include="Resources\drawable-hdpi\bonuspack_bubble.9.png" />
     <AndroidResource Include="Resources\drawable-hdpi\map_restaurant.png" />
-
     <AndroidResource Include="Resources\menu\activity_route_menu.xml" />
     <AndroidResource Include="Resources\drawable-hdpi\ic_filter_list_white_48dp.png" />
     <AndroidResource Include="Resources\drawable-mdpi\ic_filter_list_white_48dp.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\ic_filter_list_white_48dp.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\ic_filter_list_white_48dp.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\ic_filter_list_white_48dp.png" />
-
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\moreinfo_arrow_pressed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\btn_info.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\info_pressed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\moreinfo_arrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-hdpi\bonuspack_bubble.9.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\bonuspack_bubble_new.9.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
