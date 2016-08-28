@@ -109,10 +109,10 @@ namespace de.upb.hip.mobile.droid.Activities {
             var iconIds = Resources.ObtainTypedArray(Resource.Array.direction_icons);
             var iconId = iconIds.GetResourceId(tempNode.MManeuverType, Resource.Drawable.ic_empty);
             var image = ContextCompat.GetDrawable(this, iconId);
-            FindViewById<TextView> (Resource.Id.routeNavigationInstruction).Text = tempNode.MInstructions;
+          /*FindViewById<TextView> (Resource.Id.routeNavigationInstruction).Text = tempNode.MInstructions;
             FindViewById<TextView> (Resource.Id.routeNavigationDistance).Text = Road.GetLengthDurationText (tempNode.MLength, tempNode.MDuration);
             var ivManeuverIcon = (ImageView)FindViewById(Resource.Id.routeNavigationManeuverIcon);
-            ivManeuverIcon.SetImageBitmap(((BitmapDrawable)image).Bitmap);
+            ivManeuverIcon.SetImageBitmap(((BitmapDrawable)image).Bitmap);*/
         }
 
 
@@ -178,19 +178,28 @@ namespace de.upb.hip.mobile.droid.Activities {
             var wayPointMarkers = new FolderOverlay (Application.Context);
             MapView.Overlays.Add (wayPointMarkers);
             var wayPointIcon = ResourcesCompat.GetDrawable (Resources, Resource.Drawable.marker_via, null);
+
+            var markerInfoWindow = new ViaPointInfoWindow(Resource.Layout.navigation_info_window, MapView, this);
+            var mapMarkerIcon = ContextCompat.GetDrawable(this, Resource.Drawable.marker_blue);
+            var setMarker = new SetMarker(MapView, markerInfoWindow);
+
             for (int i = 0; i < route.Waypoints.Count; i++)
             {
                 //Set different marker vor last waypoint
                 if (i == route.Waypoints.Count - 1)
                     wayPointIcon = ResourcesCompat.GetDrawable (Resources, Resource.Drawable.marker_destination, null);
 
-                var nodeMarker = new Marker (MapView);
-                nodeMarker.Position = new GeoPoint (route.Waypoints.ElementAt (i).Location.Latitude, route.Waypoints.ElementAt (i).Location.Longitude);
+
+                var nodeMarker = setMarker.AddMarker(null, route.Waypoints.ElementAt(i).Exhibit.Name, route.Waypoints.ElementAt(i).Exhibit.Description, new GeoPoint(route.Waypoints.ElementAt(i).Location.Latitude, route.Waypoints.ElementAt(i).Location.Longitude), mapMarkerIcon, route.Waypoints.ElementAt(i).Exhibit.Id);
                 nodeMarker.SetIcon (wayPointIcon);
                 wayPointMarkers.Add (nodeMarker);
+
+
             }
 
-            //TODO add bubbles
+
+
+          
             roadMarkers = new FolderOverlay (Application.Context);
             MapView.Overlays.Add (roadMarkers);
             var nodeIcon = ResourcesCompat.GetDrawable (Resources, Resource.Drawable.marker_node, null);
@@ -200,15 +209,6 @@ namespace de.upb.hip.mobile.droid.Activities {
                 var nodeMarker = new Marker (MapView);
                 nodeMarker.Position = node.MLocation;
                 nodeMarker.SetIcon (nodeIcon);
-
-
-                //4. Filling the bubbles
-                nodeMarker.Title = "Step " + i;
-                Console.WriteLine (nodeMarker.Snippet = node.MInstructions);
-                nodeMarker.SubDescription = Road.GetLengthDurationText (node.MLength, node.MDuration);
-                var iconContinue = ResourcesCompat.GetDrawable (Resources, Resource.Drawable.ic_continue, null);
-                nodeMarker.Image = iconContinue;
-                //4. end
 
                 roadMarkers.Add (nodeMarker);
             }
@@ -251,7 +251,7 @@ namespace de.upb.hip.mobile.droid.Activities {
             //reset distance
             distanceWalked = 0;
 
-            geoPoints.RemoveAt (0);
+           /* geoPoints.RemoveAt (0);
             geoPoints.Insert (0, currentLocation);
 
             road = roadManager.GetRoad (geoPoints);
@@ -291,7 +291,7 @@ namespace de.upb.hip.mobile.droid.Activities {
             FindViewById<TextView> (Resource.Id.routeNavigationInstruction).Text = currentNode.MInstructions;
             FindViewById<TextView> (Resource.Id.routeNavigationDistance).Text = Road.GetLengthDurationText (currentNode.MLength, currentNode.MDuration);
             var ivManeuverIcon = (ImageView) FindViewById (Resource.Id.routeNavigationManeuverIcon);
-            ivManeuverIcon.SetImageBitmap (((BitmapDrawable) image).Bitmap);
+            ivManeuverIcon.SetImageBitmap (((BitmapDrawable) image).Bitmap);*/
             gpsLocation = currentLocation;
         }
 
@@ -302,7 +302,7 @@ namespace de.upb.hip.mobile.droid.Activities {
             MapView.Overlays.Add (position);
 
             //if the distance to the nex roadnode < 10 than update instructions to next node 
-            if (currentLocation.DistanceTo (currentNode.MLocation) <= 10)
+           /* if (currentLocation.DistanceTo (currentNode.MLocation) <= 10)
             {
                 var iconIds = Resources.ObtainTypedArray (Resource.Array.direction_icons);
                 var iconId = iconIds.GetResourceId (currentNode.MManeuverType, Resource.Drawable.ic_empty);
@@ -313,7 +313,7 @@ namespace de.upb.hip.mobile.droid.Activities {
                 FindViewById<TextView> (Resource.Id.routeNavigationDistance).Text = Road.GetLengthDurationText (currentNode.MLength, currentNode.MDuration);
                 var ivManeuverIcon = (ImageView) FindViewById (Resource.Id.routeNavigationManeuverIcon);
                 ivManeuverIcon.SetImageBitmap (((BitmapDrawable) image).Bitmap);
-            }
+            }*/
         }
 
         #region notImplented
