@@ -8,6 +8,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Support.V4.Content;
 using Android.Support.V4.Content.Res;
+using Android.Util;
 using Android.Widget;
 using de.upb.hip.mobile.droid.Helpers;
 using de.upb.hip.mobile.droid.Listeners;
@@ -106,10 +107,10 @@ namespace de.upb.hip.mobile.droid.Activities {
 
 
             //Set start Infos
-            var iconIds = Resources.ObtainTypedArray(Resource.Array.direction_icons);
-            var iconId = iconIds.GetResourceId(tempNode.MManeuverType, Resource.Drawable.ic_empty);
-            var image = ContextCompat.GetDrawable(this, iconId);
-          /*FindViewById<TextView> (Resource.Id.routeNavigationInstruction).Text = tempNode.MInstructions;
+            var iconIds = Resources.ObtainTypedArray (Resource.Array.direction_icons);
+            var iconId = iconIds.GetResourceId (tempNode.MManeuverType, Resource.Drawable.ic_empty);
+            var image = ContextCompat.GetDrawable (this, iconId);
+            /*FindViewById<TextView> (Resource.Id.routeNavigationInstruction).Text = tempNode.MInstructions;
             FindViewById<TextView> (Resource.Id.routeNavigationDistance).Text = Road.GetLengthDurationText (tempNode.MLength, tempNode.MDuration);
             var ivManeuverIcon = (ImageView)FindViewById(Resource.Id.routeNavigationManeuverIcon);
             ivManeuverIcon.SetImageBitmap(((BitmapDrawable)image).Bitmap);*/
@@ -179,9 +180,9 @@ namespace de.upb.hip.mobile.droid.Activities {
             MapView.Overlays.Add (wayPointMarkers);
             var wayPointIcon = ResourcesCompat.GetDrawable (Resources, Resource.Drawable.marker_via, null);
 
-            var markerInfoWindow = new ViaPointInfoWindow(Resource.Layout.navigation_info_window, MapView, this);
-            var mapMarkerIcon = ContextCompat.GetDrawable(this, Resource.Drawable.marker_blue);
-            var setMarker = new SetMarker(MapView, markerInfoWindow);
+            var markerInfoWindow = new ViaPointInfoWindow (Resource.Layout.navigation_info_window, MapView, this);
+            var mapMarkerIcon = ContextCompat.GetDrawable (this, Resource.Drawable.marker_blue);
+            var setMarker = new SetMarker (MapView, markerInfoWindow);
 
             for (int i = 0; i < route.Waypoints.Count; i++)
             {
@@ -190,16 +191,14 @@ namespace de.upb.hip.mobile.droid.Activities {
                     wayPointIcon = ResourcesCompat.GetDrawable (Resources, Resource.Drawable.marker_destination, null);
 
 
-                var nodeMarker = setMarker.AddMarker(null, route.Waypoints.ElementAt(i).Exhibit.Name, route.Waypoints.ElementAt(i).Exhibit.Description, new GeoPoint(route.Waypoints.ElementAt(i).Location.Latitude, route.Waypoints.ElementAt(i).Location.Longitude), mapMarkerIcon, route.Waypoints.ElementAt(i).Exhibit.Id);
+                var nodeMarker = setMarker.AddMarker (null, route.Waypoints.ElementAt (i).Exhibit.Name, route.Waypoints.ElementAt (i).Exhibit.Description,
+                                                      new GeoPoint (route.Waypoints.ElementAt (i).Location.Latitude, route.Waypoints.ElementAt (i).Location.Longitude),
+                                                      mapMarkerIcon, route.Waypoints.ElementAt (i).Exhibit.Id);
                 nodeMarker.SetIcon (wayPointIcon);
                 wayPointMarkers.Add (nodeMarker);
-
-
             }
 
 
-
-          
             roadMarkers = new FolderOverlay (Application.Context);
             MapView.Overlays.Add (roadMarkers);
             var nodeIcon = ResourcesCompat.GetDrawable (Resources, Resource.Drawable.marker_node, null);
@@ -251,7 +250,7 @@ namespace de.upb.hip.mobile.droid.Activities {
             //reset distance
             distanceWalked = 0;
 
-           /* geoPoints.RemoveAt (0);
+            /* geoPoints.RemoveAt (0);
             geoPoints.Insert (0, currentLocation);
 
             road = roadManager.GetRoad (geoPoints);
@@ -302,7 +301,7 @@ namespace de.upb.hip.mobile.droid.Activities {
             MapView.Overlays.Add (position);
 
             //if the distance to the nex roadnode < 10 than update instructions to next node 
-           /* if (currentLocation.DistanceTo (currentNode.MLocation) <= 10)
+            /* if (currentLocation.DistanceTo (currentNode.MLocation) <= 10)
             {
                 var iconIds = Resources.ObtainTypedArray (Resource.Array.direction_icons);
                 var iconId = iconIds.GetResourceId (currentNode.MManeuverType, Resource.Drawable.ic_empty);
@@ -330,13 +329,30 @@ namespace de.upb.hip.mobile.droid.Activities {
 
         public void OnStatusChanged (string provider, [GeneratedEnum] Availability status, Bundle extras)
         {
-            throw new NotImplementedException ();
+
+            switch (status)
+            {
+                case Availability.OutOfService:
+                    Toast.MakeText (this, "Status Changed: Out of Service",
+                                    ToastLength.Short).Show ();
+                    break;
+                case Availability.TemporarilyUnavailable:
+                    Toast.MakeText (this, "Status Changed: Temporarily Unavailable",
+                                    ToastLength.Short).Show ();
+                    break;
+                case Availability.Available:
+                    Toast.MakeText (this, "Status Changed: Available",
+                                    ToastLength.Short).Show ();
+                    break;
+            }
         }
 
         #endregion
     }
 }
+
 #region androidport
+
 /*
  * Copyright (C) 2016 History in Paderborn App - Universität Paderborn
  *
@@ -1468,4 +1484,5 @@ namespace de.upb.hip.mobile.droid.Activities {
 //        //}
 //    }
 //}
+
 #endregion
