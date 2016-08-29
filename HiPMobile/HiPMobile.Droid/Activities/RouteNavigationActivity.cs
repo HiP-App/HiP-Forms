@@ -8,7 +8,9 @@ using Android.OS;
 using Android.Runtime;
 using Android.Support.V4.Content;
 using Android.Support.V4.Content.Res;
+using Android.Support.V7.App;
 using Android.Util;
+using Android.Views;
 using Android.Widget;
 using de.upb.hip.mobile.droid.Helpers;
 using de.upb.hip.mobile.droid.Listeners;
@@ -24,7 +26,7 @@ using Org.Osmdroid.Views.Overlay;
 
 namespace de.upb.hip.mobile.droid.Activities {
     [Activity (Theme = "@style/AppTheme", Label = "RouteNavigationActivity")]
-    public class RouteNavigationActivity : Activity, ILocationListener {
+    public class RouteNavigationActivity : AppCompatActivity, ILocationListener{
 
         public const string IntentRoute = "route";
         private GeoPoint gpsLocation;
@@ -52,6 +54,10 @@ namespace de.upb.hip.mobile.droid.Activities {
             base.OnCreate (savedInstanceState);
             SetContentView (Resource.Layout.activity_route_navigation);
 
+            var toolbar = (Android.Support.V7.Widget.Toolbar)FindViewById(Resource.Id.toolbar);
+            SetSupportActionBar(toolbar);
+            SupportActionBar.SetDisplayHomeAsUpEnabled(true);
+            SupportActionBar.Title = "Navigation";
 
             geoPoints = new List<GeoPoint> ();
             // getting location
@@ -103,6 +109,7 @@ namespace de.upb.hip.mobile.droid.Activities {
             position = new Marker (MapView);
             position.SetIcon (ResourcesCompat.GetDrawable (Resources, Resource.Drawable.thumb, null));
             position.Position = gpsLocation;
+            position.SetInfoWindow (null);
             MapView.Overlays.Add (position);
 
 
@@ -110,7 +117,8 @@ namespace de.upb.hip.mobile.droid.Activities {
             var iconIds = Resources.ObtainTypedArray (Resource.Array.direction_icons);
             var iconId = iconIds.GetResourceId (tempNode.MManeuverType, Resource.Drawable.ic_empty);
             var image = ContextCompat.GetDrawable (this, iconId);
-            /*FindViewById<TextView> (Resource.Id.routeNavigationInstruction).Text = tempNode.MInstructions;
+
+             /*FindViewById<TextView> (Resource.Id.routeNavigationInstruction).Text = tempNode.MInstructions;
             FindViewById<TextView> (Resource.Id.routeNavigationDistance).Text = Road.GetLengthDurationText (tempNode.MLength, tempNode.MDuration);
             var ivManeuverIcon = (ImageView)FindViewById(Resource.Id.routeNavigationManeuverIcon);
             ivManeuverIcon.SetImageBitmap(((BitmapDrawable)image).Bitmap);*/
@@ -175,11 +183,11 @@ namespace de.upb.hip.mobile.droid.Activities {
             roadOverlay = RoadManager.BuildRoadOverlay (road, Application.Context);
             MapView.Overlays.Add (roadOverlay);
 
-            //Add Markers as in NavigationDetailsActivity
+            //Add bubbles
             var wayPointMarkers = new FolderOverlay (Application.Context);
             MapView.Overlays.Add (wayPointMarkers);
             var wayPointIcon = ResourcesCompat.GetDrawable (Resources, Resource.Drawable.marker_via, null);
-
+            //add bubbles
             var markerInfoWindow = new ViaPointInfoWindow (Resource.Layout.navigation_info_window, MapView, this);
             var mapMarkerIcon = ContextCompat.GetDrawable (this, Resource.Drawable.marker_blue);
             var setMarker = new SetMarker (MapView, markerInfoWindow);
@@ -199,7 +207,7 @@ namespace de.upb.hip.mobile.droid.Activities {
             }
 
 
-            roadMarkers = new FolderOverlay (Application.Context);
+           /* roadMarkers = new FolderOverlay (Application.Context);
             MapView.Overlays.Add (roadMarkers);
             var nodeIcon = ResourcesCompat.GetDrawable (Resources, Resource.Drawable.marker_node, null);
             for (var i = 0; i < road.MNodes.Count; i++)
@@ -209,21 +217,10 @@ namespace de.upb.hip.mobile.droid.Activities {
                 nodeMarker.Position = node.MLocation;
                 nodeMarker.SetIcon (nodeIcon);
 
-                roadMarkers.Add (nodeMarker);
-            }
+                //roadMarkers.Add (nodeMarker);
+            }*/
         }
 
-
-        protected override void OnSaveInstanceState (Bundle outState)
-        {
-            //outState.putParcelable(SAVEDSTATE_LOCATION, locationOverlay.getLocation());
-            //outState.putParcelable(SAVEDSTATE_START, mStartPoint);
-            //outState.putParcelable(SAVEDSTATE_DESTINATION, mDestinationPoint);
-            //outState.putParcelableArrayList(SAVEDSTATE_VIAPOINTS, mViaPoints);
-            //outState.putInt(SAVEDSTATE_REACHED_NODE, mReachedNode);
-            //outState.putInt(SAVEDSTATE_NEXT_NODE, mNextNode);
-            // outState.putInt(SAVEDSTATE_NEXT_VIA_POINT, mNextViaPoint);
-        }
 
         public void OnLocationChanged (Location location)
         {
@@ -319,12 +316,14 @@ namespace de.upb.hip.mobile.droid.Activities {
 
         public void OnProviderDisabled (string provider)
         {
-            throw new NotImplementedException ();
+            Toast.MakeText(this, "GPS Disabled",
+                                    ToastLength.Short).Show();
         }
 
         public void OnProviderEnabled (string provider)
         {
-            throw new NotImplementedException ();
+            Toast.MakeText(this, "GPS Enabled",
+                                    ToastLength.Short).Show();
         }
 
         public void OnStatusChanged (string provider, [GeneratedEnum] Availability status, Bundle extras)
@@ -345,6 +344,17 @@ namespace de.upb.hip.mobile.droid.Activities {
                                     ToastLength.Short).Show ();
                     break;
             }
+        }
+
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            if (item.ItemId.Equals(Android.Resource.Id.Home))
+            {
+                SupportFinishAfterTransition();
+                return true;
+            }
+
+            return base.OnOptionsItemSelected(item);
         }
 
         #endregion
