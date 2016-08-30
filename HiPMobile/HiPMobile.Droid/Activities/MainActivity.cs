@@ -20,6 +20,7 @@ using Android;
 using Android.App;
 using Android.Content.PM;
 using Android.OS;
+using Android.Preferences;
 using Android.Support.Design.Widget;
 using Android.Support.V4.App;
 using Android.Support.V4.Content;
@@ -98,11 +99,10 @@ namespace de.upb.hip.mobile.droid.Activities
         {
             drawerLayout = FindViewById<DrawerLayout>(Resource.Id.mainActivityDrawerLayout);
 
-
             // Init toolbar
             var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
             SetSupportActionBar(toolbar);
-            SupportActionBar.Title = "History in Paderborn";
+            SupportActionBar.Title = Resources.GetString(Resource.String.app_name);
 
             // Attach item selected handler to navigation view
             var navigationView = FindViewById<NavigationView>(Resource.Id.nav_view);
@@ -152,6 +152,9 @@ namespace de.upb.hip.mobile.droid.Activities
                     break;
                 case Resource.Id.nav_licenses:
                     StartActivity(typeof(LicensingActivity));
+                    break;
+                case Resource.Id.nav_preferences:
+                    StartActivity (typeof(SettingsActivity));
                     break;
             }
 

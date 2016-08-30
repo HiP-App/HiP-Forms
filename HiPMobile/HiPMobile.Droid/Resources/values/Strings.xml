@@ -13,7 +13,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.-->
 <resources>
-  <string name="app_name">History in Paderborn</string>
+  <string name="app_name">Historisches Paderborn</string>
   <string name="title_activity_main">Karlsroute</string>
   <string name="title_activity_display_single_image">Detailansicht</string>
   <string name="title_activity_display_image_slider">Zeitachsenansicht</string>
