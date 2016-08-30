@@ -6,7 +6,7 @@
     android:key="pref_cat_storage_settings">
 
     <CheckBoxPreference
-      android:key="pref_auto_page_switch"
+      android:key="@string/pref_auto_page_switch_key"
       android:title="@string/pref_auto_page_switch_title"
       android:summary="@string/pref_auto_page_switch_summ"
       android:defaultValue="true" />

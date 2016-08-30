@@ -19,6 +19,7 @@ using Android.App;
 using Android.Content;
 using Android.Graphics;
 using Android.OS;
+using Android.Preferences;
 using Android.Support.Design.Widget;
 using Android.Support.V7.App;
 using Android.Text.Method;
@@ -690,7 +691,9 @@ namespace de.upb.hip.mobile.droid.Activities {
         {
             isAudioPlaying = false;
             UpdatePlayPauseButtonIcon();
-            Toast.MakeText(this, "Playback Complete", ToastLength.Short).Show();
+            var sharedPref = PreferenceManager.GetDefaultSharedPreferences (this);
+            if (sharedPref.GetBoolean (Resources.GetString (Resource.String.pref_auto_page_switch_key), false)) 
+                DisplayNextExhibitPage ();
         }
 
         private void UpdateProgressbar ()
