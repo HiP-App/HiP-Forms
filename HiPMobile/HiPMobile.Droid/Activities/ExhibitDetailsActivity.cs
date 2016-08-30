@@ -665,7 +665,6 @@ namespace de.upb.hip.mobile.droid.Activities {
         /// </summary>
         private void StartAudioPlayback ()
         {
-            Toast.MakeText (this, Resource.String.audio_playing_indicator, ToastLength.Short).Show ();
             try
             {
                 if (!mediaPlayerService.AudioFileIsSet)
@@ -714,7 +713,6 @@ namespace de.upb.hip.mobile.droid.Activities {
         /// </summary>
         private void PauseAudioPlayback ()
         {
-            Toast.MakeText (this, Resource.String.audio_pausing_indicator, ToastLength.Short).Show ();
             try
             {
                 mediaPlayerService.PauseSound ();
