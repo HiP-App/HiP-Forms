@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System;
 using System.Linq;
 using Android.Animation;
 using Android.App;
@@ -33,7 +34,9 @@ using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using IO.Codetail.Animation;
 using Java.Lang;
+using Exception = Java.Lang.Exception;
 using Math = System.Math;
+using Object = Java.Lang.Object;
 using Toolbar = Android.Support.V7.Widget.Toolbar;
 using ViewAnimationUtils = IO.Codetail.Animation.ViewAnimationUtils;
 
@@ -162,7 +165,15 @@ namespace de.upb.hip.mobile.droid.Activities {
                 }
             };
 
+            // register for mediaplayer's audio completion event
+            mediaPlayerService.AddOnCompleteListener (ReactToAudioCompletion);
+
             DisplayCurrenExhibitPage ();
+        }
+
+        public void ReactToAudioCompletion (object sender, EventArgs args)
+        {
+            Toast.MakeText(this, "Playback Complete", ToastLength.Short).Show();
         }
 
         public void DisplayCurrenExhibitPage ()
