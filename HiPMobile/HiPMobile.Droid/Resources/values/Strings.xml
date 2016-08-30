@@ -19,6 +19,7 @@ limitations under the License.-->
   <string name="title_activity_display_image_slider">Zeitachsenansicht</string>
   <string name="title_activity_route">Routen</string>
   <string name="title_activity_route_filter">Routenfilter</string>
+  <string name="title_activity_settings">Einstellungen</string>
 
   <string name="menu_activity_route_filter">Filter</string>
 
@@ -146,7 +147,7 @@ limitations under the License.-->
 
   <!-- Preferences -->
   <string name="pref_cat_exhibitdetails_title">Sehenswürdigkeiten</string>
-  <string name="pref_auto_page_switch_title">Automatisch zur nächsten Seite wechseln</string>
+  <string name="pref_auto_page_switch_title">Automatisch Seiten wechseln</string>
   <string name="pref_auto_page_switch_summ">Wenn diese Einstellung aktiviert ist, wird nach Ende der Audiowiedergabe automatisch zur nächsten Seite gewechselt.</string>
 
   <!-- Navigation Drawer Titles -->

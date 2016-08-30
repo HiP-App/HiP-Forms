@@ -14,12 +14,13 @@
 
 using Android.App;
 using Android.OS;
+using Android.Support.V7.App;
 using de.upb.hip.mobile.droid.fragments;
 
 namespace de.upb.hip.mobile.droid.Activities {
 
-    [Activity (Label = "SettingsActivity")]
-    public class SettingsActivity : Activity {
+    [Activity (Label = "@string/title_activity_settings", Theme = "@style/AppTheme.Settings", ParentActivity = typeof(MainActivity))]
+    public class SettingsActivity : AppCompatActivity {
 
         protected override void OnCreate (Bundle savedInstanceState)
         {
@@ -29,6 +30,10 @@ namespace de.upb.hip.mobile.droid.Activities {
             FragmentManager.BeginTransaction ()
                            .Replace (Android.Resource.Id.Content, new SettingsFragment ())
                            .Commit ();
+
+            // add back button to action bar
+            SupportActionBar?.SetDisplayHomeAsUpEnabled(true);
+
         }
 
     }
