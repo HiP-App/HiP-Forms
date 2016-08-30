@@ -15,11 +15,12 @@
 using Android.App;
 using Android.OS;
 using Android.Support.V7.App;
+using Android.Views;
 using de.upb.hip.mobile.droid.fragments;
 
 namespace de.upb.hip.mobile.droid.Activities {
 
-    [Activity (Label = "@string/title_activity_settings", Theme = "@style/AppTheme.Settings", ParentActivity = typeof(MainActivity))]
+    [Activity (Label = "@string/title_activity_settings", Theme = "@style/AppTheme.Settings")]
     public class SettingsActivity : AppCompatActivity {
 
         protected override void OnCreate (Bundle savedInstanceState)
@@ -34,6 +35,20 @@ namespace de.upb.hip.mobile.droid.Activities {
             // add back button to action bar
             SupportActionBar?.SetDisplayHomeAsUpEnabled(true);
 
+        }
+
+        public override bool OnOptionsItemSelected (IMenuItem item)
+        {
+            switch (item.ItemId)
+            {
+                case Android.Resource.Id.Home:
+                    SupportFinishAfterTransition();
+                    break;
+                default:
+                    return base.OnOptionsItemSelected(item);
+            }
+ 
+            return true;
         }
 
     }
