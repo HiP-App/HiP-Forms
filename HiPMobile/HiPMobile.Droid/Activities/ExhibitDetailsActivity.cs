@@ -79,6 +79,8 @@ namespace de.upb.hip.mobile.droid.Activities {
 
             SupportActionBar.SetDisplayHomeAsUpEnabled (true);
 
+            sharedPreferences = PreferenceManager.GetDefaultSharedPreferences (this);
+
             if (savedInstanceState != null)
             {
                 // activity re-creation because of device rotation, instant run, ...
@@ -564,6 +566,11 @@ namespace de.upb.hip.mobile.droid.Activities {
         #region Fields
 
         /// <summary>
+        ///     Preferences of the app.
+        /// </summary>
+        private ISharedPreferences sharedPreferences;
+
+        /// <summary>
         ///     The id of the displayed exhibit.
         /// </summary>
         private string exhibitId;
@@ -691,8 +698,7 @@ namespace de.upb.hip.mobile.droid.Activities {
         {
             isAudioPlaying = false;
             UpdatePlayPauseButtonIcon();
-            var sharedPref = PreferenceManager.GetDefaultSharedPreferences (this);
-            if (sharedPref.GetBoolean (Resources.GetString (Resource.String.pref_auto_page_switch_key), false)) 
+            if (sharedPreferences.GetBoolean (Resources.GetString (Resource.String.pref_auto_page_switch_key), false)) 
                 DisplayNextExhibitPage ();
         }
 
