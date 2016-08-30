@@ -165,15 +165,7 @@ namespace de.upb.hip.mobile.droid.Activities {
                 }
             };
 
-            // register for mediaplayer's audio completion event
-            mediaPlayerService.AddOnCompleteListener (ReactToAudioCompletion);
-
             DisplayCurrenExhibitPage ();
-        }
-
-        public void ReactToAudioCompletion (object sender, EventArgs args)
-        {
-            Toast.MakeText(this, "Playback Complete", ToastLength.Short).Show();
         }
 
         public void DisplayCurrenExhibitPage ()
@@ -523,15 +515,14 @@ namespace de.upb.hip.mobile.droid.Activities {
                     (CoordinatorLayout) dialog.FindViewById (Resource.Id.captionDialogCoordinatorLayout);
 
                 tv.MovementMethod = LinkMovementMethod.Instance;
-                tv.SetHighlightColor(Color.Transparent);
+                tv.SetHighlightColor (Color.Transparent);
 
                 var parser = new InteractiveSources ();
                 tv.TextFormatted = parser.Parse (
                     caption,
-                    new ConstantInteractiveSourceSubstitute(GetString(Resource.String.source_substitute)),
+                    new ConstantInteractiveSourceSubstitute (GetString (Resource.String.source_substitute)),
                     // alternatively: new ConsecutiveNumberInteractiveSourceSubstitute (1), 
                     new SnackbarInteractiveSourceAction (coordinatorLayout));
-                
             }
             else
             {
@@ -563,7 +554,7 @@ namespace de.upb.hip.mobile.droid.Activities {
             if (IsFinishing)
             {
                 //Only stop sound when activity is getting killed, not when rotated
-                mediaPlayerService.StopSound();
+                mediaPlayerService.StopSound ();
                 StopService (new Intent (this, typeof (MediaPlayerService)));
             }
             UnbindService (mediaPlayerConnection);
@@ -673,10 +664,7 @@ namespace de.upb.hip.mobile.droid.Activities {
                 {
                     mediaPlayerService.SetAudioFile (exhibit.Pages [currentPageIndex].Audio);
                 }
-                mediaPlayerService.AddOnCompleteListener ((sender, args) => {
-                    isAudioPlaying = false;
-                    UpdatePlayPauseButtonIcon ();
-                });
+                mediaPlayerService.AddOnCompleteListener (ReactToAudioCompletion);
                 mediaPlayerService.StartSound ();
                 audioSeekbar.Max = (int) mediaPlayerService.GetTimeTotal ();
                 handler.PostDelayed (UpdateProgressbar, 100);
@@ -693,6 +681,16 @@ namespace de.upb.hip.mobile.droid.Activities {
             {
                 isAudioPlaying = false;
             }
+        }
+
+        /// <summary>
+        /// EventHandler that is executed when audio playback finishes.
+        /// </summary>
+        public void ReactToAudioCompletion(object sender, EventArgs args)
+        {
+            isAudioPlaying = false;
+            UpdatePlayPauseButtonIcon();
+            Toast.MakeText(this, "Playback Complete", ToastLength.Short).Show();
         }
 
         private void UpdateProgressbar ()
