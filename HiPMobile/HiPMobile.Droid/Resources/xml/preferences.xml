@@ -1,9 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-  <CheckBoxPreference
-    android:key="pref_auto_page_switch"
-    android:title="@string/pref_auto_page_switch"
-    android:summary="@string/pref_auto_page_switch_summ"
-    android:defaultValue="true" />
+  <PreferenceCategory
+    android:title="@string/pref_cat_exhibitdetails_title"
+    android:key="pref_cat_storage_settings">
+
+    <CheckBoxPreference
+      android:key="pref_auto_page_switch"
+      android:title="@string/pref_auto_page_switch_title"
+      android:summary="@string/pref_auto_page_switch_summ"
+      android:defaultValue="true" />
+
+  </PreferenceCategory>
 </PreferenceScreen>
