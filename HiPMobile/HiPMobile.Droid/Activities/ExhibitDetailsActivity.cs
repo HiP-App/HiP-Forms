@@ -178,12 +178,12 @@ namespace de.upb.hip.mobile.droid.Activities {
                 Log.Warn (Tag, "currentPageIndex >= exhibitPages.size() !");
                 return;
             }
-
+            
             if (!isAudioToolbarHidden)
             {
                 HideAudioToolBar (); // TODO: generalize to audio playing
             }
-
+            
             var page = exhibit.Pages [currentPageIndex];
 
             // set previous & next button
@@ -273,10 +273,19 @@ namespace de.upb.hip.mobile.droid.Activities {
             if (page.Audio == null)
             {
                 DisplayAudioAction (false);
+                HideAudioToolBar();
             }
             else
             {
                 DisplayAudioAction (true);
+                // check is preference to automatically start audio is on
+                if (sharedPreferences.GetBoolean (Resources.GetString (Resource.String.pref_auto_start_audio_key), false))
+                {
+                    ShowAudioToolbar ();
+                    StartAudioPlayback ();
+                    isAudioPlaying = true;
+                    UpdatePlayPauseButtonIcon ();
+                }
             }
         }
 

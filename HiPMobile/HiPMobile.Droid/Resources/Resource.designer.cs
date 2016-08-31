@@ -3547,17 +3547,17 @@ namespace de.upb.hip.mobile.droid
 			// aapt resource value: 0x7f080065
 			public const int menu_activity_route_filter = 2131230821;
 			
-			// aapt resource value: 0x7f0800ac
-			public const int nav_home_title = 2131230892;
-			
 			// aapt resource value: 0x7f0800af
-			public const int nav_licenses_title = 2131230895;
+			public const int nav_home_title = 2131230895;
 			
-			// aapt resource value: 0x7f0800ae
-			public const int nav_preferences_title = 2131230894;
+			// aapt resource value: 0x7f0800b2
+			public const int nav_licenses_title = 2131230898;
 			
-			// aapt resource value: 0x7f0800ad
-			public const int nav_route_title = 2131230893;
+			// aapt resource value: 0x7f0800b1
+			public const int nav_preferences_title = 2131230897;
+			
+			// aapt resource value: 0x7f0800b0
+			public const int nav_route_title = 2131230896;
 			
 			// aapt resource value: 0x7f08008a
 			public const int network_connection = 2131230858;
@@ -3579,6 +3579,15 @@ namespace de.upb.hip.mobile.droid
 			
 			// aapt resource value: 0x7f0800aa
 			public const int pref_auto_page_switch_title = 2131230890;
+			
+			// aapt resource value: 0x7f0800ac
+			public const int pref_auto_start_audio_key = 2131230892;
+			
+			// aapt resource value: 0x7f0800ae
+			public const int pref_auto_start_audio_summ = 2131230894;
+			
+			// aapt resource value: 0x7f0800ad
+			public const int pref_auto_start_audio_title = 2131230893;
 			
 			// aapt resource value: 0x7f0800a8
 			public const int pref_cat_exhibitdetails_title = 2131230888;
