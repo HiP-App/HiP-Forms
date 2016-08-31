@@ -178,12 +178,12 @@ namespace de.upb.hip.mobile.droid.Activities {
                 Log.Warn (Tag, "currentPageIndex >= exhibitPages.size() !");
                 return;
             }
-
+            /* not necessary any more
             if (!isAudioToolbarHidden)
             {
                 HideAudioToolBar (); // TODO: generalize to audio playing
             }
-
+            */
             var page = exhibit.Pages [currentPageIndex];
 
             // set previous & next button
@@ -273,10 +273,13 @@ namespace de.upb.hip.mobile.droid.Activities {
             if (page.Audio == null)
             {
                 DisplayAudioAction (false);
+                HideAudioToolBar();
             }
             else
             {
                 DisplayAudioAction (true);
+                ShowAudioToolbar ();
+                StartAudioPlayback();
             }
         }
 
