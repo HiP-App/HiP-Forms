@@ -15,7 +15,7 @@
       android:key="@string/pref_auto_start_audio_key"
       android:title="@string/pref_auto_start_audio_title"
       android:summary="@string/pref_auto_start_audio_summ"
-      android:defaultValue="false" />
+      android:defaultValue="true" />
 
   </PreferenceCategory>
   
