@@ -13,12 +13,13 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.-->
 <resources>
-  <string name="app_name">History in Paderborn</string>
+  <string name="app_name">Historisches Paderborn</string>
   <string name="title_activity_main">Karlsroute</string>
   <string name="title_activity_display_single_image">Detailansicht</string>
   <string name="title_activity_display_image_slider">Zeitachsenansicht</string>
   <string name="title_activity_route">Routen</string>
   <string name="title_activity_route_filter">Routenfilter</string>
+  <string name="title_activity_settings">Einstellungen</string>
 
   <string name="menu_activity_route_filter">Filter</string>
 
@@ -144,4 +145,19 @@ limitations under the License.-->
     <item>@string/licensing_title</item>
   </string-array>
 
+  <!-- Preferences -->
+  <string name="pref_cat_exhibitdetails_title">Sehenswürdigkeiten</string>
+  <string name="pref_auto_page_switch_key">pref_auto_page_switch_key</string>
+  <string name="pref_auto_page_switch_title">Automatisch Seiten wechseln</string>
+  <string name="pref_auto_page_switch_summ">Wenn diese Einstellung aktiviert ist, wird nach Ende der Audiowiedergabe automatisch zur nächsten Seite gewechselt.</string>
+
+  <string name="pref_auto_start_audio_key">pref_auto_start_audio_key</string>
+  <string name="pref_auto_start_audio_title">Automatisch Audio beginnen</string>
+  <string name="pref_auto_start_audio_summ">Wenn diese Einstellung aktiviert ist, wird Audio automatisch für die aktuelle Seite gestartet.</string>
+  
+  <!-- Navigation Drawer Titles -->
+  <string name="nav_home_title">Übersicht</string>
+  <string name="nav_route_title">Routen</string>
+  <string name="nav_preferences_title">Einstellungen</string>
+  <string name="nav_licenses_title">Lizenzen</string>
 </resources>

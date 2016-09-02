@@ -13,10 +13,17 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.-->
 <resources>
+  
+  <!-- TODO: styles are seriously weird, fix them in the future! -->
 
   <!-- Base application theme. -->
   <style name="AppTheme" parent="AppTheme.Base" />
 
+  <style name="AppTheme.Settings" parent="Theme.AppCompat.Light.DarkActionBar" >
+    <item name="colorPrimary">@color/colorPrimary</item>
+    <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+    <item name="colorAccent">@color/colorAccent</item>
+  </style>
 
   <style name="AppTheme.WithActionBar" parent="AppTheme">
     <item name="windowActionBar">false</item>
