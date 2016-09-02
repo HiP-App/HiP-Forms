@@ -1,15 +1,28 @@
-using System;
+/*
+ * Copyright (C) 2016 History in Paderborn App - Universität Paderborn
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 using System.Collections.Generic;
 using System.Linq;
 using Android.App;
-using Android.Graphics.Drawables;
 using Android.Locations;
 using Android.OS;
 using Android.Runtime;
 using Android.Support.V4.Content;
 using Android.Support.V4.Content.Res;
 using Android.Support.V7.App;
-using Android.Util;
 using Android.Views;
 using Android.Widget;
 using de.upb.hip.mobile.droid.Helpers;
@@ -23,40 +36,61 @@ using Org.Osmdroid.Tileprovider.Tilesource;
 using Org.Osmdroid.Util;
 using Org.Osmdroid.Views;
 using Org.Osmdroid.Views.Overlay;
+using Toolbar = Android.Support.V7.Widget.Toolbar;
 
 namespace de.upb.hip.mobile.droid.Activities {
     [Activity (Theme = "@style/AppTheme", Label = "RouteNavigationActivity")]
-    public class RouteNavigationActivity : AppCompatActivity, ILocationListener{
+    public class RouteNavigationActivity : AppCompatActivity, ILocationListener {
 
         public const string IntentRoute = "route";
+        private double distanceWalked;
+        private IList<GeoPoint> geoPoints;
         private GeoPoint gpsLocation;
         protected ExtendedLocationListener GpsTracker;
-
-        protected MapView MapView;
-        private MapController mapController;
+        private readonly int IndexNextWaypointNode = 1;
 
         private DirectedLocationOverlay locationOverlay;
-        protected Button TrackingModeButton;
+        private MapController mapController;
+
+        protected MapView MapView;
+        private Marker position;
         private ProgressDialog progressDialog;
-        private Route route;
-        private double distanceWalked = 0;
-        private int IndexNextWaypointNode = 1;
-        private IList<Waypoint> wayPoints;
-        private IList<GeoPoint> geoPoints;
         private Road road;
         private RoadManager roadManager;
-        private Overlay roadOverlay;
-        private Marker position;
         private FolderOverlay roadMarkers;
+        private Overlay roadOverlay;
+        private Route route;
+        protected Button TrackingModeButton;
+        private IList<Waypoint> wayPoints;
+
+
+        public void OnLocationChanged (Location location)
+        {
+            var currentLocation = new GeoPoint (location);
+            //calculate the distance walked from last positions
+            distanceWalked = currentLocation.DistanceTo (gpsLocation);
+            var tempNode = (RoadNode) road.MNodes [IndexNextWaypointNode];
+
+            //if distance > 20 m new request to mapquest
+            if (distanceWalked > 20)
+            {
+                UpdateRoute (currentLocation, tempNode);
+            }
+            else
+            {
+                UpdateInstructions (currentLocation, tempNode);
+            }
+            MapView.Invalidate ();
+        }
 
         protected override void OnCreate (Bundle savedInstanceState)
         {
             base.OnCreate (savedInstanceState);
             SetContentView (Resource.Layout.activity_route_navigation);
 
-            var toolbar = (Android.Support.V7.Widget.Toolbar)FindViewById(Resource.Id.toolbar);
-            SetSupportActionBar(toolbar);
-            SupportActionBar.SetDisplayHomeAsUpEnabled(true);
+            var toolbar = (Toolbar) FindViewById (Resource.Id.toolbar);
+            SetSupportActionBar (toolbar);
+            SupportActionBar.SetDisplayHomeAsUpEnabled (true);
             SupportActionBar.Title = "Navigation";
 
             geoPoints = new List<GeoPoint> ();
@@ -118,7 +152,7 @@ namespace de.upb.hip.mobile.droid.Activities {
             var iconId = iconIds.GetResourceId (tempNode.MManeuverType, Resource.Drawable.ic_empty);
             var image = ContextCompat.GetDrawable (this, iconId);
 
-             /*FindViewById<TextView> (Resource.Id.routeNavigationInstruction).Text = tempNode.MInstructions;
+            /*FindViewById<TextView> (Resource.Id.routeNavigationInstruction).Text = tempNode.MInstructions;
             FindViewById<TextView> (Resource.Id.routeNavigationDistance).Text = Road.GetLengthDurationText (tempNode.MLength, tempNode.MDuration);
             var ivManeuverIcon = (ImageView)FindViewById(Resource.Id.routeNavigationManeuverIcon);
             ivManeuverIcon.SetImageBitmap(((BitmapDrawable)image).Bitmap);*/
@@ -192,7 +226,7 @@ namespace de.upb.hip.mobile.droid.Activities {
             var mapMarkerIcon = ContextCompat.GetDrawable (this, Resource.Drawable.marker_blue);
             var setMarker = new SetMarker (MapView, markerInfoWindow);
 
-            for (int i = 0; i < route.Waypoints.Count; i++)
+            for (var i = 0; i < route.Waypoints.Count; i++)
             {
                 //Set different marker vor last waypoint
                 if (i == route.Waypoints.Count - 1)
@@ -207,7 +241,7 @@ namespace de.upb.hip.mobile.droid.Activities {
             }
 
 
-           /* roadMarkers = new FolderOverlay (Application.Context);
+            /* roadMarkers = new FolderOverlay (Application.Context);
             MapView.Overlays.Add (roadMarkers);
             var nodeIcon = ResourcesCompat.GetDrawable (Resources, Resource.Drawable.marker_node, null);
             for (var i = 0; i < road.MNodes.Count; i++)
@@ -219,26 +253,6 @@ namespace de.upb.hip.mobile.droid.Activities {
 
                 //roadMarkers.Add (nodeMarker);
             }*/
-        }
-
-
-        public void OnLocationChanged (Location location)
-        {
-            var currentLocation = new GeoPoint (location);
-            //calculate the distance walked from last positions
-            distanceWalked = currentLocation.DistanceTo (gpsLocation);
-            var tempNode = (RoadNode) road.MNodes [IndexNextWaypointNode];
-
-            //if distance > 20 m new request to mapquest
-            if (distanceWalked > 20)
-            {
-                UpdateRoute (currentLocation, tempNode);
-            }
-            else
-            {
-                UpdateInstructions (currentLocation, tempNode);
-            }
-            MapView.Invalidate ();
         }
 
 
@@ -316,19 +330,18 @@ namespace de.upb.hip.mobile.droid.Activities {
 
         public void OnProviderDisabled (string provider)
         {
-            Toast.MakeText(this, "GPS Disabled",
-                                    ToastLength.Short).Show();
+            Toast.MakeText (this, "GPS Disabled",
+                            ToastLength.Short).Show ();
         }
 
         public void OnProviderEnabled (string provider)
         {
-            Toast.MakeText(this, "GPS Enabled",
-                                    ToastLength.Short).Show();
+            Toast.MakeText (this, "GPS Enabled",
+                            ToastLength.Short).Show ();
         }
 
         public void OnStatusChanged (string provider, [GeneratedEnum] Availability status, Bundle extras)
         {
-
             switch (status)
             {
                 case Availability.OutOfService:
@@ -346,15 +359,15 @@ namespace de.upb.hip.mobile.droid.Activities {
             }
         }
 
-        public override bool OnOptionsItemSelected(IMenuItem item)
+        public override bool OnOptionsItemSelected (IMenuItem item)
         {
-            if (item.ItemId.Equals(Android.Resource.Id.Home))
+            if (item.ItemId.Equals (Android.Resource.Id.Home))
             {
-                SupportFinishAfterTransition();
+                SupportFinishAfterTransition ();
                 return true;
             }
 
-            return base.OnOptionsItemSelected(item);
+            return base.OnOptionsItemSelected (item);
         }
 
         #endregion
