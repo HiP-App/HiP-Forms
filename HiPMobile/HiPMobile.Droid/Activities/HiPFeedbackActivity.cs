@@ -33,6 +33,8 @@ using HockeyApp;
 
 namespace de.upb.hip.mobile.droid.Activities
 {
+    // A custom class for changing the layout of the HockeyApp Feedback Activity
+    // Adds a back button to the action bar and harmonizes the colors
     [Activity(Label = "Feedback Activity")]
     public class HiPFeedbackActivity : FeedbackActivity
     {
@@ -42,6 +44,28 @@ namespace de.upb.hip.mobile.droid.Activities
 
             ActionBar.SetDisplayHomeAsUpEnabled(true);
             ActionBar.SetBackgroundDrawable (new ColorDrawable(Resources.GetColor (Resource.Color.colorPrimary)));
+
+
+            var buttonBackgroundColor = Resources.GetColor (Resource.Color.colorPrimary);
+            var buttonTextColor = Color.White;
+
+            var buttonAttachment = (Button)FindViewById(Resource.Id.button_attachment);
+            buttonAttachment.SetBackgroundColor (buttonBackgroundColor);
+            buttonAttachment.SetTextColor (buttonTextColor);
+
+            var buttonSend = (Button)FindViewById(Resource.Id.button_send);
+            buttonSend.SetBackgroundColor (buttonBackgroundColor);
+            buttonSend.SetTextColor (buttonTextColor);
+
+            var buttonAddResponse = (Button)FindViewById(Resource.Id.button_add_response);
+            buttonAddResponse.SetBackgroundColor (buttonBackgroundColor);
+            buttonAddResponse.SetTextColor (buttonTextColor);
+
+            var buttonRefresh = (Button)FindViewById(Resource.Id.button_refresh);
+            buttonRefresh.SetBackgroundColor (buttonBackgroundColor);
+            buttonRefresh.SetTextColor (buttonTextColor);
+
+
         }
 
         public override bool OnOptionsItemSelected(IMenuItem item)

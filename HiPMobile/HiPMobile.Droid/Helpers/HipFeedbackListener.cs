@@ -36,6 +36,8 @@ using Object = Java.Lang.Object;
 
 namespace de.upb.hip.mobile.droid.Helpers
 {
+    // A helper class for hooking the HockeyApp Feedback activity
+    // Replaces the default Activity with our custom one
     class HipFeedbackListener : FeedbackManagerListener
     {
 
