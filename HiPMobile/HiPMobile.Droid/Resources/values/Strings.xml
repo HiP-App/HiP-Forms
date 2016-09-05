@@ -159,5 +159,6 @@ limitations under the License.-->
   <string name="nav_home_title">Übersicht</string>
   <string name="nav_route_title">Routen</string>
   <string name="nav_preferences_title">Einstellungen</string>
+  <string name="nav_feedback">Feedback</string>
   <string name="nav_licenses_title">Lizenzen</string>
 </resources>

@@ -28,6 +28,7 @@ using Android.Support.V4.Widget;
 using Android.Support.V7.App;
 using Android.Support.V7.Widget;
 using de.upb.hip.mobile.droid.fragments;
+using de.upb.hip.mobile.droid.Helpers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using HockeyApp;
@@ -70,6 +71,9 @@ namespace de.upb.hip.mobile.droid.Activities
 
             // Navigation Drawer
             SetUpNavigationDrawer();
+
+            //FeedbackManager.Register(this);
+            FeedbackManager.Register (this, "9947e2434fe64d318214cfc6972d4800", new HipFeedbackListener ());
 
             if (savedInstanceState == null)
             {
@@ -151,6 +155,9 @@ namespace de.upb.hip.mobile.droid.Activities
                     break;
                 case Resource.Id.nav_licenses:
                     StartActivity(typeof(LicensingActivity));
+                    break;
+                case Resource.Id.nav_feedback:
+                    FeedbackManager.ShowFeedbackActivity(ApplicationContext);
                     break;
                 case Resource.Id.nav_preferences:
                     StartActivity (typeof(SettingsActivity));
