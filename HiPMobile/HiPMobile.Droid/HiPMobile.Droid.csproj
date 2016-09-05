@@ -126,6 +126,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Activities\HiPFeedbackActivity.cs" />
     <Compile Include="Activities\LicensingActivity.cs" />
     <Compile Include="Activities\ExhibitDetailsActivity.cs" />
     <Compile Include="Activities\MainActivity.cs" />
@@ -143,6 +144,7 @@
     <Compile Include="fragments\SettingsFragment.cs" />
     <Compile Include="Helpers\GenericMapView.cs" />
     <Compile Include="Helpers\AndroidConstants.cs" />
+    <Compile Include="Helpers\HipFeedbackListener.cs" />
     <Compile Include="Helpers\InteractiveSources\ConsecutiveNumberInteractiveSourceSubstitute.cs" />
     <Compile Include="Helpers\InteractiveSources\ConstantInteractiveSourceSubstitute.cs" />
     <Compile Include="Helpers\InteractiveSources\IInteractiveSourceAction.cs" />
@@ -380,6 +382,9 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\xml\preferences.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ic_feedback_black_24dp.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
