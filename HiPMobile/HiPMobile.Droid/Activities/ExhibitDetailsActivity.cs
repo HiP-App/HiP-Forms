@@ -48,7 +48,7 @@ namespace de.upb.hip.mobile.droid.Activities {
 
         public ExhibitDetailsActivity ()
         {
-            mediaPlayerConnection = new CustomServiceConnection (this);
+            
         }
 
         protected override void OnSaveInstanceState (Bundle outState)
@@ -65,6 +65,7 @@ namespace de.upb.hip.mobile.droid.Activities {
         protected override void OnCreate (Bundle savedInstanceState)
         {
             base.OnCreate (savedInstanceState);
+            mediaPlayerConnection = new CustomServiceConnection(this);
             SetContentView (Resource.Layout.activity_exhibit_details);
             var toolbar = (Toolbar) FindViewById (Resource.Id.toolbar);
             toolbar.SetNavigationIcon (Resource.Drawable.ic_clear_white_24dp);
@@ -556,8 +557,12 @@ namespace de.upb.hip.mobile.droid.Activities {
         public void DoBindService ()
         {
             var intent = new Intent (this, typeof (MediaPlayerService));
-            StartService (new Intent (this, typeof (MediaPlayerService)));
-            isBound = BindService (intent, mediaPlayerConnection, 0);
+            //ApplicationContext.StartService(new Intent(this, typeof(MediaPlayerService)));
+            ApplicationContext.BindService (intent, mediaPlayerConnection, Bind.AutoCreate);
+            /*while (!isBound)
+            {
+                //busy waiting
+            }*/
         }
 
         protected override void OnDestroy ()
@@ -566,10 +571,18 @@ namespace de.upb.hip.mobile.droid.Activities {
             if (IsFinishing)
             {
                 //Only stop sound when activity is getting killed, not when rotated
-                mediaPlayerService.StopSound ();
-                StopService (new Intent (this, typeof (MediaPlayerService)));
+                if (isBound)
+                {
+                    mediaPlayerService.StopSound();
+                    StopService(new Intent(this, typeof(MediaPlayerService)));
+                }
             }
-            UnbindService (mediaPlayerConnection);
+            if (isBound)
+            {
+                UnbindService(mediaPlayerConnection);
+                isBound = false;
+            }
+            
         }
 
         #region Fields
@@ -617,6 +630,7 @@ namespace de.upb.hip.mobile.droid.Activities {
         private MediaPlayerService mediaPlayerService;
         private bool isBound;
 
+
         /// <summary>
         ///     The progressbar in the audio menu.
         /// </summary>
@@ -633,7 +647,7 @@ namespace de.upb.hip.mobile.droid.Activities {
         private readonly Handler handler = new Handler ();
 
         //Subclass for media player binding
-        private readonly IServiceConnection mediaPlayerConnection;
+        private IServiceConnection mediaPlayerConnection;
 
         /// <summary>
         ///     Stores the current action associated with the FAB.
@@ -676,6 +690,10 @@ namespace de.upb.hip.mobile.droid.Activities {
         {
             try
             {
+                if (mediaPlayerService == null)
+                {
+                    return;
+                }
                 if (!mediaPlayerService.AudioFileIsSet)
                 {
                     mediaPlayerService.SetAudioFile (exhibit.Pages [currentPageIndex].Audio);
@@ -864,15 +882,23 @@ namespace de.upb.hip.mobile.droid.Activities {
                 parent.mediaPlayerService = binder.GetService ();
                 if (parent.mediaPlayerService == null)
                 {
+                    Log.Error ("ExhibitDetailsActivity", "Could not create a media player serivce");
                     //this case should not happen. add error handling
                 }
-                parent.isBound = true;
+                else
+                {
+                    Log.Info("ExhibitDetailsActivity", "Bound MediePlayer service");
+                    parent.isBound = true;
+                }
             }
 
             public void OnServiceDisconnected (ComponentName name)
             {
                 parent.isBound = false;
+                Log.Info ("ExhibitDetailsActivity", "Unbound MediePlayer service");
             }
+
+
 
         }
 
