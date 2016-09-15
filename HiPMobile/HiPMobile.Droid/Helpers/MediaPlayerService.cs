@@ -165,7 +165,17 @@ namespace de.upb.hip.mobile.droid.Helpers {
         {
             if (mediaPlayer != null)
             {
+                Log.Info(logtag, "Added audio listener");
                 mediaPlayer.Completion += del;
+            }
+        }
+
+        public void RemoveOnCompleteListener(EventHandler del)
+        {
+            if (mediaPlayer != null)
+            {
+                Log.Info (logtag, "Removed audio listener");
+                mediaPlayer.Completion -= del;
             }
         }
 

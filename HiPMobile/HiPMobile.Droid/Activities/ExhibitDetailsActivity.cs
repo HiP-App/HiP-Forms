@@ -183,6 +183,10 @@ namespace de.upb.hip.mobile.droid.Activities {
         //after the MediaService is bound.
         public void OnAudioServiceConnected ()
         {
+            if (!pauseAudioPlaybackFlag)
+            {
+                mediaPlayerService.AddOnCompleteListener(ReactToAudioCompletion);
+            }
             DisplayCurrenExhibitPage();
         }
 
@@ -612,6 +616,7 @@ namespace de.upb.hip.mobile.droid.Activities {
             }
             if (isBound)
             {
+                mediaPlayerService.RemoveOnCompleteListener(ReactToAudioCompletion);
                 UnbindService(mediaPlayerConnection);
                 isBound = false;
             }
