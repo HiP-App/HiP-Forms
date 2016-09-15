@@ -37,7 +37,7 @@ using ActionBarDrawerToggle = Android.Support.V7.App.ActionBarDrawerToggle;
 
 namespace de.upb.hip.mobile.droid.Activities {
     [Activity (Theme = "@style/AppTheme",
-        Label = "HiPMobile.Droid", MainLauncher = false, Icon = "@drawable/icon", ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.ScreenSize)]
+        Label = "HiPMobile.Droid", MainLauncher = false, Icon = "@drawable/icon")]
     public class MainActivity : AppCompatActivity {
 
         private readonly string LogId = "MainActivity";
@@ -92,11 +92,12 @@ namespace de.upb.hip.mobile.droid.Activities {
                     transaction.Replace (Resource.Id.main_fragment_container, fragment);
                     transaction.Commit ();
                 }
+                CheckForUpdates();
             }
 
 
             // hockeyapp code
-            CheckForUpdates ();
+            
         }
 
 
