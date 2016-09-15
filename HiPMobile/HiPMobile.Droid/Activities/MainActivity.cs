@@ -15,6 +15,7 @@
 //  */
 
 
+using System;
 using System.Linq;
 using Android;
 using Android.App;
@@ -39,7 +40,7 @@ using ActionBarDrawerToggle = Android.Support.V7.App.ActionBarDrawerToggle;
 namespace de.upb.hip.mobile.droid.Activities
 {
     [Activity(Theme = "@style/AppTheme",
-        Label = "HiPMobile.Droid", MainLauncher = false, Icon = "@drawable/icon")]
+        Label = "HiPMobile.Droid", MainLauncher = false, Icon = "@drawable/icon", ConfigurationChanges = ConfigChanges.Orientation |ConfigChanges.ScreenSize)]
     public class MainActivity : AppCompatActivity
     {
         private DrawerLayout drawerLayout;
