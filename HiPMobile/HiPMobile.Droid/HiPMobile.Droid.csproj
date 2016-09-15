@@ -126,6 +126,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\HiP-Mobile-Internal\Keys\AndroidKeyProvider.cs">
+      <Link>Contracts\AndroidKeyProvider.cs</Link>
+    </Compile>
     <Compile Include="Activities\HiPFeedbackActivity.cs" />
     <Compile Include="Activities\LicensingActivity.cs" />
     <Compile Include="Activities\ExhibitDetailsActivity.cs" />
