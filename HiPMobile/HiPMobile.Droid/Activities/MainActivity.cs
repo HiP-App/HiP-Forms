@@ -46,6 +46,8 @@ namespace de.upb.hip.mobile.droid.Activities {
         private ExhibitSet exhibitSet;
         private GeoLocation geoLocation;
 
+        private string UpdateKey = "AskUpdates";
+        public bool AskForUpdates = true;
 
         protected override void OnCreate (Bundle savedInstanceState)
         {
@@ -92,12 +94,26 @@ namespace de.upb.hip.mobile.droid.Activities {
                     transaction.Replace (Resource.Id.main_fragment_container, fragment);
                     transaction.Commit ();
                 }
-                CheckForUpdates();
+
+            }
+            else
+            {
+                AskForUpdates = savedInstanceState.GetBoolean (UpdateKey);
             }
 
 
             // hockeyapp code
-            
+            if (AskForUpdates)
+            {
+                CheckForUpdates ();
+            }
+        }
+
+        protected override void OnSaveInstanceState (Bundle outState)
+        {
+            base.OnSaveInstanceState (outState);
+
+            outState.PutBoolean (UpdateKey, AskForUpdates);
         }
 
 
@@ -231,7 +247,7 @@ namespace de.upb.hip.mobile.droid.Activities {
             if (!string.IsNullOrEmpty (key))
             {
                 // Remove this for store builds! 
-                UpdateManager.Register (this, key);
+                UpdateManager.Register (this, key, new HockeyAppUpdateListener (this));
             }
             else
             {
@@ -239,11 +255,34 @@ namespace de.upb.hip.mobile.droid.Activities {
             }
         }
 
-        private void UnregisterManagers ()
+        internal void UnregisterManagers ()
         {
             UpdateManager.Unregister ();
         }
 
         #endregion
+
+        private class HockeyAppUpdateListener : UpdateManagerListener {
+
+            private MainActivity parent;
+
+            public HockeyAppUpdateListener (MainActivity parent)
+            {
+                this.parent = parent;
+            }
+
+            public override bool CanUpdateInMarket ()
+            {
+                return false;
+            }
+
+            public override void OnCancel ()
+            {
+                base.OnCancel ();
+
+                parent.AskForUpdates = false;
+            }
+
+        }
     }
 }
