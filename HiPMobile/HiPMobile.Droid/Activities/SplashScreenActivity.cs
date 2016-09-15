@@ -58,6 +58,9 @@ namespace de.upb.hip.mobile.droid.Activities
                 IoCManager.UnityContainer.RegisterType<IImageDimension, AndroidImageDimension> ();
                 IoCManager.UnityContainer.RegisterInstance (typeof(IDataLoader), new AndroidDataLoader (Assets));
 
+                // setup KeyManager
+                KeyManager.Instance.RegisterProvider (new AndroidKeyProvider ());
+
                 if (!IsDatabaseUpToDate ())
                 {
                     // Delete current database to avoid migration issues

@@ -27,10 +27,12 @@ using Android.Support.V4.View;
 using Android.Support.V4.Widget;
 using Android.Support.V7.App;
 using Android.Support.V7.Widget;
+using Android.Util;
 using de.upb.hip.mobile.droid.fragments;
 using de.upb.hip.mobile.droid.Helpers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
+using de.upb.hip.mobile.pcl.Common;
 using HockeyApp;
 using ActionBarDrawerToggle = Android.Support.V7.App.ActionBarDrawerToggle;
 
@@ -43,6 +45,7 @@ namespace de.upb.hip.mobile.droid.Activities
         private DrawerLayout drawerLayout;
         private ExhibitSet exhibitSet;
         private GeoLocation geoLocation;
+        private readonly string LogId = "MainActivity";
 
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -73,7 +76,7 @@ namespace de.upb.hip.mobile.droid.Activities
             SetUpNavigationDrawer();
 
             //FeedbackManager.Register(this);
-            FeedbackManager.Register (this, "9947e2434fe64d318214cfc6972d4800", new HipFeedbackListener ());
+            FeedbackManager.Register (this, KeyManager.Instance.GetKey ("hockeyapp.android"), new HipFeedbackListener ());
 
             if (savedInstanceState == null)
             {
@@ -211,13 +214,30 @@ namespace de.upb.hip.mobile.droid.Activities
         #region
         private void CheckForCrashes()
         {
-            CrashManager.Register(this);
+            var key = KeyManager.Instance.GetKey ("hockeyapp.android");
+            if (!string.IsNullOrEmpty (key))
+            {
+                CrashManager.Register (this, key);
+            }
+            else
+            {
+                Log.Error (LogId, "HockeyApp key is zero, cannot register CrashManager.");
+            }
         }
 
         private void CheckForUpdates()
         {
-            // Remove this for store builds! 
-            UpdateManager.Register(this);
+            var key = KeyManager.Instance.GetKey("hockeyapp.android");
+            if (!string.IsNullOrEmpty(key))
+            {
+                // Remove this for store builds! 
+                UpdateManager.Register(this, key);
+            }
+            else
+            {
+                Log.Error(LogId, "HockeyApp key is zero, cannot register UpdateManager.");
+            }
+            
         }
 
         private void UnregisterManagers()
