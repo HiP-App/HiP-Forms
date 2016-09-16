@@ -198,7 +198,8 @@ namespace de.upb.hip.mobile.droid.Activities {
         protected override void OnResume ()
         {
             base.OnResume ();
-
+            var navigationView = FindViewById<NavigationView>(Resource.Id.nav_view);
+            navigationView.Menu.GetItem (0).SetChecked (true);
             // hockeyapp code
             CheckForCrashes ();
         }
