@@ -18,6 +18,7 @@ using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Preferences;
+using Android.Views;
 using Android.Widget;
 using de.upb.hip.mobile.droid.Contracts;
 using de.upb.hip.mobile.droid.Helpers;

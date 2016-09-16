@@ -66,6 +66,8 @@ namespace de.upb.hip.mobile.droid.Activities {
         {
             base.OnCreate (savedInstanceState);
             SetContentView (Resource.Layout.activity_exhibit_details);
+            Window.AddFlags(WindowManagerFlags.DrawsSystemBarBackgrounds);
+
             var toolbar = (Toolbar) FindViewById (Resource.Id.toolbar);
             toolbar.SetNavigationIcon (Resource.Drawable.ic_clear_white_24dp);
             SetSupportActionBar (toolbar);
