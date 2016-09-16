@@ -38,6 +38,7 @@ namespace de.upb.hip.mobile.droid.Activities {
         {
             base.OnCreate (savedInstanceState);
             SetContentView (Resource.Layout.activity_route_filter);
+            Window.AddFlags(WindowManagerFlags.DrawsSystemBarBackgrounds);
             var intent = Intent;
 
             var toolbar = (Toolbar) FindViewById (Resource.Id.toolbar);
