@@ -57,6 +57,7 @@ namespace de.upb.hip.mobile.droid.Activities {
             outState.PutInt (KEY_CURRENT_PAGE_INDEX, currentPageIndex);
             outState.PutBoolean (KEY_AUDIO_PLAYING, isAudioPlaying);
             outState.PutBoolean (KEY_AUDIO_TOOLBAR_HIDDEN, isAudioToolbarHidden);
+            //outState.PutLong (KEY_CURRENT_SEEK_TIME, SeekBar.);
             outState.PutBundle (KEY_EXTRAS, extras);
 
             base.OnSaveInstanceState (outState);
@@ -338,6 +339,7 @@ namespace de.upb.hip.mobile.droid.Activities {
                 }
                 else if (mediaPlayerService.GetTimeCurrent () > 0)
                 {
+                    audioSeekbar.Max = (int)mediaPlayerService.GetTimeTotal();
                     startTime = mediaPlayerService.GetTimeCurrent();
                     audioSeekbar.Progress = (int)startTime;
                 }
@@ -733,6 +735,7 @@ namespace de.upb.hip.mobile.droid.Activities {
         private static readonly string KEY_CURRENT_PAGE_INDEX = "ExhibitDetailsActivity.currentPageIndex";
         private static readonly string KEY_AUDIO_PLAYING = "ExhibitDetailsActivity.isAudioPlaying";
         private static readonly string KEY_AUDIO_TOOLBAR_HIDDEN = "ExhibitDetailsActivity.isAudioToolbarHidden";
+        private static readonly string KEY_CURRENT_SEEK_TIME = "ExhibitDetailsActivity.currentSeekTime";
         private static readonly string KEY_EXTRAS = "ExhibitDetailsActivity.extras";
 
         // ui elements
