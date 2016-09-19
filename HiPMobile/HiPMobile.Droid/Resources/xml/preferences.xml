@@ -9,13 +9,13 @@
       android:key="@string/pref_auto_page_switch_key"
       android:title="@string/pref_auto_page_switch_title"
       android:summary="@string/pref_auto_page_switch_summ"
-      android:defaultValue="true" />
+      android:defaultValue="false" />
     
     <CheckBoxPreference
       android:key="@string/pref_auto_start_audio_key"
       android:title="@string/pref_auto_start_audio_title"
       android:summary="@string/pref_auto_start_audio_summ"
-      android:defaultValue="true" />
+      android:defaultValue="false" />
 
   </PreferenceCategory>
   
