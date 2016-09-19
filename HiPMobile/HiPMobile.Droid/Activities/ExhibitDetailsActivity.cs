@@ -336,6 +336,11 @@ namespace de.upb.hip.mobile.droid.Activities {
                     isAudioPlaying = true;
                     UpdatePlayPauseButtonIcon();
                 }
+                else if (mediaPlayerService.GetTimeCurrent () > 0)
+                {
+                    startTime = mediaPlayerService.GetTimeCurrent();
+                    audioSeekbar.Progress = (int)startTime;
+                }
             }
         }
 
