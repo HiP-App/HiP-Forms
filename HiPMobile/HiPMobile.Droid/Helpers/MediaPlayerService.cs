@@ -192,8 +192,6 @@ namespace de.upb.hip.mobile.droid.Helpers {
             {
                 return service;
             }
-
         }
-
     }
 }

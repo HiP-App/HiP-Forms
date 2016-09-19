@@ -185,7 +185,7 @@ namespace de.upb.hip.mobile.droid.Activities {
         {
             if (!pauseAudioPlaybackFlag)
             {
-                mediaPlayerService.AddOnCompleteListener(ReactToAudioCompletion);
+                //mediaPlayerService.AddOnCompleteListener(ReactToAudioCompletion);
             }
             DisplayCurrenExhibitPage();
         }
@@ -327,6 +327,12 @@ namespace de.upb.hip.mobile.droid.Activities {
                         startTime = mediaPlayerService.GetTimeCurrent();
                         audioSeekbar.Progress = (int)startTime;
                     }
+                }
+                else if (!pauseAudioPlaybackFlag && mediaPlayerService.GetTimeCurrent () > 0)
+                {
+                    StartAudioPlayback();
+                    isAudioPlaying = true;
+                    UpdatePlayPauseButtonIcon();
                 }
             }
         }
