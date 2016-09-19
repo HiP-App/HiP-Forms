@@ -12,12 +12,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System;
 using System.Linq;
 using Android.Animation;
 using Android.App;
 using Android.Content;
 using Android.Graphics;
 using Android.OS;
+using Android.Preferences;
 using Android.Support.Design.Widget;
 using Android.Support.V7.App;
 using Android.Text.Method;
@@ -33,7 +35,9 @@ using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using IO.Codetail.Animation;
 using Java.Lang;
+using Exception = Java.Lang.Exception;
 using Math = System.Math;
+using Object = Java.Lang.Object;
 using Toolbar = Android.Support.V7.Widget.Toolbar;
 using ViewAnimationUtils = IO.Codetail.Animation.ViewAnimationUtils;
 
@@ -62,6 +66,8 @@ namespace de.upb.hip.mobile.droid.Activities {
         {
             base.OnCreate (savedInstanceState);
             SetContentView (Resource.Layout.activity_exhibit_details);
+            Window.AddFlags(WindowManagerFlags.DrawsSystemBarBackgrounds);
+
             var toolbar = (Toolbar) FindViewById (Resource.Id.toolbar);
             toolbar.SetNavigationIcon (Resource.Drawable.ic_clear_white_24dp);
             SetSupportActionBar (toolbar);
@@ -74,6 +80,8 @@ namespace de.upb.hip.mobile.droid.Activities {
             };
 
             SupportActionBar.SetDisplayHomeAsUpEnabled (true);
+
+            sharedPreferences = PreferenceManager.GetDefaultSharedPreferences (this);
 
             if (savedInstanceState != null)
             {
@@ -172,12 +180,12 @@ namespace de.upb.hip.mobile.droid.Activities {
                 Log.Warn (Tag, "currentPageIndex >= exhibitPages.size() !");
                 return;
             }
-
+            
             if (!isAudioToolbarHidden)
             {
                 HideAudioToolBar (); // TODO: generalize to audio playing
             }
-
+            
             var page = exhibit.Pages [currentPageIndex];
 
             // set previous & next button
@@ -267,10 +275,19 @@ namespace de.upb.hip.mobile.droid.Activities {
             if (page.Audio == null)
             {
                 DisplayAudioAction (false);
+                HideAudioToolBar();
             }
             else
             {
                 DisplayAudioAction (true);
+                // check is preference to automatically start audio is on
+                if (sharedPreferences.GetBoolean (Resources.GetString (Resource.String.pref_auto_start_audio_key), false))
+                {
+                    ShowAudioToolbar ();
+                    StartAudioPlayback ();
+                    isAudioPlaying = true;
+                    UpdatePlayPauseButtonIcon ();
+                }
             }
         }
 
@@ -512,15 +529,14 @@ namespace de.upb.hip.mobile.droid.Activities {
                     (CoordinatorLayout) dialog.FindViewById (Resource.Id.captionDialogCoordinatorLayout);
 
                 tv.MovementMethod = LinkMovementMethod.Instance;
-                tv.SetHighlightColor(Color.Transparent);
+                tv.SetHighlightColor (Color.Transparent);
 
                 var parser = new InteractiveSources ();
                 tv.TextFormatted = parser.Parse (
                     caption,
-                    new ConstantInteractiveSourceSubstitute(GetString(Resource.String.source_substitute)),
+                    new ConstantInteractiveSourceSubstitute (GetString (Resource.String.source_substitute)),
                     // alternatively: new ConsecutiveNumberInteractiveSourceSubstitute (1), 
                     new SnackbarInteractiveSourceAction (coordinatorLayout));
-                
             }
             else
             {
@@ -552,13 +568,18 @@ namespace de.upb.hip.mobile.droid.Activities {
             if (IsFinishing)
             {
                 //Only stop sound when activity is getting killed, not when rotated
-                mediaPlayerService.StopSound();
+                mediaPlayerService.StopSound ();
                 StopService (new Intent (this, typeof (MediaPlayerService)));
             }
             UnbindService (mediaPlayerConnection);
         }
 
         #region Fields
+
+        /// <summary>
+        ///     Preferences of the app.
+        /// </summary>
+        private ISharedPreferences sharedPreferences;
 
         /// <summary>
         ///     The id of the displayed exhibit.
@@ -655,17 +676,13 @@ namespace de.upb.hip.mobile.droid.Activities {
         /// </summary>
         private void StartAudioPlayback ()
         {
-            Toast.MakeText (this, Resource.String.audio_playing_indicator, ToastLength.Short).Show ();
             try
             {
                 if (!mediaPlayerService.AudioFileIsSet)
                 {
                     mediaPlayerService.SetAudioFile (exhibit.Pages [currentPageIndex].Audio);
                 }
-                mediaPlayerService.AddOnCompleteListener ((sender, args) => {
-                    isAudioPlaying = false;
-                    UpdatePlayPauseButtonIcon ();
-                });
+                mediaPlayerService.AddOnCompleteListener (ReactToAudioCompletion);
                 mediaPlayerService.StartSound ();
                 audioSeekbar.Max = (int) mediaPlayerService.GetTimeTotal ();
                 handler.PostDelayed (UpdateProgressbar, 100);
@@ -684,6 +701,17 @@ namespace de.upb.hip.mobile.droid.Activities {
             }
         }
 
+        /// <summary>
+        /// EventHandler that is executed when audio playback finishes.
+        /// </summary>
+        public void ReactToAudioCompletion(object sender, EventArgs args)
+        {
+            isAudioPlaying = false;
+            UpdatePlayPauseButtonIcon();
+            if (sharedPreferences.GetBoolean (Resources.GetString (Resource.String.pref_auto_page_switch_key), false)) 
+                DisplayNextExhibitPage ();
+        }
+
         private void UpdateProgressbar ()
         {
             startTime = mediaPlayerService.GetTimeCurrent ();
@@ -696,7 +724,6 @@ namespace de.upb.hip.mobile.droid.Activities {
         /// </summary>
         private void PauseAudioPlayback ()
         {
-            Toast.MakeText (this, Resource.String.audio_pausing_indicator, ToastLength.Short).Show ();
             try
             {
                 mediaPlayerService.PauseSound ();

@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+  <PreferenceCategory
+    android:title="@string/pref_cat_exhibitdetails_title"
+    android:key="pref_cat_storage_settings">
+
+    <CheckBoxPreference
+      android:key="@string/pref_auto_page_switch_key"
+      android:title="@string/pref_auto_page_switch_title"
+      android:summary="@string/pref_auto_page_switch_summ"
+      android:defaultValue="false" />
+    
+    <CheckBoxPreference
+      android:key="@string/pref_auto_start_audio_key"
+      android:title="@string/pref_auto_start_audio_title"
+      android:summary="@string/pref_auto_start_audio_summ"
+      android:defaultValue="false" />
+
+  </PreferenceCategory>
+  
+</PreferenceScreen>

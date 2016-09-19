@@ -33,10 +33,10 @@
     <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="BusinessLayer\Managers\DbManager.cs" />
     <Compile Include="BusinessLayer\Managers\ExhibitManager.cs" />
     <Compile Include="BusinessLayer\Managers\PageManager.cs" />
     <Compile Include="BusinessLayer\Managers\RouteManager.cs" />
-    <Compile Include="BusinessLayer\Models\BusinessEntitiyFactory.cs" />
     <Compile Include="BusinessLayer\Models\GeneratedCode\AppetizerPage.cs" />
     <Compile Include="BusinessLayer\Models\GeneratedCode\Audio.cs" />
     <Compile Include="BusinessLayer\Models\GeneratedCode\Exhibit.cs" />
@@ -63,10 +63,16 @@
     <Compile Include="BusinessLayer\Models\NonGenerated\CustomGeoPoint.cs" />
     <Compile Include="BusinessLayer\Models\NonGenerated\Image.cs" />
     <Compile Include="BusinessLayer\Models\NonGenerated\Page.cs" />
+    <Compile Include="Common\Contracts\IDataLoader.cs" />
     <Compile Include="Common\Contracts\IImageDimension.cs" />
+    <Compile Include="Common\Contracts\IKeyProvider.cs" />
+    <Compile Include="Common\DbDummyDataFiller.cs" />
     <Compile Include="Common\IoCManager.cs" />
+    <Compile Include="Common\KeyManager.cs" />
     <Compile Include="DataAccessLayer\IDataAccess.cs" />
+    <Compile Include="DataAccessLayer\BaseTransaction.cs" />
     <Compile Include="DataLayer\RealmDataAccess.cs" />
+    <Compile Include="DataLayer\RealmTransaction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -82,8 +88,8 @@
       <HintPath>..\..\packages\Unity.4.0.1\lib\portable-net45+wp80+win8+wpa81+MonoAndroid10+MonoTouch10\Microsoft.Practices.Unity.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Realm, Version=0.76.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Realm.0.76.1\lib\portable-net45+sl5+wp8+wpa81+win8+monoandroid+Xamarin.iOS10+monotouch+Xamarin.Mac\Realm.dll</HintPath>
+    <Reference Include="Realm, Version=0.77.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Realm.0.77.2\lib\portable-net45+sl5+wp8+wpa81+win8+monoandroid+Xamarin.iOS10+monotouch+Xamarin.Mac\Realm.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>
@@ -92,16 +98,16 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Content Include="FodyWeavers.xml" />
+    <None Include="FodyWeavers.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
-  <Import Project="..\..\packages\Fody.1.29.4\build\portable-net+sl+win+wpa+wp\Fody.targets" Condition="Exists('..\..\packages\Fody.1.29.4\build\portable-net+sl+win+wpa+wp\Fody.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\..\packages\Fody.1.29.4\build\portable-net+sl+win+wpa+wp\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Fody.1.29.4\build\portable-net+sl+win+wpa+wp\Fody.targets'))" />
-    <Error Condition="!Exists('..\..\packages\Realm.0.76.1\build\Realm.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Realm.0.76.1\build\Realm.targets'))" />
+    <Error Condition="!Exists('..\..\packages\Realm.0.77.2\build\Realm.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Realm.0.77.2\build\Realm.targets'))" />
+    <Error Condition="!Exists('..\..\packages\Fody.1.30.0-beta01\build\portable-net+sl+win+wpa+wp\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Fody.1.30.0-beta01\build\portable-net+sl+win+wpa+wp\Fody.targets'))" />
   </Target>
-  <Import Project="..\..\packages\Realm.0.76.1\build\Realm.targets" Condition="Exists('..\..\packages\Realm.0.76.1\build\Realm.targets')" />
+  <Import Project="..\..\packages\Realm.0.77.2\build\Realm.targets" Condition="Exists('..\..\packages\Realm.0.77.2\build\Realm.targets')" />
+  <Import Project="..\..\packages\Fody.1.30.0-beta01\build\portable-net+sl+win+wpa+wp\Fody.targets" Condition="Exists('..\..\packages\Fody.1.30.0-beta01\build\portable-net+sl+win+wpa+wp\Fody.targets')" />
 </Project>

@@ -47,5 +47,17 @@ namespace de.upb.hip.mobile.pcl.DataAccessLayer {
         /// <returns>True if deletion was successfull, False otherwise.</returns>
         bool DeleteItem<T> (string id) where T : RealmObject, IIdentifiable;
 
+        /// <summary>
+        /// Starts a transaction.
+        /// </summary>
+        /// <returns>The transaction object.</returns>
+        BaseTransaction StartTransaction ();
+
+        /// <summary>
+        /// Creates an object of type T that is synced to the database.
+        /// </summary>
+        /// <typeparam name="T">The type of the object being created. T needs to be subtype of RealmObject and implement the IIdentifiable interface.</typeparam>
+        /// <returns>The instance.</returns>
+        T CreateObject<T> () where T : RealmObject, IIdentifiable, new ();
     }
 }

@@ -29,23 +29,11 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models
 	{
 		//Attributes
 		[ObjectId]
-		private string _id{ get; set; }
-		public string Id{
-			get{ return _id; }
-			set{ Realm.GetInstance ().Write (() => _id = value); }
-		}
+		public string Id{ get; set; }
 
-		private string _imagename{ get; set; }
-		public string ImageName{
-			get{ return _imagename; }
-			set{ Realm.GetInstance ().Write (() => _imagename = value); }
-		}
+		public virtual string ImageName{ get; set; }
 
-		private int _year{ get; set; }
-		public int Year{
-			get{ return _year; }
-			set{ Realm.GetInstance ().Write (() => _year = value); }
-		}
+		public virtual int Year{ get; set; }
 
 		//Associations
 		// Contructor

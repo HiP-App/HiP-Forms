@@ -30,12 +30,15 @@
     <AndroidLinkMode>None</AndroidLinkMode>
     <ConsolePause>false</ConsolePause>
     <AndroidUseSharedRuntime>True</AndroidUseSharedRuntime>
-    <EmbedAssembliesIntoApk>True</EmbedAssembliesIntoApk>
+    <EmbedAssembliesIntoApk>False</EmbedAssembliesIntoApk>
     <BundleAssemblies>False</BundleAssemblies>
     <AndroidCreatePackagePerAbi>False</AndroidCreatePackagePerAbi>
     <Debugger>Xamarin</Debugger>
     <AndroidEnableMultiDex>False</AndroidEnableMultiDex>
     <JavaMaximumHeapSize>1G</JavaMaximumHeapSize>
+    <AotAssemblies>False</AotAssemblies>
+    <EnableLLVM>False</EnableLLVM>
+    <EnableProguard>False</EnableProguard>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>full</DebugType>
@@ -70,6 +73,7 @@
       <HintPath>..\..\packages\HockeySDK.Xamarin.4.1.0-beta2\lib\MonoAndroid403\HockeySDK.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Java.Interop" />
     <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
       <Private>True</Private>
@@ -84,10 +88,10 @@
     </Reference>
     <Reference Include="OsmdroidAndroidBinding, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Bindings\osmdroid-android-binding-5.0.1\lib\android\OsmdroidAndroidBinding.dll</HintPath>
+      <HintPath>..\..\Bindings\OsmdroidAndroidBinding.dll</HintPath>
     </Reference>
-    <Reference Include="Realm, Version=0.76.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Realm.0.76.1\lib\MonoAndroid44\Realm.dll</HintPath>
+    <Reference Include="Realm, Version=0.77.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Realm.0.77.2\lib\MonoAndroid44\Realm.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -125,17 +129,28 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\HiP-Mobile-Internal\Keys\AndroidKeyProvider.cs">
+      <Link>Contracts\AndroidKeyProvider.cs</Link>
+    </Compile>
+    <Compile Include="Activities\HiPFeedbackActivity.cs" />
     <Compile Include="Activities\LicensingActivity.cs" />
     <Compile Include="Activities\ExhibitDetailsActivity.cs" />
     <Compile Include="Activities\MainActivity.cs" />
+    <Compile Include="Activities\RouteNavigationActivity.cs" />
     <Compile Include="Activities\RouteFilterActivity.cs" />
     <Compile Include="Activities\RouteActivity.cs" />
+    <Compile Include="Activities\SettingsActivity.cs" />
     <Compile Include="Adapters\RouteRecyclerAdapter.cs" />
     <Compile Include="Activities\RouteDetailsActivity.cs" />
+    <Compile Include="Contracts\AndroidDataLoader.cs" />
     <Compile Include="Contracts\AndroidImageDimension.cs" />
     <Compile Include="fragments\ExhibitListFragment.cs" />
     <Compile Include="fragments\ExhibitsOverviewFragment.cs" />
     <Compile Include="fragments\MapFragment.cs" />
+    <Compile Include="fragments\SettingsFragment.cs" />
+    <Compile Include="Helpers\GenericMapView.cs" />
+    <Compile Include="Helpers\AndroidConstants.cs" />
+    <Compile Include="Helpers\HipFeedbackListener.cs" />
     <Compile Include="Helpers\InteractiveSources\ConsecutiveNumberInteractiveSourceSubstitute.cs" />
     <Compile Include="Helpers\InteractiveSources\ConstantInteractiveSourceSubstitute.cs" />
     <Compile Include="Helpers\InteractiveSources\IInteractiveSourceAction.cs" />
@@ -143,6 +158,8 @@
     <Compile Include="Helpers\InteractiveSources\InteractiveSources.cs" />
     <Compile Include="Helpers\InteractiveSources\SnackbarInteractiveSourceAction.cs" />
     <Compile Include="Helpers\InteractiveSources\ToastInteractiveSourceAction.cs" />
+    <Compile Include="Helpers\SetMarker.cs" />
+    <Compile Include="Helpers\ViaPointInfoWindow.cs" />
     <Compile Include="Listeners\ExtendedLocationListener.cs" />
     <Compile Include="Listeners\MyCustomSimpleOnGestureListener.cs" />
     <Compile Include="Activities\SplashScreenActivity.cs" />
@@ -158,7 +175,6 @@
     <Compile Include="fragments\exhibitpagefragment\TimeSliderExhibitPageFragment.cs" />
     <Compile Include="Helpers\BottomSheetConfig.cs" />
     <Compile Include="Helpers\CustomSeekBar.cs" />
-    <Compile Include="Helpers\DbDummyDataFiller.cs" />
     <Compile Include="Helpers\DrawView.cs" />
     <Compile Include="Helpers\ExtensionMethods.cs" />
     <Compile Include="Helpers\ImageManipulation.cs" />
@@ -197,10 +213,15 @@
     <AndroidResource Include="Resources\layout-land\fragment_overview_exhibits.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\layout\activity_route_navigation.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
     <AndroidResource Include="Resources\layout\activity_route.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\activity_route_row_item.axml" />
+    <AndroidResource Include="Resources\layout\navigation_info_window.axml" />
+    <AndroidResource Include="Resources\layout\bonuspack_bubble.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Main.axml">
@@ -266,7 +287,7 @@
     <AndroidAsset Include="Assets\theo_teaser.jpg" />
     <AndroidAsset Include="Assets\route_tag_bar.png" />
     <AndroidAsset Include="Assets\route_tag_restaurant.png" />
-    <Content Include="FodyWeavers.xml" />
+    <None Include="FodyWeavers.xml" />
     <AndroidResource Include="Resources\values\colors.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
@@ -312,12 +333,28 @@
     <AndroidResource Include="Resources\drawable-hdpi\ic_headset_white_24dp.xml" />
     <AndroidResource Include="Resources\drawable-hdpi\ic_pause_black_36dp.xml" />
     <AndroidResource Include="Resources\drawable-hdpi\audioseekbar.xml" />
+    <AndroidResource Include="Resources\drawable-hdpi\btn_tracking_off.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\btn_tracking_on.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_continue.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\marker_node.png" />
     <AndroidResource Include="Resources\layout\activity_route_filter.xml" />
     <AndroidResource Include="Resources\layout\activity_route_filter_row_item.xml" />
     <AndroidResource Include="Resources\layout\activity_route_details.axml" />
     <AndroidResource Include="Resources\drawable-hdpi\marker_departure.png" />
     <AndroidResource Include="Resources\drawable-hdpi\marker_via.png" />
     <AndroidResource Include="Resources\drawable-hdpi\marker_destination.png" />
+    <AndroidResource Include="Resources\values\direction_icons.xml" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_empty.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_roundabout.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_sharp_left.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_sharp_right.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_slight_left.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_turn_left.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_turn_right.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_u_turn.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_slight_right.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_arrived.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\map_restaurant.png" />
     <AndroidResource Include="Resources\menu\activity_route_menu.xml" />
     <AndroidResource Include="Resources\drawable-hdpi\ic_filter_list_white_48dp.png" />
     <AndroidResource Include="Resources\drawable-mdpi\ic_filter_list_white_48dp.png" />
@@ -325,17 +362,46 @@
     <AndroidResource Include="Resources\drawable-xxhdpi\ic_filter_list_white_48dp.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\ic_filter_list_white_48dp.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\moreinfo_arrow_pressed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\btn_info.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\info_pressed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\moreinfo_arrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-hdpi\bonuspack_bubble.9.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\bonuspack_bubble_new.9.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ic_settings_black_24dp.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\xml\preferences.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ic_feedback_black_24dp.xml" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\..\packages\Fody.1.29.4\build\dotnet\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Fody.1.29.4\build\dotnet\Fody.targets'))" />
-    <Error Condition="!Exists('..\..\packages\Realm.0.76.1\build\Realm.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Realm.0.76.1\build\Realm.targets'))" />
     <Error Condition="!Exists('..\..\packages\Xamarin.Android.Support.Vector.Drawable.23.4.0.1\build\Xamarin.Android.Support.Vector.Drawable.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Xamarin.Android.Support.Vector.Drawable.23.4.0.1\build\Xamarin.Android.Support.Vector.Drawable.targets'))" />
+    <Error Condition="!Exists('..\..\packages\Realm.0.77.2\build\Realm.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Realm.0.77.2\build\Realm.targets'))" />
+    <Error Condition="!Exists('..\..\packages\Fody.1.30.0-beta01\build\dotnet\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Fody.1.30.0-beta01\build\dotnet\Fody.targets'))" />
   </Target>
-  <Import Project="..\..\packages\Fody.1.29.4\build\dotnet\Fody.targets" Condition="Exists('..\..\packages\Fody.1.29.4\build\dotnet\Fody.targets')" />
-  <Import Project="..\..\packages\Realm.0.76.1\build\Realm.targets" Condition="Exists('..\..\packages\Realm.0.76.1\build\Realm.targets')" />
   <Import Project="..\..\packages\Xamarin.Android.Support.Vector.Drawable.23.4.0.1\build\Xamarin.Android.Support.Vector.Drawable.targets" Condition="Exists('..\..\packages\Xamarin.Android.Support.Vector.Drawable.23.4.0.1\build\Xamarin.Android.Support.Vector.Drawable.targets')" />
+  <Import Project="..\..\packages\Realm.0.77.2\build\Realm.targets" Condition="Exists('..\..\packages\Realm.0.77.2\build\Realm.targets')" />
+  <Import Project="..\..\packages\Fody.1.30.0-beta01\build\dotnet\Fody.targets" Condition="Exists('..\..\packages\Fody.1.30.0-beta01\build\dotnet\Fody.targets')" />
 </Project>

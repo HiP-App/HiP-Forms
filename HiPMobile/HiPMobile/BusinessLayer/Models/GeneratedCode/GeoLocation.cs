@@ -29,23 +29,11 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models
 	{
 		//Attributes
 		[ObjectId]
-		private string _id{ get; set; }
-		public string Id{
-			get{ return _id; }
-			set{ Realm.GetInstance ().Write (() => _id = value); }
-		}
+		public string Id{ get; set; }
 
-		private double _latitude{ get; set; }
-		public double Latitude{
-			get{ return _latitude; }
-			set{ Realm.GetInstance ().Write (() => _latitude = value); }
-		}
+		public virtual double Latitude{ get; set; }
 
-		private double _longitude{ get; set; }
-		public double Longitude{
-			get{ return _longitude; }
-			set{ Realm.GetInstance ().Write (() => _longitude = value); }
-		}
+		public virtual double Longitude{ get; set; }
 
 		//Associations
 		// Contructor

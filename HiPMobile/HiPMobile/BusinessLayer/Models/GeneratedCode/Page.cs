@@ -29,42 +29,18 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models
 	{
 		//Attributes
 		[ObjectId]
-		private string _id{ get; set; }
-		public string Id{
-			get{ return _id; }
-			set{ Realm.GetInstance ().Write (() => _id = value); }
-		}
+		public string Id{ get; set; }
 
-		private Audio _audio{ get; set; }
-		public Audio Audio{
-			get{ return _audio; }
-			set{ Realm.GetInstance ().Write (() => _audio = value); }
-		}
+		public virtual Audio Audio{ get; set; }
 
 		//Associations
-		private AppetizerPage _appetizerpage{ get; set; }
-		public AppetizerPage AppetizerPage{
-			get{ return _appetizerpage; }
-			set{ Realm.GetInstance ().Write (() => _appetizerpage = value); }
-		}
+		public virtual AppetizerPage AppetizerPage{ get; set; }
 
-		private ImagePage _imagepage{ get; set; }
-		public ImagePage ImagePage{
-			get{ return _imagepage; }
-			set{ Realm.GetInstance ().Write (() => _imagepage = value); }
-		}
+		public virtual ImagePage ImagePage{ get; set; }
 
-		private TextPage _textpage{ get; set; }
-		public TextPage TextPage{
-			get{ return _textpage; }
-			set{ Realm.GetInstance ().Write (() => _textpage = value); }
-		}
+		public virtual TextPage TextPage{ get; set; }
 
-		private TimeSliderPage _timesliderpage{ get; set; }
-		public TimeSliderPage TimeSliderPage{
-			get{ return _timesliderpage; }
-			set{ Realm.GetInstance ().Write (() => _timesliderpage = value); }
-		}
+		public virtual TimeSliderPage TimeSliderPage{ get; set; }
 
 		// Contructor
 		public Page(){

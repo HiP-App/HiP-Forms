@@ -29,17 +29,9 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models
 	{
 		//Attributes
 		[ObjectId]
-		private string _id{ get; set; }
-		public string Id{
-			get{ return _id; }
-			set{ Realm.GetInstance ().Write (() => _id = value); }
-		}
+		public string Id{ get; set; }
 
-		private long _value{ get; set; }
-		public long Value{
-			get{ return _value; }
-			set{ Realm.GetInstance ().Write (() => _value = value); }
-		}
+		public virtual long Value{ get; set; }
 
 		//Associations
 		// Contructor

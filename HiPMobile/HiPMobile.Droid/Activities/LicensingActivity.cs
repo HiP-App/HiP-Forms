@@ -2,6 +2,7 @@ using Android.App;
 using Android.OS;
 using Android.Support.V4.Widget;
 using Android.Text.Method;
+using Android.Views;
 using Android.Widget;
 
 namespace de.upb.hip.mobile.droid.Activities {
@@ -12,6 +13,7 @@ namespace de.upb.hip.mobile.droid.Activities {
         {
             base.OnCreate (savedInstanceState);
             SetContentView (Resource.Layout.activity_licensing);
+            Window.AddFlags(WindowManagerFlags.DrawsSystemBarBackgrounds);
 
             MakeLinksClickable ();
 
