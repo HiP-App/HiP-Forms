@@ -23,12 +23,14 @@ using Android.Runtime;
 using Android.Support.V4.Content;
 using Android.Support.V4.Content.Res;
 using Android.Support.V7.App;
+using Android.Util;
 using Android.Views;
 using Android.Widget;
 using de.upb.hip.mobile.droid.Helpers;
 using de.upb.hip.mobile.droid.Listeners;
 using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
+using de.upb.hip.mobile.pcl.Common;
 using Org.Osmdroid.Bonuspack.Overlays;
 using Org.Osmdroid.Bonuspack.Routing;
 using Org.Osmdroid.Tileprovider;
@@ -62,6 +64,7 @@ namespace de.upb.hip.mobile.droid.Activities {
         private Route route;
         protected Button TrackingModeButton;
         private IList<Waypoint> wayPoints;
+        private readonly string LogId = "RouteNavigationActivity";
 
 
         public void OnLocationChanged (Location location)
@@ -87,6 +90,7 @@ namespace de.upb.hip.mobile.droid.Activities {
         {
             base.OnCreate (savedInstanceState);
             SetContentView (Resource.Layout.activity_route_navigation);
+            Window.AddFlags(WindowManagerFlags.DrawsSystemBarBackgrounds);
 
             var toolbar = (Toolbar) FindViewById (Resource.Id.toolbar);
             SetSupportActionBar (toolbar);
@@ -193,7 +197,12 @@ namespace de.upb.hip.mobile.droid.Activities {
             StrictMode.SetThreadPolicy (policy);
 
             //Creates the RoadManager
-            roadManager = new MapQuestRoadManager ("WRWdd9j02K8tGtERI2LtFiCLsRUKyJnJ");
+            var key = KeyManager.Instance.GetKey ("mapquest");
+            if (string.IsNullOrEmpty (key))
+            {
+                Log.Error (LogId, "Mapquest key is zero.");
+            }
+            roadManager = new MapQuestRoadManager (key);
             roadManager.AddRequestOption ("routeType=pedestrian");
             roadManager.AddRequestOption ("locale=de_DE");
 

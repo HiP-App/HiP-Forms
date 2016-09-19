@@ -65,7 +65,8 @@ namespace de.upb.hip.mobile.droid.Activities
             buttonRefresh.SetBackgroundColor (buttonBackgroundColor);
             buttonRefresh.SetTextColor (buttonTextColor);
 
-
+            Window.AddFlags(WindowManagerFlags.DrawsSystemBarBackgrounds);
+            Window.SetStatusBarColor(Resources.GetColor (Resource.Color.colorPrimaryDark));
         }
 
         public override bool OnOptionsItemSelected(IMenuItem item)

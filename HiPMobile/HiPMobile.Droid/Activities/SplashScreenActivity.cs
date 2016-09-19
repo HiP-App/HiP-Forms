@@ -18,6 +18,7 @@ using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Preferences;
+using Android.Views;
 using Android.Widget;
 using de.upb.hip.mobile.droid.Contracts;
 using de.upb.hip.mobile.droid.Helpers;
@@ -57,6 +58,9 @@ namespace de.upb.hip.mobile.droid.Activities
                 IoCManager.UnityContainer.RegisterType<IDataAccess, RealmDataAccess>();
                 IoCManager.UnityContainer.RegisterType<IImageDimension, AndroidImageDimension> ();
                 IoCManager.UnityContainer.RegisterInstance (typeof(IDataLoader), new AndroidDataLoader (Assets));
+
+                // setup KeyManager
+                KeyManager.Instance.RegisterProvider (new AndroidKeyProvider ());
 
                 if (!IsDatabaseUpToDate ())
                 {

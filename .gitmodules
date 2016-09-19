@@ -1,0 +1,3 @@
+[submodule "HiP-Mobile-Internal"]
+	path = HiP-Mobile-Internal
+	url = https://github.com/HiP-App/HiP-Mobile-Internal

@@ -27,6 +27,8 @@ namespace de.upb.hip.mobile.droid.Activities {
         {
             base.OnCreate (savedInstanceState);
 
+            Window.AddFlags(WindowManagerFlags.DrawsSystemBarBackgrounds);
+
             // add settings fragment
             FragmentManager.BeginTransaction ()
                            .Replace (Android.Resource.Id.Content, new SettingsFragment ())
