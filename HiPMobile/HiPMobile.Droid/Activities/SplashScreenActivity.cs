@@ -56,8 +56,9 @@ namespace de.upb.hip.mobile.droid.Activities
             {
                 // setup IoCManager
                 IoCManager.UnityContainer.RegisterType<IDataAccess, RealmDataAccess>();
+                IoCManager.UnityContainer.RegisterType<IDataLoader, EmbeddedResourceDataLoader> ();
                 IoCManager.UnityContainer.RegisterType<IImageDimension, AndroidImageDimension> ();
-                IoCManager.UnityContainer.RegisterInstance (typeof(IDataLoader), new AndroidDataLoader (Assets));
+                //IoCManager.UnityContainer.RegisterInstance (typeof(IDataLoader), new AndroidDataLoader (Assets));
 
                 // setup KeyManager
                 KeyManager.Instance.RegisterProvider (new AndroidKeyProvider ());
