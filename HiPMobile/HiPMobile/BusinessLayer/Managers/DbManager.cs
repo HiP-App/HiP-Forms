@@ -12,9 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using de.upb.hip.mobile.droid.Helpers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using de.upb.hip.mobile.pcl.Common;
 using de.upb.hip.mobile.pcl.DataAccessLayer;
+using de.upb.hip.mobile.pcl.Helpers;
 using Microsoft.Practices.Unity;
 using Realms;
 
@@ -58,6 +60,18 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Managers {
         public static BaseTransaction StartTransaction ()
         {
             return dataAccess.StartTransaction ();
+        }
+
+        public static void UpdateDatabase ()
+        {
+            if (dataAccess.GetVersion () < DbDummyDataFiller.DatabaseVersion)
+            {
+                dataAccess.DeleteDatabase ();
+                dataAccess.CreateDatabase (DbDummyDataFiller.DatabaseVersion);
+                Settings.DatabaseVersion = DbDummyDataFiller.DatabaseVersion;
+
+                new DbDummyDataFiller ().InsertData ();
+            }
         }
 
     }
