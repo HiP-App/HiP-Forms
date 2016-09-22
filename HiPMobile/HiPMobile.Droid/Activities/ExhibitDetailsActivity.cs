@@ -48,7 +48,7 @@ namespace de.upb.hip.mobile.droid.Activities {
 
         public ExhibitDetailsActivity ()
         {
-            mediaPlayerConnection = new CustomServiceConnection (this);
+            
         }
 
         protected override void OnSaveInstanceState (Bundle outState)
@@ -65,6 +65,11 @@ namespace de.upb.hip.mobile.droid.Activities {
         protected override void OnCreate (Bundle savedInstanceState)
         {
             base.OnCreate (savedInstanceState);
+
+            //initialize media player
+            mediaPlayerConnection = new CustomServiceConnection(this);
+            DoBindService();
+
             SetContentView (Resource.Layout.activity_exhibit_details);
             Window.AddFlags(WindowManagerFlags.DrawsSystemBarBackgrounds);
 
@@ -90,7 +95,15 @@ namespace de.upb.hip.mobile.droid.Activities {
                 exhibit = ExhibitManager.GetExhibit (exhibitId);
                 currentPageIndex = savedInstanceState.GetInt (KEY_CURRENT_PAGE_INDEX, 0);
                 isAudioPlaying = savedInstanceState.GetBoolean (KEY_AUDIO_PLAYING, false);
-                isAudioToolbarHidden = true;
+                if (!isAudioPlaying)
+                {
+                    pauseAudioPlaybackFlag = true;
+                }
+                isAudioToolbarHidden = savedInstanceState.GetBoolean(KEY_AUDIO_TOOLBAR_HIDDEN, true);
+                if (!isAudioToolbarHidden)
+                {
+                    showAudioToolbarFlag = true;
+                }
                 extras = savedInstanceState.GetBundle (KEY_EXTRAS);
             }
             else
@@ -117,13 +130,9 @@ namespace de.upb.hip.mobile.droid.Activities {
             revealView = (LinearLayout) FindViewById (Resource.Id.reveal_items);
             revealView.Visibility = ViewStates.Invisible;
 
-            // display audio toolbar on savedInstanceState:
-            //if (! isAudioToolbarHidden) ShowAudioToolbar();
-            // does not work because activity creation has not been completed?!
+            // Does not work with animations:
             // see also: http://stackoverflow.com/questions/7289827/how-to-start-animation-immediately-after-oncreate
 
-            //initialize media player
-            DoBindService ();
             // set up play / pause toggle
             btnPlayPause = (ImageButton) FindViewById (Resource.Id.btnPlayPause);
             btnPlayPause.Click += (sender, args) => {
@@ -169,8 +178,14 @@ namespace de.upb.hip.mobile.droid.Activities {
                         throw new IllegalArgumentException ("Unsupported FAB action!");
                 }
             };
+        }
 
-            DisplayCurrenExhibitPage ();
+        //Callback for when the MediaService is bound
+        //This is required as all actions pertaining audio can only be performed
+        //after the MediaService is bound.
+        public void OnAudioServiceConnected ()
+        {
+            DisplayCurrenExhibitPage();
         }
 
         public void DisplayCurrenExhibitPage ()
@@ -183,7 +198,15 @@ namespace de.upb.hip.mobile.droid.Activities {
             
             if (!isAudioToolbarHidden)
             {
-                HideAudioToolBar (); // TODO: generalize to audio playing
+                if (showAudioToolbarFlag)
+                {
+                    ShowAudioToolbar ();
+                    showAudioToolbarFlag = false;
+                }
+                else
+                {
+                    HideAudioToolBar(); // TODO: generalize to audio playing
+                }
             }
             
             var page = exhibit.Pages [currentPageIndex];
@@ -283,10 +306,37 @@ namespace de.upb.hip.mobile.droid.Activities {
                 // check is preference to automatically start audio is on
                 if (sharedPreferences.GetBoolean (Resources.GetString (Resource.String.pref_auto_start_audio_key), false))
                 {
-                    ShowAudioToolbar ();
-                    StartAudioPlayback ();
+                    // We might have resumed, but were already playing
+                    // before the suspension, so just go on
+                    if (!pauseAudioPlaybackFlag)
+                    {
+                        ShowAudioToolbar();
+                        StartAudioPlayback();
+                        isAudioPlaying = true;
+                        UpdatePlayPauseButtonIcon();
+                    }
+                    else
+                    {
+                        // We resumed and were paused before the suspension
+                        // Just update the buttons and progress bar
+                        pauseAudioPlaybackFlag = false;
+                        UpdatePlayPauseButtonIcon ();
+                        audioSeekbar.Max = (int)mediaPlayerService.GetTimeTotal();
+                        startTime = mediaPlayerService.GetTimeCurrent();
+                        audioSeekbar.Progress = (int)startTime;
+                    }
+                }
+                else if (!pauseAudioPlaybackFlag && mediaPlayerService.GetTimeCurrent () > 0)
+                {
+                    StartAudioPlayback();
                     isAudioPlaying = true;
-                    UpdatePlayPauseButtonIcon ();
+                    UpdatePlayPauseButtonIcon();
+                }
+                else if (mediaPlayerService.GetTimeCurrent () > 0)
+                {
+                    audioSeekbar.Max = (int)mediaPlayerService.GetTimeTotal();
+                    startTime = mediaPlayerService.GetTimeCurrent();
+                    audioSeekbar.Progress = (int)startTime;
                 }
             }
         }
@@ -558,8 +608,8 @@ namespace de.upb.hip.mobile.droid.Activities {
         public void DoBindService ()
         {
             var intent = new Intent (this, typeof (MediaPlayerService));
-            StartService (new Intent (this, typeof (MediaPlayerService)));
-            isBound = BindService (intent, mediaPlayerConnection, 0);
+            StartService(new Intent(this, typeof(MediaPlayerService)));
+            BindService (intent, mediaPlayerConnection, 0);
         }
 
         protected override void OnDestroy ()
@@ -568,10 +618,19 @@ namespace de.upb.hip.mobile.droid.Activities {
             if (IsFinishing)
             {
                 //Only stop sound when activity is getting killed, not when rotated
-                mediaPlayerService.StopSound ();
-                StopService (new Intent (this, typeof (MediaPlayerService)));
+                if (isBound)
+                {
+                    mediaPlayerService.StopSound();
+                    StopService(new Intent(this, typeof(MediaPlayerService)));
+                }
             }
-            UnbindService (mediaPlayerConnection);
+            if (isBound)
+            {
+                mediaPlayerService.RemoveOnCompleteListener(ReactToAudioCompletion);
+                UnbindService(mediaPlayerConnection);
+                isBound = false;
+            }
+            
         }
 
         #region Fields
@@ -619,6 +678,7 @@ namespace de.upb.hip.mobile.droid.Activities {
         private MediaPlayerService mediaPlayerService;
         private bool isBound;
 
+
         /// <summary>
         ///     The progressbar in the audio menu.
         /// </summary>
@@ -630,12 +690,26 @@ namespace de.upb.hip.mobile.droid.Activities {
         private double startTime;
 
         /// <summary>
+        ///     Flag for pausing the audio playback on activity start
+        ///     This is required when the device is rotated while audio is paused
+        ///     To store the pause state temporarily.
+        /// </summary>
+        private bool pauseAudioPlaybackFlag = false;
+
+        /// <summary>
+        ///     Flag for showing the audio toolbar on activity start
+        ///     This is required when the device is rotated while audio is paused
+        ///     To store the toolbar state temporarily.
+        /// </summary>
+        private bool showAudioToolbarFlag = false;
+
+        /// <summary>
         ///     Handler is needed for UI updates (especially media player - audio progress bar)
         /// </summary>
         private readonly Handler handler = new Handler ();
 
         //Subclass for media player binding
-        private readonly IServiceConnection mediaPlayerConnection;
+        private IServiceConnection mediaPlayerConnection;
 
         /// <summary>
         ///     Stores the current action associated with the FAB.
@@ -678,6 +752,11 @@ namespace de.upb.hip.mobile.droid.Activities {
         {
             try
             {
+                if (mediaPlayerService == null)
+                {
+                    Log.Error ("ExhibitDetailsActivity", "MediaPlayer is null in StartAudio()");
+                    return;
+                }
                 if (!mediaPlayerService.AudioFileIsSet)
                 {
                     mediaPlayerService.SetAudioFile (exhibit.Pages [currentPageIndex].Audio);
@@ -866,15 +945,24 @@ namespace de.upb.hip.mobile.droid.Activities {
                 parent.mediaPlayerService = binder.GetService ();
                 if (parent.mediaPlayerService == null)
                 {
+                    Log.Error ("ExhibitDetailsActivity", "Could not create a media player serivce");
                     //this case should not happen. add error handling
                 }
-                parent.isBound = true;
+                else
+                {
+                    Log.Info("ExhibitDetailsActivity", "Bound MediePlayer service");
+                    parent.isBound = true;
+                    parent.OnAudioServiceConnected ();
+                }
             }
 
             public void OnServiceDisconnected (ComponentName name)
             {
                 parent.isBound = false;
+                Log.Info ("ExhibitDetailsActivity", "Unbound MediePlayer service");
             }
+
+
 
         }
 
