@@ -3,7 +3,13 @@ using Foundation;
 using HiPMobile.iOS;
 using System;
 using CoreGraphics;
+using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
+using de.upb.hip.mobile.pcl.Common;
+using de.upb.hip.mobile.pcl.Common.Contracts;
+using de.upb.hip.mobile.pcl.DataAccessLayer;
+using de.upb.hip.mobile.pcl.DataLayer;
 using MediaToolbox;
+using Microsoft.Practices.Unity;
 using UIKit;
 
 // slide out feature with the help of http://www.appliedcodelog.com/2015/09/sliding-menu-in-xamarinios-using.html
@@ -28,6 +34,13 @@ namespace HiPMobile.iOS
             InitializeView();
             menuTableView.Hidden = true;
             shadowView.Hidden = true;
+
+            // Move this block to the Launch screen
+            IoCManager.UnityContainer.RegisterType<IDataAccess, RealmDataAccess>();
+            IoCManager.UnityContainer.RegisterType<IDataLoader, EmbeddedResourceDataLoader>();
+            IoCManager.UnityContainer.RegisterType<IImageDimension, IosImageDimensions> ();
+            DbManager.UpdateDatabase ();
+            // End of block
         }
 
         public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
