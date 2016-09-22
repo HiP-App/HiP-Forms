@@ -16,9 +16,12 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
+using de.upb.hip.mobile.pcl.Common;
 using de.upb.hip.mobile.pcl.DataAccessLayer;
+using de.upb.hip.mobile.pcl.Helpers;
 using Realms;
 
 namespace de.upb.hip.mobile.pcl.DataLayer {
@@ -30,14 +33,14 @@ namespace de.upb.hip.mobile.pcl.DataLayer {
         /// <summary>
         ///     Object used for mutual exclusion.
         /// </summary>
-        private static object locker = new object ();
+        private static readonly object locker = new object ();
 
         public T GetItem<T> (string id) where T : RealmObject, IIdentifiable
         {
             lock (locker)
             {
                 // Realm has problems when using LINQ expression here
-                var objects = Realm.GetInstance ().All<T> ();
+                var objects = Instance.All<T> ();
                 foreach (T realmResult in objects)
                 {
                     if (!string.IsNullOrEmpty(realmResult.Id) && realmResult.Id.Equals (id))
@@ -51,14 +54,14 @@ namespace de.upb.hip.mobile.pcl.DataLayer {
         {
             lock (locker)
             {
-                return Realm.GetInstance ().All<T> ();
+                return Instance.All<T> ();
             }
         }
 
         public bool DeleteItem<T> (string id) where T : RealmObject, IIdentifiable
         {
             var item = GetItem<T> (id);
-            Realm.GetInstance ().Write (() => GetInstance ().Remove (item));
+            Instance.Write (() => Instance.Remove (item));
 
             if (item != null)
                 return true;
@@ -67,15 +70,16 @@ namespace de.upb.hip.mobile.pcl.DataLayer {
 
         public BaseTransaction StartTransaction ()
         {
-            var transaction = GetInstance ().BeginWrite ();
-            return  new RealmTransaction (transaction);
+            var transactionInstance = Instance;
+            var transaction = transactionInstance.BeginWrite ();
+            return  new RealmTransaction (transaction, transactionInstance);
         }
 
         public T CreateObject<T> () where T : RealmObject, IIdentifiable, new ()
         {
             // create the instance
             T instance = null;
-            instance = Realm.GetInstance().CreateObject<T>();
+            instance = Instance.CreateObject<T>();
 
             // generate a unique id
             string id;
@@ -89,28 +93,45 @@ namespace de.upb.hip.mobile.pcl.DataLayer {
             return instance;
         }
 
+        public int GetVersion ()
+        {
+            lock (locker)
+            {
+                return Convert.ToInt32(Configuragion.SchemaVersion);
+            }
+        }
+
+        public void DeleteDatabase ()
+        {
+            lock (locker)
+            {
+                Realm.DeleteRealm (Configuragion);
+            }
+        }
+
+        public void CreateDatabase (int version)
+        {
+            Configuragion = new RealmConfiguration {SchemaVersion = Convert.ToUInt64(version)};
+        }
+
         private static string GenerateId()
         {
             return Guid.NewGuid().ToString();
         }
 
-        // Singleton pattern
+        private Realm Instance => Realm.GetInstance(Configuragion);
 
-        public Realm GetInstance ()
-        {
-            return Instance;
-        }
+        private static RealmConfiguration config;
 
-        private Realm _instance;
-        private Realm Instance {
+        private static RealmConfiguration Configuragion {
             get {
-                if (false &&_instance == null)
+                if (config == null)
                 {
-                    _instance = Realm.GetInstance ();
+                    config = new RealmConfiguration {SchemaVersion = Convert.ToUInt64(Settings.DatabaseVersion)};
                 }
-                _instance = Realm.GetInstance();
-                return _instance;
+                return config;
             }
+            set { config = value; }
         }
 
     }

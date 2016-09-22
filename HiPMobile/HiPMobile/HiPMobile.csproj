@@ -67,12 +67,14 @@
     <Compile Include="Common\Contracts\IImageDimension.cs" />
     <Compile Include="Common\Contracts\IKeyProvider.cs" />
     <Compile Include="Common\DbDummyDataFiller.cs" />
+    <Compile Include="Common\EmbeddedResourceDataLoader.cs" />
     <Compile Include="Common\IoCManager.cs" />
     <Compile Include="Common\KeyManager.cs" />
     <Compile Include="DataAccessLayer\IDataAccess.cs" />
     <Compile Include="DataAccessLayer\BaseTransaction.cs" />
     <Compile Include="DataLayer\RealmDataAccess.cs" />
     <Compile Include="DataLayer\RealmTransaction.cs" />
+    <Compile Include="Helpers\Settings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -88,6 +90,14 @@
       <HintPath>..\..\packages\Unity.4.0.1\lib\portable-net45+wp80+win8+wpa81+MonoAndroid10+MonoTouch10\Microsoft.Practices.Unity.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Plugin.Settings, Version=2.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xam.Plugins.Settings.2.5.0-beta8\lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10\Plugin.Settings.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Plugin.Settings.Abstractions, Version=2.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xam.Plugins.Settings.2.5.0-beta8\lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10\Plugin.Settings.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Realm, Version=0.77.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Realm.0.77.2\lib\portable-net45+sl5+wp8+wpa81+win8+monoandroid+Xamarin.iOS10+monotouch+Xamarin.Mac\Realm.dll</HintPath>
       <Private>True</Private>
@@ -96,9 +106,158 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\abdinghof.jpg" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="FodyWeavers.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\abdinghof_highlighted.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\bibliothek_teaser.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\bruecke_teaser.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\busdorfkirche_aussen.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\denkmalkdg.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\dom.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\dom_teaser.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\garten_teaser.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\kaiserpfalz_image_2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\kaiserpfalz_image_3_1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\kaiserpfalz_image_3_2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\kaiserpfalz_image_4.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\kaiserpfalz_image_5_1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\kaiserpfalz_image_5_2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\kaiserpfalz_image_5_3.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\kaiserpfalz_image_7_1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\kaiserpfalz_slider_1_1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\kaiserpfalz_slider_1_2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\kaiserpfalz_slider_1_3.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\kaiserpfalz_slider_1_4.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\kaiserpfalz_slider_1_5.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\kaiserpfalz_slider_7_1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\kaiserpfalz_slider_7_2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\kaiserpfalz_slider_7_3.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\kaiserpfalz_teaser.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\karlsschule.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\liboriuskapelle.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\mariensaeule_teaser.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\pfalz.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\quellen1_teaser.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\quellen2_teaser.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\quellen3_teaser.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\route_karl.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\route_tag_bar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\route_tag_restaurant.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\sprechertext.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\sprechertext_1.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\sprechertext_2_1.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\sprechertext_2_2.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\sprechertext_3_1.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\sprechertext_3_2.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\sprechertext_4.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\sprechertext_5_1.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\sprechertext_5_2.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\sprechertext_5_3.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\sprechertext_7_1.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\sprechertext_7_2.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\sprechertext_8.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\theo_teaser.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

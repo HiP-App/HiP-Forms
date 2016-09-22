@@ -22,6 +22,7 @@ using Android.Views;
 using Android.Widget;
 using de.upb.hip.mobile.droid.Contracts;
 using de.upb.hip.mobile.droid.Helpers;
+using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.Common;
 using de.upb.hip.mobile.pcl.Common.Contracts;
 using de.upb.hip.mobile.pcl.DataAccessLayer;
@@ -56,27 +57,14 @@ namespace de.upb.hip.mobile.droid.Activities
             {
                 // setup IoCManager
                 IoCManager.UnityContainer.RegisterType<IDataAccess, RealmDataAccess>();
+                IoCManager.UnityContainer.RegisterType<IDataLoader, EmbeddedResourceDataLoader> ();
                 IoCManager.UnityContainer.RegisterType<IImageDimension, AndroidImageDimension> ();
-                IoCManager.UnityContainer.RegisterInstance (typeof(IDataLoader), new AndroidDataLoader (Assets));
+                //IoCManager.UnityContainer.RegisterInstance (typeof(IDataLoader), new AndroidDataLoader (Assets));
 
                 // setup KeyManager
                 KeyManager.Instance.RegisterProvider (new AndroidKeyProvider ());
 
-                if (!IsDatabaseUpToDate ())
-                {
-                    // Delete current database to avoid migration issues
-                    Realm.DeleteRealm (new RealmConfiguration ());
-
-                    // Insert Data
-                    var filler = new DbDummyDataFiller ();
-                    filler.InsertData ();
-
-                    // Update preferences indicating which database version is present
-                    ISharedPreferences pref = PreferenceManager.GetDefaultSharedPreferences (Application);
-                    var edit = pref.Edit ();
-                    edit.PutInt (DatabaseVersionKey, AndroidConstants.DatabaseVersion);
-                    edit.Apply ();
-                }
+                DbManager.UpdateDatabase ();
 
                 action = StartMainActivity;
 
@@ -112,13 +100,6 @@ namespace de.upb.hip.mobile.droid.Activities
         protected override void OnDestroy()
         {
             base.OnDestroy();
-        }
-
-        private bool IsDatabaseUpToDate ()
-        {
-            ISharedPreferences pref = PreferenceManager.GetDefaultSharedPreferences(Application);
-            var storedVersion = pref.GetInt (DatabaseVersionKey, -1);
-            return storedVersion == AndroidConstants.DatabaseVersion;
         }
     }
 }

@@ -20,9 +20,12 @@ namespace de.upb.hip.mobile.pcl.DataLayer {
 
         public Transaction Transaction { get; set; }
 
-        public RealmTransaction (Transaction transaction)
+        private Realm instance;
+
+        public RealmTransaction (Transaction transaction, Realm instance)
         {
             this.Transaction = transaction;
+            this.instance = instance;
         }
 
         public override void Commit ()
