@@ -59,5 +59,23 @@ namespace de.upb.hip.mobile.pcl.DataAccessLayer {
         /// <typeparam name="T">The type of the object being created. T needs to be subtype of RealmObject and implement the IIdentifiable interface.</typeparam>
         /// <returns>The instance.</returns>
         T CreateObject<T> () where T : RealmObject, IIdentifiable, new ();
+
+        /// <summary>
+        /// Gets the version number for the currently saved data.
+        /// </summary>
+        /// <returns>The version of the data.</returns>
+        int GetVersion ();
+
+        /// <summary>
+        /// Deletes the whole database.
+        /// </summary>
+        void DeleteDatabase ();
+
+        /// <summary>
+        /// Creates an empty database with the specified version.
+        /// </summary>
+        /// <param name="version">The version of the new database.</param>
+        void CreateDatabase (int version);
+
     }
 }

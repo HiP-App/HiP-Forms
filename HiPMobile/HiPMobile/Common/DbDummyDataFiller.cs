@@ -29,7 +29,7 @@ namespace de.upb.hip.mobile.droid.Helpers {
 
         private readonly IDataLoader dataLoader = IoCManager.UnityContainer.Resolve<IDataLoader> ();
 
-        private BaseTransaction t;
+        public static int DatabaseVersion { get; } = 1;
 
         public void InsertData ()
         {
