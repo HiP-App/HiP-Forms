@@ -79,39 +79,32 @@ limitations under the License.-->
   <!-- Strings for licensing -->
   <string name="licensing_title">Lizenzen</string>
   <string name="licensing_google_material_title_text">Material Icons</string>
-  <string name="licensing_google_material_body_text">
-    Von <a href="https://design.google.com/icons/">Google</a>, lizensiert unter
+  <string name="licensing_google_material_body_text">Von <a href="https://design.google.com/icons/">Google</a>, lizensiert unter
     <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>. Es wurden keine Änderungen vorgenommen.
   </string>
   <string name="licensing_osmdroid_title_text">osmdroid</string>
-  <string name="licensing_osmdroid_body_text">
-    Von <a href="https://github.com/osmdroid/osmdroid">osmdroid</a>, lizensiert unter
+  <string name="licensing_osmdroid_body_text">Von <a href="https://github.com/osmdroid/osmdroid">osmdroid</a>, lizensiert unter
     <a href="https://raw.githubusercontent.com/osmdroid/osmdroid/master/LICENSE">Apache License 2.0</a>. Es wurden keine Änderungen vorgenommen.
   </string>
   <string name="licensing_osmbonuspack_title_text">OSMBonusPack</string>
-  <string name="licensing_osmbonuspack_body_text">
-    Von <a href="https://github.com/MKergall/osmbonuspack">MKergall</a>, lizensiert unter
+  <string name="licensing_osmbonuspack_body_text">Von <a href="https://github.com/MKergall/osmbonuspack">MKergall</a>, lizensiert unter
     <a href="https://raw.githubusercontent.com/MKergall/osmbonuspack/master/LICENSE.md">GNU Lesser General Public License 3.0 (LGPL 3.0)</a>
     (ohne §5.d und §5.e). Es wurden keine Änderungen vorgenommen.
   </string>
   <string name="licensing_realm_title_text">Realm for Android</string>
-  <string name="licensing_realm_body_text">
-    Von <a href="https://github.com/realm/realm-java">Realm</a>, lizensiert unter
+  <string name="licensing_realm_body_text">Von <a href="https://github.com/realm/realm-java">Realm</a>, lizensiert unter
     <a href="https://raw.githubusercontent.com/realm/realm-java/master/LICENSE">Apache License 2.0</a>. Es wurden keine Änderungen vorgenommen.
   </string>
   <string name="licensing_mapicons_title_text">Map Icons</string>
-  <string name="licensing_mapicons_body_text">
-    Von <a href="https://mapicons.mapsmarker.com/">Maps Icons Collection</a>, lizensiert unter
+  <string name="licensing_mapicons_body_text">Von <a href="https://mapicons.mapsmarker.com/">Maps Icons Collection</a>, lizensiert unter
     <a href="http://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA 3.0</a>. Es wurden keine Änderungen vorgenommen.
   </string>
   <string name="licensing_photoview_title_text">PhotoView</string>
-  <string name="licensing_photoview_body_text">
-    Von <a href="https://github.com/chrisbanes/PhotoView">ChrisBanes</a>, lizensiert unter
+  <string name="licensing_photoview_body_text">Von <a href="https://github.com/chrisbanes/PhotoView">ChrisBanes</a>, lizensiert unter
     <a href="https://raw.githubusercontent.com/chrisbanes/PhotoView/master/LICENSE">Apache License 2.0</a>. Es wurden keine Änderungen vorgenommen.
   </string>
   <string name="licensing_unity_title_text">Unity</string>
-  <string name="licensing_unity_body_text">
-    Von <a href="https://github.com/unitycontainer/unity\">Microsoft</a>, lizensiert unter
+  <string name="licensing_unity_body_text">Von <a href="https://github.com/unitycontainer/unity\">Microsoft</a>, lizensiert unter
     <a href="https://opensource.org/licenses/Apache-2.0">Apache License 2.0</a>. Es wurden keine Änderungen vorgenommen.
   </string>
 
