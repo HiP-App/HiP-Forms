@@ -4,13 +4,20 @@ using CoreGraphics;
 using CoreLocation;
 using UIKit;
 using MapKit;
+using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
+using de.upb.hip.mobile.pcl.BusinessLayer.Models;
+using System.Collections.Generic;
+//using de.upb.hip.mobile.pcl.DataAccessLayer;
+
 
 namespace HiPMobile.iOS
 {
     public partial class HomeScreenViewController : UIViewController
     {
+        private List<ExhibitCellViewModel> exhibits;
         public HomeScreenViewController(IntPtr handle) : base(handle)
         {
+            exhibits = new List<ExhibitCellViewModel>();
         }
 
         public override void ViewDidLoad()
@@ -36,9 +43,29 @@ namespace HiPMobile.iOS
             mapView.RotateEnabled = false;
 
             //tableView
+            this.exhibitsTableView.RowHeight = 44;
             exhibitsTableView.RegisterNibForCellReuse(UINib.FromName("ExhibitTableViewCell", null),
                 ExhibitTableViewCell.key);
-            exhibitsTableView.Source = new ExhibitsTableViewSource();
+
+            ExhibitsTableViewSource source = new ExhibitsTableViewSource();
+            source.Exhibits = this.LoadExhibitsData();
+            exhibitsTableView.Source = source;
+
+            
+
+        }
+
+        private List<ExhibitCellViewModel> LoadExhibitsData()
+        {
+            List<ExhibitCellViewModel> exhibits = new List<ExhibitCellViewModel>();
+            IEnumerable<Exhibit> exhibitsData = ExhibitManager.GetExhibits();
+            foreach (Exhibit exhibit in exhibitsData)
+            {
+                ExhibitCellViewModel exhibitCellModel = new ExhibitCellViewModel(exhibit.Image, exhibit.Name);
+                exhibits.Add(exhibitCellModel);
+            }
+
+            return exhibits;
 
         }
 
@@ -62,14 +89,14 @@ namespace HiPMobile.iOS
 
         private class ExhibitsTableViewSource : UITableViewSource
         {
-            public ExhibitCellViewModel[] Exhibits { get; set; }
-
+            //public ExhibitCellViewModel[] Exhibits { get; set; }
+            public List<ExhibitCellViewModel> Exhibits { get; set; }        
+                        
             public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
             {
                 ExhibitTableViewCell cell =
                     tableView.DequeueReusableCell(ExhibitTableViewCell.key) as ExhibitTableViewCell;
-                cell.SetUpimageAppearance();
-                cell.BackgroundColor = UIColor.Cyan;
+                cell.PopulateCell(Exhibits[indexPath.Row].Image, Exhibits[indexPath.Row].Name);                
                 return cell;
             }
 
@@ -77,10 +104,15 @@ namespace HiPMobile.iOS
             {
                 if (Exhibits != null)
                 {
-                    return Exhibits.Length;
+                    return Exhibits.Count;
                 }
 
-                return 2;
+                return 0;
+            }
+
+            public override nfloat GetHeightForRow(UITableView tableView, NSIndexPath indexPath)
+            {
+                return 44;  
             }
         }
     }

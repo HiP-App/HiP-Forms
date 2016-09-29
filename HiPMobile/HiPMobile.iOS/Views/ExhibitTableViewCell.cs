@@ -3,6 +3,7 @@ using System;
 using CoreGraphics;
 using UIKit;
 
+
 namespace HiPMobile.iOS
 {
     public partial class ExhibitTableViewCell : UITableViewCell
@@ -14,23 +15,21 @@ namespace HiPMobile.iOS
             
         }
 
-        public void SetUpimageAppearance()
+        public void SetUpimageAppearance(nfloat cornerRadius)
         {
-            exhibitImageView.Layer.CornerRadius = 25;
-            exhibitImageView.Layer.MasksToBounds = true;
-            exhibitImageView.Image = UIImage.FromFile("hiphop.jpg");
-
+            this.ImageView.Layer.CornerRadius = cornerRadius;
+            this.ImageView.Layer.MasksToBounds = true;
+            //exhibitImageView.Image = UIImage.FromFile("hiphop.jpg");
         }
 
-        public void Image(UIImage image)
+        public void PopulateCell(UIImage image, string text)
         {
-            exhibitImageView.Image = image;
-        }
-
-        public void Text(string text)
-        {
-            exhibitName.Text = text;
-        }
-
+           UIImage smallImage = image.Scale(new CGSize(this.Frame.Size.Height, this.Frame.Size.Height));
+            
+            this.ImageView.Image = smallImage;
+            nfloat n = this.ImageView.Frame.Height;
+            SetUpimageAppearance(22);
+            this.TextLabel.Text = text;
+          }
     }
 }

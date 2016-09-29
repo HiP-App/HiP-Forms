@@ -35,12 +35,12 @@ namespace HiPMobile.iOS
             menuTableView.Hidden = true;
             shadowView.Hidden = true;
 
-            // Move this block to the Launch screen
-            IoCManager.UnityContainer.RegisterType<IDataAccess, RealmDataAccess>();
-            IoCManager.UnityContainer.RegisterType<IDataLoader, EmbeddedResourceDataLoader>();
-            IoCManager.UnityContainer.RegisterType<IImageDimension, IosImageDimensions> ();
-            DbManager.UpdateDatabase ();
-            // End of block
+            //// Move this block to the Launch screen
+            //IoCManager.UnityContainer.RegisterType<IDataAccess, RealmDataAccess>();
+            //IoCManager.UnityContainer.RegisterType<IDataLoader, EmbeddedResourceDataLoader>();
+            //IoCManager.UnityContainer.RegisterType<IImageDimension, IosImageDimensions> ();
+            //DbManager.UpdateDatabase ();
+            //// End of block
         }
 
         public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
