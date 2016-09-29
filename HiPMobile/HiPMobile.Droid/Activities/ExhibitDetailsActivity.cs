@@ -550,6 +550,7 @@ namespace de.upb.hip.mobile.droid.Activities {
         private void ShowCaptions ()
         {
             // TODO: adapt this to retrieved data
+            isCaptionShown = true;
             var caption = exhibit.Pages [currentPageIndex].Audio.Caption;
 
             /*** Uncomment this to test the footnote support ***/
@@ -597,7 +598,11 @@ namespace de.upb.hip.mobile.droid.Activities {
             // add click listener to close button that dismisses the dialog
             var closeBtn = (Button) dialog.FindViewById (Resource.Id.captionDialogCloseButton);
             if (closeBtn != null)
-                closeBtn.Click += (sender, args) => { dialog.Dismiss (); };
+                closeBtn.Click += (sender, args) => {
+                    isCaptionShown = false;
+                    dialog.Dismiss ();
+                    ReactToAudioCompletion(sender, args);
+                };
 
             dialog.Show ();
         }
@@ -704,6 +709,11 @@ namespace de.upb.hip.mobile.droid.Activities {
         private bool showAudioToolbarFlag = false;
 
         /// <summary>
+        ///     Used to indicate if the captions are currently displyed
+        /// </summary>
+        private bool isCaptionShown = false;
+
+        /// <summary>
         ///     Handler is needed for UI updates (especially media player - audio progress bar)
         /// </summary>
         private readonly Handler handler = new Handler ();
@@ -787,7 +797,7 @@ namespace de.upb.hip.mobile.droid.Activities {
         {
             isAudioPlaying = false;
             UpdatePlayPauseButtonIcon();
-            if (sharedPreferences.GetBoolean (Resources.GetString (Resource.String.pref_auto_page_switch_key), false)) 
+            if (sharedPreferences.GetBoolean (Resources.GetString (Resource.String.pref_auto_page_switch_key), false) && !isCaptionShown) 
                 DisplayNextExhibitPage ();
         }
 
