@@ -99,8 +99,9 @@ namespace de.upb.hip.mobile.droid.Activities {
 
             geoPoints = new List<GeoPoint> ();
             // getting location
-            GpsTracker = new ExtendedLocationListener (Application.Context);
-            gpsLocation = new GeoPoint (GpsTracker.Latitude, GpsTracker.Longitude);
+            GpsTracker = ExtendedLocationListener.GetInstance();
+            GpsTracker.SetContext(Application.Context);
+            gpsLocation = new GeoPoint(GpsTracker.GetLocation().Latitude, GpsTracker.GetLocation().Longitude);
 
             // TODO Remove this as soon as no needs to run in emulator
             // set default coordinats for emulator
@@ -108,22 +109,23 @@ namespace de.upb.hip.mobile.droid.Activities {
                 Build.Model.Contains ("Emulator") ||
                 Build.Model.Contains ("Android SDK"))
             {
-                gpsLocation = new GeoPoint (ExtendedLocationListener.PADERBORN_HBF.Latitude,
-                                            ExtendedLocationListener.PADERBORN_HBF.Longitude);
+                gpsLocation = new GeoPoint(AndroidConstants.PADERBORN_HBF.Latitude,
+                                            AndroidConstants.PADERBORN_HBF.Longitude);
             }
             //catch if gps ist still zero
             if (gpsLocation.Latitude == 0f && gpsLocation.Longitude == 0f)
-                gpsLocation = new GeoPoint (ExtendedLocationListener.PADERBORN_HBF.Latitude,
-                                            ExtendedLocationListener.PADERBORN_HBF.Longitude);
+                gpsLocation = new GeoPoint(AndroidConstants.PADERBORN_HBF.Latitude,
+                                            AndroidConstants.PADERBORN_HBF.Longitude);
 
-            foreach (var provider in GpsTracker.LocationManager.GetProviders (true))
-            {
-                GpsTracker.LocationManager.RequestLocationUpdates (
-                    provider,
-                    ExtendedLocationListener.MIN_TIME_BW_UPDATES,
-                    ExtendedLocationListener.MIN_DISTANCE_CHANGE_FOR_UPDATES,
-                    this);
-            }
+            //the ExtendedLocationListener handles this by itself, this shouldn't be needed anymore
+            //foreach (var provider in GpsTracker.LocationManager.GetProviders (true))
+            //{
+            //    GpsTracker.LocationManager.RequestLocationUpdates (
+            //        provider,
+            //        ExtendedLocationListener.MIN_TIME_BW_UPDATES,
+            //        ExtendedLocationListener.MIN_DISTANCE_CHANGE_FOR_UPDATES,
+            //        this);
+            //}
 
             //Get the Route from RouteDetailsActivity
             var extras = Intent.Extras;
@@ -333,6 +335,13 @@ namespace de.upb.hip.mobile.droid.Activities {
                 var ivManeuverIcon = (ImageView) FindViewById (Resource.Id.routeNavigationManeuverIcon);
                 ivManeuverIcon.SetImageBitmap (((BitmapDrawable) image).Bitmap);
             }*/
+        }
+
+        protected override void OnDestroy()
+        {
+            GpsTracker.Unregister();
+
+            base.OnDestroy();
         }
 
         #region notImplented

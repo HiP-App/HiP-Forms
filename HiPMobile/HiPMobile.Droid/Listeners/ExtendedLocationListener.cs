@@ -4,120 +4,106 @@ using Android.Content;
 using Android.Locations;
 using Android.OS;
 using Android.Provider;
+using Android.Support.V4.App;
 using Android.Util;
+using Android.Widget;
+using System.Collections.Generic;
 using de.upb.hip.mobile.droid.Activities;
+using de.upb.hip.mobile.droid.Helpers;
+using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
+using System.Linq;
 
 namespace de.upb.hip.mobile.droid.Listeners
 {
+    /// <summary>
+    /// This class follows the singleton pattern.
+    /// This enables the ExtendedLocationListener to be called in any arbitrary activity without having to move the
+    /// binder through several activities or restarting the ExtendedLocationListener everytime (as this is a service).
+    /// </summary>
     public class ExtendedLocationListener : Service, ILocationListener
     {
-        // The minimum distance to change Updates in meters
-        public static readonly long MIN_DISTANCE_CHANGE_FOR_UPDATES = 2; // 2 meters
-                                                                      // The minimum time between updates in milliseconds
-        public static readonly long MIN_TIME_BW_UPDATES = 2000; // 2 sec
+        //for singleton pattern implementation
+        static ExtendedLocationListener instance = new ExtendedLocationListener();
+
+        //for the class itself
         private Context context;
-        // Declaring a Location Manager
-        public LocationManager LocationManager { get; private set; }
+        
+        public LocationManager locationManager;
         // Flag for GPS status
         public bool CanGetLocation { get; private set; } = false;
+        //---------------------------------------------------------------------------------------------------
+
+
         private Location location; // Location
         private string LOG_TAG = "ExtendedLocationListener";
-        public static readonly GeoLocation PADERBORN_HBF;
 
-        static ExtendedLocationListener()
+        //checking for distance towards exhibits
+        private ExhibitSet exhibitSet;
+        //only check the ones, that weren't reached or have been out of reach in between. 
+        //checkedExhibits contains those exhibits, that will be skipped
+        private List<String> checkedExhibits;
+        //only check if it is wanted
+        private bool checkForExhibitsEnabled = false;
+
+
+        #region singleton setup
+        /// <summary>
+        /// Since the ExtendedLocationListener will be created as a singleton from a static context,
+        /// it can't get any attributes during creation and neither during getting an instance of it.
+        /// Thus, the programmer has to make sure to give the ExtendedLocationListener a context
+        /// right after callinge getInstance(), otherwise the class is useless.
+        /// </summary>
+        private ExtendedLocationListener()
         {
-            PADERBORN_HBF = new GeoLocation()
-            {
-                Latitude = 51.71352,
-                Longitude = 8.74021
-            };
-        }
-
-        public ExtendedLocationListener(Context context)
-        {  
-            this.context = context;
-            GetLocation();
+            exhibitSet = ExhibitManager.GetExhibitSet();
+            checkedExhibits = new List<String>();
         }
 
         /// <summary>
-        /// Returns the current location of the device, if GPS or internet connection is available,
-        /// else it returns the last known location or null.
+        /// Returns the one and only instance of the extended location listener,
+        /// iff the caller provides the context and an exhibitSet is set.
         /// </summary>
-        /// <returns>Location</returns>
+        /// <param name="context"></param>
+        /// <returns></returns>
+        public static ExtendedLocationListener GetInstance()
+        {
+            return instance;
+        }
+
+        public void SetContext(Context context)
+        {
+            this.context = context;
+        }
+
+        public void Initialize(LocationManager locMgr)
+        {
+            locationManager = locMgr;
+            ChangeGpsProvider();
+        }
+
+        /// <summary>
+        /// unregister resets context and settings. this should be called by every activity when it is destroyed
+        /// or doesn't use the ExtendedLocationListener anymore
+        /// </summary>
+        public void Unregister()
+        {
+            context = null;
+            checkForExhibitsEnabled = false;
+            checkedExhibits.Clear();
+        }
+
+        #endregion
+
         public Location GetLocation()
         {
-            try
-            {
-                LocationManager = (LocationManager)context.GetSystemService(LocationService);
-
-                // Getting GPS status
-                bool gpsEnabled = LocationManager.IsProviderEnabled(LocationManager.GpsProvider);
-
-                // Getting network status
-                bool networkEnabled = LocationManager.IsProviderEnabled(
-                        LocationManager.NetworkProvider);
-
-                if (!gpsEnabled && !networkEnabled)
-                {
-                    // No network provider is enabled
-                    CanGetLocation = false;
-                }
-                else
-                {
-                    this.CanGetLocation = true;
-                    if (networkEnabled)
-                    {
-                        LocationManager.RequestLocationUpdates(
-                                LocationManager.NetworkProvider,
-                                MIN_TIME_BW_UPDATES,
-                                MIN_DISTANCE_CHANGE_FOR_UPDATES, this);
-                        if (LocationManager != null)
-                        {
-                            location = LocationManager.GetLastKnownLocation(
-                                    LocationManager.NetworkProvider);
-                        }
-                    }
-
-                    // If GPS enabled, get mLatitude/mLongitude using GPS Services
-                    if (gpsEnabled)
-                    {
-                        if (location == null)
-                        {
-                            LocationManager.RequestLocationUpdates(
-                                    LocationManager.GpsProvider,
-                                    MIN_TIME_BW_UPDATES,
-                                    MIN_DISTANCE_CHANGE_FOR_UPDATES, this);
-                            if (LocationManager != null)
-                            {
-                                location = LocationManager.GetLastKnownLocation(
-                                        LocationManager.GpsProvider);
-                            }
-                        }
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-                Log.Error(LOG_TAG, e.Message);
-            }
-
             return location;
         }
 
         /// <summary>
-        /// Stop using GPS listener
-        /// Calling this function will stop using GPS in your app.
+        /// The longitude of the last know location or 0 otherwise.
         /// </summary>
-        public void StopUsingGps()
-        {
-            LocationManager?.RemoveUpdates(this);
-        }
-
-       /// <summary>
-       /// The longitude of the last know location or 0 otherwise.
-       /// </summary>
-        public double Longitude
+        private double Longitude
         {
             get
             {
@@ -133,7 +119,7 @@ namespace de.upb.hip.mobile.droid.Listeners
         /// <summary>
         /// The latitude of the last known location or 0 otherwise
         /// </summary>
-        public double Latitude
+        private double Latitude
         {
             get
             {
@@ -146,7 +132,7 @@ namespace de.upb.hip.mobile.droid.Listeners
             }       
         }
 
-        public void showSettingsAlert()
+        public void ShowSettingsAlert()
         {
             AlertDialog.Builder alertDialog = new AlertDialog.Builder(context);
 
@@ -186,23 +172,193 @@ namespace de.upb.hip.mobile.droid.Listeners
 
         public void OnLocationChanged(Location location)
         {
-           /* Activity activity = (Activity)ApplicationContext;
-            if (activity.GetType() == typeof(MainActivity)) {
-            MainActivity mainActivity = (MainActivity)activity;
-            //mainActivity.UpdatePosition(location);*/
+            this.location = location;
+
+            if(context == null)
+            {
+                context = Android.App.Application.Context;
+            }
+
+            if (checkForExhibitsEnabled)
+            {   //even if the activity wants this to check for locations, a new activity can't be startet 
+                //without the listener having a context
+                CheckVicinityForExhibits();
+            }
+            
         }
 
+        #region exhibitcheck handling
+        public void EnableCheckForExhibits()
+        {
+            checkForExhibitsEnabled = true;
+        }
 
+        public void DisableCheckForExhibits()
+        {
+            checkForExhibitsEnabled = false;
+        }
+
+        /// <summary>
+        /// checks the close vicinity for exhibits and asks the user, if he wants to open
+        /// the ExhibitDetailsActivity for an exhibit in the vicinity.
+        /// "exhibit in the vicinity" means, that the user's gps position is some 10m around
+        /// the exhibit location - however an exhibit may be an area and thus needs to be conidered
+        /// </summary>
+        private void CheckVicinityForExhibits()
+        {
+            Location curLoc = location;
+            // TODO: to be deleted when issue is done
+            //GeoLocation curLoc = exhibitSet[0].Location;    //only for testing purposes; 
+            foreach (Exhibit e in exhibitSet)
+            {
+                //following code is to ignore already checked exhibits
+                bool disregard = false;
+                foreach (String exhibitId in checkedExhibits)
+                {
+                    if (GetDistance(curLoc, e.Location) >= 0.01)
+                    {   //TODO: check not only for the given location, but consider the location size 
+                        //(e.g. a large area like the kaiserpfalz)
+                        checkedExhibits.Remove(exhibitId);
+                        checkedExhibits.TrimExcess();   //this is to keep the size information accurate
+                        disregard = true; //it was just checked, that it outdistances the threshold, no need to check again
+                        break;
+                    }
+                    if (e.Equals(exhibitId))
+                    {
+                        disregard = true;
+                        break;
+                    }
+                }
+                if (disregard)
+                {
+                    continue;
+                }
+
+                if (GetDistance(curLoc, e.Location) < 0.01) //10m
+                {   //the exhibit must not be checked with the user, until it was out of reach at least once (distance>=0.01)
+                    /*idea: leave it in the list, but start a second list with all exhibits that were reached.
+                            check those everytime for surpassing the border, and if they did, put them out of the list
+                            check in the if-question, if distance is lower than 10m and if it is not in the extra list 
+                            (see checkedExhibits.Remove)*/
+                    checkedExhibits.Add(e.Name);
+
+                    //event or popup notification here
+                    AlertDialog.Builder alert = new AlertDialog.Builder(context);
+                    alert.SetTitle("Exhibit Alert!");
+                    alert.SetMessage(Resource.String.exhibit_is_near1 + e.Name + Resource.String.exhibit_is_near2);
+                    alert.SetPositiveButton(Resource.String.exhibit_open_yes, (senderAlert, args) => {
+                        Toast.MakeText(this.context, "Opened", ToastLength.Short).Show();
+                        Intent intent = new Intent(this.context, typeof(ExhibitDetailsActivity));
+                        var pageList = e.Pages;
+                        if (pageList == null || !pageList.Any())
+                        {
+                            Toast.MakeText(this.context,
+                                            this.context.GetString(Resource.String.currently_no_further_info),
+                                            ToastLength.Short).Show();
+                        }
+                        else
+                        {
+                            intent.PutExtra(ExhibitDetailsActivity.INTENT_EXTRA_EXHIBIT_ID, e.Id);
+                            context.StartActivity(intent);
+                        }
+                    });
+
+                    alert.SetNegativeButton(Resource.String.exhibit_open_no, (senderAlert, args) => {
+                        //Toast.MakeText(this.context, "Canceled!", ToastLength.Short).Show();
+
+                    });
+
+                    Dialog dialog = alert.Create();
+                    dialog.Show();
+                }
+            }
+        }
+        #endregion
+
+        #region provider handling
         public void OnProviderDisabled(string provider)
         {
+            ChangeGpsProvider();
         }
 
         public void OnProviderEnabled(string provider)
         {
+            ChangeGpsProvider();
         }
 
         public void OnStatusChanged(string provider, Availability status, Bundle extras)
         {
+            ChangeGpsProvider();
         }
+
+        private void ChangeGpsProvider()
+        {
+            //get best suited provider
+            Criteria locationCriteria = new Criteria();
+
+            locationCriteria.Accuracy = Accuracy.Coarse;
+            locationCriteria.PowerRequirement = Power.Medium;
+
+            var locationProvider = locationManager.GetBestProvider(locationCriteria, true);
+
+            if (locationProvider != null)
+            {
+                locationManager.RequestLocationUpdates(locationProvider, AndroidConstants.MIN_TIME_BW_UPDATES,
+                   AndroidConstants.MIN_DISTANCE_CHANGE_FOR_UPDATES, this, Looper.MainLooper);
+
+                location = locationManager.GetLastKnownLocation(locationProvider);  //this is needed especially for the first
+                                                                                    //time the location needs to be set
+            }
+            else
+            {
+                ShowSettingsAlert();
+                Log.Info(LOG_TAG, "No location providers available");
+            }
+        }
+        #endregion
+
+        #region distance calculation
+        public double GetDistance(Location a, Location b)
+        {
+            return DistanceCalculation(a.Latitude,  a.Longitude,  b.Latitude, b.Longitude);
+        }
+
+        public double GetDistance(GeoLocation a, Location b)
+        {
+            return DistanceCalculation(a.Latitude, a.Longitude, b.Latitude, b.Longitude);
+        }
+
+        public double GetDistance(Location a, GeoLocation b)
+        {
+            return DistanceCalculation(a.Latitude, a.Longitude, b.Latitude, b.Longitude);
+        }
+
+        public double GetDistance(GeoLocation a, GeoLocation b)
+        {
+            return DistanceCalculation(a.Latitude, a.Longitude, b.Latitude, b.Longitude);
+        }
+
+        ///<summary>
+        /// distance calculations as presented on http://andrew.hedges.name/experiments/haversine/
+        ///</summary>
+        //dlon = lon2 - lon1
+        //dlat = lat2 - lat1
+        //a = (sin(dlat/2))^2 + cos(lat1) * cos(lat2) * (sin(dlon/2))^2
+        //c = 2 * atan2(sqrt(a), sqrt(1-a) )
+        //d = R* c(where R is the radius of the Earth; 6373km as used in Exhibit class)
+        private double DistanceCalculation(double lat1, double long1, double lat2, double long2)
+        {
+            double dlon = toRadians(long2 - long1);
+            double dlat = toRadians(lat2 - lat1);
+            double a = Math.Pow(Math.Sin(dlat/2), 2) + Math.Cos(toRadians(lat1) ) * Math.Cos(toRadians(lat2)) * Math.Pow(Math.Sin(dlon/2), 2);
+            double c = 2 * Math.Atan2(Math.Sqrt(a), Math.Sqrt(1 - a));
+            return 6373 * c;
+        }
+
+        private double toRadians(double deg)
+        {
+            return deg * (Math.PI / 180);
+        }
+        #endregion
     }
 }

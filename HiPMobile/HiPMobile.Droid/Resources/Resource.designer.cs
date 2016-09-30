@@ -3196,11 +3196,11 @@ namespace de.upb.hip.mobile.droid
 			// aapt resource value: 0x7f080012
 			public const int abc_toolbar_collapse_description = 2131230738;
 			
-			// aapt resource value: 0x7f08009c
-			public const int action_audio = 2131230876;
+			// aapt resource value: 0x7f0800a0
+			public const int action_audio = 2131230880;
 			
-			// aapt resource value: 0x7f0800a4
-			public const int after_christ = 2131230884;
+			// aapt resource value: 0x7f0800a8
+			public const int after_christ = 2131230888;
 			
 			// aapt resource value: 0x7f08005f
 			public const int app_name = 2131230815;
@@ -3208,20 +3208,20 @@ namespace de.upb.hip.mobile.droid
 			// aapt resource value: 0x7f080014
 			public const int appbar_scrolling_view_behavior = 2131230740;
 			
+			// aapt resource value: 0x7f0800a7
+			public const int audio_pausing_indicator = 2131230887;
+			
+			// aapt resource value: 0x7f0800a6
+			public const int audio_playing_indicator = 2131230886;
+			
 			// aapt resource value: 0x7f0800a3
-			public const int audio_pausing_indicator = 2131230883;
+			public const int audio_toolbar_cc = 2131230883;
+			
+			// aapt resource value: 0x7f0800a1
+			public const int audio_toolbar_play_pause = 2131230881;
 			
 			// aapt resource value: 0x7f0800a2
-			public const int audio_playing_indicator = 2131230882;
-			
-			// aapt resource value: 0x7f08009f
-			public const int audio_toolbar_cc = 2131230879;
-			
-			// aapt resource value: 0x7f08009d
-			public const int audio_toolbar_play_pause = 2131230877;
-			
-			// aapt resource value: 0x7f08009e
-			public const int audio_toolbar_progress = 2131230878;
+			public const int audio_toolbar_progress = 2131230882;
 			
 			// aapt resource value: 0x7f080015
 			public const int bottom_sheet_behavior = 2131230741;
@@ -3232,14 +3232,14 @@ namespace de.upb.hip.mobile.droid
 			// aapt resource value: 0x7f080016
 			public const int character_counter_pattern = 2131230742;
 			
-			// aapt resource value: 0x7f0800a1
-			public const int close = 2131230881;
+			// aapt resource value: 0x7f0800a5
+			public const int close = 2131230885;
 			
 			// aapt resource value: 0x7f080084
 			public const int creating_map = 2131230852;
 			
-			// aapt resource value: 0x7f0800a7
-			public const int currently_no_further_info = 2131230887;
+			// aapt resource value: 0x7f0800ab
+			public const int currently_no_further_info = 2131230891;
 			
 			// aapt resource value: 0x7f080079
 			public const int departure = 2131230841;
@@ -3259,8 +3259,20 @@ namespace de.upb.hip.mobile.droid
 			// aapt resource value: 0x7f080081
 			public const int empty_route = 2131230849;
 			
-			// aapt resource value: 0x7f0800a5
-			public const int fragment_exhibitpage_image_button_text = 2131230885;
+			// aapt resource value: 0x7f08008b
+			public const int exhibit_is_near1 = 2131230859;
+			
+			// aapt resource value: 0x7f08008c
+			public const int exhibit_is_near2 = 2131230860;
+			
+			// aapt resource value: 0x7f08008e
+			public const int exhibit_open_no = 2131230862;
+			
+			// aapt resource value: 0x7f08008d
+			public const int exhibit_open_yes = 2131230861;
+			
+			// aapt resource value: 0x7f0800a9
+			public const int fragment_exhibitpage_image_button_text = 2131230889;
 			
 			// aapt resource value: 0x7f08008a
 			public const int gps_not_enabled_message = 2131230858;
@@ -3481,8 +3493,8 @@ namespace de.upb.hip.mobile.droid
 			// aapt resource value: 0x7f08005d
 			public const int hockeyapp_update_version_details_label = 2131230813;
 			
-			// aapt resource value: 0x7f0800a6
-			public const int information = 2131230886;
+			// aapt resource value: 0x7f0800aa
+			public const int information = 2131230890;
 			
 			// aapt resource value: 0x7f08007e
 			public const int itinerary_markers_title = 2131230846;
@@ -3490,53 +3502,53 @@ namespace de.upb.hip.mobile.droid
 			// aapt resource value: 0x7f08005e
 			public const int license_name = 2131230814;
 			
-			// aapt resource value: 0x7f08008f
-			public const int licensing_google_material_body_text = 2131230863;
-			
-			// aapt resource value: 0x7f08008e
-			public const int licensing_google_material_title_text = 2131230862;
-			
-			// aapt resource value: 0x7f080097
-			public const int licensing_mapicons_body_text = 2131230871;
-			
-			// aapt resource value: 0x7f080096
-			public const int licensing_mapicons_title_text = 2131230870;
-			
 			// aapt resource value: 0x7f080093
-			public const int licensing_osmbonuspack_body_text = 2131230867;
+			public const int licensing_google_material_body_text = 2131230867;
 			
 			// aapt resource value: 0x7f080092
-			public const int licensing_osmbonuspack_title_text = 2131230866;
-			
-			// aapt resource value: 0x7f080091
-			public const int licensing_osmdroid_body_text = 2131230865;
-			
-			// aapt resource value: 0x7f080090
-			public const int licensing_osmdroid_title_text = 2131230864;
-			
-			// aapt resource value: 0x7f080099
-			public const int licensing_photoview_body_text = 2131230873;
-			
-			// aapt resource value: 0x7f080098
-			public const int licensing_photoview_title_text = 2131230872;
-			
-			// aapt resource value: 0x7f080095
-			public const int licensing_realm_body_text = 2131230869;
-			
-			// aapt resource value: 0x7f080094
-			public const int licensing_realm_title_text = 2131230868;
-			
-			// aapt resource value: 0x7f08008d
-			public const int licensing_title = 2131230861;
+			public const int licensing_google_material_title_text = 2131230866;
 			
 			// aapt resource value: 0x7f08009b
-			public const int licensing_unity_body_text = 2131230875;
+			public const int licensing_mapicons_body_text = 2131230875;
 			
 			// aapt resource value: 0x7f08009a
-			public const int licensing_unity_title_text = 2131230874;
+			public const int licensing_mapicons_title_text = 2131230874;
 			
-			// aapt resource value: 0x7f0800a0
-			public const int lorem_100_words = 2131230880;
+			// aapt resource value: 0x7f080097
+			public const int licensing_osmbonuspack_body_text = 2131230871;
+			
+			// aapt resource value: 0x7f080096
+			public const int licensing_osmbonuspack_title_text = 2131230870;
+			
+			// aapt resource value: 0x7f080095
+			public const int licensing_osmdroid_body_text = 2131230869;
+			
+			// aapt resource value: 0x7f080094
+			public const int licensing_osmdroid_title_text = 2131230868;
+			
+			// aapt resource value: 0x7f08009d
+			public const int licensing_photoview_body_text = 2131230877;
+			
+			// aapt resource value: 0x7f08009c
+			public const int licensing_photoview_title_text = 2131230876;
+			
+			// aapt resource value: 0x7f080099
+			public const int licensing_realm_body_text = 2131230873;
+			
+			// aapt resource value: 0x7f080098
+			public const int licensing_realm_title_text = 2131230872;
+			
+			// aapt resource value: 0x7f080091
+			public const int licensing_title = 2131230865;
+			
+			// aapt resource value: 0x7f08009f
+			public const int licensing_unity_body_text = 2131230879;
+			
+			// aapt resource value: 0x7f08009e
+			public const int licensing_unity_title_text = 2131230878;
+			
+			// aapt resource value: 0x7f0800a4
+			public const int lorem_100_words = 2131230884;
 			
 			// aapt resource value: 0x7f080086
 			public const int map_quest_key = 2131230854;
@@ -3544,26 +3556,26 @@ namespace de.upb.hip.mobile.droid
 			// aapt resource value: 0x7f080066
 			public const int menu_activity_route_filter = 2131230822;
 			
-			// aapt resource value: 0x7f0800b3
-			public const int nav_feedback = 2131230899;
-			
-			// aapt resource value: 0x7f0800b0
-			public const int nav_home_title = 2131230896;
+			// aapt resource value: 0x7f0800b7
+			public const int nav_feedback = 2131230903;
 			
 			// aapt resource value: 0x7f0800b4
-			public const int nav_licenses_title = 2131230900;
+			public const int nav_home_title = 2131230900;
 			
-			// aapt resource value: 0x7f0800b2
-			public const int nav_preferences_title = 2131230898;
+			// aapt resource value: 0x7f0800b8
+			public const int nav_licenses_title = 2131230904;
 			
-			// aapt resource value: 0x7f0800b1
-			public const int nav_route_title = 2131230897;
+			// aapt resource value: 0x7f0800b6
+			public const int nav_preferences_title = 2131230902;
 			
-			// aapt resource value: 0x7f08008b
-			public const int network_connection = 2131230859;
+			// aapt resource value: 0x7f0800b5
+			public const int nav_route_title = 2131230901;
 			
-			// aapt resource value: 0x7f08008c
-			public const int network_message = 2131230860;
+			// aapt resource value: 0x7f08008f
+			public const int network_connection = 2131230863;
+			
+			// aapt resource value: 0x7f080090
+			public const int network_message = 2131230864;
 			
 			// aapt resource value: 0x7f080080
 			public const int no_route = 2131230848;
@@ -3571,26 +3583,26 @@ namespace de.upb.hip.mobile.droid
 			// aapt resource value: 0x7f080085
 			public const int osm_contributors = 2131230853;
 			
-			// aapt resource value: 0x7f0800aa
-			public const int pref_auto_page_switch_key = 2131230890;
+			// aapt resource value: 0x7f0800ae
+			public const int pref_auto_page_switch_key = 2131230894;
 			
-			// aapt resource value: 0x7f0800ac
-			public const int pref_auto_page_switch_summ = 2131230892;
-			
-			// aapt resource value: 0x7f0800ab
-			public const int pref_auto_page_switch_title = 2131230891;
-			
-			// aapt resource value: 0x7f0800ad
-			public const int pref_auto_start_audio_key = 2131230893;
+			// aapt resource value: 0x7f0800b0
+			public const int pref_auto_page_switch_summ = 2131230896;
 			
 			// aapt resource value: 0x7f0800af
-			public const int pref_auto_start_audio_summ = 2131230895;
+			public const int pref_auto_page_switch_title = 2131230895;
 			
-			// aapt resource value: 0x7f0800ae
-			public const int pref_auto_start_audio_title = 2131230894;
+			// aapt resource value: 0x7f0800b1
+			public const int pref_auto_start_audio_key = 2131230897;
 			
-			// aapt resource value: 0x7f0800a9
-			public const int pref_cat_exhibitdetails_title = 2131230889;
+			// aapt resource value: 0x7f0800b3
+			public const int pref_auto_start_audio_summ = 2131230899;
+			
+			// aapt resource value: 0x7f0800b2
+			public const int pref_auto_start_audio_title = 2131230898;
+			
+			// aapt resource value: 0x7f0800ad
+			public const int pref_cat_exhibitdetails_title = 2131230893;
 			
 			// aapt resource value: 0x7f08007f
 			public const int route = 2131230847;
@@ -3625,8 +3637,8 @@ namespace de.upb.hip.mobile.droid
 			// aapt resource value: 0x7f080088
 			public const int settings = 2131230856;
 			
-			// aapt resource value: 0x7f0800a8
-			public const int source_substitute = 2131230888;
+			// aapt resource value: 0x7f0800ac
+			public const int source_substitute = 2131230892;
 			
 			// aapt resource value: 0x7f080076
 			public const int splash_screen_check_connection = 2131230838;

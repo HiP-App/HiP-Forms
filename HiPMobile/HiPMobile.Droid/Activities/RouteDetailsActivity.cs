@@ -50,7 +50,8 @@ namespace de.upb.hip.mobile.droid.Activities
             var extras = Intent.Extras;
             string routeId = extras.GetString(KEY_ROUTE_ID);
             route = RouteManager.GetRoute(routeId);
-            gpsTracker = new ExtendedLocationListener(this);
+            gpsTracker = ExtendedLocationListener.GetInstance();
+            gpsTracker.SetContext(this);
 
             if (route != null)
             {
@@ -58,12 +59,12 @@ namespace de.upb.hip.mobile.droid.Activities
                 if (gpsTracker.CanGetLocation)
                 {
                     currentUserLocation = new GeoPoint(
-                            gpsTracker.Latitude, gpsTracker.Longitude);
+                            gpsTracker.GetLocation().Latitude, gpsTracker.GetLocation().Longitude);
                 }
 
                 // remove this for reals usage
-                currentUserLocation = new GeoPoint(ExtendedLocationListener.PADERBORN_HBF.Latitude,
-                    ExtendedLocationListener.PADERBORN_HBF.Longitude);
+                currentUserLocation = new GeoPoint(AndroidConstants.PADERBORN_HBF.Latitude,
+                    AndroidConstants.PADERBORN_HBF.Longitude);
 
                 Title = route.Title;
                 InitRouteInfo();
@@ -368,6 +369,13 @@ namespace de.upb.hip.mobile.droid.Activities
             }
 
             return base.OnOptionsItemSelected(item);
+        }
+
+        protected override void OnDestroy()
+        {
+            gpsTracker.Unregister();
+
+            base.OnDestroy();
         }
 
         /// <summary>

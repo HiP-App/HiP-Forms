@@ -21,12 +21,13 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models
 {
 	using Realms;
 	using System;
+    using System.Collections;
 	using System.Collections.Generic;
 	using System.Linq;
 	using System.Text;
 
-	public partial class ExhibitSet : RealmObject, IIdentifiable
-	{
+	public partial class ExhibitSet : RealmObject, IIdentifiable, IEnumerable<Exhibit>
+    {
 		//Attributes
 		[ObjectId]
 		public string Id{ get; set; }
@@ -43,6 +44,24 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models
 		// Contructor
 		public ExhibitSet(){
 		}
-	}
+
+        public Exhibit this[int index]
+        {
+            get { return ActiveSet.ElementAt<Exhibit>(index); }
+            set { ActiveSet.Insert(index, value); }
+        }
+
+        public IEnumerator<Exhibit> GetEnumerator()
+        {
+            return ActiveSet.GetEnumerator();
+            //throw new NotImplementedException();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return this.GetEnumerator();
+            //throw new NotImplementedException();
+        }
+    }
 }
 
