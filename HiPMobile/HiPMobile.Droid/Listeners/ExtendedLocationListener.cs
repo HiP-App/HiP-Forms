@@ -207,17 +207,18 @@ namespace de.upb.hip.mobile.droid.Listeners
         private void CheckVicinityForExhibits()
         {
             Location curLoc = location;
-            // TODO: to be deleted when issue is done
-            //GeoLocation curLoc = exhibitSet[0].Location;    //only for testing purposes; 
             foreach (Exhibit e in exhibitSet)
             {
                 //following code is to ignore already checked exhibits
                 bool disregard = false;
                 foreach (String exhibitId in checkedExhibits)
                 {
-                    if (GetDistance(curLoc, e.Location) >= 0.01)
-                    {   //TODO: check not only for the given location, but consider the location size 
-                        //(e.g. a large area like the kaiserpfalz)
+                    if (GetDistance(curLoc, e.Location) >= 0.01 + e.Radius)    //it may be better to let the radius
+                                                                    //and the radius only decide, when to
+                                                                    //ask to open the exhibit details
+                                                                    //however, the standard value is 0, so the
+                                                                    //10m will stay for now as a basic value
+                    {
                         checkedExhibits.Remove(exhibitId);
                         checkedExhibits.TrimExcess();   //this is to keep the size information accurate
                         disregard = true; //it was just checked, that it outdistances the threshold, no need to check again
@@ -338,6 +339,9 @@ namespace de.upb.hip.mobile.droid.Listeners
             return DistanceCalculation(a.Latitude, a.Longitude, b.Latitude, b.Longitude);
         }
 
+
+        //TODO: this is also implemented in the Exhibit.cs (nongenerated) code. 
+        //one implementation should suffice in the future (e.g. extra math/util class)
         ///<summary>
         /// distance calculations as presented on http://andrew.hedges.name/experiments/haversine/
         ///</summary>
