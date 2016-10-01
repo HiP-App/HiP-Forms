@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" dslVersion="1.0.0.0" Id="6b05da09-e50e-49a4-b7cd-067c54ec5237" name="DomainModel" linkedPackageId="1d07aa28-da84-4248-8417-a1263c2ba8bf" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
+<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" dslVersion="1.0.0.0" Id="6b05da09-e50e-49a4-b7cd-067c54ec5237" name="DomainModel" linkedPackageId="1d07aa28-da84-4248-8417-a1263c2ba8bf" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
   <appliedStereotypesInternal>
     <stereotypeInstance Id="fb053eca-b839-49a2-8ced-e4d803ff45fa" name="namespace" profile="CSharpProfile">
       <elementDefinition Id="0f9065fc-a3ba-4906-bdc4-899451c2267d" />
@@ -672,6 +672,12 @@
                   <elementDefinition Id="04c30ed2-f1e4-4c35-8823-37d66937d9aa" />
                   <type_NamedElement>
                     <referencedTypeMoniker Id="4538633c-e19b-41aa-9054-5579f0bdc0aa" LastKnownName="MapMarker" />
+                  </type_NamedElement>
+                </property>
+                <property Id="26ea63b7-ac24-4b65-a1a6-e7d6ac83ed9c" name="int" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="43a146cc-0c5f-4593-bf20-07d0cea694da" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="eafed750-3d79-4891-a837-7fe9d26a0d0a" LastKnownName="Radius" />
                   </type_NamedElement>
                 </property>
               </ownedAttributesInternal>
@@ -4500,6 +4506,11 @@
     <packageHasNamedElement>
       <referencedType Id="3f9c4c32-15ff-411c-8ba7-5fc0d2c7e166" name="double" isAbstract="false" isLeaf="false" cachedFullName="HiPDomainModel::double">
         <elementDefinition Id="e9a1f9c5-a9a7-4b27-8e15-fb3118c01617" />
+      </referencedType>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <referencedType Id="eafed750-3d79-4891-a837-7fe9d26a0d0a" name="Radius" isAbstract="false" isLeaf="false" cachedFullName="Radius">
+        <elementDefinition Id="7778cb90-4958-44fe-8a20-898608f7fae5" />
       </referencedType>
     </packageHasNamedElement>
   </packagedElements>

@@ -37,11 +37,13 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models
 
 		public virtual GeoLocation Location{ get; set; }
 
-		public IList<StringElement> Categories{ get; }
+		public virtual IList<StringElement> Categories{ get; }
 
 		public virtual IList<StringElement> Tags{ get; }
 
 		public virtual MapMarker Marker{ get; set; }
+
+		public virtual Radius int{ get; set; }
 
 		//Associations
 		public virtual IList<Page> Pages{ get; }
