@@ -148,6 +148,7 @@
     <Compile Include="Activities\RouteFilterActivity.cs" />
     <Compile Include="Activities\RouteActivity.cs" />
     <Compile Include="Activities\SettingsActivity.cs" />
+    <Compile Include="Adapters\ExtendedLocationListenerAdapter.cs" />
     <Compile Include="Adapters\RouteRecyclerAdapter.cs" />
     <Compile Include="Activities\RouteDetailsActivity.cs" />
     <Compile Include="Contracts\AndroidDataLoader.cs" />

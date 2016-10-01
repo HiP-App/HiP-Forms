@@ -9,6 +9,7 @@ using Android.Util;
 using Android.Widget;
 using System.Collections.Generic;
 using de.upb.hip.mobile.droid.Activities;
+using de.upb.hip.mobile.droid.Adapters;
 using de.upb.hip.mobile.droid.Helpers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
@@ -28,6 +29,7 @@ namespace de.upb.hip.mobile.droid.Listeners
 
         //for the class itself
         private Context context;
+        private ExtendedLocationListenerAdapter currentAdapter;
         
         public LocationManager locationManager;
         // Flag for GPS status
@@ -45,6 +47,7 @@ namespace de.upb.hip.mobile.droid.Listeners
         private List<String> checkedExhibits;
         //only check if it is wanted
         private bool checkForExhibitsEnabled = false;
+        private bool getLocationUpdates = false;
 
 
         #region singleton setup
@@ -89,11 +92,28 @@ namespace de.upb.hip.mobile.droid.Listeners
         public void Unregister()
         {
             context = null;
+            currentAdapter = null;
+            getLocationUpdates = false;
             checkForExhibitsEnabled = false;
             checkedExhibits.Clear();
         }
 
         #endregion
+
+        public void EnableLocationUpdates()
+        {
+            getLocationUpdates = true;
+        }
+
+        public void DisableLocationUpdates()
+        {
+            getLocationUpdates = false;
+        }
+
+        public void setExtendedLocationListenerAdapter(ExtendedLocationListenerAdapter adapter)
+        {
+            currentAdapter = adapter;
+        }
 
         public Location GetLocation()
         {
@@ -172,11 +192,23 @@ namespace de.upb.hip.mobile.droid.Listeners
 
         public void OnLocationChanged(Location location)
         {
+            Location oldLoc = new Location(location);
             this.location = location;
 
             if(context == null)
             {
                 context = Android.App.Application.Context;
+            }
+
+            if(getLocationUpdates)
+            {
+                if(currentAdapter != null)
+                {
+                    if(GetDistance(location, oldLoc) >= 0.002) //only update, if the distance changed for more than 2m
+                    {
+                        currentAdapter.LocationChanged(location);
+                    }
+                }
             }
 
             if (checkForExhibitsEnabled)
