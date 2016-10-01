@@ -6,24 +6,24 @@
   <MessageClass Name="Error" Label="Fehler" Option="Fehler anzeigen" />
   <MessageClass Name="Property" Label="Eigenschaft" Option="Metadaten anzeigen" />
   <MessageClass Name="Diagnostic" Label="Meldung" Option="Diagnosemeldungen anzeigen" />
-  <Message Timestamp="2016-10-01T10:32:40" Importance="High" Text="Die Codegenerierung oder Texttransformation wurde gestartet." />
-  <Message Timestamp="2016-10-01T10:32:41" Importance="Diagnostic" Text="Name = ClassTemplate" />
-  <Message Timestamp="2016-10-01T10:32:41" Importance="Diagnostic" Text="Überschreiben = True" />
-  <Message Timestamp="2016-10-01T10:32:41" Importance="Diagnostic" Text="ProjectPath = ..\..\HiPMobile\HiPMobile\HiPMobile.csproj" />
-  <Message Timestamp="2016-10-01T10:32:41" Importance="Diagnostic" Text="TargetDirectory = BusinessLayer\Models\GeneratedCode\" />
-  <Message Timestamp="2016-10-01T10:32:41" Importance="Diagnostic" Text="TargetName = {Name}" />
-  <Message Timestamp="2016-10-01T10:32:41" Importance="Diagnostic" Text="TemplateFilePath = .\Templates\ClassTemplate.t4" />
-  <Message Timestamp="2016-10-01T10:32:41" Importance="Diagnostic" Text="ResolvedTemplateFilePath = C:\Users\Lobner\Desktop\UNI\Master\Projektgruppe\workspace\HiPDomainModel\HiPDomainModel\Templates\ClassTemplate.t4" />
-  <Message Timestamp="2016-10-01T10:32:41" Importance="Medium" Text="Die Textvorlagenbindung von HiPDomainModel::de.upb.hip.mobile.pcl.BusinessLayer.Models: 'ClassTemplate' wendet ClassTemplate.t4 an für: 'HiPDomainModel::de.upb.hip.mobile.pcl.BusinessLayer.Models::Exhibit' -  (Class) " />
-  <Message Timestamp="2016-10-01T10:34:04" Importance="Medium" Text="'HiPDomainModel::de.upb.hip.mobile.pcl.BusinessLayer.Models::Exhibit' -  (Class) : Erfolg (Datei ersetzt) - C:\Users\Lobner\Desktop\UNI\Master\Projektgruppe\workspace\HiPMobile\HiPMobile\BusinessLayer\Models\GeneratedCode\Exhibit.cs" />
-  <Message Timestamp="2016-10-01T10:34:05" Importance="Diagnostic" Text="Name = StructTemplate" />
-  <Message Timestamp="2016-10-01T10:34:05" Importance="Diagnostic" Text="Überschreiben = True" />
-  <Message Timestamp="2016-10-01T10:34:05" Importance="Diagnostic" Text="ProjectPath = ..\HiPDomainModelLib\HiPDomainModelLib.csproj" />
-  <Message Timestamp="2016-10-01T10:34:05" Importance="Diagnostic" Text="TargetDirectory = GeneratedCode\{PackageStructure}" />
-  <Message Timestamp="2016-10-01T10:34:05" Importance="Diagnostic" Text="TargetName = {Name}" />
-  <Message Timestamp="2016-10-01T10:34:05" Importance="Diagnostic" Text="TemplateFilePath = C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 14.0\COMMON7\IDE\EXTENSIONS\MICROSOFT\ARCHITECTURE TOOLS\EXTENSIBILITY\Templates\Text\StructTemplate.t4" />
-  <Message Timestamp="2016-10-01T10:34:05" Importance="Diagnostic" Text="ResolvedTemplateFilePath = C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 14.0\COMMON7\IDE\EXTENSIONS\MICROSOFT\ARCHITECTURE TOOLS\EXTENSIBILITY\Templates\Text\StructTemplate.t4" />
-  <Message Timestamp="2016-10-01T10:34:05" Importance="Medium" Text="Die Textvorlagenbindung von HiPDomainModel: 'StructTemplate' wendet StructTemplate.t4 an für: 'HiPDomainModel::de.upb.hip.mobile.pcl.BusinessLayer.Models::Exhibit' -  (Class) " />
-  <Message Timestamp="2016-10-01T10:34:07" Importance="Diagnostic" Text="'HiPDomainModel::de.upb.hip.mobile.pcl.BusinessLayer.Models::Exhibit' -  (Class): Es wurde keine Datei erstellt, da die 'AppliesToElement'-Methode der Vorlage 'StructTemplate.t4' als 'false' ausgewertet wurde." />
-  <Message Timestamp="2016-10-01T10:34:08" Importance="High" Text="Die Codegenerierung ist abgeschlossen. Fehler: 0. Warnungen: 0." />
+  <Message Timestamp="2016-10-01T11:02:40" Importance="High" Text="Die Codegenerierung oder Texttransformation wurde gestartet." />
+  <Message Timestamp="2016-10-01T11:02:40" Importance="Diagnostic" Text="Name = ClassTemplate" />
+  <Message Timestamp="2016-10-01T11:02:40" Importance="Diagnostic" Text="Überschreiben = True" />
+  <Message Timestamp="2016-10-01T11:02:40" Importance="Diagnostic" Text="ProjectPath = ..\..\HiPMobile\HiPMobile\HiPMobile.csproj" />
+  <Message Timestamp="2016-10-01T11:02:40" Importance="Diagnostic" Text="TargetDirectory = BusinessLayer\Models\GeneratedCode\" />
+  <Message Timestamp="2016-10-01T11:02:40" Importance="Diagnostic" Text="TargetName = {Name}" />
+  <Message Timestamp="2016-10-01T11:02:40" Importance="Diagnostic" Text="TemplateFilePath = .\Templates\ClassTemplate.t4" />
+  <Message Timestamp="2016-10-01T11:02:40" Importance="Diagnostic" Text="ResolvedTemplateFilePath = C:\Users\Lobner\Desktop\UNI\Master\Projektgruppe\workspace\HiPDomainModel\HiPDomainModel\Templates\ClassTemplate.t4" />
+  <Message Timestamp="2016-10-01T11:02:40" Importance="Medium" Text="Die Textvorlagenbindung von HiPDomainModel::de.upb.hip.mobile.pcl.BusinessLayer.Models: 'ClassTemplate' wendet ClassTemplate.t4 an für: 'HiPDomainModel::de.upb.hip.mobile.pcl.BusinessLayer.Models::ExhibitSet' -  (Class) " />
+  <Message Timestamp="2016-10-01T11:02:40" Importance="Medium" Text="'HiPDomainModel::de.upb.hip.mobile.pcl.BusinessLayer.Models::ExhibitSet' -  (Class) : Erfolg (Datei ersetzt) - C:\Users\Lobner\Desktop\UNI\Master\Projektgruppe\workspace\HiPMobile\HiPMobile\BusinessLayer\Models\GeneratedCode\ExhibitSet.cs" />
+  <Message Timestamp="2016-10-01T11:02:40" Importance="Diagnostic" Text="Name = StructTemplate" />
+  <Message Timestamp="2016-10-01T11:02:40" Importance="Diagnostic" Text="Überschreiben = True" />
+  <Message Timestamp="2016-10-01T11:02:40" Importance="Diagnostic" Text="ProjectPath = ..\HiPDomainModelLib\HiPDomainModelLib.csproj" />
+  <Message Timestamp="2016-10-01T11:02:40" Importance="Diagnostic" Text="TargetDirectory = GeneratedCode\{PackageStructure}" />
+  <Message Timestamp="2016-10-01T11:02:40" Importance="Diagnostic" Text="TargetName = {Name}" />
+  <Message Timestamp="2016-10-01T11:02:40" Importance="Diagnostic" Text="TemplateFilePath = C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 14.0\COMMON7\IDE\EXTENSIONS\MICROSOFT\ARCHITECTURE TOOLS\EXTENSIBILITY\Templates\Text\StructTemplate.t4" />
+  <Message Timestamp="2016-10-01T11:02:40" Importance="Diagnostic" Text="ResolvedTemplateFilePath = C:\PROGRAM FILES (X86)\MICROSOFT VISUAL STUDIO 14.0\COMMON7\IDE\EXTENSIONS\MICROSOFT\ARCHITECTURE TOOLS\EXTENSIBILITY\Templates\Text\StructTemplate.t4" />
+  <Message Timestamp="2016-10-01T11:02:40" Importance="Medium" Text="Die Textvorlagenbindung von HiPDomainModel: 'StructTemplate' wendet StructTemplate.t4 an für: 'HiPDomainModel::de.upb.hip.mobile.pcl.BusinessLayer.Models::ExhibitSet' -  (Class) " />
+  <Message Timestamp="2016-10-01T11:02:41" Importance="Diagnostic" Text="'HiPDomainModel::de.upb.hip.mobile.pcl.BusinessLayer.Models::ExhibitSet' -  (Class): Es wurde keine Datei erstellt, da die 'AppliesToElement'-Methode der Vorlage 'StructTemplate.t4' als 'false' ausgewertet wurde." />
+  <Message Timestamp="2016-10-01T11:02:41" Importance="High" Text="Die Codegenerierung ist abgeschlossen. Fehler: 0. Warnungen: 0." />
 </Log>

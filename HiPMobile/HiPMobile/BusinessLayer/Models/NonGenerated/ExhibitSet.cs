@@ -13,12 +13,34 @@
 // limitations under the License.
 
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Realms;
 
 namespace de.upb.hip.mobile.pcl.BusinessLayer.Models {
-    public partial class ExhibitSet {
+    public partial class ExhibitSet : IEnumerable<Exhibit>
+    {
+        #region IEnumerable interface
+        public Exhibit this[int index]
+        {
+            get { return ActiveSet.ElementAt<Exhibit>(index); }
+            set { ActiveSet.Insert(index, value); }
+        }
+
+        public IEnumerator<Exhibit> GetEnumerator()
+        {
+            return ActiveSet.GetEnumerator();
+            //throw new NotImplementedException();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return this.GetEnumerator();
+            //throw new NotImplementedException();
+        }
+
+        #endregion
 
         /// <summary>
         /// Update the currently active categories.
