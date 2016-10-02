@@ -14,6 +14,8 @@ using de.upb.hip.mobile.droid.Helpers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using System.Linq;
+using de.upb.hip.mobile.droid.fragments;
+
 
 namespace de.upb.hip.mobile.droid.Listeners
 {
@@ -278,33 +280,26 @@ namespace de.upb.hip.mobile.droid.Listeners
                     checkedExhibits.Add(e.Name);
 
                     //event or popup notification here
-                    AlertDialog.Builder alert = new AlertDialog.Builder(context);
-                    alert.SetTitle("Exhibit Alert!");
-                    alert.SetMessage(context.Resources.GetString(Resource.String.exhibit_is_near1) + e.Name + context.Resources.GetString(Resource.String.exhibit_is_near2));
-                    alert.SetPositiveButton(Resource.String.exhibit_open_yes, (senderAlert, args) => {
-                        Toast.MakeText(this.context, "Opened", ToastLength.Short).Show();
-                        Intent intent = new Intent(this.context, typeof(ExhibitDetailsActivity));
-                        var pageList = e.Pages;
-                        if (pageList == null || !pageList.Any())
-                        {
-                            Toast.MakeText(this.context,
-                                            this.context.GetString(Resource.String.currently_no_further_info),
-                                            ToastLength.Short).Show();
-                        }
-                        else
-                        {
-                            intent.PutExtra(ExhibitDetailsActivity.INTENT_EXTRA_EXHIBIT_ID, e.Id);
-                            context.StartActivity(intent);
-                        }
-                    });
+                    
+                    Activity tempActivity = (Activity)context;
 
-                    alert.SetNegativeButton(Resource.String.exhibit_open_no, (senderAlert, args) => {
-                        Toast.MakeText(this.context, "Canceled!", ToastLength.Short).Show();
+                    Android.App.FragmentTransaction ft = tempActivity.FragmentManager.BeginTransaction();
+                    //Remove fragment else it will crash as it is already added to backstack
+                    Android.App.Fragment prev = tempActivity.FragmentManager.FindFragmentByTag("dialog");
+                    if (prev != null)
+                    {
+                        ft.Remove(prev);
+                    }
 
-                    });
+                    ft.AddToBackStack(null);
 
-                    Dialog dialog = alert.Create();
-                    dialog.Show();
+                    // Create and show the dialog.
+                    RadiusAlertDialogFragment newFragment = RadiusAlertDialogFragment.NewInstance();
+                    newFragment.SetExhibit(e);
+
+                    //Add fragment
+                    newFragment.Show(ft, "dialog"); ;
+                    
                 }
             }
         }
