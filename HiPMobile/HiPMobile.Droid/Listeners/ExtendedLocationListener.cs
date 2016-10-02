@@ -204,10 +204,12 @@ namespace de.upb.hip.mobile.droid.Listeners
             {
                 if(currentAdapter != null)
                 {
-                    if(GetDistance(location, oldLoc) >= 0.002) //only update, if the distance changed for more than 2m
-                    {
-                        currentAdapter.LocationChanged(location);
-                    }
+                    currentAdapter.LocationChanged(location);
+
+                    /* if(GetDistance(location, oldLoc) >= 0.002) //only update, if the distance changed for more than 2m
+                     {
+                         currentAdapter.LocationChanged(location);
+                     }*/
                 }
             }
 
@@ -297,7 +299,7 @@ namespace de.upb.hip.mobile.droid.Listeners
                     });
 
                     alert.SetNegativeButton(Resource.String.exhibit_open_no, (senderAlert, args) => {
-                        //Toast.MakeText(this.context, "Canceled!", ToastLength.Short).Show();
+                        Toast.MakeText(this.context, "Canceled!", ToastLength.Short).Show();
 
                     });
 

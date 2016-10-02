@@ -25,6 +25,6 @@ namespace de.upb.hip.mobile.droid.Helpers {
         };
 
         public static readonly int MIN_TIME_BW_UPDATES = 2000; //2000 milliseconds (2seconds)
-        public static readonly int MIN_DISTANCE_CHANGE_FOR_UPDATES = 2; // 2 metres
+        public static readonly int MIN_DISTANCE_CHANGE_FOR_UPDATES = 10; // 2 metres
     }
 }

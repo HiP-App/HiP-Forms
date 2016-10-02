@@ -101,9 +101,10 @@ namespace de.upb.hip.mobile.droid.Activities {
             geoPoints = new List<GeoPoint> ();
             // getting location
             GpsTracker = ExtendedLocationListener.GetInstance();
-            GpsTracker.SetContext(Application.Context);
+            GpsTracker.SetContext(this);
             GpsTracker.setExtendedLocationListenerAdapter(this);
             GpsTracker.EnableLocationUpdates();
+            GpsTracker.EnableCheckForExhibits();
             gpsLocation = new GeoPoint(GpsTracker.GetLocation().Latitude, GpsTracker.GetLocation().Longitude);
 
             // TODO Remove this as soon as no needs to run in emulator
@@ -264,6 +265,7 @@ namespace de.upb.hip.mobile.droid.Activities {
         {
             //reset distance
             distanceWalked = 0;
+            position.Position = currentLocation;
 
             /* geoPoints.RemoveAt (0);
             geoPoints.Insert (0, currentLocation);
@@ -335,6 +337,48 @@ namespace de.upb.hip.mobile.droid.Activities {
             GpsTracker.Unregister();
 
             base.OnDestroy();
+        }
+
+        public void OnProviderDisabled(string provider)
+        {
+            Toast.MakeText(this, "GPS Disabled",
+                            ToastLength.Short).Show();
+        }
+
+        public void OnProviderEnabled(string provider)
+        {
+            Toast.MakeText(this, "GPS Enabled",
+                            ToastLength.Short).Show();
+        }
+
+        public void OnStatusChanged(string provider, [GeneratedEnum] Availability status, Bundle extras)
+        {
+            switch (status)
+            {
+                case Availability.OutOfService:
+                    Toast.MakeText(this, "Status Changed: Out of Service",
+                                    ToastLength.Short).Show();
+                    break;
+                case Availability.TemporarilyUnavailable:
+                    Toast.MakeText(this, "Status Changed: Temporarily Unavailable",
+                                    ToastLength.Short).Show();
+                    break;
+                case Availability.Available:
+                    Toast.MakeText(this, "Status Changed: Available",
+                                    ToastLength.Short).Show();
+                    break;
+            }
+        }
+
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            if (item.ItemId.Equals(Android.Resource.Id.Home))
+            {
+                SupportFinishAfterTransition();
+                return true;
+            }
+
+            return base.OnOptionsItemSelected(item);
         }
     }
 }
