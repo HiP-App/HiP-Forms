@@ -278,7 +278,7 @@ namespace de.upb.hip.mobile.droid.Listeners
                     //event or popup notification here
                     AlertDialog.Builder alert = new AlertDialog.Builder(context);
                     alert.SetTitle("Exhibit Alert!");
-                    alert.SetMessage(Resource.String.exhibit_is_near1 + e.Name + Resource.String.exhibit_is_near2);
+                    alert.SetMessage(context.Resources.GetString(Resource.String.exhibit_is_near1) + e.Name + context.Resources.GetString(Resource.String.exhibit_is_near2));
                     alert.SetPositiveButton(Resource.String.exhibit_open_yes, (senderAlert, args) => {
                         Toast.MakeText(this.context, "Opened", ToastLength.Short).Show();
                         Intent intent = new Intent(this.context, typeof(ExhibitDetailsActivity));
