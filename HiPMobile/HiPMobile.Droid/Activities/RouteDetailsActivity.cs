@@ -51,6 +51,8 @@ namespace de.upb.hip.mobile.droid.Activities
             string routeId = extras.GetString(KEY_ROUTE_ID);
             route = RouteManager.GetRoute(routeId);
             gpsTracker = ExtendedLocationListener.GetInstance();
+            gpsTracker.EnableLocationUpdates ();
+            gpsTracker.EnableCheckForExhibits ();
             gpsTracker.SetContext(this);
 
             if (route != null)
@@ -379,7 +381,29 @@ namespace de.upb.hip.mobile.droid.Activities
             gpsTracker.Unregister();
         }
 
+        protected override void OnResume ()
+        {
+            base.OnResume ();
+            gpsTracker = ExtendedLocationListener.GetInstance();
+            gpsTracker.SetContext(this);
+            gpsTracker.EnableCheckForExhibits();
+            gpsTracker.EnableLocationUpdates ();
+
+            if (gpsTracker.CanGetLocation)
+            {
+                currentUserLocation = new GeoPoint(
+                        gpsTracker.GetLocation().Latitude, gpsTracker.GetLocation().Longitude);
+            }
+        }
+
         protected override void OnStop()
+        {
+            base.OnStop();
+
+
+        }
+
+        protected override void OnPause()
         {
             base.OnStop();
             gpsTracker.Unregister();

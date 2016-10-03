@@ -207,12 +207,6 @@ namespace de.upb.hip.mobile.droid.Activities {
             UnregisterManagers ();
         }
 
-        protected override void OnStop ()
-        {
-            base.OnStop();
-            extendedLocationListener.Unregister();
-            
-        }
 
         protected override void OnResume ()
         {
@@ -241,7 +235,7 @@ namespace de.upb.hip.mobile.droid.Activities {
         protected override void OnPause ()
         {
             base.OnPause ();
-
+            extendedLocationListener.Unregister();
             // hockeyapp code
             UnregisterManagers ();
         }

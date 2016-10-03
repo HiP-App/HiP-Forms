@@ -339,11 +339,36 @@ namespace de.upb.hip.mobile.droid.Activities {
             base.OnDestroy();
         }
 
-        protected override void OnStop()
+        protected override void OnPause()
         {
-            base.OnStop();
+            base.OnPause();
             GpsTracker.Unregister();
 
+        }
+
+        protected override void OnResume ()
+        {
+            base.OnResume ();
+            GpsTracker = ExtendedLocationListener.GetInstance();
+            GpsTracker.SetContext(this);
+            GpsTracker.SetExtendedLocationListenerAdapter(this);
+            GpsTracker.EnableLocationUpdates();
+            GpsTracker.EnableCheckForExhibits();
+            gpsLocation = new GeoPoint(GpsTracker.GetLocation().Latitude, GpsTracker.GetLocation().Longitude);
+
+            // TODO Remove this as soon as no needs to run in emulator
+            // set default coordinats for emulator
+            if (Build.Model.Contains("google_sdk") ||
+                Build.Model.Contains("Emulator") ||
+                Build.Model.Contains("Android SDK"))
+            {
+                gpsLocation = new GeoPoint(AndroidConstants.PADERBORN_HBF.Latitude,
+                                            AndroidConstants.PADERBORN_HBF.Longitude);
+            }
+            //catch if gps ist still zero
+            if (gpsLocation.Latitude == 0f && gpsLocation.Longitude == 0f)
+                gpsLocation = new GeoPoint(AndroidConstants.PADERBORN_HBF.Latitude,
+                                            AndroidConstants.PADERBORN_HBF.Longitude);
         }
 
         public void OnProviderDisabled(string provider)
