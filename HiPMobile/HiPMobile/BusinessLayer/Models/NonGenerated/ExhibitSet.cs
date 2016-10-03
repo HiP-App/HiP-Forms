@@ -31,13 +31,11 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models {
         public IEnumerator<Exhibit> GetEnumerator()
         {
             return ActiveSet.GetEnumerator();
-            //throw new NotImplementedException();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
             return this.GetEnumerator();
-            //throw new NotImplementedException();
         }
 
         #endregion
@@ -113,7 +111,7 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models {
             }
         }
 
-        public void updatePosition (GeoLocation position)
+        public void UpdatePosition (GeoLocation position)
         {
             this.Position = position;
 

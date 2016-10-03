@@ -19,7 +19,6 @@ using System.Linq;
 using Android.App;
 using Android.Locations;
 using Android.OS;
-using Android.Runtime;
 using Android.Support.V4.Content;
 using Android.Support.V4.Content.Res;
 using Android.Support.V7.App;
@@ -43,7 +42,7 @@ using Toolbar = Android.Support.V7.Widget.Toolbar;
 
 namespace de.upb.hip.mobile.droid.Activities {
     [Activity (Theme = "@style/AppTheme", Label = "RouteNavigationActivity")]
-    public class RouteNavigationActivity : AppCompatActivity, ExtendedLocationListenerAdapter {//ILocationListener {
+    public class RouteNavigationActivity : AppCompatActivity, ExtendedLocationListenerAdapter {
 
         public const string IntentRoute = "route";
         private double distanceWalked;
@@ -332,13 +331,6 @@ namespace de.upb.hip.mobile.droid.Activities {
             }*/
         }
 
-        protected override void OnDestroy()
-        {
-
-
-            base.OnDestroy();
-        }
-
         protected override void OnPause()
         {
             base.OnPause();
@@ -369,37 +361,6 @@ namespace de.upb.hip.mobile.droid.Activities {
             if (gpsLocation.Latitude == 0f && gpsLocation.Longitude == 0f)
                 gpsLocation = new GeoPoint(AndroidConstants.PADERBORN_HBF.Latitude,
                                             AndroidConstants.PADERBORN_HBF.Longitude);
-        }
-
-        public void OnProviderDisabled(string provider)
-        {
-            Toast.MakeText(this, "GPS Disabled",
-                            ToastLength.Short).Show();
-        }
-
-        public void OnProviderEnabled(string provider)
-        {
-            Toast.MakeText(this, "GPS Enabled",
-                            ToastLength.Short).Show();
-        }
-
-        public void OnStatusChanged(string provider, [GeneratedEnum] Availability status, Bundle extras)
-        {
-            switch (status)
-            {
-                case Availability.OutOfService:
-                    Toast.MakeText(this, "Status Changed: Out of Service",
-                                    ToastLength.Short).Show();
-                    break;
-                case Availability.TemporarilyUnavailable:
-                    Toast.MakeText(this, "Status Changed: Temporarily Unavailable",
-                                    ToastLength.Short).Show();
-                    break;
-                case Availability.Available:
-                    Toast.MakeText(this, "Status Changed: Available",
-                                    ToastLength.Short).Show();
-                    break;
-            }
         }
 
         public override bool OnOptionsItemSelected(IMenuItem item)

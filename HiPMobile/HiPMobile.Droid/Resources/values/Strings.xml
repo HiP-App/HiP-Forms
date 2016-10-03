@@ -78,6 +78,7 @@ limitations under the License.-->
   so a basic "yes" and "no" answer has to suffice-->
   <string name="exhibit_open_yes">Ja</string>
   <string name="exhibit_open_no">Nein</string>
+  <string name="exhibit_is__near_title">Sehenswürdigkeit!</string>
 
   <!-- string for network connection -->
   <string name="network_connection">Netzwerkverbindung</string>

@@ -9,13 +9,11 @@ using Android.Support.V4.Content;
 using Android.Support.V7.App;
 using Android.Views;
 using Android.Widget;
-using de.upb.hip.mobile.droid.fragments;
 using de.upb.hip.mobile.droid.Helpers;
 using de.upb.hip.mobile.droid.Listeners;
 using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using Java.Lang;
-using Microsoft.Practices.ObjectBuilder2;
 using Org.Osmdroid;
 using Org.Osmdroid.Tileprovider.Tilesource;
 using Org.Osmdroid.Util;
@@ -86,13 +84,11 @@ namespace de.upb.hip.mobile.droid.Activities
             }
 
             Button button = (Button)this.FindViewById(Resource.Id.routeDetailsStartNavigationButton);
-            button.Click += (sender, args) =>
-            {
-            Intent intent = new Intent(this, typeof(RouteNavigationActivity));
-            intent.PutExtra(RouteNavigationActivity.IntentRoute, route.Id);
-            StartActivityForResult(intent, 1);
-
-    };
+            button.Click += (sender, args) => {
+                Intent intent = new Intent (this, typeof (RouteNavigationActivity));
+                intent.PutExtra (RouteNavigationActivity.IntentRoute, route.Id);
+                StartActivity(intent);
+            };
 
             View view = this.FindViewById(Resource.Id.routedetails_mapview);
             view.ViewTreeObserver.AddOnGlobalLayoutListener(new MapViewGlobalLayoutListener(this));
@@ -373,14 +369,6 @@ namespace de.upb.hip.mobile.droid.Activities
             return base.OnOptionsItemSelected(item);
         }
 
-        protected override void OnDestroy()
-        {
-            
-
-            base.OnDestroy();
-
-        }
-
         protected override void OnResume ()
         {
             base.OnResume ();
@@ -394,13 +382,6 @@ namespace de.upb.hip.mobile.droid.Activities
                 currentUserLocation = new GeoPoint(
                         gpsTracker.GetLocation().Latitude, gpsTracker.GetLocation().Longitude);
             }
-        }
-
-        protected override void OnStop()
-        {
-            base.OnStop();
-
-
         }
 
         protected override void OnPause()

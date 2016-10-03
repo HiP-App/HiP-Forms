@@ -18,8 +18,10 @@ using System.Linq;
 using Android.App;
 using Android.Content;
 using Android.OS;
+using Android.Views;
 using Android.Widget;
 using de.upb.hip.mobile.droid.Activities;
+using de.upb.hip.mobile.droid.Listeners;
 using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 
@@ -32,7 +34,6 @@ namespace de.upb.hip.mobile.droid.fragments {
         public static RadiusAlertDialogFragment NewInstance ()
         {
             var fragment = new RadiusAlertDialogFragment ();
-            var args = new Bundle ();
             return fragment;
         }
 
@@ -40,12 +41,12 @@ namespace de.upb.hip.mobile.droid.fragments {
         {
             if (savedInstanceState != null)
                 e = ExhibitManager.GetExhibit (savedInstanceState.GetString (Data));
+            
 
             var alert = new AlertDialog.Builder (Activity);
-            alert.SetTitle ("Exhibit Alert!");
-            alert.SetMessage (Activity.Resources.GetString (Resource.String.exhibit_is_near1) + e.Name + Activity.Resources.GetString (Resource.String.exhibit_is_near2));
+            alert.SetTitle (Resources.GetString (Resource.String.exhibit_is__near_title));
+            alert.SetMessage ($"{Activity.Resources.GetString (Resource.String.exhibit_is_near1)} \"{e.Name}\" {Activity.Resources.GetString (Resource.String.exhibit_is_near2)}");
             alert.SetPositiveButton (Resource.String.exhibit_open_yes, (senderAlert, args) => {
-                                         Toast.MakeText (Activity, "Opened", ToastLength.Short).Show ();
                                          var intent = new Intent (Activity, typeof (ExhibitDetailsActivity));
                                          var pageList = e.Pages;
                                          if ((pageList == null) || !pageList.Any ())
@@ -61,9 +62,15 @@ namespace de.upb.hip.mobile.droid.fragments {
                                          }
                                      });
 
-            alert.SetNegativeButton (Resource.String.exhibit_open_no, (senderAlert, args) => { Toast.MakeText (Activity, "Canceled!", ToastLength.Short).Show (); });
+            alert.SetNegativeButton (Resource.String.exhibit_open_no, (senderAlert, args) => {ExtendedLocationListener.GetInstance ().EnableCheckForExhibits ();});
 
             return alert.Create ();
+        }
+
+        public override View OnCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+        {
+            Dialog.SetCanceledOnTouchOutside(false);
+            return base.OnCreateView (inflater, container, savedInstanceState);
         }
 
 

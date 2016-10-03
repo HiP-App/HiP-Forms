@@ -14,19 +14,19 @@
 //  * limitations under the License.
 //  */
 
-using System;
 using System.Collections.Generic;
 using Android.App;
 using Android.Content;
 using Android.Locations;
 using Android.OS;
-using Android.Provider;
 using Android.Util;
 using de.upb.hip.mobile.droid.Adapters;
 using de.upb.hip.mobile.droid.fragments;
 using de.upb.hip.mobile.droid.Helpers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
+using de.upb.hip.mobile.pcl.Helpers;
+using Settings = Android.Provider.Settings;
 
 namespace de.upb.hip.mobile.droid.Listeners {
     /// <summary>
@@ -87,7 +87,6 @@ namespace de.upb.hip.mobile.droid.Listeners {
 
         public void OnLocationChanged (Location location)
         {
-            var oldLoc = new Location (location);
             this.location = location;
 
             if (context == null)
@@ -281,7 +280,9 @@ namespace de.upb.hip.mobile.droid.Listeners {
 
                     //Add fragment
                     newFragment.Show (ft, "dialog");
-                    ;
+
+                    // disable check for new exhibits as long as dialog is shown
+                    this.DisableCheckForExhibits ();
                 }
             }
         }
@@ -333,52 +334,10 @@ namespace de.upb.hip.mobile.droid.Listeners {
         #endregion
 
         #region distance calculation
-
-        public double GetDistance (Location a, Location b)
-        {
-            return DistanceCalculation (a.Latitude, a.Longitude, b.Latitude, b.Longitude);
-        }
-
-        public double GetDistance (GeoLocation a, Location b)
-        {
-            return DistanceCalculation (a.Latitude, a.Longitude, b.Latitude, b.Longitude);
-        }
-
         public double GetDistance (Location a, GeoLocation b)
         {
-            return DistanceCalculation (a.Latitude, a.Longitude, b.Latitude, b.Longitude);
+            return MathUtil.CalculateDistance(a.Latitude, a.Longitude, b.Latitude, b.Longitude);
         }
-
-        public double GetDistance (GeoLocation a, GeoLocation b)
-        {
-            return DistanceCalculation (a.Latitude, a.Longitude, b.Latitude, b.Longitude);
-        }
-
-
-        //TODO: this is also implemented in the Exhibit.cs (nongenerated) code. 
-        //one implementation should suffice in the future (e.g. extra math/util class)
-        /// <summary>
-        ///     distance calculations as presented on http://andrew.hedges.name/experiments/haversine/
-        /// </summary>
-        //dlon = lon2 - lon1
-        //dlat = lat2 - lat1
-        //a = (sin(dlat/2))^2 + cos(lat1) * cos(lat2) * (sin(dlon/2))^2
-        //c = 2 * atan2(sqrt(a), sqrt(1-a) )
-        //d = R* c(where R is the radius of the Earth; 6373km as used in Exhibit class)
-        private double DistanceCalculation (double lat1, double long1, double lat2, double long2)
-        {
-            var dlon = toRadians (long2 - long1);
-            var dlat = toRadians (lat2 - lat1);
-            var a = Math.Pow (Math.Sin (dlat / 2), 2) + Math.Cos (toRadians (lat1)) * Math.Cos (toRadians (lat2)) * Math.Pow (Math.Sin (dlon / 2), 2);
-            var c = 2 * Math.Atan2 (Math.Sqrt (a), Math.Sqrt (1 - a));
-            return 6373 * c;
-        }
-
-        private double toRadians (double deg)
-        {
-            return deg * (Math.PI / 180);
-        }
-
         #endregion
     }
 }
