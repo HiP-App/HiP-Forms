@@ -202,7 +202,7 @@ namespace de.upb.hip.mobile.droid.Activities {
 
 
             base.OnDestroy ();
-            extendedLocationListener.Unregister();
+
             // hockeyapp code
             UnregisterManagers ();
         }

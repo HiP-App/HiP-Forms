@@ -378,7 +378,7 @@ namespace de.upb.hip.mobile.droid.Activities
             
 
             base.OnDestroy();
-            gpsTracker.Unregister();
+
         }
 
         protected override void OnResume ()
