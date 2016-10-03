@@ -66,11 +66,19 @@ limitations under the License.-->
 
   <string name="map_quest_key">WRWdd9j02K8tGtERI2LtFiCLsRUKyJnJ</string>
 
-  <!-- string for GPSTracker -->
+  <!-- string for GPSTracker/ExtendedLocationListener -->
   <string name="gps_settings">GPS Einstellungen</string>
   <string name="settings">Einstellungen</string>
   <string name="cancel">Abbrechen</string>
   <string name="gps_not_enabled_message">GPS ist nicht aktiviert. Wollen Sie das Einstellungsmenü öffnen?</string>
+    <string name="exhibit_is_near1">Sie befinden sich in der Nähe von </string>
+  <string name="exhibit_is_near2">. Möchten Sie nähere Informationen dazu öffnen?</string>
+  <!-- strictly speaking this is bad button design. 
+  however there is only so much space for buttontexts
+  so a basic "yes" and "no" answer has to suffice-->
+  <string name="exhibit_open_yes">Ja</string>
+  <string name="exhibit_open_no">Nein</string>
+  <string name="exhibit_is__near_title">Sehenswürdigkeit!</string>
 
   <!-- string for network connection -->
   <string name="network_connection">Netzwerkverbindung</string>

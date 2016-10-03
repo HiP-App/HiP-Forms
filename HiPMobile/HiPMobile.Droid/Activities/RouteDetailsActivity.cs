@@ -9,13 +9,11 @@ using Android.Support.V4.Content;
 using Android.Support.V7.App;
 using Android.Views;
 using Android.Widget;
-using de.upb.hip.mobile.droid.fragments;
 using de.upb.hip.mobile.droid.Helpers;
 using de.upb.hip.mobile.droid.Listeners;
 using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using Java.Lang;
-using Microsoft.Practices.ObjectBuilder2;
 using Org.Osmdroid;
 using Org.Osmdroid.Tileprovider.Tilesource;
 using Org.Osmdroid.Util;
@@ -50,7 +48,10 @@ namespace de.upb.hip.mobile.droid.Activities
             var extras = Intent.Extras;
             string routeId = extras.GetString(KEY_ROUTE_ID);
             route = RouteManager.GetRoute(routeId);
-            gpsTracker = new ExtendedLocationListener(this);
+            gpsTracker = ExtendedLocationListener.GetInstance();
+            gpsTracker.EnableLocationUpdates ();
+            gpsTracker.EnableCheckForExhibits ();
+            gpsTracker.SetContext(this);
 
             if (route != null)
             {
@@ -58,12 +59,12 @@ namespace de.upb.hip.mobile.droid.Activities
                 if (gpsTracker.CanGetLocation)
                 {
                     currentUserLocation = new GeoPoint(
-                            gpsTracker.Latitude, gpsTracker.Longitude);
+                            gpsTracker.GetLocation().Latitude, gpsTracker.GetLocation().Longitude);
                 }
 
                 // remove this for reals usage
-                currentUserLocation = new GeoPoint(ExtendedLocationListener.PADERBORN_HBF.Latitude,
-                    ExtendedLocationListener.PADERBORN_HBF.Longitude);
+                currentUserLocation = new GeoPoint(AndroidConstants.PADERBORN_HBF.Latitude,
+                    AndroidConstants.PADERBORN_HBF.Longitude);
 
                 Title = route.Title;
                 InitRouteInfo();
@@ -83,13 +84,11 @@ namespace de.upb.hip.mobile.droid.Activities
             }
 
             Button button = (Button)this.FindViewById(Resource.Id.routeDetailsStartNavigationButton);
-            button.Click += (sender, args) =>
-            {
-            Intent intent = new Intent(this, typeof(RouteNavigationActivity));
-            intent.PutExtra(RouteNavigationActivity.IntentRoute, route.Id);
-            StartActivityForResult(intent, 1);
-
-    };
+            button.Click += (sender, args) => {
+                Intent intent = new Intent (this, typeof (RouteNavigationActivity));
+                intent.PutExtra (RouteNavigationActivity.IntentRoute, route.Id);
+                StartActivity(intent);
+            };
 
             View view = this.FindViewById(Resource.Id.routedetails_mapview);
             view.ViewTreeObserver.AddOnGlobalLayoutListener(new MapViewGlobalLayoutListener(this));
@@ -370,6 +369,28 @@ namespace de.upb.hip.mobile.droid.Activities
             return base.OnOptionsItemSelected(item);
         }
 
+        protected override void OnResume ()
+        {
+            base.OnResume ();
+            gpsTracker = ExtendedLocationListener.GetInstance();
+            gpsTracker.SetContext(this);
+            gpsTracker.EnableCheckForExhibits();
+            gpsTracker.EnableLocationUpdates ();
+
+            if (gpsTracker.CanGetLocation)
+            {
+                currentUserLocation = new GeoPoint(
+                        gpsTracker.GetLocation().Latitude, gpsTracker.GetLocation().Longitude);
+            }
+        }
+
+        protected override void OnPause()
+        {
+            base.OnStop();
+            gpsTracker.Unregister();
+
+        }
+
         /// <summary>
         /// Adds the marker with the data of t and put on the map.
         /// </summary>
@@ -423,5 +444,7 @@ namespace de.upb.hip.mobile.droid.Activities
                 parent.map.ZoomToBoundingBox(boundingBoxE6);
             }
         }
+
+      
     }
 }

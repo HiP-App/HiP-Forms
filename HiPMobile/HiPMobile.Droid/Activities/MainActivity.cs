@@ -30,6 +30,7 @@ using Android.Util;
 using Android.Views;
 using de.upb.hip.mobile.droid.fragments;
 using de.upb.hip.mobile.droid.Helpers;
+using de.upb.hip.mobile.droid.Listeners;
 using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using de.upb.hip.mobile.pcl.Common;
@@ -46,6 +47,7 @@ namespace de.upb.hip.mobile.droid.Activities {
         private DrawerLayout drawerLayout;
         private ExhibitSet exhibitSet;
         private GeoLocation geoLocation;
+        private ExtendedLocationListener extendedLocationListener;
 
         private string UpdateKey = "AskUpdates";
         public bool AskForUpdates = true;
@@ -63,14 +65,17 @@ namespace de.upb.hip.mobile.droid.Activities {
             // Note that the app will still fail on first launch and needs to be restarted
             SetUpPermissions ();
 
+            extendedLocationListener = ExtendedLocationListener.GetInstance();
+            extendedLocationListener.SetContext(this);
+            extendedLocationListener.EnableCheckForExhibits();
+
             geoLocation = new GeoLocation
             {
-                Latitude = 51.71352,
-                Longitude = 8.74021
+                Latitude = extendedLocationListener.GetLocation().Latitude,
+                Longitude = extendedLocationListener.GetLocation().Longitude
             };
 
             exhibitSet = ExhibitManager.GetExhibitSets ().First ();
-
 
             //Permissions
             SetUpPermissions ();
@@ -191,17 +196,35 @@ namespace de.upb.hip.mobile.droid.Activities {
 
         protected override void OnDestroy ()
         {
+
+
             base.OnDestroy ();
 
             // hockeyapp code
             UnregisterManagers ();
         }
 
+
         protected override void OnResume ()
         {
             base.OnResume ();
             var navigationView = FindViewById<NavigationView>(Resource.Id.nav_view);
             navigationView.Menu.GetItem (0).SetChecked (true);
+
+            extendedLocationListener = ExtendedLocationListener.GetInstance();
+            extendedLocationListener.SetContext(this);
+            extendedLocationListener.EnableCheckForExhibits();
+
+            geoLocation = new GeoLocation
+            {
+                //Latitude = 51.71352,
+                //Longitude = 8.74021
+
+                Latitude = extendedLocationListener.GetLocation().Latitude,
+                Longitude = extendedLocationListener.GetLocation().Longitude
+            };
+
+
             // hockeyapp code
             CheckForCrashes ();
         }
@@ -209,7 +232,7 @@ namespace de.upb.hip.mobile.droid.Activities {
         protected override void OnPause ()
         {
             base.OnPause ();
-
+            extendedLocationListener.Unregister();
             // hockeyapp code
             UnregisterManagers ();
         }

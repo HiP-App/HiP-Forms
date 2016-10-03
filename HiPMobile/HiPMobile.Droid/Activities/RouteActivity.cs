@@ -110,30 +110,29 @@ namespace de.upb.hip.mobile.droid.Activities
         protected override void OnActivityResult (int requestCode, Result resultCode, Intent data)
         {
             base.OnActivityResult (requestCode, resultCode, data);
-            //TODO: Comment this in again when Route Filter activity is ported
-            
-    switch (requestCode)
-    {
-        case ActivityFilterResult:
-            if (resultCode == Result.Canceled)
+
+            switch (requestCode)
             {
-                // User choosed not to save changes, don't do anything
-            }
-            else if (resultCode == Result.Ok)
-            {
-                string[] activeTags = data.GetStringArrayExtra (RouteFilterActivity.IntentActiveTags);
+                case ActivityFilterResult:
+                    if (resultCode == Result.Canceled)
+                    {
+                        // User choosed not to save changes, don't do anything
+                    }
+                    else if (resultCode == Result.Ok)
+                    {
+                        string[] activeTags = data.GetStringArrayExtra (RouteFilterActivity.IntentActiveTags);
                         this.ActiveTags.Clear ();
-                foreach (string tag in activeTags)
-                {
-                    this.ActiveTags.Add (tag);
-                }
-                mAdapter.NotifyDataSetChanged();
+                        foreach (string tag in activeTags)
+                        {
+                            this.ActiveTags.Add (tag);
+                        }
+                        mAdapter.NotifyDataSetChanged ();
+                    }
+                    break;
+                default:
+                    base.OnActivityResult (requestCode, resultCode, data);
+                    break;
             }
-            break;
-        default:
-            base.OnActivityResult(requestCode, resultCode, data);
-            break;
-    }
     
         }
 
