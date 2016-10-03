@@ -199,12 +199,19 @@ namespace de.upb.hip.mobile.droid.Activities {
 
         protected override void OnDestroy ()
         {
-            extendedLocationListener.Unregister();
+
 
             base.OnDestroy ();
-
+            extendedLocationListener.Unregister();
             // hockeyapp code
             UnregisterManagers ();
+        }
+
+        protected override void OnStop ()
+        {
+            base.OnStop();
+            extendedLocationListener.Unregister();
+            
         }
 
         protected override void OnResume ()
@@ -212,6 +219,21 @@ namespace de.upb.hip.mobile.droid.Activities {
             base.OnResume ();
             var navigationView = FindViewById<NavigationView>(Resource.Id.nav_view);
             navigationView.Menu.GetItem (0).SetChecked (true);
+
+            extendedLocationListener = ExtendedLocationListener.GetInstance();
+            extendedLocationListener.SetContext(this);
+            extendedLocationListener.EnableCheckForExhibits();
+
+            geoLocation = new GeoLocation
+            {
+                //Latitude = 51.71352,
+                //Longitude = 8.74021
+
+                Latitude = extendedLocationListener.GetLocation().Latitude,
+                Longitude = extendedLocationListener.GetLocation().Longitude
+            };
+
+
             // hockeyapp code
             CheckForCrashes ();
         }

@@ -339,6 +339,13 @@ namespace de.upb.hip.mobile.droid.Activities {
             base.OnDestroy();
         }
 
+        protected override void OnStop()
+        {
+            base.OnStop();
+            GpsTracker.Unregister();
+
+        }
+
         public void OnProviderDisabled(string provider)
         {
             Toast.MakeText(this, "GPS Disabled",

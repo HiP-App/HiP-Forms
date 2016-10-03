@@ -373,9 +373,17 @@ namespace de.upb.hip.mobile.droid.Activities
 
         protected override void OnDestroy()
         {
-            gpsTracker.Unregister();
+            
 
             base.OnDestroy();
+            gpsTracker.Unregister();
+        }
+
+        protected override void OnStop()
+        {
+            base.OnStop();
+            gpsTracker.Unregister();
+
         }
 
         /// <summary>
@@ -431,5 +439,7 @@ namespace de.upb.hip.mobile.droid.Activities
                 parent.map.ZoomToBoundingBox(boundingBoxE6);
             }
         }
+
+      
     }
 }
