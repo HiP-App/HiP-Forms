@@ -102,7 +102,7 @@ namespace de.upb.hip.mobile.droid.Activities {
             // getting location
             GpsTracker = ExtendedLocationListener.GetInstance();
             GpsTracker.SetContext(this);
-            GpsTracker.setExtendedLocationListenerAdapter(this);
+            GpsTracker.SetExtendedLocationListenerAdapter(this);
             GpsTracker.EnableLocationUpdates();
             GpsTracker.EnableCheckForExhibits();
             gpsLocation = new GeoPoint(GpsTracker.GetLocation().Latitude, GpsTracker.GetLocation().Longitude);
@@ -1145,8 +1145,8 @@ namespace de.upb.hip.mobile.droid.Activities {
 //            {
 //                MGpsTracker.LocationManager.RequestLocationUpdates (
 //                    provider,
-//                    ExtendedLocationListener.MIN_TIME_BW_UPDATES,
-//                    ExtendedLocationListener.MIN_DISTANCE_CHANGE_FOR_UPDATES,
+//                    ExtendedLocationListener.MinTimeBwUpdates,
+//                    ExtendedLocationListener.MinDistanceChangeForUpdates,
 //                    this);
 //                result = true;
 //            }

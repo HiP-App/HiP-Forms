@@ -111,7 +111,7 @@ namespace de.upb.hip.mobile.droid.Listeners {
             getLocationUpdates = false;
         }
 
-        public void setExtendedLocationListenerAdapter (ExtendedLocationListenerAdapter adapter)
+        public void SetExtendedLocationListenerAdapter (ExtendedLocationListenerAdapter adapter)
         {
             currentAdapter = adapter;
         }
@@ -234,7 +234,7 @@ namespace de.upb.hip.mobile.droid.Listeners {
                 var disregard = false;
                 foreach (var exhibitId in checkedExhibits)
                 {
-                    if (GetDistance (curLoc, e.Location) >= 0.01 + e.Radius) //it may be better to let the radius
+                    if (GetDistance (curLoc, e.Location) >= AndroidConstants.ExhibitRadius + e.Radius) //it may be better to let the radius
                         //and the radius only decide, when to
                         //ask to open the exhibit details
                         //however, the standard value is 0, so the
@@ -254,7 +254,7 @@ namespace de.upb.hip.mobile.droid.Listeners {
                 if (disregard)
                     continue;
 
-                if (GetDistance (curLoc, e.Location) < 0.01) //10m
+                if (GetDistance (curLoc, e.Location) < AndroidConstants.ExhibitRadius) //10m
                 {
                     //the exhibit must not be checked with the user, until it was out of reach at least once (distance>=0.01)
                     /*idea: leave it in the list, but start a second list with all exhibits that were reached.
@@ -317,8 +317,8 @@ namespace de.upb.hip.mobile.droid.Listeners {
 
             if (locationProvider != null)
             {
-                LocationManager.RequestLocationUpdates (locationProvider, AndroidConstants.MIN_TIME_BW_UPDATES,
-                                                        AndroidConstants.MIN_DISTANCE_CHANGE_FOR_UPDATES, this, Looper.MainLooper);
+                LocationManager.RequestLocationUpdates (locationProvider, AndroidConstants.MinTimeBwUpdates,
+                                                        AndroidConstants.MinDistanceChangeForUpdates, this, Looper.MainLooper);
 
                 location = LocationManager.GetLastKnownLocation (locationProvider); //this is needed especially for the first
                 //time the location needs to be set

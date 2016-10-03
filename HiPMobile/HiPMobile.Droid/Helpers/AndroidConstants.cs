@@ -24,7 +24,9 @@ namespace de.upb.hip.mobile.droid.Helpers {
             Longitude = 8.74021
         };
 
-        public static readonly int MIN_TIME_BW_UPDATES = 2000; //2000 milliseconds (2seconds)
-        public static readonly int MIN_DISTANCE_CHANGE_FOR_UPDATES = 10; // 2 metres
+        public static readonly int MinTimeBwUpdates = 2000; //2000 milliseconds (2seconds)
+        public static readonly int MinDistanceChangeForUpdates = 10; // 2 metres
+        public static readonly double ExhibitRadius = 0.02; // 20m
+
     }
 }
