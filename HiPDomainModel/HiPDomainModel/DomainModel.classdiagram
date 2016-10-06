@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" dslVersion="1.0.0.0" Id="6b05da09-e50e-49a4-b7cd-067c54ec5237" name="DomainModel" linkedPackageId="1d07aa28-da84-4248-8417-a1263c2ba8bf" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
+<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" dslVersion="1.0.0.0" Id="6b05da09-e50e-49a4-b7cd-067c54ec5237" name="DomainModel" linkedPackageId="1d07aa28-da84-4248-8417-a1263c2ba8bf" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
   <appliedStereotypesInternal>
     <stereotypeInstance Id="fb053eca-b839-49a2-8ced-e4d803ff45fa" name="namespace" profile="CSharpProfile">
       <elementDefinition Id="0f9065fc-a3ba-4906-bdc4-899451c2267d" />
@@ -672,6 +672,61 @@
                   <elementDefinition Id="04c30ed2-f1e4-4c35-8823-37d66937d9aa" />
                   <type_NamedElement>
                     <referencedTypeMoniker Id="4538633c-e19b-41aa-9054-5579f0bdc0aa" LastKnownName="MapMarker" />
+                  </type_NamedElement>
+                </property>
+                <property Id="26ea63b7-ac24-4b65-a1a6-e7d6ac83ed9c" name="Radius" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <appliedStereotypesInternal>
+                    <stereotypeInstance Id="d852374b-049e-4da9-acf7-9a690dd52d24" name="property" profile="CSharpProfile">
+                      <elementDefinition Id="496a1042-f2ab-4305-87f3-78756a0c1657" />
+                      <propertyInstances>
+                        <stereotypeInstanceHasPropertyInstances Id="550267a3-4daa-4460-a427-08403d9bb878">
+                          <propertyInstance Id="fd4e1dcd-74d9-4f7b-8540-aa9baec3e8f0" name="ClrAttributes">
+                            <elementDefinition Id="6e633f71-05ef-4e36-844b-b4286c5cde96" />
+                          </propertyInstance>
+                          <elementDefinition Id="02b728b9-6876-41cc-a411-f23c7a554d12" />
+                        </stereotypeInstanceHasPropertyInstances>
+                        <stereotypeInstanceHasPropertyInstances Id="e97eff42-ee1d-417f-a5fc-12523d4afb32">
+                          <propertyInstance Id="d3c85f58-c589-40ab-86c2-015c409fd3e0" name="Get" value="none">
+                            <elementDefinition Id="2569a638-7f17-456e-91d2-e003a857d5a2" />
+                          </propertyInstance>
+                          <elementDefinition Id="e98f6c4e-e183-4c2d-8c12-f48532ff755e" />
+                        </stereotypeInstanceHasPropertyInstances>
+                        <stereotypeInstanceHasPropertyInstances Id="063c74e7-ef65-42e5-aa30-c58d539f0698">
+                          <propertyInstance Id="0fd170c4-5160-44cf-9331-a56bafc478c7" name="HasBody" value="false">
+                            <elementDefinition Id="510e4151-4230-4835-91c1-72625168e885" />
+                          </propertyInstance>
+                          <elementDefinition Id="e9ee4afb-ed95-4499-b8a6-0d2e39672cf5" />
+                        </stereotypeInstanceHasPropertyInstances>
+                        <stereotypeInstanceHasPropertyInstances Id="5f788eb1-e2ea-41f7-b3d4-785adcfe11e7">
+                          <propertyInstance Id="e9b5c7a2-4fc6-4610-aef6-2822d4f0fddc" name="IsUnsafe" value="false">
+                            <elementDefinition Id="754ef1b1-3459-466a-956e-65e10630928a" />
+                          </propertyInstance>
+                          <elementDefinition Id="b5cd6e61-2a01-46d9-9053-659706b6f5bc" />
+                        </stereotypeInstanceHasPropertyInstances>
+                        <stereotypeInstanceHasPropertyInstances Id="747bffe7-36aa-4959-a3d0-3407188ff67a">
+                          <propertyInstance Id="2ca94bc9-f3de-45fc-b038-747cd9bd111a" name="Inheritance" value="none">
+                            <elementDefinition Id="8fc6c0af-5d5b-4207-8054-a9a126be9ecf" />
+                          </propertyInstance>
+                          <elementDefinition Id="2bf9805e-605a-452b-9ba7-873ae8acbaab" />
+                        </stereotypeInstanceHasPropertyInstances>
+                        <stereotypeInstanceHasPropertyInstances Id="d114ae7d-ad0a-4abf-aa65-4dfba5ea5f68">
+                          <propertyInstance Id="5cb5ab6a-7673-4988-9830-05763bad404b" name="PackageVisibility" value="internal">
+                            <elementDefinition Id="0b90a982-11df-4ea3-92b7-439fda2a8d71" />
+                          </propertyInstance>
+                          <elementDefinition Id="f942bb4a-bfc3-4b22-b69e-dc9fb364835c" />
+                        </stereotypeInstanceHasPropertyInstances>
+                        <stereotypeInstanceHasPropertyInstances Id="f78327be-fce7-45fb-9b59-fe6e28463287">
+                          <propertyInstance Id="a026ff0c-9930-4cd8-8ce9-03d3d6f11656" name="Set" value="none">
+                            <elementDefinition Id="680da68b-ffbf-4ff4-97ca-06d452d17aa4" />
+                          </propertyInstance>
+                          <elementDefinition Id="b7d9d5fb-d994-4b68-a8d4-af05a2de7ac2" />
+                        </stereotypeInstanceHasPropertyInstances>
+                      </propertyInstances>
+                    </stereotypeInstance>
+                  </appliedStereotypesInternal>
+                  <elementDefinition Id="43a146cc-0c5f-4593-bf20-07d0cea694da" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="ab75cc45-5172-4e2d-8815-8de832aead0f" LastKnownName="int" />
                   </type_NamedElement>
                 </property>
               </ownedAttributesInternal>
@@ -4500,6 +4555,11 @@
     <packageHasNamedElement>
       <referencedType Id="3f9c4c32-15ff-411c-8ba7-5fc0d2c7e166" name="double" isAbstract="false" isLeaf="false" cachedFullName="HiPDomainModel::double">
         <elementDefinition Id="e9a1f9c5-a9a7-4b27-8e15-fb3118c01617" />
+      </referencedType>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <referencedType Id="ab75cc45-5172-4e2d-8815-8de832aead0f" name="int" isAbstract="false" isLeaf="false" cachedFullName="int">
+        <elementDefinition Id="1749d18a-2d58-43a7-819f-73778aae8efc" />
       </referencedType>
     </packageHasNamedElement>
   </packagedElements>

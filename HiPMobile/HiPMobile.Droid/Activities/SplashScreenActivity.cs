@@ -16,12 +16,14 @@ using System;
 using System.Threading;
 using Android.App;
 using Android.Content;
+using Android.Locations;
 using Android.OS;
 using Android.Preferences;
 using Android.Views;
 using Android.Widget;
 using de.upb.hip.mobile.droid.Contracts;
 using de.upb.hip.mobile.droid.Helpers;
+using de.upb.hip.mobile.droid.Listeners;
 using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.Common;
 using de.upb.hip.mobile.pcl.Common.Contracts;
@@ -67,6 +69,12 @@ namespace de.upb.hip.mobile.droid.Activities
                 DbManager.UpdateDatabase ();
 
                 action = StartMainActivity;
+
+                //setup the ExtendedLocationListener by calling it once
+                ExtendedLocationListener extendedLocationListener = ExtendedLocationListener.GetInstance();
+                extendedLocationListener.SetContext(this);
+                extendedLocationListener.Initialize(GetSystemService(Context.LocationService) as LocationManager);
+                extendedLocationListener.Unregister();  //the listener should just be created here, but not used
 
                 RunOnUiThread(() =>
                 {
