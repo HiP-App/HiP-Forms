@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
   dslVersion="1.0.0.0"
   Id="3caf1348-0e28-421b-b4e6-66859b824a75"
   name="de.upb.hip.mobile.pcl.BusinessLayer.Models" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
@@ -821,6 +821,81 @@
               <classMoniker
                 Id="8b654873-5136-4d01-a784-9e365f85f187"
                 LastKnownName="MapMarker"
+                LastKnownLocation="Package_1525.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="43a146cc-0c5f-4593-bf20-07d0cea694da"
+            name="Radius"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="496a1042-f2ab-4305-87f3-78756a0c1657"
+                name="property"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="02b728b9-6876-41cc-a411-f23c7a554d12">
+                    <propertyInstance
+                      Id="6e633f71-05ef-4e36-844b-b4286c5cde96"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="e98f6c4e-e183-4c2d-8c12-f48532ff755e">
+                    <propertyInstance
+                      Id="2569a638-7f17-456e-91d2-e003a857d5a2"
+                      name="Get"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="e9ee4afb-ed95-4499-b8a6-0d2e39672cf5">
+                    <propertyInstance
+                      Id="510e4151-4230-4835-91c1-72625168e885"
+                      name="HasBody"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="b5cd6e61-2a01-46d9-9053-659706b6f5bc">
+                    <propertyInstance
+                      Id="754ef1b1-3459-466a-956e-65e10630928a"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="2bf9805e-605a-452b-9ba7-873ae8acbaab">
+                    <propertyInstance
+                      Id="8fc6c0af-5d5b-4207-8054-a9a126be9ecf"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="f942bb4a-bfc3-4b22-b69e-dc9fb364835c">
+                    <propertyInstance
+                      Id="0b90a982-11df-4ea3-92b7-439fda2a8d71"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="b7d9d5fb-d994-4b68-a8d4-af05a2de7ac2">
+                    <propertyInstance
+                      Id="680da68b-ffbf-4ff4-97ca-06d452d17aa4"
+                      name="Set"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="1749d18a-2d58-43a7-819f-73778aae8efc"
+                LastKnownName="int"
                 LastKnownLocation="Package_1525.uml" />
             </type_NamedElement>
           </property>
@@ -5913,6 +5988,16 @@
           </property>
         </ownedAttributesInternal>
       </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="7778cb90-4958-44fe-8a20-898608f7fae5"
+        name="Radius" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="1749d18a-2d58-43a7-819f-73778aae8efc"
+        name="int" />
     </packageHasNamedElement>
   </packagedElements>
 </package>

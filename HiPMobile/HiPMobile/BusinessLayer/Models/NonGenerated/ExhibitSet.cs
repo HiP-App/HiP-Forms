@@ -13,12 +13,32 @@
 // limitations under the License.
 
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Realms;
 
 namespace de.upb.hip.mobile.pcl.BusinessLayer.Models {
-    public partial class ExhibitSet {
+    public partial class ExhibitSet : IEnumerable<Exhibit>
+    {
+        #region IEnumerable interface
+        public Exhibit this[int index]
+        {
+            get { return ActiveSet.ElementAt<Exhibit>(index); }
+            set { ActiveSet.Insert(index, value); }
+        }
+
+        public IEnumerator<Exhibit> GetEnumerator()
+        {
+            return ActiveSet.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return this.GetEnumerator();
+        }
+
+        #endregion
 
         /// <summary>
         /// Update the currently active categories.
@@ -91,7 +111,7 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models {
             }
         }
 
-        public void updatePosition (GeoLocation position)
+        public void UpdatePosition (GeoLocation position)
         {
             this.Position = position;
 

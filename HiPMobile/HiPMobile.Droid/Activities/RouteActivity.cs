@@ -25,6 +25,7 @@ using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using Android.Views;
 using Android.Content;
 
+
 namespace de.upb.hip.mobile.droid.Activities
 {
     [Activity (Theme = "@style/AppTheme", Label = "Routen", MainLauncher = false, Icon = "@drawable/icon")]
@@ -36,6 +37,7 @@ namespace de.upb.hip.mobile.droid.Activities
         private RecyclerView mRecyclerView;
         private RecyclerView.Adapter mAdapter;
         private RecyclerView.LayoutManager mLayoutManager;
+
 
         protected override void OnCreate (Bundle savedInstanceState)
         {
@@ -77,11 +79,21 @@ namespace de.upb.hip.mobile.droid.Activities
             mAdapter = adapter;
             mRecyclerView.SetAdapter (mAdapter);
             adapter.RegisterRouteSelectedListener (this);
+
+            
+
+           
         }
 
         public override bool OnCreateOptionsMenu(IMenu menu)
         {
             MenuInflater.Inflate (Resource.Menu.activity_route_menu, menu);
+            var item = menu.FindItem(Resource.Id.action_route_filter);
+
+            if (Routes.Count < 2)
+                item.SetVisible(false);
+            else
+                item.SetVisible(true);
             return true;
         }
 
@@ -89,6 +101,8 @@ namespace de.upb.hip.mobile.droid.Activities
 
         public override bool OnOptionsItemSelected (IMenuItem item)
         {
+        
+
             switch (item.ItemId)
             {
                 //TODO: Comment this in again when RouteFilterActivity is ported
@@ -110,30 +124,29 @@ namespace de.upb.hip.mobile.droid.Activities
         protected override void OnActivityResult (int requestCode, Result resultCode, Intent data)
         {
             base.OnActivityResult (requestCode, resultCode, data);
-            //TODO: Comment this in again when Route Filter activity is ported
-            
-    switch (requestCode)
-    {
-        case ActivityFilterResult:
-            if (resultCode == Result.Canceled)
+
+            switch (requestCode)
             {
-                // User choosed not to save changes, don't do anything
-            }
-            else if (resultCode == Result.Ok)
-            {
-                string[] activeTags = data.GetStringArrayExtra (RouteFilterActivity.IntentActiveTags);
+                case ActivityFilterResult:
+                    if (resultCode == Result.Canceled)
+                    {
+                        // User choosed not to save changes, don't do anything
+                    }
+                    else if (resultCode == Result.Ok)
+                    {
+                        string[] activeTags = data.GetStringArrayExtra (RouteFilterActivity.IntentActiveTags);
                         this.ActiveTags.Clear ();
-                foreach (string tag in activeTags)
-                {
-                    this.ActiveTags.Add (tag);
-                }
-                mAdapter.NotifyDataSetChanged();
+                        foreach (string tag in activeTags)
+                        {
+                            this.ActiveTags.Add (tag);
+                        }
+                        mAdapter.NotifyDataSetChanged ();
+                    }
+                    break;
+                default:
+                    base.OnActivityResult (requestCode, resultCode, data);
+                    break;
             }
-            break;
-        default:
-            base.OnActivityResult(requestCode, resultCode, data);
-            break;
-    }
     
         }
 
