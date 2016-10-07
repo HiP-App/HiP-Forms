@@ -33,13 +33,11 @@ using de.upb.hip.mobile.droid.Helpers;
 using de.upb.hip.mobile.droid.Helpers.InteractiveSources;
 using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
-using IO.Codetail.Animation;
 using Java.Lang;
 using Exception = Java.Lang.Exception;
 using Math = System.Math;
 using Object = Java.Lang.Object;
 using Toolbar = Android.Support.V7.Widget.Toolbar;
-using ViewAnimationUtils = IO.Codetail.Animation.ViewAnimationUtils;
 
 namespace de.upb.hip.mobile.droid.Activities {
     [Activity (Theme = "@style/AppTheme.NoActionBar",
@@ -470,31 +468,6 @@ namespace de.upb.hip.mobile.droid.Activities {
             revealView.Visibility = ViewStates.Invisible;
             isAudioToolbarHidden = true;
             return true;
-            if (revealView != null)
-            {
-                var cx = revealView.Left + revealView.Right;
-                var cy = revealView.Top;
-                var radius = Math.Max (revealView.Width, revealView.Height);
-
-                if (Build.VERSION.SdkInt < BuildVersionCodes.Lollipop)
-                {
-                    var animator =
-                        ViewAnimationUtils.CreateCircularReveal (revealView, cx, cy, 0, radius);
-                    animator.SetInterpolator (new AccelerateDecelerateInterpolator ());
-                    animator.SetDuration (800);
-
-                    var animatorReverse = animator.Reverse ();
-                    animatorReverse.AddListener (new CustomAnimatorListener (this));
-                    animatorReverse.Start ();
-                }
-                var anim = Android.Views.ViewAnimationUtils.CreateCircularReveal (revealView, cx, cy, radius, 0);
-                anim.AddListener (new CustomAnimatorListenerAdapter (this));
-                anim.Start ();
-
-                return true;
-            }
-
-            return false;
         }
 
         public override bool OnCreateOptionsMenu (IMenu menu)
@@ -892,52 +865,6 @@ namespace de.upb.hip.mobile.droid.Activities {
 
         }
 
-        private class CustomAnimatorListener : Object, SupportAnimator.IAnimatorListener {
-
-            private readonly ExhibitDetailsActivity parent;
-
-            public CustomAnimatorListener (ExhibitDetailsActivity parent)
-            {
-                this.parent = parent;
-            }
-
-            public void OnAnimationCancel ()
-            {
-            }
-
-            public void OnAnimationEnd ()
-            {
-                parent.revealView.Visibility = ViewStates.Invisible;
-                parent.isAudioToolbarHidden = true;
-            }
-
-            public void OnAnimationRepeat ()
-            {
-            }
-
-            public void OnAnimationStart ()
-            {
-            }
-
-        }
-
-        private class CustomAnimatorListenerAdapter : AnimatorListenerAdapter {
-
-            private readonly ExhibitDetailsActivity parent;
-
-            public CustomAnimatorListenerAdapter (ExhibitDetailsActivity parent)
-            {
-                this.parent = parent;
-            }
-
-            public override void OnAnimationEnd (Animator animation)
-            {
-                base.OnAnimationEnd (animation);
-                parent.revealView.Visibility = ViewStates.Invisible;
-                parent.isAudioToolbarHidden = true;
-            }
-
-        }
 
         private class CustomServiceConnection : Object, IServiceConnection {
 

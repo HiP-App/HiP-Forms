@@ -4,9 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginTop="?attr/actionBarSize">
-    <io.codetail.widget.RevealFrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
         <LinearLayout
             android:id="@+id/reveal_items"
             android:layout_width="match_parent"
@@ -68,5 +65,4 @@
                     android:text="@string/audio_toolbar_cc" />
             </LinearLayout>
         </LinearLayout>
-    </io.codetail.widget.RevealFrameLayout>
 </FrameLayout>
