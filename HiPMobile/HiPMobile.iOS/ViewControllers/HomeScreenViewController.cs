@@ -12,9 +12,17 @@ using System.Collections.Generic;
 
 namespace HiPMobile.iOS
 {
-    public partial class HomeScreenViewController : UIViewController
+    public partial class HomeScreenViewController : UIViewController , IMainScreenContainable
     {
         private List<ExhibitCellViewModel> exhibits;
+        public string NavigationTitle
+        {
+            get
+            {
+                return "Historisches Paderborn";
+            }
+        }
+
         public HomeScreenViewController(IntPtr handle) : base(handle)
         {
             exhibits = new List<ExhibitCellViewModel>();
@@ -23,7 +31,8 @@ namespace HiPMobile.iOS
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-            //map
+
+            //map - should be switched with separate reusable map view /OSMMapView/
             MapViewDelegate mapDelegate = new MapViewDelegate();
             mapView.Delegate = mapDelegate;
 
@@ -44,15 +53,12 @@ namespace HiPMobile.iOS
 
             //tableView
             this.exhibitsTableView.RowHeight = 44;
-            exhibitsTableView.RegisterNibForCellReuse(UINib.FromName("ExhibitTableViewCell", null),
-                ExhibitTableViewCell.key);
+            //exhibitsTableView.RegisterNibForCellReuse(UINib.FromName("ExhibitTableViewCell", null),
+            //    ExhibitTableViewCell.key);
 
             ExhibitsTableViewSource source = new ExhibitsTableViewSource();
             source.Exhibits = this.LoadExhibitsData();
             exhibitsTableView.Source = source;
-
-            
-
         }
 
         private List<ExhibitCellViewModel> LoadExhibitsData()
@@ -89,14 +95,13 @@ namespace HiPMobile.iOS
 
         private class ExhibitsTableViewSource : UITableViewSource
         {
-            //public ExhibitCellViewModel[] Exhibits { get; set; }
             public List<ExhibitCellViewModel> Exhibits { get; set; }        
                         
             public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
             {
                 ExhibitTableViewCell cell =
-                    tableView.DequeueReusableCell(ExhibitTableViewCell.key) as ExhibitTableViewCell;
-                cell.PopulateCell(Exhibits[indexPath.Row].Image, Exhibits[indexPath.Row].Name);                
+                    tableView.DequeueReusableCell(ExhibitTableViewCell.key) as ExhibitTableViewCell;                
+                cell.PopulateCell(Exhibits[indexPath.Row].Image, Exhibits[indexPath.Row].Name);             
                 return cell;
             }
 
@@ -112,7 +117,7 @@ namespace HiPMobile.iOS
 
             public override nfloat GetHeightForRow(UITableView tableView, NSIndexPath indexPath)
             {
-                return 44;  
+                return 70;  
             }
         }
     }

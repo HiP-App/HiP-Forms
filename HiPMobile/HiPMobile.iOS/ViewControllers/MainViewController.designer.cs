@@ -28,6 +28,14 @@ namespace HiPMobile.iOS
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UINavigationBar navigationBar { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UINavigationItem navigationItem { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UIView shadowView { get; set; }
 
         [Action ("TapMenuBarButton:")]
@@ -49,6 +57,16 @@ namespace HiPMobile.iOS
             if (menuTableView != null) {
                 menuTableView.Dispose ();
                 menuTableView = null;
+            }
+
+            if (navigationBar != null) {
+                navigationBar.Dispose ();
+                navigationBar = null;
+            }
+
+            if (navigationItem != null) {
+                navigationItem.Dispose ();
+                navigationItem = null;
             }
 
             if (shadowView != null) {

@@ -37,6 +37,8 @@ namespace HiPMobile.iOS
             //setup default colors for all navigation bars in the app
             UINavigationBar.Appearance.BarTintColor = UIColor.FromRGB(25, 32, 71);
             UINavigationBar.Appearance.TintColor = UIColor.White;
+            //UINavigationBar.Appearance.TitleTextAttributes = new UIStringAttributes();
+            //UINavigationBar.Appearance.TitleTextAttributes.ForegroundColor = UIColor.Purple;
 
             return true;
 		}

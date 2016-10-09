@@ -35,7 +35,15 @@ namespace HiPMobile.iOS
             menuTableView.Hidden = true;
             shadowView.Hidden = true;
 
-            //// Move this block to the Launch screen
+            this.navigationBar.TitleTextAttributes = new UIStringAttributes()
+            {
+                ForegroundColor = UIColor.White
+            };
+
+            IMainScreenContainable iViewController = (IMainScreenContainable)containerViewController;
+            this.navigationItem.Title = iViewController.NavigationTitle; //Have no idea why the standard NavigationItem poperty of the ViewController doesnt relate to the navigation bar
+
+            //// Move this block to the Launch screen - Moved to app delegate
             //IoCManager.UnityContainer.RegisterType<IDataAccess, RealmDataAccess>();
             //IoCManager.UnityContainer.RegisterType<IDataLoader, EmbeddedResourceDataLoader>();
             //IoCManager.UnityContainer.RegisterType<IImageDimension, IosImageDimensions> ();
@@ -50,6 +58,13 @@ namespace HiPMobile.iOS
             {
                 containerViewController = segue.DestinationViewController;
             }
+        }
+
+        //unwind segue
+        [Action ("UnwindToMainViewController:")]
+        public void UnwindToMainViewController (UIStoryboardSegue segue)
+        {
+
         }
 
         partial void TapMenuBarButton(UIBarButtonItem sender)
@@ -130,6 +145,9 @@ namespace HiPMobile.iOS
                 this.AddChildViewController(viewController);
                 viewController.DidMoveToParentViewController(this);
 
+                IMainScreenContainable iViewController = (IMainScreenContainable)viewController;
+                this.navigationItem.Title = iViewController.NavigationTitle;
+                
                 containerViewController = viewController;
             }
             SwipeRightToLeft();
