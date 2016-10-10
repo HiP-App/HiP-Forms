@@ -35,7 +35,7 @@ namespace HiPMobile.iOS
         {
             get
             {
-                return "Lizenzen";
+                return NSBundle.MainBundle.LocalizedString("license_main_screen_title", ""); ;
             }
         }
 

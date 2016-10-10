@@ -19,7 +19,7 @@ namespace HiPMobile.iOS
         {
             get
             {
-                return "Historisches Paderborn";
+                return NSBundle.MainBundle.LocalizedString("home_main_screen_title", "");
             }
         }
 
