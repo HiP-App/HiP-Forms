@@ -11,19 +11,11 @@ using UIKit;
 
 namespace HiPMobile.iOS
 {
-    [Register ("LicenseScreenViewController")]
-    partial class LicenseScreenViewController
+    [Register ("OsmMapView")]
+    partial class OsmMapView
     {
-        [Outlet]
-        [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UITextView LicenseTextView { get; set; }
-
         void ReleaseDesignerOutlets ()
         {
-            if (LicenseTextView != null) {
-                LicenseTextView.Dispose ();
-                LicenseTextView = null;
-            }
         }
     }
 }

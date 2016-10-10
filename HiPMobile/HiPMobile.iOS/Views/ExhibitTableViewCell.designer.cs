@@ -1,4 +1,4 @@
-// WARNING
+﻿// WARNING
 //
 // This file has been generated automatically by Xamarin Studio from the outlets and
 // actions declared in your storyboard file.
@@ -11,8 +11,8 @@ using UIKit;
 
 namespace HiPMobile.iOS
 {
-    [Register ("MenuTableViewCell")]
-    partial class MenuTableViewCell
+    [Register ("ExhibitTableViewCell")]
+    partial class ExhibitTableViewCell
     {
         void ReleaseDesignerOutlets ()
         {

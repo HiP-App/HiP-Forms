@@ -12,3 +12,5 @@
 "licensing_photoview_body_text" = "Von <a href=\"https://github.com/chrisbanes/PhotoView\">ChrisBanes</a>, lizensiert unter <a href=\"https://raw.githubusercontent.com/chrisbanes/PhotoView/master/LICENSE\">Apache License 2.0</a>. Es wurden keine Änderungen vorgenommen.";
 "licensing_unity_title_text" = "Unity";
 "licensing_unity_body_text" = "Von <a href=\"https://github.com/unitycontainer/unity\">Microsoft</a>, lizensiert unter <a href=\"https://opensource.org/licenses/Apache-2.0\">Apache License 2.0</a>. Es wurden keine Änderungen vorgenommen.";
+"license_main_screen_title" = "Lizenzen";
+"home_main_screen_title" = "Historisches Paderborn";

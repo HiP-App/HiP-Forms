@@ -1,4 +1,4 @@
-// WARNING
+﻿// WARNING
 //
 // This file has been generated automatically by Xamarin Studio from the outlets and
 // actions declared in your storyboard file.
@@ -26,6 +26,18 @@ namespace HiPMobile.iOS
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UITableView menuTableView { get; set; }
 
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UINavigationBar navigationBar { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UINavigationItem navigationItem { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIView shadowView { get; set; }
+
         [Action ("TapMenuBarButton:")]
         [GeneratedCode ("iOS Designer", "1.0")]
         partial void TapMenuBarButton (UIKit.UIBarButtonItem sender);
@@ -45,6 +57,21 @@ namespace HiPMobile.iOS
             if (menuTableView != null) {
                 menuTableView.Dispose ();
                 menuTableView = null;
+            }
+
+            if (navigationBar != null) {
+                navigationBar.Dispose ();
+                navigationBar = null;
+            }
+
+            if (navigationItem != null) {
+                navigationItem.Dispose ();
+                navigationItem = null;
+            }
+
+            if (shadowView != null) {
+                shadowView.Dispose ();
+                shadowView = null;
             }
         }
     }
