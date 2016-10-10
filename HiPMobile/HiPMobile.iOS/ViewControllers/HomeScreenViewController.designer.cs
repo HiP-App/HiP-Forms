@@ -1,4 +1,4 @@
-// WARNING
+﻿// WARNING
 //
 // This file has been generated automatically by Xamarin Studio from the outlets and
 // actions declared in your storyboard file.
@@ -14,8 +14,25 @@ namespace HiPMobile.iOS
     [Register ("HomeScreenViewController")]
     partial class HomeScreenViewController
     {
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UITableView exhibitsTableView { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        HiPMobile.iOS.OsmMapView mapView { get; set; }
+
         void ReleaseDesignerOutlets ()
         {
+            if (exhibitsTableView != null) {
+                exhibitsTableView.Dispose ();
+                exhibitsTableView = null;
+            }
+
+            if (mapView != null) {
+                mapView.Dispose ();
+                mapView = null;
+            }
         }
     }
 }

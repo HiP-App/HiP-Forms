@@ -8,7 +8,8 @@ using UIKit;
 
 namespace HiPMobile.iOS
 {
-    public partial class LicenseScreenViewController : UIViewController {
+    public partial class LicenseScreenViewController : UIViewController, IMainScreenContainable
+    {
 
         /// <summary>
         /// Number of linebreaks between two license entries.
@@ -29,6 +30,14 @@ namespace HiPMobile.iOS
         /// Style for the whole body.
         /// </summary>
         private UIStringAttributes BodyAttributes;
+
+        public string NavigationTitle
+        {
+            get
+            {
+                return NSBundle.MainBundle.LocalizedString("license_main_screen_title", ""); ;
+            }
+        }
 
         public LicenseScreenViewController (IntPtr handle) : base (handle)
         {
