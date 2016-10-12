@@ -574,7 +574,8 @@ namespace de.upb.hip.mobile.droid.Activities {
                 closeBtn.Click += (sender, args) => {
                     isCaptionShown = false;
                     dialog.Dismiss ();
-                    ReactToAudioCompletion(sender, args);
+                    if(isAudioPlayingFinished)
+                        SwitchToNextPageBasedOnSetting();
                 };
 
             dialog.Show ();
@@ -642,6 +643,11 @@ namespace de.upb.hip.mobile.droid.Activities {
         ///     Indicates whether audio is currently played (true) or not (false)
         /// </summary>
         private bool isAudioPlaying;
+
+        /// <summary>
+        ///     Indicates whether audio playing is finished
+        /// </summary>
+        private bool isAudioPlayingFinished;
 
         /// <summary>
         ///     Indicates whether the audio toolbar is currently displayed (true) or not (false)
@@ -769,9 +775,16 @@ namespace de.upb.hip.mobile.droid.Activities {
         public void ReactToAudioCompletion(object sender, EventArgs args)
         {
             isAudioPlaying = false;
+            isAudioPlayingFinished = true;
             UpdatePlayPauseButtonIcon();
-            if (sharedPreferences.GetBoolean (Resources.GetString (Resource.String.pref_auto_page_switch_key), false) && !isCaptionShown) 
-                DisplayNextExhibitPage ();
+            if(!isCaptionShown)
+                SwitchToNextPageBasedOnSetting();
+        }
+
+        private void SwitchToNextPageBasedOnSetting ()
+        {
+            if (sharedPreferences.GetBoolean(Resources.GetString(Resource.String.pref_auto_page_switch_key), false))
+                DisplayNextExhibitPage();
         }
 
         private void UpdateProgressbar ()
@@ -822,6 +835,7 @@ namespace de.upb.hip.mobile.droid.Activities {
             {
             }
             isAudioPlaying = false;
+            isAudioPlayingFinished = false;
         }
 
         #endregion
