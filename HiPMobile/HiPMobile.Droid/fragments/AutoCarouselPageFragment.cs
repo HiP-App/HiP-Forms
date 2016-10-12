@@ -8,6 +8,7 @@ namespace de.upb.hip.mobile.droid.fragments {
 
         public const string PAGE_NUMBER = "PageNumber";
 
+        // current page number
         public int pageNum;
 
         public override void OnCreate (Bundle savedInstanceState)
@@ -30,9 +31,9 @@ namespace de.upb.hip.mobile.droid.fragments {
 
         public override View OnCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-            // Use this to return your custom view for this Fragment
+            // Use this to return custom view for this Fragment
             // return inflater.Inflate(Resource.Layout.YourFragment, container, false);
-            // Inflate the layout containing a title and body text.
+            // Inflate the layout containing an image, title desc and subtitile description of the page
             var rootView = (ViewGroup) inflater.Inflate (Resource.Layout.fragment_auto_carousel_page, container, false);
 
             var image = rootView.FindViewById<ImageView> (Resource.Id.image_holder);

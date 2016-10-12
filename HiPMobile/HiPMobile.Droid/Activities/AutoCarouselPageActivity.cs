@@ -16,21 +16,17 @@ namespace de.upb.hip.mobile.droid.Activities {
     [Activity (MainLauncher = true, Theme = "@style/AppTheme")]
     public class AutoCarouselPageActivity : FragmentActivity, ViewPager.IOnPageChangeListener {
 
-        // number of pages
-
+        // number of pages in a carousel
         private const int NUM = 3;
         private Button btnSkip, btnNext;
-        private TextView[] dots;
 
-        //things for autocarausel
+        // needed for the dots diplayed in the bottom of the carousel
+        private TextView[] dots;
         private LinearLayout dotsLayout;
 
-        //page adapater; provide pages to the ViewPager
+        //page adapater; provides concrete page to the ViewPager
         private PagerAdapter pagerAdapter;
 
-        private PreferenceManager prefManager;
-
-        //
         private ISharedPreferences sharedPreferences;
 
         // pager wigdet, handles animatin and aloow swiping horizontally
@@ -72,7 +68,7 @@ namespace de.upb.hip.mobile.droid.Activities {
                 Finish ();
             }
 
-            // Create your fragment here
+            // Create the  page fragment here
             SetContentView (Resource.Layout.activity_auto_carousel);
             viewPager = FindViewById<ViewPager> (Resource.Id.view_pager);
             pagerAdapter = new ScreenSlidePageAdapter (SupportFragmentManager);
@@ -84,7 +80,7 @@ namespace de.upb.hip.mobile.droid.Activities {
             btnSkip = FindViewById<Button> (Resource.Id.btn_skip);
             btnNext = FindViewById<Button> (Resource.Id.btn_next);
 
-            MakeNotificationBarTransparent ();
+            MakeNotificationBarDisappear();
 
             AddButtomDots (0);
 
@@ -112,25 +108,27 @@ namespace de.upb.hip.mobile.droid.Activities {
             Finish ();
         }
 
-        private void MakeNotificationBarTransparent ()
+        private void MakeNotificationBarDisappear ()
         {
-            /*
-            Window.AddFlags(WindowManagerFlags.DrawsSystemBarBackgrounds);
+
+            // Window.AddFlags(WindowManagerFlags.DrawsSystemBarBackgrounds);
+            Window.AddFlags(WindowManagerFlags.Fullscreen);
+            Window.ClearFlags(WindowManagerFlags.ForceNotFullscreen);
             if (Build.VERSION.SdkInt >= BuildVersionCodes.Lollipop)
             {
-                View decor = Window.DecorView;
-                decor.SystemUiVisibility = StatusBarVisibility.Hidden;
+                //View decor = Window.DecorView;
+                //decor.SystemUiVisibility = StatusBarVisibility.Hidden;
                 
-                Window.SetStatusBarColor(Resources.GetColor(Resource.Color.colorPrimaryDark));
+               // Window.SetStatusBarColor(Resources.GetColor(Resource.Color.colorPrimaryDark));
             }
-            */
+            
         }
 
         public void AddButtomDots (int currentPage)
         {
             dots = new TextView[NUM];
 
-            dotsLayout.RemoveAllViews (); //proveri zasto je ovo potrebno
+            dotsLayout.RemoveAllViews ();
 
             for (var i = 0; i < NUM; i++)
             {
