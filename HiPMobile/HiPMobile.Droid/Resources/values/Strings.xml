@@ -146,6 +146,17 @@ limitations under the License.-->
     <item>Routen</item>
     <item>@string/licensing_title</item>
   </string-array>
+  
+  <!-- AutoCarousel -->
+  <string name="next">NEXT</string>
+  <string name="skip">SKIP</string>
+  <string name="start">GOT IT</string>
+  <string name="slide_1_title">Welcome to History of Paderborn</string>
+  <string name="slide_1_desc">The app provide you an interesting way to explore about Paderborn!</string>
+  <string name="slide_2_title">Follow the route</string>
+  <string name="slide_2_desc">The route will guide you to visit most interesting sighseeings!</string>
+  <string name="slide_3_title">Hope you will enjoy it :)</string>
+  <string name="slide_3_desc">Have fun with finding out new details about Paderborn!</string>
 
   <!-- Preferences -->
   <string name="pref_cat_exhibitdetails_title">Sehenswürdigkeiten</string>
@@ -156,6 +167,10 @@ limitations under the License.-->
   <string name="pref_auto_start_audio_key">pref_auto_start_audio_key</string>
   <string name="pref_auto_start_audio_title">Automatisch Audio beginnen</string>
   <string name="pref_auto_start_audio_summ">Wenn diese Einstellung aktiviert ist, wird Audio automatisch für die aktuelle Seite gestartet.</string>
+
+  <string name="pref_first_time_launch_key">pref_first_time_launch</string>
+  <string name="pref_first_time_launch_title">Activate auto carousel</string>
+  <string name="pref_first_time_launch_summ">When this is on, auto carousel will be activated on the next app launch</string>
   
   <!-- Navigation Drawer Titles -->
   <string name="nav_home_title">Übersicht</string>

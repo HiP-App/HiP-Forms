@@ -17,6 +17,12 @@
       android:summary="@string/pref_auto_start_audio_summ"
       android:defaultValue="false" />
 
+    <CheckBoxPreference
+      android:key="@string/pref_first_time_launch_key"
+      android:title="@string/pref_first_time_launch_title"
+      android:summary="@string/pref_first_time_launch_summ"
+      android:defaultValue="true" />
+
   </PreferenceCategory>
   
 </PreferenceScreen>

@@ -34,7 +34,7 @@ using Realms;
 
 namespace de.upb.hip.mobile.droid.Activities
 {
-    [Activity(Theme = "@style/AppTheme", MainLauncher = true, ConfigurationChanges = Android.Content.PM.ConfigChanges.Orientation | Android.Content.PM.ConfigChanges.ScreenSize)]
+    [Activity(Theme = "@style/AppTheme", MainLauncher = false, ConfigurationChanges = Android.Content.PM.ConfigChanges.Orientation | Android.Content.PM.ConfigChanges.ScreenSize)]
     public class SplashScreenActivity : Activity
     {
 
