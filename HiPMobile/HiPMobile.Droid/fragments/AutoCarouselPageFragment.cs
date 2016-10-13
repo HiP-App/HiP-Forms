@@ -44,21 +44,21 @@ namespace de.upb.hip.mobile.droid.fragments {
             {
                 title.Text = Resources.GetText (Resource.String.slide_1_title);
                 subtitle.Text = Resources.GetText (Resource.String.slide_1_desc);
-                image.SetBackgroundResource (Resource.Drawable.ic_launcher);
+                image.SetBackgroundResource (Resource.Drawable.hiphop_transparent);
             }
 
             if (pageNum == 1)
             {
                 title.Text = Resources.GetText (Resource.String.slide_2_title);
                 subtitle.Text = Resources.GetText (Resource.String.slide_2_desc);
-                image.SetBackgroundResource (Resource.Drawable.ic_2);
+                image.SetBackgroundResource (Resource.Drawable.ac_location);
             }
 
             if (pageNum == 2)
             {
                 title.Text = Resources.GetText (Resource.String.slide_3_title);
                 subtitle.Text = Resources.GetText (Resource.String.slide_3_desc);
-                image.SetBackgroundResource (Resource.Drawable.ic_3);
+                image.SetBackgroundResource (Resource.Drawable.ac_smile);
             }
 
             return rootView;
