@@ -62,26 +62,26 @@ namespace de.upb.hip.mobile.droid.Listeners {
         public bool CanGetLocation { get; private set; } = false;
 
         /// <summary>
-        ///     The longitude of the last know location or 0 otherwise.
+        ///     The longitude of the last know location or longitude of Paderborn center otherwise.
         /// </summary>
-        private double Longitude {
+        public double Longitude {
             get {
                 if (location != null)
                     return location.Longitude;
 
-                return 0;
+                return AndroidConstants.PaderbornCenter.Longitude;
             }
         }
 
         /// <summary>
-        ///     The latitude of the last known location or 0 otherwise
+        ///     The latitude of the last known location or latitude of Paderborn center otherwise
         /// </summary>
-        private double Latitude {
+        public double Latitude {
             get {
                 if (location != null)
                     return location.Latitude;
 
-                return 0;
+                return AndroidConstants.PaderbornCenter.Latitude;
             }
         }
 
@@ -113,11 +113,6 @@ namespace de.upb.hip.mobile.droid.Listeners {
         public void SetExtendedLocationListenerAdapter (ExtendedLocationListenerAdapter adapter)
         {
             currentAdapter = adapter;
-        }
-
-        public Location GetLocation ()
-        {
-            return location;
         }
 
         public void ShowSettingsAlert ()

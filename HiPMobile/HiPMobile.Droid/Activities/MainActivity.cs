@@ -71,8 +71,8 @@ namespace de.upb.hip.mobile.droid.Activities {
 
             geoLocation = new GeoLocation
             {
-                Latitude = extendedLocationListener.GetLocation().Latitude,
-                Longitude = extendedLocationListener.GetLocation().Longitude
+                Latitude = extendedLocationListener.Latitude,
+                Longitude = extendedLocationListener.Longitude
             };
 
             exhibitSet = ExhibitManager.GetExhibitSets ().First ();
@@ -217,13 +217,9 @@ namespace de.upb.hip.mobile.droid.Activities {
 
             geoLocation = new GeoLocation
             {
-                //Latitude = 51.71352,
-                //Longitude = 8.74021
-
-                Latitude = extendedLocationListener.GetLocation().Latitude,
-                Longitude = extendedLocationListener.GetLocation().Longitude
+                Latitude = extendedLocationListener.Latitude,
+                Longitude = extendedLocationListener.Longitude
             };
-
 
             // hockeyapp code
             CheckForCrashes ();
