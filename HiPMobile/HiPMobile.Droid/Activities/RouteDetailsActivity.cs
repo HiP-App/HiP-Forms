@@ -58,13 +58,13 @@ namespace de.upb.hip.mobile.droid.Activities
                 // getting location
                 if (gpsTracker.CanGetLocation)
                 {
-                    currentUserLocation = new GeoPoint(
-                            gpsTracker.GetLocation().Latitude, gpsTracker.GetLocation().Longitude);
+                    currentUserLocation = new GeoPoint (
+                        gpsTracker.Latitude, gpsTracker.Longitude);
                 }
 
                 // remove this for reals usage
-                currentUserLocation = new GeoPoint(AndroidConstants.PADERBORN_HBF.Latitude,
-                    AndroidConstants.PADERBORN_HBF.Longitude);
+                currentUserLocation = new GeoPoint(AndroidConstants.PaderbornMainStation.Latitude,
+                    AndroidConstants.PaderbornMainStation.Longitude);
 
                 Title = route.Title;
                 InitRouteInfo();
@@ -380,7 +380,7 @@ namespace de.upb.hip.mobile.droid.Activities
             if (gpsTracker.CanGetLocation)
             {
                 currentUserLocation = new GeoPoint(
-                        gpsTracker.GetLocation().Latitude, gpsTracker.GetLocation().Longitude);
+                        gpsTracker.Latitude, gpsTracker.Longitude);
             }
         }
 
