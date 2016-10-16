@@ -18,10 +18,16 @@ namespace de.upb.hip.mobile.droid.Helpers {
 
         public static int DatabaseVersion { get; private set; } = 1;
 
-        public static readonly GeoLocation PADERBORN_HBF = new GeoLocation
+        public static readonly GeoLocation PaderbornMainStation = new GeoLocation
         {
             Latitude = 51.71352,
             Longitude = 8.74021
+        };
+
+        public static readonly GeoLocation PaderbornCenter = new GeoLocation
+        {
+            Latitude = 51.7189205,
+            Longitude = 8.7575093
         };
 
         public static readonly int MinTimeBwUpdates = 2000; //2000 milliseconds (2seconds)

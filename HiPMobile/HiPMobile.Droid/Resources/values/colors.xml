@@ -40,4 +40,7 @@ limitations under the License.-->
 
   <!-- background for chevrons in the ExhibitDetailsActivity -->
   <item name="chevronBackground" type="color">#AAFFFFFF</item>
+
+  <!-- Screens background color-->
+  <color name="bg_color_autocarousel">#3395ff</color>
 </resources>

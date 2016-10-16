@@ -104,7 +104,7 @@ namespace de.upb.hip.mobile.droid.Activities {
             GpsTracker.SetExtendedLocationListenerAdapter(this);
             GpsTracker.EnableLocationUpdates();
             GpsTracker.EnableCheckForExhibits();
-            gpsLocation = new GeoPoint(GpsTracker.GetLocation().Latitude, GpsTracker.GetLocation().Longitude);
+            gpsLocation = new GeoPoint(GpsTracker.Latitude, GpsTracker.Longitude);
 
             // TODO Remove this as soon as no needs to run in emulator
             // set default coordinats for emulator
@@ -112,13 +112,13 @@ namespace de.upb.hip.mobile.droid.Activities {
                 Build.Model.Contains ("Emulator") ||
                 Build.Model.Contains ("Android SDK"))
             {
-                gpsLocation = new GeoPoint(AndroidConstants.PADERBORN_HBF.Latitude,
-                                            AndroidConstants.PADERBORN_HBF.Longitude);
+                gpsLocation = new GeoPoint(AndroidConstants.PaderbornMainStation.Latitude,
+                                            AndroidConstants.PaderbornMainStation.Longitude);
             }
             //catch if gps ist still zero
             if (gpsLocation.Latitude == 0f && gpsLocation.Longitude == 0f)
-                gpsLocation = new GeoPoint(AndroidConstants.PADERBORN_HBF.Latitude,
-                                            AndroidConstants.PADERBORN_HBF.Longitude);
+                gpsLocation = new GeoPoint(AndroidConstants.PaderbornMainStation.Latitude,
+                                            AndroidConstants.PaderbornMainStation.Longitude);
 
             //Get the Route from RouteDetailsActivity
             var extras = Intent.Extras;
@@ -346,7 +346,7 @@ namespace de.upb.hip.mobile.droid.Activities {
             GpsTracker.SetExtendedLocationListenerAdapter(this);
             GpsTracker.EnableLocationUpdates();
             GpsTracker.EnableCheckForExhibits();
-            gpsLocation = new GeoPoint(GpsTracker.GetLocation().Latitude, GpsTracker.GetLocation().Longitude);
+            gpsLocation = new GeoPoint(GpsTracker.Latitude, GpsTracker.Longitude);
 
             // TODO Remove this as soon as no needs to run in emulator
             // set default coordinats for emulator
@@ -354,13 +354,13 @@ namespace de.upb.hip.mobile.droid.Activities {
                 Build.Model.Contains("Emulator") ||
                 Build.Model.Contains("Android SDK"))
             {
-                gpsLocation = new GeoPoint(AndroidConstants.PADERBORN_HBF.Latitude,
-                                            AndroidConstants.PADERBORN_HBF.Longitude);
+                gpsLocation = new GeoPoint(AndroidConstants.PaderbornMainStation.Latitude,
+                                            AndroidConstants.PaderbornMainStation.Longitude);
             }
             //catch if gps ist still zero
             if (gpsLocation.Latitude == 0f && gpsLocation.Longitude == 0f)
-                gpsLocation = new GeoPoint(AndroidConstants.PADERBORN_HBF.Latitude,
-                                            AndroidConstants.PADERBORN_HBF.Longitude);
+                gpsLocation = new GeoPoint(AndroidConstants.PaderbornMainStation.Latitude,
+                                            AndroidConstants.PaderbornMainStation.Longitude);
         }
 
         public override bool OnOptionsItemSelected(IMenuItem item)
@@ -570,8 +570,8 @@ namespace de.upb.hip.mobile.droid.Activities {
 //                Build.Model.Contains ("Emulator") ||
 //                Build.Model.Contains ("Android SDK"))
 //            {
-//                geoLocation = new GeoPoint (ExtendedLocationListener.PADERBORN_HBF.Latitude,
-//                                            ExtendedLocationListener.PADERBORN_HBF.Longitude);
+//                geoLocation = new GeoPoint (ExtendedLocationListener.PaderbornMainStation.Latitude,
+//                                            ExtendedLocationListener.PaderbornMainStation.Longitude);
 //            }
 
 
