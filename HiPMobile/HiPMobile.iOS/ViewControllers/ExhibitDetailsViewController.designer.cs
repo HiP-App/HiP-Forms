@@ -14,8 +14,16 @@ namespace HiPMobile.iOS
     [Register ("ExhibitDetailsViewController")]
     partial class ExhibitDetailsViewController
     {
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UICollectionView pagesCollectionView { get; set; }
+
         void ReleaseDesignerOutlets ()
         {
+            if (pagesCollectionView != null) {
+                pagesCollectionView.Dispose ();
+                pagesCollectionView = null;
+            }
         }
     }
 }
