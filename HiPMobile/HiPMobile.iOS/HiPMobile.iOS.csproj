@@ -232,6 +232,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Delegates\OsmMapViewDelegate.cs" />
+    <Compile Include="Delegates\PagingScrollViewSource.cs" />
     <Compile Include="ViewControllers\ExhibitDetailsViewController.cs" />
     <Compile Include="ViewControllers\ExhibitDetailsViewController.designer.cs">
       <DependentUpon>ExhibitDetailsViewController.cs</DependentUpon>

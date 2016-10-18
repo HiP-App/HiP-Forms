@@ -16,13 +16,13 @@ namespace HiPMobile.iOS
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UICollectionView pagesCollectionView { get; set; }
+        UIKit.UIScrollView exhibitDetailsScrollView { get; set; }
 
         void ReleaseDesignerOutlets ()
         {
-            if (pagesCollectionView != null) {
-                pagesCollectionView.Dispose ();
-                pagesCollectionView = null;
+            if (exhibitDetailsScrollView != null) {
+                exhibitDetailsScrollView.Dispose ();
+                exhibitDetailsScrollView = null;
             }
         }
     }

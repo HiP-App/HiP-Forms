@@ -11,6 +11,7 @@ namespace HiPMobile.iOS
     {
         public string ExhibitID { get; set; }
         public string ExhibitTitle { get; set; }
+        public Exhibit Exhibit { get; set; }
         public AppetizerPage ExhibitAppetizer { get; set; }
 
         public ExhibitDetailsAppetizerViewController(IntPtr handle) : base(handle)
@@ -20,8 +21,8 @@ namespace HiPMobile.iOS
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-            Exhibit currentExhibit = ExhibitManager.GetExhibit(ExhibitID);
-            ExhibitAppetizer = currentExhibit.Pages[0].AppetizerPage; // each exhibit page list should have for first element an appetizer page
+            Exhibit = ExhibitManager.GetExhibit(ExhibitID);
+            ExhibitAppetizer = Exhibit.Pages[0].AppetizerPage; // each exhibit page list should have for first element an appetizer page
             if (ExhibitAppetizer != null)
             {
                 this.NavigationItem.Title = this.ExhibitTitle;
@@ -45,7 +46,7 @@ namespace HiPMobile.iOS
             if (segue.Identifier != null && segue.Identifier.Equals("ForwardToExhibitDetailsSegue"))
             {
                 ExhibitDetailsViewController exhibitDetailsViewContrroller = segue.DestinationViewController as ExhibitDetailsViewController;
-                exhibitDetailsViewContrroller.ExhibitID = this.ExhibitID;
+                exhibitDetailsViewContrroller.Exhibit = this.Exhibit;
             }
            
         }
