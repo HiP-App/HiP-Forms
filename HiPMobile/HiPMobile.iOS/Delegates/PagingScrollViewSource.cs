@@ -53,13 +53,13 @@ namespace HiPMobile.iOS
             nfloat pageHeight = scrollView.Frame.Height;
             nint currentPage = (nint) Math.Floor((scrollView.ContentOffset.X - pageWidth / 2) / pageWidth) + 1;
 
-            if (currentPage > 0 && currentPage < NumberOfPages() - 1)// -1 or -2 depends on the first page == 0 or ==1
+            if (currentPage > 1 && currentPage < NumberOfPages() - 1)// -1 or -2 depends on the first page == 0 or ==1
             {
                 if (page < currentPage) 
                 {
                     currentPageView = nextPageView;
                     nextPageView = GetPageView(scrollView, currentPage + 1);
-                    nextPageView.Frame = new CoreGraphics.CGRect(pageWidth * currentPage + 1, 0, pageWidth , pageHeight);
+                    nextPageView.Frame = new CoreGraphics.CGRect(pageWidth * (currentPage + 1), 0, pageWidth , pageHeight);
                     scrollView.AddSubview(nextPageView);
                 }
                 else
@@ -68,7 +68,7 @@ namespace HiPMobile.iOS
                     {
                         currentPageView = previousPageView;
                         previousPageView = GetPageView(scrollView, currentPage - 1);
-                        previousPageView.Frame = new CoreGraphics.CGRect(pageWidth * currentPage - 1, 0, pageWidth, pageHeight);
+                        previousPageView.Frame = new CoreGraphics.CGRect(pageWidth * (currentPage - 1), 0, pageWidth, pageHeight);
                         scrollView.AddSubview(previousPageView);
                     }
                 }
