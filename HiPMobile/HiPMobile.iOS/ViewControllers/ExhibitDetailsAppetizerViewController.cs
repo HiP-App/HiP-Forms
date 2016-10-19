@@ -25,7 +25,7 @@ namespace HiPMobile.iOS
             ExhibitAppetizer = Exhibit.Pages[0].AppetizerPage; // each exhibit page list should have for first element an appetizer page
             if (ExhibitAppetizer != null)
             {
-                this.NavigationItem.Title = this.ExhibitTitle;
+                NavigationItem.Title = ExhibitTitle;
                 NSData imageData = NSData.FromArray(ExhibitAppetizer.Image.Data);
                 appetizerImageView.Image = new UIImage(imageData);
 
@@ -34,8 +34,8 @@ namespace HiPMobile.iOS
                     Font = UIFont.BoldSystemFontOfSize(13)
                 };
 
-                NSMutableAttributedString attributedString = new NSMutableAttributedString( this.ExhibitTitle + "\n\n" + ExhibitAppetizer.Text);
-                attributedString.SetAttributes(titleAttributes, new NSRange(0, this.ExhibitTitle.Length));
+                NSMutableAttributedString attributedString = new NSMutableAttributedString(ExhibitTitle + "\n\n" + ExhibitAppetizer.Text);
+                attributedString.SetAttributes(titleAttributes, new NSRange(0, ExhibitTitle.Length));
                 appetizerTextView.AttributedText = attributedString;
             }
         }
@@ -46,7 +46,7 @@ namespace HiPMobile.iOS
             if (segue.Identifier != null && segue.Identifier.Equals("ForwardToExhibitDetailsSegue"))
             {
                 ExhibitDetailsViewController exhibitDetailsViewContrroller = segue.DestinationViewController as ExhibitDetailsViewController;
-                exhibitDetailsViewContrroller.Exhibit = this.Exhibit;
+                exhibitDetailsViewContrroller.Exhibit = Exhibit;
             }
            
         }

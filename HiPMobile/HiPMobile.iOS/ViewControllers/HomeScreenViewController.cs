@@ -52,12 +52,12 @@ namespace HiPMobile.iOS
             mapView.RotateEnabled = false;
 
             //tableView
-            this.exhibitsTableView.RowHeight = 44;
+            exhibitsTableView.RowHeight = 44;
             //exhibitsTableView.RegisterNibForCellReuse(UINib.FromName("ExhibitTableViewCell", null),
             //    ExhibitTableViewCell.key);
 
             ExhibitsTableViewSource source = new ExhibitsTableViewSource();
-            source.Exhibits = this.LoadExhibitsData();
+            source.Exhibits = LoadExhibitsData();
             exhibitsTableView.Source = source;
         }
 
@@ -83,7 +83,7 @@ namespace HiPMobile.iOS
                 UINavigationController navigationController = segue.DestinationViewController as UINavigationController;
                 ExhibitDetailsAppetizerViewController appetizerViewController = navigationController.TopViewController as ExhibitDetailsAppetizerViewController;
                 NSIndexPath selectedIndexPath = exhibitsTableView.IndexPathForSelectedRow;
-                ExhibitsTableViewSource source = this.exhibitsTableView.Source as ExhibitsTableViewSource;
+                ExhibitsTableViewSource source = exhibitsTableView.Source as ExhibitsTableViewSource;
                 ExhibitCellViewModel exhibitViewModel = source.Exhibits[selectedIndexPath.Row];
                 appetizerViewController.ExhibitID = exhibitViewModel.exhibitID;
                 appetizerViewController.ExhibitTitle = exhibitViewModel.Name;

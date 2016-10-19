@@ -17,13 +17,13 @@ namespace HiPMobile.iOS
 
         public override void ViewDidLoad()
         {
-            this.exhibitDetailsScrollView.Frame = new CoreGraphics.CGRect(0, 0, this.View.Frame.Width, this.View.Frame.Height);
-            this.exhibitDetailsScrollView.ContentSize = new CoreGraphics.CGSize(this.exhibitDetailsScrollView.Frame.Size.Width * Exhibit.Pages.Count, this.exhibitDetailsScrollView.Frame.Size.Height);
+            exhibitDetailsScrollView.Frame = new CoreGraphics.CGRect(0, 0, View.Frame.Width, View.Frame.Height);
+            exhibitDetailsScrollView.ContentSize = new CoreGraphics.CGSize(exhibitDetailsScrollView.Frame.Size.Width * Exhibit.Pages.Count, exhibitDetailsScrollView.Frame.Size.Height);
             exhibitDetailsScrollView.BackgroundColor = UIColor.Black;
             base.ViewDidLoad();
             ScrollViewSource scrollViewSource = new ScrollViewSource();
             scrollViewSource.DetailPages = Exhibit.Pages;
-            scrollViewSource.PageChanged += PageChanged;
+           // scrollViewSource.PageChanged += PageChanged;
             exhibitDetailsScrollView.Delegate = scrollViewSource;
             scrollViewSource.LoadInitialViews(exhibitDetailsScrollView);
 
@@ -58,16 +58,16 @@ namespace HiPMobile.iOS
             //this.pagesCollectionView.Source = source;
         }
 
-        void PageChanged(nint page)
-        {
-            NavigationItem.Title = page.ToString();
-        }
+        //void PageChanged(nint page)
+        //{
+        //    NavigationItem.Title = page.ToString();
+        //}
 
 
         private class ScrollViewSource : PagingScrollViewSource
         {
             public IList<Page> DetailPages;
-            internal event Action<nint> PageChanged;
+            //internal event Action<nint> PageChanged;
 
             public override nint NumberOfPages()
             {
@@ -77,15 +77,18 @@ namespace HiPMobile.iOS
             {
                 Page page = DetailPages[(int)index];
 
+                //init view from xib instead this ->
                 UIView pageView = new UIView();
                 pageView.BackgroundColor = index % 2 == 0? UIColor.Yellow: UIColor.Purple;
+                //<-init view from xib instead this
+
                 return pageView;
             }
 
             public override void DecelerationEnded(UIScrollView scrollView)
             {
                 base.DecelerationEnded(scrollView);
-                PageChanged(this.CurrentPage);
+             //   PageChanged(CurrentPage);
             }
         }                   
     }
