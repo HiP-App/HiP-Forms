@@ -60,6 +60,7 @@ namespace HiPMobile.iOS
                     currentPageView = nextPageView;
                     nextPageView = GetPageView(scrollView, currentPage + 1);
                     nextPageView.Frame = new CoreGraphics.CGRect(pageWidth * (currentPage + 1), 0, pageWidth , pageHeight);
+                    nextPageView.RemoveFromSuperview();
                     scrollView.AddSubview(nextPageView);
                 }
                 else
@@ -69,6 +70,7 @@ namespace HiPMobile.iOS
                         currentPageView = previousPageView;
                         previousPageView = GetPageView(scrollView, currentPage - 1);
                         previousPageView.Frame = new CoreGraphics.CGRect(pageWidth * (currentPage - 1), 0, pageWidth, pageHeight);
+                        previousPageView.RemoveFromSuperview();
                         scrollView.AddSubview(previousPageView);
                     }
                 }
