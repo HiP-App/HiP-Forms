@@ -534,14 +534,17 @@ namespace de.upb.hip.mobile.droid.Activities {
             // TODO: adapt this to retrieved data
             isCaptionShown = true;
             var caption = exhibit.Pages [currentPageIndex].Audio.Caption;
+            var references = "My Test references";
 
             var fragments = new List<Android.Support.V4.App.Fragment>
             {
-                new CaptionDialogSubtitlesFragment (caption)
+                new CaptionDialogSubtitlesFragment (caption),
+                new CaptionDialogReferencesFragment (references)
             };
             var titles = new List<string>
             {
-                GetString (Resource.String.audio_toolbar_cc)
+                GetString(Resource.String.audio_toolbar_cc),
+                GetString(Resource.String.audio_toolbar_references)
             };
             Action<object, EventArgs> onCloseAction = (sender, args) => {
                 isCaptionShown = false;

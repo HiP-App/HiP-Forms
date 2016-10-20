@@ -24,7 +24,7 @@
     android:scrollbars="vertical"
     android:layout_gravity="center">
   <TextView
-        android:id="@+id/captionSubtitlesTextView"
+        android:id="@+id/captionReferencesTextView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="16dp"
