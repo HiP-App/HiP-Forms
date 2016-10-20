@@ -13,6 +13,7 @@
 // limitations under the License.
 
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using Android.Animation;
 using Android.App;
@@ -27,6 +28,8 @@ using Android.Util;
 using Android.Views;
 using Android.Views.Animations;
 using Android.Widget;
+using de.upb.hip.mobile.droid.Dialogs;
+using de.upb.hip.mobile.droid.fragments;
 using de.upb.hip.mobile.droid.fragments.bottomsheetfragment;
 using de.upb.hip.mobile.droid.fragments.exhibitpagefragment;
 using de.upb.hip.mobile.droid.Helpers;
@@ -532,59 +535,22 @@ namespace de.upb.hip.mobile.droid.Activities {
             isCaptionShown = true;
             var caption = exhibit.Pages [currentPageIndex].Audio.Caption;
 
-            /*** Uncomment this to test the footnote support ***/
-            //        caption = "Dies ist ein Satz.<fn>Dies ist eine Fußnote</fn> " +
-            //                "Dies ist ein zweiter Satz.<fn>Dies ist eine zweite Fußnote</fn> " +
-            //                "Dies ist ein dritter Satz.";
-
-            // IMPORTANT: the dialog and custom view creation has to be repeated every time, reusing
-            // the view or the dialog will result in an error ("child already has a parent")
-
-            // create dialog
-            var dialog = new Dialog (this);
-            dialog.SetTitle (Resource.String.audio_toolbar_cc);
-            dialog.SetContentView (Resource.Layout.activity_exhibit_details_caption_dialog);
-
-            // Prevent dialogue from being too small
-            var metrics = Resources.DisplayMetrics;
-            var width = metrics.WidthPixels;
-            var height = metrics.HeightPixels;
-            dialog.Window.SetLayout ((6 * width) / 7, (4 * height) / 5);
-
-            // setup text view for captions with clickable sources
-            var tv = (TextView) dialog.FindViewById (Resource.Id.captionTextView);
-            if (tv != null)
+            var fragments = new List<Android.Support.V4.App.Fragment>
             {
-                var coordinatorLayout =
-                    (CoordinatorLayout) dialog.FindViewById (Resource.Id.captionDialogCoordinatorLayout);
-
-                tv.MovementMethod = LinkMovementMethod.Instance;
-                tv.SetHighlightColor (Color.Transparent);
-
-                var parser = new InteractiveSources ();
-                tv.TextFormatted = parser.Parse (
-                    caption,
-                    new ConstantInteractiveSourceSubstitute (GetString (Resource.String.source_substitute)),
-                    // alternatively: new ConsecutiveNumberInteractiveSourceSubstitute (1), 
-                    new SnackbarInteractiveSourceAction (coordinatorLayout));
-            }
-            else
+                new CaptionDialogSubtitlesFragment (caption)
+            };
+            var titles = new List<string>
             {
-                Log.Error (Tag, "cannot access TextView in caption dialog!");
-                return;
-            }
+                GetString (Resource.String.audio_toolbar_cc)
+            };
+            Action<object, EventArgs> onCloseAction = (sender, args) => {
+                isCaptionShown = false;
+                if (isAudioPlayingFinished)
+                    SwitchToNextPageBasedOnSetting ();
+            };
 
-            // add click listener to close button that dismisses the dialog
-            var closeBtn = (Button) dialog.FindViewById (Resource.Id.captionDialogCloseButton);
-            if (closeBtn != null)
-                closeBtn.Click += (sender, args) => {
-                    isCaptionShown = false;
-                    dialog.Dismiss ();
-                    if(isAudioPlayingFinished)
-                        SwitchToNextPageBasedOnSetting();
-                };
-
-            dialog.Show ();
+            var dialog = new CaptionDialog (onCloseAction,fragments, titles);
+            dialog.Show (SupportFragmentManager, "CaptionDialog");
         }
 
         /// <summary>
