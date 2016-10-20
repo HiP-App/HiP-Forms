@@ -18,15 +18,17 @@ using Android.Support.V4.App;
 using Android.Text.Method;
 using Android.Views;
 using Android.Widget;
+using de.upb.hip.mobile.droid.Helpers.InteractiveSources;
+using Java.Lang;
 
 namespace de.upb.hip.mobile.droid.fragments {
     public class CaptionDialogSubtitlesFragment : Fragment {
 
-        private readonly string caption;
+        private readonly ICharSequence subtitles;
 
-        public CaptionDialogSubtitlesFragment (string caption)
+        public CaptionDialogSubtitlesFragment (ICharSequence subtitles)
         {
-            this.caption = caption;
+            this.subtitles = subtitles;
         }
 
         public override View OnCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -34,18 +36,10 @@ namespace de.upb.hip.mobile.droid.fragments {
             var view = inflater.Inflate (Resource.Layout.fragment_exhibit_details_caption_dialog_subtitles, container,false);
             
             var subtitlesTextView = view.FindViewById<TextView>(Resource.Id.captionSubtitlesTextView);
-            subtitlesTextView.Text = caption;
+            subtitlesTextView.TextFormatted = subtitles;
             subtitlesTextView.MovementMethod = LinkMovementMethod.Instance;
             subtitlesTextView.SetHighlightColor(Color.Transparent);
 
-            /*
-            var parser = new InteractiveSources();
-            tv.TextFormatted = parser.Parse(
-                caption,
-                new ConstantInteractiveSourceSubstitute(GetString(Resource.String.source_substitute)),
-                // alternatively: new ConsecutiveNumberInteractiveSourceSubstitute (1), 
-                new SnackbarInteractiveSourceAction(coordinatorLayout));
-                */
             return view;
         }
 

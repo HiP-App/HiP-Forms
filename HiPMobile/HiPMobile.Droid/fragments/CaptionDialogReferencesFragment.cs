@@ -14,35 +14,37 @@
 
 using Android.Graphics;
 using Android.OS;
-using Android.Support.Design.Widget;
 using Android.Support.V4.App;
 using Android.Text.Method;
-using Android.Util;
 using Android.Views;
 using Android.Widget;
-using de.upb.hip.mobile.droid.Helpers.InteractiveSources;
+using Java.Lang;
 
-namespace de.upb.hip.mobile.droid.fragments {
-    public class CaptionDialogReferencesFragment : Fragment {
+namespace de.upb.hip.mobile.droid.fragments
+{
+    public class CaptionDialogReferencesFragment : Fragment
+    {
 
-        private readonly string referencesText;
+        private readonly ICharSequence referencesText;
 
-        public CaptionDialogReferencesFragment(string referencesText)
+        public CaptionDialogReferencesFragment(ICharSequence referencesText)
         {
             this.referencesText = referencesText;
         }
 
-        public override View OnCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+        public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-            var view = inflater.Inflate (Resource.Layout.fragment_exhibit_details_caption_dialog_references, container,false);
-            
+            var view = inflater.Inflate(Resource.Layout.fragment_exhibit_details_caption_dialog_references, container, false);
+
             var referencesTextView = view.FindViewById<TextView>(Resource.Id.captionReferencesTextView);
-            referencesTextView.Text = referencesText;
+            referencesTextView.TextFormatted = referencesText;
             referencesTextView.MovementMethod = LinkMovementMethod.Instance;
             referencesTextView.SetHighlightColor(Color.Transparent);
 
             return view;
         }
+
+        
 
     }
 }

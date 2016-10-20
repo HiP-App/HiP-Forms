@@ -3631,20 +3631,20 @@ namespace de.upb.hip.mobile.droid
 			// aapt resource value: 0x7f080066
 			public const int menu_activity_route_filter = 2131230822;
 			
-			// aapt resource value: 0x7f0800c5
-			public const int nav_feedback = 2131230917;
-			
-			// aapt resource value: 0x7f0800c2
-			public const int nav_home_title = 2131230914;
-			
 			// aapt resource value: 0x7f0800c6
-			public const int nav_licenses_title = 2131230918;
-			
-			// aapt resource value: 0x7f0800c4
-			public const int nav_preferences_title = 2131230916;
+			public const int nav_feedback = 2131230918;
 			
 			// aapt resource value: 0x7f0800c3
-			public const int nav_route_title = 2131230915;
+			public const int nav_home_title = 2131230915;
+			
+			// aapt resource value: 0x7f0800c7
+			public const int nav_licenses_title = 2131230919;
+			
+			// aapt resource value: 0x7f0800c5
+			public const int nav_preferences_title = 2131230917;
+			
+			// aapt resource value: 0x7f0800c4
+			public const int nav_route_title = 2131230916;
 			
 			// aapt resource value: 0x7f080090
 			public const int network_connection = 2131230864;
@@ -3652,8 +3652,8 @@ namespace de.upb.hip.mobile.droid
 			// aapt resource value: 0x7f080091
 			public const int network_message = 2131230865;
 			
-			// aapt resource value: 0x7f0800af
-			public const int next = 2131230895;
+			// aapt resource value: 0x7f0800b0
+			public const int next = 2131230896;
 			
 			// aapt resource value: 0x7f080080
 			public const int no_route = 2131230848;
@@ -3661,35 +3661,35 @@ namespace de.upb.hip.mobile.droid
 			// aapt resource value: 0x7f080085
 			public const int osm_contributors = 2131230853;
 			
-			// aapt resource value: 0x7f0800b9
-			public const int pref_auto_page_switch_key = 2131230905;
-			
-			// aapt resource value: 0x7f0800bb
-			public const int pref_auto_page_switch_summ = 2131230907;
-			
 			// aapt resource value: 0x7f0800ba
-			public const int pref_auto_page_switch_title = 2131230906;
+			public const int pref_auto_page_switch_key = 2131230906;
 			
 			// aapt resource value: 0x7f0800bc
-			public const int pref_auto_start_audio_key = 2131230908;
+			public const int pref_auto_page_switch_summ = 2131230908;
 			
-			// aapt resource value: 0x7f0800be
-			public const int pref_auto_start_audio_summ = 2131230910;
+			// aapt resource value: 0x7f0800bb
+			public const int pref_auto_page_switch_title = 2131230907;
 			
 			// aapt resource value: 0x7f0800bd
-			public const int pref_auto_start_audio_title = 2131230909;
-			
-			// aapt resource value: 0x7f0800b8
-			public const int pref_cat_exhibitdetails_title = 2131230904;
+			public const int pref_auto_start_audio_key = 2131230909;
 			
 			// aapt resource value: 0x7f0800bf
-			public const int pref_first_time_launch_key = 2131230911;
+			public const int pref_auto_start_audio_summ = 2131230911;
 			
-			// aapt resource value: 0x7f0800c1
-			public const int pref_first_time_launch_summ = 2131230913;
+			// aapt resource value: 0x7f0800be
+			public const int pref_auto_start_audio_title = 2131230910;
+			
+			// aapt resource value: 0x7f0800b9
+			public const int pref_cat_exhibitdetails_title = 2131230905;
 			
 			// aapt resource value: 0x7f0800c0
-			public const int pref_first_time_launch_title = 2131230912;
+			public const int pref_first_time_launch_key = 2131230912;
+			
+			// aapt resource value: 0x7f0800c2
+			public const int pref_first_time_launch_summ = 2131230914;
+			
+			// aapt resource value: 0x7f0800c1
+			public const int pref_first_time_launch_title = 2131230913;
 			
 			// aapt resource value: 0x7f08007f
 			public const int route = 2131230847;
@@ -3724,29 +3724,32 @@ namespace de.upb.hip.mobile.droid
 			// aapt resource value: 0x7f080088
 			public const int settings = 2131230856;
 			
-			// aapt resource value: 0x7f0800b0
-			public const int skip = 2131230896;
-			
-			// aapt resource value: 0x7f0800b3
-			public const int slide_1_desc = 2131230899;
-			
-			// aapt resource value: 0x7f0800b2
-			public const int slide_1_title = 2131230898;
-			
-			// aapt resource value: 0x7f0800b5
-			public const int slide_2_desc = 2131230901;
+			// aapt resource value: 0x7f0800b1
+			public const int skip = 2131230897;
 			
 			// aapt resource value: 0x7f0800b4
-			public const int slide_2_title = 2131230900;
+			public const int slide_1_desc = 2131230900;
 			
-			// aapt resource value: 0x7f0800b7
-			public const int slide_3_desc = 2131230903;
+			// aapt resource value: 0x7f0800b3
+			public const int slide_1_title = 2131230899;
 			
 			// aapt resource value: 0x7f0800b6
-			public const int slide_3_title = 2131230902;
+			public const int slide_2_desc = 2131230902;
+			
+			// aapt resource value: 0x7f0800b5
+			public const int slide_2_title = 2131230901;
+			
+			// aapt resource value: 0x7f0800b8
+			public const int slide_3_desc = 2131230904;
+			
+			// aapt resource value: 0x7f0800b7
+			public const int slide_3_title = 2131230903;
 			
 			// aapt resource value: 0x7f0800ae
 			public const int source_substitute = 2131230894;
+			
+			// aapt resource value: 0x7f0800af
+			public const int source_substitute_counter = 2131230895;
 			
 			// aapt resource value: 0x7f080076
 			public const int splash_screen_check_connection = 2131230838;
@@ -3766,8 +3769,8 @@ namespace de.upb.hip.mobile.droid
 			// aapt resource value: 0x7f080072
 			public const int splash_screen_waiting = 2131230834;
 			
-			// aapt resource value: 0x7f0800b1
-			public const int start = 2131230897;
+			// aapt resource value: 0x7f0800b2
+			public const int start = 2131230898;
 			
 			// aapt resource value: 0x7f08007c
 			public const int start_point = 2131230844;

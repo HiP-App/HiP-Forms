@@ -141,6 +141,7 @@ limitations under the License.-->
   <string name="currently_no_further_info">Zurzeit sind keine weiteren Informationen verfügbar!</string>
 
   <string name="source_substitute">[Quelle]</string>
+  <string name="source_substitute_counter">Quelle</string>
 
   <string-array name="nav_drawer_entries">
     <item>Übersicht</item>

@@ -533,13 +533,20 @@ namespace de.upb.hip.mobile.droid.Activities {
         {
             // TODO: adapt this to retrieved data
             isCaptionShown = true;
-            var caption = exhibit.Pages [currentPageIndex].Audio.Caption;
-            var references = "My Test references";
+            var subtitles = exhibit.Pages [currentPageIndex].Audio.Caption;
+
+            var parser = new InteractiveSourcesParser (subtitles,
+                                                       new ConsecutiveNumberAndConstantInteractiveSourceSubstitute
+                                                           (1, GetString (Resource.String.source_substitute_counter)));
+
+            var formattedSubtitles = parser.CreateSubtitlesText(new ToastInteractiveSourceAction (this));
+            var formattedReferences = parser.CreateReferencesText(Resources.GetColor(Resource.Color.colorAccent));
+
 
             var fragments = new List<Android.Support.V4.App.Fragment>
             {
-                new CaptionDialogSubtitlesFragment (caption),
-                new CaptionDialogReferencesFragment (references)
+                new CaptionDialogSubtitlesFragment (formattedSubtitles),
+                new CaptionDialogReferencesFragment (formattedReferences)
             };
             var titles = new List<string>
             {
