@@ -99,6 +99,7 @@ namespace de.upb.hip.mobile.droid.fragments {
             var centreOfMap = new GeoPoint (GeoLocation.Latitude, GeoLocation.Longitude);
             mapController.SetCenter (centreOfMap);
 
+
             SetAllMarkers (mapView);
 
             return view;
@@ -117,6 +118,7 @@ namespace de.upb.hip.mobile.droid.fragments {
             var mapMarkerIcon = ContextCompat.GetDrawable (Activity, Resource.Drawable.marker_blue);
             var setMarker = new SetMarker (mapView, markerInfoWindow);
 
+
             foreach (var e in ExhibitSet.ActiveSet)
             {
                 //One Marker Object
@@ -126,10 +128,15 @@ namespace de.upb.hip.mobile.droid.fragments {
             }
 
 
+            userPosition = new Marker (mapView);
+            userPosition.SetIcon (ResourcesCompat.GetDrawable (Resources, Resource.Drawable.ic_my_location, null));
+            userPosition.Position = new GeoPoint (GeoLocation.Latitude, GeoLocation.Longitude);
+            userPosition.SetInfoWindow (null);
+            mapView.OverlayManager.Add (userPosition);
+
             mapView.OverlayManager.Add (MyScaleBarOverlay);
             mapView.OverlayManager.Add (LocationOverlay);
-            mapView.Invalidate();
-
+            mapView.Invalidate ();
         }
 
         public override void OnResume ()
