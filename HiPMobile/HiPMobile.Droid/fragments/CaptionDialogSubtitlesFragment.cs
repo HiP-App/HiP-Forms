@@ -18,25 +18,19 @@ using Android.Support.V4.App;
 using Android.Text.Method;
 using Android.Views;
 using Android.Widget;
-using de.upb.hip.mobile.droid.Helpers.InteractiveSources;
 using Java.Lang;
 
 namespace de.upb.hip.mobile.droid.fragments {
     public class CaptionDialogSubtitlesFragment : Fragment {
 
-        private readonly ICharSequence subtitles;
-
-        public CaptionDialogSubtitlesFragment (ICharSequence subtitles)
-        {
-            this.subtitles = subtitles;
-        }
+        public ICharSequence Subtitles { get; set; }
 
         public override View OnCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             var view = inflater.Inflate (Resource.Layout.fragment_exhibit_details_caption_dialog_subtitles, container,false);
             
             var subtitlesTextView = view.FindViewById<TextView>(Resource.Id.captionSubtitlesTextView);
-            subtitlesTextView.TextFormatted = subtitles;
+            subtitlesTextView.TextFormatted = Subtitles;
             subtitlesTextView.MovementMethod = LinkMovementMethod.Instance;
             subtitlesTextView.SetHighlightColor(Color.Transparent);
 

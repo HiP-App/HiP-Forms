@@ -27,16 +27,9 @@ namespace de.upb.hip.mobile.droid.Dialogs
 {
     public class CaptionDialog : DialogFragment
     {
-        private readonly Action<object, EventArgs> onCloseAction;
-        private readonly List<Fragment> fragments;
-        private readonly List<string> titles;
-
-        public CaptionDialog(Action<object, EventArgs> onCloseAction, List<Fragment> fragments, List<string> titles)
-        {
-            this.onCloseAction = onCloseAction;
-            this.fragments = fragments;
-            this.titles = titles;
-        }
+        public Action<object, EventArgs> OnCloseAction { get; set; }
+        public List<Fragment> Fragments { get; set; }
+        public List<string> Titles { get; set; }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
@@ -45,7 +38,7 @@ namespace de.upb.hip.mobile.droid.Dialogs
             var view = inflater.Inflate(Resource.Layout.dialog_exhibit_details_caption, container);
 
             var viewPager = view.FindViewById<ViewPager>(Resource.Id.captionDialogViewPager);
-            var adapter = new CaptionDialogFragmentTabsAdapter(ChildFragmentManager, fragments, titles);
+            var adapter = new CaptionDialogFragmentTabsAdapter(ChildFragmentManager, Fragments, Titles);
             viewPager.Adapter = adapter;
 
             var tabLayout = view.FindViewById<TabLayout>(Resource.Id.captionDialogTabLayout);
@@ -54,9 +47,11 @@ namespace de.upb.hip.mobile.droid.Dialogs
             var closeBtn = view.FindViewById<Button>(Resource.Id.captionDialogCloseButton);
             closeBtn.Click += (sender, args) =>
             {
-                onCloseAction(sender, args);
+                OnCloseAction(sender, args);
                 Dismiss();
             };
+
+            RetainInstance = false;
 
             return view;
         }
@@ -70,6 +65,12 @@ namespace de.upb.hip.mobile.droid.Dialogs
             Dialog.Window.SetLayout((6 * width) / 7, (4 * height) / 5);
 
             base.OnResume();
+        }
+
+        public override void OnPause()
+        {
+            base.OnPause();
+            Dismiss();
         }
     }
 }

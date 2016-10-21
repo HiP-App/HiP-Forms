@@ -24,27 +24,18 @@ namespace de.upb.hip.mobile.droid.fragments
 {
     public class CaptionDialogReferencesFragment : Fragment
     {
-
-        private readonly ICharSequence referencesText;
-
-        public CaptionDialogReferencesFragment(ICharSequence referencesText)
-        {
-            this.referencesText = referencesText;
-        }
+        public ICharSequence References { get; set; }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             var view = inflater.Inflate(Resource.Layout.fragment_exhibit_details_caption_dialog_references, container, false);
 
             var referencesTextView = view.FindViewById<TextView>(Resource.Id.captionReferencesTextView);
-            referencesTextView.TextFormatted = referencesText;
+            referencesTextView.TextFormatted = References;
             referencesTextView.MovementMethod = LinkMovementMethod.Instance;
             referencesTextView.SetHighlightColor(Color.Transparent);
 
             return view;
         }
-
-        
-
     }
 }

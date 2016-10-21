@@ -545,8 +545,8 @@ namespace de.upb.hip.mobile.droid.Activities {
 
             var fragments = new List<Android.Support.V4.App.Fragment>
             {
-                new CaptionDialogSubtitlesFragment (formattedSubtitles),
-                new CaptionDialogReferencesFragment (formattedReferences)
+                new CaptionDialogSubtitlesFragment {Subtitles = formattedSubtitles},
+                new CaptionDialogReferencesFragment {References = formattedReferences}
             };
             var titles = new List<string>
             {
@@ -559,7 +559,11 @@ namespace de.upb.hip.mobile.droid.Activities {
                     SwitchToNextPageBasedOnSetting ();
             };
 
-            var dialog = new CaptionDialog (onCloseAction,fragments, titles);
+            var dialog = new CaptionDialog {
+                OnCloseAction = onCloseAction,
+                Fragments = fragments,
+                Titles = titles
+            };
             dialog.Show (SupportFragmentManager, "CaptionDialog");
         }
 
