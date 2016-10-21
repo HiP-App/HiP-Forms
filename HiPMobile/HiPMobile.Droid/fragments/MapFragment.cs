@@ -15,10 +15,12 @@
 using Android.OS;
 using Android.Support.V4.App;
 using Android.Support.V4.Content;
+using Android.Support.V4.Content.Res;
 using Android.Views;
 using de.upb.hip.mobile.droid.Helpers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
+using Org.Osmdroid.Bonuspack.Overlays;
 using Org.Osmdroid.Tileprovider.Tilesource;
 using Org.Osmdroid.Util;
 using Org.Osmdroid.Views;
@@ -46,6 +48,8 @@ namespace de.upb.hip.mobile.droid.fragments {
         private MyLocationOverlay LocationOverlay { get; set; }
 
         private ScaleBarOverlay MyScaleBarOverlay { get; set; }
+
+        private Marker userPosition;
 
         public override void OnSaveInstanceState (Bundle outState)
         {
@@ -81,7 +85,7 @@ namespace de.upb.hip.mobile.droid.fragments {
 
             var mapView = view.FindViewById<MapView> (Resource.Id.mapview);
             mapView.SetTileSource (TileSourceFactory.DefaultTileSource);
-            mapView.SetBuiltInZoomControls (false);
+            mapView.SetBuiltInZoomControls (true);
             mapView.SetMultiTouchControls (true);
             mapView.TilesScaledToDpi = true;
 
@@ -121,9 +125,11 @@ namespace de.upb.hip.mobile.droid.fragments {
                 mapView.OverlayManager.Add (marker);
             }
 
+
             mapView.OverlayManager.Add (MyScaleBarOverlay);
             mapView.OverlayManager.Add (LocationOverlay);
-            mapView.PostInvalidate ();
+            mapView.Invalidate();
+
         }
 
         public override void OnResume ()

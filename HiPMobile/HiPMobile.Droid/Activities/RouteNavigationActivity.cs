@@ -140,7 +140,7 @@ namespace de.upb.hip.mobile.droid.Activities {
 
             //This Marker represents the position of the user
             position = new Marker (MapView);
-            position.SetIcon (ResourcesCompat.GetDrawable (Resources, Resource.Drawable.thumb, null));
+            position.SetIcon (ResourcesCompat.GetDrawable (Resources, Resource.Drawable.ic_my_location, null));
             position.Position = gpsLocation;
             position.SetInfoWindow (null);
             MapView.Overlays.Add (position);
