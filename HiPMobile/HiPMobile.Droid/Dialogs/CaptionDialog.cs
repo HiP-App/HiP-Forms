@@ -18,10 +18,10 @@ using Android.OS;
 using Android.Support.Design.Widget;
 using Android.Support.V4.App;
 using Android.Support.V4.View;
+using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
 using de.upb.hip.mobile.droid.Adapters;
-using de.upb.hip.mobile.droid.fragments;
 
 namespace de.upb.hip.mobile.droid.Dialogs
 {
@@ -30,6 +30,8 @@ namespace de.upb.hip.mobile.droid.Dialogs
         public Action<object, EventArgs> OnCloseAction { get; set; }
         public List<Fragment> Fragments { get; set; }
         public List<string> Titles { get; set; }
+
+        public ViewPager Tabs { get; private set; }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
@@ -40,6 +42,8 @@ namespace de.upb.hip.mobile.droid.Dialogs
             var viewPager = view.FindViewById<ViewPager>(Resource.Id.captionDialogViewPager);
             var adapter = new CaptionDialogFragmentTabsAdapter(ChildFragmentManager, Fragments, Titles);
             viewPager.Adapter = adapter;
+
+            Tabs = viewPager;
 
             var tabLayout = view.FindViewById<TabLayout>(Resource.Id.captionDialogTabLayout);
             tabLayout.SetupWithViewPager(viewPager);
@@ -72,5 +76,6 @@ namespace de.upb.hip.mobile.droid.Dialogs
             base.OnPause();
             Dismiss();
         }
+
     }
 }

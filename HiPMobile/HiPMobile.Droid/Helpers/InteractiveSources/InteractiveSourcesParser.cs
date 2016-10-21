@@ -18,7 +18,6 @@ using System.Collections.Generic;
 using Android.Text;
 using Android.Text.Style;
 using Android.Views;
-using Java.Lang;
 using Java.Util.Regex;
 
 
@@ -40,7 +39,7 @@ namespace de.upb.hip.mobile.droid.Helpers.InteractiveSources
         /// </summary>
         private const string HtmlEndTag = "</fn>";
 
-        private List<Source> Sources { get; }
+        public List<Source> Sources { get; }
 
         private string Text { get; set; }
 
@@ -74,6 +73,8 @@ namespace de.upb.hip.mobile.droid.Helpers.InteractiveSources
             Pattern pattern = Pattern.Compile(HtmlStartTag + ".+?" + HtmlEndTag);
             Matcher matcher = pattern.Matcher(Text);
 
+            int index = 0;
+
             while (matcher.Find())
             {
                 string match = matcher.Group();
@@ -84,11 +85,12 @@ namespace de.upb.hip.mobile.droid.Helpers.InteractiveSources
 
                 string sub = substitute.NextSubstitute();
 
-                Sources.Add(new Source(srcText, matcher.Start(), sub));
+                Sources.Add(new Source(srcText, matcher.Start(), sub, index));
 
                 // replace footnote markup with substitute
                 Text = Text.Replace(match, sub);
                 matcher = pattern.Matcher(Text); // working with new text to get correct start index
+                index++;
             }
         }
 
@@ -121,42 +123,6 @@ namespace de.upb.hip.mobile.droid.Helpers.InteractiveSources
         }
 
         /// <summary>
-        /// Returns a SpannableString containing all references of the parsed text. The references headers
-        /// are highlighted with the provided color.
-        /// </summary>
-        /// <param name="colorForHighlighting">Color which is used for highlighting the references headers.</param>
-        /// <returns>A SpannableString parsed from the text for the references.</returns>
-        public SpannableString CreateReferencesText(Android.Graphics.Color colorForHighlighting)
-        {
-            var referencesTextBuilder = new StringBuilder();
-
-            for (int i = 0; i < Sources.Count; i++)
-            {
-                referencesTextBuilder.Append(Sources[i].SubstituteText);
-                referencesTextBuilder.Append(":");
-                referencesTextBuilder.Append(Environment.NewLine);
-                referencesTextBuilder.Append(Sources[i].Text);
-                if (i != Sources.Count - 1)
-                {
-                    referencesTextBuilder.Append(Environment.NewLine);
-                    referencesTextBuilder.Append(Environment.NewLine);
-                }
-            }
-
-            string referencesText = referencesTextBuilder.ToString();
-            var spannableReferences = new SpannableString(referencesText);
-
-            foreach (var reference in Sources)
-            {
-                var index = referencesText.IndexOf(reference.SubstituteText, StringComparison.InvariantCulture);
-
-                spannableReferences.SetSpan(new ForegroundColorSpan(colorForHighlighting), index, index + reference.SubstituteText.Length + 1, SpanTypes.ExclusiveExclusive);
-            }
-
-            return spannableReferences;
-        }
-
-        /// <summary>
         /// Converts a source to a ClickableSpan that executes the specified action.
         /// </summary>
         /// <param name="src">Source that should be converted to a ClickableSpan.</param>
@@ -168,7 +134,7 @@ namespace de.upb.hip.mobile.droid.Helpers.InteractiveSources
                 return null;
 
             InteractiveSourceClickableSpan span = new InteractiveSourceClickableSpan();
-            span.Click += v => action.Display(src.Text);
+            span.Click += v => action.Display(src);
 
             return span;
         }

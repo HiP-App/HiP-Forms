@@ -34,9 +34,9 @@ namespace de.upb.hip.mobile.droid.Helpers.InteractiveSources {
             view = v;
         }
 
-        public void Display (string src)
+        public void Display (Source src)
         {
-            Snackbar.Make (view, src, Snackbar.LengthLong).Show ();
+            Snackbar.Make (view, src.Text, Snackbar.LengthLong).Show ();
         }
 
     }

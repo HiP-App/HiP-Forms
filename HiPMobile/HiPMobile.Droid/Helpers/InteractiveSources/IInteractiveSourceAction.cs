@@ -20,10 +20,10 @@ namespace de.upb.hip.mobile.droid.Helpers.InteractiveSources {
     public interface IInteractiveSourceAction {
 
         /// <summary>
-        /// Displays the provided source text.
+        /// Displays the provided source.
         /// </summary>
-        /// <param name="src">Source text to display.</param>
-        void Display (string src);
+        /// <param name="src">Source to display.</param>
+        void Display (Source src);
 
     }
 }

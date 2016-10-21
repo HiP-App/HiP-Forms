@@ -23,11 +23,14 @@ namespace de.upb.hip.mobile.droid.Helpers.InteractiveSources {
 
         public int StartIndex { get; }
 
-        public Source(string text, int startIndex, string substituteText)
+        public int Number { get; }
+
+        public Source(string text, int startIndex, string substituteText, int number)
         {
             Text = text;
             StartIndex = startIndex;
             SubstituteText = substituteText;
+            Number = number;
         }
     }
 }

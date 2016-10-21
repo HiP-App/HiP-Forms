@@ -2111,11 +2111,11 @@ namespace de.upb.hip.mobile.droid
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f0700e3
-			public const int action0 = 2131165411;
+			// aapt resource value: 0x7f0700e5
+			public const int action0 = 2131165413;
 			
-			// aapt resource value: 0x7f0700f0
-			public const int action_audio = 2131165424;
+			// aapt resource value: 0x7f0700f2
+			public const int action_audio = 2131165426;
 			
 			// aapt resource value: 0x7f07005a
 			public const int action_bar = 2131165274;
@@ -2141,8 +2141,8 @@ namespace de.upb.hip.mobile.droid
 			// aapt resource value: 0x7f07005b
 			public const int action_context_bar = 2131165275;
 			
-			// aapt resource value: 0x7f0700e7
-			public const int action_divider = 2131165415;
+			// aapt resource value: 0x7f0700e9
+			public const int action_divider = 2131165417;
 			
 			// aapt resource value: 0x7f070003
 			public const int action_menu_divider = 2131165187;
@@ -2159,8 +2159,8 @@ namespace de.upb.hip.mobile.droid
 			// aapt resource value: 0x7f07003c
 			public const int action_mode_close_button = 2131165244;
 			
-			// aapt resource value: 0x7f0700f1
-			public const int action_route_filter = 2131165425;
+			// aapt resource value: 0x7f0700f3
+			public const int action_route_filter = 2131165427;
 			
 			// aapt resource value: 0x7f07003d
 			public const int activity_chooser_view_content = 2131165245;
@@ -2204,8 +2204,8 @@ namespace de.upb.hip.mobile.droid
 			// aapt resource value: 0x7f07009a
 			public const int bubble_image = 2131165338;
 			
-			// aapt resource value: 0x7f0700e2
-			public const int bubble_info = 2131165410;
+			// aapt resource value: 0x7f0700e4
+			public const int bubble_info = 2131165412;
 			
 			// aapt resource value: 0x7f07009c
 			public const int bubble_moreinfo = 2131165340;
@@ -2225,29 +2225,32 @@ namespace de.upb.hip.mobile.droid
 			// aapt resource value: 0x7f070077
 			public const int buttonPrevious = 2131165303;
 			
-			// aapt resource value: 0x7f0700d0
-			public const int button_add_response = 2131165392;
+			// aapt resource value: 0x7f0700d2
+			public const int button_add_response = 2131165394;
 			
-			// aapt resource value: 0x7f0700cb
-			public const int button_attachment = 2131165387;
+			// aapt resource value: 0x7f0700cd
+			public const int button_attachment = 2131165389;
 			
-			// aapt resource value: 0x7f0700d5
-			public const int button_login = 2131165397;
+			// aapt resource value: 0x7f0700d7
+			public const int button_login = 2131165399;
 			
-			// aapt resource value: 0x7f0700d1
-			public const int button_refresh = 2131165393;
+			// aapt resource value: 0x7f0700d3
+			public const int button_refresh = 2131165395;
 			
-			// aapt resource value: 0x7f0700cc
-			public const int button_send = 2131165388;
+			// aapt resource value: 0x7f0700ce
+			public const int button_send = 2131165390;
 			
-			// aapt resource value: 0x7f0700d9
-			public const int button_update = 2131165401;
+			// aapt resource value: 0x7f0700db
+			public const int button_update = 2131165403;
 			
-			// aapt resource value: 0x7f0700e4
-			public const int cancel_action = 2131165412;
+			// aapt resource value: 0x7f0700e6
+			public const int cancel_action = 2131165414;
 			
 			// aapt resource value: 0x7f0700aa
 			public const int captionDialogCloseButton = 2131165354;
+			
+			// aapt resource value: 0x7f0700b0
+			public const int captionDialogReferencesRecyclerView = 2131165360;
 			
 			// aapt resource value: 0x7f0700a8
 			public const int captionDialogTabLayout = 2131165352;
@@ -2255,11 +2258,14 @@ namespace de.upb.hip.mobile.droid
 			// aapt resource value: 0x7f0700a9
 			public const int captionDialogViewPager = 2131165353;
 			
-			// aapt resource value: 0x7f0700b0
-			public const int captionReferencesTextView = 2131165360;
+			// aapt resource value: 0x7f0700b2
+			public const int captionReferencesTextView = 2131165362;
+			
+			// aapt resource value: 0x7f0700b3
+			public const int captionSubtitlesTextView = 2131165363;
 			
 			// aapt resource value: 0x7f0700b1
-			public const int captionSubtitlesTextView = 2131165361;
+			public const int captionTitleTextView = 2131165361;
 			
 			// aapt resource value: 0x7f07002b
 			public const int center = 2131165227;
@@ -2273,8 +2279,8 @@ namespace de.upb.hip.mobile.droid
 			// aapt resource value: 0x7f070052
 			public const int checkbox = 2131165266;
 			
-			// aapt resource value: 0x7f0700ea
-			public const int chronometer = 2131165418;
+			// aapt resource value: 0x7f0700ec
+			public const int chronometer = 2131165420;
 			
 			// aapt resource value: 0x7f070033
 			public const int clip_horizontal = 2131165235;
@@ -2324,23 +2330,23 @@ namespace de.upb.hip.mobile.droid
 			// aapt resource value: 0x7f07000e
 			public const int disableHome = 2131165198;
 			
-			// aapt resource value: 0x7f0700bf
-			public const int displayImageSliderDescriptionText = 2131165375;
-			
-			// aapt resource value: 0x7f0700b9
-			public const int displayImageSliderFirstImageView = 2131165369;
-			
-			// aapt resource value: 0x7f0700ba
-			public const int displayImageSliderNextImageView = 2131165370;
-			
-			// aapt resource value: 0x7f0700be
-			public const int displayImageSliderSeekBarEndText = 2131165374;
-			
-			// aapt resource value: 0x7f0700bd
-			public const int displayImageSliderSeekBarFirstText = 2131165373;
+			// aapt resource value: 0x7f0700c1
+			public const int displayImageSliderDescriptionText = 2131165377;
 			
 			// aapt resource value: 0x7f0700bb
-			public const int displayImageSliderThumbSlidingText = 2131165371;
+			public const int displayImageSliderFirstImageView = 2131165371;
+			
+			// aapt resource value: 0x7f0700bc
+			public const int displayImageSliderNextImageView = 2131165372;
+			
+			// aapt resource value: 0x7f0700c0
+			public const int displayImageSliderSeekBarEndText = 2131165376;
+			
+			// aapt resource value: 0x7f0700bf
+			public const int displayImageSliderSeekBarFirstText = 2131165375;
+			
+			// aapt resource value: 0x7f0700bd
+			public const int displayImageSliderThumbSlidingText = 2131165373;
 			
 			// aapt resource value: 0x7f07005c
 			public const int edit_query = 2131165276;
@@ -2348,8 +2354,8 @@ namespace de.upb.hip.mobile.droid
 			// aapt resource value: 0x7f07001c
 			public const int end = 2131165212;
 			
-			// aapt resource value: 0x7f0700ef
-			public const int end_padder = 2131165423;
+			// aapt resource value: 0x7f0700f1
+			public const int end_padder = 2131165425;
 			
 			// aapt resource value: 0x7f070023
 			public const int enterAlways = 2131165219;
@@ -2357,11 +2363,11 @@ namespace de.upb.hip.mobile.droid
 			// aapt resource value: 0x7f070024
 			public const int enterAlwaysCollapsed = 2131165220;
 			
-			// aapt resource value: 0x7f0700b3
-			public const int exhibitListRecyclerView = 2131165363;
+			// aapt resource value: 0x7f0700b5
+			public const int exhibitListRecyclerView = 2131165365;
 			
-			// aapt resource value: 0x7f0700b2
-			public const int exhibitListSwipeContainer = 2131165362;
+			// aapt resource value: 0x7f0700b4
+			public const int exhibitListSwipeContainer = 2131165364;
 			
 			// aapt resource value: 0x7f070025
 			public const int exitUntilCollapsed = 2131165221;
@@ -2387,11 +2393,11 @@ namespace de.upb.hip.mobile.droid
 			// aapt resource value: 0x7f070038
 			public const int @fixed = 2131165240;
 			
-			// aapt resource value: 0x7f0700b7
-			public const int fragment_exhibitpage_image_button = 2131165367;
+			// aapt resource value: 0x7f0700b9
+			public const int fragment_exhibitpage_image_button = 2131165369;
 			
-			// aapt resource value: 0x7f0700b6
-			public const int fragment_exhibitpage_image_imageview = 2131165366;
+			// aapt resource value: 0x7f0700b8
+			public const int fragment_exhibitpage_image_imageview = 2131165368;
 			
 			// aapt resource value: 0x7f070005
 			public const int home = 2131165189;
@@ -2408,56 +2414,56 @@ namespace de.upb.hip.mobile.droid
 			// aapt resource value: 0x7f07003f
 			public const int image = 2131165247;
 			
-			// aapt resource value: 0x7f0700b5
-			public const int imageView2 = 2131165365;
+			// aapt resource value: 0x7f0700b7
+			public const int imageView2 = 2131165367;
 			
 			// aapt resource value: 0x7f0700ab
 			public const int image_holder = 2131165355;
 			
-			// aapt resource value: 0x7f0700b4
-			public const int imgAppetizer = 2131165364;
+			// aapt resource value: 0x7f0700b6
+			public const int imgAppetizer = 2131165366;
 			
-			// aapt resource value: 0x7f0700ee
-			public const int info = 2131165422;
-			
-			// aapt resource value: 0x7f0700c7
-			public const int input_email = 2131165383;
+			// aapt resource value: 0x7f0700f0
+			public const int info = 2131165424;
 			
 			// aapt resource value: 0x7f0700c9
-			public const int input_message = 2131165385;
+			public const int input_email = 2131165385;
 			
-			// aapt resource value: 0x7f0700c6
-			public const int input_name = 2131165382;
-			
-			// aapt resource value: 0x7f0700d4
-			public const int input_password = 2131165396;
+			// aapt resource value: 0x7f0700cb
+			public const int input_message = 2131165387;
 			
 			// aapt resource value: 0x7f0700c8
-			public const int input_subject = 2131165384;
+			public const int input_name = 2131165384;
+			
+			// aapt resource value: 0x7f0700d6
+			public const int input_password = 2131165398;
+			
+			// aapt resource value: 0x7f0700ca
+			public const int input_subject = 2131165386;
 			
 			// aapt resource value: 0x7f070000
 			public const int item_touch_helper_previous_elevation = 2131165184;
 			
-			// aapt resource value: 0x7f0700db
-			public const int label_author = 2131165403;
-			
-			// aapt resource value: 0x7f0700dc
-			public const int label_date = 2131165404;
-			
-			// aapt resource value: 0x7f0700ce
-			public const int label_last_updated = 2131165390;
-			
-			// aapt resource value: 0x7f0700c3
-			public const int label_message = 2131165379;
-			
 			// aapt resource value: 0x7f0700dd
-			public const int label_text = 2131165405;
+			public const int label_author = 2131165405;
 			
-			// aapt resource value: 0x7f0700d7
-			public const int label_title = 2131165399;
+			// aapt resource value: 0x7f0700de
+			public const int label_date = 2131165406;
 			
-			// aapt resource value: 0x7f0700d8
-			public const int label_version = 2131165400;
+			// aapt resource value: 0x7f0700d0
+			public const int label_last_updated = 2131165392;
+			
+			// aapt resource value: 0x7f0700c5
+			public const int label_message = 2131165381;
+			
+			// aapt resource value: 0x7f0700df
+			public const int label_text = 2131165407;
+			
+			// aapt resource value: 0x7f0700d9
+			public const int label_title = 2131165401;
+			
+			// aapt resource value: 0x7f0700da
+			public const int label_version = 2131165402;
 			
 			// aapt resource value: 0x7f07006a
 			public const int layoutDots = 2131165290;
@@ -2483,26 +2489,26 @@ namespace de.upb.hip.mobile.droid
 			// aapt resource value: 0x7f07007c
 			public const int licensingRealmBody = 2131165308;
 			
-			// aapt resource value: 0x7f0700e8
-			public const int line1 = 2131165416;
+			// aapt resource value: 0x7f0700ea
+			public const int line1 = 2131165418;
 			
-			// aapt resource value: 0x7f0700ec
-			public const int line3 = 2131165420;
+			// aapt resource value: 0x7f0700ee
+			public const int line3 = 2131165422;
 			
 			// aapt resource value: 0x7f07000b
 			public const int listMode = 2131165195;
 			
-			// aapt resource value: 0x7f0700de
-			public const int list_attachments = 2131165406;
+			// aapt resource value: 0x7f0700e0
+			public const int list_attachments = 2131165408;
 			
-			// aapt resource value: 0x7f0700d2
-			public const int list_feedback_messages = 2131165394;
+			// aapt resource value: 0x7f0700d4
+			public const int list_feedback_messages = 2131165396;
 			
 			// aapt resource value: 0x7f070041
 			public const int list_item = 2131165249;
 			
-			// aapt resource value: 0x7f0700df
-			public const int mainActivityDrawerLayout = 2131165407;
+			// aapt resource value: 0x7f0700e1
+			public const int mainActivityDrawerLayout = 2131165409;
 			
 			// aapt resource value: 0x7f070081
 			public const int mainRowItemDistance = 2131165313;
@@ -2513,14 +2519,14 @@ namespace de.upb.hip.mobile.droid
 			// aapt resource value: 0x7f070080
 			public const int mainRowItemName = 2131165312;
 			
-			// aapt resource value: 0x7f0700e0
-			public const int main_fragment_container = 2131165408;
+			// aapt resource value: 0x7f0700e2
+			public const int main_fragment_container = 2131165410;
 			
-			// aapt resource value: 0x7f0700c0
-			public const int mapview = 2131165376;
+			// aapt resource value: 0x7f0700c2
+			public const int mapview = 2131165378;
 			
-			// aapt resource value: 0x7f0700e6
-			public const int media_actions = 2131165414;
+			// aapt resource value: 0x7f0700e8
+			public const int media_actions = 2131165416;
 			
 			// aapt resource value: 0x7f07001d
 			public const int middle = 2131165213;
@@ -2531,23 +2537,23 @@ namespace de.upb.hip.mobile.droid
 			// aapt resource value: 0x7f070016
 			public const int multiply = 2131165206;
 			
-			// aapt resource value: 0x7f0700f5
-			public const int nav_feedback = 2131165429;
-			
-			// aapt resource value: 0x7f0700f2
-			public const int nav_home = 2131165426;
-			
-			// aapt resource value: 0x7f0700f6
-			public const int nav_licenses = 2131165430;
+			// aapt resource value: 0x7f0700f7
+			public const int nav_feedback = 2131165431;
 			
 			// aapt resource value: 0x7f0700f4
-			public const int nav_preferences = 2131165428;
+			public const int nav_home = 2131165428;
 			
-			// aapt resource value: 0x7f0700f3
-			public const int nav_route = 2131165427;
+			// aapt resource value: 0x7f0700f8
+			public const int nav_licenses = 2131165432;
 			
-			// aapt resource value: 0x7f0700e1
-			public const int nav_view = 2131165409;
+			// aapt resource value: 0x7f0700f6
+			public const int nav_preferences = 2131165430;
+			
+			// aapt resource value: 0x7f0700f5
+			public const int nav_route = 2131165429;
+			
+			// aapt resource value: 0x7f0700e3
+			public const int nav_view = 2131165411;
 			
 			// aapt resource value: 0x7f0700a3
 			public const int navigation_header_container = 2131165347;
@@ -2561,11 +2567,11 @@ namespace de.upb.hip.mobile.droid
 			// aapt resource value: 0x7f07000c
 			public const int normal = 2131165196;
 			
-			// aapt resource value: 0x7f0700c2
-			public const int overview_exhibitlist_fragment_container = 2131165378;
+			// aapt resource value: 0x7f0700c4
+			public const int overview_exhibitlist_fragment_container = 2131165380;
 			
-			// aapt resource value: 0x7f0700c1
-			public const int overview_map_fragment_container = 2131165377;
+			// aapt resource value: 0x7f0700c3
+			public const int overview_map_fragment_container = 2131165379;
 			
 			// aapt resource value: 0x7f070028
 			public const int parallax = 2131165224;
@@ -2699,8 +2705,8 @@ namespace de.upb.hip.mobile.droid
 			// aapt resource value: 0x7f070067
 			public const int search_voice_btn = 2131165287;
 			
-			// aapt resource value: 0x7f0700bc
-			public const int seekBar = 2131165372;
+			// aapt resource value: 0x7f0700be
+			public const int seekBar = 2131165374;
 			
 			// aapt resource value: 0x7f070068
 			public const int select_dialog_listview = 2131165288;
@@ -2756,8 +2762,8 @@ namespace de.upb.hip.mobile.droid
 			// aapt resource value: 0x7f070031
 			public const int start = 2131165233;
 			
-			// aapt resource value: 0x7f0700e5
-			public const int status_bar_latest_event_content = 2131165413;
+			// aapt resource value: 0x7f0700e7
+			public const int status_bar_latest_event_content = 2131165415;
 			
 			// aapt resource value: 0x7f070065
 			public const int submit_area = 2131165285;
@@ -2768,20 +2774,20 @@ namespace de.upb.hip.mobile.droid
 			// aapt resource value: 0x7f07000d
 			public const int tabMode = 2131165197;
 			
-			// aapt resource value: 0x7f0700ed
-			public const int text = 2131165421;
+			// aapt resource value: 0x7f0700ef
+			public const int text = 2131165423;
 			
-			// aapt resource value: 0x7f0700eb
-			public const int text2 = 2131165419;
+			// aapt resource value: 0x7f0700ed
+			public const int text2 = 2131165421;
 			
 			// aapt resource value: 0x7f07004d
 			public const int textSpacerNoButtons = 2131165261;
 			
-			// aapt resource value: 0x7f0700d3
-			public const int text_headline = 2131165395;
+			// aapt resource value: 0x7f0700d5
+			public const int text_headline = 2131165397;
 			
-			// aapt resource value: 0x7f0700e9
-			public const int time = 2131165417;
+			// aapt resource value: 0x7f0700eb
+			public const int time = 2131165419;
 			
 			// aapt resource value: 0x7f070043
 			public const int title = 2131165251;
@@ -2810,8 +2816,8 @@ namespace de.upb.hip.mobile.droid
 			// aapt resource value: 0x7f0700ae
 			public const int tvBsTitle = 2131165358;
 			
-			// aapt resource value: 0x7f0700b8
-			public const int tvText = 2131165368;
+			// aapt resource value: 0x7f0700ba
+			public const int tvText = 2131165370;
 			
 			// aapt resource value: 0x7f070009
 			public const int up = 2131165193;
@@ -2819,8 +2825,8 @@ namespace de.upb.hip.mobile.droid
 			// aapt resource value: 0x7f070014
 			public const int useLogo = 2131165204;
 			
-			// aapt resource value: 0x7f0700d6
-			public const int view_header = 2131165398;
+			// aapt resource value: 0x7f0700d8
+			public const int view_header = 2131165400;
 			
 			// aapt resource value: 0x7f07000a
 			public const int view_offset_helper = 2131165194;
@@ -2828,8 +2834,8 @@ namespace de.upb.hip.mobile.droid
 			// aapt resource value: 0x7f070069
 			public const int view_pager = 2131165289;
 			
-			// aapt resource value: 0x7f0700da
-			public const int web_update_details = 2131165402;
+			// aapt resource value: 0x7f0700dc
+			public const int web_update_details = 2131165404;
 			
 			// aapt resource value: 0x7f070022
 			public const int withText = 2131165218;
@@ -2837,20 +2843,20 @@ namespace de.upb.hip.mobile.droid
 			// aapt resource value: 0x7f070015
 			public const int wrap_content = 2131165205;
 			
-			// aapt resource value: 0x7f0700ca
-			public const int wrapper_attachments = 2131165386;
+			// aapt resource value: 0x7f0700cc
+			public const int wrapper_attachments = 2131165388;
 			
-			// aapt resource value: 0x7f0700c5
-			public const int wrapper_feedback = 2131165381;
+			// aapt resource value: 0x7f0700c7
+			public const int wrapper_feedback = 2131165383;
 			
-			// aapt resource value: 0x7f0700c4
-			public const int wrapper_feedback_scroll = 2131165380;
-			
-			// aapt resource value: 0x7f0700cd
-			public const int wrapper_messages = 2131165389;
+			// aapt resource value: 0x7f0700c6
+			public const int wrapper_feedback_scroll = 2131165382;
 			
 			// aapt resource value: 0x7f0700cf
-			public const int wrapper_messages_buttons = 2131165391;
+			public const int wrapper_messages = 2131165391;
+			
+			// aapt resource value: 0x7f0700d1
+			public const int wrapper_messages_buttons = 2131165393;
 			
 			static Id()
 			{
@@ -3068,94 +3074,97 @@ namespace de.upb.hip.mobile.droid
 			public const int fragment_exhibit_details_caption_dialog_references = 2130903095;
 			
 			// aapt resource value: 0x7f030038
-			public const int fragment_exhibit_details_caption_dialog_subtitles = 2130903096;
+			public const int fragment_exhibit_details_caption_dialog_references_item = 2130903096;
 			
 			// aapt resource value: 0x7f030039
-			public const int fragment_exhibitlist = 2130903097;
+			public const int fragment_exhibit_details_caption_dialog_subtitles = 2130903097;
 			
 			// aapt resource value: 0x7f03003a
-			public const int fragment_exhibitpage_appetizer = 2130903098;
+			public const int fragment_exhibitlist = 2130903098;
 			
 			// aapt resource value: 0x7f03003b
-			public const int fragment_exhibitpage_dummy = 2130903099;
+			public const int fragment_exhibitpage_appetizer = 2130903099;
 			
 			// aapt resource value: 0x7f03003c
-			public const int fragment_exhibitpage_image = 2130903100;
+			public const int fragment_exhibitpage_dummy = 2130903100;
 			
 			// aapt resource value: 0x7f03003d
-			public const int fragment_exhibitpage_text = 2130903101;
+			public const int fragment_exhibitpage_image = 2130903101;
 			
 			// aapt resource value: 0x7f03003e
-			public const int fragment_exhibitpage_timeslider = 2130903102;
+			public const int fragment_exhibitpage_text = 2130903102;
 			
 			// aapt resource value: 0x7f03003f
-			public const int fragment_map = 2130903103;
+			public const int fragment_exhibitpage_timeslider = 2130903103;
 			
 			// aapt resource value: 0x7f030040
-			public const int fragment_overview_exhibits = 2130903104;
+			public const int fragment_map = 2130903104;
 			
 			// aapt resource value: 0x7f030041
-			public const int Header = 2130903105;
+			public const int fragment_overview_exhibits = 2130903105;
 			
 			// aapt resource value: 0x7f030042
-			public const int hockeyapp_activity_expiry_info = 2130903106;
+			public const int Header = 2130903106;
 			
 			// aapt resource value: 0x7f030043
-			public const int hockeyapp_activity_feedback = 2130903107;
+			public const int hockeyapp_activity_expiry_info = 2130903107;
 			
 			// aapt resource value: 0x7f030044
-			public const int hockeyapp_activity_login = 2130903108;
+			public const int hockeyapp_activity_feedback = 2130903108;
 			
 			// aapt resource value: 0x7f030045
-			public const int hockeyapp_activity_update = 2130903109;
+			public const int hockeyapp_activity_login = 2130903109;
 			
 			// aapt resource value: 0x7f030046
-			public const int hockeyapp_fragment_update = 2130903110;
+			public const int hockeyapp_activity_update = 2130903110;
 			
 			// aapt resource value: 0x7f030047
-			public const int hockeyapp_view_feedback_message = 2130903111;
+			public const int hockeyapp_fragment_update = 2130903111;
 			
 			// aapt resource value: 0x7f030048
-			public const int Main = 2130903112;
+			public const int hockeyapp_view_feedback_message = 2130903112;
 			
 			// aapt resource value: 0x7f030049
-			public const int navigation_info_window = 2130903113;
+			public const int Main = 2130903113;
 			
 			// aapt resource value: 0x7f03004a
-			public const int notification_media_action = 2130903114;
+			public const int navigation_info_window = 2130903114;
 			
 			// aapt resource value: 0x7f03004b
-			public const int notification_media_cancel_action = 2130903115;
+			public const int notification_media_action = 2130903115;
 			
 			// aapt resource value: 0x7f03004c
-			public const int notification_template_big_media = 2130903116;
+			public const int notification_media_cancel_action = 2130903116;
 			
 			// aapt resource value: 0x7f03004d
-			public const int notification_template_big_media_narrow = 2130903117;
+			public const int notification_template_big_media = 2130903117;
 			
 			// aapt resource value: 0x7f03004e
-			public const int notification_template_lines = 2130903118;
+			public const int notification_template_big_media_narrow = 2130903118;
 			
 			// aapt resource value: 0x7f03004f
-			public const int notification_template_media = 2130903119;
+			public const int notification_template_lines = 2130903119;
 			
 			// aapt resource value: 0x7f030050
-			public const int notification_template_part_chronometer = 2130903120;
+			public const int notification_template_media = 2130903120;
 			
 			// aapt resource value: 0x7f030051
-			public const int notification_template_part_time = 2130903121;
+			public const int notification_template_part_chronometer = 2130903121;
 			
 			// aapt resource value: 0x7f030052
-			public const int select_dialog_item_material = 2130903122;
+			public const int notification_template_part_time = 2130903122;
 			
 			// aapt resource value: 0x7f030053
-			public const int select_dialog_multichoice_material = 2130903123;
+			public const int select_dialog_item_material = 2130903123;
 			
 			// aapt resource value: 0x7f030054
-			public const int select_dialog_singlechoice_material = 2130903124;
+			public const int select_dialog_multichoice_material = 2130903124;
 			
 			// aapt resource value: 0x7f030055
-			public const int support_simple_spinner_dropdown_item = 2130903125;
+			public const int select_dialog_singlechoice_material = 2130903125;
+			
+			// aapt resource value: 0x7f030056
+			public const int support_simple_spinner_dropdown_item = 2130903126;
 			
 			static Layout()
 			{

@@ -539,14 +539,16 @@ namespace de.upb.hip.mobile.droid.Activities {
                                                        new ConsecutiveNumberAndConstantInteractiveSourceSubstitute
                                                            (1, GetString (Resource.String.source_substitute_counter)));
 
-            var formattedSubtitles = parser.CreateSubtitlesText(new ToastInteractiveSourceAction (this));
-            var formattedReferences = parser.CreateReferencesText(Resources.GetColor(Resource.Color.colorAccent));
+            var interactiveSourceAction = new SwitchTabAndScrollToItemInteractiveSourceAction ();
+            var formattedSubtitles = parser.CreateSubtitlesText(interactiveSourceAction);
 
+            var subtitlesFragment = new CaptionDialogSubtitlesFragment {Subtitles = formattedSubtitles};
+            var referencesFragment = new CaptionDialogReferencesFragment { References = parser.Sources };
 
             var fragments = new List<Android.Support.V4.App.Fragment>
             {
-                new CaptionDialogSubtitlesFragment {Subtitles = formattedSubtitles},
-                new CaptionDialogReferencesFragment {References = formattedReferences}
+                subtitlesFragment,
+                referencesFragment
             };
             var titles = new List<string>
             {
@@ -564,7 +566,11 @@ namespace de.upb.hip.mobile.droid.Activities {
                 Fragments = fragments,
                 Titles = titles
             };
+
             dialog.Show (SupportFragmentManager, "CaptionDialog");
+
+            interactiveSourceAction.CaptionDialogReferencesFragment = referencesFragment;
+            interactiveSourceAction.CaptionDialog = dialog;
         }
 
         /// <summary>

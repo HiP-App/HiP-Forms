@@ -147,6 +147,7 @@
     <Compile Include="Activities\RouteActivity.cs" />
     <Compile Include="Activities\SettingsActivity.cs" />
     <Compile Include="Adapters\CaptionDialogFragmentTabsAdapter.cs" />
+    <Compile Include="Adapters\CaptionDialogReferencesRecyclerAdapter.cs" />
     <Compile Include="Adapters\ExtendedLocationListenerAdapter.cs" />
     <Compile Include="Adapters\RouteRecyclerAdapter.cs" />
     <Compile Include="Activities\RouteDetailsActivity.cs" />
@@ -172,6 +173,7 @@
     <Compile Include="Helpers\InteractiveSources\InteractiveSourcesParser.cs" />
     <Compile Include="Helpers\InteractiveSources\SnackbarInteractiveSourceAction.cs" />
     <Compile Include="Helpers\InteractiveSources\Source.cs" />
+    <Compile Include="Helpers\InteractiveSources\SwitchTabAndScrollToItemInteractiveSourceAction.cs" />
     <Compile Include="Helpers\InteractiveSources\ToastInteractiveSourceAction.cs" />
     <Compile Include="Helpers\SetMarker.cs" />
     <Compile Include="Helpers\Settings.cs" />
@@ -378,6 +380,9 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\fragment_exhibit_details_caption_dialog_references.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\fragment_exhibit_details_caption_dialog_references_item.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
