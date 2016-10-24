@@ -14,6 +14,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Android.OS;
 using Android.Support.Design.Widget;
 using Android.Support.V4.App;
@@ -22,6 +23,7 @@ using Android.Views;
 using Android.Widget;
 using de.upb.hip.mobile.droid.Adapters;
 using de.upb.hip.mobile.droid.fragments;
+using de.upb.hip.mobile.droid.Helpers;
 using de.upb.hip.mobile.droid.Helpers.InteractiveSources;
 
 namespace de.upb.hip.mobile.droid.Dialogs
@@ -33,6 +35,8 @@ namespace de.upb.hip.mobile.droid.Dialogs
 
         private List<Fragment> Fragments { get; set; }
         private List<string> Titles { get; set; }
+
+        private bool referencesExisting;
 
         public ViewPager GetTabsViewPager()
         {
@@ -52,6 +56,8 @@ namespace de.upb.hip.mobile.droid.Dialogs
 
             var subtitlesFragment = new CaptionDialogSubtitlesFragment { Subtitles = formattedSubtitles };
             var referencesFragment = new CaptionDialogReferencesFragment { References = parser.Sources };
+
+            referencesExisting = parser.Sources.Any();
 
             Fragments = new List<Fragment>
             {
@@ -74,12 +80,18 @@ namespace de.upb.hip.mobile.droid.Dialogs
 
             var view = inflater.Inflate(Resource.Layout.dialog_exhibit_details_caption, container);
 
-            var viewPager = view.FindViewById<ViewPager>(Resource.Id.captionDialogViewPager);
+            var viewPager = view.FindViewById<CustomViewPager>(Resource.Id.captionDialogViewPager);
             var adapter = new CaptionDialogFragmentTabsAdapter(ChildFragmentManager, Fragments, Titles);
             viewPager.Adapter = adapter;
 
             var tabLayout = view.FindViewById<TabLayout>(Resource.Id.captionDialogTabLayout);
             tabLayout.SetupWithViewPager(viewPager);
+
+            if (!referencesExisting)
+            {
+                DisableTabs (tabLayout);
+                viewPager.Enabled = false;
+            }
 
             var closeBtn = view.FindViewById<Button>(Resource.Id.captionDialogCloseButton);
             closeBtn.Click += (sender, args) =>
@@ -91,6 +103,34 @@ namespace de.upb.hip.mobile.droid.Dialogs
             RetainInstance = false;
 
             return view;
+        }
+
+        private void DisableTabs(TabLayout tabLayout)
+        {
+            ViewGroup viewGroup = GetTabViewGroup(tabLayout);
+            if (viewGroup != null)
+                for (int childIndex = 0; childIndex < viewGroup.ChildCount; childIndex++)
+                {
+                    View tabView = viewGroup.GetChildAt(childIndex);
+                    if (tabView != null)
+                    {
+                        tabView.Enabled = false;
+                    }
+                }
+        }
+
+        private ViewGroup GetTabViewGroup(TabLayout tabLayout)
+        {
+            ViewGroup viewGroup = null;
+
+            if (tabLayout != null && tabLayout.ChildCount > 0)
+            {
+                View view = tabLayout.GetChildAt(0);
+                var group = view as ViewGroup;
+                if (group != null)
+                    viewGroup = group;
+            }
+            return viewGroup;
         }
 
         public override void OnResume()

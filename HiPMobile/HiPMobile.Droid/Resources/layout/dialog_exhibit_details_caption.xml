@@ -28,7 +28,7 @@
         android:background="@android:color/transparent"
         app:tabGravity="fill"
         app:tabMode="fixed" />
-  <android.support.v4.view.ViewPager
+  <de.upb.hip.mobile.droid.Helpers.CustomViewPager
     android:id="@+id/captionDialogViewPager"
     android:layout_width="match_parent"
     android:layout_height="0px"

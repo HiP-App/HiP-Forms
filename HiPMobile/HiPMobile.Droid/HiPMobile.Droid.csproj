@@ -162,6 +162,7 @@
     <Compile Include="fragments\MapFragment.cs" />
     <Compile Include="fragments\RadiusAlertDialogFragment.cs" />
     <Compile Include="fragments\SettingsFragment.cs" />
+    <Compile Include="Helpers\CustomViewPager.cs" />
     <Compile Include="Helpers\GenericMapView.cs" />
     <Compile Include="Helpers\AndroidConstants.cs" />
     <Compile Include="Helpers\HipFeedbackListener.cs" />
