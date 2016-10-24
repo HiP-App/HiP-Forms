@@ -531,30 +531,9 @@ namespace de.upb.hip.mobile.droid.Activities {
 
         private void ShowCaptions ()
         {
-            // TODO: adapt this to retrieved data
             isCaptionShown = true;
             var subtitles = exhibit.Pages [currentPageIndex].Audio.Caption;
 
-            var parser = new InteractiveSourcesParser (subtitles,
-                                                       new ConsecutiveNumberAndConstantInteractiveSourceSubstitute
-                                                           (1, GetString (Resource.String.source_substitute_counter)));
-
-            var interactiveSourceAction = new SwitchTabAndScrollToItemInteractiveSourceAction ();
-            var formattedSubtitles = parser.CreateSubtitlesText(interactiveSourceAction);
-
-            var subtitlesFragment = new CaptionDialogSubtitlesFragment {Subtitles = formattedSubtitles};
-            var referencesFragment = new CaptionDialogReferencesFragment { References = parser.Sources };
-
-            var fragments = new List<Android.Support.V4.App.Fragment>
-            {
-                subtitlesFragment,
-                referencesFragment
-            };
-            var titles = new List<string>
-            {
-                GetString(Resource.String.audio_toolbar_cc),
-                GetString(Resource.String.audio_toolbar_references)
-            };
             Action<object, EventArgs> onCloseAction = (sender, args) => {
                 isCaptionShown = false;
                 if (isAudioPlayingFinished)
@@ -563,14 +542,10 @@ namespace de.upb.hip.mobile.droid.Activities {
 
             var dialog = new CaptionDialog {
                 OnCloseAction = onCloseAction,
-                Fragments = fragments,
-                Titles = titles
+                Subtitles = subtitles
             };
 
             dialog.Show (SupportFragmentManager, "CaptionDialog");
-
-            interactiveSourceAction.CaptionDialogReferencesFragment = referencesFragment;
-            interactiveSourceAction.CaptionDialog = dialog;
         }
 
         /// <summary>

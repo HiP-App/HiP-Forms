@@ -22,7 +22,6 @@ using Android.Util;
 using Android.Views;
 using de.upb.hip.mobile.droid.Adapters;
 using de.upb.hip.mobile.droid.Helpers.InteractiveSources;
-using Java.Lang;
 
 namespace de.upb.hip.mobile.droid.fragments
 {
@@ -30,7 +29,10 @@ namespace de.upb.hip.mobile.droid.fragments
     {
         public List<Source> References { get; set; }
 
-        public RecyclerView RecyclerView { get; private set; }
+        public RecyclerView GetRecyclerView ()
+        {
+            return View.FindViewById<RecyclerView>(Resource.Id.captionDialogReferencesRecyclerView);
+        }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
@@ -39,8 +41,6 @@ namespace de.upb.hip.mobile.droid.fragments
             var recyclerView = view.FindViewById<RecyclerView>(Resource.Id.captionDialogReferencesRecyclerView);
             recyclerView.SetAdapter(new CaptionDialogReferencesRecyclerAdapter(References));
             recyclerView.SetLayoutManager(new LinearLayoutManagerWithSmoothScroller(Context));
-
-            RecyclerView = recyclerView;
 
             return view;
         }
@@ -65,7 +65,7 @@ namespace de.upb.hip.mobile.droid.fragments
             private class TopSnappedSmoothScroller : LinearSmoothScroller
             {
                 private readonly LinearLayoutManagerWithSmoothScroller scroller;
-                private const float Scrollspeed = 5f;
+                private const float Scrolltime = 2.5f; //Higher value means slower scrolling
 
                 public TopSnappedSmoothScroller(Context context, LinearLayoutManagerWithSmoothScroller scroller) : base(context)
                 {
@@ -81,7 +81,7 @@ namespace de.upb.hip.mobile.droid.fragments
 
                 protected override float CalculateSpeedPerPixel(DisplayMetrics displayMetrics)
                 {
-                    return base.CalculateSpeedPerPixel (displayMetrics) * Scrollspeed;
+                    return base.CalculateSpeedPerPixel (displayMetrics) * Scrolltime;
                 }
 
             }

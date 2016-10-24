@@ -18,20 +18,55 @@ using Android.OS;
 using Android.Support.Design.Widget;
 using Android.Support.V4.App;
 using Android.Support.V4.View;
-using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
 using de.upb.hip.mobile.droid.Adapters;
+using de.upb.hip.mobile.droid.fragments;
+using de.upb.hip.mobile.droid.Helpers.InteractiveSources;
 
 namespace de.upb.hip.mobile.droid.Dialogs
 {
     public class CaptionDialog : DialogFragment
     {
         public Action<object, EventArgs> OnCloseAction { get; set; }
-        public List<Fragment> Fragments { get; set; }
-        public List<string> Titles { get; set; }
+        public string Subtitles { get; set; }
 
-        public ViewPager Tabs { get; private set; }
+        private List<Fragment> Fragments { get; set; }
+        private List<string> Titles { get; set; }
+
+        public ViewPager GetTabsViewPager()
+        {
+            return Dialog.FindViewById<ViewPager>(Resource.Id.captionDialogViewPager);
+        }
+
+        public override void OnCreate(Bundle savedInstanceState)
+        {
+            base.OnCreate(savedInstanceState);
+
+            var parser = new InteractiveSourcesParser(Subtitles,
+                                                       new ConsecutiveNumberAndConstantInteractiveSourceSubstitute
+                                                           (1, GetString(Resource.String.source_substitute_counter)));
+
+            var interactiveSourceAction = new SwitchTabAndScrollToItemInteractiveSourceAction();
+            var formattedSubtitles = parser.CreateSubtitlesText(interactiveSourceAction);
+
+            var subtitlesFragment = new CaptionDialogSubtitlesFragment { Subtitles = formattedSubtitles };
+            var referencesFragment = new CaptionDialogReferencesFragment { References = parser.Sources };
+
+            Fragments = new List<Fragment>
+            {
+                subtitlesFragment,
+                referencesFragment
+            };
+            Titles = new List<string>
+            {
+                GetString(Resource.String.audio_toolbar_cc),
+                GetString(Resource.String.audio_toolbar_references)
+            };
+            interactiveSourceAction.GetRecyclerView = referencesFragment.GetRecyclerView;
+            interactiveSourceAction.GetTabsViewPagers = GetTabsViewPager;
+            interactiveSourceAction.TargetTabIndex = 1;
+        }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
@@ -42,8 +77,6 @@ namespace de.upb.hip.mobile.droid.Dialogs
             var viewPager = view.FindViewById<ViewPager>(Resource.Id.captionDialogViewPager);
             var adapter = new CaptionDialogFragmentTabsAdapter(ChildFragmentManager, Fragments, Titles);
             viewPager.Adapter = adapter;
-
-            Tabs = viewPager;
 
             var tabLayout = view.FindViewById<TabLayout>(Resource.Id.captionDialogTabLayout);
             tabLayout.SetupWithViewPager(viewPager);

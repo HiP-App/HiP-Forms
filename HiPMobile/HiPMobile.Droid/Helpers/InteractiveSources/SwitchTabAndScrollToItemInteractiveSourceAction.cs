@@ -14,16 +14,30 @@
 
 using System;
 using Android.Support.V4.View;
-using de.upb.hip.mobile.droid.Dialogs;
-using de.upb.hip.mobile.droid.fragments;
+using Android.Support.V7.Widget;
 
 namespace de.upb.hip.mobile.droid.Helpers.InteractiveSources
 {
+    /// <summary>
+    /// Implements IInteractiveSourceAction by smoothly scrolling to the specified tab
+    /// and afterwards smoothly scrolling to the source inside a recycler view.
+    /// </summary>
     public class SwitchTabAndScrollToItemInteractiveSourceAction : IInteractiveSourceAction
     {
+        /// <summary>
+        /// Index of the tab where the references are displayed
+        /// </summary>
+        public int TargetTabIndex { get; set; }
 
-        public CaptionDialog CaptionDialog { get; set; }
-        public CaptionDialogReferencesFragment CaptionDialogReferencesFragment { get; set; }
+        /// <summary>
+        /// Function for getting the tab viewpager used for scrolling to the specified tab
+        /// </summary>
+        public Func<ViewPager> GetTabsViewPagers { get; set; }
+
+        /// <summary>
+        /// Function for getting the recyclerview used for scrolling to the source
+        /// </summary>
+        public Func<RecyclerView> GetRecyclerView { get; set; }
 
         private Source source;
 
@@ -31,16 +45,19 @@ namespace de.upb.hip.mobile.droid.Helpers.InteractiveSources
         {
             source = src;
 
-            CaptionDialog.Tabs.PageScrollStateChanged += TabsOnPageScrollStateChanged;
-            CaptionDialog.Tabs.SetCurrentItem(1, true);
+            GetTabsViewPagers().PageScrollStateChanged += TabsOnPageScrollStateChanged;
+            GetTabsViewPagers().SetCurrentItem(TargetTabIndex, true);
         }
 
+        /// <summary>
+        /// Used to start scrolling to the recyclerview element after scrolling to the tab has finished
+        /// </summary>
         private void TabsOnPageScrollStateChanged (object sender, ViewPager.PageScrollStateChangedEventArgs args)
         {
             if (args.State == ViewPager.ScrollStateIdle)
             {
-                CaptionDialogReferencesFragment.RecyclerView.SmoothScrollToPosition (source.Number);
-                CaptionDialog.Tabs.PageScrollStateChanged -= TabsOnPageScrollStateChanged;
+                GetRecyclerView().SmoothScrollToPosition (source.NumberInSubtitles);
+                GetTabsViewPagers().PageScrollStateChanged -= TabsOnPageScrollStateChanged;
             }
         }
     }
