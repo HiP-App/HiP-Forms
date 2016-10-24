@@ -763,7 +763,8 @@ namespace de.upb.hip.mobile.droid.Activities {
         private void SwitchToNextPageBasedOnSetting ()
         {
             if (sharedPreferences.GetBoolean(Resources.GetString(Resource.String.pref_auto_page_switch_key), false))
-                DisplayNextExhibitPage();
+                if (exhibit.Pages[currentPageIndex].Audio != null)
+                    DisplayNextExhibitPage();
         }
 
         private void UpdateProgressbar ()
