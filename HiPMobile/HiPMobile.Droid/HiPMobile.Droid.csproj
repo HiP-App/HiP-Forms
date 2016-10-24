@@ -159,6 +159,7 @@
     <Compile Include="fragments\CaptionDialogSubtitlesFragment.cs" />
     <Compile Include="fragments\ExhibitListFragment.cs" />
     <Compile Include="fragments\ExhibitsOverviewFragment.cs" />
+    <Compile Include="fragments\CaptionDialogFragment.cs" />
     <Compile Include="fragments\MapFragment.cs" />
     <Compile Include="fragments\RadiusAlertDialogFragment.cs" />
     <Compile Include="fragments\SettingsFragment.cs" />

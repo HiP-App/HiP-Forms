@@ -60,7 +60,11 @@ namespace de.upb.hip.mobile.droid.Activities {
             outState.PutBoolean (KEY_AUDIO_TOOLBAR_HIDDEN, isAudioToolbarHidden);
             outState.PutBoolean (KEY_CAPTION_SHOWN, isCaptionShown);
             outState.PutBundle (KEY_EXTRAS, extras);
-
+            if (captionDialog != null)
+            {
+                outState.PutInt (KEY_CURRENT_CAPTION_TAB, captionDialog.CurrentTab);
+            }
+            
             base.OnSaveInstanceState (outState);
         }
 
@@ -108,9 +112,12 @@ namespace de.upb.hip.mobile.droid.Activities {
                 }
                 extras = savedInstanceState.GetBundle (KEY_EXTRAS);
                 isCaptionShown = savedInstanceState.GetBoolean (KEY_CAPTION_SHOWN);
+
+                int selectedTab = savedInstanceState.GetInt(KEY_CURRENT_CAPTION_TAB);
+                
                 if (isCaptionShown)
                 {
-                    ShowCaptions ();
+                    ShowCaptions (selectedTab);
                 }
             }
             else
@@ -529,7 +536,7 @@ namespace de.upb.hip.mobile.droid.Activities {
             InvalidateOptionsMenu ();
         }
 
-        private void ShowCaptions ()
+        private void ShowCaptions (int tabToSelect = 0)
         {
             isCaptionShown = true;
             var subtitles = exhibit.Pages [currentPageIndex].Audio.Caption;
@@ -540,12 +547,13 @@ namespace de.upb.hip.mobile.droid.Activities {
                     SwitchToNextPageBasedOnSetting ();
             };
 
-            var dialog = new CaptionDialog {
+            captionDialog = new CaptionDialog {
                 OnCloseAction = onCloseAction,
-                Subtitles = subtitles
+                Subtitles = subtitles,
+                CurrentTab = tabToSelect
             };
 
-            dialog.Show (SupportFragmentManager, "CaptionDialog");
+            captionDialog.Show (SupportFragmentManager, "CaptionDialog");
         }
 
         /// <summary>
@@ -688,6 +696,7 @@ namespace de.upb.hip.mobile.droid.Activities {
         private static readonly string KEY_CAPTION_SHOWN = "ExhibitDetailsActivity.isCaptionShown";
         private static readonly string KEY_AUDIO_TOOLBAR_HIDDEN = "ExhibitDetailsActivity.isAudioToolbarHidden";
         private static readonly string KEY_EXTRAS = "ExhibitDetailsActivity.extras";
+        private static readonly string KEY_CURRENT_CAPTION_TAB = "ExhibitDetailsActivity.captionDialog.SelectedTab";
 
         // ui elements
         private FloatingActionButton fab;
@@ -697,6 +706,8 @@ namespace de.upb.hip.mobile.droid.Activities {
         private ImageButton btnPlayPause;
         private ImageButton btnPreviousPage;
         private ImageButton btnNextPage;
+
+        private CaptionDialog captionDialog;
 
         #endregion
 

@@ -33,14 +33,27 @@ namespace de.upb.hip.mobile.droid.Dialogs
         public Action<object, EventArgs> OnCloseAction { get; set; }
         public string Subtitles { get; set; }
 
-        private List<Fragment> Fragments { get; set; }
+        private ViewPager viewPager;
+
+        private int currentTab;
+        public int CurrentTab
+        {
+            get
+            {
+                currentTab = viewPager.CurrentItem;
+                return currentTab;
+            }
+            set { currentTab = value; }
+        }
+
+        private List<CaptionDialogFragment> Fragments { get; set; }
         private List<string> Titles { get; set; }
 
         private bool referencesExisting;
 
         public ViewPager GetTabsViewPager()
         {
-            return Dialog.FindViewById<ViewPager>(Resource.Id.captionDialogViewPager);
+            return viewPager;
         }
 
         public override void OnCreate(Bundle savedInstanceState)
@@ -59,7 +72,7 @@ namespace de.upb.hip.mobile.droid.Dialogs
 
             referencesExisting = parser.Sources.Any();
 
-            Fragments = new List<Fragment>
+            Fragments = new List<CaptionDialogFragment>
             {
                 subtitlesFragment,
                 referencesFragment
@@ -80,16 +93,19 @@ namespace de.upb.hip.mobile.droid.Dialogs
 
             var view = inflater.Inflate(Resource.Layout.dialog_exhibit_details_caption, container);
 
-            var viewPager = view.FindViewById<CustomViewPager>(Resource.Id.captionDialogViewPager);
+            viewPager = view.FindViewById<CustomViewPager>(Resource.Id.captionDialogViewPager);
+
             var adapter = new CaptionDialogFragmentTabsAdapter(ChildFragmentManager, Fragments, Titles);
             viewPager.Adapter = adapter;
 
             var tabLayout = view.FindViewById<TabLayout>(Resource.Id.captionDialogTabLayout);
             tabLayout.SetupWithViewPager(viewPager);
 
+            viewPager.SetCurrentItem(currentTab, false);
+
             if (!referencesExisting)
             {
-                DisableTabs (tabLayout);
+                DisableTabs(tabLayout);
                 viewPager.Enabled = false;
             }
 

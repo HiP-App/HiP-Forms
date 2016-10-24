@@ -14,17 +14,17 @@
 
 using System.Collections.Generic;
 using Android.Support.V4.App;
+using de.upb.hip.mobile.droid.fragments;
 using Java.Lang;
 
 namespace de.upb.hip.mobile.droid.Adapters
 {
     public class CaptionDialogFragmentTabsAdapter : FragmentPagerAdapter
     {
-
-        private readonly List<Fragment> fragments;
+        private readonly List<CaptionDialogFragment> fragments;
         private readonly List<string> titles;
 
-        public CaptionDialogFragmentTabsAdapter(FragmentManager fragmentManager, List<Fragment> fragments, List<string> titles) : base(fragmentManager)
+        public CaptionDialogFragmentTabsAdapter(FragmentManager fragmentManager, List<CaptionDialogFragment> fragments, List<string> titles) : base(fragmentManager)
         {
             this.fragments = fragments;
             this.titles = titles;

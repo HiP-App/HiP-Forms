@@ -12,33 +12,35 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System;
 using System.Collections.Generic;
 using Android.Content;
 using Android.Graphics;
 using Android.OS;
-using Android.Support.V4.App;
 using Android.Support.V7.Widget;
 using Android.Util;
 using Android.Views;
+using Android.Widget;
 using de.upb.hip.mobile.droid.Adapters;
 using de.upb.hip.mobile.droid.Helpers.InteractiveSources;
 
 namespace de.upb.hip.mobile.droid.fragments
 {
-    public class CaptionDialogReferencesFragment : Fragment
+    public class CaptionDialogReferencesFragment : CaptionDialogFragment
     {
         public List<Source> References { get; set; }
 
+        private RecyclerView recyclerView;
+
         public RecyclerView GetRecyclerView ()
         {
-            return View.FindViewById<RecyclerView>(Resource.Id.captionDialogReferencesRecyclerView);
+            return recyclerView;
         }
-
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             var view = inflater.Inflate(Resource.Layout.fragment_exhibit_details_caption_dialog_references, container, false);
 
-            var recyclerView = view.FindViewById<RecyclerView>(Resource.Id.captionDialogReferencesRecyclerView);
+            recyclerView = view.FindViewById<RecyclerView>(Resource.Id.captionDialogReferencesRecyclerView);
             recyclerView.SetAdapter(new CaptionDialogReferencesRecyclerAdapter(References));
             recyclerView.SetLayoutManager(new LinearLayoutManagerWithSmoothScroller(Context));
 
