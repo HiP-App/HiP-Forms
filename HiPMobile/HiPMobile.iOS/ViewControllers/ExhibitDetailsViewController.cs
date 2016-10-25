@@ -26,36 +26,6 @@ namespace HiPMobile.iOS
            // scrollViewSource.PageChanged += PageChanged;
             exhibitDetailsScrollView.Delegate = scrollViewSource;
             scrollViewSource.LoadInitialViews(exhibitDetailsScrollView);
-
-            
-            //this.exhibitDetailsScrollView.Frame = new CoreGraphics.CGRect(0, 0, this.View.Frame.Width, this.View.Frame.Height);
-            //this.exhibitDetailsScrollView.ContentSize = new CoreGraphics.CGSize(this.exhibitDetailsScrollView.Frame.Size.Width * 3, this.exhibitDetailsScrollView.Frame.Size.Height);
-            //exhibitDetailsScrollView.PagingEnabled = true;
-            //exhibitDetailsScrollView.BackgroundColor = UIColor.Black;
-            //exhibitDetailsScrollView.Delegate = new ScrollViewSource();
-            //Console.WriteLine("this.View.Frame.Height {0} ", this.View.Frame.Height);
-            //Console.WriteLine("this.NavigationController.NavigationBar.Frame.Height {0} ", this.NavigationController.NavigationBar.Frame.Height);
-            //Console.WriteLine("this.exhibitDetailsScrollView.Frame.Height {0}", this.exhibitDetailsScrollView.Frame.Height);
-            //Console.WriteLine("this.View.Frame.Height {0}", this.View.Frame.Height);
-
-            //nfloat scrollViewWidth = this.exhibitDetailsScrollView.Frame.Width;
-            //nfloat scrolViewHeight = this.exhibitDetailsScrollView.Frame.Height;
-
-            //UIView v1 = new UIView(new CoreGraphics.CGRect(0, 0, scrollViewWidth, scrolViewHeight));
-            //v1.BackgroundColor = UIColor.Blue;
-            //UIView v2 = new UIView(new CoreGraphics.CGRect(scrollViewWidth, 0, scrollViewWidth, scrolViewHeight));
-            //v2.BackgroundColor = UIColor.Yellow;
-            //UIView v3 = new UIView(new CoreGraphics.CGRect(scrollViewWidth * 2 , 0, scrollViewWidth, scrolViewHeight));
-            //v3.BackgroundColor = UIColor.Red;
-
-            //this.exhibitDetailsScrollView.AddSubview(v1);
-            //this.exhibitDetailsScrollView.AddSubview(v2);
-            //this.exhibitDetailsScrollView.AddSubview(v3);
-
-            //Console.WriteLine("view ---------- {0} {1}",v1.Frame.X, v1.Frame.Y);
-
-            //PagesCollectionViewSource source = new PagesCollectionViewSource();
-            //this.pagesCollectionView.Source = source;
         }
 
         //void PageChanged(nint page)
