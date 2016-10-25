@@ -15,9 +15,11 @@ namespace HiPMobile.iOS
     {
         public UIImage Image;
         public string Name;
+        public string exhibitID;
 
-        public ExhibitCellViewModel(Image image, string exhibitName)
+        public ExhibitCellViewModel(string id, Image image, string exhibitName)
         {
+            this.exhibitID = id;
             NSData imageData = NSData.FromArray(image.Data);
             this.Image = new UIImage(imageData);
             this.Name = exhibitName;

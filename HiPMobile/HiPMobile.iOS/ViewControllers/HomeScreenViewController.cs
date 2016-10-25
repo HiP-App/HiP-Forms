@@ -14,7 +14,7 @@ namespace HiPMobile.iOS
 {
     public partial class HomeScreenViewController : UIViewController , IMainScreenContainable
     {
-        private List<ExhibitCellViewModel> exhibits;
+        //private List<ExhibitCellViewModel> exhibits;
         public string NavigationTitle
         {
             get
@@ -25,7 +25,7 @@ namespace HiPMobile.iOS
 
         public HomeScreenViewController(IntPtr handle) : base(handle)
         {
-            exhibits = new List<ExhibitCellViewModel>();
+           // exhibits = new List<ExhibitCellViewModel>();
         }
 
         public override void ViewDidLoad()
@@ -52,12 +52,12 @@ namespace HiPMobile.iOS
             mapView.RotateEnabled = false;
 
             //tableView
-            this.exhibitsTableView.RowHeight = 44;
+            exhibitsTableView.RowHeight = 44;
             //exhibitsTableView.RegisterNibForCellReuse(UINib.FromName("ExhibitTableViewCell", null),
             //    ExhibitTableViewCell.key);
 
             ExhibitsTableViewSource source = new ExhibitsTableViewSource();
-            source.Exhibits = this.LoadExhibitsData();
+            source.Exhibits = LoadExhibitsData();
             exhibitsTableView.Source = source;
         }
 
@@ -67,12 +67,27 @@ namespace HiPMobile.iOS
             IEnumerable<Exhibit> exhibitsData = ExhibitManager.GetExhibits();
             foreach (Exhibit exhibit in exhibitsData)
             {
-                ExhibitCellViewModel exhibitCellModel = new ExhibitCellViewModel(exhibit.Image, exhibit.Name);
+                ExhibitCellViewModel exhibitCellModel = new ExhibitCellViewModel(exhibit.Id, exhibit.Image, exhibit.Name);
                 exhibits.Add(exhibitCellModel);
             }
 
             return exhibits;
 
+        }
+
+        public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
+        {
+            base.PrepareForSegue(segue, sender);
+            if (segue.Identifier != null && segue.Identifier.Equals("ShowExhibitDetailsSegue")){
+
+                UINavigationController navigationController = segue.DestinationViewController as UINavigationController;
+                ExhibitDetailsAppetizerViewController appetizerViewController = navigationController.TopViewController as ExhibitDetailsAppetizerViewController;
+                NSIndexPath selectedIndexPath = exhibitsTableView.IndexPathForSelectedRow;
+                ExhibitsTableViewSource source = exhibitsTableView.Source as ExhibitsTableViewSource;
+                ExhibitCellViewModel exhibitViewModel = source.Exhibits[selectedIndexPath.Row];
+                appetizerViewController.ExhibitID = exhibitViewModel.exhibitID;
+                appetizerViewController.ExhibitTitle = exhibitViewModel.Name;
+            }
         }
 
         private class MapViewDelegate : MKMapViewDelegate
@@ -93,7 +108,7 @@ namespace HiPMobile.iOS
             }
         }
 
-        private class ExhibitsTableViewSource : UITableViewSource
+        public class ExhibitsTableViewSource : UITableViewSource
         {
             public List<ExhibitCellViewModel> Exhibits { get; set; }        
                         

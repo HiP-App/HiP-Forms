@@ -14,8 +14,16 @@ namespace HiPMobile.iOS
     [Register ("ExhibitDetailsViewController")]
     partial class ExhibitDetailsViewController
     {
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIScrollView exhibitDetailsScrollView { get; set; }
+
         void ReleaseDesignerOutlets ()
         {
+            if (exhibitDetailsScrollView != null) {
+                exhibitDetailsScrollView.Dispose ();
+                exhibitDetailsScrollView = null;
+            }
         }
     }
 }
