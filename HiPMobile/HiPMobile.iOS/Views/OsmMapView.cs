@@ -1,6 +1,6 @@
 using Foundation;
 using System;
-using HiPMobile.iOS.Delegates;
+using HiPMobile.iOS;
 using UIKit;
 using MapKit;
 

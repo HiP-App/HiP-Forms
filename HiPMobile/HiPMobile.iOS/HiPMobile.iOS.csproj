@@ -146,6 +146,18 @@
     <ImageAsset Include="Resources\Images.xcassets\Close.imageset\ic_close_white_36pt_3x.png">
       <InProject>false</InProject>
     </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\ForwardArrow.imageset\Contents.json">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\ForwardArrow.imageset\ic_arrow_forward_white_36pt.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\ForwardArrow.imageset\ic_arrow_forward_white_36pt_2x.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\ForwardArrow.imageset\ic_arrow_forward_white_36pt_3x.png">
+      <InProject>false</InProject>
+    </ImageAsset>
     <ImageAsset Include="Resources\Images.xcassets\Home.imageset\Contents.json">
       <InProject>false</InProject>
     </ImageAsset>
@@ -220,6 +232,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Delegates\OsmMapViewDelegate.cs" />
+    <Compile Include="Delegates\PagingScrollViewSource.cs" />
+    <Compile Include="ViewControllers\ExhibitDetailsViewController.cs" />
+    <Compile Include="ViewControllers\ExhibitDetailsViewController.designer.cs">
+      <DependentUpon>ExhibitDetailsViewController.cs</DependentUpon>
+    </Compile>
     <Compile Include="Interfaces\IMainScreenContainable.cs" />
     <Compile Include="Views\ExhibitTableViewCell.cs" />
     <Compile Include="Views\ExhibitTableViewCell.designer.cs">
@@ -229,9 +246,9 @@
     <Compile Include="Views\OsmMapView.designer.cs">
       <DependentUpon>OsmMapView.cs</DependentUpon>
     </Compile>
-    <Compile Include="ViewControllers\ExhibitDetailsViewController.cs" />
-    <Compile Include="ViewControllers\ExhibitDetailsViewController.designer.cs">
-      <DependentUpon>ExhibitDetailsViewController.cs</DependentUpon>
+    <Compile Include="ViewControllers\ExhibitDetailsAppetizerViewController.cs" />
+    <Compile Include="ViewControllers\ExhibitDetailsAppetizerViewController.designer.cs">
+      <DependentUpon>ExhibitDetailsAppetizerViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="Helpers\Settings.cs" />
     <Compile Include="IosImageDimensions.cs" />
