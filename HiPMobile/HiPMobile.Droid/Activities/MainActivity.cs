@@ -14,10 +14,12 @@
 //  * limitations under the License.
 //  */
 
+using System;
 using System.Linq;
 using Android;
 using Android.App;
 using Android.Content.PM;
+using Android.Locations;
 using Android.OS;
 using Android.Support.Design.Widget;
 using Android.Support.V4.App;
@@ -28,6 +30,7 @@ using Android.Support.V7.App;
 using Android.Support.V7.Widget;
 using Android.Util;
 using Android.Views;
+using de.upb.hip.mobile.droid.Adapters;
 using de.upb.hip.mobile.droid.fragments;
 using de.upb.hip.mobile.droid.Helpers;
 using de.upb.hip.mobile.droid.Listeners;
@@ -39,8 +42,8 @@ using ActionBarDrawerToggle = Android.Support.V7.App.ActionBarDrawerToggle;
 
 namespace de.upb.hip.mobile.droid.Activities {
     [Activity (Theme = "@style/AppTheme",
-        Label = "HiPMobile.Droid", MainLauncher = false, Icon = "@drawable/icon")]
-    public class MainActivity : AppCompatActivity {
+         Label = "HiPMobile.Droid", MainLauncher = false, Icon = "@drawable/icon")]
+    public class MainActivity : AppCompatActivity, ExtendedLocationListenerAdapter {
 
         private readonly string LogId = "MainActivity";
 
@@ -50,7 +53,11 @@ namespace de.upb.hip.mobile.droid.Activities {
         private ExtendedLocationListener extendedLocationListener;
 
         private string UpdateKey = "AskUpdates";
-        public bool AskForUpdates = true;
+        private bool askForUpdates = true;
+
+        private string ExhibitsOverviewFragString = "Frag";
+
+        private ExhibitsOverviewFragment exhibitsOverviewFragment;
 
         protected override void OnCreate (Bundle savedInstanceState)
         {
@@ -59,15 +66,14 @@ namespace de.upb.hip.mobile.droid.Activities {
             // Set our view from the "main" layout resource
             SetContentView (Resource.Layout.Main);
 
-            Window.AddFlags(WindowManagerFlags.DrawsSystemBarBackgrounds);
+            Window.AddFlags (WindowManagerFlags.DrawsSystemBarBackgrounds);
 
             // Check if we have the necessary permissions and request them if we don't
             // Note that the app will still fail on first launch and needs to be restarted
             SetUpPermissions ();
 
-            extendedLocationListener = ExtendedLocationListener.GetInstance();
-            extendedLocationListener.SetContext(this);
-            extendedLocationListener.EnableCheckForExhibits();
+            InitializeExtendedLocationListener ();
+
 
             geoLocation = new GeoLocation
             {
@@ -89,7 +95,7 @@ namespace de.upb.hip.mobile.droid.Activities {
             if (savedInstanceState == null)
             {
                 // Set overview fragment
-                var fragment = new ExhibitsOverviewFragment
+                exhibitsOverviewFragment = new ExhibitsOverviewFragment
                 {
                     ExhibitSet = exhibitSet,
                     GeoLocation = geoLocation
@@ -98,19 +104,19 @@ namespace de.upb.hip.mobile.droid.Activities {
                 if (FindViewById (Resource.Id.main_fragment_container) != null)
                 {
                     var transaction = SupportFragmentManager.BeginTransaction ();
-                    transaction.Replace (Resource.Id.main_fragment_container, fragment);
+                    transaction.Replace (Resource.Id.main_fragment_container, exhibitsOverviewFragment);
                     transaction.Commit ();
                 }
-
             }
             else
             {
-                AskForUpdates = savedInstanceState.GetBoolean (UpdateKey);
+                askForUpdates = savedInstanceState.GetBoolean (UpdateKey);
+                exhibitsOverviewFragment = (ExhibitsOverviewFragment) SupportFragmentManager.GetFragment (savedInstanceState, ExhibitsOverviewFragString);
             }
 
 
             // hockeyapp code
-            if (AskForUpdates)
+            if (askForUpdates)
             {
                 CheckForUpdates ();
             }
@@ -120,7 +126,8 @@ namespace de.upb.hip.mobile.droid.Activities {
         {
             base.OnSaveInstanceState (outState);
 
-            outState.PutBoolean (UpdateKey, AskForUpdates);
+            outState.PutBoolean (UpdateKey, askForUpdates);
+            SupportFragmentManager.PutFragment (outState, ExhibitsOverviewFragString, exhibitsOverviewFragment);
         }
 
 
@@ -196,8 +203,6 @@ namespace de.upb.hip.mobile.droid.Activities {
 
         protected override void OnDestroy ()
         {
-
-
             base.OnDestroy ();
 
             // hockeyapp code
@@ -208,12 +213,10 @@ namespace de.upb.hip.mobile.droid.Activities {
         protected override void OnResume ()
         {
             base.OnResume ();
-            var navigationView = FindViewById<NavigationView>(Resource.Id.nav_view);
+            var navigationView = FindViewById<NavigationView> (Resource.Id.nav_view);
             navigationView.Menu.GetItem (0).SetChecked (true);
 
-            extendedLocationListener = ExtendedLocationListener.GetInstance();
-            extendedLocationListener.SetContext(this);
-            extendedLocationListener.EnableCheckForExhibits();
+            InitializeExtendedLocationListener ();
 
             geoLocation = new GeoLocation
             {
@@ -221,16 +224,35 @@ namespace de.upb.hip.mobile.droid.Activities {
                 Longitude = extendedLocationListener.Longitude
             };
 
+
             // hockeyapp code
             CheckForCrashes ();
+        }
+
+
+        private void InitializeExtendedLocationListener ()
+        {
+            extendedLocationListener = ExtendedLocationListener.GetInstance ();
+            extendedLocationListener.SetContext (this);
+            extendedLocationListener.EnableCheckForExhibits ();
+            extendedLocationListener.EnableLocationUpdates ();
+            extendedLocationListener.SetExtendedLocationListenerAdapter (this);
         }
 
         protected override void OnPause ()
         {
             base.OnPause ();
-            extendedLocationListener.Unregister();
+            extendedLocationListener.Unregister ();
             // hockeyapp code
             UnregisterManagers ();
+        }
+
+        public void LocationChanged (Location location)
+        {
+            geoLocation.Latitude = location.Latitude;
+            geoLocation.Longitude = location.Longitude;
+            exhibitsOverviewFragment.MapFragment.Update (geoLocation);
+            exhibitsOverviewFragment.ExhibitListFragment.Update (geoLocation);
         }
 
         public override void OnBackPressed ()
@@ -302,9 +324,10 @@ namespace de.upb.hip.mobile.droid.Activities {
             {
                 base.OnCancel ();
 
-                parent.AskForUpdates = false;
+                parent.askForUpdates = false;
             }
 
         }
+
     }
 }
