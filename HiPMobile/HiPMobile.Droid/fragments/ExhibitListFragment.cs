@@ -40,6 +40,10 @@ namespace de.upb.hip.mobile.droid.fragments {
         /// </summary>
         public GeoLocation GeoLocation { get; set; }
 
+        private RecyclerView recyclerView;
+
+        private MainRecyclerAdapter adapter;
+
         #region
 
         // Keys to save/restore instance state.
@@ -61,7 +65,7 @@ namespace de.upb.hip.mobile.droid.fragments {
         public override void OnCreate (Bundle savedInstanceState)
         {
             base.OnCreate (savedInstanceState);
-
+            RetainInstance = true;
             if (savedInstanceState != null)
             {
                 var latitude = savedInstanceState.GetDouble (KeyGeoLocationLatitude);
@@ -81,14 +85,14 @@ namespace de.upb.hip.mobile.droid.fragments {
         {
             var view = inflater.Inflate (Resource.Layout.fragment_exhibitlist, container, false);
 
-            var recyclerView = (RecyclerView) view.FindViewById (Resource.Id.exhibitListRecyclerView);
+            recyclerView = (RecyclerView) view.FindViewById (Resource.Id.exhibitListRecyclerView);
 
             // use a linear layout manager
             RecyclerView.LayoutManager layoutManager = new LinearLayoutManager (this.Activity);
             recyclerView.SetLayoutManager (layoutManager);
 
             //RecycleAdapter
-            var adapter = new MainRecyclerAdapter (ExhibitSet, GeoLocation, Application.Context);
+            adapter = new MainRecyclerAdapter (ExhibitSet, GeoLocation, Application.Context);
             recyclerView.SetAdapter (adapter);
 
             recyclerView.AddOnItemTouchListener (new RecyclerItemClickListener ((MainActivity) this.Activity, ExhibitSet));
@@ -98,6 +102,16 @@ namespace de.upb.hip.mobile.droid.fragments {
             swipeRefreshLayout.Enabled = false;
 
             return view;
+        }
+
+        public void Update (GeoLocation loc)
+        {
+            
+            adapter = new MainRecyclerAdapter(ExhibitSet, loc, Application.Context);
+            recyclerView.SetAdapter(adapter);
+
+            recyclerView.AddOnItemTouchListener(new RecyclerItemClickListener((MainActivity)this.Activity, ExhibitSet));
+            GeoLocation = loc;
         }
 
     }

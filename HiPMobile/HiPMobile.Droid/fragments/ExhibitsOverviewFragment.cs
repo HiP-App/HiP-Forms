@@ -37,6 +37,10 @@ namespace de.upb.hip.mobile.droid.fragments {
         /// </summary>
         public GeoLocation GeoLocation { get; set; }
 
+        public MapFragment MapFragment { get; private set; }
+
+        public ExhibitListFragment ExhibitListFragment { get; private set; }
+
         #region
 
         // Keys to save/restore instance state.
@@ -58,7 +62,7 @@ namespace de.upb.hip.mobile.droid.fragments {
         public override void OnCreate (Bundle savedInstanceState)
         {
             base.OnCreate (savedInstanceState);
-
+            this.RetainInstance = true;
             if (savedInstanceState != null)
             {
                 var latitude = savedInstanceState.GetDouble (KeyGeoLocationLatitude);
@@ -77,10 +81,10 @@ namespace de.upb.hip.mobile.droid.fragments {
         public override View OnCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             var view = inflater.Inflate (Resource.Layout.fragment_overview_exhibits, container, false);
-
+          
             if (savedInstanceState == null)
             {
-                var mapFragment = new MapFragment
+                 MapFragment = new MapFragment
                 {
                     ExhibitSet = ExhibitSet,
                     GeoLocation = GeoLocation
@@ -90,11 +94,11 @@ namespace de.upb.hip.mobile.droid.fragments {
                 if (view.FindViewById (Resource.Id.overview_map_fragment_container) != null)
                 {
                     var transaction = FragmentManager.BeginTransaction ();
-                    transaction.Add (Resource.Id.overview_map_fragment_container, mapFragment);
+                    transaction.Add (Resource.Id.overview_map_fragment_container, MapFragment);
                     transaction.Commit ();
                 }
 
-                var exhibitListFragment = new ExhibitListFragment
+                ExhibitListFragment = new ExhibitListFragment
                 {
                     ExhibitSet = ExhibitSet,
                     GeoLocation = GeoLocation
@@ -104,7 +108,7 @@ namespace de.upb.hip.mobile.droid.fragments {
                 if (view.FindViewById (Resource.Id.overview_exhibitlist_fragment_container) != null)
                 {
                     var transaction = FragmentManager.BeginTransaction ();
-                    transaction.Add (Resource.Id.overview_exhibitlist_fragment_container, exhibitListFragment);
+                    transaction.Add (Resource.Id.overview_exhibitlist_fragment_container, ExhibitListFragment);
                     transaction.Commit ();
                 }
             }

@@ -14,6 +14,7 @@
 //  * limitations under the License.
 //  */
 
+using System;
 using System.Linq;
 using Android;
 using Android.App;
@@ -37,7 +38,6 @@ using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using de.upb.hip.mobile.pcl.Common;
 using HockeyApp;
-using Org.Osmdroid.Util;
 using ActionBarDrawerToggle = Android.Support.V7.App.ActionBarDrawerToggle;
 
 namespace de.upb.hip.mobile.droid.Activities {
@@ -51,11 +51,13 @@ namespace de.upb.hip.mobile.droid.Activities {
         private ExhibitSet exhibitSet;
         private GeoLocation geoLocation;
         private ExtendedLocationListener extendedLocationListener;
-        private ExhibitsOverviewFragment exhibitsOverviewFragment;
-        private Android.Support.V4.App.FragmentTransaction transaction;
 
         private string UpdateKey = "AskUpdates";
         public bool AskForUpdates = true;
+
+        private string ExhibitsOverviewFragString = "Frag";
+
+        private ExhibitsOverviewFragment exhibitsOverviewFragment;
 
         protected override void OnCreate (Bundle savedInstanceState)
         {
@@ -71,6 +73,7 @@ namespace de.upb.hip.mobile.droid.Activities {
             SetUpPermissions ();
 
             InitializeExtendedLocationListener ();
+
 
             geoLocation = new GeoLocation
             {
@@ -89,9 +92,26 @@ namespace de.upb.hip.mobile.droid.Activities {
             //FeedbackManager.Register(this);
             FeedbackManager.Register (this, KeyManager.Instance.GetKey ("hockeyapp.android"), new HipFeedbackListener ());
 
-            if (savedInstanceState != null)
+            if (savedInstanceState == null)
+            {
+                // Set overview fragment
+                exhibitsOverviewFragment = new ExhibitsOverviewFragment
+                {
+                    ExhibitSet = exhibitSet,
+                    GeoLocation = geoLocation
+                };
+
+                if (FindViewById (Resource.Id.main_fragment_container) != null)
+                {
+                    var transaction = SupportFragmentManager.BeginTransaction ();
+                    transaction.Replace (Resource.Id.main_fragment_container, exhibitsOverviewFragment);
+                    transaction.Commit ();
+                }
+            }
+            else
             {
                 AskForUpdates = savedInstanceState.GetBoolean (UpdateKey);
+                exhibitsOverviewFragment =(ExhibitsOverviewFragment) SupportFragmentManager.GetFragment (savedInstanceState, ExhibitsOverviewFragString);
             }
 
 
@@ -107,6 +127,7 @@ namespace de.upb.hip.mobile.droid.Activities {
             base.OnSaveInstanceState (outState);
 
             outState.PutBoolean (UpdateKey, AskForUpdates);
+            SupportFragmentManager.PutFragment (outState,ExhibitsOverviewFragString,exhibitsOverviewFragment);
         }
 
 
@@ -188,7 +209,7 @@ namespace de.upb.hip.mobile.droid.Activities {
             UnregisterManagers ();
         }
 
-        
+
         protected override void OnResume ()
         {
             base.OnResume ();
@@ -196,39 +217,20 @@ namespace de.upb.hip.mobile.droid.Activities {
             navigationView.Menu.GetItem (0).SetChecked (true);
 
             InitializeExtendedLocationListener ();
+
             geoLocation = new GeoLocation
             {
                 Latitude = extendedLocationListener.Latitude,
                 Longitude = extendedLocationListener.Longitude
             };
 
-            SetFragment ();
+            
 
             // hockeyapp code
             CheckForCrashes ();
         }
 
-        //creates fragments and is called when stuff in fragments should be updated
-        private void SetFragment ()
-        {
-            if (exhibitsOverviewFragment != null)
-                transaction.Detach (exhibitsOverviewFragment);
 
-            exhibitsOverviewFragment = new ExhibitsOverviewFragment
-            {
-                ExhibitSet = exhibitSet,
-                GeoLocation = geoLocation
-            };
-
-            if (FindViewById (Resource.Id.main_fragment_container) != null)
-            {
-                transaction = SupportFragmentManager.BeginTransaction ();
-                transaction.Replace (Resource.Id.main_fragment_container, exhibitsOverviewFragment);
-                transaction.Commit ();
-            }
-        }
-
-        //Sets up the LocationListener 
         private void InitializeExtendedLocationListener ()
         {
             extendedLocationListener = ExtendedLocationListener.GetInstance ();
@@ -237,14 +239,6 @@ namespace de.upb.hip.mobile.droid.Activities {
             extendedLocationListener.EnableLocationUpdates ();
             extendedLocationListener.SetExtendedLocationListenerAdapter (this);
         }
-        //Handle Location Updates in MainActivty after changes fragments have to be updated
-        public void LocationChanged (Location location)
-        {
-            geoLocation.Latitude = location.Latitude;
-            geoLocation.Longitude = location.Longitude;
-
-            SetFragment ();
-        }
 
         protected override void OnPause ()
         {
@@ -252,6 +246,14 @@ namespace de.upb.hip.mobile.droid.Activities {
             extendedLocationListener.Unregister ();
             // hockeyapp code
             UnregisterManagers ();
+        }
+
+        public void LocationChanged (Location location)
+        {
+            geoLocation.Latitude = location.Latitude;
+            geoLocation.Longitude = location.Longitude;
+            exhibitsOverviewFragment.MapFragment.Update (geoLocation);
+            exhibitsOverviewFragment.ExhibitListFragment.Update (geoLocation);
         }
 
         public override void OnBackPressed ()

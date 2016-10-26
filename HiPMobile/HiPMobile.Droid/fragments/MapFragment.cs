@@ -51,6 +51,11 @@ namespace de.upb.hip.mobile.droid.fragments {
 
         private Marker userPosition;
 
+        private MapView mapView;
+        private MapController mapController;
+
+        private int zoomlvl = 13;
+
         public override void OnSaveInstanceState (Bundle outState)
         {
             base.OnSaveInstanceState (outState);
@@ -58,12 +63,13 @@ namespace de.upb.hip.mobile.droid.fragments {
             outState.PutString (KeyExhibitSetId, ExhibitSet.Id);
             outState.PutDouble (KeyGeoLocationLatitude, GeoLocation.Latitude);
             outState.PutDouble (KeyGeoLocationLongitude, GeoLocation.Longitude);
+            outState.PutInt (zoomlevel,mapView.ZoomLevel);
         }
 
         public override void OnCreate (Bundle savedInstanceState)
         {
             base.OnCreate (savedInstanceState);
-
+            RetainInstance = true;
             if (savedInstanceState != null)
             {
                 var latitude = savedInstanceState.GetDouble (KeyGeoLocationLatitude);
@@ -83,7 +89,7 @@ namespace de.upb.hip.mobile.droid.fragments {
         {
             var view = inflater.Inflate (Resource.Layout.fragment_map, container, false);
 
-            var mapView = view.FindViewById<MapView> (Resource.Id.mapview);
+            mapView = view.FindViewById<MapView> (Resource.Id.mapview);
             mapView.SetTileSource (TileSourceFactory.DefaultTileSource);
             mapView.SetBuiltInZoomControls (true);
             mapView.SetMultiTouchControls (true);
@@ -92,8 +98,10 @@ namespace de.upb.hip.mobile.droid.fragments {
             //mapView.SetTileSource (new XYTileSource ("OSM", 0, 18, 1024, ".png",
             //new[] {"http://tile.openstreetmap.org/"}));
 
-            var mapController = mapView.Controller;
-            mapController.SetZoom (13);
+            mapController = (MapController)mapView.Controller;
+            if (savedInstanceState != null)
+                zoomlvl = savedInstanceState.GetInt (zoomlevel);
+            mapController.SetZoom (zoomlvl);
 
             // var centreOfMap = new GeoPoint(51496994, -134733);
             var centreOfMap = new GeoPoint (GeoLocation.Latitude, GeoLocation.Longitude);
@@ -139,6 +147,20 @@ namespace de.upb.hip.mobile.droid.fragments {
             mapView.Invalidate ();
         }
 
+        public void Update (GeoLocation loc)
+        {
+            GeoPoint p = new GeoPoint (loc.Latitude,loc.Longitude);
+
+            mapController.SetCenter (p);
+            
+            userPosition.SetIcon(ResourcesCompat.GetDrawable(Resources, Resource.Drawable.ic_my_location, null));
+            userPosition.Position = new GeoPoint(p.Latitude, p.Longitude);
+            userPosition.SetInfoWindow(null);
+            mapView.OverlayManager.Add(userPosition);
+            mapView.Invalidate();
+            GeoLocation = loc;
+        }
+
         public override void OnResume ()
         {
             base.OnResume ();
@@ -159,6 +181,7 @@ namespace de.upb.hip.mobile.droid.fragments {
         private const string KeyExhibitSetId = "ExhibitSetId";
         private const string KeyGeoLocationLatitude = "GeoLocation.Latitude";
         private const string KeyGeoLocationLongitude = "GeoLocation.Longitude";
+        private const string zoomlevel = "zoomlevel";
 
         #endregion
     }
