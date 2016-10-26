@@ -53,7 +53,7 @@ namespace de.upb.hip.mobile.droid.Activities {
         private ExtendedLocationListener extendedLocationListener;
 
         private string UpdateKey = "AskUpdates";
-        public bool AskForUpdates = true;
+        private bool askForUpdates = true;
 
         private string ExhibitsOverviewFragString = "Frag";
 
@@ -110,13 +110,13 @@ namespace de.upb.hip.mobile.droid.Activities {
             }
             else
             {
-                AskForUpdates = savedInstanceState.GetBoolean (UpdateKey);
+                askForUpdates = savedInstanceState.GetBoolean (UpdateKey);
                 exhibitsOverviewFragment = (ExhibitsOverviewFragment) SupportFragmentManager.GetFragment (savedInstanceState, ExhibitsOverviewFragString);
             }
 
 
             // hockeyapp code
-            if (AskForUpdates)
+            if (askForUpdates)
             {
                 CheckForUpdates ();
             }
@@ -126,7 +126,7 @@ namespace de.upb.hip.mobile.droid.Activities {
         {
             base.OnSaveInstanceState (outState);
 
-            outState.PutBoolean (UpdateKey, AskForUpdates);
+            outState.PutBoolean (UpdateKey, askForUpdates);
             SupportFragmentManager.PutFragment (outState, ExhibitsOverviewFragString, exhibitsOverviewFragment);
         }
 
@@ -324,7 +324,7 @@ namespace de.upb.hip.mobile.droid.Activities {
             {
                 base.OnCancel ();
 
-                parent.AskForUpdates = false;
+                parent.askForUpdates = false;
             }
 
         }
