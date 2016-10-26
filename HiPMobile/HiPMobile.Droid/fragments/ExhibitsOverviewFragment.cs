@@ -12,10 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using Android.Media;
 using Android.OS;
 using Android.Views;
 using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
+using Java.IO;
+using Console = System.Console;
 using Fragment = Android.Support.V4.App.Fragment;
 
 namespace de.upb.hip.mobile.droid.fragments {
@@ -33,6 +36,10 @@ namespace de.upb.hip.mobile.droid.fragments {
         /// GeoLocation for the current position of the user.
         /// </summary>
         public GeoLocation GeoLocation { get; set; }
+
+        public MapFragment MapFragment { get; private set; }
+
+        public ExhibitListFragment ExhibitListFragment { get; private set; }
 
         #region
 
@@ -55,7 +62,7 @@ namespace de.upb.hip.mobile.droid.fragments {
         public override void OnCreate (Bundle savedInstanceState)
         {
             base.OnCreate (savedInstanceState);
-
+            this.RetainInstance = true;
             if (savedInstanceState != null)
             {
                 var latitude = savedInstanceState.GetDouble (KeyGeoLocationLatitude);
@@ -77,7 +84,7 @@ namespace de.upb.hip.mobile.droid.fragments {
 
             if (savedInstanceState == null)
             {
-                var mapFragment = new MapFragment
+                MapFragment = new MapFragment
                 {
                     ExhibitSet = ExhibitSet,
                     GeoLocation = GeoLocation
@@ -87,11 +94,11 @@ namespace de.upb.hip.mobile.droid.fragments {
                 if (view.FindViewById (Resource.Id.overview_map_fragment_container) != null)
                 {
                     var transaction = FragmentManager.BeginTransaction ();
-                    transaction.Add (Resource.Id.overview_map_fragment_container, mapFragment);
+                    transaction.Add (Resource.Id.overview_map_fragment_container, MapFragment);
                     transaction.Commit ();
                 }
 
-                var exhibitListFragment = new ExhibitListFragment
+                ExhibitListFragment = new ExhibitListFragment
                 {
                     ExhibitSet = ExhibitSet,
                     GeoLocation = GeoLocation
@@ -101,7 +108,7 @@ namespace de.upb.hip.mobile.droid.fragments {
                 if (view.FindViewById (Resource.Id.overview_exhibitlist_fragment_container) != null)
                 {
                     var transaction = FragmentManager.BeginTransaction ();
-                    transaction.Add (Resource.Id.overview_exhibitlist_fragment_container, exhibitListFragment);
+                    transaction.Add (Resource.Id.overview_exhibitlist_fragment_container, ExhibitListFragment);
                     transaction.Commit ();
                 }
             }
