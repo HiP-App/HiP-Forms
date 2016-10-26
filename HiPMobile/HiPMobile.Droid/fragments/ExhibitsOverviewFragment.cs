@@ -81,10 +81,10 @@ namespace de.upb.hip.mobile.droid.fragments {
         public override View OnCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             var view = inflater.Inflate (Resource.Layout.fragment_overview_exhibits, container, false);
-          
+
             if (savedInstanceState == null)
             {
-                 MapFragment = new MapFragment
+                MapFragment = new MapFragment
                 {
                     ExhibitSet = ExhibitSet,
                     GeoLocation = GeoLocation
@@ -115,7 +115,6 @@ namespace de.upb.hip.mobile.droid.fragments {
 
             return view;
         }
-
 
     }
 }

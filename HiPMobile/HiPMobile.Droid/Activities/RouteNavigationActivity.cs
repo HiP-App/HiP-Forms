@@ -45,11 +45,12 @@ namespace de.upb.hip.mobile.droid.Activities {
     public class RouteNavigationActivity : AppCompatActivity, ExtendedLocationListenerAdapter {
 
         public const string IntentRoute = "route";
+        private readonly int IndexNextWaypointNode = 1;
+        private readonly string LogId = "RouteNavigationActivity";
         private double distanceWalked;
         private IList<GeoPoint> geoPoints;
         private GeoPoint gpsLocation;
         protected ExtendedLocationListener GpsTracker;
-        private readonly int IndexNextWaypointNode = 1;
 
         private DirectedLocationOverlay locationOverlay;
         private MapController mapController;
@@ -64,33 +65,28 @@ namespace de.upb.hip.mobile.droid.Activities {
         private Route route;
         protected Button TrackingModeButton;
         private IList<Waypoint> wayPoints;
-        private readonly string LogId = "RouteNavigationActivity";
 
 
-        public void LocationChanged(Location location)
+        public void LocationChanged (Location location)
         {
-            var currentLocation = new GeoPoint(location);
+            var currentLocation = new GeoPoint (location);
             //calculate the distance walked from last positions
-            distanceWalked = currentLocation.DistanceTo(gpsLocation);
-            var tempNode = (RoadNode)road.MNodes[IndexNextWaypointNode];
+            distanceWalked = currentLocation.DistanceTo (gpsLocation);
+            var tempNode = (RoadNode) road.MNodes [IndexNextWaypointNode];
 
             //if distance > 20 m new request to mapquest
             if (distanceWalked > 20)
-            {
-                UpdateRoute(currentLocation, tempNode);
-            }
+                UpdateRoute (currentLocation, tempNode);
             else
-            {
-                UpdateInstructions(currentLocation, tempNode);
-            }
-            MapView.Invalidate();
+                UpdateInstructions (currentLocation, tempNode);
+            MapView.Invalidate ();
         }
 
         protected override void OnCreate (Bundle savedInstanceState)
         {
             base.OnCreate (savedInstanceState);
             SetContentView (Resource.Layout.activity_route_navigation);
-            Window.AddFlags(WindowManagerFlags.DrawsSystemBarBackgrounds);
+            Window.AddFlags (WindowManagerFlags.DrawsSystemBarBackgrounds);
 
             var toolbar = (Toolbar) FindViewById (Resource.Id.toolbar);
             SetSupportActionBar (toolbar);
@@ -99,25 +95,23 @@ namespace de.upb.hip.mobile.droid.Activities {
 
             geoPoints = new List<GeoPoint> ();
             // getting location
-            GpsTracker = ExtendedLocationListener.GetInstance();
-            GpsTracker.SetContext(this);
-            GpsTracker.SetExtendedLocationListenerAdapter(this);
-            GpsTracker.EnableLocationUpdates();
-            GpsTracker.EnableCheckForExhibits();
-            gpsLocation = new GeoPoint(GpsTracker.Latitude, GpsTracker.Longitude);
+            GpsTracker = ExtendedLocationListener.GetInstance ();
+            GpsTracker.SetContext (this);
+            GpsTracker.SetExtendedLocationListenerAdapter (this);
+            GpsTracker.EnableLocationUpdates ();
+            GpsTracker.EnableCheckForExhibits ();
+            gpsLocation = new GeoPoint (GpsTracker.Latitude, GpsTracker.Longitude);
 
             // TODO Remove this as soon as no needs to run in emulator
             // set default coordinats for emulator
             if (Build.Model.Contains ("google_sdk") ||
                 Build.Model.Contains ("Emulator") ||
                 Build.Model.Contains ("Android SDK"))
-            {
-                gpsLocation = new GeoPoint(AndroidConstants.PaderbornMainStation.Latitude,
+                gpsLocation = new GeoPoint (AndroidConstants.PaderbornMainStation.Latitude,
                                             AndroidConstants.PaderbornMainStation.Longitude);
-            }
             //catch if gps ist still zero
-            if (gpsLocation.Latitude == 0f && gpsLocation.Longitude == 0f)
-                gpsLocation = new GeoPoint(AndroidConstants.PaderbornMainStation.Latitude,
+            if ((gpsLocation.Latitude == 0f) && (gpsLocation.Longitude == 0f))
+                gpsLocation = new GeoPoint (AndroidConstants.PaderbornMainStation.Latitude,
                                             AndroidConstants.PaderbornMainStation.Longitude);
 
             //Get the Route from RouteDetailsActivity
@@ -172,7 +166,7 @@ namespace de.upb.hip.mobile.droid.Activities {
             MapView = genericMap.GetMapView ();
 
             MapView.Overlays.Add (locationOverlay);
-            MapView.SetBuiltInZoomControls (true);
+
             MapView.SetMultiTouchControls (true);
 
             MapView.SetTileSource (TileSourceFactory.Mapnik);
@@ -194,9 +188,7 @@ namespace de.upb.hip.mobile.droid.Activities {
             //Creates the RoadManager
             var key = KeyManager.Instance.GetKey ("mapquest");
             if (string.IsNullOrEmpty (key))
-            {
                 Log.Error (LogId, "Mapquest key is zero.");
-            }
             roadManager = new MapQuestRoadManager (key);
             roadManager.AddRequestOption ("routeType=pedestrian");
             roadManager.AddRequestOption ("locale=de_DE");
@@ -331,48 +323,46 @@ namespace de.upb.hip.mobile.droid.Activities {
             }*/
         }
 
-        protected override void OnPause()
+        protected override void OnPause ()
         {
-            base.OnPause();
-            GpsTracker.Unregister();
-
+            base.OnPause ();
+            GpsTracker.Unregister ();
         }
 
         protected override void OnResume ()
         {
             base.OnResume ();
-            GpsTracker = ExtendedLocationListener.GetInstance();
-            GpsTracker.SetContext(this);
-            GpsTracker.SetExtendedLocationListenerAdapter(this);
-            GpsTracker.EnableLocationUpdates();
-            GpsTracker.EnableCheckForExhibits();
-            gpsLocation = new GeoPoint(GpsTracker.Latitude, GpsTracker.Longitude);
+            GpsTracker = ExtendedLocationListener.GetInstance ();
+            GpsTracker.SetContext (this);
+            GpsTracker.SetExtendedLocationListenerAdapter (this);
+            GpsTracker.EnableLocationUpdates ();
+            GpsTracker.EnableCheckForExhibits ();
+            gpsLocation = new GeoPoint (GpsTracker.Latitude, GpsTracker.Longitude);
 
             // TODO Remove this as soon as no needs to run in emulator
             // set default coordinats for emulator
-            if (Build.Model.Contains("google_sdk") ||
-                Build.Model.Contains("Emulator") ||
-                Build.Model.Contains("Android SDK"))
-            {
-                gpsLocation = new GeoPoint(AndroidConstants.PaderbornMainStation.Latitude,
+            if (Build.Model.Contains ("google_sdk") ||
+                Build.Model.Contains ("Emulator") ||
+                Build.Model.Contains ("Android SDK"))
+                gpsLocation = new GeoPoint (AndroidConstants.PaderbornMainStation.Latitude,
                                             AndroidConstants.PaderbornMainStation.Longitude);
-            }
             //catch if gps ist still zero
-            if (gpsLocation.Latitude == 0f && gpsLocation.Longitude == 0f)
-                gpsLocation = new GeoPoint(AndroidConstants.PaderbornMainStation.Latitude,
+            if ((gpsLocation.Latitude == 0f) && (gpsLocation.Longitude == 0f))
+                gpsLocation = new GeoPoint (AndroidConstants.PaderbornMainStation.Latitude,
                                             AndroidConstants.PaderbornMainStation.Longitude);
         }
 
-        public override bool OnOptionsItemSelected(IMenuItem item)
+        public override bool OnOptionsItemSelected (IMenuItem item)
         {
-            if (item.ItemId.Equals(Android.Resource.Id.Home))
+            if (item.ItemId.Equals (Android.Resource.Id.Home))
             {
-                SupportFinishAfterTransition();
+                SupportFinishAfterTransition ();
                 return true;
             }
 
-            return base.OnOptionsItemSelected(item);
+            return base.OnOptionsItemSelected (item);
         }
+
     }
 }
 

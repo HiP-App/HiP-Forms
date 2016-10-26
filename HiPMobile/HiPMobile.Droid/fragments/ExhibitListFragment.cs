@@ -106,11 +106,9 @@ namespace de.upb.hip.mobile.droid.fragments {
 
         public void Update (GeoLocation loc)
         {
-            
-            adapter = new MainRecyclerAdapter(ExhibitSet, loc, Application.Context);
-            recyclerView.SetAdapter(adapter);
+            recyclerView.SetAdapter (adapter);
 
-            recyclerView.AddOnItemTouchListener(new RecyclerItemClickListener((MainActivity)this.Activity, ExhibitSet));
+
             GeoLocation = loc;
         }
 

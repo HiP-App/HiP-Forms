@@ -63,7 +63,7 @@ namespace de.upb.hip.mobile.droid.fragments {
             outState.PutString (KeyExhibitSetId, ExhibitSet.Id);
             outState.PutDouble (KeyGeoLocationLatitude, GeoLocation.Latitude);
             outState.PutDouble (KeyGeoLocationLongitude, GeoLocation.Longitude);
-            outState.PutInt (zoomlevel,mapView.ZoomLevel);
+            outState.PutInt (zoomlevel, mapView.ZoomLevel);
         }
 
         public override void OnCreate (Bundle savedInstanceState)
@@ -91,14 +91,14 @@ namespace de.upb.hip.mobile.droid.fragments {
 
             mapView = view.FindViewById<MapView> (Resource.Id.mapview);
             mapView.SetTileSource (TileSourceFactory.DefaultTileSource);
-            mapView.SetBuiltInZoomControls (true);
+
             mapView.SetMultiTouchControls (true);
             mapView.TilesScaledToDpi = true;
 
             //mapView.SetTileSource (new XYTileSource ("OSM", 0, 18, 1024, ".png",
             //new[] {"http://tile.openstreetmap.org/"}));
 
-            mapController = (MapController)mapView.Controller;
+            mapController = (MapController) mapView.Controller;
             if (savedInstanceState != null)
                 zoomlvl = savedInstanceState.GetInt (zoomlevel);
             mapController.SetZoom (zoomlvl);
@@ -149,15 +149,15 @@ namespace de.upb.hip.mobile.droid.fragments {
 
         public void Update (GeoLocation loc)
         {
-            GeoPoint p = new GeoPoint (loc.Latitude,loc.Longitude);
+            GeoPoint p = new GeoPoint (loc.Latitude, loc.Longitude);
 
             mapController.SetCenter (p);
-            
-            userPosition.SetIcon(ResourcesCompat.GetDrawable(Resources, Resource.Drawable.ic_my_location, null));
-            userPosition.Position = new GeoPoint(p.Latitude, p.Longitude);
-            userPosition.SetInfoWindow(null);
-            mapView.OverlayManager.Add(userPosition);
-            mapView.Invalidate();
+
+            userPosition.SetIcon (ResourcesCompat.GetDrawable (Resources, Resource.Drawable.ic_my_location, null));
+            userPosition.Position = new GeoPoint (p.Latitude, p.Longitude);
+            userPosition.SetInfoWindow (null);
+            mapView.OverlayManager.Add (userPosition);
+            mapView.Invalidate ();
             GeoLocation = loc;
         }
 

@@ -111,7 +111,7 @@ namespace de.upb.hip.mobile.droid.Activities {
             else
             {
                 AskForUpdates = savedInstanceState.GetBoolean (UpdateKey);
-                exhibitsOverviewFragment =(ExhibitsOverviewFragment) SupportFragmentManager.GetFragment (savedInstanceState, ExhibitsOverviewFragString);
+                exhibitsOverviewFragment = (ExhibitsOverviewFragment) SupportFragmentManager.GetFragment (savedInstanceState, ExhibitsOverviewFragString);
             }
 
 
@@ -127,7 +127,7 @@ namespace de.upb.hip.mobile.droid.Activities {
             base.OnSaveInstanceState (outState);
 
             outState.PutBoolean (UpdateKey, AskForUpdates);
-            SupportFragmentManager.PutFragment (outState,ExhibitsOverviewFragString,exhibitsOverviewFragment);
+            SupportFragmentManager.PutFragment (outState, ExhibitsOverviewFragString, exhibitsOverviewFragment);
         }
 
 
@@ -224,7 +224,6 @@ namespace de.upb.hip.mobile.droid.Activities {
                 Longitude = extendedLocationListener.Longitude
             };
 
-            
 
             // hockeyapp code
             CheckForCrashes ();
