@@ -35,101 +35,94 @@ using Org.Osmdroid.Views;
 using Org.Osmdroid.Views.Overlay;
 using Toolbar = Android.Support.V7.Widget.Toolbar;
 
-namespace de.upb.hip.mobile.droid.Activities
-{
-    [Activity(Theme = "@style/AppTheme.NoActionBar")]
-    public class RouteDetailsActivity : AppCompatActivity
-    {
+namespace de.upb.hip.mobile.droid.Activities {
+    [Activity (Theme = "@style/AppTheme.NoActionBar")]
+    public class RouteDetailsActivity : AppCompatActivity {
+
         private Route route;
         public static readonly string KEY_ROUTE_ID = "route";
-        private GeoPoint currentUserLocation = new GeoPoint(51.71352, 8.74021);
+        private GeoPoint currentUserLocation = new GeoPoint (51.71352, 8.74021);
         internal MapView map;
         private ItemizedIconOverlay mapMarkerItemizedOverlay;
         private ExtendedLocationListener gpsTracker;
         public static readonly int MAX_ZOOM_LEVEL = 16;
         public static readonly int ZOOM_LEVEL = 16;
 
-        protected override void OnCreate(Bundle savedInstanceState)
+        protected override void OnCreate (Bundle savedInstanceState)
         {
-            base.OnCreate(savedInstanceState);
-            SetContentView(Resource.Layout.activity_route_details);
-            Window.AddFlags(WindowManagerFlags.DrawsSystemBarBackgrounds);
+            base.OnCreate (savedInstanceState);
+            SetContentView (Resource.Layout.activity_route_details);
+            Window.AddFlags (WindowManagerFlags.DrawsSystemBarBackgrounds);
 
-            var toolbar = (Toolbar)FindViewById(Resource.Id.toolbar);
-            SetSupportActionBar(toolbar);
-            SupportActionBar.SetDisplayHomeAsUpEnabled(true);
+            var toolbar = (Toolbar) FindViewById (Resource.Id.toolbar);
+            SetSupportActionBar (toolbar);
+            SupportActionBar.SetDisplayHomeAsUpEnabled (true);
 
             var extras = Intent.Extras;
-            string routeId = extras.GetString(KEY_ROUTE_ID);
-            route = RouteManager.GetRoute(routeId);
-            gpsTracker = ExtendedLocationListener.GetInstance();
+            string routeId = extras.GetString (KEY_ROUTE_ID);
+            route = RouteManager.GetRoute (routeId);
+            gpsTracker = ExtendedLocationListener.GetInstance ();
             gpsTracker.EnableLocationUpdates ();
             gpsTracker.EnableCheckForExhibits ();
-            gpsTracker.SetContext(this);
+            gpsTracker.SetContext (this);
 
             if (route != null)
             {
                 // getting location
-                if (gpsTracker.CanGetLocation)
-                {
-                    currentUserLocation = new GeoPoint (
-                        gpsTracker.Latitude, gpsTracker.Longitude);
-                }
 
-                // remove this for reals usage
-                currentUserLocation = new GeoPoint(AndroidConstants.PaderbornMainStation.Latitude,
-                    AndroidConstants.PaderbornMainStation.Longitude);
+                currentUserLocation = new GeoPoint (gpsTracker.Latitude, gpsTracker.Longitude);
+
 
                 Title = route.Title;
-                InitRouteInfo();
-                InitMap();
+                InitRouteInfo ();
+                InitMap ();
 
-                AddStartPointOnMap();
-                AddViaPointsOnMap();
-                AddFinalPointOnMap();
+                AddStartPointOnMap ();
+                AddViaPointsOnMap ();
+                AddFinalPointOnMap ();
 
-                DrawPathOnMap();
+                DrawPathOnMap ();
 
-                map.OverlayManager.Add(mapMarkerItemizedOverlay);
+                map.OverlayManager.Add (mapMarkerItemizedOverlay);
             }
             else
             {
-                Toast.MakeText(this, Resource.String.empty_route, ToastLength.Short).Show();
+                Toast.MakeText (this, Resource.String.empty_route, ToastLength.Short).Show ();
             }
 
-            Button button = (Button)this.FindViewById(Resource.Id.routeDetailsStartNavigationButton);
+            Button button = (Button) this.FindViewById (Resource.Id.routeDetailsStartNavigationButton);
             button.Click += (sender, args) => {
                 Intent intent = new Intent (this, typeof (RouteNavigationActivity));
                 intent.PutExtra (RouteNavigationActivity.IntentRoute, route.Id);
-                StartActivity(intent);
+                StartActivity (intent);
             };
 
-            View view = this.FindViewById(Resource.Id.routedetails_mapview);
-            view.ViewTreeObserver.AddOnGlobalLayoutListener(new MapViewGlobalLayoutListener(this));
+            View view = this.FindViewById (Resource.Id.routedetails_mapview);
+            view.ViewTreeObserver.AddOnGlobalLayoutListener (new MapViewGlobalLayoutListener (this));
         }
 
-        private void InitRouteInfo()
+        private void InitRouteInfo ()
         {
-            TextView descriptionView = (TextView)FindViewById(Resource.Id.routeDetailsDescription);
-            TextView durationView = (TextView)FindViewById(Resource.Id.routeDetailsDuration);
-            TextView distanceView = (TextView)FindViewById(Resource.Id.routeDetailsDistance);
-            LinearLayout tagsLayout = (LinearLayout)FindViewById(Resource.Id.routeDetailsTagsLayout);
+            TextView descriptionView = (TextView) FindViewById (Resource.Id.routeDetailsDescription);
+            TextView durationView = (TextView) FindViewById (Resource.Id.routeDetailsDuration);
+            TextView distanceView = (TextView) FindViewById (Resource.Id.routeDetailsDistance);
+            LinearLayout tagsLayout = (LinearLayout) FindViewById (Resource.Id.routeDetailsTagsLayout);
 
             descriptionView.Text = route.Description;
             int durationInMinutes = route.Duration / 60;
-            durationView.Text = Resources.GetQuantityString(
+            durationView.Text = Resources.GetQuantityString (
                 Resource.Plurals.route_activity_duration_minutes, durationInMinutes, durationInMinutes);
-            distanceView.Text = String.Format(Resources.GetString(Resource.String.route_activity_distance_kilometer), route.Distance);
+            distanceView.Text = String.Format (Resources.GetString (Resource.String.route_activity_distance_kilometer), route.Distance);
 
             //Add tags
-            if (route.RouteTags.Any())
+            if (route.RouteTags.Any ())
             {
-                tagsLayout.RemoveAllViews();
+                tagsLayout.RemoveAllViews ();
                 foreach (RouteTag tag in route.RouteTags)
                 {
-                    ImageView tagImageView = new ImageView(ApplicationContext);
-                    tagImageView.SetImageDrawable(tag.Image.GetDrawable(this, tagImageView.Width, tagImageView.Height));
-                    tagsLayout.AddView(tagImageView);
+                    ImageView tagImageView = new ImageView (ApplicationContext);
+                    tagImageView.SetImageDrawable (tag.Image.GetDrawable (this, tagImageView.Width, tagImageView.Height));
+                    tagsLayout.AddView (tagImageView);
                 }
             }
         }
@@ -137,36 +130,34 @@ namespace de.upb.hip.mobile.droid.Activities
         /// <summary>
         /// Init the map, set the tile source and set the zoom.
         /// </summary>
-        private void InitMap()
+        private void InitMap ()
         {
-            map = FindViewById<MapView>(Resource.Id.routedetails_mapview);
-            map.SetTileSource(TileSourceFactory.DefaultTileSource);
+            map = FindViewById<MapView> (Resource.Id.routedetails_mapview);
+            map.SetTileSource (TileSourceFactory.DefaultTileSource);
             //map.SetBuiltInZoomControls(true);
-            map.SetMultiTouchControls(true);
+            map.SetMultiTouchControls (true);
             map.TilesScaledToDpi = true;
 
 
             var mapController = map.Controller;
-            
-            mapController.SetZoom(ZOOM_LEVEL);
-            mapController.SetCenter(currentUserLocation);
+
+            mapController.SetZoom (ZOOM_LEVEL);
+            mapController.SetCenter (currentUserLocation);
 
             // Initialize marker overlay
-            mapMarkerItemizedOverlay = new ItemizedIconOverlay(this, new List<OverlayItem>(), null);
+            mapMarkerItemizedOverlay = new ItemizedIconOverlay (this, new List<OverlayItem> (), null);
         }
 
-        private void InitItineraryMarkers()
+        private void InitItineraryMarkers ()
         {
-
-            /*ViaPointInfoWindow mViaPointInfoWindow = new ViaPointInfoWindow(
-                    R.layout.navigation_info_window, mMap, this);*/
+/*ViaPointInfoWindow mViaPointInfoWindow = new ViaPointInfoWindow(
+                                R.layout.navigation_info_window, mMap, this);*/
 
             /*FolderOverlay mItineraryMarkers = new FolderOverlay(this);
             mItineraryMarkers.setName(getString(R.string.itinerary_markers_title));
             mMap.getOverlays().add(mItineraryMarkers);
 
             mMarker = new SetMarker(mMap, mItineraryMarkers, mViaPointInfoWindow);*/
-            
         }
 
         /// <summary>
@@ -175,10 +166,10 @@ namespace de.upb.hip.mobile.droid.Activities
         /// Else use the first way point as start point, but only if there are two or more way points
         /// (else there would be no route).
         /// </summary>
-        private void AddStartPointOnMap()
+        private void AddStartPointOnMap ()
         {
             GeoPoint geoLocation = null;
-            string title = Resources.GetString(Resource.String.departure);
+            string title = Resources.GetString (Resource.String.departure);
             string description = "";
             Drawable drawable = null;
 
@@ -187,33 +178,34 @@ namespace de.upb.hip.mobile.droid.Activities
                 // setup our current location as start point
                 geoLocation = this.currentUserLocation;
             }
-            else if (route.Waypoints.Count() > 1)
-            {
-                // if no current location then use first waypoint as start point only if >=2 waypoints
-                geoLocation = new GeoPoint(route.Waypoints[0].Location.Latitude,
-                        route.Waypoints[0].Location.Longitude);
-
-                // add related data to marker if start point is first waypoint
-                if (route.Waypoints[0].Exhibit != null)
+            else
+                if (route.Waypoints.Count () > 1)
                 {
-                    Exhibit exhibit = route.Waypoints[0].Exhibit;
-                    title = exhibit.Name;
-                    description = exhibit.Description;
+                    // if no current location then use first waypoint as start point only if >=2 waypoints
+                    geoLocation = new GeoPoint (route.Waypoints [0].Location.Latitude,
+                                                route.Waypoints [0].Location.Longitude);
 
-                    drawable = exhibit.Image.GetDrawable(this);
+                    // add related data to marker if start point is first waypoint
+                    if (route.Waypoints [0].Exhibit != null)
+                    {
+                        Exhibit exhibit = route.Waypoints [0].Exhibit;
+                        title = exhibit.Name;
+                        description = exhibit.Description;
+
+                        drawable = exhibit.Image.GetDrawable (this);
+                    }
                 }
-            }
 
             if (geoLocation != null)
             {
                 if (drawable == null)
                 {
                     // set default image in info window
-                    drawable = ContextCompat.GetDrawable(this, Resource.Drawable.marker_departure);
+                    drawable = ContextCompat.GetDrawable (this, Resource.Drawable.marker_departure);
                 }
-
+                //TODO set right gps position of that marker
                 // set and fill start point with data
-                AddMarker(geoLocation, drawable, title, description);
+                AddMarker (geoLocation, drawable, title, description);
             }
         }
 
@@ -224,44 +216,46 @@ namespace de.upb.hip.mobile.droid.Activities
         /// (else there would be no route).
         /// Adds a single marker if the current user location is unknown and only one way point exits.
         /// </summary>
-        private void AddViaPointsOnMap()
+        private void AddViaPointsOnMap ()
         {
             int waypointIndex = -1;
 
-            if (this.currentUserLocation != null && route.Waypoints.Count() > 1)
+            if (this.currentUserLocation != null && route.Waypoints.Count () > 1)
             {
                 waypointIndex = 0;
             }
-            else if (this.currentUserLocation == null)
-            {
-                if (route.Waypoints.Count() > 2)
+            else
+                if (this.currentUserLocation == null)
                 {
-                    waypointIndex = 1;
+                    if (route.Waypoints.Count () > 2)
+                    {
+                        waypointIndex = 1;
+                    }
+                    else
+                        if (route.Waypoints.Count () == 1)
+                        {
+                            waypointIndex = 0;
+                        }
                 }
-                else if (route.Waypoints.Count() == 1)
-                {
-                    waypointIndex = 0;
-                }
-            }
 
             if (waypointIndex > -1)
             {
                 //Add all waypoints to the map except the last one,
                 // it would be marked as destination marker
-                for (int index = waypointIndex; index < route.Waypoints.Count() - 1; index++)
+                for (int index = waypointIndex; index < route.Waypoints.Count () - 1; index++)
                 {
-                    Waypoint waypoint = route.Waypoints[index];
+                    Waypoint waypoint = route.Waypoints [index];
                     if (waypoint.Exhibit != null)
                     {
                         GeoPoint geoPoint =
-                                new GeoPoint(waypoint.Location.Latitude, waypoint.Location.Longitude);
+                            new GeoPoint (waypoint.Location.Latitude, waypoint.Location.Longitude);
                         Exhibit exhibit = waypoint.Exhibit;
 
-                        Drawable drawable = exhibit.Image.GetDrawable(this);
+                        Drawable drawable = exhibit.Image.GetDrawable (this);
 
                         // add marker on map for waypoint
-                        AddMarker(geoPoint, Resources.GetDrawable(Resource.Drawable.marker_via), exhibit.Name,
-                                exhibit.Description);
+                        AddMarker (geoPoint, Resources.GetDrawable (Resource.Drawable.marker_via), exhibit.Name,
+                                   exhibit.Description);
                     }
                 }
             }
@@ -272,52 +266,52 @@ namespace de.upb.hip.mobile.droid.Activities
         /// Takes the the last way point, if the current user location is known and way points exits,
         /// or if the current user location is unknown, but two or more way points exit.
         /// </summary>
-        private void AddFinalPointOnMap()
+        private void AddFinalPointOnMap ()
         {
             GeoPoint geoLocation;
-            string title = Resources.GetString(Resource.String.destination);
+            string title = Resources.GetString (Resource.String.destination);
             string description = "";
             Drawable drawable;
 
             int waypointIndex = -1;
 
-            if ((this.currentUserLocation != null) && (route.Waypoints.Any()))
+            if ((this.currentUserLocation != null) && (route.Waypoints.Any ()))
             {
                 // if current location is not null and we have at least one waypoint, then
                 // use last one as destination point
-                waypointIndex = route.Waypoints.Count() - 1;
+                waypointIndex = route.Waypoints.Count () - 1;
             }
             else
             {
-                if (route.Waypoints.Count() > 1)
+                if (route.Waypoints.Count () > 1)
                 {
                     // if current location is null and we have more then one waypoint, then
                     // use last waypoint as destination point
-                    waypointIndex = route.Waypoints.Count() - 1;
+                    waypointIndex = route.Waypoints.Count () - 1;
                 }
             }
 
             if (waypointIndex > -1)
             {
-                geoLocation = new GeoPoint(route.Waypoints[waypointIndex].Location.Latitude,
-                        route.Waypoints[waypointIndex].Location.Longitude);
+                geoLocation = new GeoPoint (route.Waypoints [waypointIndex].Location.Latitude,
+                                            route.Waypoints [waypointIndex].Location.Longitude);
 
                 // add related data to marker
-                if (route.Waypoints[waypointIndex].Exhibit != null)
+                if (route.Waypoints [waypointIndex].Exhibit != null)
                 {
-                    Exhibit exhibit = route.Waypoints[waypointIndex].Exhibit;
+                    Exhibit exhibit = route.Waypoints [waypointIndex].Exhibit;
                     title = exhibit.Name;
                     description = exhibit.Description;
 
-                    drawable = exhibit.Image.GetDrawable(this);
+                    drawable = exhibit.Image.GetDrawable (this);
                 }
                 else
                 {
-                    drawable = ContextCompat.GetDrawable(this, Resource.Drawable.marker_destination);
+                    drawable = ContextCompat.GetDrawable (this, Resource.Drawable.marker_destination);
                 }
 
                 // set final point
-                AddMarker(geoLocation, Resources.GetDrawable(Resource.Drawable.marker_destination), title, description);
+                AddMarker (geoLocation, Resources.GetDrawable (Resource.Drawable.marker_destination), title, description);
             }
         }
 
@@ -326,83 +320,82 @@ namespace de.upb.hip.mobile.droid.Activities
         /// path is perfect.
         /// The new, not deprecated class Polylines is more complex and needs a road from RoadManager
         /// </summary>
-        private void DrawPathOnMap()
+        private void DrawPathOnMap ()
         {
-            PathOverlay myPath = new PathOverlay(Resources.GetColor(Resource.Color.colorPrimaryDark),
-                    5, new DefaultResourceProxyImpl(this));
+            PathOverlay myPath = new PathOverlay (Resources.GetColor (Resource.Color.colorPrimaryDark),
+                                                  5, new DefaultResourceProxyImpl (this));
 
             if (currentUserLocation != null)
             {
-                myPath.AddPoint(currentUserLocation);
+                myPath.AddPoint (currentUserLocation);
             }
 
-            if (route != null && route.Waypoints.Any())
+            if (route != null && route.Waypoints.Any ())
             {
                 foreach (Waypoint waypoint in route.Waypoints)
                 {
-                    myPath.AddPoint(new GeoPoint(waypoint.Location.Latitude, waypoint.Location.Longitude));
+                    myPath.AddPoint (new GeoPoint (waypoint.Location.Latitude, waypoint.Location.Longitude));
                 }
             }
 
-            map.Overlays.Add(myPath);
-            map.Invalidate();
+            map.Overlays.Add (myPath);
+            map.Invalidate ();
         }
 
         /// <summary>
         /// Getting bounding box to fit all marker on the map
         /// </summary>
         /// <returns>BoundingBoxE6</returns>
-        public BoundingBoxE6 GetBoundingBoxE6()
+        public BoundingBoxE6 GetBoundingBoxE6 ()
         {
-            List<GeoPoint> points = new List<GeoPoint>();
+            List<GeoPoint> points = new List<GeoPoint> ();
 
             if (currentUserLocation != null)
             {
-                points.Add(currentUserLocation);
+                points.Add (currentUserLocation);
             }
 
-            if (route != null && route.Waypoints.Any())
+            if (route != null && route.Waypoints.Any ())
             {
                 foreach (Waypoint waypoint in route.Waypoints)
                 {
-                    points.Add(new GeoPoint(waypoint.Location.Latitude, waypoint.Location.Longitude));
+                    points.Add (new GeoPoint (waypoint.Location.Latitude, waypoint.Location.Longitude));
                 }
             }
 
-            return BoundingBoxE6.FromGeoPoints(points);
+            return BoundingBoxE6.FromGeoPoints (points);
         }
 
-        public override bool OnOptionsItemSelected(IMenuItem item)
+        public override bool OnOptionsItemSelected (IMenuItem item)
         {
-            if (item.ItemId.Equals(Android.Resource.Id.Home))
+            if (item.ItemId.Equals (Android.Resource.Id.Home))
             {
-                SupportFinishAfterTransition();
+                SupportFinishAfterTransition ();
                 return true;
             }
 
-            return base.OnOptionsItemSelected(item);
+            return base.OnOptionsItemSelected (item);
         }
 
         protected override void OnResume ()
         {
             base.OnResume ();
-            gpsTracker = ExtendedLocationListener.GetInstance();
-            gpsTracker.SetContext(this);
-            gpsTracker.EnableCheckForExhibits();
+            gpsTracker = ExtendedLocationListener.GetInstance ();
+            gpsTracker.SetContext (this);
+            gpsTracker.EnableCheckForExhibits ();
             gpsTracker.EnableLocationUpdates ();
 
             if (gpsTracker.CanGetLocation)
             {
-                currentUserLocation = new GeoPoint(
-                        gpsTracker.Latitude, gpsTracker.Longitude);
+                currentUserLocation = new GeoPoint (
+                    gpsTracker.Latitude, gpsTracker.Longitude);
             }
         }
 
-        protected override void OnPause()
+        protected override void OnPause ()
         {
-            base.OnStop();
-            gpsTracker.Unregister();
-
+            base.OnStop ();
+            gpsTracker.Unregister ();
         }
 
         /// <summary>
@@ -414,12 +407,12 @@ namespace de.upb.hip.mobile.droid.Activities
         /// <param name="title">String, title of the exhibit</param>
         /// <param name="description">String, description of the exhibit</param>
         /// <param name="exhibitId">int, exhibit id</param>
-        private void AddMarker(GeoPoint geoLocation, Drawable drawable, string title,
-                           string description)
+        private void AddMarker (GeoPoint geoLocation, Drawable drawable, string title,
+                                string description)
         {
-            var marker = new OverlayItem(title, description, geoLocation);
-            marker.SetMarker(drawable);
-            this.mapMarkerItemizedOverlay.AddItem(marker);
+            var marker = new OverlayItem (title, description, geoLocation);
+            marker.SetMarker (drawable);
+            this.mapMarkerItemizedOverlay.AddItem (marker);
             /*Map<String, Integer> data = new HashMap<>();
             data.put(title, exhibitId);
 
@@ -430,35 +423,36 @@ namespace de.upb.hip.mobile.droid.Activities
         /// Check for internet connection.
         /// </summary>
         /// <returns>true, if internet is available.</returns>
-        private bool IsNetworkAvailable()
+        private bool IsNetworkAvailable ()
         {
             ConnectivityManager connectivityManager
-                    = (ConnectivityManager)GetSystemService(Context.ConnectivityService);
+                = (ConnectivityManager) GetSystemService (Context.ConnectivityService);
             NetworkInfo activeNetworkInfo = connectivityManager.ActiveNetworkInfo;
             return activeNetworkInfo != null && activeNetworkInfo.IsConnected;
         }
+
     }
 
-    internal class MapViewGlobalLayoutListener : Java.Lang.Object, ViewTreeObserver.IOnGlobalLayoutListener
-    {
+    internal class MapViewGlobalLayoutListener : Java.Lang.Object, ViewTreeObserver.IOnGlobalLayoutListener {
+
         private readonly RouteDetailsActivity parent;
 
-        public MapViewGlobalLayoutListener(RouteDetailsActivity parent)
+        public MapViewGlobalLayoutListener (RouteDetailsActivity parent)
         {
             this.parent = parent;
         }
-        public void OnGlobalLayout()
-        {
-            View view = parent.FindViewById(Resource.Id.routedetails_mapview);
-            view.ViewTreeObserver.RemoveOnGlobalLayoutListener(this);
 
-            BoundingBoxE6 boundingBoxE6 = parent.GetBoundingBoxE6();
+        public void OnGlobalLayout ()
+        {
+            View view = parent.FindViewById (Resource.Id.routedetails_mapview);
+            view.ViewTreeObserver.RemoveOnGlobalLayoutListener (this);
+
+            BoundingBoxE6 boundingBoxE6 = parent.GetBoundingBoxE6 ();
             if (boundingBoxE6 != null)
             {
-                parent.map.ZoomToBoundingBox(boundingBoxE6);
+                parent.map.ZoomToBoundingBox (boundingBoxE6);
             }
         }
 
-      
     }
 }

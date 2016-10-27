@@ -15,10 +15,12 @@
 using Android.OS;
 using Android.Support.V4.App;
 using Android.Support.V4.Content;
+using Android.Support.V4.Content.Res;
 using Android.Views;
 using de.upb.hip.mobile.droid.Helpers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
+using Org.Osmdroid.Bonuspack.Overlays;
 using Org.Osmdroid.Tileprovider.Tilesource;
 using Org.Osmdroid.Util;
 using Org.Osmdroid.Views;
@@ -47,6 +49,13 @@ namespace de.upb.hip.mobile.droid.fragments {
 
         private ScaleBarOverlay MyScaleBarOverlay { get; set; }
 
+        private Marker userPosition;
+
+        private MapView mapView;
+        private MapController mapController;
+
+        private int zoomlvl = 13;
+
         public override void OnSaveInstanceState (Bundle outState)
         {
             base.OnSaveInstanceState (outState);
@@ -54,12 +63,13 @@ namespace de.upb.hip.mobile.droid.fragments {
             outState.PutString (KeyExhibitSetId, ExhibitSet.Id);
             outState.PutDouble (KeyGeoLocationLatitude, GeoLocation.Latitude);
             outState.PutDouble (KeyGeoLocationLongitude, GeoLocation.Longitude);
+            outState.PutInt (zoomlevel, mapView.ZoomLevel);
         }
 
         public override void OnCreate (Bundle savedInstanceState)
         {
             base.OnCreate (savedInstanceState);
-
+            RetainInstance = true;
             if (savedInstanceState != null)
             {
                 var latitude = savedInstanceState.GetDouble (KeyGeoLocationLatitude);
@@ -79,21 +89,24 @@ namespace de.upb.hip.mobile.droid.fragments {
         {
             var view = inflater.Inflate (Resource.Layout.fragment_map, container, false);
 
-            var mapView = view.FindViewById<MapView> (Resource.Id.mapview);
+            mapView = view.FindViewById<MapView> (Resource.Id.mapview);
             mapView.SetTileSource (TileSourceFactory.DefaultTileSource);
-            mapView.SetBuiltInZoomControls (false);
+
             mapView.SetMultiTouchControls (true);
             mapView.TilesScaledToDpi = true;
 
             //mapView.SetTileSource (new XYTileSource ("OSM", 0, 18, 1024, ".png",
             //new[] {"http://tile.openstreetmap.org/"}));
 
-            var mapController = mapView.Controller;
-            mapController.SetZoom (13);
+            mapController = (MapController) mapView.Controller;
+            if (savedInstanceState != null)
+                zoomlvl = savedInstanceState.GetInt (zoomlevel);
+            mapController.SetZoom (zoomlvl);
 
             // var centreOfMap = new GeoPoint(51496994, -134733);
             var centreOfMap = new GeoPoint (GeoLocation.Latitude, GeoLocation.Longitude);
             mapController.SetCenter (centreOfMap);
+
 
             SetAllMarkers (mapView);
 
@@ -113,6 +126,7 @@ namespace de.upb.hip.mobile.droid.fragments {
             var mapMarkerIcon = ContextCompat.GetDrawable (Activity, Resource.Drawable.marker_blue);
             var setMarker = new SetMarker (mapView, markerInfoWindow);
 
+
             foreach (var e in ExhibitSet.ActiveSet)
             {
                 //One Marker Object
@@ -121,9 +135,30 @@ namespace de.upb.hip.mobile.droid.fragments {
                 mapView.OverlayManager.Add (marker);
             }
 
+
+            userPosition = new Marker (mapView);
+            userPosition.SetIcon (ResourcesCompat.GetDrawable (Resources, Resource.Drawable.ic_my_location, null));
+            userPosition.Position = new GeoPoint (GeoLocation.Latitude, GeoLocation.Longitude);
+            userPosition.SetInfoWindow (null);
+            mapView.OverlayManager.Add (userPosition);
+
             mapView.OverlayManager.Add (MyScaleBarOverlay);
             mapView.OverlayManager.Add (LocationOverlay);
-            mapView.PostInvalidate ();
+            mapView.Invalidate ();
+        }
+
+        public void Update (GeoLocation loc)
+        {
+            GeoPoint p = new GeoPoint (loc.Latitude, loc.Longitude);
+
+            mapController.SetCenter (p);
+
+            userPosition.SetIcon (ResourcesCompat.GetDrawable (Resources, Resource.Drawable.ic_my_location, null));
+            userPosition.Position = new GeoPoint (p.Latitude, p.Longitude);
+            userPosition.SetInfoWindow (null);
+            mapView.OverlayManager.Add (userPosition);
+            mapView.Invalidate ();
+            GeoLocation = loc;
         }
 
         public override void OnResume ()
@@ -146,6 +181,7 @@ namespace de.upb.hip.mobile.droid.fragments {
         private const string KeyExhibitSetId = "ExhibitSetId";
         private const string KeyGeoLocationLatitude = "GeoLocation.Latitude";
         private const string KeyGeoLocationLongitude = "GeoLocation.Longitude";
+        private const string zoomlevel = "zoomlevel";
 
         #endregion
     }
