@@ -138,6 +138,7 @@
       <Link>Contracts\AndroidKeyProvider.cs</Link>
     </Compile>
     <Compile Include="Activities\AutoCarouselPageActivity.cs" />
+    <Compile Include="Activities\ContributionActivity.cs" />
     <Compile Include="Activities\HiPFeedbackActivity.cs" />
     <Compile Include="Activities\LicensingActivity.cs" />
     <Compile Include="Activities\ExhibitDetailsActivity.cs" />
@@ -241,6 +242,7 @@
     <AndroidResource Include="Resources\layout-land\fragment_auto_carousel_page.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\layout\activity_contribution.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Main.axml">

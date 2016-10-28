@@ -116,6 +116,12 @@ limitations under the License.-->
     <a href="https://opensource.org/licenses/Apache-2.0">Apache License 2.0</a>. Es wurden keine Änderungen vorgenommen.
   </string>
 
+  <!-- Strings for contribution -->
+  <string name="contribution_flaticon_title_text">Credits for images in autocarousel</string>
+  <string name="contribution_flaticon_body_text">
+    Icons made by <a href="http://www.flaticon.com/authors/madebyoliver/">Madebyoliver</a> from
+    <a href="http://www.flaticon.com/">www.flaticon.com</a>.
+  </string>
 
       <string name="action_audio">Audio</string>
 
