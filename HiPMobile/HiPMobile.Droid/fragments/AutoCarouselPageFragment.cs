@@ -13,6 +13,7 @@
 // limitations under the License.
 
 
+using Android.Graphics;
 using Android.OS;
 using Android.Support.V4.App;
 using Android.Views;
@@ -51,29 +52,33 @@ namespace de.upb.hip.mobile.droid.fragments {
             // Inflate the layout containing an image, title desc and subtitile description of the page
             var rootView = (ViewGroup) inflater.Inflate (Resource.Layout.fragment_auto_carousel_page, container, false);
 
+            var root = rootView.RootView;
             var image = rootView.FindViewById<ImageView> (Resource.Id.image_holder);
             var title = rootView.FindViewById<TextView> (Resource.Id.title_text_holder);
             var subtitle = rootView.FindViewById<TextView> (Resource.Id.subtitle_text_holder);
 
             if (pageNum == 0)
             {
+                root.SetBackgroundColor(Resources.GetColor(Resource.Color.bg_color_green_600));
                 title.Text = Resources.GetText (Resource.String.slide_1_title);
                 subtitle.Text = Resources.GetText (Resource.String.slide_1_desc);
-                image.SetImageResource (Resource.Drawable.hiphop_transparent);
+                image.SetImageResource (Resource.Drawable.ac_erkunden);
             }
 
             if (pageNum == 1)
             {
+                root.SetBackgroundColor(Resources.GetColor(Resource.Color.bg_color_orange_600));
                 title.Text = Resources.GetText (Resource.String.slide_2_title);
                 subtitle.Text = Resources.GetText (Resource.String.slide_2_desc);
-                image.SetImageResource(Resource.Drawable.ac_location);
+                image.SetImageResource(Resource.Drawable.ac_route2);
             }
 
             if (pageNum == 2)
             {
+                root.SetBackgroundColor(Resources.GetColor(Resource.Color.bg_color_blue_600));
                 title.Text = Resources.GetText (Resource.String.slide_3_title);
                 subtitle.Text = Resources.GetText (Resource.String.slide_3_desc);
-                image.SetImageResource(Resource.Drawable.ac_smile);
+                image.SetImageResource(Resource.Drawable.ac_students);
             }
 
             return rootView;

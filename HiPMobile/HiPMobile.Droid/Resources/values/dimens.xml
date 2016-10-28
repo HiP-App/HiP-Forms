@@ -36,10 +36,11 @@ limitations under the License.-->
   <!-- Dimensions for autocarousel-->
   <dimen name="dots_height">30dp</dimen>
   <dimen name="dots_margin_bottom">20dp</dimen>
-  <dimen name="img_width_height">180dp</dimen>
+  <dimen name="img_width">250dp</dimen>
+  <dimen name="img_height">300dp</dimen>
   <dimen name="slide_title">24dp</dimen>
   <dimen name="slide_desc">15dp</dimen>
-  <dimen name="desc_padding">40dp</dimen>
+  <dimen name="desc_padding">10dp</dimen>
   
   
 </resources>

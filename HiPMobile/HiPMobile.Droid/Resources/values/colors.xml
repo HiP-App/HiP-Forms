@@ -43,4 +43,10 @@ limitations under the License.-->
 
   <!-- Screens background color-->
   <color name="bg_color_autocarousel">#3395ff</color>
+  <color name="bg_color_lightgreen_600">#7CB342</color>
+  <color name="bg_color_green_600">#43A047</color>
+  <color name="bg_color_orange_700">#F57C00</color>
+  <color name="bg_color_orange_600">#F57C00</color>
+  <color name="bg_color_amber_500">#FFC107</color>
+  <color name="bg_color_blue_600">#1E88E5</color>
 </resources>
