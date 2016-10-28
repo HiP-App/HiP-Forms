@@ -23,6 +23,10 @@ namespace de.upb.hip.mobile.droid.fragments
 {
     public class CaptionDialogSubtitlesFragment : CaptionDialogFragment
     {
+        public CaptionDialogSubtitlesFragment(string title) : base(title)
+        {
+        }
+
         public ICharSequence Subtitles { get; set; }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)

@@ -22,12 +22,10 @@ namespace de.upb.hip.mobile.droid.Adapters
     public class CaptionDialogFragmentTabsAdapter : FragmentPagerAdapter
     {
         private readonly List<CaptionDialogFragment> fragments;
-        private readonly List<string> titles;
 
-        public CaptionDialogFragmentTabsAdapter(FragmentManager fragmentManager, List<CaptionDialogFragment> fragments, List<string> titles) : base(fragmentManager)
+        public CaptionDialogFragmentTabsAdapter(FragmentManager fragmentManager, List<CaptionDialogFragment> fragments) : base(fragmentManager)
         {
             this.fragments = fragments;
-            this.titles = titles;
         }
 
         public override int Count => fragments.Count;
@@ -39,7 +37,7 @@ namespace de.upb.hip.mobile.droid.Adapters
 
         public override ICharSequence GetPageTitleFormatted(int position)
         {
-            return new String(titles[position]);
+            return new String(fragments[position].Title);
         }
 
     }

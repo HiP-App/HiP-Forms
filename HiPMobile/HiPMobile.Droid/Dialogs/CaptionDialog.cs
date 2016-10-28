@@ -46,8 +46,19 @@ namespace de.upb.hip.mobile.droid.Dialogs
             set { currentTab = value; }
         }
 
-        private List<CaptionDialogFragment> Fragments { get; set; }
-        private List<string> Titles { get; set; }
+        private int currentSource;
+
+        public int CurrentSource {
+            get
+            {
+                currentSource = referencesFragment.CurrentSource;
+                return currentSource;
+            }
+            set { currentSource = value; }
+        }
+
+        private CaptionDialogSubtitlesFragment subtitlesFragment;
+        private CaptionDialogReferencesFragment referencesFragment;
 
         private bool referencesExisting;
 
@@ -64,27 +75,19 @@ namespace de.upb.hip.mobile.droid.Dialogs
                                                        new ConsecutiveNumberAndConstantInteractiveSourceSubstitute
                                                            (1, GetString(Resource.String.source_substitute_counter)));
 
-            var interactiveSourceAction = new SwitchTabAndScrollToItemInteractiveSourceAction();
-            var formattedSubtitles = parser.CreateSubtitlesText(interactiveSourceAction);
-
-            var subtitlesFragment = new CaptionDialogSubtitlesFragment { Subtitles = formattedSubtitles };
-            var referencesFragment = new CaptionDialogReferencesFragment { References = parser.Sources };
-
+            
+            referencesFragment = new CaptionDialogReferencesFragment(GetString(Resource.String.audio_toolbar_references)) { References = parser.Sources };
             referencesExisting = parser.Sources.Any();
 
-            Fragments = new List<CaptionDialogFragment>
+            var interactiveSourceAction = new SwitchTabAndScrollToItemInteractiveSourceAction
             {
-                subtitlesFragment,
-                referencesFragment
+                GetRecyclerView = referencesFragment.GetRecyclerView,
+                GetTabsViewPagers = GetTabsViewPager,
+                TargetTabIndex = 1
             };
-            Titles = new List<string>
-            {
-                GetString(Resource.String.audio_toolbar_cc),
-                GetString(Resource.String.audio_toolbar_references)
-            };
-            interactiveSourceAction.GetRecyclerView = referencesFragment.GetRecyclerView;
-            interactiveSourceAction.GetTabsViewPagers = GetTabsViewPager;
-            interactiveSourceAction.TargetTabIndex = 1;
+            var formattedSubtitles = parser.CreateSubtitlesText(interactiveSourceAction);
+
+            subtitlesFragment = new CaptionDialogSubtitlesFragment(GetString(Resource.String.audio_toolbar_cc)) { Subtitles = formattedSubtitles };
         }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -95,13 +98,20 @@ namespace de.upb.hip.mobile.droid.Dialogs
 
             viewPager = view.FindViewById<CustomViewPager>(Resource.Id.captionDialogViewPager);
 
-            var adapter = new CaptionDialogFragmentTabsAdapter(ChildFragmentManager, Fragments, Titles);
+            var fragments = new List<CaptionDialogFragment>
+            {
+                subtitlesFragment,
+                referencesFragment
+            };
+
+            var adapter = new CaptionDialogFragmentTabsAdapter(ChildFragmentManager, fragments);
             viewPager.Adapter = adapter;
 
             var tabLayout = view.FindViewById<TabLayout>(Resource.Id.captionDialogTabLayout);
             tabLayout.SetupWithViewPager(viewPager);
 
             viewPager.SetCurrentItem(currentTab, false);
+            referencesFragment.CurrentSource = currentSource;
 
             if (!referencesExisting)
             {

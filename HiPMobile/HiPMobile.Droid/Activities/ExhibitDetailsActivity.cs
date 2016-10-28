@@ -63,6 +63,7 @@ namespace de.upb.hip.mobile.droid.Activities {
             if (captionDialog != null)
             {
                 outState.PutInt (KEY_CURRENT_CAPTION_TAB, captionDialog.CurrentTab);
+                outState.PutInt (KEY_CURRENT_SOURCE, captionDialog.CurrentSource);
             }
             
             base.OnSaveInstanceState (outState);
@@ -114,10 +115,11 @@ namespace de.upb.hip.mobile.droid.Activities {
                 isCaptionShown = savedInstanceState.GetBoolean (KEY_CAPTION_SHOWN);
 
                 int selectedTab = savedInstanceState.GetInt(KEY_CURRENT_CAPTION_TAB);
+                int currentSource = savedInstanceState.GetInt (KEY_CURRENT_SOURCE);
                 
                 if (isCaptionShown)
                 {
-                    ShowCaptions (selectedTab);
+                    ShowCaptions (selectedTab, currentSource);
                 }
             }
             else
@@ -536,7 +538,7 @@ namespace de.upb.hip.mobile.droid.Activities {
             InvalidateOptionsMenu ();
         }
 
-        private void ShowCaptions (int tabToSelect = 0)
+        private void ShowCaptions (int tabToSelect = 0, int currentSource = 0)
         {
             isCaptionShown = true;
             var subtitles = exhibit.Pages [currentPageIndex].Audio.Caption;
@@ -550,7 +552,8 @@ namespace de.upb.hip.mobile.droid.Activities {
             captionDialog = new CaptionDialog {
                 OnCloseAction = onCloseAction,
                 Subtitles = subtitles,
-                CurrentTab = tabToSelect
+                CurrentTab = tabToSelect,
+                CurrentSource = currentSource
             };
 
             captionDialog.Show (SupportFragmentManager, "CaptionDialog");
@@ -697,6 +700,7 @@ namespace de.upb.hip.mobile.droid.Activities {
         private static readonly string KEY_AUDIO_TOOLBAR_HIDDEN = "ExhibitDetailsActivity.isAudioToolbarHidden";
         private static readonly string KEY_EXTRAS = "ExhibitDetailsActivity.extras";
         private static readonly string KEY_CURRENT_CAPTION_TAB = "ExhibitDetailsActivity.captionDialog.SelectedTab";
+        private static readonly string KEY_CURRENT_SOURCE = "ExhibitDetailsActivity.captionDialog.CurrentSource";
 
         // ui elements
         private FloatingActionButton fab;

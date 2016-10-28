@@ -18,5 +18,11 @@ namespace de.upb.hip.mobile.droid.fragments
 {
     public abstract class CaptionDialogFragment : Fragment
     {
+        protected CaptionDialogFragment (string title)
+        {
+            Title = title;
+        }
+
+        public string Title { get; protected set; }
     }
 }

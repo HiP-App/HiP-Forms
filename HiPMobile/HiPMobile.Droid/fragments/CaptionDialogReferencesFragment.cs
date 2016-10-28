@@ -28,11 +28,28 @@ namespace de.upb.hip.mobile.droid.fragments
 {
     public class CaptionDialogReferencesFragment : CaptionDialogFragment
     {
+        public CaptionDialogReferencesFragment(string title) : base(title)
+        {
+        }
+
         public List<Source> References { get; set; }
 
         private RecyclerView recyclerView;
 
-        public RecyclerView GetRecyclerView ()
+        private LinearLayoutManagerWithSmoothScroller recyclerViewManager;
+
+        private int currentSource;
+        public int CurrentSource
+        {
+            get
+            {
+                currentSource = recyclerViewManager.FindFirstCompletelyVisibleItemPosition ();
+                return currentSource;
+            }
+            set { currentSource = value; }
+        }
+
+        public RecyclerView GetRecyclerView()
         {
             return recyclerView;
         }
@@ -42,7 +59,9 @@ namespace de.upb.hip.mobile.droid.fragments
 
             recyclerView = view.FindViewById<RecyclerView>(Resource.Id.captionDialogReferencesRecyclerView);
             recyclerView.SetAdapter(new CaptionDialogReferencesRecyclerAdapter(References));
-            recyclerView.SetLayoutManager(new LinearLayoutManagerWithSmoothScroller(Context));
+            recyclerViewManager = new LinearLayoutManagerWithSmoothScroller (Context);
+            recyclerView.SetLayoutManager(recyclerViewManager);
+            recyclerView.ScrollToPosition(currentSource);
 
             return view;
         }
@@ -51,7 +70,6 @@ namespace de.upb.hip.mobile.droid.fragments
         {
             public LinearLayoutManagerWithSmoothScroller(Context context) : base(context, (int)Android.Widget.Orientation.Vertical, false)
             {
-
             }
 
             public override void SmoothScrollToPosition(RecyclerView recyclerView, RecyclerView.State state,
@@ -83,10 +101,13 @@ namespace de.upb.hip.mobile.droid.fragments
 
                 protected override float CalculateSpeedPerPixel(DisplayMetrics displayMetrics)
                 {
-                    return base.CalculateSpeedPerPixel (displayMetrics) * Scrolltime;
+                    return base.CalculateSpeedPerPixel(displayMetrics) * Scrolltime;
                 }
 
             }
         }
+
+
+
     }
 }
