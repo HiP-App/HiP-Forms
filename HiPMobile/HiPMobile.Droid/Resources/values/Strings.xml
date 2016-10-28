@@ -178,4 +178,5 @@ limitations under the License.-->
   <string name="nav_preferences_title">Einstellungen</string>
   <string name="nav_feedback">Feedback</string>
   <string name="nav_licenses_title">Lizenzen</string>
+  <string name="nav_contribution_title">Contribution</string>
 </resources>

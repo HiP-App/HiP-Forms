@@ -2045,94 +2045,97 @@ namespace de.upb.hip.mobile.droid
 			public const int ic_gavel_black_48dp = 2130837610;
 			
 			// aapt resource value: 0x7f02006b
-			public const int ic_headset_white_24dp = 2130837611;
+			public const int ic_group_black_48dp = 2130837611;
 			
 			// aapt resource value: 0x7f02006c
-			public const int ic_home_black_48dp = 2130837612;
+			public const int ic_headset_white_24dp = 2130837612;
 			
 			// aapt resource value: 0x7f02006d
-			public const int ic_launcher = 2130837613;
+			public const int ic_home_black_48dp = 2130837613;
 			
 			// aapt resource value: 0x7f02006e
-			public const int ic_my_location = 2130837614;
+			public const int ic_launcher = 2130837614;
 			
 			// aapt resource value: 0x7f02006f
-			public const int ic_pause_black_36dp = 2130837615;
+			public const int ic_my_location = 2130837615;
 			
 			// aapt resource value: 0x7f020070
-			public const int ic_play_arrow_black_36dp = 2130837616;
+			public const int ic_pause_black_36dp = 2130837616;
 			
 			// aapt resource value: 0x7f020071
-			public const int ic_roundabout = 2130837617;
+			public const int ic_play_arrow_black_36dp = 2130837617;
 			
 			// aapt resource value: 0x7f020072
-			public const int ic_settings_black_24dp = 2130837618;
+			public const int ic_roundabout = 2130837618;
 			
 			// aapt resource value: 0x7f020073
-			public const int ic_sharp_left = 2130837619;
+			public const int ic_settings_black_24dp = 2130837619;
 			
 			// aapt resource value: 0x7f020074
-			public const int ic_sharp_right = 2130837620;
+			public const int ic_sharp_left = 2130837620;
 			
 			// aapt resource value: 0x7f020075
-			public const int ic_slight_left = 2130837621;
+			public const int ic_sharp_right = 2130837621;
 			
 			// aapt resource value: 0x7f020076
-			public const int ic_slight_right = 2130837622;
+			public const int ic_slight_left = 2130837622;
 			
 			// aapt resource value: 0x7f020077
-			public const int ic_turn_left = 2130837623;
+			public const int ic_slight_right = 2130837623;
 			
 			// aapt resource value: 0x7f020078
-			public const int ic_turn_right = 2130837624;
+			public const int ic_turn_left = 2130837624;
 			
 			// aapt resource value: 0x7f020079
-			public const int ic_u_turn = 2130837625;
+			public const int ic_turn_right = 2130837625;
 			
 			// aapt resource value: 0x7f02007a
-			public const int Icon = 2130837626;
+			public const int ic_u_turn = 2130837626;
 			
 			// aapt resource value: 0x7f02007b
-			public const int info = 2130837627;
+			public const int Icon = 2130837627;
 			
 			// aapt resource value: 0x7f02007c
-			public const int info_pressed = 2130837628;
+			public const int info = 2130837628;
 			
 			// aapt resource value: 0x7f02007d
-			public const int kaiserpfalz_teaser = 2130837629;
+			public const int info_pressed = 2130837629;
 			
 			// aapt resource value: 0x7f02007e
-			public const int map_restaurant = 2130837630;
+			public const int kaiserpfalz_teaser = 2130837630;
 			
 			// aapt resource value: 0x7f02007f
-			public const int marker_blue = 2130837631;
+			public const int map_restaurant = 2130837631;
 			
 			// aapt resource value: 0x7f020080
-			public const int marker_departure = 2130837632;
+			public const int marker_blue = 2130837632;
 			
 			// aapt resource value: 0x7f020081
-			public const int marker_destination = 2130837633;
+			public const int marker_departure = 2130837633;
 			
 			// aapt resource value: 0x7f020082
-			public const int marker_node = 2130837634;
+			public const int marker_destination = 2130837634;
 			
 			// aapt resource value: 0x7f020083
-			public const int marker_via = 2130837635;
+			public const int marker_node = 2130837635;
 			
 			// aapt resource value: 0x7f020084
-			public const int moreinfo_arrow = 2130837636;
+			public const int marker_via = 2130837636;
 			
 			// aapt resource value: 0x7f020085
-			public const int moreinfo_arrow_pressed = 2130837637;
-			
-			// aapt resource value: 0x7f020087
-			public const int notification_template_icon_bg = 2130837639;
-			
-			// aapt resource value: 0x7f020088
-			public const int semitransparent_gray = 2130837640;
+			public const int moreinfo_arrow = 2130837637;
 			
 			// aapt resource value: 0x7f020086
-			public const int thumb = 2130837638;
+			public const int moreinfo_arrow_pressed = 2130837638;
+			
+			// aapt resource value: 0x7f020088
+			public const int notification_template_icon_bg = 2130837640;
+			
+			// aapt resource value: 0x7f020089
+			public const int semitransparent_gray = 2130837641;
+			
+			// aapt resource value: 0x7f020087
+			public const int thumb = 2130837639;
 			
 			static Drawable()
 			{
@@ -2560,6 +2563,9 @@ namespace de.upb.hip.mobile.droid
 			
 			// aapt resource value: 0x7f070016
 			public const int multiply = 2131165206;
+			
+			// aapt resource value: 0x7f0700f5
+			public const int nav_contribution = 2131165429;
 			
 			// aapt resource value: 0x7f0700f3
 			public const int nav_feedback = 2131165427;
@@ -3651,6 +3657,9 @@ namespace de.upb.hip.mobile.droid
 			
 			// aapt resource value: 0x7f080066
 			public const int menu_activity_route_filter = 2131230822;
+			
+			// aapt resource value: 0x7f0800c6
+			public const int nav_contribution_title = 2131230918;
 			
 			// aapt resource value: 0x7f0800c4
 			public const int nav_feedback = 2131230916;
