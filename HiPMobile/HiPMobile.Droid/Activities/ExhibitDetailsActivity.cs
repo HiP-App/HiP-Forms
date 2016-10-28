@@ -13,6 +13,7 @@
 // limitations under the License.
 
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using Android.Animation;
 using Android.App;
@@ -27,6 +28,8 @@ using Android.Util;
 using Android.Views;
 using Android.Views.Animations;
 using Android.Widget;
+using de.upb.hip.mobile.droid.Dialogs;
+using de.upb.hip.mobile.droid.fragments;
 using de.upb.hip.mobile.droid.fragments.bottomsheetfragment;
 using de.upb.hip.mobile.droid.fragments.exhibitpagefragment;
 using de.upb.hip.mobile.droid.Helpers;
@@ -57,7 +60,12 @@ namespace de.upb.hip.mobile.droid.Activities {
             outState.PutBoolean (KEY_AUDIO_TOOLBAR_HIDDEN, isAudioToolbarHidden);
             outState.PutBoolean (KEY_CAPTION_SHOWN, isCaptionShown);
             outState.PutBundle (KEY_EXTRAS, extras);
-
+            if (captionDialog != null)
+            {
+                outState.PutInt (KEY_CURRENT_CAPTION_TAB, captionDialog.CurrentTab);
+                outState.PutInt (KEY_CURRENT_SOURCE, captionDialog.CurrentSource);
+            }
+            
             base.OnSaveInstanceState (outState);
         }
 
@@ -105,9 +113,13 @@ namespace de.upb.hip.mobile.droid.Activities {
                 }
                 extras = savedInstanceState.GetBundle (KEY_EXTRAS);
                 isCaptionShown = savedInstanceState.GetBoolean (KEY_CAPTION_SHOWN);
+
+                int selectedTab = savedInstanceState.GetInt(KEY_CURRENT_CAPTION_TAB);
+                int currentSource = savedInstanceState.GetInt (KEY_CURRENT_SOURCE);
+                
                 if (isCaptionShown)
                 {
-                    ShowCaptions ();
+                    ShowCaptions (selectedTab, currentSource);
                 }
             }
             else
@@ -526,65 +538,25 @@ namespace de.upb.hip.mobile.droid.Activities {
             InvalidateOptionsMenu ();
         }
 
-        private void ShowCaptions ()
+        private void ShowCaptions (int tabToSelect = 0, int currentSource = 0)
         {
-            // TODO: adapt this to retrieved data
             isCaptionShown = true;
-            var caption = exhibit.Pages [currentPageIndex].Audio.Caption;
+            var subtitles = exhibit.Pages [currentPageIndex].Audio.Caption;
 
-            /*** Uncomment this to test the footnote support ***/
-            //        caption = "Dies ist ein Satz.<fn>Dies ist eine Fußnote</fn> " +
-            //                "Dies ist ein zweiter Satz.<fn>Dies ist eine zweite Fußnote</fn> " +
-            //                "Dies ist ein dritter Satz.";
+            Action<object, EventArgs> onCloseAction = (sender, args) => {
+                isCaptionShown = false;
+                if (isAudioPlayingFinished)
+                    SwitchToNextPageBasedOnSetting ();
+            };
 
-            // IMPORTANT: the dialog and custom view creation has to be repeated every time, reusing
-            // the view or the dialog will result in an error ("child already has a parent")
+            captionDialog = new CaptionDialog {
+                OnCloseAction = onCloseAction,
+                Subtitles = subtitles,
+                CurrentTab = tabToSelect,
+                CurrentSource = currentSource
+            };
 
-            // create dialog
-            var dialog = new Dialog (this);
-            dialog.SetTitle (Resource.String.audio_toolbar_cc);
-            dialog.SetContentView (Resource.Layout.activity_exhibit_details_caption_dialog);
-
-            // Prevent dialogue from being too small
-            var metrics = Resources.DisplayMetrics;
-            var width = metrics.WidthPixels;
-            var height = metrics.HeightPixels;
-            dialog.Window.SetLayout ((6 * width) / 7, (4 * height) / 5);
-
-            // setup text view for captions with clickable sources
-            var tv = (TextView) dialog.FindViewById (Resource.Id.captionTextView);
-            if (tv != null)
-            {
-                var coordinatorLayout =
-                    (CoordinatorLayout) dialog.FindViewById (Resource.Id.captionDialogCoordinatorLayout);
-
-                tv.MovementMethod = LinkMovementMethod.Instance;
-                tv.SetHighlightColor (Color.Transparent);
-
-                var parser = new InteractiveSources ();
-                tv.TextFormatted = parser.Parse (
-                    caption,
-                    new ConstantInteractiveSourceSubstitute (GetString (Resource.String.source_substitute)),
-                    // alternatively: new ConsecutiveNumberInteractiveSourceSubstitute (1), 
-                    new SnackbarInteractiveSourceAction (coordinatorLayout));
-            }
-            else
-            {
-                Log.Error (Tag, "cannot access TextView in caption dialog!");
-                return;
-            }
-
-            // add click listener to close button that dismisses the dialog
-            var closeBtn = (Button) dialog.FindViewById (Resource.Id.captionDialogCloseButton);
-            if (closeBtn != null)
-                closeBtn.Click += (sender, args) => {
-                    isCaptionShown = false;
-                    dialog.Dismiss ();
-                    if(isAudioPlayingFinished)
-                        SwitchToNextPageBasedOnSetting();
-                };
-
-            dialog.Show ();
+            captionDialog.Show (SupportFragmentManager, "CaptionDialog");
         }
 
         /// <summary>
@@ -727,6 +699,8 @@ namespace de.upb.hip.mobile.droid.Activities {
         private static readonly string KEY_CAPTION_SHOWN = "ExhibitDetailsActivity.isCaptionShown";
         private static readonly string KEY_AUDIO_TOOLBAR_HIDDEN = "ExhibitDetailsActivity.isAudioToolbarHidden";
         private static readonly string KEY_EXTRAS = "ExhibitDetailsActivity.extras";
+        private static readonly string KEY_CURRENT_CAPTION_TAB = "ExhibitDetailsActivity.captionDialog.SelectedTab";
+        private static readonly string KEY_CURRENT_SOURCE = "ExhibitDetailsActivity.captionDialog.CurrentSource";
 
         // ui elements
         private FloatingActionButton fab;
@@ -736,6 +710,8 @@ namespace de.upb.hip.mobile.droid.Activities {
         private ImageButton btnPlayPause;
         private ImageButton btnPreviousPage;
         private ImageButton btnNextPage;
+
+        private CaptionDialog captionDialog;
 
         #endregion
 

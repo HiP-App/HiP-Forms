@@ -12,31 +12,31 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using Android.Support.Design.Widget;
-using Android.Views;
 
 namespace de.upb.hip.mobile.droid.Helpers.InteractiveSources {
     /// <summary>
-    /// Implements IInteractiveSourceAction by displaying the source's text
-    /// in a Snackbar.
+    /// Implements IInteractiveSourceSubstitute by returning a  constant text followed by a consecutive number combined enclosed in brackets.
     /// </summary>
-    public class SnackbarInteractiveSourceAction : IInteractiveSourceAction {
+    public class ConsecutiveNumberAndConstantInteractiveSourceSubstitute : IInteractiveSourceSubstitute {
 
-        private readonly View view;
+        private int number;
+
+        private readonly string constantText;
 
         /// <summary>
-        /// Sets the view the Snackbar is associated with. An instance of 
-        /// CoordinatorLayout is recommended.
+        /// Sets the starting number and the constant text.
         /// </summary>
-        /// <param name="v">View the Snackbar is associated with.</param>
-        public SnackbarInteractiveSourceAction (View v)
+        /// <param name="start">Starting number.</param>
+        /// <param name="constantText">Constant text at the beginning of the substitute</param>
+        public ConsecutiveNumberAndConstantInteractiveSourceSubstitute(int start, string constantText)
         {
-            view = v;
+            number = start;
+            this.constantText = constantText;
         }
 
-        public void Display (Source src)
+        public string NextSubstitute ()
         {
-            Snackbar.Make (view, src.Text, Snackbar.LengthLong).Show ();
+            return $"[{constantText} {number++}]";
         }
 
     }

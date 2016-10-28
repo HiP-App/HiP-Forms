@@ -146,26 +146,36 @@
     <Compile Include="Activities\RouteFilterActivity.cs" />
     <Compile Include="Activities\RouteActivity.cs" />
     <Compile Include="Activities\SettingsActivity.cs" />
+    <Compile Include="Adapters\CaptionDialogFragmentTabsAdapter.cs" />
+    <Compile Include="Adapters\CaptionDialogReferencesRecyclerAdapter.cs" />
     <Compile Include="Adapters\ExtendedLocationListenerAdapter.cs" />
     <Compile Include="Adapters\RouteRecyclerAdapter.cs" />
     <Compile Include="Activities\RouteDetailsActivity.cs" />
     <Compile Include="Contracts\AndroidDataLoader.cs" />
     <Compile Include="Contracts\AndroidImageDimension.cs" />
+    <Compile Include="Dialogs\CaptionDialog.cs" />
     <Compile Include="fragments\AutoCarouselPageFragment.cs" />
+    <Compile Include="fragments\CaptionDialogReferencesFragment.cs" />
+    <Compile Include="fragments\CaptionDialogSubtitlesFragment.cs" />
     <Compile Include="fragments\ExhibitListFragment.cs" />
     <Compile Include="fragments\ExhibitsOverviewFragment.cs" />
+    <Compile Include="fragments\CaptionDialogFragment.cs" />
     <Compile Include="fragments\MapFragment.cs" />
     <Compile Include="fragments\RadiusAlertDialogFragment.cs" />
     <Compile Include="fragments\SettingsFragment.cs" />
+    <Compile Include="Helpers\CustomViewPager.cs" />
     <Compile Include="Helpers\GenericMapView.cs" />
     <Compile Include="Helpers\AndroidConstants.cs" />
     <Compile Include="Helpers\HipFeedbackListener.cs" />
     <Compile Include="Helpers\InteractiveSources\ConsecutiveNumberInteractiveSourceSubstitute.cs" />
+    <Compile Include="Helpers\InteractiveSources\ConsecutiveNumberAndConstantInteractiveSourceSubstitute.cs" />
     <Compile Include="Helpers\InteractiveSources\ConstantInteractiveSourceSubstitute.cs" />
     <Compile Include="Helpers\InteractiveSources\IInteractiveSourceAction.cs" />
     <Compile Include="Helpers\InteractiveSources\IInteractiveSourceSubstitute.cs" />
-    <Compile Include="Helpers\InteractiveSources\InteractiveSources.cs" />
+    <Compile Include="Helpers\InteractiveSources\InteractiveSourcesParser.cs" />
     <Compile Include="Helpers\InteractiveSources\SnackbarInteractiveSourceAction.cs" />
+    <Compile Include="Helpers\InteractiveSources\Source.cs" />
+    <Compile Include="Helpers\InteractiveSources\SwitchTabAndScrollToItemInteractiveSourceAction.cs" />
     <Compile Include="Helpers\InteractiveSources\ToastInteractiveSourceAction.cs" />
     <Compile Include="Helpers\SetMarker.cs" />
     <Compile Include="Helpers\Settings.cs" />
@@ -277,7 +287,6 @@
     <AndroidResource Include="Resources\layout\activity_exhibit_details.axml" />
     <AndroidResource Include="Resources\layout\activity_exhibit_details_audio_toolbar.axml" />
     <AndroidResource Include="Resources\layout\activity_exhibit_details_bottom_sheet.xml" />
-    <AndroidResource Include="Resources\layout\activity_exhibit_details_caption_dialog.xml" />
     <AndroidResource Include="Resources\layout\activity_exhibit_details_content_main.xml" />
     <AndroidResource Include="Resources\drawable-hdpi\ic_chevron_left_black_48dp.xml" />
     <AndroidResource Include="Resources\drawable-hdpi\ic_chevron_right_black_48dp.xml" />
@@ -366,7 +375,19 @@
     <AndroidResource Include="Resources\drawable-hdpi\hiphop_transparent.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-hdpi\ic_my_location.png" />
+    <AndroidResource Include="Resources\layout\fragment_exhibit_details_caption_dialog_subtitles.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\dialog_exhibit_details_caption.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\fragment_exhibit_details_caption_dialog_references.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\fragment_exhibit_details_caption_dialog_references_item.xml" />
+  </ItemGroup>
+  <ItemGroup>
+  <AndroidResource Include="Resources\drawable-hdpi\ic_my_location.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

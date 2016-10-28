@@ -1,43 +1,36 @@
 ﻿// Copyright (C) 2016 History in Paderborn App - Universität Paderborn
-// 
+//  
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-// 
+//  
 //       http://www.apache.org/licenses/LICENSE-2.0
-// 
+//  
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-
-using Android.Support.Design.Widget;
-using Android.Views;
-
 namespace de.upb.hip.mobile.droid.Helpers.InteractiveSources {
+
     /// <summary>
-    /// Implements IInteractiveSourceAction by displaying the source's text
-    /// in a Snackbar.
+    /// Represents a source by providing properties storing the source text, the start index and the substitute text.
     /// </summary>
-    public class SnackbarInteractiveSourceAction : IInteractiveSourceAction {
+    public class Source {
+        public string SubstituteText { get; }
 
-        private readonly View view;
+        public string Text { get; }
 
-        /// <summary>
-        /// Sets the view the Snackbar is associated with. An instance of 
-        /// CoordinatorLayout is recommended.
-        /// </summary>
-        /// <param name="v">View the Snackbar is associated with.</param>
-        public SnackbarInteractiveSourceAction (View v)
+        public int StartIndex { get; }
+
+        public int NumberInSubtitles { get; }
+
+        public Source(string text, int startIndex, string substituteText, int numberInSubtitles)
         {
-            view = v;
+            Text = text;
+            StartIndex = startIndex;
+            SubstituteText = substituteText;
+            NumberInSubtitles = numberInSubtitles;
         }
-
-        public void Display (Source src)
-        {
-            Snackbar.Make (view, src.Text, Snackbar.LengthLong).Show ();
-        }
-
     }
 }
