@@ -17,9 +17,12 @@ using Android.App;
 using Android.OS;
 using Android.Support.V4.Widget;
 using Android.Support.V7.App;
+using Android.Text;
 using Android.Text.Method;
+using Android.Text.Style;
 using Android.Views;
 using Android.Widget;
+using Java.Lang;
 
 namespace de.upb.hip.mobile.droid.Activities
 {
@@ -63,6 +66,20 @@ namespace de.upb.hip.mobile.droid.Activities
                     return base.OnOptionsItemSelected(item);
             }
         }
+/*
 
+private class URLSpanNoUnderline : URLSpan
+        {
+        public URLSpanNoUnderline(string url) : base (url)
+        {
+            
+        }
+        public override void UpdateDrawState(TextPaint ds)
+        {
+            base.UpdateDrawState(ds);
+            ds.UnderlineText = false;
+        }
     }
+*/
+}
 }

@@ -4340,6 +4340,9 @@ namespace de.upb.hip.mobile.droid
 			// aapt resource value: 0x7f0a0162
 			public const int LicenceStyle = 2131362146;
 			
+			// aapt resource value: 0x7f0a0163
+			public const int LicenceStyleSub = 2131362147;
+			
 			// aapt resource value: 0x7f0a0017
 			public const int Platform_AppCompat = 2131361815;
 			
@@ -4670,8 +4673,8 @@ namespace de.upb.hip.mobile.droid
 			// aapt resource value: 0x7f0a014d
 			public const int Theme_Design_NoActionBar = 2131362125;
 			
-			// aapt resource value: 0x7f0a0163
-			public const int Theme_Transparent = 2131362147;
+			// aapt resource value: 0x7f0a0164
+			public const int Theme_Transparent = 2131362148;
 			
 			// aapt resource value: 0x7f0a00f3
 			public const int ThemeOverlay_AppCompat = 2131362035;

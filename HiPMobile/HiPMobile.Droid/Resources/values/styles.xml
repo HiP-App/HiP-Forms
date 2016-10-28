@@ -73,4 +73,8 @@ limitations under the License.-->
     <item name ="android:paddingRight">10dp</item>
   </style>
 
+  <style name="LicenceStyleSub" parent="LicenceStyle">
+    <item name="android:paddingTop">10dp</item>
+  </style>
+
 </resources>
