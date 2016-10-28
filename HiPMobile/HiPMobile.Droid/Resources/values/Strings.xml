@@ -128,6 +128,7 @@ limitations under the License.-->
   <string name="audio_toolbar_play_pause">Play/Pause</string>
   <string name="audio_toolbar_progress">Fortschritt</string>
   <string name="audio_toolbar_cc">Untertitel</string>
+  <string name="audio_toolbar_references">Quellen</string>
 
   <!-- blind text -->
   <string name="lorem_100_words">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</string>
@@ -145,6 +146,7 @@ limitations under the License.-->
   <string name="currently_no_further_info">Zurzeit sind keine weiteren Informationen verfügbar!</string>
 
   <string name="source_substitute">[Quelle]</string>
+  <string name="source_substitute_counter">Quelle</string>
 
   <string-array name="nav_drawer_entries">
     <item>Übersicht</item>

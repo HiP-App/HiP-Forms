@@ -16,33 +16,24 @@
   ~ limitations under the License.
   -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="vertical">
 
-  <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                                   android:id="@+id/captionDialogCoordinatorLayout"
-                                                   android:layout_width="match_parent"
-                                                   android:layout_height="0dp"
-                                                   android:layout_weight="1">
-
-    <android.support.v4.widget.NestedScrollView
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:orientation="vertical"
-      android:scrollbars="vertical"
-      android:layout_gravity="center">
-
-      <TextView
-        android:id="@+id/captionTextView"
+  <android.support.design.widget.TabLayout
+        android:id="@+id/captionDialogTabLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="16dp"
-        android:textColorLink="@color/colorAccent" />
-
-    </android.support.v4.widget.NestedScrollView>
-
-  </android.support.design.widget.CoordinatorLayout>
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        app:tabGravity="fill"
+        app:tabMode="fixed" />
+  <de.upb.hip.mobile.droid.Helpers.CustomViewPager
+    android:id="@+id/captionDialogViewPager"
+    android:layout_width="match_parent"
+    android:layout_height="0px"
+    android:layout_weight="1"
+    android:background="@android:color/white" />
 
   <Button
     android:id="@+id/captionDialogCloseButton"

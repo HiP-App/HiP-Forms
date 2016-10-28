@@ -33,9 +33,9 @@ namespace de.upb.hip.mobile.droid.Helpers.InteractiveSources {
             this.context = context;
         }
 
-        public void Display (string src)
+        public void Display (Source src)
         {
-            Toast.MakeText (context, src, ToastLength.Long).Show ();
+            Toast.MakeText (context, src.Text, ToastLength.Long).Show ();
         }
 
     }
