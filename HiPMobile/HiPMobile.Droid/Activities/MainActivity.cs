@@ -195,6 +195,10 @@ namespace de.upb.hip.mobile.droid.Activities {
                 case Resource.Id.nav_preferences:
                     StartActivity (typeof (SettingsActivity));
                     break;
+
+                case Resource.Id.nav_contribution:
+                    StartActivity(typeof(ContributionActivity));
+                    break;
             }
 
             // Close drawer

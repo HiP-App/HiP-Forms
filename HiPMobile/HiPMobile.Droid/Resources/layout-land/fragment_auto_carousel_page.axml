@@ -17,8 +17,8 @@
             android:layout_weight="1">
             <ImageView
                 android:id="@+id/image_holder"
-                android:layout_width="@dimen/img_width_height"
-                android:layout_height="@dimen/img_width_height" />
+                android:layout_width="@dimen/img_width"
+                android:layout_height="@dimen/img_height" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="fill_parent"

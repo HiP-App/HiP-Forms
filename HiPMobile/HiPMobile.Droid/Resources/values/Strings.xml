@@ -116,6 +116,11 @@ limitations under the License.-->
     <a href="https://opensource.org/licenses/Apache-2.0">Apache License 2.0</a>. Es wurden keine Änderungen vorgenommen.
   </string>
 
+  <!-- Strings for contribution -->
+  <string name="contribution_flaticon_title_text">Credits for images in the autocarousel</string>
+  <string name="contribution_flaticon_body_text">Icons made by <a href="http://www.flaticon.com/authors/madebyoliver/">Madebyoliver</a> from
+    <a href="http://www.flaticon.com/">www.flaticon.com</a>.
+  </string>
 
       <string name="action_audio">Audio</string>
 
@@ -153,12 +158,12 @@ limitations under the License.-->
   <string name="next">NEXT</string>
   <string name="skip">SKIP</string>
   <string name="start">GOT IT</string>
-  <string name="slide_1_title">Welcome to Paderborn</string>
-  <string name="slide_1_desc">The app provide you an interesting way to explore about Paderborn!</string>
-  <string name="slide_2_title">Follow the route</string>
-  <string name="slide_2_desc">The route will guide you to visit most interesting sighseeings!</string>
-  <string name="slide_3_title">Hope you will enjoy it :)</string>
-  <string name="slide_3_desc">Have fun with finding out new details about Paderborn!</string>
+  <string name="slide_1_title">Paderborn erkunden</string>
+  <string name="slide_1_desc">Erlebe und entdecke selbst mit dem Smartphone Geschichte und Kultur vor Ort</string>
+  <string name="slide_2_title">Themenspezifische Routen</string>
+  <string name="slide_2_desc">Erkunde frei oder anhand thematischer Routen Paderborn &#160; &#160; &#160; &#160; &#160;</string>
+  <string name="slide_3_title">Von Studenten</string>
+  <string name="slide_3_desc">Eine sich weiterentwickelnde App erstellt von Studierenden der Universität Paderborn</string>
 
   <!-- Preferences -->
   <string name="pref_cat_exhibitdetails_title">Sehenswürdigkeiten</string>
@@ -180,4 +185,5 @@ limitations under the License.-->
   <string name="nav_preferences_title">Einstellungen</string>
   <string name="nav_feedback">Feedback</string>
   <string name="nav_licenses_title">Lizenzen</string>
+  <string name="nav_contribution_title">Contribution</string>
 </resources>

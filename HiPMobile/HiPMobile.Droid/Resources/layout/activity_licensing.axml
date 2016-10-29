@@ -29,7 +29,7 @@
                 android:text="@string/licensing_google_material_title_text"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
             <TextView
-                style="@style/LicenceStyle"
+                style="@style/LicenceStyleSub"
                 android:id="@+id/licensingGoogleMaterialBody"
                 android:text="@string/licensing_google_material_body_text"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
@@ -41,7 +41,7 @@
                 android:textAppearance="?android:attr/textAppearanceLarge" />
             <TextView
                 android:id="@+id/licensingOSMDroidBody"
-                style="@style/LicenceStyle"
+                style="@style/LicenceStyleSub"
                 android:text="@string/licensing_osmdroid_body_text"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
             <View
@@ -52,7 +52,7 @@
                 android:textAppearance="?android:attr/textAppearanceLarge" />
             <TextView
                 android:id="@+id/licensingOSMBonusPackBody"
-                style="@style/LicenceStyle"
+                style="@style/LicenceStyleSub"
                 android:text="@string/licensing_osmbonuspack_body_text"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
             <View
@@ -63,7 +63,7 @@
                 android:textAppearance="?android:attr/textAppearanceLarge" />
             <TextView
                 android:id="@+id/licensingRealmBody"
-                style="@style/LicenceStyle"
+                style="@style/LicenceStyleSub"
                 android:text="@string/licensing_realm_body_text"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
             <View
@@ -74,7 +74,7 @@
                 android:textAppearance="?android:attr/textAppearanceLarge" />
             <TextView
                 android:id="@+id/licensingMapiconsBody"
-                style="@style/LicenceStyle"
+                style="@style/LicenceStyleSub"
                 android:text="@string/licensing_mapicons_body_text"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
             <View
@@ -85,7 +85,7 @@
                 android:textAppearance="?android:attr/textAppearanceLarge" />
             <TextView
                 android:id="@+id/licensingPhotoviewBody"
-                style="@style/LicenceStyle"
+                style="@style/LicenceStyleSub"
                 android:text="@string/licensing_photoview_body_text"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
             <View
