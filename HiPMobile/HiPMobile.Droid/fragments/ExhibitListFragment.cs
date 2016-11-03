@@ -106,10 +106,9 @@ namespace de.upb.hip.mobile.droid.fragments {
 
         public void Update (GeoLocation loc)
         {
-            recyclerView.SetAdapter (adapter);
-
-
             GeoLocation = loc;
+            adapter = new MainRecyclerAdapter(ExhibitSet, GeoLocation, Application.Context);
+            recyclerView.SetAdapter (adapter);
         }
 
     }
