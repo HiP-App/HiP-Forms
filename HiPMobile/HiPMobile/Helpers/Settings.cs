@@ -39,6 +39,10 @@ namespace de.upb.hip.mobile.pcl.Helpers
       }
     }
 
+        /// <summary>
+        /// Sedtting for the database version.
+        /// </summary>
+        #region MyRegion
         private const string DatabaseVersionKey = "database_version_key";
         private static readonly int DatabaseVersionDefault = 0;
 
@@ -47,6 +51,7 @@ namespace de.upb.hip.mobile.pcl.Helpers
             get { return AppSettings.GetValueOrDefault<int>(DatabaseVersionKey, DatabaseVersionDefault); }
             set { AppSettings.AddOrUpdateValue<int>(DatabaseVersionKey, value); }
         }
+        #endregion
 
     }
 }
