@@ -76,12 +76,12 @@ namespace de.upb.hip.mobile.droid.Activities {
             base.OnCreate (savedInstanceState);
 
             sharedPreferences = PreferenceManager.GetDefaultSharedPreferences (this);
-            
+            /* for testing
             if (!sharedPreferences.GetBoolean (Resources.GetString (Resource.String.pref_first_time_launch_key), true))
             {
                 launchSplashScreen ();
                 Finish ();
-            }
+            }*/
             
             // Create the  page fragment here
             SetContentView (Resource.Layout.activity_auto_carousel);
