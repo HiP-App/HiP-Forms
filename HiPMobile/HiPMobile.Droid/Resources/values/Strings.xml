@@ -155,14 +155,14 @@ limitations under the License.-->
   </string-array>
   
   <!-- AutoCarousel -->
-  <string name="next">NEXT</string>
-  <string name="skip">SKIP</string>
-  <string name="start">GOT IT</string>
+  <string name="next">WEITER</string>
+  <string name="skip">ÜBERSPRINGEN</string>
+  <string name="start">ALLES KLAR</string>
   <string name="slide_1_title">Paderborn erkunden</string>
   <string name="slide_1_desc">Erlebe und entdecke selbst mit dem Smartphone Geschichte und Kultur vor Ort</string>
   <string name="slide_2_title">Themenspezifische Routen</string>
-  <string name="slide_2_desc">Erkunde frei oder anhand thematischer Routen Paderborn &#160; &#160; &#160; &#160; &#160;</string>
-  <string name="slide_3_title">Von Studenten</string>
+  <string name="slide_2_desc">Erkunde frei oder anhand thematischer Routen Paderborn</string>
+  <string name="slide_3_title">Von Studierenden</string>
   <string name="slide_3_desc">Eine sich weiterentwickelnde App erstellt von Studierenden der Universität Paderborn</string>
 
   <!-- Preferences -->
