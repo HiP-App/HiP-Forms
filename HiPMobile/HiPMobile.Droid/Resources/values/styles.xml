@@ -77,4 +77,9 @@ limitations under the License.-->
     <item name="android:paddingTop">10dp</item>
   </style>
 
+  <style name="animationPopUp" parent="android:Animation">
+    <item name="android:windowEnterAnimation">@anim/animation_on</item>
+    <item name="android:windowExitAnimation">@anim/animation_off</item>
+  </style>
+
 </resources>
