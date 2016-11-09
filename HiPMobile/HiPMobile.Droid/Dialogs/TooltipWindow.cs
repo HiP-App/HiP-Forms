@@ -28,14 +28,19 @@ namespace de.upb.hip.mobile.droid.Dialogs
         LayoutInflater inflater;
 
 
-        public TooltipWindow(Context ctx)
+        public TooltipWindow (Context ctx)
         {
             this.ctx = ctx;
-            tipWindow = new PopupWindow(ctx);
+            tipWindow = new PopupWindow (ctx);
 
-            inflater = (LayoutInflater)ctx.GetSystemService(Context.LayoutInflaterService);
-            contentView = inflater.Inflate(Resource.Layout.custom_tooltip, null);
+            inflater = (LayoutInflater) ctx.GetSystemService (Context.LayoutInflaterService);
+            contentView = inflater.Inflate (Resource.Layout.custom_tooltip, null);
 
+            Button tooltipButton = (Button) contentView.FindViewById (Resource.Id.TooltipButton);
+            tooltipButton.Click += delegate {
+                //implement preferences
+                DismissToolTip();
+            };
         }
 
         public void showToolTip(View anchor)
@@ -52,7 +57,7 @@ namespace de.upb.hip.mobile.droid.Dialogs
 
             int[] screen_pos = new int[2];
             anchor.GetLocationOnScreen(screen_pos);
-            Console.WriteLine("POSITION: pos_0 " + screen_pos[0] + " pos_11" + screen_pos[1]);
+            //Console.WriteLine("POSITION: pos_0 " + screen_pos[0] + " pos_11" + screen_pos[1]);
             Rect anchor_rect = new Rect(screen_pos[0], screen_pos[1], screen_pos[0] + anchor.Width, screen_pos[1] + anchor.Height);
 
             contentView.Measure(ActionBar.LayoutParams.WrapContent, ActionBar.LayoutParams.WrapContent);
@@ -75,6 +80,13 @@ namespace de.upb.hip.mobile.droid.Dialogs
             if (tipWindow != null && tipWindow.IsShowing)
                 return true;
             return false;
+        }
+
+        public void closeTooltip ()
+        {
+            //implementation for shared preferences
+           // ISharedPreferences sharedPreferences = 
+           DismissToolTip();
         }
 
         public void DismissToolTip()
@@ -107,5 +119,6 @@ namespace de.upb.hip.mobile.droid.Dialogs
 
         }
         */
+
     };
 }

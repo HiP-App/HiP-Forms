@@ -2163,7 +2163,7 @@ namespace de.upb.hip.mobile.droid
 		{
 			
 			// aapt resource value: 0x7f0700a2
-			public const int MyButton = 2131165346;
+			public const int TooltipButton = 2131165346;
 			
 			// aapt resource value: 0x7f0700e9
 			public const int action0 = 2131165417;
