@@ -15,10 +15,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Android.App;
 using Android.Graphics.Drawables;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
+using de.upb.hip.mobile.droid.Dialogs;
 using de.upb.hip.mobile.droid.fragments.bottomsheetfragment;
 using de.upb.hip.mobile.droid.Helpers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
@@ -84,7 +86,32 @@ namespace de.upb.hip.mobile.droid.fragments.exhibitpagefragment {
                 view.FindViewById(Resource.Id.displayImageSliderSeekBarEndText).Visibility = ViewStates.Invisible;
             }
 
+            // for tooltips
+            mSeekBar.ViewTreeObserver.AddOnGlobalLayoutListener (new SeekbarLayoutListener (mSeekBar, Activity));
+
             return view;
+        }
+
+        private class SeekbarLayoutListener : Java.Lang.Object, ViewTreeObserver.IOnGlobalLayoutListener    // without (Java.Lang.)Object you'll get a cast exception!
+        {
+            private readonly SeekBar seekbar = null;
+            private readonly Activity activity = null;
+
+            public SeekbarLayoutListener(SeekBar seekbar, Activity activity)
+            {
+                this.seekbar = seekbar;
+                this.activity = activity;
+            }
+
+            public void OnGlobalLayout()
+            {
+                // remove listener
+                seekbar.ViewTreeObserver.RemoveOnGlobalLayoutListener (this);
+
+                // show ToolTip
+                var tooltipWindow = new TooltipWindow(activity);
+                tooltipWindow.showToolTip(seekbar);
+            }
         }
 
         public override void OnSaveInstanceState (Bundle outState)

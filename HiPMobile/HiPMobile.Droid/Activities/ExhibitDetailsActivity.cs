@@ -356,13 +356,6 @@ namespace de.upb.hip.mobile.droid.Activities {
                 }
             }
 
-            if (page.IsTimeSliderPage ())
-            {
-                TooltipWindow tooltipWindow = new TooltipWindow (this);
-                View toolbar = FindViewById (Resource.Id.toolbar); //this works
-                // View seekbar = pageFragment.View.FindViewById (Resource.Id.toolbar); this does not
-                tooltipWindow.showToolTip (toolbar);
-            }
         }
 
         /// <summary>
