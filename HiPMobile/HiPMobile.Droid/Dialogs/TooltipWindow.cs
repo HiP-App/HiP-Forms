@@ -5,9 +5,11 @@ using System.Text;
 
 using Android.App;
 using Android.Content;
+using Android.Content.Res;
 using Android.Graphics;
 using Android.Graphics.Drawables;
 using Android.OS;
+using Android.Preferences;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
@@ -27,6 +29,8 @@ namespace de.upb.hip.mobile.droid.Dialogs
         View contentView;
         LayoutInflater inflater;
 
+        private ISharedPreferences sharedPreferences;
+
 
         public TooltipWindow (Context ctx)
         {
@@ -36,9 +40,14 @@ namespace de.upb.hip.mobile.droid.Dialogs
             inflater = (LayoutInflater) ctx.GetSystemService (Context.LayoutInflaterService);
             contentView = inflater.Inflate (Resource.Layout.custom_tooltip, null);
 
+            sharedPreferences = PreferenceManager.GetDefaultSharedPreferences(ctx);
+
             Button tooltipButton = (Button) contentView.FindViewById (Resource.Id.TooltipButton);
+
             tooltipButton.Click += delegate {
-                //implement preferences
+                var edit = sharedPreferences.Edit();
+                edit.PutBoolean(ctx.Resources.GetString(Resource.String.pref_tooltip_timeslider_onboarding), false);
+                edit.Commit();
                 DismissToolTip();
             };
         }
@@ -48,7 +57,7 @@ namespace de.upb.hip.mobile.droid.Dialogs
             tipWindow.Height = ActionBar.LayoutParams.WrapContent;
             tipWindow.Width = ActionBar.LayoutParams.WrapContent;
             tipWindow.OutsideTouchable = false;
-            tipWindow.Focusable = true;
+            tipWindow.Focusable = false;
             tipWindow.SetBackgroundDrawable(new BitmapDrawable());
             //tipWindow.SetBackgroundDrawable(new ColorDrawable(Color.Transparent));
             tipWindow.ContentView = contentView;
@@ -84,9 +93,7 @@ namespace de.upb.hip.mobile.droid.Dialogs
 
         public void closeTooltip ()
         {
-            //implementation for shared preferences
-           // ISharedPreferences sharedPreferences = 
-           DismissToolTip();
+            DismissToolTip();
         }
 
         public void DismissToolTip()

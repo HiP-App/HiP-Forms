@@ -16,8 +16,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Android.App;
+using Android.Content;
 using Android.Graphics.Drawables;
 using Android.OS;
+using Android.Preferences;
 using Android.Views;
 using Android.Widget;
 using de.upb.hip.mobile.droid.Dialogs;
@@ -45,6 +47,11 @@ namespace de.upb.hip.mobile.droid.fragments.exhibitpagefragment {
 
         private TimeSliderPage page;
 
+        private TooltipWindow tooltipWindow = null;
+
+        protected ISharedPreferences sharedPreferences;
+        
+
         private View view;
 
         public override BottomSheetConfig GetBottomSheetConfig ()
@@ -70,6 +77,7 @@ namespace de.upb.hip.mobile.droid.fragments.exhibitpagefragment {
             // Inflate the layout for this fragment
             view = inflater.Inflate (Resource.Layout.fragment_exhibitpage_timeslider, container, false);
 
+            sharedPreferences = PreferenceManager.GetDefaultSharedPreferences(Activity);
 
             if (savedInstanceState?.GetString (INSTANCE_STATE_PAGE) != null)
             {
@@ -87,18 +95,22 @@ namespace de.upb.hip.mobile.droid.fragments.exhibitpagefragment {
             }
 
             // for tooltips
-            mSeekBar.ViewTreeObserver.AddOnGlobalLayoutListener (new SeekbarLayoutListener (mSeekBar, Activity));
+           
+            mSeekBar.ViewTreeObserver.AddOnGlobalLayoutListener(new SeekbarLayoutListener(this, mSeekBar, Activity));
 
             return view;
         }
 
         private class SeekbarLayoutListener : Java.Lang.Object, ViewTreeObserver.IOnGlobalLayoutListener    // without (Java.Lang.)Object you'll get a cast exception!
         {
+            private readonly TimeSliderExhibitPageFragment parent;
+
             private readonly SeekBar seekbar = null;
             private readonly Activity activity = null;
 
-            public SeekbarLayoutListener(SeekBar seekbar, Activity activity)
+            public SeekbarLayoutListener(TimeSliderExhibitPageFragment parent, SeekBar seekbar, Activity activity)
             {
+                this.parent = parent;
                 this.seekbar = seekbar;
                 this.activity = activity;
             }
@@ -108,9 +120,12 @@ namespace de.upb.hip.mobile.droid.fragments.exhibitpagefragment {
                 // remove listener
                 seekbar.ViewTreeObserver.RemoveOnGlobalLayoutListener (this);
 
-                // show ToolTip
-                var tooltipWindow = new TooltipWindow(activity);
-                tooltipWindow.showToolTip(seekbar);
+                if (parent.sharedPreferences.GetBoolean (parent.Resources.GetString (Resource.String.pref_tooltip_timeslider_onboarding), false))
+                {
+                    // show ToolTip
+                    parent.tooltipWindow = new TooltipWindow (activity);
+                    parent.tooltipWindow.showToolTip (seekbar);
+                }
             }
         }
 
@@ -204,6 +219,15 @@ namespace de.upb.hip.mobile.droid.fragments.exhibitpagefragment {
             {
                 var picture = new PictureData (page.Images [i].GetDrawable (Context, imgView.Width, imgView.Height), Convert.ToInt32 (page.Dates [i].Value));
                 mPicDataList.Add (picture);
+            }
+        }
+
+        public override void OnPause ()
+        {
+            base.OnPause ();
+            if (tooltipWindow != null)
+            {
+                tooltipWindow.DismissToolTip();
             }
         }
 

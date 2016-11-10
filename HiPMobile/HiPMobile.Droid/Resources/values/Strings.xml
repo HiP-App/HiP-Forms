@@ -175,9 +175,22 @@ limitations under the License.-->
   <string name="pref_auto_start_audio_title">Automatisch Audio beginnen</string>
   <string name="pref_auto_start_audio_summ">Wenn diese Einstellung aktiviert ist, wird Audio automatisch für die aktuelle Seite gestartet.</string>
 
+  <string name="pref_cat_onboarding_title">Onboarding</string>
   <string name="pref_first_time_launch_key">pref_first_time_launch</string>
   <string name="pref_first_time_launch_title">Activate auto carousel</string>
   <string name="pref_first_time_launch_summ">When this is on, auto carousel will be activated on the next app launch</string>
+
+  <string name="pref_auto_start_audio_key_onboarding">pref_auto_start_audio_key_onboarding</string>
+  <string name="pref_auto_start_audio_title_onboarding">Automatisch Audio beginnen onboarding</string>
+  <string name="pref_auto_start_audio_summ_onboarding">When this is on show user onboarding for auto audio start</string>
+
+  <string name="pref_auto_switch_page_key_onboarding">pref_auto_auto_switch_key_onboarding</string>
+  <string name="pref_auto_switch_page_title_onboarding">Automatisch Page Switching onboarding</string>
+  <string name="pref_auto_switch_page_summ_onboarding">When this is on show user onboarding for auto switch</string>
+
+  <string name="pref_tooltip_timeslider_onboarding">pref_tooltip_timeslider_onboarding</string>
+  <string name="pref_tooltip_timeslider_onboarding">Show timeslider tooltip onboarding</string>
+  <string name="pref_tooltip_timeslider_onboarding">When this is on show timeslider tooltip</string>
   
   <!-- Navigation Drawer Titles -->
   <string name="nav_home_title">Übersicht</string>

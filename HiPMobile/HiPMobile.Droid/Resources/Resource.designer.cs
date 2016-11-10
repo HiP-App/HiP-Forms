@@ -3718,23 +3718,23 @@ namespace de.upb.hip.mobile.droid
 			// aapt resource value: 0x7f080066
 			public const int menu_activity_route_filter = 2131230822;
 			
-			// aapt resource value: 0x7f0800ca
-			public const int nav_contribution_title = 2131230922;
+			// aapt resource value: 0x7f0800d2
+			public const int nav_contribution_title = 2131230930;
 			
-			// aapt resource value: 0x7f0800c8
-			public const int nav_feedback = 2131230920;
+			// aapt resource value: 0x7f0800d0
+			public const int nav_feedback = 2131230928;
 			
-			// aapt resource value: 0x7f0800c5
-			public const int nav_home_title = 2131230917;
+			// aapt resource value: 0x7f0800cd
+			public const int nav_home_title = 2131230925;
 			
-			// aapt resource value: 0x7f0800c9
-			public const int nav_licenses_title = 2131230921;
+			// aapt resource value: 0x7f0800d1
+			public const int nav_licenses_title = 2131230929;
 			
-			// aapt resource value: 0x7f0800c7
-			public const int nav_preferences_title = 2131230919;
+			// aapt resource value: 0x7f0800cf
+			public const int nav_preferences_title = 2131230927;
 			
-			// aapt resource value: 0x7f0800c6
-			public const int nav_route_title = 2131230918;
+			// aapt resource value: 0x7f0800ce
+			public const int nav_route_title = 2131230926;
 			
 			// aapt resource value: 0x7f080090
 			public const int network_connection = 2131230864;
@@ -3763,23 +3763,47 @@ namespace de.upb.hip.mobile.droid
 			// aapt resource value: 0x7f0800bf
 			public const int pref_auto_start_audio_key = 2131230911;
 			
+			// aapt resource value: 0x7f0800c6
+			public const int pref_auto_start_audio_key_onboarding = 2131230918;
+			
 			// aapt resource value: 0x7f0800c1
 			public const int pref_auto_start_audio_summ = 2131230913;
 			
+			// aapt resource value: 0x7f0800c8
+			public const int pref_auto_start_audio_summ_onboarding = 2131230920;
+			
 			// aapt resource value: 0x7f0800c0
 			public const int pref_auto_start_audio_title = 2131230912;
+			
+			// aapt resource value: 0x7f0800c7
+			public const int pref_auto_start_audio_title_onboarding = 2131230919;
+			
+			// aapt resource value: 0x7f0800c9
+			public const int pref_auto_switch_page_key_onboarding = 2131230921;
+			
+			// aapt resource value: 0x7f0800cb
+			public const int pref_auto_switch_page_summ_onboarding = 2131230923;
+			
+			// aapt resource value: 0x7f0800ca
+			public const int pref_auto_switch_page_title_onboarding = 2131230922;
 			
 			// aapt resource value: 0x7f0800bb
 			public const int pref_cat_exhibitdetails_title = 2131230907;
 			
 			// aapt resource value: 0x7f0800c2
-			public const int pref_first_time_launch_key = 2131230914;
-			
-			// aapt resource value: 0x7f0800c4
-			public const int pref_first_time_launch_summ = 2131230916;
+			public const int pref_cat_onboarding_title = 2131230914;
 			
 			// aapt resource value: 0x7f0800c3
-			public const int pref_first_time_launch_title = 2131230915;
+			public const int pref_first_time_launch_key = 2131230915;
+			
+			// aapt resource value: 0x7f0800c5
+			public const int pref_first_time_launch_summ = 2131230917;
+			
+			// aapt resource value: 0x7f0800c4
+			public const int pref_first_time_launch_title = 2131230916;
+			
+			// aapt resource value: 0x7f0800cc
+			public const int pref_tooltip_timeslider_onboarding = 2131230924;
 			
 			// aapt resource value: 0x7f08007f
 			public const int route = 2131230847;
