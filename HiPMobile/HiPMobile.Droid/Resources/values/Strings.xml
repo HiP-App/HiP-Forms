@@ -193,7 +193,7 @@ limitations under the License.-->
   <string name="pref_tooltip_timeslider_onboarding">When this is on show timeslider tooltip</string>
 
   <!-- User onboarding text -->
-  <string name="tooltip_text">Drag the slider to see different pictures</string>
+  <string name="tooltip_text">You can drag the slider</string>
   <string name="tooltip_button">GOT IT</string>
 
   <string name="hint_message">Hint message</string>
