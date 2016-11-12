@@ -831,12 +831,10 @@ namespace de.upb.hip.mobile.droid.Activities {
                 }
                 
                 Action onCloseActionAct = () => {
-                    if (rememberAudioSettings)
-                    {
                         StartAudioPlayback ();
                         isAudioPlaying = true;
                         UpdatePlayPauseButtonIcon ();
-                    }
+                    
 
 
                 };

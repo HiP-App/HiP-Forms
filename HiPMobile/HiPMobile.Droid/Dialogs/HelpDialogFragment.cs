@@ -48,10 +48,9 @@ namespace de.upb.hip.mobile.droid.Dialogs {
 
         public override void OnDismiss (IDialogInterface dialog)
         {
-            // do not pay attention, I was just trying something
 
-            OnCloseDialogAction ();
-            //Activity.FragmentManager.BeginTransaction().Remove(this).Commit();
+            //OnCloseDialogAction ();
+            Activity.FragmentManager.BeginTransaction().Remove(this).Commit();
         }
 
 

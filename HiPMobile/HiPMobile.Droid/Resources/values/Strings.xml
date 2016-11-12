@@ -184,7 +184,7 @@ limitations under the License.-->
   <string name="pref_auto_start_audio_title_onboarding">Automatic audio start user onboarding</string>
   <string name="pref_auto_start_audio_summ_onboarding">When this is on, show user onboarding for auto audio start</string>
 
-  <string name="pref_auto_switch_page_key_onboarding">pref_auto_auto_switch_key_onboarding</string>
+  <string name="pref_auto_switch_page_key_onboarding">pref_auto_switch_page_key_onboarding</string>
   <string name="pref_auto_switch_page_title_onboarding">Automatic page switch user onboarding</string>
   <string name="pref_auto_switch_page_summ_onboarding">When this is on, show user onboarding for auto switch</string>
 
