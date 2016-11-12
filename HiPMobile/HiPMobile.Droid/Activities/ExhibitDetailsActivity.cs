@@ -324,15 +324,18 @@ namespace de.upb.hip.mobile.droid.Activities {
             else
             {
                 DisplayAudioAction (true);
-
+                // first time user opens the page with automatic audio starts, show hint message
+                
                 if (sharedPreferences.GetBoolean(Resources.GetString(Resource.String.pref_auto_start_audio_key_onboarding), false) &&
                     sharedPreferences.GetBoolean(Resources.GetString(Resource.String.pref_auto_start_audio_key), false) &&
-                   true)
+                    !isAudioHelpDialogShown)
                 {
+                    
                     Action onCloseActionActivity = () => {
-                            StartAudioBasedOnPreferences();
+                        //do not know how to handle audio!!
+                            //StartAudioBasedOnPreferences();
                     };
-
+                    
                     var transaction = FragmentManager.BeginTransaction();
                     transaction.SetTransition (FragmentTransit.FragmentFade);
 
@@ -346,14 +349,10 @@ namespace de.upb.hip.mobile.droid.Activities {
                         HelpDialogFragment.NewHelpDialogFragment(HelpDialogFragment.HelpWindows.AutomaticAudioHelp, onCloseActionActivity);
 
                     helpAudio.Show(transaction, "auto_audio_start");
-
+                    isAudioHelpDialogShown = true;
                 }
-
-                else
-                {
-                    if (!sharedPreferences.GetBoolean(Resources.GetString(Resource.String.pref_auto_start_audio_key_onboarding), false))
-                        StartAudioBasedOnPreferences();
-                }
+   
+                StartAudioBasedOnPreferences();
 
             }
 
@@ -814,47 +813,46 @@ namespace de.upb.hip.mobile.droid.Activities {
         private void SwitchToNextPageBasedOnSetting ()
         {
             if (sharedPreferences.GetBoolean(Resources.GetString(Resource.String.pref_auto_page_switch_key), false))
-                if (exhibit.Pages[currentPageIndex].Audio != null)
-                    DisplayNextExhibitPage();
-
-            if (sharedPreferences.GetBoolean(Resources.GetString(Resource.String.pref_auto_switch_page_key_onboarding), false)
-                && !isPageSwitchHelpDialogShown)
-            {
-                isPageSwitchHelpDialogShown = true;
-                var rememberAudioSettings = isAudioPlaying;
-                
-                if (isAudioPlaying)
+                if (exhibit.Pages [currentPageIndex].Audio != null)
                 {
-                    PauseAudioPlayback();
-                    isAudioPlaying = false;
-                    UpdatePlayPauseButtonIcon();
+                    DisplayNextExhibitPage ();
+
+                    if (sharedPreferences.GetBoolean (Resources.GetString (Resource.String.pref_auto_switch_page_key_onboarding), false)
+                        && !isPageSwitchHelpDialogShown)
+                    {
+                        if (isAudioPlaying)
+                        {
+                            //find way to stop audio properly. This here is not working
+                            //PauseAudioPlayback ();
+                           // isAudioPlaying = false;
+                           // UpdatePlayPauseButtonIcon ();
+                        }
+
+                        Action onCloseActionAct = () => {
+                           // find way to start audio, if it is necessary, once when the dialog is closed
+                           //StartAudioPlayback ();
+                           //isAudioPlaying = true;
+                           // UpdatePlayPauseButtonIcon ();
+                        };
+
+                        var transaction = FragmentManager.BeginTransaction ();
+                        transaction.SetTransition (FragmentTransit.FragmentFade);
+
+                        //find fragment and remove it, so it does not crash
+                        Fragment prev = FragmentManager.FindFragmentByTag ("auto_switch_page_frag");
+                        if (prev != null)
+                            transaction.Remove (prev);
+
+                        transaction.AddToBackStack (null);
+
+                        HelpDialogFragment helpDialogSwitchPages =
+                            HelpDialogFragment.NewHelpDialogFragment (HelpDialogFragment.HelpWindows.AutomaticSwitchHelp, onCloseActionAct);
+
+                        helpDialogSwitchPages.Show (transaction, "auto_switch_page_frag");
+
+                        isPageSwitchHelpDialogShown = true;
+                    }
                 }
-                
-                Action onCloseActionAct = () => {
-                        StartAudioPlayback ();
-                        isAudioPlaying = true;
-                        UpdatePlayPauseButtonIcon ();
-                    
-
-
-                };
-                
-                var transaction = FragmentManager.BeginTransaction();
-                transaction.SetTransition(FragmentTransit.FragmentFade);
-
-                //find fragment and remove it, so it does not crash
-                Fragment prev = FragmentManager.FindFragmentByTag("auto_switch_page_frag");
-                if (prev != null)
-                    transaction.Remove(prev);
-
-                transaction.AddToBackStack(null);
-
-                HelpDialogFragment helpDialogSwitchPages =
-                   HelpDialogFragment.NewHelpDialogFragment(HelpDialogFragment.HelpWindows.AutomaticSwitchHelp, onCloseActionAct);
-
-                helpDialogSwitchPages.Show(transaction, "auto_switch_page_frag");
-
-            }
         }
 
         private void UpdateProgressbar ()

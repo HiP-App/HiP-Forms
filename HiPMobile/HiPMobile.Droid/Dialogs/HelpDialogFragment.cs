@@ -45,14 +45,14 @@ namespace de.upb.hip.mobile.droid.Dialogs {
 
         public static HelpWindows Type { get; set; }
 
-
+        /*
         public override void OnDismiss (IDialogInterface dialog)
         {
 
             //OnCloseDialogAction ();
             Activity.FragmentManager.BeginTransaction().Remove(this).Commit();
         }
-
+        */
 
         public static HelpDialogFragment NewHelpDialogFragment (HelpWindows helpWindowType, Action onCloseDialogAction)
         {
@@ -79,16 +79,18 @@ namespace de.upb.hip.mobile.droid.Dialogs {
                     message = Resources.GetString (Resource.String.auto_audio_message);
 
                     alert.SetPositiveButton (Resources.GetString (Resource.String.keep_feature_on), (senderAlert, args) => {
-                        sharedPreferencesEditor.PutBoolean ("pref_auto_start_audio_key_onboarding", false);
-                        sharedPreferencesEditor.PutBoolean ("pref_auto_start_audio_key", true);
+                        sharedPreferencesEditor.PutBoolean (Resources.GetString(Resource.String.pref_auto_start_audio_key_onboarding), false);
+                        sharedPreferencesEditor.PutBoolean (Resources.GetString(Resource.String.pref_auto_start_audio_key), true);
                         sharedPreferencesEditor.Commit ();
+
                         Toast.MakeText (Activity, Resources.GetString (Resource.String.choice_keep_audio), ToastLength.Short).Show ();
                     });
 
                     alert.SetNegativeButton (Resources.GetString (Resource.String.disregard_feature), (senderAlert, args) => {
-                        sharedPreferencesEditor.PutBoolean ("pref_auto_start_audio_key_onboarding", false);
-                        sharedPreferencesEditor.PutBoolean ("pref_auto_start_audio_key", false);
+                        sharedPreferencesEditor.PutBoolean (Resources.GetString(Resource.String.pref_auto_start_audio_key_onboarding), false);
+                        sharedPreferencesEditor.PutBoolean (Resources.GetString(Resource.String.pref_auto_start_audio_key), false);
                         sharedPreferencesEditor.Commit ();
+
                         Toast.MakeText (Activity, Resources.GetString (Resource.String.choice_disregard_audio), ToastLength.Short).Show ();
                     });
                     break;
@@ -100,6 +102,7 @@ namespace de.upb.hip.mobile.droid.Dialogs {
                         sharedPreferencesEditor.PutBoolean ("pref_auto_switch_page_key_onboarding", false);
                         sharedPreferencesEditor.PutBoolean ("pref_auto_page_switch_key", true);
                         sharedPreferencesEditor.Commit ();
+                        Dismiss ();
                         Toast.MakeText (Activity, Resources.GetString (Resource.String.choice_keep_switch_pages), ToastLength.Short).Show ();
                     });
 
