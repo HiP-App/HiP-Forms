@@ -79,7 +79,7 @@ namespace de.upb.hip.mobile.droid.Dialogs {
             var positionX = anchorRect.CenterX () - contentViewwidth / 2;
             var positionY = anchorRect.Bottom - anchorRect.Height () / 2;
 
-            tipWindow.ShowAtLocation (anchor, GravityFlags.Top, 0, positionY);
+            tipWindow.ShowAtLocation (anchor, GravityFlags.NoGravity, positionX, positionY);
         }
 
         public bool IsTooltipShown ()

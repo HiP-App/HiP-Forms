@@ -5,8 +5,8 @@
     android:orientation="vertical">
     <ImageView
         android:id="@+id/tooltip_nav_up"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
         android:layout_gravity="center"
         android:background="@drawable/nav_up" />
     <LinearLayout
@@ -16,11 +16,14 @@
         android:orientation="vertical"
         android:background="@drawable/tooltip_bg"
         android:layout_gravity="center"
-        android:padding="5dp">
+        android:paddingTop="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="0dp">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Ziehen Sie den Schieberegler, um verschiedene Bilder zu sehen"
+            android:text="Ziehen Sie den Schieberegler"
             android:textColor="@android:color/white"
             android:gravity="center"
             android:textAlignment="center"

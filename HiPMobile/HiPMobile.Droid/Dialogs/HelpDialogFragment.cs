@@ -26,8 +26,8 @@ namespace de.upb.hip.mobile.droid.Dialogs {
 
         public enum HelpWindows {
 
-            AutoAudio,
-            AutoSwitch
+            AutomaticAudioHelp,
+            AutomaticSwitchHelp
 
         }
 
@@ -48,15 +48,17 @@ namespace de.upb.hip.mobile.droid.Dialogs {
 
         public override void OnDismiss (IDialogInterface dialog)
         {
+            // do not pay attention, I was just trying something
+
             OnCloseDialogAction ();
             //Activity.FragmentManager.BeginTransaction().Remove(this).Commit();
         }
 
 
-        public static HelpDialogFragment NewHelpDialogFragment (HelpWindows helpWindow, Action onCloseDialogAction)
+        public static HelpDialogFragment NewHelpDialogFragment (HelpWindows helpWindowType, Action onCloseDialogAction)
         {
             Fragment = new HelpDialogFragment ();
-            Type = helpWindow;
+            Type = helpWindowType;
             OnCloseDialogAction = onCloseDialogAction;
             return Fragment;
         }
@@ -74,7 +76,7 @@ namespace de.upb.hip.mobile.droid.Dialogs {
 
             switch (Type)
             {
-                case HelpWindows.AutoAudio:
+                case HelpWindows.AutomaticAudioHelp:
                     message = Resources.GetString (Resource.String.auto_audio_message);
 
                     alert.SetPositiveButton (Resources.GetString (Resource.String.keep_feature_on), (senderAlert, args) => {
@@ -92,7 +94,7 @@ namespace de.upb.hip.mobile.droid.Dialogs {
                     });
                     break;
 
-                case HelpWindows.AutoSwitch:
+                case HelpWindows.AutomaticSwitchHelp:
                     message = Resources.GetString (Resource.String.auto_switch_message);
 
                     alert.SetPositiveButton (Resources.GetString (Resource.String.keep_feature_on), (senderAlert, args) => {

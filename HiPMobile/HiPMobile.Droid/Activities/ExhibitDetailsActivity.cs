@@ -59,8 +59,8 @@ namespace de.upb.hip.mobile.droid.Activities {
             outState.PutBoolean (KEY_AUDIO_PLAYING, isAudioPlaying);
             outState.PutBoolean (KEY_AUDIO_TOOLBAR_HIDDEN, isAudioToolbarHidden);
             outState.PutBoolean (KEY_CAPTION_SHOWN, isCaptionShown);
-            outState.PutBoolean(KEY_AUDIO_CHOSEN, isAudioChoice);
-            outState.PutBoolean(KEY_PAGE_SWITCH, isPageChosen);
+            outState.PutBoolean(KEY_AUDIO_HELP_SHOWN, isAudioHelpDialogShown);
+            outState.PutBoolean(KEY_PAGE_SWITCH_HELP_SHOWN, isPageSwitchHelpDialogShown);
             outState.PutBundle (KEY_EXTRAS, extras);
             if (captionDialog != null)
             {
@@ -124,8 +124,8 @@ namespace de.upb.hip.mobile.droid.Activities {
                     ShowCaptions (selectedTab, currentSource);
                 }
 
-                isAudioChoice = savedInstanceState.GetBoolean(KEY_AUDIO_CHOSEN, false);
-                isPageChosen = savedInstanceState.GetBoolean(KEY_PAGE_SWITCH, false);
+                isAudioHelpDialogShown = savedInstanceState.GetBoolean(KEY_AUDIO_HELP_SHOWN, false);
+                isPageSwitchHelpDialogShown = savedInstanceState.GetBoolean(KEY_PAGE_SWITCH_HELP_SHOWN, false);
             }
             else
             {
@@ -324,43 +324,78 @@ namespace de.upb.hip.mobile.droid.Activities {
             else
             {
                 DisplayAudioAction (true);
-                // check is preference to automatically start audio is on
-                if (sharedPreferences.GetBoolean (Resources.GetString (Resource.String.pref_auto_start_audio_key), false))
+
+                if (sharedPreferences.GetBoolean(Resources.GetString(Resource.String.pref_auto_start_audio_key_onboarding), false) &&
+                    sharedPreferences.GetBoolean(Resources.GetString(Resource.String.pref_auto_start_audio_key), false) &&
+                   true)
                 {
-                    // We might have resumed, but were already playing
-                    // before the suspension, so just go on
-                    if (!pauseAudioPlaybackFlag)
-                    {
-                        ShowAudioToolbar();
-                        StartAudioPlayback();
-                        isAudioPlaying = true;
-                        UpdatePlayPauseButtonIcon();
-                    }
-                    else
-                    {
-                        // We resumed and were paused before the suspension
-                        // Just update the buttons and progress bar
-                        pauseAudioPlaybackFlag = false;
-                        UpdatePlayPauseButtonIcon ();
-                        audioSeekbar.Max = (int)mediaPlayerService.GetTimeTotal();
-                        startTime = mediaPlayerService.GetTimeCurrent();
-                        audioSeekbar.Progress = (int)startTime;
-                    }
+                    Action onCloseActionActivity = () => {
+                            StartAudioBasedOnPreferences();
+                    };
+
+                    var transaction = FragmentManager.BeginTransaction();
+                    transaction.SetTransition (FragmentTransit.FragmentFade);
+
+                    Fragment prev = FragmentManager.FindFragmentByTag("auto_audio_start");
+                    if (prev != null)
+                        transaction.Remove(prev);
+
+                    transaction.AddToBackStack(null);
+                    
+                    HelpDialogFragment helpAudio =
+                        HelpDialogFragment.NewHelpDialogFragment(HelpDialogFragment.HelpWindows.AutomaticAudioHelp, onCloseActionActivity);
+
+                    helpAudio.Show(transaction, "auto_audio_start");
+
                 }
-                else if (!pauseAudioPlaybackFlag && mediaPlayerService.GetTimeCurrent () > 0)
+
+                else
                 {
+                    if (!sharedPreferences.GetBoolean(Resources.GetString(Resource.String.pref_auto_start_audio_key_onboarding), false))
+                        StartAudioBasedOnPreferences();
+                }
+
+            }
+
+        }
+
+        public void StartAudioBasedOnPreferences ()
+        {
+            // check is preference to automatically start audio is on
+            if (sharedPreferences.GetBoolean(Resources.GetString(Resource.String.pref_auto_start_audio_key), false))
+            {
+                // We might have resumed, but were already playing
+                // before the suspension, so just go on
+                if (!pauseAudioPlaybackFlag)
+                {
+                    ShowAudioToolbar();
                     StartAudioPlayback();
                     isAudioPlaying = true;
                     UpdatePlayPauseButtonIcon();
                 }
-                else if (mediaPlayerService.GetTimeCurrent () > 0)
+                else
                 {
+                    // We resumed and were paused before the suspension
+                    // Just update the buttons and progress bar
+                    pauseAudioPlaybackFlag = false;
+                    UpdatePlayPauseButtonIcon();
                     audioSeekbar.Max = (int)mediaPlayerService.GetTimeTotal();
                     startTime = mediaPlayerService.GetTimeCurrent();
                     audioSeekbar.Progress = (int)startTime;
                 }
             }
-
+            else if (!pauseAudioPlaybackFlag && mediaPlayerService.GetTimeCurrent() > 0)
+            {
+                StartAudioPlayback();
+                isAudioPlaying = true;
+                UpdatePlayPauseButtonIcon();
+            }
+            else if (mediaPlayerService.GetTimeCurrent() > 0)
+            {
+                audioSeekbar.Max = (int)mediaPlayerService.GetTimeTotal();
+                startTime = mediaPlayerService.GetTimeCurrent();
+                audioSeekbar.Progress = (int)startTime;
+            }
         }
 
         /// <summary>
@@ -697,8 +732,8 @@ namespace de.upb.hip.mobile.droid.Activities {
         // logging
         private static readonly string Tag = "ExhibitDetailsActivity";
 
-        private bool isAudioChoice = false;
-        private bool isPageChosen = false;
+        private bool isAudioHelpDialogShown = false;
+        private bool isPageSwitchHelpDialogShown = false;
 
         // keys for saving/accessing the state
         public static readonly string INTENT_EXTRA_EXHIBIT_ID = "de.upb.hip.mobile.extra.exhibit_id";
@@ -711,8 +746,8 @@ namespace de.upb.hip.mobile.droid.Activities {
         private static readonly string KEY_CURRENT_CAPTION_TAB = "ExhibitDetailsActivity.captionDialog.SelectedTab";
         private static readonly string KEY_CURRENT_SOURCE = "ExhibitDetailsActivity.captionDialog.CurrentSource";
 
-        private static readonly string KEY_AUDIO_CHOSEN = "ExhibitDetailsActivity.isAudioChoice";
-        private static readonly string KEY_PAGE_SWITCH = "ExhibitDetailsActivity.isPageChosen";
+        private static readonly string KEY_AUDIO_HELP_SHOWN = "ExhibitDetailsActivity.isAudioChoice";
+        private static readonly string KEY_PAGE_SWITCH_HELP_SHOWN = "ExhibitDetailsActivity.isPageChosen";
 
         // ui elements
         private FloatingActionButton fab;
@@ -780,13 +815,13 @@ namespace de.upb.hip.mobile.droid.Activities {
         {
             if (sharedPreferences.GetBoolean(Resources.GetString(Resource.String.pref_auto_page_switch_key), false))
                 if (exhibit.Pages[currentPageIndex].Audio != null)
-                    //DisplayNextExhibitPage();
                     DisplayNextExhibitPage();
 
             if (sharedPreferences.GetBoolean(Resources.GetString(Resource.String.pref_auto_switch_page_key_onboarding), false)
-                && !isPageChosen)
+                && !isPageSwitchHelpDialogShown)
             {
-                isPageChosen = true;
+                isPageSwitchHelpDialogShown = true;
+                var rememberAudioSettings = isAudioPlaying;
                 
                 if (isAudioPlaying)
                 {
@@ -796,21 +831,30 @@ namespace de.upb.hip.mobile.droid.Activities {
                 }
                 
                 Action onCloseActionAct = () => {
+                    if (rememberAudioSettings)
+                    {
+                        StartAudioPlayback ();
+                        isAudioPlaying = true;
+                        UpdatePlayPauseButtonIcon ();
+                    }
 
-                    StartAudioPlayback();
-                    isAudioPlaying = true;
-                    UpdatePlayPauseButtonIcon();
-                    
 
                 };
                 
                 var transaction = FragmentManager.BeginTransaction();
                 transaction.SetTransition(FragmentTransit.FragmentFade);
 
-                HelpDialogFragment newFragement2 =
-                    HelpDialogFragment.NewHelpDialogFragment(HelpDialogFragment.HelpWindows.AutoSwitch, onCloseActionAct);
+                //find fragment and remove it, so it does not crash
+                Fragment prev = FragmentManager.FindFragmentByTag("auto_switch_page_frag");
+                if (prev != null)
+                    transaction.Remove(prev);
 
-                newFragement2.Show(transaction, "auto_audio_start2");
+                transaction.AddToBackStack(null);
+
+                HelpDialogFragment helpDialogSwitchPages =
+                   HelpDialogFragment.NewHelpDialogFragment(HelpDialogFragment.HelpWindows.AutomaticSwitchHelp, onCloseActionAct);
+
+                helpDialogSwitchPages.Show(transaction, "auto_switch_page_frag");
 
             }
         }
