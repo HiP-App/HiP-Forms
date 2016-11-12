@@ -59,6 +59,8 @@ namespace de.upb.hip.mobile.droid.Activities {
             outState.PutBoolean (KEY_AUDIO_PLAYING, isAudioPlaying);
             outState.PutBoolean (KEY_AUDIO_TOOLBAR_HIDDEN, isAudioToolbarHidden);
             outState.PutBoolean (KEY_CAPTION_SHOWN, isCaptionShown);
+            outState.PutBoolean(KEY_AUDIO_CHOSEN, isAudioChoice);
+            outState.PutBoolean(KEY_PAGE_SWITCH, isPageChosen);
             outState.PutBundle (KEY_EXTRAS, extras);
             if (captionDialog != null)
             {
@@ -121,6 +123,9 @@ namespace de.upb.hip.mobile.droid.Activities {
                 {
                     ShowCaptions (selectedTab, currentSource);
                 }
+
+                isAudioChoice = savedInstanceState.GetBoolean(KEY_AUDIO_CHOSEN, false);
+                isPageChosen = savedInstanceState.GetBoolean(KEY_PAGE_SWITCH, false);
             }
             else
             {
@@ -692,6 +697,9 @@ namespace de.upb.hip.mobile.droid.Activities {
         // logging
         private static readonly string Tag = "ExhibitDetailsActivity";
 
+        private bool isAudioChoice = false;
+        private bool isPageChosen = false;
+
         // keys for saving/accessing the state
         public static readonly string INTENT_EXTRA_EXHIBIT_ID = "de.upb.hip.mobile.extra.exhibit_id";
         private static readonly string KEY_EXHIBIT_ID = "ExhibitDetailsActivity.ExhibitId";
@@ -702,6 +710,9 @@ namespace de.upb.hip.mobile.droid.Activities {
         private static readonly string KEY_EXTRAS = "ExhibitDetailsActivity.extras";
         private static readonly string KEY_CURRENT_CAPTION_TAB = "ExhibitDetailsActivity.captionDialog.SelectedTab";
         private static readonly string KEY_CURRENT_SOURCE = "ExhibitDetailsActivity.captionDialog.CurrentSource";
+
+        private static readonly string KEY_AUDIO_CHOSEN = "ExhibitDetailsActivity.isAudioChoice";
+        private static readonly string KEY_PAGE_SWITCH = "ExhibitDetailsActivity.isPageChosen";
 
         // ui elements
         private FloatingActionButton fab;
@@ -769,7 +780,39 @@ namespace de.upb.hip.mobile.droid.Activities {
         {
             if (sharedPreferences.GetBoolean(Resources.GetString(Resource.String.pref_auto_page_switch_key), false))
                 if (exhibit.Pages[currentPageIndex].Audio != null)
+                    //DisplayNextExhibitPage();
                     DisplayNextExhibitPage();
+
+            if (sharedPreferences.GetBoolean(Resources.GetString(Resource.String.pref_auto_switch_page_key_onboarding), false)
+                && !isPageChosen)
+            {
+                isPageChosen = true;
+                
+                if (isAudioPlaying)
+                {
+                    PauseAudioPlayback();
+                    isAudioPlaying = false;
+                    UpdatePlayPauseButtonIcon();
+                }
+                
+                Action onCloseActionAct = () => {
+
+                    StartAudioPlayback();
+                    isAudioPlaying = true;
+                    UpdatePlayPauseButtonIcon();
+                    
+
+                };
+                
+                var transaction = FragmentManager.BeginTransaction();
+                transaction.SetTransition(FragmentTransit.FragmentFade);
+
+                HelpDialogFragment newFragement2 =
+                    HelpDialogFragment.NewHelpDialogFragment(HelpDialogFragment.HelpWindows.AutoSwitch, onCloseActionAct);
+
+                newFragement2.Show(transaction, "auto_audio_start2");
+
+            }
         }
 
         private void UpdateProgressbar ()

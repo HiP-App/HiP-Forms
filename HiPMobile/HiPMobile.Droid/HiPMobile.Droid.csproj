@@ -155,6 +155,7 @@
     <Compile Include="Contracts\AndroidDataLoader.cs" />
     <Compile Include="Contracts\AndroidImageDimension.cs" />
     <Compile Include="Dialogs\CaptionDialog.cs" />
+    <Compile Include="Dialogs\HelpDialogFragment.cs" />
     <Compile Include="Dialogs\TooltipWindow.cs" />
     <Compile Include="fragments\AutoCarouselPageFragment.cs" />
     <Compile Include="fragments\CaptionDialogReferencesFragment.cs" />
@@ -261,6 +262,7 @@
     <AndroidResource Include="Resources\drawable\tooltip_bg.axml" />
     <AndroidResource Include="Resources\anim\animation_on.axml" />
     <AndroidResource Include="Resources\anim\animation_off.axml" />
+    <AndroidResource Include="Resources\drawable\dialog_background.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Main.axml">

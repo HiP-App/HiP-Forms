@@ -181,16 +181,31 @@ limitations under the License.-->
   <string name="pref_first_time_launch_summ">When this is on, auto carousel will be activated on the next app launch</string>
 
   <string name="pref_auto_start_audio_key_onboarding">pref_auto_start_audio_key_onboarding</string>
-  <string name="pref_auto_start_audio_title_onboarding">Automatisch Audio beginnen onboarding</string>
-  <string name="pref_auto_start_audio_summ_onboarding">When this is on show user onboarding for auto audio start</string>
+  <string name="pref_auto_start_audio_title_onboarding">Automatic audio start user onboarding</string>
+  <string name="pref_auto_start_audio_summ_onboarding">When this is on, show user onboarding for auto audio start</string>
 
   <string name="pref_auto_switch_page_key_onboarding">pref_auto_auto_switch_key_onboarding</string>
-  <string name="pref_auto_switch_page_title_onboarding">Automatisch Page Switching onboarding</string>
-  <string name="pref_auto_switch_page_summ_onboarding">When this is on show user onboarding for auto switch</string>
+  <string name="pref_auto_switch_page_title_onboarding">Automatic page switch user onboarding</string>
+  <string name="pref_auto_switch_page_summ_onboarding">When this is on, show user onboarding for auto switch</string>
 
   <string name="pref_tooltip_timeslider_onboarding">pref_tooltip_timeslider_onboarding</string>
   <string name="pref_tooltip_timeslider_onboarding">Show timeslider tooltip onboarding</string>
   <string name="pref_tooltip_timeslider_onboarding">When this is on show timeslider tooltip</string>
+
+  <!-- User onboarding text -->
+  <string name="tooltip_text">Drag the slider to see different pictures</string>
+  <string name="tooltip_button">GOT IT</string>
+
+  <string name="hint_message">Hint message</string>
+  <string name="auto_audio_message">Audio automatically starts when the new page is opened. This property can be changed in MainMenu >> Settings</string>
+  <string name="auto_switch_message">Page automatically switch when audio is completed. This property can be changed in MainMenu >> Setting"</string>
+  
+  <string name="keep_feature_on">KEEP THE FEATURE ON</string>
+  <string name="disregard_feature">DISREGARD THE FEATURE</string>
+  <string name="choice_keep_audio">You chose to keep the Audio!</string>
+  <string name="choice_disregard_audio">You chose to disregared the Audio!</string>
+  <string name="choice_keep_switch_pages">You chose to keep Switching Pages!</string>
+  <string name="choice_disregard_switch_pages">You chose to disregared Switching Pages!</string>
   
   <!-- Navigation Drawer Titles -->
   <string name="nav_home_title">Übersicht</string>

@@ -13,134 +13,92 @@
 // limitations under the License.
 
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 using Android.App;
 using Android.Content;
-using Android.Content.Res;
 using Android.Graphics;
 using Android.Graphics.Drawables;
-using Android.OS;
 using Android.Preferences;
-using Android.Runtime;
 using Android.Views;
 using Android.Widget;
-using Java.Lang;
 
-namespace de.upb.hip.mobile.droid.Dialogs
-{
-    [Activity(Label = "TooltipWindow")]
+namespace de.upb.hip.mobile.droid.Dialogs {
+    [Activity (Label = "TooltipWindow")]
+    public class TooltipWindow {
 
-    public class TooltipWindow
-    {
+        private readonly View contentView;
 
-        //private const int MSG_DISMISS_TOOLTIP = 100;
-        Context ctx;
+        private Context context;
+        private readonly LayoutInflater inflater;
+
+        private readonly ISharedPreferences sharedPreferences;
         protected PopupWindow tipWindow;
-        private ViewGroupOverlay viewGroupOverlay;
-        View contentView;
-        LayoutInflater inflater;
-
-        private ISharedPreferences sharedPreferences;
+        
 
 
-        public TooltipWindow (Context ctx)
+        public TooltipWindow (Context context)
         {
-            this.ctx = ctx;
-            tipWindow = new PopupWindow (ctx);
+            this.context = context;
+            tipWindow = new PopupWindow (context);
 
-            inflater = (LayoutInflater) ctx.GetSystemService (Context.LayoutInflaterService);
+            inflater = (LayoutInflater) context.GetSystemService (Context.LayoutInflaterService);
             contentView = inflater.Inflate (Resource.Layout.custom_tooltip, null);
 
-            sharedPreferences = PreferenceManager.GetDefaultSharedPreferences(ctx);
+            sharedPreferences = PreferenceManager.GetDefaultSharedPreferences (context);
 
-            Button tooltipButton = (Button) contentView.FindViewById (Resource.Id.TooltipButton);
+            var tooltipButton = (Button) contentView.FindViewById (Resource.Id.TooltipButton);
 
             tooltipButton.Click += delegate {
-                var edit = sharedPreferences.Edit();
-                edit.PutBoolean(ctx.Resources.GetString(Resource.String.pref_tooltip_timeslider_onboarding), false);
-                edit.Commit();
-                DismissToolTip();
+                var edit = sharedPreferences.Edit ();
+                edit.PutBoolean (context.Resources.GetString (Resource.String.pref_tooltip_timeslider_onboarding), false);
+                edit.Commit ();
+                DismissToolTip ();
             };
         }
 
-        public void showToolTip(View anchor)
+        public void ShowToolTip (View anchor)
         {
-            tipWindow.Height = ActionBar.LayoutParams.WrapContent;
-            tipWindow.Width = ActionBar.LayoutParams.WrapContent;
+            tipWindow.Height = ViewGroup.LayoutParams.WrapContent;
+            tipWindow.Width = ViewGroup.LayoutParams.WrapContent;
             tipWindow.OutsideTouchable = false;
             tipWindow.Focusable = false;
-            tipWindow.SetBackgroundDrawable(new BitmapDrawable());
-            //tipWindow.SetBackgroundDrawable(new ColorDrawable(Color.Transparent));
+            tipWindow.SetBackgroundDrawable (new BitmapDrawable ());
+
             tipWindow.ContentView = contentView;
 
             tipWindow.AnimationStyle = Resource.Style.animationPopUp;
 
-            int[] screen_pos = new int[2];
-            anchor.GetLocationOnScreen(screen_pos);
-            //Console.WriteLine("POSITION: pos_0 " + screen_pos[0] + " pos_11" + screen_pos[1]);
-            Rect anchor_rect = new Rect(screen_pos[0], screen_pos[1], screen_pos[0] + anchor.Width, screen_pos[1] + anchor.Height);
+            var screenPos = new int[2];
+            anchor.GetLocationOnScreen (screenPos);
+            var anchorRect = new Rect (screenPos [0], screenPos [1], screenPos [0] + anchor.Width, screenPos [1] + anchor.Height);
 
-            contentView.Measure(ActionBar.LayoutParams.WrapContent, ActionBar.LayoutParams.WrapContent);
+            contentView.Measure (ViewGroup.LayoutParams.WrapContent, ViewGroup.LayoutParams.WrapContent);
 
-            int contentViewheight = contentView.MeasuredHeight;
-            int contentViewwidth = contentView.MeasuredWidth;
+            var contentViewheight = contentView.MeasuredHeight;
+            var contentViewwidth = contentView.MeasuredWidth;
 
-            int position_x = anchor_rect.CenterX() - (contentViewwidth / 2);
-            int position_y = anchor_rect.Bottom - (anchor_rect.Height() / 2);
+            var positionX = anchorRect.CenterX () - contentViewwidth / 2;
+            var positionY = anchorRect.Bottom - anchorRect.Height () / 2;
 
-            tipWindow.ShowAtLocation(anchor, GravityFlags.NoGravity, position_x, position_y);
-
-            //Handler h = new MyHandler(this);
-            //h.SendEmptyMessageDelayed(MSG_DISMISS_TOOLTIP, 4000);
-
+            tipWindow.ShowAtLocation (anchor, GravityFlags.Top, 0, positionY);
         }
 
-        public bool IsTooltipShown()
+        public bool IsTooltipShown ()
         {
             if (tipWindow != null && tipWindow.IsShowing)
                 return true;
             return false;
         }
 
-        public void closeTooltip ()
+        public void CloseTooltip ()
         {
-            DismissToolTip();
+            DismissToolTip ();
         }
 
-        public void DismissToolTip()
+        public void DismissToolTip ()
         {
             if (tipWindow != null && tipWindow.IsShowing)
-                tipWindow.Dismiss();
+                tipWindow.Dismiss ();
         }
-        /*
-        private class MyHandler : Handler
-        {
 
-            private TooltipWindow parent;
-
-            public MyHandler(TooltipWindow parent)
-            {
-                this.parent = parent;
-            }
-            public override void HandleMessage(Android.OS.Message msg)
-            {
-                switch (msg.What)
-                {
-                    case MSG_DISMISS_TOOLTIP:
-                        if (parent.tipWindow != null && parent.tipWindow.IsShowing)
-                            parent.tipWindow.Dismiss();
-                        break;
-
-                }
-            }
-
-
-        }
-        */
-
-    };
+    }
 }

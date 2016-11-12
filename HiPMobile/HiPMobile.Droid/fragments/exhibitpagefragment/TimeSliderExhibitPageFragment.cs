@@ -124,7 +124,7 @@ namespace de.upb.hip.mobile.droid.fragments.exhibitpagefragment {
                 {
                     // show ToolTip
                     parent.tooltipWindow = new TooltipWindow (activity);
-                    parent.tooltipWindow.showToolTip (seekbar);
+                    parent.tooltipWindow.ShowToolTip (seekbar);
                 }
             }
         }
