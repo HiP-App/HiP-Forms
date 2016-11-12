@@ -40,8 +40,6 @@ namespace de.upb.hip.mobile.droid.Dialogs {
         private ISharedPreferences sharedPreferences;
         private ISharedPreferencesEditor sharedPreferencesEditor;
 
-        private string title;
-
         public static Action OnCloseDialogAction { get; set; }
 
         public static HelpWindows Type { get; set; }
@@ -68,8 +66,9 @@ namespace de.upb.hip.mobile.droid.Dialogs {
         {
             alert = new AlertDialog.Builder (Activity, Resource.Style.HelpDialogTheme);
 
-            title = Resources.GetString (Resource.String.hint_message);
-            alert.SetTitle (title);
+            alert.SetTitle (Resources.GetString(Resource.String.hint_message));
+
+            alert.SetIcon(Resource.Drawable.hiphop_transparent);
 
             sharedPreferences = PreferenceManager.GetDefaultSharedPreferences (Activity);
             sharedPreferencesEditor = sharedPreferences.Edit ();
@@ -105,7 +104,6 @@ namespace de.upb.hip.mobile.droid.Dialogs {
                         sharedPreferencesEditor.PutBoolean (Resources.GetString (Resource.String.pref_auto_switch_page_key_onboarding), false);
                         sharedPreferencesEditor.PutBoolean (Resources.GetString (Resource.String.pref_auto_page_switch_key), true);
                         sharedPreferencesEditor.Commit ();
-                        Dismiss ();
                         Toast.MakeText (Activity, Resources.GetString (Resource.String.choice_keep_switch_pages), ToastLength.Short).Show ();
                     });
 

@@ -7,7 +7,7 @@
     android:insetBottom="16dp">
 
   <shape android:shape="rectangle">
-    <corners android:radius="4dp" />
+    <corners android:radius="6dp" />
     <solid android:color="@color/bg_color_blue_700" />
   </shape>
 
