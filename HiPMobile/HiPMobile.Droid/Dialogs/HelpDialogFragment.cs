@@ -34,15 +34,15 @@ namespace de.upb.hip.mobile.droid.Dialogs {
 
 
         public static HelpDialogFragment Fragment;
-        private static AlertDialog.Builder alert;
+        private AlertDialog.Builder alert;
         private string message;
 
         private ISharedPreferences sharedPreferences;
         private ISharedPreferencesEditor sharedPreferencesEditor;
 
-        public static Action OnCloseDialogAction { get; set; }
+        public Action OnCloseDialogAction { get; set; }
 
-        public static HelpWindows Type { get; set; }
+        public HelpWindows Type { get; set; }
 
         /*
         public override void OnDismiss (IDialogInterface dialog)
@@ -53,14 +53,12 @@ namespace de.upb.hip.mobile.droid.Dialogs {
         }
         */
 
-        public static HelpDialogFragment NewHelpDialogFragment (HelpWindows helpWindowType, Action onCloseDialogAction)
+        public static HelpDialogFragment NewHelpDialogFragment ()
         {
             Fragment = new HelpDialogFragment ();
-            Type = helpWindowType;
-            OnCloseDialogAction = onCloseDialogAction;
             return Fragment;
         }
-
+        
 
         public override Dialog OnCreateDialog (Bundle savedInstanceState)
         {
@@ -77,22 +75,22 @@ namespace de.upb.hip.mobile.droid.Dialogs {
             {
                 case HelpWindows.AutomaticAudioHelp:
                     message = Resources.GetString (Resource.String.auto_audio_message);
-
                     // once the user clicks on any dialog option, onboarding is considered finised, and thus the onboaring values are set to false
 
                     alert.SetPositiveButton (Resources.GetString (Resource.String.keep_feature_on), (senderAlert, args) => {
                         sharedPreferencesEditor.PutBoolean (Resources.GetString (Resource.String.pref_auto_start_audio_key_onboarding), false);
                         sharedPreferencesEditor.PutBoolean (Resources.GetString (Resource.String.pref_auto_start_audio_key), true);
                         sharedPreferencesEditor.Commit ();
-
+                        OnCloseDialogAction();
                         Toast.MakeText (Activity, Resources.GetString (Resource.String.choice_keep_audio), ToastLength.Short).Show ();
+                        Activity.FragmentManager.BeginTransaction().Hide(this).Commit();
                     });
 
                     alert.SetNegativeButton (Resources.GetString (Resource.String.disregard_feature), (senderAlert, args) => {
                         sharedPreferencesEditor.PutBoolean (Resources.GetString (Resource.String.pref_auto_start_audio_key_onboarding), false);
                         sharedPreferencesEditor.PutBoolean (Resources.GetString (Resource.String.pref_auto_start_audio_key), false);
                         sharedPreferencesEditor.Commit ();
-
+                        OnCloseDialogAction();
                         Toast.MakeText (Activity, Resources.GetString (Resource.String.choice_disregard_audio), ToastLength.Short).Show ();
                     });
                     break;
@@ -104,6 +102,7 @@ namespace de.upb.hip.mobile.droid.Dialogs {
                         sharedPreferencesEditor.PutBoolean (Resources.GetString (Resource.String.pref_auto_switch_page_key_onboarding), false);
                         sharedPreferencesEditor.PutBoolean (Resources.GetString (Resource.String.pref_auto_page_switch_key), true);
                         sharedPreferencesEditor.Commit ();
+                        OnCloseDialogAction ();
                         Toast.MakeText (Activity, Resources.GetString (Resource.String.choice_keep_switch_pages), ToastLength.Short).Show ();
                     });
 
@@ -111,9 +110,11 @@ namespace de.upb.hip.mobile.droid.Dialogs {
                         sharedPreferencesEditor.PutBoolean (Resources.GetString (Resource.String.pref_auto_switch_page_key_onboarding), false);
                         sharedPreferencesEditor.PutBoolean (Resources.GetString (Resource.String.pref_auto_page_switch_key), false);
                         sharedPreferencesEditor.Commit ();
+                        OnCloseDialogAction();
                         Toast.MakeText (Activity, Resources.GetString (Resource.String.choice_disregard_switch_pages), ToastLength.Short).Show ();
                     });
                     break;
+
                 default:
                     break;
             }

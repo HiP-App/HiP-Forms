@@ -24,27 +24,27 @@
 
     <CheckBoxPreference
       android:key="@string/pref_first_time_launch_key"
-      android:title="@string/pref_first_time_launch_title"
       android:summary="@string/pref_first_time_launch_summ"
       android:defaultValue="true" />
+      <!--android:title="@string/pref_first_time_launch_title"-->
         
     <CheckBoxPreference
       android:key="@string/pref_auto_start_audio_key_onboarding"
-      android:title="@string/pref_auto_start_audio_title_onboarding"
       android:summary="@string/pref_auto_start_audio_summ_onboarding"
       android:defaultValue="true" />
+      <!--android:title="@string/pref_auto_start_audio_title_onboarding"-->
 
     <CheckBoxPreference
       android:key="@string/pref_auto_switch_page_key_onboarding"
-      android:title="@string/pref_auto_switch_page_title_onboarding"
       android:summary="@string/pref_auto_switch_page_summ_onboarding"
       android:defaultValue="true" />
-      
-    <CheckBoxPreference
+      <!--android:title="@string/pref_auto_switch_page_title_onboarding"-->
+
+      <CheckBoxPreference
       android:key="@string/pref_tooltip_timeslider_onboarding"
-      android:title="@string/pref_tooltip_timeslider_onboarding"
       android:summary="@string/pref_tooltip_timeslider_onboarding"
       android:defaultValue="true" />
+      <!--android:title="@string/pref_tooltip_timeslider_onboarding"-->
  
   </PreferenceCategory>
   
