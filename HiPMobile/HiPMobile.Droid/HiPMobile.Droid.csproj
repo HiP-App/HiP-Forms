@@ -168,14 +168,8 @@
     <Compile Include="Helpers\GenericMapView.cs" />
     <Compile Include="Helpers\AndroidConstants.cs" />
     <Compile Include="Helpers\HipFeedbackListener.cs" />
-    <Compile Include="Helpers\InteractiveSources\ConsecutiveNumberInteractiveSourceSubstitute.cs" />
-    <Compile Include="Helpers\InteractiveSources\ConsecutiveNumberAndConstantInteractiveSourceSubstitute.cs" />
-    <Compile Include="Helpers\InteractiveSources\ConstantInteractiveSourceSubstitute.cs" />
-    <Compile Include="Helpers\InteractiveSources\IInteractiveSourceAction.cs" />
-    <Compile Include="Helpers\InteractiveSources\IInteractiveSourceSubstitute.cs" />
-    <Compile Include="Helpers\InteractiveSources\InteractiveSourcesParser.cs" />
     <Compile Include="Helpers\InteractiveSources\SnackbarInteractiveSourceAction.cs" />
-    <Compile Include="Helpers\InteractiveSources\Source.cs" />
+    <Compile Include="Helpers\InteractiveSources\SpannableTextBuilder.cs" />
     <Compile Include="Helpers\InteractiveSources\SwitchTabAndScrollToItemInteractiveSourceAction.cs" />
     <Compile Include="Helpers\InteractiveSources\ToastInteractiveSourceAction.cs" />
     <Compile Include="Helpers\SetMarker.cs" />

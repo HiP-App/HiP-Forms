@@ -14,6 +14,7 @@
 
 using Android.Support.Design.Widget;
 using Android.Views;
+using de.upb.hip.mobile.pcl.BusinessLayer.InteractiveSources;
 
 namespace de.upb.hip.mobile.droid.Helpers.InteractiveSources {
     /// <summary>

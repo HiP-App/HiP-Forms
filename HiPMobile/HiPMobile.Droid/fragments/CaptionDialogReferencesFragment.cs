@@ -12,7 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System;
 using System.Collections.Generic;
 using Android.Content;
 using Android.Graphics;
@@ -20,9 +19,8 @@ using Android.OS;
 using Android.Support.V7.Widget;
 using Android.Util;
 using Android.Views;
-using Android.Widget;
 using de.upb.hip.mobile.droid.Adapters;
-using de.upb.hip.mobile.droid.Helpers.InteractiveSources;
+using de.upb.hip.mobile.pcl.BusinessLayer.InteractiveSources;
 
 namespace de.upb.hip.mobile.droid.fragments
 {

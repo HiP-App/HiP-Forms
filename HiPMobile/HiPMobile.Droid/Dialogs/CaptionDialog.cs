@@ -25,6 +25,7 @@ using de.upb.hip.mobile.droid.Adapters;
 using de.upb.hip.mobile.droid.fragments;
 using de.upb.hip.mobile.droid.Helpers;
 using de.upb.hip.mobile.droid.Helpers.InteractiveSources;
+using de.upb.hip.mobile.pcl.BusinessLayer.InteractiveSources;
 
 namespace de.upb.hip.mobile.droid.Dialogs
 {
@@ -75,6 +76,7 @@ namespace de.upb.hip.mobile.droid.Dialogs
                                                        new ConsecutiveNumberAndConstantInteractiveSourceSubstitute
                                                            (1, GetString(Resource.String.source_substitute_counter)));
 
+            var spannableTextBuilder = new SpannableTextBuilder ();
             
             referencesFragment = new CaptionDialogReferencesFragment(GetString(Resource.String.audio_toolbar_references)) { References = parser.Sources };
             referencesExisting = parser.Sources.Any();
@@ -85,7 +87,7 @@ namespace de.upb.hip.mobile.droid.Dialogs
                 GetTabsViewPagers = GetTabsViewPager,
                 TargetTabIndex = 1
             };
-            var formattedSubtitles = parser.CreateSubtitlesText(interactiveSourceAction);
+            var formattedSubtitles = spannableTextBuilder.CreateSubtitlesText(interactiveSourceAction, parser.TextWithSubstitutes, parser.Sources);
 
             subtitlesFragment = new CaptionDialogSubtitlesFragment(GetString(Resource.String.audio_toolbar_cc)) { Subtitles = formattedSubtitles };
         }
