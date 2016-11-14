@@ -16,7 +16,7 @@ using System.Collections.Generic;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
-using de.upb.hip.mobile.droid.Helpers.InteractiveSources;
+using de.upb.hip.mobile.pcl.BusinessLayer.InteractiveSources;
 
 namespace de.upb.hip.mobile.droid.Adapters
 {

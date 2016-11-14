@@ -12,19 +12,18 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
-namespace de.upb.hip.mobile.droid.Helpers.InteractiveSources {
+namespace de.upb.hip.mobile.pcl.BusinessLayer.InteractiveSources {
     /// <summary>
-    /// Uses to determine the substitute that replaces the source markdown 
-    /// of an InteractiveSource
+    /// Interface for actions that are triggered when an InteractiveSource 
+    /// is triggered (clicked).
     /// </summary>
-    public interface IInteractiveSourceSubstitute {
+    public interface IInteractiveSourceAction {
 
         /// <summary>
-        /// Returns the next substitute.
+        /// Displays the provided source.
         /// </summary>
-        /// <returns>Next substitute string.</returns>
-        string NextSubstitute ();
+        /// <param name="src">Source to display.</param>
+        void Display (Source src);
 
     }
 }

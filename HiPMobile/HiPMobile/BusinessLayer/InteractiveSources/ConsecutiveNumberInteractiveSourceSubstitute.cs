@@ -12,18 +12,28 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-namespace de.upb.hip.mobile.droid.Helpers.InteractiveSources {
+
+namespace de.upb.hip.mobile.pcl.BusinessLayer.InteractiveSources {
     /// <summary>
-    /// Interface for actions that are triggered when an InteractiveSource 
-    /// is triggered (clicked).
+    /// Implements IInteractiveSourceSubstitute by returning a consecutive number enclosed in brackets.
     /// </summary>
-    public interface IInteractiveSourceAction {
+    public class ConsecutiveNumberInteractiveSourceSubstitute : IInteractiveSourceSubstitute {
+
+        private int number;
 
         /// <summary>
-        /// Displays the provided source.
+        /// Sets the starting number.
         /// </summary>
-        /// <param name="src">Source to display.</param>
-        void Display (Source src);
+        /// <param name="start">Starting number.</param>
+        public ConsecutiveNumberInteractiveSourceSubstitute (int start)
+        {
+            number = start;
+        }
+
+        public string NextSubstitute ()
+        {
+            return $"[{number++}]";
+        }
 
     }
 }
