@@ -243,8 +243,6 @@
     <AndroidResource Include="Resources\layout\activity_auto_carousel.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable\ac_smile.axml" />
-    <AndroidResource Include="Resources\drawable\ac_location.axml" />
     <AndroidResource Include="Resources\layout-land\fragment_auto_carousel_page.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
@@ -399,9 +397,6 @@
     <AndroidResource Include="Resources\drawable-hdpi\ic_my_location.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-hdpi\ac_students.png" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable-hdpi\ac_route.jpg" />
   </ItemGroup>
   <ItemGroup>
@@ -415,6 +410,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="FodyWeavers.xml" />
+    <AndroidResource Include="Resources\drawable-hdpi\ac_students.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
