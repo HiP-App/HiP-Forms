@@ -65,9 +65,10 @@ namespace de.upb.hip.mobile.droid.Activities
             buttonRefresh.SetBackgroundColor (buttonBackgroundColor);
             buttonRefresh.SetTextColor (buttonTextColor);
 
-            Window.AddFlags(WindowManagerFlags.DrawsSystemBarBackgrounds);
+            
             if (Build.VERSION.SdkInt >= BuildVersionCodes.Lollipop)
             {
+                Window.AddFlags(WindowManagerFlags.DrawsSystemBarBackgrounds);
                 Window.SetStatusBarColor (Resources.GetColor (Resource.Color.colorPrimaryDark));
             }
         }

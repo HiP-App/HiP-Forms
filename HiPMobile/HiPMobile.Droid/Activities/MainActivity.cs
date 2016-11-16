@@ -66,8 +66,9 @@ namespace de.upb.hip.mobile.droid.Activities {
             // Set our view from the "main" layout resource
             SetContentView (Resource.Layout.Main);
 
-            
-            Window.AddFlags (WindowManagerFlags.DrawsSystemBarBackgrounds);
+            //it crashes on versions below 21
+            if (Android.OS.Build.VERSION.SdkInt >= Android.OS.BuildVersionCodes.Lollipop)
+                Window.AddFlags (WindowManagerFlags.DrawsSystemBarBackgrounds);
 
             // Check if we have the necessary permissions and request them if we don't
             // Note that the app will still fail on first launch and needs to be restarted

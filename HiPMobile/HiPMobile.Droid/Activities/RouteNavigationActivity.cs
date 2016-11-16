@@ -86,7 +86,9 @@ namespace de.upb.hip.mobile.droid.Activities {
         {
             base.OnCreate (savedInstanceState);
             SetContentView (Resource.Layout.activity_route_navigation);
-            Window.AddFlags (WindowManagerFlags.DrawsSystemBarBackgrounds);
+
+            if (Android.OS.Build.VERSION.SdkInt >= Android.OS.BuildVersionCodes.Lollipop)
+                Window.AddFlags (WindowManagerFlags.DrawsSystemBarBackgrounds);
 
             var toolbar = (Toolbar) FindViewById (Resource.Id.toolbar);
             SetSupportActionBar (toolbar);
