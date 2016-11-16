@@ -66,6 +66,7 @@ namespace de.upb.hip.mobile.droid.Activities {
             // Set our view from the "main" layout resource
             SetContentView (Resource.Layout.Main);
 
+            
             Window.AddFlags (WindowManagerFlags.DrawsSystemBarBackgrounds);
 
             // Check if we have the necessary permissions and request them if we don't
