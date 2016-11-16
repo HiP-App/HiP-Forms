@@ -49,4 +49,5 @@ limitations under the License.-->
   <color name="bg_color_orange_600">#F57C00</color>
   <color name="bg_color_amber_500">#FFC107</color>
   <color name="bg_color_blue_600">#1E88E5</color>
+  <color name="bg_color_blue_700">#0288D1</color>
 </resources>

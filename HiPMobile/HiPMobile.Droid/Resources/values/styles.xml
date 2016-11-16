@@ -77,4 +77,18 @@ limitations under the License.-->
     <item name="android:paddingTop">10dp</item>
   </style>
 
+  <style name="animationPopUp" parent="android:Animation">
+    <item name="android:windowEnterAnimation">@anim/animation_on</item>
+    <item name="android:windowExitAnimation">@anim/animation_off</item>
+  </style>
+
+  <style name="HelpDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+    <!--buttons color-->
+    <item name="colorAccent">@android:color/white</item>
+    <!--title and message color-->
+    <item name="android:textColorPrimary">@android:color/white</item>
+    <!--dialog background-->
+    <item name="android:windowBackground">@drawable/dialog_background</item>
+  </style>
+
 </resources>

@@ -15,10 +15,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Android.App;
+using Android.Content;
 using Android.Graphics.Drawables;
 using Android.OS;
+using Android.Preferences;
 using Android.Views;
 using Android.Widget;
+using de.upb.hip.mobile.droid.Dialogs;
 using de.upb.hip.mobile.droid.fragments.bottomsheetfragment;
 using de.upb.hip.mobile.droid.Helpers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
@@ -42,6 +46,11 @@ namespace de.upb.hip.mobile.droid.fragments.exhibitpagefragment {
         private TextView mThumbSlidingText;
 
         private TimeSliderPage page;
+
+        private TooltipWindow tooltipWindow = null;
+
+        protected ISharedPreferences sharedPreferences;
+        
 
         private View view;
 
@@ -68,6 +77,7 @@ namespace de.upb.hip.mobile.droid.fragments.exhibitpagefragment {
             // Inflate the layout for this fragment
             view = inflater.Inflate (Resource.Layout.fragment_exhibitpage_timeslider, container, false);
 
+            sharedPreferences = PreferenceManager.GetDefaultSharedPreferences(Activity);
 
             if (savedInstanceState?.GetString (INSTANCE_STATE_PAGE) != null)
             {
@@ -84,7 +94,39 @@ namespace de.upb.hip.mobile.droid.fragments.exhibitpagefragment {
                 view.FindViewById(Resource.Id.displayImageSliderSeekBarEndText).Visibility = ViewStates.Invisible;
             }
 
+            // for tooltips
+           
+            mSeekBar.ViewTreeObserver.AddOnGlobalLayoutListener(new SeekbarLayoutListener(this, mSeekBar, Activity));
+
             return view;
+        }
+
+        private class SeekbarLayoutListener : Java.Lang.Object, ViewTreeObserver.IOnGlobalLayoutListener    // without (Java.Lang.)Object you'll get a cast exception!
+        {
+            private readonly TimeSliderExhibitPageFragment parent;
+
+            private readonly SeekBar seekbar = null;
+            private readonly Activity activity = null;
+
+            public SeekbarLayoutListener(TimeSliderExhibitPageFragment parent, SeekBar seekbar, Activity activity)
+            {
+                this.parent = parent;
+                this.seekbar = seekbar;
+                this.activity = activity;
+            }
+
+            public void OnGlobalLayout()
+            {
+                // remove listener
+                seekbar.ViewTreeObserver.RemoveOnGlobalLayoutListener (this);
+
+                if (parent.sharedPreferences.GetBoolean (parent.Resources.GetString (Resource.String.pref_tooltip_timeslider_onboarding), false))
+                {
+                    // show ToolTip
+                    parent.tooltipWindow = new TooltipWindow (activity);
+                    parent.tooltipWindow.ShowToolTip (seekbar);
+                }
+            }
         }
 
         public override void OnSaveInstanceState (Bundle outState)
@@ -177,6 +219,15 @@ namespace de.upb.hip.mobile.droid.fragments.exhibitpagefragment {
             {
                 var picture = new PictureData (page.Images [i].GetDrawable (Context, imgView.Width, imgView.Height), Convert.ToInt32 (page.Dates [i].Value));
                 mPicDataList.Add (picture);
+            }
+        }
+
+        public override void OnPause ()
+        {
+            base.OnPause ();
+            if (tooltipWindow != null)
+            {
+                tooltipWindow.DismissToolTip();
             }
         }
 
