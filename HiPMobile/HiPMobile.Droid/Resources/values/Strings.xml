@@ -175,37 +175,34 @@ limitations under the License.-->
   <string name="pref_auto_start_audio_title">Automatisch Audio beginnen</string>
   <string name="pref_auto_start_audio_summ">Wenn diese Einstellung aktiviert ist, wird Audio automatisch für die aktuelle Seite gestartet.</string>
 
-  <string name="pref_cat_onboarding_title">Onboarding</string>
+  <string name="pref_cat_onboarding_title">App Einführung</string>
   <string name="pref_first_time_launch_key">pref_first_time_launch</string>
-  <string name="pref_first_time_launch_title">Activate auto carousel</string>
-  <string name="pref_first_time_launch_summ">When this is on, auto carousel will be activated on the next app launch</string>
+  <string name="pref_first_time_launch_title">Auto-Karussell</string>
+  <string name="pref_first_time_launch_summ">Wenn aktiviert, wird die App Einführung beim nächsten Start erneut angezeigt</string>
 
   <string name="pref_auto_start_audio_key_onboarding">pref_auto_start_audio_key_onboarding</string>
-  <string name="pref_auto_start_audio_title_onboarding">Automatic audio start user onboarding</string>
-  <string name="pref_auto_start_audio_summ_onboarding">When this is on, show user onboarding for auto audio start</string>
+  <string name="pref_auto_start_audio_summ_onboarding">Wenn aktiviert, wird der Hinweis zu Audiowiedergabe erneut angezeigt</string>
 
   <string name="pref_auto_switch_page_key_onboarding">pref_auto_switch_page_key_onboarding</string>
-  <string name="pref_auto_switch_page_title_onboarding">Automatic page switch user onboarding</string>
-  <string name="pref_auto_switch_page_summ_onboarding">When this is on, show user onboarding for auto switch</string>
+  <string name="pref_auto_switch_page_summ_onboarding">Wenn aktiviert, wird der Hinweis zum automatischen Seitenwechsel erneut angezeigt</string>
 
   <string name="pref_tooltip_timeslider_onboarding">pref_tooltip_timeslider_onboarding</string>
-  <string name="pref_tooltip_timeslider_onboarding">Show timeslider tooltip onboarding</string>
-  <string name="pref_tooltip_timeslider_onboarding">When this is on show timeslider tooltip</string>
+  <string name="pref_tooltip_timeslider_onboarding">Wenn aktiviert, wird der Hinweis zu Zeitleiste erneut angezeigt</string>
 
   <!-- User onboarding text -->
-  <string name="tooltip_text">You can drag the slider</string>
-  <string name="tooltip_button">GOT IT</string>
+  <string name="tooltip_text">Bewege die Zeitleiste</string>
+  <string name="tooltip_button">VERSTANDEN</string>
 
-  <string name="hint_message">Hint message</string>
-  <string name="auto_audio_message">Audio automatically starts when the new page is opened. This property can be changed in MainMenu >> Settings</string>
-  <string name="auto_switch_message">Page automatically switch when audio is completed. This property can be changed in MainMenu >> Setting"</string>
+  <string name="hint_message">Hinweise</string>
+  <string name="auto_audio_message">Audio startet automatisch sobald eine neue Seite geöffnet wird. Diese Eigenschaft kann unter Menu >> Einstellungen geändert werden.</string>
+  <string name="auto_switch_message">Die Seiten werden automatisch gewechselt, wenn die Audiodatei abgespielt wurde. Diese Eigenschaft kann unter Menu >> Einstellungen geändert werden.</string>
   
-  <string name="keep_feature_on">KEEP THE FEATURE ON</string>
-  <string name="disregard_feature">DISREGARD THE FEATURE</string>
-  <string name="choice_keep_audio">You chose to keep the Audio!</string>
-  <string name="choice_disregard_audio">You chose to disregared the Audio!</string>
-  <string name="choice_keep_switch_pages">You chose to keep Switching Pages!</string>
-  <string name="choice_disregard_switch_pages">You chose to disregared Switching Pages!</string>
+  <string name="keep_feature_on">ICH MÖCHTE DIE FUNKTION NUTZEN</string>
+  <string name="disregard_feature">ICH MÖCHTE DIE FUNKTION NICHT NUTZEN</string>
+  <string name="choice_keep_audio">Audio wird automatisch abgespielt</string>
+  <string name="choice_disregard_audio">Audio wird nicht automatisch abgespielt</string>
+  <string name="choice_keep_switch_pages">Seiten werden automatisch gewechselt</string>
+  <string name="choice_disregard_switch_pages">Seiten werden nicht automatisch gewechselt</string>
   
   <!-- Navigation Drawer Titles -->
   <string name="nav_home_title">Übersicht</string>
