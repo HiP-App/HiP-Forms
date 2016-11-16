@@ -28,7 +28,10 @@ namespace de.upb.hip.mobile.droid.Activities {
         protected override void OnCreate (Bundle savedInstanceState)
         {
             base.OnCreate (savedInstanceState);
-            SetContentView (Resource.Layout.activity_licensing);       
+            SetContentView (Resource.Layout.activity_licensing);
+
+            if (Android.OS.Build.VERSION.SdkInt >= Android.OS.BuildVersionCodes.Lollipop)
+                Window.AddFlags(WindowManagerFlags.DrawsSystemBarBackgrounds);
 
             MakeLinksClickable ();
 

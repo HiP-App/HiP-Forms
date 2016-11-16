@@ -35,6 +35,9 @@ namespace de.upb.hip.mobile.droid.Activities
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.activity_contribution);
 
+            if (Android.OS.Build.VERSION.SdkInt >= Android.OS.BuildVersionCodes.Lollipop)
+                Window.AddFlags(WindowManagerFlags.DrawsSystemBarBackgrounds);
+
             MakeLinksClickable();
 
             var toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);

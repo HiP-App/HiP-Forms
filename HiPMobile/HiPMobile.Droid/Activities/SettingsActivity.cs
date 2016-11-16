@@ -27,7 +27,8 @@ namespace de.upb.hip.mobile.droid.Activities {
         {
             base.OnCreate (savedInstanceState);
 
-            Window.AddFlags(WindowManagerFlags.DrawsSystemBarBackgrounds);
+            if (Android.OS.Build.VERSION.SdkInt >= Android.OS.BuildVersionCodes.Lollipop)
+                Window.AddFlags(WindowManagerFlags.DrawsSystemBarBackgrounds);
 
             // add settings fragment
             FragmentManager.BeginTransaction ()
