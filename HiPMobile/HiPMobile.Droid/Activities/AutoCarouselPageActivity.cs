@@ -126,15 +126,10 @@ namespace de.upb.hip.mobile.droid.Activities {
         private void MakeNotificationBarDisappear ()
         {
 
-            // Window.AddFlags(WindowManagerFlags.DrawsSystemBarBackgrounds);
-            Window.AddFlags(WindowManagerFlags.Fullscreen);
-            Window.ClearFlags(WindowManagerFlags.ForceNotFullscreen);
             if (Build.VERSION.SdkInt >= BuildVersionCodes.Lollipop)
             {
-                //View decor = Window.DecorView;
-                //decor.SystemUiVisibility = StatusBarVisibility.Hidden;
-                
-               // Window.SetStatusBarColor(Resources.GetColor(Resource.Color.colorPrimaryDark));
+                Window.AddFlags(WindowManagerFlags.Fullscreen);
+                Window.ClearFlags(WindowManagerFlags.ForceNotFullscreen);
             }
             
         }
