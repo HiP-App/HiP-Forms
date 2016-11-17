@@ -919,7 +919,7 @@ namespace de.upb.hip.mobile.droid.Activities {
             {
                 base.OnStateChanged (bottomSheet, newState);
 
-                if (newState == BottomSheetBehavior.StateExpanded || newState == BottomSheetBehavior.StateCollapsed)
+                if (newState == BottomSheetBehavior.StateCollapsed)
                 {
                     ParentActivity.SwitchPage ();
                     ParentActivity.bottomSheetBehavior.SetBottomSheetCallback (new CustomBottomSheetCallback (ParentActivity));
