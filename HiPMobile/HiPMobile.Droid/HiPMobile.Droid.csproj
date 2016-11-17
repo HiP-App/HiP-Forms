@@ -138,9 +138,8 @@
       <Link>Contracts\AndroidKeyProvider.cs</Link>
     </Compile>
     <Compile Include="Activities\AutoCarouselPageActivity.cs" />
-    <Compile Include="Activities\ContributionActivity.cs" />
     <Compile Include="Activities\HiPFeedbackActivity.cs" />
-    <Compile Include="Activities\LicensingActivity.cs" />
+    <Compile Include="Activities\LegalNoticeActivity.cs" />
     <Compile Include="Activities\ExhibitDetailsActivity.cs" />
     <Compile Include="Activities\MainActivity.cs" />
     <Compile Include="Activities\RouteNavigationActivity.cs" />
@@ -212,7 +211,7 @@
     <AndroidResource Include="Resources\layout\activity_splash_screen.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\activity_licensing.axml" />
+    <AndroidResource Include="Resources\layout\activity_legal_notice.axml" />
     <AndroidResource Include="Resources\layout\activity_main_row_item.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
@@ -246,7 +245,6 @@
     <AndroidResource Include="Resources\layout-land\fragment_auto_carousel_page.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\activity_contribution.axml" />
     <AndroidResource Include="Resources\layout\custom_tooltip.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>

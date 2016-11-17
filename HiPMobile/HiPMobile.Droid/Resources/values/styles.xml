@@ -65,15 +65,19 @@ limitations under the License.-->
     <item name="android:background">?android:attr/listDivider</item>
   </style>
 
-  <style name="LicenceStyle">
+  <style name="LegalNoticeHeadlineStyle">
     <item name="android:layout_width">wrap_content</item>
     <item name="android:layout_height">wrap_content</item>
     <item name="android:paddingTop">5dp</item>
     <item name ="android:paddingLeft">10dp</item>
     <item name ="android:paddingRight">10dp</item>
   </style>
+  
+  <style name="LegalNoticeNameStyle" parent="LegalNoticeHeadlineStyle">
+    <item name="android:paddingTop">10dp</item>
+  </style>
 
-  <style name="LicenceStyleSub" parent="LicenceStyle">
+  <style name="LegalNoticeContentStyle" parent="LegalNoticeNameStyle">
     <item name="android:paddingTop">10dp</item>
   </style>
 

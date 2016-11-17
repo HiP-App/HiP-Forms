@@ -13,7 +13,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.-->
 <resources>
-  <string name="license_name">Lizenzen</string>
+  <string name="license_name">Rechtliche Hinweise</string>
   <string name="app_name">Historisches Paderborn</string>
   <string name="title_activity_main">Karlsroute</string>
   <string name="title_activity_display_single_image">Detailansicht</string>
@@ -86,6 +86,7 @@ limitations under the License.-->
 
   <!-- Strings for licensing -->
   <string name="licensing_title">Lizenzen</string>
+  <string name="contribution_title">"Contribution"</string>
   <string name="licensing_google_material_title_text">Material Icons</string>
   <string name="licensing_google_material_body_text">Von <a href="https://design.google.com/icons/">Google</a>, lizensiert unter
     <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>. Es wurden keine Änderungen vorgenommen.
@@ -112,9 +113,25 @@ limitations under the License.-->
     <a href="https://raw.githubusercontent.com/chrisbanes/PhotoView/master/LICENSE">Apache License 2.0</a>. Es wurden keine Änderungen vorgenommen.
   </string>
   <string name="licensing_unity_title_text">Unity</string>
-  <string name="licensing_unity_body_text">Von <a href="https://github.com/unitycontainer/unity\">Microsoft</a>, lizensiert unter
+  <string name="licensing_unity_body_text">Von <a href="https://github.com/unitycontainer/unity">Microsoft</a>, lizensiert unter
     <a href="https://opensource.org/licenses/Apache-2.0">Apache License 2.0</a>. Es wurden keine Änderungen vorgenommen.
   </string>
+
+  <string name="licensing_settingsplugin_title_text">Settings Plugin</string>
+  <string name="licensing_settingsplugin_body_text">Von <a href="https://github.com/jamesmontemagno/SettingsPlugin">James Montemagno</a>, lizensiert unter
+    <a href="https://github.com/jamesmontemagno/SettingsPlugin/blob/master/LICENSE">MIT</a>. Es wurden keine Änderungen vorgenommen.
+  </string>
+
+  <string name="licensing_hockeyapp_title_text">HockeyApp</string>
+  <string name="licensing_hockeyapp_body_text">Von <a href="https://github.com/bitstadium/HockeySDK-Android">Microsoft</a>, lizensiert unter
+    <a href="https://raw.githubusercontent.com/bitstadium/HockeySDK-Xamarin/master/LICENSE.md">Lizenz</a>. Es wurden keine Änderungen vorgenommen.
+  </string>
+
+  <string name="licensing_xamarinsupport_title_text">Xamarin Support Libraries</string>
+  <string name="licensing_xamarinsupport_body_text">Von <a href="https://github.com/xamarin/AndroidSupportComponents">Xamarin</a>, lizensiert unter
+    <a href="https://github.com/xamarin/AndroidSupportComponents/blob/master/LICENSE.md">MIT</a>. Es wurden keine Änderungen vorgenommen.
+  </string>
+  
 
   <!-- Strings for contribution -->
   <string name="contribution_flaticon_title_text">Credits for images in the autocarousel</string>
@@ -209,6 +226,6 @@ limitations under the License.-->
   <string name="nav_route_title">Routen</string>
   <string name="nav_preferences_title">Einstellungen</string>
   <string name="nav_feedback">Feedback</string>
-  <string name="nav_licenses_title">Lizenzen</string>
+  <string name="nav_licenses_title">Rechtliche Hinweise</string>
   <string name="nav_contribution_title">Contribution</string>
 </resources>
