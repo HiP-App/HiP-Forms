@@ -441,11 +441,15 @@ namespace de.upb.hip.mobile.droid.Activities {
             SwitchPageWithBottomSheetHandling();
         }
 
+        /// <summary>
+        /// Collapses the bottomSheet (if not collapsed before) and switches the page
+        /// Workaround to fix missing bottom sheets
+        /// </summary>
         private void SwitchPageWithBottomSheetHandling ()
         {
             if (bottomSheetBehavior.State != BottomSheetBehavior.StateCollapsed)
             {
-                bottomSheetBehavior.SetBottomSheetCallback(new PageSwitchBottomSheetCallack(this));
+                bottomSheetBehavior.SetBottomSheetCallback(new PageSwitchBottomSheetCallback(this));
                 bottomSheetBehavior.State = BottomSheetBehavior.StateCollapsed;
             }
             else
@@ -909,9 +913,12 @@ namespace de.upb.hip.mobile.droid.Activities {
 
         #region InnerClasses
 
-        private class PageSwitchBottomSheetCallack : CustomBottomSheetCallback {
+        /// <summary>
+        /// Switches page as soon as bottom sheet is collapsed
+        /// </summary>
+        private class PageSwitchBottomSheetCallback : CustomBottomSheetCallback {
 
-            public PageSwitchBottomSheetCallack (ExhibitDetailsActivity parent) : base (parent)
+            public PageSwitchBottomSheetCallback (ExhibitDetailsActivity parent) : base (parent)
             {
             }
 
