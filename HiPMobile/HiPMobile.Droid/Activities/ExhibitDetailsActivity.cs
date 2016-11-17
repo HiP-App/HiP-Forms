@@ -443,7 +443,7 @@ namespace de.upb.hip.mobile.droid.Activities {
 
         private void SwitchPageWithBottomSheetHandling ()
         {
-            if (fabAction == BottomSheetConfig.FabAction.Collapse)
+            if (bottomSheetBehavior.State != BottomSheetBehavior.StateCollapsed)
             {
                 bottomSheetBehavior.SetBottomSheetCallback(new PageSwitchBottomSheetCallack(this));
                 bottomSheetBehavior.State = BottomSheetBehavior.StateCollapsed;
