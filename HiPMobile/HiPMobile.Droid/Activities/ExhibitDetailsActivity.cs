@@ -413,38 +413,56 @@ namespace de.upb.hip.mobile.droid.Activities {
         public void DisplayNextExhibitPage ()
         {
             currentPageIndex++;
-
-            if (currentPageIndex >= exhibit.Pages.Count ())
+            if (currentPageIndex >= exhibit.Pages.Count)
             {
                 Toast.MakeText (ApplicationContext,
                                 Resource.String.currently_no_further_info, ToastLength.Long).Show ();
                 currentPageIndex--;
                 Log.Warn (Tag, "currentPageIndex >= exhibitPages.size()");
+                return;
             }
-            else
-            {
-                bottomSheetBehavior.State = BottomSheetBehavior.StateCollapsed;
-                UpdateAudioFile ();
 
-                DisplayCurrenExhibitPage ();
-            }
+            SwitchPageWithBottomSheetHandling ();
         }
 
         /// <summary>
         ///     Displays the previous exhibit page (for currentPageIndex > 0).
         /// </summary>
-        public void DisplayPreviousExhibitPage ()
+        public void DisplayPreviousExhibitPage()
         {
             currentPageIndex--;
             if (currentPageIndex < 0)
             {
-                Log.Warn (Tag, "currentPageIndex < 0");
+                Log.Warn(Tag, "currentPageIndex < 0");
                 currentPageIndex++;
                 return;
             }
-            UpdateAudioFile ();
-            bottomSheetBehavior.State = BottomSheetBehavior.StateCollapsed;
-            DisplayCurrenExhibitPage ();
+
+            SwitchPageWithBottomSheetHandling();
+        }
+
+        /// <summary>
+        /// Collapses the bottomSheet (if not collapsed before) and switches the page
+        /// Workaround to fix missing bottom sheets
+        /// </summary>
+        private void SwitchPageWithBottomSheetHandling ()
+        {
+            if (bottomSheetBehavior.State != BottomSheetBehavior.StateCollapsed)
+            {
+                bottomSheetBehavior.SetBottomSheetCallback(new PageSwitchBottomSheetCallback(this));
+                bottomSheetBehavior.State = BottomSheetBehavior.StateCollapsed;
+            }
+            else
+            {
+                bottomSheetBehavior.State = BottomSheetBehavior.StateCollapsed;
+                SwitchPage();
+            }
+        }
+
+        private void SwitchPage()
+        {
+            UpdateAudioFile();
+            DisplayCurrenExhibitPage();
         }
 
         /// <summary>
@@ -895,13 +913,37 @@ namespace de.upb.hip.mobile.droid.Activities {
 
         #region InnerClasses
 
+        /// <summary>
+        /// Switches page as soon as bottom sheet is collapsed
+        /// </summary>
+        private class PageSwitchBottomSheetCallback : CustomBottomSheetCallback {
+
+            public PageSwitchBottomSheetCallback (ExhibitDetailsActivity parent) : base (parent)
+            {
+            }
+
+            public override void OnStateChanged (View bottomSheet, int newState)
+            {
+                base.OnStateChanged (bottomSheet, newState);
+
+                if (newState == BottomSheetBehavior.StateCollapsed)
+                {
+                    ParentActivity.SwitchPage ();
+                    ParentActivity.bottomSheetBehavior.SetBottomSheetCallback (new CustomBottomSheetCallback (ParentActivity));
+                }
+            }
+
+        }
+
+        
+
         private class CustomBottomSheetCallback : BottomSheetBehavior.BottomSheetCallback {
 
-            private readonly ExhibitDetailsActivity parentActivity;
+            protected readonly ExhibitDetailsActivity ParentActivity;
 
             public CustomBottomSheetCallback (ExhibitDetailsActivity parent)
             {
-                parentActivity = parent;
+                ParentActivity = parent;
             }
 
             public override void OnSlide (View bottomSheet, float slideOffset)
@@ -914,19 +956,19 @@ namespace de.upb.hip.mobile.droid.Activities {
                 // toggle between expand / collapse , inform fragment
                 if (newState == BottomSheetBehavior.StateCollapsed)
                 {
-                    if (parentActivity.fabAction == BottomSheetConfig.FabAction.Collapse)
-                        parentActivity.SetFabAction (BottomSheetConfig.FabAction.Expand);
+                    if (ParentActivity.fabAction == BottomSheetConfig.FabAction.Collapse)
+                        ParentActivity.SetFabAction (BottomSheetConfig.FabAction.Expand);
 
-                    if (parentActivity.bottomSheetFragment != null)
-                        parentActivity.bottomSheetFragment.OnBottomSheetCollapse ();
+                    if (ParentActivity.bottomSheetFragment != null)
+                        ParentActivity.bottomSheetFragment.OnBottomSheetCollapse ();
                 }
                 else if (newState == BottomSheetBehavior.StateExpanded)
                 {
-                    if (parentActivity.fabAction == BottomSheetConfig.FabAction.Expand)
-                        parentActivity.SetFabAction (BottomSheetConfig.FabAction.Collapse);
+                    if (ParentActivity.fabAction == BottomSheetConfig.FabAction.Expand)
+                        ParentActivity.SetFabAction (BottomSheetConfig.FabAction.Collapse);
 
-                    if (parentActivity.bottomSheetFragment != null)
-                        parentActivity.bottomSheetFragment.OnBottomSheetExpand ();
+                    if (ParentActivity.bottomSheetFragment != null)
+                        ParentActivity.bottomSheetFragment.OnBottomSheetExpand ();
                 }
             }
 
