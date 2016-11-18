@@ -57,6 +57,8 @@ namespace de.upb.hip.mobile.droid.Activities {
             ((TextView)FindViewById(Resource.Id.licensingSettingspluginBody)).MovementMethod = LinkMovementMethod.Instance;
             ((TextView)FindViewById(Resource.Id.licensingHockeyappBody)).MovementMethod = LinkMovementMethod.Instance;
             ((TextView)FindViewById(Resource.Id.licensingXamarinSupportBody)).MovementMethod = LinkMovementMethod.Instance;
+            ((TextView)FindViewById(Resource.Id.licensingFodyBody)).MovementMethod = LinkMovementMethod.Instance;
+            ((TextView)FindViewById(Resource.Id.licensingCommonServiceBody)).MovementMethod = LinkMovementMethod.Instance;
 
         }
 

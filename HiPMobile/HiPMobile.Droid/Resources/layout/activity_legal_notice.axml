@@ -119,6 +119,26 @@
               android:textAppearance="?android:attr/textAppearanceSmall" />
 
           <TextView
+                style="@style/LegalNoticeNameStyle"
+                android:text="@string/licensing_commonservice_title_text"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+          <TextView
+              android:id="@+id/licensingCommonServiceBody"
+              style="@style/LegalNoticeContentStyle"
+              android:text="@string/licensing_commonservice_body_text"
+              android:textAppearance="?android:attr/textAppearanceSmall" />
+
+          <TextView
+                style="@style/LegalNoticeNameStyle"
+                android:text="@string/licensing_fody_title_text"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+          <TextView
+              android:id="@+id/licensingFodyBody"
+              style="@style/LegalNoticeContentStyle"
+              android:text="@string/licensing_fody_body_text"
+              android:textAppearance="?android:attr/textAppearanceSmall" />
+
+          <TextView
                 style="@style/LegalNoticeHeadlineStyle"
                 android:text="@string/contribution_title"
                 android:textAppearance="?android:attr/textAppearanceLarge" />

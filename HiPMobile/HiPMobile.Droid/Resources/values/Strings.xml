@@ -86,10 +86,10 @@ limitations under the License.-->
 
   <!-- Strings for licensing -->
   <string name="licensing_title">Lizenzen</string>
-  <string name="contribution_title">"Contribution"</string>
+  <string name="contribution_title">"Beiträge"</string>
   <string name="licensing_google_material_title_text">Material Icons</string>
   <string name="licensing_google_material_body_text">Von <a href="https://design.google.com/icons/">Google</a>, lizensiert unter
-    <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>. Es wurden keine Änderungen vorgenommen.
+    <a href="https://opensource.org/licenses/Apache-2.0">Apache 2.0</a>. Es wurden keine Änderungen vorgenommen.
   </string>
   <string name="licensing_osmdroid_title_text">osmdroid</string>
   <string name="licensing_osmdroid_body_text">Von <a href="https://github.com/osmdroid/osmdroid">osmdroid</a>, lizensiert unter
@@ -130,6 +130,16 @@ limitations under the License.-->
   <string name="licensing_xamarinsupport_title_text">Xamarin Support Libraries</string>
   <string name="licensing_xamarinsupport_body_text">Von <a href="https://github.com/xamarin/AndroidSupportComponents">Xamarin</a>, lizensiert unter
     <a href="https://github.com/xamarin/AndroidSupportComponents/blob/master/LICENSE.md">MIT</a>. Es wurden keine Änderungen vorgenommen.
+  </string>
+
+  <string name="licensing_commonservice_title_text">Common Service Locator</string>
+  <string name="licensing_commonservice_body_text">Von <a href="http://commonservicelocator.codeplex.com">Microsoft</a>, lizensiert unter
+    <a href="http://commonservicelocator.codeplex.com/license">Ms-PL</a>. Es wurden keine Änderungen vorgenommen.
+  </string>
+
+  <string name="licensing_fody_title_text">Fody</string>
+  <string name="licensing_fody_body_text">Von <a href="https://github.com/Fody/Fody">Simon Cropp</a>, lizensiert unter
+    <a href="https://opensource.org/licenses/mit-license.php">MIT</a>. Es wurden keine Änderungen vorgenommen.
   </string>
   
 
