@@ -144,8 +144,8 @@ limitations under the License.-->
   
 
   <!-- Strings for contribution -->
-  <string name="contribution_flaticon_title_text">Credits for images in the autocarousel</string>
-  <string name="contribution_flaticon_body_text">Icons made by <a href="http://www.flaticon.com/authors/madebyoliver/">Madebyoliver</a> from
+  <string name="contribution_flaticon_title_text">Credits der Bilder im Autokarussell</string>
+  <string name="contribution_flaticon_body_text">Bilder erstellt von <a href="http://www.flaticon.com/authors/madebyoliver/">Madebyoliver</a> from
     <a href="http://www.flaticon.com/">www.flaticon.com</a>.
   </string>
 
