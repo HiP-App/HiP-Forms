@@ -13,7 +13,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.-->
 <resources>
-  <string name="license_name">Lizenzen</string>
+  <string name="license_name">Rechtliche Hinweise</string>
   <string name="app_name">Historisches Paderborn</string>
   <string name="title_activity_main">Karlsroute</string>
   <string name="title_activity_display_single_image">Detailansicht</string>
@@ -21,7 +21,7 @@ limitations under the License.-->
   <string name="title_activity_route">Routen</string>
   <string name="title_activity_route_filter">Routenfilter</string>
   <string name="title_activity_settings">Einstellungen</string>
-
+  <string name="action_audio">Audio</string>
   <string name="menu_activity_route_filter">Filter</string>
 
   <string name="route_tag_label">Tags</string>
@@ -86,9 +86,10 @@ limitations under the License.-->
 
   <!-- Strings for licensing -->
   <string name="licensing_title">Lizenzen</string>
+  <string name="contribution_title">"Beiträge"</string>
   <string name="licensing_google_material_title_text">Material Icons</string>
   <string name="licensing_google_material_body_text">Von <a href="https://design.google.com/icons/">Google</a>, lizensiert unter
-    <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>. Es wurden keine Änderungen vorgenommen.
+    <a href="https://opensource.org/licenses/Apache-2.0">Apache License 2.0</a>. Es wurden keine Änderungen vorgenommen.
   </string>
   <string name="licensing_osmdroid_title_text">osmdroid</string>
   <string name="licensing_osmdroid_body_text">Von <a href="https://github.com/osmdroid/osmdroid">osmdroid</a>, lizensiert unter
@@ -112,18 +113,95 @@ limitations under the License.-->
     <a href="https://raw.githubusercontent.com/chrisbanes/PhotoView/master/LICENSE">Apache License 2.0</a>. Es wurden keine Änderungen vorgenommen.
   </string>
   <string name="licensing_unity_title_text">Unity</string>
-  <string name="licensing_unity_body_text">Von <a href="https://github.com/unitycontainer/unity\">Microsoft</a>, lizensiert unter
+  <string name="licensing_unity_body_text">Von <a href="https://github.com/unitycontainer/unity">Microsoft</a>, lizensiert unter
     <a href="https://opensource.org/licenses/Apache-2.0">Apache License 2.0</a>. Es wurden keine Änderungen vorgenommen.
   </string>
 
-  <!-- Strings for contribution -->
-  <string name="contribution_flaticon_title_text">Credits for images in the autocarousel</string>
-  <string name="contribution_flaticon_body_text">Icons made by <a href="http://www.flaticon.com/authors/madebyoliver/">Madebyoliver</a> from
-    <a href="http://www.flaticon.com/">www.flaticon.com</a>.
+  <string name="licensing_settingsplugin_title_text">Settings Plugin</string>
+  <string name="licensing_settingsplugin_body_text">Von <a href="https://github.com/jamesmontemagno/SettingsPlugin">James Montemagno</a>, lizensiert unter
+    <a href="https://github.com/jamesmontemagno/SettingsPlugin/blob/master/LICENSE">MIT</a>. Es wurden keine Änderungen vorgenommen.
   </string>
 
-      <string name="action_audio">Audio</string>
+  <string name="licensing_hockeyapp_title_text">HockeyApp</string>
+  <string name="licensing_hockeyapp_body_text">Von <a href="https://github.com/bitstadium/HockeySDK-Android">Microsoft</a>, lizensiert unter
+    <a href="https://raw.githubusercontent.com/bitstadium/HockeySDK-Xamarin/master/LICENSE.md">Lizenz</a>. Es wurden keine Änderungen vorgenommen.
+  </string>
 
+  <string name="licensing_xamarinsupport_title_text">Xamarin Support Libraries</string>
+  <string name="licensing_xamarinsupport_body_text">Von <a href="https://github.com/xamarin/AndroidSupportComponents">Xamarin</a>, lizensiert unter
+    <a href="https://github.com/xamarin/AndroidSupportComponents/blob/master/LICENSE.md">MIT</a>. Es wurden keine Änderungen vorgenommen.
+  </string>
+
+  <string name="licensing_commonservice_title_text">Common Service Locator</string>
+  <string name="licensing_commonservice_body_text">Von <a href="http://commonservicelocator.codeplex.com">Microsoft</a>, lizensiert unter
+    <a href="http://commonservicelocator.codeplex.com/license">Ms-PL</a>. Es wurden keine Änderungen vorgenommen.
+  </string>
+
+  <string name="licensing_fody_title_text">Fody</string>
+  <string name="licensing_fody_body_text">Von <a href="https://github.com/Fody/Fody">Simon Cropp</a>, lizensiert unter
+    <a href="https://opensource.org/licenses/mit-license.php">MIT</a>. Es wurden keine Änderungen vorgenommen.
+  </string>
+  
+
+  <!-- Strings for contribution -->
+  <string name="contribution_flaticon_title_text">Credits der Bilder im Autokarussell</string>
+  <string name="contribution_flaticon_body_text">Bilder erstellt von <a href="http://www.flaticon.com/authors/madebyoliver/">Madebyoliver</a> from
+    <a href="http://www.flaticon.com/">www.flaticon.com</a>.
+  </string>
+  
+<!--Strings for Impressum Terms of Use and Privacy Policy-->
+  <string name="impressum_title_text">Impressum</string>
+  <string name="nutzungsbedingungen_title_text">Nutzungsbedingungen</string>
+  <string name="nutzungsbedingungen_subtitle_a_text">Copyright</string>
+  <string name="nutzungsbedingungen_subtitle_b_text">Haftung</string>
+  <string name="datenschutz_title_text">Datenschutzerklärung</string>
+  <string name="datenschutz_subtitle_a_text">Erhebung, Verarbeitung und Nutzung personenbezogener Daten</string>
+  <string name="datenschutz_subtitle_b_text">Sichtbarkeit der Daten / Transparenz</string>
+  <string name="datenschutz_subtitle_c_text">Daten im Rahmen der Positionsbestimmung</string>  
+  <string name="datenschutz_subtitle_d_text">Feedback-Daten</string>
+  <string name="datenschutz_subtitle_e_text">Datenbank-Daten</string>
+  <string name="datenschutz_subtitle_f_text">Rechtsgrundlagen und Einwilligung</string>
+  <string name="datenschutz_subtitle_g_text">Rechtlicher Status der Datenschutzerklärung</string>
+  <string name="datenschutz_subtitle_h_text">Weitergehende Informationen</string>
+  
+  <string name="nutzungsbedingungen_text_a">Die Applikation Historisches Paderborn ist eine experimentelle Software, welche zu Studien- und Forschungszwecken an der Universität Paderborn erstellt wurde. 
+Die Software stellt historische Informationen als auch Kartendaten dar, wobei weder die Vollständigkeit noch die Korrektheit der Daten garantiert wird.
+Die Smartphone Applikation führt eine Positionsschätzung mit Hilfe von GPS durch. Die Genauigkeit der Positionsschätzung ist abhängig von vielen Faktoren, deshalb kann eine fehlerfreie Funktion nicht garantiert werden. Es kann eine Routenführung zu Sehenswürdigkeiten in Paderborn durch die Software bereitgestellt werden. Bitte bedenken Sie, dass die Routenberechnung Fehler enthalten kann. Beachten Sie Ihre Umgebung während der Nutzung des Systems, um Unfälle zu vermeiden.
+Die Applikation nutzt Kartendaten und kommuniziert mit Servern, wodurch tarifabhängige Kosten entstehen. Speziell das Laden von Kartendaten erzeugt ein sehr hohes Datenvolumen, so dass die Nutzung einer kostenfreien/kostengünstigen Verbindung, z.B. WLAN, gegenüber einer UMTS/LTE Datenverbindung ratsam ist.
+Die Software wird als solches zur kostenfreien Nutzung bereitgestellt. Eine Garantie für die Funktion bzw. die Bereitstellung des Dienstes an sich existiert nicht. Der Dienst kann ohne Angabe von Gründen jederzeit eingestellt werden.
+Da das System experimentellen Charakter besitzt, kann es zur Nicht-Verfügbarkeit von Diensten und zu Fehlern des Systems kommen, welche Systemabstürze auf dem Endgerät des Nutzers verursachen können. Der Einsatz der Software erfolgt auf eigene Gefahr.
+Mit der Zustimmung des Nutzers, sammelt die Software anonymisierte Nutzungsdaten, wie z.B. Absturzberichte. Der Benutzer wird vor dem Senden gefragt, ob er diesem zustimmt.</string>
+  <string name="nutzungsbedingungen_text_b">Die Software Historisches Paderborn unterliegt dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung bedürfen der schriftlichen Zustimmung der Universität Paderborn. Die Nutzung der Software ist nur für den privaten, nicht kommerziellen Gebrauch gestattet. </string>
+  <string name="nutzungsbedingungen_text_c">Die Universität Paderborn übernimmt keine Garantie dafür, dass der Dienst fehlerfrei und jederzeit ohne Unterbrechung zur Verfügung steht. Eventuelle Datenverluste infolge technischer Störungen sowie die Kenntnisnahme vertraulicher Daten durch unberechtigte Zugriffe Dritter können nicht in jedem Fall ausgeschlossen werden. Die Universität Paderborn übernimmt keine Verantwortung für die Korrektheit der durch den Dienst zur Verfügung gestellten Informationen. Sie haftet auch nicht für den Inhalt, insbesondere für die Richtigkeit, Vollständigkeit und Aktualität der Informationen. Im Übrigen haftet die Universität Paderborn nur bei Vorsatz oder grober Fahrlässigkeit. In diesem Fall ist die Haftung auf typische, bei Begründung des Nutzungsverhältnisses vorhersehbare Schäden begrenzt. Die Haftung für Schäden aus der Verletzung des Lebens, des Körpers oder der Gesundheit bleibt unberührt.</string>
+
+
+  <string name="datenschutz_text_a">Historisches in Paderborn ist ein nicht-kommerzielle interaktiver Stadtführer der Universität Paderborn für mobile Endgeräte, dessen Nutzung auf Freiwilligkeit basiert. Die bei der Nutzung erhobenen Daten werden nur für die hier beschriebenen Zwecke verwendet und an keine Dritte weitergegeben. Diese Datenschutzerklärung beschreibt den Umgang mit personenbezogenen Daten innerhalb der Stadtführer App. Mit der Installation der App erklärt sich der Nutzer mit dieser Datenschutzerklärung einverstanden und kann sie jederzeit über die App-Seite im Google Play Store einsehen.
+Die Smartphone Applikation (App), bietet dem Nutzer die Möglichkeit Informationen zu verschiedenen Sehenswürdigkeiten in Paderborn zu erhalten. Dazu greift die App auf den Standort des Smartphones zu, um die nächsten Sehenswürdigkeiten für den Nutzer anzuzeigen und, falls gewünscht, für diesen eine Route zu den Sehenswürdigkeiten zu berechnen. Dazu wird ein Kartenausschnitt aus dem Web geladen. Zudem legt die App eine lokale Datenbank auf dem Smartphone an, in der die Daten gespeichert werden. Diese Daten werden von der App ausgelesen und ggf. auch neue dazu geschrieben. Weiterhin bietet die App die Möglichkeit Audiodateien abzuspielen.
+Die Nutzung der jeweiligen Daten wird im Folgenden näher beschrieben.</string>
+  <string name="datenschutz_text_b">Die Historisches in Paderborn App ist eine offene Applikation, welche mit einen Google Konto über den Google Playstore heruntergeladen werden kann.
+In der aktuellen Version bezieht die App seine Daten von einer lokalen Datenbank die bei der Installation der App auf dem Speicher des Smartphones abgelegt wird. Das Kartenmaterial wird je nach Verwendung und Position des Nutzers vom OpenStreetMap Server geladen. Um die Route berechnen zu können wird die GPS-Position des Nutzers an einen Mapquest Server gesendet. Dieser sendet die berechnete Route zurück, die lokal auf dem Smartphone weiterverarbeitet wird. Darüber hinaus steht es dem Nutzer frei ein Feedback an die Entwickler zu senden, welches die Qualität der App verbessern soll.</string>
+  <string name="datenschutz_text_c">Das System sendet die GPS Position des Smartphones unverschlüsselt an den Mapquest und OpenStreetMap Server. Es werden keine Personenbezogenen Daten zu den Servern geschickt. Des Weiteren werden auch sonst keine personenbezogenen Daten erfasst, gespeichert oder gesendet. Im Rahmen der Feedback Funktion die jeder Nutzer freiwillig nutzen kann, muss dieser einen Namen und eine Emailadresse angeben um eine Nachricht an die Entwickler zu senden. Diese Daten werden verschlüsselt versendet. Es werden ebenfalls keinerlei Daten aus dem privaten Speicher des Smartphones gelesen die nicht Teil der Datenbank sind.</string>
+  <string name="datenschutz_text_d">Die Positionsbestimmung erfolgt ausschließlich über das GPS des Smartphones. Ist kein GPS Sender verfügbar wird eine Platzhalter Position verwendet, bis ein Signal verfügbar ist.</string>
+  <string name="datenschutz_text_e">Für den technischen Betrieb, das Aufspüren von Fehlern steht es dem Nutzer frei Feedback an die Entwickler zu senden. Die Daten enthalten Informationen über Namen und E-Mail-Adresse, die vom User frei gewählt werden können. Die Erhebung und Nutzung dieser Feedback-Daten dienen lediglich der Fehlerbeseitigung und werden zudem in anonymisierter Form für statistischen Forschungs- und Evaluationszwecke ausgewertet. Die Log-Daten werden auf den Servern der Feedback Anwendung Hockeyapp gespeichert.</string>
+  <string name="datenschutz_text_f">Die Daten die die App darstellt werden auf dem Smartphone in einer separaten Datenbank gespeichert. Die App liest und schreibt ausschließlich in dieser Datenbank. Der gesamte Datenverkehr erfolgt lokal</string>
+  <string name="datenschutz_text_g">Die Nutzung der App basiert auf Freiwilligkeit. Sämtliche Daten, die im Rahmen der Nutzung der Dienste und Applikation Verwendung finden, dürfen nur erhoben und verarbeitet werden, soweit dies für den Dienst und statistische Forschungs- und Evaluationszwecke erforderlich ist und den Regelungen der Universität Paderborn und dem Datenschutzgesetz NRW entspricht.</string>
+  <string name="datenschutz_text_h">Diese Datenschutzerklärung hat einen rein informativen Charakter, beschreibt aber verlässlich den aktuellen Stand des Systems. Änderungen innerhalb des Systems, die die Nutzung personenbezogener Daten betreffen, werden umgehend in die Datenschutzerklärung eingepflegt, um den Nutzerinnen und Nutzern jederzeit den aktuellen datenschutzrechtlichen Stand des Systems darlegen zu können. Die jeweiligen Sachverhalte ergeben sich aus den einschlägigen rechtlichen Regelungen und sind unabhängig von dieser Erläuterung gültig. Falls die Darstellung in dieser Erläuterung und das tatsächliche Verhalten von Historisches in Paderborn (beispielsweise durch zu bestimmten Zeitpunkten bestehende Programmfehler) voneinander abweichen, ergeben sich allein aus dieser Tatsache keinerlei Ansprüche.</string>
+  <string name="datenschutz_text_i">Wenn Fragen bestehen, die diese Datenschutzerklärung nicht beantwortet, oder wenn zu einzelnen Punkten vertiefte Informationen gewünscht werden, gibt der Software Innovation Campus Paderborn gerne weitere Auskunft. E-Mail: hip-app@campus.uni-paderborn.de Telefon +49 5251 603358 Postalisch: Universität Paderborn Software Innovation Campus Warburger Str. 100 D-33098 Paderborn</string>
+
+  <string name="impressum_text_a">
+    HiP (History in Paderborn) ist eine Plattform der:\n
+    <a href="http://www.uni-paderborn.de">Universität Paderborn</a>\n
+    Warburger Str. 100\n
+    33098 Paderborn\n
+    Tel.: +49 5251 60-0\n
+    \nDie Universität Paderborn ist eine vom Land NRW getragene, rechtsfähige Körperschaft des Öffentlichen Rechts. Sie wird durch den Präsidenten vertreten.\nUmsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz: DE 811209907\n
+    Zuständige Aufsichtsbehörde: Ministerium für Innovation, Wissenschaft, Forschung und Technologie (MIWFT) des Landes Nordrhein-Westfalen, Völklinger Str. 49, D-40221 Düsseldorf\n\n
+    Betrieb der HiP-App:\n
+    Universität Paderborn\n
+    Software Innovation Campus Paderborn\n
+    Leitung: Prof. Dr. Gregor Engels\n
+    Verantwortlich für den Betrieb: Dr. Simon Oberthür\n
+  </string>
   <!-- Strings for the audio toolbar captions -->
   <string name="audio_toolbar_play_pause">Play/Pause</string>
   <string name="audio_toolbar_progress">Fortschritt</string>
@@ -209,6 +287,6 @@ limitations under the License.-->
   <string name="nav_route_title">Routen</string>
   <string name="nav_preferences_title">Einstellungen</string>
   <string name="nav_feedback">Feedback</string>
-  <string name="nav_licenses_title">Lizenzen</string>
+  <string name="nav_licenses_title">Rechtliche Hinweise</string>
   <string name="nav_contribution_title">Contribution</string>
 </resources>

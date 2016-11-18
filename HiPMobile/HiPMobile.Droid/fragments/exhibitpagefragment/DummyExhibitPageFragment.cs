@@ -51,7 +51,6 @@ namespace de.upb.hip.mobile.droid.fragments.exhibitpagefragment {
             // Inflate the layout for this fragment
             var view = inflater.Inflate (Resource.Layout.fragment_exhibitpage_dummy, container, false);
             var mImageView = (ImageView) view.FindViewById (Resource.Id.imageView2);
-            //new PhotoViewAttacher(mImageView); // TODO Replace this?
             return view;
         }
 

@@ -23,12 +23,12 @@ using Android.Widget;
 
 namespace de.upb.hip.mobile.droid.Activities {
     [Activity (Theme = "@style/AppTheme", Label = "LicensingActivity", MainLauncher = false, Icon = "@drawable/icon")]
-    public class LicensingActivity : AppCompatActivity {
+    public class LegalNoticeActivity : AppCompatActivity {
 
         protected override void OnCreate (Bundle savedInstanceState)
         {
             base.OnCreate (savedInstanceState);
-            SetContentView (Resource.Layout.activity_licensing);
+            SetContentView (Resource.Layout.activity_legal_notice);
 
             if (Android.OS.Build.VERSION.SdkInt >= Android.OS.BuildVersionCodes.Lollipop)
                 Window.AddFlags(WindowManagerFlags.DrawsSystemBarBackgrounds);
@@ -40,7 +40,7 @@ namespace de.upb.hip.mobile.droid.Activities {
             SupportActionBar.Title = Resources.GetString(Resource.String.license_name);
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);
             //TODO: uncomment this when BaseActivity is ported
-            // base.SetUpNavigationDrawer (this, mDrawerLayout);
+
         }
 
 
@@ -53,7 +53,16 @@ namespace de.upb.hip.mobile.droid.Activities {
             ((TextView) FindViewById (Resource.Id.licensingOSMDroidBody)).MovementMethod = LinkMovementMethod.Instance;
             ((TextView) FindViewById (Resource.Id.licensingRealmBody)).MovementMethod = LinkMovementMethod.Instance;
             ((TextView) FindViewById (Resource.Id.licensingMapiconsBody)).MovementMethod = LinkMovementMethod.Instance;
-            ((TextView) FindViewById (Resource.Id.licensingPhotoviewBody)).MovementMethod = LinkMovementMethod.Instance;
+            ((TextView)FindViewById(Resource.Id.licensingUnityBody)).MovementMethod = LinkMovementMethod.Instance;
+            ((TextView)FindViewById(Resource.Id.licensingSettingspluginBody)).MovementMethod = LinkMovementMethod.Instance;
+            ((TextView)FindViewById(Resource.Id.licensingHockeyappBody)).MovementMethod = LinkMovementMethod.Instance;
+            ((TextView)FindViewById(Resource.Id.licensingXamarinSupportBody)).MovementMethod = LinkMovementMethod.Instance;
+            ((TextView)FindViewById(Resource.Id.licensingFodyBody)).MovementMethod = LinkMovementMethod.Instance;
+            ((TextView)FindViewById(Resource.Id.licensingCommonServiceBody)).MovementMethod = LinkMovementMethod.Instance;
+            ((TextView)FindViewById(Resource.Id.contributionForFlaticon)).MovementMethod = LinkMovementMethod.Instance;
+            ((TextView)FindViewById(Resource.Id.impressum)).MovementMethod = LinkMovementMethod.Instance;
+
+
         }
 
         public override bool OnOptionsItemSelected(IMenuItem item)

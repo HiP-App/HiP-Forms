@@ -189,17 +189,13 @@ namespace de.upb.hip.mobile.droid.Activities {
                     StartActivity (typeof (RouteActivity));
                     break;
                 case Resource.Id.nav_licenses:
-                    StartActivity (typeof (LicensingActivity));
+                    StartActivity (typeof (LegalNoticeActivity));
                     break;
                 case Resource.Id.nav_feedback:
                     FeedbackManager.ShowFeedbackActivity (ApplicationContext);
                     break;
                 case Resource.Id.nav_preferences:
                     StartActivity (typeof (SettingsActivity));
-                    break;
-
-                case Resource.Id.nav_contribution:
-                    StartActivity(typeof(ContributionActivity));
                     break;
             }
 
