@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using HipMobileUI.Pages;
 using Xamarin.Forms;
 
 namespace HipMobileUI
@@ -13,7 +13,7 @@ namespace HipMobileUI
         {
             InitializeComponent();
 
-            MainPage = new HipMobileUI.MainPage();
+            MainPage = new MainPage();
         }
 
         protected override void OnStart()

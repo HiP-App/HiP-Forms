@@ -3,15 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using HipMobileUI.Viewmodels;
 using Xamarin.Forms;
 
-namespace HipMobileUI
+namespace HipMobileUI.Views
 {
-    public partial class MainPage : ContentPage
+    public partial class ColorView : ContentView
     {
-        public MainPage()
+        public ColorView(Color color)
         {
             InitializeComponent();
+            ((ColorViewmodel) BindingContext).Color = color;
         }
     }
 }
