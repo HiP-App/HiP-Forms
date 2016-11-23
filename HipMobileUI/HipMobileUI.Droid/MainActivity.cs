@@ -6,6 +6,10 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using de.upb.hip.mobile.pcl.Common;
+using de.upb.hip.mobile.pcl.Common.Contracts;
+using HipMobileUI.Droid.Contracts;
+using Microsoft.Practices.Unity;
 
 namespace HipMobileUI.Droid
 {
@@ -14,6 +18,8 @@ namespace HipMobileUI.Droid
     {
         protected override void OnCreate(Bundle bundle)
         {
+            IoCManager.UnityContainer.RegisterType<IImageDimension, AndroidImageDimensions>();
+
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 

@@ -10,7 +10,14 @@
                 <RowDefinition Height="0.5*"/>
                 <RowDefinition Height="0.5*"/>
             </Grid.RowDefinitions>
-            
+            <BoxView Color="Silver" />
+            <ListView Grid.Row="1" ItemsSource="{Binding Exhibits}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ImageCell ImageSource="{Binding Image}" Text="{Binding ExhibitName}" Detail="{Binding Distance}" />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </Grid>
   </ContentView.Content>
 </ContentView>
