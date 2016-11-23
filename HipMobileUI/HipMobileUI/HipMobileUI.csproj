@@ -45,10 +45,15 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Viewmodels\MainScreenContainables\ColorViewmodel.cs" />
     <Compile Include="Viewmodels\MainScreenContainables\BaseMainScreenContainable.cs" />
+    <Compile Include="Viewmodels\MainScreenContainables\ExhibitListItemViewmodel.cs" />
+    <Compile Include="Viewmodels\MainScreenContainables\ExhibitsOverviewViewmodel.cs" />
     <Compile Include="Viewmodels\MainScreenContainables\TextViewmodel.cs" />
     <Compile Include="Viewmodels\MainScreenViewmodel.cs" />
     <Compile Include="Views\ColorView.xaml.cs">
       <DependentUpon>ColorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ExhibitsOverviewView.xaml.cs">
+      <DependentUpon>ExhibitsOverviewView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\TextView.xaml.cs">
       <DependentUpon>TextView.xaml</DependentUpon>
@@ -95,6 +100,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\TextView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\ExhibitsOverviewView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

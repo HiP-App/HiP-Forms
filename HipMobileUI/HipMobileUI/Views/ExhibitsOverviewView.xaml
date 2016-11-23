@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="HipMobileUI.Views.ExhibitsOverviewView" xmlns:viewmodel="clr-namespace:HipMobileUI.Viewmodels.MainScreenContainables;assembly=HipMobileUI">
+  <ContentView.BindingContext><viewmodel:ExhibitsOverviewViewmodel/></ContentView.BindingContext>
+    <ContentView.Content>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.5*"/>
+                <RowDefinition Height="0.5*"/>
+            </Grid.RowDefinitions>
+            
+        </Grid>
+  </ContentView.Content>
+</ContentView>
