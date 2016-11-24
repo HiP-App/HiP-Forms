@@ -16,7 +16,10 @@ using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
+using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using HipMobileUI.Annotations;
+using Xamarin.Forms;
 
 namespace HipMobileUI.Viewmodels.MainScreenContainables {
     public class ExhibitsOverviewViewmodel : INotifyCollectionChanged {
@@ -26,9 +29,13 @@ namespace HipMobileUI.Viewmodels.MainScreenContainables {
             Exhibits= new ObservableCollection<ExhibitListItemViewmodel> ();
         }
 
-        public void Init (string[] exhibitIds)
+        public void Init (string exhibitSetId, INavigation navigation)
         {
-            
+            var exhibitSet = ExhibitManager.GetExhibitSet (exhibitSetId);
+            foreach (Exhibit exhibit in exhibitSet.ActiveSet)
+            {
+                Exhibits.Add (new ExhibitListItemViewmodel (exhibit.Id, navigation));
+            }
         }
 
         private ObservableCollection<ExhibitListItemViewmodel> exhibits;

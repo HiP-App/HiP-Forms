@@ -16,8 +16,10 @@ using System;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
+using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using HipMobileUI.Viewmodels.MainScreenContainables;
 using HipMobileUI.Views;
 using Xamarin.Forms;
@@ -30,9 +32,10 @@ namespace HipMobileUI.Viewmodels {
 
         public MainScreenViewmodel ()
         {
+            var exhibitSet = ExhibitManager.GetExhibitSets ().FirstOrDefault();
             Containables = new ObservableCollection<BaseMainScreenContainable>
             {
-                new BaseMainScreenContainable ("Green", () => new ColorView (Color.Green)),
+                new BaseMainScreenContainable ("Übersicht", () => new ExhibitsOverviewView (exhibitSet.Id)),
                 new BaseMainScreenContainable ("Text", () => new TextView ("...")),
                 new BaseMainScreenContainable ("Blue", () => new ColorView (Color.Blue)),
                 new BaseMainScreenContainable ("Another Text", () => new TextView ("This is a text test!"))

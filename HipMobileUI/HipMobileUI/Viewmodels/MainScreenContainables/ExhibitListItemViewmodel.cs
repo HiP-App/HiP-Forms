@@ -12,13 +12,34 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows.Input;
+using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
+using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using HipMobileUI.Annotations;
+using HipMobileUI.Helpers;
 using Xamarin.Forms;
 
 namespace HipMobileUI.Viewmodels.MainScreenContainables {
     public class ExhibitListItemViewmodel : INotifyPropertyChanged{
+
+        public ExhibitListItemViewmodel (string exhibitId, INavigation navigation)
+        {
+            this.exhibitId = exhibitId;
+            this.navigation = navigation;
+
+            var exhibit = ExhibitManager.GetExhibit (exhibitId);
+            ExhibitName = exhibit.Name;
+            Distance = 4.2;
+            Image = exhibit.Image.GetImageSource ();
+
+            //ItemSelectedCommand = new Command(OpenExhibitDetails);
+        }
+
+        private string exhibitId;
+        private INavigation navigation;
 
         private string exhibitName;
         private double distance;
@@ -46,6 +67,13 @@ namespace HipMobileUI.Viewmodels.MainScreenContainables {
                 image = value;
                 OnPropertyChanged ();
             }
+        }
+
+        public ICommand ItemSelectedCommand { get; set; }
+
+        private void OpenExhibitDetails ()
+        {
+            navigation.PushAsync (new ContentPage () {Title = "Details"});
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

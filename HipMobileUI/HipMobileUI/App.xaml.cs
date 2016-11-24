@@ -19,15 +19,17 @@ namespace HipMobileUI
         {
             InitializeComponent();
 
+            // Handle when your app starts
+            IoCManager.UnityContainer.RegisterType<IDataAccess, RealmDataAccess>();
+            IoCManager.UnityContainer.RegisterType<IDataLoader, EmbeddedResourceDataLoader>();
+            DbManager.UpdateDatabase();
+
             MainPage = new MainPage();
         }
 
         protected override void OnStart()
         {
-            // Handle when your app starts
-            IoCManager.UnityContainer.RegisterType<IDataAccess, RealmDataAccess>();
-            IoCManager.UnityContainer.RegisterType<IDataLoader, EmbeddedResourceDataLoader>();
-            DbManager.UpdateDatabase();
+            
         }
 
         protected override void OnSleep()

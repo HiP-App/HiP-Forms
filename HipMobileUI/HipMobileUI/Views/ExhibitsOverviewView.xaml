@@ -14,7 +14,7 @@
             <ListView Grid.Row="1" ItemsSource="{Binding Exhibits}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <ImageCell ImageSource="{Binding Image}" Text="{Binding ExhibitName}" Detail="{Binding Distance}" />
+                        <ImageCell ImageSource="{Binding Image}" Text="{Binding ExhibitName}" Detail="{Binding Distance}"/>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
