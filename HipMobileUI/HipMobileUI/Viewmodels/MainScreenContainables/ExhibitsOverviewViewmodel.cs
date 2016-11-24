@@ -16,25 +16,32 @@ using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows.Input;
 using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using HipMobileUI.Annotations;
+using HiPMobileUI.Pages;
 using Xamarin.Forms;
 
 namespace HipMobileUI.Viewmodels.MainScreenContainables {
     public class ExhibitsOverviewViewmodel : INotifyCollectionChanged {
 
+        private INavigation navigation;
+
         public ExhibitsOverviewViewmodel ()
         {
             Exhibits= new ObservableCollection<ExhibitListItemViewmodel> ();
+            SelectedExhibitCommand = new Command<ExhibitListItemViewmodel> (ExhibitSelected);
         }
 
         public void Init (string exhibitSetId, INavigation navigation)
         {
             var exhibitSet = ExhibitManager.GetExhibitSet (exhibitSetId);
+            this.navigation = navigation;
+            //for(int i=0; i<10;i++)
             foreach (Exhibit exhibit in exhibitSet.ActiveSet)
             {
-                Exhibits.Add (new ExhibitListItemViewmodel (exhibit.Id, navigation));
+                Exhibits.Add (new ExhibitListItemViewmodel (exhibit.Id));
             }
         }
 
@@ -46,6 +53,13 @@ namespace HipMobileUI.Viewmodels.MainScreenContainables {
                 exhibits = value;
                 OnPropertyChanged ();
             }
+        }
+
+        public ICommand SelectedExhibitCommand { get; set; }
+
+        public void ExhibitSelected (ExhibitListItemViewmodel exhibitViewmodel)
+        {
+            navigation.PushAsync (new ExhibitDetailsPage (exhibitViewmodel.ExhibitId));
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

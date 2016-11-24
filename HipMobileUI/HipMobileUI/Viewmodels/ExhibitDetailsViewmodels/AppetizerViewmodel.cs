@@ -12,55 +12,37 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Windows.Input;
-using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using HipMobileUI.Annotations;
 using HipMobileUI.Helpers;
 using Xamarin.Forms;
 
-namespace HipMobileUI.Viewmodels.MainScreenContainables {
-    public class ExhibitListItemViewmodel : INotifyPropertyChanged{
+namespace HiPMobileUI.Viewmodels {
+    public class AppetizerViewmodel : INotifyPropertyChanged{
 
-        public ExhibitListItemViewmodel (string exhibitId)
+        public void Init (AppetizerPage page)
         {
-            this.ExhibitId = exhibitId;
-
-            var exhibit = ExhibitManager.GetExhibit (exhibitId);
-            ExhibitName = exhibit.Name;
-            Distance = 4.2;
-            Image = exhibit.Image.GetImageSource ();
+            BottomText = page.Text;
+            Image = page.Image.GetImageSource ();
         }
 
-        public string ExhibitId { get; set; }
-
-        private string exhibitName;
-        private double distance;
         private ImageSource image;
-
-        public string ExhibitName {
-            get { return exhibitName; }
-            set {
-                exhibitName = value;
-                OnPropertyChanged ();
-            }
-        }
-
-        public double Distance {
-            get { return distance; }
-            set {
-                distance = value;
-                OnPropertyChanged ();
-            }
-        }
+        private string bottomText;
 
         public ImageSource Image {
             get { return image; }
             set {
                 image = value;
+                OnPropertyChanged ();
+            }
+        }
+
+        public string BottomText {
+            get { return bottomText; }
+            set {
+                bottomText = value;
                 OnPropertyChanged ();
             }
         }

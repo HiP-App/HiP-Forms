@@ -38,13 +38,20 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Behaviors\ListViewSelectedItemBehavior.cs" />
+    <Compile Include="Converters\SelectedItemConverter.cs" />
     <Compile Include="Helpers\ExtensionMethods.cs" />
     <Compile Include="Helpers\Settings.cs" />
+    <Compile Include="Pages\ExhibitDetailsPage.xaml.cs">
+      <DependentUpon>ExhibitDetailsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\Annotations3.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Viewmodels\ExhibitDetailsViewmodels\AppetizerViewmodel.cs" />
+    <Compile Include="Viewmodels\ExhibitDetailsViewmodels\ExhibitDetailsViewmodel.cs" />
     <Compile Include="Viewmodels\MainScreenContainables\ColorViewmodel.cs" />
     <Compile Include="Viewmodels\MainScreenContainables\BaseMainScreenContainable.cs" />
     <Compile Include="Viewmodels\MainScreenContainables\ExhibitListItemViewmodel.cs" />
@@ -54,7 +61,10 @@
     <Compile Include="Views\ColorView.xaml.cs">
       <DependentUpon>ColorView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ExhibitsOverviewView.xaml.cs">
+    <Compile Include="Views\ExhibitDetailsViews\AppetizerView.xaml.cs">
+      <DependentUpon>AppetizerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainScreenViews\ExhibitsOverviewView.xaml.cs">
       <DependentUpon>ExhibitsOverviewView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\TextView.xaml.cs">
@@ -93,7 +103,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\ExhibitsOverviewView.xaml">
+    <EmbeddedResource Include="Views\MainScreenViews\ExhibitsOverviewView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -123,6 +133,9 @@
       <HintPath>..\..\packages\Realm.0.77.2\lib\portable-net45+sl5+wp8+wpa81+win8+monoandroid+Xamarin.iOS10+monotouch+Xamarin.Mac\Realm.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Collections.NonGeneric">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\Xamarin.iOS\v1.0\Facades\System.Collections.NonGeneric.dll</HintPath>
+    </Reference>
     <Reference Include="Xamarin.Forms.Core, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Xamarin.Forms.2.3.2.127\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.Core.dll</HintPath>
       <Private>True</Private>
@@ -141,6 +154,18 @@
       <Project>{703afe03-8f94-4f5c-a5e8-7d9774d0ced1}</Project>
       <Name>HiPMobile</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\ExhibitDetailsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\ExhibitDetailsViews\AppetizerView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\..\packages\Xamarin.Forms.2.3.2.127\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\..\packages\Xamarin.Forms.2.3.2.127\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />
