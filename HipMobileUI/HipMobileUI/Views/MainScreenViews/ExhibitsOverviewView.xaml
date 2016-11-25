@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="HipMobileUI.Views.ExhibitsOverviewView" xmlns:viewmodel="clr-namespace:HipMobileUI.Viewmodels.MainScreenContainables;assembly=HipMobileUI"
+             xmlns:behaviors="clr-namespace:HipMobileUI.Behaviors;assembly=HipMobileUI">
+  <ContentView.BindingContext><viewmodel:ExhibitsOverviewViewmodel/></ContentView.BindingContext>
+    <ContentView.Content>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.5*"/>
+                <RowDefinition Height="0.5*"/>
+            </Grid.RowDefinitions>
+            <BoxView Color="Silver" />
+            <ListView Grid.Row="1" ItemsSource="{Binding Exhibits}">
+                <ListView.Behaviors>
+                    <behaviors:ListViewSelectedItemBehavior Command="{Binding SelectedExhibitCommand}" Converter="{StaticResource SelectedItemConverter}" />
+                </ListView.Behaviors>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ImageCell ImageSource="{Binding Image}" Text="{Binding ExhibitName}" Detail="{Binding Distance}"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+  </ContentView.Content>
+</ContentView>

@@ -1,10 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Application xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="HipMobileUI.App">
+             x:Class="HipMobileUI.App"
+             xmlns:converters="clr-namespace:HipMobileUI.Converters;assembly=HipMobileUI">
 	<Application.Resources>
-
-		<!-- Application resource dictionary -->
+        <ResourceDictionary>
+            <Color x:Key="PrimaryColor">#2196F3</Color>
+            <converters:SelectedItemConverter x:Key="SelectedItemConverter" />
+        </ResourceDictionary>
+        <!-- Application resource dictionary -->
 
 	</Application.Resources>
 </Application>

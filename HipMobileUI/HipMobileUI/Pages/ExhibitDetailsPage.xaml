@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HiPMobileUI.Pages.ExhibitDetailsPage"
+             xmlns:viewmodel="clr-namespace:HiPMobileUI.Viewmodels;assembly=HiPMobileUI"
+             Title="{Binding Title}">
+    <ContentPage.BindingContext>
+        <viewmodel:ExhibitDetailsViewmodel />
+    </ContentPage.BindingContext>
+    <AbsoluteLayout>
+        <ContentView Content="{Binding MainView}" />
+        <Button Text="&lt;" Command="{Binding SwitchToPreviousPage}" IsEnabled="{Binding IsPreviousPageEnabled}" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0,0.5,50,50"/>
+        <Button Text="&gt;" Command="{Binding SwitchToNextPage}" IsEnabled="{Binding IsNextPageEnabled}" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="1,0.5,50,50"/>
+    </AbsoluteLayout>
+
+</ContentPage>
