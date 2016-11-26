@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HipMobileUI.Pages.CaptionTextPage">
+  <ContentPage.Content>
+    <StackLayout>
+      <ScrollView>
+        <StackLayout>
+          <Label x:Name="Caption" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Margin="10,10" />
+        </StackLayout>
+      </ScrollView>
+      <Button Text="Close" VerticalOptions="CenterAndExpand" />
+    </StackLayout>
+  </ContentPage.Content>
+  
+</ContentPage>

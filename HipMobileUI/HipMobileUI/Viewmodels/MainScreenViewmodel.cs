@@ -36,7 +36,7 @@ namespace HipMobileUI.Viewmodels {
             Containables = new ObservableCollection<BaseMainScreenContainable>
             {
                 new BaseMainScreenContainable ("Übersicht", () => new ExhibitsOverviewView (exhibitSet.Id)),
-                new BaseMainScreenContainable ("Text", () => new TextView ("...")),
+                new BaseMainScreenContainable ("Dialog", () => new DialogView()),
                 new BaseMainScreenContainable ("Blue", () => new ColorView (Color.Blue)),
                 new BaseMainScreenContainable ("Another Text", () => new TextView ("This is a text test!"))
             };

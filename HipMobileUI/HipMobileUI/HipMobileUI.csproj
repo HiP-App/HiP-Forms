@@ -42,6 +42,15 @@
     <Compile Include="Converters\SelectedItemConverter.cs" />
     <Compile Include="Helpers\ExtensionMethods.cs" />
     <Compile Include="Helpers\Settings.cs" />
+    <Compile Include="Pages\CaptionDialogPage.xaml.cs">
+      <DependentUpon>CaptionDialogPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\CaptionLinkPage.xaml.cs">
+      <DependentUpon>CaptionLinkPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\CaptionTextPage.xaml.cs">
+      <DependentUpon>CaptionTextPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\ExhibitDetailsPage.xaml.cs">
       <DependentUpon>ExhibitDetailsPage.xaml</DependentUpon>
     </Compile>
@@ -54,12 +63,16 @@
     <Compile Include="Viewmodels\ExhibitDetailsViewmodels\ExhibitDetailsViewmodel.cs" />
     <Compile Include="Viewmodels\MainScreenContainables\ColorViewmodel.cs" />
     <Compile Include="Viewmodels\MainScreenContainables\BaseMainScreenContainable.cs" />
+    <Compile Include="Viewmodels\MainScreenContainables\DialogViewmodel.cs" />
     <Compile Include="Viewmodels\MainScreenContainables\ExhibitListItemViewmodel.cs" />
     <Compile Include="Viewmodels\MainScreenContainables\ExhibitsOverviewViewmodel.cs" />
     <Compile Include="Viewmodels\MainScreenContainables\TextViewmodel.cs" />
     <Compile Include="Viewmodels\MainScreenViewmodel.cs" />
     <Compile Include="Views\ColorView.xaml.cs">
       <DependentUpon>ColorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DialogView.xaml.cs">
+      <DependentUpon>DialogView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ExhibitDetailsViews\AppetizerView.xaml.cs">
       <DependentUpon>AppetizerView.xaml</DependentUpon>
@@ -163,6 +176,30 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\ExhibitDetailsViews\AppetizerView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\DialogView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\CaptionDialogPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\CaptionTextPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\CaptionLinkPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
