@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using HiPMobileUI.Viewmodels;
+﻿using HipMobileUI.Viewmodels;
 using Xamarin.Forms;
 
-namespace HiPMobileUI.Pages
+namespace HipMobileUI.Pages
 {
     public partial class ExhibitDetailsPage : ContentPage {
 

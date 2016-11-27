@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.Common;
 using de.upb.hip.mobile.pcl.Common.Contracts;
@@ -24,7 +21,7 @@ namespace HipMobileUI
             IoCManager.UnityContainer.RegisterType<IDataLoader, EmbeddedResourceDataLoader>();
             DbManager.UpdateDatabase();
 
-            MainPage = new MainPage();
+            MainPage = new MainPage ();
         }
 
         protected override void OnStart()

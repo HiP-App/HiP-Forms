@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using de.upb.hip.mobile.pcl.BusinessLayer.Models;
-using HiPMobileUI.Viewmodels;
+﻿using de.upb.hip.mobile.pcl.BusinessLayer.Models;
+using HipMobileUI.Viewmodels;
 using Xamarin.Forms;
 
 namespace HipMobileUI.Views.ExhibitDetailsViews

@@ -20,7 +20,7 @@ using System.Windows.Input;
 using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using HipMobileUI.Annotations;
-using HiPMobileUI.Pages;
+using HipMobileUI.Pages;
 using Xamarin.Forms;
 
 namespace HipMobileUI.Viewmodels.MainScreenContainables {
