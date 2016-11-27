@@ -3,10 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using HipMobileUI.Pages;
-using HipMobileUI.Viewmodels.MainScreenContainables;
-using HiPMobileUI.Pages;
 using Xamarin.Forms;
 
 namespace HipMobileUI.Views
@@ -18,7 +15,7 @@ namespace HipMobileUI.Views
             InitializeComponent();
         }
 
-        async void OnAlertDialogDisplay (object sender, EventArgs e)
+        async void OnAlertDialogDisplay(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new CaptionDialogPage(1));
 
@@ -28,6 +25,5 @@ namespace HipMobileUI.Views
         {
             await Navigation.PushAsync(new CaptionDialogPage(2));
         }
-
     }
 }

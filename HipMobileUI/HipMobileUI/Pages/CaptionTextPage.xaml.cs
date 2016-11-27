@@ -3,24 +3,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using de.upb.hip.mobile.pcl.BusinessLayer.InteractiveSources;
 using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
+using HipMobileUI.Viewmodels.ExhibitDetailsViewmodels;
 using Xamarin.Forms;
 
 namespace HipMobileUI.Pages
 {
-    public partial class CaptionTextPage : ContentPage
-    {
-        public CaptionTextPage()
+    public partial class CaptionTextPage : ContentPage {
+
+        public CaptionTextPage(string formatedText)
         {
             InitializeComponent();
-            LoadCaptions ();
+            ((CaptionTextViewmodel)BindingContext).Init(formatedText);
         }
 
-        public void LoadCaptions()
+
+        async void SwitchToOtherPage (object o, EventArgs e)
         {
-            var id = ExhibitManager.GetExhibitSet().Last();
-            string text = id.Pages[1].Audio.Caption;
-            Caption.Text = text;
+            var tabbedPage = this.Parent as CaptionDialogPage;
+            tabbedPage.SwitchToLinkPage ();
         }
     }
 }
