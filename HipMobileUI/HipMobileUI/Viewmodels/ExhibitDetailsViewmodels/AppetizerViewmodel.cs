@@ -19,7 +19,7 @@ using HipMobileUI.Annotations;
 using HipMobileUI.Helpers;
 using Xamarin.Forms;
 
-namespace HiPMobileUI.Viewmodels {
+namespace HipMobileUI.Viewmodels {
     public class AppetizerViewmodel : INotifyPropertyChanged{
 
         public void Init (AppetizerPage page)
