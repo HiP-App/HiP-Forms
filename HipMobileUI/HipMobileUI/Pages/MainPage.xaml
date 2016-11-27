@@ -2,10 +2,9 @@
 <MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="HipMobileUI.Pages.MainPage"
-             xmlns:viewmodel="clr-namespace:HipMobileUI.Viewmodels;assembly=HipMobileUI"
-                  xmlns:pages ="clr-namespace:HipMobileUI.Pages;assembly=HipMobileUI">
+             xmlns:viewmodels="clr-namespace:HipMobileUI.Viewmodels;assembly=HipMobileUI">
     <MasterDetailPage.BindingContext>
-        <viewmodel:MainScreenViewmodel />
+        <viewmodels:MainScreenViewmodel />
     </MasterDetailPage.BindingContext>
     <MasterDetailPage.Master>
         <ContentPage Title="Menu" Padding="0">

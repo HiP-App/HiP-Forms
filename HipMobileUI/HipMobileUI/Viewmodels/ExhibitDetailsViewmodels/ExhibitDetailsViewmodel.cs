@@ -18,12 +18,11 @@ using System.Windows.Input;
 using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using HipMobileUI.Annotations;
-using HipMobileUI.Views;
 using HipMobileUI.Views.ExhibitDetailsViews;
 using Xamarin.Forms;
 using Page = de.upb.hip.mobile.pcl.BusinessLayer.Models.Page;
 
-namespace HiPMobileUI.Viewmodels {
+namespace HipMobileUI.Viewmodels {
     public class ExhibitDetailsViewmodel : INotifyPropertyChanged {
 
         private Exhibit exhibit;
