@@ -13,7 +13,7 @@ namespace HipMobileUI.Pages
     public partial class CaptionDialogPage : TabbedPage {
 
         private readonly Page captionTextPage;
-        private readonly Page captionLinkPage;
+        private readonly Page captionReferencePage;
 
         public CaptionDialogPage(int number)
         {
@@ -28,6 +28,7 @@ namespace HipMobileUI.Pages
             }
             else
             {
+                
                 var id = ExhibitManager.GetExhibitSet().Last();
                 var subtitles = id.Pages[1].Audio.Caption;
 
@@ -37,13 +38,13 @@ namespace HipMobileUI.Pages
                 List<Source> references = parser.Sources;
                 
                 captionTextPage = new CaptionTextPage (formatedText);
-                captionLinkPage = new CaptionLinkPage (references);
+                captionReferencePage = new CaptionReferencePage(references);
 
                 captionTextPage.Title = "Caption text";
-                captionLinkPage.Title = "References";
+                captionReferencePage.Title = "References";
 
                 Children.Add (captionTextPage);
-                Children.Add (captionLinkPage);
+                Children.Add (captionReferencePage);
                
             }
         }
@@ -68,7 +69,7 @@ namespace HipMobileUI.Pages
 
         public void SwitchToLinkPage()
         {
-            CurrentPage = captionLinkPage;
+            CurrentPage = captionReferencePage;
         }
     }
 }

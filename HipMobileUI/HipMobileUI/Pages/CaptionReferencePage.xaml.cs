@@ -10,12 +10,12 @@ using Xamarin.Forms;
 
 namespace HipMobileUI.Pages
 {
-    public partial class CaptionLinkPage : ContentPage {
+    public partial class CaptionReferencePage : ContentPage {
 
-        public CaptionLinkPage(List<Source> references)
+        public CaptionReferencePage(List<Source> references)
         {
             InitializeComponent();
-            ((CaptionLinksViewmodel)BindingContext).Init(references);
+            ((CaptionReferenceViewmodel)BindingContext).Init(references);
         }
     }
 }

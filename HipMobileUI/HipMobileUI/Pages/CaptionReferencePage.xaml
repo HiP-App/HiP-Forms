@@ -2,9 +2,9 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:dialogViewmodels="clr-namespace:HipMobileUI.Viewmodels.DialogViewmodels;assembly=HipMobileUI"
-             x:Class="HipMobileUI.Pages.CaptionLinkPage">
+             x:Class="HipMobileUI.Pages.CaptionReferencePage">
   <ContentPage.BindingContext>
-    <dialogViewmodels:CaptionLinksViewmodel/>
+    <dialogViewmodels:CaptionReferenceViewmodel/>
   </ContentPage.BindingContext>
   <ContentPage.Content>
     <ListView x:Name="SourcesDemoList" ItemsSource="{Binding References}">

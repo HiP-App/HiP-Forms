@@ -12,7 +12,7 @@ using HipMobileUI.Annotations;
 
 namespace HipMobileUI.Viewmodels.DialogViewmodels
 {
-    class CaptionLinksViewmodel : INotifyPropertyChanged {
+    class CaptionReferenceViewmodel : INotifyPropertyChanged {
 
         private List<Source> references;
 
