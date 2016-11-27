@@ -16,6 +16,7 @@ namespace HipMobileUI.Pages
         {
             InitializeComponent();
             ((CaptionTextViewmodel)BindingContext).Init(formatedText);
+
         }
 
 

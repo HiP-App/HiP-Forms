@@ -7,6 +7,7 @@ using de.upb.hip.mobile.pcl.BusinessLayer.InteractiveSources;
 using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using HipMobileUI.Viewmodels.DialogViewmodels;
 using Xamarin.Forms;
+using Xamarin.Forms.Internals;
 
 namespace HipMobileUI.Pages
 {
@@ -16,6 +17,7 @@ namespace HipMobileUI.Pages
         {
             InitializeComponent();
             ((CaptionReferenceViewmodel)BindingContext).Init(references);
+
         }
     }
 }

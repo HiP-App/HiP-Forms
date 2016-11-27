@@ -12,7 +12,7 @@
         <DataTemplate>
           <ViewCell>
             <StackLayout Padding="15,0" HorizontalOptions="StartAndExpand" Orientation="Vertical">
-              <Label Text="{Binding SubstituteText}"/>
+              <Label x:Name="referenceTitle" Text="{Binding SubstituteText}" TextColor="Blue"/>
               <Label Text="{Binding Text}" VerticalTextAlignment="Center" FontSize="Small"/>
             </StackLayout>
           </ViewCell>
