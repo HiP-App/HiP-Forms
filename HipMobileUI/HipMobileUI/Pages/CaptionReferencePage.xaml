@@ -7,13 +7,13 @@
     <dialogViewmodels:CaptionReferenceViewmodel/>
   </ContentPage.BindingContext>
   <ContentPage.Content>
-    <ListView x:Name="SourcesDemoList" ItemsSource="{Binding References}">
+    <ListView x:Name="SourcesDemoList" ItemsSource="{Binding References}" HasUnevenRows="true">
       <ListView.ItemTemplate>
         <DataTemplate>
           <ViewCell>
-            <StackLayout Padding="15,0" Orientation="Vertical">
+            <StackLayout Padding="15,0" HorizontalOptions="StartAndExpand" Orientation="Vertical">
               <Label Text="{Binding SubstituteText}"/>
-              <Label Text="{Binding Text}" HorizontalOptions="Center" VerticalOptions="CenterAndExpand"/>
+              <Label Text="{Binding Text}" VerticalTextAlignment="Center" FontSize="Small"/>
             </StackLayout>
           </ViewCell>
         </DataTemplate>
