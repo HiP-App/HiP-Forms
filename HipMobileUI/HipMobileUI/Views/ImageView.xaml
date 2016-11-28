@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:exhibitDetailsViewmodels="clr-namespace:HipMobileUI.Viewmodels.ExhibitDetailsViewmodels;assembly=HipMobileUI"
+             x:Class="HipMobileUI.Views.ImageView"
+             HorizontalOptions="FillAndExpand"
+             VerticalOptions="FillAndExpand">
+    <ContentView.BindingContext>
+        <exhibitDetailsViewmodels:ImageViewmodel></exhibitDetailsViewmodels:ImageViewmodel></ContentView.BindingContext>
+    <ContentView.Content>
+        <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+          <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+              <Image Source="{Binding Image}" Aspect="AspectFit" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                <Label Text="{Binding Description}" LineBreakMode="WordWrap" Margin="10,10" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand"/>
+          </StackLayout>
+      </ScrollView>
+    </ContentView.Content>
+</ContentView>
+

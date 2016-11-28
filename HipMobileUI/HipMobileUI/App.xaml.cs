@@ -7,7 +7,9 @@ using de.upb.hip.mobile.pcl.DataLayer;
 using HipMobileUI.Pages;
 using Microsoft.Practices.Unity;
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
+[assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace HipMobileUI
 {
     public partial class App : Application
