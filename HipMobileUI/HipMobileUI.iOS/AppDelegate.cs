@@ -29,6 +29,9 @@ namespace HipMobileUI.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             IoCManager.UnityContainer.RegisterType<IImageDimension, IosImageDimensions>();
+            var mediaPlayer = new IosMediaPlayer ();
+            mediaPlayer.Setup ();
+            IoCManager.UnityContainer.RegisterInstance(typeof(IMediaPlayer), mediaPlayer);
 
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());

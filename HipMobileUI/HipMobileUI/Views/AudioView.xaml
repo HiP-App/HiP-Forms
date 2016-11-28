@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:HipMobileUI.Viewmodels;assembly=HipMobileUI"
+             x:Class="HipMobileUI.Views.AudioView">
+  <ContentView.BindingContext>
+        <viewmodels:AudioViewModel />
+  </ContentView.BindingContext>
+    <ContentView.Content>
+        <StackLayout>
+            <Button Command="{Binding Play}" Text="Play"/>
+            <Button Command="{Binding Stop}" Text="Pause"/>
+        </StackLayout>
+  </ContentView.Content>
+</ContentView>

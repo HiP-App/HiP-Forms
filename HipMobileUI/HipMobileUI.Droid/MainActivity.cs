@@ -19,6 +19,9 @@ namespace HipMobileUI.Droid
         protected override void OnCreate(Bundle bundle)
         {
             IoCManager.UnityContainer.RegisterType<IImageDimension, AndroidImageDimensions>();
+            var mediaplayer = new AndroidMediaPlayer ();
+            mediaplayer.Setup ();
+            IoCManager.UnityContainer.RegisterInstance(typeof(IMediaPlayer), mediaplayer);
 
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;

@@ -50,6 +50,7 @@
     </Compile>
     <Compile Include="Properties\Annotations3.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Viewmodels\AudioViewModel.cs" />
     <Compile Include="Viewmodels\ExhibitDetailsViewmodels\AppetizerViewmodel.cs" />
     <Compile Include="Viewmodels\ExhibitDetailsViewmodels\ExhibitDetailsViewmodel.cs" />
     <Compile Include="Viewmodels\ExhibitDetailsViewmodels\ImageViewmodel.cs" />
@@ -59,6 +60,9 @@
     <Compile Include="Viewmodels\MainScreenContainables\ExhibitsOverviewViewmodel.cs" />
     <Compile Include="Viewmodels\MainScreenContainables\TextViewmodel.cs" />
     <Compile Include="Viewmodels\MainScreenViewmodel.cs" />
+    <Compile Include="Views\AudioView.xaml.cs">
+      <DependentUpon>AudioView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ColorView.xaml.cs">
       <DependentUpon>ColorView.xaml</DependentUpon>
     </Compile>
@@ -173,6 +177,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\ImageView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\AudioView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
