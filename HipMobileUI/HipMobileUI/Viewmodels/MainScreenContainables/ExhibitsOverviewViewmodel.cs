@@ -38,7 +38,7 @@ namespace HipMobileUI.Viewmodels.MainScreenContainables {
         {
             var exhibitSet = ExhibitManager.GetExhibitSet (exhibitSetId);
             this.navigation = navigation;
-            //for(int i=0; i<10;i++)
+            for(int i=0; i<10;i++)
             foreach (Exhibit exhibit in exhibitSet.ActiveSet)
             {
                 Exhibits.Add (new ExhibitListItemViewmodel (exhibit.Id));
