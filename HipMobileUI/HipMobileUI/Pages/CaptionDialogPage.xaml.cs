@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using de.upb.hip.mobile.pcl.BusinessLayer.InteractiveSources;
 using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
-using HiPMobileUI.Pages;
 using Xamarin.Forms;
 
 namespace HipMobileUI.Pages
@@ -24,7 +23,7 @@ namespace HipMobileUI.Pages
 
             if (number == 1)
             {
-                DisplayAlertDialog ();
+               DisplayAlertDialog ();
             }
             else
             {
@@ -51,7 +50,10 @@ namespace HipMobileUI.Pages
 
         async void DisplayAlertDialog ()
         {
+ 
             string id = ExhibitManager.GetExhibitSet().Last().Id;
+
+            await Task.Delay(1000);
 
             var answer = await this.DisplayAlert(
                 "Hint message",
