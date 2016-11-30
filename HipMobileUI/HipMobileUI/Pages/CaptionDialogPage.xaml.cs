@@ -57,7 +57,7 @@ namespace HipMobileUI.Pages
 
             var answer = await this.DisplayAlert(
                 "Hint message",
-                "There is an exbihit near you. Do you want to see detail about it?",
+                "There is an exhibit near you. Do you want to see detail about it?",
                 "Some long German word for yes",
                 "Some long German word for no");
             if(answer)
