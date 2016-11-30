@@ -8,9 +8,20 @@
         <viewmodel:ExhibitDetailsViewmodel />
     </ContentPage.BindingContext>
     <AbsoluteLayout>
-        <ContentView Content="{Binding MainView}" />
-        <Button Text="&lt;" Command="{Binding SwitchToPreviousPage}" IsEnabled="{Binding IsPreviousPageEnabled}" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0,0.5,50,50"/>
-        <Button Text="&gt;" Command="{Binding SwitchToNextPage}" IsEnabled="{Binding IsNextPageEnabled}" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="1,0.5,50,50"/>
+        <ContentView Content="{Binding MainView}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" AbsoluteLayout.LayoutFlags="SizeProportional" AbsoluteLayout.LayoutBounds="0,0,1,1">
+            <ContentView.GestureRecognizers>
+                <PanGestureRecognizer PanUpdated="PanGestureRecognizer_OnPanUpdated">
+                </PanGestureRecognizer>
+            </ContentView.GestureRecognizers>
+        </ContentView>
+        <Button Text="&lt;" Command="{Binding SwitchToPreviousPage}" IsEnabled="{Binding IsPreviousPageEnabled}" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0,0.5,50,50" BackgroundColor="#80D3D3D3" x:Name="previousButton"/>
+        <Button Text="&gt;" Command="{Binding SwitchToNextPage}" IsEnabled="{Binding IsNextPageEnabled}" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="1,0.5,50,50" BackgroundColor="#80D3D3D3"  x:Name="nextButton">
+            <Button.Triggers>
+                <DataTrigger TargetType="Button" Binding="{Binding IsFirstPage}" Value="True">
+                    <Setter Property="BackgroundColor" Value="#FFA500"></Setter>
+                </DataTrigger>
+            </Button.Triggers>
+        </Button>
     </AbsoluteLayout>
 
 </ContentPage>

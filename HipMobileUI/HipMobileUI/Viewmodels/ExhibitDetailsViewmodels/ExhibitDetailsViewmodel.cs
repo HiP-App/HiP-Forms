@@ -18,6 +18,7 @@ using System.Windows.Input;
 using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using HipMobileUI.Annotations;
+using HipMobileUI.Views;
 using HipMobileUI.Views.ExhibitDetailsViews;
 using Xamarin.Forms;
 using Page = de.upb.hip.mobile.pcl.BusinessLayer.Models.Page;
@@ -32,6 +33,7 @@ namespace HipMobileUI.Viewmodels {
         private ContentView mainView;
         private bool isNextPageEnabled;
         private bool isPreviousPageEnabled;
+        private bool isFirstPage;
 
         public ExhibitDetailsViewmodel ()
         {
@@ -47,6 +49,7 @@ namespace HipMobileUI.Viewmodels {
                 this.Title = exhibit.Name;
                 SetPage (exhibit.Pages[currentPageIndex]);
             }
+            this.IsFirstPage = true;
         }
 
         public void SetPage (Page modelPage)
@@ -63,10 +66,12 @@ namespace HipMobileUI.Viewmodels {
             if (currentPageIndex == 0)
             {
                 IsPreviousPageEnabled = false;
+                IsFirstPage = true;
             }
             else
             {
                 IsPreviousPageEnabled = true;
+                IsFirstPage = false;
             }
 
             var page = exhibit.Pages [currentPageIndex];
@@ -76,7 +81,7 @@ namespace HipMobileUI.Viewmodels {
             }
             else if (page.IsImagePage ())
             {
-                MainView = new ContentView();
+                MainView = new ImageView (page.ImagePage);
             }
             else if (page.IsTimeSliderPage ())
             {
@@ -134,6 +139,14 @@ namespace HipMobileUI.Viewmodels {
             get { return isPreviousPageEnabled; }
             set {
                 isPreviousPageEnabled = value;
+                OnPropertyChanged ();
+            }
+        }
+
+        public bool IsFirstPage {
+            get { return isFirstPage; }
+            set {
+                isFirstPage = value;
                 OnPropertyChanged ();
             }
         }

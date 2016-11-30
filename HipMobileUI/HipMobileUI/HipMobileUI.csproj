@@ -64,6 +64,7 @@
     <Compile Include="Viewmodels\ExhibitDetailsViewmodels\AppetizerViewmodel.cs" />
     <Compile Include="Viewmodels\DialogViewmodels\CaptionTextViewmodel.cs" />
     <Compile Include="Viewmodels\ExhibitDetailsViewmodels\ExhibitDetailsViewmodel.cs" />
+    <Compile Include="Viewmodels\ExhibitDetailsViewmodels\ImageViewmodel.cs" />
     <Compile Include="Viewmodels\MainScreenContainables\ColorViewmodel.cs" />
     <Compile Include="Viewmodels\MainScreenContainables\BaseMainScreenContainable.cs" />
     <Compile Include="Viewmodels\MainScreenContainables\ExhibitListItemViewmodel.cs" />
@@ -78,6 +79,9 @@
     </Compile>
     <Compile Include="Views\ExhibitDetailsViews\AppetizerView.xaml.cs">
       <DependentUpon>AppetizerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ImageView.xaml.cs">
+      <DependentUpon>ImageView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainScreenViews\ExhibitsOverviewView.xaml.cs">
       <DependentUpon>ExhibitsOverviewView.xaml</DependentUpon>
@@ -202,6 +206,7 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\DialogView.xaml">
+    <EmbeddedResource Include="Views\ImageView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
