@@ -9,6 +9,7 @@
         <StackLayout>
             <Button Command="{Binding Play}" Text="Play"/>
             <Button Command="{Binding Stop}" Text="Pause"/>
+            <ProgressBar Progress="{Binding MediaPlayer.Progress}" />
         </StackLayout>
   </ContentView.Content>
 </ContentView>

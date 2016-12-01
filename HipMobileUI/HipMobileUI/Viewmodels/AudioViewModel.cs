@@ -44,6 +44,12 @@ namespace HipMobileUI.Viewmodels {
             player.Pause ();   
         }
 
+        public IMediaPlayer MediaPlayer {
+            get {
+                return player;
+            }
+        }
+
         public ICommand Play { get; set; }
 
         public ICommand Stop { get; set; }

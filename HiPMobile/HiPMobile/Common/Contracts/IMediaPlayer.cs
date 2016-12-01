@@ -29,7 +29,7 @@ namespace de.upb.hip.mobile.pcl.Common.Contracts {
 
         bool IsPlaying { get; }
 
-        int Progress { get; }
+        double Progress { get; }
 
     }
 }

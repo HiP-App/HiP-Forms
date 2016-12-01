@@ -12,7 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -23,6 +22,8 @@ using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using de.upb.hip.mobile.pcl.Common.Contracts;
 using HipMobileUI.Annotations;
 using Java.IO;
+using Java.Lang;
+using Exception = System.Exception;
 
 namespace HipMobileUI.Droid.Contracts {
     public class AndroidMediaPlayer : IMediaPlayer, INotifyPropertyChanged {
@@ -66,6 +67,14 @@ namespace HipMobileUI.Droid.Contracts {
             var exh = ExhibitManager.GetExhibits ().First (e => e.Name.Equals ("Die Pfalz Karls des Großen"));
             this.ChangeTrack (exh.Pages[1].Audio);
             mediaPlayer.Start();
+            Thread d = new Thread(() => {
+                                      while (mediaPlayer.IsPlaying)
+                                      {
+                                          OnPropertyChanged ("Progress");
+                                          Thread.Sleep (100);
+                                      }
+                                  });
+            d.Start ();
         }
 
         public void Pause ()
@@ -73,8 +82,18 @@ namespace HipMobileUI.Droid.Contracts {
             mediaPlayer.Stop ();
         }
 
-        public bool IsPlaying { get; }
-        public int Progress { get; }
+        public bool IsPlaying {
+            get { return mediaPlayer.IsPlaying; }
+        }
+
+        public double Progress {
+            get {
+                
+                if (!IsPlaying)
+                    return 0;
+                return ((double)mediaPlayer.CurrentPosition / mediaPlayer.Duration);
+            }
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
 

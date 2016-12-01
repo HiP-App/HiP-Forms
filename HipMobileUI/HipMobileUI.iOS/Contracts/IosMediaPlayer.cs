@@ -58,7 +58,7 @@ namespace HipMobileUI.iOS.Contracts {
         }
 
         public bool IsPlaying { get; }
-        public int Progress { get; }
+        public double Progress { get; }
 
     }
 }
