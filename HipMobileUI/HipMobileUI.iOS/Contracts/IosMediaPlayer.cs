@@ -12,16 +12,20 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Threading;
 using AVFoundation;
 using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using de.upb.hip.mobile.pcl.Common.Contracts;
 using Foundation;
+using HipMobileUI.Annotations;
 using UIKit;
 
 namespace HipMobileUI.iOS.Contracts {
-    public class IosMediaPlayer : IMediaPlayer {
+    public class IosMediaPlayer : IMediaPlayer, INotifyPropertyChanged {
 
         private AVAudioPlayer player;
 
@@ -50,6 +54,14 @@ namespace HipMobileUI.iOS.Contracts {
             var exh = ExhibitManager.GetExhibits().First(e => e.Name.Equals("Die Pfalz Karls des Großen"));
             this.ChangeTrack(exh.Pages[1].Audio);
             player.Play ();
+            Thread t = new Thread (() => {
+                                       while (player.Playing)
+                                       {
+                                           OnPropertyChanged ("Progress");
+                                           Thread.Sleep (100);
+                                       }
+                                   });
+            t.Start();
         }
 
         public void Pause ()
@@ -58,7 +70,24 @@ namespace HipMobileUI.iOS.Contracts {
         }
 
         public bool IsPlaying { get; }
-        public double Progress { get; }
+
+        public double Progress {
+            get {
+                if (player != null && player.Playing)
+                {
+                    return player.CurrentTime / player.Duration;
+                }
+                return 0;
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged ([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke (this, new PropertyChangedEventArgs (propertyName));
+        }
 
     }
 }
