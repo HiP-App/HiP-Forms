@@ -73,6 +73,7 @@
     <Compile Include="Common\Contracts\IDataLoader.cs" />
     <Compile Include="Common\Contracts\IImageDimension.cs" />
     <Compile Include="Common\Contracts\IKeyProvider.cs" />
+    <Compile Include="Common\Contracts\IMediaPlayer.cs" />
     <Compile Include="Common\DbDummyDataFiller.cs" />
     <Compile Include="Common\EmbeddedResourceDataLoader.cs" />
     <Compile Include="Common\IoCManager.cs" />
