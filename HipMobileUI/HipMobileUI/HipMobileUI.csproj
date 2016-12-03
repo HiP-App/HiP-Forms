@@ -70,6 +70,7 @@
     <Compile Include="Viewmodels\MainScreenContainables\BaseMainScreenContainable.cs" />
     <Compile Include="Viewmodels\MainScreenContainables\ExhibitListItemViewmodel.cs" />
     <Compile Include="Viewmodels\MainScreenContainables\ExhibitsOverviewViewmodel.cs" />
+    <Compile Include="Viewmodels\MainScreenContainables\StressTestViewModel.cs" />
     <Compile Include="Viewmodels\MainScreenContainables\TextViewmodel.cs" />
     <Compile Include="Viewmodels\MainScreenViewmodel.cs" />
     <Compile Include="Views\AudioView.xaml.cs">
@@ -89,6 +90,9 @@
     </Compile>
     <Compile Include="Views\MainScreenViews\ExhibitsOverviewView.xaml.cs">
       <DependentUpon>ExhibitsOverviewView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainScreenViews\StressTestView.xaml.cs">
+      <DependentUpon>StressTestView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\TextView.xaml.cs">
       <DependentUpon>TextView.xaml</DependentUpon>
@@ -208,7 +212,7 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
-    <ItemGroup>
+  <ItemGroup>
     <EmbeddedResource Include="Views\DialogView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
@@ -222,6 +226,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\AudioView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\MainScreenViews\StressTestView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

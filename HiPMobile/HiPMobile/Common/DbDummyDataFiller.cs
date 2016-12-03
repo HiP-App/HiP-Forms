@@ -29,7 +29,7 @@ namespace de.upb.hip.mobile.droid.Helpers {
 
         private readonly IDataLoader dataLoader = IoCManager.UnityContainer.Resolve<IDataLoader> ();
 
-        public static int DatabaseVersion { get; } = 1;
+        public static int DatabaseVersion { get; } = 2;
 
         public void InsertData ()
         {
@@ -164,8 +164,11 @@ namespace de.upb.hip.mobile.droid.Helpers {
                 var mariensaeuleImage = CreateImage ("", "Die Mariensäule", "mariensaeule_teaser.jpg");
                 Exhibit mariensaeule = CreateExhibit ("Die Mariensäule", "", 51.716724, 8.752244000000019,
                                                       new[] {"Kirch"}, new[] {"Dom"}, mariensaeuleImage);
-                mariensaeule.Pages.Add (CreateAppetizerPage ("Startpunkt der Rundgänge: Hl. Liborius, Karl der Große, Meinwerk von Paderborn.",
-                                                             mariensaeuleImage));
+                for (int i = 0; i < 100; i++)
+                {
+                    mariensaeule.Pages.Add (CreateAppetizerPage ("Startpunkt der Rundgänge: Hl. Liborius, Karl der Große, Meinwerk von Paderborn.",
+                                                                 mariensaeuleImage));
+                }
                 karlsrouteSet.ActiveSet.Add (mariensaeule);
 
                 var paderquellen1Image = CreateImage ("", "Paderbrunnon, Patresbrun, Paderbrunno", "quellen1_teaser.jpg");
