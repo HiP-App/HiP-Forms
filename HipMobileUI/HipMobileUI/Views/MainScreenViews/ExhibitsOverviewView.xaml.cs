@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using HipMobileUI.Viewmodels.MainScreenContainables;
 using Xamarin.Forms;
+using Xamarin.Forms.Maps;
 
 namespace HipMobileUI.Views
 {

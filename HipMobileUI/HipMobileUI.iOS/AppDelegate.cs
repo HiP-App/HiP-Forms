@@ -34,6 +34,7 @@ namespace HipMobileUI.iOS
             IoCManager.UnityContainer.RegisterInstance(typeof(IMediaPlayer), mediaPlayer);
 
             global::Xamarin.Forms.Forms.Init();
+            Xamarin.FormsMaps.Init();
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);
