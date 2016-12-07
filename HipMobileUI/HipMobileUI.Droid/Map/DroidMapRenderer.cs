@@ -27,16 +27,16 @@ namespace HipMobileUI.Droid.Map
                 mapView = new MapView (Forms.Context, 11);
                 this.SetNativeControl (mapView);
 
-                //mapView.SetTileSource(TileSourceFactory.DefaultTileSource);
-                mapView.SetTileSource(new XYTileSource("OSM", ResourceProxyString.OnlineMode, 0, 18, 1024, ".png",
-                new[] {"http://tile.openstreetmap.org/"}));
+                mapView.SetTileSource(TileSourceFactory.DefaultTileSource);
+                /*mapView.SetTileSource(new XYTileSource("OSM", ResourceProxyString.OnlineMode, 0, 18, 1024, ".png",
+                new[] {"http://tile.openstreetmap.org/"}));*/
 
                 mapView.SetMultiTouchControls(true);
                 mapView.TilesScaledToDpi = true;
 
                 var controller = mapView.Controller;
                 controller.SetCenter(new GeoPoint(51.7189205, 8.7575093));
-                controller.SetZoom (11);
+                controller.SetZoom (10);
             }
 
             if (e.NewElement != null)
