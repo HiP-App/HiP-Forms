@@ -22,6 +22,7 @@ using System.Windows.Input;
 using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using HipMobileUI.Viewmodels.MainScreenContainables;
 using HipMobileUI.Views;
+using HipMobileUI.Views.MainScreenViews;
 using Xamarin.Forms;
 
 namespace HipMobileUI.Viewmodels {
@@ -39,7 +40,8 @@ namespace HipMobileUI.Viewmodels {
                 new BaseMainScreenContainable ("Dialog", () => new DialogView()),
                 new BaseMainScreenContainable ("Blue", () => new ColorView (Color.Blue)),
                 new BaseMainScreenContainable ("Another Text", () => new TextView ("This is a text test!")),
-                new BaseMainScreenContainable ("Audio", () => new AudioView ())
+                new BaseMainScreenContainable ("Audio", () => new AudioView ()),
+                new BaseMainScreenContainable ("Stress Test", () => new StressTestView ())
             };
         }
 
