@@ -10,6 +10,7 @@
             <Style TargetType="Label">
                 <Setter Property="FontSize" Value="12" />
             </Style>
+            <converters:ViewModelViewConverter x:Key="viewToViewModelConverter" />
         </ResourceDictionary>
         <!-- Application resource dictionary -->
 

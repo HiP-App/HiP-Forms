@@ -41,7 +41,8 @@ namespace HipMobileUI.Viewmodels {
                 new BaseMainScreenContainable ("Blue", () => new ColorView (Color.Blue)),
                 new BaseMainScreenContainable ("Another Text", () => new TextView ("This is a text test!")),
                 new BaseMainScreenContainable ("Audio", () => new AudioView ()),
-                new BaseMainScreenContainable ("Stress Test", () => new StressTestView ())
+                new BaseMainScreenContainable ("Stress Test", () => new StressTestView ()),
+                new BaseMainScreenContainable ("Navigation", () => new NavigationView())
             };
         }
 

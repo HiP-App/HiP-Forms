@@ -2,7 +2,9 @@
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="HipMobileUI.Views.ExhibitsOverviewView" xmlns:viewmodel="clr-namespace:HipMobileUI.Viewmodels.MainScreenContainables;assembly=HipMobileUI"
              xmlns:behaviors="clr-namespace:HipMobileUI.Behaviors;assembly=HipMobileUI"
              xmlns:map="clr-namespace:HipMobileUI.Map;assembly=HipMobileUI">
-  <ContentView.BindingContext><viewmodel:ExhibitsOverviewViewmodel/></ContentView.BindingContext>
+  <ContentView.BindingContext>
+        <viewmodel:ExhibitsOverviewViewmodel />
+  </ContentView.BindingContext>
     <ContentView.Content>
         <Grid>
             <Grid.ColumnDefinitions>
@@ -27,3 +29,4 @@
         </Grid>
   </ContentView.Content>
 </ContentView>
+

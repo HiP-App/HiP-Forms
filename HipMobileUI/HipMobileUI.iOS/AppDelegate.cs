@@ -8,6 +8,8 @@ using de.upb.hip.mobile.pcl.DataAccessLayer;
 using de.upb.hip.mobile.pcl.DataLayer;
 using Foundation;
 using HipMobileUI.iOS.Contracts;
+using HipMobileUI.Navigation;
+using HipMobileUI.Pages;
 using UIKit;
 using Microsoft.Practices.Unity;
 
@@ -32,6 +34,10 @@ namespace HipMobileUI.iOS
             var mediaPlayer = new IosMediaPlayer ();
             mediaPlayer.Setup ();
             IoCManager.UnityContainer.RegisterInstance(typeof(IMediaPlayer), mediaPlayer);
+
+            // Init Navigation
+            NavigationService.Instance.RegisterViewModels (typeof(MainPage).Assembly);
+            IoCManager.UnityContainer.RegisterInstance (typeof(INavigationService), NavigationService.Instance);
 
             global::Xamarin.Forms.Forms.Init();
             Xamarin.FormsMaps.Init();
