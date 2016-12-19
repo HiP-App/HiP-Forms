@@ -4,6 +4,7 @@ using de.upb.hip.mobile.pcl.Common;
 using de.upb.hip.mobile.pcl.Common.Contracts;
 using de.upb.hip.mobile.pcl.DataAccessLayer;
 using de.upb.hip.mobile.pcl.DataLayer;
+using HipMobileUI.Navigation;
 using HipMobileUI.Pages;
 using Microsoft.Practices.Unity;
 using Xamarin.Forms;
@@ -22,6 +23,7 @@ namespace HipMobileUI
             IoCManager.UnityContainer.RegisterType<IDataAccess, RealmDataAccess>();
             IoCManager.UnityContainer.RegisterType<IDataLoader, EmbeddedResourceDataLoader>();
             DbManager.UpdateDatabase();
+
 
             MainPage = new MainPage ();
         }

@@ -5,16 +5,15 @@ using System.Text;
 using System.Threading.Tasks;
 using HipMobileUI.Viewmodels.MainScreenContainables;
 using Xamarin.Forms;
-using Xamarin.Forms.Maps;
 
-namespace HipMobileUI.Views
+namespace HipMobileUI.Views.MainScreenViews
 {
-    public partial class ExhibitsOverviewView : ContentView
+    public partial class StressTestView : ContentView
     {
-        public ExhibitsOverviewView(string exhibitSetId)
+        public StressTestView()
         {
             InitializeComponent();
-            ((ExhibitsOverviewViewmodel)BindingContext).Init (exhibitSetId, Navigation);
+            ((StressTestViewModel)BindingContext).Init (this.Navigation);
         }
     }
 }
