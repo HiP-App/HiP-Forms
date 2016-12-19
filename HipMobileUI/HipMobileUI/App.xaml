@@ -6,7 +6,6 @@
 	<Application.Resources>
         <ResourceDictionary>
             <Color x:Key="PrimaryColor">#2196F3</Color>
-            <converters:SelectedItemConverter x:Key="SelectedItemConverter" />
             <Style TargetType="Label">
                 <Setter Property="FontSize" Value="12" />
             </Style>

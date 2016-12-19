@@ -73,7 +73,6 @@
     <Compile Include="Common\Contracts\IDataLoader.cs" />
     <Compile Include="Common\Contracts\IImageDimension.cs" />
     <Compile Include="Common\Contracts\IKeyProvider.cs" />
-    <Compile Include="Common\Contracts\IMediaPlayer.cs" />
     <Compile Include="Common\DbDummyDataFiller.cs" />
     <Compile Include="Common\EmbeddedResourceDataLoader.cs" />
     <Compile Include="Common\IoCManager.cs" />
@@ -83,6 +82,7 @@
     <Compile Include="DataLayer\RealmDataAccess.cs" />
     <Compile Include="DataLayer\RealmTransaction.cs" />
     <Compile Include="Helpers\MathUtil.cs" />
+    <Compile Include="BusinessLayer\Routing\RouteCalculator.cs" />
     <Compile Include="Helpers\Settings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -246,12 +246,24 @@
       <HintPath>..\..\packages\DotNetCross.Memory.Unsafe.0.2.2\lib\portable-net40+win8+sl4+wp7\DotNetCross.Memory.Unsafe.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Itinero, Version=0.31.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Itinero.0.31.2-rc1\lib\portable-net40+sl4+win8+wp7\Itinero.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Itinero.IO.Osm, Version=0.31.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Itinero.IO.Osm.0.31.2-rc1\lib\portable-net40+sl4+win8+wp7\Itinero.IO.Osm.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Practices.Unity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Unity.4.0.1\lib\portable-net45+wp80+win8+wpa81+MonoAndroid10+MonoTouch10\Microsoft.Practices.Unity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="OsmSharp, Version=5.0.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\OsmSharp.5.0.2-rc1\lib\portable-net403+sl50+win+wp80+Xamarin.iOS10+MonoAndroid10+MonoTouch10\OsmSharp.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Plugin.Settings, Version=2.5.1.0, Culture=neutral, processorArchitecture=MSIL">
@@ -262,12 +274,22 @@
       <HintPath>..\..\packages\Xam.Plugins.Settings.2.5.1.0\lib\portable-net45+wp80+win8+wpa81\Plugin.Settings.Abstractions.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="protobuf-net, Version=2.0.0.668, Culture=neutral, PublicKeyToken=257b51d87d2e4d67, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\protobuf-net.2.0.0.668\lib\portable-sl4+net40+wp7+windows8\protobuf-net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Realm, Version=0.77.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Realm.0.77.2\lib\portable-net45+sl5+wp8+wpa81+win8+monoandroid+Xamarin.iOS10+monotouch+Xamarin.Mac\Realm.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Reminiscence, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Reminiscence.1.0.5\lib\portable-net45+win8+wpa81+wp8\Reminiscence.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="BusinessLayer\Routing\Route_Network_Paderborn.pbf" />
+    <EmbeddedResource Include="BusinessLayer\Routing\osmfile.routerdb" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />

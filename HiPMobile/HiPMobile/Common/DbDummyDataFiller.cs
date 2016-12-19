@@ -21,6 +21,7 @@ using de.upb.hip.mobile.pcl.Common;
 using de.upb.hip.mobile.pcl.Common.Contracts;
 using de.upb.hip.mobile.pcl.DataAccessLayer;
 using de.upb.hip.mobile.pcl.DataLayer;
+using de.upb.hip.mobile.pcl.Helpers;
 using Microsoft.Practices.Unity;
 using Realms;
 
@@ -29,10 +30,11 @@ namespace de.upb.hip.mobile.droid.Helpers {
 
         private readonly IDataLoader dataLoader = IoCManager.UnityContainer.Resolve<IDataLoader> ();
 
-        public static int DatabaseVersion { get; } = 2;
+        public static int DatabaseVersion { get; } = 1;
 
         public void InsertData ()
         {
+            
             using (DbManager.StartTransaction ())
             {
                 ExhibitSet karlsrouteSet = DbManager.CreateBusinessObject<ExhibitSet> ();
@@ -164,11 +166,8 @@ namespace de.upb.hip.mobile.droid.Helpers {
                 var mariensaeuleImage = CreateImage ("", "Die Mariensäule", "mariensaeule_teaser.jpg");
                 Exhibit mariensaeule = CreateExhibit ("Die Mariensäule", "", 51.716724, 8.752244000000019,
                                                       new[] {"Kirch"}, new[] {"Dom"}, mariensaeuleImage);
-                for (int i = 0; i < 100; i++)
-                {
-                    mariensaeule.Pages.Add (CreateAppetizerPage ("Startpunkt der Rundgänge: Hl. Liborius, Karl der Große, Meinwerk von Paderborn.",
-                                                                 mariensaeuleImage));
-                }
+                mariensaeule.Pages.Add (CreateAppetizerPage ("Startpunkt der Rundgänge: Hl. Liborius, Karl der Große, Meinwerk von Paderborn.",
+                                                             mariensaeuleImage));
                 karlsrouteSet.ActiveSet.Add (mariensaeule);
 
                 var paderquellen1Image = CreateImage ("", "Paderbrunnon, Patresbrun, Paderbrunno", "quellen1_teaser.jpg");

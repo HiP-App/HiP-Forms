@@ -17,8 +17,6 @@ using System.Globalization;
 using de.upb.hip.mobile.pcl.Common;
 using HipMobileUI.Navigation;
 using HipMobileUI.Viewmodels;
-using HipMobileUI.Viewmodels.MainScreenContainables;
-using HipMobileUI.Views;
 using Microsoft.Practices.Unity;
 using Xamarin.Forms;
 

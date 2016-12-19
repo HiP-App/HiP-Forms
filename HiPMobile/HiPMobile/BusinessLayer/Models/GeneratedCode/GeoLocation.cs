@@ -39,6 +39,12 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models
 		// Contructor
 		public GeoLocation(){
 		}
+
+	    public GeoLocation (double lat, double lon)
+	    {
+	        Latitude = lat;
+	        Longitude = lon;
+	    }
 	}
 }
 

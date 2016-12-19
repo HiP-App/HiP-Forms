@@ -1,11 +1,8 @@
-﻿using System.Linq;
-using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
+﻿using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.Common;
 using de.upb.hip.mobile.pcl.Common.Contracts;
 using de.upb.hip.mobile.pcl.DataAccessLayer;
 using de.upb.hip.mobile.pcl.DataLayer;
-using HipMobileUI.Navigation;
-using HipMobileUI.Pages;
 using Microsoft.Practices.Unity;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -25,7 +22,7 @@ namespace HipMobileUI
             DbManager.UpdateDatabase();
 
 
-            MainPage = new MainPage ();
+            MainPage = new ContentPage (); 
         }
 
         protected override void OnStart()
