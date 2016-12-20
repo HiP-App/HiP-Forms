@@ -17,12 +17,13 @@ namespace HipMobileUI
             InitializeComponent();
 
             // Handle when your app starts
+
+            // Setup IoC and database
             IoCManager.UnityContainer.RegisterType<IDataAccess, RealmDataAccess>();
             IoCManager.UnityContainer.RegisterType<IDataLoader, EmbeddedResourceDataLoader>();
             DbManager.UpdateDatabase();
 
-
-            MainPage = new ContentPage (); 
+            MainPage = new NavigationPage(new ContentPage () {Title = "Test"});
         }
 
         protected override void OnStart()

@@ -23,7 +23,7 @@
 	<key>MinimumOSVersion</key>
 	<string>7.1</string>
 	<key>CFBundleDisplayName</key>
-	<string>HipMobileUI</string>
+	<string>Historisches Paderborn</string>
 	<key>CFBundleIdentifier</key>
 	<string>de.upb.hip.mobile.ios</string>
 	<key>CFBundleVersion</key>
@@ -51,7 +51,6 @@
 	<array>
 		<string>audio</string>
 	</array>
-	
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSExceptionDomains</key>

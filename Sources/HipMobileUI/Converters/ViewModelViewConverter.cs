@@ -23,7 +23,7 @@ using Xamarin.Forms;
 namespace HipMobileUI.Converters {
     public class ViewModelViewConverter : IValueConverter {
 
-        private NavigationService navigation = (NavigationService)IoCManager.UnityContainer.Resolve<INavigationService> ();
+        private readonly NavigationService navigation = (NavigationService)IoCManager.UnityContainer.Resolve<INavigationService> ();
 
         public object Convert (object value, Type targetType, object parameter, CultureInfo culture)
         {

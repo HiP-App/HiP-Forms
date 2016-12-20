@@ -5,13 +5,13 @@
              xmlns:converters="clr-namespace:HipMobileUI.Converters;assembly=HipMobileUI">
 	<Application.Resources>
         <ResourceDictionary>
-            <Color x:Key="PrimaryColor">#2196F3</Color>
+            <Color x:Key="PrimaryColor">#3F51B5</Color>
+            <Color x:Key="PrimaryDarkColor">#303F9F</Color>
+            <Color x:Key="AccentColor">#FF9800</Color>
             <Style TargetType="Label">
                 <Setter Property="FontSize" Value="12" />
             </Style>
-            <converters:ViewModelViewConverter x:Key="viewToViewModelConverter" />
+            <converters:ViewModelViewConverter x:Key="ViewToViewModelConverter" />
         </ResourceDictionary>
-        <!-- Application resource dictionary -->
-
-	</Application.Resources>
+    </Application.Resources>
 </Application>
