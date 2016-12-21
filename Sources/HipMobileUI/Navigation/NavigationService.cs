@@ -1,9 +1,20 @@
-﻿using System;
+﻿// Copyright (C) 2016 History in Paderborn App - Universität Paderborn
+//  
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//  
+//      http://www.apache.org/licenses/LICENSE-2.0
+//  
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 using System.Threading.Tasks;
 using HipMobileUI.Viewmodels;
 using Xamarin.Forms;
@@ -30,7 +41,7 @@ namespace HipMobileUI.Navigation
         }
         #endregion
 
-        readonly Dictionary<Type, Type> _viewModelViewDictionary = new Dictionary<Type, Type>();
+        readonly Dictionary<Type, Type> viewModelViewDictionary = new Dictionary<Type, Type>();
 
         INavigation FormsNavigation
         {
@@ -46,6 +57,8 @@ namespace HipMobileUI.Navigation
                                      Application.Current.MainPage.Navigation;
             }
         }
+
+        private Page FormsPage => Application.Current.MainPage;
 
         public async Task PopAsync (bool animate=false)
         {
@@ -79,6 +92,21 @@ namespace HipMobileUI.Navigation
             await FormsNavigation.PopToRootAsync(animate);
         }
 
+        public async Task DisplayAlert (string title, string message, string buttonMessage)
+        {
+             await FormsPage.DisplayAlert (title, message, buttonMessage);
+        }
+
+        public async Task<bool> DisplayAlert (string title, string message, string confirmButtonMessage, string cancelButtonMessage)
+        {
+            return await FormsPage.DisplayAlert (title, message, confirmButtonMessage, cancelButtonMessage);
+        }
+
+        public async Task<string> DisplayActionSheet (string title, string cancel, string destruction, params string[] buttons)
+        {
+            return await FormsPage.DisplayActionSheet (title, cancel, destruction, buttons);
+        }
+
         public void RegisterViewModels (Assembly asm)
         {
             // Loop through everything in the assembley that implements IViewFor<T>
@@ -98,7 +126,7 @@ namespace HipMobileUI.Navigation
 
         public void Register(Type viewModelType, Type viewType)
         {
-            _viewModelViewDictionary.Add(viewModelType, viewType);
+            viewModelViewDictionary.Add(viewModelType, viewType);
         }
 
         public IViewFor InstantiateView(NavigationViewModel viewModel)
@@ -107,7 +135,7 @@ namespace HipMobileUI.Navigation
             var viewModelType = viewModel.GetType();
 
             // look up what type of view it corresponds to
-            var viewType = _viewModelViewDictionary[viewModelType];
+            var viewType = viewModelViewDictionary[viewModelType];
 
             // instantiate it
             var view = (IViewFor)Activator.CreateInstance(viewType);

@@ -24,6 +24,9 @@ namespace HipMobileUI.Navigation {
         Task PushAsync(NavigationViewModel viewModel, bool animate= true);
         Task PushModalAsync(NavigationViewModel viewModel, bool animate= true);
         Task PopToRootAsync(bool animate= true);
+        Task DisplayAlert (string title, string message, string buttonMessage);
+        Task<bool> DisplayAlert(string title, string message, string confirmButtonMessage, string cancelButtonMessage);
+        Task<string> DisplayActionSheet (string title, string cancel, string destruction, params string[] buttons);
         void RegisterViewModels (Assembly asm);
 
     }
