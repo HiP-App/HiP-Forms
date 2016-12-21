@@ -11,20 +11,16 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+using de.upb.hip.mobile.pcl.Common;
+using HipMobileUI.Navigation;
+using Microsoft.Practices.Unity;
+using MvvmHelpers;
 
-using System.Reflection;
-using System.Threading.Tasks;
-using HipMobileUI.Viewmodels;
+namespace HipMobileUI.Viewmodels
+{
+    public abstract class NavigationViewModel : BaseViewModel {
 
-namespace HipMobileUI.Navigation {
-    public interface INavigationService {
-
-        Task PopAsync(bool animate=true);
-        Task PopModalAsync(bool animate= true);
-        Task PushAsync(NavigationViewModel viewModel, bool animate= true);
-        Task PushModalAsync(NavigationViewModel viewModel, bool animate= true);
-        Task PopToRootAsync(bool animate= true);
-        void RegisterViewModels (Assembly asm);
+        protected static INavigationService Navigation = IoCManager.UnityContainer.Resolve<INavigationService> ();
 
     }
 }

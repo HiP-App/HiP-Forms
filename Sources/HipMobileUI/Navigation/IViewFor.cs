@@ -17,12 +17,8 @@ using HipMobileUI.Viewmodels;
 namespace HipMobileUI.Navigation {
     public interface IViewFor
     {
-        object ViewModel { get; set; }
     }
 
     public interface IViewFor<T> : IViewFor {
-
-        T ViewModel { get; set; }
-
     }
 }

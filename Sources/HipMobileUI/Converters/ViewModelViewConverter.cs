@@ -23,21 +23,26 @@ using Xamarin.Forms;
 namespace HipMobileUI.Converters {
     public class ViewModelViewConverter : IValueConverter {
 
-        private readonly NavigationService navigation = (NavigationService)IoCManager.UnityContainer.Resolve<INavigationService> ();
+        private readonly IViewCreator navigation = IoCManager.UnityContainer.Resolve<IViewCreator> ();
 
         public object Convert (object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value is BaseViewModel)
+            if (value is NavigationViewModel)
             {
-                var vm = (BaseViewModel) value;
+                var vm = (NavigationViewModel) value;
                 return navigation.InstantiateView (vm);
             }
-            throw new Exception("Cannot convert!");
+            throw new Exception("Cannot convert non NavigationViewModel!");
         }
 
         public object ConvertBack (object value, Type targetType, object parameter, CultureInfo culture)
         {
-            throw new NotImplementedException ();
+            if (value is View)
+            {
+                var view = (View) value;
+                return view;
+            }
+            throw new Exception("Cannot convert non View!");
         }
 
     }

@@ -10,7 +10,7 @@ using Xamarin.Forms;
 
 namespace HipMobileUI.Navigation
 {
-    public class NavigationService : INavigationService {
+    public class NavigationService : INavigationService, IViewCreator {
 
         #region Singleton
         public NavigationService ()
@@ -57,14 +57,14 @@ namespace HipMobileUI.Navigation
             await FormsNavigation.PopModalAsync(animate);
         }
 
-        public async Task PushAsync (BaseViewModel viewModel, bool animate=false)
+        public async Task PushAsync (NavigationViewModel viewModel, bool animate=false)
         {
             var view = InstantiateView(viewModel);
 
             await FormsNavigation.PushAsync((Page)view, animate);
         }
 
-        public async Task PushModalAsync (BaseViewModel viewModel, bool animate=false)
+        public async Task PushModalAsync (NavigationViewModel viewModel, bool animate=false)
         {
             var view = InstantiateView(viewModel);
 
@@ -101,7 +101,7 @@ namespace HipMobileUI.Navigation
             _viewModelViewDictionary.Add(viewModelType, viewType);
         }
 
-        public IViewFor InstantiateView(BaseViewModel viewModel)
+        public IViewFor InstantiateView(NavigationViewModel viewModel)
         {
             // Figure out what type the view model is
             var viewModelType = viewModel.GetType();
@@ -112,7 +112,7 @@ namespace HipMobileUI.Navigation
             // instantiate it
             var view = (IViewFor)Activator.CreateInstance(viewType);
 
-            view.ViewModel = viewModel;
+            (view as BindableObject).BindingContext= viewModel;
 
             return view;
         }

@@ -12,19 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System.Reflection;
-using System.Threading.Tasks;
 using HipMobileUI.Viewmodels;
 
 namespace HipMobileUI.Navigation {
-    public interface INavigationService {
+    public interface IViewCreator {
 
-        Task PopAsync(bool animate=true);
-        Task PopModalAsync(bool animate= true);
-        Task PushAsync(NavigationViewModel viewModel, bool animate= true);
-        Task PushModalAsync(NavigationViewModel viewModel, bool animate= true);
-        Task PopToRootAsync(bool animate= true);
-        void RegisterViewModels (Assembly asm);
+        IViewFor InstantiateView (NavigationViewModel viewModel);
 
     }
 }

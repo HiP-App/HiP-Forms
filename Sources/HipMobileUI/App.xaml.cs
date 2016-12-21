@@ -3,6 +3,7 @@ using de.upb.hip.mobile.pcl.Common;
 using de.upb.hip.mobile.pcl.Common.Contracts;
 using de.upb.hip.mobile.pcl.DataAccessLayer;
 using de.upb.hip.mobile.pcl.DataLayer;
+using HipMobileUI.Navigation;
 using Microsoft.Practices.Unity;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -21,6 +22,7 @@ namespace HipMobileUI
             // Setup IoC and database
             IoCManager.UnityContainer.RegisterType<IDataAccess, RealmDataAccess>();
             IoCManager.UnityContainer.RegisterType<IDataLoader, EmbeddedResourceDataLoader>();
+            IoCManager.UnityContainer.RegisterInstance (typeof (IViewCreator), NavigationService.Instance);
             DbManager.UpdateDatabase();
 
             MainPage = new NavigationPage(new ContentPage () {Title = "Test"});
