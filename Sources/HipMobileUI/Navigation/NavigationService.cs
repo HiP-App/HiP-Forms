@@ -16,7 +16,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
-using HipMobileUI.Viewmodels;
+using HipMobileUI.ViewModels;
 using Xamarin.Forms;
 
 namespace HipMobileUI.Navigation

@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using HipMobileUI.Viewmodels;
+using HipMobileUI.ViewModels;
 
 namespace HipMobileUI.Navigation {
     public interface IViewFor

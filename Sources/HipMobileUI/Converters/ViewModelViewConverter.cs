@@ -16,7 +16,7 @@ using System;
 using System.Globalization;
 using de.upb.hip.mobile.pcl.Common;
 using HipMobileUI.Navigation;
-using HipMobileUI.Viewmodels;
+using HipMobileUI.ViewModels;
 using Microsoft.Practices.Unity;
 using Xamarin.Forms;
 
@@ -27,22 +27,32 @@ namespace HipMobileUI.Converters {
 
         public object Convert (object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value is NavigationViewModel)
+            if (value != null)
             {
-                var vm = (NavigationViewModel) value;
-                return navigation.InstantiateView (vm);
+                if (value is NavigationViewModel)
+                {
+                    var vm = (NavigationViewModel) value;
+                    return navigation.InstantiateView (vm);
+                }
+                throw new Exception ("Cannot convert non NavigationViewModel!");
             }
-            throw new Exception("Cannot convert non NavigationViewModel!");
+            else
+                return null;
         }
 
         public object ConvertBack (object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value is View)
+            if (value != null)
             {
-                var view = (View) value;
-                return view;
+                if (value is View)
+                {
+                    var view = (View) value;
+                    return view;
+                }
+                throw new Exception ("Cannot convert non View!");
             }
-            throw new Exception("Cannot convert non View!");
+            else
+                return null;
         }
 
     }

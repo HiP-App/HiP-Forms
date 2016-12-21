@@ -16,7 +16,7 @@ using HipMobileUI.Navigation;
 using Microsoft.Practices.Unity;
 using MvvmHelpers;
 
-namespace HipMobileUI.Viewmodels
+namespace HipMobileUI.ViewModels
 {
     public abstract class NavigationViewModel : BaseViewModel {
 

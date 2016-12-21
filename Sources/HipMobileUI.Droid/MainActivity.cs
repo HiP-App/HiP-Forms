@@ -6,6 +6,7 @@ using de.upb.hip.mobile.pcl.Common;
 using de.upb.hip.mobile.pcl.Common.Contracts;
 using HipMobileUI.Droid.Contracts;
 using HipMobileUI.Navigation;
+using HipMobileUI.Pages;
 using Microsoft.Practices.Unity;
 
 namespace HipMobileUI.Droid
@@ -23,8 +24,9 @@ namespace HipMobileUI.Droid
             base.OnCreate(bundle);
 
             // Init Navigation
-            //NavigationService.Instance.RegisterViewModels(typeof(MainPage).Assembly);
+            NavigationService.Instance.RegisterViewModels(typeof(MainPage).Assembly);
             IoCManager.UnityContainer.RegisterInstance(typeof(INavigationService), NavigationService.Instance);
+            IoCManager.UnityContainer.RegisterInstance(typeof(IViewCreator), NavigationService.Instance);
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
             Xamarin.FormsMaps.Init(this, bundle);

@@ -14,7 +14,7 @@
 
 using System.Reflection;
 using System.Threading.Tasks;
-using HipMobileUI.Viewmodels;
+using HipMobileUI.ViewModels;
 
 namespace HipMobileUI.Navigation {
     public interface INavigationService {

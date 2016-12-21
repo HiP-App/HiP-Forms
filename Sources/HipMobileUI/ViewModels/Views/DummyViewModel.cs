@@ -12,12 +12,23 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using HipMobileUI.ViewModels;
+using Xamarin.Forms;
 
-namespace HipMobileUI.Navigation {
-    public interface IViewCreator {
+namespace HipMobileUI.ViewModels.Views {
+    public class DummyViewModel : NavigationViewModel{
 
-        IViewFor InstantiateView (NavigationViewModel viewModel);
+        public DummyViewModel ()
+        {
+            this.Color= Color.Blue;
+            this.Title = "Dummy";
+        }
+
+        private Color color;
+
+        public Color Color {
+            get { return color; }
+            set { SetProperty (ref color, value); }
+        }
 
     }
 }

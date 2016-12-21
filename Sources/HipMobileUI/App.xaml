@@ -10,6 +10,7 @@
             <Color x:Key="AccentColor">#FF9800</Color>
             <Style TargetType="Label">
                 <Setter Property="FontSize" Value="12" />
+                <Setter Property="TextColor" Value="Black" />
             </Style>
             <converters:ViewModelViewConverter x:Key="ViewToViewModelConverter" />
         </ResourceDictionary>
