@@ -40,6 +40,14 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'TestsOnly|AnyCPU'">
+    <OutputPath>bin\TestsOnly\</OutputPath>
+    <Optimize>true</Optimize>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <Compile Include="BusinessLayer\InteractiveSources\ConsecutiveNumberAndConstantInteractiveSourceSubstitute.cs" />
     <Compile Include="BusinessLayer\InteractiveSources\ConsecutiveNumberInteractiveSourceSubstitute.cs" />
@@ -47,6 +55,7 @@
     <Compile Include="BusinessLayer\InteractiveSources\IInteractiveSourceAction.cs" />
     <Compile Include="BusinessLayer\InteractiveSources\IInteractiveSourceSubstitute.cs" />
     <Compile Include="BusinessLayer\InteractiveSources\InteractiveSourcesParser.cs" />
+    <Compile Include="BusinessLayer\InteractiveSources\InteractiveSourcesParsingResult.cs" />
     <Compile Include="BusinessLayer\InteractiveSources\Source.cs" />
     <Compile Include="BusinessLayer\Managers\DbManager.cs" />
     <Compile Include="BusinessLayer\Managers\ExhibitManager.cs" />
