@@ -17,7 +17,7 @@ namespace HipMobile.Tests.BusinessLayer.InteractiveSources
             var parsingResult = sut.Parse (textToParse);
 
             Assert.AreEqual (textToParse, parsingResult.TextWithSubstitutes);
-            Assert.AreEqual (0, parsingResult.Sources.Count);
+            Assert.AreEqual (1, parsingResult.Sources.Count);
         }
 
         [Test, Category("UnitTest")]
