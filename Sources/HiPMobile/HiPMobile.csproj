@@ -1,0 +1,313 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectGuid>{703AFE03-8F94-4F5C-A5E8-7D9774D0CED1}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>de.upb.hip.mobile.pcl</RootNamespace>
+    <AssemblyName>HiPMobilePCL</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Profile7</TargetFrameworkProfile>
+    <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'iOS Release|AnyCPU'">
+    <OutputPath>bin\iOS Release\</OutputPath>
+    <Optimize>true</Optimize>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="BusinessLayer\InteractiveSources\ConsecutiveNumberAndConstantInteractiveSourceSubstitute.cs" />
+    <Compile Include="BusinessLayer\InteractiveSources\ConsecutiveNumberInteractiveSourceSubstitute.cs" />
+    <Compile Include="BusinessLayer\InteractiveSources\ConstantInteractiveSourceSubstitute.cs" />
+    <Compile Include="BusinessLayer\InteractiveSources\IInteractiveSourceAction.cs" />
+    <Compile Include="BusinessLayer\InteractiveSources\IInteractiveSourceSubstitute.cs" />
+    <Compile Include="BusinessLayer\InteractiveSources\InteractiveSourcesParser.cs" />
+    <Compile Include="BusinessLayer\InteractiveSources\Source.cs" />
+    <Compile Include="BusinessLayer\Managers\DbManager.cs" />
+    <Compile Include="BusinessLayer\Managers\ExhibitManager.cs" />
+    <Compile Include="BusinessLayer\Managers\PageManager.cs" />
+    <Compile Include="BusinessLayer\Managers\RouteManager.cs" />
+    <Compile Include="BusinessLayer\Models\GeneratedCode\AppetizerPage.cs" />
+    <Compile Include="BusinessLayer\Models\GeneratedCode\Audio.cs" />
+    <Compile Include="BusinessLayer\Models\GeneratedCode\Exhibit.cs" />
+    <Compile Include="BusinessLayer\Models\GeneratedCode\ExhibitSet.cs" />
+    <Compile Include="BusinessLayer\Models\GeneratedCode\GeoLocation.cs" />
+    <Compile Include="BusinessLayer\Models\GeneratedCode\IIdentifiable.cs" />
+    <Compile Include="BusinessLayer\Models\GeneratedCode\Image.cs" />
+    <Compile Include="BusinessLayer\Models\GeneratedCode\ImagePage.cs" />
+    <Compile Include="BusinessLayer\Models\GeneratedCode\LongElement.cs" />
+    <Compile Include="BusinessLayer\Models\GeneratedCode\MapMarker.cs" />
+    <Compile Include="BusinessLayer\Models\GeneratedCode\Page.cs" />
+    <Compile Include="BusinessLayer\Models\GeneratedCode\Rectangle.cs" />
+    <Compile Include="BusinessLayer\Models\GeneratedCode\Route.cs" />
+    <Compile Include="BusinessLayer\Models\GeneratedCode\RouteSet.cs" />
+    <Compile Include="BusinessLayer\Models\GeneratedCode\RouteTag.cs" />
+    <Compile Include="BusinessLayer\Models\GeneratedCode\SliderImage.cs" />
+    <Compile Include="BusinessLayer\Models\GeneratedCode\StringElement.cs" />
+    <Compile Include="BusinessLayer\Models\GeneratedCode\TextPage.cs" />
+    <Compile Include="BusinessLayer\Models\GeneratedCode\TimeSliderPage.cs" />
+    <Compile Include="BusinessLayer\Models\GeneratedCode\ViaPointData.cs" />
+    <Compile Include="BusinessLayer\Models\GeneratedCode\Waypoint.cs" />
+    <Compile Include="BusinessLayer\Models\NonGenerated\Exhibit.cs" />
+    <Compile Include="BusinessLayer\Models\NonGenerated\ExhibitSet.cs" />
+    <Compile Include="BusinessLayer\Models\NonGenerated\CustomGeoPoint.cs" />
+    <Compile Include="BusinessLayer\Models\NonGenerated\Image.cs" />
+    <Compile Include="BusinessLayer\Models\NonGenerated\Page.cs" />
+    <Compile Include="Common\Contracts\IDataLoader.cs" />
+    <Compile Include="Common\Contracts\IImageDimension.cs" />
+    <Compile Include="Common\Contracts\IKeyProvider.cs" />
+    <Compile Include="Common\DbDummyDataFiller.cs" />
+    <Compile Include="Common\EmbeddedResourceDataLoader.cs" />
+    <Compile Include="Common\IoCManager.cs" />
+    <Compile Include="Common\KeyManager.cs" />
+    <Compile Include="DataAccessLayer\IDataAccess.cs" />
+    <Compile Include="DataAccessLayer\BaseTransaction.cs" />
+    <Compile Include="DataLayer\RealmDataAccess.cs" />
+    <Compile Include="DataLayer\RealmTransaction.cs" />
+    <Compile Include="Helpers\MathUtil.cs" />
+    <Compile Include="BusinessLayer\Routing\RouteCalculator.cs" />
+    <Compile Include="Helpers\Settings.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\abdinghof.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\abdinghof_highlighted.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\bibliothek_teaser.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\bruecke_teaser.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\busdorfkirche_aussen.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\denkmalkdg.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\dom.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\dom_teaser.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\garten_teaser.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\kaiserpfalz_image_2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\kaiserpfalz_image_3_1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\kaiserpfalz_image_3_2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\kaiserpfalz_image_4.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\kaiserpfalz_image_5_1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\kaiserpfalz_image_5_2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\kaiserpfalz_image_5_3.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\kaiserpfalz_image_7_1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\kaiserpfalz_slider_1_1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\kaiserpfalz_slider_1_2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\kaiserpfalz_slider_1_3.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\kaiserpfalz_slider_1_4.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\kaiserpfalz_slider_1_5.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\kaiserpfalz_slider_7_1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\kaiserpfalz_slider_7_2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\kaiserpfalz_slider_7_3.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\kaiserpfalz_teaser.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\karlsschule.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\liboriuskapelle.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\mariensaeule_teaser.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\pfalz.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\quellen1_teaser.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\quellen2_teaser.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\quellen3_teaser.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\route_karl.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\route_tag_bar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\route_tag_restaurant.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\sprechertext.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\sprechertext_1.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\sprechertext_2_1.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\sprechertext_2_2.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\sprechertext_3_1.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\sprechertext_3_2.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\sprechertext_4.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\sprechertext_5_1.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\sprechertext_5_2.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\sprechertext_5_3.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\sprechertext_7_1.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\sprechertext_7_2.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\sprechertext_8.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\theo_teaser.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="FodyWeavers.xml">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="DotNetCross.Memory.Unsafe, Version=0.2.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\DotNetCross.Memory.Unsafe.0.2.2\lib\portable-net40+win8+sl4+wp7\DotNetCross.Memory.Unsafe.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Itinero, Version=0.31.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Itinero.0.31.2-rc1\lib\portable-net40+sl4+win8+wp7\Itinero.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Itinero.IO.Osm, Version=0.31.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Itinero.IO.Osm.0.31.2-rc1\lib\portable-net40+sl4+win8+wp7\Itinero.IO.Osm.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Unity.4.0.1\lib\portable-net45+wp80+win8+wpa81+MonoAndroid10+MonoTouch10\Microsoft.Practices.Unity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="OsmSharp, Version=5.0.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\OsmSharp.5.0.2-rc1\lib\portable-net403+sl50+win+wp80+Xamarin.iOS10+MonoAndroid10+MonoTouch10\OsmSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Plugin.Settings, Version=2.5.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xam.Plugins.Settings.2.5.1.0\lib\portable-net45+wp80+win8+wpa81\Plugin.Settings.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Plugin.Settings.Abstractions, Version=2.5.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xam.Plugins.Settings.2.5.1.0\lib\portable-net45+wp80+win8+wpa81\Plugin.Settings.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="protobuf-net, Version=2.0.0.668, Culture=neutral, PublicKeyToken=257b51d87d2e4d67, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\protobuf-net.2.0.0.668\lib\portable-sl4+net40+wp7+windows8\protobuf-net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Realm, Version=0.77.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Realm.0.77.2\lib\portable-net45+sl5+wp8+wpa81+win8+monoandroid+Xamarin.iOS10+monotouch+Xamarin.Mac\Realm.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Reminiscence, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Reminiscence.1.0.5\lib\portable-net45+win8+wpa81+wp8\Reminiscence.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="BusinessLayer\Routing\Route_Network_Paderborn.pbf" />
+    <EmbeddedResource Include="BusinessLayer\Routing\osmfile.routerdb" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <Import Project="..\..\packages\Fody.1.29.4\build\portable-net+sl+win+wpa+wp\Fody.targets" Condition="Exists('..\..\packages\Fody.1.29.4\build\portable-net+sl+win+wpa+wp\Fody.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\..\packages\Fody.1.29.4\build\portable-net+sl+win+wpa+wp\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Fody.1.29.4\build\portable-net+sl+win+wpa+wp\Fody.targets'))" />
+    <Error Condition="!Exists('..\..\packages\Realm.0.77.2\build\Realm.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Realm.0.77.2\build\Realm.targets'))" />
+  </Target>
+  <Import Project="..\..\packages\Realm.0.77.2\build\Realm.targets" Condition="Exists('..\..\packages\Realm.0.77.2\build\Realm.targets')" />
+</Project>
