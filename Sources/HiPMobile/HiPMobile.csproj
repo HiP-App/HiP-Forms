@@ -47,6 +47,7 @@
     <Compile Include="BusinessLayer\InteractiveSources\IInteractiveSourceAction.cs" />
     <Compile Include="BusinessLayer\InteractiveSources\IInteractiveSourceSubstitute.cs" />
     <Compile Include="BusinessLayer\InteractiveSources\InteractiveSourcesParser.cs" />
+    <Compile Include="BusinessLayer\InteractiveSources\InteractiveSourcesParsingResult.cs" />
     <Compile Include="BusinessLayer\InteractiveSources\Source.cs" />
     <Compile Include="BusinessLayer\Managers\DbManager.cs" />
     <Compile Include="BusinessLayer\Managers\ExhibitManager.cs" />

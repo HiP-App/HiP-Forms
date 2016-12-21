@@ -13,6 +13,7 @@
 // limitations under the License.
 
 
+using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
@@ -23,7 +24,6 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.InteractiveSources
     /// </summary>
     public class InteractiveSourcesParser
     {
-
         /// <summary>
         /// Tag that indicates the start of a source.
         /// </summary>
@@ -34,35 +34,37 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.InteractiveSources
         /// </summary>
         private const string HtmlEndTag = "</fn>";
 
-        public List<Source> Sources { get; }
-
-        public string TextWithSubstitutes { get; private set; }
+        /// <summary>
+        /// Substitute generator for the sources
+        /// </summary>
+        private readonly IInteractiveSourceSubstitute substitute;
 
         /// <summary>
         /// Creates a parser for the specified textWithSubstitutes with source markup.
         /// </summary>
-        /// <param name="textWithSubstitutes">TextWithSubstitutes to parse.</param>
         /// <param name="substitute">Substitute that replaces the source markdown.</param>
-        public InteractiveSourcesParser(string textWithSubstitutes, IInteractiveSourceSubstitute substitute)
+        public InteractiveSourcesParser(IInteractiveSourceSubstitute substitute)
         {
-            Sources = new List<Source>();
-            TextWithSubstitutes = textWithSubstitutes;
-
-            Parse(substitute);
+            
+            this.substitute = substitute;
         }
 
         /// <summary>
         /// Parses the specified textWithSubstitutes with source markup (according to set start and end tags) as preperation
         /// for getting subtitles and references texts.
         /// </summary>
-        /// <param name="substitute">Substitute that replaces the source markdown.</param>
-        private void Parse(IInteractiveSourceSubstitute substitute)
+        /// <param name="textToParse">Text to be parsed.</param>
+        /// <returns>Text where sources are replaced by subtitutes together with a list of the replaced sources</returns>
+        public InteractiveSourcesParsingResult Parse(string textToParse)
         {
-            if (substitute == null)
-                return;
+            if(textToParse == null)
+                throw new ArgumentNullException (nameof(textToParse));
+
+            string textWithSubstitutes = textToParse;
+            var sources = new List<Source>();
 
             var pattern = new Regex (HtmlStartTag + ".+?" + HtmlEndTag);
-            var match = pattern.Match(TextWithSubstitutes);
+            var match = pattern.Match(textWithSubstitutes);
 
             int index = 0;
 
@@ -75,13 +77,15 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.InteractiveSources
 
                 string sub = substitute.NextSubstitute();
 
-                Sources.Add(new Source(srcText, match.Index, sub, index));
+                sources.Add(new Source(srcText, match.Index, sub, index));
 
                 // replace footnote markup with substitute
-                TextWithSubstitutes = TextWithSubstitutes.Replace(oldText, sub);
-                match = pattern.Match(TextWithSubstitutes); // working with new textWithSubstitutes to get correct start index
+                textWithSubstitutes = textWithSubstitutes.Replace(oldText, sub);
+                match = pattern.Match(textWithSubstitutes); // working with new textWithSubstitutes to get correct start index
                 index++;
             }
+
+            return new InteractiveSourcesParsingResult {Sources = sources, TextWithSubstitutes = textWithSubstitutes};
         }
 
     }
