@@ -3,8 +3,8 @@ using de.upb.hip.mobile.pcl.Common.Contracts;
 using Foundation;
 using HipMobileUI.iOS.Contracts;
 using HipMobileUI.Navigation;
+using HipMobileUI.Pages;
 using UIKit;
-using Microsoft.Practices.Unity;
 
 namespace HipMobileUI.iOS
 {
@@ -23,11 +23,12 @@ namespace HipMobileUI.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
-            IoCManager.UnityContainer.RegisterType<IImageDimension, IosImageDimensions>();
+            IoCManager.RegisterType<IImageDimension, IosImageDimensions>();
 
             // Init Navigation
-            //NavigationService.Instance.RegisterViewModels (typeof(MainPage).Assembly);
-            IoCManager.UnityContainer.RegisterInstance (typeof(INavigationService), NavigationService.Instance);
+            NavigationService.Instance.RegisterViewModels (typeof(MainPage).Assembly);
+            IoCManager.RegisterInstance (typeof(INavigationService), NavigationService.Instance);
+            IoCManager.RegisterInstance(typeof(IViewCreator), NavigationService.Instance);
 
             global::Xamarin.Forms.Forms.Init();
             Xamarin.FormsMaps.Init();

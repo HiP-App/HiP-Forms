@@ -16,12 +16,11 @@ using System.Collections.Generic;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using de.upb.hip.mobile.pcl.Common;
 using de.upb.hip.mobile.pcl.DataAccessLayer;
-using Microsoft.Practices.Unity;
 
 namespace de.upb.hip.mobile.pcl.BusinessLayer.Managers {
     public static class RouteManager {
 
-        private static readonly IDataAccess dataAccess = IoCManager.UnityContainer.Resolve<IDataAccess> ();
+        private static readonly IDataAccess dataAccess = IoCManager.Resolve<IDataAccess> ();
 
         /// <summary>
         ///     Returns a Route, with specific id

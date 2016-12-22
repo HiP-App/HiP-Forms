@@ -15,10 +15,9 @@
 using HipMobileUI.ViewModels;
 
 namespace HipMobileUI.Navigation {
-    public interface IViewFor
-    {
-    }
+    public interface IViewCreator {
 
-    public interface IViewFor<T> : IViewFor {
+        IViewFor InstantiateView (NavigationViewModel viewModel);
+
     }
 }

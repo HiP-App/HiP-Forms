@@ -15,7 +15,6 @@
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using de.upb.hip.mobile.pcl.Common;
 using de.upb.hip.mobile.pcl.DataAccessLayer;
-using Microsoft.Practices.Unity;
 
 namespace de.upb.hip.mobile.pcl.BusinessLayer.Managers {
     /// <summary>
@@ -23,7 +22,7 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Managers {
     /// </summary>
     public static class PageManager {
 
-        private static readonly IDataAccess dataAccess = IoCManager.UnityContainer.Resolve<IDataAccess>();
+        private static readonly IDataAccess dataAccess = IoCManager.Resolve<IDataAccess>();
 
         /// <summary>
         /// Gets an imagepage with a specific id.

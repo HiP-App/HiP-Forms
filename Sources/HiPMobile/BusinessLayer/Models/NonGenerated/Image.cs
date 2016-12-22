@@ -15,13 +15,12 @@
 using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.Common;
 using de.upb.hip.mobile.pcl.Common.Contracts;
-using Microsoft.Practices.Unity;
 using Realms;
 
 namespace de.upb.hip.mobile.pcl.BusinessLayer.Models {
     public partial class Image {
 
-        private readonly IImageDimension imgDimension = IoCManager.UnityContainer.Resolve<IImageDimension>();
+        private readonly IImageDimension imgDimension = IoCManager.Resolve<IImageDimension>();
 
         private int _width { get; set; }
         [Ignored]

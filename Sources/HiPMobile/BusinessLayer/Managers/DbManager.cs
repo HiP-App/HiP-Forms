@@ -17,7 +17,6 @@ using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using de.upb.hip.mobile.pcl.Common;
 using de.upb.hip.mobile.pcl.DataAccessLayer;
 using de.upb.hip.mobile.pcl.Helpers;
-using Microsoft.Practices.Unity;
 using Realms;
 
 namespace de.upb.hip.mobile.pcl.BusinessLayer.Managers {
@@ -26,7 +25,7 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Managers {
     /// </summary>
     public static class DbManager {
 
-        private static readonly IDataAccess dataAccess = IoCManager.UnityContainer.Resolve<IDataAccess>();
+        private static readonly IDataAccess dataAccess = IoCManager.Resolve<IDataAccess>();
 
         /// <summary>
         /// Creates an object of type T that is synced to the database.

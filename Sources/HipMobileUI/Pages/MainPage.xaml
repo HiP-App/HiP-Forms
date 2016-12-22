@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HipMobileUI.Pages.MainPage"
+             xmlns:viewmodel="clr-namespace:HipMobileUI.ViewModels.Pages;assembly=HipMobileUI">
+<MasterDetailPage.BindingContext>
+    <viewmodel:MainPageViewModel />
+</MasterDetailPage.BindingContext>
+    <MasterDetailPage.Master>
+        <ContentPage Title="Menu" Padding="0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.3*" />
+                    <RowDefinition Height="0.7*" />
+                </Grid.RowDefinitions>
+                <BoxView Color="{StaticResource PrimaryColor}" />
+                <ListView Grid.Row="1" ItemsSource="{Binding MainScreenViewModels}" SeparatorVisibility="None" SelectedItem="{Binding SelectedViewModel}" ItemSelected="ListView_OnItemSelected" x:Name="SelectedView">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextCell Text="{Binding Title}" TextColor="Black"/>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+        </ContentPage>
+    </MasterDetailPage.Master>
+    <MasterDetailPage.Detail>
+        <NavigationPage>
+            <x:Arguments>
+                <ContentPage Content="{Binding SelectedViewModel, Converter={StaticResource ViewToViewModelConverter}}" Title="{Binding SelectedViewModel.Title}"/>
+            </x:Arguments>
+        </NavigationPage>
+    </MasterDetailPage.Detail>
+</MasterDetailPage>

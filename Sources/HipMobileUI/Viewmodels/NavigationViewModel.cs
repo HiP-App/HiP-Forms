@@ -11,14 +11,15 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+using de.upb.hip.mobile.pcl.Common;
+using HipMobileUI.Navigation;
+using MvvmHelpers;
 
-using HipMobileUI.ViewModels;
+namespace HipMobileUI.ViewModels
+{
+    public abstract class NavigationViewModel : BaseViewModel {
 
-namespace HipMobileUI.Navigation {
-    public interface IViewFor
-    {
-    }
+        protected static INavigationService Navigation = IoCManager.Resolve<INavigationService> ();
 
-    public interface IViewFor<T> : IViewFor {
     }
 }
