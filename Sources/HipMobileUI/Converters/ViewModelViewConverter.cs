@@ -17,13 +17,12 @@ using System.Globalization;
 using de.upb.hip.mobile.pcl.Common;
 using HipMobileUI.Navigation;
 using HipMobileUI.ViewModels;
-using Microsoft.Practices.Unity;
 using Xamarin.Forms;
 
 namespace HipMobileUI.Converters {
     public class ViewModelViewConverter : IValueConverter {
 
-        private readonly IViewCreator navigation = IoCManager.UnityContainer.Resolve<IViewCreator> ();
+        private readonly IViewCreator navigation = IoCManager.Resolve<IViewCreator> ();
 
         public object Convert (object value, Type targetType, object parameter, CultureInfo culture)
         {

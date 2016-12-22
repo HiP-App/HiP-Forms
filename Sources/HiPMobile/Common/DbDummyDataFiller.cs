@@ -28,7 +28,7 @@ using Realms;
 namespace de.upb.hip.mobile.droid.Helpers {
     public class DbDummyDataFiller {
 
-        private readonly IDataLoader dataLoader = IoCManager.UnityContainer.Resolve<IDataLoader> ();
+        private readonly IDataLoader dataLoader = IoCManager.Resolve<IDataLoader> ();
 
         public static int DatabaseVersion { get; } = 1;
 

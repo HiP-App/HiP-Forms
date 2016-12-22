@@ -13,14 +13,13 @@
 // limitations under the License.
 using de.upb.hip.mobile.pcl.Common;
 using HipMobileUI.Navigation;
-using Microsoft.Practices.Unity;
 using MvvmHelpers;
 
 namespace HipMobileUI.ViewModels
 {
     public abstract class NavigationViewModel : BaseViewModel {
 
-        protected static INavigationService Navigation = IoCManager.UnityContainer.Resolve<INavigationService> ();
+        protected static INavigationService Navigation = IoCManager.Resolve<INavigationService> ();
 
     }
 }

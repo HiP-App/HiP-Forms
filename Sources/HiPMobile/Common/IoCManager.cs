@@ -15,6 +15,7 @@
 //  */
 
 
+using System;
 using Microsoft.Practices.Unity;
 
 namespace de.upb.hip.mobile.pcl.Common {
@@ -23,17 +24,28 @@ namespace de.upb.hip.mobile.pcl.Common {
     /// </summary>
     public static class IoCManager {
 
-        // Singleton Pattern
-        private static UnityContainer container;
-        public static UnityContainer UnityContainer {
-            get {
-                if (container == null)
-                {
-                    UnityContainer = new UnityContainer ();
-                }
-                return container;
-            }
-            private set { container = value; }
+        static IoCManager()
+        {
+            Instance = new UnityContainer();
         }
+
+        private static UnityContainer Instance { get; }
+
+        public static void RegisterType<I, T>() where T : I
+        {
+            Instance.RegisterType<I, T>();
+        }
+
+        public static void RegisterInstance(Type interf, object impl)
+        {
+            Instance.RegisterInstance(interf, impl);
+        }
+
+        public static T Resolve<T>()
+        {
+            return Instance.Resolve<T>();
+        }
+
+
     }
 }

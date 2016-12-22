@@ -25,7 +25,7 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Managers {
     /// </summary>
     public static class ExhibitManager {
 
-        private static readonly IDataAccess dataAccess = IoCManager.UnityContainer.Resolve<IDataAccess> ();
+        private static readonly IDataAccess dataAccess = IoCManager.Resolve<IDataAccess> ();
 
         /// <summary>
         /// Gets an exhibitset with a specific id.
