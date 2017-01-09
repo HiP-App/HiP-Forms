@@ -69,7 +69,7 @@ namespace de.upb.hip.mobile.pcl.DataLayer {
         {
             var transactionInstance = Instance;
             var transaction = transactionInstance.BeginWrite ();
-            return  new RealmTransaction (transaction, transactionInstance);
+            return  new RealmTransaction (transaction);
         }
 
         public T CreateObject<T> () where T : RealmObject, IIdentifiable, new ()

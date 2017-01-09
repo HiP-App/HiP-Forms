@@ -9,7 +9,7 @@ using Xamarin.Forms;
 
 namespace HipMobileUI.Pages
 {
-    public partial class MainPage : MasterDetailPage, IViewFor<MainPageViewModel>
+    public partial class MainPage : IViewFor<MainPageViewModel>
     {
 
         private MainPageViewModel ViewModel => ((MainPageViewModel) BindingContext);
@@ -24,7 +24,7 @@ namespace HipMobileUI.Pages
         {
             if (Device.Idiom == TargetIdiom.Phone)
             {
-                this.IsPresented = false;
+                IsPresented = false;
             }
         }
     }

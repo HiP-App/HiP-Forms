@@ -275,6 +275,7 @@ namespace de.upb.hip.mobile.pcl.Common {
             return page;
         }
 
+        // ReSharper disable once UnusedMember.Local
         private Page CreateTextPage (string text, Audio audio = null)
         {
             var page = DbManager.CreateBusinessObject<Page> ();
@@ -337,6 +338,7 @@ namespace de.upb.hip.mobile.pcl.Common {
             return page;
         }
 
+        // ReSharper disable once UnusedMember.Local
         private Rectangle CreateRectangle (int top, int left, int bottom, int right)
         {
             var rect = DbManager.CreateBusinessObject<Rectangle> ();

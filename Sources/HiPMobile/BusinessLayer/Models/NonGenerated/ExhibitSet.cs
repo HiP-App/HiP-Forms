@@ -33,7 +33,7 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models {
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return this.GetEnumerator();
+            return GetEnumerator();
         }
 
         #endregion
@@ -55,12 +55,12 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models {
                 {
                     if (exhibit.Categories.Count (element => element.Value == category) > 0)
                     {
-                        this.ActiveSet.Add (exhibit);
+                        ActiveSet.Add (exhibit);
                     }
                 }
             }
 
-            this.OrderByDistance ();
+            OrderByDistance ();
         }
 
         /// <summary>
@@ -78,6 +78,7 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models {
             while (ActiveSet.Count > 0)
             {
                 currentDistance = ActiveSet [i].GetDistance (Position);
+                // ReSharper disable once CompareOfFloatsByEqualityOperator
                 if (minDistance == 0)
                 {
                     minDistance = currentDistance;
@@ -111,9 +112,9 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models {
 
         public void UpdatePosition (GeoLocation position)
         {
-            this.Position = position;
+            Position = position;
 
-            this.OrderByDistance ();
+            OrderByDistance ();
         }
 
     }

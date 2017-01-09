@@ -19,6 +19,7 @@ namespace HipMobileUI.Navigation {
     {
     }
 
+    // ReSharper disable once UnusedTypeParameter
     public interface IViewFor<T> : IViewFor {
     }
 }

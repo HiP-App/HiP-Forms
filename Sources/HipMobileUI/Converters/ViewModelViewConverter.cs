@@ -35,8 +35,7 @@ namespace HipMobileUI.Converters {
                 }
                 throw new Exception ("Cannot convert non NavigationViewModel!");
             }
-            else
-                return null;
+            return null;
         }
 
         public object ConvertBack (object value, Type targetType, object parameter, CultureInfo culture)
@@ -50,8 +49,7 @@ namespace HipMobileUI.Converters {
                 }
                 throw new Exception ("Cannot convert non View!");
             }
-            else
-                return null;
+            return null;
         }
 
     }
