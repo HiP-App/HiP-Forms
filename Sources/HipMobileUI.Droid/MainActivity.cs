@@ -1,14 +1,14 @@
 ﻿using Android.App;
 using Android.Content.PM;
 using Android.OS;
-using de.upb.hip.mobile.droid;
+using de.upb.hip.mobile.droid.Contracts;
 using de.upb.hip.mobile.pcl.Common;
 using de.upb.hip.mobile.pcl.Common.Contracts;
-using HipMobileUI.Droid.Contracts;
+using HipMobileUI;
 using HipMobileUI.Navigation;
 using HipMobileUI.Pages;
 
-namespace HipMobileUI.Droid
+namespace de.upb.hip.mobile.droid
 {
     [Activity(Label = "Historisches Paderborn", Icon = "@drawable/ic_launcher", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity

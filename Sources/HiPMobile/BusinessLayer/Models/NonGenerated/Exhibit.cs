@@ -12,7 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System;
 using de.upb.hip.mobile.pcl.Helpers;
 
 
@@ -26,7 +25,7 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models {
         /// <returns>The distance.</returns>
         public double GetDistance (GeoLocation location)
         {
-            return MathUtil.CalculateDistance (this.Location.Latitude, this.Location.Longitude, location.Latitude, location.Longitude);
+            return MathUtil.CalculateDistance (Location.Latitude, Location.Longitude, location.Latitude, location.Longitude);
         }
 
     }

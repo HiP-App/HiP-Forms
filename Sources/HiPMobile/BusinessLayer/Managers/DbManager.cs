@@ -12,7 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using de.upb.hip.mobile.droid.Helpers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using de.upb.hip.mobile.pcl.Common;
 using de.upb.hip.mobile.pcl.DataAccessLayer;
@@ -25,7 +24,7 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Managers {
     /// </summary>
     public static class DbManager {
 
-        private static readonly IDataAccess dataAccess = IoCManager.Resolve<IDataAccess>();
+        private static readonly IDataAccess DataAccess = IoCManager.Resolve<IDataAccess>();
 
         /// <summary>
         /// Creates an object of type T that is synced to the database.
@@ -34,7 +33,7 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Managers {
         /// <returns>The instance.</returns>
         public static T CreateBusinessObject<T> () where T : RealmObject, IIdentifiable, new ()
         {
-            return dataAccess.CreateObject<T> ();
+            return DataAccess.CreateObject<T> ();
         }
 
         /// <summary>
@@ -47,7 +46,7 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Managers {
         {
             if (entitiy != null)
             {
-                return dataAccess.DeleteItem<T>(entitiy.Id);
+                return DataAccess.DeleteItem<T>(entitiy.Id);
             }
             return true;
         }
@@ -58,15 +57,15 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Managers {
         /// <returns>The transaction object which can perform committing or rolling back.</returns>
         public static BaseTransaction StartTransaction ()
         {
-            return dataAccess.StartTransaction ();
+            return DataAccess.StartTransaction ();
         }
 
         public static void UpdateDatabase ()
         {
-            if (dataAccess.GetVersion () < DbDummyDataFiller.DatabaseVersion)
+            if (DataAccess.GetVersion () < DbDummyDataFiller.DatabaseVersion)
             {
-                dataAccess.DeleteDatabase ();
-                dataAccess.CreateDatabase (DbDummyDataFiller.DatabaseVersion);
+                DataAccess.DeleteDatabase ();
+                DataAccess.CreateDatabase (DbDummyDataFiller.DatabaseVersion);
                 Settings.DatabaseVersion = DbDummyDataFiller.DatabaseVersion;
 
                 new DbDummyDataFiller ().InsertData ();

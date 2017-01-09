@@ -24,19 +24,16 @@ namespace HipMobileUI.Navigation
     public class NavigationService : INavigationService, IViewCreator {
 
         #region Singleton
-        public NavigationService ()
-        {
-        }
 
-        private static NavigationService _instance;
+        private static NavigationService instance;
 
         public static NavigationService Instance {
             get {
-                if (_instance == null)
+                if (instance == null)
                 {
-                    _instance= new NavigationService ();
+                    instance= new NavigationService ();
                 }
-                return _instance;
+                return instance;
             }
         }
         #endregion
@@ -140,7 +137,7 @@ namespace HipMobileUI.Navigation
             // instantiate it
             var view = (IViewFor)Activator.CreateInstance(viewType);
 
-            (view as BindableObject).BindingContext= viewModel;
+            ((BindableObject)view).BindingContext= viewModel;
 
             return view;
         }

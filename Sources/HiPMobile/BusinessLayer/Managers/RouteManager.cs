@@ -20,7 +20,7 @@ using de.upb.hip.mobile.pcl.DataAccessLayer;
 namespace de.upb.hip.mobile.pcl.BusinessLayer.Managers {
     public static class RouteManager {
 
-        private static readonly IDataAccess dataAccess = IoCManager.Resolve<IDataAccess> ();
+        private static readonly IDataAccess DataAccess = IoCManager.Resolve<IDataAccess> ();
 
         /// <summary>
         ///     Returns a Route, with specific id
@@ -31,7 +31,7 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Managers {
         {
             if (!string.IsNullOrEmpty (id))
             {
-                return dataAccess.GetItem<Route> (id);
+                return DataAccess.GetItem<Route> (id);
             }
             return null;
         }
@@ -42,7 +42,7 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Managers {
         /// <returns>The enumerable of all avaible routes</returns>
         public static IEnumerable<Route> GetRoutes ()
         {
-            return dataAccess.GetItems<Route> ();
+            return DataAccess.GetItems<Route> ();
         }
 
         /// <summary>
@@ -54,7 +54,7 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Managers {
         {
             if (route != null)
             {
-                return dataAccess.DeleteItem<Route> (route.Id);
+                return DataAccess.DeleteItem<Route> (route.Id);
             }
             return true;
         }
@@ -68,7 +68,7 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Managers {
         {
             if (!string.IsNullOrEmpty (id))
             {
-                return dataAccess.GetItem<RouteSet> (id);
+                return DataAccess.GetItem<RouteSet> (id);
             }
             return null;
         }
@@ -79,19 +79,19 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Managers {
         /// <returns>The enumerable of all avaible route sets</returns>
         public static IEnumerable<RouteSet> GetRouteSets ()
         {
-            return dataAccess.GetItems<RouteSet> ();
+            return DataAccess.GetItems<RouteSet> ();
         }
 
         /// <summary>
         ///     Deletes the RouteSet
         /// </summary>
-        /// <param name="route"> The RouteSet to be deleted</param>
+        /// <param name="routeSet"> The RouteSet to be deleted</param>
         /// <returns>true, if deletion was sucessfull, false otherwise</returns>
         public static bool DeleteRouteSet (RouteSet routeSet)
         {
             if (routeSet != null)
             {
-                return dataAccess.DeleteItem<RouteSet> (routeSet.Id);
+                return DataAccess.DeleteItem<RouteSet> (routeSet.Id);
             }
             return true;
         }

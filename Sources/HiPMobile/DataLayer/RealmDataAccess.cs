@@ -16,10 +16,7 @@
 
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
-using de.upb.hip.mobile.pcl.Common;
 using de.upb.hip.mobile.pcl.DataAccessLayer;
 using de.upb.hip.mobile.pcl.Helpers;
 using Realms;
@@ -33,11 +30,11 @@ namespace de.upb.hip.mobile.pcl.DataLayer {
         /// <summary>
         ///     Object used for mutual exclusion.
         /// </summary>
-        private static readonly object locker = new object ();
+        private static readonly object Locker = new object ();
 
         public T GetItem<T> (string id) where T : RealmObject, IIdentifiable
         {
-            lock (locker)
+            lock (Locker)
             {
                 // Realm has problems when using LINQ expression here
                 var objects = Instance.All<T> ();
@@ -52,7 +49,7 @@ namespace de.upb.hip.mobile.pcl.DataLayer {
 
         public IEnumerable<T> GetItems<T> () where T : RealmObject, IIdentifiable
         {
-            lock (locker)
+            lock (Locker)
             {
                 return Instance.All<T> ();
             }
@@ -78,8 +75,7 @@ namespace de.upb.hip.mobile.pcl.DataLayer {
         public T CreateObject<T> () where T : RealmObject, IIdentifiable, new ()
         {
             // create the instance
-            T instance = null;
-            instance = Instance.CreateObject<T>();
+            var instance = Instance.CreateObject<T>();
 
             // generate a unique id
             string id;
@@ -95,7 +91,7 @@ namespace de.upb.hip.mobile.pcl.DataLayer {
 
         public int GetVersion ()
         {
-            lock (locker)
+            lock (Locker)
             {
                 return Convert.ToInt32(Configuragion.SchemaVersion);
             }
@@ -103,7 +99,7 @@ namespace de.upb.hip.mobile.pcl.DataLayer {
 
         public void DeleteDatabase ()
         {
-            lock (locker)
+            lock (Locker)
             {
                 Realm.DeleteRealm (Configuragion);
             }
