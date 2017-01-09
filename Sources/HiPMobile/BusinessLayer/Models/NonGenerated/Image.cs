@@ -22,48 +22,48 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models {
 
         private readonly IImageDimension imgDimension = IoCManager.Resolve<IImageDimension>();
 
-        private int _width { get; set; }
+        private int ImageWidth { get; set; }
         [Ignored]
         public int Width {
             get {
-                if (_width != 0)
+                if (ImageWidth != 0)
                 {
-                    return _width;
+                    return ImageWidth;
                 }
                 else
                 {
                     var w = imgDimension.GetDimensions (this) [0];
                     using (DbManager.StartTransaction ())
                     {
-                        this._width = w;
+                        this.ImageWidth = w;
                     }
                     return w;
                 }
             }
-            private set { this._width = value; }
+            private set { this.ImageWidth = value; }
         }
 
-        private int _height { get; set; }
+        private int ImageHeight { get; set; }
         [Ignored]
         public int Height
         {
             get
             {
-                if (_height != 0)
+                if (ImageHeight != 0)
                 {
-                    return _height;
+                    return ImageHeight;
                 }
                 else
                 {
                     var h = imgDimension.GetDimensions(this)[1];
                     using (DbManager.StartTransaction ())
                     {
-                        this._height = h;
+                        this.ImageHeight = h;
                     }
                     return h;
                 }
             }
-            private set { this._height = value; }
+            private set { this.ImageHeight = value; }
         }
 
     }

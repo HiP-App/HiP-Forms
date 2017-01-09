@@ -12,12 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System;
 using System.Collections.Generic;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using de.upb.hip.mobile.pcl.Common;
 using de.upb.hip.mobile.pcl.DataAccessLayer;
-using Microsoft.Practices.Unity;
 
 namespace de.upb.hip.mobile.pcl.BusinessLayer.Managers {
     /// <summary>
@@ -25,7 +23,7 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Managers {
     /// </summary>
     public static class ExhibitManager {
 
-        private static readonly IDataAccess dataAccess = IoCManager.Resolve<IDataAccess> ();
+        private static readonly IDataAccess DataAccess = IoCManager.Resolve<IDataAccess> ();
 
         /// <summary>
         /// Gets an exhibitset with a specific id.
@@ -36,7 +34,7 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Managers {
         {
             if (!string.IsNullOrEmpty (id))
             {
-                return dataAccess.GetItem<ExhibitSet> (id);
+                return DataAccess.GetItem<ExhibitSet> (id);
             }
             return null;
         }
@@ -70,7 +68,7 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Managers {
         /// <returns>The enumerable of all available exibitsets.</returns>
         public static IEnumerable<ExhibitSet> GetExhibitSets ()
         {
-            return dataAccess.GetItems<ExhibitSet> ();           
+            return DataAccess.GetItems<ExhibitSet> ();           
         }
 
         /// <summary>
@@ -82,7 +80,7 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Managers {
         {
             if (exhibitSet != null)
             {
-                return dataAccess.DeleteItem<ExhibitSet>(exhibitSet.Id);
+                return DataAccess.DeleteItem<ExhibitSet>(exhibitSet.Id);
             }
             return true;
         }
@@ -96,7 +94,7 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Managers {
         {
             if (!string.IsNullOrEmpty (id))
             {
-                return dataAccess.GetItem<Exhibit> (id);
+                return DataAccess.GetItem<Exhibit> (id);
             }
             return null;
         }
@@ -107,7 +105,7 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Managers {
         /// <returns>The enumerable of all available exhibits.</returns>
         public static IEnumerable<Exhibit> GetExhibits ()
         {
-            return dataAccess.GetItems<Exhibit> ();
+            return DataAccess.GetItems<Exhibit> ();
         }
 
         /// <summary>
@@ -119,7 +117,7 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Managers {
         {
             if (exhibit != null)
             {
-                return dataAccess.DeleteItem<Exhibit>(exhibit.Id);
+                return DataAccess.DeleteItem<Exhibit>(exhibit.Id);
             }
             return true;
         }
