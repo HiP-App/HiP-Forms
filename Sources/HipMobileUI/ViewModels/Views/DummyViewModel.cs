@@ -19,8 +19,8 @@ namespace HipMobileUI.ViewModels.Views {
 
         public DummyViewModel ()
         {
-            this.Color= Color.Blue;
-            this.Title = "Dummy";
+            Color= Color.Blue;
+            Title = "Dummy";
         }
 
         private Color color;

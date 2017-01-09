@@ -9,7 +9,7 @@ using Xamarin.Forms;
 
 namespace HipMobileUI.Views
 {
-    public partial class DummyView : ContentView, IViewFor<DummyViewModel>
+    public partial class DummyView : IViewFor<DummyViewModel>
     {
         public DummyView()
         {

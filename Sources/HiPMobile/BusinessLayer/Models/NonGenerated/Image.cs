@@ -30,17 +30,13 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models {
                 {
                     return ImageWidth;
                 }
-                else
+                var w = imgDimension.GetDimensions (this) [0];
+                using (DbManager.StartTransaction ())
                 {
-                    var w = imgDimension.GetDimensions (this) [0];
-                    using (DbManager.StartTransaction ())
-                    {
-                        this.ImageWidth = w;
-                    }
-                    return w;
+                    ImageWidth = w;
                 }
+                return w;
             }
-            private set { this.ImageWidth = value; }
         }
 
         private int ImageHeight { get; set; }
@@ -53,17 +49,13 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models {
                 {
                     return ImageHeight;
                 }
-                else
+                var h = imgDimension.GetDimensions(this)[1];
+                using (DbManager.StartTransaction ())
                 {
-                    var h = imgDimension.GetDimensions(this)[1];
-                    using (DbManager.StartTransaction ())
-                    {
-                        this.ImageHeight = h;
-                    }
-                    return h;
+                    ImageHeight = h;
                 }
+                return h;
             }
-            private set { this.ImageHeight = value; }
         }
 
     }

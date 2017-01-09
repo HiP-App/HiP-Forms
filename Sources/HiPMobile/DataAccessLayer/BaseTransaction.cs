@@ -32,7 +32,7 @@ namespace de.upb.hip.mobile.pcl.DataAccessLayer {
         /// </summary>
         public virtual void Dispose ()
         {
-            this.Commit ();
+            Commit ();
         }
 
     }
