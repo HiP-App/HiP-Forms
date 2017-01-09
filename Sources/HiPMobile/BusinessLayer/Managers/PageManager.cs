@@ -22,7 +22,7 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Managers {
     /// </summary>
     public static class PageManager {
 
-        private static readonly IDataAccess dataAccess = IoCManager.Resolve<IDataAccess>();
+        private static readonly IDataAccess DataAccess = IoCManager.Resolve<IDataAccess>();
 
         /// <summary>
         /// Gets an imagepage with a specific id.
@@ -33,7 +33,7 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Managers {
         {
             if (!string.IsNullOrEmpty(id))
             {
-                return dataAccess.GetItem<ImagePage>(id);
+                return DataAccess.GetItem<ImagePage>(id);
             }
             return null;
         }
@@ -47,7 +47,7 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Managers {
         {
             if (!string.IsNullOrEmpty(id))
             {
-                return dataAccess.GetItem<TextPage>(id);
+                return DataAccess.GetItem<TextPage>(id);
             }
             return null;
         }
@@ -61,7 +61,7 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Managers {
         {
             if (!string.IsNullOrEmpty(id))
             {
-                return dataAccess.GetItem<TimeSliderPage>(id);
+                return DataAccess.GetItem<TimeSliderPage>(id);
             }
             return null;
         }

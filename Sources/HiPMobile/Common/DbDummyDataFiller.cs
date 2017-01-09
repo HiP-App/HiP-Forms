@@ -14,18 +14,11 @@
 
 using System;
 using System.Collections.Generic;
-using System.IO;
 using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
-using de.upb.hip.mobile.pcl.Common;
 using de.upb.hip.mobile.pcl.Common.Contracts;
-using de.upb.hip.mobile.pcl.DataAccessLayer;
-using de.upb.hip.mobile.pcl.DataLayer;
-using de.upb.hip.mobile.pcl.Helpers;
-using Microsoft.Practices.Unity;
-using Realms;
 
-namespace de.upb.hip.mobile.droid.Helpers {
+namespace de.upb.hip.mobile.pcl.Common {
     public class DbDummyDataFiller {
 
         private readonly IDataLoader dataLoader = IoCManager.Resolve<IDataLoader> ();
@@ -50,13 +43,13 @@ namespace de.upb.hip.mobile.droid.Helpers {
                                           "Während des bisherigen Rundgangs haben Sie erfahren, wie wichtig das Gebiet zwischen Lippe und Pader für die Politik Karls des Großen ab den 770er Jahren war. Erinnern wir uns nur an die große Reichsversammlung im Jahre 777! Zu diesem Anlass fanden sich Franken, Sachsen, aber auch arabische Gesandte aus Spanien hier in Paderborn zusammen.\nAber was fanden diese Personen hier vor? Wie hat man sich das damalige Paderborn, die sogenannte „urbs Karoli“, eigentlich vorzustellen? Lange Zeit fragten sich Historiker und Archäologen, ob die „urbs Karoli“ tatsächlich in Paderborn existierte und wenn ja, wo genau? <fn> Einen Überblick über die hierzu geäußerten Vermutungen bietet Birgit Mecke: Der Stand der Forschungen vor den Grabungskampagnen Winkelmanns, in: Sveva Gai / Birgit Mecke: Est locus insignis…: Die Pfalz Karls des Großen in Paderborn und ihre bauliche Entwicklung bis zum Jahr 1002. Die Neuauswertung der Ausgrabungen Wilhelm Winkelmanns in den Jahren 1964-1978 (Denkmalpflege und Forschung in Westfalen 40,2), Mainz 2004, Bd. 1, S. 1-8. </fn> Die karolingischen Geschichtswerke sprechen für Paderborn nicht von palatium, dem lateinischen Wort für „Pfalz“. Und es gab auch keine archäologischen Anhaltspunkte für die Pfalz Karls des Großen in Paderborn. Noch Mitte des 20. Jahrhunderts schrieb der Akademieprofessor und Domkapitular Alois Fuchs, dass „für eine [karolingische] Pfalz in Paderborn nicht nur alle urkundlichen Bezeugungen fehlen, sondern auch alle Baureste, die für die charakteristischen Pfalzgebäude, den Reichssaal und die Pfalzkapelle, sprechen könnten <fn>Alois A. Fuchs: Zur Frage der Bautätigkeit des Bischofs Badurad am Paderborner Dom, in: Westfälische Zeitschrift 97 (1947), S. 3-34, hier S. 5. </fn>.“  Sichtbar waren einzig verbaute Überreste der Domburg Bischof Meinwerks aus dem 11. Jahrhundert. Diese Überreste hatten bereits Mitte des 19. Jahrhunderts das Interesse von Lokalforschern geweckt <fn>Vgl. J. B. Johann Bernhard Greve: Der kaiserliche und bischöfliche Palast in Paderborn, in: Blätter zur näheren Kunde Westfalens 6/4 (1868), S. 33-38.</fn>.\nJetzt stehen Sie zwischen dem Dom und dem Museum in der Kaiserpfalz. Dieses große und repräsentative Gebäude mit den Rundbogenfenstern sieht so aus, wie man sich eine Kaiserpfalz vorstellt. Doch handelt es sich dabei um die Pfalz Karls des Großen? Nein! Es ist die archäologische Rekonstruktion der Pfalz Bischof Meinwerks aus dem frühen 11. Jahrhundert. \n Aber wo befand sich nun die karolingische Kaiserpfalz? Sehen Sie die etwa 31 mal 10 m große, rechteckige Fläche zwischen Ihnen und dem Museum? Sie ist durch Bruchsteinmauern abgegrenzt. Das sind die aus konservatorischen Gründen aufgemauerten Fundamente der sog. aula regia, der Königshalle Karls des Großen. Wenn Sie genau hinschauen, sehen Sie ein rotes Ziegelband. Dieses trennt das originale Bruchsteinmauerwerk von später, im Zuge der Rekonstruktion ergänzten Steinen.",
                                           "");
                 kaiserpfalz.Pages.Add (CreateImagePage (kaiserPfalzImage, null, null, audio1));
-                var audio2_1 = CreateAudio ("sprechertext_2_1.mp3",
+                var audio21 = CreateAudio ("sprechertext_2_1.mp3",
                                             "Falls Sie Schwierigkeiten haben sollten, sich in diesem Mauergewirr zurechtzufinden, blicken Sie auf Ihr Display. Hier werden die Mauern der aula regia rot hervorgehoben.",
                                             "");
                 kaiserpfalz.Pages.Add (
                     CreateImagePage (
                         CreateImage ("Von Westen aus betrachtet", "Die Überreste der Kaiserpflaz mit rot eingefärbten Mauern der aula regia von Westen aus betrachtet.",
-                                     "kaiserpfalz_image_2.jpg"), null, null, audio2_1));
+                                     "kaiserpfalz_image_2.jpg"), null, null, audio21));
 
                 List<Image> slider1 = new List<Image> ();
                 List<long> sliderTimes1 = new List<long> ();
@@ -70,12 +63,12 @@ namespace de.upb.hip.mobile.droid.Helpers {
                 sliderTimes1.Add (3);
                 slider1.Add (CreateImage ("", "Blick von Norden um 1945", "kaiserpfalz_slider_1_5.jpg"));
                 sliderTimes1.Add (4);
-                var audio2_2 = CreateAudio ("sprechertext_2_2.mp3",
+                var audio22 = CreateAudio ("sprechertext_2_2.mp3",
                                             "Vor hundert Jahren hätten Sie davon noch nichts sehen können. Denn dieses Gelände war damals mit Fachwerkhäusern bebaut, die im 2. Weltkrieg zerstört wurden. Einen Eindruck, wie sich das Gelände nördlich des Doms verändert hat, bietet der Fotoslider auf Ihrem Display. Die Kriegszerstörungen boten aber auch neue Möglichkeiten. So legte man ab den 1950er Jahren Teile der karolingischen Befestigungsmauer frei und konnte so ihren Verlauf rekonstruieren.",
                                             "");
                 kaiserpfalz.Pages.Add (CreateTimeSliderPage ("Gelände nördlich des Doms",
                                                              "Fotografien des Geländes nördlich des Domes, zu Beginn des 20. Jh., in den 1930er Jahren, in den 1950er Jahren und während der Grabung. \n[Bildnachweis: Gai / Mecke 2004, S. 8, Abb. 5 und 6, S. 9, Abb. 7, S. 14, Abb. 11, S. 15, Abb. 12]",
-                                                             sliderTimes1.ToArray (), slider1.ToArray (), true, audio2_2));
+                                                             sliderTimes1.ToArray (), slider1.ToArray (), true, audio22));
 
 
                 kaiserpfalz.Pages.Add (

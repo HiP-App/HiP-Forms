@@ -31,9 +31,9 @@ namespace de.upb.hip.mobile.pcl.Common {
 
         private static UnityContainer Instance { get; }
 
-        public static void RegisterType<I, T>() where T : I
+        public static void RegisterType<TSuper, TSub>() where TSub : TSuper
         {
-            Instance.RegisterType<I, T>();
+            Instance.RegisterType<TSuper, TSub>();
         }
 
         public static void RegisterInstance(Type interf, object impl)

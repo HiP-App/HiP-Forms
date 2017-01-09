@@ -16,7 +16,7 @@ using Android.Graphics;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using de.upb.hip.mobile.pcl.Common.Contracts;
 
-namespace HipMobileUI.Droid.Contracts {
+namespace de.upb.hip.mobile.droid.Contracts {
     public class AndroidImageDimensions : IImageDimension{
 
         /// <summary>
