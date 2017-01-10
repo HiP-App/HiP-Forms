@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="HipMobileUI.Views.RouteDetailsView">
+  <ContentView.Content>
+    <StackLayout Orientation="Vertical" Padding="0" Margin="0">
+      <RelativeLayout Margin="0" Padding="0">
+        <BoxView Color="Red" HeightRequest="175"
+                 RelativeLayout.WidthConstraint="{ConstraintExpression
+            Type=RelativeToParent,Property=Width,Factor=1,Constant=0}"></BoxView>
+        <StackLayout Orientation="Vertical" HeightRequest="200"
+                     RelativeLayout.WidthConstraint="{ConstraintExpression
+            Type=RelativeToParent,Property=Width,Factor=1,Constant=0}">
+          <StackLayout Orientation="Horizontal" VerticalOptions="EndAndExpand"
+                       RelativeLayout.WidthConstraint="{ConstraintExpression
+            Type=RelativeToParent,Property=Width,Factor=1,Constant=0}">
+            <Button BorderRadius="35" Text="Start" HorizontalOptions="EndAndExpand"></Button>
+          </StackLayout>
+        </StackLayout>
+      </RelativeLayout>
+      <ScrollView Margin="0,-30,0,0">
+        <StackLayout Padding="16" Orientation="Vertical">
+          <Label Text="Description" Style="{DynamicResource TitleStyle}"></Label>
+          <Label Text="{Binding Description}"></Label>
+          <Label Text="Distance" Style="{DynamicResource TitleStyle}"></Label>
+          <Label Text="{Binding Distance}"></Label>
+          <Label Text="Duration" Style="{DynamicResource TitleStyle}"></Label>
+          <Label Text="{Binding Duration}"></Label>
+          <Label Text="Map" Style="{DynamicResource TitleStyle}"></Label>
+          <BoxView Color="Green" HeightRequest="225"></BoxView>
+        </StackLayout>
+      </ScrollView>
+    </StackLayout>
+  </ContentView.Content>
+</ContentView>

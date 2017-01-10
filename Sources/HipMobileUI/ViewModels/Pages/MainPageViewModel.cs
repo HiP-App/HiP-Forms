@@ -13,6 +13,9 @@
 // limitations under the License.
 
 using System.Collections.ObjectModel;
+using System.Linq;
+using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
+using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using HipMobileUI.ViewModels.Views;
 using Xamarin.Forms;
 
@@ -40,6 +43,17 @@ namespace HipMobileUI.ViewModels.Pages {
             MainScreenViewModels.Add (vm);
             MainScreenViewModels.Add(vm1);
             MainScreenViewModels.Add(vm2);
+
+            MainScreenViewModels.Add ( new RouteDetailsViewModel(
+                new Route {
+                    Description = "This is the (long) description of the route. " +
+                                  "I'll make it a bit longer so it is really long. " +
+                                  "It can be even longer! But now I don't know what " +
+                                  "to write anymore ...",
+                    Distance = 4.2,
+                    Duration = 30,
+                    Title = "Karlsroute"
+                }));
         }
 
         private ObservableCollection<NavigationViewModel> mainScreenViewModels;
