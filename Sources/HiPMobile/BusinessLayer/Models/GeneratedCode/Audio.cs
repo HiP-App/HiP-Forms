@@ -28,7 +28,7 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models
 	public class Audio : RealmObject, IIdentifiable
 	{
 		//Attributes
-		[ObjectId]
+		[PrimaryKey]
 		public string Id{ get; set; }
 
 		public virtual byte[] Data{ get; set; }

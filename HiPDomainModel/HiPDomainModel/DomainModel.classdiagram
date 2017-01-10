@@ -92,7 +92,7 @@
                 <elementDefinition Id="0bf9d41f-ebc7-4ef9-a25a-cf2d8a0adffd" />
               </stereotypeInstanceHasPropertyInstances>
               <stereotypeInstanceHasPropertyInstances Id="dd9c8189-9f75-44b8-aa06-688e609ca980">
-                <propertyInstance Id="942ff40d-dbc9-43b5-9b81-31ad20372187" name="ProjectPath" value="ClassTemplate=..\..\HiPMobile\HiPMobile\HiPMobile.csproj|InterfaceTemplate=..\..\HiPMobile\HiPMobile\HiPMobile.csproj">
+                <propertyInstance Id="942ff40d-dbc9-43b5-9b81-31ad20372187" name="ProjectPath" value="ClassTemplate=..\..\Sources\HiPMobile\HiPMobile.csproj|InterfaceTemplate=..\..\Sources\HiPMobile\HiPMobile.csproj">
                   <elementDefinition Id="0b679da8-a128-4378-9ad3-239ab5fc22f7" />
                 </propertyInstance>
                 <elementDefinition Id="d56b990d-dd37-4923-836b-573a668be35d" />

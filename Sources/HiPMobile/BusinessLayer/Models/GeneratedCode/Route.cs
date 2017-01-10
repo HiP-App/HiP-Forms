@@ -28,7 +28,7 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models
 	public class Route : RealmObject, IIdentifiable
 	{
 		//Attributes
-		[ObjectId]
+		[PrimaryKey]
 		public string Id{ get; set; }
 
 		public virtual string Title{ get; set; }

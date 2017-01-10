@@ -43,7 +43,7 @@ namespace <#= classNamespace #>
     // Write Attributes
     WriteLine ("//Attributes");
 
-    WriteLine ("[ObjectId]");
+    WriteLine ("[PrimaryKey]");
     //WriteLine ("private string _id{ get; set; }");
     //WriteLine ("public string Id{");
     //PushIndent ("\t");

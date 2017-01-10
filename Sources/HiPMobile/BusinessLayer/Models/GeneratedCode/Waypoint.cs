@@ -28,7 +28,7 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models
 	public class Waypoint : RealmObject, IIdentifiable
 	{
 		//Attributes
-		[ObjectId]
+		[PrimaryKey]
 		public string Id{ get; set; }
 
 		public virtual GeoLocation Location{ get; set; }
