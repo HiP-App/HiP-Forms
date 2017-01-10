@@ -12,6 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Windows.Input;
+using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
+using HipMobileUI.ViewModels.Pages;
 using Xamarin.Forms;
 
 namespace HipMobileUI.ViewModels.Views {
@@ -21,13 +26,23 @@ namespace HipMobileUI.ViewModels.Views {
         {
             Color= Color.Blue;
             Title = "Dummy";
+            TestCommand = new Command (() => {
+                                           var ex = ExhibitManager.GetExhibits ().FirstOrDefault ();
+                                           Navigation.PushAsync (new ExhibitDetailsViewModel (ex.Id));
+                                       });
         }
 
         private Color color;
+        private ICommand testCommand;
 
         public Color Color {
             get { return color; }
             set { SetProperty (ref color, value); }
+        }
+
+        public ICommand TestCommand {
+            get { return testCommand; }
+            set { SetProperty (ref testCommand, value); }
         }
 
     }

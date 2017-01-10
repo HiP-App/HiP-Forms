@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HipMobileUI.Pages.ExhibitDetailsPage"
+             Title="{Binding Title}">
+  <AbsoluteLayout>
+    <ContentView Content="{Binding SelectedView, Converter={StaticResource ViewModelToViewConverter}}" AbsoluteLayout.LayoutFlags="SizeProportional" AbsoluteLayout.LayoutBounds="0,0,1,1"/>
+    <Button Text="&lt;" Command="{Binding PreviousViewCommand}"  IsVisible="{Binding PreviousViewAvailable}" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0,0.5,70,70" BackgroundColor="#80D3D3D3"/>
+    <Button Text="&gt;" Command="{Binding NextViewCommand}" IsVisible="{Binding NextViewAvailable}" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="1,0.5,70,70" BackgroundColor="#80D3D3D3">
+      <Button.Triggers>
+        <DataTrigger TargetType="Button" Binding="{Binding PreviousViewAvailable}" Value="False">
+          <Setter Property="BackgroundColor" Value="#FFA500"></Setter>
+        </DataTrigger>
+      </Button.Triggers>
+    </Button>
+  </AbsoluteLayout>
+
+</ContentPage>

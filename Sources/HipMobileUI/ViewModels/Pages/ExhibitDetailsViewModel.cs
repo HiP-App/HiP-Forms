@@ -1,0 +1,138 @@
+﻿// Copyright (C) 2017 History in Paderborn App - Universität Paderborn
+// 
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+// 
+//       http://www.apache.org/licenses/LICENSE-2.0
+// 
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+using System;
+using System.Collections.ObjectModel;
+using System.Windows.Input;
+using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
+using de.upb.hip.mobile.pcl.BusinessLayer.Models;
+using HipMobileUI.ViewModels.Pages.ExhibitDetails;
+using Xamarin.Forms;
+using Page = de.upb.hip.mobile.pcl.BusinessLayer.Models.Page;
+
+namespace HipMobileUI.ViewModels.Pages
+{
+    class ExhibitDetailsViewModel : NavigationViewModel
+    {
+
+        private ExhibitSubviewViewModel selectedView;
+        private readonly Exhibit exhibit;
+        private ICommand nextViewCommand;
+        private ICommand previousViewCommand;
+        private bool previousViewAvailable;
+        private bool nextViewAvailable;
+        private int currentViewIndex;
+        private string title1;
+
+        public ExhibitDetailsViewModel (string exhibitId)
+        {
+            exhibit = ExhibitManager.GetExhibit (exhibitId);
+            currentViewIndex = 0;
+            if (exhibit != null)
+            {
+                SetCurrentView ();
+                NextViewAvailable = currentViewIndex < exhibit.Pages.Count - 1;
+                Title = exhibit.Name;
+            }
+            NextViewCommand = new Command (NextView);
+            PreviousViewCommand = new Command (PreviousView);
+            PreviousViewAvailable = false;
+        }
+
+        private void NextView ()
+        {
+            if (currentViewIndex < exhibit.Pages.Count - 1)
+            {
+                currentViewIndex++;
+                SetCurrentView ();
+                NextViewAvailable = currentViewIndex < exhibit.Pages.Count - 1;
+                PreviousViewAvailable = true;
+            }
+        }
+
+        private void PreviousView ()
+        {
+            if (currentViewIndex > 0)
+            {
+                currentViewIndex--;
+                SetCurrentView();
+                PreviousViewAvailable = currentViewIndex > 0;
+                NextViewAvailable = true;
+            }
+        }
+
+        private void SetCurrentView ()
+        {
+            Page currentPage = exhibit.Pages [currentViewIndex];
+            if (currentPage.IsAppetizerPage ())
+            {
+                SelectedView = new AppetizerViewModel (currentPage.AppetizerPage);
+            }
+            else if (currentPage.IsImagePage ())
+            {
+                SelectedView = new ImageViewModel ();
+            }
+            else if (currentPage.IsTextPage())
+            {
+                
+            }
+            else if (currentPage.IsTimeSliderPage ())
+            {
+                SelectedView = new TimeSliderViewModel ();
+            }
+            else
+            {
+                throw new Exception ("Unknown page found: " + currentPage);
+            }
+
+        }
+
+
+        #region propeties
+
+        public ExhibitSubviewViewModel SelectedView
+        {
+            get { return selectedView; }
+            set { SetProperty(ref selectedView, value); }
+        }
+
+        public ICommand NextViewCommand
+        {
+            get { return nextViewCommand; }
+            set { SetProperty(ref nextViewCommand, value); }
+        }
+
+        public ICommand PreviousViewCommand
+        {
+            get { return previousViewCommand; }
+            set { SetProperty(ref previousViewCommand, value); }
+        }
+
+        public bool PreviousViewAvailable
+        {
+            get { return previousViewAvailable; }
+            set { SetProperty(ref previousViewAvailable, value); }
+        }
+
+        public bool NextViewAvailable
+        {
+            get { return nextViewAvailable; }
+            set { SetProperty(ref nextViewAvailable, value); }
+        }
+
+        #endregion
+
+
+    }
+}

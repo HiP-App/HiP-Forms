@@ -30,7 +30,7 @@
     <MasterDetailPage.Detail>
         <NavigationPage>
             <x:Arguments>
-                <ContentPage Content="{Binding SelectedViewModel, Converter={StaticResource ViewToViewModelConverter}}" Title="{Binding SelectedViewModel.Title}"/>
+                <ContentPage Content="{Binding SelectedViewModel, Converter={StaticResource ViewModelToViewConverter}}" Title="{Binding SelectedViewModel.Title}"/>
             </x:Arguments>
         </NavigationPage>
     </MasterDetailPage.Detail>
