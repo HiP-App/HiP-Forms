@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System.IO;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using Xamarin.Forms;
 
@@ -33,7 +34,8 @@ namespace HipMobileUI.ViewModels.Views {
             Description = route.Description;
             Distance = $"{route.Distance} km";
             Duration = $"{route.Duration/60} min";
-            //Image = ImageSource.FromFile ("ic_schedule_black_24dp.png");
+            var data = route.Image.Data;
+            Image = ImageSource.FromStream (() => new MemoryStream(data));
         }
 
 
