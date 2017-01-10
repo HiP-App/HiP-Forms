@@ -203,6 +203,7 @@
     <Compile Include="Contracts\AndroidImageDimensions.cs" />
     <Compile Include="Helpers\Settings.cs" />
     <Compile Include="MainActivity.cs" />
+    <Compile Include="Map\DroidMapRenderer.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

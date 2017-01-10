@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:map="clr-namespace:HipMobileUI.Map;assembly=HipMobileUI"
+             x:Class="HipMobileUI.Views.MapView">
+  <ContentView.Content>
+    <map:OsmMap x:Name="Map"/>
+  </ContentView.Content>
+</ContentView>

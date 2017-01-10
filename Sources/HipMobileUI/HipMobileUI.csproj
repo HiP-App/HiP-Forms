@@ -59,6 +59,8 @@
     <Compile Include="Converters\ViewModelViewConverter.cs" />
     <Compile Include="Helpers\ExtensionMethods.cs" />
     <Compile Include="Helpers\Settings.cs" />
+    <Compile Include="Map\MapViewModel.cs" />
+    <Compile Include="Map\OsmMap.cs" />
     <Compile Include="Navigation\INavigationService.cs" />
     <Compile Include="Navigation\IViewCreator.cs" />
     <Compile Include="Navigation\IViewFor.cs" />
@@ -73,6 +75,9 @@
     <Compile Include="ViewModels\Views\DummyViewModel.cs" />
     <Compile Include="Views\DummyView.xaml.cs">
       <DependentUpon>DummyView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MapView.xaml.cs">
+      <DependentUpon>MapView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -153,6 +158,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\DummyView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\MapView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

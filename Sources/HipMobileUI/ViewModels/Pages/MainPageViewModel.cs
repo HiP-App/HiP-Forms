@@ -13,7 +13,9 @@
 // limitations under the License.
 
 using System.Collections.ObjectModel;
+using HipMobileUI.Map;
 using HipMobileUI.ViewModels.Views;
+using HipMobileUI.Views;
 using Xamarin.Forms;
 
 namespace HipMobileUI.ViewModels.Pages {
@@ -37,9 +39,12 @@ namespace HipMobileUI.ViewModels.Pages {
                 Title = "Green",
                 Color = Color.Green
             };
+
             MainScreenViewModels.Add (vm);
             MainScreenViewModels.Add(vm1);
             MainScreenViewModels.Add(vm2);
+            MainScreenViewModels.Add (new MapViewModel ());
+
         }
 
         private ObservableCollection<NavigationViewModel> mainScreenViewModels;
