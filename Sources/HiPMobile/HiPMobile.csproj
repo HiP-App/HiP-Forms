@@ -84,7 +84,6 @@
     <Compile Include="BusinessLayer\Models\GeneratedCode\Waypoint.cs" />
     <Compile Include="BusinessLayer\Models\NonGenerated\Exhibit.cs" />
     <Compile Include="BusinessLayer\Models\NonGenerated\ExhibitSet.cs" />
-    <Compile Include="BusinessLayer\Models\NonGenerated\CustomGeoPoint.cs" />
     <Compile Include="BusinessLayer\Models\NonGenerated\GeoLocationNonGenerated.cs" />
     <Compile Include="BusinessLayer\Models\NonGenerated\Image.cs" />
     <Compile Include="BusinessLayer\Models\NonGenerated\Page.cs" />
