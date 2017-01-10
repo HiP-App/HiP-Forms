@@ -5,7 +5,7 @@
     <StackLayout Orientation="Vertical" Spacing="0">
       <ScrollView>
         <StackLayout Orientation="Vertical">
-          <Image Source="{Binding Image}" BackgroundColor="Red" HeightRequest="175"></Image>
+          <Image Source="{Binding Image}" Aspect="AspectFill" HeightRequest="175"></Image>
           <StackLayout Padding="16" Orientation="Vertical">
             <StackLayout Orientation="Horizontal">
               <Label Text="Description" Style="{DynamicResource TitleStyle}"></Label>
