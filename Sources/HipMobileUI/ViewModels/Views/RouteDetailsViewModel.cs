@@ -12,32 +12,46 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System.Diagnostics;
 using System.IO;
+using System.Windows.Input;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
+using HipMobileUI.ViewModels.Pages;
 using Xamarin.Forms;
 
 namespace HipMobileUI.ViewModels.Views {
     public class RouteDetailsViewModel : NavigationViewModel {
 
-        public RouteDetailsViewModel ()
-        {
-        }
-
         public RouteDetailsViewModel (Route route)
-        {
-            FromRoute (route);
-        }
-
-        public void FromRoute (Route route)
         {
             Title = route.Title;
             Description = route.Description;
             Distance = $"{route.Distance} km";
             Duration = $"{route.Duration/60} min";
             var data = route.Image.Data;
-            Image = ImageSource.FromStream (() => new MemoryStream(data));
+            Image = ImageSource.FromStream (() => new MemoryStream(data));  
+            
+            StartRouteCommand = new Command (StartRoute);          
+            StartDescriptionPlaybackCommand = new Command (StartDescriptionPlayback);
         }
 
+        private void StartDescriptionPlayback(object s)
+        {
+            Navigation.DisplayAlert (
+                "Audio Playback", 
+                "Audio playback is currently not supported!", 
+                "Ok"
+            );
+        }
+
+        private void StartRoute ()
+        {
+            Navigation.DisplayAlert (
+                "Currently not supported!",
+                "Starting a route is currently not supported!",
+                "Ok"
+            );
+        }
 
         #region Properties
 
@@ -65,6 +79,9 @@ namespace HipMobileUI.ViewModels.Views {
             get { return image; }
             set { SetProperty (ref image, value); }
         }
+
+        public ICommand StartRouteCommand { get; }
+        public ICommand StartDescriptionPlaybackCommand { get; }
 
         #endregion Properties
 
