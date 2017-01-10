@@ -245,6 +245,11 @@
     <AndroidResource Include="Resources\drawable-xhdpi\ic_directions_walk.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\ic_directions_walk.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\ic_directions_walk.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_volume_up.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_volume_up.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_volume_up.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_volume_up.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_volume_up.png" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />

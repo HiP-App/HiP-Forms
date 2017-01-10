@@ -5,10 +5,13 @@
     <StackLayout Orientation="Vertical" Spacing="0">
       <ScrollView>
         <StackLayout Orientation="Vertical">
-          <!--<BoxView Color="Red" HeightRequest="175"></BoxView>-->
           <Image Source="{Binding Image}" BackgroundColor="Red" HeightRequest="175"></Image>
           <StackLayout Padding="16" Orientation="Vertical">
-            <Label Text="Description" Style="{DynamicResource TitleStyle}"></Label>
+            <StackLayout Orientation="Horizontal">
+              <Label Text="Description" Style="{DynamicResource TitleStyle}"></Label>
+              <Image Source="ic_volume_up.png" Margin="8,0,0,0"></Image>
+              <Label VerticalTextAlignment="Center" Text="Read Out"></Label>
+            </StackLayout>
             <Label Text="{Binding Description}"></Label>
             <Label Text="Map" Style="{DynamicResource TitleStyle}" Margin="0,8,0,0"></Label>
             <BoxView Color="Green" HeightRequest="225"></BoxView>

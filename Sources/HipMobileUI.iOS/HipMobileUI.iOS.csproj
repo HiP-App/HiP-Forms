@@ -252,6 +252,9 @@
     <BundleResource Include="Resources\ic_directions_walk.png" />
     <BundleResource Include="Resources\ic_directions_walk%402x.png" />
     <BundleResource Include="Resources\ic_directions_walk%403x.png" />
+    <BundleResource Include="Resources\ic_volume_up.png" />
+    <BundleResource Include="Resources\ic_volume_up%402x.png" />
+    <BundleResource Include="Resources\ic_volume_up%403x.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
