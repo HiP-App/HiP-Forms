@@ -12,7 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System.Reflection;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using Xamarin.Forms;
 
@@ -33,7 +32,8 @@ namespace HipMobileUI.ViewModels.Views {
             Title = route.Title;
             Description = route.Description;
             Distance = $"{route.Distance} km";
-            Duration = $"{route.Duration} min";
+            Duration = $"{route.Duration/60} min";
+            //Image = ImageSource.FromFile ("ic_schedule_black_24dp.png");
         }
 
 
@@ -57,7 +57,14 @@ namespace HipMobileUI.ViewModels.Views {
             get { return duration; }
             set { SetProperty (ref duration, value); }
         }
-        #endregion
+
+        private ImageSource image;
+        public ImageSource Image {
+            get { return image; }
+            set { SetProperty (ref image, value); }
+        }
+
+        #endregion Properties
 
     }
 }

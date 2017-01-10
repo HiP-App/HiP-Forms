@@ -25,6 +25,9 @@ namespace HipMobileUI.ViewModels.Pages {
         public MainPageViewModel ()
         {
             MainScreenViewModels = new ObservableCollection<NavigationViewModel> ();
+
+            MainScreenViewModels.Add(new RouteDetailsViewModel(RouteManager.GetRoutes().First()));
+
             var vm = new DummyViewModel ()
             {
                 Title = "Blue",
@@ -43,17 +46,6 @@ namespace HipMobileUI.ViewModels.Pages {
             MainScreenViewModels.Add (vm);
             MainScreenViewModels.Add(vm1);
             MainScreenViewModels.Add(vm2);
-
-            MainScreenViewModels.Add ( new RouteDetailsViewModel(
-                new Route {
-                    Description = "This is the (long) description of the route. " +
-                                  "I'll make it a bit longer so it is really long. " +
-                                  "It can be even longer! But now I don't know what " +
-                                  "to write anymore ...",
-                    Distance = 4.2,
-                    Duration = 30,
-                    Title = "Karlsroute"
-                }));
         }
 
         private ObservableCollection<NavigationViewModel> mainScreenViewModels;
