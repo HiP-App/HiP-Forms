@@ -28,7 +28,7 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models
 	public partial class GeoLocation : RealmObject, IIdentifiable
 	{
 		//Attributes
-		[ObjectId]
+		[PrimaryKey]
 		public string Id{ get; set; }
 
 		public virtual double Latitude{ get; set; }
@@ -39,12 +39,6 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models
 		// Contructor
 		public GeoLocation(){
 		}
-
-	    public GeoLocation (double lat, double lon)
-	    {
-	        Latitude = lat;
-	        Longitude = lon;
-	    }
 	}
 }
 

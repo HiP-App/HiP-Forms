@@ -28,7 +28,7 @@
           <propertyInstance
             Id="0b679da8-a128-4378-9ad3-239ab5fc22f7"
             name="ProjectPath"
-            value="ClassTemplate=..\..\HiPMobile\HiPMobile\HiPMobile.csproj|InterfaceTemplate=..\..\HiPMobile\HiPMobile\HiPMobile.csproj" />
+            value="ClassTemplate=..\..\Sources\HiPMobile\HiPMobile.csproj|InterfaceTemplate=..\..\Sources\HiPMobile\HiPMobile.csproj" />
         </stereotypeInstanceHasPropertyInstances>
         <stereotypeInstanceHasPropertyInstances
           Id="d36edca5-c551-41a2-a629-ccb0b9467961">

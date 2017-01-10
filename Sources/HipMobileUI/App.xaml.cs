@@ -1,4 +1,5 @@
-﻿using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
+﻿using System.Linq;
+using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.Common;
 using de.upb.hip.mobile.pcl.Common.Contracts;
 using de.upb.hip.mobile.pcl.DataAccessLayer;

@@ -75,7 +75,7 @@ namespace de.upb.hip.mobile.pcl.DataLayer {
         public T CreateObject<T> () where T : RealmObject, IIdentifiable, new ()
         {
             // create the instance
-            var instance = Instance.CreateObject<T>();
+            var instance = new T();
 
             // generate a unique id
             string id;
@@ -86,6 +86,7 @@ namespace de.upb.hip.mobile.pcl.DataLayer {
 
             // assign the id and return the instance
             instance.Id = id;
+            Instance.Add(instance);
             return instance;
         }
 
