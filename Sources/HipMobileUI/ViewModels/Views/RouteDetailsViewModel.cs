@@ -38,11 +38,6 @@ namespace HipMobileUI.ViewModels.Views
             Duration = $"{route.Duration / 60} min";
 
             Tags = new ObservableCollection<RouteTag> (route.RouteTags);
-//            foreach (var tag in route.RouteTags)
-//            {
-//                Tags.Add (tag);
-//            }
-//            Tags = (ObservableCollection<RouteTag>) route.RouteTags;
             var data = route.Image.Data;
             Image = ImageSource.FromStream(() => new MemoryStream(data));
 
