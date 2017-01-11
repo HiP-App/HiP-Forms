@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.IO;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using HipMobileUI.Helpers;
 using Xamarin.Forms;
@@ -43,7 +44,9 @@ namespace HipMobileUI.Views
                 foreach (var tag in routeTags)
                 {
                     var tagLayout = new StackLayout { Orientation = StackOrientation.Horizontal };
-                    tagLayout.Children.Add (new Xamarin.Forms.Image { Source = tag.Image.GetImageSource () });
+                    var imgData = tag.Image.Data;
+                    var imgSrc = ImageSource.FromStream (() => new MemoryStream (imgData));
+                    tagLayout.Children.Add (new Xamarin.Forms.Image { Source = imgSrc });
                     tagLayout.Children.Add (new Label { Text = tag.Name });
                     layout.Children.Add(tagLayout);
                 }
