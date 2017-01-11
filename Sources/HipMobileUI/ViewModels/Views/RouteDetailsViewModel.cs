@@ -15,38 +15,45 @@
 using System.Diagnostics;
 using System.IO;
 using System.Windows.Input;
+using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
-using HipMobileUI.ViewModels.Pages;
 using Xamarin.Forms;
 
-namespace HipMobileUI.ViewModels.Views {
-    public class RouteDetailsViewModel : NavigationViewModel {
+namespace HipMobileUI.ViewModels.Views
+{
+    public class RouteDetailsViewModel : NavigationViewModel
+    {
 
-        public RouteDetailsViewModel (Route route)
+        public RouteDetailsViewModel (string id) : this (RouteManager.GetRoute (id))
+        {
+            // Intentionally left blank
+        }
+
+        public RouteDetailsViewModel(Route route)
         {
             Title = route.Title;
             Description = route.Description;
             Distance = $"{route.Distance} km";
-            Duration = $"{route.Duration/60} min";
+            Duration = $"{route.Duration / 60} min";
             var data = route.Image.Data;
-            Image = ImageSource.FromStream (() => new MemoryStream(data));  
-            
-            StartRouteCommand = new Command (StartRoute);          
-            StartDescriptionPlaybackCommand = new Command (StartDescriptionPlayback);
+            Image = ImageSource.FromStream(() => new MemoryStream(data));
+
+            StartRouteCommand = new Command(StartRoute);
+            StartDescriptionPlaybackCommand = new Command(StartDescriptionPlayback);
         }
 
         private void StartDescriptionPlayback(object s)
         {
-            Navigation.DisplayAlert (
-                "Audio Playback", 
-                "Audio playback is currently not supported!", 
+            Navigation.DisplayAlert(
+                "Audio Playback",
+                "Audio playback is currently not supported!",
                 "Ok"
             );
         }
 
-        private void StartRoute ()
+        private void StartRoute()
         {
-            Navigation.DisplayAlert (
+            Navigation.DisplayAlert(
                 "Currently not supported!",
                 "Starting a route is currently not supported!",
                 "Ok"
@@ -63,21 +70,24 @@ namespace HipMobileUI.ViewModels.Views {
         }
 
         private string distance;
-        public string Distance {
+        public string Distance
+        {
             get { return distance; }
-            set { SetProperty (ref distance, value); }
+            set { SetProperty(ref distance, value); }
         }
 
         private string duration;
-        public string Duration {
+        public string Duration
+        {
             get { return duration; }
-            set { SetProperty (ref duration, value); }
+            set { SetProperty(ref duration, value); }
         }
 
         private ImageSource image;
-        public ImageSource Image {
+        public ImageSource Image
+        {
             get { return image; }
-            set { SetProperty (ref image, value); }
+            set { SetProperty(ref image, value); }
         }
 
         public ICommand StartRouteCommand { get; }

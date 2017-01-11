@@ -15,7 +15,6 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
-using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using HipMobileUI.ViewModels.Views;
 using Xamarin.Forms;
 
@@ -26,7 +25,8 @@ namespace HipMobileUI.ViewModels.Pages {
         {
             MainScreenViewModels = new ObservableCollection<NavigationViewModel> ();
 
-            MainScreenViewModels.Add(new RouteDetailsViewModel(RouteManager.GetRoutes().First()));
+            MainScreenViewModels.Add(new RouteDetailsViewModel (RouteManager.GetRoutes().First()));
+            MainScreenViewModels.Add (new RouteDetailsViewModel ("6a26fa8f-7b89-45ea-ab28-801615013de1"));
 
             var vm = new DummyViewModel ()
             {
