@@ -13,7 +13,7 @@
                 <Setter Property="TextColor" Value="Black" />
             </Style>
             <converters:ViewModelViewConverter x:Key="ViewToViewModelConverter" />
-            <converters:SelectedItemConverter x:Key="SelectedItemConverter" />
+            <converters:ItemTappedConverter x:Key="ItemTappedConverter" />
         </ResourceDictionary>
     </Application.Resources>
 </Application>

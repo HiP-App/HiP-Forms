@@ -18,11 +18,11 @@ using Xamarin.Forms;
 
 namespace HipMobileUI.Behaviors
 {
-    public class ListViewSelectedItemBehavior : Behavior<ListView>
+    public class ListViewTappedItemBehavior : Behavior<ListView>
     {
 
-        public static readonly BindableProperty CommandProperty = BindableProperty.Create("Command", typeof(ICommand), typeof(ListViewSelectedItemBehavior), null);
-        public static readonly BindableProperty InputConverterProperty = BindableProperty.Create("Converter", typeof(IValueConverter), typeof(ListViewSelectedItemBehavior), null);
+        public static readonly BindableProperty CommandProperty = BindableProperty.Create("Command", typeof(ICommand), typeof(ListViewTappedItemBehavior), null);
+        public static readonly BindableProperty InputConverterProperty = BindableProperty.Create("Converter", typeof(IValueConverter), typeof(ListViewTappedItemBehavior), null);
 
         public ICommand Command
         {
@@ -43,14 +43,14 @@ namespace HipMobileUI.Behaviors
             base.OnAttachedTo(bindable);
             AssociatedObject = bindable;
             bindable.BindingContextChanged += OnBindingContextChanged;
-            bindable.ItemSelected += OnListViewItemSelected;
+            bindable.ItemTapped += OnListViewItemTapped;
         }
 
         protected override void OnDetachingFrom(ListView bindable)
         {
             base.OnDetachingFrom(bindable);
             bindable.BindingContextChanged -= OnBindingContextChanged;
-            bindable.ItemSelected -= OnListViewItemSelected;
+            bindable.ItemTapped -= OnListViewItemTapped;
             AssociatedObject = null;
         }
 
@@ -59,7 +59,7 @@ namespace HipMobileUI.Behaviors
             OnBindingContextChanged();
         }
 
-        void OnListViewItemSelected(object sender, SelectedItemChangedEventArgs e)
+        void OnListViewItemTapped(object sender, ItemTappedEventArgs e)
         {
             if (Command == null)
             {

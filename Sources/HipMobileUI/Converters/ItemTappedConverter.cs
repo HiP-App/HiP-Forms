@@ -18,11 +18,11 @@ using Xamarin.Forms;
 
 namespace HipMobileUI.Converters
 {
-    public class SelectedItemConverter : IValueConverter
+    public class ItemTappedConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return ((SelectedItemChangedEventArgs) value).SelectedItem;
+            return ((ItemTappedEventArgs) value).Item;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

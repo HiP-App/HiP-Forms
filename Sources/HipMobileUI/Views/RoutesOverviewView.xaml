@@ -1,17 +1,33 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="HipMobileUI.Views.RoutesOverviewView"
              xmlns:behaviors="clr-namespace:HipMobileUI.Behaviors;assembly=HipMobileUI">
   <ContentView.Content>
-    <!--
-    <Label Text="Test"/>-->
-    <ListView Grid.Row="1" ItemsSource="{Binding Routes}">
+    <ListView RowHeight="120" Grid.Row="1" ItemsSource="{Binding Routes}">
       <ListView.Behaviors>
-        <behaviors:ListViewSelectedItemBehavior Command="{Binding ItemSelectedCommand}" Converter="{StaticResource SelectedItemConverter}" />
+        <behaviors:ListViewTappedItemBehavior Command="{Binding ItemSelectedCommand}" Converter="{StaticResource ItemTappedConverter}" />
       </ListView.Behaviors>
       <ListView.ItemTemplate>
         <DataTemplate>
-          <ImageCell ImageSource="{Binding Image}" Text="{Binding RouteTitle}"/>
+          <ViewCell>
+            <StackLayout Orientation="Horizontal" Margin="5,5,5,5">
+              <Image Source="{Binding Image}" />
+              <StackLayout Orientation="Vertical">
+                <Label Text="{Binding RouteTitle}" TextColor="Black" FontSize="18" />
+                <Label Text="{Binding RouteDescription}" TextColor="Black" />
+                <StackLayout Orientation="Horizontal">
+                  <Image Source="ic_schedule.png"/>
+                  <Label Text="{Binding Duration}" VerticalOptions="Center"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                  <Image Source="ic_directions_walk.png"></Image>
+                  <Label Text="{Binding Distance}" VerticalOptions="Center"/>
+                </StackLayout>
+              </StackLayout>
+            </StackLayout>
+          </ViewCell>
+          <!--
+          <ImageCell ImageSource="{Binding Image}" Text="{Binding RouteTitle}" Detail="{Binding RouteDescription}"/>-->
         </DataTemplate>
       </ListView.ItemTemplate>
     </ListView>

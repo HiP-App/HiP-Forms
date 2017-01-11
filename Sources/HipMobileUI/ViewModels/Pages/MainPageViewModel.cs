@@ -16,13 +16,20 @@ using System.Collections.ObjectModel;
 using HipMobileUI.ViewModels.Views;
 using Xamarin.Forms;
 
-namespace HipMobileUI.ViewModels.Pages {
-    public class MainPageViewModel : NavigationViewModel{
+namespace HipMobileUI.ViewModels.Pages
+{
+    public class MainPageViewModel : NavigationViewModel
+    {
 
-        public MainPageViewModel ()
+        public MainPageViewModel()
         {
-            MainScreenViewModels = new ObservableCollection<NavigationViewModel> ();
-            var vm = new DummyViewModel ()
+            MainScreenViewModels = new ObservableCollection<NavigationViewModel>();
+
+            var routesOverviewViewModel = new RoutesOverviewViewModel
+            {
+                Title = "Routen"
+            };
+            var vm = new DummyViewModel()
             {
                 Title = "Blue",
                 Color = Color.Blue
@@ -37,28 +44,26 @@ namespace HipMobileUI.ViewModels.Pages {
                 Title = "Green",
                 Color = Color.Green
             };
-            var routesOverviewViewModel = new RoutesOverviewViewModel
-            {
-                Title = "Test"
-            };
 
-            MainScreenViewModels.Add (vm);
+            MainScreenViewModels.Add(routesOverviewViewModel);
+            MainScreenViewModels.Add(vm);
             MainScreenViewModels.Add(vm1);
             MainScreenViewModels.Add(vm2);
-            MainScreenViewModels.Add (routesOverviewViewModel);
         }
 
         private ObservableCollection<NavigationViewModel> mainScreenViewModels;
         private NavigationViewModel selectedViewModel;
 
-        public ObservableCollection<NavigationViewModel> MainScreenViewModels {
+        public ObservableCollection<NavigationViewModel> MainScreenViewModels
+        {
             get { return mainScreenViewModels; }
-            set { SetProperty (ref mainScreenViewModels, value); }
+            set { SetProperty(ref mainScreenViewModels, value); }
         }
 
-        public NavigationViewModel SelectedViewModel {
+        public NavigationViewModel SelectedViewModel
+        {
             get { return selectedViewModel; }
-            set { SetProperty (ref (selectedViewModel), value); }
+            set { SetProperty(ref (selectedViewModel), value); }
         }
 
     }

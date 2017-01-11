@@ -56,8 +56,8 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Behaviors\ListViewSelectedItemBehavior.cs" />
-    <Compile Include="Converters\SelectedItemConverter.cs" />
+    <Compile Include="Behaviors\ListViewTappedItemBehavior.cs" />
+    <Compile Include="Converters\ItemTappedConverter.cs" />
     <Compile Include="Converters\ViewModelViewConverter.cs" />
     <Compile Include="Helpers\ExtensionMethods.cs" />
     <Compile Include="Helpers\Settings.cs" />

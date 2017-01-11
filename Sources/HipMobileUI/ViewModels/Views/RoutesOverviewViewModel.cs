@@ -14,31 +14,48 @@
 
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Windows.Input;
 using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using HipMobileUI.Helpers;
+using HipMobileUI.Navigation;
+using Xamarin.Forms;
 
-namespace HipMobileUI.ViewModels.Views {
-    public class RoutesOverviewViewModel : NavigationViewModel {
-
+namespace HipMobileUI.ViewModels.Views
+{
+    public class RoutesOverviewViewModel : NavigationViewModel
+    {
         private ObservableCollection<RoutesOverviewListItemViewModel> routes;
-
         public ObservableCollection<RoutesOverviewListItemViewModel> Routes
         {
-            get { return routes;}
-            set { SetProperty (ref routes, value); }
+            get { return routes; }
+            set { SetProperty(ref routes, value); }
         }
 
-        public RoutesOverviewViewModel ()
+        public RoutesOverviewViewModel()
         {
-            Routes = new ObservableCollection<RoutesOverviewListItemViewModel> ();
-            foreach (Route route in RouteManager.GetRoutes ())
+            Routes = new ObservableCollection<RoutesOverviewListItemViewModel>();
+            foreach (Route route in RouteManager.GetRoutes())
             {
-                Routes.Add (new RoutesOverviewListItemViewModel (route.Id));
+                Routes.Add(new RoutesOverviewListItemViewModel(route.Id));
             }
 
+            ItemSelectedCommand = new Command(x => NavigateToRoute(x as RoutesOverviewListItemViewModel));
         }
 
+        private void NavigateToRoute(RoutesOverviewListItemViewModel selectedRouteItemViewModel)
+        {
+            if (selectedRouteItemViewModel == null)
+            {
+                return;
+            }
+
+            var route = selectedRouteItemViewModel.Route;
+
+            //use Navigation here
+        }
+
+        public ICommand ItemSelectedCommand { get; set; }
 
     }
 }
