@@ -22,7 +22,7 @@ namespace HipMobileUI.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return ((SelectedItemChangedEventArgs)value).SelectedItem;
+            return ((SelectedItemChangedEventArgs) value).SelectedItem;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

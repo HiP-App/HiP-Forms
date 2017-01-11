@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.IO;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using HipMobileUI.Helpers;
@@ -9,11 +10,15 @@ using Xamarin.Forms;
 namespace HipMobileUI.ViewModels.Views {
     public class RoutesOverviewListItemViewModel : BaseViewModel {
 
+        private readonly byte[] imageData;
+
         public RoutesOverviewListItemViewModel (string routeId)
         {
             var route = RouteManager.GetRoute (routeId);
             RouteTitle = route.Title;
-            Image = route.Image.GetImageSource ();
+
+            imageData = route.Image.Data;
+            Image = ImageSource.FromStream(() => new MemoryStream(imageData));
 
             ItemSelectedCommand = new Command (OpenRouteDetails);
         }

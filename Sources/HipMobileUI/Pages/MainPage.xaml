@@ -20,7 +20,7 @@
                 <ListView Grid.Row="1" ItemsSource="{Binding MainScreenViewModels}" SeparatorVisibility="None" SelectedItem="{Binding SelectedViewModel}" ItemSelected="ListView_OnItemSelected" x:Name="SelectedView">
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <TextCell Text="{Binding Title}" TextColor="Black"/>
+                            <ImageCell ImageSource="{Binding Icon}" Text="{Binding Title}" TextColor="Black"/>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
