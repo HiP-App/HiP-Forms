@@ -5,29 +5,41 @@
              xmlns:view="clr-namespace:HipMobileUI.Views;assembly=HipMobileUI">
   <ContentView.Content>
     <StackLayout Orientation="Vertical" Spacing="0">
-      <ScrollView>
-        <StackLayout Orientation="Vertical">
+      <Grid>
+        <Grid.RowDefinitions>
+          <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <StackLayout>
           <Image Source="{Binding Image}" Aspect="AspectFill" HeightRequest="155"></Image>
-          <StackLayout Padding="16" Orientation="Vertical">
-            <StackLayout Orientation="Horizontal">
-              <Label Text="Description" Style="{DynamicResource TitleStyle}"></Label>
-              <StackLayout Orientation="Horizontal">
-                <StackLayout.GestureRecognizers>
-                  <TapGestureRecognizer Command="{Binding StartDescriptionPlaybackCommand}">
-                  </TapGestureRecognizer>
-                </StackLayout.GestureRecognizers>
-                <Image Source="ic_volume_up.png" Margin="8,0,0,0"></Image>
-                <Label VerticalTextAlignment="Center" Text="Read Out"></Label>
-              </StackLayout>
-            </StackLayout>
-            <Label Text="{Binding Description}"></Label>
-            <Label Text="Map" Style="{DynamicResource TitleStyle}" Margin="0,8,0,0"></Label>
-            <BoxView Color="#c9aa8d" HeightRequest="225"></BoxView>
-            <Label Text="Tags" Style="{DynamicResource TitleStyle}" Margin="0,8,0,0"></Label>
-            <view:RouteTagsView RouteTags="{Binding Tags}" Orientation="Vertical" Margin="8,4,0,0"></view:RouteTagsView>
-          </StackLayout>
+          <BoxView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"></BoxView>
         </StackLayout>
-      </ScrollView>
+        <ScrollView Padding="0,155,0,0">
+          <StackLayout Orientation="Vertical" BackgroundColor="White">
+            <StackLayout Padding="16" Orientation="Vertical">
+              <StackLayout Orientation="Horizontal">
+                <Label Text="Description" Style="{DynamicResource TitleStyle}"></Label>
+                <StackLayout Orientation="Horizontal">
+                  <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding StartDescriptionPlaybackCommand}">
+                    </TapGestureRecognizer>
+                  </StackLayout.GestureRecognizers>
+                  <Image Source="ic_volume_up.png" Margin="8,0,0,0"></Image>
+                  <Label VerticalTextAlignment="Center" Text="Read Out"></Label>
+                </StackLayout>
+              </StackLayout>
+              <Label Text="{Binding Description}"></Label>
+              <Label Text="Map" Style="{DynamicResource TitleStyle}" Margin="0,8,0,0"></Label>
+              <BoxView Color="#c9aa8d" HeightRequest="225"></BoxView>
+              <Label Text="Tags" Style="{DynamicResource TitleStyle}" Margin="0,8,0,0"></Label>
+              <view:RouteTagsView RouteTags="{Binding Tags}" Orientation="Vertical" Margin="8,4,0,0"></view:RouteTagsView>
+            </StackLayout>
+          </StackLayout>
+        </ScrollView>
+      </Grid>
+
       <BoxView HeightRequest="1" Color="#66000000"></BoxView>
       <StackLayout Orientation="Vertical" Spacing="0" BackgroundColor="#11000000">
         <Label Text="Start Route"
