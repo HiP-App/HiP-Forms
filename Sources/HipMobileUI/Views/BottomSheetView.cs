@@ -8,7 +8,7 @@ namespace HipMobileUI.Views
 {
     public class BottomSheetView : ContentView {
 
-        private readonly double BottomSheetExtensionFraction = 0.4;
+        private readonly double bottomSheetExtensionFraction = 0.4;
         private BottomSheetState bottomSheetState = BottomSheetState.Collapsed;
 
         public BottomSheetView()
@@ -87,8 +87,8 @@ namespace HipMobileUI.Views
             Rectangle bottomSheetRect = new Rectangle
             {
                 Left = 0,
-                Top = Height * (1 - BottomSheetExtensionFraction),
-                Size = new Size(Width, Height * BottomSheetExtensionFraction)
+                Top = Height * (1 - bottomSheetExtensionFraction),
+                Size = new Size(Width, Height * bottomSheetExtensionFraction)
             };
             Rectangle buttonRect = new Rectangle
             {
@@ -123,8 +123,8 @@ namespace HipMobileUI.Views
             Rectangle bottomSheetRect = new Rectangle
             {
                 Left = 0,
-                Top = Height * (1 - BottomSheetExtensionFraction / 2),
-                Size = new Size(Width, Height * BottomSheetExtensionFraction /2)
+                Top = Height * (1 - bottomSheetExtensionFraction / 2),
+                Size = new Size(Width, Height * bottomSheetExtensionFraction /2)
             };
             Rectangle buttonRect = new Rectangle
             {
