@@ -66,9 +66,8 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Managers {
             {
                 DataAccess.DeleteDatabase ();
                 DataAccess.CreateDatabase (DbDummyDataFiller.DatabaseVersion);
-                Settings.DatabaseVersion = DbDummyDataFiller.DatabaseVersion;
-
                 new DbDummyDataFiller ().InsertData ();
+                Settings.DatabaseVersion = DbDummyDataFiller.DatabaseVersion;
             }
         }
 

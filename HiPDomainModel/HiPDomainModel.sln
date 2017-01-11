@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{F088123C-0E9E-452A-89E6-6BA2F21D5CAC}") = "HiPDomainModel", "HiPDomainModel\HiPDomainModel.modelproj", "{6E6563C5-0040-4461-A1DD-8BF3793564F2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HiPMobile", "..\HiPMobile\HiPMobile\HiPMobile.csproj", "{703AFE03-8F94-4F5C-A5E8-7D9774D0CED1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HiPMobile", "..\Sources\HiPMobile\HiPMobile.csproj", "{703AFE03-8F94-4F5C-A5E8-7D9774D0CED1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
