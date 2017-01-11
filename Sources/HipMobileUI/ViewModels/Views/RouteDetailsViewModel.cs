@@ -36,7 +36,6 @@ namespace HipMobileUI.ViewModels.Views
             Description = route.Description;
             Distance = $"{route.Distance} km";
             Duration = $"{route.Duration / 60} min";
-
             Tags = new ObservableCollection<RouteTag> (route.RouteTags);
             var data = route.Image.Data;
             Image = ImageSource.FromStream(() => new MemoryStream(data));
