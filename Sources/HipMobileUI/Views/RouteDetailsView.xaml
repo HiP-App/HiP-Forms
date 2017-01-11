@@ -1,10 +1,14 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="HipMobileUI.Views.RouteDetailsView">
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="HipMobileUI.Views.RouteDetailsView"
+             xmlns:view="clr-namespace:HipMobileUI.Views;assembly=HipMobileUI">
   <ContentView.Content>
     <StackLayout Orientation="Vertical" Spacing="0">
+     <view:RouteTagsView RouteTags="{Binding RouteTags}" Orientation="Vertical"></view:RouteTagsView>
       <ScrollView>
         <StackLayout Orientation="Vertical">
-          <Image Source="{Binding Image}" Aspect="AspectFill" HeightRequest="175"></Image>
+          <Image Source="{Binding Image}" Aspect="AspectFill" HeightRequest="155"></Image>
           <StackLayout Padding="16" Orientation="Vertical">
             <StackLayout Orientation="Horizontal">
               <Label Text="Description" Style="{DynamicResource TitleStyle}"></Label>
@@ -24,18 +28,23 @@
         </StackLayout>
       </ScrollView>
       <BoxView HeightRequest="1" Color="#66000000"></BoxView>
-      <StackLayout Orientation="Horizontal" Padding="24,8,8,8" Spacing="32">
-        <StackLayout Orientation="Vertical">
+      <Label Text="Start Route" 
+             FontSize="Large" TextColor="{StaticResource AccentColor}" 
+             HorizontalOptions="CenterAndExpand" Margin="0,8,0,8">
+          <Label.GestureRecognizers>
+            <TapGestureRecognizer Command="{Binding StartRouteCommand}"></TapGestureRecognizer>
+          </Label.GestureRecognizers>
+        </Label>
+        <StackLayout Orientation="Horizontal" Padding="24,8,8,8" Spacing="32" HorizontalOptions="FillAndExpand">
+        <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand">
           <Image Source="ic_schedule.png"></Image>
-          <Label Text="{Binding Duration}" Style="{DynamicResource SubtitleStyle}"></Label>
+          <Label Text="{Binding Duration}" FontSize="Small"></Label>
         </StackLayout>
         <BoxView Color="#66000000" WidthRequest="1"></BoxView>
-        <StackLayout Orientation="Vertical">
+        <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand">
           <Image Source="ic_directions_walk.png"></Image>
-          <Label Text="{Binding Distance}" Style="{DynamicResource SubtitleStyle}"></Label>
+          <Label Text="{Binding Distance}" FontSize="Small"></Label>
         </StackLayout>
-        <BoxView Color="#66000000" WidthRequest="1"></BoxView>
-        <Button HorizontalOptions="EndAndExpand" Text="Start" Command="{Binding StartRouteCommand}"></Button>
       </StackLayout>
     </StackLayout>
   </ContentView.Content>
