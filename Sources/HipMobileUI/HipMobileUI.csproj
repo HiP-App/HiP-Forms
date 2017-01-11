@@ -78,6 +78,7 @@
     <Compile Include="Views\RouteDetailsView.xaml.cs">
       <DependentUpon>RouteDetailsView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\RouteTagsView.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="App.xaml">

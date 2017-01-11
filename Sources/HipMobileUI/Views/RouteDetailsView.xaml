@@ -5,7 +5,7 @@
              xmlns:view="clr-namespace:HipMobileUI.Views;assembly=HipMobileUI">
   <ContentView.Content>
     <StackLayout Orientation="Vertical" Spacing="0">
-     <view:RouteTagsView RouteTags="{Binding RouteTags}" Orientation="Vertical"></view:RouteTagsView>
+     <view:RouteTagsView RouteTags="{Binding Tags}" Orientation="Vertical"></view:RouteTagsView>
       <ScrollView>
         <StackLayout Orientation="Vertical">
           <Image Source="{Binding Image}" Aspect="AspectFill" HeightRequest="155"></Image>

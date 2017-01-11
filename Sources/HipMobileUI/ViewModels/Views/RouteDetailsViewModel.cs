@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System.Diagnostics;
+using System.Collections.Generic;
 using System.IO;
 using System.Windows.Input;
 using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
@@ -35,6 +35,7 @@ namespace HipMobileUI.ViewModels.Views
             Description = route.Description;
             Distance = $"{route.Distance} km";
             Duration = $"{route.Duration / 60} min";
+            Tags = route.RouteTags;
             var data = route.Image.Data;
             Image = ImageSource.FromStream(() => new MemoryStream(data));
 
@@ -88,6 +89,12 @@ namespace HipMobileUI.ViewModels.Views
         {
             get { return image; }
             set { SetProperty(ref image, value); }
+        }
+
+        private IList<RouteTag> tags;
+        public IList<RouteTag> Tags {
+            get { return tags; }
+            set { SetProperty(ref tags, value); }
         }
 
         public ICommand StartRouteCommand { get; }
