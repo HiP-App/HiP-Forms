@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="HipMobileUI.Views.RoutesOverviewView"
+             xmlns:behaviors="clr-namespace:HipMobileUI.Behaviors;assembly=HipMobileUI">
+
+  >
+  <ContentView.Content>
+    <ListView Grid.Row="1" ItemsSource="{Binding Routes}">
+      <ListView.Behaviors>
+        <behaviors:ListViewSelectedItemBehavior Command="{Binding ItemSelectedCommand}" Converter="{StaticResource SelectedItemConverter}" />
+      </ListView.Behaviors>
+      <ListView.ItemTemplate>
+        <DataTemplate>
+          <ImageCell ImageSource="{Binding Image}" Text="{Binding RouteTitle}"/>
+        </DataTemplate>
+      </ListView.ItemTemplate>
+    </ListView>
+  </ContentView.Content>
+</ContentView>

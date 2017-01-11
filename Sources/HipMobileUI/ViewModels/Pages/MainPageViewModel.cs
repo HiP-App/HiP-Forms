@@ -37,9 +37,15 @@ namespace HipMobileUI.ViewModels.Pages {
                 Title = "Green",
                 Color = Color.Green
             };
+            var routesOverviewViewModel = new RoutesOverviewViewModel
+            {
+                Title = "Test"
+            };
+
             MainScreenViewModels.Add (vm);
             MainScreenViewModels.Add(vm1);
             MainScreenViewModels.Add(vm2);
+            MainScreenViewModels.Add (routesOverviewViewModel);
         }
 
         private ObservableCollection<NavigationViewModel> mainScreenViewModels;
