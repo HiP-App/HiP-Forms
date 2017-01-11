@@ -12,17 +12,17 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
-using HipMobileUI.Helpers;
-using HipMobileUI.Navigation;
 using Xamarin.Forms;
 
 namespace HipMobileUI.ViewModels.Views
 {
+    /// <summary>
+    /// View model for the overview screen of all routes
+    /// </summary>
     public class RoutesOverviewViewModel : NavigationViewModel
     {
         private ObservableCollection<RoutesOverviewListItemViewModel> routes;
@@ -32,17 +32,24 @@ namespace HipMobileUI.ViewModels.Views
             set { SetProperty(ref routes, value); }
         }
 
+        /// <summary>
+        /// Creates the view model and fills the route data with all routes using the <see cref="RouteManager"/>
+        /// </summary>
         public RoutesOverviewViewModel()
         {
             Routes = new ObservableCollection<RoutesOverviewListItemViewModel>();
             foreach (Route route in RouteManager.GetRoutes())
             {
-                Routes.Add(new RoutesOverviewListItemViewModel(route.Id));
+                Routes.Add(new RoutesOverviewListItemViewModel(route));
             }
 
             ItemSelectedCommand = new Command(x => NavigateToRoute(x as RoutesOverviewListItemViewModel));
         }
 
+        /// <summary>
+        /// Navigates to the route details of the select route
+        /// </summary>
+        /// <param name="selectedRouteItemViewModel"></param>
         private void NavigateToRoute(RoutesOverviewListItemViewModel selectedRouteItemViewModel)
         {
             if (selectedRouteItemViewModel == null)
@@ -52,7 +59,7 @@ namespace HipMobileUI.ViewModels.Views
 
             var route = selectedRouteItemViewModel.Route;
 
-            //use Navigation here
+            //TODO: use Navigation here to details of a route
         }
 
         public ICommand ItemSelectedCommand { get; set; }

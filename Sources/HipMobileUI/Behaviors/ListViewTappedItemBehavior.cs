@@ -18,25 +18,34 @@ using Xamarin.Forms;
 
 namespace HipMobileUI.Behaviors
 {
+    /// <summary>
+    /// Tapped behaviour for a list view which executes a bindable command once an element is tapped
+    /// </summary>
     public class ListViewTappedItemBehavior : Behavior<ListView>
     {
 
-        public static readonly BindableProperty CommandProperty = BindableProperty.Create("Command", typeof(ICommand), typeof(ListViewTappedItemBehavior), null);
-        public static readonly BindableProperty InputConverterProperty = BindableProperty.Create("Converter", typeof(IValueConverter), typeof(ListViewTappedItemBehavior), null);
+        public static readonly BindableProperty CommandProperty = BindableProperty.Create(nameof(Command), typeof(ICommand), typeof(ListViewTappedItemBehavior), null);
+        public static readonly BindableProperty InputConverterProperty = BindableProperty.Create(nameof(Converter), typeof(IValueConverter), typeof(ListViewTappedItemBehavior), null);
 
+        /// <summary>
+        /// Command to be executed if a user taps an list view element
+        /// </summary>
         public ICommand Command
         {
             get { return (ICommand)GetValue(CommandProperty); }
             set { SetValue(CommandProperty, value); }
         }
 
+        /// <summary>
+        /// Converter needed to convert the tapped event into the view model of the tapped element
+        /// </summary>
         public IValueConverter Converter
         {
             get { return (IValueConverter)GetValue(InputConverterProperty); }
             set { SetValue(InputConverterProperty, value); }
         }
 
-        public ListView AssociatedObject { get; private set; }
+        private ListView AssociatedObject { get; set; }
 
         protected override void OnAttachedTo(ListView bindable)
         {
@@ -54,12 +63,12 @@ namespace HipMobileUI.Behaviors
             AssociatedObject = null;
         }
 
-        void OnBindingContextChanged(object sender, EventArgs e)
+        private void OnBindingContextChanged(object sender, EventArgs e)
         {
             OnBindingContextChanged();
         }
 
-        void OnListViewItemTapped(object sender, ItemTappedEventArgs e)
+        private void OnListViewItemTapped(object sender, ItemTappedEventArgs e)
         {
             if (Command == null)
             {

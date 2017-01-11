@@ -12,14 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using HipMobileUI.Navigation;
 using HipMobileUI.ViewModels.Views;
-using Xamarin.Forms;
 
 namespace HipMobileUI.Views
 {

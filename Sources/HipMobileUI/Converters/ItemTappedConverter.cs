@@ -18,8 +18,14 @@ using Xamarin.Forms;
 
 namespace HipMobileUI.Converters
 {
+    /// <summary>
+    /// Converter for ItemTappedEventArgs to the tapped item
+    /// </summary>
     public class ItemTappedConverter : IValueConverter
     {
+        /// <summary>
+        /// Converts the event args to the tapped item
+        /// </summary>
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             return ((ItemTappedEventArgs) value).Item;

@@ -1,9 +1,10 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="HipMobileUI.Views.RoutesOverviewView"
-             xmlns:behaviors="clr-namespace:HipMobileUI.Behaviors;assembly=HipMobileUI">
+             xmlns:behaviors="clr-namespace:HipMobileUI.Behaviors;assembly=HipMobileUI"
+             xmlns:helpers="clr-namespace:HipMobileUI.Helpers;assembly=HipMobileUI">
   <ContentView.Content>
-    <ListView RowHeight="120" Grid.Row="1" ItemsSource="{Binding Routes}">
+    <ListView RowHeight="140" Grid.Row="1" ItemsSource="{Binding Routes}">
       <ListView.Behaviors>
         <behaviors:ListViewTappedItemBehavior Command="{Binding ItemSelectedCommand}" Converter="{StaticResource ItemTappedConverter}" />
       </ListView.Behaviors>
@@ -23,11 +24,13 @@
                   <Image Source="ic_directions_walk.png"></Image>
                   <Label Text="{Binding Distance}" VerticalOptions="Center"/>
                 </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                  <Label Text="Auf der Route:" VerticalOptions="Center"/>
+                  <helpers:ImageListStackLayout ChildElements="{Binding Tags}" Orientation="Horizontal" />
+                </StackLayout>
               </StackLayout>
             </StackLayout>
           </ViewCell>
-          <!--
-          <ImageCell ImageSource="{Binding Image}" Text="{Binding RouteTitle}" Detail="{Binding RouteDescription}"/>-->
         </DataTemplate>
       </ListView.ItemTemplate>
     </ListView>
