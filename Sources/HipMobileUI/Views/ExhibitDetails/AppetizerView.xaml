@@ -1,9 +1,21 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="HipMobileUI.Views.ExhibitDetails.AppetizerView">
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="HipMobileUI.Views.ExhibitDetails.AppetizerView" xmlns:views="clr-namespace:HipMobileUI.Views;assembly=HipMobileUI">
   <ContentView.Content>
-    <StackLayout Spacing="10">
+    <!--<StackLayout Spacing="10">
       <Image Source="{Binding Image}" Aspect="AspectFill" VerticalOptions="FillAndExpand"/>
       <Label Text="{Binding Text}" LineBreakMode="WordWrap"/>
-    </StackLayout>
+    </StackLayout>-->
+    <views:BottomSheetView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+      <views:BottomSheetView.MainContent>
+        <ContentView VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+          <Image Source="{Binding Image}"/>
+        </ContentView>
+      </views:BottomSheetView.MainContent>
+      <views:BottomSheetView.BottomSheet>
+        <ContentView VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Padding="10">
+          <Label Text="{Binding Text}" LineBreakMode="WordWrap"/>
+        </ContentView>
+      </views:BottomSheetView.BottomSheet>
+    </views:BottomSheetView>
   </ContentView.Content>
 </ContentView>
