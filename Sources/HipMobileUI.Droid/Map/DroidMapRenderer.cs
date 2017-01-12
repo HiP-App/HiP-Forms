@@ -51,16 +51,24 @@ namespace de.upb.hip.mobile.droid.Map {
             {
                 // Unsubscribe
                 e.OldElement.ExhibitSetChanged -= NewElementOnExhibitSetChanged;
+                e.OldElement.GpsLocationChanged -= NewElementOnGpsLocationChanged;
             }
             if (e.NewElement != null)
             {
                 // Subscribe
+                e.NewElement.GpsLocationChanged += NewElementOnGpsLocationChanged;
+                NewElementOnGpsLocationChanged (e.NewElement.GpsLocation);
                 e.NewElement.ExhibitSetChanged += NewElementOnExhibitSetChanged;
                 NewElementOnExhibitSetChanged (e.NewElement.ExhibitSet);
             }
         }
 
         private void NewElementOnExhibitSetChanged (ExhibitSet set)
+        {
+            Console.WriteLine("Test");
+        }
+
+        private void NewElementOnGpsLocationChanged (GeoLocation gpsLocation)
         {
             Console.WriteLine("Test");
         }

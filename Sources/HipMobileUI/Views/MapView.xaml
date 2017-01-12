@@ -3,6 +3,6 @@
              xmlns:map="clr-namespace:HipMobileUI.Map;assembly=HipMobileUI"
              x:Class="HipMobileUI.Views.MapView">
   <ContentView.Content>
-    <map:OsmMap x:Name="Map" ExhibitSet="{Binding ExhibitSet}"/>
+    <map:OsmMap x:Name="Map" ExhibitSet="{Binding ExhibitSet}" GpsLocation="{Binding GpsLocation}"/>
   </ContentView.Content>
 </ContentView>

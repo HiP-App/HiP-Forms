@@ -12,12 +12,14 @@ namespace HipMobileUI.Map
     class MapViewModel : NavigationViewModel
     {
         private ExhibitSet exhibitSet;
+        private GeoLocation gpsLocation;
 
         //TODO just for testing can be deleted later
         public MapViewModel ()
         {
             Title = "Map";
             ExhibitSet = ExhibitManager.GetExhibitSets().First();
+            GpsLocation = new GeoLocation(51.73296887, 8.7352252);
         }
 
        
@@ -25,6 +27,12 @@ namespace HipMobileUI.Map
         public ExhibitSet ExhibitSet {
             get { return exhibitSet; }
             set { SetProperty (ref exhibitSet, value); }
+        }
+
+        public GeoLocation GpsLocation
+        {
+            get { return gpsLocation; }
+            set { SetProperty(ref gpsLocation, value); }
         }
 
     }
