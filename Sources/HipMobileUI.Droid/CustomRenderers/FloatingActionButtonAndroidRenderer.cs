@@ -21,37 +21,45 @@ namespace de.upb.hip.mobile.droid.CustomRenderers
             if (Control == null)
             {
                 fab = new Android.Support.Design.Widget.FloatingActionButton(Context);
+                fab.Click += FabOnClick;
                 SetNativeControl(fab);
-                
             }
 
             if (e.OldElement != null)
             {
                 // Unsubscribe
-                
+                e.OldElement.NormalColorChanged -= SetNormalColor;
+                e.OldElement.RippleColorChanged -= SetRippleColor;
+                e.OldElement.IconChanged -= SetIcon;
             }
             if (e.NewElement != null)
             {
-                // Subscribe
+                // set init values
                 currentButton = e.NewElement;
-                currentButton.IconChanged+=CurrentButtonOnIconChanged;
-                fab.Click += FabOnClick;
+                SetIcon(currentButton.Icon);
+                SetNormalColor (currentButton.NormalColor);
+                SetRippleColor (currentButton.RippleColor);
 
-                fab.SetBackgroundColor(e.NewElement.NormalColor.ToAndroid());
-                CurrentButtonOnIconChanged (currentButton.Icon);
-                var a=ConvertDpToPixel (48);
+                // Subscribe
+                currentButton.NormalColorChanged+=SetNormalColor;
+                currentButton.RippleColorChanged+=SetRippleColor;
+                currentButton.IconChanged+=SetIcon;
             }
         }
 
-        public static float ConvertDpToPixel(float dp)
+        private void SetRippleColor (Color newColor)
         {
-            var metrics = Android.Content.Res.Resources.System.DisplayMetrics;
-            return dp * ((float)metrics.DensityDpi / (float)DisplayMetricsDensity.Default);
+            fab.SetRippleColor (newColor.ToAndroid());
         }
 
-        private void CurrentButtonOnIconChanged (string newIcon)
+        private void SetNormalColor (Color newColor)
         {
-            //fab.SetImageDrawable (Resources.GetDrawable (Android.Resource.Drawable.ButtonPlus));
+            fab.SetBackgroundColor(newColor.ToAndroid());
+        }
+
+
+        private void SetIcon (string newIcon)
+        {
             int resourceId = Resources.GetIdentifier(newIcon, "drawable", Context.PackageName);
             fab.SetImageResource(resourceId);
         }

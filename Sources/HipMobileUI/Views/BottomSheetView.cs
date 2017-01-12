@@ -30,11 +30,21 @@ namespace HipMobileUI.Views
             button = new FloatingActionButton
             {
                 NormalColor = (Color) Application.Current.Resources ["AccentColor"],
+                RippleColor = (Color)Application.Current.Resources["AccentDarkColor"],
                 Command = new Command (ButtonOnClicked),
                 Icon = "ic_keyboard_arrow_up"
             };
             AbsoluteLayout.SetLayoutFlags(button, AbsoluteLayoutFlags.PositionProportional);
-            AbsoluteLayout.SetLayoutBounds(button, new Rectangle(0.9, 0.92, AbsoluteLayout.AutoSize, AbsoluteLayout.AutoSize));
+            Size fabSize;
+            if (Device.OS == TargetPlatform.iOS)
+            {
+                fabSize = new Size(FloatingActionButton.IosSize, FloatingActionButton.IosSize);
+            }
+            else
+            {
+                fabSize = new Size(AbsoluteLayout.AutoSize, AbsoluteLayout.AutoSize);
+            }
+            AbsoluteLayout.SetLayoutBounds(button, new Rectangle(0.9, 0.92, fabSize.Width, fabSize.Height));
 
             layout.Children.Add (MainContentView);
             layout.Children.Add(BottomSheetContentView);

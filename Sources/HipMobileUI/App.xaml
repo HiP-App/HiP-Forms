@@ -7,8 +7,9 @@
         <ResourceDictionary>
             <Color x:Key="PrimaryColor">#3F51B5</Color>
             <Color x:Key="PrimaryDarkColor">#303F9F</Color>
-            <Color x:Key="AccentColor">#FF9800</Color>
-            <Style TargetType="Label">
+            <Color x:Key="AccentColor">#FF9800</Color>E65100
+            <Color x:Key="AccentDarkColor">#E65100</Color>
+          <Style TargetType="Label">
                 <Setter Property="FontSize" Value="12" />
                 <Setter Property="TextColor" Value="Black" />
             </Style>

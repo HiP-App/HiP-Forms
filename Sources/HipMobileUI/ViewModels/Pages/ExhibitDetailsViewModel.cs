@@ -81,7 +81,7 @@ namespace HipMobileUI.ViewModels.Pages
             }
             else if (currentPage.IsImagePage ())
             {
-                SelectedView = new ImageViewModel ();
+                SelectedView = new ImageViewModel (currentPage.ImagePage);
             }
             else if (currentPage.IsTextPage())
             {

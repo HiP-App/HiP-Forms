@@ -1,6 +1,17 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="HipMobileUI.Views.ExhibitDetails.ImageView">
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="HipMobileUI.Views.ExhibitDetails.ImageView" xmlns:views="clr-namespace:HipMobileUI.Views;assembly=HipMobileUI">
   <ContentView.Content>
-    <BoxView Color="Red"/>
+    <views:BottomSheetView>
+      <views:BottomSheetView.MainContent>
+
+          <Image Source="{Binding Image}" Aspect="AspectFit"/>
+
+      </views:BottomSheetView.MainContent>
+      <views:BottomSheetView.BottomSheet>
+        <ContentView Margin="10">
+          <Label Text="{Binding Description}"/>
+        </ContentView>
+      </views:BottomSheetView.BottomSheet>
+    </views:BottomSheetView>
   </ContentView.Content>
 </ContentView>
