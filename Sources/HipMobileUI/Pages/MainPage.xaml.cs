@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
+using de.upb.hip.mobile.pcl.BusinessLayer.Models;
+using HipMobileUI.Map;
 using HipMobileUI.Navigation;
 using HipMobileUI.ViewModels.Pages;
 using Xamarin.Forms;
@@ -18,6 +21,8 @@ namespace HipMobileUI.Pages
         {
             InitializeComponent();
             ViewModel.SelectedViewModel = ViewModel.MainScreenViewModels[0];
+
+            
         }
 
         private void ListView_OnItemSelected (object sender, SelectedItemChangedEventArgs e)
