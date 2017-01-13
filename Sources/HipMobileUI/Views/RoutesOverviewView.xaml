@@ -2,7 +2,11 @@
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="HipMobileUI.Views.RoutesOverviewView"
              xmlns:behaviors="clr-namespace:HipMobileUI.Behaviors;assembly=HipMobileUI"
-             xmlns:helpers="clr-namespace:HipMobileUI.Helpers;assembly=HipMobileUI">
+             xmlns:helpers="clr-namespace:HipMobileUI.Helpers;assembly=HipMobileUI"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:viewModels="clr-namespace:HipMobileUI.ViewModels.Views;assembly=HipMobileUI">
   <ContentView.Content>
     <ListView RowHeight="140" Grid.Row="1" ItemsSource="{Binding Routes}">
       <ListView.Behaviors>
@@ -11,7 +15,7 @@
       <ListView.ItemTemplate>
         <DataTemplate>
           <ViewCell>
-            <StackLayout Orientation="Horizontal" Margin="5,5,5,5">
+            <StackLayout Orientation="Horizontal" Margin="5,5,5,5" d:DataContext="{d:DesignInstance viewModels:RoutesOverviewListItemViewModel}">
               <Image Source="{Binding Image}" />
               <StackLayout Orientation="Vertical">
                 <Label Text="{Binding RouteTitle}" TextColor="Black" FontSize="18" />

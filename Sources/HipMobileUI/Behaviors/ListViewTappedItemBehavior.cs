@@ -24,8 +24,8 @@ namespace HipMobileUI.Behaviors
     public class ListViewTappedItemBehavior : Behavior<ListView>
     {
 
-        public static readonly BindableProperty CommandProperty = BindableProperty.Create(nameof(Command), typeof(ICommand), typeof(ListViewTappedItemBehavior), null);
-        public static readonly BindableProperty InputConverterProperty = BindableProperty.Create(nameof(Converter), typeof(IValueConverter), typeof(ListViewTappedItemBehavior), null);
+        public static readonly BindableProperty CommandProperty = BindableProperty.Create(nameof(Command), typeof(ICommand), typeof(ListViewTappedItemBehavior));
+        public static readonly BindableProperty InputConverterProperty = BindableProperty.Create(nameof(Converter), typeof(IValueConverter), typeof(ListViewTappedItemBehavior));
 
         /// <summary>
         /// Command to be executed if a user taps an list view element
@@ -68,7 +68,7 @@ namespace HipMobileUI.Behaviors
             OnBindingContextChanged();
         }
 
-        private void OnListViewItemTapped(object sender, ItemTappedEventArgs e)
+        internal void OnListViewItemTapped(object sender, ItemTappedEventArgs e)
         {
             if (Command == null)
             {

@@ -43,12 +43,12 @@ namespace HipMobileUI.ViewModels.Views {
             Image = ImageSource.FromStream(() => new MemoryStream(imageData));
         }
 
-        private string GetRouteDistanceText (double routeDistance)
+        internal string GetRouteDistanceText (double routeDistance)
         {
             return string.Format ("{0} km", routeDistance);
         }
 
-        private string GetRouteDurationText (int routeDuration)
+        internal string GetRouteDurationText (int routeDuration)
         {
             int durationInMinutes = routeDuration / 60;
             return string.Format ("{0} Minuten", durationInMinutes);
