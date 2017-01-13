@@ -37,9 +37,14 @@ namespace HipMobileUI.ViewModels.Pages {
                 Title = "Green",
                 Color = Color.Green
             };
+            var vm3 = new LicenseScreenViewModel()
+            {
+                Title = "Rechtliche Hinweise"
+            };
             MainScreenViewModels.Add (vm);
             MainScreenViewModels.Add(vm1);
             MainScreenViewModels.Add(vm2);
+            MainScreenViewModels.Add(vm3);
         }
 
         private ObservableCollection<NavigationViewModel> mainScreenViewModels;
