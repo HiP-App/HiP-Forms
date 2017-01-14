@@ -6,7 +6,17 @@ namespace HipMobileUI.Controls
 {
     public class FloatingActionButton : View {
 
-        public static readonly int IosSize = 60;
+        public static readonly int IosSize = 55;
+
+        public FloatingActionButton ()
+        {
+            if (Device.OS == TargetPlatform.iOS)
+            {
+                // on iOS set the size manually
+                WidthRequest = IosSize;
+                HeightRequest = IosSize;
+            }
+        }
 
         #region NormalColor
         public static readonly BindableProperty NormalColorProperty=

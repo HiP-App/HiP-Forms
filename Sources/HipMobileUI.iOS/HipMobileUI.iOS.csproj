@@ -254,6 +254,15 @@
     <BundleResource Include="Resources\ic_keyboard_arrow_up%403x.png" />
     <BundleResource Include="Resources\ic_keyboard_arrow_up%402x.png" />
     <BundleResource Include="Resources\ic_keyboard_arrow_up.png" />
+    <BundleResource Include="Resources\ic_arrow_forward.png" />
+    <BundleResource Include="Resources\ic_arrow_forward%402x.png" />
+    <BundleResource Include="Resources\ic_arrow_forward%403x.png" />
+    <BundleResource Include="Resources\ic_chevron_left.png" />
+    <BundleResource Include="Resources\ic_chevron_left%402x.png" />
+    <BundleResource Include="Resources\ic_chevron_left%403x.png" />
+    <BundleResource Include="Resources\ic_chevron_right.png" />
+    <BundleResource Include="Resources\ic_chevron_right%402x.png" />
+    <BundleResource Include="Resources\ic_chevron_right%403x.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -88,6 +88,7 @@
     <Compile Include="BusinessLayer\Models\NonGenerated\Image.cs" />
     <Compile Include="BusinessLayer\Models\NonGenerated\Page.cs" />
     <Compile Include="Common\Contracts\IDataLoader.cs" />
+    <Compile Include="Common\Contracts\IFabSizeCalculator.cs" />
     <Compile Include="Common\Contracts\IImageDimension.cs" />
     <Compile Include="Common\Contracts\IKeyProvider.cs" />
     <Compile Include="Common\DbDummyDataFiller.cs" />

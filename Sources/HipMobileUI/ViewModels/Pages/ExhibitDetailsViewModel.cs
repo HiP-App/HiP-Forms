@@ -13,7 +13,6 @@
 // limitations under the License.
 
 using System;
-using System.Collections.ObjectModel;
 using System.Windows.Input;
 using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
@@ -33,7 +32,7 @@ namespace HipMobileUI.ViewModels.Pages
         private bool previousViewAvailable;
         private bool nextViewAvailable;
         private int currentViewIndex;
-        private string title1;
+        private bool showNextFab;
 
         public ExhibitDetailsViewModel (string exhibitId)
         {
@@ -42,15 +41,14 @@ namespace HipMobileUI.ViewModels.Pages
             if (exhibit != null)
             {
                 SetCurrentView ();
-                NextViewAvailable = currentViewIndex < exhibit.Pages.Count - 1;
                 Title = exhibit.Name;
             }
-            NextViewCommand = new Command (NextView);
-            PreviousViewCommand = new Command (PreviousView);
+            NextViewCommand = new Command (GotoNextView);
+            PreviousViewCommand = new Command (GotoPreviousView);
             PreviousViewAvailable = false;
         }
 
-        private void NextView ()
+        private void GotoNextView ()
         {
             if (currentViewIndex < exhibit.Pages.Count - 1)
             {
@@ -61,14 +59,16 @@ namespace HipMobileUI.ViewModels.Pages
             }
         }
 
-        private void PreviousView ()
+        private void GotoPreviousView ()
         {
             if (currentViewIndex > 0)
             {
                 currentViewIndex--;
                 SetCurrentView();
                 PreviousViewAvailable = currentViewIndex > 0;
-                NextViewAvailable = true;
+
+                if(currentViewIndex !=0)
+                    NextViewAvailable = true;
             }
         }
 
@@ -77,25 +77,31 @@ namespace HipMobileUI.ViewModels.Pages
             Page currentPage = exhibit.Pages [currentViewIndex];
             if (currentPage.IsAppetizerPage ())
             {
-                SelectedView = new AppetizerViewModel (currentPage.AppetizerPage);
-            }
-            else if (currentPage.IsImagePage ())
-            {
-                SelectedView = new ImageViewModel (currentPage.ImagePage);
-            }
-            else if (currentPage.IsTextPage())
-            {
-                
-            }
-            else if (currentPage.IsTimeSliderPage ())
-            {
-                SelectedView = new TimeSliderViewModel ();
+                ShowNextFab = true;
+                NextViewAvailable = false;
+                SelectedView = new AppetizerViewModel (exhibit.Name, currentPage.AppetizerPage);
             }
             else
             {
-                throw new Exception ("Unknown page found: " + currentPage);
-            }
+                ShowNextFab = false;
+                if (currentPage.IsImagePage())
+                {
 
+                    SelectedView = new ImageViewModel(currentPage.ImagePage);
+                }
+                else if (currentPage.IsTextPage())
+                {
+
+                }
+                else if (currentPage.IsTimeSliderPage())
+                {
+                    SelectedView = new TimeSliderViewModel();
+                }
+                else
+                {
+                    throw new Exception("Unknown page found: " + currentPage);
+                }
+            }
         }
 
 
@@ -129,6 +135,11 @@ namespace HipMobileUI.ViewModels.Pages
         {
             get { return nextViewAvailable; }
             set { SetProperty(ref nextViewAvailable, value); }
+        }
+
+        public bool ShowNextFab {
+            get { return showNextFab; }
+            set { SetProperty (ref showNextFab, value); }
         }
 
         #endregion

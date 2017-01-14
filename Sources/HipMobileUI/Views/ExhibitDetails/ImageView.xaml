@@ -8,9 +8,13 @@
 
       </views:BottomSheetView.MainContent>
       <views:BottomSheetView.BottomSheet>
-        <ContentView Margin="10">
-          <Label Text="{Binding Description}"/>
-        </ContentView>
+        <StackLayout>
+          <BoxView Color="#50000000" HeightRequest="1"/>
+            <StackLayout Margin="16,16" Spacing="10" BackgroundColor="White">
+              <Label Text="{Binding Headline}" TextColor="#000000" FontSize="16" FontAttributes="Bold"/>
+              <Label Text="{Binding Description}" TextColor="#87000000" FontSize="14"/>
+            </StackLayout>
+        </StackLayout>
       </views:BottomSheetView.BottomSheet>
     </views:BottomSheetView>
   </ContentView.Content>
