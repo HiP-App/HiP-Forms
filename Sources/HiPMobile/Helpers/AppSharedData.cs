@@ -16,7 +16,7 @@ using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 
 namespace de.upb.hip.mobile.pcl.Helpers
 {
-    public class AppSharedConstants
+    public class AppSharedData
     {
         public static readonly GeoLocation PaderbornMainStation = new GeoLocation
         {
@@ -33,5 +33,6 @@ namespace de.upb.hip.mobile.pcl.Helpers
         public static readonly int MinTimeBwUpdates = 4000; //2000 milliseconds (2seconds)
         public static readonly int MinDistanceChangeForUpdates = 10; // 2 metres
         public static readonly double ExhibitRadius = 0.02; // 20m
+        public static int MapZoomLevel = 13;
     }
 }
