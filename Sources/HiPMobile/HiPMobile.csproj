@@ -255,6 +255,7 @@
     <EmbeddedResource Include="Content\Kaiserpfalz\theo_teaser.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Content\Kaiserpfalz\kaiserpfalz_image_1.jpg" />
     <Content Include="FodyWeavers.xml">
       <SubType>Designer</SubType>
     </Content>

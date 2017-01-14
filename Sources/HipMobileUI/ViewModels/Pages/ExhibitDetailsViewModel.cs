@@ -77,7 +77,7 @@ namespace HipMobileUI.ViewModels.Pages
             Page currentPage = exhibit.Pages [currentViewIndex];
             if (currentPage.IsAppetizerPage ())
             {
-                ShowNextFab = true;
+                if(exhibit.Pages.Count>1)ShowNextFab = true;
                 NextViewAvailable = false;
                 SelectedView = new AppetizerViewModel (exhibit.Name, currentPage.AppetizerPage);
             }

@@ -12,7 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
 using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
@@ -27,7 +26,8 @@ namespace HipMobileUI.ViewModels.Views {
             Color= Color.Blue;
             Title = "Dummy";
             TestCommand = new Command (() => {
-                                           var ex = ExhibitManager.GetExhibits ().FirstOrDefault ();
+                                           var exhibits = ExhibitManager.GetExhibits ();
+                                           var ex = exhibits.FirstOrDefault();
                                            Navigation.PushAsync (new ExhibitDetailsViewModel (ex.Id));
                                        });
         }

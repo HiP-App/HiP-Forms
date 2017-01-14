@@ -3,9 +3,7 @@
   <ContentView.Content>
     <views:BottomSheetView>
       <views:BottomSheetView.MainContent>
-
-          <Image Source="{Binding Image}" Aspect="AspectFit"/>
-
+        <Image Source="{Binding Image}" Aspect="AspectFit"/>
       </views:BottomSheetView.MainContent>
       <views:BottomSheetView.BottomSheet>
         <StackLayout>
