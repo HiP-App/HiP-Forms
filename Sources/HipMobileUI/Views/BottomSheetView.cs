@@ -23,7 +23,7 @@ namespace HipMobileUI.Views
 {
     public class BottomSheetView : ContentView {
 
-        private readonly double bottomSheetExtensionFraction = 0.4;
+        private readonly double bottomSheetExtensionFraction = 0.35;
         private BottomSheetState bottomSheetState = BottomSheetState.Collapsed;
         private readonly PanGestureRecognizer swipeGestureRecognizer;
 

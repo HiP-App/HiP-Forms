@@ -6,7 +6,7 @@
         <ColumnDefinition Width="*"/>
       </Grid.ColumnDefinitions>
       <Grid.RowDefinitions>
-        <RowDefinition Height="*"/>
+        <RowDefinition Height="0.7*"/>
         <RowDefinition Height="0.3*"/>
       </Grid.RowDefinitions>
       <Image Source="{Binding Image}" Aspect="AspectFit"/>
