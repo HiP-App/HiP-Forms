@@ -12,7 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System;
 using System.IO;
+using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using Xamarin.Forms;
 using Image = de.upb.hip.mobile.pcl.BusinessLayer.Models.Image;
 
@@ -22,6 +24,33 @@ namespace HipMobileUI.Helpers {
         public static ImageSource GetImageSource (this Image image)
         {
             return ImageSource.FromStream (() => new MemoryStream (image.Data));
+        }
+
+        public static double DistanceLatLon (GeoLocation user, GeoLocation exhibit) //(double lat1, double lat2, double lon1, double lon2, double el1, double el2)
+        {
+            const int r = 6371; // Radius of the earth
+
+            double latDistance = DegreeToRadian (exhibit.Latitude - user.Latitude);
+            double lonDistance = DegreeToRadian (exhibit.Longitude - user.Longitude);
+            double a = Math.Sin (latDistance/2)*Math.Sin (latDistance/2)
+                       + Math.Cos (DegreeToRadian (user.Latitude))*Math.Cos (DegreeToRadian (exhibit.Latitude))*Math.Sin (lonDistance/2)*Math.Sin (lonDistance/2);
+            double c = 2*Math.Atan2 (Math.Sqrt (a), Math.Sqrt (1 - a));
+            double distance = r*c*1000; // convert to meters
+
+
+            distance = Math.Pow (distance, 2);
+
+            return Math.Sqrt (distance);
+        }
+
+        private static double DegreeToRadian (double angle)
+        {
+            return Math.PI*angle/180.0;
+        }
+
+        private static double RadianToDegree (double angle)
+        {
+            return angle*(180.0/Math.PI);
         }
 
     }
