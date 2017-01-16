@@ -7,17 +7,14 @@ namespace HipMobileUI.Container
 
     public class TabView : StackLayout
     {
-        private readonly StackLayout tabBar;
+        private readonly Grid tabBar;
 
         public TabView ()
         {
             Orientation = StackOrientation.Vertical;
 
-            tabBar = new StackLayout
-            {
-                Orientation = StackOrientation.Horizontal,
-                HeightRequest = 45
-            };
+            tabBar = new Grid ();
+            tabBar.RowDefinitions.Add (new RowDefinition { Height = new GridLength(45)});
             Children.Add (tabBar);
         }
 
@@ -48,13 +45,14 @@ namespace HipMobileUI.Container
 
             // replace current tabs with new ones
             tabBar.Children.Clear();
-            tabBar.Orientation = StackOrientation.Horizontal;
 
             for (int i = 0; i < newTabs.Count; i++)
             {
+                tabBar.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Star });
+                tabBar.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1) });
                 var title = newTabs.ElementAt (i);
-                tabBar.Children.Add(CreateTab(tabView, title, i));
-                tabBar.Children.Add(CreateDivider());
+                tabBar.Children.Add(CreateTab(tabView, title, i), 2*i, 0);
+                tabBar.Children.Add(CreateDivider(), 2*i + 1, 0);
             }
 
             tabBar.Children.RemoveAt(tabBar.Children.Count - 1);   // remove last divider
@@ -90,7 +88,7 @@ namespace HipMobileUI.Container
         {
             var tabView = bindable as TabView;
             
-            var tabBar = tabView?.Children.First() as StackLayout;
+            var tabBar = tabView?.Children.First() as Grid;
             if (tabBar == null)
                 return;
 
@@ -128,6 +126,8 @@ namespace HipMobileUI.Container
                 Text = title,
                 VerticalOptions = LayoutOptions.FillAndExpand,
                 VerticalTextAlignment = TextAlignment.Center,
+                HorizontalOptions = LayoutOptions.FillAndExpand,
+                HorizontalTextAlignment = TextAlignment.Center,
                 Margin = new Thickness(8, 0)
             };
 

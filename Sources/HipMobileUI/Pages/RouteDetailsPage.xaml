@@ -15,7 +15,7 @@
         <!-- Description Tab -->
         <ScrollView>
           <StackLayout Orientation="Vertical">
-            <StackLayout Padding="16" Orientation="Vertical">
+            <StackLayout Padding="16,6,16,0" Orientation="Vertical">
               <StackLayout Orientation="Horizontal">
                 <StackLayout.GestureRecognizers>
                   <TapGestureRecognizer Command="{Binding StartDescriptionPlaybackCommand}">
@@ -57,6 +57,7 @@
           </Label>
         </StackLayout>
       </StackLayout>
+      
     </StackLayout>
   </ContentPage.Content>
 </ContentPage>
