@@ -1,7 +1,7 @@
 ﻿using HipMobileUI.Navigation;
 using HipMobileUI.ViewModels.Views;
 
-namespace HipMobileUI.Views
+namespace HipMobileUI.Pages
 {
     public partial class RouteDetailsView : IViewFor<RouteDetailsViewModel>
     {

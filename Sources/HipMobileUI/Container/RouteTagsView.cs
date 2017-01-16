@@ -1,10 +1,9 @@
 ﻿using System.Collections.ObjectModel;
 using System.IO;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
-using HipMobileUI.Helpers;
 using Xamarin.Forms;
 
-namespace HipMobileUI.Views
+namespace HipMobileUI.Container
 {
     /// <summary>
     /// Extension of a <see cref="StackLayout"/> to display a list of <see cref="RouteTags"/>.

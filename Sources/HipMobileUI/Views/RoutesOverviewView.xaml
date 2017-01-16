@@ -6,7 +6,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             xmlns:viewModels="clr-namespace:HipMobileUI.ViewModels.Views;assembly=HipMobileUI">
+             xmlns:viewModels="clr-namespace:HipMobileUI.ViewModels.Views;assembly=HipMobileUI"
+             xmlns:container="clr-namespace:HipMobileUI.Container;assembly=HipMobileUI">
   <ContentView.Content>
     <ListView RowHeight="140" Grid.Row="1" ItemsSource="{Binding Routes}">
       <ListView.Behaviors>
@@ -30,7 +31,7 @@
                 </StackLayout>
                 <StackLayout Orientation="Horizontal">
                   <Label Text="Auf der Route:" VerticalOptions="Center"/>
-                  <helpers:ImageListStackLayout ChildElements="{Binding Tags}" Orientation="Horizontal" />
+                  <container:ImageListStackLayout ChildElements="{Binding Tags}" Orientation="Horizontal" />
                 </StackLayout>
               </StackLayout>
             </StackLayout>

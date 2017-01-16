@@ -1,7 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using Xamarin.Forms;
 
-namespace HipMobileUI.Helpers
+namespace HipMobileUI.Container
 {
     /// <summary>
     /// Extension of the <see cref="StackLayout"/> to enable displaying a dynmaic list of images

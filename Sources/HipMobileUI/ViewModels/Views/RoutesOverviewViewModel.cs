@@ -59,7 +59,7 @@ namespace HipMobileUI.ViewModels.Views
 
             var route = selectedRouteItemViewModel.Route;
 
-            //TODO: use Navigation here to details of a route
+            Navigation.PushAsync (new RouteDetailsViewModel (route));
         }
 
         public ICommand ItemSelectedCommand { get; set; }

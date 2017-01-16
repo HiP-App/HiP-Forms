@@ -60,7 +60,7 @@
     <Compile Include="Converters\ItemTappedConverter.cs" />
     <Compile Include="Converters\ViewModelViewConverter.cs" />
     <Compile Include="Helpers\ExtensionMethods.cs" />
-    <Compile Include="Helpers\ImageListStackLayout.cs" />
+    <Compile Include="Container\ImageListStackLayout.cs" />
     <Compile Include="Helpers\Settings.cs" />
     <Compile Include="Navigation\INavigationService.cs" />
     <Compile Include="Navigation\IViewCreator.cs" />
@@ -68,6 +68,9 @@
     <Compile Include="Navigation\NavigationService.cs" />
     <Compile Include="Pages\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\RouteDetailsPage.xaml.cs">
+      <DependentUpon>RouteDetailsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\Annotations3.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -83,10 +86,7 @@
     <Compile Include="Views\RoutesOverviewView.xaml.cs">
       <DependentUpon>RoutesOverviewView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\RouteDetailsView.xaml.cs">
-      <DependentUpon>RouteDetailsView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\RouteTagsView.cs" />
+    <Compile Include="Container\RouteTagsView.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="App.xaml">
@@ -174,7 +174,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\RouteDetailsView.xaml">
+    <EmbeddedResource Include="Pages\RouteDetailsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

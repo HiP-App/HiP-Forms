@@ -1,9 +1,10 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="HipMobileUI.Views.RouteDetailsView"
-             xmlns:view="clr-namespace:HipMobileUI.Views;assembly=HipMobileUI">
-  <ContentView.Content>
+             x:Class="HipMobileUI.Pages.RouteDetailsView"
+             xmlns:container="clr-namespace:HipMobileUI.Container;assembly=HipMobileUI"
+             Title="{Binding Title}">
+  <ContentPage.Content>
     <StackLayout Orientation="Vertical" Spacing="0">
       <Grid>
         <Grid.RowDefinitions>
@@ -34,7 +35,7 @@
               <Label Text="Map" Style="{DynamicResource TitleStyle}" Margin="0,8,0,0"></Label>
               <BoxView Color="#c9aa8d" HeightRequest="225"></BoxView>
               <Label Text="Tags" Style="{DynamicResource TitleStyle}" Margin="0,8,0,0"></Label>
-              <view:RouteTagsView RouteTags="{Binding Tags}" Orientation="Vertical" Margin="8,4,0,0"></view:RouteTagsView>
+              <container:RouteTagsView RouteTags="{Binding Tags}" Orientation="Vertical" Margin="8,4,0,0"></container:RouteTagsView>
             </StackLayout>
           </StackLayout>
         </ScrollView>
@@ -63,5 +64,5 @@
         </StackLayout>
       </StackLayout>
     </StackLayout>
-  </ContentView.Content>
-</ContentView>
+  </ContentPage.Content>
+</ContentPage>
