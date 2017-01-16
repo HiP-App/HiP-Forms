@@ -57,6 +57,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Behaviors\ListViewTappedItemBehavior.cs" />
+    <Compile Include="Container\TabView.cs" />
     <Compile Include="Converters\RouteTagViewListConverter.cs" />
     <Compile Include="Converters\ImageListConverter.cs" />
     <Compile Include="Converters\ItemTappedConverter.cs" />

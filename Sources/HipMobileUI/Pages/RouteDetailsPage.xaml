@@ -6,6 +6,15 @@
              Title="{Binding Title}">
   <ContentPage.Content>
     <StackLayout Orientation="Vertical" Spacing="0">
+
+      <container:TabView Tabs="{Binding Tabs}">
+        <StackLayout></StackLayout>
+        <!-- ^^^^^ for tabs, don't delete! -->
+        <Label Text="Label 1"></Label>
+        <Label Text="Label 2"></Label>
+      </container:TabView>
+
+
       <Grid>
         <Grid.RowDefinitions>
           <RowDefinition Height="*"></RowDefinition>

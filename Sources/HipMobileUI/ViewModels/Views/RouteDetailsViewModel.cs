@@ -12,12 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Windows.Input;
 using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
+using Realms;
 using Xamarin.Forms;
 
 namespace HipMobileUI.ViewModels.Views
@@ -42,6 +42,8 @@ namespace HipMobileUI.ViewModels.Views
 
             StartRouteCommand = new Command(StartRoute);
             StartDescriptionPlaybackCommand = new Command(StartDescriptionPlayback);
+
+            Tabs = new ObservableCollection<string> {"Description", "Map"};
         }
 
         private void StartDescriptionPlayback(object s)
@@ -100,6 +102,12 @@ namespace HipMobileUI.ViewModels.Views
 
         public ICommand StartRouteCommand { get; }
         public ICommand StartDescriptionPlaybackCommand { get; }
+
+        private ObservableCollection<string> tabs;
+        public ObservableCollection<string> Tabs {
+            get { return tabs; }
+            set { SetProperty (ref tabs, value); }
+        }
 
         #endregion Properties
 
