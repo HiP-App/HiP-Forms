@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System;
 using System.Threading.Tasks;
 using de.upb.hip.mobile.pcl.Common;
 using de.upb.hip.mobile.pcl.Common.Contracts;
@@ -70,8 +71,17 @@ namespace HipMobileUI.Views
 
             BottomSheetContentView.ChildAdded+=BottomSheetContentViewOnChildAdded;
             BottomSheetContentView.ChildRemoved-=BottomSheetContentViewOnChildRemoved;
+
+            layout.LayoutChanged+=LayoutOnLayoutChanged;
         }
 
+        private async void LayoutOnLayoutChanged (object sender, EventArgs eventArgs)
+        {
+            if (bottomSheetState == BottomSheetState.Extended)
+            {
+                await ExtendBottomSheet ();
+            }
+        }
 
         #region BottomSheet Gesture
         private void BottomSheetContentViewOnChildAdded (object sender, ElementEventArgs elementEventArgs)

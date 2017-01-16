@@ -8,6 +8,5 @@
     <ContentView Content="{Binding SelectedView, Converter={StaticResource ViewModelToViewConverter}}" AbsoluteLayout.LayoutFlags="SizeProportional" AbsoluteLayout.LayoutBounds="0,0,1,1"/>
     <Button Image="ic_chevron_left" Command="{Binding PreviousViewCommand}"  IsVisible="{Binding PreviousViewAvailable}" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0,0.5" BackgroundColor="#80D3D3D3"/>
     <Button Image="ic_chevron_right" Command="{Binding NextViewCommand}" IsVisible="{Binding NextViewAvailable}" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="1,0.5" BackgroundColor="#80D3D3D3" />
-    <controls:FloatingActionButton Icon="ic_arrow_forward" NormalColor="{StaticResource AccentColor}" RippleColor="{StaticResource AccentDarkColor}" IsVisible="{Binding ShowNextFab}" Command="{Binding NextViewCommand}" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0.85,0.75"/> 
-  </AbsoluteLayout>
+    </AbsoluteLayout>
 </ContentPage>

@@ -32,7 +32,6 @@ namespace HipMobileUI.ViewModels.Pages
         private bool previousViewAvailable;
         private bool nextViewAvailable;
         private int currentViewIndex;
-        private bool showNextFab;
 
         public ExhibitDetailsViewModel (string exhibitId)
         {
@@ -42,6 +41,7 @@ namespace HipMobileUI.ViewModels.Pages
             {
                 SetCurrentView ();
                 Title = exhibit.Name;
+                NextViewAvailable = true;
             }
             NextViewCommand = new Command (GotoNextView);
             PreviousViewCommand = new Command (GotoPreviousView);
@@ -77,13 +77,10 @@ namespace HipMobileUI.ViewModels.Pages
             Page currentPage = exhibit.Pages [currentViewIndex];
             if (currentPage.IsAppetizerPage ())
             {
-                if(exhibit.Pages.Count>1)ShowNextFab = true;
-                NextViewAvailable = false;
                 SelectedView = new AppetizerViewModel (exhibit.Name, currentPage.AppetizerPage);
             }
             else
             {
-                ShowNextFab = false;
                 if (currentPage.IsImagePage())
                 {
 
@@ -135,11 +132,6 @@ namespace HipMobileUI.ViewModels.Pages
         {
             get { return nextViewAvailable; }
             set { SetProperty(ref nextViewAvailable, value); }
-        }
-
-        public bool ShowNextFab {
-            get { return showNextFab; }
-            set { SetProperty (ref showNextFab, value); }
         }
 
         #endregion
