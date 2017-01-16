@@ -14,7 +14,7 @@ namespace HipMobileUI.Container
             Orientation = StackOrientation.Vertical;
 
             tabBar = new Grid ();
-            tabBar.RowDefinitions.Add (new RowDefinition { Height = new GridLength(45)});
+            tabBar.RowDefinitions.Add (new RowDefinition { Height = GridLength.Auto});
             Children.Add (tabBar);
         }
 
