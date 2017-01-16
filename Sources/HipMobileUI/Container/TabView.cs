@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.Diagnostics;
+﻿using System.Collections.ObjectModel;
 using System.Linq;
 using Xamarin.Forms;
 
@@ -55,6 +53,13 @@ namespace HipMobileUI.Container
 
             tabBar.Children.RemoveAt(tabBar.Children.Count - 1);   // remove last divider
 
+            // hide all children except tab bar
+            foreach (var child in tabView.Children)
+            {
+                child.IsVisible = false;
+            }
+            tabView.Children.First ().IsVisible = true;
+
             // reset current tab to first
             tabView.CurrentTab = "0";
         }
@@ -90,7 +95,8 @@ namespace HipMobileUI.Container
                 var tab = tabBar.Children.ElementAt (TranslateTabIndexToLabelIndex (previousTabIndex));
                 UnhilightTabLabel(tab as Label);
 
-                // TODO: switch tab contents
+                var contents = tabView.Children.ElementAt (TranslateTabIndexToChildIndex (previousTabIndex));
+                contents.IsVisible = false;
             }
 
             // set new index
@@ -99,7 +105,8 @@ namespace HipMobileUI.Container
                 var currentTabIndex = int.Parse((string)newvalue);
                 HighlightTabLabel(tabBar.Children.ElementAt (TranslateTabIndexToLabelIndex(currentTabIndex)) as Label);
 
-                // TODO: switch tab contents
+                var contents = tabView.Children.ElementAt (TranslateTabIndexToChildIndex (currentTabIndex));
+                contents.IsVisible = true;
             }
             
         }
@@ -117,7 +124,6 @@ namespace HipMobileUI.Container
 
             var gestureRecognizer = new TapGestureRecognizer();
             gestureRecognizer.Tapped += (s, e) => {
-                Debug.WriteLine($"{index}");
                 tabView.CurrentTab = $"{index}";
             };
 
@@ -151,7 +157,12 @@ namespace HipMobileUI.Container
 
         private static int TranslateTabIndexToLabelIndex (int index)
         {
-            return index*2;
+            return index * 2;
+        }
+
+        private static int TranslateTabIndexToChildIndex (int index)
+        {
+            return index + 1;
         }
 
     }
