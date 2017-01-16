@@ -27,15 +27,16 @@ namespace HipMobileUI.iOS.Map
                 var mapView = new MKMapView();
                 this.SetNativeControl(mapView);
                 var nativeMap = Control as MKMapView;
+                //nativeMap.ShowsUserLocation = true;
 
                 var overlay = new MKTileOverlay ("http://tile.openstreetmap.org/{z}/{x}/{y}.png") {CanReplaceMapContent = true};
                 mapView.AddOverlay(overlay, MKOverlayLevel.AboveLabels);
                 mapView.OverlayRenderer = (view, mkOverlay) => new MKTileOverlayRenderer(overlay);
 
                 MKCoordinateRegion region = nativeMap.Region;
-                region.Span.LatitudeDelta = 0.05;
-                region.Span.LongitudeDelta = 0.05;
-                region.Center = new CLLocationCoordinate2D(AppSharedData.PaderbornMainStation.Latitude, AppSharedData.PaderbornMainStation.Longitude);
+                region.Span.LatitudeDelta = 0.02; // TODO - unify with the zoomlevel in AppSharedData
+                region.Span.LongitudeDelta = 0.02;
+                region.Center = new CLLocationCoordinate2D(AppSharedData.PaderbornCenter.Latitude, AppSharedData.PaderbornCenter.Longitude);
                 nativeMap.Region = region;
 
                 if (e.NewElement != null)
@@ -71,9 +72,9 @@ namespace HipMobileUI.iOS.Map
             else
             {
                 annotationView = new ExhibitAnnotationView (annotation, annotationReusableId);
+                annotationView.CalloutOffset = new CGPoint(0, 0);
+                annotationView.RightCalloutAccessoryView = UIButton.FromType(UIButtonType.DetailDisclosure);
             }
-            annotationView.CalloutOffset = new CGPoint(0, 0);
-            annotationView.RightCalloutAccessoryView = UIButton.FromType(UIButtonType.DetailDisclosure);
             annotationView.CanShowCallout = true;
             return annotationView;
         }
