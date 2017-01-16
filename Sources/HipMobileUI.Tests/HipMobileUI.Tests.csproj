@@ -84,6 +84,7 @@
     <Compile Include="Behaviors\ListViewTappedItemBehaviorTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\NavigationViewModelTest.cs" />
+    <Compile Include="ViewModels\Pages\RoutesDetailsPageViewModelTest.cs" />
     <Compile Include="ViewModels\Views\RoutesOverviewViewModelTest.cs" />
     <Compile Include="ViewModels\Views\RoutesOverviewListItemViewModelTest.cs" />
   </ItemGroup>
