@@ -235,16 +235,21 @@
     <Content Include="FodyWeavers.xml" />
     <AndroidResource Include="Resources\values-v21\style.xml" />
     <AndroidResource Include="Resources\drawable\ic_launcher.png" />
-    <AndroidResource Include="Resources\drawable-hdpi\ic_directions_walk.png" />
     <AndroidResource Include="Resources\drawable-hdpi\ic_schedule.png" />
-    <AndroidResource Include="Resources\drawable-mdpi\ic_directions_walk.png" />
     <AndroidResource Include="Resources\drawable-mdpi\ic_schedule.png" />
-    <AndroidResource Include="Resources\drawable-xhdpi\ic_directions_walk.png" />
-    <AndroidResource Include="Resources\drawable-xhdpi\ic_schedule.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\ic_directions_walk.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\ic_schedule.png" />
-    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_directions_walk.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\ic_schedule.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_schedule.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_schedule.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_directions_walk.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_directions_walk.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_directions_walk.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_directions_walk.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_directions_walk.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_volume_up.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_volume_up.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_volume_up.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_volume_up.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_volume_up.png" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />

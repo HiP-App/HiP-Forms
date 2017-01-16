@@ -13,6 +13,8 @@
 // limitations under the License.
 
 using System.Collections.ObjectModel;
+using System.Linq;
+using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using HipMobileUI.ViewModels.Views;
 using Xamarin.Forms;
 
@@ -29,7 +31,9 @@ namespace HipMobileUI.ViewModels.Pages
             {
                 Title = "Routen"
             };
-            var vm = new DummyViewModel()
+
+            var vm = new DummyViewModel ()
+
             {
                 Title = "Blue",
                 Color = Color.Blue
@@ -46,6 +50,7 @@ namespace HipMobileUI.ViewModels.Pages
             };
 
             MainScreenViewModels.Add(routesOverviewViewModel);
+            MainScreenViewModels.Add(new RouteDetailsViewModel(RouteManager.GetRoutes().First()));
             MainScreenViewModels.Add(vm);
             MainScreenViewModels.Add(vm1);
             MainScreenViewModels.Add(vm2);
