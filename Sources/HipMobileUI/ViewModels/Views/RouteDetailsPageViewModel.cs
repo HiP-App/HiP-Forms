@@ -1,4 +1,4 @@
-﻿// Copyright (C) 2016 History in Paderborn App - Universität Paderborn
+﻿// Copyright (C) 2017 History in Paderborn App - Universität Paderborn
 //  
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -21,15 +21,27 @@ using Xamarin.Forms;
 
 namespace HipMobileUI.ViewModels.Views
 {
-    public class RouteDetailsViewModel : NavigationViewModel
+    /// <summary>
+    /// ViewModel for the RouteDetailsPage.
+    /// </summary>
+    public class RouteDetailsPageViewModel : NavigationViewModel
     {
-
-        public RouteDetailsViewModel (string id) : this (RouteManager.GetRoute (id))
+        /// <summary>
+        /// Creates a new ViewModel for the route with the specified ID.
+        /// Fetches the corresponding <see cref="Route"/> via the <see cref="RouteManager"/>
+        /// and passes it to the alternative constructor.
+        /// </summary>
+        /// <param name="id">The ID of the route the ViewModel is created for.</param>
+        public RouteDetailsPageViewModel (string id) : this (RouteManager.GetRoute (id))
         {
             // Intentionally left blank
         }
 
-        public RouteDetailsViewModel(Route route)
+        /// <summary>
+        /// Creates a new ViewModel for the specified <see cref="Route"/>.
+        /// </summary>
+        /// <param name="route">The <see cref="Route"/> the ViewModel is created for.</param>
+        public RouteDetailsPageViewModel(Route route)
         {
             Title = route.Title;
             Description = route.Description;
@@ -45,7 +57,10 @@ namespace HipMobileUI.ViewModels.Views
             Tabs = new ObservableCollection<string> {"Description", "Map"};
         }
 
-        private void StartDescriptionPlayback(object s)
+        /// <summary>
+        /// Starts audio playback for the route's description.
+        /// </summary>
+        private void StartDescriptionPlayback()
         {
             Navigation.DisplayAlert(
                 "Audio Playback",
@@ -54,6 +69,9 @@ namespace HipMobileUI.ViewModels.Views
             );
         }
 
+        /// <summary>
+        /// Starts navigation for the route.
+        /// </summary>
         private void StartRoute()
         {
             Navigation.DisplayAlert(
@@ -99,15 +117,16 @@ namespace HipMobileUI.ViewModels.Views
             set { SetProperty(ref tags, value); }
         }
 
-        public ICommand StartRouteCommand { get; }
-        public ICommand StartDescriptionPlaybackCommand { get; }
-
         private ObservableCollection<string> tabs;
-        public ObservableCollection<string> Tabs {
+        public ObservableCollection<string> Tabs
+        {
             get { return tabs; }
-            set { SetProperty (ref tabs, value); }
+            set { SetProperty(ref tabs, value); }
         }
 
+        public ICommand StartRouteCommand { get; }
+        public ICommand StartDescriptionPlaybackCommand { get; }
+        
         #endregion Properties
 
     }

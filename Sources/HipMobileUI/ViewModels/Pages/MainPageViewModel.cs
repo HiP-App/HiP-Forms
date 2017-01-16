@@ -50,7 +50,7 @@ namespace HipMobileUI.ViewModels.Pages
             };
 
             MainScreenViewModels.Add(routesOverviewViewModel);
-            //MainScreenViewModels.Add(new RouteDetailsViewModel(RouteManager.GetRoutes().First()));
+            //MainScreenViewModels.Add(new RouteDetailsPageViewModel(RouteManager.GetRoutes().First()));
             MainScreenViewModels.Add(vm);
             MainScreenViewModels.Add(vm1);
             MainScreenViewModels.Add(vm2);
