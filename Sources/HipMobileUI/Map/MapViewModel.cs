@@ -21,6 +21,7 @@ using System.Threading.Tasks;
 using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using de.upb.hip.mobile.pcl.Helpers;
+using HipMobileUI.Helpers;
 using HipMobileUI.ViewModels;
 using Plugin.Geolocator;
 using Plugin.Geolocator.Abstractions;
@@ -31,6 +32,7 @@ namespace HipMobileUI.Map {
 
         private ExhibitSet exhibitSet;
         private GeoLocation gpsLocation;
+        private int i;
 
         //TODO just for testing can be deleted later
         public MapViewModel ()
@@ -59,10 +61,25 @@ namespace HipMobileUI.Map {
                 Longitude = position.Longitude
             };
             GpsLocation = newGpsLocation;
+            ExhibitPopUp ();
 
         }
 
-
+        private void ExhibitPopUp ()
+        {
+            double dist;
+            foreach (Exhibit e in exhibitSet)
+            {
+                dist = ExtensionMethods.DistanceLatLon (e.Location, gpsLocation);
+                if (dist < 30)
+                {
+                    var b = Navigation.DisplayAlert ("Sehenwürdigkeit in der Nähe", "Möchten sie sich " + e.Name + " genauer ansehen", "Ja", "Nein");
+                    //if(b.Result)
+                        //TODO go to exhibit
+                    break;
+                }
+            }
+        }
 
         public ExhibitSet ExhibitSet {
             get { return exhibitSet; }
