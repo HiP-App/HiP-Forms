@@ -31,7 +31,7 @@
                 </StackLayout>
                 <StackLayout Orientation="Horizontal">
                   <Label Text="Auf der Route:" VerticalOptions="Center"/>
-                  <container:ImageListStackLayout ChildElements="{Binding Tags}" Orientation="Horizontal" />
+                  <container:BindableChildrenStackLayout  ChildElements="{Binding Tags, Converter= {StaticResource ImageListConverter}}" Orientation="Horizontal" />
                 </StackLayout>
               </StackLayout>
             </StackLayout>

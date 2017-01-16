@@ -14,6 +14,8 @@
       </Style>
       <converters:ViewModelViewConverter x:Key="ViewToViewModelConverter" />
       <converters:ItemTappedConverter x:Key="ItemTappedConverter" />
+      <converters:ImageListConverter x:Key="ImageListConverter" />
+      <converters:RouteTagViewListConverter x:Key="RouteTagViewListConverter" />
     </ResourceDictionary>
   </Application.Resources>
 </Application>

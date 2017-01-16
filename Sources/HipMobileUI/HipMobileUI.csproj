@@ -57,10 +57,12 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Behaviors\ListViewTappedItemBehavior.cs" />
+    <Compile Include="Converters\RouteTagViewListConverter.cs" />
+    <Compile Include="Converters\ImageListConverter.cs" />
     <Compile Include="Converters\ItemTappedConverter.cs" />
     <Compile Include="Converters\ViewModelViewConverter.cs" />
     <Compile Include="Helpers\ExtensionMethods.cs" />
-    <Compile Include="Container\ImageListStackLayout.cs" />
+    <Compile Include="Container\BindableChildrenStackLayout.cs" />
     <Compile Include="Helpers\Settings.cs" />
     <Compile Include="Navigation\INavigationService.cs" />
     <Compile Include="Navigation\IViewCreator.cs" />
@@ -86,7 +88,6 @@
     <Compile Include="Views\RoutesOverviewView.xaml.cs">
       <DependentUpon>RoutesOverviewView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Container\RouteTagsView.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="App.xaml">

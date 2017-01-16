@@ -75,7 +75,11 @@ namespace HipMobileUI.Behaviors
                 return;
             }
 
-            ((ListView)sender).SelectedItem = null;
+            var listView = sender as ListView;
+            if (listView != null)
+            {
+                listView.SelectedItem = null;
+            }
 
             object parameter = Converter.Convert(e, typeof(object), null, null);
             if (Command.CanExecute(parameter))
