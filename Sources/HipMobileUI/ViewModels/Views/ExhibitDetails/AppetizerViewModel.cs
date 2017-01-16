@@ -11,13 +11,14 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+
 using System.IO;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using Xamarin.Forms;
 
-namespace HipMobileUI.ViewModels.Pages.ExhibitDetails
+namespace HipMobileUI.ViewModels.Views.ExhibitDetails
 {
-    class AppetizerViewModel : ExhibitSubviewViewModel
+    public class AppetizerViewModel : ExhibitSubviewViewModel
     {
 
         private ImageSource image;

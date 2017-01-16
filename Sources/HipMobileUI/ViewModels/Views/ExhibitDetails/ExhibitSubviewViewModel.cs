@@ -1,8 +1,8 @@
 ﻿using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 
-namespace HipMobileUI.ViewModels.Pages.ExhibitDetails
+namespace HipMobileUI.ViewModels.Views.ExhibitDetails
 {
-    class ExhibitSubviewViewModel : NavigationViewModel
+    public class ExhibitSubviewViewModel : NavigationViewModel
     {
 
         public virtual Audio GetAudio ()

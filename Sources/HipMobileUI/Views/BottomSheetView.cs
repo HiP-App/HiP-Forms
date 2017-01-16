@@ -72,12 +72,13 @@ namespace HipMobileUI.Views
             BottomSheetContentView.ChildAdded+=BottomSheetContentViewOnChildAdded;
             BottomSheetContentView.ChildRemoved-=BottomSheetContentViewOnChildRemoved;
 
+            // restore the state when the layout changes
             layout.LayoutChanged+=LayoutOnLayoutChanged;
         }
 
         private async void LayoutOnLayoutChanged (object sender, EventArgs eventArgs)
         {
-            if (bottomSheetState == BottomSheetState.Extended)
+            if (bottomSheetState == BottomSheetState.Extended || bottomSheetState == BottomSheetState.Extending)
             {
                 await ExtendBottomSheet ();
             }

@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.IO;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using Xamarin.Forms;
 
-namespace HipMobileUI.ViewModels.Pages.ExhibitDetails
+namespace HipMobileUI.ViewModels.Views.ExhibitDetails
 {
-    class ImageViewModel : ExhibitSubviewViewModel
+    public class ImageViewModel : ExhibitSubviewViewModel
     {
 
         private ImageSource image;

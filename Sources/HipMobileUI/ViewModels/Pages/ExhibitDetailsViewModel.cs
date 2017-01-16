@@ -16,13 +16,13 @@ using System;
 using System.Windows.Input;
 using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
-using HipMobileUI.ViewModels.Pages.ExhibitDetails;
+using HipMobileUI.ViewModels.Views.ExhibitDetails;
 using Xamarin.Forms;
 using Page = de.upb.hip.mobile.pcl.BusinessLayer.Models.Page;
 
 namespace HipMobileUI.ViewModels.Pages
 {
-    class ExhibitDetailsViewModel : NavigationViewModel
+    public class ExhibitDetailsViewModel : NavigationViewModel
     {
 
         private ExhibitSubviewViewModel selectedView;
@@ -33,12 +33,16 @@ namespace HipMobileUI.ViewModels.Pages
         private bool nextViewAvailable;
         private int currentViewIndex;
 
-        public ExhibitDetailsViewModel (string exhibitId)
+        public ExhibitDetailsViewModel (string exhibitId) : this(ExhibitManager.GetExhibit(exhibitId))
         {
-            exhibit = ExhibitManager.GetExhibit (exhibitId);
+        }
+
+        public ExhibitDetailsViewModel (Exhibit exhibit)
+        {
             currentViewIndex = 0;
             if (exhibit != null)
             {
+                this.exhibit = exhibit;
                 SetCurrentView ();
                 Title = exhibit.Name;
                 NextViewAvailable = true;
