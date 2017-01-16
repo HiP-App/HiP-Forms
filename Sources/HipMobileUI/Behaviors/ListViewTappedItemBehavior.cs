@@ -70,10 +70,12 @@ namespace HipMobileUI.Behaviors
 
         internal void OnListViewItemTapped(object sender, ItemTappedEventArgs e)
         {
-            if (Command == null)
+            if (Command == null || e == null)
             {
                 return;
             }
+
+            ((ListView)sender).SelectedItem = null;
 
             object parameter = Converter.Convert(e, typeof(object), null, null);
             if (Command.CanExecute(parameter))
