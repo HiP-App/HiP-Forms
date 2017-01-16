@@ -7,9 +7,18 @@ namespace HipMobileUI.Container
 
     public class TabView : StackLayout
     {
+        private readonly StackLayout tabBar;
+
         public TabView ()
         {
             Orientation = StackOrientation.Vertical;
+
+            tabBar = new StackLayout
+            {
+                Orientation = StackOrientation.Horizontal,
+                HeightRequest = 45
+            };
+            Children.Add (tabBar);
         }
 
         #region Tabs
@@ -35,10 +44,7 @@ namespace HipMobileUI.Container
             if (tabView == null || newTabs == null)
                 return;
 
-            // get current tab bar
-            var tabBar = tabView.Children.First() as StackLayout;
-            if (tabBar == null)
-                return;
+            var tabBar = tabView.tabBar;
 
             // replace current tabs with new ones
             tabBar.Children.Clear();
@@ -93,7 +99,7 @@ namespace HipMobileUI.Container
             {
                 var previousTabIndex = int.Parse((string)oldvalue);
                 var tab = tabBar.Children.ElementAt (TranslateTabIndexToLabelIndex (previousTabIndex));
-                UnhilightTabLabel(tab as Label);
+                UnhighlightTabLabel(tab as Label);
 
                 var contents = tabView.Children.ElementAt (TranslateTabIndexToChildIndex (previousTabIndex));
                 contents.IsVisible = false;
@@ -119,14 +125,18 @@ namespace HipMobileUI.Container
         {
             var lbl = new Label
             {
-                Text = title
+                Text = title,
+                VerticalOptions = LayoutOptions.FillAndExpand,
+                VerticalTextAlignment = TextAlignment.Center,
+                Margin = new Thickness(8, 0)
             };
+
+            lbl.SetDynamicResource (StyleProperty, "TitleStyle");
 
             var gestureRecognizer = new TapGestureRecognizer();
             gestureRecognizer.Tapped += (s, e) => {
                 tabView.CurrentTab = $"{index}";
             };
-
             lbl.GestureRecognizers.Add (gestureRecognizer);
 
             return lbl;
@@ -134,14 +144,13 @@ namespace HipMobileUI.Container
 
         private static void HighlightTabLabel (Label tab)
         {
-            tab.TextColor = Color.Orange;
-            tab.FontAttributes = FontAttributes.Bold;
+
+            tab.TextColor = (Color) Application.Current.Resources ["AccentColor"];
         }
 
-        private static void UnhilightTabLabel (Label tab)
+        private static void UnhighlightTabLabel (Label tab)
         {
             tab.TextColor = Color.Black;
-            tab.FontAttributes = FontAttributes.None;
         }
 
         // creates a new divider
@@ -151,7 +160,7 @@ namespace HipMobileUI.Container
             {
                 Color = Color.Gray,
                 WidthRequest = 1,
-                Margin = new Thickness(4, 4, 4, 4)
+                Margin = new Thickness(0, 6)
             };
         }
 

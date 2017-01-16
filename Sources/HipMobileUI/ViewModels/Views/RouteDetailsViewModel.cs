@@ -17,7 +17,6 @@ using System.IO;
 using System.Windows.Input;
 using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
-using Realms;
 using Xamarin.Forms;
 
 namespace HipMobileUI.ViewModels.Views
