@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using Xamarin.Forms;
@@ -11,11 +12,6 @@ namespace HipMobileUI.Container
         public TabView ()
         {
             Orientation = StackOrientation.Vertical;
-
-//            foreach (var child in Children)
-//            {
-//                child.IsVisible = false;
-//            }
         }
 
         #region Tabs
@@ -60,40 +56,52 @@ namespace HipMobileUI.Container
             tabBar.Children.RemoveAt(tabBar.Children.Count - 1);   // remove last divider
 
             // reset current tab to first
-//            tabView.CurrentTab = 0;
+            tabView.CurrentTab = "0";
         }
 
         #endregion
 
         #region CurrentTab
 
-//        public static readonly BindableProperty CurrentTabProperty = BindableProperty.Create(
-//            nameof(Tabs),
-//            typeof(int),
-//            typeof(TabView),
-//            propertyChanged: CurrentTabPropertyChanged
-//        );
-//                
-//        public int CurrentTab {
-//            get { return (int)GetValue(CurrentTabProperty); }
-//            set { SetValue (CurrentTabProperty, value); }
-//        }
+        public static readonly BindableProperty CurrentTabProperty = BindableProperty.Create(
+            nameof(Tabs),
+            typeof(string),
+            typeof(TabView),
+            propertyChanged: CurrentTabPropertyChanged
+        );
+                
+        public string CurrentTab {
+            get { return (string)GetValue(CurrentTabProperty); }
+            set { SetValue (CurrentTabProperty, value); }
+        }
         
         private static void CurrentTabPropertyChanged(BindableObject bindable, object oldvalue, object newvalue)
         {
-//            var tabView = bindable as TabView;
-//            var previousTabIndex = (int) oldvalue;
-//            var currentTabIndex = (int) newvalue;
-//
-//            // update tab labels
-//            var tabBar = tabView?.Children.First () as StackLayout;
-//            if (tabBar == null)
-//                return;
-//
-//            UnhilightTabLabel(tabBar.Children.ElementAt (previousTabIndex) as Label);
-//            HighlightTabLabel(tabBar.Children.ElementAt (currentTabIndex) as Label);
-//
-//            // TODO: switch tab contents
+            var tabView = bindable as TabView;
+            
+            var tabBar = tabView?.Children.First() as StackLayout;
+            if (tabBar == null)
+                return;
+
+            // reset previous index
+            if (oldvalue != null)
+            {
+                var previousTabIndex = int.Parse((string)oldvalue);
+                var tab = tabBar.Children.ElementAt (TranslateTabIndexToLabelIndex (previousTabIndex));
+                UnhilightTabLabel(tab as Label);
+
+                // TODO: switch tab contents
+            }
+
+            // set new index
+            if (newvalue != null)
+            {
+                var currentTabIndex = int.Parse((string)newvalue);
+                HighlightTabLabel(tabBar.Children.ElementAt (TranslateTabIndexToLabelIndex(currentTabIndex)) as Label);
+
+                // TODO: switch tab contents
+            }
+            
         }
 
         #endregion
@@ -109,8 +117,8 @@ namespace HipMobileUI.Container
 
             var gestureRecognizer = new TapGestureRecognizer();
             gestureRecognizer.Tapped += (s, e) => {
-//                tabView.CurrentTab = index;
-                Debug.WriteLine ("asdf");
+                Debug.WriteLine($"{index}");
+                tabView.CurrentTab = $"{index}";
             };
 
             lbl.GestureRecognizers.Add (gestureRecognizer);
@@ -139,6 +147,11 @@ namespace HipMobileUI.Container
                 WidthRequest = 1,
                 Margin = new Thickness(4, 4, 4, 4)
             };
+        }
+
+        private static int TranslateTabIndexToLabelIndex (int index)
+        {
+            return index*2;
         }
 
     }
