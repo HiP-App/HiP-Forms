@@ -1,27 +1,14 @@
-﻿using System;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using Xamarin.UITest;
-using Xamarin.UITest.Queries;
 
 namespace HipMobileUI.UITests
 {
-    [TestFixture(Platform.Android)]
-    [TestFixture(Platform.iOS)]
+    [TestFixture]
     public class Tests
     {
         private IApp app;
-        private readonly Platform platform;
 
-        public Tests(Platform platform)
-        {
-            this.platform = platform;
-        }
-
-        [SetUp]
-        public void BeforeEachTest()
+        private void BeforeEachTest(Platform platform)
         {
             switch (platform)
             {
@@ -39,25 +26,60 @@ namespace HipMobileUI.UITests
             
         }
 
-        [Test, Category("UITest")]
-        public void AppLaunches_MainScreenHasTextBlue()
+        #region AppLaunches_MainScreenHasTextBlue
+
+        [Test, Category("UITestAndroid")]
+        public void Android_AppLaunches_MainScreenHasTextBlue()
+        {
+            BeforeEachTest(Platform.Android);
+            AppLaunches_MainScreenHasTextBlue ();
+        }
+
+        [Test, Category("UITestiOS")]
+        public void IOS_AppLaunches_MainScreenHasTextBlue()
+        {
+            BeforeEachTest(Platform.iOS);
+            AppLaunches_MainScreenHasTextBlue ();
+        }
+
+        private void AppLaunches_MainScreenHasTextBlue()
         {
             var result = app.Query (x => x.Text ("Blue"));
             Assert.Greater (result.Length, 0);
         }
 
-        [Test, Category("UITest")]
-        public void DummyViewsUiTest()
+        #endregion
+
+        #region DummyViewsUiTest
+
+        [Test, Category("UITestAndroid")]
+        public void Android_DummyViewsUiTest()
+        {
+            BeforeEachTest(Platform.Android);
+            DummyViewsUiTest ();
+        }
+
+        [Test, Category("UITestiOS")]
+        public void IOS_DummyViewsUiTest()
+        {
+            BeforeEachTest(Platform.iOS);
+            DummyViewsUiTest ();
+        }
+
+
+        private void DummyViewsUiTest()
         {
             app.Tap(x => x.Marked("OK"));
             app.Tap(x => x.Text("Blue").Index(1));
 
-            app.DragCoordinates (0, 500, 500, 500);
+            app.DragCoordinates(0, 500, 500, 500);
             app.Tap(x => x.Text("Red"));
 
             app.Tap(x => x.Marked("OK"));
             app.Tap(x => x.Text("Green"));
         }
+
+        #endregion
 
     }
 }
