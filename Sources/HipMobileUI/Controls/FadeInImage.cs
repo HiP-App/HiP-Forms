@@ -18,6 +18,9 @@ using Xamarin.Forms;
 
 namespace HipMobileUI.Controls
 {
+    /// <summary>
+    /// Image with a fade in transition when loaded.
+    /// </summary>
     class FadeInImage : Image {
 
         public FadeInImage ()
@@ -43,6 +46,9 @@ namespace HipMobileUI.Controls
         public static readonly BindableProperty FadeInTimeProperty =
             BindableProperty.Create ("FadeInTime", typeof (uint), typeof (FadeInImage), 200U);
 
+        /// <summary>
+        /// The length of the fade in milliseconds.
+        /// </summary>
         public uint FadeInTime
         {
             get { return (uint)GetValue(FadeInTimeProperty); }

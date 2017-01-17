@@ -22,11 +22,18 @@ using Rectangle = Xamarin.Forms.Rectangle;
 
 namespace HipMobileUI.Views
 {
+    /// <summary>
+    /// A view consisting of a extensible bottom sheet and a main content view. The bottom sheet can be extended either by swiping or by a FAB.
+    /// </summary>
     public class BottomSheetView : ContentView {
 
+        /// <summary>
+        /// The fraction of how much the bottom sheet is extended relative to the whole view.
+        /// </summary>
         private readonly double bottomSheetExtensionFraction = 0.35;
         private BottomSheetState bottomSheetState = BottomSheetState.Collapsed;
         private readonly PanGestureRecognizer swipeGestureRecognizer;
+        private FloatingActionButton Button { get; }
 
         public BottomSheetView ()
         {
@@ -76,8 +83,14 @@ namespace HipMobileUI.Views
             layout.LayoutChanged+=LayoutOnLayoutChanged;
         }
 
+        /// <summary>
+        /// React to layout changes, for example if the device was rotated.
+        /// </summary>
+        /// <param name="sender">The sender of the event.</param>
+        /// <param name="eventArgs">The event params.</param>
         private async void LayoutOnLayoutChanged (object sender, EventArgs eventArgs)
         {
+            // restore the state
             if (bottomSheetState == BottomSheetState.Extended || bottomSheetState == BottomSheetState.Extending)
             {
                 await ExtendBottomSheet ();
@@ -85,6 +98,11 @@ namespace HipMobileUI.Views
         }
 
         #region BottomSheet Gesture
+        /// <summary>
+        /// Make sure children of the bottomsheet listen to swipe gestures.
+        /// </summary>
+        /// <param name="sender">The sender of the event.</param>
+        /// <param name="elementEventArgs">The event params.</param>
         private void BottomSheetContentViewOnChildAdded (object sender, ElementEventArgs elementEventArgs)
         {
             View view = (View)elementEventArgs.Element;
@@ -93,6 +111,11 @@ namespace HipMobileUI.Views
             view.ChildAdded += BottomSheetContentViewOnChildAdded;
         }
 
+        /// <summary>
+        /// Add gesture recognizers to all existing children.
+        /// </summary>
+        /// <param name="view">The view to which teh gesture recognizer should be added.</param>
+        /// <param name="recognizer">The gesture recognizer to be added.</param>
         private void AddGestureRecognizer (View view, GestureRecognizer recognizer)
         {
             if(!view.GestureRecognizers.Contains (recognizer))
@@ -106,6 +129,11 @@ namespace HipMobileUI.Views
             }
         }
 
+        /// <summary>
+        /// Remove the gesture listeners when a child is removed from the bottom sheet.
+        /// </summary>
+        /// <param name="sender">The sender of the child removed event.</param>
+        /// <param name="elementEventArgs">The event params.</param>
         private void BottomSheetContentViewOnChildRemoved(object sender, ElementEventArgs elementEventArgs)
         {
             View view = (View)elementEventArgs.Element;
@@ -113,6 +141,12 @@ namespace HipMobileUI.Views
             view.GestureRecognizers.Remove(swipeGestureRecognizer);
             view.ChildRemoved -= BottomSheetContentViewOnChildRemoved;
         }
+
+        /// <summary>
+        /// Remove existing gesture recognizers.
+        /// </summary>
+        /// <param name="view">The view from which the gesture recognizers should be removed.</param>
+        /// <param name="recognizer">The recognizer to remove.</param>
         private void RemoveGestureRecognizer(View view, GestureRecognizer recognizer)
         {
             if (!view.GestureRecognizers.Contains(recognizer))
@@ -126,7 +160,11 @@ namespace HipMobileUI.Views
             }
         }
 
-
+        /// <summary>
+        /// React to pan events on the bottom sheet.
+        /// </summary>
+        /// <param name="sender">The sender of the event.</param>
+        /// <param name="panUpdatedEventArgs">The event args.</param>
         private async void GestureRecognizerOnPanUpdated (object sender, PanUpdatedEventArgs panUpdatedEventArgs)
         {
             if (panUpdatedEventArgs.StatusType == GestureStatus.Running)
@@ -154,6 +192,9 @@ namespace HipMobileUI.Views
         }
         #endregion
 
+        /// <summary>
+        /// React to a click on the FAB.
+        /// </summary>
         private async void ButtonOnClicked ()
         {
             if (bottomSheetState == BottomSheetState.Collapsed)
@@ -168,6 +209,10 @@ namespace HipMobileUI.Views
 
         #region bottomsheet manipulation
 
+        /// <summary>
+        /// Layout the bottom sheet to its extended state, with animation.
+        /// </summary>
+        /// <returns>The task.</returns>
         private async Task ExtendBottomSheet ()
         {
             Rectangle bottomSheetRect = new Rectangle
@@ -186,6 +231,10 @@ namespace HipMobileUI.Views
             bottomSheetState = BottomSheetState.Extended;
         }
 
+        /// <summary>
+        /// Layout the bottom sheet to its collapsed state, with animation.
+        /// </summary>
+        /// <returns>The task.</returns>
         private async Task CollapseBottomSheet ()
         {
             Rectangle bottomSheetRect = new Rectangle
@@ -204,6 +253,10 @@ namespace HipMobileUI.Views
             bottomSheetState = BottomSheetState.Collapsed;
         }
 
+        /// <summary>
+        /// Layout the botton sheet to it's pending state, with animation.
+        /// </summary>
+        /// <returns>The task.</returns>
         private async Task SetBottomSheetPending ()
         {
             Rectangle bottomSheetRect = new Rectangle
@@ -224,10 +277,7 @@ namespace HipMobileUI.Views
         #endregion
 
         #region properties
-
-        public FloatingActionButton Button { get; }
-
-        public ContentView MainContentView;
+        private ContentView MainContentView;
 
         public static readonly BindableProperty MainContentProperty =
             BindableProperty.Create ("MainContent", typeof (View), typeof (BottomSheetView), null, propertyChanged: MainContentPropertyChanged);
@@ -237,6 +287,9 @@ namespace HipMobileUI.Views
             ((BottomSheetView) bindable).MainContentView.Content = (View) newValue;
         }
 
+        /// <summary>
+        /// The View displaying the main content.
+        /// </summary>
         public View MainContent {
             get { return (View) GetValue (MainContentProperty); }
             set { SetValue (MainContentProperty, value); }
@@ -250,11 +303,11 @@ namespace HipMobileUI.Views
         private static void BottomSheetPropertyChanged (BindableObject bindable, object oldValue, object newValue)
         {
             ((BottomSheetView) bindable).BottomSheetContentView.Content = (View) newValue;
-
-            // Add the swipe gesture recognizer to the new content to catch swipe event on it
-            //((BottomSheetView)bindable).BottomSheetContentView.Content.GestureRecognizers.Add (((BottomSheetView)bindable).swipeGestureRecognizer);
         }
 
+        /// <summary>
+        /// The view displaying the bottom sheet content.
+        /// </summary>
         public View BottomSheet {
             get { return (View) GetValue (MainContentProperty); }
             set { SetValue (MainContentProperty, value); }
@@ -264,6 +317,9 @@ namespace HipMobileUI.Views
         #endregion
     }
 
+    /// <summary>
+    /// States for a bottom sheet.
+    /// </summary>
     public enum BottomSheetState {
         Collapsed,
         Collapsing,

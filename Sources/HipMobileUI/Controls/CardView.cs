@@ -15,6 +15,9 @@ using Xamarin.Forms;
 
 namespace HipMobileUI.Controls
 {
+    /// <summary>
+    /// Control which displays a material design cardview on android.
+    /// </summary>
     public class CardView : Frame
     {
         public CardView()

@@ -49,7 +49,6 @@ namespace HipMobileUI.ViewModels.Pages
             }
             NextViewCommand = new Command (GotoNextView);
             PreviousViewCommand = new Command (GotoPreviousView);
-            PreviousViewAvailable = false;
         }
 
         private void GotoNextView ()
@@ -70,9 +69,7 @@ namespace HipMobileUI.ViewModels.Pages
                 currentViewIndex--;
                 SetCurrentView();
                 PreviousViewAvailable = currentViewIndex > 0;
-
-                if(currentViewIndex !=0)
-                    NextViewAvailable = true;
+                NextViewAvailable = true;
             }
         }
 
@@ -83,55 +80,65 @@ namespace HipMobileUI.ViewModels.Pages
             {
                 SelectedView = new AppetizerViewModel (exhibit.Name, currentPage.AppetizerPage);
             }
+            else if (currentPage.IsImagePage())
+            {
+                SelectedView = new ImageViewModel(currentPage.ImagePage);
+            }
+            else if (currentPage.IsTextPage())
+            {
+
+            }
+            else if (currentPage.IsTimeSliderPage())
+            {
+                SelectedView = new TimeSliderViewModel();
+            }
             else
             {
-                if (currentPage.IsImagePage())
-                {
-
-                    SelectedView = new ImageViewModel(currentPage.ImagePage);
-                }
-                else if (currentPage.IsTextPage())
-                {
-
-                }
-                else if (currentPage.IsTimeSliderPage())
-                {
-                    SelectedView = new TimeSliderViewModel();
-                }
-                else
-                {
-                    throw new Exception("Unknown page found: " + currentPage);
-                }
+                throw new Exception("Unknown page found: " + currentPage);
             }
         }
 
 
         #region propeties
-
+        /// <summary>
+        /// The currently displayed subview.
+        /// </summary>
         public ExhibitSubviewViewModel SelectedView
         {
             get { return selectedView; }
             set { SetProperty(ref selectedView, value); }
         }
 
+        /// <summary>
+        /// The command for switching to the next view, if available.
+        /// </summary>
         public ICommand NextViewCommand
         {
             get { return nextViewCommand; }
             set { SetProperty(ref nextViewCommand, value); }
         }
 
+        /// <summary>
+        /// The command for switching to the previous view, if available.
+        /// </summary>
         public ICommand PreviousViewCommand
         {
             get { return previousViewCommand; }
             set { SetProperty(ref previousViewCommand, value); }
         }
 
+        /// <summary>
+        /// Indicator if a previous view is available.
+        /// </summary>
         public bool PreviousViewAvailable
         {
             get { return previousViewAvailable; }
             set { SetProperty(ref previousViewAvailable, value); }
         }
 
+        /// <summary>
+        /// Indicator if a next view is available.
+        /// </summary>
         public bool NextViewAvailable
         {
             get { return nextViewAvailable; }

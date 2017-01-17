@@ -1,19 +1,23 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="HipMobileUI.Views.ExhibitDetails.ImageView" xmlns:views="clr-namespace:HipMobileUI.Views;assembly=HipMobileUI" xmlns:controls="clr-namespace:HipMobileUI.Controls;assembly=HipMobileUI">
-  <ContentView.Content>
-    <views:BottomSheetView>
-      <views:BottomSheetView.MainContent>
-        <controls:FadeInImage Source="{Binding Image}"/>
-      </views:BottomSheetView.MainContent>
-      <views:BottomSheetView.BottomSheet>
-        <StackLayout>
-          <BoxView Color="#50000000" HeightRequest="1"/>
-            <StackLayout Margin="16,16" Spacing="10" BackgroundColor="White">
-              <Label Text="{Binding Headline}" TextColor="#000000" FontSize="16" FontAttributes="Bold"/>
-              <Label Text="{Binding Description}" TextColor="#87000000" FontSize="14"/>
-            </StackLayout>
-        </StackLayout>
-      </views:BottomSheetView.BottomSheet>
-    </views:BottomSheetView>
-  </ContentView.Content>
+
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HipMobileUI.Views.ExhibitDetails.ImageView"
+             xmlns:views="clr-namespace:HipMobileUI.Views;assembly=HipMobileUI"
+             xmlns:controls="clr-namespace:HipMobileUI.Controls;assembly=HipMobileUI">
+    <ContentView.Content>
+        <views:BottomSheetView>
+            <views:BottomSheetView.MainContent>
+                <controls:FadeInImage Source="{Binding Image}" />
+            </views:BottomSheetView.MainContent>
+            <views:BottomSheetView.BottomSheet>
+                <StackLayout>
+                    <BoxView Color="#50000000" HeightRequest="1" />
+                    <StackLayout Margin="16,16" Spacing="10" BackgroundColor="White">
+                        <Label Text="{Binding Headline}" TextColor="#000000" FontSize="16" FontAttributes="Bold" />
+                        <Label Text="{Binding Description}" TextColor="#87000000" FontSize="14" />
+                    </StackLayout>
+                </StackLayout>
+            </views:BottomSheetView.BottomSheet>
+        </views:BottomSheetView>
+    </ContentView.Content>
 </ContentView>

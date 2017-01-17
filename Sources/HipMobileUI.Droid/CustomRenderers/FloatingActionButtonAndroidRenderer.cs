@@ -1,6 +1,17 @@
+// Copyright (C) 2017 History in Paderborn App - Universität Paderborn
+// 
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+// 
+//       http://www.apache.org/licenses/LICENSE-2.0
+// 
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
 using System;
-using Android.Graphics.Drawables;
-using Android.Util;
 using de.upb.hip.mobile.droid.CustomRenderers;
 using HipMobileUI.Controls;
 using Xamarin.Forms;
@@ -12,7 +23,7 @@ namespace de.upb.hip.mobile.droid.CustomRenderers
     public class FloatingActionButtonAndroidRenderer : Xamarin.Forms.Platform.Android.AppCompat.ViewRenderer<FloatingActionButton, Android.Support.Design.Widget.FloatingActionButton> {
 
         private Android.Support.Design.Widget.FloatingActionButton fab;
-        private FloatingActionButton currentButton;
+        private FloatingActionButton formsButton;
 
         protected override void OnElementChanged (ElementChangedEventArgs<FloatingActionButton> e)
         {
@@ -35,15 +46,15 @@ namespace de.upb.hip.mobile.droid.CustomRenderers
             if (e.NewElement != null)
             {
                 // set init values
-                currentButton = e.NewElement;
-                SetIcon(currentButton.Icon);
-                SetNormalColor (currentButton.NormalColor);
-                SetRippleColor (currentButton.RippleColor);
+                formsButton = e.NewElement;
+                SetIcon(formsButton.Icon);
+                SetNormalColor (formsButton.NormalColor);
+                SetRippleColor (formsButton.RippleColor);
 
                 // Subscribe
-                currentButton.NormalColorChanged+=SetNormalColor;
-                currentButton.RippleColorChanged+=SetRippleColor;
-                currentButton.IconChanged+=SetIcon;
+                formsButton.NormalColorChanged+=SetNormalColor;
+                formsButton.RippleColorChanged+=SetRippleColor;
+                formsButton.IconChanged+=SetIcon;
             }
         }
 
@@ -66,9 +77,9 @@ namespace de.upb.hip.mobile.droid.CustomRenderers
 
         private void FabOnClick (object sender, EventArgs eventArgs)
         {
-            if (currentButton.Command.CanExecute (null))
+            if (formsButton.Command.CanExecute (null))
             {
-                currentButton.Command.Execute (this);
+                formsButton.Command.Execute (this);
             }
         }
 

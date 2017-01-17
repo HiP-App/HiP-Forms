@@ -38,16 +38,25 @@ namespace HipMobileUI.ViewModels.Views.ExhibitDetails
             }
         }
 
+        /// <summary>
+        /// The appetizer image.
+        /// </summary>
         public ImageSource Image {
             get { return image; }
             set { SetProperty (ref image, value); }
         }
 
+        /// <summary>
+        /// The headline of the description.
+        /// </summary>
         public string Headline {
             get { return headline; }
             set { SetProperty (ref headline, value); }
         }
 
+        /// <summary>
+        /// The text of the description.
+        /// </summary>
         public string Text {
             get { return text; }
             set { SetProperty (ref text, value); }
