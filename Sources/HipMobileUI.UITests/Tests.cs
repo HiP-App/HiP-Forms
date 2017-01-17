@@ -19,7 +19,7 @@ namespace HipMobileUI.UITests
                     break;
                 case Platform.iOS:
                     app = ConfigureApp.iOS
-                                .AppBundle (@"..\..\..\HipMobileUI.iOS\bin\iPhoneSimulator\iOS Release\HipMobileUI.iOS.app")
+                                .AppBundle (@"../../../HipMobileUI.iOS/bin/iPhoneSimulator/iOS Release/HipMobileUI.iOS.app")
                                 .StartApp ();
                     break;
             }
