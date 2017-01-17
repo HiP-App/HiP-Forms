@@ -17,9 +17,10 @@ using System.IO;
 using System.Windows.Input;
 using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
+using HipMobileUI.ViewModels;
 using Xamarin.Forms;
 
-namespace HipMobileUI.ViewModels.Views
+namespace HipMobileUI.Viewmodels.Pages
 {
     /// <summary>
     /// ViewModel for the RouteDetailsPage.

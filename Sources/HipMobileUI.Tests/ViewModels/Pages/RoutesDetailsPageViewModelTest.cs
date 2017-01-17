@@ -18,6 +18,7 @@ using de.upb.hip.mobile.pcl.Common;
 using de.upb.hip.mobile.pcl.Common.Contracts;
 using de.upb.hip.mobile.pcl.DataAccessLayer;
 using HipMobileUI.Navigation;
+using HipMobileUI.Viewmodels.Pages;
 using HipMobileUI.ViewModels.Views;
 using NSubstitute;
 using NUnit.Framework;
