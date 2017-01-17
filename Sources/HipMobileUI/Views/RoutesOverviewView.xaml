@@ -23,7 +23,7 @@
              xmlns:viewModels="clr-namespace:HipMobileUI.ViewModels.Views;assembly=HipMobileUI"
              xmlns:container="clr-namespace:HipMobileUI.Container;assembly=HipMobileUI">
   <ContentView.Content>
-    <ListView RowHeight="140" Grid.Row="1" ItemsSource="{Binding Routes}">
+    <ListView SeparatorVisibility="None" HasUnevenRows="True" Grid.Row="1" ItemsSource="{Binding Routes}">
       <ListView.Behaviors>
         <behaviors:ListViewTappedItemBehavior Command="{Binding ItemSelectedCommand}" Converter="{StaticResource ItemTappedConverter}" />
       </ListView.Behaviors>
@@ -31,7 +31,7 @@
         <DataTemplate>
           <ViewCell>
             <StackLayout Orientation="Horizontal" Margin="5,5,5,5" d:DataContext="{d:DesignInstance viewModels:RoutesOverviewListItemViewModel}">
-              <Image Source="{Binding Image}" />
+              <Image Source="{Binding Image}" HeightRequest="100" />
               <StackLayout Orientation="Vertical">
                 <Label Text="{Binding RouteTitle}" TextColor="Black" FontSize="18" />
                 <Label Text="{Binding RouteDescription}" TextColor="Black" />
