@@ -28,8 +28,8 @@ namespace HipMobileUI.UITests
         }
 
         #region AppLaunches_MainScreenHasTextBlue
-        [TestCase(Platform.Android), Category("UITestAndroid")]
-        [TestCase(Platform.iOS), Category("UITestiOS")]
+        [TestCase(Platform.Android, Category= "UITestAndroid")]
+        [TestCase(Platform.iOS, Category = "UITestiOS")]
         public void AppLaunches_MainScreenHasTextBlue(Platform platform)
         {
             BeforeEachTest(platform);
@@ -42,8 +42,8 @@ namespace HipMobileUI.UITests
 
         #region DummyViewsUiTest
 
-        [TestCase(Platform.Android), Category("UITestAndroid")]
-        [TestCase(Platform.iOS), Category("UITestiOS")]
+        [TestCase(Platform.Android, Category = "UITestAndroid")]
+        [TestCase(Platform.iOS, Category = "UITestiOS")]
         public void DummyViewsUiTest(Platform platform)
         {
             BeforeEachTest(platform);
