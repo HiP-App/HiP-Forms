@@ -23,7 +23,7 @@ namespace HipMobileUI.Tests.ViewModels {
     [TestFixture]
     public class NavigationViewModelTest {
 
-        [OneTimeSetUp]
+        [TestFixtureSetUp]
         public void Init ()
         {
             IoCManager.RegisterInstance (typeof(INavigationService), Substitute.For<INavigationService> ());
