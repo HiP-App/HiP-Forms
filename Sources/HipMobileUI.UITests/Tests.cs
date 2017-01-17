@@ -9,10 +9,11 @@ using Xamarin.UITest.Queries;
 namespace HipMobileUI.UITests
 {
     [TestFixture(Platform.Android)]
+    [TestFixture(Platform.iOS)]
     public class Tests
     {
-        IApp app;
-        Platform platform;
+        private IApp app;
+        private readonly Platform platform;
 
         public Tests(Platform platform)
         {
@@ -22,9 +23,20 @@ namespace HipMobileUI.UITests
         [SetUp]
         public void BeforeEachTest()
         {
-            app = ConfigureApp.Android
-                              .ApkFile(@"..\..\..\HipMobileUI.Droid\bin\Release\de.upb.hip.mobile.droid.forms.apk")
-                              .StartApp();
+            switch (platform)
+            {
+                case Platform.Android:
+                    app = ConfigureApp.Android
+                                .ApkFile(@"..\..\..\HipMobileUI.Droid\bin\Release\de.upb.hip.mobile.droid.forms.apk")
+                                .StartApp();
+                    break;
+                case Platform.iOS:
+                    app = ConfigureApp.iOS
+                                .AppBundle (@"..\..\..\HipMobileUI.iOS\bin\iPhoneSimulator\iOS Release\HipMobileUI.iOS.app")
+                                .StartApp ();
+                    break;
+            }
+            
         }
 
         [Test, Category("UITest")]
@@ -37,24 +49,14 @@ namespace HipMobileUI.UITests
         [Test, Category("UITest")]
         public void DummyViewsUiTest()
         {
-            const int blue = -16776961; //android blue int
-            const int red = -65536; //android red int
-            const int green = -16744448; //android green int
-
             app.Tap(x => x.Marked("OK"));
             app.Tap(x => x.Text("Blue").Index(1));
-            var blueColor = app.Query(x => x.Class("BoxRenderer").Invoke("getBackground").Invoke("getColor").Value<int>()).First();
-            Assert.AreEqual(blue, blueColor); 
 
             app.DragCoordinates (0, 500, 500, 500);
             app.Tap(x => x.Text("Red"));
-            var redColor = app.Query(x => x.Class("BoxRenderer").Invoke("getBackground").Invoke("getColor").Value<int>()).First();
-            Assert.AreEqual(red, redColor); 
 
             app.Tap(x => x.Marked("OK"));
             app.Tap(x => x.Text("Green"));
-            var greenColor = app.Query(x => x.Class("BoxRenderer").Invoke("getBackground").Invoke("getColor").Value<int>()).First();
-            Assert.AreEqual(green, greenColor); 
         }
 
     }

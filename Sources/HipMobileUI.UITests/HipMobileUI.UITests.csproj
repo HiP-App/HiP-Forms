@@ -64,11 +64,5 @@
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\HipMobileUI.Droid\HipMobileUI.Droid.csproj">
-      <Project>{8a8aaea0-c588-4a64-b15c-83510f845f33}</Project>
-      <Name>HipMobileUI.Droid</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
