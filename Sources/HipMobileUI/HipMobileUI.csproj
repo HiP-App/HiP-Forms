@@ -57,6 +57,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\CardView.cs" />
+    <Compile Include="Controls\FadeInImage.cs" />
     <Compile Include="Controls\FloatingActionButton.cs" />
     <Compile Include="Converters\ViewModelViewConverter.cs" />
     <Compile Include="Helpers\ExtensionMethods.cs" />

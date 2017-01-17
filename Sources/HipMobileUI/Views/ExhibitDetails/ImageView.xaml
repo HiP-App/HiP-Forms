@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="HipMobileUI.Views.ExhibitDetails.ImageView" xmlns:views="clr-namespace:HipMobileUI.Views;assembly=HipMobileUI">
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="HipMobileUI.Views.ExhibitDetails.ImageView" xmlns:views="clr-namespace:HipMobileUI.Views;assembly=HipMobileUI" xmlns:controls="clr-namespace:HipMobileUI.Controls;assembly=HipMobileUI">
   <ContentView.Content>
     <views:BottomSheetView>
       <views:BottomSheetView.MainContent>
-        <Image Source="{Binding Image}" Aspect="AspectFit"/>
+        <controls:FadeInImage Source="{Binding Image}"/>
       </views:BottomSheetView.MainContent>
       <views:BottomSheetView.BottomSheet>
         <StackLayout>
