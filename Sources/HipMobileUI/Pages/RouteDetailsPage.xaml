@@ -38,7 +38,7 @@
                 <Image Source="ic_volume_up.png" />
                 <Label VerticalTextAlignment="Center" Text="Read Out" />
               </StackLayout>
-              <Label Text="{Binding Description}" />
+              <Label Text="{Binding Description}" FontSize="Small"/>
               <Label Text="Tags" Style="{DynamicResource TitleStyle}" Margin="0,16,0,0" />
               <container:BindableChildrenStackLayout
                 Orientation="Vertical" Margin="8,4,0,0"
