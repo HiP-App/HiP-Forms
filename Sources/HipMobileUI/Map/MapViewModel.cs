@@ -32,17 +32,22 @@ namespace HipMobileUI.Map {
 
         private ExhibitSet exhibitSet;
         private GeoLocation gpsLocation;
-        private int i;
+        private Route detailsRoute;
+        private bool showDetailsRoute;
 
         //TODO just for testing can be deleted later
         public MapViewModel ()
         {
+            var b = true;
+            ShowDetailsRoute = b;
             Title = "Map";
             ExhibitSet = ExhibitManager.GetExhibitSets ().First ();
             gpsLocation = new GeoLocation (51.73296887, 8.7352252);
             var locator = CrossGeolocator.Current;
             locator.PositionChanged += position_Changed;
             locator.StartListeningAsync (minTime: AppSharedData.MinTimeBwUpdates, minDistance: AppSharedData.MinDistanceChangeForUpdates);
+           
+
         }
 
 
@@ -74,7 +79,7 @@ namespace HipMobileUI.Map {
                 if (dist < 30)
                 {
                     var b = Navigation.DisplayAlert ("Sehenwürdigkeit in der Nähe", "Möchten sie sich " + e.Name + " genauer ansehen", "Ja", "Nein");
-                    //if(b.Result)
+            
                         //TODO go to exhibit
                     break;
                 }
@@ -89,6 +94,17 @@ namespace HipMobileUI.Map {
         public GeoLocation GpsLocation {
             get { return gpsLocation; }
             set { SetProperty (ref gpsLocation, value); }
+        }
+
+        public Route DetailsRoute {
+            get { return detailsRoute; }
+            set { SetProperty (ref detailsRoute, value); }
+        }
+
+        public bool ShowDetailsRoute
+        {
+            get { return showDetailsRoute; }
+            set { SetProperty(ref showDetailsRoute, value); }
         }
 
     }

@@ -28,6 +28,7 @@ using de.upb.hip.mobile.droid.Map;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using de.upb.hip.mobile.pcl.Helpers;
 using HipMobileUI.Map;
+using Org.Osmdroid;
 using Org.Osmdroid.Bonuspack.Overlays;
 using Org.Osmdroid.Events;
 using Org.Osmdroid.Tileprovider.Tilesource;
@@ -83,14 +84,18 @@ namespace de.upb.hip.mobile.droid.Map {
                 // Unsubscribe
                 e.OldElement.ExhibitSetChanged -= NewElementOnExhibitSetChanged;
                 e.OldElement.GpsLocationChanged -= NewElementOnGpsLocationChanged;
+                e.OldElement.DetailsRouteChanged -= NewElementOnDetailsRouteChanged;
             }
             if (e.NewElement != null)
             {
                 // Subscribe
+                osmMap = e.NewElement;
                 e.NewElement.GpsLocationChanged += NewElementOnGpsLocationChanged;
                 NewElementOnGpsLocationChanged (e.NewElement.GpsLocation);
                 e.NewElement.ExhibitSetChanged += NewElementOnExhibitSetChanged;
                 NewElementOnExhibitSetChanged (e.NewElement.ExhibitSet);
+                e.NewElement.DetailsRouteChanged += NewElementOnDetailsRouteChanged;
+                NewElementOnDetailsRouteChanged (e.NewElement.DetailsRoute);
             }
         }
 
@@ -98,6 +103,8 @@ namespace de.upb.hip.mobile.droid.Map {
         {
             SetAllMarkers (set);
         }
+
+
 
         private void NewElementOnGpsLocationChanged (GeoLocation gpsLocation)
         {
@@ -112,6 +119,31 @@ namespace de.upb.hip.mobile.droid.Map {
                 mapView.Invalidate ();
             }
         }
+
+        private void NewElementOnDetailsRouteChanged (Route route)
+        {
+            if (osmMap.ShowDetailsRoute)
+            {
+                PathOverlay myPath = new PathOverlay(Resources.GetColor(Resource.Color.colorPrimaryDark), 10, new DefaultResourceProxyImpl(activity));
+
+                if (userPosition != null)
+                {
+                    myPath.AddPoint(userPosition);
+                }
+
+                if (route != null && route.Waypoints.Any())
+                {
+                    foreach (Waypoint waypoint in route.Waypoints)
+                    {
+                        myPath.AddPoint(new GeoPoint(waypoint.Location.Latitude, waypoint.Location.Longitude));
+                    }
+                }
+
+                mapView.OverlayManager.Add(myPath);
+                mapView.Invalidate();
+            }
+        }
+
 
         private void SetAllMarkers (ExhibitSet set)
         {
