@@ -63,7 +63,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="UiTests.cs" />
+    <Compile Include="AppLaunchesTests.cs" />
+    <Compile Include="UiTestBase.cs" />
+    <Compile Include="DummyViewTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
