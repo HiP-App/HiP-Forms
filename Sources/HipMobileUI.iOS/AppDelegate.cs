@@ -34,6 +34,10 @@ namespace HipMobileUI.iOS
             Xamarin.FormsMaps.Init();
             LoadApplication(new App());
 
+#if ENABLE_TEST_CLOUD
+            Xamarin.Calabash.Start();
+#endif
+
             return base.FinishedLaunching(app, options);
         }
     }
