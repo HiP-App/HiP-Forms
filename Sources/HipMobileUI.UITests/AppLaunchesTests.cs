@@ -31,7 +31,7 @@ namespace HipMobileUI.UITests
         {
             BeforeEachTest(platform);
 
-            var result = App.Query(x => x.Text("Blue"));
+            var result = App.Query(x => x.Marked(GetPlatformMenuName (platform)));
             Assert.Greater(result.Length, 0);
         }
     }
