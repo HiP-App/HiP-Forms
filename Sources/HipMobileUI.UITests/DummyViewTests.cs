@@ -33,7 +33,7 @@ namespace HipMobileUI.UITests
             BeforeEachTest(platform);
 
             App.Tap(x => x.Marked(GetPlatformMenuName (platform)));
-            App.WaitForElement(x => x.Text("Blue").Index(1), timeout: TimeSpan.FromMinutes(1));
+            App.WaitForElement(x => x.Text("Blue"), timeout: TimeSpan.FromMinutes(1));
             App.Tap(x => x.Text("Blue"));
 
             App.DragCoordinates(5, 500, 500, 500);
