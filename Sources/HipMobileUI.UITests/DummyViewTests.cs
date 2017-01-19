@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System;
 using System.ComponentModel;
 using NUnit.Framework;
 using Xamarin.UITest;
@@ -32,12 +33,15 @@ namespace HipMobileUI.UITests
             BeforeEachTest(platform);
 
             App.Tap(x => x.Marked(GetPlatformMenuName (platform)));
+            App.WaitForElement(x => x.Text("Blue"), timeout: TimeSpan.FromMinutes(1));
             App.Tap(x => x.Text("Blue"));
 
-            App.DragCoordinates(0, 500, 500, 500);
+            App.DragCoordinates(5, 500, 500, 500);
+            App.WaitForElement (x => x.Text ("Red"), timeout: TimeSpan.FromMinutes (1));
             App.Tap(x => x.Text("Red"));
 
             App.Tap(x => x.Marked(GetPlatformMenuName(platform)));
+            App.WaitForElement(x => x.Text("Green"), timeout: TimeSpan.FromMinutes(1));
             App.Tap(x => x.Text("Green"));
         }
     }
