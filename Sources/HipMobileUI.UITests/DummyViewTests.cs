@@ -32,7 +32,7 @@ namespace HipMobileUI.UITests
             BeforeEachTest(platform);
 
             App.Tap(x => x.Marked(GetPlatformMenuName (platform)));
-            App.Tap(x => x.Text("Blue").Index(1));
+            App.Tap(x => x.Text("Blue"));
 
             App.DragCoordinates(0, 500, 500, 500);
             App.Tap(x => x.Text("Red"));
