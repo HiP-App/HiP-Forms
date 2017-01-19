@@ -23,7 +23,7 @@ namespace HipMobileUI.Tests.ViewModels.Views.ExhibitDetails
 {
     class AppetizerViewModelTest
     {
-        [OneTimeSetUp]
+        [TestFixtureSetUp]
         public void Init()
         {
             IoCManager.RegisterInstance(typeof(INavigationService), Substitute.For<INavigationService>());

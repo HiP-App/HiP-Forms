@@ -40,8 +40,8 @@ namespace HipMobileUI.Views
             RelativeLayout layout = new RelativeLayout ();
 
             // Main content
-            MainContentView = new ContentView ();
-            layout.Children.Add (MainContentView, Constraint.RelativeToParent (parent => parent.X), Constraint.RelativeToParent (parent => parent.Y),
+            mainContentView = new ContentView ();
+            layout.Children.Add (mainContentView, Constraint.RelativeToParent (parent => parent.X), Constraint.RelativeToParent (parent => parent.Y),
                                  Constraint.RelativeToParent (parent => parent.Width), Constraint.RelativeToParent (parent => parent.Height));
 
             // Bottomsheet
@@ -277,14 +277,14 @@ namespace HipMobileUI.Views
         #endregion
 
         #region properties
-        private ContentView MainContentView;
+        private readonly ContentView mainContentView;
 
         public static readonly BindableProperty MainContentProperty =
             BindableProperty.Create ("MainContent", typeof (View), typeof (BottomSheetView), null, propertyChanged: MainContentPropertyChanged);
 
         private static void MainContentPropertyChanged (BindableObject bindable, object oldValue, object newValue)
         {
-            ((BottomSheetView) bindable).MainContentView.Content = (View) newValue;
+            ((BottomSheetView) bindable).mainContentView.Content = (View) newValue;
         }
 
         /// <summary>

@@ -15,7 +15,7 @@ namespace HipMobileUI.Tests.ViewModels.Views.ExhibitDetails
 {
     class ImageViewModelTest
     {
-        [OneTimeSetUp]
+        [TestFixtureSetUp]
         public void Init()
         {
             IoCManager.RegisterInstance(typeof(INavigationService), Substitute.For<INavigationService>());
