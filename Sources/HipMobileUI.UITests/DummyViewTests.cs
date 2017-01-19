@@ -33,6 +33,7 @@ namespace HipMobileUI.UITests
             BeforeEachTest(platform);
 
             App.Tap(x => x.Marked(GetPlatformMenuName (platform)));
+            App.WaitForElement(x => x.Text("Blue").Index(1), timeout: TimeSpan.FromMinutes(1));
             App.Tap(x => x.Text("Blue").Index(1));
 
             App.DragCoordinates(5, 500, 500, 500);
@@ -40,6 +41,7 @@ namespace HipMobileUI.UITests
             App.Tap(x => x.Text("Red"));
 
             App.Tap(x => x.Marked(GetPlatformMenuName(platform)));
+            App.WaitForElement(x => x.Text("Green"), timeout: TimeSpan.FromMinutes(1));
             App.Tap(x => x.Text("Green"));
         }
     }
