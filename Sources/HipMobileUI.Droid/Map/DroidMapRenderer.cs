@@ -28,6 +28,7 @@ using de.upb.hip.mobile.droid.Map;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using de.upb.hip.mobile.pcl.Helpers;
 using HipMobileUI.Map;
+using Org.Osmdroid;
 using Org.Osmdroid.Bonuspack.Overlays;
 using Org.Osmdroid.Events;
 using Org.Osmdroid.Tileprovider.Tilesource;
@@ -51,7 +52,7 @@ namespace de.upb.hip.mobile.droid.Map {
         private Marker userMarkerPosition;
         private MyLocationOverlay locationOverlay;
         private Activity activity;
-        private ScaleBarOverlay myScaleBarOverlay;
+
 
         protected override void OnElementChanged (ElementChangedEventArgs<OsmMap> e)
         {
@@ -66,7 +67,8 @@ namespace de.upb.hip.mobile.droid.Map {
                 this.SetNativeControl (mapView);
                 userPosition = new GeoPoint (AppSharedData.PaderbornMainStation.Latitude, AppSharedData.PaderbornMainStation.Longitude);
                 mapView.SetTileSource (TileSourceFactory.DefaultTileSource);
-                /*mapView.SetTileSource(new XYTileSource("OSM", ResourceProxyString.OnlineMode, 0, 18, 1024, ".png",
+                /*mapView.SetTileSource(new XYTileSource("
+                 * ", ResourceProxyString.OnlineMode, 0, 18, 1024, ".png",
                 new[] {"http://tile.openstreetmap.org/"}));*/
 
                 mapView.SetMultiTouchControls (true);
@@ -83,14 +85,18 @@ namespace de.upb.hip.mobile.droid.Map {
                 // Unsubscribe
                 e.OldElement.ExhibitSetChanged -= NewElementOnExhibitSetChanged;
                 e.OldElement.GpsLocationChanged -= NewElementOnGpsLocationChanged;
+                e.OldElement.DetailsRouteChanged -= NewElementOnDetailsRouteChanged;
             }
             if (e.NewElement != null)
             {
                 // Subscribe
+                osmMap = e.NewElement;
                 e.NewElement.GpsLocationChanged += NewElementOnGpsLocationChanged;
                 NewElementOnGpsLocationChanged (e.NewElement.GpsLocation);
                 e.NewElement.ExhibitSetChanged += NewElementOnExhibitSetChanged;
                 NewElementOnExhibitSetChanged (e.NewElement.ExhibitSet);
+                e.NewElement.DetailsRouteChanged += NewElementOnDetailsRouteChanged;
+                NewElementOnDetailsRouteChanged (e.NewElement.DetailsRoute);
             }
         }
 
@@ -99,50 +105,83 @@ namespace de.upb.hip.mobile.droid.Map {
             SetAllMarkers (set);
         }
 
+
         private void NewElementOnGpsLocationChanged (GeoLocation gpsLocation)
         {
-            userPosition = new GeoPoint (gpsLocation.Latitude, gpsLocation.Longitude);
-            mapController.SetCenter (userPosition);
-            if (userMarkerPosition != null)
+
+                userPosition = new GeoPoint (gpsLocation.Latitude, gpsLocation.Longitude);
+                mapController.SetCenter (userPosition);
+                if (userMarkerPosition != null)
+                {
+                    userMarkerPosition.SetIcon (ResourcesCompat.GetDrawable (Resources, Resource.Drawable.ic_my_location, null));
+                    userMarkerPosition.Position = userPosition;
+                    userMarkerPosition.SetInfoWindow (null);
+                    mapView.OverlayManager.Add (userMarkerPosition);
+                    mapView.Invalidate ();
+                }
+            
+        }
+
+        private void NewElementOnDetailsRouteChanged (Route route)
+        {
+
+            if (osmMap.ShowDetailsRoute)
             {
-                userMarkerPosition.SetIcon (ResourcesCompat.GetDrawable (Resources, Resource.Drawable.ic_my_location, null));
-                userMarkerPosition.Position = userPosition;
-                userMarkerPosition.SetInfoWindow (null);
-                mapView.OverlayManager.Add (userMarkerPosition);
+                PathOverlay myPath = new PathOverlay (Resources.GetColor (Resource.Color.colorPrimaryDark), 7, new DefaultResourceProxyImpl (activity));
+
+                if (userPosition != null)
+                {
+                    myPath.AddPoint (userPosition);
+                }
+
+                if (route != null && route.Waypoints.Any ())
+                {
+                    foreach (Waypoint waypoint in route.Waypoints)
+                    {
+                        myPath.AddPoint (new GeoPoint (waypoint.Location.Latitude, waypoint.Location.Longitude));
+                        var marker = new Marker (mapView);
+                        marker.SetIcon(ResourcesCompat.GetDrawable(Resources, Resource.Drawable.marker_blue, null));
+                        marker.Position = new GeoPoint(waypoint.Location.Latitude,waypoint.Location.Longitude);
+                        mapView.OverlayManager.Add(marker);
+                    }
+                }
+
+                mapView.OverlayManager.Add (myPath);
                 mapView.Invalidate ();
             }
         }
+
 
         private void SetAllMarkers (ExhibitSet set)
         {
             locationOverlay = new MyLocationOverlay (activity, mapView);
             CompassOverlay compassOverlay = new CompassOverlay (activity, mapView);
             compassOverlay.EnableCompass ();
-            myScaleBarOverlay = new ScaleBarOverlay (activity);
-
-            var markerInfoWindow = new ViaPointInfoWindow (Resource.Layout.navigation_info_window, mapView, activity);
-            var mapMarkerIcon = ContextCompat.GetDrawable (activity, Resource.Drawable.marker_blue);
-            var setMarker = new SetMarker (mapView, markerInfoWindow);
-
-
-            foreach (var e in set.ActiveSet)
-            {
-                //One Marker Object
-                var geoPoint = new GeoPoint (e.Location.Latitude, e.Location.Longitude);
-                var marker = setMarker.AddMarker (null, e.Name, e.Description, geoPoint, mapMarkerIcon, e.Id);
-                mapView.OverlayManager.Add (marker);
-            }
-
-
             userMarkerPosition = new Marker (mapView);
             userMarkerPosition.SetIcon (ResourcesCompat.GetDrawable (Resources, Resource.Drawable.ic_my_location, null));
             userMarkerPosition.Position = userPosition;
             userMarkerPosition.SetInfoWindow (null);
             mapView.OverlayManager.Add (userMarkerPosition);
-
-            mapView.OverlayManager.Add (myScaleBarOverlay);
             mapView.OverlayManager.Add (locationOverlay);
             mapView.OverlayManager.Add (compassOverlay);
+
+            if (set != null)
+            {
+                var markerInfoWindow = new ViaPointInfoWindow (Resource.Layout.navigation_info_window, mapView, activity);
+                var mapMarkerIcon = ContextCompat.GetDrawable (activity, Resource.Drawable.marker_blue);
+                var setMarker = new SetMarker (mapView, markerInfoWindow);
+
+
+                foreach (var e in set.ActiveSet)
+                {
+                    //One Marker Object
+                    var geoPoint = new GeoPoint (e.Location.Latitude, e.Location.Longitude);
+                    var marker = setMarker.AddMarker (null, e.Name, e.Description, geoPoint, mapMarkerIcon, e.Id);
+                    mapView.OverlayManager.Add (marker);
+                }
+            }
+
+
             mapView.Invalidate ();
         }
 

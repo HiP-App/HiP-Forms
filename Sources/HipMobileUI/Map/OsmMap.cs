@@ -23,7 +23,9 @@ namespace HipMobileUI.Map {
 
         public static readonly BindableProperty GpsLocationProperty = BindableProperty.Create ("GPSLocation",typeof(GeoLocation),typeof(OsmMap),null,propertyChanged: GpsLocationPropertyChanged);
         
+        public static readonly BindableProperty DetailsRouteProperty = BindableProperty.Create ("DetailsRoute",typeof(Route),typeof(OsmMap),null, propertyChanged: DetailsRoutePropertyChanged);
 
+        public static readonly BindableProperty ShowDetailsRouteProperty = BindableProperty.Create ("ShowDetails",typeof(bool),typeof(OsmMap),false);
 
         // Property accessor
         public ExhibitSet ExhibitSet {
@@ -35,6 +37,17 @@ namespace HipMobileUI.Map {
             get { return (GeoLocation) GetValue (GpsLocationProperty); }
             set {  SetValue (GpsLocationProperty,value);}
         }
+
+        public Route DetailsRoute {
+            get { return (Route) GetValue (DetailsRouteProperty); }
+            set { SetValue (DetailsRouteProperty,value);}
+        }
+
+        public bool ShowDetailsRoute {
+            get { return (bool) GetValue (ShowDetailsRouteProperty); }
+            set { SetValue (ShowDetailsRouteProperty,value);}
+        }
+
 
         // method listening for changes of the property
         private static void ExhibitPropertyChanged (BindableObject bindable, object oldValue, object newValue)
@@ -57,6 +70,14 @@ namespace HipMobileUI.Map {
             }
         }
 
+        private static void DetailsRoutePropertyChanged (BindableObject bindable, object oldValue, object newValue)
+        {
+            if (oldValue == null || !oldValue.Equals (newValue))
+            {
+                var map = (OsmMap) bindable;
+                map.DetailsRouteChanged?.Invoke (map.DetailsRoute);
+            }
+        }
 
 
         public delegate void ExhibitSetChangedHandler (ExhibitSet set);
@@ -66,6 +87,12 @@ namespace HipMobileUI.Map {
         public delegate void GpslocationChangedHandler (GeoLocation location);
 
         public event GpslocationChangedHandler GpsLocationChanged;
+
+        public delegate void DetailsRouteChangedHandler (Route route);
+
+        public event DetailsRouteChangedHandler DetailsRouteChanged;
+
+
 
     }
 }

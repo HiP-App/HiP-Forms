@@ -274,6 +274,24 @@
     <Folder Include="Resources\drawable-xhdpi\" />
     <Folder Include="Resources\drawable-xxhdpi\" />
   </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-hdpi\ic_schedule.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_schedule.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_schedule.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_schedule.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_schedule.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_directions_walk.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_directions_walk.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_directions_walk.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_directions_walk.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_directions_walk.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_volume_up.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_volume_up.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_volume_up.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_volume_up.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_volume_up.png" />
+  </ItemGroup>
+
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\..\packages\Xamarin.Android.Support.Vector.Drawable.23.3.0\build\Xamarin.Android.Support.Vector.Drawable.targets" Condition="Exists('..\..\packages\Xamarin.Android.Support.Vector.Drawable.23.3.0\build\Xamarin.Android.Support.Vector.Drawable.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
