@@ -19,6 +19,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="HipMobileUI.Pages.RouteDetailsView"
              xmlns:container="clr-namespace:HipMobileUI.Container;assembly=HipMobileUI"
+             xmlns:map="clr-namespace:HipMobileUI.Map;assembly=HipMobileUI"
              Title="{Binding Title}">
   <ContentPage.Content>
     <StackLayout Orientation="Vertical" Spacing="0">
@@ -47,7 +48,12 @@
         </ScrollView>
 
         <!-- Map Tab -->
-        <BoxView Color="#c9aa8d" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+
+        <map:OsmMap x:Name="Map" ExhibitSet="{Binding ExhibitSet}" GpsLocation="{Binding GpsLocation}"
+                    DetailsRoute="{Binding DetailsRoute}" ShowDetailsRoute="{Binding ShowDetailsRoute}" HorizontalOptions="FillAndExpand"
+                         VerticalOptions="FillAndExpand"
+                         BackgroundColor="Transparent" />
+
       </container:TabView>
 
       <!-- info & start route -->

@@ -17,8 +17,11 @@ using System.IO;
 using System.Windows.Input;
 using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
+using de.upb.hip.mobile.pcl.Helpers;
 using HipMobileUI.ViewModels;
 using Xamarin.Forms;
+using Plugin.Geolocator;
+using Plugin.Geolocator.Abstractions;
 
 namespace HipMobileUI.Viewmodels.Pages
 {
@@ -27,6 +30,11 @@ namespace HipMobileUI.Viewmodels.Pages
     /// </summary>
     public class RouteDetailsPageViewModel : NavigationViewModel
     {
+
+        private GeoLocation gpsLocation;
+        private Route detailsRoute;
+        private bool showDetailsRoute;
+
         /// <summary>
         /// Creates a new ViewModel for the route with the specified ID.
         /// Fetches the corresponding <see cref="Route"/> via the <see cref="RouteManager"/>
@@ -56,6 +64,11 @@ namespace HipMobileUI.Viewmodels.Pages
             StartDescriptionPlaybackCommand = new Command(StartDescriptionPlayback);
 
             Tabs = new ObservableCollection<string> {"Description", "Map"};
+
+            GpsLocation = new GeoLocation(AppSharedData.PaderbornMainStation.Latitude, AppSharedData.PaderbornMainStation.Longitude);
+
+            detailsRoute = route;
+            showDetailsRoute = true;
         }
 
         /// <summary>
@@ -68,6 +81,25 @@ namespace HipMobileUI.Viewmodels.Pages
                 "Audio playback is currently not supported!",
                 "Ok"
             );
+        }
+
+
+        public GeoLocation GpsLocation
+        {
+            get { return gpsLocation; }
+            set { SetProperty(ref gpsLocation, value); }
+        }
+
+        public Route DetailsRoute
+        {
+            get { return detailsRoute; }
+            set { SetProperty(ref detailsRoute, value); }
+        }
+
+        public bool ShowDetailsRoute
+        {
+            get { return showDetailsRoute; }
+            set { SetProperty(ref showDetailsRoute, value); }
         }
 
         /// <summary>

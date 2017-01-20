@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using de.upb.hip.mobile.pcl.Common;
 using de.upb.hip.mobile.pcl.Common.Contracts;
@@ -11,7 +12,7 @@ namespace HipMobileUI.Tests.ViewModels.Views {
     [TestFixture]
     public class RoutesOverviewListItemViewModelTest {
 
-        [Test, Category("UnitTest")]
+        [Test, System.ComponentModel.Category("UnitTest")]
         public void GetRouteDistanceText_FormatedText()
         {
             var sut = CreateSystemUnderTest();
@@ -20,7 +21,7 @@ namespace HipMobileUI.Tests.ViewModels.Views {
             Assert.AreEqual ("10 km", distanceText);
         }
 
-        [Test, Category("UnitTest")]
+        [Test, System.ComponentModel.Category("UnitTest")]
         public void GetRouteDurationText_FormatedText()
         {
             var sut = CreateSystemUnderTest();
@@ -29,7 +30,7 @@ namespace HipMobileUI.Tests.ViewModels.Views {
             Assert.AreEqual("8 Minuten", distanceText);
         }
 
-        [Test, Category("UnitTest")]
+        [Test, System.ComponentModel.Category("UnitTest")]
         public void Creation_PropertiesFilled ()
         {
             var sut = CreateSystemUnderTest ();
