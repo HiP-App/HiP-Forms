@@ -162,6 +162,7 @@
     <Compile Include="Map\ExhibitAnnotation.cs" />
     <Compile Include="Map\ExhibitAnnotationView.cs" />
     <Compile Include="Map\MapRenderer.cs" />
+    <Compile Include="Map\UserAnnotationView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <ITunesArtwork Include="iTunesArtwork" />
     <ITunesArtwork Include="iTunesArtwork@2x" />
@@ -268,9 +269,6 @@
       <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MapAnnotations.xcassets\CurrentLocation.imageset\ic_my_location.png">
-      <InProject>false</InProject>
-    </ImageAsset>
-    <ImageAsset Include="Resources\MapAnnotations.xcassets\CurrentLocation.imageset\marker_blue.png">
       <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MapAnnotations.xcassets\ExhibitLocation.imageset\Contents.json">

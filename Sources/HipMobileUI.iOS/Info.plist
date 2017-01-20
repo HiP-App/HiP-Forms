@@ -50,6 +50,7 @@
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>audio</string>
+    <!--string>location</string--> 
 	</array>
 	<key>NSAppTransportSecurity</key>
 	<dict>
@@ -72,5 +73,5 @@
   <string>Can we use your location</string>
   <key>NSLocationWhenInUseUsageDescription</key>
   <string>We are using your location</string>
-</dict>
+ </dict>
 </plist>
