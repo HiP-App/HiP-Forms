@@ -72,6 +72,7 @@
     <Compile Include="ViewModels\Pages\MainPageViewModel.cs" />
     <Compile Include="ViewModels\Views\DummyViewModel.cs" />
     <Compile Include="ViewModels\Views\LicenseScreenViewModel.cs" />
+    <Compile Include="Views\Link.cs" />
     <Compile Include="Views\DummyView.xaml.cs">
       <DependentUpon>DummyView.xaml</DependentUpon>
     </Compile>

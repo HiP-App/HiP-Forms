@@ -153,6 +153,7 @@
   <ItemGroup>
     <Compile Include="Contracts\IosImageDimensions.cs" />
     <Compile Include="Helpers\Settings.cs" />
+    <Compile Include="LinkRenderer.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <None Include="Entitlements.plist" />
