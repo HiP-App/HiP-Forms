@@ -200,7 +200,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\AndroidFabSizeCalculator.cs" />
     <Compile Include="Contracts\AndroidImageDimensions.cs" />
+    <Compile Include="CustomRenderers\FloatingActionButtonAndroidRenderer.cs" />
     <Compile Include="Helpers\Settings.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
@@ -235,6 +237,26 @@
     <Content Include="FodyWeavers.xml" />
     <AndroidResource Include="Resources\values-v21\style.xml" />
     <AndroidResource Include="Resources\drawable\ic_launcher.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_keyboard_arrow_up.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_keyboard_arrow_up.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_keyboard_arrow_up.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_keyboard_arrow_up.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_keyboard_arrow_up.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_chevron_left.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_chevron_right.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_chevron_left.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_chevron_right.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_chevron_left.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_chevron_right.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_chevron_left.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_chevron_right.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_chevron_left.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_chevron_right.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_arrow_forward.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_arrow_forward.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_arrow_forward.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_arrow_forward.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_arrow_forward.png" />
     <AndroidResource Include="Resources\drawable-hdpi\ic_schedule.png" />
     <AndroidResource Include="Resources\drawable-mdpi\ic_schedule.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\ic_schedule.png" />
