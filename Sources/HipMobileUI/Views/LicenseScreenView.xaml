@@ -27,55 +27,39 @@
       <Label Style="{StaticResource TitleStyle}">Lizenzen</Label>
       <BoxView HeightRequest="1" BackgroundColor="Gray" HorizontalOptions="FillAndExpand"></BoxView>
       <Label Style="{StaticResource Title2Style}">Material Icons</Label>
-      <views:Link>Von &lt;a href="https://design.google.com/icons/"&gt;Google&lt;/a&gt;, lizensiert unter
-    &lt;a href="https://opensource.org/licenses/Apache-2.0"&gt;Apache License 2.0&lt;/a&gt;. Es wurden keine Änderungen vorgenommen.</views:Link>
+      <views:Link>Von &lt;a href="https://design.google.com/icons/"&gt;Google&lt;/a&gt;, lizensiert unter &lt;a href="https://opensource.org/licenses/Apache-2.0"&gt;Apache License 2.0&lt;/a&gt;. Es wurden keine Änderungen vorgenommen.</views:Link>
       <Label Style="{StaticResource Title2Style}">osmdroid</Label>
-      <views:Link>Von &lt;a href="https://github.com/osmdroid/osmdroid"&gt;osmdroid&lt;/a&gt;, lizensiert unter
-    &lt;a href="https://raw.githubusercontent.com/osmdroid/osmdroid/master/LICENSE"&gt;Apache License 2.0&lt;/a&gt;. Es wurden keine Änderungen vorgenommen.</views:Link>
+      <views:Link>Von &lt;a href="https://github.com/osmdroid/osmdroid"&gt;osmdroid&lt;/a&gt;, lizensiert unter &lt;a href="https://raw.githubusercontent.com/osmdroid/osmdroid/master/LICENSE"&gt;Apache License 2.0&lt;/a&gt;. Es wurden keine Änderungen vorgenommen.</views:Link>
       <Label Style="{StaticResource Title2Style}">OSMBonusPack</Label>
-      <views:Link>Von &lt;a href="https://github.com/MKergall/osmbonuspack"&gt;MKergall&lt;/a&gt;, lizensiert unter
-    &lt;a href="https://raw.githubusercontent.com/MKergall/osmbonuspack/master/LICENSE.md"&gt;GNU Lesser General Public License 3.0 (LGPL 3.0)&lt;/a&gt;
-    (ohne §5.d und §5.e). Es wurden keine Änderungen vorgenommen.</views:Link>
+      <views:Link>Von &lt;a href="https://github.com/MKergall/osmbonuspack"&gt;MKergall&lt;/a&gt;, lizensiert unter &lt;a href="https://raw.githubusercontent.com/MKergall/osmbonuspack/master/LICENSE.md"&gt;GNU Lesser General Public License 3.0 (LGPL 3.0)&lt;/a&gt; (ohne §5.d und §5.e). Es wurden keine Änderungen vorgenommen.</views:Link>
       <Label Style="{StaticResource Title2Style}">Realm for Android</Label>
-      <views:Link>Von &lt;a href="https://github.com/realm/realm-java"&gt;Realm&lt;/a&gt;, lizensiert unter
-    &lt;a href="https://raw.githubusercontent.com/realm/realm-java/master/LICENSE"&gt;Apache License 2.0&lt;/a&gt;. Es wurden keine Änderungen vorgenommen.</views:Link>
+      <views:Link>Von &lt;a href="https://github.com/realm/realm-java"&gt;Realm&lt;/a&gt;, lizensiert unter &lt;a href="https://raw.githubusercontent.com/realm/realm-java/master/LICENSE"&gt;Apache License 2.0&lt;/a&gt;. Es wurden keine Änderungen vorgenommen.</views:Link>
       <Label Style="{StaticResource Title2Style}">Map Icons</Label>
-      <views:Link>Von &lt;a href="https://mapicons.mapsmarker.com/"&gt;Maps Icons Collection&lt;/a&gt;, lizensiert unter
-    &lt;a href="http://creativecommons.org/licenses/by-sa/3.0/"&gt;CC-BY-SA 3.0&lt;/a&gt;. Es wurden keine Änderungen vorgenommen.</views:Link>
+      <views:Link>Von &lt;a href="https://mapicons.mapsmarker.com/"&gt;Maps Icons Collection&lt;/a&gt;, lizensiert unter &lt;a href="http://creativecommons.org/licenses/by-sa/3.0/"&gt;CC-BY-SA 3.0&lt;/a&gt;. Es wurden keine Änderungen vorgenommen.</views:Link>
       <Label Style="{StaticResource Title2Style}">Unity</Label>
-      <views:Link>Von &lt;a href="https://github.com/unitycontainer/unity"&gt;Microsoft&lt;/a&gt;, lizensiert unter
-    &lt;a href="https://opensource.org/licenses/Apache-2.0"&gt;Apache License 2.0&lt;/a&gt;. Es wurden keine Änderungen vorgenommen.</views:Link>
+      <views:Link>Von &lt;a href="https://github.com/unitycontainer/unity"&gt;Microsoft&lt;/a&gt;, lizensiert unter &lt;a href="https://opensource.org/licenses/Apache-2.0"&gt;Apache License 2.0&lt;/a&gt;. Es wurden keine Änderungen vorgenommen.</views:Link>
       <Label Style="{StaticResource Title2Style}">Settings Plugin</Label>
-      <views:Link>Von &lt;a href="https://github.com/jamesmontemagno/SettingsPlugin"&gt;James Montemagno&lt;/a&gt;, lizensiert unter
-    &lt;a href="https://github.com/jamesmontemagno/SettingsPlugin/blob/master/LICENSE"&gt;MIT&lt;/a&gt;. Es wurden keine Änderungen vorgenommen.</views:Link>
+      <views:Link>Von &lt;a href="https://github.com/jamesmontemagno/SettingsPlugin"&gt;James Montemagno&lt;/a&gt;, lizensiert unter &lt;a href="https://github.com/jamesmontemagno/SettingsPlugin/blob/master/LICENSE"&gt;MIT&lt;/a&gt;. Es wurden keine Änderungen vorgenommen.</views:Link>
       <Label Style="{StaticResource Title2Style}">HockeyApp</Label>
-      <views:Link>Von &lt;a href="https://github.com/bitstadium/HockeySDK-Android"&gt;Microsoft&lt;/a&gt;, lizensiert unter
-    &lt;a href="https://raw.githubusercontent.com/bitstadium/HockeySDK-Xamarin/master/LICENSE.md"&gt;Lizenz&lt;/a&gt;. Es wurden keine Änderungen vorgenommen.</views:Link>
+      <views:Link>Von &lt;a href="https://github.com/bitstadium/HockeySDK-Android"&gt;Microsoft&lt;/a&gt;, lizensiert unter &lt;a href="https://raw.githubusercontent.com/bitstadium/HockeySDK-Xamarin/master/LICENSE.md"&gt;Lizenz&lt;/a&gt;. Es wurden keine Änderungen vorgenommen.</views:Link>
       <Label Style="{StaticResource Title2Style}">Xamarin Support Libraries</Label>
-      <views:Link>Von &lt;a href="https://github.com/xamarin/AndroidSupportComponents"&gt;Xamarin&lt;/a&gt;, lizensiert unter
-    &lt;a href="https://github.com/xamarin/AndroidSupportComponents/blob/master/LICENSE.md"&gt;MIT&lt;/a&gt;. Es wurden keine Änderungen vorgenommen.</views:Link>
+      <views:Link>Von &lt;a href="https://github.com/xamarin/AndroidSupportComponents"&gt;Xamarin&lt;/a&gt;, lizensiert unter &lt;a href="https://github.com/xamarin/AndroidSupportComponents/blob/master/LICENSE.md"&gt;MIT&lt;/a&gt;. Es wurden keine Änderungen vorgenommen.</views:Link>
       <Label Style="{StaticResource Title2Style}">Common Service Locator</Label>
-      <views:Link>Von &lt;a href="http://commonservicelocator.codeplex.com"&gt;Microsoft&lt;/a&gt;, lizensiert unter
-    &lt;a href="http://commonservicelocator.codeplex.com/license"&gt;Ms-PL&lt;/a&gt;. Es wurden keine Änderungen vorgenommen.</views:Link>
+      <views:Link>Von &lt;a href="http://commonservicelocator.codeplex.com"&gt;Microsoft&lt;/a&gt;, lizensiert unter &lt;a href="http://commonservicelocator.codeplex.com/license"&gt;Ms-PL&lt;/a&gt;. Es wurden keine Änderungen vorgenommen.</views:Link>
       <Label Style="{StaticResource Title2Style}">Fody</Label>
-      <views:Link>Von &lt;a href="https://github.com/Fody/Fody"&gt;Simon Cropp&lt;/a&gt;, lizensiert unter
-    &lt;a href="https://opensource.org/licenses/mit-license.php"&gt;MIT&lt;/a&gt;. Es wurden keine Änderungen vorgenommen.</views:Link>
+      <views:Link>Von &lt;a href="https://github.com/Fody/Fody"&gt;Simon Cropp&lt;/a&gt;, lizensiert unter &lt;a href="https://opensource.org/licenses/mit-license.php"&gt;MIT&lt;/a&gt;. Es wurden keine Änderungen vorgenommen.</views:Link>
       <Label Style="{StaticResource Title2Style}">Itinero</Label>
-      <views:Link>Von &lt;a href="https://github.com/Itinero"&gt;Ben Abelshausen&lt;/a&gt;, lizensiert unter
-    &lt;a href="https://opensource.org/licenses/Apache-2.0"&gt;Apache License 2.0&lt;/a&gt; durch Erlaubnis. Es wurden keine Änderungen vorgenommen.</views:Link>
+      <views:Link>Von &lt;a href="https://github.com/Itinero"&gt;Ben Abelshausen&lt;/a&gt;, lizensiert unter &lt;a href="https://opensource.org/licenses/Apache-2.0"&gt;Apache License 2.0&lt;/a&gt; durch Erlaubnis. Es wurden keine Änderungen vorgenommen.</views:Link>
       <Label Style="{StaticResource Title2Style}">OsmSharp</Label>
-      <views:Link>Von &lt;a href="https://osmsharp.com/"&gt;Ben Abelshausen&lt;/a&gt;, lizensiert unter
-    &lt;a href="https://opensource.org/licenses/mit-license.php"&gt;MIT&lt;/a&gt;. Es wurden keine Änderungen vorgenommen.</views:Link>
+      <views:Link>Von &lt;a href="https://osmsharp.com/"&gt;Ben Abelshausen&lt;/a&gt;, lizensiert unter &lt;a href="https://opensource.org/licenses/mit-license.php"&gt;MIT&lt;/a&gt;. Es wurden keine Änderungen vorgenommen.</views:Link>
       <Label Style="{StaticResource Title2Style}">Reminiscence</Label>
-      <views:Link>Von &lt;a href="https://github.com/itinero/reminiscence/"&gt;Ben Abelshausen&lt;/a&gt;, lizensiert unter
-    &lt;a href="https://opensource.org/licenses/mit-license.php"&gt;MIT&lt;/a&gt;. Es wurden keine Änderungen vorgenommen.</views:Link>
+      <views:Link>Von &lt;a href="https://github.com/itinero/reminiscence/"&gt;Ben Abelshausen&lt;/a&gt;, lizensiert unter &lt;a href="https://opensource.org/licenses/mit-license.php"&gt;MIT&lt;/a&gt;. Es wurden keine Änderungen vorgenommen.</views:Link>
       
       <!-- Labels for contribution -->
       <Label Style="{StaticResource TitleStyle}">Beiträge</Label>
       <BoxView HeightRequest="1" BackgroundColor="Gray" HorizontalOptions="FillAndExpand"></BoxView>
       <Label Style="{StaticResource Title2Style}">Credits der Bilder im Autokarussell</Label>
-      <views:Link>Bilder erstellt von &lt;a href="http://www.flaticon.com/authors/madebyoliver/"&gt;Madebyoliver&lt;/a&gt; from
-    &lt;a href="http://www.flaticon.com/"&gt;www.flaticon.com&lt;/a&gt;.</views:Link>
+      <views:Link>Bilder erstellt von &lt;a href="http://www.flaticon.com/authors/madebyoliver/"&gt;Madebyoliver&lt;/a&gt; from &lt;a href="http://www.flaticon.com/"&gt;www.flaticon.com&lt;/a&gt;.</views:Link>
 
       <!--Labels for Terms of Use, Privacy Policy and Impressum-->
       <Label Style="{StaticResource TitleStyle}">Nutzungsbedingungen</Label>

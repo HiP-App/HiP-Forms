@@ -12,13 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using Android.OS;
 using Android.Text;
 using Android.Text.Method;
 using Android.Text.Util;
 using de.upb.hip.mobile.droid;
 using HipMobileUI.Views;
-using Java.Lang;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
