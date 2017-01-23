@@ -36,19 +36,19 @@ namespace HipMobileUI.ViewModels.Pages
                     Title = "Routen",
                     Icon = "ic_directions.png"
                 },
-                new DummyViewModel ()
+                new DummyViewModel
                 {
                     Title = "Einstellungen",
                     Icon = "ic_settings.png",
                     Color = Color.Red
                 },
-                new DummyViewModel ()
+                new DummyViewModel
                 {
                     Title = "Feedback",
                     Icon = "ic_feedback.png",
                     Color = Color.Green
                 },
-                new DummyViewModel ()
+                new DummyViewModel
                 {
                     Title = "Rechtliche Hinweise",
                     Icon = "ic_gavel.png",
