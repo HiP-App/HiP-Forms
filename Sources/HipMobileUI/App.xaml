@@ -8,11 +8,12 @@
       <Color x:Key="PrimaryColor">#3F51B5</Color>
       <Color x:Key="PrimaryDarkColor">#303F9F</Color>
       <Color x:Key="AccentColor">#FF9800</Color>
+      <Color x:Key="AccentDarkColor">#E65100</Color>
       <Style TargetType="Label">
         <Setter Property="FontSize" Value="12" />
         <Setter Property="TextColor" Value="Black" />
       </Style>
-      <converters:ViewModelViewConverter x:Key="ViewToViewModelConverter" />
+      <converters:ViewModelViewConverter x:Key="ViewModelViewConverter" />
       <converters:ItemTappedConverter x:Key="ItemTappedConverter" />
       <converters:ImageListConverter x:Key="ImageListConverter" />
       <converters:RouteTagViewListConverter x:Key="RouteTagViewListConverter" />
