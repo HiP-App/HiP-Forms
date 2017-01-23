@@ -15,5 +15,6 @@ namespace HipMobileUI.Views
         {
             InitializeComponent();
         }
+
     }
 }

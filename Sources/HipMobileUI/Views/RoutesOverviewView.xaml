@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!--
+// Copyright (C) 2017 History in Paderborn App - Universität Paderborn
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+-->
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HipMobileUI.Views.RoutesOverviewView"
+             xmlns:behaviors="clr-namespace:HipMobileUI.Behaviors;assembly=HipMobileUI"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:viewModels="clr-namespace:HipMobileUI.ViewModels.Views;assembly=HipMobileUI"
+             xmlns:container="clr-namespace:HipMobileUI.Container;assembly=HipMobileUI">
+  <ContentView.Content>
+    <ListView SeparatorVisibility="None" HasUnevenRows="True" Grid.Row="1" ItemsSource="{Binding Routes}">
+      <ListView.Behaviors>
+        <behaviors:ListViewTappedItemBehavior Command="{Binding ItemSelectedCommand}" Converter="{StaticResource ItemTappedConverter}" />
+      </ListView.Behaviors>
+      <ListView.ItemTemplate>
+        <DataTemplate>
+          <ViewCell>
+            <StackLayout Orientation="Horizontal" Padding="5,5,5,10" d:DataContext="{d:DesignInstance viewModels:RoutesOverviewListItemViewModel}">
+              <Image Source="{Binding Image}" HeightRequest="100" />
+              <StackLayout Orientation="Vertical">
+                <Label Text="{Binding RouteTitle}" TextColor="Black" FontSize="18" />
+                <Label Text="{Binding RouteDescription}" TextColor="Black" />
+                <StackLayout Orientation="Horizontal">
+                  <Image Source="ic_schedule.png"/>
+                  <Label Text="{Binding Duration}" VerticalOptions="Center"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                  <Image Source="ic_directions_walk.png"></Image>
+                  <Label Text="{Binding Distance}" VerticalOptions="Center"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                  <Label Text="Auf der Route:" VerticalOptions="Center"/>
+                  <container:BindableChildrenStackLayout  ChildElements="{Binding Tags, Converter= {StaticResource ImageListConverter}}" Orientation="Horizontal" />
+                </StackLayout>
+              </StackLayout>
+            </StackLayout>
+          </ViewCell>
+        </DataTemplate>
+      </ListView.ItemTemplate>
+    </ListView>
+  </ContentView.Content>
+</ContentView>
