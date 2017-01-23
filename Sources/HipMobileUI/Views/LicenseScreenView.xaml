@@ -92,18 +92,23 @@
 
       <Label Style="{StaticResource TitleStyle}">Impressum</Label>
       <views:Link>
-        HiP (History in Paderborn) ist eine Plattform der:\n
-        &lt;a href="http://www.uni-paderborn.de"&gt;Universität Paderborn&lt;/a&gt;\n
-        Warburger Str. 100\n
-        33098 Paderborn\n
-        Tel.: +49 5251 60-0\n
-        \nDie Universität Paderborn ist eine vom Land NRW getragene, rechtsfähige Körperschaft des Öffentlichen Rechts. Sie wird durch den Präsidenten vertreten.\nUmsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz: DE 811209907\n
-        Zuständige Aufsichtsbehörde: Ministerium für Innovation, Wissenschaft, Forschung und Technologie (MIWFT) des Landes Nordrhein-Westfalen, Völklinger Str. 49, D-40221 Düsseldorf\n\n
-        Betrieb der HiP-App:\n
-        Universität Paderborn\n
-        Software Innovation Campus Paderborn\n
-        Leitung: Prof. Dr. Gregor Engels\n
-        Verantwortlich für den Betrieb: Dr. Simon Oberthür\n
+        HiP (History in Paderborn) ist eine Plattform der:
+&lt;a href="http://www.uni-paderborn.de"&gt;Universität Paderborn&lt;/a&gt;
+Warburger Str. 100 
+33098 Paderborn 
+Tel.: +49 5251 60-0 
+
+Die Universität Paderborn ist eine vom Land NRW getragene, rechtsfähige Körperschaft des Öffentlichen Rechts. Sie wird durch den Präsidenten vertreten.
+
+Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz: DE 811209907
+
+Zuständige Aufsichtsbehörde: Ministerium für Innovation, Wissenschaft, Forschung und Technologie (MIWFT) des Landes Nordrhein-Westfalen, Völklinger Str. 49, D-40221 Düsseldorf
+
+Betrieb der HiP-App:
+Universität Paderborn
+Software Innovation Campus Paderborn
+Leitung: Prof. Dr. Gregor Engels
+Verantwortlich für den Betrieb: Dr. Simon Oberthür
       </views:Link>
     </StackLayout>
     </ScrollView>

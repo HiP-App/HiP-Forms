@@ -34,7 +34,7 @@ namespace de.upb.hip.mobile.droid
             if (elementChangedEventArgs.NewElement != null)
             {
                 formslink = (Link) elementChangedEventArgs.NewElement;
-                Control.TextFormatted = Html.FromHtml(formslink.Text);
+                Control.TextFormatted = Html.FromHtml(formslink.Text.Replace("\n", "<br />"));
                 Control.MovementMethod = LinkMovementMethod.Instance;
                 Control.AutoLinkMask = MatchOptions.All;
                 Control.Clickable = true;
