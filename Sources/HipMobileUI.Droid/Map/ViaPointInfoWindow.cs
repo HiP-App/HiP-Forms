@@ -16,6 +16,9 @@ using System;
 using Android.Content;
 using Android.Widget;
 using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
+using de.upb.hip.mobile.pcl.Common;
+using HipMobileUI.Navigation;
+using HipMobileUI.ViewModels.Pages;
 using Org.Osmdroid.Bonuspack.Overlays;
 using Org.Osmdroid.Views;
 using Object = Java.Lang.Object;
@@ -32,8 +35,9 @@ namespace de.upb.hip.mobile.droid.Map {
             infoButton.Click += (sender, e) => {
                 if (markerId != null)
                 {
-                   //TODO add connection to exhibitdetails
-                    
+                    IoCManager.Resolve<INavigationService> ().PushAsync (new ExhibitDetailsViewModel (markerId));
+
+
                 }
             };
         }
