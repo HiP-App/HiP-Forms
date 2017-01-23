@@ -36,8 +36,6 @@ namespace de.upb.hip.mobile.droid.Map {
                 if (markerId != null)
                 {
                     IoCManager.Resolve<INavigationService> ().PushAsync (new ExhibitDetailsViewModel (markerId));
-
-
                 }
             };
         }
