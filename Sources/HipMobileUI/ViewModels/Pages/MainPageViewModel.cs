@@ -27,6 +27,9 @@ namespace HipMobileUI.ViewModels.Pages
         {
             MainScreenViewModels = new ObservableCollection<NavigationViewModel>();
 
+            var exhibitSets = ExhibitManager.GetExhibitSets ();
+            MainScreenViewModels.Add (new ExhibitsOverviewViewModel (exhibitSets.First().Id));
+
             var routesOverviewViewModel = new RoutesOverviewViewModel
             {
                 Title = "Routen"

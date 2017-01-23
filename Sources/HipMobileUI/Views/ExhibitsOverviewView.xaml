@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="HipMobileUI.Views.ExhibitsOverviewView" xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" xmlns:ffTransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             xmlns:controls="clr-namespace:HipMobileUI.Controls;assembly=HipMobileUI"
+             xmlns:behaviors="clr-namespace:HipMobileUI.Behaviors;assembly=HipMobileUI">
+  <ContentView.Content>
+      <Grid>
+          <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="*"/>
+          </Grid.ColumnDefinitions>
+          <Grid.RowDefinitions>
+                <RowDefinition Height="0.5*"/>
+                <RowDefinition Height="0.5*"/>
+            </Grid.RowDefinitions>
+          <BoxView Color="Aqua"/>
+            <ListView Grid.Row="1" ItemsSource="{Binding ExhibitsList}" RowHeight="80">
+                <ListView.Behaviors>
+                    <behaviors:ListViewTappedItemBehavior Command="{Binding ItemTappedCommand}" Converter="{StaticResource ItemTappedConverter}"/>
+                </ListView.Behaviors>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal" Padding="5,5" Spacing="10">
+                                <controls:FadeInImage Source="{Binding Image}" HorizontalOptions="Start" VerticalOptions="CenterAndExpand" FadeInTime="500" DownsampleToViewSize="True">
+                                    <ff:CachedImage.Transformations>
+                                        <ffTransformations:CircleTransformation/>
+                                    </ff:CachedImage.Transformations>
+                                </controls:FadeInImage>
+                                <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" Padding="5,5">
+                                    <Label Text="{Binding ExhibitName}" VerticalOptions="CenterAndExpand" FontSize="16" LineBreakMode="WordWrap" FontAttributes="Bold"/>
+                                    <Label Text="{Binding Distance}" VerticalOptions="End" FontSize="14" TextColor="Gray"/>
+                                </StackLayout>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+      </Grid>
+  </ContentView.Content>
+</ContentView>

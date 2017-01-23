@@ -7,6 +7,7 @@ using de.upb.hip.mobile.pcl.Common.Contracts;
 using HipMobileUI;
 using HipMobileUI.Navigation;
 using HipMobileUI.Pages;
+using Plugin.Permissions;
 
 namespace de.upb.hip.mobile.droid
 {
@@ -31,6 +32,11 @@ namespace de.upb.hip.mobile.droid
             Xamarin.Forms.Forms.Init(this, bundle);
             Xamarin.FormsMaps.Init(this, bundle);
             LoadApplication(new App());
+        }
+
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
+        {
+            PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }
 }
