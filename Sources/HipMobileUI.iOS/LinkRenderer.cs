@@ -21,6 +21,7 @@ using HipMobileUI.Views;
 using UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
+using Xamarin.TTTAttributedLabel;
 
 [assembly: ExportRenderer(typeof(Link), typeof(LinkRenderer))]
 namespace HipMobileUI.iOS
@@ -32,7 +33,7 @@ namespace HipMobileUI.iOS
         protected override void OnElementChanged(ElementChangedEventArgs<Label> elementChangedEventArgs)
         {
             base.OnElementChanged(elementChangedEventArgs);
-
+            
             if (elementChangedEventArgs.NewElement != null)
             {
                 formslink = (Link)elementChangedEventArgs.NewElement;
@@ -70,21 +71,29 @@ namespace HipMobileUI.iOS
                 }
                 output += input.Substring(inputIndex);
 
-                NSMutableAttributedString formated = new NSMutableAttributedString(output);
-                UIStringAttributes linkAttributes = new UIStringAttributes()
-                {
-                    Font = UIFont.PreferredBody.WithSize(14),
-                };
+                // Bind the url-links with a TTTAttributedLabel (links are clickable there)
+                TTTAttributedLabel formated = new TTTAttributedLabel();
+                formated.SetText (new NSAttributedString(output));
                 foreach (Tuple<NSRange, string> linkRange in linkRanges)
                 {
-                    linkAttributes.Link = NSUrl.FromString(linkRange.Item2);
-                    formated.SetAttributes(linkAttributes, linkRange.Item1);
+                    formated.AddLinkToURL (NSUrl.FromString(linkRange.Item2), linkRange.Item1);
                 }
+                formated.Delegate = new LinkDelegate ();
 
-                Control.AttributedText = formated;
-                Control.UserInteractionEnabled = true;
-                
+                // Replace the old label with the new TTTAttributedLabel
+                SetNativeControl(formated);
+                Control.LineBreakMode = UILineBreakMode.WordWrap;
+                Control.Lines = 0;
+                Control.SizeToFit ();
             }
+        }
+    }
+
+    public class LinkDelegate : TTTAttributedLabelDelegate {
+
+        public override void DidSelectLinkWithURL (TTTAttributedLabel label, NSUrl url)
+        {
+            Device.OpenUri (url);
         }
     }
 }

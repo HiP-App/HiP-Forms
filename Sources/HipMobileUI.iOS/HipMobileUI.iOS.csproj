@@ -234,6 +234,10 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Xamarin.iOS" />
+    <Reference Include="Xamarin.TTTAttributedLabel, Version=2.0.0.26151, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xamarin.TTTAttributedLabel.2.0.0.1\lib\Xamarin.iOS\Xamarin.TTTAttributedLabel.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\HiPMobile\HiPMobile.csproj">
