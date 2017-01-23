@@ -31,13 +31,17 @@
                     <RowDefinition Height="0.3*" />
                     <RowDefinition Height="0.7*" />
                 </Grid.RowDefinitions>
-                <BoxView Color="{StaticResource PrimaryColor}" />
-                <ListView Grid.Row="1" ItemsSource="{Binding MainScreenViewModels}" SeparatorVisibility="None" SelectedItem="{Binding SelectedViewModel}" ItemSelected="ListView_OnItemSelected" x:Name="SelectedView">
+                <BoxView Grid.Row="0" Color="{StaticResource PrimaryColor}" />
+                <Label Grid.Row="0" Text="Historisches Paderborn"
+                       TextColor="White" FontSize="Small" FontAttributes="Bold"
+                       Margin="16,0,0,32" VerticalOptions="End" />
+                <ListView Grid.Row="1" x:Name="SelectedView" SeparatorVisibility="None" 
+                          ItemsSource="{Binding MainScreenViewModels}" SelectedItem="{Binding SelectedViewModel}" ItemSelected="ListView_OnItemSelected">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                           <ViewCell>
                             <StackLayout Orientation="Horizontal">
-                              <Image Source="{Binding Icon}" Margin="16,0,16,0"></Image>
+                              <Image Source="{Binding Icon}" Margin="16,0,24,0"></Image>
                               <Label Text="{Binding Title}" VerticalTextAlignment="Center" FontSize="Small"></Label>
                             </StackLayout>
                           </ViewCell>
