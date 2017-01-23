@@ -35,7 +35,12 @@
                 <ListView Grid.Row="1" ItemsSource="{Binding MainScreenViewModels}" SeparatorVisibility="None" SelectedItem="{Binding SelectedViewModel}" ItemSelected="ListView_OnItemSelected" x:Name="SelectedView">
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <TextCell Text="{Binding Title}" TextColor="Black"/>
+                          <ViewCell>
+                            <StackLayout Orientation="Horizontal">
+                              <Image Source="{Binding Icon}" Margin="16,0,16,0"></Image>
+                              <Label Text="{Binding Title}" VerticalTextAlignment="Center" FontSize="Small"></Label>
+                            </StackLayout>
+                          </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
