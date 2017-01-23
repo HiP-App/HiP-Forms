@@ -30,7 +30,7 @@
       <ListView.ItemTemplate>
         <DataTemplate>
           <ViewCell>
-            <StackLayout Orientation="Horizontal" Margin="5,5,5,5" d:DataContext="{d:DesignInstance viewModels:RoutesOverviewListItemViewModel}">
+            <StackLayout Orientation="Horizontal" Padding="5,5,5,10" d:DataContext="{d:DesignInstance viewModels:RoutesOverviewListItemViewModel}">
               <Image Source="{Binding Image}" HeightRequest="100" />
               <StackLayout Orientation="Vertical">
                 <Label Text="{Binding RouteTitle}" TextColor="Black" FontSize="18" />
