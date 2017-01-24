@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using Android.OS;
 using Android.Text;
 using Android.Text.Method;
 using Android.Text.Util;
@@ -34,7 +35,19 @@ namespace de.upb.hip.mobile.droid
             if (elementChangedEventArgs.NewElement != null)
             {
                 formslink = (Link) elementChangedEventArgs.NewElement;
-                Control.TextFormatted = Html.FromHtml(formslink.Text.Replace("\n", "<br />"));
+                // Workaround to avoid the "deprecated" warning
+                if (Build.VERSION.SdkInt >= BuildVersionCodes.N)
+                {
+                    Control.TextFormatted = Html.FromHtml(formslink.Text.Replace("\n", "<br />"), FromHtmlOptions.ModeLegacy);
+                }
+                else
+                {
+#pragma warning disable 618
+                    Control.TextFormatted = Html.FromHtml(formslink.Text.Replace("\n", "<br />"));
+#pragma warning restore 618
+                }
+
+                // Make links clickable
                 Control.MovementMethod = LinkMovementMethod.Instance;
                 Control.AutoLinkMask = MatchOptions.All;
                 Control.Clickable = true;

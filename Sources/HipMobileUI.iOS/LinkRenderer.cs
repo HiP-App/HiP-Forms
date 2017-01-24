@@ -38,7 +38,6 @@ namespace HipMobileUI.iOS
             {
                 formslink = (Link)elementChangedEventArgs.NewElement;
 
-                NSMutableAttributedString content = new NSMutableAttributedString();
                 List<Tuple<NSRange, string>> linkRanges = new List<Tuple<NSRange, string>>();
                 string output = "";
 
