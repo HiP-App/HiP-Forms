@@ -53,7 +53,7 @@ namespace HipMobileUI.ViewModels.Views {
                 Tags.Add (ImageSource.FromStream(() => new MemoryStream(currentTagImageData)));
             }
 
-            imageData = Route.Image.Data;
+            var imageData = Route.Image.Data;
             Image = ImageSource.FromStream(() => new MemoryStream(imageData));
         }
 
@@ -68,10 +68,6 @@ namespace HipMobileUI.ViewModels.Views {
             return string.Format ("{0} Minuten", durationInMinutes);
         }
 
-        /// <summary>
-        /// Required due to threading problems in Realm
-        /// </summary>
-        private readonly byte[] imageData;
         private ImageSource image; 
         public ImageSource Image
         {

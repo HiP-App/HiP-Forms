@@ -9,7 +9,7 @@ using Xamarin.Forms;
 
 namespace HipMobileUI.Views.ExhibitDetails
 {
-    public partial class TimeSliderView : ContentView, IViewFor<TimeSliderViewModel>
+    public partial class TimeSliderView : IViewFor<TimeSliderViewModel>
     {
         public TimeSliderView()
         {

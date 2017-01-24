@@ -9,7 +9,7 @@ using Xamarin.Forms;
 
 namespace HipMobileUI.Views.ExhibitDetails
 {
-    public partial class ImageView : ContentView, IViewFor<ImageViewModel>
+    public partial class ImageView : IViewFor<ImageViewModel>
     {
         public ImageView()
         {

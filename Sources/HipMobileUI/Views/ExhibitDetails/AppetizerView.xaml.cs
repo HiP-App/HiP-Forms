@@ -9,7 +9,7 @@ using Xamarin.Forms;
 
 namespace HipMobileUI.Views.ExhibitDetails
 {
-    public partial class AppetizerView : ContentView, IViewFor<AppetizerViewModel>
+    public partial class AppetizerView : IViewFor<AppetizerViewModel>
     {
         public AppetizerView()
         {

@@ -17,7 +17,7 @@ using Xamarin.Forms;
 
 namespace HipMobileUI.Pages
 {
-    public partial class ExhibitDetailsPage : ContentPage, IViewFor<ExhibitDetailsViewModel>
+    public partial class ExhibitDetailsPage : IViewFor<ExhibitDetailsViewModel>
     {
         public ExhibitDetailsPage()
         {
