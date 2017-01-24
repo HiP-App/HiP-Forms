@@ -50,6 +50,7 @@
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>audio</string>
+		<string>location</string>
 	</array>
 	<key>NSAppTransportSecurity</key>
 	<dict>
@@ -68,5 +69,9 @@
 	<array>
 		<string>MKDirectionsModeWalking</string>
 	</array>
+  <key>NSLocationAlwaysUsageDescription</key>
+  <string>Can we use your location</string>
+  <key>NSLocationWhenInUseUsageDescription</key>
+  <string>We are using your location</string>
 </dict>
 </plist>

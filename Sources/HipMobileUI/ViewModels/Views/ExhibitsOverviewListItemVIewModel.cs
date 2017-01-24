@@ -21,17 +21,16 @@ using Xamarin.Forms;
 
 namespace HipMobileUI.ViewModels.Views
 {
-    class ExhibitsOverviewListItemVIewModel : BaseViewModel
+    class ExhibitsOverviewListItemViewModel : BaseViewModel
     {
 
-        public ExhibitsOverviewListItemVIewModel (Exhibit exhibit, string distance = "0")
+        public ExhibitsOverviewListItemViewModel (Exhibit exhibit, string distance = "- m")
         {
             ExhibitName = exhibit.Name;
             Distance = distance;
             var data = exhibit.Image.Data;
             Image = ImageSource.FromStream (() => new MemoryStream (data));
-            ExhibitId = exhibit.Id;
-            this.exhibit = exhibit;
+            Exhibit = exhibit;
         }
 
         private Exhibit exhibit;
@@ -39,23 +38,42 @@ namespace HipMobileUI.ViewModels.Views
         private string distance;
         private ImageSource image;
 
+        /// <summary>
+        /// The name of the exhibit.
+        /// </summary>
         public string ExhibitName {
             get { return exhibitName; }
             set { SetProperty (ref exhibitName, value); }
         }
 
+        /// <summary>
+        /// The distance to the exhibit.
+        /// </summary>
         public string Distance {
             get { return distance; }
             set { SetProperty (ref distance, value); }
         }
 
+        /// <summary>
+        /// The appetizer image for teh exhibit.
+        /// </summary>
         public ImageSource Image {
             get { return image; }
             set { SetProperty (ref image, value); }
         }
 
-        public string ExhibitId { get; private set; }
+        /// <summary>
+        /// The id of the exhibit.
+        /// </summary>
+        public Exhibit Exhibit {
+            get { return exhibit; }
+            set { SetProperty (ref exhibit, value); }
+        }
 
+        /// <summary>
+        /// Update the displayed distance according to the position.
+        /// </summary>
+        /// <param name="position">The new position from which the distance is measured.</param>
         public void UpdateDistance (Position position)
         {
             double distance = MathUtil.CalculateDistance (exhibit.Location.Latitude, exhibit.Location.Longitude, position.Latitude, position.Longitude);

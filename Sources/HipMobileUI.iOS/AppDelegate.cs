@@ -1,5 +1,6 @@
 ﻿using de.upb.hip.mobile.pcl.Common;
 using de.upb.hip.mobile.pcl.Common.Contracts;
+using FFImageLoading.Forms.Touch;
 using Foundation;
 using HipMobileUI.iOS.Contracts;
 using HipMobileUI.Navigation;
@@ -29,6 +30,8 @@ namespace HipMobileUI.iOS
             NavigationService.Instance.RegisterViewModels (typeof(MainPage).Assembly);
             IoCManager.RegisterInstance (typeof(INavigationService), NavigationService.Instance);
             IoCManager.RegisterInstance(typeof(IViewCreator), NavigationService.Instance);
+
+            CachedImageRenderer.Init ();
 
             Xamarin.Forms.Forms.Init();
             Xamarin.FormsMaps.Init();

@@ -92,7 +92,7 @@
     <Compile Include="ViewModels\Pages\MainPageViewModel.cs" />
     <Compile Include="ViewModels\Pages\RouteDetailsPageViewModel.cs" />
     <Compile Include="ViewModels\Views\DummyViewModel.cs" />
-    <Compile Include="ViewModels\Views\ExhibitsOverviewListItemVIewModel.cs" />
+    <Compile Include="ViewModels\Views\ExhibitsOverviewListItemViewModel.cs" />
     <Compile Include="ViewModels\Views\ExhibitsOverviewViewModel.cs" />
     <Compile Include="Views\BottomSheetView.cs" />
     <Compile Include="Views\DummyView.xaml.cs">

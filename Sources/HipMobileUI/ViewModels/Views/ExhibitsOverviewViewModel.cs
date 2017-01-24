@@ -12,9 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System;
 using System.Collections.ObjectModel;
-using System.IO;
 using System.Windows.Input;
 using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
@@ -27,33 +25,57 @@ namespace HipMobileUI.ViewModels.Views
 {
     class ExhibitsOverviewViewModel : NavigationViewModel
     {
+        private ObservableCollection<ExhibitsOverviewListItemViewModel> exhibitsList;
+        private ICommand itemTappedCommand;
+        private IGeolocator locator;
 
-        public ExhibitsOverviewViewModel (string exhibitSetId)
+        public ExhibitsOverviewViewModel(ExhibitSet set, IGeolocator geolocator)
         {
-            Title = "Sehenswürdigkeiten";
-            ExhibitSet set = ExhibitManager.GetExhibitSet (exhibitSetId);
+            Title = "Übersicht";
             if (set != null)
             {
-                ExhibitsList = new ObservableCollection<ExhibitsOverviewListItemVIewModel> ();
+                ExhibitsList = new ObservableCollection<ExhibitsOverviewListItemViewModel>();
                 foreach (Exhibit exhibit in set)
                 {
-                    var listItem = new ExhibitsOverviewListItemVIewModel (exhibit);
-                    ExhibitsList.Add (listItem);
+                    var listItem = new ExhibitsOverviewListItemViewModel(exhibit);
+                    ExhibitsList.Add(listItem);
                 }
             }
-            ItemTappedCommand = new Command (item => NavigateToExhibitDetails (item as ExhibitsOverviewListItemVIewModel));
-            var locator = CrossGeolocator.Current;
-            locator.DesiredAccuracy = 10;
-            locator.PositionChanged+=LocatorOnPositionChanged;
-            locator.StartListeningAsync (4000, 10);
-           // SetDistances (locator.GetPositionAsync ().Result);
+            ItemTappedCommand = new Command(item => NavigateToExhibitDetails(item as ExhibitsOverviewListItemViewModel));
+
+            if (geolocator != null)
+            {
+                locator = geolocator;
+            }
         }
 
+        public ExhibitsOverviewViewModel (ExhibitSet set) : this(set, null)
+        {
+            // TODO use application constants here
+            locator = CrossGeolocator.Current;
+            locator.DesiredAccuracy = 10;
+            locator.PositionChanged += LocatorOnPositionChanged;
+            locator.StartListeningAsync(4000, 10);
+        }
+
+        public ExhibitsOverviewViewModel (string exhibitSetId) : this(ExhibitManager.GetExhibitSet(exhibitSetId))
+        {   
+        }
+
+        /// <summary>
+        /// React to position changes.
+        /// </summary>
+        /// <param name="sender">The sender of the event.</param>
+        /// <param name="positionEventArgs">The event params.</param>
         private void LocatorOnPositionChanged (object sender, PositionEventArgs positionEventArgs)
         {
             SetDistances (positionEventArgs.Position);
         }
 
+        /// <summary>
+        /// Update the distances according to the new position.
+        /// </summary>
+        /// <param name="position">The new position.</param>
         private void SetDistances (Position position)
         {
             foreach (var exhibit in ExhibitsList)
@@ -62,22 +84,39 @@ namespace HipMobileUI.ViewModels.Views
             }
         }
 
-        public void NavigateToExhibitDetails (ExhibitsOverviewListItemVIewModel item)
+        /// <summary>
+        /// Remove the location listener once this view disappears.
+        /// </summary>
+        public override void OnDisappearing ()
+        {
+            base.OnDisappearing ();
+
+            locator.PositionChanged -= LocatorOnPositionChanged;
+        }
+
+        /// <summary>
+        /// Open the exhibitdetails page.
+        /// </summary>
+        /// <param name="item"></param>
+        private void NavigateToExhibitDetails (ExhibitsOverviewListItemViewModel item)
         {
             if (item != null)
             {
-                Navigation.PushAsync (new ExhibitDetailsViewModel (item.ExhibitId));
+                Navigation.PushAsync (new ExhibitDetailsViewModel (item.Exhibit));
             }
         }
 
-        private ObservableCollection<ExhibitsOverviewListItemVIewModel> exhibitsList;
-        private ICommand itemTappedCommand;
-
-        public ObservableCollection<ExhibitsOverviewListItemVIewModel> ExhibitsList {
+        /// <summary>
+        /// The list of displayed exhibits.
+        /// </summary>
+        public ObservableCollection<ExhibitsOverviewListItemViewModel> ExhibitsList {
             get { return exhibitsList; }
             set { SetProperty (ref exhibitsList, value); }
         }
 
+        /// <summary>
+        /// The command for tapping on exhibits.
+        /// </summary>
         public ICommand ItemTappedCommand {
             get { return itemTappedCommand; }
             set { SetProperty (ref itemTappedCommand, value); }

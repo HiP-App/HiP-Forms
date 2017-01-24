@@ -70,7 +70,13 @@ namespace HipMobileUI.ViewModels.Pages
         public NavigationViewModel SelectedViewModel
         {
             get { return selectedViewModel; }
-            set { SetProperty(ref (selectedViewModel), value); }
+            set {
+                var oldViewModel = SelectedViewModel;
+                if (SetProperty (ref (selectedViewModel), value))
+                {
+                    oldViewModel?.OnDisappearing ();
+                }
+            }
         }
 
     }

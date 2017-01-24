@@ -4,6 +4,7 @@ using Android.OS;
 using de.upb.hip.mobile.droid.Contracts;
 using de.upb.hip.mobile.pcl.Common;
 using de.upb.hip.mobile.pcl.Common.Contracts;
+using FFImageLoading.Forms.Droid;
 using HipMobileUI;
 using HipMobileUI.Navigation;
 using HipMobileUI.Pages;
@@ -28,6 +29,8 @@ namespace de.upb.hip.mobile.droid
             IoCManager.RegisterInstance(typeof(INavigationService), NavigationService.Instance);
             IoCManager.RegisterInstance(typeof(IViewCreator), NavigationService.Instance);
             IoCManager.RegisterInstance (typeof(IFabSizeCalculator), new AndroidFabSizeCalculator ());
+
+            CachedImageRenderer.Init ();
 
             Xamarin.Forms.Forms.Init(this, bundle);
             Xamarin.FormsMaps.Init(this, bundle);
