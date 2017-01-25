@@ -32,12 +32,18 @@ namespace HipMobileUI.UITests
         {
             BeforeEachTest(platform);
 
-            var titles = new List<string> { "Übersicht", "Routen", "Einstellungen", "Feedback", "Rechtliche Hinweise" };
-            foreach (var title in titles) 
+            var titles = new List<string> { "Routen", "Einstellungen", "Feedback", "Rechtliche Hinweise", "Übersicht" };
+            
+            // intended duplicated for loop (because selecting an already selected element has no effect)
+            foreach (var title in titles)
             {
                 TestEntry(platform, title, false);
+            }
+            foreach (var title in titles)
+            {
                 TestEntry(platform, title, true);
             }
+
         }
 
         /// <summary>
@@ -55,6 +61,7 @@ namespace HipMobileUI.UITests
 
             App.WaitForElement(x => x.Text(title), timeout: TimeSpan.FromMinutes(1));
             App.Tap(x => x.Text(title));
+            App.WaitForElement (x => x.Marked (GetPlatformMenuName (platform)), timeout: TimeSpan.FromMinutes(1));
         }
     }
 }
