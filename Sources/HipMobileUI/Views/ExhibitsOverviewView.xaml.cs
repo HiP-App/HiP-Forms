@@ -21,11 +21,11 @@ namespace HipMobileUI.Views
 {
     public partial class ExhibitsOverviewView : ContentView, IViewFor<ExhibitsOverviewViewModel> {
 
-        private Orientation orientation;
+        private DeviceOrientation deviceOrientation;
         public ExhibitsOverviewView()
         {
             InitializeComponent();
-            orientation = Orientation.Undefined;
+            deviceOrientation = DeviceOrientation.Undefined;
         }
 
         protected override void OnSizeAllocated (double width, double height)
@@ -34,7 +34,7 @@ namespace HipMobileUI.Views
 
             if (width <= height)
             {
-                if (orientation != Orientation.Portrait)
+                if (deviceOrientation != DeviceOrientation.Portrait)
                 {
                     // portrait mode
                     this.Grid.RowDefinitions.Clear();
@@ -49,12 +49,12 @@ namespace HipMobileUI.Views
                     Grid.SetColumn(Map, 0);
                     Grid.SetColumn(List, 0);
 
-                    orientation = Orientation.Portrait;
+                    deviceOrientation = DeviceOrientation.Portrait;
                 }
             }
             else if (width > height)
             {
-                if (orientation != Orientation.Landscape)
+                if (deviceOrientation != DeviceOrientation.Landscape)
                 {
                     // landscape mode
                     this.Grid.RowDefinitions.Clear();
@@ -69,7 +69,7 @@ namespace HipMobileUI.Views
                     Grid.SetColumn(Map, 0);
                     Grid.SetColumn(List, 1);
 
-                    orientation = Orientation.Landscape;
+                    deviceOrientation = DeviceOrientation.Landscape;
                 }
             }
         }

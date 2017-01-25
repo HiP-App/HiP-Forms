@@ -67,7 +67,7 @@
     <Compile Include="Converters\ViewModelViewConverter.cs" />
     <Compile Include="Helpers\ExtensionMethods.cs" />
     <Compile Include="Container\BindableChildrenStackLayout.cs" />
-    <Compile Include="Helpers\Orientation.cs" />
+    <Compile Include="Helpers\DeviceOrientation.cs" />
     <Compile Include="Helpers\Settings.cs" />
     <Compile Include="Navigation\INavigationService.cs" />
     <Compile Include="Navigation\IViewCreator.cs" />
