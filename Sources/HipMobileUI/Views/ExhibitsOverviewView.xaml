@@ -24,7 +24,7 @@
              xmlns:behaviors="clr-namespace:HipMobileUI.Behaviors;assembly=HipMobileUI"
              x:Name="ExhibitsOveriew">
     <ContentView.Content>
-        <Grid>
+        <Grid x:Name="Grid">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
@@ -32,8 +32,8 @@
                 <RowDefinition Height="0.5*" />
                 <RowDefinition Height="0.5*" />
             </Grid.RowDefinitions>
-            <BoxView Color="Aqua" />
-            <ListView Grid.Row="1" ItemsSource="{Binding ExhibitsList}" RowHeight="80">
+            <BoxView Color="Aqua" x:Name="Map"/>
+            <ListView Grid.Row="1" ItemsSource="{Binding ExhibitsList}" RowHeight="80" x:Name="List">
                 <ListView.Behaviors>
                     <behaviors:ListViewTappedItemBehavior Command="{Binding ItemTappedCommand}"
                                                           Converter="{StaticResource ItemTappedConverter}" />
