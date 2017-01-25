@@ -107,5 +107,7 @@ namespace HipMobileUI.Map {
             set { SetProperty(ref showDetailsRoute, value); }
         }
 
+
+
     }
 }

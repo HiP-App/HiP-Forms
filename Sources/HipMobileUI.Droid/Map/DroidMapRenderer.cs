@@ -16,16 +16,19 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
+using Android.Support.Design.Widget;
 using Android.Support.V4.Content;
 using Android.Support.V4.Content.Res;
 using Android.Views;
 using Android.Widget;
 using de.upb.hip.mobile.droid.Map;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
+using de.upb.hip.mobile.pcl.BusinessLayer.Routing;
 using de.upb.hip.mobile.pcl.Helpers;
 using HipMobileUI.Map;
 using Org.Osmdroid;
@@ -52,6 +55,8 @@ namespace de.upb.hip.mobile.droid.Map {
         private Marker userMarkerPosition;
         private MyLocationOverlay locationOverlay;
         private Activity activity;
+        private RouteCalculator routeCalculator;
+        private Polyline currentRouteOverlay;
 
 
         protected override void OnElementChanged (ElementChangedEventArgs<OsmMap> e)
@@ -63,7 +68,7 @@ namespace de.upb.hip.mobile.droid.Map {
             {
                 mapView = new MapView (Forms.Context, 11);
                 activity = Context as Activity;
-
+                routeCalculator = RouteCalculator.Instance;
                 this.SetNativeControl (mapView);
                 userPosition = new GeoPoint (AppSharedData.PaderbornMainStation.Latitude, AppSharedData.PaderbornMainStation.Longitude);
                 mapView.SetTileSource (TileSourceFactory.DefaultTileSource);
@@ -109,6 +114,7 @@ namespace de.upb.hip.mobile.droid.Map {
         private void NewElementOnGpsLocationChanged (GeoLocation gpsLocation)
         {
 
+            //Userposition is always updated
                 userPosition = new GeoPoint (gpsLocation.Latitude, gpsLocation.Longitude);
                 mapController.SetCenter (userPosition);
                 if (userMarkerPosition != null)
@@ -117,16 +123,22 @@ namespace de.upb.hip.mobile.droid.Map {
                     userMarkerPosition.Position = userPosition;
                     userMarkerPosition.SetInfoWindow (null);
                     mapView.OverlayManager.Add (userMarkerPosition);
+                    UpdateRoute (new GeoPoint(gpsLocation.Latitude,gpsLocation.Longitude));
                     mapView.Invalidate ();
                 }
+
+                //if navigation is enabled the route will be drawn and updated
+            if (osmMap.ShowNavigation)
+            {
+                UpdateRoute (new GeoPoint(gpsLocation.Latitude,gpsLocation.Longitude));
+            }
             
         }
 
         private void NewElementOnDetailsRouteChanged (Route route)
         {
-
-            if (osmMap.ShowDetailsRoute)
-            {
+            //The direct polyline is only draw if related bool is true
+            
                 PathOverlay myPath = new PathOverlay (Resources.GetColor (Resource.Color.colorPrimaryDark), 7, new DefaultResourceProxyImpl (activity));
 
                 if (userPosition != null)
@@ -146,9 +158,10 @@ namespace de.upb.hip.mobile.droid.Map {
                     }
                 }
 
-                mapView.OverlayManager.Add (myPath);
+                if(osmMap.ShowDetailsRoute)
+                 mapView.OverlayManager.Add (myPath);
                 mapView.Invalidate ();
-            }
+            
         }
 
 
@@ -183,6 +196,73 @@ namespace de.upb.hip.mobile.droid.Map {
 
 
             mapView.Invalidate ();
+        }
+
+        private void CalculateRoute()
+        {
+            var id = osmMap.DetailsRoute.Id;
+
+            ThreadPool.QueueUserWorkItem(state => {
+                var geoPoints = new List<GeoPoint> { new GeoPoint(userPosition.Latitude, userPosition.Longitude) };
+               
+                Action action;
+
+                try
+                {
+                    var locations = routeCalculator.CreateRouteWithSeveralWaypoints(new GeoLocation(userPosition.Latitude, userPosition.Longitude),
+                                                                                     id);
+
+                    foreach (var w in locations)
+                    {
+                        var point = new GeoPoint(w.Latitude, w.Longitude);
+                        geoPoints.Add(point);
+                    }
+
+                    action = () => DrawRoute(geoPoints);
+                }
+                catch (Exception)
+                {
+                    action = ShowRouteCalculationError;
+                }
+
+                activity.RunOnUiThread(() => {
+                    var handler = new Handler();
+                    handler.PostDelayed(action, 0);
+                });
+            });
+        }
+
+        private void ShowRouteCalculationError()
+        {
+            Toast.MakeText(activity,"Sie befinden sich nicht innerhalb von Paderborn", ToastLength.Long).Show();
+        }
+
+        private void DrawRoute(List<GeoPoint> geoPoints)
+        {
+            //Cleanup route if drawn before
+            if (currentRouteOverlay != null)
+                mapView.OverlayManager.Remove(currentRouteOverlay);
+
+            currentRouteOverlay = new Polyline(activity)
+            {
+                Title = osmMap.DetailsRoute.Title,
+                Width = 5f,
+                Color = Android.Graphics.Color.Blue,
+                Points = geoPoints,
+                Geodesic = true
+            };
+            mapView.OverlayManager.Add(currentRouteOverlay);
+            mapView.Invalidate();
+        }
+
+        //TODO needs connection to some gps listener
+        private void UpdateRoute(GeoPoint currentLocation)
+        {
+            
+            userPosition = currentLocation;
+            mapView.Invalidate();
+
+            CalculateRoute();
         }
 
         public bool OnScroll (ScrollEvent p0)

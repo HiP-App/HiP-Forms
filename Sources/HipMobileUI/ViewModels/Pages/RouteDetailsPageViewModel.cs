@@ -69,7 +69,8 @@ namespace HipMobileUI.Viewmodels.Pages
             GpsLocation = location;
 
             detailsRoute = route;
-            showDetailsRoute = true;
+            ShowDetailsRoute = false;
+
         }
 
         public RouteDetailsPageViewModel (Route route) : this(route, new GeoLocation(AppSharedData.PaderbornMainStation.Latitude, AppSharedData.PaderbornMainStation.Longitude))
@@ -107,6 +108,7 @@ namespace HipMobileUI.Viewmodels.Pages
             get { return showDetailsRoute; }
             set { SetProperty(ref showDetailsRoute, value); }
         }
+
 
         /// <summary>
         /// Starts navigation for the route.

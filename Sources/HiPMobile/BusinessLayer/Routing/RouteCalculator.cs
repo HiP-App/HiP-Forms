@@ -17,6 +17,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using Itinero;
 using Itinero.LocalGeo;
@@ -93,7 +94,7 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Routing {
         /// <param name="userPosition">position of user</param>
         /// <param name="listOfWayPoints">list of all waypoints</param>
         /// <returns>IList GeoLocation</returns>
-        public IList<GeoLocation> CreateRouteWithSeveralWaypoints (GeoLocation userPosition, IList<Waypoint> listOfWayPoints)
+        public IList<GeoLocation> CreateRouteWithSeveralWaypoints (GeoLocation userPosition, string id)
         {
             //List of Geolocations for path
             IList<GeoLocation> result = new List<GeoLocation> ();
@@ -101,7 +102,7 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Routing {
 
             locations.Add (new Coordinate ((float) userPosition.Latitude, (float) userPosition.Longitude));
 
-            foreach (var v in listOfWayPoints)
+            foreach (var v in RouteManager.GetRoute(id).Waypoints)
                 locations.Add (new Coordinate ((float) v.Location.Latitude, (float) v.Location.Longitude));
 
             var route = routeRouter.TryCalculate (Vehicle.Pedestrian.Fastest (), locations.ToArray ());
