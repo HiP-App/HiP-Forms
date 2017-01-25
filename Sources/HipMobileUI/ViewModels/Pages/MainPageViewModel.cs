@@ -1,4 +1,4 @@
-﻿// Copyright (C) 2016 History in Paderborn App - Universität Paderborn
+﻿// Copyright (C) 2017 History in Paderborn App - Universität Paderborn
 //  
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -13,8 +13,6 @@
 // limitations under the License.
 
 using System.Collections.ObjectModel;
-using System.Linq;
-using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using HipMobileUI.ViewModels.Views;
 using Xamarin.Forms;
 
@@ -25,34 +23,39 @@ namespace HipMobileUI.ViewModels.Pages
 
         public MainPageViewModel()
         {
-            MainScreenViewModels = new ObservableCollection<NavigationViewModel>();
-
-            var routesOverviewViewModel = new RoutesOverviewViewModel
+            MainScreenViewModels = new ObservableCollection<NavigationViewModel>
             {
-                Title = "Routen"
+                new DummyViewModel
+                {
+                    Title = "Übersicht",
+                    Icon = "ic_home.png",
+                    Color = Color.Gray
+                },
+                new RoutesOverviewViewModel
+                {
+                    Title = "Routen",
+                    Icon = "ic_directions.png"
+                },
+                new DummyViewModel
+                {
+                    Title = "Einstellungen",
+                    Icon = "ic_settings.png",
+                    Color = Color.Red
+                },
+                new DummyViewModel
+                {
+                    Title = "Feedback",
+                    Icon = "ic_feedback.png",
+                    Color = Color.Green
+                },
+                new DummyViewModel
+                {
+                    Title = "Rechtliche Hinweise",
+                    Icon = "ic_gavel.png",
+                    Color = Color.Blue
+                }
             };
 
-            var vm = new DummyViewModel ()
-
-            {
-                Title = "Blue",
-                Color = Color.Blue
-            };
-            var vm1 = new DummyViewModel()
-            {
-                Title = "Red",
-                Color = Color.Red
-            };
-            var vm2 = new DummyViewModel()
-            {
-                Title = "Green",
-                Color = Color.Green
-            };
-
-            MainScreenViewModels.Add(routesOverviewViewModel);
-            MainScreenViewModels.Add(vm);
-            MainScreenViewModels.Add(vm1);
-            MainScreenViewModels.Add(vm2);
         }
 
         private ObservableCollection<NavigationViewModel> mainScreenViewModels;
@@ -67,7 +70,7 @@ namespace HipMobileUI.ViewModels.Pages
         public NavigationViewModel SelectedViewModel
         {
             get { return selectedViewModel; }
-            set { SetProperty(ref (selectedViewModel), value); }
+            set { SetProperty(ref selectedViewModel, value); }
         }
 
     }
