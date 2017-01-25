@@ -50,7 +50,8 @@ namespace HipMobileUI.Viewmodels.Pages
         /// Creates a new ViewModel for the specified <see cref="Route"/>.
         /// </summary>
         /// <param name="route">The <see cref="Route"/> the ViewModel is created for.</param>
-        public RouteDetailsPageViewModel(Route route)
+        /// <param name="location"></param>
+        public RouteDetailsPageViewModel(Route route, GeoLocation location)
         {
             Title = route.Title;
             Description = route.Description;
@@ -65,10 +66,15 @@ namespace HipMobileUI.Viewmodels.Pages
 
             Tabs = new ObservableCollection<string> {"Description", "Map"};
 
-            GpsLocation = new GeoLocation(AppSharedData.PaderbornMainStation.Latitude, AppSharedData.PaderbornMainStation.Longitude);
+            GpsLocation = location;
 
             detailsRoute = route;
             showDetailsRoute = true;
+        }
+
+        public RouteDetailsPageViewModel (Route route) : this(route, new GeoLocation(AppSharedData.PaderbornMainStation.Latitude, AppSharedData.PaderbornMainStation.Longitude))
+        {
+            
         }
 
         /// <summary>

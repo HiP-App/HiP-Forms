@@ -56,6 +56,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\CardView.cs" />
+    <Compile Include="Controls\FadeInImage.cs" />
+    <Compile Include="Controls\FloatingActionButton.cs" />
     <Compile Include="Behaviors\ListViewTappedItemBehavior.cs" />
     <Compile Include="Container\TabView.cs" />
     <Compile Include="Converters\RouteTagViewListConverter.cs" />
@@ -71,6 +74,9 @@
     <Compile Include="Navigation\IViewCreator.cs" />
     <Compile Include="Navigation\IViewFor.cs" />
     <Compile Include="Navigation\NavigationService.cs" />
+    <Compile Include="Pages\ExhibitDetailsPage.xaml.cs">
+      <DependentUpon>ExhibitDetailsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -80,17 +86,32 @@
     <Compile Include="Properties\Annotations3.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\NavigationViewModel.cs" />
+    <Compile Include="ViewModels\Pages\ExhibitDetailsViewModel.cs" />
+    <Compile Include="ViewModels\Views\ExhibitDetails\AppetizerViewModel.cs" />
+    <Compile Include="ViewModels\Views\ExhibitDetails\ExhibitSubviewViewModel.cs" />
+    <Compile Include="ViewModels\Views\ExhibitDetails\ImageViewModel.cs" />
+    <Compile Include="ViewModels\Views\ExhibitDetails\TimeSliderViewModel.cs" />
     <Compile Include="ViewModels\Pages\MainPageViewModel.cs" />
     <Compile Include="ViewModels\Pages\RouteDetailsPageViewModel.cs" />
     <Compile Include="ViewModels\Views\DummyViewModel.cs" />
-    <Compile Include="ViewModels\Views\RoutesOverviewListItemViewModel.cs" />
-    <Compile Include="ViewModels\Views\RoutesOverviewViewModel.cs" />
+    <Compile Include="Views\BottomSheetView.cs" />
     <Compile Include="Views\DummyView.xaml.cs">
       <DependentUpon>DummyView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MapView.xaml.cs">
       <DependentUpon>MapView.xaml</DependentUpon>
      </Compile>
+    <Compile Include="Views\ExhibitDetails\AppetizerView.xaml.cs">
+      <DependentUpon>AppetizerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ExhibitDetails\ImageView.xaml.cs">
+      <DependentUpon>ImageView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ExhibitDetails\TimeSliderView.xaml.cs">
+      <DependentUpon>TimeSliderView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\Views\RoutesOverviewListItemViewModel.cs" />
+    <Compile Include="ViewModels\Views\RoutesOverviewViewModel.cs" />
     <Compile Include="Views\RoutesOverviewView.xaml.cs">
       <DependentUpon>RoutesOverviewView.xaml</DependentUpon>
     </Compile>
@@ -190,6 +211,30 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\MapView.xaml"/>
+    <EmbeddedResource Include="Pages\ExhibitDetailsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\ExhibitDetails\AppetizerView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\ExhibitDetails\ImageView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\ExhibitDetails\TimeSliderView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
     <EmbeddedResource Include="Pages\RouteDetailsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
