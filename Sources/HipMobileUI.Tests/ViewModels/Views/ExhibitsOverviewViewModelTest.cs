@@ -20,22 +20,25 @@ using de.upb.hip.mobile.pcl.DataAccessLayer;
 using HipMobileUI.Navigation;
 using HipMobileUI.ViewModels.Views;
 using NSubstitute;
+using NSubstitute.ReturnsExtensions;
 using NUnit.Framework;
 using Plugin.Geolocator.Abstractions;
 
 namespace HipMobileUI.Tests.ViewModels.Views
 {
-
     [TestFixture]
-    class ExhibitsOverviewViewModelTest
-    {
+    class ExhibitsOverviewViewModelTest {
+
+        private INavigationService navservice;
 
         [TestFixtureSetUp]
         public void Init()
         {
-            IoCManager.RegisterInstance(typeof(INavigationService), Substitute.For<INavigationService>());
+            IoCManager.Clear ();
+            navservice = Substitute.For<INavigationService> ();
+            IoCManager.RegisterInstance(typeof(INavigationService), navservice);
             IoCManager.RegisterInstance(typeof(IImageDimension), Substitute.For<IImageDimension>());
-            IoCManager.RegisterInstance(typeof(IDataAccess), Substitute.For<IDataAccess>());
+            IoCManager.RegisterInstance (typeof (IDataAccess), Substitute.For<IDataAccess> ());
         }
 
         [Test, Category("UnitTest")]
@@ -48,40 +51,71 @@ namespace HipMobileUI.Tests.ViewModels.Views
             Assert.AreNotSame(sut.ExhibitsList[0], sut.ExhibitsList[2]);
             Assert.AreNotSame(sut.ExhibitsList[1], sut.ExhibitsList[2]);
             Assert.NotNull (sut.ItemTappedCommand);
+            Assert.IsFalse (sut.DisplayDistances);
+        }
+
+        [TestCase(0), Category("UnitTest")]
+        [TestCase(1), Category("UnitTest")]
+        [TestCase(2), Category("UnitTest")]
+        public void ItemTapped_Once(int item)
+        {
+
+            var sut = CreateSystemUnderTest();
+
+            sut.ItemTappedCommand.Execute (sut.ExhibitsList[item]);
+            navservice.ReceivedWithAnyArgs ().PushAsync (null);
         }
 
         [Test, Category("UnitTest")]
-        public void ItemTapped_Once()
+        public void ExhibitsList_LocationUpdate()
         {
-            var sut = CreateSystemUnderTest();
-            var navigationService = IoCManager.Resolve<INavigationService> ();
+            var locator = Substitute.For<IGeolocator> ();
+            var sut = CreateSystemUnderTest(locator);
 
-            sut.ItemTappedCommand.Execute (sut.ExhibitsList[0]);
-            navigationService.ReceivedWithAnyArgs ().PushAsync (null);
+            locator.PositionChanged += Raise.EventWith (this, new PositionEventArgs (new Position () {Latitude = 51, Longitude = 7}));
+
+            Assert.IsTrue (sut.DisplayDistances);
+            for (int i = 0; i < sut.ExhibitsList.Count - 1; i++)
+            {
+                Assert.IsTrue (sut.ExhibitsList[i].Distance < sut.ExhibitsList[i+1].Distance);
+            }
         }
 
         #region Helper Methods
         private ExhibitsOverviewViewModel CreateSystemUnderTest ()
         {
-            var set = Substitute.For<ExhibitSet> ();
-            var exhibitList = new List<Exhibit> {CreateExhibit ("Exhibit 1"), CreateExhibit ("Exhibit 2"), CreateExhibit ("Exhibit 3")};
-            set.ActiveSet.Returns (exhibitList);
-
-            var locator = Substitute.For<IGeolocator> ();
-
-            return new ExhibitsOverviewViewModel (set, locator);
+            return CreateSystemUnderTest (Substitute.For<IGeolocator> ());
         }
 
-        private Exhibit CreateExhibit (string name)
+        private ExhibitsOverviewViewModel CreateSystemUnderTest(IGeolocator locator)
+        {
+            var set = Substitute.For<ExhibitSet>();
+            var exhibitList = new List<Exhibit> { CreateExhibit("Exhibit 1", 51, 7), CreateExhibit("Exhibit 2", 52, 8), CreateExhibit("Exhibit 3", 52.5, 7.5) };
+            set.ActiveSet.Returns(exhibitList);
+
+            return new ExhibitsOverviewViewModel(set, locator);
+        }
+
+        private Exhibit CreateExhibit (string name, double latitude=0, double longitude=0)
         {
             var exhibit = Substitute.For<Exhibit> ();
             exhibit.Name = name;
             exhibit.Image = CreateImage ();
 
+            exhibit.Location = CreateGeoLocation (latitude, longitude);
+
             var pages = new List<Page> { CreateAppetizerPage() };
             exhibit.Pages.Returns(pages);
 
             return exhibit;
+        }
+
+        private GeoLocation CreateGeoLocation (double latitude, double longitude)
+        {
+            var geolocation = Substitute.For<GeoLocation> ();
+            geolocation.Latitude.Returns (latitude);
+            geolocation.Longitude.Returns (longitude);
+            return geolocation;
         }
 
         private Page CreateAppetizerPage()

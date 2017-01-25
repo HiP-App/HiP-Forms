@@ -16,6 +16,7 @@ using System.Collections.ObjectModel;
 using System.Windows.Input;
 using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
+using HipMobileUI.Helpers;
 using HipMobileUI.ViewModels.Pages;
 using Plugin.Geolocator;
 using Plugin.Geolocator.Abstractions;
@@ -27,7 +28,8 @@ namespace HipMobileUI.ViewModels.Views
     {
         private ObservableCollection<ExhibitsOverviewListItemViewModel> exhibitsList;
         private ICommand itemTappedCommand;
-        private IGeolocator locator;
+        private readonly IGeolocator locator;
+        private bool displayDistances;
 
         public ExhibitsOverviewViewModel(ExhibitSet set, IGeolocator geolocator)
         {
@@ -42,10 +44,14 @@ namespace HipMobileUI.ViewModels.Views
                 }
             }
             ItemTappedCommand = new Command(item => NavigateToExhibitDetails(item as ExhibitsOverviewListItemViewModel));
+            DisplayDistances = false;
 
             if (geolocator != null)
             {
                 locator = geolocator;
+                locator.DesiredAccuracy = 10;
+                locator.PositionChanged += LocatorOnPositionChanged;
+                locator.StartListeningAsync(4000, 10);
             }
         }
 
@@ -78,10 +84,12 @@ namespace HipMobileUI.ViewModels.Views
         /// <param name="position">The new position.</param>
         private void SetDistances (Position position)
         {
+            DisplayDistances = true;
             foreach (var exhibit in ExhibitsList)
             {
                 exhibit.UpdateDistance(position);
             }
+            ExhibitsList.SortCollection (exhibit => exhibit.Distance);
         }
 
         /// <summary>
@@ -120,6 +128,11 @@ namespace HipMobileUI.ViewModels.Views
         public ICommand ItemTappedCommand {
             get { return itemTappedCommand; }
             set { SetProperty (ref itemTappedCommand, value); }
+        }
+
+        public bool DisplayDistances {
+            get { return displayDistances; }
+            set { SetProperty (ref displayDistances, value); }
         }
 
     }

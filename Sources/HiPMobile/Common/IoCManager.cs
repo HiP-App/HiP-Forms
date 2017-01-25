@@ -16,6 +16,7 @@
 
 
 using System;
+using System.Linq;
 using Microsoft.Practices.Unity;
 
 namespace de.upb.hip.mobile.pcl.Common {
@@ -29,7 +30,7 @@ namespace de.upb.hip.mobile.pcl.Common {
             Instance = new UnityContainer();
         }
 
-        private static UnityContainer Instance { get; }
+        private static UnityContainer Instance { get; set; }
 
         public static void RegisterType<TSuper, TSub>() where TSub : TSuper
         {
@@ -44,6 +45,16 @@ namespace de.upb.hip.mobile.pcl.Common {
         public static T Resolve<T>()
         {
             return Instance.Resolve<T>();
+        }
+
+        public static void Clear ()
+        {
+            foreach (var registration in Instance.Registrations
+                                                 .Where (p => p.RegisteredType == typeof (object)
+                                                              && p.LifetimeManagerType == typeof (ContainerControlledLifetimeManager)))
+            {
+                registration.LifetimeManager.RemoveValue ();
+            }
         }
 
 

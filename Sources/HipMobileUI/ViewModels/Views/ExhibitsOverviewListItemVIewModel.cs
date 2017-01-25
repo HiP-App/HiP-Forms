@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System;
 using System.IO;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using de.upb.hip.mobile.pcl.Helpers;
@@ -24,7 +25,7 @@ namespace HipMobileUI.ViewModels.Views
     class ExhibitsOverviewListItemViewModel : BaseViewModel
     {
 
-        public ExhibitsOverviewListItemViewModel (Exhibit exhibit, string distance = "- m")
+        public ExhibitsOverviewListItemViewModel (Exhibit exhibit, double distance = -1)
         {
             ExhibitName = exhibit.Name;
             Distance = distance;
@@ -35,7 +36,7 @@ namespace HipMobileUI.ViewModels.Views
 
         private Exhibit exhibit;
         private string exhibitName;
-        private string distance;
+        private double distance;
         private ImageSource image;
 
         /// <summary>
@@ -49,9 +50,14 @@ namespace HipMobileUI.ViewModels.Views
         /// <summary>
         /// The distance to the exhibit.
         /// </summary>
-        public string Distance {
+        public double Distance {
             get { return distance; }
-            set { SetProperty (ref distance, value); }
+            set {
+                if (SetProperty (ref distance, value))
+                {
+                    OnPropertyChanged (nameof (FormatedDistance));
+                }
+            }
         }
 
         /// <summary>
@@ -71,20 +77,38 @@ namespace HipMobileUI.ViewModels.Views
         }
 
         /// <summary>
+        /// The Formated distance string.
+        /// </summary>
+        public string FormatedDistance {
+            get {
+                if (Distance < 1)
+                {
+                    return $"{Distance * 1000:F0} m";
+                }
+                else
+                {
+                    return $"{(Distance):0.##} km";
+                }
+            }
+        }
+
+        /// <summary>
         /// Update the displayed distance according to the position.
         /// </summary>
         /// <param name="position">The new position from which the distance is measured.</param>
         public void UpdateDistance (Position position)
         {
-            double distance = MathUtil.CalculateDistance (exhibit.Location.Latitude, exhibit.Location.Longitude, position.Latitude, position.Longitude);
-            if (distance < 1)
+            Distance = MathUtil.CalculateDistance (exhibit.Location.Latitude, exhibit.Location.Longitude, position.Latitude, position.Longitude);
+        }
+
+        public override bool Equals (object obj)
+        {
+            var otherItem = obj as ExhibitsOverviewListItemViewModel;
+            if (otherItem != null)
             {
-                Distance = $"{distance*1000:F0} m";
+                return ExhibitName.Equals (otherItem.ExhibitName);
             }
-            else
-            {
-                Distance = $"{(distance):0.##} km";
-            }
+            return base.Equals (obj);
         }
 
     }

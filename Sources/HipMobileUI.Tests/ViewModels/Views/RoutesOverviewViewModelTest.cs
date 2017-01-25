@@ -45,6 +45,7 @@ namespace HipMobileUI.Tests.ViewModels.Views {
 
         private RoutesOverviewViewModel CreateSystemUnderTest ()
         {
+            IoCManager.Clear ();
             var imageDimensions = Substitute.For<IImageDimension>();
             IoCManager.RegisterInstance(typeof(IImageDimension), imageDimensions);
 
