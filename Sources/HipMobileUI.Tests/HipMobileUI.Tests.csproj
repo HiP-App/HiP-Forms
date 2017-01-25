@@ -122,6 +122,7 @@
     <Compile Include="ViewModels\Views\ExhibitDetails\AppetizerViewModelTest.cs" />
     <Compile Include="ViewModels\Views\ExhibitDetails\ImageViewModelTest.cs" />
     <Compile Include="ViewModels\Pages\RoutesDetailsPageViewModelTest.cs" />
+    <Compile Include="ViewModels\Views\ExhibitsOverviewListItemViewModelTest.cs" />
     <Compile Include="ViewModels\Views\ExhibitsOverviewViewModelTest.cs" />
     <Compile Include="ViewModels\Views\RoutesOverviewViewModelTest.cs" />
     <Compile Include="ViewModels\Views\RoutesOverviewListItemViewModelTest.cs" />
