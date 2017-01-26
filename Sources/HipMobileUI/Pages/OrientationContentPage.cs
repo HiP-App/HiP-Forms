@@ -13,25 +13,19 @@
 // limitations under the License.
 
 using HipMobileUI.Helpers;
-using HipMobileUI.Navigation;
-using HipMobileUI.ViewModels.Pages;
 using Xamarin.Forms;
 
 namespace HipMobileUI.Pages
 {
-    public partial class ExhibitDetailsPage : OrientationContentPage, IViewFor<ExhibitDetailsViewModel>
+    public class OrientationContentPage : ContentPage
     {
-        public ExhibitDetailsPage()
+        public static readonly BindableProperty OrientationControllerProperty =
+            BindableProperty.Create("OrientationController", typeof(OrientationController), typeof(OrientationContentPage), OrientationController.Sensor);
+
+        public OrientationController OrientationController
         {
-            InitializeComponent();
+            get { return (OrientationController)GetValue(OrientationControllerProperty); }
+            set { SetValue(OrientationControllerProperty, value); }
         }
-
-        protected override void OnDisappearing ()
-        {
-            base.OnDisappearing ();
-
-            OrientationController = OrientationController.Sensor;
-        }
-
     }
 }

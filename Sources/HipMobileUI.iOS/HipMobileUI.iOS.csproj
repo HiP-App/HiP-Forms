@@ -153,7 +153,9 @@
   <ItemGroup>
     <Compile Include="Contracts\IosImageDimensions.cs" />
     <Compile Include="CustomRenderers\FloatingActionButtonIosRenderer.cs" />
+    <Compile Include="CustomRenderers\IosOrientationContentPageRenderer.cs" />
     <Compile Include="Helpers\Settings.cs" />
+    <Compile Include="ViewControllers\OrientationViewController.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <None Include="Entitlements.plist" />

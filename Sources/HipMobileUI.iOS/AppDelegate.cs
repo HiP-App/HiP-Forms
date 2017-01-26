@@ -6,6 +6,7 @@ using HipMobileUI.iOS.Contracts;
 using HipMobileUI.Navigation;
 using HipMobileUI.Pages;
 using UIKit;
+using Xamarin.Forms;
 
 namespace HipMobileUI.iOS
 {
@@ -35,6 +36,7 @@ namespace HipMobileUI.iOS
 
             Xamarin.Forms.Forms.Init();
             Xamarin.FormsMaps.Init();
+
             LoadApplication(new App());
 
 #if ENABLE_TEST_CLOUD
