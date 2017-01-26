@@ -290,6 +290,21 @@
     <BundleResource Include="Resources\ic_volume_up.png" />
     <BundleResource Include="Resources\ic_volume_up%402x.png" />
     <BundleResource Include="Resources\ic_volume_up%403x.png" />
+    <BundleResource Include="Resources\ic_directions.png" />
+    <BundleResource Include="Resources\ic_directions%402x.png" />
+    <BundleResource Include="Resources\ic_directions%403x.png" />
+    <BundleResource Include="Resources\ic_feedback.png" />
+    <BundleResource Include="Resources\ic_feedback%402x.png" />
+    <BundleResource Include="Resources\ic_feedback%403x.png" />
+    <BundleResource Include="Resources\ic_gavel.png" />
+    <BundleResource Include="Resources\ic_gavel%402x.png" />
+    <BundleResource Include="Resources\ic_gavel%403x.png" />
+    <BundleResource Include="Resources\ic_home.png" />
+    <BundleResource Include="Resources\ic_home%402x.png" />
+    <BundleResource Include="Resources\ic_home%403x.png" />
+    <BundleResource Include="Resources\ic_settings.png" />
+    <BundleResource Include="Resources\ic_settings%402x.png" />
+    <BundleResource Include="Resources\ic_settings%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Resources\MapAnnotations.xcassets\AppIcons.appiconset\Contents.json">

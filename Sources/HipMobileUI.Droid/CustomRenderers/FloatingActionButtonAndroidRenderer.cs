@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 using System;
+using Android.OS;
 using de.upb.hip.mobile.droid.CustomRenderers;
 using HipMobileUI.Controls;
 using Xamarin.Forms;
@@ -33,6 +34,10 @@ namespace de.upb.hip.mobile.droid.CustomRenderers
             {
                 fab = new Android.Support.Design.Widget.FloatingActionButton(Context);
                 fab.Click += FabOnClick;
+
+                if (Build.VERSION.SdkInt >= BuildVersionCodes.Lollipop)
+                    fab.Elevation = 2;
+
                 SetNativeControl(fab);
             }
 
