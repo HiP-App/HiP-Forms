@@ -20,9 +20,6 @@ namespace HipMobileUI.iOS.Map
 {
     class MapRenderer : ViewRenderer<OsmMap, MKMapView> {
 
-        //// Comented in order to use shared logic for current location
-        //private LocationManager locationManager;
-
         protected override void OnElementChanged(ElementChangedEventArgs<OsmMap> e)
         {
             base.OnElementChanged(e);
@@ -44,7 +41,6 @@ namespace HipMobileUI.iOS.Map
                     Control.CalloutAccessoryControlTapped += OnCalloutAccessoryControlTapped;
                     e.NewElement.GpsLocationChanged += OnGpsLocationChanged;
                     e.NewElement.ExhibitSetChanged += OnExhibitSetChanged;
-                    //Control.DidUpdateUserLocation += OnDidUpdateUserLocation; //// Comented in order to use shared logic for current location
                 }
 
                 if (e.OldElement != null)
@@ -53,17 +49,10 @@ namespace HipMobileUI.iOS.Map
                     Control.CalloutAccessoryControlTapped -= OnCalloutAccessoryControlTapped;
                     e.OldElement.GpsLocationChanged -= OnGpsLocationChanged;
                     e.OldElement.ExhibitSetChanged -= OnExhibitSetChanged;
-                    //Control.DidUpdateUserLocation -= OnDidUpdateUserLocation; //// Comented in order to use shared logic for current location
                 }
-
-                //// Comented in order to use shared logic for current location
-                //locationManager = new LocationManager();
-                //locationManager.StartLocationUpdates();
-
-                Control.ShowsUserLocation = true;
-
-                Control.ShowsCompass = true;
                 
+                Control.ShowsUserLocation = true;
+                Control.ShowsCompass = true;
                 initMapPosition (Control);
             }
         }
@@ -87,13 +76,6 @@ namespace HipMobileUI.iOS.Map
                 mapView.SetRegion(MKCoordinateRegion.FromDistance(center, 1000, 1000), true);
             }
         }
-
-        //// Comented in order to use shared logic for current location
-        //private void OnDidUpdateUserLocation (object sender, MKUserLocationEventArgs e)
-        //{
-        //    var mapView = sender as MKMapView;
-        //    mapView.CenterCoordinate = e.UserLocation.Coordinate;
-        //}
 
         private MKAnnotationView GetViewForAnnotation(MKMapView mapView, IMKAnnotation annotation)
         {
@@ -152,47 +134,4 @@ namespace HipMobileUI.iOS.Map
             }
         }
     }
-
-    //// Comented in order to use shared logic for current location
-    //public class LocationManager : CLLocationManager {
-
-    //    protected CLLocationManager Manager { get; }
-
-    //    public LocationManager ()
-    //    {
-    //        Manager = new CLLocationManager();
-    //        // Manager.PausesLocationUpdatesAutomatically = true;
-
-    //        //In order to use user location background update info.plist -> to <key>UIBackgroundModes</key> uncomment  <!--string>location</string-->
-    //        // iOS 8 has additional permissions requirements
-    //        if (UIDevice.CurrentDevice.CheckSystemVersion(8, 0))
-    //        {
-    //            //Manager.RequestAlwaysAuthorization(); // works in background  
-    //            Manager.RequestWhenInUseAuthorization (); // only in foreground
-    //        }
-    //        if (UIDevice.CurrentDevice.CheckSystemVersion(9, 0))
-    //        {
-    //            Manager.AllowsBackgroundLocationUpdates = false;
-    //        }
-    //    }
-
-    //    public void StartLocationUpdates()
-    //    {
-
-    //        if (CLLocationManager.LocationServicesEnabled)
-    //        {
-    //            //TODO: magic numbers
-    //            Manager.DesiredAccuracy = 100;//meters
-    //            Manager.DistanceFilter = 100;
-    //            Manager.StartUpdatingLocation ();
-    //        }
-    //        else
-    //        {
-    //            {
-    //                UIAlertView alert = new UIAlertView("", "The user location cannot be retrieved.", null, "ok", null);
-    //                alert.Show ();
-    //            }
-    //        }
-    //    }
-    //}
 }
