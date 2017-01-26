@@ -59,12 +59,12 @@
           <Image Source="ic_schedule.png" />
           <Label Text="{Binding Duration}" FontSize="Small" />
         </StackLayout>
-        <BoxView Color="#66000000" WidthRequest="1" Margin="14,0,14,0" />
+        <BoxView Color="#66000000" WidthRequest="1" Margin="10,0,10,0" />
         <StackLayout Orientation="Vertical">
           <Image Source="ic_directions_walk.png" />
           <Label Text="{Binding Distance}" FontSize="Small" />
         </StackLayout>
-        <BoxView Color="#66000000" WidthRequest="1" Margin="14,0,14,0" />
+        <BoxView Color="#66000000" WidthRequest="1" Margin="10,0,10,0" />
         <Label Text="{strings:Translate RouteDetailsPage_StartRoute}" FontSize="Large" TextColor="{StaticResource AccentColor}"
                 HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
           <Label.GestureRecognizers>
