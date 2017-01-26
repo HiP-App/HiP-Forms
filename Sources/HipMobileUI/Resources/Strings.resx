@@ -148,7 +148,7 @@
     <value>Karte</value>
   </data>
   <data name="RouteDetailsPage_StartRoute" xml:space="preserve">
-    <value>Starte Route</value>
+    <value>Route starten</value>
   </data>
   <data name="RouteDetailsPage_Tags" xml:space="preserve">
     <value>Auf der Route:</value>

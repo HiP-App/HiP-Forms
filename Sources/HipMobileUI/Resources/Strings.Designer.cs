@@ -116,7 +116,7 @@ namespace HipMobileUI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Starte Route.
+        ///   Looks up a localized string similar to Route starten.
         /// </summary>
         public static string RouteDetailsPage_StartRoute {
             get {
