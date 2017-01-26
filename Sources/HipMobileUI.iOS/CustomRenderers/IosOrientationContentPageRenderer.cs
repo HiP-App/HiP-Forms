@@ -15,6 +15,7 @@
 using System.ComponentModel;
 using HipMobileUI.Helpers;
 using HipMobileUI.iOS.CustomRenderers;
+using HipMobileUI.iOS.ViewControllers;
 using HipMobileUI.Pages;
 using UIKit;
 using Xamarin.Forms;

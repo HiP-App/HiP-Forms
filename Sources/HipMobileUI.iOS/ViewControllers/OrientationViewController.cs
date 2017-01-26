@@ -15,11 +15,11 @@
 using HipMobileUI.Helpers;
 using UIKit;
 
-namespace HipMobileUI.iOS
+namespace HipMobileUI.iOS.ViewControllers
 {
     public class OrientationViewController : UIViewController {
 
-        private OrientationController controller;
+        private readonly OrientationController controller;
 
         public override bool ShouldAutorotateToInterfaceOrientation(UIInterfaceOrientation toInterfaceOrientation)
 
