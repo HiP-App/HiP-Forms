@@ -21,78 +21,76 @@ using HipMobileUI.Views;
 using UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
-using Xamarin.TTTAttributedLabel;
 
 [assembly: ExportRenderer(typeof(Link), typeof(LinkRenderer))]
 namespace HipMobileUI.iOS
 {
-    public class LinkRenderer : LabelRenderer
+    public class LinkRenderer : ViewRenderer
     {
         private Link formslink;
 
-        protected override void OnElementChanged(ElementChangedEventArgs<Label> elementChangedEventArgs)
+        protected override void OnElementChanged(ElementChangedEventArgs<View> e)
         {
-            base.OnElementChanged(elementChangedEventArgs);
+            base.OnElementChanged(e);
             
-            if (elementChangedEventArgs.NewElement != null)
+            // just to get the text
+            formslink = (Link)e.NewElement;
+            if (formslink == null)
             {
-                formslink = (Link)elementChangedEventArgs.NewElement;
-
-                List<Tuple<NSRange, string>> linkRanges = new List<Tuple<NSRange, string>>();
-                string output = "";
-
-                Regex aElementRegex = new Regex(@"(<a.*?>.*?</a>)");
-                string input = formslink.Text;
-                input = Regex.Unescape(input);
-
-                // search for all html tags with name a
-                MatchCollection aOccurencies = aElementRegex.Matches(input);
-                int outputIndex = 0;
-                int inputIndex = 0;
-                foreach (Match match in aOccurencies)
-                {
-                    // extract the hyperlinks from this tags and write everything that isn't html markup to the output
-                    output += input.Substring(inputIndex, match.Index - inputIndex);
-                    outputIndex += match.Index - inputIndex;
-                    inputIndex += match.Index - inputIndex;
-                    string aElement = match.Value;
-                    string link = Regex.Match(aElement, "href=\".*?\"").Value;
-                    link = link.Replace("href=\"", "");
-                    link = link.Replace("\"", "");
-                    string linkText = Regex.Match(aElement, ">.*<").Value;
-                    linkText = linkText.Trim('<', '>');
-
-                    inputIndex += aElement.Length;
-
-                    output += linkText;
-                    linkRanges.Add(Tuple.Create(new NSRange(outputIndex, linkText.Length), link));
-                    outputIndex += linkText.Length;
-                }
-                output += input.Substring(inputIndex);
-
-                // Bind the url-links with a TTTAttributedLabel (links are clickable there)
-                TTTAttributedLabel formated = new TTTAttributedLabel();
-                formated.SetText (new NSAttributedString(output));
-                foreach (Tuple<NSRange, string> linkRange in linkRanges)
-                {
-                    formated.AddLinkToURL (NSUrl.FromString(linkRange.Item2), linkRange.Item1);
-                }
-                formated.Delegate = new LinkDelegate ();
-
-                // Replace the old label with the new TTTAttributedLabel
-                SetNativeControl(formated);
-                Control.LineBreakMode = UILineBreakMode.WordWrap;
-                Control.Lines = 0;
-                Control.SizeToFit ();
+                return;
             }
-        }
-    }
 
-    public class LinkDelegate : TTTAttributedLabelDelegate {
+            string input = formslink.Text;
+            string output = "";
+            List<Tuple<NSRange, string>> linkRanges = new List<Tuple<NSRange, string>>();
 
-        public override void DidSelectLinkWithURL (TTTAttributedLabel label, NSUrl url)
-        {
-            Device.OpenUri (url);
+            Regex aElementRegex = new Regex(@"(<a.*?>.*?</a>)");
+            input = Regex.Unescape(input);
+
+            // search for all html tags with name a
+            MatchCollection aOccurencies = aElementRegex.Matches(input);
+            int outputIndex = 0;
+            int inputIndex = 0;
+            foreach (Match match in aOccurencies)
+            {
+                // extract the hyperlinks from this tags and write everything that isn't html markup to the output
+                output += input.Substring(inputIndex, match.Index - inputIndex);
+                outputIndex += match.Index - inputIndex;
+                inputIndex += match.Index - inputIndex;
+                string aElement = match.Value;
+                string link = Regex.Match(aElement, "href=\".*?\"").Value;
+                link = link.Replace("href=\"", "");
+                link = link.Replace("\"", "");
+                string linkText = Regex.Match(aElement, ">.*<").Value;
+                linkText = linkText.Trim('<', '>');
+
+                inputIndex += aElement.Length;
+
+                output += linkText;
+                linkRanges.Add(Tuple.Create(new NSRange(outputIndex, linkText.Length), link));
+                outputIndex += linkText.Length;
+            }
+            output += input.Substring(inputIndex);
+
+            // bind the url-links with a TextView to make them clickable
+            UITextView licenseTextView = new UITextView();
+            NSMutableAttributedString formated = new NSMutableAttributedString(output);
+            UIStringAttributes linkAttributes = new UIStringAttributes ();
+
+            foreach (Tuple<NSRange, string> linkRange in linkRanges)
+            {
+                linkAttributes.Link = NSUrl.FromString(linkRange.Item2);
+                formated.SetAttributes(linkAttributes, linkRange.Item1);
+            }
+
+            licenseTextView.AttributedText = formated;
+            licenseTextView.Editable = false;
+            licenseTextView.ScrollEnabled = false;
+            licenseTextView.Font = UIFont.SystemFontOfSize (14);
+            licenseTextView.TextColor = UIColor.Gray;
+
+            // replace old Label with new TextView
+            SetNativeControl(licenseTextView);
         }
     }
 }
