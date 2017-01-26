@@ -12,7 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System;
 using System.Collections.ObjectModel;
+using HipMobileUI.Resources;
 using HipMobileUI.ViewModels.Views;
 using Xamarin.Forms;
 
@@ -27,30 +29,30 @@ namespace HipMobileUI.ViewModels.Pages
             {
                 new DummyViewModel
                 {
-                    Title = "Übersicht",
+                    Title = Strings.MainPageViewModel_OverviewPage,
                     Icon = "ic_home.png",
                     Color = Color.Gray
                 },
                 new RoutesOverviewViewModel
                 {
-                    Title = "Routen",
+                    Title = Strings.MainPageViewModel_Routes,
                     Icon = "ic_directions.png"
                 },
                 new DummyViewModel
                 {
-                    Title = "Einstellungen",
+                    Title = Strings.MainPageViewModel_Settings,
                     Icon = "ic_settings.png",
                     Color = Color.Red
                 },
                 new DummyViewModel
                 {
-                    Title = "Feedback",
+                    Title = Strings.MainPageViewModel_Feedback,
                     Icon = "ic_feedback.png",
                     Color = Color.Green
                 },
                 new DummyViewModel
                 {
-                    Title = "Rechtliche Hinweise",
+                    Title = Strings.MainPageViewModel_LegalNotices,
                     Icon = "ic_gavel.png",
                     Color = Color.Blue
                 }
