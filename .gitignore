@@ -6,4 +6,3 @@ obj
 packages/
 **/CodeGeneration.Log.xml
 !Bindings/CircularRevealBinding/CircularRevealBinding/bin/Debug/CircularRevealBinding.dll
-Sources/HipMobileUI/Resources/Strings.Designer.cs
