@@ -32,7 +32,7 @@ namespace HipMobileUI.Tests.ViewModels.Views {
             var sut = CreateSystemUnderTest();
 
             string distanceText = sut.GetRouteDistanceText (10);
-            Assert.AreEqual ("10 km", distanceText);
+            Assert.AreEqual ("10 Kilometer", distanceText);
         }
 
         [Test, NUnit.Framework.Category("UnitTest")]
@@ -50,7 +50,7 @@ namespace HipMobileUI.Tests.ViewModels.Views {
             var sut = CreateSystemUnderTest ();
 
             Assert.AreEqual ("Test Description", sut.RouteDescription);
-            Assert.AreEqual ("10 km", sut.Distance);
+            Assert.AreEqual ("10 Kilometer", sut.Distance);
             Assert.AreEqual ("80 Minuten", sut.Duration);
             Assert.AreEqual ("Test Title", sut.RouteTitle);
             Assert.NotNull (sut.Image);
