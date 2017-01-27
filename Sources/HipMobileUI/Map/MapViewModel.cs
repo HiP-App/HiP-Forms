@@ -75,7 +75,7 @@ namespace HipMobileUI.Map {
             double dist;
             foreach (Exhibit e in exhibitSet)
             {
-                dist = ExtensionMethods.DistanceLatLon (e.Location, gpsLocation);
+                dist = MathUtil.DistanceLatLon (e.Location, gpsLocation);
                 if (dist < 30)
                 {
                     var b = Navigation.DisplayAlert ("Sehenwürdigkeit in der Nähe", "Möchten sie sich " + e.Name + " genauer ansehen", "Ja", "Nein");

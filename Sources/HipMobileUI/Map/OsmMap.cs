@@ -25,7 +25,7 @@ namespace HipMobileUI.Map {
         
         public static readonly BindableProperty DetailsRouteProperty = BindableProperty.Create ("DetailsRoute",typeof(Route),typeof(OsmMap),null, propertyChanged: DetailsRoutePropertyChanged);
 
-        public static readonly BindableProperty ShowDetailsRouteProperty = BindableProperty.Create ("ShowDetails",typeof(bool),typeof(OsmMap),false);
+        public static readonly BindableProperty ShowDetailsRouteProperty = BindableProperty.Create ("ShowDetailsRoute",typeof(bool),typeof(OsmMap),false);
 
         // Property accessor
         public ExhibitSet ExhibitSet {
