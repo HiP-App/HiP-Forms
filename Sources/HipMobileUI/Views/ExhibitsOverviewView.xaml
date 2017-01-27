@@ -33,7 +33,7 @@
                 <RowDefinition Height="0.5*" />
             </Grid.RowDefinitions>
             <BoxView Color="Aqua" x:Name="Map"/>
-            <ListView Grid.Row="1" ItemsSource="{Binding ExhibitsList}" RowHeight="80" x:Name="List">
+            <ListView Grid.Row="1" ItemsSource="{Binding ExhibitsList}" HasUnevenRows="True" x:Name="List">
                 <ListView.Behaviors>
                     <behaviors:ListViewTappedItemBehavior Command="{Binding ItemTappedCommand}"
                                                           Converter="{StaticResource ItemTappedConverter}" />
@@ -43,7 +43,7 @@
                         <ViewCell>
                             <StackLayout Orientation="Horizontal" Padding="5,5" Spacing="10">
                                 <controls:FadeInImage Source="{Binding Image}" HorizontalOptions="Start"
-                                                      VerticalOptions="CenterAndExpand" DownsampleToViewSize="True">
+                                                      VerticalOptions="CenterAndExpand" DownsampleToViewSize="True" WidthRequest="70" HeightRequest="70">
                                     <controls:FadeInImage.FadeInTime>
                                         <OnPlatform x:TypeArguments="x:Int32">
                                             <OnPlatform.Android>500</OnPlatform.Android>
