@@ -52,18 +52,18 @@ namespace HipMobileUI.ViewModels.Views
             if (geolocator != null)
             {
                 locator = geolocator;
-                locator.DesiredAccuracy = AppSharedData.MinDistanceChangeForUpdates;
+                locator.DesiredAccuracy = 10;
                 locator.PositionChanged += LocatorOnPositionChanged;
-                locator.StartListeningAsync(AppSharedData.MinTimeBwUpdates, AppSharedData.MinDistanceChangeForUpdates);
+                locator.StartListeningAsync(4000, 10);
             }
         }
 
         public ExhibitsOverviewViewModel (ExhibitSet set) : this(set, null)
         {
             locator = CrossGeolocator.Current;
-            locator.DesiredAccuracy = AppSharedData.MinDistanceChangeForUpdates;
+            locator.DesiredAccuracy = 10;
             locator.PositionChanged += LocatorOnPositionChanged;
-            locator.StartListeningAsync(AppSharedData.MinTimeBwUpdates, AppSharedData.MinDistanceChangeForUpdates);
+            locator.StartListeningAsync(4000, 10);
         }
 
         public ExhibitsOverviewViewModel (string exhibitSetId) : this(ExhibitManager.GetExhibitSet(exhibitSetId))
