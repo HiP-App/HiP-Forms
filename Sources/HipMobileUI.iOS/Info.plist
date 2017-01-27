@@ -21,7 +21,7 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>MinimumOSVersion</key>
-	<string>7.1</string>
+	<string>7.0</string>
 	<key>CFBundleDisplayName</key>
 	<string>Historisches Paderborn</string>
 	<key>CFBundleIdentifier</key>
@@ -50,6 +50,7 @@
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>audio</string>
+    <!--string>location</string--> 
 	</array>
 	<key>NSAppTransportSecurity</key>
 	<dict>
@@ -68,5 +69,9 @@
 	<array>
 		<string>MKDirectionsModeWalking</string>
 	</array>
-</dict>
+  <key>NSLocationAlwaysUsageDescription</key>
+  <string>Dürfen wir Ihre Position verwenden</string>
+  <key>NSLocationWhenInUseUsageDescription</key>
+  <string>Wir benutzen Ihre Position</string>
+ </dict>
 </plist>

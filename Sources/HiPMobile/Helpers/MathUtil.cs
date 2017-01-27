@@ -13,6 +13,7 @@
 // limitations under the License.
 
 using System;
+using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 
 namespace de.upb.hip.mobile.pcl.Helpers {
     public class MathUtil {
@@ -38,6 +39,8 @@ namespace de.upb.hip.mobile.pcl.Helpers {
         {
             return deg * (Math.PI / 180);
         }
+
+
 
     }
 }

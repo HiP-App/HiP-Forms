@@ -17,6 +17,7 @@ using System.Collections.ObjectModel;
 using HipMobileUI.Resources;
 using HipMobileUI.ViewModels.Views;
 using Xamarin.Forms;
+using HipMobileUI.Map;
 
 namespace HipMobileUI.ViewModels.Pages
 {
@@ -55,6 +56,10 @@ namespace HipMobileUI.ViewModels.Pages
                     Title = Strings.MainPageViewModel_LegalNotices,
                     Icon = "ic_gavel.png",
                     Color = Color.Blue
+                },
+                new MapViewModel {
+                
+                    Title = "Map"
                 }
             };
 

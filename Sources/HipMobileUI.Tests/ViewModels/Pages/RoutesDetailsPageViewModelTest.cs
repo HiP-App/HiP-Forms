@@ -67,7 +67,7 @@ namespace HipMobileUI.Tests.ViewModels.Pages {
             IoCManager.RegisterInstance (typeof (IDataAccess), dataAccess);
             IoCManager.RegisterInstance (typeof (INavigationService), Substitute.For<INavigationService> ());
 
-            return new RouteDetailsPageViewModel (route);
+            return new RouteDetailsPageViewModel (route, null);
         }
 
         #endregion
