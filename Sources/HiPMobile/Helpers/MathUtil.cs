@@ -39,5 +39,7 @@ namespace de.upb.hip.mobile.pcl.Helpers {
             return deg * (Math.PI / 180);
         }
 
+
+
     }
 }

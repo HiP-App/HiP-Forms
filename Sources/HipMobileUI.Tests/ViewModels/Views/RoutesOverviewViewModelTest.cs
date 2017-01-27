@@ -35,7 +35,7 @@ namespace HipMobileUI.Tests.ViewModels.Views {
             var route = sut.Routes.First ();
 
             Assert.AreEqual ("Test Description", route.RouteDescription);
-            Assert.AreEqual ("10 km", route.Distance);
+            Assert.AreEqual ("10 Kilometer", route.Distance);
             Assert.AreEqual ("80 Minuten", route.Duration);
             Assert.AreEqual ("Test Title", route.RouteTitle);
             Assert.NotNull (route.Image);

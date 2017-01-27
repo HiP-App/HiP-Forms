@@ -16,6 +16,7 @@ using System.Collections.ObjectModel;
 using System.Windows.Input;
 using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
+using de.upb.hip.mobile.pcl.Helpers;
 using HipMobileUI.Helpers;
 using HipMobileUI.ViewModels.Pages;
 using Plugin.Geolocator;
@@ -30,12 +31,14 @@ namespace HipMobileUI.ViewModels.Views
         private ICommand itemTappedCommand;
         private readonly IGeolocator locator;
         private bool displayDistances;
+        private ExhibitSet displayedExhibitSet;
+        private GeoLocation geoLocation;
 
         public ExhibitsOverviewViewModel(ExhibitSet set, IGeolocator geolocator)
         {
-            Title = "Übersicht";
             if (set != null)
             {
+                DisplayedExhibitSet = set;
                 ExhibitsList = new ObservableCollection<ExhibitsOverviewListItemViewModel>();
                 foreach (Exhibit exhibit in set)
                 {
@@ -49,19 +52,18 @@ namespace HipMobileUI.ViewModels.Views
             if (geolocator != null)
             {
                 locator = geolocator;
-                locator.DesiredAccuracy = 10;
+                locator.DesiredAccuracy = AppSharedData.MinDistanceChangeForUpdates;
                 locator.PositionChanged += LocatorOnPositionChanged;
-                locator.StartListeningAsync(4000, 10);
+                locator.StartListeningAsync(AppSharedData.MinTimeBwUpdates, AppSharedData.MinDistanceChangeForUpdates);
             }
         }
 
         public ExhibitsOverviewViewModel (ExhibitSet set) : this(set, null)
         {
-            // TODO use application constants here
             locator = CrossGeolocator.Current;
-            locator.DesiredAccuracy = 10;
+            locator.DesiredAccuracy = AppSharedData.MinDistanceChangeForUpdates;
             locator.PositionChanged += LocatorOnPositionChanged;
-            locator.StartListeningAsync(4000, 10);
+            locator.StartListeningAsync(AppSharedData.MinTimeBwUpdates, AppSharedData.MinDistanceChangeForUpdates);
         }
 
         public ExhibitsOverviewViewModel (string exhibitSetId) : this(ExhibitManager.GetExhibitSet(exhibitSetId))
@@ -84,6 +86,7 @@ namespace HipMobileUI.ViewModels.Views
         /// <param name="position">The new position.</param>
         private void SetDistances (Position position)
         {
+            GeoLocation = new GeoLocation(position.Latitude, position.Longitude);
             DisplayDistances = true;
             foreach (var exhibit in ExhibitsList)
             {
@@ -130,9 +133,28 @@ namespace HipMobileUI.ViewModels.Views
             set { SetProperty (ref itemTappedCommand, value); }
         }
 
+        /// <summary>
+        /// Whether to display the distance to exhibit.
+        /// </summary>
         public bool DisplayDistances {
             get { return displayDistances; }
             set { SetProperty (ref displayDistances, value); }
+        }
+
+        /// <summary>
+        /// The displayed set of exhibits on the map.
+        /// </summary>
+        public ExhibitSet DisplayedExhibitSet {
+            get { return displayedExhibitSet; }
+            set { SetProperty (ref displayedExhibitSet, value); }
+        }
+
+        /// <summary>
+        /// The geolocation of the user
+        /// </summary>
+        public GeoLocation GeoLocation {
+            get { return geoLocation; }
+            set { SetProperty (ref geoLocation, value); }
         }
 
     }

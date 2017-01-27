@@ -1,4 +1,4 @@
-﻿// Copyright (C) 2016 History in Paderborn App - Universität Paderborn
+﻿// Copyright (C) 2017 History in Paderborn App - Universität Paderborn
 //  
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -15,6 +15,8 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
+using de.upb.hip.mobile.pcl.BusinessLayer.Models;
+using HipMobileUI.Resources;
 using HipMobileUI.ViewModels.Views;
 using Xamarin.Forms;
 
@@ -25,37 +27,39 @@ namespace HipMobileUI.ViewModels.Pages
 
         public MainPageViewModel()
         {
-            MainScreenViewModels = new ObservableCollection<NavigationViewModel>();
-
-            var exhibitSets = ExhibitManager.GetExhibitSets ();
-            MainScreenViewModels.Add (new ExhibitsOverviewViewModel (exhibitSets.First().Id));
-
-            var routesOverviewViewModel = new RoutesOverviewViewModel
+            ExhibitSet exhibitSet = ExhibitManager.GetExhibitSets ().FirstOrDefault ();
+            MainScreenViewModels = new ObservableCollection<NavigationViewModel>
             {
-                Title = "Routen"
+                new ExhibitsOverviewViewModel (exhibitSet)
+                {
+                    Title = Strings.MainPageViewModel_OverviewPage,
+                    Icon = "ic_home.png"
+                },
+                new RoutesOverviewViewModel
+                {
+                    Title = Strings.MainPageViewModel_Routes,
+                    Icon = "ic_directions.png"
+                },
+                new DummyViewModel
+                {
+                    Title = Strings.MainPageViewModel_Settings,
+                    Icon = "ic_settings.png",
+                    Color = Color.Red
+                },
+                new DummyViewModel
+                {
+                    Title = Strings.MainPageViewModel_Feedback,
+                    Icon = "ic_feedback.png",
+                    Color = Color.Green
+                },
+                new DummyViewModel
+                {
+                    Title = Strings.MainPageViewModel_LegalNotices,
+                    Icon = "ic_gavel.png",
+                    Color = Color.Blue
+                },
             };
 
-            var vm = new DummyViewModel ()
-
-            {
-                Title = "Blue",
-                Color = Color.Blue
-            };
-            var vm1 = new DummyViewModel()
-            {
-                Title = "Red",
-                Color = Color.Red
-            };
-            var vm2 = new DummyViewModel()
-            {
-                Title = "Green",
-                Color = Color.Green
-            };
-
-            MainScreenViewModels.Add(routesOverviewViewModel);
-            MainScreenViewModels.Add(vm);
-            MainScreenViewModels.Add(vm1);
-            MainScreenViewModels.Add(vm2);
         }
 
         private ObservableCollection<NavigationViewModel> mainScreenViewModels;

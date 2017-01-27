@@ -193,7 +193,7 @@ namespace HipMobileUI.Container
                 VerticalTextAlignment = TextAlignment.Center,
                 HorizontalOptions = LayoutOptions.FillAndExpand,
                 HorizontalTextAlignment = TextAlignment.Center,
-                Margin = new Thickness(8, 0)
+                Margin = new Thickness(6, 0)
             };
             lbl.SetDynamicResource(StyleProperty, "TitleStyle");
 

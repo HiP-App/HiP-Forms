@@ -22,6 +22,7 @@
              xmlns:ffTransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
              xmlns:controls="clr-namespace:HipMobileUI.Controls;assembly=HipMobileUI"
              xmlns:behaviors="clr-namespace:HipMobileUI.Behaviors;assembly=HipMobileUI"
+             xmlns:map="clr-namespace:HipMobileUI.Map;assembly=HipMobileUI"
              x:Name="ExhibitsOveriew">
     <ContentView.Content>
         <Grid x:Name="Grid">
@@ -32,7 +33,7 @@
                 <RowDefinition Height="0.5*" />
                 <RowDefinition Height="0.5*" />
             </Grid.RowDefinitions>
-            <BoxView Color="Aqua" x:Name="Map"/>
+          <map:OsmMap x:Name="Map" ExhibitSet="{Binding DisplayedExhibitSet}" GpsLocation="{Binding GeoLocation}" ShowDetailsRoute="False"/>
             <ListView Grid.Row="1" ItemsSource="{Binding ExhibitsList}" HasUnevenRows="True" x:Name="List">
                 <ListView.Behaviors>
                     <behaviors:ListViewTappedItemBehavior Command="{Binding ItemTappedCommand}"

@@ -28,6 +28,14 @@ namespace HipMobileUI.Helpers {
             return ImageSource.FromStream (() => new MemoryStream (image.Data));
         }
 
+        /// <summary>
+        /// Sort the observable collection accroding to the given function or comparer.
+        /// </summary>
+        /// <typeparam name="TSource"></typeparam>
+        /// <typeparam name="TKey"></typeparam>
+        /// <param name="collection"></param>
+        /// <param name="keySelector"></param>
+        /// <param name="comparer"></param>
         public static void SortCollection<TSource, TKey> (this ObservableCollection<TSource> collection, Func<TSource, TKey> keySelector, IComparer<TKey> comparer = null)
         {
             TSource[] sortedList;
