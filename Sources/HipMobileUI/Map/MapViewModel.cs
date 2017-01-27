@@ -66,25 +66,10 @@ namespace HipMobileUI.Map {
                 Longitude = position.Longitude
             };
             GpsLocation = newGpsLocation;
-            ExhibitPopUp ();
+
 
         }
 
-        private void ExhibitPopUp ()
-        {
-            double dist;
-            foreach (Exhibit e in exhibitSet)
-            {
-                dist = MathUtil.DistanceLatLon (e.Location, gpsLocation);
-                if (dist < 30)
-                {
-                    var b = Navigation.DisplayAlert ("Sehenwürdigkeit in der Nähe", "Möchten sie sich " + e.Name + " genauer ansehen", "Ja", "Nein");
-            
-                        //TODO go to exhibit
-                    break;
-                }
-            }
-        }
 
         public ExhibitSet ExhibitSet {
             get { return exhibitSet; }
