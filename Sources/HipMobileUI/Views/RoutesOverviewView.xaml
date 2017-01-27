@@ -21,7 +21,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              xmlns:viewModels="clr-namespace:HipMobileUI.ViewModels.Views;assembly=HipMobileUI"
-             xmlns:container="clr-namespace:HipMobileUI.Container;assembly=HipMobileUI">
+             xmlns:container="clr-namespace:HipMobileUI.Container;assembly=HipMobileUI"
+             xmlns:strings="clr-namespace:HipMobileUI.Helpers;assembly=HipMobileUI">
   <ContentView.Content>
     <ListView SeparatorVisibility="None" HasUnevenRows="True" Grid.Row="1" ItemsSource="{Binding Routes}">
       <ListView.Behaviors>
@@ -44,7 +45,7 @@
                   <Label Text="{Binding Distance}" VerticalOptions="Center"/>
                 </StackLayout>
                 <StackLayout Orientation="Horizontal">
-                  <Label Text="Auf der Route:" VerticalOptions="Center"/>
+                  <Label Text="{strings:Translate RoutesOverviewView_Tags}" VerticalOptions="Center"/>
                   <container:BindableChildrenStackLayout  ChildElements="{Binding Tags, Converter= {StaticResource ImageListConverter}}" Orientation="Horizontal" />
                 </StackLayout>
               </StackLayout>

@@ -14,8 +14,8 @@
 
 using System.Collections.ObjectModel;
 using System.IO;
-using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
+using HipMobileUI.Resources;
 using MvvmHelpers;
 using Xamarin.Forms;
 
@@ -52,20 +52,21 @@ namespace HipMobileUI.ViewModels.Views {
 
                 Tags.Add (ImageSource.FromStream(() => new MemoryStream(currentTagImageData)));
             }
-
+			
+            // Required to reference first due to threading problems in Realm
             var imageData = Route.Image.Data;
             Image = ImageSource.FromStream(() => new MemoryStream(imageData));
         }
 
         internal string GetRouteDistanceText (double routeDistance)
         {
-            return string.Format ("{0} km", routeDistance);
+            return string.Format (Strings.RoutesOverviewListItemViewModel_Distance, routeDistance);
         }
 
         internal string GetRouteDurationText (int routeDuration)
         {
             int durationInMinutes = routeDuration / 60;
-            return string.Format ("{0} Minuten", durationInMinutes);
+            return string.Format (Strings.RoutesOverviewListItemViewModel_Duration, durationInMinutes);
         }
 
         private ImageSource image; 
