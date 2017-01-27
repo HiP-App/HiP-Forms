@@ -70,8 +70,8 @@
 		<string>MKDirectionsModeWalking</string>
 	</array>
   <key>NSLocationAlwaysUsageDescription</key>
-  <string>Can we use your location</string>
+  <string>Dürfen wir Ihre Position verwenden</string>
   <key>NSLocationWhenInUseUsageDescription</key>
-  <string>We are using your location</string>
+  <string>Wir benutzen Ihre Position</string>
  </dict>
 </plist>

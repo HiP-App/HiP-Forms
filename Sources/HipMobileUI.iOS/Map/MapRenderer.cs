@@ -34,6 +34,15 @@ namespace HipMobileUI.iOS.Map
                 mapView.AddOverlay(overlay, MKOverlayLevel.AboveLabels);
                 mapView.OverlayRenderer = (view, mkOverlay) => new MKTileOverlayRenderer(overlay);
 
+                
+
+                if (e.OldElement != null)
+                {
+                    Control.GetViewForAnnotation = null;
+                    Control.CalloutAccessoryControlTapped -= OnCalloutAccessoryControlTapped;
+                    e.OldElement.GpsLocationChanged -= OnGpsLocationChanged;
+                    e.OldElement.ExhibitSetChanged -= OnExhibitSetChanged;
+                }
                 if (e.NewElement != null)
                 {
                     InitAnnotations(e.NewElement.ExhibitSet);
@@ -43,17 +52,9 @@ namespace HipMobileUI.iOS.Map
                     e.NewElement.ExhibitSetChanged += OnExhibitSetChanged;
                 }
 
-                if (e.OldElement != null)
-                {
-                    Control.GetViewForAnnotation = null;
-                    Control.CalloutAccessoryControlTapped -= OnCalloutAccessoryControlTapped;
-                    e.OldElement.GpsLocationChanged -= OnGpsLocationChanged;
-                    e.OldElement.ExhibitSetChanged -= OnExhibitSetChanged;
-                }
-                
                 Control.ShowsUserLocation = true;
                 Control.ShowsCompass = true;
-                initMapPosition (Control);
+                InitMapPosition (Control);
             }
         }
 
@@ -67,7 +68,7 @@ namespace HipMobileUI.iOS.Map
             Control.CenterCoordinate = new CLLocationCoordinate2D(location.Latitude, location.Longitude);
         }
 
-        private void initMapPosition (MKMapView mapView)
+        private void InitMapPosition (MKMapView mapView)
         {
             if (mapView.UserLocation.Coordinate.Equals (new CLLocationCoordinate2D (0, 0)) && CLLocationManager.LocationServicesEnabled)
             {
