@@ -65,7 +65,7 @@
   <ItemGroup>
     <Compile Include="AppLaunchesTests.cs" />
     <Compile Include="UiTestBase.cs" />
-    <Compile Include="DummyViewTests.cs" />
+    <Compile Include="MainPageUiTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
