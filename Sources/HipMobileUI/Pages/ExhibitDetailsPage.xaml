@@ -26,9 +26,9 @@
                      AbsoluteLayout.LayoutFlags="SizeProportional" AbsoluteLayout.LayoutBounds="0,0,1,1" />
         <Button Image="ic_chevron_left" Command="{Binding PreviousViewCommand}"
                 IsVisible="{Binding PreviousViewAvailable}" AbsoluteLayout.LayoutFlags="PositionProportional"
-                AbsoluteLayout.LayoutBounds="0,0.5" BackgroundColor="#80D3D3D3" />
+                AbsoluteLayout.LayoutBounds="0,0.5" BackgroundColor="#80D3D3D3" AutomationId="PreviousButton"/>
         <Button Image="ic_chevron_right" Command="{Binding NextViewCommand}" IsVisible="{Binding NextViewAvailable}"
                 AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="1,0.5"
-                BackgroundColor="#80D3D3D3" />
+                BackgroundColor="#80D3D3D3" AutomationId="NextButton"/>
     </AbsoluteLayout>
 </pages:OrientationContentPage>
