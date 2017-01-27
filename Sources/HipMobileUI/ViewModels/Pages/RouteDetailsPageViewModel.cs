@@ -67,9 +67,8 @@ namespace HipMobileUI.Viewmodels.Pages
             Tabs = new ObservableCollection<string> {"Description", "Map"};
 
             GpsLocation = location;
-
-            detailsRoute = route;
-            ShowDetailsRoute = false;
+            DetailsRoute = route;
+            ShowDetailsRoute = true;
 
         }
 

@@ -38,11 +38,11 @@ namespace HipMobileUI.Map {
         //TODO just for testing can be deleted later
         public MapViewModel ()
         {
-            var b = true;
-            ShowDetailsRoute = b;
+           
+            ShowDetailsRoute = false;
             Title = "Map";
             ExhibitSet = ExhibitManager.GetExhibitSets ().First ();
-            gpsLocation = new GeoLocation (51.73296887, 8.7352252);
+            gpsLocation = new GeoLocation (AppSharedData.PaderbornMainStation.Latitude,AppSharedData.PaderbornMainStation.Longitude);
             var locator = CrossGeolocator.Current;
             locator.PositionChanged += position_Changed;
             locator.StartListeningAsync (minTime: AppSharedData.MinTimeBwUpdates, minDistance: AppSharedData.MinDistanceChangeForUpdates);

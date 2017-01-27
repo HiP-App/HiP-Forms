@@ -114,10 +114,10 @@ namespace de.upb.hip.mobile.droid.Map {
         private void NewElementOnGpsLocationChanged (GeoLocation gpsLocation)
         {
 
-            //Userposition is always updated
+                //Userposition is always updated
                 userPosition = new GeoPoint (gpsLocation.Latitude, gpsLocation.Longitude);
                 mapController.SetCenter (userPosition);
-                if (userMarkerPosition != null)
+                if (userMarkerPosition != null)//because this is called after exhibitset we have to check if the marker is initialized
                 {
                     userMarkerPosition.SetIcon (ResourcesCompat.GetDrawable (Resources, Resource.Drawable.ic_my_location, null));
                     userMarkerPosition.Position = userPosition;
@@ -138,6 +138,7 @@ namespace de.upb.hip.mobile.droid.Map {
         private void NewElementOnDetailsRouteChanged (Route route)
         {
             //The direct polyline is only draw if related bool is true
+           
             
                 PathOverlay myPath = new PathOverlay (Resources.GetColor (Resource.Color.colorPrimaryDark), 7, new DefaultResourceProxyImpl (activity));
 
@@ -164,7 +165,8 @@ namespace de.upb.hip.mobile.droid.Map {
             
         }
 
-
+        //here all Markers for the Exhibits in the Main Map are set
+        //and some general stuff
         private void SetAllMarkers (ExhibitSet set)
         {
             locationOverlay = new MyLocationOverlay (activity, mapView);
@@ -178,6 +180,7 @@ namespace de.upb.hip.mobile.droid.Map {
             mapView.OverlayManager.Add (locationOverlay);
             mapView.OverlayManager.Add (compassOverlay);
 
+            //Here all exhibit markers and bubbles are set if the Exhibit is not null
             if (set != null)
             {
                 var markerInfoWindow = new ViaPointInfoWindow (Resource.Layout.navigation_info_window, mapView, activity);
