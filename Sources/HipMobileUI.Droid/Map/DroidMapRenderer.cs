@@ -109,7 +109,8 @@ namespace de.upb.hip.mobile.droid.Map {
 
         private void NewElementOnGpsLocationChanged (GeoLocation gpsLocation)
         {
-
+            if (gpsLocation != null)
+            {
                 userPosition = new GeoPoint (gpsLocation.Latitude, gpsLocation.Longitude);
                 mapController.SetCenter (userPosition);
                 if (userMarkerPosition != null)
@@ -120,7 +121,7 @@ namespace de.upb.hip.mobile.droid.Map {
                     mapView.OverlayManager.Add (userMarkerPosition);
                     mapView.Invalidate ();
                 }
-            
+            }
         }
 
         private void NewElementOnDetailsRouteChanged (Route route)

@@ -15,8 +15,8 @@
 using System;
 using System.Globalization;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
+using Plugin.Geolocator.Abstractions;
 using Xamarin.Forms;
-using Xamarin.Forms.Maps;
 
 namespace HipMobileUI.Converters
 {
@@ -25,6 +25,8 @@ namespace HipMobileUI.Converters
 
         public object Convert (object value, Type targetType, object parameter, CultureInfo culture)
         {
+            if (value == null)
+                return null;
             Position position = (Position) value;
             return new GeoLocation (position.Latitude, position.Longitude);
         }

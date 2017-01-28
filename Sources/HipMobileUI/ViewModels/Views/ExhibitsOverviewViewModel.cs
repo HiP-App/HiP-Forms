@@ -82,14 +82,14 @@ namespace HipMobileUI.ViewModels.Views
         /// <summary>
         /// Update the distances according to the new position.
         /// </summary>
-        /// <param name="position">The new position.</param>
-        private void SetDistances (Position position)
+        /// <param name="pos">The new position.</param>
+        private void SetDistances (Position pos)
         {
-            Position = position;
+            Position = pos;
             DisplayDistances = true;
             foreach (var exhibit in ExhibitsList)
             {
-                exhibit.UpdateDistance(position);
+                exhibit.UpdateDistance(pos);
             }
             ExhibitsList.SortCollection (exhibit => exhibit.Distance);
         }
