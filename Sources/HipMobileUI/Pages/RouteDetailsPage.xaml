@@ -20,7 +20,9 @@
              x:Class="HipMobileUI.Pages.RouteDetailsView"
              xmlns:container="clr-namespace:HipMobileUI.Container;assembly=HipMobileUI"
              Title="{Binding Title}"
-             xmlns:strings="clr-namespace:HipMobileUI.Helpers;assembly=HipMobileUI">
+             xmlns:strings="clr-namespace:HipMobileUI.Helpers;assembly=HipMobileUI"
+             xmlns:map="clr-namespace:HipMobileUI.Map;assembly=HipMobileUI">
+
   <ContentPage.Content>
     <StackLayout Orientation="Vertical" Spacing="0">
       <Image Source="{Binding Image}" Aspect="AspectFill" HeightRequest="155" />
@@ -48,7 +50,13 @@
         </ScrollView>
 
         <!-- Map Tab -->
-        <BoxView Color="#c9aa8d" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+
+        <BoxView Color="Gray" x:Name="Map" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+        <!--<map:OsmMap x:Name="Map" ExhibitSet="{Binding ExhibitSet}" GpsLocation="{Binding GpsLocation}"
+                    DetailsRoute="{Binding DetailsRoute}" ShowDetailsRoute="{Binding ShowDetailsRoute}" HorizontalOptions="FillAndExpand"
+                         VerticalOptions="FillAndExpand"
+                         BackgroundColor="Transparent" />-->
+
       </container:TabView>
 
       <!-- info & start route -->

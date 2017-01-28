@@ -17,9 +17,12 @@ using System.IO;
 using System.Windows.Input;
 using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
+using de.upb.hip.mobile.pcl.Helpers;
 using HipMobileUI.Resources;
 using HipMobileUI.ViewModels;
 using Xamarin.Forms;
+using Plugin.Geolocator;
+using Plugin.Geolocator.Abstractions;
 
 namespace HipMobileUI.Viewmodels.Pages
 {
@@ -28,6 +31,11 @@ namespace HipMobileUI.Viewmodels.Pages
     /// </summary>
     public class RouteDetailsPageViewModel : NavigationViewModel
     {
+
+        private GeoLocation gpsLocation;
+        private Route detailsRoute;
+        private bool showDetailsRoute;
+
         /// <summary>
         /// Creates a new ViewModel for the route with the specified ID.
         /// Fetches the corresponding <see cref="Route"/> via the <see cref="RouteManager"/>
@@ -43,7 +51,8 @@ namespace HipMobileUI.Viewmodels.Pages
         /// Creates a new ViewModel for the specified <see cref="Route"/>.
         /// </summary>
         /// <param name="route">The <see cref="Route"/> the ViewModel is created for.</param>
-        public RouteDetailsPageViewModel(Route route)
+        /// <param name="location"></param>
+        public RouteDetailsPageViewModel(Route route, GeoLocation location)
         {
             Title = route.Title;
             Description = route.Description;
@@ -56,7 +65,21 @@ namespace HipMobileUI.Viewmodels.Pages
             StartRouteCommand = new Command(StartRoute);
             StartDescriptionPlaybackCommand = new Command(StartDescriptionPlayback);
 
+
+            Tabs = new ObservableCollection<string> {"Description", "Map"};
+
+            GpsLocation = location;
+
+            detailsRoute = route;
+            showDetailsRoute = true;
+        }
+
+        public RouteDetailsPageViewModel (Route route) : this(route, new GeoLocation(AppSharedData.PaderbornMainStation.Latitude, AppSharedData.PaderbornMainStation.Longitude))
+        {
+            
+
             Tabs = new ObservableCollection<string> {Strings.RouteDetailsPageViewModel_Description, Strings.RouteDetailsPageViewModel_Map};
+
         }
 
         /// <summary>
@@ -69,6 +92,25 @@ namespace HipMobileUI.Viewmodels.Pages
                 "Audio playback is currently not supported!",
                 "Ok"
             );
+        }
+
+
+        public GeoLocation GpsLocation
+        {
+            get { return gpsLocation; }
+            set { SetProperty(ref gpsLocation, value); }
+        }
+
+        public Route DetailsRoute
+        {
+            get { return detailsRoute; }
+            set { SetProperty(ref detailsRoute, value); }
+        }
+
+        public bool ShowDetailsRoute
+        {
+            get { return showDetailsRoute; }
+            set { SetProperty(ref showDetailsRoute, value); }
         }
 
         /// <summary>

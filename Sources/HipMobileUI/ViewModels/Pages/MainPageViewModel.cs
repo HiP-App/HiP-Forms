@@ -17,6 +17,7 @@ using System.Collections.ObjectModel;
 using HipMobileUI.Resources;
 using HipMobileUI.ViewModels.Views;
 using Xamarin.Forms;
+using HipMobileUI.Map;
 
 namespace HipMobileUI.ViewModels.Pages
 {
@@ -53,7 +54,10 @@ namespace HipMobileUI.ViewModels.Pages
                 new LicenseScreenViewModel
                 {
                     Title = Strings.MainPageViewModel_LegalNotices,
-                    Icon = "ic_gavel.png"
+                    Icon = "ic_gavel.png",
+                },
+                new MapViewModel {
+                    Title = "Map"
                 }
             };
         }
