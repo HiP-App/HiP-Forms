@@ -16,7 +16,6 @@ using System.Collections.ObjectModel;
 using System.Windows.Input;
 using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
-using de.upb.hip.mobile.pcl.Helpers;
 using HipMobileUI.Helpers;
 using HipMobileUI.ViewModels.Pages;
 using Plugin.Geolocator;
@@ -32,7 +31,7 @@ namespace HipMobileUI.ViewModels.Views
         private readonly IGeolocator locator;
         private bool displayDistances;
         private ExhibitSet displayedExhibitSet;
-        private GeoLocation geoLocation;
+        private Position position;
 
         public ExhibitsOverviewViewModel(ExhibitSet set, IGeolocator geolocator)
         {
@@ -52,18 +51,18 @@ namespace HipMobileUI.ViewModels.Views
             if (geolocator != null)
             {
                 locator = geolocator;
-                locator.DesiredAccuracy = 10;
+                locator.DesiredAccuracy = AppSharedData.MinDistanceChangeForUpdates;
                 locator.PositionChanged += LocatorOnPositionChanged;
-                locator.StartListeningAsync(4000, 10);
+                locator.StartListeningAsync(AppSharedData.MinTimeBwUpdates, AppSharedData.MinDistanceChangeForUpdates);
             }
         }
 
         public ExhibitsOverviewViewModel (ExhibitSet set) : this(set, null)
         {
             locator = CrossGeolocator.Current;
-            locator.DesiredAccuracy = 10;
+            locator.DesiredAccuracy = AppSharedData.MinDistanceChangeForUpdates;
             locator.PositionChanged += LocatorOnPositionChanged;
-            locator.StartListeningAsync(4000, 10);
+            locator.StartListeningAsync(AppSharedData.MinTimeBwUpdates, AppSharedData.MinDistanceChangeForUpdates);
         }
 
         public ExhibitsOverviewViewModel (string exhibitSetId) : this(ExhibitManager.GetExhibitSet(exhibitSetId))
@@ -86,7 +85,7 @@ namespace HipMobileUI.ViewModels.Views
         /// <param name="position">The new position.</param>
         private void SetDistances (Position position)
         {
-            GeoLocation = new GeoLocation(position.Latitude, position.Longitude);
+            Position = position;
             DisplayDistances = true;
             foreach (var exhibit in ExhibitsList)
             {
@@ -152,9 +151,9 @@ namespace HipMobileUI.ViewModels.Views
         /// <summary>
         /// The geolocation of the user
         /// </summary>
-        public GeoLocation GeoLocation {
-            get { return geoLocation; }
-            set { SetProperty (ref geoLocation, value); }
+        public Position Position {
+            get { return position; }
+            set { SetProperty (ref position, value); }
         }
 
     }

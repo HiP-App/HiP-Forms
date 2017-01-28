@@ -61,10 +61,12 @@
     <Compile Include="Controls\FloatingActionButton.cs" />
     <Compile Include="Behaviors\ListViewTappedItemBehavior.cs" />
     <Compile Include="Container\TabView.cs" />
+    <Compile Include="Converters\PositionGeoLocationConverter.cs" />
     <Compile Include="Converters\RouteTagViewListConverter.cs" />
     <Compile Include="Converters\ImageListConverter.cs" />
     <Compile Include="Converters\ItemTappedConverter.cs" />
     <Compile Include="Converters\ViewModelViewConverter.cs" />
+    <Compile Include="Helpers\AppSharedData.cs" />
     <Compile Include="Helpers\ExtensionMethods.cs" />
     <Compile Include="Container\BindableChildrenStackLayout.cs" />
     <Compile Include="Helpers\DeviceOrientation.cs" />
@@ -111,7 +113,7 @@
     </Compile>
     <Compile Include="Views\MapView.xaml.cs">
       <DependentUpon>MapView.xaml</DependentUpon>
-     </Compile>
+    </Compile>
     <Compile Include="Views\ExhibitDetails\AppetizerView.xaml.cs">
       <DependentUpon>AppetizerView.xaml</DependentUpon>
     </Compile>
@@ -244,7 +246,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\MapView.xaml"/>
+    <EmbeddedResource Include="Views\MapView.xaml" />
     <EmbeddedResource Include="Pages\ExhibitDetailsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>

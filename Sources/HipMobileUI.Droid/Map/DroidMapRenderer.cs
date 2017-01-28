@@ -27,6 +27,7 @@ using Android.Widget;
 using de.upb.hip.mobile.droid.Map;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using de.upb.hip.mobile.pcl.Helpers;
+using HipMobileUI.Helpers;
 using HipMobileUI.Map;
 using Org.Osmdroid;
 using Org.Osmdroid.Bonuspack.Overlays;

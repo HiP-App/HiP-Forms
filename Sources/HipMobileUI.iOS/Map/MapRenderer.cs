@@ -5,6 +5,7 @@ using CoreLocation;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using de.upb.hip.mobile.pcl.Common;
 using de.upb.hip.mobile.pcl.Helpers;
+using HipMobileUI.Helpers;
 using HipMobileUI.iOS.Map;
 using HipMobileUI.Map;
 using HipMobileUI.Navigation;

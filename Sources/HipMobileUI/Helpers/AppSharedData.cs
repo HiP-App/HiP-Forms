@@ -12,23 +12,15 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.using System;
 
-using de.upb.hip.mobile.pcl.BusinessLayer.Models;
+using Xamarin.Forms.Maps;
 
-namespace de.upb.hip.mobile.pcl.Helpers
+namespace HipMobileUI.Helpers
 {
-    public class AppSharedData
-    {
-        public static readonly GeoLocation PaderbornMainStation = new GeoLocation
-        {
-            Latitude = 51.71352,
-            Longitude = 8.74021
-        };
+    public static class AppSharedData {
 
-        public static readonly GeoLocation PaderbornCenter = new GeoLocation
-        {
-            Latitude = 51.7189205,
-            Longitude = 8.7575093
-        };
+        public static readonly Position PaderbornMainStation = new Position (51.71352, 8.74021);
+
+        public static readonly Position PaderbornCenter = new Position (51.7189205, 8.7575093);
 
         public static readonly int MinTimeBwUpdates = 4000; //4000 milliseconds (4seconds)
         public static readonly int MinDistanceChangeForUpdates = 10; // 10 metres

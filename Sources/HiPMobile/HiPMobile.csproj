@@ -99,7 +99,6 @@
     <Compile Include="DataAccessLayer\BaseTransaction.cs" />
     <Compile Include="DataLayer\RealmDataAccess.cs" />
     <Compile Include="DataLayer\RealmTransaction.cs" />
-    <Compile Include="Helpers\AppSharedData.cs" />
     <Compile Include="Helpers\MathUtil.cs" />
     <Compile Include="BusinessLayer\Routing\RouteCalculator.cs" />
     <Compile Include="Helpers\Settings.cs" />
