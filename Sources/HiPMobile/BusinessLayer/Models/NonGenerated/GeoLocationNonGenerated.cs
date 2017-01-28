@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 namespace de.upb.hip.mobile.pcl.BusinessLayer.Models {
-    public sealed partial class GeoLocation {
+    public partial class GeoLocation {
 
         public GeoLocation (double lat, double lon)
         {

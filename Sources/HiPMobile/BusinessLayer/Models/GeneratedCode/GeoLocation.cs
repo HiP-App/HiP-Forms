@@ -25,15 +25,15 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models
 	using System.Linq;
 	using System.Text;
 
-	public sealed partial class GeoLocation : RealmObject, IIdentifiable
+	public partial class GeoLocation : RealmObject, IIdentifiable
 	{
 		//Attributes
 		[PrimaryKey]
 		public string Id{ get; set; }
 
-		public double Latitude{ get; set; }
+		public virtual double Latitude{ get; set; }
 
-		public double Longitude{ get; set; }
+		public virtual double Longitude{ get; set; }
 
 		//Associations
 		// Contructor
