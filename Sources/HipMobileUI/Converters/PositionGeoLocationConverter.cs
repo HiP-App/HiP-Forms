@@ -12,26 +12,28 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using HipMobileUI.Helpers;
-using HipMobileUI.Navigation;
-using HipMobileUI.ViewModels.Pages;
+using System;
+using System.Globalization;
+using de.upb.hip.mobile.pcl.BusinessLayer.Models;
+using Plugin.Geolocator.Abstractions;
 using Xamarin.Forms;
 
-namespace HipMobileUI.Pages
+namespace HipMobileUI.Converters
 {
-
-    public partial class ExhibitDetailsPage : OrientationContentPage, IViewFor<ExhibitDetailsViewModel>
+    class PositionGeoLocationConverter : IValueConverter
     {
-        public ExhibitDetailsPage()
+
+        public object Convert (object value, Type targetType, object parameter, CultureInfo culture)
         {
-            InitializeComponent();
+            if (value == null)
+                return null;
+            Position position = (Position) value;
+            return new GeoLocation (position.Latitude, position.Longitude);
         }
 
-        protected override void OnDisappearing ()
+        public object ConvertBack (object value, Type targetType, object parameter, CultureInfo culture)
         {
-            base.OnDisappearing ();
-
-            OrientationController = OrientationController.Sensor;
+            throw new NotImplementedException ();
         }
 
     }

@@ -17,6 +17,7 @@
       <converters:ItemTappedConverter x:Key="ItemTappedConverter" />
       <converters:ImageListConverter x:Key="ImageListConverter" />
       <converters:RouteTagViewListConverter x:Key="RouteTagViewListConverter" />
+      <converters:PositionGeoLocationConverter x:Key="PositionGeoLocationConverter" />
     </ResourceDictionary>
   </Application.Resources>
 </Application>

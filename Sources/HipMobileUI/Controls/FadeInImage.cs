@@ -14,6 +14,7 @@
 
 using System;
 using System.ComponentModel;
+using FFImageLoading.Forms;
 using Xamarin.Forms;
 
 namespace HipMobileUI.Controls
@@ -21,7 +22,7 @@ namespace HipMobileUI.Controls
     /// <summary>
     /// Image with a fade in transition when loaded.
     /// </summary>
-    class FadeInImage : Image {
+    class FadeInImage : CachedImage {
 
         public FadeInImage ()
         {
@@ -38,20 +39,20 @@ namespace HipMobileUI.Controls
                 }
                 else
                 {
-                    await this.FadeTo (1, FadeInTime);
+                    await this.FadeTo (1, (uint)FadeInTime);
                 }
             }
         }
 
         public static readonly BindableProperty FadeInTimeProperty =
-            BindableProperty.Create ("FadeInTime", typeof (uint), typeof (FadeInImage), 200U);
+            BindableProperty.Create ("FadeInTime", typeof (int), typeof (FadeInImage), 200);
 
         /// <summary>
         /// The length of the fade in milliseconds.
         /// </summary>
-        public uint FadeInTime
+        public int FadeInTime
         {
-            get { return (uint)GetValue(FadeInTimeProperty); }
+            get { return (int)GetValue(FadeInTimeProperty); }
             set { SetValue(FadeInTimeProperty, value); }
         }
     }

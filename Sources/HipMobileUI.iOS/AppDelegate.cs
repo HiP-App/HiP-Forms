@@ -1,10 +1,12 @@
 ﻿using de.upb.hip.mobile.pcl.Common;
 using de.upb.hip.mobile.pcl.Common.Contracts;
+using FFImageLoading.Forms.Touch;
 using Foundation;
 using HipMobileUI.iOS.Contracts;
 using HipMobileUI.Navigation;
 using HipMobileUI.Pages;
 using UIKit;
+using Xamarin.Forms;
 
 namespace HipMobileUI.iOS
 {
@@ -30,8 +32,11 @@ namespace HipMobileUI.iOS
             IoCManager.RegisterInstance (typeof(INavigationService), NavigationService.Instance);
             IoCManager.RegisterInstance(typeof(IViewCreator), NavigationService.Instance);
 
+            CachedImageRenderer.Init ();
+
             Xamarin.Forms.Forms.Init();
             Xamarin.FormsMaps.Init();
+
             LoadApplication(new App());
 
 #if ENABLE_TEST_CLOUD

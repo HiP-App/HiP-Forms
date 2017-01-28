@@ -13,7 +13,6 @@
 // limitations under the License.
 
 using System;
-using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 
 namespace de.upb.hip.mobile.pcl.Helpers {
     public class MathUtil {

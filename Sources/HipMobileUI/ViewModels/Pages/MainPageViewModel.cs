@@ -12,12 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System;
 using System.Collections.ObjectModel;
+using System.Linq;
+using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
+using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using HipMobileUI.Resources;
 using HipMobileUI.ViewModels.Views;
 using Xamarin.Forms;
-using HipMobileUI.Map;
 
 namespace HipMobileUI.ViewModels.Pages
 {
@@ -26,13 +27,13 @@ namespace HipMobileUI.ViewModels.Pages
 
         public MainPageViewModel()
         {
+            ExhibitSet exhibitSet = ExhibitManager.GetExhibitSets ().FirstOrDefault ();
             MainScreenViewModels = new ObservableCollection<NavigationViewModel>
             {
-                new DummyViewModel
+                new ExhibitsOverviewViewModel (exhibitSet)
                 {
                     Title = Strings.MainPageViewModel_OverviewPage,
-                    Icon = "ic_home.png",
-                    Color = Color.Gray
+                    Icon = "ic_home.png"
                 },
                 new RoutesOverviewViewModel
                 {
@@ -56,9 +57,6 @@ namespace HipMobileUI.ViewModels.Pages
                     Title = Strings.MainPageViewModel_LegalNotices,
                     Icon = "ic_gavel.png",
                 },
-                new MapViewModel {
-                    Title = "Map"
-                }
             };
         }
 
@@ -74,7 +72,13 @@ namespace HipMobileUI.ViewModels.Pages
         public NavigationViewModel SelectedViewModel
         {
             get { return selectedViewModel; }
-            set { SetProperty(ref selectedViewModel, value); }
+            set {
+                var oldViewModel = SelectedViewModel;
+                if (SetProperty (ref (selectedViewModel), value))
+                {
+                    oldViewModel?.OnDisappearing ();
+                }
+            }
         }
 
     }

@@ -45,7 +45,8 @@ namespace HipMobileUI.ViewModels.Pages
                 this.exhibit = exhibit;
                 SetCurrentView ();
                 Title = exhibit.Name;
-                NextViewAvailable = true;
+                if(exhibit.Pages.Count>1)
+                    NextViewAvailable = true;
             }
             NextViewCommand = new Command (GotoNextView);
             PreviousViewCommand = new Command (GotoPreviousView);

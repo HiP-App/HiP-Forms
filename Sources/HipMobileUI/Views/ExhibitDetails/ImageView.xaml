@@ -22,7 +22,7 @@
     <ContentView.Content>
         <views:BottomSheetView>
             <views:BottomSheetView.MainContent>
-                <controls:FadeInImage Source="{Binding Image}" />
+                <controls:FadeInImage Source="{Binding Image}" DownsampleToViewSize="True"/>
             </views:BottomSheetView.MainContent>
             <views:BottomSheetView.BottomSheet>
                 <StackLayout>

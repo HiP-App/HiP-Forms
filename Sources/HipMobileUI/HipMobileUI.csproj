@@ -61,12 +61,16 @@
     <Compile Include="Controls\FloatingActionButton.cs" />
     <Compile Include="Behaviors\ListViewTappedItemBehavior.cs" />
     <Compile Include="Container\TabView.cs" />
+    <Compile Include="Converters\PositionGeoLocationConverter.cs" />
     <Compile Include="Converters\RouteTagViewListConverter.cs" />
     <Compile Include="Converters\ImageListConverter.cs" />
     <Compile Include="Converters\ItemTappedConverter.cs" />
     <Compile Include="Converters\ViewModelViewConverter.cs" />
+    <Compile Include="Helpers\AppSharedData.cs" />
     <Compile Include="Helpers\ExtensionMethods.cs" />
     <Compile Include="Container\BindableChildrenStackLayout.cs" />
+    <Compile Include="Helpers\DeviceOrientation.cs" />
+    <Compile Include="Helpers\OrientationController.cs" />
     <Compile Include="Helpers\Settings.cs" />
     <Compile Include="Map\MapViewModel.cs" />
     <Compile Include="Map\OsmMap.cs" />
@@ -81,6 +85,7 @@
     <Compile Include="Pages\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\OrientationContentPage.cs" />
     <Compile Include="Pages\RouteDetailsPage.xaml.cs">
       <DependentUpon>RouteDetailsPage.xaml</DependentUpon>
     </Compile>
@@ -100,6 +105,8 @@
     <Compile Include="ViewModels\Pages\MainPageViewModel.cs" />
     <Compile Include="ViewModels\Pages\RouteDetailsPageViewModel.cs" />
     <Compile Include="ViewModels\Views\DummyViewModel.cs" />
+    <Compile Include="ViewModels\Views\ExhibitsOverviewListItemViewModel.cs" />
+    <Compile Include="ViewModels\Views\ExhibitsOverviewViewModel.cs" />
     <Compile Include="ViewModels\Views\LicenseScreenViewModel.cs" />
     <Compile Include="Views\Link.cs" />
     <Compile Include="Views\DummyView.xaml.cs">
@@ -123,6 +130,9 @@
     </Compile>
     <Compile Include="ViewModels\Views\RoutesOverviewListItemViewModel.cs" />
     <Compile Include="ViewModels\Views\RoutesOverviewViewModel.cs" />
+    <Compile Include="Views\ExhibitsOverviewView.xaml.cs">
+      <DependentUpon>ExhibitsOverviewView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\RoutesOverviewView.xaml.cs">
       <DependentUpon>RoutesOverviewView.xaml</DependentUpon>
     </Compile>
@@ -142,6 +152,22 @@
   <ItemGroup>
     <Reference Include="DotNetCross.Memory.Unsafe, Version=0.2.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\DotNetCross.Memory.Unsafe.0.2.2\lib\portable-net40+win8+sl4+wp7\DotNetCross.Memory.Unsafe.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FFImageLoading, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xamarin.FFImageLoading.2.2.7\lib\portable-net45+win8+wpa81+wp8\FFImageLoading.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FFImageLoading.Forms, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xamarin.FFImageLoading.Forms.2.2.7\lib\portable-net45+win8+wpa81+wp8\FFImageLoading.Forms.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FFImageLoading.Platform, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xamarin.FFImageLoading.2.2.7\lib\portable-net45+win8+wpa81+wp8\FFImageLoading.Platform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FFImageLoading.Transformations, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xamarin.FFImageLoading.Transformations.2.2.7\lib\portable-net45+win8+wpa81+wp8\FFImageLoading.Transformations.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -257,6 +283,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Pages\RouteDetailsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\ExhibitsOverviewView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

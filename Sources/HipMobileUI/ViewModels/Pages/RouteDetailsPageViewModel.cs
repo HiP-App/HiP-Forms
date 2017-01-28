@@ -18,11 +18,10 @@ using System.Windows.Input;
 using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using de.upb.hip.mobile.pcl.Helpers;
+using HipMobileUI.Helpers;
 using HipMobileUI.Resources;
 using HipMobileUI.ViewModels;
 using Xamarin.Forms;
-using Plugin.Geolocator;
-using Plugin.Geolocator.Abstractions;
 
 namespace HipMobileUI.Viewmodels.Pages
 {

@@ -13,8 +13,10 @@
 // limitations under the License.
 
 using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
-using de.upb.hip.mobile.pcl.BusinessLayer.Models;
+using System.Linq;
 using Xamarin.Forms;
 using Image = de.upb.hip.mobile.pcl.BusinessLayer.Models.Image;
 
@@ -26,7 +28,45 @@ namespace HipMobileUI.Helpers {
             return ImageSource.FromStream (() => new MemoryStream (image.Data));
         }
 
-      
+        /// <summary>
+        /// Sort the observable collection accroding to the given function or comparer.
+        /// </summary>
+        /// <typeparam name="TSource"></typeparam>
+        /// <typeparam name="TKey"></typeparam>
+        /// <param name="collection"></param>
+        /// <param name="keySelector"></param>
+        /// <param name="comparer"></param>
+        public static void SortCollection<TSource, TKey> (this ObservableCollection<TSource> collection, Func<TSource, TKey> keySelector, IComparer<TKey> comparer = null)
+        {
+            TSource[] sortedList;
+            if (comparer == null)
+                sortedList = collection.OrderBy(keySelector).ToArray();
+            else
+                sortedList = collection.OrderBy(keySelector, comparer).ToArray();
+            if (!CompareCollectionToArray (collection, sortedList))
+            {
+                collection.Clear ();
+                foreach (var item in sortedList)
+                    collection.Add (item);
+            }
+        }
+
+        private static bool CompareCollectionToArray<T> (ObservableCollection<T> collection, T[] array)
+        {
+            if (collection.Count != array.Length)
+            {
+                return false;
+            }
+
+            for (int i = 0; i < collection.Count; i++)
+            {
+                if (!array[i].Equals(collection[i]))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
 
     }
 }

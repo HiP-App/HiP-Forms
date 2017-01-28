@@ -58,7 +58,8 @@ namespace HipMobileUI.Views
                 NormalColor = (Color) Application.Current.Resources ["AccentColor"],
                 RippleColor = (Color) Application.Current.Resources ["AccentDarkColor"],
                 Command = new Command (ButtonOnClicked),
-                Icon = "ic_keyboard_arrow_up"
+                Icon = "ic_keyboard_arrow_up",
+                AutomationId = "Fab"
             };
 
             double fabSize;
