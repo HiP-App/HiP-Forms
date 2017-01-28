@@ -1,4 +1,4 @@
-﻿// Copyright (C) 2016 History in Paderborn App - Universität Paderborn
+﻿// Copyright (C) 2017 History in Paderborn App - Universität Paderborn
 //  
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -11,19 +11,9 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-namespace de.upb.hip.mobile.pcl.BusinessLayer.Models {
-    public sealed partial class GeoLocation {
 
-        public GeoLocation (double lat, double lon)
-        {
-            Latitude = lat;
-            Longitude = lon;
-        }
-
-        public override string ToString()
-        {
-            return $"({Latitude},{Longitude}";
-        }
+namespace HipMobileUI.ViewModels.Views {
+    public class LicenseScreenViewModel : NavigationViewModel {
 
     }
 }

@@ -52,7 +52,7 @@ namespace HipMobileUI.ViewModels.Views {
 
                 Tags.Add (ImageSource.FromStream(() => new MemoryStream(currentTagImageData)));
             }
-
+			
             // Required to reference first due to threading problems in Realm
             var imageData = Route.Image.Data;
             Image = ImageSource.FromStream(() => new MemoryStream(imageData));
