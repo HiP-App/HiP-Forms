@@ -13,6 +13,7 @@
 // limitations under the License.
 
 using System.ComponentModel;
+using Foundation;
 using HipMobileUI.Helpers;
 using HipMobileUI.iOS.CustomRenderers;
 using HipMobileUI.iOS.ViewControllers;
@@ -63,6 +64,10 @@ namespace HipMobileUI.iOS.CustomRenderers
             }
             else
             {
+                if (controller == OrientationController.PortraitConstant)
+                {
+                    UIDevice.CurrentDevice.SetValueForKey(new NSNumber((int)UIInterfaceOrientation.Portrait), new NSString("orientation"));
+                }
                 // disable rotation
                 UIApplication.SharedApplication.KeyWindow.RootViewController = new OrientationViewController (controller,
                                                                                                               UIApplication.SharedApplication.KeyWindow.RootViewController
