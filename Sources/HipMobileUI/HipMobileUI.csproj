@@ -100,13 +100,18 @@
     <Compile Include="ViewModels\Pages\MainPageViewModel.cs" />
     <Compile Include="ViewModels\Pages\RouteDetailsPageViewModel.cs" />
     <Compile Include="ViewModels\Views\DummyViewModel.cs" />
-    <Compile Include="Views\BottomSheetView.cs" />
+    <Compile Include="ViewModels\Views\LicenseScreenViewModel.cs" />
+    <Compile Include="Views\Link.cs" />
     <Compile Include="Views\DummyView.xaml.cs">
       <DependentUpon>DummyView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\LicenseScreenView.xaml.cs">
+      <DependentUpon>LicenseScreenView.xaml</DependentUpon>
+	</Compile> 
+    <Compile Include="Views\BottomSheetView.cs" />
     <Compile Include="Views\MapView.xaml.cs">
       <DependentUpon>MapView.xaml</DependentUpon>
-     </Compile>
+    </Compile>
     <Compile Include="Views\ExhibitDetails\AppetizerView.xaml.cs">
       <DependentUpon>AppetizerView.xaml</DependentUpon>
     </Compile>
@@ -215,6 +220,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\DummyView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\LicenseScreenView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

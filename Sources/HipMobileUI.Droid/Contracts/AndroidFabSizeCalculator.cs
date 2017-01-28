@@ -28,12 +28,8 @@ namespace de.upb.hip.mobile.droid.Contracts
                 // on lollipop and newer android uses dp as a unit of size
                 return 56;
             }
-            else
-            {
-                // compat libraries use pixel, therefore convert dp to pixel
-                return (int)(56 * scale + 0.5);
-            }
-            
+            // compat libraries use pixel, therefore convert dp to pixel
+            return (int)(56 * scale + 0.5);
         }
 
     }

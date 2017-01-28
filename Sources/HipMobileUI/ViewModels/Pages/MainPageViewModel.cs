@@ -51,18 +51,15 @@ namespace HipMobileUI.ViewModels.Pages
                     Icon = "ic_feedback.png",
                     Color = Color.Green
                 },
-                new DummyViewModel
+                new LicenseScreenViewModel
                 {
                     Title = Strings.MainPageViewModel_LegalNotices,
                     Icon = "ic_gavel.png",
-                    Color = Color.Blue
                 },
                 new MapViewModel {
-                
                     Title = "Map"
                 }
             };
-
         }
 
         private ObservableCollection<NavigationViewModel> mainScreenViewModels;
