@@ -718,5 +718,95 @@ namespace HipMobileUI.Resources {
                 return ResourceManager.GetString("RoutesOverviewView_Tags", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die App Einführung ähnelt.
+        /// </summary>
+        public static string SettingsScreenView_AppIntro_Title {
+            get {
+                return ResourceManager.GetString("SettingsScreenView_AppIntro_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Wenn diese Einstellung aktiviert ist, wird Audio automatisch für die aktuelle Seite gestartet. ähnelt.
+        /// </summary>
+        public static string SettingsScreenView_AutoStartAudio_Text {
+            get {
+                return ResourceManager.GetString("SettingsScreenView_AutoStartAudio_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Automatisch Audio beginnen ähnelt.
+        /// </summary>
+        public static string SettingsScreenView_AutoStartAudio_Title {
+            get {
+                return ResourceManager.GetString("SettingsScreenView_AutoStartAudio_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Wenn diese Einstellung aktiviert ist, wird nach Ende der Audiowiedergabe automatisch zur nächsten Seite gewechselt. ähnelt.
+        /// </summary>
+        public static string SettingsScreenView_AutoSwitchPage_Text {
+            get {
+                return ResourceManager.GetString("SettingsScreenView_AutoSwitchPage_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Automatisch Seiten wechseln ähnelt.
+        /// </summary>
+        public static string SettingsScreenView_AutoSwitchPage_Title {
+            get {
+                return ResourceManager.GetString("SettingsScreenView_AutoSwitchPage_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Sehenswürdigkeiten ähnelt.
+        /// </summary>
+        public static string SettingsScreenView_POI_Title {
+            get {
+                return ResourceManager.GetString("SettingsScreenView_POI_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Wenn aktiviert, wird der Hinweis zu Audiowiedergabe erneut angezeigt ähnelt.
+        /// </summary>
+        public static string SettingsScreenView_RepeatHintAudio_Text {
+            get {
+                return ResourceManager.GetString("SettingsScreenView_RepeatHintAudio_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Wenn aktiviert, wird der Hinweis zum automatischen Seitenwechsel erneut angezeigt ähnelt.
+        /// </summary>
+        public static string SettingsScreenView_RepeatHintAutoPageSwitch_Text {
+            get {
+                return ResourceManager.GetString("SettingsScreenView_RepeatHintAutoPageSwitch_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Wenn aktiviert, wird der Hinweis zu Zeitleiste erneut angezeigt ähnelt.
+        /// </summary>
+        public static string SettingsScreenView_RepeatHintTimeSlider_Text {
+            get {
+                return ResourceManager.GetString("SettingsScreenView_RepeatHintTimeSlider_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Wenn aktiviert, wird die App Einführung beim nächsten Start erneut angezeigt ähnelt.
+        /// </summary>
+        public static string SettingsScreenView_RepeatIntro_Text {
+            get {
+                return ResourceManager.GetString("SettingsScreenView_RepeatIntro_Text", resourceCulture);
+            }
+        }
     }
 }

@@ -15,10 +15,49 @@
 // limitations under the License.
 -->
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:strings="clr-namespace:HipMobileUI.Helpers;assembly=HipMobileUI"
              x:Class="HipMobileUI.Views.SettingsScreenView">
+  <ContentView.Resources>
+    <ResourceDictionary>
+      <!-- Defined Styles for Labels -->
+      <Style x:Key="TitleStyle" TargetType="Label">
+        <Setter Property="FontSize" Value="Small" />
+        <Setter Property="TextColor" Value="Orange" />
+        <Setter Property="Margin" Value="0,10,0,0" />
+        <Setter Property="FontAttributes" Value="Bold"/>
+      </Style>
+      <Style x:Key="Title2Style" TargetType="Label">
+        <Setter Property="FontSize" Value="Medium" />
+        <Setter Property="TextColor" Value="Black" />
+        <Setter Property="Margin" Value="0,10,0,0" />
+      </Style>
+      <Style TargetType="Label">
+        <Setter Property="FontSize" Value="Small" />
+        <Setter Property="TextColor" Value="Gray" />
+      </Style>
+    </ResourceDictionary>
+  </ContentView.Resources>
   <ContentView.Content>
     <ScrollView Margin="10">
       <StackLayout>
+        <Label Style="{StaticResource TitleStyle}" Text="{strings:Translate SettingsScreenView_POI_Title}"/>
+        <Label Style="{StaticResource Title2Style}" Text="{strings:Translate SettingsScreenView_AutoSwitchPage_Title}"/>
+        <StackLayout Orientation="Horizontal" Spacing="0">
+          <Label Text="{strings:Translate SettingsScreenView_AutoSwitchPage_Text}" HorizontalOptions="StartAndExpand" />
+          <Switch IsToggled="{Binding Path=Monitored, Mode=TwoWay}" HorizontalOptions="End" VerticalOptions="Center" />
+        </StackLayout>
+        <BoxView HeightRequest="1" BackgroundColor="Gray" HorizontalOptions="FillAndExpand"/>
+        <Label Style="{StaticResource Title2Style}" Text="{strings:Translate SettingsScreenView_AutoStartAudio_Title}"/>
+
+
+        <Label Style="{StaticResource TitleStyle}" Text="{strings:Translate SettingsScreenView_AppIntro_Title}"/>
+
+        <BoxView HeightRequest="1" BackgroundColor="Gray" HorizontalOptions="FillAndExpand"/>
+
+        <BoxView HeightRequest="1" BackgroundColor="Gray" HorizontalOptions="FillAndExpand"/>
+
+        <BoxView HeightRequest="1" BackgroundColor="Gray" HorizontalOptions="FillAndExpand"/>
+        
       </StackLayout>
     </ScrollView>
   </ContentView.Content>

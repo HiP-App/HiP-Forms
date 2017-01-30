@@ -349,4 +349,34 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   <data name="RoutesOverviewView_Tags" xml:space="preserve">
     <value>Auf der Route:</value>
   </data>
+  <data name="SettingsScreenView_AppIntro_Title" xml:space="preserve">
+    <value>App Einführung</value>
+  </data>
+  <data name="SettingsScreenView_AutoStartAudio_Text" xml:space="preserve">
+    <value>Wenn diese Einstellung aktiviert ist, wird Audio automatisch für die aktuelle Seite gestartet.</value>
+  </data>
+  <data name="SettingsScreenView_AutoStartAudio_Title" xml:space="preserve">
+    <value>Automatisch Audio beginnen</value>
+  </data>
+  <data name="SettingsScreenView_AutoSwitchPage_Text" xml:space="preserve">
+    <value>Wenn diese Einstellung aktiviert ist, wird nach Ende der Audiowiedergabe automatisch zur nächsten Seite gewechselt.</value>
+  </data>
+  <data name="SettingsScreenView_AutoSwitchPage_Title" xml:space="preserve">
+    <value>Automatisch Seiten wechseln</value>
+  </data>
+  <data name="SettingsScreenView_POI_Title" xml:space="preserve">
+    <value>Sehenswürdigkeiten</value>
+  </data>
+  <data name="SettingsScreenView_RepeatHintAudio_Text" xml:space="preserve">
+    <value>Wenn aktiviert, wird der Hinweis zu Audiowiedergabe erneut angezeigt</value>
+  </data>
+  <data name="SettingsScreenView_RepeatHintAutoPageSwitch_Text" xml:space="preserve">
+    <value>Wenn aktiviert, wird der Hinweis zum automatischen Seitenwechsel erneut angezeigt</value>
+  </data>
+  <data name="SettingsScreenView_RepeatHintTimeSlider_Text" xml:space="preserve">
+    <value>Wenn aktiviert, wird der Hinweis zu Zeitleiste erneut angezeigt</value>
+  </data>
+  <data name="SettingsScreenView_RepeatIntro_Text" xml:space="preserve">
+    <value>Wenn aktiviert, wird die App Einführung beim nächsten Start erneut angezeigt</value>
+  </data>
 </root>
