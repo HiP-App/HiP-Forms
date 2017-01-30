@@ -17,9 +17,9 @@ using HipMobileUI.ViewModels.Views;
 
 namespace HipMobileUI.Views
 {
-    public partial class LicenseScreenView : IViewFor<LicenseScreenViewModel>
+    public partial class SettingsScreenView : IViewFor<SettingsScreenViewModel>
     {
-        public LicenseScreenView()
+        public SettingsScreenView()
         {
             InitializeComponent();
         }

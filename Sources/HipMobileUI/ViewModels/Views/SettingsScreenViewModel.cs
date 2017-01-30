@@ -12,16 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using HipMobileUI.Navigation;
-using HipMobileUI.ViewModels.Views;
+namespace HipMobileUI.ViewModels.Views {
+    public class SettingsScreenViewModel : NavigationViewModel {
 
-namespace HipMobileUI.Views
-{
-    public partial class LicenseScreenView : IViewFor<LicenseScreenViewModel>
-    {
-        public LicenseScreenView()
-        {
-            InitializeComponent();
-        }
     }
 }

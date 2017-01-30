@@ -108,13 +108,14 @@
     <Compile Include="ViewModels\Views\ExhibitsOverviewListItemViewModel.cs" />
     <Compile Include="ViewModels\Views\ExhibitsOverviewViewModel.cs" />
     <Compile Include="ViewModels\Views\LicenseScreenViewModel.cs" />
+    <Compile Include="ViewModels\Views\SettingsScreenViewModel.cs" />
     <Compile Include="Views\Link.cs" />
     <Compile Include="Views\DummyView.xaml.cs">
       <DependentUpon>DummyView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\LicenseScreenView.xaml.cs">
       <DependentUpon>LicenseScreenView.xaml</DependentUpon>
-	</Compile> 
+    </Compile>
     <Compile Include="Views\BottomSheetView.cs" />
     <Compile Include="Views\MapView.xaml.cs">
       <DependentUpon>MapView.xaml</DependentUpon>
@@ -135,6 +136,9 @@
     </Compile>
     <Compile Include="Views\RoutesOverviewView.xaml.cs">
       <DependentUpon>RoutesOverviewView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SettingsScreenView.xaml.cs">
+      <DependentUpon>SettingsScreenView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -257,7 +261,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\MapView.xaml"/>
+    <EmbeddedResource Include="Views\MapView.xaml" />
     <EmbeddedResource Include="Pages\ExhibitDetailsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
@@ -289,6 +293,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\ExhibitsOverviewView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\SettingsScreenView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
