@@ -1160,32 +1160,32 @@ namespace de.upb.hip.mobile.droid
 		public partial class Color
 		{
 			
-			// aapt resource value: 0x7f08006e
-			public const int abc_background_cache_hint_selector_material_dark = 2131230830;
+			// aapt resource value: 0x7f080060
+			public const int abc_background_cache_hint_selector_material_dark = 2131230816;
 			
-			// aapt resource value: 0x7f08006f
-			public const int abc_background_cache_hint_selector_material_light = 2131230831;
+			// aapt resource value: 0x7f080061
+			public const int abc_background_cache_hint_selector_material_light = 2131230817;
 			
-			// aapt resource value: 0x7f080070
-			public const int abc_color_highlight_material = 2131230832;
+			// aapt resource value: 0x7f080062
+			public const int abc_color_highlight_material = 2131230818;
 			
 			// aapt resource value: 0x7f080015
 			public const int abc_input_method_navigation_guard = 2131230741;
 			
-			// aapt resource value: 0x7f080071
-			public const int abc_primary_text_disable_only_material_dark = 2131230833;
+			// aapt resource value: 0x7f080063
+			public const int abc_primary_text_disable_only_material_dark = 2131230819;
 			
-			// aapt resource value: 0x7f080072
-			public const int abc_primary_text_disable_only_material_light = 2131230834;
+			// aapt resource value: 0x7f080064
+			public const int abc_primary_text_disable_only_material_light = 2131230820;
 			
-			// aapt resource value: 0x7f080073
-			public const int abc_primary_text_material_dark = 2131230835;
+			// aapt resource value: 0x7f080065
+			public const int abc_primary_text_material_dark = 2131230821;
 			
-			// aapt resource value: 0x7f080074
-			public const int abc_primary_text_material_light = 2131230836;
+			// aapt resource value: 0x7f080066
+			public const int abc_primary_text_material_light = 2131230822;
 			
-			// aapt resource value: 0x7f080075
-			public const int abc_search_url_text = 2131230837;
+			// aapt resource value: 0x7f080067
+			public const int abc_search_url_text = 2131230823;
 			
 			// aapt resource value: 0x7f080016
 			public const int abc_search_url_text_normal = 2131230742;
@@ -1196,11 +1196,11 @@ namespace de.upb.hip.mobile.droid
 			// aapt resource value: 0x7f080018
 			public const int abc_search_url_text_selected = 2131230744;
 			
-			// aapt resource value: 0x7f080076
-			public const int abc_secondary_text_material_dark = 2131230838;
+			// aapt resource value: 0x7f080068
+			public const int abc_secondary_text_material_dark = 2131230824;
 			
-			// aapt resource value: 0x7f080077
-			public const int abc_secondary_text_material_light = 2131230839;
+			// aapt resource value: 0x7f080069
+			public const int abc_secondary_text_material_light = 2131230825;
 			
 			// aapt resource value: 0x7f080019
 			public const int accent_material_dark = 2131230745;
@@ -1219,30 +1219,6 @@ namespace de.upb.hip.mobile.droid
 			
 			// aapt resource value: 0x7f08001e
 			public const int background_material_light = 2131230750;
-			
-			// aapt resource value: 0x7f08006b
-			public const int bg_color_amber_500 = 2131230827;
-			
-			// aapt resource value: 0x7f080066
-			public const int bg_color_autocarousel = 2131230822;
-			
-			// aapt resource value: 0x7f08006c
-			public const int bg_color_blue_600 = 2131230828;
-			
-			// aapt resource value: 0x7f08006d
-			public const int bg_color_blue_700 = 2131230829;
-			
-			// aapt resource value: 0x7f080068
-			public const int bg_color_green_600 = 2131230824;
-			
-			// aapt resource value: 0x7f080067
-			public const int bg_color_lightgreen_600 = 2131230823;
-			
-			// aapt resource value: 0x7f08006a
-			public const int bg_color_orange_600 = 2131230826;
-			
-			// aapt resource value: 0x7f080069
-			public const int bg_color_orange_700 = 2131230825;
 			
 			// aapt resource value: 0x7f08001f
 			public const int bright_foreground_disabled_material_dark = 2131230751;
@@ -1280,23 +1256,8 @@ namespace de.upb.hip.mobile.droid
 			// aapt resource value: 0x7f080014
 			public const int cardview_shadow_start_color = 2131230740;
 			
-			// aapt resource value: 0x7f080065
-			public const int chevronBackground = 2131230821;
-			
 			// aapt resource value: 0x7f08005b
 			public const int colorAccent = 2131230811;
-			
-			// aapt resource value: 0x7f08005d
-			public const int colorBottomSheetBackground = 2131230813;
-			
-			// aapt resource value: 0x7f08005f
-			public const int colorBottomSheetFont = 2131230815;
-			
-			// aapt resource value: 0x7f08005c
-			public const int colorExhibitBackground = 2131230812;
-			
-			// aapt resource value: 0x7f08005e
-			public const int colorExhibitFont = 2131230814;
 			
 			// aapt resource value: 0x7f080059
 			public const int colorPrimary = 2131230809;
@@ -1307,8 +1268,8 @@ namespace de.upb.hip.mobile.droid
 			// aapt resource value: 0x7f080008
 			public const int common_action_bar_splitter = 2131230728;
 			
-			// aapt resource value: 0x7f080078
-			public const int common_google_signin_btn_text_dark = 2131230840;
+			// aapt resource value: 0x7f08006a
+			public const int common_google_signin_btn_text_dark = 2131230826;
 			
 			// aapt resource value: 0x7f080009
 			public const int common_google_signin_btn_text_dark_default = 2131230729;
@@ -1322,8 +1283,8 @@ namespace de.upb.hip.mobile.droid
 			// aapt resource value: 0x7f08000a
 			public const int common_google_signin_btn_text_dark_pressed = 2131230730;
 			
-			// aapt resource value: 0x7f080079
-			public const int common_google_signin_btn_text_light = 2131230841;
+			// aapt resource value: 0x7f08006b
+			public const int common_google_signin_btn_text_light = 2131230827;
 			
 			// aapt resource value: 0x7f08000d
 			public const int common_google_signin_btn_text_light_default = 2131230733;
@@ -1337,8 +1298,8 @@ namespace de.upb.hip.mobile.droid
 			// aapt resource value: 0x7f08000e
 			public const int common_google_signin_btn_text_light_pressed = 2131230734;
 			
-			// aapt resource value: 0x7f08007a
-			public const int common_plus_signin_btn_text_dark = 2131230842;
+			// aapt resource value: 0x7f08006c
+			public const int common_plus_signin_btn_text_dark = 2131230828;
 			
 			// aapt resource value: 0x7f080000
 			public const int common_plus_signin_btn_text_dark_default = 2131230720;
@@ -1352,8 +1313,8 @@ namespace de.upb.hip.mobile.droid
 			// aapt resource value: 0x7f080001
 			public const int common_plus_signin_btn_text_dark_pressed = 2131230721;
 			
-			// aapt resource value: 0x7f08007b
-			public const int common_plus_signin_btn_text_light = 2131230843;
+			// aapt resource value: 0x7f08006d
+			public const int common_plus_signin_btn_text_light = 2131230829;
 			
 			// aapt resource value: 0x7f080004
 			public const int common_plus_signin_btn_text_light_default = 2131230724;
@@ -1511,11 +1472,11 @@ namespace de.upb.hip.mobile.droid
 			// aapt resource value: 0x7f08004c
 			public const int switch_thumb_disabled_material_light = 2131230796;
 			
-			// aapt resource value: 0x7f08007c
-			public const int switch_thumb_material_dark = 2131230844;
+			// aapt resource value: 0x7f08006e
+			public const int switch_thumb_material_dark = 2131230830;
 			
-			// aapt resource value: 0x7f08007d
-			public const int switch_thumb_material_light = 2131230845;
+			// aapt resource value: 0x7f08006f
+			public const int switch_thumb_material_light = 2131230831;
 			
 			// aapt resource value: 0x7f08004d
 			public const int switch_thumb_normal_material_dark = 2131230797;
@@ -1523,20 +1484,17 @@ namespace de.upb.hip.mobile.droid
 			// aapt resource value: 0x7f08004e
 			public const int switch_thumb_normal_material_light = 2131230798;
 			
-			// aapt resource value: 0x7f080060
-			public const int textColorPrimary = 2131230816;
+			// aapt resource value: 0x7f08005c
+			public const int textColorPrimary = 2131230812;
 			
-			// aapt resource value: 0x7f080062
-			public const int textColorPrimaryInverse = 2131230818;
+			// aapt resource value: 0x7f08005e
+			public const int textColorPrimaryInverse = 2131230814;
 			
-			// aapt resource value: 0x7f080061
-			public const int textColorSecondary = 2131230817;
+			// aapt resource value: 0x7f08005d
+			public const int textColorSecondary = 2131230813;
 			
-			// aapt resource value: 0x7f080063
-			public const int textColorSecondaryInverse = 2131230819;
-			
-			// aapt resource value: 0x7f080064
-			public const int textOverlayForImage = 2131230820;
+			// aapt resource value: 0x7f08005f
+			public const int textColorSecondaryInverse = 2131230815;
 			
 			static Color()
 			{
@@ -2577,9 +2535,6 @@ namespace de.upb.hip.mobile.droid
 			
 			// aapt resource value: 0x7f0200dd
 			public const int notification_template_icon_bg = 2130837725;
-			
-			// aapt resource value: 0x7f0200de
-			public const int semitransparent_gray = 2130837726;
 			
 			static Drawable()
 			{
