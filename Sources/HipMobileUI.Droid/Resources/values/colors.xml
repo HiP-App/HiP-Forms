@@ -19,12 +19,6 @@ limitations under the License.-->
   <!-- accent color: red -->
   <item name="colorAccent" type="color">#FF9800</item>
 
-  <!-- Exhibit Page colors -->
-  <item name="colorExhibitBackground" type="color">#FFFFFF</item>
-  <item name="colorBottomSheetBackground" type="color">#FFFFFF</item>
-  <item name="colorExhibitFont" type="color">@android:color/black</item>
-  <item name="colorBottomSheetFont" type="color">@android:color/black</item>
-
 
   <!-- text color: black -->
   <item name="textColorPrimary" type="color">#DE000000</item>
@@ -32,22 +26,4 @@ limitations under the License.-->
   <!-- inverse text color: 87% black -->
   <item name="textColorPrimaryInverse" type="color">#DE000000</item>
   <item name="textColorSecondaryInverse" type="color">#9E9E9E</item>
-
-  <!-- white text for the image overlay -->
-  <item name="textOverlayForImage" type="color">#FFFFFF</item>
-
-  <drawable name="semitransparent_gray">#779E9E9E</drawable>
-
-  <!-- background for chevrons in the ExhibitDetailsActivity -->
-  <item name="chevronBackground" type="color">#AAFFFFFF</item>
-
-  <!-- Screens background color-->
-  <color name="bg_color_autocarousel">#3395ff</color>
-  <color name="bg_color_lightgreen_600">#7CB342</color>
-  <color name="bg_color_green_600">#43A047</color>
-  <color name="bg_color_orange_700">#F57C00</color>
-  <color name="bg_color_orange_600">#F57C00</color>
-  <color name="bg_color_amber_500">#FFC107</color>
-  <color name="bg_color_blue_600">#1E88E5</color>
-  <color name="bg_color_blue_700">#0288D1</color>
 </resources>

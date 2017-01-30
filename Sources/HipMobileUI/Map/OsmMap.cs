@@ -24,8 +24,9 @@ namespace HipMobileUI.Map {
         public static readonly BindableProperty GpsLocationProperty = BindableProperty.Create ("GPSLocation",typeof(GeoLocation),typeof(OsmMap),null,propertyChanged: GpsLocationPropertyChanged);
         
         public static readonly BindableProperty DetailsRouteProperty = BindableProperty.Create ("DetailsRoute",typeof(Route),typeof(OsmMap),null, propertyChanged: DetailsRoutePropertyChanged);
+
         //Set this to true if you want to have direct polyline in routedetails screen for example
-        public static readonly BindableProperty ShowDetailsRouteProperty = BindableProperty.Create ("ShowDetails",typeof(bool),typeof(OsmMap),false);
+		public static readonly BindableProperty ShowDetailsRouteProperty = BindableProperty.Create ("ShowDetailsRoute",typeof(bool),typeof(OsmMap),false);
         //Set this to true if want to have the navigation
         public static readonly  BindableProperty ShowNavigationProperty = BindableProperty.Create ("ShowNavigation",typeof(bool),typeof(OsmMap),false);
 

@@ -13,11 +13,11 @@
 // limitations under the License.
 
 using System.Collections.ObjectModel;
-using HipMobileUI.Map;
 using System.Linq;
 using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
+using de.upb.hip.mobile.pcl.BusinessLayer.Models;
+using HipMobileUI.Resources;
 using HipMobileUI.ViewModels.Views;
-using HipMobileUI.Views;
 using Xamarin.Forms;
 
 namespace HipMobileUI.ViewModels.Pages
@@ -27,41 +27,37 @@ namespace HipMobileUI.ViewModels.Pages
 
         public MainPageViewModel()
         {
+            ExhibitSet exhibitSet = ExhibitManager.GetExhibitSets ().FirstOrDefault ();
             MainScreenViewModels = new ObservableCollection<NavigationViewModel>
             {
-                new DummyViewModel
+                new ExhibitsOverviewViewModel (exhibitSet)
                 {
-                    Title = "Übersicht",
-                    Icon = "ic_home.png",
-                    Color = Color.Gray
+                    Title = Strings.MainPageViewModel_OverviewPage,
+                    Icon = "ic_home.png"
                 },
                 new RoutesOverviewViewModel
                 {
-                    Title = "Routen",
+                    Title = Strings.MainPageViewModel_Routes,
                     Icon = "ic_directions.png"
                 },
                 new DummyViewModel
                 {
-                    Title = "Einstellungen",
+                    Title = Strings.MainPageViewModel_Settings,
                     Icon = "ic_settings.png",
                     Color = Color.Red
                 },
                 new DummyViewModel
                 {
-                    Title = "Feedback",
+                    Title = Strings.MainPageViewModel_Feedback,
                     Icon = "ic_feedback.png",
                     Color = Color.Green
                 },
-                new DummyViewModel
+                new LicenseScreenViewModel
                 {
-                    Title = "Rechtliche Hinweise",
+                    Title = Strings.MainPageViewModel_LegalNotices,
                     Icon = "ic_gavel.png",
-                    Color = Color.Blue
-                }
+                },
             };
-
-            MainScreenViewModels.Add (new MapViewModel ());
-
         }
 
         private ObservableCollection<NavigationViewModel> mainScreenViewModels;
@@ -76,7 +72,13 @@ namespace HipMobileUI.ViewModels.Pages
         public NavigationViewModel SelectedViewModel
         {
             get { return selectedViewModel; }
-            set { SetProperty(ref selectedViewModel, value); }
+            set {
+                var oldViewModel = SelectedViewModel;
+                if (SetProperty (ref (selectedViewModel), value))
+                {
+                    oldViewModel?.OnDisappearing ();
+                }
+            }
         }
 
     }

@@ -13,8 +13,10 @@
 // limitations under the License.
 
 using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
-using de.upb.hip.mobile.pcl.BusinessLayer.Models;
+using System.Linq;
 using Xamarin.Forms;
 using Image = de.upb.hip.mobile.pcl.BusinessLayer.Models.Image;
 
@@ -26,31 +28,44 @@ namespace HipMobileUI.Helpers {
             return ImageSource.FromStream (() => new MemoryStream (image.Data));
         }
 
-        public static double DistanceLatLon (GeoLocation user, GeoLocation exhibit) //(double lat1, double lat2, double lon1, double lon2, double el1, double el2)
+        /// <summary>
+        /// Sort the observable collection accroding to the given function or comparer.
+        /// </summary>
+        /// <typeparam name="TSource"></typeparam>
+        /// <typeparam name="TKey"></typeparam>
+        /// <param name="collection"></param>
+        /// <param name="keySelector"></param>
+        /// <param name="comparer"></param>
+        public static void SortCollection<TSource, TKey> (this ObservableCollection<TSource> collection, Func<TSource, TKey> keySelector, IComparer<TKey> comparer = null)
         {
-            const int r = 6371; // Radius of the earth
-
-            double latDistance = DegreeToRadian (exhibit.Latitude - user.Latitude);
-            double lonDistance = DegreeToRadian (exhibit.Longitude - user.Longitude);
-            double a = Math.Sin (latDistance/2)*Math.Sin (latDistance/2)
-                       + Math.Cos (DegreeToRadian (user.Latitude))*Math.Cos (DegreeToRadian (exhibit.Latitude))*Math.Sin (lonDistance/2)*Math.Sin (lonDistance/2);
-            double c = 2*Math.Atan2 (Math.Sqrt (a), Math.Sqrt (1 - a));
-            double distance = r*c*1000; // convert to meters
-
-
-            distance = Math.Pow (distance, 2);
-
-            return Math.Sqrt (distance);
+            TSource[] sortedList;
+            if (comparer == null)
+                sortedList = collection.OrderBy(keySelector).ToArray();
+            else
+                sortedList = collection.OrderBy(keySelector, comparer).ToArray();
+            if (!CompareCollectionToArray (collection, sortedList))
+            {
+                collection.Clear ();
+                foreach (var item in sortedList)
+                    collection.Add (item);
+            }
         }
 
-        private static double DegreeToRadian (double angle)
+        private static bool CompareCollectionToArray<T> (ObservableCollection<T> collection, T[] array)
         {
-            return Math.PI*angle/180.0;
-        }
+            if (collection.Count != array.Length)
+            {
+                return false;
+            }
 
-        private static double RadianToDegree (double angle)
-        {
-            return angle*(180.0/Math.PI);
+            for (int i = 0; i < collection.Count; i++)
+            {
+                if (!array[i].Equals(collection[i]))
+                {
+                    return false;
+                }
+            }
+            return true;
         }
 
     }

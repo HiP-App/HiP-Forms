@@ -64,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppLaunchesTests.cs" />
+    <Compile Include="ExhibitDetailsPageTest.cs" />
     <Compile Include="UiTestBase.cs" />
     <Compile Include="MainPageUiTests.cs" />
   </ItemGroup>

@@ -19,7 +19,14 @@ namespace HipMobileUI.ViewModels
 {
     public abstract class NavigationViewModel : BaseViewModel {
 
-        protected static INavigationService Navigation = IoCManager.Resolve<INavigationService> ();
+        protected INavigationService Navigation = IoCManager.Resolve<INavigationService> ();
+
+        /// <summary>
+        /// Method called when the view disappears. Note that this method is not called automatically for every view.
+        /// </summary>
+        public virtual void OnDisappearing ()
+        {
+        }
 
     }
 }

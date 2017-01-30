@@ -18,10 +18,10 @@ using System.Windows.Input;
 using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using de.upb.hip.mobile.pcl.Helpers;
+using HipMobileUI.Helpers;
+using HipMobileUI.Resources;
 using HipMobileUI.ViewModels;
 using Xamarin.Forms;
-using Plugin.Geolocator;
-using Plugin.Geolocator.Abstractions;
 
 namespace HipMobileUI.Viewmodels.Pages
 {
@@ -55,14 +55,15 @@ namespace HipMobileUI.Viewmodels.Pages
         {
             Title = route.Title;
             Description = route.Description;
-            Distance = $"{route.Distance} km";
-            Duration = $"{route.Duration / 60} min";
+            Distance = string.Format (Strings.RouteDetailsPageViewModel_Distance, route.Distance);
+            Duration = string.Format(Strings.RouteDetailsPageViewModel_Duration, route.Duration / 60);
             Tags = new ObservableCollection<RouteTag> (route.RouteTags);
             var data = route.Image.Data;
             Image = ImageSource.FromStream(() => new MemoryStream(data));
 
             StartRouteCommand = new Command(StartRoute);
             StartDescriptionPlaybackCommand = new Command(StartDescriptionPlayback);
+
 
             Tabs = new ObservableCollection<string> {"Description", "Map"};
 
@@ -75,6 +76,9 @@ namespace HipMobileUI.Viewmodels.Pages
         public RouteDetailsPageViewModel (Route route) : this(route, new GeoLocation(AppSharedData.PaderbornMainStation.Latitude, AppSharedData.PaderbornMainStation.Longitude))
         {
             
+
+            Tabs = new ObservableCollection<string> {Strings.RouteDetailsPageViewModel_Description, Strings.RouteDetailsPageViewModel_Map};
+
         }
 
         /// <summary>

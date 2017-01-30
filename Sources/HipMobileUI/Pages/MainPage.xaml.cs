@@ -16,7 +16,6 @@ using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using HipMobileUI.Navigation;
 using HipMobileUI.ViewModels.Pages;
 using Xamarin.Forms;
-using Page = Xamarin.Forms.Page;
 
 namespace HipMobileUI.Pages
 {
@@ -31,8 +30,6 @@ namespace HipMobileUI.Pages
         {
             InitializeComponent();
             ViewModel.SelectedViewModel = ViewModel.MainScreenViewModels[0];
-
-            
         }
 
         private void ListView_OnItemSelected (object sender, SelectedItemChangedEventArgs e)

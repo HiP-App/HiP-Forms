@@ -11,17 +11,28 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+
+using HipMobileUI.Helpers;
 using HipMobileUI.Navigation;
 using HipMobileUI.ViewModels.Pages;
 using Xamarin.Forms;
 
 namespace HipMobileUI.Pages
 {
-    public partial class ExhibitDetailsPage : ContentPage, IViewFor<ExhibitDetailsViewModel>
+
+    public partial class ExhibitDetailsPage : OrientationContentPage, IViewFor<ExhibitDetailsViewModel>
     {
         public ExhibitDetailsPage()
         {
             InitializeComponent();
         }
+
+        protected override void OnDisappearing ()
+        {
+            base.OnDisappearing ();
+
+            OrientationController = OrientationController.Sensor;
+        }
+
     }
 }

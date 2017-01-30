@@ -30,6 +30,7 @@ using de.upb.hip.mobile.droid.Map;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using de.upb.hip.mobile.pcl.BusinessLayer.Routing;
 using de.upb.hip.mobile.pcl.Helpers;
+using HipMobileUI.Helpers;
 using HipMobileUI.Map;
 using Org.Osmdroid;
 using Org.Osmdroid.Bonuspack.Overlays;
@@ -113,8 +114,10 @@ namespace de.upb.hip.mobile.droid.Map {
 
         private void NewElementOnGpsLocationChanged (GeoLocation gpsLocation)
         {
-
                 //Userposition is always updated
+            if (gpsLocation != null)
+            {
+
                 userPosition = new GeoPoint (gpsLocation.Latitude, gpsLocation.Longitude);
                 mapController.SetCenter (userPosition);
                 if (userMarkerPosition != null)//because this is called after exhibitset we have to check if the marker is initialized
@@ -128,11 +131,13 @@ namespace de.upb.hip.mobile.droid.Map {
                 }
 
                 //if navigation is enabled the route will be drawn and updated
-            if (osmMap.ShowNavigation)
-            {
-                UpdateRoute (new GeoPoint(gpsLocation.Latitude,gpsLocation.Longitude));
-            }
+				if (osmMap.ShowNavigation)
+				{
+					UpdateRoute (new GeoPoint(gpsLocation.Latitude,gpsLocation.Longitude));
+				}
             
+            }
+
         }
 
         private void NewElementOnDetailsRouteChanged (Route route)
