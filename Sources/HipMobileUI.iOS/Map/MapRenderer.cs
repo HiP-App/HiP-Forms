@@ -63,6 +63,7 @@ namespace HipMobileUI.iOS.Map
 
         private void OnExhibitSetChanged(ExhibitSet set)
         {
+            
             InitAnnotations(set);
         }
 
@@ -130,11 +131,14 @@ namespace HipMobileUI.iOS.Map
 
         private void InitAnnotations(ExhibitSet exhibitSet)
         {
-            foreach (var exhibit in exhibitSet.ActiveSet)
+            if (exhibitSet != null)
             {
-                var annotation = new ExhibitAnnotation(exhibit.Location.Latitude, exhibit.Location.Longitude, exhibit.Id,
-                                                                                exhibit.Name, exhibit.Description);
-                Control.AddAnnotation(annotation);
+                foreach (var exhibit in exhibitSet.ActiveSet)
+                {
+                    var annotation = new ExhibitAnnotation (exhibit.Location.Latitude, exhibit.Location.Longitude, exhibit.Id,
+                                                            exhibit.Name, exhibit.Description);
+                    Control.AddAnnotation (annotation);
+                }
             }
         }
     }

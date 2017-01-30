@@ -126,7 +126,6 @@ namespace de.upb.hip.mobile.droid.Map {
                     userMarkerPosition.Position = userPosition;
                     userMarkerPosition.SetInfoWindow (null);
                     mapView.OverlayManager.Add (userMarkerPosition);
-                    UpdateRoute (new GeoPoint(gpsLocation.Latitude,gpsLocation.Longitude));
                     mapView.Invalidate ();
                 }
 

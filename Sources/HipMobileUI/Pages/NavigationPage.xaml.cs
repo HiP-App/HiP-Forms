@@ -19,14 +19,16 @@ using System.Text;
 using System.Threading.Tasks;
 using HipMobileUI.Map;
 using HipMobileUI.Navigation;
+using HipMobileUI.ViewModels.Pages;
 using Xamarin.Forms;
 
-namespace HipMobileUI.Views
+namespace HipMobileUI.Pages
 {
-    public partial class MapView : IViewFor<MapViewModel>
+    public partial class NavigationPage : IViewFor<NavigationPageViewModel>
     {
-        public MapView()
+        public NavigationPage()
         {
+
             InitializeComponent();
         }
 

@@ -51,11 +51,10 @@
 
         <!-- Map Tab -->
 
-        <BoxView Color="Gray" x:Name="Map" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
-        <!--<map:OsmMap x:Name="Map" ExhibitSet="{Binding ExhibitSet}" GpsLocation="{Binding GpsLocation}"
+        <map:OsmMap x:Name="Map" ExhibitSet="{Binding ExhibitSet}" GpsLocation="{Binding GpsLocation}"
                     DetailsRoute="{Binding DetailsRoute}" ShowDetailsRoute="{Binding ShowDetailsRoute}" HorizontalOptions="FillAndExpand"
                          VerticalOptions="FillAndExpand"
-                         BackgroundColor="Transparent" />-->
+                         BackgroundColor="Transparent" />
 
       </container:TabView>
 

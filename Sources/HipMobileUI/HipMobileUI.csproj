@@ -72,7 +72,7 @@
     <Compile Include="Helpers\DeviceOrientation.cs" />
     <Compile Include="Helpers\OrientationController.cs" />
     <Compile Include="Helpers\Settings.cs" />
-    <Compile Include="Map\MapViewModel.cs" />
+    <Compile Include="ViewModels\Pages\NavigationPageViewModel.cs" />
     <Compile Include="Map\OsmMap.cs" />
     <Compile Include="Helpers\TranslateExtension.cs" />
     <Compile Include="Navigation\INavigationService.cs" />
@@ -114,10 +114,10 @@
     </Compile>
     <Compile Include="Views\LicenseScreenView.xaml.cs">
       <DependentUpon>LicenseScreenView.xaml</DependentUpon>
-	</Compile> 
+    </Compile>
     <Compile Include="Views\BottomSheetView.cs" />
-    <Compile Include="Views\MapView.xaml.cs">
-      <DependentUpon>MapView.xaml</DependentUpon>
+    <Compile Include="Pages\NavigationPage.xaml.cs">
+      <DependentUpon>NavigationPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ExhibitDetails\AppetizerView.xaml.cs">
       <DependentUpon>AppetizerView.xaml</DependentUpon>
@@ -257,7 +257,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\MapView.xaml"/>
+    <EmbeddedResource Include="Pages\NavigationPage.xaml" />
     <EmbeddedResource Include="Pages\ExhibitDetailsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>

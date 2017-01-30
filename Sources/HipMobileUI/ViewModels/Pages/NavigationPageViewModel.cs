@@ -12,36 +12,25 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.using System;
 
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
-using de.upb.hip.mobile.pcl.Helpers;
 using HipMobileUI.Helpers;
-using HipMobileUI.ViewModels;
 using Plugin.Geolocator;
 using Plugin.Geolocator.Abstractions;
-using Xamarin.Forms;
 
-namespace HipMobileUI.Map {
-    class MapViewModel : NavigationViewModel {
+namespace HipMobileUI.ViewModels.Pages {
+    class NavigationPageViewModel : ViewModels.NavigationViewModel {
 
         private ExhibitSet exhibitSet;
         private GeoLocation gpsLocation;
         private Route detailsRoute;
-        private bool showDetailsRoute;
+        private bool showNavigation;
 
         //TODO just for testing can be deleted later
-        public MapViewModel ()
+        public NavigationPageViewModel (Route route)
         {
-           
-            ShowDetailsRoute = false;
-            Title = "Map";
-            ExhibitSet = ExhibitManager.GetExhibitSets ().First ();
+            DetailsRoute = route;
+            ShowNavigation = true;
+            Title = "Navigation";
             gpsLocation = new GeoLocation (AppSharedData.PaderbornMainStation.Latitude,AppSharedData.PaderbornMainStation.Longitude);
             var locator = CrossGeolocator.Current;
             locator.PositionChanged += position_Changed;
@@ -86,10 +75,10 @@ namespace HipMobileUI.Map {
             set { SetProperty (ref detailsRoute, value); }
         }
 
-        public bool ShowDetailsRoute
+        public bool ShowNavigation
         {
-            get { return showDetailsRoute; }
-            set { SetProperty(ref showDetailsRoute, value); }
+            get { return showNavigation; }
+            set { SetProperty(ref showNavigation, value); }
         }
 
 

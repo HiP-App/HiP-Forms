@@ -21,6 +21,7 @@ using de.upb.hip.mobile.pcl.Helpers;
 using HipMobileUI.Helpers;
 using HipMobileUI.Resources;
 using HipMobileUI.ViewModels;
+using HipMobileUI.ViewModels.Pages;
 using Xamarin.Forms;
 
 namespace HipMobileUI.Viewmodels.Pages
@@ -118,11 +119,7 @@ namespace HipMobileUI.Viewmodels.Pages
         /// </summary>
         private void StartRoute()
         {
-            Navigation.DisplayAlert(
-                "Currently not supported!",
-                "Starting a route is currently not supported!",
-                "Ok"
-            );
+            Navigation.PushAsync (new NavigationPageViewModel (DetailsRoute));
         }
 
         #region Properties
