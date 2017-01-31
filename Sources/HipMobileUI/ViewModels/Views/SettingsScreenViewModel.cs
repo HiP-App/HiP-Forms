@@ -12,6 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using de.upb.hip.mobile.pcl.Helpers;
+
 namespace HipMobileUI.ViewModels.Views {
     /// <summary>
     /// ViewModel for the SettingsScreenViewModel.
@@ -20,61 +22,55 @@ namespace HipMobileUI.ViewModels.Views {
         /// <summary>
         /// After end of audio playback, switch automatically to next page
         /// </summary>
-        private bool autoSwitchPage;
         public bool AutoSwitchPage
         {
-            get { return autoSwitchPage; }
-            set { SetProperty(ref autoSwitchPage, value); }
+            get { return Settings.AutoSwitchPage; }
+            set { Settings.AutoSwitchPage = value; }
         }
 
         /// <summary>
         /// Automatically start audio playback for current page
         /// </summary>
-        private bool autoStartAudio;
         public bool AutoStartAudio
         {
-            get { return autoStartAudio; }
-            set { SetProperty(ref autoStartAudio, value); }
+            get { return Settings.AutoStartAudio; }
+            set { Settings.AutoStartAudio = value; }
         }
 
         /// <summary>
         /// Show hint for audio playback again
         /// </summary>
-        private bool repeatHintAudio;
         public bool RepeatHintAudio
         {
-            get { return repeatHintAudio; }
-            set { SetProperty(ref repeatHintAudio, value); }
+            get { return Settings.RepeatHintAudio; }
+            set { Settings.RepeatHintAudio = value; }
         }
 
         /// <summary>
         /// Show hint for automatically switching to next page again
         /// </summary>
-        private bool repeatHintAutoPageSwitch;
         public bool RepeatHintAutoPageSwitch
         {
-            get { return repeatHintAutoPageSwitch; }
-            set { SetProperty(ref repeatHintAutoPageSwitch, value); }
+            get { return Settings.RepeatHintAutoPageSwitch; }
+            set { Settings.RepeatHintAutoPageSwitch = value; }
         }
 
         /// <summary>
         /// Show hint for timeslider again
         /// </summary>
-        private bool repeatHintTimeSlider;
         public bool RepeatHintTimeSlider
         {
-            get { return repeatHintTimeSlider; }
-            set { SetProperty(ref repeatHintTimeSlider, value); }
+            get { return Settings.RepeatHintTimeSlider; }
+            set { Settings.RepeatHintTimeSlider = value; }
         }
 
         /// <summary>
         /// Show app introduction by restarting the app again
         /// </summary>
-        private bool repeatIntro;
         public bool RepeatIntro
         {
-            get { return repeatIntro; }
-            set { SetProperty(ref repeatIntro, value); }
+            get { return Settings.RepeatIntro; }
+            set { Settings.RepeatIntro = value; }
         }
     }
 }
