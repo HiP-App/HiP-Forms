@@ -16,6 +16,7 @@
 -->
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:strings="clr-namespace:HipMobileUI.Helpers;assembly=HipMobileUI"
+             xmlns:viewModels="clr-namespace:HipMobileUI.ViewModels.Views;assembly=HipMobileUI"
              x:Class="HipMobileUI.Views.SettingsScreenView">
   <ContentView.Resources>
     <ResourceDictionary>
@@ -35,29 +36,51 @@
         <Setter Property="FontSize" Value="Small" />
         <Setter Property="TextColor" Value="Gray" />
       </Style>
+    <Style TargetType="BoxView">
+        <Setter Property="HeightRequest" Value="1" />
+        <Setter Property="BackgroundColor" Value="Gray" />
+        <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+      </Style>
     </ResourceDictionary>
   </ContentView.Resources>
   <ContentView.Content>
     <ScrollView Margin="10">
       <StackLayout>
+        <!-- Points of interests -->
         <Label Style="{StaticResource TitleStyle}" Text="{strings:Translate SettingsScreenView_POI_Title}"/>
         <Label Style="{StaticResource Title2Style}" Text="{strings:Translate SettingsScreenView_AutoSwitchPage_Title}"/>
         <StackLayout Orientation="Horizontal" Spacing="0">
           <Label Text="{strings:Translate SettingsScreenView_AutoSwitchPage_Text}" HorizontalOptions="StartAndExpand" />
-          <Switch IsToggled="{Binding Path=Monitored, Mode=TwoWay}" HorizontalOptions="End" VerticalOptions="Center" />
+          <Switch IsToggled="{Binding AutoSwitchPage, Mode=TwoWay}" HorizontalOptions="End" VerticalOptions="Center" />
         </StackLayout>
-        <BoxView HeightRequest="1" BackgroundColor="Gray" HorizontalOptions="FillAndExpand"/>
+        <BoxView/>
         <Label Style="{StaticResource Title2Style}" Text="{strings:Translate SettingsScreenView_AutoStartAudio_Title}"/>
+        <StackLayout Orientation="Horizontal" Spacing="0">
+          <Label Text="{strings:Translate SettingsScreenView_AutoStartAudio_Text}" HorizontalOptions="StartAndExpand" />
+          <Switch IsToggled="{Binding AutoStartAudio, Mode=TwoWay}" HorizontalOptions="End" VerticalOptions="Center" />
+        </StackLayout>
 
-
+        <!-- App Introduction -->
         <Label Style="{StaticResource TitleStyle}" Text="{strings:Translate SettingsScreenView_AppIntro_Title}"/>
-
-        <BoxView HeightRequest="1" BackgroundColor="Gray" HorizontalOptions="FillAndExpand"/>
-
-        <BoxView HeightRequest="1" BackgroundColor="Gray" HorizontalOptions="FillAndExpand"/>
-
-        <BoxView HeightRequest="1" BackgroundColor="Gray" HorizontalOptions="FillAndExpand"/>
-        
+        <StackLayout Orientation="Horizontal" Spacing="0">
+          <Label Text="{strings:Translate SettingsScreenView_RepeatHintAudio_Text}" HorizontalOptions="StartAndExpand" />
+          <Switch IsToggled="{Binding RepeatHintAudio, Mode=TwoWay}" HorizontalOptions="End" VerticalOptions="Center" />
+        </StackLayout>
+        <BoxView/>
+        <StackLayout Orientation="Horizontal" Spacing="0">
+          <Label Text="{strings:Translate SettingsScreenView_RepeatHintAutoPageSwitch_Text}" HorizontalOptions="StartAndExpand" />
+          <Switch IsToggled="{Binding RepeatHintAutoPageSwitch, Mode=TwoWay}" HorizontalOptions="End" VerticalOptions="Center" />
+        </StackLayout>
+        <BoxView/>
+        <StackLayout Orientation="Horizontal" Spacing="0">
+          <Label Text="{strings:Translate SettingsScreenView_RepeatHintTimeSlider_Text}" HorizontalOptions="StartAndExpand" />
+          <Switch IsToggled="{Binding RepeatHintTimeSlider, Mode=TwoWay}" HorizontalOptions="End" VerticalOptions="Center" />
+        </StackLayout>
+        <BoxView/>
+        <StackLayout Orientation="Horizontal" Spacing="0">
+          <Label Text="{strings:Translate SettingsScreenView_RepeatIntro_Text}" HorizontalOptions="StartAndExpand" />
+          <Switch IsToggled="{Binding RepeatIntro, Mode=TwoWay}" HorizontalOptions="End" VerticalOptions="Center" />
+        </StackLayout>
       </StackLayout>
     </ScrollView>
   </ContentView.Content>

@@ -20,7 +20,7 @@
              x:Class="HipMobileUI.Views.LicenseScreenView">
   <ContentView.Resources>
     <ResourceDictionary>
-      <!-- Defined Styles for Labels -->
+      <!-- Defined Styles for Labels and horizontal lines-->
       <Style x:Key="TitleStyle" TargetType="Label">
         <Setter Property="FontSize" Value="Large" />
         <Setter Property="TextColor" Value="Black" />
@@ -34,6 +34,11 @@
         <Setter Property="FontSize" Value="Small" />
         <Setter Property="TextColor" Value="Gray" />
       </Style>
+      <Style TargetType="BoxView">
+        <Setter Property="HeightRequest" Value="1" />
+        <Setter Property="BackgroundColor" Value="Gray" />
+        <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+      </Style>
     </ResourceDictionary> 
   </ContentView.Resources>
   <ContentView.Content>
@@ -41,7 +46,7 @@
     <StackLayout>
       <!-- Labels for licensing -->
       <Label Style="{StaticResource TitleStyle}" Text="{strings:Translate LicenseScreenView_License_Title}"/>
-      <BoxView HeightRequest="1" BackgroundColor="Gray" HorizontalOptions="FillAndExpand"/>
+      <BoxView/>
       <Label Style="{StaticResource Title2Style}" Text="{strings:Translate LicenseScreenView_MaterialIcons_Title}"/>
       <views:Link Text="{strings:Translate LicenseScreenView_MaterialIcons_Text}"/>
       <Label Style="{StaticResource Title2Style}" Text="{strings:Translate LicenseScreenView_Osmdroid_Title}"/>
@@ -73,21 +78,22 @@
       
       <!-- Labels for contribution -->
       <Label Style="{StaticResource TitleStyle}" Text="{strings:Translate LicenseScreenView_Contribution_Title}"/>
-      <BoxView HeightRequest="1" BackgroundColor="Gray" HorizontalOptions="FillAndExpand"/>
+      <BoxView/>
       <Label Style="{StaticResource Title2Style}" Text="{strings:Translate LicenseScreenView_CreditsImagesAutocarousel_Title}"/>
       <views:Link Text="{strings:Translate LicenseScreenView_CreditsImagesAutocarousel_Text}"/>
 
-      <!--Labels for Terms of Use, Privacy Policy and Impressum-->
+      <!-- Labels for Terms of Use -->
       <Label Style="{StaticResource TitleStyle}" Text="{strings:Translate LicenseScreenView_ToU_Title}"/>
-      <BoxView HeightRequest="1" BackgroundColor="Gray" HorizontalOptions="FillAndExpand"/>
+      <BoxView/>
       <Label Text="{strings:Translate LicenseScreenView_ToU_Text}"/>
       <Label Style="{StaticResource Title2Style}" Text="{strings:Translate LicenseScreenView_Copyright_Title}"/>
       <Label Text="{strings:Translate LicenseScreenView_Copyright_Text}"/>
       <Label Style="{StaticResource Title2Style}" Text="{strings:Translate LicenseScreenView_Liability_Title}"/>
       <Label Text="{strings:Translate LicenseScreenView_Liability_Text}"/>
 
+      <!-- Labels for Privacy Policy -->
       <Label Style="{StaticResource TitleStyle}" Text="{strings:Translate LicenseScreenView_PrivacyPolicy_Title}"/>
-      <BoxView HeightRequest="1" BackgroundColor="Gray" HorizontalOptions="FillAndExpand"/>
+      <BoxView/>
       <Label Text="{strings:Translate LicenseScreenView_PrivacyPolicy_Text}"/>
       <Label Style="{StaticResource Title2Style}" Text="{strings:Translate LicenseScreenView_UsagePersonalData_Title}"/>
       <Label Text="{strings:Translate LicenseScreenView_UsagePersonalData_Text}"/>
@@ -104,6 +110,7 @@
       <Label Style="{StaticResource Title2Style}" Text="{strings:Translate LicenseScreenView_FurtherInfo_Title}"/>
       <Label Text="{strings:Translate LicenseScreenView_FurtherInfo_Text}"/>
 
+      <!-- Labels for Impressum -->
       <Label Style="{StaticResource TitleStyle}" Text="{strings:Translate LicenseScreenView_Impressum_Title}"/>
       <views:Link Text="{strings:Translate LicenseScreenView_Impressum_Text}"/>
     </StackLayout>

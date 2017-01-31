@@ -13,7 +13,68 @@
 // limitations under the License.
 
 namespace HipMobileUI.ViewModels.Views {
+    /// <summary>
+    /// ViewModel for the SettingsScreenViewModel.
+    /// </summary>
     public class SettingsScreenViewModel : NavigationViewModel {
+        /// <summary>
+        /// After end of audio playback, switch automatically to next page
+        /// </summary>
+        private bool autoSwitchPage;
+        public bool AutoSwitchPage
+        {
+            get { return autoSwitchPage; }
+            set { SetProperty(ref autoSwitchPage, value); }
+        }
 
+        /// <summary>
+        /// Automatically start audio playback for current page
+        /// </summary>
+        private bool autoStartAudio;
+        public bool AutoStartAudio
+        {
+            get { return autoStartAudio; }
+            set { SetProperty(ref autoStartAudio, value); }
+        }
+
+        /// <summary>
+        /// Show hint for audio playback again
+        /// </summary>
+        private bool repeatHintAudio;
+        public bool RepeatHintAudio
+        {
+            get { return repeatHintAudio; }
+            set { SetProperty(ref repeatHintAudio, value); }
+        }
+
+        /// <summary>
+        /// Show hint for automatically switching to next page again
+        /// </summary>
+        private bool repeatHintAutoPageSwitch;
+        public bool RepeatHintAutoPageSwitch
+        {
+            get { return repeatHintAutoPageSwitch; }
+            set { SetProperty(ref repeatHintAutoPageSwitch, value); }
+        }
+
+        /// <summary>
+        /// Show hint for timeslider again
+        /// </summary>
+        private bool repeatHintTimeSlider;
+        public bool RepeatHintTimeSlider
+        {
+            get { return repeatHintTimeSlider; }
+            set { SetProperty(ref repeatHintTimeSlider, value); }
+        }
+
+        /// <summary>
+        /// Show app introduction by restarting the app again
+        /// </summary>
+        private bool repeatIntro;
+        public bool RepeatIntro
+        {
+            get { return repeatIntro; }
+            set { SetProperty(ref repeatIntro, value); }
+        }
     }
 }
