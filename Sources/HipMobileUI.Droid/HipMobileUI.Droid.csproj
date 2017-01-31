@@ -297,6 +297,11 @@
     <AndroidResource Include="Resources\drawable-hdpi\ic_my_location.png" />
     <AndroidResource Include="Resources\drawable-hdpi\marker_blue.png" />
     <AndroidResource Include="Resources\values\colors.xml" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_headset_white.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_headset_white.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_headset_white.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_headset_white.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_headset_white.png" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

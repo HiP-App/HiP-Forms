@@ -20,15 +20,24 @@
              xmlns:pages="clr-namespace:HipMobileUI.Pages;assembly=HipMobileUI"
              x:Class="HipMobileUI.Pages.ExhibitDetailsPage"
              Title="{Binding Title}"
-             OrientationController="PortraitConstant">
-    <AbsoluteLayout>
-        <ContentView Content="{Binding SelectedView, Converter={StaticResource ViewModelViewConverter}}"
-                     AbsoluteLayout.LayoutFlags="SizeProportional" AbsoluteLayout.LayoutBounds="0,0,1,1" />
-        <Button Image="ic_chevron_left" Command="{Binding PreviousViewCommand}"
-                IsVisible="{Binding PreviousViewAvailable}" AbsoluteLayout.LayoutFlags="PositionProportional"
-                AbsoluteLayout.LayoutBounds="0,0.5" BackgroundColor="#80D3D3D3" AutomationId="PreviousButton"/>
-        <Button Image="ic_chevron_right" Command="{Binding NextViewCommand}" IsVisible="{Binding NextViewAvailable}"
-                AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="1,0.5"
-                BackgroundColor="#80D3D3D3" AutomationId="NextButton"/>
-    </AbsoluteLayout>
+             OrientationController="PortraitConstant"
+             xmlns:controls="clr-namespace:HipMobileUI.Controls;assembly=HipMobileUI">
+
+  
+  <pages:OrientationContentPage.ToolbarItems>
+      <controls:HideableToolbarItem Icon="ic_headset_white"
+                                    Command="{Binding ShowAudioToolbarCommand}"
+                                    IsVisible="{Binding AudioAvailable}" />
+  </pages:OrientationContentPage.ToolbarItems>
+
+  <AbsoluteLayout>
+    <ContentView Content="{Binding SelectedView, Converter={StaticResource ViewModelViewConverter}}"
+                 AbsoluteLayout.LayoutFlags="SizeProportional" AbsoluteLayout.LayoutBounds="0,0,1,1" />
+    <Button Image="ic_chevron_left" Command="{Binding PreviousViewCommand}"
+            IsVisible="{Binding PreviousViewAvailable}" AbsoluteLayout.LayoutFlags="PositionProportional"
+            AbsoluteLayout.LayoutBounds="0,0.5" BackgroundColor="#80D3D3D3" AutomationId="PreviousButton"/>
+    <Button Image="ic_chevron_right" Command="{Binding NextViewCommand}" IsVisible="{Binding NextViewAvailable}"
+            AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="1,0.5"
+            BackgroundColor="#80D3D3D3" AutomationId="NextButton"/>
+  </AbsoluteLayout>
 </pages:OrientationContentPage>

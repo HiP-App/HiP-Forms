@@ -29,9 +29,11 @@ namespace HipMobileUI.ViewModels.Pages
         private readonly Exhibit exhibit;
         private ICommand nextViewCommand;
         private ICommand previousViewCommand;
+        private ICommand audioToolbarCommand;
         private bool previousViewAvailable;
         private bool nextViewAvailable;
         private int currentViewIndex;
+        private bool audioAvailabe;
 
         public ExhibitDetailsViewModel (string exhibitId) : this(ExhibitManager.GetExhibit(exhibitId))
         {
@@ -50,6 +52,7 @@ namespace HipMobileUI.ViewModels.Pages
             }
             NextViewCommand = new Command (GotoNextView);
             PreviousViewCommand = new Command (GotoPreviousView);
+            ShowAudioToolbarCommand = new Command (ShowAudioToolbar);
         }
 
         private void GotoNextView ()
@@ -61,6 +64,11 @@ namespace HipMobileUI.ViewModels.Pages
                 NextViewAvailable = currentViewIndex < exhibit.Pages.Count - 1;
                 PreviousViewAvailable = true;
             }
+        }
+
+        private void ShowAudioToolbar()
+        {
+            Navigation.DisplayAlert ("Titel", "Test", "OK");
         }
 
         private void GotoPreviousView ()
@@ -77,6 +85,8 @@ namespace HipMobileUI.ViewModels.Pages
         private void SetCurrentView ()
         {
             Page currentPage = exhibit.Pages [currentViewIndex];
+            AudioAvailable = currentPage.Audio != null;
+
             if (currentPage.IsAppetizerPage ())
             {
                 SelectedView = new AppetizerViewModel (exhibit.Name, currentPage.AppetizerPage);
@@ -146,6 +156,20 @@ namespace HipMobileUI.ViewModels.Pages
             set { SetProperty(ref nextViewAvailable, value); }
         }
 
+        /// <summary>
+        /// Shows the audio toolbar
+        /// </summary>
+        public ICommand ShowAudioToolbarCommand
+        {
+            get { return audioToolbarCommand; }
+            set { SetProperty (ref audioToolbarCommand, value); }
+        }
+
+        public bool AudioAvailable
+        {
+            get { return audioAvailabe; }
+            set { SetProperty(ref audioAvailabe, value); }
+        }
         #endregion
 
 
