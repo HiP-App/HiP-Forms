@@ -16,7 +16,6 @@
 -->
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:strings="clr-namespace:HipMobileUI.Helpers;assembly=HipMobileUI"
-             xmlns:viewModels="clr-namespace:HipMobileUI.ViewModels.Views;assembly=HipMobileUI"
              x:Class="HipMobileUI.Views.SettingsScreenView">
   <ContentView.Resources>
     <ResourceDictionary>
@@ -24,13 +23,13 @@
       <Style x:Key="TitleStyle" TargetType="Label">
         <Setter Property="FontSize" Value="Small" />
         <Setter Property="TextColor" Value="Orange" />
-        <Setter Property="Margin" Value="0,10,0,0" />
         <Setter Property="FontAttributes" Value="Bold"/>
+        <Setter Property="Grid.ColumnSpan" Value="2" />
       </Style>
       <Style x:Key="Title2Style" TargetType="Label">
         <Setter Property="FontSize" Value="Medium" />
         <Setter Property="TextColor" Value="Black" />
-        <Setter Property="Margin" Value="0,10,0,0" />
+        <Setter Property="Grid.ColumnSpan" Value="2" />
       </Style>
       <Style TargetType="Label">
         <Setter Property="FontSize" Value="Small" />
@@ -40,48 +39,59 @@
         <Setter Property="HeightRequest" Value="1" />
         <Setter Property="BackgroundColor" Value="Gray" />
         <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+        <Setter Property="Grid.ColumnSpan" Value="2" />
+        <Setter Property="Margin" Value="0,5,0,5"/>
       </Style>
     </ResourceDictionary>
   </ContentView.Resources>
   <ContentView.Content>
     <ScrollView Margin="10">
-      <StackLayout>
+      <Grid HorizontalOptions="FillAndExpand">
+        <Grid.RowDefinitions>
+          <RowDefinition Height="Auto" />
+          <RowDefinition Height="Auto" />
+          <RowDefinition Height="Auto" />
+          <RowDefinition Height="Auto" />
+          <RowDefinition Height="Auto" />
+          <RowDefinition Height="Auto" />
+          <RowDefinition Height="Auto" />
+          <RowDefinition Height="Auto" />
+          <RowDefinition Height="Auto" />
+          <RowDefinition Height="Auto" />
+          <RowDefinition Height="Auto" />
+          <RowDefinition Height="Auto" />
+          <RowDefinition Height="Auto" />
+          <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="*" />
+          <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+          
         <!-- Points of interests -->
-        <Label Style="{StaticResource TitleStyle}" Text="{strings:Translate SettingsScreenView_POI_Title}"/>
-        <Label Style="{StaticResource Title2Style}" Text="{strings:Translate SettingsScreenView_AutoSwitchPage_Title}"/>
-        <StackLayout Orientation="Horizontal" Spacing="0">
-          <Label Text="{strings:Translate SettingsScreenView_AutoSwitchPage_Text}" HorizontalOptions="StartAndExpand" />
-          <Switch IsToggled="{Binding AutoSwitchPage, Mode=TwoWay}" HorizontalOptions="End" VerticalOptions="Center" />
-        </StackLayout>
-        <BoxView/>
-        <Label Style="{StaticResource Title2Style}" Text="{strings:Translate SettingsScreenView_AutoStartAudio_Title}"/>
-        <StackLayout Orientation="Horizontal" Spacing="0">
-          <Label Text="{strings:Translate SettingsScreenView_AutoStartAudio_Text}" HorizontalOptions="StartAndExpand" />
-          <Switch IsToggled="{Binding AutoStartAudio, Mode=TwoWay}" HorizontalOptions="End" VerticalOptions="Center" />
-        </StackLayout>
-
+        <Label Style="{StaticResource TitleStyle}" Text="{strings:Translate SettingsScreenView_POI_Title}" Grid.Row="0" Grid.Column="0" Margin="0,0,0,10"/>
+        <Label Style="{StaticResource Title2Style}" Text="{strings:Translate SettingsScreenView_AutoSwitchPage_Title}" Grid.Row="1" Grid.Column="0"/>
+        <Label Text="{strings:Translate SettingsScreenView_AutoSwitchPage_Text}" Grid.Row="2" Grid.Column="0"/>
+        <Switch IsToggled="{Binding AutoSwitchPage, Mode=TwoWay}" VerticalOptions="Center" Grid.Row="2" Grid.Column="1"/>
+        <BoxView Grid.Row="3" Grid.Column="0"/>
+        <Label Style="{StaticResource Title2Style}" Text="{strings:Translate SettingsScreenView_AutoStartAudio_Title}" Grid.Row="4" Grid.Column="0"/>
+        <Label Text="{strings:Translate SettingsScreenView_AutoStartAudio_Text}" HorizontalOptions="StartAndExpand" Grid.Row="5" Grid.Column="0"/>
+        <Switch IsToggled="{Binding AutoStartAudio, Mode=TwoWay}" HorizontalOptions="End" VerticalOptions="Center" Grid.Row="5" Grid.Column="1"/>
+      
         <!-- App Introduction -->
-        <Label Style="{StaticResource TitleStyle}" Text="{strings:Translate SettingsScreenView_AppIntro_Title}"/>
-        <StackLayout Orientation="Horizontal" Spacing="0">
-          <Label Text="{strings:Translate SettingsScreenView_RepeatHintAudio_Text}" HorizontalOptions="StartAndExpand" />
-          <Switch IsToggled="{Binding RepeatHintAudio, Mode=TwoWay}" HorizontalOptions="End" VerticalOptions="Center" />
-        </StackLayout>
-        <BoxView/>
-        <StackLayout Orientation="Horizontal" Spacing="0">
-          <Label Text="{strings:Translate SettingsScreenView_RepeatHintAutoPageSwitch_Text}" HorizontalOptions="StartAndExpand" />
-          <Switch IsToggled="{Binding RepeatHintAutoPageSwitch, Mode=TwoWay}" HorizontalOptions="End" VerticalOptions="Center" />
-        </StackLayout>
-        <BoxView/>
-        <StackLayout Orientation="Horizontal" Spacing="0">
-          <Label Text="{strings:Translate SettingsScreenView_RepeatHintTimeSlider_Text}" HorizontalOptions="StartAndExpand" />
-          <Switch IsToggled="{Binding RepeatHintTimeSlider, Mode=TwoWay}" HorizontalOptions="End" VerticalOptions="Center" />
-        </StackLayout>
-        <BoxView/>
-        <StackLayout Orientation="Horizontal" Spacing="0">
-          <Label Text="{strings:Translate SettingsScreenView_RepeatIntro_Text}" HorizontalOptions="StartAndExpand" />
-          <Switch IsToggled="{Binding RepeatIntro, Mode=TwoWay}" HorizontalOptions="End" VerticalOptions="Center" />
-        </StackLayout>
-      </StackLayout>
+        <Label Style="{StaticResource TitleStyle}" Text="{strings:Translate SettingsScreenView_AppIntro_Title}" Grid.Row="6" Grid.Column="0" Margin="0,20,0,10"/>
+        <Label Text="{strings:Translate SettingsScreenView_RepeatHintAudio_Text}" HorizontalOptions="StartAndExpand" Grid.Row="7" Grid.Column="0"/>
+        <Switch IsToggled="{Binding RepeatHintAudio, Mode=TwoWay}" HorizontalOptions="End" VerticalOptions="Center" Grid.Row="7" Grid.Column="1"/>
+        <BoxView Grid.Row="8" Grid.Column="0"/>
+        <Label Text="{strings:Translate SettingsScreenView_RepeatHintAutoPageSwitch_Text}" HorizontalOptions="StartAndExpand" Grid.Row="9" Grid.Column="0"/>
+        <Switch IsToggled="{Binding RepeatHintAutoPageSwitch, Mode=TwoWay}" HorizontalOptions="End" VerticalOptions="Center" Grid.Row="9" Grid.Column="1"/>
+        <BoxView Grid.Row="10" Grid.Column="0"/>
+        <Label Text="{strings:Translate SettingsScreenView_RepeatHintTimeSlider_Text}" HorizontalOptions="StartAndExpand" Grid.Row="11" Grid.Column="0"/>
+        <Switch IsToggled="{Binding RepeatHintTimeSlider, Mode=TwoWay}" HorizontalOptions="End" VerticalOptions="Center" Grid.Row="11" Grid.Column="1"/>
+        <BoxView Grid.Row="12" Grid.Column="0"/>
+        <Label Text="{strings:Translate SettingsScreenView_RepeatIntro_Text}" HorizontalOptions="StartAndExpand" Grid.Row="13" Grid.Column="0"/>
+        <Switch IsToggled="{Binding RepeatIntro, Mode=TwoWay}" HorizontalOptions="End" VerticalOptions="Center" Grid.Row="13" Grid.Column="1"/>
+      </Grid>
     </ScrollView>
   </ContentView.Content>
 </ContentView>
