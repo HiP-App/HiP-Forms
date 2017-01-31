@@ -25,10 +25,30 @@ namespace HipMobileUI.Controls
         public static readonly BindableProperty ImagesProperty =
             BindableProperty.Create ("Images", typeof (ObservableCollection<ImageSource>), typeof (ViewSlider), new ObservableCollection<ImageSource> (), propertyChanged:ImagePropertyChanged);
         public static readonly BindableProperty SelectedValueProperty =
-            BindableProperty.Create("SelectedValueProperty", typeof(double), typeof(ViewSlider), 0.0);
+            BindableProperty.Create("SelectedValue", typeof(double), typeof(ViewSlider), 0.0);
+        public static readonly BindableProperty TextsProperty =
+            BindableProperty.Create("Texts", typeof(ObservableCollection<string>), typeof(ViewSlider), new ObservableCollection<string>(), propertyChanged: TextsPropertyChanged);
+        public static readonly BindableProperty ItemWidthProperty =
+            BindableProperty.Create("ItemWidth", typeof(int), typeof(ViewSlider), 100, propertyChanged: ItemWidthPropertyChanged);
 
-        private int s = 25;
-        private int f = 25;
+        private static void ItemWidthPropertyChanged (BindableObject bindable, object oldValue, object newValue)
+        {
+            if (oldValue != null && oldValue != newValue)
+            {
+                ((ViewSlider)bindable).UpdateLayout();
+            }
+        }
+
+        private static void TextsPropertyChanged (BindableObject bindable, object oldValue, object newValue)
+        {
+            if (oldValue != null && oldValue != newValue)
+            {
+                ((ViewSlider)bindable).UpdateLayout();
+            }
+        }
+
+        private int s = 50;
+        private int f = 50;
 
         private static void ImagePropertyChanged (BindableObject bindable, object oldValue, object newValue)
         {
@@ -44,13 +64,25 @@ namespace HipMobileUI.Controls
             set { SetValue(ImagesProperty, value); }
         }
 
+        public ObservableCollection<string> Texts
+        {
+            get { return (ObservableCollection<string>)GetValue(TextsProperty); }
+            set { SetValue(TextsProperty, value); }
+        }
+
         public double SelectedValue
         {
             get { return (double)GetValue(SelectedValueProperty); }
             set { SetValue(SelectedValueProperty, value); }
         }
 
-        private StackLayout stacklayout;
+        public int ItemWidth
+        {
+            get { return (int)GetValue(ItemWidthProperty); }
+            set { SetValue(ItemWidthProperty, value); }
+        }
+
+        private Grid slider;
         private BoxView box;
         public ViewSlider ()
         {
@@ -63,30 +95,63 @@ namespace HipMobileUI.Controls
             layout.BackgroundColor = Color.Gray;
 
             box = new BoxView { Color = Color.Blue };
-            
 
-            stacklayout = new StackLayout() { Orientation = StackOrientation.Horizontal, Spacing = 0, BackgroundColor = Color.Aqua, HeightRequest = this.HeightRequest};
-
-            foreach (ImageSource imageSource in Images)
+            slider = new Grid() {ColumnSpacing = 0, RowSpacing = 0, BackgroundColor = Color.White};
+            int gridRows = 0;
+            int gridColumns = 0;
+            if (Images != null)
             {
-                CachedImage image = new CachedImage () {Source = imageSource, DownsampleToViewSize = true, WidthRequest = 50, Aspect = Aspect.AspectFill};
-                stacklayout.Children.Add (image);
+                gridColumns = Math.Max (Images.Count, gridColumns);
+                if(Images.Count>0)gridRows++;
+            }
+            if (Texts != null)
+            {
+                gridColumns = Math.Max(Texts.Count, gridColumns);
+                if (Texts.Count > 0) gridRows++;
+            }
+            for(int i=0;i<gridColumns;i++)
+            {
+                 slider.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(ItemWidth) });
+            }
+            for (int i = 0; i < gridRows; i++)
+            {
+                if (gridRows == 2)
+                {
+                    if (i == 0)
+                        slider.RowDefinitions.Add (new RowDefinition {Height = new GridLength (HeightRequest * 0.8)});
+                    else
+                        slider.RowDefinitions.Add (new RowDefinition {Height = new GridLength (HeightRequest * 0.2)});
+                }
+                else
+                {
+                    slider.RowDefinitions.Add(new RowDefinition { Height = new GridLength(HeightRequest) });
+                }
+            }
+            if (Images != null)
+            {
+                int i = 0;
+                foreach (ImageSource imageSource in Images)
+                {
+                    CachedImage image = new CachedImage () {Source = imageSource, DownsampleToViewSize = true, WidthRequest = 50, Aspect = Aspect.AspectFill};
+                    slider.Children.Add (image, i, 0);
+                    i++;
+                }
+            }
+            if (Texts != null)
+            {
+                int i = 0;
+                foreach (string text in Texts)
+                {
+                    Label label = new Label() { Text = text, HorizontalOptions = LayoutOptions.Center, VerticalOptions = LayoutOptions.Center};
+                    slider.Children.Add(label, i, 1);
+                    i++;
+                }
             }
 
-/*            BoxView[] views = new BoxView[3];
-            views[0] = new BoxView() { WidthRequest = 50, Color = Color.Red };
-            views[1] = new BoxView() { WidthRequest = 50, Color = Color.Blue };
-            views[2] = new BoxView() { WidthRequest = 50, Color = Color.White };
+            AddListener(slider);
+            slider.ChildAdded += BottomSheetContentViewOnChildAdded;
 
-            
-            foreach (BoxView boxView in views)
-            {
-                stacklayout.Children.Add(boxView);
-            }*/
-            AddListener(stacklayout);
-            stacklayout.ChildAdded += BottomSheetContentViewOnChildAdded;
-
-            layout.Children.Add(stacklayout, Constraint.RelativeToView(box, (relativeLayout, view) => view.X + box.Width), Constraint.RelativeToView(box, (relativeLayout, view) => view.Y ));
+            layout.Children.Add(slider, Constraint.RelativeToView(box, (relativeLayout, view) => view.X + box.Width - ItemWidth/2), Constraint.RelativeToView(box, (relativeLayout, view) => view.Y ));
             layout.Children.Add(box, Constraint.RelativeToParent(parent => parent.Width / 2), Constraint.Constant(0), Constraint.Constant(2), Constraint.RelativeToParent(parent => parent.Height));
 
             SelectedValue = 0;
@@ -96,7 +161,7 @@ namespace HipMobileUI.Controls
 
         private double CalculateSelectedValue ()
         {
-            double dx = box.X - (box.Width / 2) - stacklayout.X;
+            double dx = box.X - (box.Width / 2) - slider.X;
 
             if (dx < f / 2)
             {
@@ -106,10 +171,22 @@ namespace HipMobileUI.Controls
             else
             {
                 double result = Math.Floor((dx - f / 2) / (f + s));
-                result += ((dx - f / 2) % (f + s) / (f + s));
-                //System.Diagnostics.Debug.WriteLine (result);
+                double mod = (dx - f / 2) % (f + s);
+                if (mod > s)
+                {
+                    result += (mod-s) / f;
+                }
+                
+                System.Diagnostics.Debug.WriteLine (result);
                 return result;
             }
+        }
+
+        private void UpdateSliderAccordingToValue (int value)
+        {
+            Rectangle sliderRect = slider.Bounds;
+            sliderRect.X = box.X + box.Width / 2 - (value+1) * (f + s) + (f + s) / 2;
+            slider.LayoutTo (sliderRect);
         }
 
         private void AddListener (Layout layout)
@@ -122,19 +199,45 @@ namespace HipMobileUI.Controls
         private PanGestureRecognizer swipeGestureRecognizer;
 
         private void RecognizerOnPanUpdated (object sender, PanUpdatedEventArgs panUpdatedEventArgs)
-        {
-            if (stacklayout.X + panUpdatedEventArgs.TotalX >= 0 && stacklayout.X + stacklayout.Width + panUpdatedEventArgs.TotalX <= Width)
-            {
-                //System.Diagnostics.Debug.WriteLine (sender.ToString ()+ ": " + panUpdatedEventArgs.TotalX + ", "+ panUpdatedEventArgs.GestureId);
+        {      
 
-                var rect = stacklayout.Bounds;
-                rect.X = rect.X + panUpdatedEventArgs.TotalX;
-                stacklayout.LayoutTo(rect, 50U);
+            if (slider.X <= box.X && slider.X + slider.Width >= box.X+box.Width)
+            {
+                double dx = panUpdatedEventArgs.TotalX;
+                if (Device.OS == TargetPlatform.iOS)
+                {
+                    dx = panUpdatedEventArgs.TotalX * 0.1;
+                }
+                if (slider.X + dx > box.X-box.Width/2)
+                {
+                    dx = box.X - slider.X;
+                }
+                else if (slider.X + slider.Width +dx < box.X + box.Width/2)
+                {
+                    dx = slider.X + slider.Width - box.X + box.Width/2;
+                }
+                System.Diagnostics.Debug.WriteLine (sender.ToString ()+ ": " + panUpdatedEventArgs.TotalX + ", "+ panUpdatedEventArgs.GestureId);
+
+                if (Device.OS == TargetPlatform.Android)
+                {
+                    var rect = slider.Bounds;
+                    rect.X = rect.X + dx;
+                    var a=slider.LayoutTo (rect, 50U);
+                }
+                else
+                {
+                    var rect = slider.Bounds;
+                    rect.X = rect.X + dx;
+                    var a = slider.LayoutTo(rect, 0U);
+                }
+                System.Diagnostics.Debug.WriteLine ("dx: " + dx);
                 SelectedValue = CalculateSelectedValue ();
             }
             if (panUpdatedEventArgs.StatusType == GestureStatus.Completed)
             {
-                
+                int value = Convert.ToInt32 (Math.Round (SelectedValue));
+                UpdateSliderAccordingToValue (value);
+                SelectedValue = value;
             }
         }
 

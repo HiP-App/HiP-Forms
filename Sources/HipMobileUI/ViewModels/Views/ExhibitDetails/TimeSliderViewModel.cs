@@ -26,17 +26,27 @@ namespace HipMobileUI.ViewModels.Views.ExhibitDetails
         public TimeSliderViewModel (TimeSliderPage timesliderPage)
         {
             Images = new ObservableCollection<ImageSource> ();
+            Years = new ObservableCollection<string> ();
+            int i = 1950;
             foreach (Image timesliderPageImage in timesliderPage.Images)
             {
                 Images.Add (timesliderPageImage.GetImageSource ());
+                Years.Add (i.ToString());
+                i += 10;
             }
         }
 
         private ObservableCollection<ImageSource> images;
+        private ObservableCollection<string> years;
 
         public ObservableCollection<ImageSource> Images {
             get { return images; }
             set { SetProperty (ref images, value); }
+        }
+
+        public ObservableCollection<string> Years {
+            get { return years; }
+            set { SetProperty (ref years, value); }
         }
 
     }

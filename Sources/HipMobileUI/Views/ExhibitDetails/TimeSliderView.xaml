@@ -20,10 +20,21 @@
              x:Class="HipMobileUI.Views.ExhibitDetails.TimeSliderView">
     <ContentView.Content>
         <!--Dummy content for now-->
-        <StackLayout Orientation="Vertical">
+      <Grid>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="0.8*"/>
+        <RowDefinition Height="0.2*"/>
+      </Grid.RowDefinitions>
+        <controls:FadeoverImageView Images="{Binding Images}" SelectedValue="{Binding Source={x:Reference Slider}, Path=SelectedValue}"/>
+        <controls:ViewSlider x:Name="Slider" Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="Center" HeightRequest="100" WidthRequest="200" Images="{Binding Images}" Texts="{Binding Years}"/>
+      </Grid>
+        <!--<StackLayout Orientation="Vertical">
             <Label BindingContext="{x:Reference Name=Slider}" Text="{Binding SelectedValue}" />
-            <controls:ViewSlider x:Name="Slider" HorizontalOptions="FillAndExpand" VerticalOptions="Center" HeightRequest="100" WidthRequest="200" Images="{Binding Images}"/>
-        </StackLayout>
+            <controls:ViewSlider x:Name="Slider" HorizontalOptions="FillAndExpand" VerticalOptions="Center" HeightRequest="100" WidthRequest="200" Images="{Binding Images}" Texts="{Binding Years}"/>
+        </StackLayout>-->
     </ContentView.Content>
 </ContentView>
 
