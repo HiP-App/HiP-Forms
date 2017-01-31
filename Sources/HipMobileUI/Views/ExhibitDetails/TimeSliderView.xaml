@@ -16,9 +16,14 @@
 -->
 
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:HipMobileUI.Controls;assembly=HipMobileUI"
              x:Class="HipMobileUI.Views.ExhibitDetails.TimeSliderView">
     <ContentView.Content>
         <!--Dummy content for now-->
-        <BoxView Color="Green" />
+        <StackLayout Orientation="Vertical">
+            <Label BindingContext="{x:Reference Name=Slider}" Text="{Binding SelectedValue}" />
+            <controls:ViewSlider x:Name="Slider" HorizontalOptions="FillAndExpand" VerticalOptions="Center" HeightRequest="100" WidthRequest="200" Images="{Binding Images}"/>
+        </StackLayout>
     </ContentView.Content>
 </ContentView>
+

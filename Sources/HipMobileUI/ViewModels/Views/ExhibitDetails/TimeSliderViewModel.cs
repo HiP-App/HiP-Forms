@@ -11,10 +11,33 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+
+using System.Collections.ObjectModel;
+using de.upb.hip.mobile.pcl.BusinessLayer.Models;
+using HipMobileUI.Helpers;
+using Xamarin.Forms;
+using Image = de.upb.hip.mobile.pcl.BusinessLayer.Models.Image;
+
 namespace HipMobileUI.ViewModels.Views.ExhibitDetails
 {
     public class TimeSliderViewModel : ExhibitSubviewViewModel
     {
-        // To be done
+
+        public TimeSliderViewModel (TimeSliderPage timesliderPage)
+        {
+            Images = new ObservableCollection<ImageSource> ();
+            foreach (Image timesliderPageImage in timesliderPage.Images)
+            {
+                Images.Add (timesliderPageImage.GetImageSource ());
+            }
+        }
+
+        private ObservableCollection<ImageSource> images;
+
+        public ObservableCollection<ImageSource> Images {
+            get { return images; }
+            set { SetProperty (ref images, value); }
+        }
+
     }
 }

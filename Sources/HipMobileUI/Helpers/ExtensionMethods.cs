@@ -25,7 +25,8 @@ namespace HipMobileUI.Helpers {
 
         public static ImageSource GetImageSource (this Image image)
         {
-            return ImageSource.FromStream (() => new MemoryStream (image.Data));
+            var data = image.Data;
+            return ImageSource.FromStream (() => new MemoryStream (data));
         }
 
         /// <summary>

@@ -61,6 +61,7 @@
     <Compile Include="Controls\FloatingActionButton.cs" />
     <Compile Include="Behaviors\ListViewTappedItemBehavior.cs" />
     <Compile Include="Container\TabView.cs" />
+    <Compile Include="Controls\ViewSlider.cs" />
     <Compile Include="Converters\PositionGeoLocationConverter.cs" />
     <Compile Include="Converters\RouteTagViewListConverter.cs" />
     <Compile Include="Converters\ImageListConverter.cs" />
@@ -114,7 +115,7 @@
     </Compile>
     <Compile Include="Views\LicenseScreenView.xaml.cs">
       <DependentUpon>LicenseScreenView.xaml</DependentUpon>
-	</Compile> 
+    </Compile>
     <Compile Include="Views\BottomSheetView.cs" />
     <Compile Include="Views\MapView.xaml.cs">
       <DependentUpon>MapView.xaml</DependentUpon>
@@ -257,7 +258,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\MapView.xaml"/>
+    <EmbeddedResource Include="Views\MapView.xaml" />
     <EmbeddedResource Include="Pages\ExhibitDetailsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
