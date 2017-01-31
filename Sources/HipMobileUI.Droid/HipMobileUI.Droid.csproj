@@ -302,6 +302,21 @@
     <AndroidResource Include="Resources\drawable-xhdpi\ic_headset_white.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\ic_headset_white.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\ic_headset_white.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_pause_black.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_play_arrow_black.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_closed_caption.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_closed_caption_black.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_pause_black.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_play_arrow_black.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_closed_caption_black.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_pause_black.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_play_arrow_black.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_closed_caption_black.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_pause_black.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_play_arrow_black.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_closed_caption_black.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_pause_black.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_play_arrow_black.png" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

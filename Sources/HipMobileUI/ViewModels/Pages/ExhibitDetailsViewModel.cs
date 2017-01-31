@@ -34,6 +34,13 @@ namespace HipMobileUI.ViewModels.Pages
         private bool nextViewAvailable;
         private int currentViewIndex;
         private bool audioAvailabe;
+        private bool audioToolbarVisible;
+        private double maxAudioProgress;
+        private double currentAudioProgress;
+        private ICommand playCommand;
+        private ICommand pauseCommand;
+        private ICommand captionCommand;
+        private bool isAudioPlaying;
 
         public ExhibitDetailsViewModel (string exhibitId) : this(ExhibitManager.GetExhibit(exhibitId))
         {
@@ -52,7 +59,11 @@ namespace HipMobileUI.ViewModels.Pages
             }
             NextViewCommand = new Command (GotoNextView);
             PreviousViewCommand = new Command (GotoPreviousView);
-            ShowAudioToolbarCommand = new Command (ShowAudioToolbar);
+
+            ShowAudioToolbarCommand = new Command (SwitchAudioToolbarVisibleState);
+            PauseCommand = new Command (PauseAudio);
+            PlayCommand = new Command(PlayAudio);
+            CaptionCommand = new Command(ShowCaption);
         }
 
         private void GotoNextView ()
@@ -66,9 +77,24 @@ namespace HipMobileUI.ViewModels.Pages
             }
         }
 
-        private void ShowAudioToolbar()
+        private void PlayAudio ()
         {
-            Navigation.DisplayAlert ("Titel", "Test", "OK");
+            IsAudioPlaying = true;
+        }
+
+        private void PauseAudio ()
+        {
+            IsAudioPlaying = false;
+        }
+
+        private void ShowCaption ()
+        {
+            Navigation.DisplayAlert ("Caption", "The caption dialog will be shown here!", "OK");
+        }
+
+        private void SwitchAudioToolbarVisibleState()
+        {
+            AudioToolbarVisible = !AudioToolbarVisible;
         }
 
         private void GotoPreviousView ()
@@ -85,7 +111,13 @@ namespace HipMobileUI.ViewModels.Pages
         private void SetCurrentView ()
         {
             Page currentPage = exhibit.Pages [currentViewIndex];
+
             AudioAvailable = currentPage.Audio != null;
+            if (!AudioAvailable)
+            {
+                AudioToolbarVisible = false;
+            }
+            MaxAudioProgress = 150; //TODO: Add length of audio
 
             if (currentPage.IsAppetizerPage ())
             {
@@ -165,11 +197,66 @@ namespace HipMobileUI.ViewModels.Pages
             set { SetProperty (ref audioToolbarCommand, value); }
         }
 
+        /// <summary>
+        /// Indicates whether the current page has audio available
+        /// </summary>
         public bool AudioAvailable
         {
             get { return audioAvailabe; }
             set { SetProperty(ref audioAvailabe, value); }
         }
+
+        /// <summary>
+        /// Indicates whether the audio toolbar is visible
+        /// </summary>
+        public bool AudioToolbarVisible
+        {
+            get { return audioToolbarVisible; }
+            set { SetProperty(ref audioToolbarVisible, value); }
+        }
+
+        /// <summary>
+        /// The maximum value of the audio progress
+        /// </summary>
+        public double MaxAudioProgress
+        {
+            get { return maxAudioProgress;}
+            set { SetProperty (ref maxAudioProgress, value); }
+        }
+
+        /// <summary>
+        /// The current value of the audio progress
+        /// </summary>
+        public double CurrentAudioProgress
+        {
+            get { return currentAudioProgress; }
+            set { SetProperty (ref currentAudioProgress, value); }
+        }
+
+        public ICommand PlayCommand
+        {
+            get { return playCommand; }
+            set { SetProperty (ref playCommand, value); }
+        }
+
+        public ICommand PauseCommand
+        {
+            get { return pauseCommand; }
+            set { SetProperty(ref pauseCommand, value); }
+        }
+
+        public ICommand CaptionCommand
+        {
+            get { return captionCommand; }
+            set { SetProperty (ref captionCommand, value); }
+        }
+
+        public bool IsAudioPlaying
+        {
+            get { return isAudioPlaying; }
+            set { SetProperty(ref isAudioPlaying, value); }
+        }
+        
         #endregion
 
 

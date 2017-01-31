@@ -62,6 +62,7 @@
     <Compile Include="Behaviors\ListViewTappedItemBehavior.cs" />
     <Compile Include="Container\TabView.cs" />
     <Compile Include="Controls\HideableToolbarItem.cs" />
+    <Compile Include="Converters\InverseBooleanConverter.cs" />
     <Compile Include="Converters\PositionGeoLocationConverter.cs" />
     <Compile Include="Converters\RouteTagViewListConverter.cs" />
     <Compile Include="Converters\ImageListConverter.cs" />
