@@ -16,6 +16,7 @@ using System;
 using System.Windows.Input;
 using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
+using HipMobileUI.ViewModels.Views;
 using HipMobileUI.ViewModels.Views.ExhibitDetails;
 using Xamarin.Forms;
 using Page = de.upb.hip.mobile.pcl.BusinessLayer.Models.Page;
@@ -24,8 +25,9 @@ namespace HipMobileUI.ViewModels.Pages
 {
     public class ExhibitDetailsViewModel : NavigationViewModel
     {
-
         private ExhibitSubviewViewModel selectedView;
+        private AudioToolbarViewModel audioToolbar;
+
         private readonly Exhibit exhibit;
         private ICommand nextViewCommand;
         private ICommand previousViewCommand;
@@ -35,12 +37,7 @@ namespace HipMobileUI.ViewModels.Pages
         private int currentViewIndex;
         private bool audioAvailabe;
         private bool audioToolbarVisible;
-        private double maxAudioProgress;
-        private double currentAudioProgress;
-        private ICommand playCommand;
-        private ICommand pauseCommand;
-        private ICommand captionCommand;
-        private bool isAudioPlaying;
+        
 
         public ExhibitDetailsViewModel (string exhibitId) : this(ExhibitManager.GetExhibit(exhibitId))
         {
@@ -48,6 +45,8 @@ namespace HipMobileUI.ViewModels.Pages
 
         public ExhibitDetailsViewModel (Exhibit exhibit)
         {
+            AudioToolbar = new AudioToolbarViewModel(); //TODO: Use setting to determine whether audio should be started automatically
+
             currentViewIndex = 0;
             if (exhibit != null)
             {
@@ -59,11 +58,7 @@ namespace HipMobileUI.ViewModels.Pages
             }
             NextViewCommand = new Command (GotoNextView);
             PreviousViewCommand = new Command (GotoPreviousView);
-
-            ShowAudioToolbarCommand = new Command (SwitchAudioToolbarVisibleState);
-            PauseCommand = new Command (PauseAudio);
-            PlayCommand = new Command(PlayAudio);
-            CaptionCommand = new Command(ShowCaption);
+            ShowAudioToolbarCommand = new Command (SwitchAudioToolbarVisibleState);       
         }
 
         private void GotoNextView ()
@@ -75,21 +70,6 @@ namespace HipMobileUI.ViewModels.Pages
                 NextViewAvailable = currentViewIndex < exhibit.Pages.Count - 1;
                 PreviousViewAvailable = true;
             }
-        }
-
-        private void PlayAudio ()
-        {
-            IsAudioPlaying = true;
-        }
-
-        private void PauseAudio ()
-        {
-            IsAudioPlaying = false;
-        }
-
-        private void ShowCaption ()
-        {
-            Navigation.DisplayAlert ("Caption", "The caption dialog will be shown here!", "OK");
         }
 
         private void SwitchAudioToolbarVisibleState()
@@ -117,7 +97,8 @@ namespace HipMobileUI.ViewModels.Pages
             {
                 AudioToolbarVisible = false;
             }
-            MaxAudioProgress = 150; //TODO: Add length of audio
+
+            AudioToolbar.SetNewAudioFile (currentPage.Audio);
 
             if (currentPage.IsAppetizerPage ())
             {
@@ -215,48 +196,12 @@ namespace HipMobileUI.ViewModels.Pages
             set { SetProperty(ref audioToolbarVisible, value); }
         }
 
-        /// <summary>
-        /// The maximum value of the audio progress
-        /// </summary>
-        public double MaxAudioProgress
+        public AudioToolbarViewModel AudioToolbar
         {
-            get { return maxAudioProgress;}
-            set { SetProperty (ref maxAudioProgress, value); }
+            get { return audioToolbar; }
+            set { SetProperty (ref audioToolbar, value); }
         }
 
-        /// <summary>
-        /// The current value of the audio progress
-        /// </summary>
-        public double CurrentAudioProgress
-        {
-            get { return currentAudioProgress; }
-            set { SetProperty (ref currentAudioProgress, value); }
-        }
-
-        public ICommand PlayCommand
-        {
-            get { return playCommand; }
-            set { SetProperty (ref playCommand, value); }
-        }
-
-        public ICommand PauseCommand
-        {
-            get { return pauseCommand; }
-            set { SetProperty(ref pauseCommand, value); }
-        }
-
-        public ICommand CaptionCommand
-        {
-            get { return captionCommand; }
-            set { SetProperty (ref captionCommand, value); }
-        }
-
-        public bool IsAudioPlaying
-        {
-            get { return isAudioPlaying; }
-            set { SetProperty(ref isAudioPlaying, value); }
-        }
-        
         #endregion
 
 

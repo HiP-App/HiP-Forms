@@ -100,6 +100,7 @@
     </Compile>
     <Compile Include="ViewModels\NavigationViewModel.cs" />
     <Compile Include="ViewModels\Pages\ExhibitDetailsViewModel.cs" />
+    <Compile Include="ViewModels\Views\AudioToolbarViewModel.cs" />
     <Compile Include="ViewModels\Views\ExhibitDetails\AppetizerViewModel.cs" />
     <Compile Include="ViewModels\Views\ExhibitDetails\ExhibitSubviewViewModel.cs" />
     <Compile Include="ViewModels\Views\ExhibitDetails\ImageViewModel.cs" />
@@ -110,6 +111,9 @@
     <Compile Include="ViewModels\Views\ExhibitsOverviewListItemViewModel.cs" />
     <Compile Include="ViewModels\Views\ExhibitsOverviewViewModel.cs" />
     <Compile Include="ViewModels\Views\LicenseScreenViewModel.cs" />
+    <Compile Include="Views\AudioToolbarView.xaml.cs">
+      <DependentUpon>AudioToolbarView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Link.cs" />
     <Compile Include="Views\DummyView.xaml.cs">
       <DependentUpon>DummyView.xaml</DependentUpon>
@@ -291,6 +295,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\ExhibitsOverviewView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\AudioToolbarView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
