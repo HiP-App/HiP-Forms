@@ -18,30 +18,36 @@ using System.Threading.Tasks;
 using FFImageLoading.Forms;
 using Xamarin.Forms;
 
-namespace HipMobileUI.Controls
-{
+namespace HipMobileUI.Controls {
     class ViewSlider : ContentView {
 
         public static readonly BindableProperty ImagesProperty =
-            BindableProperty.Create ("Images", typeof (ObservableCollection<ImageSource>), typeof (ViewSlider), new ObservableCollection<ImageSource> (), propertyChanged:ImagePropertyChanged);
+            BindableProperty.Create ("Images", typeof (ObservableCollection<ImageSource>), typeof (ViewSlider), new ObservableCollection<ImageSource> (),
+                                     propertyChanged: ImagePropertyChanged);
+
         public static readonly BindableProperty SelectedValueProperty =
-            BindableProperty.Create("SelectedValue", typeof(double), typeof(ViewSlider), 0.0);
+            BindableProperty.Create ("SelectedValue", typeof (double), typeof (ViewSlider), 0.0);
+
         public static readonly BindableProperty TextsProperty =
-            BindableProperty.Create("Texts", typeof(ObservableCollection<string>), typeof(ViewSlider), new ObservableCollection<string>(), propertyChanged: TextsPropertyChanged);
+            BindableProperty.Create ("Texts", typeof (ObservableCollection<string>), typeof (ViewSlider), new ObservableCollection<string> (), propertyChanged: TextsPropertyChanged);
+
         public static readonly BindableProperty ItemWidthProperty =
-            BindableProperty.Create("ItemWidth", typeof(int), typeof(ViewSlider), 100, propertyChanged: ItemWidthPropertyChanged);
+            BindableProperty.Create ("ItemWidth", typeof (int), typeof (ViewSlider), 100, propertyChanged: ItemWidthPropertyChanged);
+
         public static readonly BindableProperty SafezoneFractionProperty =
-            BindableProperty.Create("SafezoneFraction", typeof(double), typeof(ViewSlider), 0.5, propertyChanged: SafezonePropertyChanged);
+            BindableProperty.Create ("SafezoneFraction", typeof (double), typeof (ViewSlider), 0.5, propertyChanged: SafezonePropertyChanged);
+
         public static readonly BindableProperty FadezoneFractionProperty =
-            BindableProperty.Create("FadezoneFraction", typeof(double), typeof(ViewSlider), 0.5, propertyChanged: SafezonePropertyChanged);
+            BindableProperty.Create ("FadezoneFraction", typeof (double), typeof (ViewSlider), 0.5, propertyChanged: SafezonePropertyChanged);
+
         public static readonly BindableProperty SelectorColorProperty =
-            BindableProperty.Create("SelectorColor", typeof(Color), typeof(ViewSlider), Color.Blue, propertyChanged: SelectorColorPropertyChanged);
+            BindableProperty.Create ("SelectorColor", typeof (Color), typeof (ViewSlider), Color.Blue, propertyChanged: SelectorColorPropertyChanged);
 
         private static void SelectorColorPropertyChanged (BindableObject bindable, object oldValue, object newValue)
         {
             if (oldValue != null && oldValue != newValue)
             {
-                ((ViewSlider)bindable).UpdateSeparatorColor();
+                ((ViewSlider) bindable).UpdateSeparatorColor ();
             }
         }
 
@@ -50,17 +56,16 @@ namespace HipMobileUI.Controls
         {
             if (oldValue != null && oldValue != newValue)
             {
-                ((ViewSlider)bindable).RecalculateCaches();
+                ((ViewSlider) bindable).RecalculateCaches ();
             }
         }
 
-        
 
         private static void ItemWidthPropertyChanged (BindableObject bindable, object oldValue, object newValue)
         {
             if (oldValue != null && oldValue != newValue)
             {
-                ((ViewSlider)bindable).UpdateLayout();
+                ((ViewSlider) bindable).UpdateLayout ();
             }
         }
 
@@ -68,14 +73,14 @@ namespace HipMobileUI.Controls
         {
             if (oldValue != null && oldValue != newValue)
             {
-                ((ViewSlider)bindable).UpdateLayout();
+                ((ViewSlider) bindable).UpdateLayout ();
             }
         }
 
         private void RecalculateCaches ()
         {
             safezoneWidth = Convert.ToInt32 (ItemWidth * SafezoneFraction);
-            fadezoneWidth = Convert.ToInt32(ItemWidth * FadezoneFraction);
+            fadezoneWidth = Convert.ToInt32 (ItemWidth * FadezoneFraction);
         }
 
         private void UpdateSeparatorColor ()
@@ -90,55 +95,49 @@ namespace HipMobileUI.Controls
         {
             if (oldValue != null && oldValue != newValue)
             {
-                ((ViewSlider)bindable).UpdateLayout ();
+                ((ViewSlider) bindable).UpdateLayout ();
             }
         }
 
-        public ObservableCollection<ImageSource> Images
-        {
-            get { return (ObservableCollection<ImageSource>)GetValue(ImagesProperty); }
-            set { SetValue(ImagesProperty, value); }
+        public ObservableCollection<ImageSource> Images {
+            get { return (ObservableCollection<ImageSource>) GetValue (ImagesProperty); }
+            set { SetValue (ImagesProperty, value); }
         }
 
-        public ObservableCollection<string> Texts
-        {
-            get { return (ObservableCollection<string>)GetValue(TextsProperty); }
-            set { SetValue(TextsProperty, value); }
+        public ObservableCollection<string> Texts {
+            get { return (ObservableCollection<string>) GetValue (TextsProperty); }
+            set { SetValue (TextsProperty, value); }
         }
 
-        public double SelectedValue
-        {
-            get { return (double)GetValue(SelectedValueProperty); }
-            set { SetValue(SelectedValueProperty, value); }
+        public double SelectedValue {
+            get { return (double) GetValue (SelectedValueProperty); }
+            set { SetValue (SelectedValueProperty, value); }
         }
 
-        public int ItemWidth
-        {
-            get { return (int)GetValue(ItemWidthProperty); }
-            set { SetValue(ItemWidthProperty, value); }
+        public int ItemWidth {
+            get { return (int) GetValue (ItemWidthProperty); }
+            set { SetValue (ItemWidthProperty, value); }
         }
 
-        public double SafezoneFraction
-        {
-            get { return (double)GetValue(SafezoneFractionProperty); }
-            set { SetValue(SafezoneFractionProperty, value); }
+        public double SafezoneFraction {
+            get { return (double) GetValue (SafezoneFractionProperty); }
+            set { SetValue (SafezoneFractionProperty, value); }
         }
 
-        public double FadezoneFraction
-        {
-            get { return (double)GetValue(FadezoneFractionProperty); }
-            set { SetValue(FadezoneFractionProperty, value); }
+        public double FadezoneFraction {
+            get { return (double) GetValue (FadezoneFractionProperty); }
+            set { SetValue (FadezoneFractionProperty, value); }
         }
 
-        public Color SeparatorColor
-        {
-            get { return (Color)GetValue(SelectorColorProperty); }
-            set { SetValue(SelectorColorProperty, value); }
+        public Color SeparatorColor {
+            get { return (Color) GetValue (SelectorColorProperty); }
+            set { SetValue (SelectorColorProperty, value); }
         }
 
         private Grid slider;
         private BoxView box;
         private double SliderX => slider.X + slider.TranslationX;
+
         public ViewSlider ()
         {
             UpdateLayout ();
@@ -149,27 +148,29 @@ namespace HipMobileUI.Controls
         /// </summary>
         private void UpdateLayout ()
         {
-            RelativeLayout layout = new RelativeLayout();
+            RelativeLayout layout = new RelativeLayout ();
             layout.BackgroundColor = Color.Gray;
 
-            box = new BoxView { Color = SeparatorColor };
+            box = new BoxView {Color = SeparatorColor};
 
-            slider = new Grid() {ColumnSpacing = 0, RowSpacing = 0, BackgroundColor = Color.White};
+            slider = new Grid () {ColumnSpacing = 0, RowSpacing = 0, BackgroundColor = Color.White};
             int gridRows = 0;
             int gridColumns = 0;
             if (Images != null)
             {
                 gridColumns = Math.Max (Images.Count, gridColumns);
-                if(Images.Count>0)gridRows++;
+                if (Images.Count > 0)
+                    gridRows++;
             }
             if (Texts != null)
             {
-                gridColumns = Math.Max(Texts.Count, gridColumns);
-                if (Texts.Count > 0) gridRows++;
+                gridColumns = Math.Max (Texts.Count, gridColumns);
+                if (Texts.Count > 0)
+                    gridRows++;
             }
-            for(int i=0;i<gridColumns;i++)
+            for (int i = 0; i < gridColumns; i++)
             {
-                 slider.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(ItemWidth) });
+                slider.ColumnDefinitions.Add (new ColumnDefinition {Width = new GridLength (ItemWidth)});
             }
             for (int i = 0; i < gridRows; i++)
             {
@@ -182,7 +183,7 @@ namespace HipMobileUI.Controls
                 }
                 else
                 {
-                    slider.RowDefinitions.Add(new RowDefinition { Height = new GridLength(HeightRequest) });
+                    slider.RowDefinitions.Add (new RowDefinition {Height = new GridLength (HeightRequest)});
                 }
             }
             if (Images != null)
@@ -200,17 +201,19 @@ namespace HipMobileUI.Controls
                 int i = 0;
                 foreach (string text in Texts)
                 {
-                    Label label = new Label() { Text = text, HorizontalOptions = LayoutOptions.Center, VerticalOptions = LayoutOptions.Center};
-                    slider.Children.Add(label, i, 1);
+                    Label label = new Label () {Text = text, HorizontalOptions = LayoutOptions.Center, VerticalOptions = LayoutOptions.Center};
+                    slider.Children.Add (label, i, 1);
                     i++;
                 }
             }
 
-            AddListener(slider);
+            AddListener (slider);
             slider.ChildAdded += BottomSheetContentViewOnChildAdded;
 
-            layout.Children.Add(slider, Constraint.RelativeToView(box, (relativeLayout, view) => view.X + box.Width - ItemWidth/2), Constraint.RelativeToView(box, (relativeLayout, view) => view.Y ));
-            layout.Children.Add(box, Constraint.RelativeToParent(parent => parent.Width / 2), Constraint.Constant(0), Constraint.Constant(2), Constraint.RelativeToParent(parent => parent.Height));
+            layout.Children.Add (slider, Constraint.RelativeToView (box, (relativeLayout, view) => view.X + box.Width - ItemWidth / 2),
+                                 Constraint.RelativeToView (box, (relativeLayout, view) => view.Y));
+            layout.Children.Add (box, Constraint.RelativeToParent (parent => parent.Width / 2), Constraint.Constant (0), Constraint.Constant (2),
+                                 Constraint.RelativeToParent (parent => parent.Height));
 
             SelectedValue = 0;
 
@@ -231,13 +234,13 @@ namespace HipMobileUI.Controls
             }
             else
             {
-                double result = Math.Floor((dx - fadezoneWidth / 2) / (fadezoneWidth + safezoneWidth));
+                double result = Math.Floor ((dx - fadezoneWidth / 2) / (fadezoneWidth + safezoneWidth));
                 double mod = (dx - fadezoneWidth / 2) % (fadezoneWidth + safezoneWidth);
                 if (mod > safezoneWidth)
                 {
-                    result += (mod-safezoneWidth) / fadezoneWidth;
+                    result += (mod - safezoneWidth) / fadezoneWidth;
                 }
-                
+
                 System.Diagnostics.Debug.WriteLine (result);
                 return result;
             }
@@ -249,14 +252,14 @@ namespace HipMobileUI.Controls
         /// <param name="value">The value to animate to.</param>
         private void UpdateSliderAccordingToValue (int value)
         {
-            double x = (value) * (fadezoneWidth + safezoneWidth) *(-1);
+            double x = (value) * (fadezoneWidth + safezoneWidth) * (-1);
             slider.TranslateTo (x, 0, 100);
         }
 
         private void AddListener (Layout layout)
         {
             swipeGestureRecognizer = new PanGestureRecognizer ();
-            swipeGestureRecognizer.PanUpdated+=RecognizerOnPanUpdated;
+            swipeGestureRecognizer.PanUpdated += RecognizerOnPanUpdated;
             if (Device.OS == TargetPlatform.Android)
             {
                 // on android recursively add the gesture recognizer to all childs
@@ -265,14 +268,14 @@ namespace HipMobileUI.Controls
             else
             {
                 // on ios only to the slider itself
-                slider.GestureRecognizers.Add(swipeGestureRecognizer);
+                slider.GestureRecognizers.Add (swipeGestureRecognizer);
             }
         }
 
         private PanGestureRecognizer swipeGestureRecognizer;
 
         private void RecognizerOnPanUpdated (object sender, PanUpdatedEventArgs panUpdatedEventArgs)
-        {      
+        {
             double dx;
             if (Device.OS == TargetPlatform.Android)
             {
@@ -283,22 +286,22 @@ namespace HipMobileUI.Controls
                 // on ios the animations needs to be scaled
                 dx = slider.TranslationX + panUpdatedEventArgs.TotalX / 15;
             }
-            if (slider.X + dx > box.X-box.Width/2)
+            if (slider.X + dx > box.X - box.Width / 2)
             {
                 // left side of the slider
-                dx = ItemWidth/2;
+                dx = ItemWidth / 2;
             }
-            else if (slider.X + slider.Width +dx < box.X + box.Width/2)
+            else if (slider.X + slider.Width + dx < box.X + box.Width / 2)
             {
                 // right side of the slider
-                dx = ItemWidth/2- slider.Width;
+                dx = ItemWidth / 2 - slider.Width;
             }
 
             if (Device.OS == TargetPlatform.Android)
             {
                 // use an animation for smooth scrolling
                 ViewExtensions.CancelAnimations (slider);
-                slider.TranslateTo(dx, 0, 50U);
+                slider.TranslateTo (dx, 0, 50U);
             }
             else
             {
@@ -322,15 +325,15 @@ namespace HipMobileUI.Controls
         /// </summary>
         /// <param name="view">The view to which teh gesture recognizer should be added.</param>
         /// <param name="recognizer">The gesture recognizer to be added.</param>
-        private void AddGestureRecognizer(View view, GestureRecognizer recognizer)
+        private void AddGestureRecognizer (View view, GestureRecognizer recognizer)
         {
-            if (!view.GestureRecognizers.Contains(recognizer))
-                view.GestureRecognizers.Add(recognizer);
+            if (!view.GestureRecognizers.Contains (recognizer))
+                view.GestureRecognizers.Add (recognizer);
             if (view is Layout<View>)
             {
-                foreach (View childView in ((Layout<View>)view).Children)
+                foreach (View childView in ((Layout<View>) view).Children)
                 {
-                    AddGestureRecognizer(childView, recognizer);
+                    AddGestureRecognizer (childView, recognizer);
                 }
             }
         }
@@ -340,11 +343,11 @@ namespace HipMobileUI.Controls
         /// </summary>
         /// <param name="sender">The sender of the event.</param>
         /// <param name="elementEventArgs">The event params.</param>
-        private void BottomSheetContentViewOnChildAdded(object sender, ElementEventArgs elementEventArgs)
+        private void BottomSheetContentViewOnChildAdded (object sender, ElementEventArgs elementEventArgs)
         {
-            View view = (View)elementEventArgs.Element;
-            AddGestureRecognizer(view, swipeGestureRecognizer);
-            view.GestureRecognizers.Add(swipeGestureRecognizer);
+            View view = (View) elementEventArgs.Element;
+            AddGestureRecognizer (view, swipeGestureRecognizer);
+            view.GestureRecognizers.Add (swipeGestureRecognizer);
             view.ChildAdded += BottomSheetContentViewOnChildAdded;
         }
 

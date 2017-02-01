@@ -39,7 +39,7 @@ namespace HipMobileUI.ViewModels.Views.ExhibitDetails
                 texts.Add (timesliderPageImage.Description);
                 i += 10;
             }
-            DisplayedText = texts [0];
+            if(texts.Count>0)DisplayedText = texts [0];
             PropertyChanged+=OnPropertyChanged;
         }
 
