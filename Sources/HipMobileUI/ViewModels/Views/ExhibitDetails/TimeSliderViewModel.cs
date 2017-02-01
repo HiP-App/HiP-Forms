@@ -31,13 +31,10 @@ namespace HipMobileUI.ViewModels.Views.ExhibitDetails
             Images = new ObservableCollection<ImageSource> ();
             Years = new ObservableCollection<string> ();
             texts = new List<string> ();
-            int i = 1950;
             foreach (Image timesliderPageImage in timesliderPage.Images)
             {
                 Images.Add (timesliderPageImage.GetImageSource ());
-                Years.Add (i.ToString());
                 texts.Add (timesliderPageImage.Description);
-                i += 10;
             }
             if(texts.Count>0)DisplayedText = texts [0];
             PropertyChanged+=OnPropertyChanged;
@@ -47,10 +44,7 @@ namespace HipMobileUI.ViewModels.Views.ExhibitDetails
         {
             if (propertyChangedEventArgs.PropertyName.Equals (nameof (SelectedValue)))
             {
-                if (SelectedValue % 1 == 0)
-                {
-                    DisplayedText = texts [Convert.ToInt32 (SelectedValue)];
-                }
+                DisplayedText = texts [Convert.ToInt32 (Math.Round(SelectedValue))];
             }
         }
 
@@ -59,7 +53,7 @@ namespace HipMobileUI.ViewModels.Views.ExhibitDetails
         private double selectedValue;
         private string displayedText;
 
-        private List<string> texts;
+        private readonly List<string> texts;
 
         public ObservableCollection<ImageSource> Images {
             get { return images; }

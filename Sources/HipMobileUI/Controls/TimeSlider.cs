@@ -13,41 +13,42 @@
 // limitations under the License.
 
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using FFImageLoading.Forms;
 using Xamarin.Forms;
 
 namespace HipMobileUI.Controls {
-    class ViewSlider : ContentView {
+    class TimeSlider : ContentView {
 
         public static readonly BindableProperty ImagesProperty =
-            BindableProperty.Create ("Images", typeof (ObservableCollection<ImageSource>), typeof (ViewSlider), new ObservableCollection<ImageSource> (),
+            BindableProperty.Create ("Images", typeof (ObservableCollection<ImageSource>), typeof (TimeSlider), new ObservableCollection<ImageSource> (),
                                      propertyChanged: ImagePropertyChanged);
 
         public static readonly BindableProperty SelectedValueProperty =
-            BindableProperty.Create ("SelectedValue", typeof (double), typeof (ViewSlider), 0.0);
+            BindableProperty.Create ("SelectedValue", typeof (double), typeof (TimeSlider), 0.0);
 
         public static readonly BindableProperty TextsProperty =
-            BindableProperty.Create ("Texts", typeof (ObservableCollection<string>), typeof (ViewSlider), new ObservableCollection<string> (), propertyChanged: TextsPropertyChanged);
+            BindableProperty.Create ("Texts", typeof (ObservableCollection<string>), typeof (TimeSlider), new ObservableCollection<string> (), propertyChanged: TextsPropertyChanged);
 
         public static readonly BindableProperty ItemWidthProperty =
-            BindableProperty.Create ("ItemWidth", typeof (int), typeof (ViewSlider), 100, propertyChanged: ItemWidthPropertyChanged);
+            BindableProperty.Create ("ItemWidth", typeof (int), typeof (TimeSlider), 100, propertyChanged: ItemWidthPropertyChanged);
 
         public static readonly BindableProperty SafezoneFractionProperty =
-            BindableProperty.Create ("SafezoneFraction", typeof (double), typeof (ViewSlider), 0.5, propertyChanged: SafezonePropertyChanged);
+            BindableProperty.Create ("SafezoneFraction", typeof (double), typeof (TimeSlider), 0.5, propertyChanged: SafezonePropertyChanged);
 
         public static readonly BindableProperty FadezoneFractionProperty =
-            BindableProperty.Create ("FadezoneFraction", typeof (double), typeof (ViewSlider), 0.5, propertyChanged: SafezonePropertyChanged);
+            BindableProperty.Create ("FadezoneFraction", typeof (double), typeof (TimeSlider), 0.5, propertyChanged: SafezonePropertyChanged);
 
         public static readonly BindableProperty SelectorColorProperty =
-            BindableProperty.Create ("SelectorColor", typeof (Color), typeof (ViewSlider), Color.Blue, propertyChanged: SelectorColorPropertyChanged);
+            BindableProperty.Create ("SelectorColor", typeof (Color), typeof (TimeSlider), Color.Blue, propertyChanged: SelectorColorPropertyChanged);
 
         private static void SelectorColorPropertyChanged (BindableObject bindable, object oldValue, object newValue)
         {
             if (oldValue != null && oldValue != newValue)
             {
-                ((ViewSlider) bindable).UpdateSeparatorColor ();
+                ((TimeSlider) bindable).UpdateSeparatorColor ();
             }
         }
 
@@ -56,7 +57,7 @@ namespace HipMobileUI.Controls {
         {
             if (oldValue != null && oldValue != newValue)
             {
-                ((ViewSlider) bindable).RecalculateCaches ();
+                ((TimeSlider) bindable).RecalculateCaches ();
             }
         }
 
@@ -65,7 +66,7 @@ namespace HipMobileUI.Controls {
         {
             if (oldValue != null && oldValue != newValue)
             {
-                ((ViewSlider) bindable).UpdateLayout ();
+                ((TimeSlider) bindable).UpdateLayout ();
             }
         }
 
@@ -73,16 +74,22 @@ namespace HipMobileUI.Controls {
         {
             if (oldValue != null && oldValue != newValue)
             {
-                ((ViewSlider) bindable).UpdateLayout ();
+                ((TimeSlider) bindable).UpdateLayout ();
             }
         }
 
+        /// <summary>
+        /// Recalculate the cached safgezonewidth and fadezonewidth.
+        /// </summary>
         private void RecalculateCaches ()
         {
             safezoneWidth = Convert.ToInt32 (ItemWidth * SafezoneFraction);
             fadezoneWidth = Convert.ToInt32 (ItemWidth * FadezoneFraction);
         }
 
+        /// <summary>
+        /// Update the separator color.
+        /// </summary>
         private void UpdateSeparatorColor ()
         {
             box.Color = SeparatorColor;
@@ -95,51 +102,82 @@ namespace HipMobileUI.Controls {
         {
             if (oldValue != null && oldValue != newValue)
             {
-                ((ViewSlider) bindable).UpdateLayout ();
+                ((TimeSlider) bindable).UpdateLayout ();
             }
         }
 
+        /// <summary>
+        /// The collection of displayed images in the slider.
+        /// </summary>
         public ObservableCollection<ImageSource> Images {
             get { return (ObservableCollection<ImageSource>) GetValue (ImagesProperty); }
             set { SetValue (ImagesProperty, value); }
         }
 
+        /// <summary>
+        /// The collection of displayed texts in the slider.
+        /// </summary>
         public ObservableCollection<string> Texts {
             get { return (ObservableCollection<string>) GetValue (TextsProperty); }
             set { SetValue (TextsProperty, value); }
         }
 
+        /// <summary>
+        /// The currently selected value.
+        /// </summary>
         public double SelectedValue {
             get { return (double) GetValue (SelectedValueProperty); }
             set { SetValue (SelectedValueProperty, value); }
         }
 
+        /// <summary>
+        /// The width of one single element of the slider.
+        /// </summary>
         public int ItemWidth {
             get { return (int) GetValue (ItemWidthProperty); }
             set { SetValue (ItemWidthProperty, value); }
         }
 
+        /// <summary>
+        /// How much of one subelement of the slider should be used for not fading between values.
+        /// </summary>
         public double SafezoneFraction {
             get { return (double) GetValue (SafezoneFractionProperty); }
             set { SetValue (SafezoneFractionProperty, value); }
         }
 
+        /// <summary>
+        /// How much of one subelement of the slider should be used for fading between values.
+        /// </summary>
         public double FadezoneFraction {
             get { return (double) GetValue (FadezoneFractionProperty); }
             set { SetValue (FadezoneFractionProperty, value); }
         }
 
+        /// <summary>
+        /// The color of the separator indicating the currently selected value.
+        /// </summary>
         public Color SeparatorColor {
             get { return (Color) GetValue (SelectorColorProperty); }
             set { SetValue (SelectorColorProperty, value); }
         }
 
+        private double SliderX => slider.X + slider.TranslationX;
         private Grid slider;
         private BoxView box;
-        private double SliderX => slider.X + slider.TranslationX;
+        private readonly TapGestureRecognizer tapGestureRecognizer;
+        private readonly PanGestureRecognizer swipeGestureRecognizer;
+        private bool disableTap;
 
-        public ViewSlider ()
+        public TimeSlider ()
         {
+            // init gesture recognizers
+            swipeGestureRecognizer = new PanGestureRecognizer();
+            swipeGestureRecognizer.PanUpdated += RecognizerOnPanUpdated;
+            tapGestureRecognizer = new TapGestureRecognizer ();
+            tapGestureRecognizer.Tapped += TapGestureRecognizerOnTapped;
+
+            // do initial layout
             UpdateLayout ();
         }
 
@@ -151,8 +189,10 @@ namespace HipMobileUI.Controls {
             RelativeLayout layout = new RelativeLayout ();
             layout.BackgroundColor = Color.Gray;
 
+            // the separator
             box = new BoxView {Color = SeparatorColor};
 
+            // construct the slider
             slider = new Grid () {ColumnSpacing = 0, RowSpacing = 0, BackgroundColor = Color.White};
             int gridRows = 0;
             int gridColumns = 0;
@@ -192,6 +232,7 @@ namespace HipMobileUI.Controls {
                 foreach (ImageSource imageSource in Images)
                 {
                     CachedImage image = new CachedImage () {Source = imageSource, DownsampleToViewSize = true, WidthRequest = 50, Aspect = Aspect.AspectFill};
+                    image.GestureRecognizers.Add (tapGestureRecognizer);
                     slider.Children.Add (image, i, 0);
                     i++;
                 }
@@ -202,12 +243,14 @@ namespace HipMobileUI.Controls {
                 foreach (string text in Texts)
                 {
                     Label label = new Label () {Text = text, HorizontalOptions = LayoutOptions.Center, VerticalOptions = LayoutOptions.Center};
+                    label.GestureRecognizers.Add (tapGestureRecognizer);
                     slider.Children.Add (label, i, 1);
                     i++;
                 }
             }
 
-            AddListener (slider);
+            // put the pieces together
+            AddSwipeGestureListener (slider);
             slider.ChildAdded += BottomSheetContentViewOnChildAdded;
 
             layout.Children.Add (slider, Constraint.RelativeToView (box, (relativeLayout, view) => view.X + box.Width - ItemWidth / 2),
@@ -232,6 +275,10 @@ namespace HipMobileUI.Controls {
             {
                 return 0;
             }
+            else if (dx > slider.Width - ItemWidth / 2)
+            {
+                return Images.Count - 1;
+            }
             else
             {
                 double result = Math.Floor ((dx - fadezoneWidth / 2) / (fadezoneWidth + safezoneWidth));
@@ -241,7 +288,6 @@ namespace HipMobileUI.Controls {
                     result += (mod - safezoneWidth) / fadezoneWidth;
                 }
 
-                System.Diagnostics.Debug.WriteLine (result);
                 return result;
             }
         }
@@ -252,14 +298,12 @@ namespace HipMobileUI.Controls {
         /// <param name="value">The value to animate to.</param>
         private void UpdateSliderAccordingToValue (int value)
         {
-            double x = (value) * (fadezoneWidth + safezoneWidth) * (-1);
+            double x = (value) * ItemWidth * (-1);
             slider.TranslateTo (x, 0, 100);
         }
 
-        private void AddListener (Layout layout)
+        private void AddSwipeGestureListener (Layout layout)
         {
-            swipeGestureRecognizer = new PanGestureRecognizer ();
-            swipeGestureRecognizer.PanUpdated += RecognizerOnPanUpdated;
             if (Device.OS == TargetPlatform.Android)
             {
                 // on android recursively add the gesture recognizer to all childs
@@ -272,13 +316,38 @@ namespace HipMobileUI.Controls {
             }
         }
 
-        private PanGestureRecognizer swipeGestureRecognizer;
+        
+
+        private void TapGestureRecognizerOnTapped (object sender, EventArgs eventArgs)
+        {
+            if (!disableTap)
+            {
+                // move to the tapped element
+                int column = Grid.GetColumn ((BindableObject) sender);
+                UpdateSliderAccordingToValue (column);
+                SelectedValue = column;
+            }
+            else
+            {
+                // reenable tap recognizer for the next event
+                disableTap = false;
+            }
+        }
+
+        
 
         private void RecognizerOnPanUpdated (object sender, PanUpdatedEventArgs panUpdatedEventArgs)
         {
+            if (Math.Abs(panUpdatedEventArgs.TotalX) > 1)
+            {
+                // disable the tap when detecting a swipe
+                disableTap = true;
+            }
+
             double dx;
             if (Device.OS == TargetPlatform.Android)
             {
+                // calculate the offset when the slider would be moved
                 dx = slider.TranslationX + panUpdatedEventArgs.TotalX;
             }
             else
@@ -288,12 +357,12 @@ namespace HipMobileUI.Controls {
             }
             if (slider.X + dx > box.X - box.Width / 2)
             {
-                // left side of the slider
+                // indicator at the left side of the slider
                 dx = ItemWidth / 2;
             }
             else if (slider.X + slider.Width + dx < box.X + box.Width / 2)
             {
-                // right side of the slider
+                // indicator at the right side of the slider
                 dx = ItemWidth / 2 - slider.Width;
             }
 
@@ -305,7 +374,7 @@ namespace HipMobileUI.Controls {
             }
             else
             {
-                // workaround for ios as it doesn't work with translationx
+                // workaround for ios as it doesn't work with translation
                 slider.TranslationX = dx;
             }
 
