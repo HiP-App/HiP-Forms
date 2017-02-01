@@ -30,6 +30,31 @@ namespace HipMobileUI.Controls
             BindableProperty.Create("Texts", typeof(ObservableCollection<string>), typeof(ViewSlider), new ObservableCollection<string>(), propertyChanged: TextsPropertyChanged);
         public static readonly BindableProperty ItemWidthProperty =
             BindableProperty.Create("ItemWidth", typeof(int), typeof(ViewSlider), 100, propertyChanged: ItemWidthPropertyChanged);
+        public static readonly BindableProperty SafezoneFractionProperty =
+            BindableProperty.Create("SafezoneFraction", typeof(double), typeof(ViewSlider), 0.5, propertyChanged: SafezonePropertyChanged);
+        public static readonly BindableProperty FadezoneFractionProperty =
+            BindableProperty.Create("FadezoneFraction", typeof(double), typeof(ViewSlider), 0.5, propertyChanged: SafezonePropertyChanged);
+        public static readonly BindableProperty SelectorColorProperty =
+            BindableProperty.Create("SelectorColor", typeof(Color), typeof(ViewSlider), Color.Blue, propertyChanged: SelectorColorPropertyChanged);
+
+        private static void SelectorColorPropertyChanged (BindableObject bindable, object oldValue, object newValue)
+        {
+            if (oldValue != null && oldValue != newValue)
+            {
+                ((ViewSlider)bindable).UpdateSeparatorColor();
+            }
+        }
+
+
+        private static void SafezonePropertyChanged (BindableObject bindable, object oldValue, object newValue)
+        {
+            if (oldValue != null && oldValue != newValue)
+            {
+                ((ViewSlider)bindable).RecalculateCaches();
+            }
+        }
+
+        
 
         private static void ItemWidthPropertyChanged (BindableObject bindable, object oldValue, object newValue)
         {
@@ -47,8 +72,19 @@ namespace HipMobileUI.Controls
             }
         }
 
-        private int s = 50;
-        private int f = 50;
+        private void RecalculateCaches ()
+        {
+            safezoneWidth = Convert.ToInt32 (ItemWidth * SafezoneFraction);
+            fadezoneWidth = Convert.ToInt32(ItemWidth * FadezoneFraction);
+        }
+
+        private void UpdateSeparatorColor ()
+        {
+            box.Color = SeparatorColor;
+        }
+
+        private int safezoneWidth = 50;
+        private int fadezoneWidth = 50;
 
         private static void ImagePropertyChanged (BindableObject bindable, object oldValue, object newValue)
         {
@@ -82,19 +118,41 @@ namespace HipMobileUI.Controls
             set { SetValue(ItemWidthProperty, value); }
         }
 
+        public double SafezoneFraction
+        {
+            get { return (double)GetValue(SafezoneFractionProperty); }
+            set { SetValue(SafezoneFractionProperty, value); }
+        }
+
+        public double FadezoneFraction
+        {
+            get { return (double)GetValue(FadezoneFractionProperty); }
+            set { SetValue(FadezoneFractionProperty, value); }
+        }
+
+        public Color SeparatorColor
+        {
+            get { return (Color)GetValue(SelectorColorProperty); }
+            set { SetValue(SelectorColorProperty, value); }
+        }
+
         private Grid slider;
         private BoxView box;
+        private double SliderX => slider.X + slider.TranslationX;
         public ViewSlider ()
         {
             UpdateLayout ();
         }
 
+        /// <summary>
+        /// Force the layout to be set.
+        /// </summary>
         private void UpdateLayout ()
         {
             RelativeLayout layout = new RelativeLayout();
             layout.BackgroundColor = Color.Gray;
 
-            box = new BoxView { Color = Color.Blue };
+            box = new BoxView { Color = SeparatorColor };
 
             slider = new Grid() {ColumnSpacing = 0, RowSpacing = 0, BackgroundColor = Color.White};
             int gridRows = 0;
@@ -159,22 +217,25 @@ namespace HipMobileUI.Controls
             Content = layout;
         }
 
+        /// <summary>
+        /// Calculate the selected value according to the slider position.
+        /// </summary>
+        /// <returns>The currently selected value.</returns>
         private double CalculateSelectedValue ()
         {
-            double dx = box.X - (box.Width / 2) - slider.X;
+            double dx = box.X - (box.Width / 2) - SliderX;
 
-            if (dx < f / 2)
+            if (dx < fadezoneWidth / 2)
             {
-                System.Diagnostics.Debug.WriteLine(0);
                 return 0;
             }
             else
             {
-                double result = Math.Floor((dx - f / 2) / (f + s));
-                double mod = (dx - f / 2) % (f + s);
-                if (mod > s)
+                double result = Math.Floor((dx - fadezoneWidth / 2) / (fadezoneWidth + safezoneWidth));
+                double mod = (dx - fadezoneWidth / 2) % (fadezoneWidth + safezoneWidth);
+                if (mod > safezoneWidth)
                 {
-                    result += (mod-s) / f;
+                    result += (mod-safezoneWidth) / fadezoneWidth;
                 }
                 
                 System.Diagnostics.Debug.WriteLine (result);
@@ -182,59 +243,74 @@ namespace HipMobileUI.Controls
             }
         }
 
+        /// <summary>
+        /// Animates the slider to the value.
+        /// </summary>
+        /// <param name="value">The value to animate to.</param>
         private void UpdateSliderAccordingToValue (int value)
         {
-            Rectangle sliderRect = slider.Bounds;
-            sliderRect.X = box.X + box.Width / 2 - (value+1) * (f + s) + (f + s) / 2;
-            slider.LayoutTo (sliderRect);
+            double x = (value) * (fadezoneWidth + safezoneWidth) *(-1);
+            slider.TranslateTo (x, 0, 100);
         }
 
         private void AddListener (Layout layout)
         {
             swipeGestureRecognizer = new PanGestureRecognizer ();
             swipeGestureRecognizer.PanUpdated+=RecognizerOnPanUpdated;
-            AddGestureRecognizer(layout, swipeGestureRecognizer);
+            if (Device.OS == TargetPlatform.Android)
+            {
+                // on android recursively add the gesture recognizer to all childs
+                AddGestureRecognizer (layout, swipeGestureRecognizer);
+            }
+            else
+            {
+                // on ios only to the slider itself
+                slider.GestureRecognizers.Add(swipeGestureRecognizer);
+            }
         }
 
         private PanGestureRecognizer swipeGestureRecognizer;
 
         private void RecognizerOnPanUpdated (object sender, PanUpdatedEventArgs panUpdatedEventArgs)
         {      
-
-            if (slider.X <= box.X && slider.X + slider.Width >= box.X+box.Width)
+            double dx;
+            if (Device.OS == TargetPlatform.Android)
             {
-                double dx = panUpdatedEventArgs.TotalX;
-                if (Device.OS == TargetPlatform.iOS)
-                {
-                    dx = panUpdatedEventArgs.TotalX * 0.1;
-                }
-                if (slider.X + dx > box.X-box.Width/2)
-                {
-                    dx = box.X - slider.X;
-                }
-                else if (slider.X + slider.Width +dx < box.X + box.Width/2)
-                {
-                    dx = slider.X + slider.Width - box.X + box.Width/2;
-                }
-                System.Diagnostics.Debug.WriteLine (sender.ToString ()+ ": " + panUpdatedEventArgs.TotalX + ", "+ panUpdatedEventArgs.GestureId);
-
-                if (Device.OS == TargetPlatform.Android)
-                {
-                    var rect = slider.Bounds;
-                    rect.X = rect.X + dx;
-                    var a=slider.LayoutTo (rect, 50U);
-                }
-                else
-                {
-                    var rect = slider.Bounds;
-                    rect.X = rect.X + dx;
-                    var a = slider.LayoutTo(rect, 0U);
-                }
-                System.Diagnostics.Debug.WriteLine ("dx: " + dx);
-                SelectedValue = CalculateSelectedValue ();
+                dx = slider.TranslationX + panUpdatedEventArgs.TotalX;
             }
+            else
+            {
+                // on ios the animations needs to be scaled
+                dx = slider.TranslationX + panUpdatedEventArgs.TotalX / 15;
+            }
+            if (slider.X + dx > box.X-box.Width/2)
+            {
+                // left side of the slider
+                dx = ItemWidth/2;
+            }
+            else if (slider.X + slider.Width +dx < box.X + box.Width/2)
+            {
+                // right side of the slider
+                dx = ItemWidth/2- slider.Width;
+            }
+
+            if (Device.OS == TargetPlatform.Android)
+            {
+                // use an animation for smooth scrolling
+                ViewExtensions.CancelAnimations (slider);
+                slider.TranslateTo(dx, 0, 50U);
+            }
+            else
+            {
+                // workaround for ios as it doesn't work with translationx
+                slider.TranslationX = dx;
+            }
+
+            // set the new selected value
+            SelectedValue = CalculateSelectedValue ();
             if (panUpdatedEventArgs.StatusType == GestureStatus.Completed)
             {
+                // gesture is finished, go back to nearest value
                 int value = Convert.ToInt32 (Math.Round (SelectedValue));
                 UpdateSliderAccordingToValue (value);
                 SelectedValue = value;
