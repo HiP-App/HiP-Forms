@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System.ComponentModel;
 using de.upb.hip.mobile.pcl.BusinessLayer.InteractiveSources;
 using NUnit.Framework;
 
@@ -20,7 +21,7 @@ namespace HipMobile.Tests.BusinessLayer.InteractiveSources {
     [TestFixture]
     public class ConsecutiveNumberAndConstantInteractiveSourceSubstituteTest
     {
-        [Test, Category("UnitTest")]
+        [Test, NUnit.Framework.Category("UnitTest")]
         public void NextSubstitute_CalledOnce()
         {
             var sut = CreateSystemUnderTest();
@@ -30,7 +31,7 @@ namespace HipMobile.Tests.BusinessLayer.InteractiveSources {
             Assert.AreEqual ($"[{Substitute} {Start}]", substitute);
         }
 
-        [Test, Category("UnitTest")]
+        [Test, NUnit.Framework.Category("UnitTest")]
         public void NextSubstitute_CalledMultipleTimes()
         {
             var sut = CreateSystemUnderTest();
