@@ -22,17 +22,18 @@
     <ContentView.Content>
       <views:BottomSheetView>
         <views:BottomSheetView.MainContent>
-        <Grid Margin="0,10,0, 60">
+        <Grid Margin="0,10,0,30">
           <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
           </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-          <RowDefinition Height="0.6*"/>
-          <RowDefinition Height="0.2*"/>
-          <RowDefinition Height="0.2*"/>
+          <RowDefinition Height="*"/>
+          <RowDefinition Height="100"/>
+          <RowDefinition Height="80"/>
+          <RowDefinition Height="0.1*"/>
         </Grid.RowDefinitions>
-          <controls:FadeoverImageView Images="{Binding Images}" SelectedValue="{Binding Source={x:Reference Slider}, Path=SelectedValue}"/>
-          <ScrollView Grid.Row="1">
+          <controls:FadeoverImageView Images="{Binding Images}" SelectedValue="{Binding Source={x:Reference Slider}, Path=SelectedValue}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
+          <ScrollView Grid.Row="1" MinimumHeightRequest="100">
             <Label Text="{Binding DisplayedText}" LineBreakMode="WordWrap" Margin="10"/>  
           </ScrollView>
           <controls:TimeSlider x:Name="Slider" Grid.Row="2" HorizontalOptions="FillAndExpand" VerticalOptions="Center" HeightRequest="80" Images="{Binding Images}" Texts="{Binding Years}" ItemWidth="100" SafezoneFraction="0.3" FadezoneFraction="0.7" SeparatorColor="{StaticResource AccentColor}" SelectedValue="{Binding SelectedValue, Mode=OneWayToSource}"/>
