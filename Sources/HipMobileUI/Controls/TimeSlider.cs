@@ -13,9 +13,7 @@
 // limitations under the License.
 
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Threading.Tasks;
 using FFImageLoading.Forms;
 using Xamarin.Forms;
 
@@ -187,7 +185,6 @@ namespace HipMobileUI.Controls {
         private void UpdateLayout ()
         {
             RelativeLayout layout = new RelativeLayout ();
-            layout.BackgroundColor = Color.Gray;
 
             // the separator
             box = new BoxView {Color = SeparatorColor};
@@ -223,7 +220,7 @@ namespace HipMobileUI.Controls {
                 }
                 else
                 {
-                    slider.RowDefinitions.Add (new RowDefinition {Height = new GridLength (HeightRequest)});
+                    slider.RowDefinitions.Add (new RowDefinition {Height = new GridLength(HeightRequest) });
                 }
             }
             if (Images != null)

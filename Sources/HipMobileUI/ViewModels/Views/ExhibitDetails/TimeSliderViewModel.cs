@@ -31,6 +31,8 @@ namespace HipMobileUI.ViewModels.Views.ExhibitDetails
             Images = new ObservableCollection<ImageSource> ();
             Years = new ObservableCollection<string> ();
             texts = new List<string> ();
+            Headline = timesliderPage.Title;
+            Description = timesliderPage.Text;
             foreach (Image timesliderPageImage in timesliderPage.Images)
             {
                 Images.Add (timesliderPageImage.GetImageSource ());
@@ -54,6 +56,8 @@ namespace HipMobileUI.ViewModels.Views.ExhibitDetails
         private string displayedText;
 
         private readonly List<string> texts;
+        private string headline;
+        private string description;
 
         public ObservableCollection<ImageSource> Images {
             get { return images; }
@@ -73,6 +77,16 @@ namespace HipMobileUI.ViewModels.Views.ExhibitDetails
         public string DisplayedText {
             get { return displayedText; }
             set { SetProperty (ref displayedText, value); }
+        }
+
+        public string Headline {
+            get { return headline; }
+            set { SetProperty (ref headline, value); }
+        }
+
+        public string Description {
+            get { return description; }
+            set { SetProperty (ref description, value); }
         }
 
     }
