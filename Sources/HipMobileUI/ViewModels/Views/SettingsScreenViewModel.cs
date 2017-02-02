@@ -25,7 +25,10 @@ namespace HipMobileUI.ViewModels.Views {
         public bool AutoSwitchPage
         {
             get { return Settings.AutoSwitchPage; }
-            set { Settings.AutoSwitchPage = value; }
+            set {
+                Settings.AutoSwitchPage = value;
+                OnPropertyChanged ();
+            }
         }
 
         /// <summary>
@@ -34,7 +37,10 @@ namespace HipMobileUI.ViewModels.Views {
         public bool AutoStartAudio
         {
             get { return Settings.AutoStartAudio; }
-            set { Settings.AutoStartAudio = value; }
+            set {
+                Settings.AutoStartAudio = value;
+                OnPropertyChanged();
+            }
         }
 
         /// <summary>
@@ -43,7 +49,10 @@ namespace HipMobileUI.ViewModels.Views {
         public bool RepeatHintAudio
         {
             get { return Settings.RepeatHintAudio; }
-            set { Settings.RepeatHintAudio = value; }
+            set {
+                Settings.RepeatHintAudio = value;
+                OnPropertyChanged();
+            }
         }
 
         /// <summary>
@@ -52,7 +61,10 @@ namespace HipMobileUI.ViewModels.Views {
         public bool RepeatHintAutoPageSwitch
         {
             get { return Settings.RepeatHintAutoPageSwitch; }
-            set { Settings.RepeatHintAutoPageSwitch = value; }
+            set {
+                Settings.RepeatHintAutoPageSwitch = value;
+                OnPropertyChanged();
+            }
         }
 
         /// <summary>
@@ -61,7 +73,10 @@ namespace HipMobileUI.ViewModels.Views {
         public bool RepeatHintTimeSlider
         {
             get { return Settings.RepeatHintTimeSlider; }
-            set { Settings.RepeatHintTimeSlider = value; }
+            set {
+                Settings.RepeatHintTimeSlider = value;
+                OnPropertyChanged();
+            }
         }
 
         /// <summary>
@@ -70,7 +85,10 @@ namespace HipMobileUI.ViewModels.Views {
         public bool RepeatIntro
         {
             get { return Settings.RepeatIntro; }
-            set { Settings.RepeatIntro = value; }
+            set {
+                Settings.RepeatIntro = value;
+                OnPropertyChanged ();
+            }
         }
     }
 }

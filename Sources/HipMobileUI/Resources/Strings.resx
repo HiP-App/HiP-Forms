@@ -368,13 +368,13 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
     <value>Sehenswürdigkeiten</value>
   </data>
   <data name="SettingsScreenView_RepeatHintAudio_Text" xml:space="preserve">
-    <value>Wenn aktiviert, wird der Hinweis zu Audiowiedergabe erneut angezeigt</value>
+    <value>Wenn aktiviert, wird der Hinweis zur Audiowiedergabe erneut angezeigt</value>
   </data>
   <data name="SettingsScreenView_RepeatHintAutoPageSwitch_Text" xml:space="preserve">
     <value>Wenn aktiviert, wird der Hinweis zum automatischen Seitenwechsel erneut angezeigt</value>
   </data>
   <data name="SettingsScreenView_RepeatHintTimeSlider_Text" xml:space="preserve">
-    <value>Wenn aktiviert, wird der Hinweis zu Zeitleiste erneut angezeigt</value>
+    <value>Wenn aktiviert, wird der Hinweis zur Zeitleiste erneut angezeigt</value>
   </data>
   <data name="SettingsScreenView_RepeatIntro_Text" xml:space="preserve">
     <value>Wenn aktiviert, wird die App Einführung beim nächsten Start erneut angezeigt</value>

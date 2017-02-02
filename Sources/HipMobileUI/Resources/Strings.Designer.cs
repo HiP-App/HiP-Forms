@@ -774,7 +774,7 @@ namespace HipMobileUI.Resources {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Wenn aktiviert, wird der Hinweis zu Audiowiedergabe erneut angezeigt ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Wenn aktiviert, wird der Hinweis zur Audiowiedergabe erneut angezeigt ähnelt.
         /// </summary>
         public static string SettingsScreenView_RepeatHintAudio_Text {
             get {
@@ -792,7 +792,7 @@ namespace HipMobileUI.Resources {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Wenn aktiviert, wird der Hinweis zu Zeitleiste erneut angezeigt ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Wenn aktiviert, wird der Hinweis zur Zeitleiste erneut angezeigt ähnelt.
         /// </summary>
         public static string SettingsScreenView_RepeatHintTimeSlider_Text {
             get {
