@@ -37,7 +37,7 @@
                        TextColor="White" FontSize="Small" FontAttributes="Bold"
                        Margin="16,0,0,32" VerticalOptions="End" />
                 <ListView Grid.Row="1" x:Name="SelectedView" SeparatorVisibility="None" 
-                          ItemsSource="{Binding MainScreenViewModels}" SelectedItem="{Binding SelectedViewModel}" ItemSelected="ListView_OnItemSelected">
+                          ItemsSource="{Binding MainScreenViewModels}" SelectedItem="{Binding SelectedViewModel}" ItemTapped="ListView_OnItemTapped">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                           <ViewCell>

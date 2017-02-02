@@ -31,7 +31,7 @@ namespace HipMobileUI.Pages
             ViewModel.SelectedViewModel = ViewModel.MainScreenViewModels[0];
         }
 
-        private void ListView_OnItemSelected (object sender, SelectedItemChangedEventArgs e)
+        private void ListView_OnItemTapped (object sender, ItemTappedEventArgs e)
         {
             if (Device.Idiom == TargetIdiom.Phone)
             {
