@@ -11,6 +11,8 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+
+using System.Collections.Generic;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using de.upb.hip.mobile.pcl.Common;
 using de.upb.hip.mobile.pcl.Common.Contracts;
@@ -21,8 +23,9 @@ using NUnit.Framework;
 
 namespace HipMobileUI.Tests.ViewModels.Views.ExhibitDetails
 {
-    class ImageViewModelTest
+    class TimeSliderViewModelTest
     {
+
         [TestFixtureSetUp]
         public void Init()
         {
@@ -35,26 +38,52 @@ namespace HipMobileUI.Tests.ViewModels.Views.ExhibitDetails
         {
             var sut = CreateSystemUnderTest();
 
-            Assert.AreEqual(sut.Headline, "Foo");
-            Assert.AreEqual(sut.Description, "Bar");
+            Assert.AreEqual(sut.Headline, "A title");
+            Assert.AreEqual(sut.Description, "A text");
+            Assert.NotNull(sut.Images);
+            Assert.IsTrue(sut.SelectedValue==0);
+            Assert.IsTrue (sut.DisplayedText.Equals ("Foo"));
+        }
+
+        [Test, Category("UnitTest")]
+        public void SelectedValue_DisplayedText ()
+        {
+            var sut = CreateSystemUnderTest ();
+
+            sut.SelectedValue = 1;
+            Assert.IsTrue(sut.DisplayedText.Equals("Bar"));
+            sut.SelectedValue = 1.3;
+            Assert.IsTrue(sut.DisplayedText.Equals("Bar"));
+            sut.SelectedValue = 1.7;
+            Assert.IsTrue(sut.DisplayedText.Equals("69"));
+            sut.SelectedValue = 2;
+            Assert.IsTrue(sut.DisplayedText.Equals("69"));
+            sut.SelectedValue = 2.4;
+            Assert.IsTrue(sut.DisplayedText.Equals("69"));
         }
 
         #region Helper Methods
 
-        public ImageViewModel CreateSystemUnderTest()
+        public TimeSliderViewModel CreateSystemUnderTest()
         {
-            var imagePage = Substitute.For<ImagePage>();
-            imagePage.Image = CreateImage ();
+            var timesliderPage = Substitute.For<TimeSliderPage>();
+            List<Image> imageList = new List<Image> ();
+            imageList.Add (CreateImage ("Foo"));
+            imageList.Add(CreateImage("Bar"));
+            imageList.Add(CreateImage("69"));
+            timesliderPage.Images.Returns (imageList);
+            timesliderPage.Title = "A title";
+            timesliderPage.Text = "A text";
 
-            return new ImageViewModel(imagePage);
+            return new TimeSliderViewModel(timesliderPage);
         }
 
-        private Image CreateImage()
+        private Image CreateImage(string description)
         {
             var image = Substitute.For<Image>();
             image.Data = new byte[] { 1, 2, 3, 4 };
             image.Title = "Foo";
-            image.Description = "Bar";
+            image.Description = description;
             return image;
         }
         #endregion
