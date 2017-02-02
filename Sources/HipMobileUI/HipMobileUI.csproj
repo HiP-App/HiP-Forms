@@ -114,6 +114,7 @@
     <Compile Include="Views\AudioToolbarView.xaml.cs">
       <DependentUpon>AudioToolbarView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\Views\SettingsScreenViewModel.cs" />
     <Compile Include="Views\Link.cs" />
     <Compile Include="Views\DummyView.xaml.cs">
       <DependentUpon>DummyView.xaml</DependentUpon>
@@ -141,6 +142,9 @@
     </Compile>
     <Compile Include="Views\RoutesOverviewView.xaml.cs">
       <DependentUpon>RoutesOverviewView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SettingsScreenView.xaml.cs">
+      <DependentUpon>SettingsScreenView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -304,6 +308,10 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\AudioToolbarView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\SettingsScreenView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
