@@ -38,13 +38,11 @@
     <Button Image="ic_chevron_right" Command="{Binding NextViewCommand}" IsVisible="{Binding NextViewAvailable}"
             AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="1,0.5"
             BackgroundColor="#80D3D3D3" AutomationId="NextButton"/>
-    <StackLayout IsVisible="{Binding AudioToolbarVisible}"
-                 BackgroundColor="White"
-                 AbsoluteLayout.LayoutBounds="0,0,1,AutoSize"
-                 AbsoluteLayout.LayoutFlags="PositionProportional, WidthProportional">
-      <!--Needs to be encapsulated in a stacklayout due to IsVisible problem for content views inside an absolute layout
-          https://forums.xamarin.com/discussion/55941/issue-with-xamarin-forms-2-0-0-6482-isvisible-binding-when-in-absolutelayout -->
-      <views:AudioToolbarView  BindingContext="{Binding AudioToolbar}" />
-    </StackLayout>
+    <views:AudioToolbarView TranslationY="-100"
+                            x:Name="AudioToolbar"
+                            BackgroundColor="White"
+                            AbsoluteLayout.LayoutBounds="0,0,1,AutoSize"
+                            AbsoluteLayout.LayoutFlags="PositionProportional, WidthProportional"
+                            BindingContext="{Binding AudioToolbar}" />
   </AbsoluteLayout>
 </pages:OrientationContentPage>

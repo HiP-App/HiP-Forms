@@ -196,6 +196,9 @@ namespace HipMobileUI.ViewModels.Pages
             set { SetProperty(ref audioToolbarVisible, value); }
         }
 
+        /// <summary>
+        /// Viewmodel of audio toolbar which can be shown on the details page
+        /// </summary>
         public AudioToolbarViewModel AudioToolbar
         {
             get { return audioToolbar; }

@@ -12,20 +12,44 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System;
+using System.ComponentModel;
 using HipMobileUI.Helpers;
 using HipMobileUI.Navigation;
 using HipMobileUI.ViewModels.Pages;
 using Xamarin.Forms;
 
-namespace HipMobileUI.Pages
-{
+namespace HipMobileUI.Pages {
+    public partial class ExhibitDetailsPage : OrientationContentPage, IViewFor<ExhibitDetailsViewModel> {
 
-    public partial class ExhibitDetailsPage : OrientationContentPage, IViewFor<ExhibitDetailsViewModel>
-    {
-        public ExhibitDetailsPage()
+        private ExhibitDetailsViewModel ViewModel => (ExhibitDetailsViewModel) BindingContext;
+
+        public ExhibitDetailsPage ()
         {
             InitializeComponent ();
+        }
+
+        /// <summary>
+        /// Registers the listening method on the ViewModel property changed event
+        /// </summary>
+        protected override void OnBindingContextChanged ()
+        {
+            base.OnBindingContextChanged ();
+
+            ViewModel.PropertyChanged += ViewModelOnPropertyChanged;
+        }
+
+        /// <summary>
+        /// Listens on changes in the viewmodel to the propery <see cref="ExhibitDetailsViewModel.AudioToolbarVisible"/>
+        /// Toggles the visibility of the audio bar accordingly
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="propertyChangedEventArgs"></param>
+        private void ViewModelOnPropertyChanged (object sender, PropertyChangedEventArgs propertyChangedEventArgs)
+        {
+            if (propertyChangedEventArgs.PropertyName == nameof (ViewModel.AudioToolbarVisible))
+            {
+                ToggleAudioBarVisibility ();
+            }
         }
 
         protected override void OnDisappearing ()
@@ -33,6 +57,22 @@ namespace HipMobileUI.Pages
             base.OnDisappearing ();
 
             OrientationController = OrientationController.Sensor;
+        }
+
+        /// <summary>
+        /// Translates the audio toolbar on top of the screen or outside of it dependent on whether the toolbar
+        /// should be visible or not
+        /// </summary>
+        private void ToggleAudioBarVisibility ()
+        {
+            if (ViewModel.AudioToolbarVisible)
+            {
+                AudioToolbar.TranslateTo (0, 0);
+            }
+            else
+            {
+                AudioToolbar.TranslateTo (0, -100);
+            }
         }
 
     }
