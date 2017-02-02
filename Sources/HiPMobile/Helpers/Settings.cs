@@ -53,5 +53,82 @@ namespace de.upb.hip.mobile.pcl.Helpers
         }
         #endregion
 
+        /// <summary>
+        /// Settings from the Settings Screen.
+        /// </summary>
+        #region SettingsScreen
+
+        /// <summary>
+        /// After end of audio playback, switch automatically to next page
+        /// </summary>
+        private const string AutoSwitchPageKey = "auto_switch_page_key";
+        private static readonly bool AutoSwitchPageDefault = false;
+
+        public static bool AutoSwitchPage
+        {
+            get { return AppSettings.GetValueOrDefault<bool>(AutoSwitchPageKey, AutoSwitchPageDefault); }
+            set { AppSettings.AddOrUpdateValue<bool>(AutoSwitchPageKey, value); }
+        }
+
+        /// <summary>
+        /// Automatically start audio playback for current page
+        /// </summary>
+        private const string AutoStartAudioKey = "auto_start_audio_key";
+        private static readonly bool AutoStartAudioDefault = false;
+
+        public static bool AutoStartAudio
+        {
+            get { return AppSettings.GetValueOrDefault<bool>(AutoStartAudioKey, AutoStartAudioDefault); }
+            set { AppSettings.AddOrUpdateValue<bool>(AutoStartAudioKey, value); }
+        }
+
+        /// <summary>
+        /// Show hint for audio playback again
+        /// </summary>
+        private const string RepeatHintAudioKey = "repeat_hint_audio_key";
+        private static readonly bool RepeatHintAudioDefault = false;
+
+        public static bool RepeatHintAudio
+        {
+            get { return AppSettings.GetValueOrDefault<bool>(RepeatHintAudioKey, RepeatHintAudioDefault); }
+            set { AppSettings.AddOrUpdateValue<bool>(RepeatHintAudioKey, value); }
+        }
+
+        /// <summary>
+        /// Show hint for automatically switching to next page again
+        /// </summary>
+        private const string RepeatHintAutoPageSwitchKey = "repeat_hint_auto_page_switch_key";
+        private static readonly bool RepeatHintAutoPageSwitchDefault = false;
+
+        public static bool RepeatHintAutoPageSwitch
+        {
+            get { return AppSettings.GetValueOrDefault<bool>(RepeatHintAutoPageSwitchKey, RepeatHintAutoPageSwitchDefault); }
+            set { AppSettings.AddOrUpdateValue<bool>(RepeatHintAutoPageSwitchKey, value); }
+        }
+
+        /// <summary>
+        /// Show hint for timeslider again
+        /// </summary>
+        private const string RepeatHintTimeSliderKey = "repeat_hint_time_slider_key";
+        private static readonly bool RepeatHintTimeSliderDefault = false;
+
+        public static bool RepeatHintTimeSlider
+        {
+            get { return AppSettings.GetValueOrDefault<bool>(RepeatHintTimeSliderKey, RepeatHintTimeSliderDefault); }
+            set { AppSettings.AddOrUpdateValue<bool>(RepeatHintTimeSliderKey, value); }
+        }
+
+        /// <summary>
+        /// Show app introduction by restarting the app again
+        /// </summary>
+        private const string RepeatIntroKey = "repeat_intro_key";
+        private static readonly bool RepeatIntroDefault = false;
+
+        public static bool RepeatIntro
+        {
+            get { return AppSettings.GetValueOrDefault<bool>(RepeatIntroKey, RepeatIntroDefault); }
+            set { AppSettings.AddOrUpdateValue<bool>(RepeatIntroKey, value); }
+        }
+        #endregion
     }
 }
