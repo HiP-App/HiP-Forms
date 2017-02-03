@@ -287,7 +287,6 @@
     <EmbeddedResource Include="Content\Paderquellgebiet\paderquellgebiet4.mp3" />
     <EmbeddedResource Include="Content\TaufeSachsenkriege\taufeSachsenkriege1.mp3" />
     <EmbeddedResource Include="Content\TaufeSachsenkriege\taufeSachsenkriege10.mp3" />
-    <EmbeddedResource Include="Content\TaufeSachsenkriege\taufeSachsenkriege11.mp3" />
     <EmbeddedResource Include="Content\TaufeSachsenkriege\taufeSachsenkriege2.mp3" />
     <EmbeddedResource Include="Content\TaufeSachsenkriege\taufeSachsenkriege3.mp3" />
     <EmbeddedResource Include="Content\TaufeSachsenkriege\taufeSachsenkriege4.mp3" />
@@ -296,6 +295,9 @@
     <EmbeddedResource Include="Content\TaufeSachsenkriege\taufeSachsenkriege7.mp3" />
     <EmbeddedResource Include="Content\TaufeSachsenkriege\taufeSachsenkriege8.mp3" />
     <EmbeddedResource Include="Content\TaufeSachsenkriege\taufeSachsenkriege9.mp3" />
+    <EmbeddedResource Include="Content\TaufeSachsenkriege\taufeSachsenkriege0.mp3" />
+    <EmbeddedResource Include="Content\KarldergroßeSachsenkriegeSachsenmission\KarldergroßeSachsenkriegeSachsenmission0.mp3" />
+    <EmbeddedResource Include="Content\Paderquellgebiet\quellen1Teaser.jpg" />
     <Content Include="FodyWeavers.xml">
       <SubType>Designer</SubType>
     </Content>
