@@ -336,6 +336,7 @@
     <BundleResource Include="Resources\ic_settings.png" />
     <BundleResource Include="Resources\ic_settings%402x.png" />
     <BundleResource Include="Resources\ic_settings%403x.png" />
+    <BundleResource Include="Resources\timeslider_background.png" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Resources\MapAnnotations.xcassets\AppIcons.appiconset\Contents.json">

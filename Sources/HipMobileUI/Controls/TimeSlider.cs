@@ -13,6 +13,7 @@
 // limitations under the License.
 
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using FFImageLoading.Forms;
 using Xamarin.Forms;
@@ -184,10 +185,14 @@ namespace HipMobileUI.Controls {
         /// </summary>
         private void UpdateLayout ()
         {
-            RelativeLayout layout = new RelativeLayout ();
+            RelativeLayout layout = new RelativeLayout () {BackgroundColor = Color.Gray};
 
             // the separator
-            box = new BoxView {Color = SeparatorColor};
+            box = new BoxView { Color = SeparatorColor };
+
+            // background image
+            FadeInImage background = new FadeInImage () {Source = ImageSource.FromFile ("timeslider_background.png"), DownsampleToViewSize = true, Aspect = Aspect.Fill};
+            layout.Children.Add (background, Constraint.Constant (0), Constraint.Constant (0), Constraint.RelativeToParent (parent => parent.Width), Constraint.RelativeToParent (parent => parent.Height));
 
             // construct the slider
             slider = new Grid () {ColumnSpacing = 0, RowSpacing = 0, BackgroundColor = Color.White};
