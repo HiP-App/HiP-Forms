@@ -40,6 +40,8 @@ namespace HipMobileUI.ViewModels.Views.ExhibitDetails
             }
             if(texts.Count>0)DisplayedText = texts [0];
             PropertyChanged+=OnPropertyChanged;
+
+            // TODO add year numbers once timeslider should be used with years
         }
 
         private void OnPropertyChanged (object sender, PropertyChangedEventArgs propertyChangedEventArgs)
