@@ -25,7 +25,7 @@ namespace de.upb.hip.mobile.pcl.Common
     public partial class DbDummyDataFiller
     {
 
-        public static int DatabaseVersion { get; } = 10;
+        public static int DatabaseVersion { get; } = 12;
 
         public void InsertData()
         {
@@ -257,6 +257,8 @@ namespace de.upb.hip.mobile.pcl.Common
                 Paderquellgebiet.Pages.Add(CreateImagePage(noImage, null, null, paderquellgebiet2));
                 Paderquellgebiet.Pages.Add(CreateImagePage(noImage, null, null, paderquellgebiet3));
                 Paderquellgebiet.Pages.Add(CreateImagePage(noImage, null, null, paderquellgebiet4));
+                var bar = CreateRouteTag("Bar", "bar", CreateImage("", "", "route_tag_bar.png"));
+                var restaurant = CreateRouteTag("Restaurant", "restaurant", CreateImage("", "", "route_tag_restaurant.png"));
                 var karlsrouteSet = DbManager.CreateBusinessObject<ExhibitSet>();
                 karlsrouteSet.ActiveSet.Add(kaiserpfalz);
                 karlsrouteSet.ActiveSet.Add(Paderquellgebiet);
@@ -273,6 +275,8 @@ namespace de.upb.hip.mobile.pcl.Common
                     karlsroute.Waypoints.Add(CreateWayPoint(exhibit));
                 }
 
+                karlsroute.RouteTags.Add(bar);
+                karlsroute.RouteTags.Add(restaurant);
 
             }
         }
