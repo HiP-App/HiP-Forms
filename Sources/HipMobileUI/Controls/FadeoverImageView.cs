@@ -20,6 +20,10 @@ using Xamarin.Forms;
 
 namespace HipMobileUI.Controls
 {
+    /// <summary>
+    /// A control that displays images and can fade between them. The displayed image is set by the selectedvalue property.
+    /// A value between two integers will result in both images beeing shown with transparency according to the digits after comma.
+    /// </summary>
     class FadeoverImageView : ContentView
     {
 
@@ -49,20 +53,29 @@ namespace HipMobileUI.Controls
             }
         }
 
+        /// <summary>
+        /// The displayed images of this control.
+        /// </summary>
         public ObservableCollection<ImageSource> Images
         {
             get { return (ObservableCollection<ImageSource>)GetValue(ImagesProperty); }
             set { SetValue(ImagesProperty, value); }
         }
 
+        /// <summary>
+        /// The selected value of the control influencing which images are shown with what transparency.
+        /// </summary>
         public double SelectedValue
         {
             get { return (double)GetValue(SelectedValueProperty); }
             set { SetValue(SelectedValueProperty, value); }
         }
 
-        private List<CachedImage> displayedImages;
+        private readonly List<CachedImage> displayedImages;
 
+        /// <summary>
+        /// Forces the control to update its layout.
+        /// </summary>
         private void UpdateLayout ()
         {
             AbsoluteLayout layout = new AbsoluteLayout();
@@ -79,6 +92,9 @@ namespace HipMobileUI.Controls
             UpdateTransparencies ();
         }
 
+        /// <summary>
+        /// Updates the images transparency according to teh selctedvalue.
+        /// </summary>
         private void UpdateTransparencies ()
         {
             int i = 0;
