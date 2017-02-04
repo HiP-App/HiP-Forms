@@ -13,12 +13,18 @@
 // limitations under the License.
 
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using FFImageLoading.Forms;
 using Xamarin.Forms;
 
 namespace HipMobileUI.Controls {
+
+    /// <summary>
+    /// A slider where the slider can display images and/or texts. The slider returns the currently selected value indicating which item is currently under the middle separator.
+    /// The slider doesn't use a linear scale as each subelement has a so called safezone. Safezones have a constant value and only in between them the value changes with a linear scale.
+    /// The width of the zones can be modified with the respective properties. Just make sure the fractions add up to 1.
+    /// When using this class, make sure to give it a height request, otherwise layouting might not work.
+    /// </summary>
     class TimeSlider : ContentView {
 
         public static readonly BindableProperty ImagesProperty =

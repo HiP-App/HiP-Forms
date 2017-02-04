@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System;
 using System.Collections.Generic;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using de.upb.hip.mobile.pcl.Common;
@@ -41,7 +42,7 @@ namespace HipMobileUI.Tests.ViewModels.Views.ExhibitDetails
             Assert.AreEqual(sut.Headline, "A title");
             Assert.AreEqual(sut.Description, "A text");
             Assert.NotNull(sut.Images);
-            Assert.IsTrue(sut.SelectedValue==0);
+            Assert.IsTrue(Math.Abs (sut.SelectedValue) < 0.01);
             Assert.IsTrue (sut.DisplayedText.Equals ("Foo"));
         }
 
