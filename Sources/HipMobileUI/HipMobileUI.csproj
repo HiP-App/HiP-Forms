@@ -58,9 +58,11 @@
     </Compile>
     <Compile Include="Controls\CardView.cs" />
     <Compile Include="Controls\FadeInImage.cs" />
+    <Compile Include="Controls\FadeoverImageView.cs" />
     <Compile Include="Controls\FloatingActionButton.cs" />
     <Compile Include="Behaviors\ListViewTappedItemBehavior.cs" />
     <Compile Include="Container\TabView.cs" />
+    <Compile Include="Controls\TimeSlider.cs" />
     <Compile Include="Converters\PositionGeoLocationConverter.cs" />
     <Compile Include="Converters\RouteTagViewListConverter.cs" />
     <Compile Include="Converters\ImageListConverter.cs" />
