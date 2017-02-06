@@ -391,4 +391,7 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   <data name="SettingsScreenView_RepeatIntro_Text" xml:space="preserve">
     <value>Wenn aktiviert, wird die App Einführung beim nächsten Start erneut angezeigt</value>
   </data>
+  <data name="ExhibitDetailsPage_AudioToolbar" xml:space="preserve">
+    <value>Audio Player</value>
+  </data>
 </root>

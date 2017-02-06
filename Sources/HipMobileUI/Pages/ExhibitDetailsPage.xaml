@@ -23,12 +23,6 @@
              OrientationController="PortraitConstant"
              xmlns:controls="clr-namespace:HipMobileUI.Controls;assembly=HipMobileUI"
              xmlns:views="clr-namespace:HipMobileUI.Views;assembly=HipMobileUI">
-  <pages:OrientationContentPage.ToolbarItems>
-      <controls:HideableToolbarItem Icon="ic_headset_white"
-                                    Command="{Binding ShowAudioToolbarCommand}"
-                                    IsVisible="{Binding AudioAvailable}"
-                                    Text="Audio Player"/>
-  </pages:OrientationContentPage.ToolbarItems>
   <AbsoluteLayout>
     <ContentView Content="{Binding SelectedView, Converter={StaticResource ViewModelViewConverter}}"
                  AbsoluteLayout.LayoutFlags="SizeProportional" AbsoluteLayout.LayoutBounds="0,0,1,1" />

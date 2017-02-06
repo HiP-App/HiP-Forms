@@ -98,6 +98,15 @@ namespace HipMobileUI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Audio Player.
+        /// </summary>
+        public static string ExhibitDetailsPage_AudioToolbar {
+            get {
+                return ResourceManager.GetString("ExhibitDetailsPage_AudioToolbar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Die Nutzung der App basiert auf Freiwilligkeit. Sämtliche Daten, die im Rahmen der Nutzung der Dienste und Applikation Verwendung finden, dürfen nur erhoben und verarbeitet werden, soweit dies für den Dienst und statistische Forschungs- und Evaluationszwecke erforderlich ist und den Regelungen der Universität Paderborn und dem Datenschutzgesetz NRW entspricht..
         /// </summary>
         public static string LicenseScreenView_Agreement_Text {
@@ -756,7 +765,7 @@ namespace HipMobileUI.Resources {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die App Einführung ähnelt.
+        ///   Looks up a localized string similar to App Einführung.
         /// </summary>
         public static string SettingsScreenView_AppIntro_Title {
             get {
@@ -765,7 +774,7 @@ namespace HipMobileUI.Resources {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Wenn diese Einstellung aktiviert ist, wird Audio automatisch für die aktuelle Seite gestartet. ähnelt.
+        ///   Looks up a localized string similar to Wenn diese Einstellung aktiviert ist, wird Audio automatisch für die aktuelle Seite gestartet..
         /// </summary>
         public static string SettingsScreenView_AutoStartAudio_Text {
             get {
@@ -774,7 +783,7 @@ namespace HipMobileUI.Resources {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Automatisch Audio beginnen ähnelt.
+        ///   Looks up a localized string similar to Automatisch Audio beginnen.
         /// </summary>
         public static string SettingsScreenView_AutoStartAudio_Title {
             get {
@@ -783,7 +792,7 @@ namespace HipMobileUI.Resources {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Wenn diese Einstellung aktiviert ist, wird nach Ende der Audiowiedergabe automatisch zur nächsten Seite gewechselt. ähnelt.
+        ///   Looks up a localized string similar to Wenn diese Einstellung aktiviert ist, wird nach Ende der Audiowiedergabe automatisch zur nächsten Seite gewechselt..
         /// </summary>
         public static string SettingsScreenView_AutoSwitchPage_Text {
             get {
@@ -792,7 +801,7 @@ namespace HipMobileUI.Resources {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Automatisch Seiten wechseln ähnelt.
+        ///   Looks up a localized string similar to Automatisch Seiten wechseln.
         /// </summary>
         public static string SettingsScreenView_AutoSwitchPage_Title {
             get {
@@ -801,7 +810,7 @@ namespace HipMobileUI.Resources {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Sehenswürdigkeiten ähnelt.
+        ///   Looks up a localized string similar to Sehenswürdigkeiten.
         /// </summary>
         public static string SettingsScreenView_POI_Title {
             get {
@@ -810,7 +819,7 @@ namespace HipMobileUI.Resources {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Wenn aktiviert, wird der Hinweis zur Audiowiedergabe erneut angezeigt ähnelt.
+        ///   Looks up a localized string similar to Wenn aktiviert, wird der Hinweis zur Audiowiedergabe erneut angezeigt.
         /// </summary>
         public static string SettingsScreenView_RepeatHintAudio_Text {
             get {
@@ -819,7 +828,7 @@ namespace HipMobileUI.Resources {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Wenn aktiviert, wird der Hinweis zum automatischen Seitenwechsel erneut angezeigt ähnelt.
+        ///   Looks up a localized string similar to Wenn aktiviert, wird der Hinweis zum automatischen Seitenwechsel erneut angezeigt.
         /// </summary>
         public static string SettingsScreenView_RepeatHintAutoPageSwitch_Text {
             get {
@@ -828,7 +837,7 @@ namespace HipMobileUI.Resources {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Wenn aktiviert, wird der Hinweis zur Zeitleiste erneut angezeigt ähnelt.
+        ///   Looks up a localized string similar to Wenn aktiviert, wird der Hinweis zur Zeitleiste erneut angezeigt.
         /// </summary>
         public static string SettingsScreenView_RepeatHintTimeSlider_Text {
             get {
@@ -837,7 +846,7 @@ namespace HipMobileUI.Resources {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Wenn aktiviert, wird die App Einführung beim nächsten Start erneut angezeigt ähnelt.
+        ///   Looks up a localized string similar to Wenn aktiviert, wird die App Einführung beim nächsten Start erneut angezeigt.
         /// </summary>
         public static string SettingsScreenView_RepeatIntro_Text {
             get {

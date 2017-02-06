@@ -13,8 +13,10 @@
 // limitations under the License.
 
 using System.ComponentModel;
+using HipMobileUI.Controls;
 using HipMobileUI.Helpers;
 using HipMobileUI.Navigation;
+using HipMobileUI.Resources;
 using HipMobileUI.ViewModels.Pages;
 using Xamarin.Forms;
 
@@ -22,6 +24,7 @@ namespace HipMobileUI.Pages {
     public partial class ExhibitDetailsPage : OrientationContentPage, IViewFor<ExhibitDetailsViewModel> {
 
         private ExhibitDetailsViewModel ViewModel => (ExhibitDetailsViewModel) BindingContext;
+        private HideableToolbarItem audioToolbarButton;
 
         public ExhibitDetailsPage ()
         {
@@ -34,6 +37,15 @@ namespace HipMobileUI.Pages {
         protected override void OnBindingContextChanged ()
         {
             base.OnBindingContextChanged ();
+
+            audioToolbarButton = new HideableToolbarItem
+            {
+                Icon = "ic_headset_white",
+                Text = Strings.ExhibitDetailsPage_AudioToolbar,
+                Parent = this
+            };
+            audioToolbarButton.SetBinding (MenuItem.CommandProperty, "ShowAudioToolbarCommand");
+            audioToolbarButton.SetBinding (HideableToolbarItem.IsVisibleProperty, "AudioAvailable");
 
             ViewModel.PropertyChanged += ViewModelOnPropertyChanged;
         }
