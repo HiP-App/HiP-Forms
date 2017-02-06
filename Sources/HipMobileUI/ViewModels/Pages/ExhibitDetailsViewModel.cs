@@ -114,7 +114,7 @@ namespace HipMobileUI.ViewModels.Pages
             }
             else if (currentPage.IsTimeSliderPage())
             {
-                SelectedView = new TimeSliderViewModel();
+                SelectedView = new TimeSliderViewModel(currentPage.TimeSliderPage);
             }
             else
             {
