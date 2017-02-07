@@ -12,8 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System;
+using System.ComponentModel;
 using System.Windows.Input;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
+using de.upb.hip.mobile.pcl.Common;
+using HipMobileUI.AudioPlayer;
 using Xamarin.Forms;
 
 namespace HipMobileUI.ViewModels.Views {
@@ -30,6 +34,8 @@ namespace HipMobileUI.ViewModels.Views {
         private bool isAudioPlaying;
         private readonly bool automaticallyStartNewAudio;
 
+        private IAudioPlayer audioPlayer;
+
         /// <summary>
         /// Creates a new audio toolbar viewmodel and specifies whether a new passed audio
         /// will be played automatically
@@ -41,8 +47,18 @@ namespace HipMobileUI.ViewModels.Views {
             PlayCommand = new Command(PlayAudio);
             CaptionCommand = new Command(ShowCaption);
 
+            audioPlayer = IoCManager.Resolve<IAudioPlayer> ();
+            audioPlayer.IsPlayingChanged += value => {
+                IsAudioPlaying = value;
+            };
+            audioPlayer.ProgressChanged += (oldProgress, newProgress) => {
+                if(!disableAutomaticUpdate)CurrentAudioProgress = newProgress;
+            };
+
             this.automaticallyStartNewAudio = automaticallyStartNewAudio;
         }
+
+        private bool disableAutomaticUpdate;
 
         /// <summary>
         /// Creates a new audio toolbar viewmodel which does not automatically start new audio files
@@ -54,11 +70,13 @@ namespace HipMobileUI.ViewModels.Views {
 
         private void PlayAudio()
         {
+            audioPlayer.Play ();
             IsAudioPlaying = true;
         }
 
         private void PauseAudio()
         {
+            audioPlayer.Pause ();
             IsAudioPlaying = false;
         }
 
@@ -75,7 +93,11 @@ namespace HipMobileUI.ViewModels.Views {
         {
             //Stop audio
             CurrentAudioProgress = 0;
-            MaxAudioProgress = 150; //TODO: Add length of audio
+            audioPlayer.CurrentAudio = newAudio;
+            if (newAudio != null)
+                MaxAudioProgress = audioPlayer.MaximumProgress;
+            else
+                MaxAudioProgress = 1;//TODO: Add length of audio
             if (automaticallyStartNewAudio)
             {
                 //Start audio
@@ -99,7 +121,22 @@ namespace HipMobileUI.ViewModels.Views {
         public double CurrentAudioProgress
         {
             get { return currentAudioProgress; }
-            set { SetProperty(ref currentAudioProgress, value); }
+            set {
+                var diff = (CurrentAudioProgress - value);
+                
+                if ( Math.Abs(diff) > 2000)
+                {
+                    // user changed value of slider manually
+                    disableAutomaticUpdate = true;
+                    audioPlayer.CurrentProgress = value;
+                    disableAutomaticUpdate = false;
+                }
+                if (Math.Abs(diff) > 1000 || diff > 0)
+                {
+                    SetProperty(ref currentAudioProgress, value);
+                }
+
+            }
         }
 
         /// <summary>

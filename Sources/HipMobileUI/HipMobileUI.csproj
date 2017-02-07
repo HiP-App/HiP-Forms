@@ -56,6 +56,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AudioPlayer\IAudioPlayer.cs" />
     <Compile Include="Controls\CardView.cs" />
     <Compile Include="Controls\FadeInImage.cs" />
     <Compile Include="Controls\FadeoverImageView.cs" />
@@ -69,6 +70,7 @@
     <Compile Include="Converters\RouteTagViewListConverter.cs" />
     <Compile Include="Converters\ImageListConverter.cs" />
     <Compile Include="Converters\ItemTappedConverter.cs" />
+    <Compile Include="Converters\TimeSpanDoubleConverter.cs" />
     <Compile Include="Converters\ViewModelViewConverter.cs" />
     <Compile Include="Helpers\AppSharedData.cs" />
     <Compile Include="Helpers\ExtensionMethods.cs" />

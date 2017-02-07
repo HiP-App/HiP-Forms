@@ -246,6 +246,7 @@
   <ItemGroup>
     <Compile Include="Contracts\AndroidFabSizeCalculator.cs" />
     <Compile Include="Contracts\AndroidImageDimensions.cs" />
+    <Compile Include="Contracts\DroidAudioPlayer.cs" />
     <Compile Include="CustomRenderers\AndroidOrientationPageRenderer.cs" />
     <Compile Include="CustomRenderers\FloatingActionButtonAndroidRenderer.cs" />
     <Compile Include="Helpers\Settings.cs" />

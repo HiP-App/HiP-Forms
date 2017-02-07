@@ -38,7 +38,7 @@
               <TapGestureRecognizer Command="{Binding PauseCommand}" />
             </Image.GestureRecognizers>
           </Image>
-          <Slider Maximum="{Binding MaxAudioProgress}" Value="{Binding CurrentAudioProgress}" VerticalOptions="Center"
+          <Slider Maximum="{Binding MaxAudioProgress}" Value="{Binding CurrentAudioProgress, Mode=TwoWay}" VerticalOptions="Center"
                   RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.6}"
                   RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.2}"
                   RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1}" />
