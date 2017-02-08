@@ -54,6 +54,10 @@ namespace HipMobileUI.ViewModels.Views {
             audioPlayer.ProgressChanged += (oldProgress, newProgress) => {
                 if(!disableAutomaticUpdate)CurrentAudioProgress = newProgress;
             };
+            audioPlayer.AudioCompleted += () => {
+                CurrentAudioProgress = 0;
+                IsAudioPlaying = false;
+            };
 
             this.automaticallyStartNewAudio = automaticallyStartNewAudio;
         }

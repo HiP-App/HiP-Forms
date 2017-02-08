@@ -13,6 +13,12 @@ namespace de.upb.hip.mobile.droid.Contracts
         {
             mediaPlayer = new MediaPlayer ();
             mediaPlayer.SetAudioStreamType(Stream.Music);
+            mediaPlayer.Completion+=MediaPlayerOnCompletion;
+        }
+
+        private void MediaPlayerOnCompletion (object sender, EventArgs eventArgs)
+        {
+            AudioCompleted?.Invoke ();
         }
 
         private void UpdateProgress (object state)
@@ -101,7 +107,7 @@ namespace de.upb.hip.mobile.droid.Contracts
 
         private void StartProgressThread ()
         {
-            progressUpdateTimer = new Timer (UpdateProgress, null, 0, 100);
+            progressUpdateTimer = new Timer (UpdateProgress, null, 0, 500);
         }
 
         private void StopProgressThread ()
