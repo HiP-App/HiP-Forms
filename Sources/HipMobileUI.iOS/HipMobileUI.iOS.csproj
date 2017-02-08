@@ -151,6 +151,7 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Contracts\IosAudioPlayer.cs" />
     <Compile Include="Contracts\IosImageDimensions.cs" />
     <Compile Include="CustomRenderers\FloatingActionButtonIosRenderer.cs" />
     <Compile Include="CustomRenderers\IosOrientationContentPageRenderer.cs" />

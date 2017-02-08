@@ -69,6 +69,7 @@ namespace HipMobileUI.Pages {
             base.OnDisappearing ();
 
             OrientationController = OrientationController.Sensor;
+            ViewModel.OnDisappearing ();
         }
 
         /// <summary>

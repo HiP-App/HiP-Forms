@@ -65,6 +65,12 @@ namespace HipMobileUI.ViewModels.Pages
         {
             if (currentViewIndex < exhibit.Pages.Count - 1)
             {
+                // stop audio
+                if (AudioToolbar.AudioPlayer.IsPlaying)
+                {
+                    AudioToolbar.AudioPlayer.Stop();
+                }
+
                 currentViewIndex++;
                 SetCurrentView ();
                 NextViewAvailable = currentViewIndex < exhibit.Pages.Count - 1;
@@ -81,6 +87,12 @@ namespace HipMobileUI.ViewModels.Pages
         {
             if (currentViewIndex > 0)
             {
+                // stop audio
+                if (AudioToolbar.AudioPlayer.IsPlaying)
+                {
+                    AudioToolbar.AudioPlayer.Stop();
+                }
+
                 currentViewIndex--;
                 SetCurrentView();
                 PreviousViewAvailable = currentViewIndex > 0;
@@ -122,6 +134,12 @@ namespace HipMobileUI.ViewModels.Pages
             }
         }
 
+        public override void OnDisappearing ()
+        {
+            base.OnDisappearing ();
+
+            AudioToolbar.OnDisappearing ();
+        }
 
         #region propeties
         /// <summary>

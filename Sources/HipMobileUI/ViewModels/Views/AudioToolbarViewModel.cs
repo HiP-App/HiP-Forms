@@ -34,7 +34,7 @@ namespace HipMobileUI.ViewModels.Views {
         private bool isAudioPlaying;
         private readonly bool automaticallyStartNewAudio;
 
-        private IAudioPlayer audioPlayer;
+        public IAudioPlayer AudioPlayer { get; private set; }
 
         /// <summary>
         /// Creates a new audio toolbar viewmodel and specifies whether a new passed audio
@@ -47,19 +47,32 @@ namespace HipMobileUI.ViewModels.Views {
             PlayCommand = new Command(PlayAudio);
             CaptionCommand = new Command(ShowCaption);
 
-            audioPlayer = IoCManager.Resolve<IAudioPlayer> ();
-            audioPlayer.IsPlayingChanged += value => {
+            AudioPlayer = IoCManager.Resolve<IAudioPlayer> ();
+            AudioPlayer.IsPlayingChanged += value => {
                 IsAudioPlaying = value;
             };
-            audioPlayer.ProgressChanged += (oldProgress, newProgress) => {
-                if(!disableAutomaticUpdate)CurrentAudioProgress = newProgress;
-            };
-            audioPlayer.AudioCompleted += () => {
-                CurrentAudioProgress = 0;
-                IsAudioPlaying = false;
-            };
+            AudioPlayer.ProgressChanged += AudioPlayerOnProgressChanged;
+            AudioPlayer.AudioCompleted += AudioPlayerOnAudioCompleted;
+            AudioPlayer.IsPlayingChanged += AudioPlayerOnIsPlayingChanged;
 
             this.automaticallyStartNewAudio = automaticallyStartNewAudio;
+        }
+
+        private void AudioPlayerOnIsPlayingChanged (bool value)
+        {
+            IsAudioPlaying = value;
+        }
+
+        private void AudioPlayerOnAudioCompleted ()
+        {
+            CurrentAudioProgress = 0;
+            IsAudioPlaying = false;
+        }
+
+        private void AudioPlayerOnProgressChanged (double oldProgress, double newProgress)
+        {
+            if (!disableAutomaticUpdate)
+                CurrentAudioProgress = newProgress;
         }
 
         private bool disableAutomaticUpdate;
@@ -74,14 +87,12 @@ namespace HipMobileUI.ViewModels.Views {
 
         private void PlayAudio()
         {
-            audioPlayer.Play ();
-            IsAudioPlaying = true;
+            AudioPlayer.Play ();
         }
 
         private void PauseAudio()
         {
-            audioPlayer.Pause ();
-            IsAudioPlaying = false;
+            AudioPlayer.Pause ();
         }
 
         private void ShowCaption()
@@ -97,15 +108,26 @@ namespace HipMobileUI.ViewModels.Views {
         {
             //Stop audio
             CurrentAudioProgress = 0;
-            audioPlayer.CurrentAudio = newAudio;
+            AudioPlayer.CurrentAudio = newAudio;
             if (newAudio != null)
-                MaxAudioProgress = audioPlayer.MaximumProgress;
+                MaxAudioProgress = AudioPlayer.MaximumProgress;
             else
-                MaxAudioProgress = 1;//TODO: Add length of audio
+                MaxAudioProgress = 1;
             if (automaticallyStartNewAudio)
             {
                 //Start audio
+                AudioPlayer.Play ();
             }
+        }
+
+        public override void OnDisappearing ()
+        {
+            base.OnDisappearing ();
+
+            AudioPlayer.Stop ();
+            AudioPlayer.ProgressChanged -= AudioPlayerOnProgressChanged;
+            AudioPlayer.AudioCompleted -= AudioPlayerOnAudioCompleted;
+            AudioPlayer.IsPlayingChanged -= AudioPlayerOnIsPlayingChanged;
         }
 
         #region Properties
@@ -132,7 +154,7 @@ namespace HipMobileUI.ViewModels.Views {
                 {
                     // user changed value of slider manually
                     disableAutomaticUpdate = true;
-                    audioPlayer.CurrentProgress = value;
+                    AudioPlayer.CurrentProgress = value;
                     disableAutomaticUpdate = false;
                 }
                 if (Math.Abs(diff) > 1000 || diff > 0)
