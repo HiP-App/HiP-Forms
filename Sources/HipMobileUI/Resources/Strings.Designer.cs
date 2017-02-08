@@ -98,11 +98,56 @@ namespace HipMobileUI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ich möchte die Funktion nutzen.
+        /// </summary>
+        public static string ExhibitDetailsPage_AgreeFeature {
+            get {
+                return ResourceManager.GetString("ExhibitDetailsPage_AgreeFeature", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Audio startet automatisch sobald eine neue Seite geöffnet wird. Diese Eigenschaft kann unter Menu &gt;&gt; Einstellungen geändert werden..
+        /// </summary>
+        public static string ExhibitDetailsPage_AudioPlay {
+            get {
+                return ResourceManager.GetString("ExhibitDetailsPage_AudioPlay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Audio Player.
         /// </summary>
         public static string ExhibitDetailsPage_AudioToolbar {
             get {
                 return ResourceManager.GetString("ExhibitDetailsPage_AudioToolbar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ich möchte die Funktion nicht nutzen.
+        /// </summary>
+        public static string ExhibitDetailsPage_DisagreeFeature {
+            get {
+                return ResourceManager.GetString("ExhibitDetailsPage_DisagreeFeature", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hinweis.
+        /// </summary>
+        public static string ExhibitDetailsPage_Hinweis {
+            get {
+                return ResourceManager.GetString("ExhibitDetailsPage_Hinweis", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Die Seiten werden automatisch gewechselt, wenn die Audiodatei abgespielt wurde. Diese Eigenschaft kann unter Menu &gt;&gt; Einstellungen geändert werden..
+        /// </summary>
+        public static string ExhibitDetailsPage_PageSwitch {
+            get {
+                return ResourceManager.GetString("ExhibitDetailsPage_PageSwitch", resourceCulture);
             }
         }
         

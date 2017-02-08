@@ -137,7 +137,7 @@ namespace de.upb.hip.mobile.droid.Contracts {
 
         private void StopUpdateTimer ()
         {
-            progressUpdateTimer.Dispose ();
+            progressUpdateTimer?.Dispose ();
         }
 
     }

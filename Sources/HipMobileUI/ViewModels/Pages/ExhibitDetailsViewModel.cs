@@ -16,6 +16,8 @@ using System;
 using System.Windows.Input;
 using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
+using de.upb.hip.mobile.pcl.Helpers;
+using HipMobileUI.Resources;
 using HipMobileUI.ViewModels.Views;
 using HipMobileUI.ViewModels.Views.ExhibitDetails;
 using Xamarin.Forms;
@@ -46,6 +48,7 @@ namespace HipMobileUI.ViewModels.Pages
         public ExhibitDetailsViewModel (Exhibit exhibit)
         {
             AudioToolbar = new AudioToolbarViewModel(); //TODO: Use setting to determine whether audio should be started automatically
+            AudioToolbar.AudioPlayer.AudioCompleted+=AudioPlayerOnAudioCompleted;
 
             currentViewIndex = 0;
             if (exhibit != null)
@@ -61,7 +64,23 @@ namespace HipMobileUI.ViewModels.Pages
             ShowAudioToolbarCommand = new Command (SwitchAudioToolbarVisibleState);       
         }
 
-        private void GotoNextView ()
+        private async void AudioPlayerOnAudioCompleted ()
+        {
+            if (Settings.RepeatHintAutoPageSwitch)
+            {
+                Settings.RepeatHintAutoPageSwitch = false;
+                var result = await Navigation.DisplayAlert (Strings.ExhibitDetailsPage_Hinweis,
+                                                            Strings.ExhibitDetailsPage_PageSwitch,
+                                                            Strings.ExhibitDetailsPage_AgreeFeature, Strings.ExhibitDetailsPage_DisagreeFeature);
+                Settings.AutoSwitchPage = result;
+            }
+            if (Settings.AutoSwitchPage)
+            {
+                GotoNextView ();
+            }
+        }
+
+        private async void GotoNextView ()
         {
             if (currentViewIndex < exhibit.Pages.Count - 1)
             {
@@ -71,10 +90,23 @@ namespace HipMobileUI.ViewModels.Pages
                     AudioToolbar.AudioPlayer.Stop();
                 }
 
+                // update the UI
                 currentViewIndex++;
                 SetCurrentView ();
                 NextViewAvailable = currentViewIndex < exhibit.Pages.Count - 1;
                 PreviousViewAvailable = true;
+
+                if (Settings.RepeatHintAudio)
+                {
+                    var result = await Navigation.DisplayAlert (Strings.ExhibitDetailsPage_Hinweis, Strings.ExhibitDetailsPage_AudioPlay,
+                                                                Strings.ExhibitDetailsPage_AgreeFeature, Strings.ExhibitDetailsPage_DisagreeFeature);
+                    Settings.AutoStartAudio = result;
+                    Settings.RepeatHintAudio = false;
+                }
+                if (Settings.AutoStartAudio)
+                {
+                    AudioToolbar.AudioPlayer.Play ();
+                }
             }
         }
 

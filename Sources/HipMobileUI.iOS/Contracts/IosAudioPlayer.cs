@@ -104,7 +104,7 @@ namespace HipMobileUI.iOS.Contracts {
 
         private void StopUpdateTimer ()
         {
-            progressUpdateTimer.Dispose ();
+            progressUpdateTimer?.Dispose ();
         }
 
         private void UpdateProgress (object state)
