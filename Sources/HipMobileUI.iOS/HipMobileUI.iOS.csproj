@@ -155,6 +155,7 @@
     <Compile Include="Contracts\IosImageDimensions.cs" />
     <Compile Include="CustomRenderers\FloatingActionButtonIosRenderer.cs" />
     <Compile Include="CustomRenderers\IosOrientationContentPageRenderer.cs" />
+    <Compile Include="Effects\IosSwitchColorEffect.cs" />
     <Compile Include="Helpers\Settings.cs" />
     <Compile Include="ViewControllers\OrientationViewController.cs" />
     <Compile Include="LinkRenderer.cs" />

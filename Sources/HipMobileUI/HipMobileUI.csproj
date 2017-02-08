@@ -72,6 +72,7 @@
     <Compile Include="Converters\ItemTappedConverter.cs" />
     <Compile Include="Converters\TimeSpanDoubleConverter.cs" />
     <Compile Include="Converters\ViewModelViewConverter.cs" />
+    <Compile Include="Effects\SwitchColorEffect.cs" />
     <Compile Include="Helpers\AppSharedData.cs" />
     <Compile Include="Helpers\ExtensionMethods.cs" />
     <Compile Include="Container\BindableChildrenStackLayout.cs" />
@@ -320,6 +321,7 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

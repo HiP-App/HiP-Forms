@@ -61,7 +61,7 @@ namespace HipMobileUI.ViewModels.Pages
             }
             NextViewCommand = new Command (GotoNextView);
             PreviousViewCommand = new Command (GotoPreviousView);
-            ShowAudioToolbarCommand = new Command (SwitchAudioToolbarVisibleState);       
+            ShowAudioToolbarCommand = new Command (SwitchAudioToolbarVisibleState);
         }
 
         private async void AudioPlayerOnAudioCompleted ()
@@ -74,13 +74,13 @@ namespace HipMobileUI.ViewModels.Pages
                                                             Strings.ExhibitDetailsPage_AgreeFeature, Strings.ExhibitDetailsPage_DisagreeFeature);
                 Settings.AutoSwitchPage = result;
             }
-            if (Settings.AutoSwitchPage)
+            if (Settings.AutoSwitchPage && NextViewAvailable)
             {
                 GotoNextView ();
             }
         }
 
-        private async void GotoNextView ()
+        private void GotoNextView ()
         {
             if (currentViewIndex < exhibit.Pages.Count - 1)
             {
@@ -95,18 +95,6 @@ namespace HipMobileUI.ViewModels.Pages
                 SetCurrentView ();
                 NextViewAvailable = currentViewIndex < exhibit.Pages.Count - 1;
                 PreviousViewAvailable = true;
-
-                if (Settings.RepeatHintAudio)
-                {
-                    var result = await Navigation.DisplayAlert (Strings.ExhibitDetailsPage_Hinweis, Strings.ExhibitDetailsPage_AudioPlay,
-                                                                Strings.ExhibitDetailsPage_AgreeFeature, Strings.ExhibitDetailsPage_DisagreeFeature);
-                    Settings.AutoStartAudio = result;
-                    Settings.RepeatHintAudio = false;
-                }
-                if (Settings.AutoStartAudio)
-                {
-                    AudioToolbar.AudioPlayer.Play ();
-                }
             }
         }
 
@@ -132,10 +120,10 @@ namespace HipMobileUI.ViewModels.Pages
             }
         }
 
-        private void SetCurrentView ()
+        private async void SetCurrentView ()
         {
+            // update UI
             Page currentPage = exhibit.Pages [currentViewIndex];
-
             AudioAvailable = currentPage.Audio != null;
             if (!AudioAvailable)
             {
@@ -163,6 +151,20 @@ namespace HipMobileUI.ViewModels.Pages
             else
             {
                 throw new Exception("Unknown page found: " + currentPage);
+            }
+            if (currentPage.Audio != null)
+            {
+                if (Settings.RepeatHintAudio)
+                {
+                    var result = await Navigation.DisplayAlert (Strings.ExhibitDetailsPage_Hinweis, Strings.ExhibitDetailsPage_AudioPlay,
+                                                                Strings.ExhibitDetailsPage_AgreeFeature, Strings.ExhibitDetailsPage_DisagreeFeature);
+                    Settings.AutoStartAudio = result;
+                    Settings.RepeatHintAudio = false;
+                }
+                if (Settings.AutoStartAudio)
+                {
+                    AudioToolbar.AudioPlayer.Play ();
+                }
             }
         }
 
