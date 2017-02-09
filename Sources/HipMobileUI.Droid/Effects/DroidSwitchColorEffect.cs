@@ -11,7 +11,7 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-using System;
+
 using System.Linq;
 using Android.Support.V7.Widget;
 using de.upb.hip.mobile.droid.Effects;
@@ -31,7 +31,7 @@ namespace de.upb.hip.mobile.droid.Effects
         protected override void OnAttached ()
         {
             SwitchCompat switchCompat = (SwitchCompat) Control;
-            var effect = (SwitchColorEffect)Element.Effects.FirstOrDefault(e => e is SwitchColorEffect);
+            SwitchColorEffect effect = (SwitchColorEffect)Element.Effects.FirstOrDefault(e => e is SwitchColorEffect);
             oldColor = switchCompat.HighlightColor;
             switchCompat.SetHighlightColor (effect.Color.ToAndroid ());
         }

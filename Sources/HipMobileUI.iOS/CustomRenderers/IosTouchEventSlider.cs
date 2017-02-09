@@ -15,7 +15,6 @@
 using System;
 using HipMobileUI.Controls;
 using HipMobileUI.iOS.CustomRenderers;
-using UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 
@@ -42,7 +41,7 @@ namespace HipMobileUI.iOS.CustomRenderers
 
         private void ControlOnTouchUp (object sender, EventArgs eventArgs)
         {
-            var args = new ValueEventArgs (Control.Value);
+            ValueEventArgs args = new ValueEventArgs (Control.Value);
             formsSlider?.TouchUpEvent?.Invoke(sender, args);
         }
 

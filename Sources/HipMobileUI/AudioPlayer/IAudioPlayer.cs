@@ -12,9 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System;
-using System.ComponentModel;
-
 namespace HipMobileUI.AudioPlayer {
 
     public delegate void ProgressChangedDelegate(double newProgress);
@@ -23,28 +20,65 @@ namespace HipMobileUI.AudioPlayer {
 
     public delegate void IsPlayingDelegate (bool newValue);
 
+    /// <summary>
+    /// Interface describing an audio player.
+    /// </summary>
     public interface IAudioPlayer {
 
+        /// <summary>
+        /// Indicating if the audio player is currently playing.
+        /// </summary>
         bool IsPlaying { get; }
 
+        /// <summary>
+        /// Gets the current progress in milliseconds.
+        /// </summary>
         double CurrentProgress { get; }
 
+        /// <summary>
+        /// Gets the overall progress of the currently played track.
+        /// </summary>
         double MaximumProgress { get; }
 
+        /// <summary>
+        /// Gets or sets the currently selected audio object.
+        /// </summary>
         de.upb.hip.mobile.pcl.BusinessLayer.Models.Audio CurrentAudio { get; set; }
 
+        /// <summary>
+        /// Event that is raised about 60 times a seconds delivering the current audio progress.
+        /// </summary>
         event ProgressChangedDelegate ProgressChanged;
 
+        /// <summary>
+        /// Event that is raised when the state of IsPlaying changed.
+        /// </summary>
         event IsPlayingDelegate IsPlayingChanged;
 
+        /// <summary>
+        /// Event that is raised when the current audio finished playing.
+        /// </summary>
         event AudioCompletedDelegate AudioCompleted;
 
+        /// <summary>
+        /// Start playing audio.
+        /// </summary>
         void Play ();
 
+        /// <summary>
+        /// Pauses the audio currently playing. Playback can be resumed with Play().
+        /// </summary>
         void Pause ();
 
+        /// <summary>
+        /// Stops the currently playing audio.
+        /// </summary>
         void Stop ();
 
+        /// <summary>
+        /// Sets the current playback location to 
+        /// </summary>
+        /// <param name="progress"></param>
         void SeekTo (double progress);
 
     }

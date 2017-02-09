@@ -71,7 +71,6 @@
     <Compile Include="Converters\RouteTagViewListConverter.cs" />
     <Compile Include="Converters\ImageListConverter.cs" />
     <Compile Include="Converters\ItemTappedConverter.cs" />
-    <Compile Include="Converters\TimeSpanDoubleConverter.cs" />
     <Compile Include="Converters\ViewModelViewConverter.cs" />
     <Compile Include="Effects\SwitchColorEffect.cs" />
     <Compile Include="Helpers\AppSharedData.cs" />

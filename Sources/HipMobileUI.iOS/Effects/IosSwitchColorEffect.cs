@@ -30,7 +30,7 @@ namespace HipMobileUI.iOS.Effects
         protected override void OnAttached ()
         {
             UISwitch uiSwitch = (UISwitch) Control;
-            var effect = (SwitchColorEffect)Element.Effects.FirstOrDefault(e => e is SwitchColorEffect);
+            SwitchColorEffect effect = (SwitchColorEffect)Element.Effects.FirstOrDefault(e => e is SwitchColorEffect);
             oldColor = uiSwitch.OnTintColor;
             uiSwitch.OnTintColor = effect.Color.ToUIColor ();
         }

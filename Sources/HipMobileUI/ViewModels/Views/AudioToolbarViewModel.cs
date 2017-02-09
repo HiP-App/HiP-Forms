@@ -103,6 +103,9 @@ namespace HipMobileUI.ViewModels.Views {
             }
         }
 
+        /// <summary>
+        /// Deregister events and stop audio.
+        /// </summary>
         public override void OnDisappearing ()
         {
             base.OnDisappearing ();

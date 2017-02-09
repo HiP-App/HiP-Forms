@@ -27,8 +27,8 @@ namespace HipMobileUI.Controls
         public event EventHandler TouchUp;
 
         // Events called by renderers
-        public EventHandler TouchDownEvent;
-        public EventHandler TouchUpEvent;
+        public readonly EventHandler TouchDownEvent;
+        public readonly EventHandler TouchUpEvent;
 
         public TouchEventSlider()
         {
@@ -37,6 +37,9 @@ namespace HipMobileUI.Controls
         }
     }
 
+    /// <summary>
+    /// Event args carrying a single double value;
+    /// </summary>
     public class ValueEventArgs : EventArgs {
 
         public ValueEventArgs (double value)

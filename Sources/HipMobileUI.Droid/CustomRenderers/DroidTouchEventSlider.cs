@@ -24,6 +24,7 @@ namespace de.upb.hip.mobile.droid.CustomRenderers
     class DroidTouchEventSlider : SliderRenderer {
 
         private TouchEventSlider formsSlider;
+        private bool areListenersAdded;
 
         protected override void OnElementChanged (ElementChangedEventArgs<Slider> e)
         {
@@ -31,22 +32,22 @@ namespace de.upb.hip.mobile.droid.CustomRenderers
 
             formsSlider = (TouchEventSlider)e.NewElement;
 
-            if (Control != null)
+            if (Control != null && areListenersAdded)
             {
                 Control.StartTrackingTouch += SeekbarOnStartTrackingTouch;
                 Control.StopTrackingTouch += SeekbarOnStopTrackingTouch;
+                areListenersAdded = true;
             }
         }
 
         private void SeekbarOnStopTrackingTouch (object sender, SeekBar.StopTrackingTouchEventArgs stopTrackingTouchEventArgs)
         {
-            var newProgress= stopTrackingTouchEventArgs.SeekBar.Progress*formsSlider.Maximum/1000;
+            double newProgress= stopTrackingTouchEventArgs.SeekBar.Progress*formsSlider.Maximum/1000;
             formsSlider?.TouchUpEvent?.Invoke(sender, new ValueEventArgs (newProgress));
         }
 
         private void SeekbarOnStartTrackingTouch (object sender, SeekBar.StartTrackingTouchEventArgs startTrackingTouchEventArgs)
         {
-            var a = startTrackingTouchEventArgs.SeekBar.Progress;
             formsSlider?.TouchDownEvent?.Invoke (sender, null);
         }
 

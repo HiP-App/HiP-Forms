@@ -36,11 +36,21 @@ namespace HipMobileUI.Views
             audioPlayer.ProgressChanged += AudioPlayerOnProgressChanged;
         }
 
+        /// <summary>
+        /// User started a touch event.
+        /// </summary>
+        /// <param name="sender">The sender of the event.</param>
+        /// <param name="eventArgs">The event arguments.</param>
         private void AudioSliderOnTouchDown (object sender, EventArgs eventArgs)
         {
             manualInput = true;
         }
 
+        /// <summary>
+        /// User finished the touch event.
+        /// </summary>
+        /// <param name="sender">The sender of the event.</param>
+        /// <param name="eventArgs">The event args containing the new value of the slider.</param>
         private void AudioSliderOnTouchUp (object sender, EventArgs eventArgs)
         {
             var args = (ValueEventArgs) eventArgs;

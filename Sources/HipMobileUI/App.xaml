@@ -19,7 +19,6 @@
       <converters:RouteTagViewListConverter x:Key="RouteTagViewListConverter" />
       <converters:PositionGeoLocationConverter x:Key="PositionGeoLocationConverter" />
       <converters:InverseBooleanConverter x:Key="InverseBooleanConverter" />
-      <converters:TimeSpanDoubleConverter x:Key="TimeSpanDoubleConverter" />
         </ResourceDictionary>
   </Application.Resources>
 </Application>
