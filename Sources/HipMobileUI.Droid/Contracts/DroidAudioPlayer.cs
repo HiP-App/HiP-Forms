@@ -28,10 +28,7 @@ namespace de.upb.hip.mobile.droid.Contracts {
     internal class DroidAudioPlayer : IAudioPlayer {
 
         private readonly MediaPlayer mediaPlayer;
-
-        private bool automaticUpdate;
         private Audio currentAudio;
-        private double currentProgress;
         private Timer progressUpdateTimer;
 
         public DroidAudioPlayer ()
@@ -43,16 +40,9 @@ namespace de.upb.hip.mobile.droid.Contracts {
 
         public bool IsPlaying => mediaPlayer.IsPlaying;
 
-        public double CurrentProgress {
-            get { return currentProgress; }
-            set {
-                currentProgress = value;
-                if (!automaticUpdate)
-                    mediaPlayer.SeekTo (Convert.ToInt32 (value));
-            }
-        }
+        public double CurrentProgress => mediaPlayer.CurrentPosition;
 
-        public double MaximumProgress { get; private set; }
+        public double MaximumProgress => mediaPlayer.Duration;
 
         public Audio CurrentAudio {
             get { return currentAudio; }
@@ -65,7 +55,6 @@ namespace de.upb.hip.mobile.droid.Contracts {
                     var path = CopyAudioToTemp (value);
                     mediaPlayer.SetDataSource (path);
                     mediaPlayer.Prepare ();
-                    MaximumProgress = mediaPlayer.Duration;
                 }
             }
         }
@@ -95,6 +84,11 @@ namespace de.upb.hip.mobile.droid.Contracts {
             StopUpdateTimer ();
         }
 
+        public void SeekTo (double progress)
+        {
+            mediaPlayer.SeekTo (Convert.ToInt32 (progress));
+        }
+
         private void MediaPlayerOnCompletion (object sender, EventArgs eventArgs)
         {
             StopUpdateTimer ();
@@ -104,11 +98,7 @@ namespace de.upb.hip.mobile.droid.Contracts {
 
         private void UpdateProgress (object state)
         {
-            automaticUpdate = true;
-            var oldProgress = CurrentProgress;
-            CurrentProgress = mediaPlayer.CurrentPosition;
-            ProgressChanged?.Invoke (oldProgress, CurrentProgress);
-            automaticUpdate = false;
+            ProgressChanged?.Invoke (CurrentProgress);
         }
 
         private string CopyAudioToTemp (Audio audio)
@@ -132,7 +122,7 @@ namespace de.upb.hip.mobile.droid.Contracts {
 
         private void StartUpdateTimer ()
         {
-            progressUpdateTimer = new Timer (UpdateProgress, null, 0, 200);
+            progressUpdateTimer = new Timer (UpdateProgress, null, 0, 16);
         }
 
         private void StopUpdateTimer ()

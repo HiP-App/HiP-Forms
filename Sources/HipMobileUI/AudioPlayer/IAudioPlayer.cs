@@ -17,7 +17,7 @@ using System.ComponentModel;
 
 namespace HipMobileUI.AudioPlayer {
 
-    public delegate void ProgressChangedDelegate(double oldProgress, double newProgress);
+    public delegate void ProgressChangedDelegate(double newProgress);
 
     public delegate void AudioCompletedDelegate ();
 
@@ -27,7 +27,7 @@ namespace HipMobileUI.AudioPlayer {
 
         bool IsPlaying { get; }
 
-        double CurrentProgress { get; set; }
+        double CurrentProgress { get; }
 
         double MaximumProgress { get; }
 
@@ -44,6 +44,8 @@ namespace HipMobileUI.AudioPlayer {
         void Pause ();
 
         void Stop ();
+
+        void SeekTo (double progress);
 
     }
 }

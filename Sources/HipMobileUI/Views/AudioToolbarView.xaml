@@ -18,7 +18,8 @@
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="HipMobileUI.Views.AudioToolbarView"
-             xmlns:strings="clr-namespace:HipMobileUI.Helpers;assembly=HipMobileUI">
+             xmlns:strings="clr-namespace:HipMobileUI.Helpers;assembly=HipMobileUI"
+             xmlns:controls="clr-namespace:HipMobileUI.Controls;assembly=HipMobileUI">
     <ContentView.Content>
       <StackLayout HorizontalOptions="FillAndExpand" Orientation="Vertical">
         <RelativeLayout HeightRequest="60" HorizontalOptions="FillAndExpand">
@@ -38,7 +39,7 @@
               <TapGestureRecognizer Command="{Binding PauseCommand}" />
             </Image.GestureRecognizers>
           </Image>
-          <Slider Maximum="{Binding MaxAudioProgress}" Value="{Binding CurrentAudioProgress, Mode=TwoWay}" VerticalOptions="Center"
+          <controls:TouchEventSlider x:Name="AudioSlider" Maximum="{Binding MaxAudioProgress}" VerticalOptions="Center"
                   RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.6}"
                   RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.2}"
                   RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1}" />

@@ -22,11 +22,8 @@ using UIKit;
 namespace HipMobileUI.iOS.Contracts {
     internal class IosAudioPlayer : IAudioPlayer {
 
-        private bool automaticUpdate;
-
         private AVAudioPlayer avAudioPlayer;
         private Audio currentAudio;
-        private double currentProgress;
         private Timer progressUpdateTimer;
 
         public IosAudioPlayer ()
@@ -39,16 +36,9 @@ namespace HipMobileUI.iOS.Contracts {
 
         public bool IsPlaying => avAudioPlayer?.Playing ?? false;
 
-        public double CurrentProgress {
-            get { return currentProgress; }
-            set {
-                currentProgress = value;
-                if (!automaticUpdate)
-                    avAudioPlayer.CurrentTime = value / 1000;
-            }
-        }
+        public double CurrentProgress => avAudioPlayer.CurrentTime*1000;
 
-        public double MaximumProgress { get; private set; }
+        public double MaximumProgress => avAudioPlayer.Duration * 1000;
 
         public Audio CurrentAudio {
             get { return currentAudio; }
@@ -58,8 +48,6 @@ namespace HipMobileUI.iOS.Contracts {
                 {
                     NSError err;
                     avAudioPlayer = new AVAudioPlayer (NSData.FromArray (value.Data), "mp3", out err);
-                    CurrentProgress = 0;
-                    MaximumProgress = avAudioPlayer.Duration * 1000;
                     avAudioPlayer.FinishedPlaying += OnAvAudioPlayerOnFinishedPlaying;
                 }
             }
@@ -97,9 +85,14 @@ namespace HipMobileUI.iOS.Contracts {
             StopUpdateTimer ();
         }
 
+        public void SeekTo (double progress)
+        {
+            avAudioPlayer.CurrentTime = progress / 1000;
+        }
+
         private void StartUpdateTimer ()
         {
-            progressUpdateTimer = new Timer (UpdateProgress, null, 0, 200);
+            progressUpdateTimer = new Timer (UpdateProgress, null, 0, 16);
         }
 
         private void StopUpdateTimer ()
@@ -109,11 +102,7 @@ namespace HipMobileUI.iOS.Contracts {
 
         private void UpdateProgress (object state)
         {
-            automaticUpdate = true;
-            var oldProgress = CurrentProgress;
-            CurrentProgress = avAudioPlayer.CurrentTime * 1000;
-            ProgressChanged?.Invoke (oldProgress, CurrentProgress);
-            automaticUpdate = false;
+            ProgressChanged?.Invoke (CurrentProgress);
         }
 
     }
