@@ -32,7 +32,7 @@ namespace de.upb.hip.mobile.droid.CustomRenderers
 
             formsSlider = (TouchEventSlider)e.NewElement;
 
-            if (Control != null && areListenersAdded)
+            if (Control != null && !areListenersAdded)
             {
                 Control.StartTrackingTouch += SeekbarOnStartTrackingTouch;
                 Control.StopTrackingTouch += SeekbarOnStopTrackingTouch;

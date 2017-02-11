@@ -13,6 +13,7 @@
 // limitations under the License.
 
 using System;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
@@ -54,12 +55,12 @@ namespace HipMobileUI.ViewModels.Pages
             if (exhibit != null)
             {
                 this.exhibit = exhibit;
-                SetCurrentView ();
+                SetCurrentView ().ConfigureAwait (true);
                 Title = exhibit.Name;
                 if(exhibit.Pages.Count>1)
                     NextViewAvailable = true;
             }
-            NextViewCommand = new Command (GotoNextView);
+            NextViewCommand = new Command (async () => await GotoNextView());
             PreviousViewCommand = new Command (GotoPreviousView);
             ShowAudioToolbarCommand = new Command (SwitchAudioToolbarVisibleState);
         }
@@ -76,11 +77,11 @@ namespace HipMobileUI.ViewModels.Pages
             }
             if (Settings.AutoSwitchPage && NextViewAvailable)
             {
-                GotoNextView ();
+                await GotoNextView ();
             }
         }
 
-        private void GotoNextView ()
+        private async Task GotoNextView ()
         {
             if (currentViewIndex < exhibit.Pages.Count - 1)
             {
@@ -92,9 +93,11 @@ namespace HipMobileUI.ViewModels.Pages
 
                 // update the UI
                 currentViewIndex++;
-                SetCurrentView ();
+                
                 NextViewAvailable = currentViewIndex < exhibit.Pages.Count - 1;
                 PreviousViewAvailable = true;
+
+                await SetCurrentView();
             }
         }
 
@@ -103,7 +106,7 @@ namespace HipMobileUI.ViewModels.Pages
             AudioToolbarVisible = !AudioToolbarVisible;
         }
 
-        private void GotoPreviousView ()
+        private async void GotoPreviousView ()
         {
             if (currentViewIndex > 0)
             {
@@ -114,13 +117,13 @@ namespace HipMobileUI.ViewModels.Pages
                 }
 
                 currentViewIndex--;
-                SetCurrentView();
+                await SetCurrentView();
                 PreviousViewAvailable = currentViewIndex > 0;
                 NextViewAvailable = true;
             }
         }
 
-        private async void SetCurrentView ()
+        private async Task SetCurrentView ()
         {
             // update UI
             Page currentPage = exhibit.Pages [currentViewIndex];

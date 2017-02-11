@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System;
 using System.ComponentModel;
 using HipMobileUI.Controls;
 using HipMobileUI.Helpers;
@@ -21,14 +22,34 @@ using HipMobileUI.ViewModels.Pages;
 using Xamarin.Forms;
 
 namespace HipMobileUI.Pages {
-    public partial class ExhibitDetailsPage : OrientationContentPage, IViewFor<ExhibitDetailsViewModel> {
+    public partial class ExhibitDetailsPage : OrientationContentPage, IViewFor<ExhibitDetailsViewModel>, IPagePoppedListener {
 
         private ExhibitDetailsViewModel ViewModel => (ExhibitDetailsViewModel) BindingContext;
         private HideableToolbarItem audioToolbarButton;
+        private OrientationController savedControllerState;
+        private bool isOnDisappearingContext;
 
         public ExhibitDetailsPage ()
         {
             InitializeComponent ();
+
+            // Workaround because OnDisappearing is called when the app starts sleeping(on Android) and the OrientationController is reset. Therefore, we need to safe the controller and reapply it after the app wakes up.
+            savedControllerState = OrientationController;
+            PropertyChanged +=OnPropertyChanged;
+            MessagingCenter.Subscribe<App>(this, AppSharedData.WillWakeUpMessage, WillWakeUp);
+        }
+
+        private void OnPropertyChanged (object sender, PropertyChangedEventArgs propertyChangedEventArgs)
+        {
+            if (propertyChangedEventArgs.PropertyName.Equals (nameof (OrientationController)) && !isOnDisappearingContext)
+            {
+                savedControllerState = OrientationController;
+            }
+        }
+
+        private void WillWakeUp (App app)
+        {
+            OrientationController = savedControllerState;
         }
 
         /// <summary>
@@ -58,18 +79,10 @@ namespace HipMobileUI.Pages {
         /// <param name="propertyChangedEventArgs"></param>
         private void ViewModelOnPropertyChanged (object sender, PropertyChangedEventArgs propertyChangedEventArgs)
         {
-            if (propertyChangedEventArgs.PropertyName == nameof (ViewModel.AudioToolbarVisible))
+            if (propertyChangedEventArgs.PropertyName.Equals(nameof (ViewModel.AudioToolbarVisible)))
             {
                 ToggleAudioBarVisibility ();
             }
-        }
-
-        protected override void OnDisappearing ()
-        {
-            base.OnDisappearing ();
-
-            OrientationController = OrientationController.Sensor;
-            ViewModel.OnDisappearing ();
         }
 
         /// <summary>
@@ -86,6 +99,22 @@ namespace HipMobileUI.Pages {
             {
                 AudioToolbar.TranslateTo (0, -100);
             }
+        }
+
+        protected override void OnDisappearing ()
+        {
+            base.OnDisappearing ();
+
+            // cannot be called in PagePopped as it is too late
+            isOnDisappearingContext = true;
+            OrientationController = OrientationController.Sensor;
+            isOnDisappearingContext = false;
+        }
+
+        public void PagePopped ()
+        {
+            ViewModel.OnDisappearing ();
+            MessagingCenter.Unsubscribe<App>(this, AppSharedData.WillWakeUpMessage);
         }
 
     }

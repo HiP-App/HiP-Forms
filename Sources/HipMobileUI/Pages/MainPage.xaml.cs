@@ -14,6 +14,7 @@
 
 using System;
 using HipMobileUI.Navigation;
+using HipMobileUI.ViewModels;
 using HipMobileUI.ViewModels.Pages;
 using Xamarin.Forms;
 
@@ -21,8 +22,6 @@ namespace HipMobileUI.Pages
 {
     public partial class MainPage : IViewFor<MainPageViewModel>
     {
-        private bool isShown = true;
-        private Page page;
 
         private MainPageViewModel ViewModel => ((MainPageViewModel) BindingContext);
 
@@ -44,19 +43,20 @@ namespace HipMobileUI.Pages
         {
             // Disable the swipe gesture when a page is pushed
             IsGestureEnabled = false;
-            if (isShown)
-            {
-                page = e.Page;
-                page.Disappearing += PageOnDisappearing;
-            }
         }
 
-        private void PageOnDisappearing(object sender, EventArgs eventArgs)
+        private void NavigationPage_OnPopped (object sender, NavigationEventArgs e)
         {
             // enable the swipe gesture once this page becomes visible again
-            IsGestureEnabled = true;
-            page.Disappearing -= PageOnDisappearing;
-            page = null;
+            if (NavigationPage.CurrentPage == ContentPage)
+            {
+                IsGestureEnabled = true;
+            }
+
+            if (e.Page is IPagePoppedListener)
+            {
+                ((IPagePoppedListener)e.Page).PagePopped ();
+            }
         }
 
     }

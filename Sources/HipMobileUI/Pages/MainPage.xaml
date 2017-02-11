@@ -53,9 +53,9 @@
         </ContentPage>
     </MasterDetailPage.Master>
     <MasterDetailPage.Detail>
-        <NavigationPage Pushed="NavigationPage_OnPushed" x:Name="NavigationPage">
+        <NavigationPage Pushed="NavigationPage_OnPushed" Popped="NavigationPage_OnPopped" x:Name="NavigationPage">
           <x:Arguments>
-            <ContentPage Content="{Binding SelectedViewModel, Converter={StaticResource ViewModelViewConverter}}" Title="{Binding SelectedViewModel.Title}"/>
+            <ContentPage Content="{Binding SelectedViewModel, Converter={StaticResource ViewModelViewConverter}}" Title="{Binding SelectedViewModel.Title}" x:Name="ContentPage"/>
           </x:Arguments>
         </NavigationPage>
     </MasterDetailPage.Detail>

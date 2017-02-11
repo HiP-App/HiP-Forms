@@ -83,6 +83,7 @@
     <Compile Include="Map\OsmMap.cs" />
     <Compile Include="Helpers\TranslateExtension.cs" />
     <Compile Include="Navigation\INavigationService.cs" />
+    <Compile Include="Navigation\IPagePoppedListener.cs" />
     <Compile Include="Navigation\IViewCreator.cs" />
     <Compile Include="Navigation\IViewFor.cs" />
     <Compile Include="Navigation\NavigationService.cs" />
