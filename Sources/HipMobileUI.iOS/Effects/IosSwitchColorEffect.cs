@@ -29,6 +29,7 @@ namespace HipMobileUI.iOS.Effects
 
         protected override void OnAttached ()
         {
+            //store the old color and set the new one
             UISwitch uiSwitch = (UISwitch) Control;
             SwitchColorEffect effect = (SwitchColorEffect)Element.Effects.FirstOrDefault(e => e is SwitchColorEffect);
             oldColor = uiSwitch.OnTintColor;
@@ -37,6 +38,7 @@ namespace HipMobileUI.iOS.Effects
 
         protected override void OnDetached ()
         {
+            //restore the old color
             UISwitch uiSwitch = (UISwitch)Control;
             uiSwitch.OnTintColor = oldColor;
         }

@@ -48,9 +48,11 @@ namespace HipMobileUI.ViewModels.Pages
 
         public ExhibitDetailsViewModel (Exhibit exhibit)
         {
-            AudioToolbar = new AudioToolbarViewModel(); //TODO: Use setting to determine whether audio should be started automatically
+            // init the audio toolbar
+            AudioToolbar = new AudioToolbarViewModel();
             AudioToolbar.AudioPlayer.AudioCompleted+=AudioPlayerOnAudioCompleted;
 
+            // init the current view
             currentViewIndex = 0;
             if (exhibit != null)
             {
@@ -60,27 +62,39 @@ namespace HipMobileUI.ViewModels.Pages
                 if(exhibit.Pages.Count>1)
                     NextViewAvailable = true;
             }
+
+            // init commands
             NextViewCommand = new Command (async () => await GotoNextView());
             PreviousViewCommand = new Command (GotoPreviousView);
             ShowAudioToolbarCommand = new Command (SwitchAudioToolbarVisibleState);
         }
 
+        /// <summary>
+        /// Audio finished playing.
+        /// </summary>
         private async void AudioPlayerOnAudioCompleted ()
         {
             if (Settings.RepeatHintAutoPageSwitch)
             {
+                // ask for preferred setting regarind automatic page switch
                 Settings.RepeatHintAutoPageSwitch = false;
                 var result = await Navigation.DisplayAlert (Strings.ExhibitDetailsPage_Hinweis,
                                                             Strings.ExhibitDetailsPage_PageSwitch,
                                                             Strings.ExhibitDetailsPage_AgreeFeature, Strings.ExhibitDetailsPage_DisagreeFeature);
                 Settings.AutoSwitchPage = result;
             }
+
+            // aply automatic page switch if wanted
             if (Settings.AutoSwitchPage && NextViewAvailable)
             {
                 await GotoNextView ();
             }
         }
 
+        /// <summary>
+        /// Go to the next available view.
+        /// </summary>
+        /// <returns></returns>
         private async Task GotoNextView ()
         {
             if (currentViewIndex < exhibit.Pages.Count - 1)
@@ -93,10 +107,8 @@ namespace HipMobileUI.ViewModels.Pages
 
                 // update the UI
                 currentViewIndex++;
-                
                 NextViewAvailable = currentViewIndex < exhibit.Pages.Count - 1;
                 PreviousViewAvailable = true;
-
                 await SetCurrentView();
             }
         }
@@ -106,6 +118,9 @@ namespace HipMobileUI.ViewModels.Pages
             AudioToolbarVisible = !AudioToolbarVisible;
         }
 
+        /// <summary>
+        /// Switch to the previous view.
+        /// </summary>
         private async void GotoPreviousView ()
         {
             if (currentViewIndex > 0)
@@ -116,6 +131,7 @@ namespace HipMobileUI.ViewModels.Pages
                     AudioToolbar.AudioPlayer.Stop();
                 }
 
+                // update UI
                 currentViewIndex--;
                 await SetCurrentView();
                 PreviousViewAvailable = currentViewIndex > 0;
@@ -123,6 +139,10 @@ namespace HipMobileUI.ViewModels.Pages
             }
         }
 
+        /// <summary>
+        /// Set the current view.
+        /// </summary>
+        /// <returns></returns>
         private async Task SetCurrentView ()
         {
             // update UI
@@ -155,8 +175,10 @@ namespace HipMobileUI.ViewModels.Pages
             {
                 throw new Exception("Unknown page found: " + currentPage);
             }
+
             if (currentPage.Audio != null)
             {
+                // aks if user wants autoamtic audio playback
                 if (Settings.RepeatHintAudio)
                 {
                     var result = await Navigation.DisplayAlert (Strings.ExhibitDetailsPage_Hinweis, Strings.ExhibitDetailsPage_AudioPlay,
@@ -164,6 +186,8 @@ namespace HipMobileUI.ViewModels.Pages
                     Settings.AutoStartAudio = result;
                     Settings.RepeatHintAudio = false;
                 }
+
+                //play automatic audio, if wanted
                 if (Settings.AutoStartAudio)
                 {
                     AudioToolbar.AudioPlayer.Play ();
@@ -171,10 +195,14 @@ namespace HipMobileUI.ViewModels.Pages
             }
         }
 
+        /// <summary>
+        /// Called when the page disappears.
+        /// </summary>
         public override void OnDisappearing ()
         {
             base.OnDisappearing ();
 
+            //inform the audio toolbar to clean up
             AudioToolbar.OnDisappearing ();
         }
 

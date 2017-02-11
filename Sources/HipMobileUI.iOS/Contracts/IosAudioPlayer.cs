@@ -53,6 +53,11 @@ namespace HipMobileUI.iOS.Contracts {
             }
         }
 
+        /// <summary>
+        /// Called when the AVAudioPlayer finishes playing. Stops the update timer, informs listeners and updates the isPlaying state.
+        /// </summary>
+        /// <param name="sender">The sender of the event.</param>
+        /// <param name="args">The event parameters</param>
         private void OnAvAudioPlayerOnFinishedPlaying (object sender, AVStatusEventArgs args)
         {
             StopUpdateTimer ();
@@ -90,16 +95,26 @@ namespace HipMobileUI.iOS.Contracts {
             avAudioPlayer.CurrentTime = progress / 1000;
         }
 
+        /// <summary>
+        /// Starts a timer that fires an progress update event at a fixed rate.
+        /// </summary>
         private void StartUpdateTimer ()
         {
             progressUpdateTimer = new Timer (UpdateProgress, null, 0, 16);
         }
 
+        /// <summary>
+        /// Stops the timer sending progress updates.
+        /// </summary>
         private void StopUpdateTimer ()
         {
             progressUpdateTimer?.Dispose ();
         }
 
+        /// <summary>
+        /// Informs all listeners about an updated progress.
+        /// </summary>
+        /// <param name="state">Ignored.</param>
         private void UpdateProgress (object state)
         {
             ProgressChanged?.Invoke (CurrentProgress);

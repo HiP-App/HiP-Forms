@@ -58,6 +58,10 @@ namespace HipMobileUI.Views
             manualInput = false;
         }
 
+        /// <summary>
+        /// New progress value of the audio player available. Update the slider if no manual input is currently pending.
+        /// </summary>
+        /// <param name="newProgress">The new audio progress</param>
         private void AudioPlayerOnProgressChanged (double newProgress)
         {
             if (!manualInput)

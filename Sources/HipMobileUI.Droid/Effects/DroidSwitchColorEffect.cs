@@ -30,6 +30,7 @@ namespace de.upb.hip.mobile.droid.Effects
 
         protected override void OnAttached ()
         {
+            //Store the old color and set the new one
             SwitchCompat switchCompat = (SwitchCompat) Control;
             SwitchColorEffect effect = (SwitchColorEffect)Element.Effects.FirstOrDefault(e => e is SwitchColorEffect);
             oldColor = switchCompat.HighlightColor;
@@ -38,6 +39,7 @@ namespace de.upb.hip.mobile.droid.Effects
 
         protected override void OnDetached ()
         {
+            //restore the old color
             SwitchCompat switchCompat = (SwitchCompat)Control;
             switchCompat.SetHighlightColor(oldColor);
         }

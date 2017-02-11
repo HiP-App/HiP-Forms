@@ -90,6 +90,11 @@ namespace de.upb.hip.mobile.droid.Contracts {
             mediaPlayer.SeekTo (Convert.ToInt32 (progress));
         }
 
+        /// <summary>
+        /// Called when the media player finishes playing. Stops the update timer, informs listeners and updates the isPlaying state.
+        /// </summary>
+        /// <param name="sender">The sender of the event.</param>
+        /// <param name="eventArgs">The event parameters</param>
         private void MediaPlayerOnCompletion (object sender, EventArgs eventArgs)
         {
             StopUpdateTimer ();
@@ -97,11 +102,20 @@ namespace de.upb.hip.mobile.droid.Contracts {
             IsPlayingChanged?.Invoke(IsPlaying);
         }
 
+        /// <summary>
+        /// Informs all listeners about an updated progress.
+        /// </summary>
+        /// <param name="state">Ignored.</param>
         private void UpdateProgress (object state)
         {
             ProgressChanged?.Invoke (CurrentProgress);
         }
 
+        /// <summary>
+        /// Copies the audio data to a temporary file, so the media player can play this.
+        /// </summary>
+        /// <param name="audio">The audio object which data should be copied.</param>
+        /// <returns>The string to the file path.</returns>
         private string CopyAudioToTemp (Audio audio)
         {
             var filepath = "";
@@ -121,11 +135,17 @@ namespace de.upb.hip.mobile.droid.Contracts {
             return filepath;
         }
 
+        /// <summary>
+        /// Starts a timer that fires an progress update event at a fixed rate.
+        /// </summary>
         private void StartUpdateTimer ()
         {
             progressUpdateTimer = new Timer (UpdateProgress, null, 0, 16);
         }
 
+        /// <summary>
+        /// Stops the timer sending progress updates.
+        /// </summary>
         private void StopUpdateTimer ()
         {
             progressUpdateTimer?.Dispose ();

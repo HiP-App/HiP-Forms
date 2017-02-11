@@ -43,12 +43,18 @@ namespace HipMobileUI.Pages {
         {
             if (propertyChangedEventArgs.PropertyName.Equals (nameof (OrientationController)) && !isOnDisappearingContext)
             {
+                //save the new controller
                 savedControllerState = OrientationController;
             }
         }
 
+        /// <summary>
+        /// Called when the app is about to wake up.
+        /// </summary>
+        /// <param name="app">The instance of the app.</param>
         private void WillWakeUp (App app)
         {
+            //restore the old controller as it was changed by OnDisappearing(dcannot distinguish between sleep and page popped on Android)
             OrientationController = savedControllerState;
         }
 
@@ -101,18 +107,26 @@ namespace HipMobileUI.Pages {
             }
         }
 
+        /// <summary>
+        /// Called when the page is popped from the navigation stack(Android&iOS) or the app is about to start sleeping(display turned off, app went to background9(only Android)
+        /// </summary>
         protected override void OnDisappearing ()
         {
             base.OnDisappearing ();
 
-            // cannot be called in PagePopped as it is too late
+            // reset the controller, cannot be called in PagePopped as it is too late
+            // in case it was called on app sleep, the state will be restored, when ethe app wakes up
             isOnDisappearingContext = true;
             OrientationController = OrientationController.Sensor;
             isOnDisappearingContext = false;
         }
 
+        /// <summary>
+        /// Called when this page is popped from the navigation stack.
+        /// </summary>
         public void PagePopped ()
         {
+            // clean up
             ViewModel.OnDisappearing ();
             MessagingCenter.Unsubscribe<App>(this, AppSharedData.WillWakeUpMessage);
         }

@@ -40,12 +40,22 @@ namespace de.upb.hip.mobile.droid.CustomRenderers
             }
         }
 
+        /// <summary>
+        /// User started doing a drag of the slider.
+        /// </summary>
+        /// <param name="sender">The sender of the event.</param>
+        /// <param name="stopTrackingTouchEventArgs">The event parameters.</param>
         private void SeekbarOnStopTrackingTouch (object sender, SeekBar.StopTrackingTouchEventArgs stopTrackingTouchEventArgs)
         {
             double newProgress= stopTrackingTouchEventArgs.SeekBar.Progress*formsSlider.Maximum/1000;
             formsSlider?.TouchUpEvent?.Invoke(sender, new ValueEventArgs (newProgress));
         }
 
+        /// <summary>
+        /// User finished doing a drag of the slider.
+        /// </summary>
+        /// <param name="sender">The sender of the event.</param>
+        /// <param name="startTrackingTouchEventArgs">The event parameters</param>
         private void SeekbarOnStartTrackingTouch (object sender, SeekBar.StartTrackingTouchEventArgs startTrackingTouchEventArgs)
         {
             formsSlider?.TouchDownEvent?.Invoke (sender, null);

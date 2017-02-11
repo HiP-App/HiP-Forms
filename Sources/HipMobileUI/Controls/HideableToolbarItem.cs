@@ -17,6 +17,9 @@ using Xamarin.Forms;
 
 namespace HipMobileUI.Controls
 {
+    /// <summary>
+    /// Toolbar item that can be hidden.
+    /// </summary>
     public class HideableToolbarItem : ToolbarItem
     {
         public HideableToolbarItem()

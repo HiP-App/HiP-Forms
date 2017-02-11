@@ -39,12 +39,22 @@ namespace HipMobileUI.iOS.CustomRenderers
             }
         }
 
+        /// <summary>
+        /// User finished dragging the slider.
+        /// </summary>
+        /// <param name="sender">The sender of the event.</param>
+        /// <param name="eventArgs">The event parameters.</param>
         private void ControlOnTouchUp (object sender, EventArgs eventArgs)
         {
             ValueEventArgs args = new ValueEventArgs (Control.Value);
             formsSlider?.TouchUpEvent?.Invoke(sender, args);
         }
 
+        /// <summary>
+        /// User started dragging the slider.
+        /// </summary>
+        /// <param name="sender">The sender of the event.</param>
+        /// <param name="eventArgs">The event parameters.</param>
         private void ControlOnTouchDown (object sender, EventArgs eventArgs)
         {
             formsSlider?.TouchDownEvent?.Invoke (sender, null);
