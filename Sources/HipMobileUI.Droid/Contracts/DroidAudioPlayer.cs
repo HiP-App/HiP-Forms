@@ -55,7 +55,7 @@ namespace de.upb.hip.mobile.droid.Contracts {
                     var path = CopyAudioToTemp (value);
                     mediaPlayer.SetDataSource (path);
                     mediaPlayer.Prepare ();
-                    //ProgressChanged?.Invoke (0);
+                    ProgressChanged?.Invoke (0);
                 }
             }
         }
