@@ -80,7 +80,7 @@ namespace HipMobileUI.ViewModels.Pages
                 Settings.RepeatHintAutoPageSwitch = false;
                 var result = await Navigation.DisplayAlert (Strings.ExhibitDetailsPage_Hinweis,
                                                             Strings.ExhibitDetailsPage_PageSwitch,
-                                                            Strings.ExhibitDetailsPage_AgreeFeature, Strings.ExhibitDetailsPage_DisagreeFeature);
+                                                            Strings.ExhibitDetailsPage_AgreeFeature, Strings.ExhibitDetailsPage_DisagreeFeature).ConfigureAwait (true);
                 Settings.AutoSwitchPage = result;
             }
 
@@ -178,7 +178,7 @@ namespace HipMobileUI.ViewModels.Pages
 
             if (currentPage.Audio != null)
             {
-                // aks if user wants autoamtic audio playback
+                // ask if user wants autoamtic audio playback
                 if (Settings.RepeatHintAudio)
                 {
                     var result = await Navigation.DisplayAlert (Strings.ExhibitDetailsPage_Hinweis, Strings.ExhibitDetailsPage_AudioPlay,
