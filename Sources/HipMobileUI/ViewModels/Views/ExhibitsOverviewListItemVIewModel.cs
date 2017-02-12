@@ -87,7 +87,7 @@ namespace HipMobileUI.ViewModels.Views
                 }
                 else
                 {
-                    return $"{(Distance):0.##} km";
+                    return $"{Distance:0.##} km";
                 }
             }
         }

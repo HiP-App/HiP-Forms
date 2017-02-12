@@ -263,7 +263,11 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <EmbeddedResource Include="Pages\NavigationPage.xaml" />
+=======
+    <EmbeddedResource Include="Views\MapView.xaml" />
+>>>>>>> master
     <EmbeddedResource Include="Pages\ExhibitDetailsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
