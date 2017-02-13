@@ -22,17 +22,6 @@ namespace HipMobileUI.Controls
     /// </summary>
     public class HideableToolbarItem : ToolbarItem
     {
-        public HideableToolbarItem()
-        {
-            InitVisibility();
-        }
-
-        private async void InitVisibility()
-        {
-            await Task.Delay(100);
-            OnIsVisibleChanged(this, false, IsVisible);
-        }
-
         /// <summary>
         /// Indicates whether the toolbaritem is visible in the toolbar
         /// </summary>
