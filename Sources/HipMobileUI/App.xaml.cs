@@ -4,6 +4,7 @@ using de.upb.hip.mobile.pcl.Common;
 using de.upb.hip.mobile.pcl.Common.Contracts;
 using de.upb.hip.mobile.pcl.DataAccessLayer;
 using de.upb.hip.mobile.pcl.DataLayer;
+using HipMobileUI.Helpers;
 using HipMobileUI.Pages;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -35,11 +36,13 @@ namespace HipMobileUI
         protected override void OnSleep()
         {
             // Handle when your app sleeps
+            MessagingCenter.Send (this, AppSharedData.WillSleepMessage);
         }
 
         protected override void OnResume()
         {
             // Handle when your app resumes
+            MessagingCenter.Send<App> (this, AppSharedData.WillWakeUpMessage);
         }
     }
 }

@@ -16,6 +16,7 @@
 -->
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:strings="clr-namespace:HipMobileUI.Helpers;assembly=HipMobileUI"
+             xmlns:effects="clr-namespace:HipMobileUI.Effects;assembly=HipMobileUI"
              x:Class="HipMobileUI.Views.SettingsScreenView">
   <ContentView.Resources>
     <ResourceDictionary>
@@ -72,25 +73,47 @@
         <Label Style="{StaticResource TitleStyle}" Text="{strings:Translate SettingsScreenView_POI_Title}" Grid.Row="0" Grid.Column="0" Margin="0,0,0,10"/>
         <Label Style="{StaticResource Title2Style}" Text="{strings:Translate SettingsScreenView_AutoSwitchPage_Title}" Grid.Row="1" Grid.Column="0"/>
         <Label Text="{strings:Translate SettingsScreenView_AutoSwitchPage_Text}" Grid.Row="2" Grid.Column="0"/>
-        <Switch IsToggled="{Binding AutoSwitchPage, Mode=TwoWay}" VerticalOptions="Center" Grid.Row="2" Grid.Column="1"/>
-        <BoxView Grid.Row="3" Grid.Column="0"/>
+        <Switch IsToggled="{Binding AutoSwitchPage, Mode=TwoWay}" VerticalOptions="Center" Grid.Row="2" Grid.Column="1">
+          <Switch.Effects><effects:SwitchColorEffect Color="{StaticResource AccentColor}"></effects:SwitchColorEffect></Switch.Effects>
+        </Switch>
+          <BoxView Grid.Row="3" Grid.Column="0"/>
         <Label Style="{StaticResource Title2Style}" Text="{strings:Translate SettingsScreenView_AutoStartAudio_Title}" Grid.Row="4" Grid.Column="0"/>
         <Label Text="{strings:Translate SettingsScreenView_AutoStartAudio_Text}" HorizontalOptions="StartAndExpand" Grid.Row="5" Grid.Column="0"/>
-        <Switch IsToggled="{Binding AutoStartAudio, Mode=TwoWay}" HorizontalOptions="End" VerticalOptions="Center" Grid.Row="5" Grid.Column="1"/>
-      
-        <!-- App Introduction -->
+        <Switch IsToggled="{Binding AutoStartAudio, Mode=TwoWay}" HorizontalOptions="End" VerticalOptions="Center" Grid.Row="5" Grid.Column="1">
+          <Switch.Effects>
+            <effects:SwitchColorEffect Color="{StaticResource AccentColor}"></effects:SwitchColorEffect>
+          </Switch.Effects>
+        </Switch>
+
+          <!-- App Introduction -->
         <Label Style="{StaticResource TitleStyle}" Text="{strings:Translate SettingsScreenView_AppIntro_Title}" Grid.Row="6" Grid.Column="0" Margin="0,20,0,10"/>
         <Label Text="{strings:Translate SettingsScreenView_RepeatHintAudio_Text}" HorizontalOptions="StartAndExpand" Grid.Row="7" Grid.Column="0"/>
-        <Switch IsToggled="{Binding RepeatHintAudio, Mode=TwoWay}" HorizontalOptions="End" VerticalOptions="Center" Grid.Row="7" Grid.Column="1"/>
-        <BoxView Grid.Row="8" Grid.Column="0"/>
+        <Switch IsToggled="{Binding RepeatHintAudio, Mode=TwoWay}" HorizontalOptions="End" VerticalOptions="Center" Grid.Row="7" Grid.Column="1">
+          <Switch.Effects>
+            <effects:SwitchColorEffect Color="{StaticResource AccentColor}"></effects:SwitchColorEffect>
+          </Switch.Effects>
+        </Switch>
+          <BoxView Grid.Row="8" Grid.Column="0"/>
         <Label Text="{strings:Translate SettingsScreenView_RepeatHintAutoPageSwitch_Text}" HorizontalOptions="StartAndExpand" Grid.Row="9" Grid.Column="0"/>
-        <Switch IsToggled="{Binding RepeatHintAutoPageSwitch, Mode=TwoWay}" HorizontalOptions="End" VerticalOptions="Center" Grid.Row="9" Grid.Column="1"/>
-        <BoxView Grid.Row="10" Grid.Column="0"/>
+        <Switch IsToggled="{Binding RepeatHintAutoPageSwitch, Mode=TwoWay}" HorizontalOptions="End" VerticalOptions="Center" Grid.Row="9" Grid.Column="1">
+          <Switch.Effects>
+            <effects:SwitchColorEffect Color="{StaticResource AccentColor}"></effects:SwitchColorEffect>
+          </Switch.Effects>
+        </Switch>
+          <BoxView Grid.Row="10" Grid.Column="0"/>
         <Label Text="{strings:Translate SettingsScreenView_RepeatHintTimeSlider_Text}" HorizontalOptions="StartAndExpand" Grid.Row="11" Grid.Column="0"/>
-        <Switch IsToggled="{Binding RepeatHintTimeSlider, Mode=TwoWay}" HorizontalOptions="End" VerticalOptions="Center" Grid.Row="11" Grid.Column="1"/>
-        <BoxView Grid.Row="12" Grid.Column="0"/>
+        <Switch IsToggled="{Binding RepeatHintTimeSlider, Mode=TwoWay}" HorizontalOptions="End" VerticalOptions="Center" Grid.Row="11" Grid.Column="1">
+          <Switch.Effects>
+            <effects:SwitchColorEffect Color="{StaticResource AccentColor}"></effects:SwitchColorEffect>
+          </Switch.Effects>
+        </Switch>
+          <BoxView Grid.Row="12" Grid.Column="0"/>
         <Label Text="{strings:Translate SettingsScreenView_RepeatIntro_Text}" HorizontalOptions="StartAndExpand" Grid.Row="13" Grid.Column="0"/>
-        <Switch IsToggled="{Binding RepeatIntro, Mode=TwoWay}" HorizontalOptions="End" VerticalOptions="Center" Grid.Row="13" Grid.Column="1"/>
+        <Switch IsToggled="{Binding RepeatIntro, Mode=TwoWay}" HorizontalOptions="End" VerticalOptions="Center" Grid.Row="13" Grid.Column="1">
+          <Switch.Effects>
+            <effects:SwitchColorEffect Color="{StaticResource AccentColor}"></effects:SwitchColorEffect>
+          </Switch.Effects>
+        </Switch>
       </Grid>
     </ScrollView>
   </ContentView.Content>

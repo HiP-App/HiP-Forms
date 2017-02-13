@@ -6,6 +6,7 @@ using de.upb.hip.mobile.pcl.Common;
 using de.upb.hip.mobile.pcl.Common.Contracts;
 using FFImageLoading.Forms.Droid;
 using HipMobileUI;
+using HipMobileUI.AudioPlayer;
 using HipMobileUI.Navigation;
 using HipMobileUI.Pages;
 using Plugin.Permissions;
@@ -29,6 +30,7 @@ namespace de.upb.hip.mobile.droid
             IoCManager.RegisterInstance(typeof(INavigationService), NavigationService.Instance);
             IoCManager.RegisterInstance(typeof(IViewCreator), NavigationService.Instance);
             IoCManager.RegisterInstance (typeof(IFabSizeCalculator), new AndroidFabSizeCalculator ());
+            IoCManager.RegisterInstance (typeof(IAudioPlayer), new DroidAudioPlayer ());
 
             CachedImageRenderer.Init ();
 

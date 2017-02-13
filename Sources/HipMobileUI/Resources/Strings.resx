@@ -349,6 +349,18 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   <data name="RoutesOverviewView_Tags" xml:space="preserve">
     <value>Auf der Route:</value>
   </data>
+  <data name="AudioToolbarView_Caption" xml:space="preserve">
+    <value>Untertitel</value>
+  </data>
+  <data name="AudioToolbarView_Pause" xml:space="preserve">
+    <value>Pause</value>
+  </data>
+  <data name="AudioToolbarView_Play" xml:space="preserve">
+    <value>Play</value>
+  </data>
+  <data name="AudioToolbarView_Progress" xml:space="preserve">
+    <value>Fortschritt</value>
+  </data>
   <data name="SettingsScreenView_AppIntro_Title" xml:space="preserve">
     <value>App Einführung</value>
   </data>
@@ -378,5 +390,23 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   </data>
   <data name="SettingsScreenView_RepeatIntro_Text" xml:space="preserve">
     <value>Wenn aktiviert, wird die App Einführung beim nächsten Start erneut angezeigt</value>
+  </data>
+  <data name="ExhibitDetailsPage_AudioToolbar" xml:space="preserve">
+    <value>Audio Player</value>
+  </data>
+  <data name="ExhibitDetailsPage_AgreeFeature" xml:space="preserve">
+    <value>Ich möchte die Funktion nutzen</value>
+  </data>
+  <data name="ExhibitDetailsPage_AudioPlay" xml:space="preserve">
+    <value>Audio startet automatisch sobald eine neue Seite geöffnet wird. Diese Eigenschaft kann unter Menu &gt;&gt; Einstellungen geändert werden.</value>
+  </data>
+  <data name="ExhibitDetailsPage_DisagreeFeature" xml:space="preserve">
+    <value>Ich möchte die Funktion nicht nutzen</value>
+  </data>
+  <data name="ExhibitDetailsPage_Hinweis" xml:space="preserve">
+    <value>Hinweis</value>
+  </data>
+  <data name="ExhibitDetailsPage_PageSwitch" xml:space="preserve">
+    <value>Die Seiten werden automatisch gewechselt, wenn die Audiodatei abgespielt wurde. Diese Eigenschaft kann unter Menu &gt;&gt; Einstellungen geändert werden.</value>
   </data>
 </root>

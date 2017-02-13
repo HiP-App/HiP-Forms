@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using de.upb.hip.mobile.pcl.Common;
 using de.upb.hip.mobile.pcl.Common.Contracts;
+using HipMobileUI.AudioPlayer;
 using HipMobileUI.Navigation;
 using HipMobileUI.ViewModels.Pages;
 using HipMobileUI.ViewModels.Views.ExhibitDetails;
@@ -31,6 +32,7 @@ namespace HipMobileUI.Tests.ViewModels.Pages
         {
             IoCManager.RegisterInstance(typeof(INavigationService), Substitute.For<INavigationService>());
             IoCManager.RegisterInstance(typeof(IImageDimension), Substitute.For<IImageDimension>());
+            IoCManager.RegisterInstance(typeof(IAudioPlayer), Substitute.For<IAudioPlayer>());
         }
 
         [Test, Category("UnitTest")]

@@ -12,26 +12,123 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System;
+using System.ComponentModel;
+using HipMobileUI.Controls;
 using HipMobileUI.Helpers;
 using HipMobileUI.Navigation;
+using HipMobileUI.Resources;
 using HipMobileUI.ViewModels.Pages;
 using Xamarin.Forms;
 
-namespace HipMobileUI.Pages
-{
+namespace HipMobileUI.Pages {
+    public partial class ExhibitDetailsPage : OrientationContentPage, IViewFor<ExhibitDetailsViewModel>, IPagePoppedListener {
 
-    public partial class ExhibitDetailsPage : OrientationContentPage, IViewFor<ExhibitDetailsViewModel>
-    {
-        public ExhibitDetailsPage()
+        private ExhibitDetailsViewModel ViewModel => (ExhibitDetailsViewModel) BindingContext;
+        private HideableToolbarItem audioToolbarButton;
+        private OrientationController savedControllerState;
+        private bool isOnDisappearingContext;
+
+        public ExhibitDetailsPage ()
         {
-            InitializeComponent();
+            InitializeComponent ();
+
+            // Workaround because OnDisappearing is called when the app starts sleeping(on Android) and the OrientationController is reset. Therefore, we need to safe the controller and reapply it after the app wakes up.
+            savedControllerState = OrientationController;
+            PropertyChanged +=OnPropertyChanged;
+            MessagingCenter.Subscribe<App>(this, AppSharedData.WillWakeUpMessage, WillWakeUp);
         }
 
+        private void OnPropertyChanged (object sender, PropertyChangedEventArgs propertyChangedEventArgs)
+        {
+            if (propertyChangedEventArgs.PropertyName.Equals (nameof (OrientationController)) && !isOnDisappearingContext)
+            {
+                //save the new controller
+                savedControllerState = OrientationController;
+            }
+        }
+
+        /// <summary>
+        /// Called when the app is about to wake up.
+        /// </summary>
+        /// <param name="app">The instance of the app.</param>
+        private void WillWakeUp (App app)
+        {
+            //restore the old controller as it was changed by OnDisappearing(dcannot distinguish between sleep and page popped on Android)
+            OrientationController = savedControllerState;
+        }
+
+        /// <summary>
+        /// Registers the listening method on the ViewModel property changed event
+        /// </summary>
+        protected override void OnBindingContextChanged ()
+        {
+            base.OnBindingContextChanged ();
+
+            audioToolbarButton = new HideableToolbarItem
+            {
+                Icon = "ic_headset_white",
+                Text = Strings.ExhibitDetailsPage_AudioToolbar,
+                Parent = this
+            };
+            audioToolbarButton.SetBinding (MenuItem.CommandProperty, "ShowAudioToolbarCommand");
+            audioToolbarButton.SetBinding (HideableToolbarItem.IsVisibleProperty, "AudioAvailable");
+
+            ViewModel.PropertyChanged += ViewModelOnPropertyChanged;
+        }
+
+        /// <summary>
+        /// Listens on changes in the viewmodel to the propery <see cref="ExhibitDetailsViewModel.AudioToolbarVisible"/>
+        /// Toggles the visibility of the audio bar accordingly
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="propertyChangedEventArgs"></param>
+        private void ViewModelOnPropertyChanged (object sender, PropertyChangedEventArgs propertyChangedEventArgs)
+        {
+            if (propertyChangedEventArgs.PropertyName.Equals(nameof (ViewModel.AudioToolbarVisible)))
+            {
+                ToggleAudioBarVisibility ();
+            }
+        }
+
+        /// <summary>
+        /// Translates the audio toolbar on top of the screen or outside of it dependent on whether the toolbar
+        /// should be visible or not
+        /// </summary>
+        private void ToggleAudioBarVisibility ()
+        {
+            if (ViewModel.AudioToolbarVisible)
+            {
+                AudioToolbar.TranslateTo (0, 0);
+            }
+            else
+            {
+                AudioToolbar.TranslateTo (0, -100);
+            }
+        }
+
+        /// <summary>
+        /// Called when the page is popped from the navigation stack(Android&iOS) or the app is about to start sleeping(display turned off, app went to background9(only Android)
+        /// </summary>
         protected override void OnDisappearing ()
         {
             base.OnDisappearing ();
 
+            // reset the controller, cannot be called in PagePopped as it is too late
+            // in case it was called on app sleep, the state will be restored, when ethe app wakes up
+            isOnDisappearingContext = true;
             OrientationController = OrientationController.Sensor;
+            isOnDisappearingContext = false;
+        }
+
+        /// <summary>
+        /// Called when this page is popped from the navigation stack.
+        /// </summary>
+        public void PagePopped ()
+        {
+            // clean up
+            ViewModel.OnDisappearing ();
+            MessagingCenter.Unsubscribe<App>(this, AppSharedData.WillWakeUpMessage);
         }
 
     }
