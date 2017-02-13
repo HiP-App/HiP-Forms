@@ -18,6 +18,9 @@ using Xamarin.Forms;
 
 namespace HipMobileUI.Controls
 {
+    /// <summary>
+    /// Taken from https://xamarinhelp.com/carousel-view-page-indicators/. All credit to Adam Pedley!
+    /// </summary>
     public class CarouselIndicators : Grid
     {
         private ImageSource unselectedImageSource = null;

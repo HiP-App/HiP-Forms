@@ -6,13 +6,14 @@
              xmlns:pages="clr-namespace:HipMobileUI.ViewModels.Pages;assembly=HipMobileUI"
              xmlns:helpers="clr-namespace:HipMobileUI.Helpers;assembly=HipMobileUI"
              xmlns:controls="clr-namespace:HipMobileUI.Controls;assembly=HipMobileUI"
-             x:Class="HipMobileUI.Pages.UserOnboardingPage"
-            >
+             x:Class="HipMobileUI.Pages.UserOnboardingPage">
     <ContentPage.BindingContext>
         <pages:UserOnboardingPageViewModel/>
     </ContentPage.BindingContext>
-    <AbsoluteLayout>
-        <forms:CarouselView ItemsSource="{Binding Pages}" Position="{Binding SelectedPage}" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
+    <RelativeLayout>
+        <forms:CarouselView ItemsSource="{Binding Pages}" Position="{Binding SelectedPage}"
+                            RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}"
+                            RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1}">
             <forms:CarouselView.ItemTemplate>
                 <DataTemplate>
                     <StackLayout Orientation="Vertical" BackgroundColor="{Binding BackgroundColor}" Padding="0,50">
@@ -25,21 +26,31 @@
                 </DataTemplate>
             </forms:CarouselView.ItemTemplate>
         </forms:CarouselView>
-        <Label Text="{helpers:Translate UserOnboarding_Skip}" IsVisible="{Binding IsSkipVisible}" TextColor="White" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0,1" Margin="10,10">
+        <Label x:Name="SkipLabel" Text="{helpers:Translate UserOnboarding_Skip}" IsVisible="{Binding IsSkipVisible}" TextColor="White"
+               RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1, Constant=-30}" Margin="10,0">
             <Label.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding FinishCommand}"/>
             </Label.GestureRecognizers>
         </Label>
-        <Label Text="{helpers:Translate UserOnboarding_Forward}" IsVisible="{Binding IsForwardVisible}" TextColor="White" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="1,1" Margin="10,10">
+        <Label Text="{helpers:Translate UserOnboarding_Forward}" IsVisible="{Binding IsForwardVisible}" TextColor="White" 
+               RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1, Constant=-30}"
+               RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1, Constant=-50}">
             <Label.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding ForwardCommand}"/>
             </Label.GestureRecognizers>
         </Label>
-        <Label Text="{helpers:Translate UserOnboarding_Ok}" IsVisible="{Binding IsFinishVisible}" TextColor="White" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="1,1" Margin="10,10">
+        <Label Text="{helpers:Translate UserOnboarding_Ok}" IsVisible="{Binding IsFinishVisible}" TextColor="White"
+               RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1, Constant=-30}"
+               RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1, Constant=-80}">
             <Label.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding FinishCommand}"/>
             </Label.GestureRecognizers>
         </Label>
-        <controls:CarouselIndicators IndicatorHeight="10" IndicatorWidth="10" UnselectedIndicator="unselected_circle.png" SelectedIndicator="selected_circle.png" Position="{Binding SelectedPage}" ItemsSource="{Binding Pages}" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0.5,1" Margin="0,10"/>
-    </AbsoluteLayout>
+        <controls:CarouselIndicators IndicatorHeight="10" IndicatorWidth="10" UnselectedIndicator="unselected_circle.png" SelectedIndicator="selected_circle.png" Position="{Binding SelectedPage}" ItemsSource="{Binding Pages}" 
+                                     RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1, Constant=-30}"
+               RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.5, Constant=-15}"/>
+        <BoxView Color="Silver" RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, ElementName=SkipLabel, Property=Y, Constant=-20}"
+                 RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}"
+                 HeightRequest="1"/>
+    </RelativeLayout>
 </ContentPage>
