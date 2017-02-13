@@ -58,6 +58,7 @@
     </Compile>
     <Compile Include="AudioPlayer\IAudioPlayer.cs" />
     <Compile Include="Controls\CardView.cs" />
+    <Compile Include="Controls\CarouselIndicators.cs" />
     <Compile Include="Controls\FadeInImage.cs" />
     <Compile Include="Controls\FadeoverImageView.cs" />
     <Compile Include="Controls\FloatingActionButton.cs" />
@@ -97,6 +98,9 @@
     <Compile Include="Pages\RouteDetailsPage.xaml.cs">
       <DependentUpon>RouteDetailsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\UserOnboardingPage.xaml.cs">
+      <DependentUpon>UserOnboardingPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Annotations3.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\Strings.Designer.cs">
@@ -106,6 +110,8 @@
     </Compile>
     <Compile Include="ViewModels\NavigationViewModel.cs" />
     <Compile Include="ViewModels\Pages\ExhibitDetailsViewModel.cs" />
+    <Compile Include="ViewModels\Pages\UserOnboardingItemViewModel.cs" />
+    <Compile Include="ViewModels\Pages\UserOnboardingPageViewModel.cs" />
     <Compile Include="ViewModels\Views\AudioToolbarViewModel.cs" />
     <Compile Include="ViewModels\Views\ExhibitDetails\AppetizerViewModel.cs" />
     <Compile Include="ViewModels\Views\ExhibitDetails\ExhibitSubviewViewModel.cs" />
@@ -221,6 +227,10 @@
     <Reference Include="System.Collections.NonGeneric">
       <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\Xamarin.iOS\v1.0\Facades\System.Collections.NonGeneric.dll</HintPath>
     </Reference>
+    <Reference Include="Xamarin.Forms.CarouselView, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xamarin.Forms.CarouselView.2.3.0-pre2\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.CarouselView.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Xamarin.Forms.Core, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Xamarin.Forms.2.3.3.180\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.Core.dll</HintPath>
       <Private>True</Private>
@@ -322,7 +332,12 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\UserOnboardingPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

@@ -206,6 +206,10 @@
       <HintPath>..\..\packages\Xamarin.Android.Support.Vector.Drawable.23.3.0\lib\MonoAndroid403\Xamarin.Android.Support.Vector.Drawable.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Xamarin.Forms.CarouselView, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xamarin.Forms.CarouselView.2.3.0-pre2\lib\MonoAndroid10\Xamarin.Forms.CarouselView.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Xamarin.Forms.Core, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Xamarin.Forms.2.3.3.168\lib\MonoAndroid10\Xamarin.Forms.Core.dll</HintPath>
       <Private>True</Private>
@@ -326,6 +330,11 @@
     <AndroidResource Include="Resources\drawable-xxhdpi\ic_arrow_back.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\ic_arrow_back.png" />
     <AndroidResource Include="Resources\drawable\timeslider_background.png" />
+    <AndroidResource Include="Resources\drawable\ac_erkunden.jpg" />
+    <AndroidResource Include="Resources\drawable\ac_route.jpg" />
+    <AndroidResource Include="Resources\drawable\ac_students.png" />
+    <AndroidResource Include="Resources\drawable\selected_circle.png" />
+    <AndroidResource Include="Resources\drawable\unselected_circle.png" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

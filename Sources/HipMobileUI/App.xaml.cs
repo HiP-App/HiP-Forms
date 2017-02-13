@@ -25,7 +25,7 @@ namespace HipMobileUI
             IoCManager.RegisterType<IDataLoader, EmbeddedResourceDataLoader>();
             DbManager.UpdateDatabase();
 
-            MainPage = new MainPage ();
+            MainPage = new UserOnboardingPage ();
         }
 
         protected override void OnStart()
