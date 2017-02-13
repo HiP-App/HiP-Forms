@@ -299,6 +299,11 @@
     <EmbeddedResource Include="Content\TaufeSachsenkriege\Berlin_TaufschaleWidukinds.jpg" />
     <EmbeddedResource Include="Content\TaufeSachsenkriege\KarteDesAltsächsischenSprachraums.jpg" />
     <EmbeddedResource Include="Content\TaufeSachsenkriege\MünchenBSBClm22053_16r.jpg" />
+    <EmbeddedResource Include="Content\KarldergroßeMachtSchule\166.mp3" />
+    <EmbeddedResource Include="Content\KarldergroßeMachtSchule\172.mp3" />
+    <EmbeddedResource Include="Content\KarldergroßeMachtSchule\178.mp3" />
+    <EmbeddedResource Include="Content\KarldergroßeMachtSchule\185.mp3" />
+    <EmbeddedResource Include="Content\KarldergroßeMachtSchule\195.mp3" />
     <Content Include="FodyWeavers.xml">
       <SubType>Designer</SubType>
     </Content>
