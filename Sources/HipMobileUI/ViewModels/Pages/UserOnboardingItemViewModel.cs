@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using HipMobileUI.Helpers;
 using Xamarin.Forms;
 
 namespace HipMobileUI.ViewModels.Pages
@@ -19,18 +20,23 @@ namespace HipMobileUI.ViewModels.Pages
     class UserOnboardingItemViewModel : NavigationViewModel
     {
 
-        public UserOnboardingItemViewModel (string headline, string text, string imagepath, Color background)
+        public UserOnboardingItemViewModel (string headline, string text, string portraitImage, Color background, string landscapeImage=null)
         {
             Headline = headline;
             Text = text;
-            Image = ImageSource.FromFile (imagepath);
+            Image = ImageSource.FromFile (portraitImage);
             BackgroundColor = background;
+            portraitImagePath = portraitImage;
+            landscapeImagePath = landscapeImage;
         }
 
         private string headline;
         private string text;
         private ImageSource image;
         private Color backgroundColor;
+
+        private readonly string portraitImagePath;
+        private readonly string landscapeImagePath;
 
         public string Headline {
             get { return headline; }
@@ -50,6 +56,18 @@ namespace HipMobileUI.ViewModels.Pages
         public Color BackgroundColor {
             get { return backgroundColor; }
             set { SetProperty (ref backgroundColor, value); }
+        }
+
+        public void OrientationChanged (DeviceOrientation orientation)
+        {
+            if (orientation == DeviceOrientation.Portrait)
+            {
+                Image = ImageSource.FromFile (portraitImagePath);
+            }
+            else if(orientation == DeviceOrientation.Landscape && !string.IsNullOrEmpty (landscapeImagePath))
+            {
+                Image = ImageSource.FromFile (landscapeImagePath);
+            }
         }
 
     }

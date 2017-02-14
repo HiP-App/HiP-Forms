@@ -335,6 +335,7 @@
     <AndroidResource Include="Resources\drawable\ac_students.png" />
     <AndroidResource Include="Resources\drawable\selected_circle.png" />
     <AndroidResource Include="Resources\drawable\unselected_circle.png" />
+    <AndroidResource Include="Resources\drawable\ac_route2.jpg" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

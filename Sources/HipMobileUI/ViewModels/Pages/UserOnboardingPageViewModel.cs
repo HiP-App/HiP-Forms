@@ -12,7 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using HipMobileUI.Resources;
@@ -28,9 +27,10 @@ namespace HipMobileUI.ViewModels.Pages
             Pages = new ObservableCollection<UserOnboardingItemViewModel>
             {
                 new UserOnboardingItemViewModel (Strings.UserOnboarding_Explore_Title, Strings.UserOnboarding_Explore_Text, "ac_erkunden.jpg", Color.Green),
-                new UserOnboardingItemViewModel (Strings.UserOnboarding_Route_Title, Strings.UserOnboarding_Route_Text, "ac_route.jpg", Color.Orange),
+                new UserOnboardingItemViewModel (Strings.UserOnboarding_Route_Title, Strings.UserOnboarding_Route_Text, "ac_route.jpg", Color.Orange, "ac_route2.jpg"),
                 new UserOnboardingItemViewModel (Strings.UserOnboarding_Students_Title, Strings.UserOnboarding_Students_Text, "ac_students", Color.Blue)
             };
+            ContentOrientation = StackOrientation.Vertical;
             ForwardCommand = new Command (GotoNextPage);
             FinishCommand = new Command (ClosePage);
             SelectedPage = 0;
@@ -63,6 +63,7 @@ namespace HipMobileUI.ViewModels.Pages
         private bool isSkipVisible;
         private bool isForwardVisible;
         private bool isFinishVisible;
+        private StackOrientation contentOrientation;
 
         public ObservableCollection<UserOnboardingItemViewModel> Pages {
             get { return pages; }
@@ -97,6 +98,11 @@ namespace HipMobileUI.ViewModels.Pages
         public bool IsFinishVisible {
             get { return isFinishVisible; }
             set { SetProperty (ref isFinishVisible, value); }
+        }
+
+        public StackOrientation ContentOrientation {
+            get { return contentOrientation; }
+            set { SetProperty (ref contentOrientation, value); }
         }
 
         private void UpdateVisibilityStatus ()
