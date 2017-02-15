@@ -122,7 +122,7 @@ namespace de.upb.hip.mobile.pcl.Helpers
         /// Show app introduction by restarting the app again
         /// </summary>
         private const string RepeatIntroKey = "repeat_intro_key";
-        private static readonly bool RepeatIntroDefault = false;
+        private static readonly bool RepeatIntroDefault = true;
 
         public static bool RepeatIntro
         {
