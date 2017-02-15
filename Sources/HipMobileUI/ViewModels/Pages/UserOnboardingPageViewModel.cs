@@ -14,6 +14,8 @@
 
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using de.upb.hip.mobile.pcl.Common;
+using HipMobileUI.Contracts;
 using HipMobileUI.Resources;
 using Xamarin.Forms;
 
@@ -48,7 +50,8 @@ namespace HipMobileUI.ViewModels.Pages
 
         private void ClosePage ()
         {
-            
+            IStatusBarController statusBarController = IoCManager.Resolve<IStatusBarController> ();
+            statusBarController.ShowStatusBar ();
         }
 
         private void GotoNextPage ()

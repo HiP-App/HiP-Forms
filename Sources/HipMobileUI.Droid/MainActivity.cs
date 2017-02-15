@@ -7,6 +7,7 @@ using de.upb.hip.mobile.pcl.Common.Contracts;
 using FFImageLoading.Forms.Droid;
 using HipMobileUI;
 using HipMobileUI.AudioPlayer;
+using HipMobileUI.Contracts;
 using HipMobileUI.Navigation;
 using HipMobileUI.Pages;
 using Plugin.Permissions;
@@ -29,8 +30,10 @@ namespace de.upb.hip.mobile.droid
             NavigationService.Instance.RegisterViewModels(typeof(MainPage).Assembly);
             IoCManager.RegisterInstance(typeof(INavigationService), NavigationService.Instance);
             IoCManager.RegisterInstance(typeof(IViewCreator), NavigationService.Instance);
+
             IoCManager.RegisterInstance (typeof(IFabSizeCalculator), new AndroidFabSizeCalculator ());
             IoCManager.RegisterInstance (typeof(IAudioPlayer), new DroidAudioPlayer ());
+            IoCManager.RegisterInstance (typeof(IStatusBarController), new DroidStatusBarController ());
 
             CachedImageRenderer.Init ();
 

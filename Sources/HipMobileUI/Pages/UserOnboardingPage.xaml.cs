@@ -13,7 +13,9 @@
 // limitations under the License.
 
 using System;
+using de.upb.hip.mobile.pcl.Common;
 using FFImageLoading.Forms;
+using HipMobileUI.Contracts;
 using HipMobileUI.Controls;
 using HipMobileUI.Helpers;
 using HipMobileUI.Navigation;
@@ -33,6 +35,8 @@ namespace HipMobileUI.Pages
         {
             InitializeComponent();
             orientation = DeviceOrientation.Undefined;
+            IStatusBarController statusBarController = IoCManager.Resolve<IStatusBarController> ();
+            statusBarController.HideStatusBar();
         }
 
         protected override void OnSizeAllocated (double width, double height)
@@ -97,7 +101,7 @@ namespace HipMobileUI.Pages
             indicators.SetBinding(CarouselIndicators.ItemsSourceProperty, "Pages");
             var separator = new BoxView() { Color = Color.Silver, HeightRequest = 1 };
 
-            // add pieces togther
+            // add pieces together
             layout.Children.Add (carousel, widthConstraint: Constraint.RelativeToParent (parent => parent.Width),
                                  heightConstraint: Constraint.RelativeToParent (parent => parent.Height));
             layout.Children.Add (skipLabel, xConstraint: Constraint.Constant (10), yConstraint: Constraint.RelativeToParent (parent => parent.Height - 30));
