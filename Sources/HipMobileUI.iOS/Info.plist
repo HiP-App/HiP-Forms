@@ -73,5 +73,7 @@
   <string>Dürfen wir Ihre Position verwenden</string>
   <key>NSLocationWhenInUseUsageDescription</key>
   <string>Wir benutzen Ihre Position</string>
+  <key>UIViewControllerBasedStatusBarAppearance</key>
+  <true/>
  </dict>
 </plist>

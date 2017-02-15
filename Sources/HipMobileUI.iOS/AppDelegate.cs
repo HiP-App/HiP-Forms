@@ -3,6 +3,7 @@ using de.upb.hip.mobile.pcl.Common.Contracts;
 using FFImageLoading.Forms.Touch;
 using Foundation;
 using HipMobileUI.AudioPlayer;
+using HipMobileUI.Contracts;
 using HipMobileUI.iOS.Contracts;
 using HipMobileUI.Navigation;
 using HipMobileUI.Pages;
@@ -32,7 +33,9 @@ namespace HipMobileUI.iOS
             NavigationService.Instance.RegisterViewModels (typeof(MainPage).Assembly);
             IoCManager.RegisterInstance (typeof(INavigationService), NavigationService.Instance);
             IoCManager.RegisterInstance(typeof(IViewCreator), NavigationService.Instance);
+
             IoCManager.RegisterInstance (typeof(IAudioPlayer), new IosAudioPlayer ());
+            IoCManager.RegisterType<IStatusBarController, IosStatusBarController> ();
 
             CachedImageRenderer.Init ();
 
