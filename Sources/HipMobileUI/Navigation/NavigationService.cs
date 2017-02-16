@@ -121,8 +121,9 @@ namespace HipMobileUI.Navigation
             }
         }
 
-        public void ResetNavigation (NavigationViewModel newRoot)
+        public void StartNewNavigationStack (NavigationViewModel newRoot)
         {
+            // instatiate the view for the viewmodel and set it as the new root
             Page rootView = (Page)InstantiateView (newRoot);
             Application.Current.MainPage = rootView;
         }

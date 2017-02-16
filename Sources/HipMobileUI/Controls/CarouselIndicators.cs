@@ -19,6 +19,7 @@ using Xamarin.Forms;
 namespace HipMobileUI.Controls
 {
     /// <summary>
+    /// Round progress indicator dots for the carousel view.
     /// Taken from https://xamarinhelp.com/carousel-view-page-indicators/. All credit to Adam Pedley!
     /// </summary>
     public class CarouselIndicators : Grid
@@ -41,36 +42,54 @@ namespace HipMobileUI.Controls
         public static readonly BindableProperty IndicatorWidthProperty = BindableProperty.Create(nameof(IndicatorWidth), typeof(double), typeof(CarouselIndicators), 0.0, BindingMode.OneWay);
         public static readonly BindableProperty IndicatorHeightProperty = BindableProperty.Create(nameof(IndicatorHeight), typeof(double), typeof(CarouselIndicators), 0.0, BindingMode.OneWay);
 
+        /// <summary>
+        /// The path to the image used for the selected state.
+        /// </summary>
         public string SelectedIndicator
         {
             get { return (string)this.GetValue(SelectedIndicatorProperty); }
             set { this.SetValue(SelectedIndicatorProperty, value); }
         }
 
+        /// <summary>
+        /// The path of the image used for the unselected state.
+        /// </summary>
         public string UnselectedIndicator
         {
             get { return (string)this.GetValue(UnselectedIndicatorProperty); }
             set { this.SetValue(UnselectedIndicatorProperty, value); }
         }
 
+        /// <summary>
+        /// The width of the indicators.
+        /// </summary>
         public double IndicatorWidth
         {
             get { return (double)this.GetValue(IndicatorWidthProperty); }
             set { this.SetValue(IndicatorWidthProperty, value); }
         }
 
+        /// <summary>
+        /// The height of the indicators.
+        /// </summary>
         public double IndicatorHeight
         {
             get { return (double)this.GetValue(IndicatorHeightProperty); }
             set { this.SetValue(IndicatorHeightProperty, value); }
         }
 
+        /// <summary>
+        /// The current position. All dots until this position are shown as selected. Zero based.
+        /// </summary>
         public int Position
         {
             get { return (int)this.GetValue(PositionProperty); }
             set { this.SetValue(PositionProperty, value); }
         }
 
+        /// <summary>
+        /// The enumerable indicating how many items there are overall. Corresponds to the number of dots.
+        /// </summary>
         public IEnumerable ItemsSource
         {
             get { return (IEnumerable)this.GetValue(ItemsSourceProperty); }
@@ -161,7 +180,7 @@ namespace HipMobileUI.Controls
             carouselIndicators.Init(0);
         }
 
-        public enum State
+        private enum State
         {
             Selected,
             Unselected

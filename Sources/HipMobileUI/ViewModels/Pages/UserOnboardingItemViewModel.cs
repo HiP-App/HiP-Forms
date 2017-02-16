@@ -38,28 +38,45 @@ namespace HipMobileUI.ViewModels.Pages
         private readonly string portraitImagePath;
         private readonly string landscapeImagePath;
 
+        /// <summary>
+        /// The headline of the view.
+        /// </summary>
         public string Headline {
             get { return headline; }
             set { SetProperty (ref headline, value); }
         }
 
+        /// <summary>
+        /// The bottom text of the view.
+        /// </summary>
         public string Text {
             get { return text; }
             set { SetProperty (ref text, value); }
         }
 
+        /// <summary>
+        /// The image of the view.
+        /// </summary>
         public ImageSource Image {
             get { return image; }
             set { SetProperty (ref image, value); }
         }
 
+        /// <summary>
+        /// THe background color of the view.
+        /// </summary>
         public Color BackgroundColor {
             get { return backgroundColor; }
             set { SetProperty (ref backgroundColor, value); }
         }
 
+        /// <summary>
+        /// Called when the orientation is changed so this viewmodel can react.
+        /// </summary>
+        /// <param name="orientation">The new orientation.</param>
         public void OrientationChanged (DeviceOrientation orientation)
         {
+            // adjust the image to the orientation
             if (orientation == DeviceOrientation.Portrait)
             {
                 Image = ImageSource.FromFile (portraitImagePath);

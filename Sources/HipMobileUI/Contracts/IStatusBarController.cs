@@ -12,10 +12,19 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 namespace HipMobileUI.Contracts {
+    /// <summary>
+    /// Interface describing operations for controlling the status bar(upper most part of the screen where e.g. power level is shown).
+    /// </summary>
     public interface IStatusBarController {
 
+        /// <summary>
+        /// Hide the status bar.
+        /// </summary>
         void HideStatusBar ();
 
+        /// <summary>
+        /// Show the status bar.
+        /// </summary>
         void ShowStatusBar ();
 
     }

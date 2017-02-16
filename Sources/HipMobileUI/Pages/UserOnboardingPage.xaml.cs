@@ -34,41 +34,58 @@ namespace HipMobileUI.Pages
         {
             InitializeComponent();
             orientation = DeviceOrientation.Undefined;
+
+            // hide the status bar for this page
             IStatusBarController statusBarController = IoCManager.Resolve<IStatusBarController> ();
             statusBarController.HideStatusBar();
         }
 
+        /// <summary>
+        /// Size changed, determine if we need to update the layout.
+        /// </summary>
+        /// <param name="width">The new width.</param>
+        /// <param name="height">The new height.</param>
         protected override void OnSizeAllocated (double width, double height)
         {
             base.OnSizeAllocated (width, height);
 
             if (width < height && orientation != DeviceOrientation.Portrait)
             {
+                // inform the viewmodels that layout will change
                 foreach (UserOnboardingItemViewModel userOnboardingItemViewModel in ViewModel.Pages)
                 {
                     userOnboardingItemViewModel.OrientationChanged (DeviceOrientation.Portrait);
                 }
 
+                // change layout to portrait
                 Content = CreateView (StackOrientation.Vertical);
                 orientation = DeviceOrientation.Portrait;
             }
             if (width > height && orientation != DeviceOrientation.Landscape)
             {
+                // inform the viewmodels that layout will change
                 foreach (UserOnboardingItemViewModel userOnboardingItemViewModel in ViewModel.Pages)
                 {
                     userOnboardingItemViewModel.OrientationChanged(DeviceOrientation.Landscape);
                 }
 
+                // change layout to landscape
                 Content = CreateView (StackOrientation.Horizontal);
                 orientation = DeviceOrientation.Landscape;
             }
             
         }
 
+        /// <summary>
+        /// Creates this view according to the orientation.
+        /// </summary>
+        /// <param name="newOrientation">The desired orientation.</param>
+        /// <returns>The created view.</returns>
         private View CreateView (StackOrientation newOrientation)
         {
             RelativeLayout layout = new RelativeLayout();
 
+            // create the carousel
             CarouselView carousel = new CarouselView();
             carousel.SetBinding(CarouselView.PositionProperty, "SelectedPage");
             carousel.SetBinding(CarouselView.ItemsSourceProperty, "Pages");
@@ -117,6 +134,10 @@ namespace HipMobileUI.Pages
             return layout;
         }
 
+        /// <summary>
+        /// Loads the template for the carousel in landscape layout.
+        /// </summary>
+        /// <returns>The view used as the template.</returns>
         private View LoadLandscapeTemplate()
         {
             // main content
@@ -133,12 +154,16 @@ namespace HipMobileUI.Pages
             innerStack.Children.Add(text);
             outerStack.Children.Add(image);
             outerStack.Children.Add(innerStack);
-
             return outerStack;
         }
 
+        /// <summary>
+        /// Loads the template for the carousel in portrait layout.
+        /// </summary>
+        /// <returns>The view used as the template.</returns>
         private View LoadPortraitTemplate()
         {
+            // main content
             StackLayout layout = new StackLayout() { Orientation = StackOrientation.Vertical, Padding = new Thickness(0, 80) };
             layout.SetBinding(StackLayout.BackgroundColorProperty, "BackgroundColor");
             CachedImage image = new CachedImage() { VerticalOptions = LayoutOptions.CenterAndExpand, Aspect = Aspect.AspectFit, HorizontalOptions = LayoutOptions.FillAndExpand };

@@ -41,6 +41,11 @@ namespace HipMobileUI.ViewModels.Pages
             PropertyChanged +=OnPropertyChanged;
         }
 
+        /// <summary>
+        /// React to property changes of the curretnly selected page.
+        /// </summary>
+        /// <param name="sender">The sender of the event.</param>
+        /// <param name="propertyChangedEventArgs">The event arguments.</param>
         private void OnPropertyChanged (object sender, PropertyChangedEventArgs propertyChangedEventArgs)
         {
             if (propertyChangedEventArgs.PropertyName.Equals (nameof (SelectedPage)))
@@ -49,16 +54,25 @@ namespace HipMobileUI.ViewModels.Pages
             }
         }
 
+        /// <summary>
+        /// Close the page belonging to this viewmodel.
+        /// </summary>
         private void ClosePage ()
         {
+            // hide the status bar
             IStatusBarController statusBarController = IoCManager.Resolve<IStatusBarController> ();
             statusBarController.ShowStatusBar ();
 
+            // update the settings to not show this page next time
             Settings.RepeatIntro = false;
 
-            Navigation.ResetNavigation (new MainPageViewModel ());
+            // open the main page
+            Navigation.StartNewNavigationStack (new MainPageViewModel ());
         }
 
+        /// <summary>
+        /// Go to the next page.
+        /// </summary>
         private void GotoNextPage ()
         {
             SelectedPage++;
@@ -73,59 +87,89 @@ namespace HipMobileUI.ViewModels.Pages
         private bool isFinishVisible;
         private StackOrientation contentOrientation;
 
+        /// <summary>
+        /// The displayed pages.
+        /// </summary>
         public ObservableCollection<UserOnboardingItemViewModel> Pages {
             get { return pages; }
             set { SetProperty (ref pages, value); }
         }
 
+        /// <summary>
+        /// The index of the currently shown page.
+        /// </summary>
         public int SelectedPage {
             get { return selectedPage; }
             set { SetProperty (ref selectedPage, value); }
         }
 
+        /// <summary>
+        /// The command for navigating forward.
+        /// </summary>
         public Command ForwardCommand {
             get { return forwardCommand; }
             set { SetProperty (ref forwardCommand, value); }
         }
 
+        /// <summary>
+        /// The command for finishing the user onboarding.
+        /// </summary>
         public Command FinishCommand {
             get { return finishCommand; }
             set { SetProperty (ref finishCommand, value); }
         }
 
+        /// <summary>
+        /// Flag indicating if the skip button is visible.
+        /// </summary>
         public bool IsSkipVisible {
             get { return isSkipVisible; }
             set { SetProperty (ref isSkipVisible, value); }
         }
 
+        /// <summary>
+        /// Flag indicating if the forward button is visible.
+        /// </summary>
         public bool IsForwardVisible {
             get { return isForwardVisible; }
             set { SetProperty (ref isForwardVisible, value); }
         }
 
+        /// <summary>
+        /// Flag indicating if the finish button is visible.
+        /// </summary>
         public bool IsFinishVisible {
             get { return isFinishVisible; }
             set { SetProperty (ref isFinishVisible, value); }
         }
 
+        /// <summary>
+        /// The current orientation.
+        /// </summary>
         public StackOrientation ContentOrientation {
             get { return contentOrientation; }
             set { SetProperty (ref contentOrientation, value); }
         }
 
+        /// <summary>
+        /// Update the visibility status of the buttons accrding to the selected page.
+        /// </summary>
         private void UpdateVisibilityStatus ()
         {
             if (SelectedPage == Pages.Count - 1)
             {
+                // last page
                 IsFinishVisible = true;
                 IsForwardVisible = false;
                 IsSkipVisible = false;
             }
             else
             {
+                // not last page
                 IsFinishVisible = false;
                 IsForwardVisible = true;
 
+                // show skip only if more than two pages are available, otherwise finish button will be shown which makes skip redundant
                 if (Pages.Count > 1)
                 {
                     IsSkipVisible = true;

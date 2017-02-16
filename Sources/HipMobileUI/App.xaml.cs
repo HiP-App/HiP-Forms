@@ -44,11 +44,11 @@ namespace HipMobileUI
             INavigationService navigationService = IoCManager.Resolve<INavigationService> ();
             if (Settings.RepeatIntro)
             {
-                navigationService.ResetNavigation (new UserOnboardingPageViewModel ());
+                navigationService.StartNewNavigationStack (new UserOnboardingPageViewModel ());
             }
             else
             {
-                navigationService.ResetNavigation(new MainPageViewModel ());
+                navigationService.StartNewNavigationStack(new MainPageViewModel ());
             }
         }
 

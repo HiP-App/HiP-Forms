@@ -31,12 +31,13 @@ namespace de.upb.hip.mobile.droid
             IoCManager.RegisterInstance(typeof(INavigationService), NavigationService.Instance);
             IoCManager.RegisterInstance(typeof(IViewCreator), NavigationService.Instance);
 
+            // init other inversion of control classes
             IoCManager.RegisterInstance (typeof(IFabSizeCalculator), new AndroidFabSizeCalculator ());
             IoCManager.RegisterInstance (typeof(IAudioPlayer), new DroidAudioPlayer ());
             IoCManager.RegisterInstance (typeof(IStatusBarController), new DroidStatusBarController ());
 
+            // init forms and third party libraries
             CachedImageRenderer.Init ();
-
             Xamarin.Forms.Forms.Init(this, bundle);
             Xamarin.FormsMaps.Init(this, bundle);
 

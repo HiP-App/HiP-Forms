@@ -95,7 +95,7 @@ namespace HipMobileUI.Navigation {
         /// Resets the current navigation stack and pushes the parameter as the new root.
         /// </summary>
         /// <param name="newRoot">The viewmodel which view is used as the new root.</param>
-        void ResetNavigation (NavigationViewModel newRoot);
+        void StartNewNavigationStack (NavigationViewModel newRoot);
 
     }
 }
