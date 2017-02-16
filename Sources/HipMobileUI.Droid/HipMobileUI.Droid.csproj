@@ -246,8 +246,11 @@
   <ItemGroup>
     <Compile Include="Contracts\AndroidFabSizeCalculator.cs" />
     <Compile Include="Contracts\AndroidImageDimensions.cs" />
+    <Compile Include="Contracts\DroidAudioPlayer.cs" />
     <Compile Include="CustomRenderers\AndroidOrientationPageRenderer.cs" />
+    <Compile Include="CustomRenderers\DroidTouchEventSlider.cs" />
     <Compile Include="CustomRenderers\FloatingActionButtonAndroidRenderer.cs" />
+    <Compile Include="Effects\DroidSwitchColorEffect.cs" />
     <Compile Include="Helpers\Settings.cs" />
     <Compile Include="LinkRenderer.cs" />
     <Compile Include="MainActivity.cs" />
@@ -297,6 +300,32 @@
     <AndroidResource Include="Resources\drawable-hdpi\ic_my_location.png" />
     <AndroidResource Include="Resources\drawable-hdpi\marker_blue.png" />
     <AndroidResource Include="Resources\values\colors.xml" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_headset_white.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_headset_white.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_headset_white.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_headset_white.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_headset_white.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_pause_black.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_play_arrow_black.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_closed_caption.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_closed_caption_black.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_pause_black.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_play_arrow_black.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_closed_caption_black.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_pause_black.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_play_arrow_black.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_closed_caption_black.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_pause_black.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_play_arrow_black.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_closed_caption_black.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_pause_black.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_play_arrow_black.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_arrow_back.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_arrow_back.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_arrow_back.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_arrow_back.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_arrow_back.png" />
+    <AndroidResource Include="Resources\drawable\timeslider_background.png" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

@@ -40,11 +40,10 @@ namespace HipMobileUI.ViewModels.Pages
                     Title = Strings.MainPageViewModel_Routes,
                     Icon = "ic_directions.png"
                 },
-                new DummyViewModel
+                new SettingsScreenViewModel
                 {
                     Title = Strings.MainPageViewModel_Settings,
-                    Icon = "ic_settings.png",
-                    Color = Color.Red
+                    Icon = "ic_settings.png"
                 },
                 new DummyViewModel
                 {
@@ -55,8 +54,8 @@ namespace HipMobileUI.ViewModels.Pages
                 new LicenseScreenViewModel
                 {
                     Title = Strings.MainPageViewModel_LegalNotices,
-                    Icon = "ic_gavel.png",
-                },
+                    Icon = "ic_gavel.png"
+                }
             };
         }
 

@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!--
+// Copyright (C) 2017 History in Paderborn App - Universität Paderborn
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+-->
+
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HipMobileUI.Views.AudioToolbarView"
+             xmlns:strings="clr-namespace:HipMobileUI.Helpers;assembly=HipMobileUI"
+             xmlns:controls="clr-namespace:HipMobileUI.Controls;assembly=HipMobileUI">
+    <ContentView.Content>
+      <StackLayout HorizontalOptions="FillAndExpand" Orientation="Vertical">
+        <RelativeLayout HeightRequest="60" HorizontalOptions="FillAndExpand">
+          <Image IsVisible="{Binding IsAudioPlaying, Converter={StaticResource InverseBooleanConverter}}"
+                 Source="ic_play_arrow_black" HorizontalOptions="Center" VerticalOptions="Center"
+                 RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.2}"
+                 RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1}">
+            <Image.GestureRecognizers>
+              <TapGestureRecognizer Command="{Binding PlayCommand}" />
+            </Image.GestureRecognizers>
+          </Image>
+          <Image IsVisible="{Binding IsAudioPlaying}"
+                 Source="ic_pause_black" HorizontalOptions="Center" VerticalOptions="Center"
+                 RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.2}"
+                 RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1}">
+            <Image.GestureRecognizers>
+              <TapGestureRecognizer Command="{Binding PauseCommand}" />
+            </Image.GestureRecognizers>
+          </Image>
+          <controls:TouchEventSlider x:Name="AudioSlider" Maximum="{Binding MaxAudioProgress}" VerticalOptions="Center"
+                  RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.6}"
+                  RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.2}"
+                  RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1}" />
+          <Image  Source="ic_closed_caption" HorizontalOptions="Center" VerticalOptions="Center"
+                  RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.2}"
+                  RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.8}"
+                  RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1}">
+            <Image.GestureRecognizers>
+              <TapGestureRecognizer Command="{Binding CaptionCommand}" />
+            </Image.GestureRecognizers>
+          </Image>
+        </RelativeLayout>
+        <RelativeLayout HeightRequest="30" HorizontalOptions="FillAndExpand">
+          <Label IsVisible="{Binding IsAudioPlaying, Converter={StaticResource InverseBooleanConverter}}"
+                  Text="{strings:Translate AudioToolbarView_Play}" HorizontalOptions="Center"
+                  RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.2}"
+                  RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1}"/>
+          <Label IsVisible="{Binding IsAudioPlaying}"
+                  Text="{strings:Translate AudioToolbarView_Pause}" HorizontalOptions="Center"
+                  RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.2}"
+                  RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1}"/>
+          <Label Text="{strings:Translate AudioToolbarView_Progress}" HorizontalOptions="Center"
+                  RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.6}"
+                  RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.2}"
+                  RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1}"/>
+          <Label Text="{strings:Translate AudioToolbarView_Caption}" HorizontalOptions="Center"
+                  RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.2}"
+                  RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.8}"
+                  RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1}"/>
+        </RelativeLayout>
+      </StackLayout>
+  </ContentView.Content>
+</ContentView>

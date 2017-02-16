@@ -151,9 +151,12 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Contracts\IosAudioPlayer.cs" />
     <Compile Include="Contracts\IosImageDimensions.cs" />
     <Compile Include="CustomRenderers\FloatingActionButtonIosRenderer.cs" />
     <Compile Include="CustomRenderers\IosOrientationContentPageRenderer.cs" />
+    <Compile Include="CustomRenderers\IosTouchEventSlider.cs" />
+    <Compile Include="Effects\IosSwitchColorEffect.cs" />
     <Compile Include="Helpers\Settings.cs" />
     <Compile Include="ViewControllers\OrientationViewController.cs" />
     <Compile Include="LinkRenderer.cs" />
@@ -336,6 +339,19 @@
     <BundleResource Include="Resources\ic_settings.png" />
     <BundleResource Include="Resources\ic_settings%402x.png" />
     <BundleResource Include="Resources\ic_settings%403x.png" />
+    <BundleResource Include="Resources\ic_headset_white.png" />
+    <BundleResource Include="Resources\ic_headset_white%402x.png" />
+    <BundleResource Include="Resources\ic_headset_white%403x.png" />
+    <BundleResource Include="Resources\ic_closed_caption.png" />
+    <BundleResource Include="Resources\ic_closed_caption%402x.png" />
+    <BundleResource Include="Resources\ic_closed_caption%403x.png" />
+    <BundleResource Include="Resources\ic_pause_black.png" />
+    <BundleResource Include="Resources\ic_pause_black%402x.png" />
+    <BundleResource Include="Resources\ic_pause_black%403x.png" />
+    <BundleResource Include="Resources\ic_play_arrow_black.png" />
+    <BundleResource Include="Resources\ic_play_arrow_black%402x.png" />
+    <BundleResource Include="Resources\ic_play_arrow_black%403x.png" />
+    <BundleResource Include="Resources\timeslider_background.png" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Resources\MapAnnotations.xcassets\AppIcons.appiconset\Contents.json">
