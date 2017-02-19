@@ -23,7 +23,7 @@ using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 namespace de.upb.hip.mobile.pcl.Common {
     public partial class DbDummyDataFiller {
 
-        public static int DatabaseVersion { get; } = 14;
+        public static int DatabaseVersion { get; } = 15;
 
         public void InsertData ()
         {
@@ -119,6 +119,11 @@ var taufeSachsenkriege1 = CreateAudio (
     "In Sachsen gab es jedoch zu Beginn der Missionierung kaum Kirchen oder Taufkapellen. Wo also fanden die Taufen statt? Schauen wir dazu nach Northumbrien, dem heutigen Nordengland, das rund 75 Jahre vor den Sachsen christianisiert wurde. In Ermangelung von Kirchen und Taufkapellen hätten Missionare wie der hl. Paulinus, Bischof von York, auch in Flüssen getauft.<fn>Das berichtet uns der Zeitgenosse Beda Venerabilis in seiner Kirchengeschichte des englischen Volkes. Beda Venerabilis: Historia ecclesiastica gentis Anglorum. Textum secundum editionem, quam paraverant B. Colgrave / R. A. B. Manors, ed. und übersetzt von Günter Spitzbart (Texte zur Forschung 34), Darmstadt 1982, hier: II,14, Bd. 1, S. 186-187: quibus diebus cunctis a mane usque ad uesperam nil aliud ageret, quam confluentem eo de cunctis uiculis ac locis plebem Christi uerbo salutis instruere, atque </fn>  So oder ähnlich könnte es auch in Sachsen gewesen sein. Vielleicht wurden die Sachsen hier vor Ort ja in der Pader oder an den Lippequellen getauft.<fn>Annales regni Francorum ad a. 776, ed. von Friedrich Kurze (MGH SS rer. Germ. 6), Hannover 1895 (ND 1950), S. 46 und S. 48: Et Saxones perterriti omnes ad locum, ubi Lippia consurgit, venientes ex omni parte et reddiderunt patriam per wadium omnes manibus eorum et spoponderunt se esse christianos et sub dicione domni Caroli regis et Francorum subdiderunt. (…) ibique venientes Saxones una cum uxoribus et infantibus innumerabilis multitudo baptizati sunt et obsides (…) dederunt.</fn>  Aus dem 9. Jahrhundert haben sich Abschriften von Taufgelöbnissen erhalten, wie sie bei der Missionierung hier vor Ort vielleicht eingesetzt wurden.", 
     ""
   );
+var _016_karlsbild = CreateAudio (
+    "016_karlsbild.mp3", 
+    "Bevor Sie den Dom betreten, sind Sie herzlich eingeladen, im Hof des Kreuzgangs das Paderborner Wahrzeichen anzuschauen: das Dreihasenfenster. Falls Sie mehr zum Dreihasenfenster erfahren möchten, klicken Sie auf den eingeblendeten Infobutton [Infobutton].", 
+    ""
+  );
 var _019 = CreateAudio (
     "019.mp3", 
     "„Kein anderer Krieg ist von den Franken mit ähnlicher Ausdauer, Erbitterung und Mühe geführt worden wie dieser. Denn die Sachsen waren – wie fast alle Stämme Germaniens – ein wildes Volk, das Götzen anbetete und dem Christentum feindlich gesinnt war; auch empfanden sie es nicht als ehrlos, alle göttlichen und menschlichen Gesetze zu verletzen und zu übertreten. (…) Mord, Raub und Brandstiftungen nahmen daher auf beiden Seiten kein Ende. Schließlich waren die Franken derart verbittert, daß sie es für richtig hielten, nicht länger Gleiches mit Gleichem zu vergelten, sondern mit den Sachsen in offenen Kampf einzutreten.“<fn>Einhard: Vita Karoli Magni, cap. 7, ed. von Oswald Holder-Egger (MGH SS rer. Germ. 25), Hannover / Leipzig 1911 (ND 1965), S. 9: Quod nullum neque prolixius neque atrocius Francorumque populo laboriosius susceptum est; quia Saxones, sicut omnes fere Germaniam incolentes nationes, et natura feroces et cultui daemonum dediti nostraeque religioni contrarii neque divina neque humana iura vel polluere vel transgredi inhonestum arbitrabantur. (…) in quibus caedes et rapinae et incendia vicissim fieri non cessabant. Quibus adeo Franci sunt irritati, ut non iam vicissitudinem reddere, sed apertum contra eos bellum suscipere dignum iudicarent; deutsche Übersetzung nach: Einhard. Vita Karoli Magni. Das Leben Karls des Großen. Lateinisch / Deutsch. Übersetzung, Anmerkungen und Nachwort von Evelyn Scherabon Firchow, bibliographisch ergänzte Ausgabe Stuttgart 1995, S. 17 und S. 19.</fn>", 
@@ -127,6 +132,11 @@ var _019 = CreateAudio (
 var _020 = CreateAudio (
     "020.mp3", 
     "Dieses harsche Urteil über die Sachsen und den bellum Saxonicum fällte um das Jahr 830 kein geringerer als Einhard. Einhard war ein enger Vertrauter und Biograph Kaiser Karls des Großen. Er hatte als Jugendlicher und junger Erwachsener die Zeit der blutigen Auseinandersetzungen zwischen den Sachsen und Karl dem Großen noch miterlebt.\n Doch als er in seiner Vita Karoli Magni<fn>Siehe zur Vita Karoli Magni und zu Einhard etwa Matthias M. Tischler: Einhards „Vita Karoli“. Studien zur Entstehung, Überlieferung und Rezeption (MGH. Schriften 48), 2 Bde., Hannover 2001; Steffen Patzold: Ich und Karl der Große. Das Leben des Höflings Einhard, Darmstadt 2013.</fn> – der Lebensbeschreibung Karls des Großen – über die Sachsenkriege schrieb, lag Karls Sieg über die Sachsen bereits ein Vierteljahrhundert zurück. Einhard schrieb also aus der Rückschau: Er wusste, dass Karls Krieg gegen die Sachsen zwar gut dreißig Jahre gedauert hatte, aber letztlich doch zu dessen Gunsten entschieden worden war. Dieser langjährige Konflikt ist komplex. Die Vielzahl der militärischen Aktionen ist kaum überschaubar, geschweige denn darstellbar. Der Historiker Hans-Dieter Kahl gliedert die Sachsenkriege deshalb auch in drei Eskalationsstufen<fn>Hans-Dieter Kahl: Karl der Große und die Sachsen. Stufen und Motive einer historischen „Eskalation“, in: Herbert Ludat / Christoph Schwinges (Hg.): Politik, Gesellschaft, Geschichtsschreibung. Giessener Festgabe für František Graus zum 60. Geburtstag, Köln / Wien 1982, S. 49-130.</fn>,  an denen wir uns hier ebenfalls orientieren. Schauen Sie auf den Zeitstrahl auf Ihrem Display, um den Wirrnissen der Sachsenkriege besser folgen zu können.<fn>Zur Chronologie Angelika Lampen: Sachsenkriege, sächsischer Widerstand und Kooperation, in: 799. Kunst und Kultur der Karolingerzeit. Karl der Große und Papst Leo III. in Paderborn. Katalog der gemeinsamen Ausstellung der Stadt Paderborn, des Erzbistums Paderborn und des Landesverbandes Westfalen-Lippe vom 23. Juli bis 1. November 1999, 3 Bde., hg. von Christoph Stiegemann / Matthias Wemhoff, Mainz 1999, Bd. 1, S. 264-272, hier: S. 264.</fn>", 
+    ""
+  );
+var _020_karlsbild = CreateAudio (
+    "020_karlsbild.mp3", 
+    "Zu Beginn des 16. Jahrhunderts wurden die bis dahin offenen Arkaden des Kreuzganges mit Maßwerkfenstern ausgestattet.<fn>Vgl. Heinz Bauer/ Friedrich Gerhard Hohmann: Der Dom zu Paderborn, 4., neubearbeitete Auflage, Paderborn 1987, S. 55.</fn>  Im Nordflügel des Kreuzganges liegt mit dem Dreihasenfenster das Bekannteste. Über drei Lanzettbögen schreibt sich inmitten zweier Fischblasen eine Rosette ein, in der drei Hasen kreisförmig angeordnet sind. Sehen Sie, dass insgesamt nur drei Hasenohren dargestellt sind, obwohl jeder Hase doch zwei Ohren hat?<fn>„Das Motiv dreier Hasen in einem Kreis, so einander zugeordnet, dass die Ohren der Hasen in der Mitte ein gleichseitiges Dreieck bilden, ist im Mittelalter sehr verbreitet. Hat die ältere Forschung in diesem Motiv ein Sinnbild der Trinität gesehen, so gilt es heute fast allgemein als solares und lunares Zeichen, meist als Symbol der kreisenden Bewegung des Mondes. Gegen die Dreifaltigkeitsdeutung spricht auch das Vorkommen von vier Hasen, die nach dem gleichen Muster angeordnet sind (...)“, Wolfgang Kemp: Artikel Hase, in: Lexikon der christlichen Ikonographie, Bd. 2, Freiburg i.B. 1970, Sp. 221-225, hier: Sp. 222. Weiterführende Literatur ebenda.</fn>", 
     ""
   );
 var _021 = CreateAudio (
@@ -142,6 +152,11 @@ var _022 = CreateAudio (
 var _023 = CreateAudio (
     "023.mp3", 
     "Nun wollte Karl der Große den Widerstand der Sachsen um jeden Preis brechen. Und so eskalierte die Gewalt in den folgenden Jahren auf beiden Seiten, wie uns Einhard berichtet: „Es läßt sich kaum beschreiben, wie oft sie [die Sachsen] besiegt wurden und sich flehentlich dem König unterwarfen, wie oft sie Gehorsam versprachen, sofort die geforderten Geiseln stellten und die Boten des Königs willig aufnahmen. Einige Male waren sie schon so unterwürfig und schwach gemacht worden, daß sie gelobten, den Götzendienst aufzugeben und das Christentum anzunehmen. Doch obwohl sie mehrmals bereit gewesen waren, alle gestellten Bedingungen zu erfüllen, hatten sie es meist auch ebenso eilig, das Versprochene nicht zu halten.“<fn>Einhard: Vita Karoli Magni, cap. 7, ed. von Oswald Holder-Egger (MGH SS rer. Germ. 25), Hannover / Leipzig 1911 (ND 1965), S. 10: Difficile dictu est, quoties superati se supplices regi se dediderunt, imperata facturos polliciti sunt, obsides qui imperabantur absque dilatione dederunt, legatos qui mittebantur susceperunt, aliquoties ita domiti et emolliti, ut etiam cultum daemonum dimittere et Christianae religioni se subdere velle promitterent. Sed sicut ad haec facienda aliquoties proni, sic ad eadem pervertenda semper fuere praecipites, non sit ut satis aestimare, ad utrum horum faciliores verius dici possint; deutsche Übersetzung nach: Einhard. Vita Karoli Magni. Das Leben Karls des Großen. Lateinisch / Deutsch. Übersetzung, Anmerkungen und Nachwort von Evelyn Scherabon Firchow, bibliographisch ergänzte Ausgabe Stuttgart 1995, S. 19.</fn>", 
+    ""
+  );
+var _023_karlsbild = CreateAudio (
+    "023_karlsbild.mp3", 
+    "In Nordrhein-Westfalen findet sich dieses Motiv noch zwei weitere Male: Zum einen auf einem Gewölbeschlussstein des Kreuzgangs des ehemaligen Zisterzienserklosters von Hardehausen, zum anderen auf einer Rippenzierscheibe im Ostquerschiff der Kathedrale St. Paulus in Münster.<fn>Vgl. Erhard Ueckermann: Das Hasensymbol am Dom zu Paderborn, im Kloster Hardehausen, in der Kathedralkirche St. Paulus in Münster und der Klosterkirche Haina, in: Zeitschrift für Jagdwissenschaften 41 (1995), S. 285-291, hier: bes. S. 288.</fn>  Doch nur in Paderborn hat es das Dreihasenmotiv zum Wahrzeichen der Stadt geschafft. Da das originale Drei-Hasen-Fenster stark beschädigt ist, wurde es durch eine Nachbildung ersetzt. Das Original befindet sich heute im Erzbischöflichen Diözesanmuseum.", 
     ""
   );
 var _024 = CreateAudio (
@@ -189,6 +204,11 @@ var _032 = CreateAudio (
     " 782 erließ Karl eine Reihe von herrscherlichen Verfügungen für das eroberte Sachsen, die sogenannte Capitulatio de partibus Saxoniae.<fn>Dazu Ernst Schubert: Die Capitulatio de partibus Saxoniae, in: Geschichte in der Region. Zum 65. Geburtstag von Heinrich Schmidt, hg. von Dieter Brosius u.a. (Veröffentlichungen der Historischen Kommission für Niedersachsen und Bremen, Sonderband), Hannover 1993, S. 3-28; Matthias Springer: Die Sachsen, Stuttgart 2004, S. 221-230.</fn> Unter Todesstrafe wurden Vergehen gegen die christliche Religion gestellt: so etwa die Missachtung der Fastenzeit, Brandstiftung und Raub in Kirchen oder auch der Glaube an heidnische Hexerei, um nur einige zu nennen. Auch wer sich der Taufe verweigerte, sollte sterben: „Sterben soll, wer Heide bleiben will und unter den Sachsen sich verbirgt, um nicht getauft zu werden oder es verschmäht, zur Taufe zu gehen“.<fn>Capitulatio de partibus Saxoniae, cap. VIII, in: Leges Saxonum und Lex Thuringorum, ed. von Claudius von Schwerin (MGH Fontes iuris Germanici antiqui in usum scholarum 4), Hannover / Leipzig 1918, S. 37-44, hier: S. 38-39: Si quis deinceps in gente Saxonorum inter eos latens non baptizatus se abscondere voluerit et ad baptismum venire contempserit paganusque permanere voluerit, morte moriatur; deutsche Übersetzung nach: Ernst Schubert: Die Capitulatio de partibus Saxoniae, in: Geschichte in der Region. Zum 65. Geburtstag von Heinrich Schmidt, hg. von Dieter Brosius u.a. (Veröffentlichungen der Historischen Kommission für Niedersachsen und Bremen, Sonderband), Hannover 1993, S. 3-28, hier: S. 27.</fn> Karl erlegte den Sachsen auch den Kirchenzehnten auf: „In gleicher Weise schreiben wir göttlichem Gebot gemäß vor, daß alle den Zehnt von ihrem Vermögen und ihrer Arbeit den Kirchen und Geistlichen abliefern sollen (…); denn was Gott einem jeden Christen schenkt, muß zum Teil Gott wiedergegeben werden.“<fn>Capitulatio de partibus Saxoniae, cap. XVII, in: Leges Saxonum und Lex Thuringorum, ed. von Claudius von Schwerin (MGH Fontes iuris Germanici antiqui in usum scholarum 4), Hannover / Leipzig 1918, S. 37-44, hier: S. 40: Similiter secundum dei mandatum precipimus, ut omnes decimam partem substantiae et laboris suis ecclesiis et sacerdotibus donent: (…) iuxta quod deus unicuique dederit christiano, partem Deo reddant; deutsche Übersetzung nach: Matthias Becher: Der Prediger mit eiserner Zunge. Die Unterwerfung und Christianisierung der Sachsen durch Karl den Großen, in: Hermann Kamp / Martin Kroker (Hg.): Schwertmission. Gewalt und Christianisierung im Mittelalter, Paderborn 2013, S. 23–52, hier: S. 47.</fn> \nAber wurden diese Bestimmungen tatsächlich befolgt und wurde die Todesstrafe wirklich vollstreckt? Das lässt sich heute kaum noch herausfinden: Karl hätte aber kaum so viele Verordnungen erlassen müssen, wenn die Sachsen den christlichen Glauben damals bereits verinnerlicht hätten.", 
     ""
   );
+var _032_karlsbild = CreateAudio (
+    "032_karlsbild.mp3", 
+    "Sie stehen nun im nördlichen Ostquerhausarm, dem sogenannten Hasenkamp. Nehmen Sie doch kurz Platz und lassen den erhabenen Eindruck des Kircheninnenraumes auf sich wirken. Jetzt können Sie auch mehr zum Wandel des Karlsbildes im Lauf der Jahrhunderte erfahren.", 
+    ""
+  );
 var _033 = CreateAudio (
     "033.mp3", 
     "Aber wie wurde ihnen das Christentum eigentlich nähergebracht? Einhard, die Reichsannalen und auch andere Geschichtswerke berichten darüber so gut wie nichts. Sie sprechen nur immer wieder von sächsischen Massentaufen. Massentaufen waren jedoch oft gleichbedeutend mit Zwangstaufen. Das aber widersprach der christlichen Theologie. Die Entscheidung zur Taufe müsse freiwillig sein! Das hatte schon der berühmte Kirchenlehrer Augustinus von Hippo im 4./5. Jahrhundert n. Chr. gefordert.<fn>S. Aureli augustini operum sectio II: S. Augustini epistulae, ed. von Al. Goldbacher (Corpus Scriptorum Ecclesiasticorum Latinorum 57), Wien / Leipzig 1911, hier: Nr. 217, V(16), S. 416: Scimus eos, qui corde proprio credunt in dominum, sua id facere uoluntate ac libero arbitrio; deutsche Übersetzung: „Wir wissen, das die, die mit ihrem eigenen Herzen an Gott glauben, dieses aus freiem Willen und aus freier Entscheidung tun.“</fn> Doch wie das Beispiel der Sachsen zeigt, wurde darauf bei der Unterwerfung und Missionierung ganzer Völker wenig Rücksicht genommen. Religionsunterricht gab es nicht! Die Vorbereitung beschränkte sich – wenn überhaupt – auf die Vermittlung grundlegendster Kenntnisse. \nKarls Sachsenmission wurde von den Gelehrten seiner Zeit unterschiedlich bewertet. Je länger Karls Krieg gegen die Sachsen dauerte, desto fragwürdiger erschien sein hartes Vorgehen. Erste Kritik wurde laut:<fn>Lutz E. von Padberg: Die Diskussion missionarischer Programme zur Zeit Karls des Großen, in: Peter Godman / Jörg Jarnut / Peter Johanek (Hg.): Am Vorabend der Kaiserkrönung. Das Epos „Karolus Magnus et Leo papa“ und der Papstbesuch in Paderborn 799, Berlin 2002, S. 125-143.</fn> Hören wir, was der Angelsachse Alkuin über die Taufe sagt. Diesen bedeutenden Gelehrten hatte Karl der Große aus York geholt und zum Leiter seiner Hofschule bestimmt. Alkuin mahnt:.", 
@@ -204,6 +224,11 @@ var _035 = CreateAudio (
     "Sie sehen, die Verhältnisse in Sachsen waren äußerst schwierig. Und auch militärisch gab es neue Konflikte: 782 hatten sich erneut Sachsen unter der Führung Widukinds erhoben.<fn>Annales regni Francorum ad a. 782, ed. von Friedrich Kurze (MGH SS rer. Germ. 6), Hannover 1895 (ND 1950), S. 60: Et cum reversus fuisset, statim iterum Saxones solito more rebellati sunt, suadente Widochindo.</fn>  In einer Schlacht am Süntel-Gebirge erlitten die Franken eine Niederlage mit vielen Toten. Doch Karl reagierte schnell: In Eilmärschen trieb er sein Heer bis zur Weser. An der Mündung der Aller lieferten die Sachsen die Aufständischen aus. 4.500 von ihnen soll Karl angeblich im ‚Blutbad von Verden an der Aller‘ hingerichtet haben.<fn>Annales regni Francorum ad a. 782, ed. von Friedrich Kurze (MGH SS rer. Germ. 6), Hannover 1895 (ND 1950), S. 62: Hoc audiens domnus Carolus rex una cum Francis, quos sub celeritate coniungere potuit, illuc perrexit et pervenit usque ad locum, ubi Alara confluit in Wisora. Tunc omnes Saxones iterum convenientes subdiderunt se sub potestate supradicti domni regis et reddiderunt omnes malefactors illos, qui ipsud rebellium maxime terminaverunt, ad occidendum IIII D; quod ita et factum est (…).</fn> Das ist schwer zu glauben! Aber es wird doch deutlich, mit welcher Brutalität und Konsequenz Karl damals vorging. \nEinige Jahre später schien der Widerstand der Sachsen endgültig gebrochen zu sein. Hören wir dazu noch einmal die Reichsannalen: König Karl „ließ die aufständischen Sachsen ausplündern, eroberte ihre Burgen, drang in ihre Befestigungen ein und säuberte die Straßen (…). Die Reichsversammlung hielt er in Paderborn, und von hier durchzog er ganz Sachsen, wohin er wollte, auf offenen Wegen, ohne auf Widerstand zu stoßen.“<fn>Annales regni Francorum ad a. 785, ed. von Friedrich Kurze (MGH SS rer. Germ. 6), Hannover 1895 (ND 1950), S. 68 und S. 70: (…) Saxones, qui rebelles fuerunt, depraedavit et castra cepit et loca eorum munita intervenit et vias mundavit (…). Sinodum vero publicum tenuit ad Paderbrunnen; et inde iter peragens vias apertas nemini contradicente per totam Saxoniam, quocumque voluit; deutsche Übersetzung nach: Quellen zur karolingischen Reichsgeschichte, 1. Teil neubearbeitet von Reinhold Rau (Ausgewählte Quellen zur deutschen Geschichte des Mittelalters. Freiherr vom Stein-Gedächtnisausgabe 5), Darmstadt 1955, S. 49.</fn> ", 
     ""
   );
+var _035_karlsbild = CreateAudio (
+    "035_karlsbild.mp3", 
+    "Denkt man an Karl den Großen, so haben viele Menschen das Bild eines älteren, bärtigen Mannes vor Augen, der gekrönten Hauptes Schwert und Reichsapfel in den Händen hält. Dieses Bild ist jedoch erst nach und nach entstanden. Sie finden es auch an mehreren Stellen im Dom. Nur ganz wenige Bildzeugnisse sind allerdings aus karolingischer Zeit selbst erhalten.", 
+    ""
+  );
 var _036 = CreateAudio (
     "036.mp3", 
     "785 konnte Karl noch einen weiteren Erfolg verbuchen: Nach Jahren des Widerstandes ließ sich Widukind endlich taufen. Karl selbst wurde sein Taufpate und ehrte ihn mit prächtigen Geschenken.<fn>Annales Mosellani ad a. 785, ed. von Johann M. Lappenberg (MGH SS 16), Hannover 1859, S. 497: Pace patrata nulloque rebellante, postquam rex rediit domum suam, Widuchind tot malorum auctor ac perfidie incentor venit cum sociis suis ad Attinacho palacio, et ibidem baptinatus est, et domnus rex suscepit eum a fonte ac donis magnificis honoravit. Zur Taufpatenschaft siehe Eckhard Freise: Widukind in Attigny. Taufpatronat und Treueidleistungen als Ziele der sächsischen Unterwerfungs- und Missionskriege Karls des Großen, in: Gerhard Kaldewei (Hg.): 1200 Jahre Widukinds Taufe, Paderborn 1985, S. 12-45.</fn> Ein vermeintliches Geschenk, die sogenannte Taufschale Widukinds, haben Sie ja schon an den Paderquellen kennengelernt.\n Ob Karl diese Ehrung seines langjährigen Feindes schwer gefallen ist? Und wie mag sich Widukind gefühlt haben? Hierüber schweigen die Geschichtswerke. Für die Reichsannalen ist jedenfalls klar, dass mit der Taufe Widukinds „nun ganz Sachsen unterworfen gewesen ist“.<fn>Annales regni Francorum ad a. 785, ed. von Friedrich Kurze (MGH SS rer. Germ. 6), Hannover 1895 (ND 1950), S. 70: Et ibi baptizati sunt supranominati Widochindus et Abbi una cum sociis eorum; et tunc tota Saxonia subiugata est.</fn> \n Und in den folgenden Jahren kehrte tatsächlich so etwas wie Ruhe in Sachsen ein. Die Reichsannalen vermelden sogar etwas für diese Zeit ganz ungewöhnliches. Sie berichten nämlich zum Jahr 792: „In diesem Jahr wurde kein Heereszug unternommen.“<fn>Annales regni Francorum ad a. 792, ed. von Friedrich Kurze (MGH SS rer. Germ. 6), Hannover 1895 (ND 1950), S. 92: Eodem anno nullum iter exercitale factum est; deutsche Übersetzung nach: Quellen zur karolingischen Reichsgeschichte, 1. Teil neubearbeitet von Reinhold Rau (Ausgewählte Quellen zur deutschen Geschichte des Mittelalters. Freiherr vom Stein-Gedächtnisausgabe 5), Darmstadt 1955, S. 61.</fn> Das beweist: „Krieg war im Reich Karls des Großen keine Ausnahmesituation, kein seltener Ernstfall, sondern Alltag, und er dominierte die ganze Politik“, so das Urteil des Historikers Malte Prietzel.<fn>Annales regni Francorum ad a. 793, ed. von Friedrich Kurze (MGH SS rer. Germ. 6), Hannover 1895 (ND 1950), S. 94: Ibi missus nuntiavit Saxones iterum fidem suam fefellisse.</fn> Im Museum in der Kaiserpfalz [https://www.kaiserpfalz-paderborn.de] können Sie sich ein Bild davon machen, wie gewaltsam diese Auseinandersetzungen waren. Davon zeugt z.B. ein Schädel mit schwersten Kopfverletzungen.", 
@@ -212,6 +237,116 @@ var _036 = CreateAudio (
 var _037 = CreateAudio (
     "037.mp3", 
     "Mit Widukinds Taufe begann die dritte und letzte Phase der Sachsenkriege. Erst 793 flackerten erneut Aufstände auf. Die Reichsannalen vermelden wie schon so oft in den Jahren zuvor, „die Sachsen hätten wiederum ihr Wort gebrochen“.<fn>Annales regni Francorum ad a. 793, ed. von Friedrich Kurze (MGH SS rer. Germ. 6), Hannover 1895 (ND 1950), S. 94: Ibi missus nuntiavit Saxones iterum fidem suam fefellisse.</fn> Zwar waren die Kämpfe größtenteils auf den Norden Sachsens begrenzt, doch auch südlich von Paderborn, im Sintfeld, regte sich Widerstand.<fn>Annales regni Francorum ad a. 794, ed. von Friedrich Kurze (MGH SS rer. Germ. 6), Hannover 1895 (ND 1950), S. 94 und S. 96: Saxones autem congregantes se in campo, qui dicitur Sinistfelt, praeparantes se quasi ad pugnam.</fn> Nach mehreren Feldzügen sah sich Karl ab Mitte November 797 sogar gezwungen, mit seinem Heer fünf Monate in Sachsen zu verbringen, um dort die Verhältnisse zu ordnen.<fn>Annales regni Francorum ad a. 797, ed. von Friedrich Kurze (MGH SS rer. Germ. 6), Hannover 1895 (ND 1950), S. 102: ipse ad disponendam Saxoniam totum hiemis tempus inpendens ibi natalem Domini, ibi pascha celebravit.</fn> Doch insgesamt reagierte Karl diesmal besonnener. Die Zeit der blutigen Auseinandersetzungen und der Zwangsmissionierung war nun vorbei. \nDoch erst das Jahr 804 gilt als Schlusspunkt der Sachsenkriege. Sachsen war nun Teil des Frankenreichs, und Franken und Sachsen waren gleichberechtigte Partner. Rund zweihundert Jahre später sollten die Sachsen mit König Heinrich I. sogar die Führung im Reich übernehmen.", 
+    ""
+  );
+var _037_karlsbild = CreateAudio (
+    "037_karlsbild.mp3", 
+    "Einhard, der Biograph Karls des Großen, liefert uns eine detaillierte Beschreibung des Kaisers im 22. Kapitel seiner Lebensbeschreibung Karls des Großen, der Vita Karoli Magni. Hier heißt es: „Karl war kräftig und stark, dabei von hoher Gestalt, die aber das rechte Maß nicht überstieg. Es ist allgemein bekannt, daß er sieben Fuß groß war. Er hatte einen runden Kopf, seine Augen waren sehr groß und lebhaft, die Nase etwas lang; er hatte schöne graue Haare und ein heiteres und fröhliches Gesicht. Seine Erscheinung war immer imposant und würdevoll, ganz gleich ob er stand oder saß. Sein Nacken war zwar etwas dick und kurz, und sein Bauch trat ein wenig hervor, doch fielen diese Fehler bei dem Ebenmaß seiner Glieder nicht sehr auf. Sein Gang war selbstbewußt, seine ganze Körperhaltung männlich und seine Stimme klar, obwohl sie nicht so stark war, wie man sei seiner Größe hätte erwarten können.“<fn>Einhard: Vita Karoli Magni, cap. 22, ed. von Oswald Holder-Egger (MGH SS rer. Germ. 25), Hannover / Leipzig 1911 (ND 1965), S. 26-27: Corpore fuit amplo atque robusto, statura eminenti, quae tamen iustam non excederet - nam septem suorum pedum proceritatem eius constat habuisse mensuram -, apice capitis rotundo, oculis praegrandibus ac vegetis, naso paululum mediocritatem excedenti, canitie pulchra, facie laeta et hilari. Unde formae auctoritas ac dignitas tam stanti quam sedenti plurima adquirebatur; quamquam cervix obesa et brevior venterque proiectior videretur, tamen haec ceterorum membrorum celabat aequalitas. Incessu firmo totaque corporis habitudine virili; voce clara quidem, sed quae minus corporis formae conveniret; deutsche Übersetzung nach: Einhard. Vita Karoli Magni. Das Leben Karls des Großen Lateinisch / Deutsch. Übersetzung, Anmerkungen und Nachwort von Evelyn Scherabon Firchow, bibliographisch ergänzte Ausgabe Stuttgart 1995, S. 45.</fn>", 
+    ""
+  );
+var _041 = CreateAudio (
+    "041.mp3", 
+    "Ist dies eine realistische Beschreibung Karls des Großen? Zumindest erklärte sie in Anspielung auf die Körpergröße den Beinamen Magnus, das heißt der Große. Doch sah Karl wirklich so aus? Wir wissen es nicht. Was wir aber wissen, ist, dass Einhard zahlreiche Elemente aus den Kaiserviten des antiken Geschichtsschreibers Sueton (gestorben um 150) abgeschrieben hat. So ist schon Kaiser Tiberius ‚von breitem und kräftigem Körperbau‘. Und der ‚starke Nacken‘ sowie der ‚hervortretende Bauch‘ finden sich bereits in der Beschreibung Kaiser Neros.<fn>Vgl. Johannes Laudage: Der kulturelle Aufbruch, in: Johannes Laudage / Lars Hageneier / Yvonne Leiverkus (Hg.): Die Zeit der Karolinger, Darmstadt 2006, S. 91-146, hier: bes. S. 92.</fn>  Mit diesen ‚Zitaten‘ will Einhard Karl den Großen in die Tradition antiker Kaiser stellen. Das ist kein Zufall, sondern war bereits Karl dem Großen selbst und auch seinem Umfeld wichtig.", 
+    ""
+  );
+var _043 = CreateAudio (
+    "043.mp3", 
+    "Ein Beispiel: In der Aachener Marienkirche ließ Karl der Große antike Säulen aus Ravenna einbauen. Nicht nur, weil sie besonders kostbar und schön sind, sondern weil Karl sie mit dem spätantiken, oströmischen Kaisertum assoziierte. Mit der Wiederverwendung solcher Versatzstücke, die wir Spolien nennen, knüpfte der Frankenkönig unmittelbar an imperiale Herrschaftsvorstellungen der Antike an. Zeitgenössische bildliche Darstellungen Karls des Großen sind nur wenige erhalten.<fn>Zu erwähnen wären hier die Darstellungen im Triclinium des Lateranpalastes und in der römischen Kirche S. Susanna. Beide Mosaike wurden von Papst Leo III. in Auftrag gegeben und sind heute nicht mehr im Originalzustand erhalten, vgl. hierzu jüngst Matthias Exner: Arcusque supra tumulum deauratus cum imagine et titolo exstructus. Zu Darstellungen Karls des Großen in den Bildkünsten des frühen Mittelalters, in: Franz Fuchs / Dorothea Klein (Hg.): Karlsbilder in Kunst, Literatur und Wissenschaft. Akten eines interdisziplinären Symposions anlässlich des 1200. Todestages Kaiser Karls des Großen (Rezeptionskulturen in Literatur- und Mediengeschichte 1), Würzburg 2015, S. 29-64, hier: bes. S. 35-39.</fn>  Einige finden sich auf den sogenannten Bildnismünzen Karls des Großen. Während sein Vater Pippin und sein Bruder Karlmann Münzen ohne ihr Kopfbild prägen ließen, veränderte Karl diese fränkische Tradition nachhaltig.<fn>Vgl. Percy Ernst Schramm: Karl der Große im Lichte seiner Siegel und Bullen sowie der Bild- und Wortzeugnisse über sein Aussehen, in: Karl der Große. Lebenswerk und Nachleben, 5 Bde., hg. von Wolfgang Braunfels, Düsseldorf 1965-1968, Bd. 1: Persönlichkeit und Geschichte, hg. von Helmut Beumann, Düsseldorf 1965, S. 15. Rainer Kahsnitz: Der Wandel des Karlsbildes in der mittelalterlichen Skulptur und Goldschmiedekunst, in: Zeitschrift des Aachener Geschichtsvereins 104/105 (2002/2003): Karl der Große und sein Nachleben in Geschichte, Kunst und Literatur, S. 295-345, hier: S. 295-301.</fn> Er und später auch sein Sohn Ludwig der Fromme ließen Münzen mit ihrem Bildnis prägen.", 
+    ""
+  );
+var _052 = CreateAudio (
+    "052.mp3", 
+    "Die auf Ihrem Display eingeblendete Münze wird heute im Berliner Münzkabinett aufbewahrt. Solche Münzen sind die einzigen erhaltenen Bildnisse, die der Herrscher selbst in Auftrag gegeben hat. Zwar ist ihr Format klein – doch groß ist ihre Aussagekraft. Es handelt sich um Silberdenare, die vermutlich zur Kaiserkrönung im Jahre 800 geprägt wurden oder aber kurz danach.<fn>Vgl. Bernd Kluge: Münzen Karls des Großen, in: 799. Kunst und Kultur der Karolingerzeit. Karl der Große und Papst Leo III. in Paderborn. Katalog der gemeinsamen Ausstellung der Stadt Paderborn, des Erzbistums Paderborn und des Landesverbandes Westfalen-Lippe vom 23. Juli bis 1. November 1999, hg. von Christoph Stiegemann / Matthias Wemhoff, 3 Bde., Mainz 1999, Bd. 1, S. 65-68, hier: S. 65.</fn>  Lediglich 30 Exemplare unterschiedlicher Prägung sind erhalten.<fn>19 Christiana-Religio-Bildnismünzen, 11 Bildnismünzen mit profanen Rückseitenbildern: Es könnte sich also um eine Sonderprägung handeln, vgl. Bernd Kluge: Münzen Karls des Großen, in: 799. Kunst und Kultur der Karolingerzeit. Karl der Große und Papst Leo III. in Paderborn. Katalog der gemeinsamen Ausstellung der Stadt Paderborn, des Erzbistums Paderborn und des Landesverbandes Westfalen-Lippe vom 23. Juli bis 1. November 1999, 3 Bde., hg. von Christoph Stiegemann / Matthias Wemhoff, Mainz 1999, Bd. 1, S. 65-68, hier: S. 65.</fn>  Alle zeigen auf der Vorderseite das Brustbild eines Mannes im Profil. Er hat kurzes Haar und einen hängenden Schnurrbart. Seinen Kopf ziert ein Lorbeerkranz. Bekleidet ist er mit dem Paludamentum, einem römischen Reitermantel, der an der rechten Schulter durch eine spezielle Gewandnadel, die Fibel, zusammengehalten wird", 
+    ""
+  );
+var _054 = CreateAudio (
+    "054.mp3", 
+    "Vergleichen Sie diese Karlsdarstellung einmal mit der antiken Bildmünze auf Ihrem Display. Erkennen Sie die Gemeinsamkeiten? Beide dargestellten Kaiser tragen das Paludamentum und den Lorbeerkranz. Die konkrete Vorlage für die Münze ist uns nicht bekannt. Aber es wird ein bestimmter Typus aufgegriffen.<fn>Vgl. Johannes Laudage: Der kulturelle Aufbruch, in: Johannes Laudage / Lars Hageneier / Yvonne Leiverkus (Hg.): Die Zeit der Karolinger, Darmstadt 2006, S. 91-146, hier: bes. S. 91.</fn> Mit ihm knüpft Karl der Große ganz bewusst an die Darstellung römischer Kaiser an und stellt sich so in die Tradition des römischen Imperiums.", 
+    ""
+  );
+var _059 = CreateAudio (
+    "059.mp3", 
+    "Die Umschrift der Münze lautet „KAROLVS IMP(erator) AVG(ustus)“. Das heißt: „Karl, erhabener Kaiser“. Sie ist jedoch aufgrund des begrenzten Schriftraums abgekürzt. Den Titel Imperator Caesar Augustus trugen die römischen Kaiser seit der Zeit um Christi Geburt. Auch die Münzinschrift macht die Anbindung an die römische Kaisertradition sichtbar. Sehen Sie den hängenden Schnurrbart? Der ist äußerst untypisch für antike Darstellungen und charakterisiert Karl als fränkischen Herrscher.<fn>„Dieser Schnurrbart entsprach – wie viele Bildzeugnisse beweisen – dem fränkischen Brauch des 9. Jh., und da in dieser Zeit Bart- und Haartracht noch Volkskennzeichen ist, ist schwer vorzustellen, dass Karl bei seiner Barttracht einer abweichenden Laune folgte: ebenso wie bei seiner Alltagstracht wird er den fränkischen Brauch beachtet haben.“ Percy Ernst Schramm: Karl der Große im Lichte seiner Siegel und Bullen sowie der Bild- und Wortzeugnisse über sein Aussehen, in: Karl der Große. Lebenswerk und Nachleben, 5 Bde., hg. von Wolfgang Braunfels, Düsseldorf 1965-1968, Bd. 1: Persönlichkeit und Geschichte, hg. von Helmut Beumann, Düsseldorf 1965, S. 22.</fn> Karls Münzbildnis kombiniert also antike und fränkische Elemente. Es ist keinesfalls als individuelles Porträt zu verstehen, sondern transportiert vor allem sein herrscherliches Selbstverständnis.<fn>Vgl. Andrea Stieldorf: Karl der Große im Siegelbild, in: Philippe Cordez (Hg.): Charlemagne et les objets. Des thésaurisations carolingiennes aux constructions mémorielles (L’atelier 5), Bern 2012, S. 209-232, hier: S. 209.</fn>", 
+    ""
+  );
+var _062 = CreateAudio (
+    "062.mp3", 
+    "Die Rückseite der Münze zeigt eine Architekturfassade, die stark an einen antiken Tempel erinnert. Der Giebel wird von vier Säulen getragen. Auf dem Giebel und im Inneren des Gebäudes ist jeweils ein Kreuz zu sehen. Die Umschrift lautet Christiana Religio, d.h. „christliche Religion“. Inschrift und Kreuz kennzeichnen das Gebäude als Kirche und Karl den Großen als christlichen Herrscher. Die beiden Seiten der Münze zeigen zentrale Aspekte von Karls Selbstverständnis: Er ist zugleich Franke, christlicher Herrscher und römischer Imperator.", 
+    ""
+  );
+var _065 = CreateAudio (
+    "065.mp3", 
+    "Eine karolingische bronzene Reiterstatuette weist einige Ähnlichkeiten mit den Bildnismünzen auf. Sie wurde in der Kathedrale zu Metz als Darstellung Karls des Großen verehrt.<fn>1657 wird erstmals von zwei Reiterstatuen Karls des Großen berichtet: eine silberne und eine bronzene, vgl. Danielle Gaborit-Chopin: La statuette équestre de Charlemagne (collection solo 13), Paris 1999, S. 11.</fn> Inmitten von Kerzen wurde sie alljährlich am Todestag Karls des Großen auf das Lesepult gestellt.<fn>Vgl. Danielle Gaborit-Chopin: La statuette équestre de Charlemagne (collection solo 13), Paris 1999, S. 11 und S. 42, Anm. 21.</fn> Heute ist sie diesem liturgischen Zusammenhang entrissen und befindet sich im Musée du Louvre in Paris. Auf Ihrem Display sehen Sie nun diese mit 24 cm recht kleine Statuette. Der Herrscher sitzt zu Pferd. Er trägt erneut das Paludamentum. Der Lorbeerkranz ist einer Lilienkrone gewichen. In seiner rechten Hand hält er eine Kugel. Unter dem Mantel ragt eine Schwertscheide hervor. Vermutlich hielt der Herrscher in der Linken ursprünglich ein heute verlorenes Schwert oder ein Zepter.<fn>Vgl. Danielle Gaborit-Chopin: La statuette équestre de Charlemagne (collection solo 13), Paris 1999, S. 8. Vgl. Percy Ernst Schramm: Die deutschen Kaiser und Könige in Bildern ihrer Zeit. 751-1190. Neuauflage hg. von Florentine Mütherich, München 1983, S. 34-43, S. 148-156.</fn>", 
+    ""
+  );
+var _075 = CreateAudio (
+    "075.mp3", 
+    "Diese Wiederverwendung von antiken Objekten und Formen ist Ihnen ja bereits durch die sogenannte Taufschale Widukinds und die Bildnismünze Karls des Großen vertraut. Der Typus der freistehenden Reiterstatue ist aus der römischen Antike bekannt: So stand vor dem Lateran in Rom etwa die monumentale Reiterstatue Kaiser Marc Aurels aus dem 2. Jahrhundert nach Christus, die man im Mittelalter für diejenige Kaiser Konstantins des Großen hielt. Dieser war im Mittelalter als erster christlicher Kaiser hoch angesehen. Unsere Reiterstatuette aus dem dritten Viertel des 9. Jahrhunderts schließt an diesen Darstellungstypus an: Sie zeigt den imperialen Herrschaftsanspruch der Karolinger.", 
+    ""
+  );
+var _080 = CreateAudio (
+    "080.mp3", 
+    "Der Reiter kann aufgrund seiner Attribute als karolingischer Herrscher gelten: Dafür sprechen der hängende Schnurrbart, die Lilienkrone, der Reitermantel, die Form der Schwertscheide sowie Hosen, Beinwickel und Schuhe. Die Identität der dargestellten Person lässt sich allerdings nicht mit letzter Sicherheit bestimmen. In der Kathedrale von Metz in Lothringen galt der Reiter lange Zeit als Karl der Große,<fn>Wilhelm Köhler hat Stilmerkmale aufgezählt, die die Reiterstatuette in den Bereich der Metzer Elfenbeinschnitzerei nach 860 rücken, vgl. Wilhelm Köhler (Rez.): Percy Ernst Schramm: Die Bildnisse der Deutschen Könige und Kaiser, Berlin 1928, in: Deutsche Literaturzeitung 51 (1930), Sp. 939-941, hier: Sp. 941.</fn>  doch sind „weder die Kronenform noch der Reichsapfel (...) für die Zeit Karls des Großen nachweisbar. Diese Insignien begegnen (…) erst in der Zeit seines Enkels, Karls des Kahlen“.<fn>Matthias Exner: Arcusque supra tumulum deauratus cum imagine et titolo exstructus. Zu Darstellungen Karls des Großen in den Bildkünsten des frühen Mittelalters, in: Franz Fuchs / Dorothea Klein (Hg.): Karlsbilder in Kunst, Literatur und Wissenschaft. Akten eines interdisziplinären Symposions anlässlich des 1200. Todestages Kaiser Karls des Großen (Rezeptionskulturen in Literatur- und Mediengeschichte 1), Würzburg 2015, S. 43.</fn>  Man nimmt an, dass eben dieser anlässlich seiner Krönung zum lothringischen König 869 diese Statuette der Kathedrale in Metz geschenkt hat. Doch wen sie zeigt, darüber gehen die Meinungen heute auseinander: Manche sagen, die Statuette zeige Karl den Großen. Andere sagen, sie zeige Karl den Kahlen stilisiert als Karl den Großen.<fn>Karl der Kahle identifizierte sich häufig mit seinem Großvater, vgl. Wiliam J. Diebold: Nos quoque morem illius imitari cupientes. Charles the Bald’s Evocation and Imitation of Charlemagne, in: Archiv für Kulturgeschichte 75 (1993), S. 271-300. Dahingehend schreibt Percy Ernst Schramm, es handele sich um eine Memorialstatue Karls des Großen mit den Zügen Karls des Kahlen, vgl. Percy Ernst Schramm: Die deutschen Kaiser und Könige in Bildern ihrer Zeit. 751-1190. Neuauflage hg. von Florentine Mütherich, München 1983, S. 59, S. 174.</fn> Wieder andere sagen, es handele sich dabei um das „Bild des karolingischen Herrschers schlechthin“.<fn>Florentine Mütherich: Die Reiterstatuette der Metzer Kathedrale, in: Kurt Martin (Hg.): Studien zur Geschichte der europäischen Plastik. Festschrift Theodor Müller zum 19. April 1965, München 1965, S. 9-16, hier: S. 15.</fn> Eine endgültige Entscheidung lässt die Quellenlage aber nicht zu.", 
+    ""
+  );
+var _081 = CreateAudio (
+    "081.mp3", 
+    "Die Reiterstatuette in der Kathedrale von Metz zeigt, dass Karl bereits seit dem frühen Mittelalter verehrt wurde. Heiliggesprochen wurde er jedoch erst viel später. Ein wichtiges Ereignis auf diesem Weg war die Öffnung des Karlsgrabes durch Kaiser Otto III. zu Pfingsten des Jahres 1000. Der Legende nach soll Otto III. Karls Leichnam in der Aachener Marienkirche unversehrt und herrscherlich sitzend vorgefunden haben.<fn>Knut Görich wertet die Graböffnung als ersten Schritt eines Kanonisationsprozesses, dessen formaler Abschluss wegen des plötzlichen Todes Ottos III. nicht mehr erfolgte. Vgl. Knut Görich: Die Heiligsprechung Karls des Großen, in: Karl der Große – charlemagne. Orte der Macht. Essays, hg. von Frank Pohle, Dresden 2014, S. 418-425, hier: bes. S. 423.</fn>", 
+    ""
+  );
+var _084 = CreateAudio (
+    "084.mp3", 
+    "Erst im Hochmittelalter, im Jahr 1165, wurde Karl im Aachener Marienstift heiliggesprochen. Zehn Tage später ließ Friedrich I. Barbarossa eine Urkunde ausstellen. Hier wird Karl der Große als wahrer Apostel der Sachsen, Friesen und Westfalen und als Märtyrer im Kampf gegen die Heiden charakterisiert.<fn>Die Urkunden der deutschen Könige und Kaiser, Bd. 10.2: Die Urkunden Friedrichs I. 1158-1167, bearbeitet von Heinrich Appelt (MGH DD 10.2), Hannover 1979, Nr. 502.</fn> Zudem wird er als Idealherrscher und „Vorbild für das Leben und die Lenkung der Untergebenen“<fn>Deutsche Übersetzung nach: Knut Görich: Kanonisation als Mittel der Politik? Der heilige Karl und Friedrich Barbarossa, in: Franz Fuchs / Dorothea Klein (Hg.): Karlsbilder in Kunst, Literatur und Wissenschaft. Akten eines interdisziplinären Symposions anlässlich des 1200. Todestages Kaiser Karls des Großen (Rezeptionskulturen in Literatur- und Mediengeschichte 1), Würzburg 2015, S. 96. Die Urkunden der deutschen Könige und Kaiser, Bd. 10.2: Die Urkunden Friedrichs I. 1158-1167, bearbeitet von Heinrich Appelt (MGH DD 10.2), Hannover 1979, Nr. 502, S. 432, Z. 26-29.</fn> gepriesen. Doch war der Karlskult zunächst vor allem von lokaler Bedeutung, wenngleich Karl in literarischen Texten immer wieder als Heiliger inszeniert wird. Erst ab dem 13. Jahrhundert nehmen die Bildzeugnisse zu Karl dem Großen signifikant zu. So stellt man ihn häufig als Stifter, Patron und Heiligen dar.<fn>Dietrich Kötzsche: Darstellungen Karls des Großen in der lokalen Verehrung des Mittelalters, in: Wolfgang Braunfels / Percy Ernst Schramm (Hg.): Karl der Große. Lebenswerk und Nachleben, Bd. 4: Das Nachleben, Düsseldorf 1967, S. 157-214, hier: S. 158.</fn>", 
+    ""
+  );
+var _089 = CreateAudio (
+    "089.mp3", 
+    "Und in eben dieser Funktion des Gründers der Stadt und seiner Kirche wird Karl der Große auch in Paderborn verehrt. Auch wenn schon vor 776 eine sächsische Siedlung in diesem Gebiet existierte, so gilt Karl der Große doch gemeinhin als ‚Gründer’ der Stadt Paderborn und des Domes. Eine Urkunde König Heinrichs II. (1002-1024) aus dem Jahre 1011 gilt hierfür als der früheste Beleg.<fn>Karolo magno imperatore olim fundatae (...), Die Urkunden der deutschen Könige und Kaiser, Bd. 3: Die Urkunden Heinrichs II. und Arduins (MGH DD HII), Hannover 1900-1903, Nr. 225, S. 261-262.</fn> Der eigentliche Kult Karls des Großen ist in Paderborn laut Robert Folz jedoch erst 1357 mit der Weihe eines Altares „zu Ehren der hl. Maria (...) und auch der Kaiser Karl und Heinrich (...)“<fn>in honorem S. Mariae (…) necnon ss. Caroli et Henrici imperatorum et S. Oswaldi regis, vgl. Nikolaus Schaten: Annales Paderbornenses, hg. von Michael Strunck, 3 Bde., Neuhaus / Paderborn 1693, 1698 und 1741, Bd. 2: Ab anno Christi 1228. usque ad annum 1500, Neuhaus / Paderborn 1698, S. 340. Vgl. Anton Höynck: Aus der liturgischen Vergangenheit Paderborns, in: Anzeigeblatt für den katholischen Klerus Paderborn 14 (1901), S. 44.</fn> fassbar. Es dauerte also fast 200 Jahre bis die Verehrung Karls nach dessen Heiligsprechung auch in Paderborn etabliert war.", 
+    ""
+  );
+var _103 = CreateAudio (
+    "103.mp3", 
+    "Das Hochgrab Bischof Rothos von Paderborn entstand im 15. Jahrhundert. Rotho war von 1036 bis 1056 Bischof von Paderborn und damit direkter Nachfolger Meinwerks. Erst im Spätmittelalter wurde er lokal verehrt. Sein aufwendig gestaltetes Hochgrab kann man in unterschiedliche Zonen unterteilen. Zuunterst sehen Sie einen maßwerkverzierten, hochgotischen Unterbau. Es handelt sich hierbei um den wieder verwendete Unterbau eines ehemaligen Altars.<fn>Alois Fuchs setzt diesen Unterbau mit dem des 1345 errichteten Sakramentsaltars im Chor in Verbindung, vgl. Alois Fuchs: Grabungen und Funde im und am Paderborner Dom seit 1907, in: Sankt Liborius. Sein Dom und sein Bistum. Zum 1100jährigen Jubiläum der Reliquienübertragung im Auftrage des Metropolitankapitels herausgegeben von Paul Simon, Paderborn 1936, S. 207-236, hier: S. 223 und S. 226.</fn> Darüber sehen Sie den Sarkophag, auch Tumba genannt, deren Seiten mit krabbenbesetzten Kielbögen verziert sind. Auf der Längsseite sind sechs halbfigürliche Heilige dargestellt. Finden Sie Karl den Großen? Wer könnte es sein?", 
+    ""
+  );
+var _107 = CreateAudio (
+    "107.mp3", 
+    "Ja, genau! Er steht rechts außen als älterer, bärtiger Mann, der gekrönten Hauptes Schwert und Reichsapfel in den Händen hält. Das entspricht seiner gängigen Ikonographie, die sich im Laufe des Hochmittelalters entwickelte. Eine wichtige Quelle hierfür ist die Historia Caroli Magni des Pseudo-Turpin aus dem 12. Jahrhundert, in der Karl der Große mit längerem Haupthaar und Vollbart beschrieben wird. Auch der unter dem Mantel hervorscheinende Harnisch ist ein hochmittelalterlicher Zusatz, der die ritterlichen Tugenden Karls unterstreicht.", 
+    ""
+  );
+var _113 = CreateAudio (
+    "113.mp3", 
+    "Eine ganz ähnliche Darstellung Karls des Großen finden wir auf einer der erhaltenen Wangen des Bremer Rathausgestühls, das um 1410 entstanden ist. Eine Abbildung sehen Sie nun auf Ihrem Display. Auch auf diesem für den Stadtrat geschaffenen Werk erscheint der legendäre Stadtgründer in Rüstung und mit gefibeltem Mantel. Auch ist er mit den gleichen Insignien, d.h. Lilienkrone, Schwert und Reichsapfel, ausgestattet. Allerdings hält er das blanke, nach oben gereckte Schwert hier in der linken Hand, wohingegen er den Reichsapfel in der verhüllten Rechten hält. Karls Heiligkeit wird hier noch durch den Heiligenschein unterstrichen.", 
+    ""
+  );
+var _122 = CreateAudio (
+    "122.mp3", 
+    "Karl und Leo haben eine besondere Bedeutung für den Paderborner Dom. Sie rahmen – links und rechts außen – die anderen Figuren gleichsam ein. Trotzdem gehören sie zusammen. Das kommt auch formal zum Ausdruck: Alle Heiligen weisen die gleiche Kopfhöhe auf – man spricht hier von Isokephalie – und sind bis auf die Gottesmutter frontal dem Betrachter zugewandt. Doch einzig Karl der Große und Leo III. tragen einen Mantel, der auf der Brust von einer reich verzierten Fibel zusammengehalten wird. Und auch ihre Insignien sind aufeinander bezogen: So findet man den liliengeschmückten Reif sowohl auf der Tiara Leos III. als auch auf der Bügelkrone Karls des Großen. Leos Kreuzstab, die sogenannte Ferula, und Karls Schwert sind beide zur Mitte hin ausgerichtet.", 
+    ""
+  );
+var _124 = CreateAudio (
+    "124.mp3", 
+    "An den Schmalseiten der Tumba halten drei Engel Inschriften, die zusammen einen gereimten lateinischen Text ergeben. Die deutsche Übersetzung lautet: „Es ist übertragen unter Zeichen, in der ersten Kirche gelegen, der von Büren geborene Bischof, der Rotho genannt ist. Uns hat er fünfzehn Jahre regiert, gut beschützt. 1051 starb er, dem der heilige Meinwerk vorangegangen war.“<fn>Deutsche Übersetzung nach: Margarete Niggemeyer: Eine Wolke von Zeugen. Die Heiligen im Hohen Dom zu Paderborn, Paderborn 2007, S. 191. Umschrift der lateinischen Inschrift durch Burkhard Meier: Est hic locus translatus / De Buren natus / Nos annis rexit / MLI decessit /signis primo templo locatus / presul qui Rotho vocatus / ter quinis bene protexit / quem Meinwerc sancte precessit, Burkhard Meier: Das Grabmal des Bischofs Rotho im Dom zu Paderborn, in: Zeitschrift für christliche Kunst 26 (1913), Sp. 97-102, Tafel III.</fn>Die Inschrift besagt also, dass es sich um das Grabmal Bischof Rothos handelt. Ihn sehen Sie auf dem Deckel der Tumba im Typus der betenden Liegefigur im Bischofsornat.", 
+    ""
+  );
+var _139 = CreateAudio (
+    "139.mp3", 
+    "Aber warum wurde dieses Grabmal rund 400 Jahre nach dem Tod Bischof Rothos überhaupt in Auftrag gegeben? Und von wem? Den Namen des Auftraggebers können wir am Grabmal leider nicht finden. Allerdings sind Wappen erkennbar. In der Mitte steht Maria als Himmelskönigin mit dem Jesuskind. In dieser himmlischen Sphäre schweben auch die beiden Engel, die Weihrauchfässer schwenken. Zu ihren Füßen knieten ursprünglich die beiden Stifterfiguren, Wilhelm von Büren-Büsigheim und seine Gemahlin Irmgard zur Lippe. Sie können aufgrund der zwei noch erhaltenen Wappen identifiziert werden. Doch welches Interesse hatten diese beiden an der Errichtung eines so aufwendigen und kostspieligen Hochgrabes für Bischof Rotho? Sie vermuteten in Rotho ihren direkten Vorfahren. So sicherten sie nicht nur die Erinnerung an ihn, sondern durch liturgisches Gedenken auch ihr eigenes Seelenheil – so glaubte man zumindest im Mittelalter und in der Frühen Neuzeit. Leider ist heute von den Stifterfiguren einzig Irmgard mit dem Wappen der Familie zur Lippe noch erhalten.<fn>„Das Wappen zeigt eine einzelne große Rose, also muss die Inhaberin dem Lippeschen Geschlechte angehören.“ Burkhard Meier: Das Grabmal des Bischofs Rotho im Dom zu Paderborn, in: Zeitschrift für christliche Kunst 26 (1913), Sp. 99.</fn> Burkhard Meier hat herausstellen können, dass das weitere Wappen oberhalb der Nische das des holländischen Zweigs der Familie Büren ist.<fn>Das Wappen führt „einen oben viermal, unten dreimal gezinnten Balken“. Burkhard Meier: Das Grabmal des Bischofs Rotho im Dom zu Paderborn, in: Zeitschrift für christliche Kunst 26 (1913), Sp. 99-100.</fn>", 
+    ""
+  );
+var _147 = CreateAudio (
+    "147.mp3", 
+    "Die große Figur des Weihrauch schwenkenden Geistlichen gehört nicht zum ursprünglichen Grabmal. Sie war Teil eines anderen Skulpturensembles und zierte die Wandnische bereits vor der Versetzung des Rotho-Grabmals in den Hasenkamp im Jahre 1959. Denn Rothos Gebeine wurden im Zuge der Jahrhunderte mehrmals umgebettet. Nach seinem Tode im Jahre 1051 wurde er vermutlich in der Mitte des damaligen Domes bestattet. 1175 überführte man seine Gebeine in den Chor.<fn>in medio fere templi sepulchro traditus fuit; sed postea inde ereptus, altiorem in locum chori translatus est (…) Quod e regione petrae seu loci, unde sublatus est, in aere columne testudinis infixo hujusmodi rythmico carmine declaratur (…). Alois Fuchs: Grabungen und Funde im und am Paderborner Dom seit 1907, in: Sankt Liborius. Sein Dom und sein Bistum. Zum 1100jährigen Jubiläum der Reliquienübertragung im Auftrage des Metropolitankapitels herausgegeben von Paul Simon, Paderborn 1936, S. 224, Anm. 20.</fn> Hier fanden sie um 1460 Aufnahme in diesem Hochgrab. Es stand im 15. Jahrhundert an der Südwand des westlichen Chorjoches. Dieser Bereich war allein der Geistlichkeit zugänglich. Durch den mittelalterlichen Lettner war er sogar den Blicken der Laien versperrt.", 
+    ""
+  );
+var _149 = CreateAudio (
+    "149.mp3", 
+    "Eine Fotografie aus der Zeit um 1900 zeigt Ihnen auf Ihrem Display den ursprünglichen Standort. Aus Platzgründen wurde das Rotho-Grabmal im Laufe des 20. Jahrhunderts mehrfach versetzt: 1924 zunächst in das Atrium und 1959 an seinen heutigen Standort im sogenannten Hasenkamp. Damit hat sich auch die sakraltopographische Situation verändert: So richtete Rotho seine Gebete ursprünglich nach Osten, d.h. in Richtung der erwarteten Wiederkehr Christi.", 
+    ""
+  );
+var _159 = CreateAudio (
+    "159.mp3", 
+    "Eine Fotografie aus der Zeit um 1900 zeigt Ihnen auf Ihrem Display den ursprünglichen Standort. Aus Platzgründen wurde das Rotho-Grabmal im Laufe des 20. Jahrhunderts mehrfach versetzt: 1924 zunächst in das Atrium und 1959 an seinen heutigen Standort im sogenannten Hasenkamp. Damit hat sich auch die sakraltopographische Situation verändert: So richtete Rotho seine Gebete ursprünglich nach Osten, d.h. in Richtung der erwarteten Wiederkehr Christi.", 
     ""
   );
 var _166 = CreateAudio (
@@ -238,6 +373,81 @@ var _195 = CreateAudio (
     "195.mp3", 
     "Damit sind wir am Ende unseres Rundganges angekommen und Sie sehen: Karl der Große ist nicht nur für die Geschichte Paderborns, für die Sachsenmission und für Bauwerke in unserer Region von großer Bedeutung gewesen. Die sogenannte Bildungsreform Karls des Großen hat Auswirkungen bis in die heutige Zeit – wie Sie an den lateinischen Buchstaben auf Ihrem Display erkennen können.", 
     ""
+  );
+var berlinMünzeRückseiteHighlighted = CreateImage (
+    "Berlin Münze", 
+    "Rückseite der Bildnismünze Karls des Großen, Frankfurt (?), nach 800, Silber geprägt, 1,71 g, Durchmesser: 19,9 mm, XPICTIANA RELIGIO (Christiana religio), Fassadenansicht einer tempelartigen Kirchenfront nach dem Beispiel einer antiken Tempelfassade mit vier Säulen und zwei Kreuzen, Berlin, Staatliche Museen zu Berlin, Münzkabinett, Inventar-Nr.: 18202748. © bpk / Münzkabinett, SMB / Lutz Jürgen Lübke", 
+    "BerlinMünzeKarlsdesGroßenRückseiteGehighlightet.jpg"
+  );
+var berlinMünzeVorderseite = CreateImage (
+    "Berlin Münze", 
+    "Das Bild Karls des Großen auf zeitgenössischen Münzen", 
+    "BerlinMünzeKarlsdesGroßeVorderseite.jpg"
+  );
+var berlinMünzeVorderseite2 = CreateImage (
+    "Berlin Münze", 
+    "Vorderseite der Bildnismünze Karls des Großen", 
+    "BerlinMünzeKarlsdesGroßeVorderseite.jpg"
+  );
+var berlinMünzeVorderseite3 = CreateImage (
+    "Berlin Münze", 
+    "Vorderseite der Bildnismünze Karls des Großen, Frankfurt (?), nach 800, Silber geprägt, 1,71 g, Durchmesser: 19,9 mm, KAROLVS IMP(erator) AVG(ustus), Berlin, Staatliche Museen zu Berlin, Münzkabinett, Inventar-Nr.: 18202748. © bpk / Münzkabinett, SMB / Lutz Jürgen Lübke", 
+    "BerlinMünzeKarlsdesGroßeVorderseite.jpg"
+  );
+var berlinMünzeVorderSeiteHighlighted = CreateImage (
+    "Berlin Münze", 
+    "Vorderseite der Bildnismünze Karls des Großen mit farbig hervorgehobenem Paludamtentum, Lorbeerkranz und Schnurbart", 
+    "BerlinMünzeKarlsdesGroßeVorderseiteGehighlitet.jpg"
+  );
+var domRothoGrabmalDetailEngelNordseite1 = CreateImage (
+    "", 
+    "Paderborn, Dom, Hasenkamp, Details der Nord- und Südseite des Grabmals Bischof Rothos von Paderborn (1036-1051), gestiftet von Wilhelm von Büren-Büsigheim und Irmgard zur Lippe, um 1435, Foto: Universität Paderborn, N.N.", 
+    "DomRothoGrabmalDetailEngelNordseite1.jpg"
+  );
+var domRothoGrabmalDetailEngelNordseite2 = CreateImage (
+    "", 
+    "Paderborn, Dom, Hasenkamp, Details der Nord- und Südseite des Grabmals Bischof Rothos von Paderborn (1036-1051), gestiftet von Wilhelm von Büren-Büsigheim und Irmgard zur Lippe, um 1435, Foto: Universität Paderborn, N.N.", 
+    "DomRothoGrabmalDetailEngelNordseite2.jpg"
+  );
+var domRothoGrabmalDetailEngelSüdseite = CreateImage (
+    "", 
+    "Paderborn, Dom, Hasenkamp, Details der Nord- und Südseite des Grabmals Bischof Rothos von Paderborn (1036-1051), gestiftet von Wilhelm von Büren-Büsigheim und Irmgard zur Lippe, um 1435, Foto: Universität Paderborn, N.N.", 
+    "DomRothoGrabmalDetailEngelSüdseite.jpg"
+  );
+var domRothoGrabmalDetailKdG = CreateImage (
+    "Grabmals Bischof Rothos", 
+    "Paderborn, Dom, Hasenkamp, Detail des Grabmals Bischof Rothos von Paderborn (1036-1051), gestiftet von Wilhelm von Büren-Büsigheim und Irmgard zur Lippe, um 1435, Foto: Universität Paderborn, Kristina Stog.", 
+    "DomRothoGrabmalDetailKdG.jpg"
+  );
+var domRothoGrabmalDetailKdG2 = CreateImage (
+    "", 
+    "Das Bild Karls des Großen im Hoch- und Spätmittelalter", 
+    "DomRothoGrabmalDetailKdG.jpg"
+  );
+var domRothograbmalDetailLeo = CreateImage (
+    "Details des Grabmals Bischof Rothos", 
+    "Paderborn, Dom, Hasenkamp, Details des Grabmals Bischof Rothos von Paderborn (1036-1051), gestiftet von Wilhelm von Büren-Büsigheim und Irmgard zur Lippe, um 1435, Foto: Universität Paderborn, Kristina Stog.", 
+    "DomRothograbmalDetailLeo.jpg"
+  );
+var domRothoGrabmalGesamtansicht = CreateImage (
+    "Rotho Grabmal", 
+    "Paderborn, Dom, Hasenkamp, Grabmal Bischof Rothos von Paderborn (1036-1051), gestiftet von Wilhelm von Büren-Büsigheim und Irmgard zur Lippe, um 1435, Foto: Universität Paderborn, Kristina Stog.", 
+    "DomRothograbmalGesamtansicht.jpg"
+  );
+var domRothograbmalGesamtansichtEinfärbungThuriferar = CreateImage (
+    "Grabmal Bischof Rothos", 
+    "Paderborn, Dom, Hasenkamp, Grabmal Bischof Rothos von Paderborn (1036-1051) mit der rot eingefärbten Darstellung des Thuriferars, gestiftet von Wilhelm von Büren-Büsigheim und Irmgard zur Lippe, um 1435, Foto: Universität Paderborn, Kristina Stog.", 
+    "DomRothograbmalGesamtansichtEinfärbungThuriferar.jpg"
+  );
+var domRothograbmalKarlderGroßeEinfärbungSpruchband = CreateImage (
+    "Grabmal Bischof Rothos", 
+    "Paderborn, Dom, Hasenkamp, Detail des Grabmals Bischof Rothos von Paderborn (1036-1051) mit der rot eingefärbten Inschrift unter Karl dem Großen, gestiftet von Wilhelm von Büren-Büsigheim und Irmgard zur Lippe, um 1435, Foto: Universität Paderborn, Kristina Stog.", 
+    "DomRothograbmalKarlderGroßeEinfärbungSpruchband.jpg"
+  );
+var domRothograbmalLeoEinfärbung = CreateImage (
+    "Grabmal Bischof Rothos", 
+    "Paderborn, Dom, Hasenkamp, Detail des Grabmals Bischof Rothos von Paderborn (1036-1051) mit der rot eingefärbten Inschrift unter Papst Leo III., gestiftet von Wilhelm von Büren-Büsigheim und Irmgard zur Lippe, um 1435, Foto: Universität Paderborn, Kristina Stog.", 
+    "DomRothograbmalLeoEinfärbung.jpg"
   );
 var kaiserPfalzImage = CreateImage (
     "Die Pfalz Karls des Großen", 
@@ -334,6 +544,11 @@ var kaiserpfalz_slider2_3 = CreateImage (
     "Schematischer Gesamtplan des karolingischen Zustands der Pfalz von Ingelheim am Rhein, um 800. \n[Bildnachweis: Untermann, Matthias : Architektur im frühen Mittelalter, Darmstadt 2006, S. 119, Abb. 105]", 
     "kaiserpfalz_slider_7_3.jpg"
   );
+var karldergroßeimwandel_teaser = CreateImage (
+    "", 
+    "", 
+    "karldergroßeimwandel_teaser.jpg"
+  );
 var karlsschule = CreateImage (
     "", 
     "", 
@@ -349,6 +564,16 @@ var noImage = CreateImage (
     "Hier fehlt das Bild", 
     "noImage.jpg"
   );
+var parisLouvreReiterstatue = CreateImage (
+    "Die Reiterstatuette", 
+    "Die Reiterstatuette - das Bild eines karolingischen Herrschers ", 
+    "ParisLouvreReiterstatuetteGesamt.jpg"
+  );
+var parisLouvreReiterStatuetteGesamt = CreateImage (
+    "Reiterstatuette", 
+    "Reiterstatuette eines karolingischen Herrschers, Metz (?), Pferd: Spätantik oder 9. Jh., Reiter: um 870; im 18. Jh. restauriert, Bronze, 24 x 17,5 x 0,95 cm, Paris, Musée du Louvre, département des Objets d’art, OA 8260. Photo © RMN-Grand Palais (musée du Louvre) / Jean-Gilles Berizzi", 
+    "ParisLouvreReiterstatuetteGesamt.jpg"
+  );
 var quellen1Teaser = CreateImage (
     "", 
     "", 
@@ -358,6 +583,11 @@ var quellen3Teaser = CreateImage (
     "Taufen an der Pader?", 
     "", 
     "quellen3Teaser.jpg"
+  );
+var reproRatsgestuehlKarlderGroßeFockeMuseumBremenInventarNr00294 = CreateImage (
+    "Ratsgestühls mit Darstellung Karls des Großen", 
+    "Wange des ehem. Ratsgestühls mit der Darstellung Karls des Großen, Norddeutsch, um 1410, Eichenholz, 243 x 47 x 6 cm, ehem. Bremen, Rathaus, Obere Halle, heute Bremen, Focke-Museum, Inv.-Nr. 294. © Bremen, Focke-Museum, Inv.-Nr. 294.", 
+    "ReproRatsgestuehlKarlderGroßeFockeMuseumBremenInventarNr00294.jpg"
   );
 var sachsenkriege_1 = CreateImage (
     "", 
@@ -416,6 +646,45 @@ kaiserpfalz.Pages.Add( CreateImagePage (kaiserpfalz_image_5_3, null, null, sprec
 kaiserpfalz.Pages.Add( CreateImagePage (kaiserpfalz_image_7_1, null, null, sprechertext_7_1) );
 kaiserpfalz.Pages.Add( CreateTimeSliderPage("Grundrisse", "Maßstabsgetreue Grundrisse der Pfalzanlagen in Paderborn, Aachen und Ingelheim.", new long[]{0,1,2}, new []{kaiserpfalz_slider2_1,kaiserpfalz_slider2_2,kaiserpfalz_slider2_3}, true, sprechertext_7_2) );
 kaiserpfalz.Pages.Add( CreateImagePage (kaiserpfalz_image_last, null, null, sprechertext_8) );
+var karldergroßeimwandelderzeit = CreateExhibit (
+    "Karl der Große im Wandel der Zeit",
+    "",
+    51.719377,
+    8.756661,
+    new []{"Dom"},
+    new []{"Dom"},
+    karldergroßeimwandel_teaser
+  );
+karldergroßeimwandelderzeit.Pages.Add( CreateAppetizerPage ("Der Blick auf Karl den Großen: Christ, Frankenkönig, Imperator, Heiliger.", karldergroßeimwandel_teaser) );
+karldergroßeimwandelderzeit.Pages.Add( CreateImagePage (noImage, null, null, _016_karlsbild) );
+karldergroßeimwandelderzeit.Pages.Add( CreateImagePage (noImage, null, null, _020_karlsbild) );
+karldergroßeimwandelderzeit.Pages.Add( CreateImagePage (noImage, null, null, _023_karlsbild) );
+karldergroßeimwandelderzeit.Pages.Add( CreateImagePage (domRothoGrabmalDetailKdG, null, null, _032_karlsbild) );
+karldergroßeimwandelderzeit.Pages.Add( CreateTimeSliderPage("Bildzeugnisse", "Bildzeugnisse aus karolingischer Zeit", new long[]{0,1,2}, new []{berlinMünzeVorderseite,parisLouvreReiterstatue,domRothoGrabmalDetailKdG2}, true, _035_karlsbild) );
+karldergroßeimwandelderzeit.Pages.Add( CreateImagePage (noImage, null, null, _037_karlsbild) );
+karldergroßeimwandelderzeit.Pages.Add( CreateImagePage (noImage, null, null, _041) );
+karldergroßeimwandelderzeit.Pages.Add( CreateImagePage (noImage, null, null, _043) );
+karldergroßeimwandelderzeit.Pages.Add( CreateTimeSliderPage("Berlin Münze", "Vorderseite der Bildnismünze Karls des Großen, Frankfurt (?), nach 800, Silber geprägt, 1,71 g, Durchmesser: 19,9 mm, KAROLVS IMP(erator) AVG(ustus). Unter der Büste ein F (laut Philip Grierson steht dies für Frankfurt als Münzstätte, Philip Grierson: Money and Coinage under Charlemagne, in: Karl der Große. Lebenswerk und Nachleben, 5 Bde., hg. von Wolfgang Braunfels, Düsseldorf 1965-1968, Bd. 1: Persönlichkeit und Geschichte, hg. von Helmut Beumann, Düsseldorf 1965, S. 501-535), Berlin, Staatliche Museen zu Berlin, Münzkabinett, Inventar-Nr.: 18202748.© bpk / Münzkabinett, SMB / Lutz Jürgen Lübke", new long[]{0,1}, new []{berlinMünzeVorderseite2,berlinMünzeVorderSeiteHighlighted}, true, _052) );
+karldergroßeimwandelderzeit.Pages.Add( CreateImagePage (noImage, null, null, _054) );
+karldergroßeimwandelderzeit.Pages.Add( CreateImagePage (berlinMünzeVorderseite3, null, null, _059) );
+karldergroßeimwandelderzeit.Pages.Add( CreateImagePage (berlinMünzeRückseiteHighlighted, null, null, _062) );
+karldergroßeimwandelderzeit.Pages.Add( CreateImagePage (parisLouvreReiterStatuetteGesamt, null, null, _065) );
+karldergroßeimwandelderzeit.Pages.Add( CreateImagePage (noImage, null, null, _075) );
+karldergroßeimwandelderzeit.Pages.Add( CreateImagePage (noImage, null, null, _080) );
+karldergroßeimwandelderzeit.Pages.Add( CreateImagePage (noImage, null, null, _081) );
+karldergroßeimwandelderzeit.Pages.Add( CreateImagePage (noImage, null, null, _084) );
+karldergroßeimwandelderzeit.Pages.Add( CreateImagePage (noImage, null, null, _089) );
+karldergroßeimwandelderzeit.Pages.Add( CreateImagePage (domRothoGrabmalGesamtansicht, null, null, _103) );
+karldergroßeimwandelderzeit.Pages.Add( CreateImagePage (noImage, null, null, _107) );
+karldergroßeimwandelderzeit.Pages.Add( CreateImagePage (domRothograbmalKarlderGroßeEinfärbungSpruchband, null, null) );
+karldergroßeimwandelderzeit.Pages.Add( CreateImagePage (reproRatsgestuehlKarlderGroßeFockeMuseumBremenInventarNr00294, null, null, _113) );
+karldergroßeimwandelderzeit.Pages.Add( CreateTimeSliderPage("Rotho-Grabmal ", "Personen auf dem Rotho-Grabmal", new long[]{0,1,2}, new []{domRothograbmalLeoEinfärbung,domRothoGrabmalDetailKdG,domRothograbmalDetailLeo}, true) );
+karldergroßeimwandelderzeit.Pages.Add( CreateImagePage (noImage, null, null, _122) );
+karldergroßeimwandelderzeit.Pages.Add( CreateTimeSliderPage("Rotho-Grabmal", "Mehr Informationen zum Rotho-Grabmal", new long[]{0,1,2}, new []{domRothoGrabmalDetailEngelNordseite1,domRothoGrabmalDetailEngelNordseite2,domRothoGrabmalDetailEngelSüdseite}, true, _124) );
+karldergroßeimwandelderzeit.Pages.Add( CreateImagePage (noImage, null, null, _139) );
+karldergroßeimwandelderzeit.Pages.Add( CreateImagePage (domRothograbmalGesamtansichtEinfärbungThuriferar, null, null, _147) );
+karldergroßeimwandelderzeit.Pages.Add( CreateImagePage (noImage, null, null, _149) );
+karldergroßeimwandelderzeit.Pages.Add( CreateImagePage (noImage, null, null, _159) );
 var Paderquellgebiet = CreateExhibit (
     "Paderbrunnon, Patresbrun, Paderbrunno",
     "",
@@ -478,6 +747,7 @@ karlsrouteSet.ActiveSet.Add(Paderquellgebiet);
 karlsrouteSet.ActiveSet.Add(Taufe);
 karlsrouteSet.ActiveSet.Add(sachsenkriege);
 karlsrouteSet.ActiveSet.Add(Kaisermachtschule);
+karlsrouteSet.ActiveSet.Add(karldergroßeimwandelderzeit);
 var karlsroute = CreateRoute (
     "Karlsroute",
     "Auf der Spur Karls des Großen!",
