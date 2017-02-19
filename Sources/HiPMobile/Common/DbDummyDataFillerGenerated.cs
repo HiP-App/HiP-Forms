@@ -23,33 +23,13 @@ using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 namespace de.upb.hip.mobile.pcl.Common {
     public partial class DbDummyDataFiller {
 
-        public static int DatabaseVersion { get; } = 15;
+        public static int DatabaseVersion { get; } = 16;
 
         public void InsertData ()
         {
             using (DbManager.StartTransaction ())
             {
-                var paderquellgebiet1 = CreateAudio (
-    "paderquellgebiet1.mp3", 
-    "Hier, im Paderquellgebiet, entspringt in über 200 Quellen die Pader. Sie ist mit etwa vier Kilometern Länge nicht nur der kürzeste Fluss Deutschlands, sondern gab der Stadt auch ihren Namen: Paderborn. Pader ist ein alter germanischer Gewässername. Was genau dieser Name bedeutet hat, als er vor vielen Jahrhunderten entstanden ist, lässt sich heute nicht mehr sagen – man nimmt aber an, dass die sprachliche Form (*PaÞ(e)ra) vermutlich so viel wie „Wasserlauf“ oder „sich einen Weg bahnendes Wasser“ bedeutete. Das Grundwort born kommt aus dem Altsächsischen [Infobutton zur Altsächsischen Sprache]. Damals sprach man noch von brunno, das an unser heutiges „Brunnen“ erinnert, aber die Bedeutung „Wasser“, „Quelle“ oder auch „Ursprung“ hat.", 
-    ""
-  );
-var paderquellgebiet2 = CreateAudio (
-    "paderquellgebiet2.mp3", 
-    "-brunnen bzw. seine niederdeutsche Form -born sind typische Grundwörter deutscher Flussnamen. Häufig wurden diese im Mittelalter auch auf Siedlungen übertragen, was wir noch heute in Städtenamen wie Brunn, Heilbronn, Eschborn oder eben Paderborn hören können. Die Zusammensetzung aus Pader und born bezeichnet also eine Siedlung „an den Quellen des Flusses Pader.", 
-    ""
-  );
-var paderquellgebiet3 = CreateAudio (
-    "paderquellgebiet3.mp3", 
-    "Im Jahre 777 wird der Name Paderborn in den Geschichtswerken erwähnt. Die Geschichtswerke wurden damals ausschließlich in Latein verfasst. Die Schreiber mussten also mit der lateinischen Schrift volkssprachige Wörter aufschreiben. Das stellte eine besondere Herausforderung dar, denn es gab noch kein Regelwerk wie den Duden. Daher schrieben die Autoren den Siedlungsnamen so, wie sie ihn hörten: Paderbrunnon<fn>Annales Mosellani ad a. 777, ed. von Johann M. Lappenberg (MGH SS 16), Hannover 1859, S. 496: habuit Karolus conventum Francorum, id est Magiscampum, in Saxonia ad Paderbrunnon et ibi paganorum Saxonum multitudo maxima baptizata est.</fn>, Patresbrun<fn>Annales sancti Amandi ad a. 777, ed. von Georg Heinrich Pertz (MGH SS 1), Hannover 1826, S. 12: Karlus plactitum habuit ad Patresbrun.</fn>,  Padresbrunnon<fn>Annales Laureshamenses ad a. 777, ed. von Georg Heinrich Pertz (MGH SS 1), Hannover 1826, S. 31: Habuit Carlus conventum Francorum, id est Magiscampum, in Saxonia ad Padresbrunnon, et ibi paganorum Saxonum multitudo maxima baptizata est.</fn>,  Paderbrunnen<fn>Annales regni Francorum ad a. 777, ed. von Friedrich Kurze (MGH SS rer. Germ. 6), Hannover 1895 (ND 1950), S. 48: Tunc domnus Carolus rex synodum publicum habuit ad Paderbrunnen prima vice.</fn>  oder Padrabrunno<fn>Annales qui dicuntur Einhardi ad a. 777, ed. von Friedrich Kurze (MGH SS rer. Germ. 6), Hannover 1895 (ND 1950), S. 49: (…) ad locum, qui Padrabrunno vocatur, generalem populi sui conventum in eo habiturus (…).</fn>. All das sind Formen des Namens Paderborn, die in karolingischer Zeit in den Geschichtswerken vorkommen. Eine sächsische Siedlung gab es aber auch schon zuvor<fn>Manfred Balzer: Paderborn im frühen Mittelalter (776-1050): Sächsische Siedlung – Karolingischer Pfalzort – Ottonisch-salische Bischofsstadt, in: Paderborn. Geschichte der Stadt in ihrer Region, Bd. 1: Das Mittelalter. Bischofsherrschaft und Stadtgemeinde, hg. von Jörg Jarnut, Paderborn 1999, S. 3-118, hier: bes. S. 3-12.</fn>. Aber mit Karl dem Großen wurde Paderborn zu einem wichtigen fränkischen Stützpunkt im neueroberten sächsischen Gebiet ausgebaut. Dazu hören Sie mehr auf dem Weg zur Kaiserpfalz.", 
-    ""
-  );
-var paderquellgebiet4 = CreateAudio (
-    "paderquellgebiet4.mp3", 
-    "Die naturräumliche Schönheit Paderborns wurde bereits 890 in der Translatio Sancti Liborii gerühmt: Unter allen Orten aber, die zur Errichtung der Hauptkirchen in diesem Gebiet bestimmt wurden, von dem wir sprechen, ragte der bezeichnete Paderborner Bischofssitz durch ein besonderes Ansehen hervor, weil er von allen Seiten eine weite Ebene besitzt, die gleichwohl durch zahlreiche abwechslungsreiche Verschiedenartigkeit an Wäldern ausreichend geziert ist und fruchtbare Ackerböden besitzt, die Früchte jeglicher Art hervorbringen. Noch von der Stadtmauer aus sichtbar liegt linker Hand ein Wald, der viele tausend Schritte in Länge und Breite mißt und sogar für kleines und großes Vieh Weiden besitzt, ja zur Bienenzucht so geeignet ist, daß er jener Gegend zu gleichen scheint, die die hl. Schrift ein Land nennt, das von Milch und Honig fließt. Zur Anmut des Ortes trägt noch bei, daß sich sehr heilsame Quellen innerhalb der Stadt selbst wie zu einem kleinen Fluß von unvergleichlicher Art und Wasserreichheit vereinen. Nirgendwo weit und breit haben wir kaum etwas ähnliches jemals gesehen. Es fehlt hier auch nicht an weiteren Flüssen, die sehr ergiebig den Nutzen bringen, der von ihnen verlangt wird. Das Klima ist dort milder, trotz der kalten Erdregion durch die Gunst der Natur gemäßigter und bringt gewöhnlich sämtliche Früchte schneller zur Reife als in allen anderen Teilen der Region.<fn>Translatio sancti Liborii, cap. 4. Vita et translatio anonymi Paderbornensis. Edition mit Übersetzung der Translatio von: Volker de Vry: Liborius. Brückenbauer Europas. Die mittelalterlichen Viten und Translationsberichte. Mit einem Anhang der Manuscripta Liboriana, Paderborn / München / Wien / Zürich 1997, S. 177-222, hier: S. 190-191; deutsche Übersetzung nach: Volker de Vry: Liborius. Brückenbauer Europas. Die mittelalterlichen Viten und Translationsberichte. Mit einem Anhang der Manuscripta Liboriana, Paderborn / München / Wien / Zürich 1997, S. 177-222, hier: S. 190-191.</fn>", 
-    ""
-  );
-var sprechertext_1 = CreateAudio (
+                var sprechertext_1 = CreateAudio (
     "sprechertext_1.mp3", 
     "Während des bisherigen Rundgangs haben Sie erfahren, wie wichtig das Gebiet zwischen Lippe und Pader für die Politik Karls des Großen ab den 770er Jahren war. Erinnern wir uns nur an die große Reichsversammlung im Jahre 777! Zu diesem Anlass fanden sich Franken, Sachsen, aber auch arabische Gesandte aus Spanien hier in Paderborn zusammen.\nAber was fanden diese Personen hier vor? Wie hat man sich das damalige Paderborn, die sogenannte „urbs Karoli“, eigentlich vorzustellen? Lange Zeit fragten sich Historiker und Archäologen, ob die „urbs Karoli“ tatsächlich in Paderborn existierte und wenn ja, wo genau? <fn> Einen Überblick über die hierzu geäußerten Vermutungen bietet Birgit Mecke: Der Stand der Forschungen vor den Grabungskampagnen Winkelmanns, in: Sveva Gai / Birgit Mecke: Est locus insignis…: Die Pfalz Karls des Großen in Paderborn und ihre bauliche Entwicklung bis zum Jahr 1002. Die Neuauswertung der Ausgrabungen Wilhelm Winkelmanns in den Jahren 1964-1978 (Denkmalpflege und Forschung in Westfalen 40,2), Mainz 2004, Bd. 1, S. 1-8. </fn> Die karolingischen Geschichtswerke sprechen für Paderborn nicht von palatium, dem lateinischen Wort für „Pfalz“. Und es gab auch keine archäologischen Anhaltspunkte für die Pfalz Karls des Großen in Paderborn. Noch Mitte des 20. Jahrhunderts schrieb der Akademieprofessor und Domkapitular Alois Fuchs, dass „für eine [karolingische] Pfalz in Paderborn nicht nur alle urkundlichen Bezeugungen fehlen, sondern auch alle Baureste, die für die charakteristischen Pfalzgebäude, den Reichssaal und die Pfalzkapelle, sprechen könnten <fn>Alois A. Fuchs: Zur Frage der Bautätigkeit des Bischofs Badurad am Paderborner Dom, in: Westfälische Zeitschrift 97 (1947), S. 3-34, hier S. 5. </fn>.“  Sichtbar waren einzig verbaute Überreste der Domburg Bischof Meinwerks aus dem 11. Jahrhundert. Diese Überreste hatten bereits Mitte des 19. Jahrhunderts das Interesse von Lokalforschern geweckt <fn>Vgl. J. B. Johann Bernhard Greve: Der kaiserliche und bischöfliche Palast in Paderborn, in: Blätter zur näheren Kunde Westfalens 6/4 (1868), S. 33-38.</fn>.\nJetzt stehen Sie zwischen dem Dom und dem Museum in der Kaiserpfalz. Dieses große und repräsentative Gebäude mit den Rundbogenfenstern sieht so aus, wie man sich eine Kaiserpfalz vorstellt. Doch handelt es sich dabei um die Pfalz Karls des Großen? Nein! Es ist die archäologische Rekonstruktion der Pfalz Bischof Meinwerks aus dem frühen 11. Jahrhundert. \n Aber wo befand sich nun die karolingische Kaiserpfalz? Sehen Sie die etwa 31 mal 10 m große, rechteckige Fläche zwischen Ihnen und dem Museum? Sie ist durch Bruchsteinmauern abgegrenzt. Das sind die aus konservatorischen Gründen aufgemauerten Fundamente der sog. aula regia, der Königshalle Karls des Großen. Wenn Sie genau hinschauen, sehen Sie ein rotes Ziegelband. Dieses trennt das originale Bruchsteinmauerwerk von später, im Zuge der Rekonstruktion ergänzten Steinen.", 
     ""
@@ -109,13 +89,33 @@ var sprechertext_8 = CreateAudio (
     "Nun haben Sie bereits viele Pläne und Rekonstruktionen der Gebäude gesehen. Aber weiß man denn, wie sie innen aussahen?\nEine Vielzahl archäologischer Funde erlaubt Rückschlüsse auf die Ausstattung der Gebäude. Allerdings lassen sich diese Funde nicht bestimmten Gebäuden zuordnen, da sie in großflächigen Schuttablagerungen gefunden wurden. Diese Schuttablagerungen fielen rund zweihundert Jahre später an, als die karolingische Pfalz abgetragen wurde, um unter Bischof Meinwerk neuen Gebäuden Raum zu geben <fn> Vgl. Matthias Preißler: Die karolingischen Malereifragmente aus Paderborn. Zu den Putzfunden aus der Pfalzanlage Karls des Großen. Archäologie der Wandmalerei (Denkmalpflege und Forschung in Westfalen 40,1), Mainz 2003, S. 130. </fn>.  Im Museum in der Kaiserpfalz können Sie eine Auswahl dieser Funde sehen. Dazu gehören etwa geritzte Ziegelplatten, die vermutlich zur Trauf- oder Eckverzierung kleinerer Bauglieder dienten. Ferner Fragmente von Fensterglas und die dazugehörigen Bleistege. Sie werden in der Fachsprache auch Bleiruten genannt. Mit ihnen wurden die einzelnen Glasteile des Fensters ehemals zusammengehalten. Darüber hinaus sind unterschiedliche Bauskulpturen und auch Wandmalereifragmente zu besichtigen. All dies zeugt von prächtig ausgestatteten Gebäuden <fn> Vgl. Birgit Mecke: Zur Ausstattung der karolingischen Pfalzanlage: Architektonische Gestaltung und Einrichtung, in: Sveva Gai / Birgit Mecke: Est locus insignis…: Die Pfalz Karls des Großen in Paderborn und ihre bauliche Entwicklung bis zum Jahr 1002. Die Neuauswertung der Ausgrabungen Wilhelm Winkelmanns in den Jahren 1964-1978 (Denkmalpflege und Forschung in Westfalen 40,2), Mainz 2004, Bd. 1, S. 173-184. </fn>.  \nEine 3D-Rekonstruktion der karolingischen Pfalz stellt uns freundlicherweise das Museum in der Kaiserpfalz zur Verfügung. Das dreieinhalbminütige Video können Sie nun auf Ihrem Display ansehen.\n Es visualisiert einen denkbaren Zustand der Pfalz im Jahre 799.", 
     ""
   );
-var taufeSachsenkriege0 = CreateAudio (
-    "taufeSachsenkriege0.mp3", 
+var _004 = CreateAudio (
+    "004.mp3", 
+    "Hier, im Paderquellgebiet, entspringt in über 200 Quellen die Pader. Sie ist mit etwa vier Kilometern Länge nicht nur der kürzeste Fluss Deutschlands, sondern gab der Stadt auch ihren Namen: Paderborn. Pader ist ein alter germanischer Gewässername. Was genau dieser Name bedeutet hat, als er vor vielen Jahrhunderten entstanden ist, lässt sich heute nicht mehr sagen – man nimmt aber an, dass die sprachliche Form (*PaÞ(e)ra) vermutlich so viel wie „Wasserlauf“ oder „sich einen Weg bahnendes Wasser“ bedeutete. Das Grundwort born kommt aus dem Altsächsischen [Infobutton zur Altsächsischen Sprache]. Damals sprach man noch von brunno, das an unser heutiges „Brunnen“ erinnert, aber die Bedeutung „Wasser“, „Quelle“ oder auch „Ursprung“ hat.", 
+    ""
+  );
+var _005 = CreateAudio (
+    "005.mp3", 
+    "-brunnen bzw. seine niederdeutsche Form -born sind typische Grundwörter deutscher Flussnamen. Häufig wurden diese im Mittelalter auch auf Siedlungen übertragen, was wir noch heute in Städtenamen wie Brunn, Heilbronn, Eschborn oder eben Paderborn hören können. Die Zusammensetzung aus Pader und born bezeichnet also eine Siedlung „an den Quellen des Flusses Pader.", 
+    ""
+  );
+var _006 = CreateAudio (
+    "006.mp3", 
+    "Im Jahre 777 wird der Name Paderborn in den Geschichtswerken erwähnt. Die Geschichtswerke wurden damals ausschließlich in Latein verfasst. Die Schreiber mussten also mit der lateinischen Schrift volkssprachige Wörter aufschreiben. Das stellte eine besondere Herausforderung dar, denn es gab noch kein Regelwerk wie den Duden. Daher schrieben die Autoren den Siedlungsnamen so, wie sie ihn hörten: Paderbrunnon<fn>Annales Mosellani ad a. 777, ed. von Johann M. Lappenberg (MGH SS 16), Hannover 1859, S. 496: habuit Karolus conventum Francorum, id est Magiscampum, in Saxonia ad Paderbrunnon et ibi paganorum Saxonum multitudo maxima baptizata est.</fn>, Patresbrun<fn>Annales sancti Amandi ad a. 777, ed. von Georg Heinrich Pertz (MGH SS 1), Hannover 1826, S. 12: Karlus plactitum habuit ad Patresbrun.</fn>,  Padresbrunnon<fn>Annales Laureshamenses ad a. 777, ed. von Georg Heinrich Pertz (MGH SS 1), Hannover 1826, S. 31: Habuit Carlus conventum Francorum, id est Magiscampum, in Saxonia ad Padresbrunnon, et ibi paganorum Saxonum multitudo maxima baptizata est.</fn>,  Paderbrunnen<fn>Annales regni Francorum ad a. 777, ed. von Friedrich Kurze (MGH SS rer. Germ. 6), Hannover 1895 (ND 1950), S. 48: Tunc domnus Carolus rex synodum publicum habuit ad Paderbrunnen prima vice.</fn>  oder Padrabrunno<fn>Annales qui dicuntur Einhardi ad a. 777, ed. von Friedrich Kurze (MGH SS rer. Germ. 6), Hannover 1895 (ND 1950), S. 49: (…) ad locum, qui Padrabrunno vocatur, generalem populi sui conventum in eo habiturus (…).</fn>. All das sind Formen des Namens Paderborn, die in karolingischer Zeit in den Geschichtswerken vorkommen. Eine sächsische Siedlung gab es aber auch schon zuvor<fn>Manfred Balzer: Paderborn im frühen Mittelalter (776-1050): Sächsische Siedlung – Karolingischer Pfalzort – Ottonisch-salische Bischofsstadt, in: Paderborn. Geschichte der Stadt in ihrer Region, Bd. 1: Das Mittelalter. Bischofsherrschaft und Stadtgemeinde, hg. von Jörg Jarnut, Paderborn 1999, S. 3-118, hier: bes. S. 3-12.</fn>. Aber mit Karl dem Großen wurde Paderborn zu einem wichtigen fränkischen Stützpunkt im neueroberten sächsischen Gebiet ausgebaut. Dazu hören Sie mehr auf dem Weg zur Kaiserpfalz.", 
+    ""
+  );
+var _007 = CreateAudio (
+    "007.mp3", 
+    "Die naturräumliche Schönheit Paderborns wurde bereits 890 in der Translatio Sancti Liborii gerühmt: Unter allen Orten aber, die zur Errichtung der Hauptkirchen in diesem Gebiet bestimmt wurden, von dem wir sprechen, ragte der bezeichnete Paderborner Bischofssitz durch ein besonderes Ansehen hervor, weil er von allen Seiten eine weite Ebene besitzt, die gleichwohl durch zahlreiche abwechslungsreiche Verschiedenartigkeit an Wäldern ausreichend geziert ist und fruchtbare Ackerböden besitzt, die Früchte jeglicher Art hervorbringen. Noch von der Stadtmauer aus sichtbar liegt linker Hand ein Wald, der viele tausend Schritte in Länge und Breite mißt und sogar für kleines und großes Vieh Weiden besitzt, ja zur Bienenzucht so geeignet ist, daß er jener Gegend zu gleichen scheint, die die hl. Schrift ein Land nennt, das von Milch und Honig fließt. Zur Anmut des Ortes trägt noch bei, daß sich sehr heilsame Quellen innerhalb der Stadt selbst wie zu einem kleinen Fluß von unvergleichlicher Art und Wasserreichheit vereinen. Nirgendwo weit und breit haben wir kaum etwas ähnliches jemals gesehen. Es fehlt hier auch nicht an weiteren Flüssen, die sehr ergiebig den Nutzen bringen, der von ihnen verlangt wird. Das Klima ist dort milder, trotz der kalten Erdregion durch die Gunst der Natur gemäßigter und bringt gewöhnlich sämtliche Früchte schneller zur Reife als in allen anderen Teilen der Region.<fn>Translatio sancti Liborii, cap. 4. Vita et translatio anonymi Paderbornensis. Edition mit Übersetzung der Translatio von: Volker de Vry: Liborius. Brückenbauer Europas. Die mittelalterlichen Viten und Translationsberichte. Mit einem Anhang der Manuscripta Liboriana, Paderborn / München / Wien / Zürich 1997, S. 177-222, hier: S. 190-191; deutsche Übersetzung nach: Volker de Vry: Liborius. Brückenbauer Europas. Die mittelalterlichen Viten und Translationsberichte. Mit einem Anhang der Manuscripta Liboriana, Paderborn / München / Wien / Zürich 1997, S. 177-222, hier: S. 190-191.</fn>", 
+    ""
+  );
+var _008 = CreateAudio (
+    "008.mp3", 
     "Quellen, und überhaupt Wasser, sind seit jeher zentrale Orte. An ihnen siedeln sich Menschen und Gewerbe, Klöster und Kirchen an. Wichtig sind Quellen auch im Rahmen der Christianisierung und Missionierung im frühen Mittelalter. Ausführlicher werden Sie über die Missionierung und den Verlauf der Sachsenkriege auf Ihrem Weg zur Kaiserpfalz informiert. Wir wissen nicht ganz genau, wo und wie hier die Taufen stattgefunden haben, denn wir haben weder zeitgenössische Darstellungen zur Taufe der Sachsen noch haben wir Interviews mit Zeitzeugen. Was wir aber wissen ist, dass es sich meist um Erwachsenentaufen handelte<fn>Dieter Kartschoke: Geschichte der deutschen Literatur im frühen Mittelalter, 3., überarbeitete Auflage, München 2000, S. 102.</fn>.  Die Taufe geschah nicht wie heute über einem Taufbecken, sondern im Taufbrunnen. Der Täufling sollte durch vollständiges Eintauchen ins Wasser gereinigt werden. Diese Form der Taufe nennt man daher auch 'Immersionstaufe'<fn>Arnold Angenendt: Credo. Die Taufe als Sakrament des Glaubens in der Mission, in: Credo. Christianisierung Europas im Mittelalter. Katalog zur Ausstellung des Erzbischöflichen Diözesanmuseums, des Museums in der Kaiserpfalz und der Städtischen Galerie am Abdinghof zu Paderborn vom 26. Juli bis 3. November 2013, hg. von Christoph Stiegemann / Martin Kroker / Wolfgang Walter, 2 Bde., Petersberg 2013, Bd. 1, S. 53-66.</fn>.  Einen Eindruck des damaligen Taufritus vermittelt Ihnen die bildliche Darstellung einer Taufe in einer theologischen Sammelhandschrift des frühen 9. Jahrhunderts.", 
     ""
   );
-var taufeSachsenkriege1 = CreateAudio (
-    "taufeSachsenkriege1.mp3", 
+var _009 = CreateAudio (
+    "009.mp3", 
     "In Sachsen gab es jedoch zu Beginn der Missionierung kaum Kirchen oder Taufkapellen. Wo also fanden die Taufen statt? Schauen wir dazu nach Northumbrien, dem heutigen Nordengland, das rund 75 Jahre vor den Sachsen christianisiert wurde. In Ermangelung von Kirchen und Taufkapellen hätten Missionare wie der hl. Paulinus, Bischof von York, auch in Flüssen getauft.<fn>Das berichtet uns der Zeitgenosse Beda Venerabilis in seiner Kirchengeschichte des englischen Volkes. Beda Venerabilis: Historia ecclesiastica gentis Anglorum. Textum secundum editionem, quam paraverant B. Colgrave / R. A. B. Manors, ed. und übersetzt von Günter Spitzbart (Texte zur Forschung 34), Darmstadt 1982, hier: II,14, Bd. 1, S. 186-187: quibus diebus cunctis a mane usque ad uesperam nil aliud ageret, quam confluentem eo de cunctis uiculis ac locis plebem Christi uerbo salutis instruere, atque </fn>  So oder ähnlich könnte es auch in Sachsen gewesen sein. Vielleicht wurden die Sachsen hier vor Ort ja in der Pader oder an den Lippequellen getauft.<fn>Annales regni Francorum ad a. 776, ed. von Friedrich Kurze (MGH SS rer. Germ. 6), Hannover 1895 (ND 1950), S. 46 und S. 48: Et Saxones perterriti omnes ad locum, ubi Lippia consurgit, venientes ex omni parte et reddiderunt patriam per wadium omnes manibus eorum et spoponderunt se esse christianos et sub dicione domni Caroli regis et Francorum subdiderunt. (…) ibique venientes Saxones una cum uxoribus et infantibus innumerabilis multitudo baptizati sunt et obsides (…) dederunt.</fn>  Aus dem 9. Jahrhundert haben sich Abschriften von Taufgelöbnissen erhalten, wie sie bei der Missionierung hier vor Ort vielleicht eingesetzt wurden.", 
     ""
   );
@@ -574,16 +574,6 @@ var parisLouvreReiterStatuetteGesamt = CreateImage (
     "Reiterstatuette eines karolingischen Herrschers, Metz (?), Pferd: Spätantik oder 9. Jh., Reiter: um 870; im 18. Jh. restauriert, Bronze, 24 x 17,5 x 0,95 cm, Paris, Musée du Louvre, département des Objets d’art, OA 8260. Photo © RMN-Grand Palais (musée du Louvre) / Jean-Gilles Berizzi", 
     "ParisLouvreReiterstatuetteGesamt.jpg"
   );
-var quellen1Teaser = CreateImage (
-    "", 
-    "", 
-    "quellen1Teaser.jpg"
-  );
-var quellen3Teaser = CreateImage (
-    "Taufen an der Pader?", 
-    "", 
-    "quellen3Teaser.jpg"
-  );
 var reproRatsgestuehlKarlderGroßeFockeMuseumBremenInventarNr00294 = CreateImage (
     "Ratsgestühls mit Darstellung Karls des Großen", 
     "Wange des ehem. Ratsgestühls mit der Darstellung Karls des Großen, Norddeutsch, um 1410, Eichenholz, 243 x 47 x 6 cm, ehem. Bremen, Rathaus, Obere Halle, heute Bremen, Focke-Museum, Inv.-Nr. 294. © Bremen, Focke-Museum, Inv.-Nr. 294.", 
@@ -603,6 +593,21 @@ var sachsenkriege_teaser = CreateImage (
     "Sachsenkriege", 
     "", 
     "bruecke_teaser.jpg"
+  );
+var Teaser_LebenAmWasser = CreateImage (
+    "", 
+    "", 
+    "Teaser_LebenAmWasser.jpg"
+  );
+var Teaser_Paderbrunnon = CreateImage (
+    "", 
+    "", 
+    "Teaser_Paderbrunnon.jpg"
+  );
+var Teaser_TaufenAnDerPader = CreateImage (
+    "Taufen an der Pader?", 
+    "", 
+    "Teaser_TaufenAnDerPader.jpg"
   );
 var theoTeaser = CreateImage (
     "", 
@@ -685,20 +690,30 @@ karldergroßeimwandelderzeit.Pages.Add( CreateImagePage (noImage, null, null, _1
 karldergroßeimwandelderzeit.Pages.Add( CreateImagePage (domRothograbmalGesamtansichtEinfärbungThuriferar, null, null, _147) );
 karldergroßeimwandelderzeit.Pages.Add( CreateImagePage (noImage, null, null, _149) );
 karldergroßeimwandelderzeit.Pages.Add( CreateImagePage (noImage, null, null, _159) );
-var Paderquellgebiet = CreateExhibit (
+var LebenAmWasser = CreateExhibit (
+    "Leben am Wasser",
+    "",
+    51.718811867802174,
+    8.751070350408554,
+    new []{"Kirche"},
+    new []{"Dom"},
+    Teaser_LebenAmWasser
+  );
+LebenAmWasser.Pages.Add( CreateAppetizerPage ("Paderborn – so schön wie das Land, in dem Milch und Honig fließen?", Teaser_LebenAmWasser) );
+LebenAmWasser.Pages.Add( CreateImagePage (noImage, null, null, _007) );
+var PaderbrunnonPatresbrunPaderbruno = CreateExhibit (
     "Paderbrunnon, Patresbrun, Paderbrunno",
     "",
     51.71861412677083,
     8.75122457742691,
-    new []{"Natur"},
-    new []{"Paderquelle"},
-    quellen1Teaser
+    new []{"Kirche"},
+    new []{"Dom"},
+    Teaser_Paderbrunnon
   );
-Paderquellgebiet.Pages.Add( CreateAppetizerPage ("Die Siedlung an den 200 Quellen. Woher kommt eigentlich der Name Paderborn", quellen1Teaser) );
-Paderquellgebiet.Pages.Add( CreateImagePage (noImage, null, null, paderquellgebiet1) );
-Paderquellgebiet.Pages.Add( CreateImagePage (noImage, null, null, paderquellgebiet2) );
-Paderquellgebiet.Pages.Add( CreateImagePage (noImage, null, null, paderquellgebiet3) );
-Paderquellgebiet.Pages.Add( CreateImagePage (noImage, null, null, paderquellgebiet4) );
+PaderbrunnonPatresbrunPaderbruno.Pages.Add( CreateAppetizerPage ("Die Siedlung an den 200 Quellen. Woher kommt eigentlich der Name Paderborn", Teaser_Paderbrunnon) );
+PaderbrunnonPatresbrunPaderbruno.Pages.Add( CreateImagePage (noImage, null, null, _004) );
+PaderbrunnonPatresbrunPaderbruno.Pages.Add( CreateImagePage (noImage, null, null, _005) );
+PaderbrunnonPatresbrunPaderbruno.Pages.Add( CreateImagePage (noImage, null, null, _006) );
 var sachsenkriege = CreateExhibit (
     "Sachsenkriege",
     "",
@@ -727,24 +742,25 @@ sachsenkriege.Pages.Add( CreateImagePage (noImage, null, null, _033) );
 sachsenkriege.Pages.Add( CreateImagePage (noImage, null, null, _034) );
 sachsenkriege.Pages.Add( CreateImagePage (noImage, null, null, _035) );
 sachsenkriege.Pages.Add( CreateImagePage (noImage, null, null, _037) );
-var Taufe = CreateExhibit (
-    "Taufe an der Pader",
+var TaufenAnDerPader = CreateExhibit (
+    "Taufen an der Pader?",
     "",
     51.71955795852887,
     8.751071691513062,
-    new []{"Natur"},
-    new []{"Taufe"},
-    quellen3Teaser
+    new []{"Kirche"},
+    new []{"Dom"},
+    Teaser_TaufenAnDerPader
   );
-Taufe.Pages.Add( CreateAppetizerPage ("Donar, Wotan und Saxnot – die Abkehr von den alten Göttern.", quellen3Teaser) );
-Taufe.Pages.Add( CreateImagePage (noImage, null, null, taufeSachsenkriege0) );
-Taufe.Pages.Add( CreateImagePage (MünchenBSBClm22053_16r, null, null, taufeSachsenkriege1) );
+TaufenAnDerPader.Pages.Add( CreateAppetizerPage ("Donar, Wotan und Saxnot – die Abkehr von den alten Göttern.", Teaser_TaufenAnDerPader) );
+TaufenAnDerPader.Pages.Add( CreateImagePage (noImage, null, null, _008) );
+TaufenAnDerPader.Pages.Add( CreateImagePage (MünchenBSBClm22053_16r, null, null, _009) );
 var bar = CreateRouteTag("Bar", "bar", CreateImage("","","route_tag_bar.png"));
 var restaurant = CreateRouteTag("Restaurant", "restaurant", CreateImage("","","route_tag_restaurant.png"));
 var karlsrouteSet = DbManager.CreateBusinessObject<ExhibitSet> ();
 karlsrouteSet.ActiveSet.Add(kaiserpfalz);
-karlsrouteSet.ActiveSet.Add(Paderquellgebiet);
-karlsrouteSet.ActiveSet.Add(Taufe);
+karlsrouteSet.ActiveSet.Add(PaderbrunnonPatresbrunPaderbruno);
+karlsrouteSet.ActiveSet.Add(TaufenAnDerPader);
+karlsrouteSet.ActiveSet.Add(LebenAmWasser);
 karlsrouteSet.ActiveSet.Add(sachsenkriege);
 karlsrouteSet.ActiveSet.Add(Kaisermachtschule);
 karlsrouteSet.ActiveSet.Add(karldergroßeimwandelderzeit);
