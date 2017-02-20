@@ -409,4 +409,10 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   <data name="ExhibitDetailsPage_PageSwitch" xml:space="preserve">
     <value>Die Seiten werden automatisch gewechselt, wenn die Audiodatei abgespielt wurde. Diese Eigenschaft kann unter Menu &gt;&gt; Einstellungen geändert werden.</value>
   </data>
+  <data name="AudioTranscriptView_Sources_Title" xml:space="preserve">
+    <value>Quellen</value>
+  </data>
+  <data name="AudioTranscriptView_Subtitles_Title" xml:space="preserve">
+    <value>Untertitel</value>
+  </data>
 </root>

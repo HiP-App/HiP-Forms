@@ -18,6 +18,7 @@ using System.Windows.Input;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using de.upb.hip.mobile.pcl.Common;
 using HipMobileUI.AudioPlayer;
+using HipMobileUI.ViewModels.Pages.AudioTranscript;
 using Xamarin.Forms;
 
 namespace HipMobileUI.ViewModels.Views {
@@ -82,7 +83,7 @@ namespace HipMobileUI.ViewModels.Views {
 
         private void ShowCaption()
         {
-            Navigation.DisplayAlert("Caption", "The caption dialog will be shown here!", "OK");
+            Navigation.PushAsync (new AudioTranscriptViewModel());
         }
 
         /// <summary>
