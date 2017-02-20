@@ -78,7 +78,7 @@ namespace HipMobileUI.Tests.ViewModels.Views
 
             sut.CaptionCommand.Execute(null);
 
-            navigationService.ReceivedWithAnyArgs ().DisplayAlert ("", "", "");
+            navigationService.ReceivedWithAnyArgs ().PushAsync (null);
         }
 
         [Test, Category("UnitTest")]
