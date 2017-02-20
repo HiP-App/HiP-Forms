@@ -17,7 +17,7 @@ using Xamarin.Forms;
 
 namespace HipMobileUI.ViewModels.Pages
 {
-    class UserOnboardingItemViewModel : NavigationViewModel
+    public class UserOnboardingItemViewModel : NavigationViewModel
     {
 
         public UserOnboardingItemViewModel (string headline, string text, string portraitImage, Color background, string landscapeImage=null)

@@ -88,7 +88,7 @@ namespace HipMobileUI.Pages
             // create the carousel
             CarouselView carousel = new CarouselView();
             carousel.SetBinding(CarouselView.PositionProperty, "SelectedPage");
-            carousel.SetBinding(CarouselView.ItemsSourceProperty, "Pages");
+            carousel.SetBinding(ItemsView.ItemsSourceProperty, "Pages");
             if (newOrientation == StackOrientation.Vertical)
             {
                 carousel.ItemTemplate = new DataTemplate (LoadPortraitTemplate);

@@ -111,6 +111,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\NavigationViewModelTest.cs" />
     <Compile Include="ViewModels\Pages\ExhibitDetailsViewModelTest.cs" />
+    <Compile Include="ViewModels\Pages\UserOnboardingItemViewModelTest.cs" />
+    <Compile Include="ViewModels\Pages\UserOnboardingPageViewModelTest.cs" />
     <Compile Include="ViewModels\Views\AudioToolbarViewModelTest.cs" />
     <Compile Include="ViewModels\Views\ExhibitDetails\AppetizerViewModelTest.cs" />
     <Compile Include="ViewModels\Views\ExhibitDetails\ImageViewModelTest.cs" />

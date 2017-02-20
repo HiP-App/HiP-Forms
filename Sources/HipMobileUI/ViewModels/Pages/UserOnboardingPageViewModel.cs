@@ -22,7 +22,7 @@ using Xamarin.Forms;
 
 namespace HipMobileUI.ViewModels.Pages
 {
-    class UserOnboardingPageViewModel : NavigationViewModel
+    public class UserOnboardingPageViewModel : NavigationViewModel
     {
 
         public UserOnboardingPageViewModel ()
