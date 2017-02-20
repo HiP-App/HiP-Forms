@@ -46,8 +46,8 @@
     </ResourceDictionary>
   </ContentView.Resources>
   <ContentView.Content>
-    <ScrollView Margin="10">
-      <Grid HorizontalOptions="FillAndExpand">
+    <ScrollView>
+      <Grid HorizontalOptions="FillAndExpand" Padding="10">
         <Grid.RowDefinitions>
           <RowDefinition Height="Auto" />
           <RowDefinition Height="Auto" />

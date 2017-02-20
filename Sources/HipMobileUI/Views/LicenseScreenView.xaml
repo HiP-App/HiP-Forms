@@ -42,8 +42,8 @@
     </ResourceDictionary> 
   </ContentView.Resources>
   <ContentView.Content>
-    <ScrollView Margin="10">
-    <StackLayout>
+    <ScrollView>
+    <StackLayout Padding="10">
       <!-- Labels for licensing -->
       <Label Style="{StaticResource TitleStyle}" Text="{strings:Translate LicenseScreenView_License_Title}"/>
       <BoxView/>
