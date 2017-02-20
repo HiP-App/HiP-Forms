@@ -409,4 +409,31 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   <data name="ExhibitDetailsPage_PageSwitch" xml:space="preserve">
     <value>Die Seiten werden automatisch gewechselt, wenn die Audiodatei abgespielt wurde. Diese Eigenschaft kann unter Menu &gt;&gt; Einstellungen geändert werden.</value>
   </data>
+  <data name="UserOnboarding_Explore_Text" xml:space="preserve">
+    <value>Erlebe und entdecke selbst mit dem Smartphone Geschichte und Kultur vor Ort</value>
+  </data>
+  <data name="UserOnboarding_Explore_Title" xml:space="preserve">
+    <value>Paderborn erkunden</value>
+  </data>
+  <data name="UserOnboarding_Forward" xml:space="preserve">
+    <value>WEITER</value>
+  </data>
+  <data name="UserOnboarding_Ok" xml:space="preserve">
+    <value>ALLES KLAR</value>
+  </data>
+  <data name="UserOnboarding_Route_Text" xml:space="preserve">
+    <value>Erkunde frei oder anhand themenspezifischer Routen Paderborn</value>
+  </data>
+  <data name="UserOnboarding_Route_Title" xml:space="preserve">
+    <value>Themenspezifische Routen</value>
+  </data>
+  <data name="UserOnboarding_Skip" xml:space="preserve">
+    <value>ÜBERSPRINGEN</value>
+  </data>
+  <data name="UserOnboarding_Students_Text" xml:space="preserve">
+    <value>Eine sich weiterentwickelnde App erstellt von Studierenden der Universität Paderborn</value>
+  </data>
+  <data name="UserOnboarding_Students_Title" xml:space="preserve">
+    <value>Von Studierenden</value>
+  </data>
 </root>

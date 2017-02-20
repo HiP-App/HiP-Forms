@@ -28,6 +28,11 @@ namespace HipMobileUI.Pages
         public MainPage()
         {
             InitializeComponent();
+        }
+
+        protected override void OnBindingContextChanged ()
+        {
+            base.OnBindingContextChanged ();
             ViewModel.SelectedViewModel = ViewModel.MainScreenViewModels[0];
         }
 

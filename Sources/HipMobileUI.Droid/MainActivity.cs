@@ -7,6 +7,7 @@ using de.upb.hip.mobile.pcl.Common.Contracts;
 using FFImageLoading.Forms.Droid;
 using HipMobileUI;
 using HipMobileUI.AudioPlayer;
+using HipMobileUI.Contracts;
 using HipMobileUI.Navigation;
 using HipMobileUI.Pages;
 using Plugin.Permissions;
@@ -29,11 +30,14 @@ namespace de.upb.hip.mobile.droid
             NavigationService.Instance.RegisterViewModels(typeof(MainPage).Assembly);
             IoCManager.RegisterInstance(typeof(INavigationService), NavigationService.Instance);
             IoCManager.RegisterInstance(typeof(IViewCreator), NavigationService.Instance);
+
+            // init other inversion of control classes
             IoCManager.RegisterInstance (typeof(IFabSizeCalculator), new AndroidFabSizeCalculator ());
             IoCManager.RegisterInstance (typeof(IAudioPlayer), new DroidAudioPlayer ());
+            IoCManager.RegisterInstance (typeof(IStatusBarController), new DroidStatusBarController ());
 
+            // init forms and third party libraries
             CachedImageRenderer.Init ();
-
             Xamarin.Forms.Forms.Init(this, bundle);
             Xamarin.FormsMaps.Init(this, bundle);
 
