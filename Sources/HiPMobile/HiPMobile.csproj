@@ -115,7 +115,7 @@
     <EmbeddedResource Include="Content\Kaiserpfalz\bibliothek_teaser.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Content\Kaiserpfalz\bruecke_teaser.jpg" />
+    <EmbeddedResource Include="Content\Sachsenkriege\Teaser_Sachenkriege.jpg" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Content\Kaiserpfalz\busdorfkirche_aussen.jpg" />
@@ -257,28 +257,28 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Content\Kaiserpfalz\kaiserpfalz_image_1.jpg" />
-    <EmbeddedResource Include="Content\KarldergroßeSachsenkriegeSachsenmission\Karte des altsächsischen Sprachraums.jpg" />
-    <EmbeddedResource Include="Content\KarldergroßeSachsenkriegeSachsenmission\Stuttgart_WLB_Cod.bibl.fol.23_71v.jpg" />
-    <EmbeddedResource Include="Content\noImage.jpg" />
-    <EmbeddedResource Include="Content\KarldergroßeSachsenkriegeSachsenmission\020.mp3" />
-    <EmbeddedResource Include="Content\KarldergroßeSachsenkriegeSachsenmission\021.mp3" />
-    <EmbeddedResource Include="Content\KarldergroßeSachsenkriegeSachsenmission\022.mp3" />
-    <EmbeddedResource Include="Content\KarldergroßeSachsenkriegeSachsenmission\023.mp3" />
-    <EmbeddedResource Include="Content\KarldergroßeSachsenkriegeSachsenmission\024.mp3" />
-    <EmbeddedResource Include="Content\KarldergroßeSachsenkriegeSachsenmission\025.mp3" />
-    <EmbeddedResource Include="Content\KarldergroßeSachsenkriegeSachsenmission\026.mp3" />
-    <EmbeddedResource Include="Content\KarldergroßeSachsenkriegeSachsenmission\027.mp3" />
-    <EmbeddedResource Include="Content\KarldergroßeSachsenkriegeSachsenmission\028.mp3" />
-    <EmbeddedResource Include="Content\KarldergroßeSachsenkriegeSachsenmission\029.mp3" />
-    <EmbeddedResource Include="Content\KarldergroßeSachsenkriegeSachsenmission\030.mp3" />
-    <EmbeddedResource Include="Content\KarldergroßeSachsenkriegeSachsenmission\031.mp3" />
-    <EmbeddedResource Include="Content\KarldergroßeSachsenkriegeSachsenmission\032.mp3" />
-    <EmbeddedResource Include="Content\KarldergroßeSachsenkriegeSachsenmission\033.mp3" />
-    <EmbeddedResource Include="Content\KarldergroßeSachsenkriegeSachsenmission\034.mp3" />
-    <EmbeddedResource Include="Content\KarldergroßeSachsenkriegeSachsenmission\035.mp3" />
-    <EmbeddedResource Include="Content\KarldergroßeSachsenkriegeSachsenmission\036.mp3" />
-    <EmbeddedResource Include="Content\KarldergroßeSachsenkriegeSachsenmission\037.mp3" />
-    <EmbeddedResource Include="Content\KarldergroßeSachsenkriegeSachsenmission\019.mp3" />
+    <EmbeddedResource Include="Content\Sachsenkriege\KarteDesAltsächsischenSprachraums.jpg" />
+    <EmbeddedResource Include="Content\Sachsenkriege\Stuttgart_WLB_Cod.bibl.fol.23_71v.jpg" />
+    <EmbeddedResource Include="Content\noImage2.jpg" />
+    <EmbeddedResource Include="Content\Sachsenkriege\020.mp3" />
+    <EmbeddedResource Include="Content\KarlsSiegUberDieSachsen\029.mp3" />
+    <EmbeddedResource Include="Content\KarlsSiegUberDieSachsen\030.mp3" />
+    <EmbeddedResource Include="Content\KarlsSiegUberDieSachsen\031.mp3" />
+    <EmbeddedResource Include="Content\KarlsSiegUberDieSachsen\032.mp3" />
+    <EmbeddedResource Include="Content\KarlsSiegUberDieSachsen\033.mp3" />
+    <EmbeddedResource Include="Content\KarlsSiegUberDieSachsen\034.mp3" />
+    <EmbeddedResource Include="Content\KarlsSiegUberDieSachsen\035.mp3" />
+    <EmbeddedResource Include="Content\KarlsSiegUberDieSachsen\036.mp3" />
+    <EmbeddedResource Include="Content\KarlsSiegUberDieSachsen\037.mp3" />
+    <EmbeddedResource Include="Content\Sachsenkriege\021.mp3" />
+    <EmbeddedResource Include="Content\Sachsenkriege\022.mp3" />
+    <EmbeddedResource Include="Content\Sachsenkriege\023.mp3" />
+    <EmbeddedResource Include="Content\Sachsenkriege\024.mp3" />
+    <EmbeddedResource Include="Content\Sachsenkriege\025.mp3" />
+    <EmbeddedResource Include="Content\ChristianisierungDerSachsen\026.mp3" />
+    <EmbeddedResource Include="Content\ChristianisierungDerSachsen\027.mp3" />
+    <EmbeddedResource Include="Content\ChristianisierungDerSachsen\028.mp3" />
+    <EmbeddedResource Include="Content\Sachsenkriege\019.mp3" />
     <EmbeddedResource Include="Content\KarldergroßeMachtSchule\166.mp3" />
     <EmbeddedResource Include="Content\KarldergroßeMachtSchule\172.mp3" />
     <EmbeddedResource Include="Content\KarldergroßeMachtSchule\178.mp3" />
@@ -344,9 +344,12 @@
     <EmbeddedResource Include="Content\TaufenAnDerPader\017.mp3" />
     <EmbeddedResource Include="Content\TaufenAnDerPader\018.mp3" />
     <EmbeddedResource Include="Content\TaufenAnDerPader\Berlin_TaufschaleWidukinds.jpg" />
-    <EmbeddedResource Include="Content\TaufenAnDerPader\KarteDesAltsächsischenSprachraums.jpg" />
     <EmbeddedResource Include="Content\TaufenAnDerPader\MünchenBSBClm22053_16r.jpg" />
     <EmbeddedResource Include="Content\TaufenAnDerPader\Teaser_TaufenAnDerPader.jpg" />
+    <EmbeddedResource Include="Content\ChristianisierungDerSachsen\Teaser_Christianisierung.jpg" />
+    <EmbeddedResource Include="Content\KarlsSiegUberDieSachsen\Teaser_KarlsSieg.jpg" />
+    <EmbeddedResource Include="Content\noImage.jpg" />
+    <EmbeddedResource Include="Content\Kaiserpfalz\bruecke_teaser.jpg" />
     <Content Include="FodyWeavers.xml">
       <SubType>Designer</SubType>
     </Content>

@@ -23,7 +23,7 @@ using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 namespace de.upb.hip.mobile.pcl.Common {
     public partial class DbDummyDataFiller {
 
-        public static int DatabaseVersion { get; } = 16;
+        public static int DatabaseVersion { get; } = 17;
 
         public void InsertData ()
         {
@@ -554,6 +554,11 @@ var karlsschule = CreateImage (
     "", 
     "karlsschule.jpg"
   );
+var KarteDesAltsachsischenSprachraums = CreateImage (
+    "", 
+    "Der altsächsische Sprachraum im 9. Jh., veröffentlicht in : Gossens, Jan (Hg.): Niederdeutsch. Sprache und Literatur. Eine Einführung, Bd. 1: Sprache, Neumünster 1983, Abb. 1.", 
+    "KarteDesAltsächsischenSprachraums.jpg"
+  );
 var MünchenBSBClm22053_16r = CreateImage (
     "Altes Buch", 
     "Darstellung einer Taufe in einer theologischen Sammelhandschrift des frühen 9. Jahrhunderts, Pergament, München, Bayerische Staatsbibliothek, Sign. Clm. 22053, fol 16r. © Bayerische Staatsbibliothek München, Signatur Clm. 22053, fol. 16r.", 
@@ -579,20 +584,20 @@ var reproRatsgestuehlKarlderGroßeFockeMuseumBremenInventarNr00294 = CreateImage
     "Wange des ehem. Ratsgestühls mit der Darstellung Karls des Großen, Norddeutsch, um 1410, Eichenholz, 243 x 47 x 6 cm, ehem. Bremen, Rathaus, Obere Halle, heute Bremen, Focke-Museum, Inv.-Nr. 294. © Bremen, Focke-Museum, Inv.-Nr. 294.", 
     "ReproRatsgestuehlKarlderGroßeFockeMuseumBremenInventarNr00294.jpg"
   );
-var sachsenkriege_1 = CreateImage (
+var Stuttgart_WLB_Cod = CreateImage (
     "", 
     "Darstellung eines Kriegsgemenges. Illustration des Psalms 59 im Stuttgarter Bilderpsalter, um 820/830, Stuttgart, Württembergische Landesbibliothek, Cod. Bibl. 2° 23 fol. 71v. © Stuttgart, Württembergische Landesbibliothek, Cod. bibl. fol. 23, f. 71v", 
     "Stuttgart_WLB_Cod.bibl.fol.23_71v.jpg"
   );
-var sachsenkriege_2 = CreateImage (
+var Teaser_Christianisierung = CreateImage (
+    "Christianisierung der Sachsen", 
     "", 
-    "Der altsächsische Sprachraum im 9. Jh., veröffentlicht in : Gossens, Jan (Hg.): Niederdeutsch. Sprache und Literatur. Eine Einführung, Bd. 1: Sprache, Neumünster 1983, Abb. 1.", 
-    "Karte des altsächsischen Sprachraums.jpg"
+    "Teaser_Christianisierung.jpg"
   );
-var sachsenkriege_teaser = CreateImage (
-    "Sachsenkriege", 
+var Teaser_KarlsSieg = CreateImage (
+    "Karls Sieg über die Sachsen", 
     "", 
-    "bruecke_teaser.jpg"
+    "Teaser_KarlsSieg.jpg"
   );
 var Teaser_LebenAmWasser = CreateImage (
     "", 
@@ -604,6 +609,11 @@ var Teaser_Paderbrunnon = CreateImage (
     "", 
     "Teaser_Paderbrunnon.jpg"
   );
+var Teaser_Sachenkriege = CreateImage (
+    "Sachenkriege", 
+    "", 
+    "Teaser_Sachenkriege.jpg"
+  );
 var Teaser_TaufenAnDerPader = CreateImage (
     "Taufen an der Pader?", 
     "", 
@@ -614,6 +624,19 @@ var theoTeaser = CreateImage (
     "", 
     "theo_teaser.jpg"
   );
+var ChristianisierungDerSachsen = CreateExhibit (
+    "Christianisierung der Sachsen",
+    "",
+    51.72050841708062,
+    8.75171273946762,
+    new []{"Kirche"},
+    new []{"Dom"},
+    Teaser_Christianisierung
+  );
+ChristianisierungDerSachsen.Pages.Add( CreateAppetizerPage ("Karls neue Strategie: Tod oder Taufe?", Teaser_Christianisierung) );
+ChristianisierungDerSachsen.Pages.Add( CreateImagePage (noImage, null, null, _026) );
+ChristianisierungDerSachsen.Pages.Add( CreateImagePage (noImage, null, null, _027) );
+ChristianisierungDerSachsen.Pages.Add( CreateImagePage (noImage, null, null, _028) );
 var Kaisermachtschule = CreateExhibit (
     "Karl der Große macht Schule!",
     "",
@@ -690,6 +713,25 @@ karldergroßeimwandelderzeit.Pages.Add( CreateImagePage (noImage, null, null, _1
 karldergroßeimwandelderzeit.Pages.Add( CreateImagePage (domRothograbmalGesamtansichtEinfärbungThuriferar, null, null, _147) );
 karldergroßeimwandelderzeit.Pages.Add( CreateImagePage (noImage, null, null, _149) );
 karldergroßeimwandelderzeit.Pages.Add( CreateImagePage (noImage, null, null, _159) );
+var KarlsSiegUberDieSachsen = CreateExhibit (
+    "Karls Sieg über die Sachsen",
+    "",
+    51.718953,
+    8.75583,
+    new []{"Kirche"},
+    new []{"Dom"},
+    Teaser_KarlsSieg
+  );
+KarlsSiegUberDieSachsen.Pages.Add( CreateAppetizerPage ("Sachsen wird Teil des Frankenreiches.", Teaser_KarlsSieg) );
+KarlsSiegUberDieSachsen.Pages.Add( CreateImagePage (noImage, null, null, _029) );
+KarlsSiegUberDieSachsen.Pages.Add( CreateImagePage (noImage, null, null, _030) );
+KarlsSiegUberDieSachsen.Pages.Add( CreateImagePage (noImage, null, null, _031) );
+KarlsSiegUberDieSachsen.Pages.Add( CreateImagePage (noImage, null, null, _032) );
+KarlsSiegUberDieSachsen.Pages.Add( CreateImagePage (noImage, null, null, _033) );
+KarlsSiegUberDieSachsen.Pages.Add( CreateImagePage (noImage, null, null, _034) );
+KarlsSiegUberDieSachsen.Pages.Add( CreateImagePage (noImage, null, null, _035) );
+KarlsSiegUberDieSachsen.Pages.Add( CreateImagePage (noImage, null, null, _036) );
+KarlsSiegUberDieSachsen.Pages.Add( CreateImagePage (noImage, null, null, _037) );
 var LebenAmWasser = CreateExhibit (
     "Leben am Wasser",
     "",
@@ -714,34 +756,23 @@ PaderbrunnonPatresbrunPaderbruno.Pages.Add( CreateAppetizerPage ("Die Siedlung a
 PaderbrunnonPatresbrunPaderbruno.Pages.Add( CreateImagePage (noImage, null, null, _004) );
 PaderbrunnonPatresbrunPaderbruno.Pages.Add( CreateImagePage (noImage, null, null, _005) );
 PaderbrunnonPatresbrunPaderbruno.Pages.Add( CreateImagePage (noImage, null, null, _006) );
-var sachsenkriege = CreateExhibit (
+var Sachsenkriege = CreateExhibit (
     "Sachsenkriege",
     "",
     51.719582883396335,
     8.751005977392197,
     new []{"Kirche"},
     new []{"Dom"},
-    sachsenkriege_teaser
+    Teaser_Sachenkriege
   );
-sachsenkriege.Pages.Add( CreateAppetizerPage ("Karl der Große und die Sachsen – dreißig Jahre Krieg!", sachsenkriege_teaser) );
-sachsenkriege.Pages.Add( CreateImagePage (noImage, null, null, _019) );
-sachsenkriege.Pages.Add( CreateImagePage (noImage, null, null, _020) );
-sachsenkriege.Pages.Add( CreateImagePage (noImage, null, null, _021) );
-sachsenkriege.Pages.Add( CreateImagePage (noImage, null, null, _022) );
-sachsenkriege.Pages.Add( CreateImagePage (noImage, null, null, _023) );
-sachsenkriege.Pages.Add( CreateImagePage (sachsenkriege_2, null, null, _024) );
-sachsenkriege.Pages.Add( CreateImagePage (noImage, null, null, _025) );
-sachsenkriege.Pages.Add( CreateImagePage (noImage, null, null, _026) );
-sachsenkriege.Pages.Add( CreateImagePage (noImage, null, null, _027) );
-sachsenkriege.Pages.Add( CreateImagePage (noImage, null, null, _028) );
-sachsenkriege.Pages.Add( CreateImagePage (noImage, null, null, _029) );
-sachsenkriege.Pages.Add( CreateImagePage (noImage, null, null, _030) );
-sachsenkriege.Pages.Add( CreateImagePage (noImage, null, null, _031) );
-sachsenkriege.Pages.Add( CreateImagePage (noImage, null, null, _032) );
-sachsenkriege.Pages.Add( CreateImagePage (noImage, null, null, _033) );
-sachsenkriege.Pages.Add( CreateImagePage (noImage, null, null, _034) );
-sachsenkriege.Pages.Add( CreateImagePage (noImage, null, null, _035) );
-sachsenkriege.Pages.Add( CreateImagePage (noImage, null, null, _037) );
+Sachsenkriege.Pages.Add( CreateAppetizerPage ("Karl der Große und die Sachsen – dreißig Jahre Krieg!", Teaser_Sachenkriege) );
+Sachsenkriege.Pages.Add( CreateImagePage (noImage, null, null, _019) );
+Sachsenkriege.Pages.Add( CreateImagePage (Stuttgart_WLB_Cod, null, null, _020) );
+Sachsenkriege.Pages.Add( CreateImagePage (noImage, null, null, _021) );
+Sachsenkriege.Pages.Add( CreateImagePage (noImage, null, null, _022) );
+Sachsenkriege.Pages.Add( CreateImagePage (noImage, null, null, _023) );
+Sachsenkriege.Pages.Add( CreateImagePage (KarteDesAltsachsischenSprachraums, null, null, _024) );
+Sachsenkriege.Pages.Add( CreateImagePage (noImage, null, null, _025) );
 var TaufenAnDerPader = CreateExhibit (
     "Taufen an der Pader?",
     "",
@@ -761,8 +792,10 @@ karlsrouteSet.ActiveSet.Add(kaiserpfalz);
 karlsrouteSet.ActiveSet.Add(PaderbrunnonPatresbrunPaderbruno);
 karlsrouteSet.ActiveSet.Add(TaufenAnDerPader);
 karlsrouteSet.ActiveSet.Add(LebenAmWasser);
-karlsrouteSet.ActiveSet.Add(sachsenkriege);
+karlsrouteSet.ActiveSet.Add(Sachsenkriege);
 karlsrouteSet.ActiveSet.Add(Kaisermachtschule);
+karlsrouteSet.ActiveSet.Add(ChristianisierungDerSachsen);
+karlsrouteSet.ActiveSet.Add(KarlsSiegUberDieSachsen);
 karlsrouteSet.ActiveSet.Add(karldergroßeimwandelderzeit);
 var karlsroute = CreateRoute (
     "Karlsroute",
