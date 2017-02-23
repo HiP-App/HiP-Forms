@@ -23,7 +23,7 @@
       <!-- Defined Styles for Labels -->
       <Style x:Key="TitleStyle" TargetType="Label">
         <Setter Property="FontSize" Value="Small" />
-        <Setter Property="TextColor" Value="Orange" />
+        <Setter Property="TextColor" Value="{StaticResource AccentColor}" />
         <Setter Property="FontAttributes" Value="Bold"/>
         <Setter Property="Grid.ColumnSpan" Value="2" />
       </Style>

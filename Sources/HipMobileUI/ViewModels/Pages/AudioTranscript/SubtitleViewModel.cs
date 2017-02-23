@@ -12,12 +12,38 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using MvvmHelpers;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using HipMobileUI.Properties;
 
 namespace HipMobileUI.ViewModels.Pages.AudioTranscript {
-    public class SubtitleViewModel :BaseViewModel{
+    public class SubtitleViewModel : INotifyPropertyChanged {
 
-        
+        private string formatedText;
+
+        public void Init (string formatedText)
+        {
+            FormatedText = formatedText;
+        }
+
+        public string FormatedText {
+            get { return formatedText; }
+
+            set {
+                formatedText = value;
+                OnPropertyChanged ();
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged ([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke (this, new PropertyChangedEventArgs (propertyName));
+
+
+        }
 
     }
 }

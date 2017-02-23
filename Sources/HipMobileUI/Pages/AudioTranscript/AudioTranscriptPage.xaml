@@ -21,6 +21,5 @@
             xmlns:strings="clr-namespace:HipMobileUI.Helpers;assembly=HipMobileUI"
             x:Class="HipMobileUI.Pages.AudioTranscript.AudioTranscriptPage">
 
-  <audioTranscript:SubtitlesPage Title="{strings:Translate AudioTranscriptView_Subtitles_Title}"/>
-  <audioTranscript:SourcesPage Title="{strings:Translate AudioTranscriptView_Sources_Title}"/>
+
 </TabbedPage>

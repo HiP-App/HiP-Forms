@@ -12,13 +12,39 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using MvvmHelpers;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using de.upb.hip.mobile.pcl.BusinessLayer.InteractiveSources;
+using HipMobileUI.Properties;
 
 namespace HipMobileUI.ViewModels.Pages.AudioTranscript
 {
-    public class SourcesViewModel : BaseViewModel{
+    public class SourcesViewModel : INotifyPropertyChanged
+    {
+        private List<Source> references;
 
-        
+        public void Init(List<Source> references)
+        {
+            References = references;
+        }
 
+        public List<Source> References
+        {
+            get { return references; }
+            set
+            {
+                references = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }
