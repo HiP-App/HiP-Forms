@@ -898,5 +898,86 @@ namespace HipMobileUI.Resources {
                 return ResourceManager.GetString("SettingsScreenView_RepeatIntro_Text", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Erlebe und entdecke selbst mit dem Smartphone Geschichte und Kultur vor Ort.
+        /// </summary>
+        public static string UserOnboarding_Explore_Text {
+            get {
+                return ResourceManager.GetString("UserOnboarding_Explore_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Paderborn erkunden.
+        /// </summary>
+        public static string UserOnboarding_Explore_Title {
+            get {
+                return ResourceManager.GetString("UserOnboarding_Explore_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to WEITER.
+        /// </summary>
+        public static string UserOnboarding_Forward {
+            get {
+                return ResourceManager.GetString("UserOnboarding_Forward", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ALLES KLAR.
+        /// </summary>
+        public static string UserOnboarding_Ok {
+            get {
+                return ResourceManager.GetString("UserOnboarding_Ok", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Erkunde frei oder anhand themenspezifischer Routen Paderborn.
+        /// </summary>
+        public static string UserOnboarding_Route_Text {
+            get {
+                return ResourceManager.GetString("UserOnboarding_Route_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Themenspezifische Routen.
+        /// </summary>
+        public static string UserOnboarding_Route_Title {
+            get {
+                return ResourceManager.GetString("UserOnboarding_Route_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ÜBERSPRINGEN.
+        /// </summary>
+        public static string UserOnboarding_Skip {
+            get {
+                return ResourceManager.GetString("UserOnboarding_Skip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Eine sich weiterentwickelnde App erstellt von Studierenden der Universität Paderborn.
+        /// </summary>
+        public static string UserOnboarding_Students_Text {
+            get {
+                return ResourceManager.GetString("UserOnboarding_Students_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Von Studierenden.
+        /// </summary>
+        public static string UserOnboarding_Students_Title {
+            get {
+                return ResourceManager.GetString("UserOnboarding_Students_Title", resourceCulture);
+            }
+        }
     }
 }

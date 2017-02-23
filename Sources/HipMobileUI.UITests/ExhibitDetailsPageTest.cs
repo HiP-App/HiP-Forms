@@ -22,8 +22,9 @@ namespace HipMobileUI.UITests
     class ExhibitDetailsPageTest : UiTestBase
     {
 
-        /*[TestCase(Platform.Android, Category = "UITestAndroid")]
-        [TestCase(Platform.iOS, Category = "UITestiOS")]*/
+        [TestCase(Platform.Android, Category = "UITestAndroid")]
+        [TestCase(Platform.iOS, Category = "UITestiOS")]
+        [Ignore]
         public void ExhibitDetailsTest(Platform platform)
         {
             BeforeEachTest(platform);

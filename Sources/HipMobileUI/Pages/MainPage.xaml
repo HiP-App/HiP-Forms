@@ -19,9 +19,6 @@
              x:Class="HipMobileUI.Pages.MainPage"
              xmlns:viewmodel="clr-namespace:HipMobileUI.ViewModels.Pages;assembly=HipMobileUI"
              xmlns:strings="clr-namespace:HipMobileUI.Helpers;assembly=HipMobileUI">
-<MasterDetailPage.BindingContext>
-    <viewmodel:MainPageViewModel />
-</MasterDetailPage.BindingContext>
     <MasterDetailPage.Master>
         <ContentPage Title="Menu" Padding="0">
             <Grid>

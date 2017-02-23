@@ -153,6 +153,7 @@
   <ItemGroup>
     <Compile Include="Contracts\IosAudioPlayer.cs" />
     <Compile Include="Contracts\IosImageDimensions.cs" />
+    <Compile Include="Contracts\IosStatusBarController.cs" />
     <Compile Include="CustomRenderers\FloatingActionButtonIosRenderer.cs" />
     <Compile Include="CustomRenderers\IosOrientationContentPageRenderer.cs" />
     <Compile Include="CustomRenderers\IosTouchEventSlider.cs" />
@@ -265,6 +266,10 @@
       <HintPath>..\..\packages\WebP.Touch.1.0.2\lib\Xamarin.iOS10\WebP.Touch.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Xamarin.Forms.CarouselView, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xamarin.Forms.CarouselView.2.3.0-pre2\lib\Xamarin.iOS10\Xamarin.Forms.CarouselView.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Xamarin.Forms.Core, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Xamarin.Forms.2.3.3.180\lib\Xamarin.iOS10\Xamarin.Forms.Core.dll</HintPath>
       <Private>True</Private>
@@ -352,6 +357,12 @@
     <BundleResource Include="Resources\ic_play_arrow_black%402x.png" />
     <BundleResource Include="Resources\ic_play_arrow_black%403x.png" />
     <BundleResource Include="Resources\timeslider_background.png" />
+    <BundleResource Include="Resources\ac_erkunden.jpg" />
+    <BundleResource Include="Resources\ac_route.jpg" />
+    <BundleResource Include="Resources\ac_route2.jpg" />
+    <BundleResource Include="Resources\ac_students.png" />
+    <BundleResource Include="Resources\selected_circle.png" />
+    <BundleResource Include="Resources\unselected_circle.png" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Resources\MapAnnotations.xcassets\AppIcons.appiconset\Contents.json">
