@@ -833,7 +833,6 @@ TaufenAnDerPader.Pages.Add( CreateImagePage (MünchenBSBClm22053_16r, null, nul
 TaufenAnDerPader.Pages.Add( CreateImagePage (noImage, null, null, _010) );
 TaufenAnDerPader.Pages.Add( CreateImagePage (noImage, null, null, _011) );
 TaufenAnDerPader.Pages.Add( CreateImagePage (noImage, null, null, _012) );
-TaufenAnDerPader.Pages.Add( CreateImagePage (noImage, null, null, _012) );
 TaufenAnDerPader.Pages.Add( CreateImagePage (noImage, null, null, _015) );
 TaufenAnDerPader.Pages.Add( CreateImagePage (noImage, null, null, _016) );
 TaufenAnDerPader.Pages.Add( CreateImagePage (Berlin_TaufschaleWidukinds, null, null, _017) );
