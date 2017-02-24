@@ -348,8 +348,9 @@
     <EmbeddedResource Include="Content\TaufenAnDerPader\Teaser_TaufenAnDerPader.jpg" />
     <EmbeddedResource Include="Content\ChristianisierungDerSachsen\Teaser_Christianisierung.jpg" />
     <EmbeddedResource Include="Content\KarlsSiegUberDieSachsen\Teaser_KarlsSieg.jpg" />
-    <EmbeddedResource Include="Content\noImage.jpg" />
     <EmbeddedResource Include="Content\Kaiserpfalz\bruecke_teaser.jpg" />
+    <EmbeddedResource Include="Content\noImage.jpg" />
+    <EmbeddedResource Include="Content\KarldergroßeImWandelDerZeit\GrabmalBischofRothosvonPaderborn.jpg" />
     <Content Include="FodyWeavers.xml">
       <SubType>Designer</SubType>
     </Content>

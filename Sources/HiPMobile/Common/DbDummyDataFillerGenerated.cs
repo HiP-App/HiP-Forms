@@ -23,7 +23,7 @@ using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 namespace de.upb.hip.mobile.pcl.Common {
     public partial class DbDummyDataFiller {
 
-        public static int DatabaseVersion { get; } = 17;
+        public static int DatabaseVersion { get; } = 18;
 
         public void InsertData ()
         {
@@ -119,9 +119,44 @@ var _009 = CreateAudio (
     "In Sachsen gab es jedoch zu Beginn der Missionierung kaum Kirchen oder Taufkapellen. Wo also fanden die Taufen statt? Schauen wir dazu nach Northumbrien, dem heutigen Nordengland, das rund 75 Jahre vor den Sachsen christianisiert wurde. In Ermangelung von Kirchen und Taufkapellen hätten Missionare wie der hl. Paulinus, Bischof von York, auch in Flüssen getauft.<fn>Das berichtet uns der Zeitgenosse Beda Venerabilis in seiner Kirchengeschichte des englischen Volkes. Beda Venerabilis: Historia ecclesiastica gentis Anglorum. Textum secundum editionem, quam paraverant B. Colgrave / R. A. B. Manors, ed. und übersetzt von Günter Spitzbart (Texte zur Forschung 34), Darmstadt 1982, hier: II,14, Bd. 1, S. 186-187: quibus diebus cunctis a mane usque ad uesperam nil aliud ageret, quam confluentem eo de cunctis uiculis ac locis plebem Christi uerbo salutis instruere, atque </fn>  So oder ähnlich könnte es auch in Sachsen gewesen sein. Vielleicht wurden die Sachsen hier vor Ort ja in der Pader oder an den Lippequellen getauft.<fn>Annales regni Francorum ad a. 776, ed. von Friedrich Kurze (MGH SS rer. Germ. 6), Hannover 1895 (ND 1950), S. 46 und S. 48: Et Saxones perterriti omnes ad locum, ubi Lippia consurgit, venientes ex omni parte et reddiderunt patriam per wadium omnes manibus eorum et spoponderunt se esse christianos et sub dicione domni Caroli regis et Francorum subdiderunt. (…) ibique venientes Saxones una cum uxoribus et infantibus innumerabilis multitudo baptizati sunt et obsides (…) dederunt.</fn>  Aus dem 9. Jahrhundert haben sich Abschriften von Taufgelöbnissen erhalten, wie sie bei der Missionierung hier vor Ort vielleicht eingesetzt wurden.", 
     ""
   );
+var _010 = CreateAudio (
+    "010.mp3", 
+    "Wichtige Zeugnisse der frühmittelalterlichen Missionspraxis sind die erhaltenen Taufgelöbnisse. Aus dem 9. Jahrhundert sind uns in älteren Sprachstufen des Deutschen insgesamt drei vollständige Taufgelöbnisse sowie ein weiteres fragmentarisches überliefert.<fn> Andreas Wagner: Taufe als Willensakt. Zum Verständnis der frühmittelalterlichen Taufgelöbnisse und zur Begründung ihrer volkssprachigen Übersetzung, in: Zeitschrift für deutsches Altertum und Literatur 125 (1996), S. 297-321. </fn> Auf Ihrem Display können Sie nun das Altsächsische Taufgelöbnis sehen. So ist es vielleicht bei der Missionierung hier vor Ort verwendet worden.Wir haben dieses Taufgelöbnis ausgesucht, da vor über 1000 Jahren auch in Paderborn Altsächsisch gesprochen wurde. Was das Altsächsische ist und was es mit uns heute zu tun hat, erfahren Sie, wenn Sie diesen Button drücken", 
+    ""
+  );
+var _011 = CreateAudio (
+    "011.mp3", 
+    "", 
+    ""
+  );
+var _012 = CreateAudio (
+    "012.mp3", 
+    "Haben Sie es herausgehört? Nicht nur Gott und Christus werden genannt, sondern auch die germanische Göttertrias Wotan, Donar und Saxnot.<fn>DStephan Müller (Hg.): Althochdeutsche Literatur. Eine kommentierte Anthologie. Althochdeutsch, Neuhochdeutsch, Altniederdeutsch, Neuhochdeutsch, Stuttgart 2007, S. 319; Walter Haug / Benedikt Konrad Vollmann (Hg.): Frühe deutsche Literatur und lateinische Literatur in Deutschland 800-1150 (Bibliothek des Mittelalters 1) (Bibliothek deutscher Klassiker 62), Frankfurt a.M. 1991, S. 1045.</fn> Ihnen, und nicht nur dem Teufel, sollten die Sachsen beim Taufgelöbnis abschwören. Das Altsächsische Taufgelöbnis gehört zur Gattung der kirchlichen Gebrauchsliteratur und war direkt für die Missionspraxis gedacht. So besteht es aus einem kurzen Frage- und Antwortgespräch zwischen Missionar und Täufling.<fn> Walter Haug / Benedikt Konrad Vollmann (Hg.): Frühe deutsche Literatur und lateinische Literatur in Deutschland 800-1150 (Bibliothek des Mittelalters 1) (Bibliothek deutscher Klassiker 62), Frankfurt a.M. 1991, S. 1041.</fn> Aufgeteilt ist es in Abschwörung (lateinisch: abrenuntiatio) und Glaubensbekenntnis (lateinisch: professio).Dieses Taufgelöbnis ist das älteste der altdeutschen Taufgelöbnisse. Es ist uns nur in einer einzigen Sammelhandschrift, dem Codex Palatinus Latinus 577, überliefert. Die Handschrift entstand um das Jahr 800, eventuell in Fulda. Sie versammelt überwiegend kirchenrechtliche Texte in Latein. Sie ist geradezu als ein ‚Handbuch‘ für die Heidenmission zu bezeichnen, da sich die Texte der Heidenunterweisung und der Bekämpfung des Aberglaubens widmen.<fn> Andreas Wagner: Taufe als Willensakt. Zum Verständnis der frühmittelalterlichen Taufgelöbnisse und zur Begründung ihrer volkssprachigen Übersetzung, in: Zeitschrift für deutsches Altertum und Literatur 125 (1996), S. 297-321, hier: S. 298.</fn> Heute befindet sich die Handschrift in Rom. Es handelt sich um die Abschrift eines Originals, das vermutlich in die 770er oder 780er Jahre zu datieren ist. <fn> Walter Haug / Benedikt Konrad Vollmann (Hg.): Frühe deutsche Literatur und lateinische Literatur in Deutschland 800-1150 (Bibliothek des Mittelalters 1) (Bibliothek deutscher Klassiker 62), Frankfurt a.M. 1991, S. 1038-1039; Eckhard Freise / Katharina Bierbrauer: Sächsisches Taufgelöbnis in: Canonum Collectio Dionysiana, in: 799. Kunst und Kultur der Karolingerzeit. Karl der Große und Papst Leo III. in Paderborn. Katalog der gemeinsamen Ausstellung der Stadt Paderborn, des Erzbistums Paderborn und des Landesverbandes Westfalen-Lippe vom 23. Juli bis 1. November 1999, 3 Bde., hg. von Christoph Stiegemann / Matthias Wemhoff, Mainz 1999, Bd. 2, S. 466-468, hier: S. 466 und S. 467. </fn> Noch heute ist in der Ostermesse die Grundform des Taufgelöbnisses erhalten. Das Taufgelöbnis wird dabei erneuert <fn> Vgl. Anselm Schott / Erzabtei St. Martin zu Beuron: Volks-Schott. Für das Lesejahr B. Originaltexte der deutschsprachigen Altarausgabe des Meßbuchs und des Lektionars, Freiburg i.B. 1975. </fn> ", 
+    ""
+  );
+var _015 = CreateAudio (
+    "015.mp3", 
+    "Die wichtigste Taufe während der Sachsenkriege war vielleicht die Widukinds im Jahre 785. Widukind war ein bedeutender sächsischer Heerführer und leistete Karl dem Großen lange Zeit erbitterten Widerstand. Seine Taufe war richtungsweisend für den weiteren Verlauf der Sachsenkriege und bildete einen vorläufigen Abschluss der blutigsten Phase der Sachsenkriege.", 
+    "Die sogenannte Taufschale Widukinds"
+  );
+var _016 = CreateAudio (
+    "016.mp3", 
+    "Karl der Große war Widukinds Taufpate und soll ihn „mit großartigen Geschenken“ <fn>Annales Mosellani ad a. 785, ed. Johann M. Lappenberg (MGH SS 16), Hannover 1859, S. 497: (…) et domnus rex suscepit eum a fonte ac donis magnificis honoravit.</fn> geehrt haben. Dazu zählt auch die sogenannte Taufschale Widukinds, die heute im Kunstgewerbemuseum der Staatlichen Museen zu Berlin aufbewahrt wird. <fn> Lothar Lambacher: Sog. Taufschale Widukinds, in: Credo. Christianisierung Europas im Mittelalter. Katalog zur Ausstellung des Erzbischöflichen Diözesanmuseums, des Museums in der Kaiserpfalz und der Städtischen Galerie Am Abdinghof zu Paderborn vom 26. Juli bis 3. November 2013, hg. von Christoph Stiegemann / Martin Kroker / Wolfgang Walter, 2 Bde., Petersberg 2013, Bd. 2, S. 418-419.</fn>Über viele Jahrhunderte gehörte sie zum Besitz des Stiftes St. Dionysius zu Enger. Dieses Kloster soll der Nachfolgebau einer Einsiedelei Widukinds sein. Mitte des 18. Jahrhunderts galt die Schale zunächst als „Geschirr, woraus Widekindus soll getruncken haben“. <fn> Carl Ludwig Storch: Reliquiae Widekindi Magni [Verzeichnis vom 9. Oktober 1743], in: Johann Friedrich Falcke (Hg.): Codex traditionum Corbeiensium, Leipzig 1752, S. 200-202, hier: S. 201: Reliquiae Widekindi Magni.</fn> Seit dem dritten Viertel des 19. Jahrhunderts wird sie als Taufschale Widukinds bezeichnet. Für die Kleriker des Stiftes war sie sozusagen eine Berührungsreliquie ihres Gründers.", 
+    ""
+  );
 var _016_karlsbild = CreateAudio (
     "016_karlsbild.mp3", 
     "Bevor Sie den Dom betreten, sind Sie herzlich eingeladen, im Hof des Kreuzgangs das Paderborner Wahrzeichen anzuschauen: das Dreihasenfenster. Falls Sie mehr zum Dreihasenfenster erfahren möchten, klicken Sie auf den eingeblendeten Infobutton [Infobutton].", 
+    ""
+  );
+var _017 = CreateAudio (
+    "017.mp3", 
+    "Auf Ihrem Display können Sie nun eine Abbildung sehen. Sehen Sie den grünen Kern? Es ist eine flache, ovale Schale aus grünem Serpentin, einem Mineral von geringer Härte. Dies ist der älteste Teil. Dieser Stein wurde vermutlich bereits in der Spätantike geschnitten und könnte durchaus zur Zeit der Sachsenkriege in Gebrauch gewesen sein. Erst im 12. Jahrhundert erhielt er dann zur besseren Handhabung eine Fingeröse mit Daumenplatte aus vergoldeter Bronze.<fn>Vgl. Credo. Christianisierung Europas im Mittelalter. Katalog zur Ausstellung des Erzbischöflichen Diözesanmuseums, des Museums in der Kaiserpfalz und der Städtischen Galerie Am Abdinghof zu Paderborn vom 26. Juli bis 3. November 2013, hg. von Christoph Stiegemann / Martin Kroker / Wolfgang Walter, 2 Bde., Petersberg 2013, Bd. 2, S. 418-419.</fn>Die umlaufende, gereimte Inschrift an der Außenseite der Fassung „+ MUNERE TAM CLARO DITAT NOS AFFRICA RARO“ weist auf die Kostbarkeit und die exotische Herkunft des Steins hin: „Mit einer so prächtigen und seltenen Gabe beschenkt uns Afrika“. <fn>+ MUNERE TAM CLARO DITAT NOS AFFRICA RARO, Übersetzung in der Online-Datenbank der Sammlungen, URL: http://www.smb-digital.de/eMuseumPlus?service=ExternalInterface&module=collection&objectId=902421 </fn>", 
+    ""
+  );
+var _018 = CreateAudio (
+    "018.mp3", 
+    "Ist Ihnen aufgefallen: Die Inschrift nimmt keinen Bezug auf die Taufe Widukinds. Sie erklärt auch nicht die ursprüngliche Funktion der Schale. Wir wissen also nichts Genaues über ihre Verwendung oder Funktion im Frühmittelalter. Die ist ungewiss.<fn>Vgl. Credo. Christianisierung Europas im Mittelalter. Katalog zur Ausstellung des Erzbischöflichen Diözesanmuseums, des Museums in der Kaiserpfalz und der Städtischen Galerie Am Abdinghof zu Paderborn vom 26. Juli bis 3. November 2013, hg. von Christoph Stiegemann / Martin Kroker / Wolfgang Walter, 2 Bde., Petersberg 2013, Bd. 2, S. 418. </fn> Zuschreibungen dieser Art sind für Artefakte des Frühmittelalters nicht ungewöhnlich. Kostbare Objekte werden häufig mit außergewöhnlichen Persönlichkeiten oder Ereignissen in Verbindung gebracht. Auch auf unserem Rundgang werden uns noch weitere Beispiele dafür begegnen.", 
     ""
   );
 var _019 = CreateAudio (
@@ -399,6 +434,11 @@ var berlinMünzeVorderSeiteHighlighted = CreateImage (
     "Vorderseite der Bildnismünze Karls des Großen mit farbig hervorgehobenem Paludamtentum, Lorbeerkranz und Schnurbart", 
     "BerlinMünzeKarlsdesGroßeVorderseiteGehighlitet.jpg"
   );
+var Berlin_TaufschaleWidukinds = CreateImage (
+    "Berlin Taufschale Widukinds", 
+    "Die sogenannte Taufschale Widukinds, Montierung 12. Jh., Steinschliff wohl spätantik, grüner Serpentin, geschnitten und geschliffen; Montierung Bronze, gegossen, teilweise getrieben, vergoldet, Inschrift nielliert, Deckblech der Daumenplatte Silber, ehemals nielliert, Maße: 3,5 x 13, 15 x 17,5 cm, aus dem Schatz des Stiftes St. Dionysius zu Enger/Herford, Berlin, Staatliche Museen zu Berlin – Preußischer Kulturbesitz, Kunstgewerbemuseum, Inv. Nr. K 3672. © bpk / Kunstgewerbemuseum, SMB.", 
+    "Berlin_TaufschaleWidukinds.jpg"
+  );
 var domRothoGrabmalDetailEngelNordseite1 = CreateImage (
     "", 
     "Paderborn, Dom, Hasenkamp, Details der Nord- und Südseite des Grabmals Bischof Rothos von Paderborn (1036-1051), gestiftet von Wilhelm von Büren-Büsigheim und Irmgard zur Lippe, um 1435, Foto: Universität Paderborn, N.N.", 
@@ -448,6 +488,11 @@ var domRothograbmalLeoEinfärbung = CreateImage (
     "Grabmal Bischof Rothos", 
     "Paderborn, Dom, Hasenkamp, Detail des Grabmals Bischof Rothos von Paderborn (1036-1051) mit der rot eingefärbten Inschrift unter Papst Leo III., gestiftet von Wilhelm von Büren-Büsigheim und Irmgard zur Lippe, um 1435, Foto: Universität Paderborn, Kristina Stog.", 
     "DomRothograbmalLeoEinfärbung.jpg"
+  );
+var GrabmalBischofRothosvonPaderborn = CreateImage (
+    "Grabmal Bischof Rothos von Paderborn", 
+    "Paderborn, Dom, Hochchor, Grabmal Bischof Rothos von Paderborn, Fotografie, um 1900, Marburg, Bildarchiv Foto Marburg. © Bildarchiv Foto Marburg.", 
+    "GrabmalBischofRothosvonPaderborn.jpg"
   );
 var kaiserPfalzImage = CreateImage (
     "Die Pfalz Karls des Großen", 
@@ -555,7 +600,7 @@ var karlsschule = CreateImage (
     "karlsschule.jpg"
   );
 var KarteDesAltsachsischenSprachraums = CreateImage (
-    "", 
+    "Karte Des Altsächsischen Sprachraums", 
     "Der altsächsische Sprachraum im 9. Jh., veröffentlicht in : Gossens, Jan (Hg.): Niederdeutsch. Sprache und Literatur. Eine Einführung, Bd. 1: Sprache, Neumünster 1983, Abb. 1.", 
     "KarteDesAltsächsischenSprachraums.jpg"
   );
@@ -585,7 +630,7 @@ var reproRatsgestuehlKarlderGroßeFockeMuseumBremenInventarNr00294 = CreateImage
     "ReproRatsgestuehlKarlderGroßeFockeMuseumBremenInventarNr00294.jpg"
   );
 var Stuttgart_WLB_Cod = CreateImage (
-    "", 
+    "Darstellung eines Kriegsgemenges", 
     "Darstellung eines Kriegsgemenges. Illustration des Psalms 59 im Stuttgarter Bilderpsalter, um 820/830, Stuttgart, Württembergische Landesbibliothek, Cod. Bibl. 2° 23 fol. 71v. © Stuttgart, Württembergische Landesbibliothek, Cod. bibl. fol. 23, f. 71v", 
     "Stuttgart_WLB_Cod.bibl.fol.23_71v.jpg"
   );
@@ -711,7 +756,7 @@ karldergroßeimwandelderzeit.Pages.Add( CreateImagePage (noImage, null, null, _1
 karldergroßeimwandelderzeit.Pages.Add( CreateTimeSliderPage("Rotho-Grabmal", "Mehr Informationen zum Rotho-Grabmal", new long[]{0,1,2}, new []{domRothoGrabmalDetailEngelNordseite1,domRothoGrabmalDetailEngelNordseite2,domRothoGrabmalDetailEngelSüdseite}, true, _124) );
 karldergroßeimwandelderzeit.Pages.Add( CreateImagePage (noImage, null, null, _139) );
 karldergroßeimwandelderzeit.Pages.Add( CreateImagePage (domRothograbmalGesamtansichtEinfärbungThuriferar, null, null, _147) );
-karldergroßeimwandelderzeit.Pages.Add( CreateImagePage (noImage, null, null, _149) );
+karldergroßeimwandelderzeit.Pages.Add( CreateImagePage (GrabmalBischofRothosvonPaderborn, null, null, _149) );
 karldergroßeimwandelderzeit.Pages.Add( CreateImagePage (noImage, null, null, _159) );
 var KarlsSiegUberDieSachsen = CreateExhibit (
     "Karls Sieg über die Sachsen",
@@ -785,6 +830,14 @@ var TaufenAnDerPader = CreateExhibit (
 TaufenAnDerPader.Pages.Add( CreateAppetizerPage ("Donar, Wotan und Saxnot – die Abkehr von den alten Göttern.", Teaser_TaufenAnDerPader) );
 TaufenAnDerPader.Pages.Add( CreateImagePage (noImage, null, null, _008) );
 TaufenAnDerPader.Pages.Add( CreateImagePage (MünchenBSBClm22053_16r, null, null, _009) );
+TaufenAnDerPader.Pages.Add( CreateImagePage (noImage, null, null, _010) );
+TaufenAnDerPader.Pages.Add( CreateImagePage (noImage, null, null, _011) );
+TaufenAnDerPader.Pages.Add( CreateImagePage (noImage, null, null, _012) );
+TaufenAnDerPader.Pages.Add( CreateImagePage (noImage, null, null, _012) );
+TaufenAnDerPader.Pages.Add( CreateImagePage (noImage, null, null, _015) );
+TaufenAnDerPader.Pages.Add( CreateImagePage (noImage, null, null, _016) );
+TaufenAnDerPader.Pages.Add( CreateImagePage (Berlin_TaufschaleWidukinds, null, null, _017) );
+TaufenAnDerPader.Pages.Add( CreateImagePage (noImage, null, null, _018) );
 var bar = CreateRouteTag("Bar", "bar", CreateImage("","","route_tag_bar.png"));
 var restaurant = CreateRouteTag("Restaurant", "restaurant", CreateImage("","","route_tag_restaurant.png"));
 var karlsrouteSet = DbManager.CreateBusinessObject<ExhibitSet> ();
