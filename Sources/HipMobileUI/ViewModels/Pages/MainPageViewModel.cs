@@ -76,6 +76,7 @@ namespace HipMobileUI.ViewModels.Pages
                 if (SetProperty (ref (selectedViewModel), value))
                 {
                     oldViewModel?.OnDisappearing ();
+                    SelectedViewModel?.OnAppearing ();
                 }
             }
         }

@@ -12,21 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.using System;
 
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
 using Android.Support.V4.Content;
 using Android.Support.V4.Content.Res;
-using Android.Views;
-using Android.Widget;
 using de.upb.hip.mobile.droid.Map;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
-using de.upb.hip.mobile.pcl.Helpers;
 using HipMobileUI.Helpers;
 using HipMobileUI.Map;
 using Org.Osmdroid;
@@ -34,7 +25,6 @@ using Org.Osmdroid.Bonuspack.Overlays;
 using Org.Osmdroid.Events;
 using Org.Osmdroid.Tileprovider.Tilesource;
 using Org.Osmdroid.Util;
-using Org.Osmdroid.Util.Constants;
 using Org.Osmdroid.Views;
 using Org.Osmdroid.Views.Overlay;
 using Org.Osmdroid.Views.Overlay.Compass;
@@ -53,7 +43,6 @@ namespace de.upb.hip.mobile.droid.Map {
         private Marker userMarkerPosition;
         private MyLocationOverlay locationOverlay;
         private Activity activity;
-
 
         protected override void OnElementChanged (ElementChangedEventArgs<OsmMap> e)
         {
@@ -196,6 +185,21 @@ namespace de.upb.hip.mobile.droid.Map {
         {
             AppSharedData.MapZoomLevel = p0.ZoomLevel;
             return true;
+        }
+
+        /// <summary>
+        /// Called when this view will be disposed.
+        /// </summary>
+        /// <param name="disposing"></param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                osmMap.ExhibitSetChanged -= NewElementOnExhibitSetChanged;
+                osmMap.GpsLocationChanged -= NewElementOnGpsLocationChanged;
+                osmMap.DetailsRouteChanged -= NewElementOnDetailsRouteChanged;
+            }
+            base.Dispose(disposing);
         }
 
     }
