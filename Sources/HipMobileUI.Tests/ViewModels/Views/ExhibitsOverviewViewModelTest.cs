@@ -73,6 +73,7 @@ namespace HipMobileUI.Tests.ViewModels.Views
         {
             var locator = Substitute.For<IGeolocator> ();
             var sut = CreateSystemUnderTest(locator);
+            sut.OnAppearing ();
 
             locator.PositionChanged += Raise.EventWith (this, new PositionEventArgs (new Position () {Latitude = 51, Longitude = 7}));
 
