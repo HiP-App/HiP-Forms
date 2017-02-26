@@ -52,17 +52,16 @@ namespace HipMobileUI.ViewModels.Views
             {
                 locator = geolocator;
                 locator.DesiredAccuracy = AppSharedData.MinDistanceChangeForUpdates;
-                locator.PositionChanged += LocatorOnPositionChanged;
-                locator.StartListeningAsync(AppSharedData.MinTimeBwUpdates, AppSharedData.MinDistanceChangeForUpdates);
             }
+
+            MessagingCenter.Subscribe<App>(this, AppSharedData.WillSleepMessage, WillSleep);
+            MessagingCenter.Subscribe<App>(this, AppSharedData.WillWakeUpMessage, WillWakeUp);
         }
 
         public ExhibitsOverviewViewModel (ExhibitSet set) : this(set, null)
         {
             locator = CrossGeolocator.Current;
             locator.DesiredAccuracy = AppSharedData.MinDistanceChangeForUpdates;
-            locator.PositionChanged += LocatorOnPositionChanged;
-            locator.StartListeningAsync(AppSharedData.MinTimeBwUpdates, AppSharedData.MinDistanceChangeForUpdates);
         }
 
         public ExhibitsOverviewViewModel (string exhibitSetId) : this(ExhibitManager.GetExhibitSet(exhibitSetId))
@@ -76,6 +75,7 @@ namespace HipMobileUI.ViewModels.Views
         /// <param name="positionEventArgs">The event params.</param>
         private void LocatorOnPositionChanged (object sender, PositionEventArgs positionEventArgs)
         {
+            Position = positionEventArgs.Position;
             SetDistances (positionEventArgs.Position);
         }
 
@@ -85,7 +85,6 @@ namespace HipMobileUI.ViewModels.Views
         /// <param name="pos">The new position.</param>
         private void SetDistances (Position pos)
         {
-            Position = pos;
             DisplayDistances = true;
             foreach (var exhibit in ExhibitsList)
             {
@@ -95,13 +94,53 @@ namespace HipMobileUI.ViewModels.Views
         }
 
         /// <summary>
-        /// Remove the location listener once this view disappears.
+        /// Called when the app will go to the background or the screen is locked.
+        /// </summary>
+        /// <param name="obj">The caller.</param>
+        private void WillSleep(App obj)
+        {
+            locator.PositionChanged -= LocatorOnPositionChanged;
+            if (locator.IsListening)
+            {
+                locator.StopListeningAsync();
+            }
+        }
+
+        /// <summary>
+        /// Called when the app will wake up.
+        /// </summary>
+        /// <param name="obj">The sender of the event.</param>
+        private void WillWakeUp(App obj)
+        {
+            locator.PositionChanged += LocatorOnPositionChanged;
+            if (locator.IsListening)
+            {
+                locator.StartListeningAsync(AppSharedData.MinTimeBwUpdates, AppSharedData.MinDistanceChangeForUpdates);
+            }
+        }
+
+        /// <summary>
+        /// Called when the view was removed from the visual tree.
         /// </summary>
         public override void OnDisappearing ()
         {
             base.OnDisappearing ();
 
             locator.PositionChanged -= LocatorOnPositionChanged;
+        }
+
+        /// <summary>
+        /// Called when the view was added to the visual tree.
+        /// </summary>
+        public override void OnAppearing ()
+        {
+            base.OnAppearing ();
+
+            locator.PositionChanged += LocatorOnPositionChanged;
+            if (!locator.IsListening)
+            {
+                locator.StartListeningAsync (AppSharedData.MinTimeBwUpdates, AppSharedData.MinDistanceChangeForUpdates);
+            }
         }
 
         /// <summary>
