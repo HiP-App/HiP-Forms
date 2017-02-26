@@ -21,23 +21,25 @@ namespace HipMobileUI.iOS.Map
 {
     class MapRenderer : ViewRenderer<OsmMap, MKMapView> {
 
+        private OsmMap osmMap;
+
         protected override void OnElementChanged(ElementChangedEventArgs<OsmMap> e)
         {
             base.OnElementChanged(e);
-           
+
 
             if (Control == null)
             {
-                var mapView = new MKMapView();
-                this.SetNativeControl(mapView);
+                var mapView = new MKMapView ();
+                this.SetNativeControl (mapView);
 
                 var overlay = new MKTileOverlay ("http://tile.openstreetmap.org/{z}/{x}/{y}.png") {CanReplaceMapContent = true};
-                mapView.AddOverlay(overlay, MKOverlayLevel.AboveLabels);
-                mapView.OverlayRenderer = (view, mkOverlay) => new MKTileOverlayRenderer(overlay);
+                mapView.AddOverlay (overlay, MKOverlayLevel.AboveLabels);
+                mapView.OverlayRenderer = (view, mkOverlay) => new MKTileOverlayRenderer (overlay);
 
-                
+            }
 
-                if (e.OldElement != null)
+            if (e.OldElement != null)
                 {
                     Control.GetViewForAnnotation = null;
                     Control.CalloutAccessoryControlTapped -= OnCalloutAccessoryControlTapped;
@@ -46,6 +48,7 @@ namespace HipMobileUI.iOS.Map
                 }
                 if (e.NewElement != null)
                 {
+                    osmMap = e.NewElement;
                     InitAnnotations(e.NewElement.ExhibitSet);
                     Control.GetViewForAnnotation = GetViewForAnnotation;
                     Control.CalloutAccessoryControlTapped += OnCalloutAccessoryControlTapped;
@@ -56,7 +59,7 @@ namespace HipMobileUI.iOS.Map
                 Control.ShowsUserLocation = true;
                 Control.ShowsCompass = true;
                 InitMapPosition (Control);
-            }
+            
         }
 
         private void OnExhibitSetChanged(ExhibitSet set)
@@ -135,5 +138,18 @@ namespace HipMobileUI.iOS.Map
                 Control.AddAnnotation (annotation);
             }
         }
+
+        protected override void Dispose (bool disposing)
+        {
+            if (disposing)
+            {
+                Control.CalloutAccessoryControlTapped -= OnCalloutAccessoryControlTapped;
+                osmMap.GpsLocationChanged -= OnGpsLocationChanged;
+                osmMap.ExhibitSetChanged -= OnExhibitSetChanged;
+            }
+
+            base.Dispose (disposing);
+        }
+
     }
 }
