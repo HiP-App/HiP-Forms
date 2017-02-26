@@ -817,7 +817,7 @@ Sachsenkriege.Pages.Add( CreateImagePage (noImage, null, null, _021) );
 Sachsenkriege.Pages.Add( CreateImagePage (noImage, null, null, _022) );
 Sachsenkriege.Pages.Add( CreateImagePage (noImage, null, null, _023) );
 Sachsenkriege.Pages.Add( CreateImagePage (KarteDesAltsachsischenSprachraums, null, null, _024) );
-Sachsenkriege.Pages.Add( CreateImagePage (noImage, null, null, _025) );
+Sachsenkriege.Pages.Add( CreateImagePage (KarteDesAltsachsischenSprachraums, null, null, _025) );
 var TaufenAnDerPader = CreateExhibit (
     "Taufen an der Pader?",
     "",
