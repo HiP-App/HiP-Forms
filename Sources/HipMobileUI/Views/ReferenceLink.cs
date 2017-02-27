@@ -13,27 +13,22 @@
 // limitations under the License.
 
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
+using System.Windows.Input;
 using de.upb.hip.mobile.pcl.BusinessLayer.InteractiveSources;
-using HipMobileUI.Properties;
-using MvvmHelpers;
+using HipMobileUI.Behaviors;
+using Xamarin.Forms;
 
-namespace HipMobileUI.ViewModels.Pages.AudioTranscript
+namespace HipMobileUI.Views
 {
-    public class SourcesViewModel : BaseViewModel
+    public class ReferenceLink : Label
     {
-        private List<Source> references;
+        public static readonly BindableProperty SourcesProperty = BindableProperty.Create(nameof(Sources), typeof(List<Source>), typeof(ReferenceLink), defaultValue: new List<Source>());
+        //public static readonly BindableProperty ActionProperty = BindableProperty.Create(nameof(Action), typeof(IInteractiveSourceAction), typeof(ReferenceLink), defaultValue: new List<Source>());
 
-        public SourcesViewModel(List<Source> referencesToInit)
+        public List<Source> Sources
         {
-            References = referencesToInit;
-        }
-
-        public List<Source> References
-        {
-            get { return references; }
-            set { SetProperty (ref references, value); }
+            get { return (List<Source>)GetValue(SourcesProperty); }
+            set { SetValue(SourcesProperty, value); }
         }
     }
 }

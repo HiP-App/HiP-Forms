@@ -22,10 +22,9 @@ namespace HipMobileUI.Pages.AudioTranscript
 {
     public partial class SourcesPage : ContentPage, IViewFor<SourcesViewModel>
     {
-        public SourcesPage(List<Source> references)
+        public SourcesPage()
         {
             InitializeComponent();
-            ((SourcesViewModel)BindingContext).Init(references);
         }
     }
 }

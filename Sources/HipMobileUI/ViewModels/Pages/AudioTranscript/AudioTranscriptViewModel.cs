@@ -12,11 +12,43 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System.Collections.Generic;
+using System.Linq;
+using de.upb.hip.mobile.pcl.BusinessLayer.InteractiveSources;
+using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
+
 namespace HipMobileUI.ViewModels.Pages.AudioTranscript
 {
     public class AudioTranscriptViewModel : NavigationViewModel{
 
-        
+        public AudioTranscriptViewModel (string subtitles)
+        {
+            var id = ExhibitManager.GetExhibitSet().Last();
+            //var subtitles = id.Pages[1].Audio.Caption;
+
+            var parser = new InteractiveSourcesParser(new ConsecutiveNumberAndConstantInteractiveSourceSubstitute(1, "Quelle"));
+            var result = parser.Parse(subtitles);
+
+            string formatedText = result.TextWithSubstitutes;
+            List<Source> references = result.Sources;
+
+            SourcesTab = new SourcesViewModel (references);
+            SubtitleTab = new SubtitleViewModel (formatedText, references);
+        }
+
+        private SourcesViewModel sourcesTab;
+        public SourcesViewModel SourcesTab
+        {
+            get { return sourcesTab; }
+            set { SetProperty (ref sourcesTab, value); }
+        }
+
+        private SubtitleViewModel subtitleTab;
+        public SubtitleViewModel SubtitleTab
+        {
+            get { return subtitleTab; }
+            set { SetProperty(ref subtitleTab, value); }
+        }
 
     }
 }

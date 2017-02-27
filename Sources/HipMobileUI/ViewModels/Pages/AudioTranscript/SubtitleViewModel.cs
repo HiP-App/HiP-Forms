@@ -12,38 +12,34 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using de.upb.hip.mobile.pcl.BusinessLayer.InteractiveSources;
 using HipMobileUI.Properties;
+using MvvmHelpers;
 
 namespace HipMobileUI.ViewModels.Pages.AudioTranscript {
-    public class SubtitleViewModel : INotifyPropertyChanged {
+    public class SubtitleViewModel : BaseViewModel {
 
         private string formatedText;
+        private List<Source> sourcesList;
 
-        public void Init (string formatedTextToInit)
+        public SubtitleViewModel(string formatedTextToInit, List<Source> sources)
         {
             FormatedText = formatedTextToInit;
+            SourcesList = sources;
         }
 
         public string FormatedText {
             get { return formatedText; }
-
-            set {
-                formatedText = value;
-                OnPropertyChanged ();
-            }
+            set { SetProperty(ref formatedText, value); }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        [NotifyPropertyChangedInvocator]
-        protected virtual void OnPropertyChanged ([CallerMemberName] string propertyName = null)
+        public List<Source> SourcesList
         {
-            PropertyChanged?.Invoke (this, new PropertyChangedEventArgs (propertyName));
-
-
+            get { return sourcesList; }
+            set { SetProperty (ref sourcesList, value); }
         }
-
     }
 }

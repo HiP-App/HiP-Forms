@@ -83,7 +83,7 @@ namespace HipMobileUI.ViewModels.Views {
 
         private void ShowCaption()
         {
-            Navigation.PushAsync (new AudioTranscriptViewModel());
+            Navigation.PushAsync (new AudioTranscriptViewModel(AudioPlayer.CurrentAudio.Caption));
         }
 
         /// <summary>

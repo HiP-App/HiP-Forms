@@ -20,6 +20,7 @@
             xmlns:audioTranscript="clr-namespace:HipMobileUI.Pages.AudioTranscript;assembly=HipMobileUI"
             xmlns:strings="clr-namespace:HipMobileUI.Helpers;assembly=HipMobileUI"
             x:Class="HipMobileUI.Pages.AudioTranscript.AudioTranscriptPage">
-
+    <audioTranscript:SubtitlesPage BindingContext="{Binding SubtitleTab}" Title="{strings:Translate AudioTranscriptView_Subtitles_Title}"/>
+    <audioTranscript:SourcesPage BindingContext="{Binding SourcesTab}" Title="{strings:Translate AudioTranscriptView_Sources_Title}"/>
 
 </TabbedPage>

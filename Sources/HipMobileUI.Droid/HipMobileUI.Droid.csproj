@@ -250,9 +250,11 @@
     <Compile Include="CustomRenderers\AndroidOrientationPageRenderer.cs" />
     <Compile Include="CustomRenderers\DroidTouchEventSlider.cs" />
     <Compile Include="CustomRenderers\FloatingActionButtonAndroidRenderer.cs" />
+    <Compile Include="CustomRenderers\ReferenceLinkRenderer.cs" />
     <Compile Include="Effects\DroidSwitchColorEffect.cs" />
     <Compile Include="Helpers\Settings.cs" />
     <Compile Include="CustomRenderers\HtmlLinkRenderer.cs" />
+    <Compile Include="Helpers\SpannableTextBuilder.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="MainApplication.cs" />
     <Compile Include="Map\DroidMapRenderer.cs" />

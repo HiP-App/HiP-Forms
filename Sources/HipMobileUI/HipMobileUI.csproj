@@ -158,6 +158,7 @@
     <Compile Include="Views\ExhibitsOverviewView.xaml.cs">
       <DependentUpon>ExhibitsOverviewView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ReferenceLink.cs" />
     <Compile Include="Views\RoutesOverviewView.xaml.cs">
       <DependentUpon>RoutesOverviewView.xaml</DependentUpon>
     </Compile>

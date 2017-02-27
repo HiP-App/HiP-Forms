@@ -20,10 +20,9 @@ namespace HipMobileUI.Pages.AudioTranscript
 {
     public partial class SubtitlesPage : ContentPage, IViewFor<SubtitleViewModel>
     {
-        public SubtitlesPage(string formatedText)
+        public SubtitlesPage()
         {
             InitializeComponent();
-            ((SubtitleViewModel)BindingContext).Init (formatedText);
         }
     }
 }
