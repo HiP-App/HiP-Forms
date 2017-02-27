@@ -92,6 +92,9 @@
     <Compile Include="Pages\ExhibitDetailsPage.xaml.cs">
       <DependentUpon>ExhibitDetailsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\LoadingPage.xaml.cs">
+      <DependentUpon>LoadingPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -111,6 +114,7 @@
     </Compile>
     <Compile Include="ViewModels\NavigationViewModel.cs" />
     <Compile Include="ViewModels\Pages\ExhibitDetailsViewModel.cs" />
+    <Compile Include="ViewModels\Pages\LoadingPageViewModel.cs" />
     <Compile Include="ViewModels\Pages\UserOnboardingItemViewModel.cs" />
     <Compile Include="ViewModels\Pages\UserOnboardingPageViewModel.cs" />
     <Compile Include="ViewModels\Views\AudioToolbarViewModel.cs" />
@@ -339,7 +343,12 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\LoadingPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

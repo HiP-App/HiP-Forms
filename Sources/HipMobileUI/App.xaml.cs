@@ -35,11 +35,6 @@ namespace HipMobileUI
 
             // Handle when your app starts
 
-            // Setup IoC and database
-            IoCManager.RegisterType<IDataAccess, RealmDataAccess>();
-            IoCManager.RegisterType<IDataLoader, EmbeddedResourceDataLoader>();
-            DbManager.UpdateDatabase();
-
             // set the first page that is shown
             INavigationService navigationService = IoCManager.Resolve<INavigationService> ();
             if (Settings.RepeatIntro)
@@ -48,7 +43,7 @@ namespace HipMobileUI
             }
             else
             {
-                navigationService.StartNewNavigationStack(new MainPageViewModel ());
+                navigationService.StartNewNavigationStack(new LoadingPageViewModel ());
             }
         }
 

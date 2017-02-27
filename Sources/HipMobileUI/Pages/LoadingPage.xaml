@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:HipMobileUI.Controls;assembly=HipMobileUI"
+             x:Class="HipMobileUI.Pages.LoadingPage">
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Spacing="20">
+            <Label Text="{Binding Text}" HorizontalTextAlignment="Center" FontSize="20" FontAttributes="Bold"/>
+            <Label Text="{Binding Subtext}" HorizontalTextAlignment="Center" FontSize="16"/>
+            <ActivityIndicator IsRunning="True" Color="{StaticResource AccentColor}"/>
+            <controls:FadeInImage Source="hiphop_transparent">
+                <OnPlatform x:TypeArguments="x:Int32">
+                    <OnPlatform.Android>500</OnPlatform.Android>
+                    <OnPlatform.iOS>0</OnPlatform.iOS>
+                </OnPlatform>
+            </controls:FadeInImage>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -67,7 +67,7 @@ namespace HipMobileUI.ViewModels.Pages
             Settings.RepeatIntro = false;
 
             // open the main page
-            Navigation.StartNewNavigationStack (new MainPageViewModel ());
+            Navigation.StartNewNavigationStack (new LoadingPageViewModel ());
         }
 
         /// <summary>

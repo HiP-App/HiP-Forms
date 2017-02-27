@@ -25,12 +25,11 @@ namespace HipMobileUI.ViewModels.Pages
     public class MainPageViewModel : NavigationViewModel
     {
 
-        public MainPageViewModel()
+        public MainPageViewModel (ExhibitSet set)
         {
-            ExhibitSet exhibitSet = ExhibitManager.GetExhibitSets ().FirstOrDefault ();
             MainScreenViewModels = new ObservableCollection<NavigationViewModel>
             {
-                new ExhibitsOverviewViewModel (exhibitSet)
+                new ExhibitsOverviewViewModel (set)
                 {
                     Title = Strings.MainPageViewModel_OverviewPage,
                     Icon = "ic_home.png"
@@ -57,6 +56,10 @@ namespace HipMobileUI.ViewModels.Pages
                     Icon = "ic_gavel.png"
                 }
             };
+        }
+
+        public MainPageViewModel() : this(ExhibitManager.GetExhibitSets().FirstOrDefault())
+        {   
         }
 
         private ObservableCollection<NavigationViewModel> mainScreenViewModels;
