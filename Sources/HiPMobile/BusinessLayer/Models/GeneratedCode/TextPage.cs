@@ -33,6 +33,8 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models
 
 		public virtual string Text{ get; set; }
 
+		public virtual string FontFamily{ get; set; }
+
 		//Associations
 		public virtual Audio Audio{ get; set; }
 

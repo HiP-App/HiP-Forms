@@ -2180,6 +2180,80 @@
                 LastKnownLocation="HiPDomainModel.uml" />
             </type_NamedElement>
           </property>
+          <property
+            Id="bbdc4bfd-93bd-439f-957a-aef86a1ba97d"
+            name="FontFamily"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="1582659e-cbfd-4d07-953b-20b45245f4ff"
+                name="property"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="ddc8fae0-cd8c-4dbb-a5bd-d4a3a378203f">
+                    <propertyInstance
+                      Id="d31e7b08-56c7-474f-98e8-95f7e15a6ad2"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="c27ff81f-45dd-45da-81e4-8eb655c0ca60">
+                    <propertyInstance
+                      Id="fed5d8e3-6fec-457a-8cdf-68a1919ad675"
+                      name="Get"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="4324c825-6029-4a1d-b72e-a30861e34ec6">
+                    <propertyInstance
+                      Id="59f221cc-566b-4592-b8d4-9ec3d2979a2f"
+                      name="HasBody"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="9b80ea7f-5694-4753-bf1f-19846580f0da">
+                    <propertyInstance
+                      Id="a615d155-156a-4fdc-9b56-3ce84e0c7f9a"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="f4eb34db-d9a4-41c6-8521-920fd902afff">
+                    <propertyInstance
+                      Id="d3cc3f7b-0a16-480a-8f3b-4ec81b26e8e4"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="dc27ff10-c32b-49a4-8181-7ecf162b55d3">
+                    <propertyInstance
+                      Id="1aea4ad9-de2b-4cc6-abd8-655284b50511"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="7873d946-b653-41bd-bb78-1c72f83398b1">
+                    <propertyInstance
+                      Id="235f16f8-852b-4fec-a9d7-1a385420eba7"
+                      name="Set"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <primitiveTypeMoniker
+                Id="59259974-6d55-42c6-b7bd-763d77ac8ef9"
+                LastKnownName="String"
+                LastKnownLocation="HiPDomainModel.uml" />
+            </type_NamedElement>
+          </property>
         </ownedAttributesInternal>
       </class>
     </packageHasNamedElement>
