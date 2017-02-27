@@ -304,7 +304,9 @@
     <AndroidResource Include="Resources\drawable\info_pressed.png" />
     <AndroidResource Include="Resources\drawable-hdpi\ic_my_location.png" />
     <AndroidResource Include="Resources\drawable-hdpi\marker_blue.png" />
-    <AndroidResource Include="Resources\values\colors.xml" />
+    <AndroidResource Include="Resources\values\colors.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
     <AndroidResource Include="Resources\drawable-hdpi\ic_headset_white.png" />
     <AndroidResource Include="Resources\drawable-mdpi\ic_headset_white.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\ic_headset_white.png" />
@@ -337,6 +339,8 @@
     <AndroidResource Include="Resources\drawable\selected_circle.png" />
     <AndroidResource Include="Resources\drawable\unselected_circle.png" />
     <AndroidResource Include="Resources\drawable\ac_route2.jpg" />
+    <AndroidResource Include="Resources\drawable\Splashscreen.xml" />
+    <AndroidResource Include="Resources\drawable\hiphop_transparent.png" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

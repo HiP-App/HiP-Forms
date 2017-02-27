@@ -17,8 +17,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="Icon-60.png" translatesAutoresizingMaskIntoConstraints="NO" id="23">
-                                <rect key="frame" x="270" y="270" width="60" height="60"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" image="hiphop_transparent.png" translatesAutoresizingMaskIntoConstraints="NO" id="23">
+                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
                                 <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
                             </imageView>
                         </subviews>
@@ -26,7 +26,12 @@
                         <constraints>
                             <constraint firstItem="23" firstAttribute="centerY" secondItem="yd7-JS-zBw" secondAttribute="centerY" priority="1" id="39"/>
                             <constraint firstItem="23" firstAttribute="centerX" secondItem="yd7-JS-zBw" secondAttribute="centerX" priority="1" id="41"/>
+                            <constraint id="45" firstItem="23" firstAttribute="top" secondItem="Y8P-hJ-Z43" secondAttribute="bottom"/>
+                            <constraint id="46" firstItem="yd7-JS-zBw" firstAttribute="trailing" secondItem="23" secondAttribute="trailing"/>
+                            <constraint id="47" firstItem="9ZL-r4-8FZ" firstAttribute="top" secondItem="23" secondAttribute="bottom"/>
+                            <constraint id="48" firstItem="23" firstAttribute="leading" secondItem="yd7-JS-zBw" secondAttribute="leading"/>
                         </constraints>
+                        <color key="tintColor" colorSpace="calibratedWhite" white="0" alpha="0"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XAI-xm-WK6" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -39,7 +44,7 @@
         <image name="Default-568h.png" width="320" height="568"/>
         <image name="Default-Portrait.png" width="768" height="1004"/>
         <image name="Default.png" width="320" height="480"/>
-        <image name="ic_arrow_forward.png" width="48" height="48"/>
+        <image name="ic_arrow_forward.png" width="24" height="24"/>
         <image name="ic_chevron_left.png" width="48" height="48"/>
         <image name="ic_chevron_right.png" width="48" height="48"/>
         <image name="ic_directions_walk.png" width="24" height="24"/>
@@ -49,5 +54,24 @@
         <image name="Icon-76.png" width="76" height="76"/>
         <image name="Icon-Small-40.png" width="40" height="40"/>
         <image name="Icon-Small.png" width="29" height="29"/>
+        <image name="ac_erkunden.jpg" width="720" height="560"/>
+        <image name="ac_route.jpg" width="720" height="701"/>
+        <image name="ac_route2.jpg" width="720" height="560"/>
+        <image name="ac_students.png" width="719" height="539"/>
+        <image name="ic_closed_caption.png" width="24" height="24"/>
+        <image name="ic_directions.png" width="24" height="24"/>
+        <image name="ic_feedback.png" width="24" height="24"/>
+        <image name="ic_gavel.png" width="24" height="24"/>
+        <image name="ic_headset_white.png" width="24" height="24"/>
+        <image name="ic_home.png" width="24" height="24"/>
+        <image name="ic_pause_black.png" width="24" height="24"/>
+        <image name="ic_play_arrow_black.png" width="24" height="24"/>
+        <image name="ic_settings.png" width="24" height="24"/>
+        <image name="selected_circle.png" width="16" height="16"/>
+        <image name="timeslider_background.png" width="600" height="100"/>
+        <image name="unselected_circle.png" width="16" height="16"/>
+        <image name="CurrentLocation" width="30" height="30"/>
+        <image name="ExhibitLocation" width="27" height="50"/>
+        <image name="hiphop_transparent.png" width="500" height="500"/>
     </resources>
 </document>
