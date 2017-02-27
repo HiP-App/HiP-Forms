@@ -97,13 +97,13 @@
     <Compile Include="Pages\RouteDetailsPage.xaml.cs">
       <DependentUpon>RouteDetailsPage.xaml</DependentUpon>
     </Compile>
-	<Compile Include="Pages\AudioTranscript\AudioTranscriptPage.xaml.cs">
+    <Compile Include="Pages\AudioTranscript\AudioTranscriptPage.xaml.cs">
       <DependentUpon>AudioTranscriptPage.xaml</DependentUpon>
     </Compile>
-	<Compile Include="Pages\AudioTranscript\SourcesPage.xaml.cs">
+    <Compile Include="Pages\AudioTranscript\SourcesPage.xaml.cs">
       <DependentUpon>SourcesPage.xaml</DependentUpon>
     </Compile>
-	<Compile Include="Pages\AudioTranscript\SubtitlesPage.xaml.cs">
+    <Compile Include="Pages\AudioTranscript\SubtitlesPage.xaml.cs">
       <DependentUpon>SubtitlesPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\Annotations3.cs" />
@@ -115,9 +115,9 @@
     </Compile>
     <Compile Include="ViewModels\NavigationViewModel.cs" />
     <Compile Include="ViewModels\Pages\ExhibitDetailsViewModel.cs" />
-	<Compile Include="ViewModels\Pages\AudioTranscript\AudioTranscriptViewModel.cs" />
-	<Compile Include="ViewModels\Pages\AudioTranscript\SourcesViewModel.cs" />
-	<Compile Include="ViewModels\Pages\AudioTranscript\SubtitleViewModel.cs" />
+    <Compile Include="ViewModels\Pages\AudioTranscript\AudioTranscriptViewModel.cs" />
+    <Compile Include="ViewModels\Pages\AudioTranscript\SourcesViewModel.cs" />
+    <Compile Include="ViewModels\Pages\AudioTranscript\SubtitleViewModel.cs" />
     <Compile Include="ViewModels\Views\AudioToolbarViewModel.cs" />
     <Compile Include="ViewModels\Views\ExhibitDetails\AppetizerViewModel.cs" />
     <Compile Include="ViewModels\Views\ExhibitDetails\ExhibitSubviewViewModel.cs" />
@@ -133,7 +133,7 @@
       <DependentUpon>AudioToolbarView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\Views\SettingsScreenViewModel.cs" />
-    <Compile Include="Views\Link.cs" />
+    <Compile Include="Views\HtmlLink.cs" />
     <Compile Include="Views\DummyView.xaml.cs">
       <DependentUpon>DummyView.xaml</DependentUpon>
     </Compile>

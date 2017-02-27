@@ -2,7 +2,7 @@
 
 namespace HipMobileUI.Views
 {
-    public class Link : Label
+    public class HtmlLink : Label
     {
     }
 }

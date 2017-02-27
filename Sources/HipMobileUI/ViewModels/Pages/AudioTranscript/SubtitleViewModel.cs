@@ -21,9 +21,9 @@ namespace HipMobileUI.ViewModels.Pages.AudioTranscript {
 
         private string formatedText;
 
-        public void Init (string formatedText)
+        public void Init (string formatedTextToInit)
         {
-            FormatedText = formatedText;
+            FormatedText = formatedTextToInit;
         }
 
         public string FormatedText {

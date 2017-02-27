@@ -24,9 +24,9 @@ namespace HipMobileUI.ViewModels.Pages.AudioTranscript
     {
         private List<Source> references;
 
-        public void Init(List<Source> references)
+        public void Init(List<Source> referencesToInit)
         {
-            References = references;
+            References = referencesToInit;
         }
 
         public List<Source> References

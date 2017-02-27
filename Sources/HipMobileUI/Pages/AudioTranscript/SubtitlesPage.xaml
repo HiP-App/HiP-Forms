@@ -26,7 +26,7 @@
     <StackLayout>
       <ScrollView>
         <StackLayout>
-          <Label Text="{Binding FormatedText}"/>
+           <Label Text="{Binding FormatedText}" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Margin="10,10"/>
         </StackLayout>
       </ScrollView>
     </StackLayout>

@@ -16,17 +16,17 @@ using Android.OS;
 using Android.Text;
 using Android.Text.Method;
 using Android.Text.Util;
-using de.upb.hip.mobile.droid;
+using de.upb.hip.mobile.droid.CustomRenderers;
 using HipMobileUI.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
-[assembly: ExportRenderer(typeof(Link), typeof(LinkRenderer))]
-namespace de.upb.hip.mobile.droid
+[assembly: ExportRenderer(typeof(HtmlLink), typeof(HtmlLinkRenderer))]
+namespace de.upb.hip.mobile.droid.CustomRenderers
 {
-    class LinkRenderer : LabelRenderer
+    class HtmlLinkRenderer : LabelRenderer
     {
-        private Link formslink;
+        private HtmlLink formslink;
 
         protected override void OnElementChanged(ElementChangedEventArgs<Label> elementChangedEventArgs)
         {
@@ -34,7 +34,7 @@ namespace de.upb.hip.mobile.droid
 
             if (elementChangedEventArgs.NewElement != null)
             {
-                formslink = (Link) elementChangedEventArgs.NewElement;
+                formslink = (HtmlLink) elementChangedEventArgs.NewElement;
                 // Workaround to avoid the "deprecated" warning
                 if (Build.VERSION.SdkInt >= BuildVersionCodes.N)
                 {
