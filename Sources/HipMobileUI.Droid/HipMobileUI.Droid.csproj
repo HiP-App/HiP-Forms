@@ -255,6 +255,7 @@
     <Compile Include="CustomRenderers\AndroidOrientationPageRenderer.cs" />
     <Compile Include="CustomRenderers\DroidTouchEventSlider.cs" />
     <Compile Include="CustomRenderers\FloatingActionButtonAndroidRenderer.cs" />
+    <Compile Include="CustomRenderers\AndroidCustomFontLabelRenderer.cs" />
     <Compile Include="Effects\DroidSwitchColorEffect.cs" />
     <Compile Include="Helpers\Settings.cs" />
     <Compile Include="LinkRenderer.cs" />

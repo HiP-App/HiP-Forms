@@ -34,10 +34,9 @@ namespace de.upb.hip.mobile.droid.CustomRenderers
 
             CustomFontLabel label = elementChangedEventArgs.NewElement as CustomFontLabel;
 
-            if (label != null)
+            if (label?.FontFamilyName != null)
             {
-                Control.Typeface = Typeface.CreateFromAsset(Context.Assets, $"fonts/{label.FontFamilyName}.ttf");
-                Control.TextSize = 12;
+                Control.Typeface = Typeface.CreateFromAsset (Context.Assets, $"fonts/{label.FontFamilyName}.ttf");
             }
         }
     }

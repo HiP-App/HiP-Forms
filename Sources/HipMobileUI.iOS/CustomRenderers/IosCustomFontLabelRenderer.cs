@@ -34,9 +34,9 @@ namespace HipMobileUI.iOS.CustomRenderers
 
             CustomFontLabel label = elementChangedEventArgs.NewElement as CustomFontLabel;
 
-            if (label != null)
+            if (label?.FontFamilyName != null)
             {
-                Control.Font = UIFont.FromName(label.FontFamilyName, 12);
+                Control.Font = UIFont.FromName (label.FontFamilyName, Control.Font.PointSize);
             }
         }
     }

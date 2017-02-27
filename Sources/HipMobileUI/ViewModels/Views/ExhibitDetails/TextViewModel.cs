@@ -11,15 +11,39 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+using System.IO;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
+using Xamarin.Forms;
 
 namespace HipMobileUI.ViewModels.Views.ExhibitDetails
 {
-    /// <summary>
-    /// Base class for all viewmodels displayed in the exhibitdetailspage.
-    /// </summary>
-    public class ExhibitSubviewViewModel : NavigationViewModel
+    public class TextViewModel : ExhibitSubviewViewModel
     {
+        private string text;
+        private string fontFamily;
+
+        public TextViewModel(TextPage page)
+        {
+            Text = page.Text;
+            FontFamily = page.FontFamily;
+        }
+
+        /// <summary>
+        /// Text of the page
+        /// </summary>
+        public string Text {
+            get { return text; }
+            set { SetProperty (ref text, value); }
+        }
+
+        /// <summary>
+        /// Name of the font family to be used
+        /// </summary>
+        public string FontFamily
+        {
+            get { return fontFamily; }
+            set { SetProperty (ref fontFamily, value); }
+        }
 
     }
 }
