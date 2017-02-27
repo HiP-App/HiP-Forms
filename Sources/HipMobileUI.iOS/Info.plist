@@ -20,7 +20,11 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>MinimumOSVersion</key>
+  <key>UIAppFonts</key>
+  <array>
+    <string>Resources/fonts/AlteSchwabacher.ttf</string>
+  </array>
+  <key>MinimumOSVersion</key>
 	<string>7.0</string>
 	<key>CFBundleDisplayName</key>
 	<string>Historisches Paderborn</string>
