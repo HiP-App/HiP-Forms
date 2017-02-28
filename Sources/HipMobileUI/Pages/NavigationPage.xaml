@@ -16,9 +16,9 @@
 
             <Image Source="ic_my_location_black.png"
                    RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
-            ElementName=Map,Property=Y,Factor=1,Constant=370}"
+            ElementName=Map,Property=Y,Factor=1,Constant=460}"
                    RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
-            ElementName=Map,Property=X,Factor=1,Constant=225}"
+            ElementName=Map,Property=X,Factor=1,Constant=315}"
                    RelativeLayout.WidthConstraint="{ConstraintExpression
             Type=RelativeToParent,Property=Width,Factor=.125,Constant=0}"
                    RelativeLayout.HeightConstraint="{ConstraintExpression

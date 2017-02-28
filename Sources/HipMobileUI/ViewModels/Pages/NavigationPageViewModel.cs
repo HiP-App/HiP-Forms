@@ -38,6 +38,8 @@ namespace HipMobileUI.ViewModels.Pages {
             var locator = CrossGeolocator.Current;
             locator.PositionChanged += position_Changed;
             locator.StartListeningAsync (minTime: AppSharedData.MinTimeBwUpdates, minDistance: AppSharedData.MinDistanceChangeForUpdates);
+            var pos = locator.GetPositionAsync(4000).Result;
+            GpsLocation = new GeoLocation(pos.Latitude, pos.Longitude);
             FocusGps = new Command(FocusGpsClicked);
 
         }
@@ -64,7 +66,12 @@ namespace HipMobileUI.ViewModels.Pages {
 
         void FocusGpsClicked ()
         {
-
+            var newGpsLocation = new GeoLocation
+            {
+                Latitude = GpsLocation.Latitude,
+                Longitude = GpsLocation.Longitude
+            };
+            GpsLocation = newGpsLocation;
         }
 
 

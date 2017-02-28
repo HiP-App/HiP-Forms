@@ -22,15 +22,15 @@ using HipMobileUI.Helpers;
 using HipMobileUI.Resources;
 using HipMobileUI.ViewModels;
 using HipMobileUI.ViewModels.Pages;
+using Plugin.Geolocator;
+using Plugin.Geolocator.Abstractions;
 using Xamarin.Forms;
 
-namespace HipMobileUI.Viewmodels.Pages
-{
+namespace HipMobileUI.Viewmodels.Pages {
     /// <summary>
     /// ViewModel for the RouteDetailsPage.
     /// </summary>
-    public class RouteDetailsPageViewModel : NavigationViewModel
-    {
+    public class RouteDetailsPageViewModel : NavigationViewModel {
 
         private GeoLocation gpsLocation;
         private Route detailsRoute;
@@ -52,42 +52,32 @@ namespace HipMobileUI.Viewmodels.Pages
         /// </summary>
         /// <param name="route">The <see cref="Route"/> the ViewModel is created for.</param>
         /// <param name="location"></param>
-        public RouteDetailsPageViewModel(Route route, GeoLocation location)
+        public RouteDetailsPageViewModel (Route route)
         {
             Title = route.Title;
             Description = route.Description;
             Distance = string.Format (Strings.RouteDetailsPageViewModel_Distance, route.Distance);
-            Duration = string.Format(Strings.RouteDetailsPageViewModel_Duration, route.Duration / 60);
+            Duration = string.Format (Strings.RouteDetailsPageViewModel_Duration, route.Duration/60);
             Tags = new ObservableCollection<RouteTag> (route.RouteTags);
             var data = route.Image.Data;
-            Image = ImageSource.FromStream(() => new MemoryStream(data));
-
-            StartRouteCommand = new Command(StartRoute);
-            StartDescriptionPlaybackCommand = new Command(StartDescriptionPlayback);
-
-
+            Image = ImageSource.FromStream (() => new MemoryStream (data));
+            StartRouteCommand = new Command (StartRoute);
+            StartDescriptionPlaybackCommand = new Command (StartDescriptionPlayback);
             Tabs = new ObservableCollection<string> {"Description", "Map"};
-
-            GpsLocation = location;
+            var locator = CrossGeolocator.Current;
+            var pos = locator.GetPositionAsync(4000).Result;
+            GpsLocation = new GeoLocation(pos.Latitude, pos.Longitude);
             DetailsRoute = route;
             ShowDetailsRoute = true;
-
-        }
-
-        public RouteDetailsPageViewModel (Route route) : this(route, new GeoLocation(AppSharedData.PaderbornMainStation.Latitude, AppSharedData.PaderbornMainStation.Longitude))
-        {
-            
-
-            Tabs = new ObservableCollection<string> {Strings.RouteDetailsPageViewModel_Description, Strings.RouteDetailsPageViewModel_Map};
 
         }
 
         /// <summary>
         /// Starts audio playback for the route's description.
         /// </summary>
-        private void StartDescriptionPlayback()
+        private void StartDescriptionPlayback ()
         {
-            Navigation.DisplayAlert(
+            Navigation.DisplayAlert (
                 "Audio Playback",
                 "Audio playback is currently not supported!",
                 "Ok"
@@ -95,29 +85,26 @@ namespace HipMobileUI.Viewmodels.Pages
         }
 
 
-        public GeoLocation GpsLocation
-        {
-            get { return gpsLocation; } 
-            set { SetProperty(ref gpsLocation, value); }
+        public GeoLocation GpsLocation {
+            get { return gpsLocation; }
+            set { SetProperty (ref gpsLocation, value); }
         }
 
-        public Route DetailsRoute
-        {
+        public Route DetailsRoute {
             get { return detailsRoute; }
-            set { SetProperty(ref detailsRoute, value); }
+            set { SetProperty (ref detailsRoute, value); }
         }
 
-        public bool ShowDetailsRoute
-        {
+        public bool ShowDetailsRoute {
             get { return showDetailsRoute; }
-            set { SetProperty(ref showDetailsRoute, value); }
+            set { SetProperty (ref showDetailsRoute, value); }
         }
 
 
         /// <summary>
         /// Starts navigation for the route.
         /// </summary>
-        private void StartRoute()
+        private void StartRoute ()
         {
             Navigation.PushAsync (new NavigationPageViewModel (DetailsRoute));
         }
@@ -125,50 +112,50 @@ namespace HipMobileUI.Viewmodels.Pages
         #region Properties
 
         private string description;
-        public string Description
-        {
+
+        public string Description {
             get { return description; }
-            set { SetProperty(ref description, value); }
+            set { SetProperty (ref description, value); }
         }
 
         private string distance;
-        public string Distance
-        {
+
+        public string Distance {
             get { return distance; }
-            set { SetProperty(ref distance, value); }
+            set { SetProperty (ref distance, value); }
         }
 
         private string duration;
-        public string Duration
-        {
+
+        public string Duration {
             get { return duration; }
-            set { SetProperty(ref duration, value); }
+            set { SetProperty (ref duration, value); }
         }
 
         private ImageSource image;
-        public ImageSource Image
-        {
+
+        public ImageSource Image {
             get { return image; }
-            set { SetProperty(ref image, value); }
+            set { SetProperty (ref image, value); }
         }
 
         private ObservableCollection<RouteTag> tags;
+
         public ObservableCollection<RouteTag> Tags {
             get { return tags; }
-            set { SetProperty(ref tags, value); }
+            set { SetProperty (ref tags, value); }
         }
 
         private ObservableCollection<string> tabs;
-        public ObservableCollection<string> Tabs
-        {
+
+        public ObservableCollection<string> Tabs {
             get { return tabs; }
-            set { SetProperty(ref tabs, value); }
+            set { SetProperty (ref tabs, value); }
         }
 
         public ICommand StartRouteCommand { get; }
         public ICommand StartDescriptionPlaybackCommand { get; }
-        
-        #endregion Properties
 
+        #endregion Properties
     }
 }

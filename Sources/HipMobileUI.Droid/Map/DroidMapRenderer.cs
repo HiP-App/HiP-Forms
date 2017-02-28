@@ -166,7 +166,6 @@ namespace de.upb.hip.mobile.droid.Map {
                 if(osmMap.ShowDetailsRoute)
                  mapView.OverlayManager.Add (myPath);
                 mapView.Invalidate ();
-            
         }
 
         //here all Markers for the Exhibits in the Main Map are set

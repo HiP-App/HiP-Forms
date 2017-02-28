@@ -22,7 +22,7 @@ namespace HipMobileUI.Helpers
 
         public static readonly Position PaderbornCenter = new Position (51.7189205, 8.7575093);
 
-        public static readonly int MinTimeBwUpdates = 4000; //4000 milliseconds (4seconds)
+        public static readonly int MinTimeBwUpdates = 2000; //4000 milliseconds (4seconds)
         public static readonly int MinDistanceChangeForUpdates = 10; // 10 metres
         public static readonly double ExhibitRadius = 0.02; // 20m
         public static int MapZoomLevel = 14;
