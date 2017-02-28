@@ -116,6 +116,7 @@
     <Compile Include="ViewModels\Pages\UserOnboardingPageViewModel.cs" />
     <Compile Include="ViewModels\Views\AudioToolbarViewModel.cs" />
     <Compile Include="ViewModels\Views\ExhibitDetails\AppetizerViewModel.cs" />
+    <Compile Include="ViewModels\Views\ExhibitDetails\ExhibitSubviewHiddeableNavigationViewModel.cs" />
     <Compile Include="ViewModels\Views\ExhibitDetails\ExhibitSubviewViewModel.cs" />
     <Compile Include="ViewModels\Views\ExhibitDetails\TextViewModel.cs" />
     <Compile Include="ViewModels\Views\ExhibitDetails\ImageViewModel.cs" />

@@ -13,6 +13,7 @@
 // limitations under the License.
 
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
@@ -24,10 +25,9 @@ using HipMobileUI.ViewModels.Views.ExhibitDetails;
 using Xamarin.Forms;
 using Page = de.upb.hip.mobile.pcl.BusinessLayer.Models.Page;
 
-namespace HipMobileUI.ViewModels.Pages
-{
-    public class ExhibitDetailsViewModel : NavigationViewModel
-    {
+namespace HipMobileUI.ViewModels.Pages {
+    public class ExhibitDetailsViewModel : NavigationViewModel {
+
         private ExhibitSubviewViewModel selectedView;
         private AudioToolbarViewModel audioToolbar;
 
@@ -37,20 +37,21 @@ namespace HipMobileUI.ViewModels.Pages
         private ICommand audioToolbarCommand;
         private bool previousViewAvailable;
         private bool nextViewAvailable;
+        private bool previousVisible;
+        private bool nextVisible;
         private int currentViewIndex;
         private bool audioAvailabe;
         private bool audioToolbarVisible;
-        
 
-        public ExhibitDetailsViewModel (string exhibitId) : this(ExhibitManager.GetExhibit(exhibitId))
+        public ExhibitDetailsViewModel (string exhibitId) : this (ExhibitManager.GetExhibit (exhibitId))
         {
         }
 
         public ExhibitDetailsViewModel (Exhibit exhibit)
         {
             // init the audio toolbar
-            AudioToolbar = new AudioToolbarViewModel();
-            AudioToolbar.AudioPlayer.AudioCompleted+=AudioPlayerOnAudioCompleted;
+            AudioToolbar = new AudioToolbarViewModel ();
+            AudioToolbar.AudioPlayer.AudioCompleted += AudioPlayerOnAudioCompleted;
 
             // init the current view
             currentViewIndex = 0;
@@ -59,14 +60,61 @@ namespace HipMobileUI.ViewModels.Pages
                 this.exhibit = exhibit;
                 SetCurrentView ().ConfigureAwait (true);
                 Title = exhibit.Name;
-                if(exhibit.Pages.Count>1)
+
+                if (exhibit.Pages.Count > 1)
                     NextViewAvailable = true;
             }
 
             // init commands
-            NextViewCommand = new Command (async () => await GotoNextView());
+            NextViewCommand = new Command (async () => await GotoNextView ());
             PreviousViewCommand = new Command (GotoPreviousView);
             ShowAudioToolbarCommand = new Command (SwitchAudioToolbarVisibleState);
+        }
+
+        private CancellationTokenSource tokenSource;
+
+        /// <summary>
+        /// Initializes the delayed toggling with possibility to cancel it using a tokenSource
+        /// </summary>
+        private void StartDelayedToggling()
+        {
+            tokenSource = new CancellationTokenSource();
+
+            var token = tokenSource.Token;
+            Task.Run(() => ToggleVisibilityDelayed(token), token);
+        }
+
+        private const int NavigationButtonsToggleDelay = 2000;
+        /// <summary>
+        /// Toggles the visibility of then navigation buttons after <see cref="NavigationButtonsToggleDelay"/> milliseconds
+        /// unless the task has been canceled using the token
+        /// </summary>
+        /// <param name="token">Token for canceling the task</param>
+        private async Task ToggleVisibilityDelayed(CancellationToken token)
+        {
+            await Task.Delay(NavigationButtonsToggleDelay, token);
+            if (!token.IsCancellationRequested)
+            {
+                ToggleVisibilityOfNavigationButtons();
+            }
+        }
+
+        /// <summary>
+        /// Toggles the visibility of the navigation buttons if the next/previous page is available
+        /// Cancels the delayed task for toggling
+        /// </summary>
+        private void ToggleVisibilityOfNavigationButtons ()
+        {
+            if (NextViewAvailable)
+            {
+                NextVisible = !NextVisible;
+            }
+            if (PreviousViewAvailable)
+            {
+                PreviousVisible = !PreviousVisible;
+            }
+
+            tokenSource?.Cancel();
         }
 
         /// <summary>
@@ -102,18 +150,18 @@ namespace HipMobileUI.ViewModels.Pages
                 // stop audio
                 if (AudioToolbar.AudioPlayer.IsPlaying)
                 {
-                    AudioToolbar.AudioPlayer.Stop();
+                    AudioToolbar.AudioPlayer.Stop ();
                 }
 
                 // update the UI
                 currentViewIndex++;
                 NextViewAvailable = currentViewIndex < exhibit.Pages.Count - 1;
                 PreviousViewAvailable = true;
-                await SetCurrentView();
+                await SetCurrentView ();
             }
         }
 
-        private void SwitchAudioToolbarVisibleState()
+        private void SwitchAudioToolbarVisibleState ()
         {
             AudioToolbarVisible = !AudioToolbarVisible;
         }
@@ -128,12 +176,12 @@ namespace HipMobileUI.ViewModels.Pages
                 // stop audio
                 if (AudioToolbar.AudioPlayer.IsPlaying)
                 {
-                    AudioToolbar.AudioPlayer.Stop();
+                    AudioToolbar.AudioPlayer.Stop ();
                 }
 
                 // update UI
                 currentViewIndex--;
-                await SetCurrentView();
+                await SetCurrentView ();
                 PreviousViewAvailable = currentViewIndex > 0;
                 NextViewAvailable = true;
             }
@@ -155,25 +203,32 @@ namespace HipMobileUI.ViewModels.Pages
 
             AudioToolbar.SetNewAudioFile (currentPage.Audio);
 
-            if (currentPage.IsAppetizerPage ())
+            switch (currentPage.PageType)
             {
-                SelectedView = new AppetizerViewModel (exhibit.Name, currentPage.AppetizerPage);
+                case PageType.AppetizerPage:
+                    SelectedView = new AppetizerViewModel(exhibit.Name, currentPage.AppetizerPage);
+                    break;
+                case PageType.ImagePage:
+                    SelectedView = new ImageViewModel(currentPage.ImagePage, ToggleVisibilityOfNavigationButtons);
+                    break;
+                case PageType.TextPage:
+                    SelectedView = new TextViewModel(currentPage.TextPage, ToggleVisibilityOfNavigationButtons);
+                    break;
+                case PageType.TimeSliderPage:
+                    SelectedView = new TimeSliderViewModel(currentPage.TimeSliderPage, ToggleVisibilityOfNavigationButtons);
+                    break;
             }
-            else if (currentPage.IsImagePage())
+
+            //Cancel disabling navigation buttons caused by page selected before
+            tokenSource?.Cancel();
+            //Toggle navigation buttons visibility for specific pages
+            switch (currentPage.PageType)
             {
-                SelectedView = new ImageViewModel(currentPage.ImagePage);
-            }
-            else if (currentPage.IsTextPage())
-            {
-                SelectedView = new TextViewModel (currentPage.TextPage);
-            }
-            else if (currentPage.IsTimeSliderPage())
-            {
-                SelectedView = new TimeSliderViewModel(currentPage.TimeSliderPage);
-            }
-            else
-            {
-                throw new Exception("Unknown page found: " + currentPage);
+                case PageType.ImagePage:
+                case PageType.TextPage:
+                case PageType.TimeSliderPage:
+                    StartDelayedToggling();
+                    break;
             }
 
             if (currentPage.Audio != null)
@@ -207,56 +262,77 @@ namespace HipMobileUI.ViewModels.Pages
         }
 
         #region propeties
+
         /// <summary>
         /// The currently displayed subview.
         /// </summary>
-        public ExhibitSubviewViewModel SelectedView
-        {
+        public ExhibitSubviewViewModel SelectedView {
             get { return selectedView; }
-            set { SetProperty(ref selectedView, value); }
+            set { SetProperty (ref selectedView, value); }
         }
 
         /// <summary>
         /// The command for switching to the next view, if available.
         /// </summary>
-        public ICommand NextViewCommand
-        {
+        public ICommand NextViewCommand {
             get { return nextViewCommand; }
-            set { SetProperty(ref nextViewCommand, value); }
+            set { SetProperty (ref nextViewCommand, value); }
         }
 
         /// <summary>
         /// The command for switching to the previous view, if available.
         /// </summary>
-        public ICommand PreviousViewCommand
-        {
+        public ICommand PreviousViewCommand {
             get { return previousViewCommand; }
-            set { SetProperty(ref previousViewCommand, value); }
+            set { SetProperty (ref previousViewCommand, value); }
         }
 
         /// <summary>
         /// Indicator if a previous view is available.
         /// </summary>
-        public bool PreviousViewAvailable
-        {
+        public bool PreviousViewAvailable {
             get { return previousViewAvailable; }
-            set { SetProperty(ref previousViewAvailable, value); }
+            set
+            {
+                PreviousVisible = value;
+                SetProperty (ref previousViewAvailable, value);
+            }
         }
 
         /// <summary>
         /// Indicator if a next view is available.
         /// </summary>
-        public bool NextViewAvailable
-        {
+        public bool NextViewAvailable {
             get { return nextViewAvailable; }
-            set { SetProperty(ref nextViewAvailable, value); }
+            set
+            {
+                NextVisible = value;
+                SetProperty (ref nextViewAvailable, value);
+            }
+        }
+
+        /// <summary>
+        /// Indicator if navigation to previous is visible
+        /// </summary>
+        public bool PreviousVisible
+        {
+            get { return previousVisible; }
+            set { SetProperty(ref previousVisible, value); }
+        }
+
+        /// <summary>
+        /// Indicator if navigation to next is visible
+        /// </summary>
+        public bool NextVisible
+        {
+            get { return nextVisible; }
+            set { SetProperty(ref nextVisible, value); }
         }
 
         /// <summary>
         /// Shows the audio toolbar
         /// </summary>
-        public ICommand ShowAudioToolbarCommand
-        {
+        public ICommand ShowAudioToolbarCommand {
             get { return audioToolbarCommand; }
             set { SetProperty (ref audioToolbarCommand, value); }
         }
@@ -264,32 +340,27 @@ namespace HipMobileUI.ViewModels.Pages
         /// <summary>
         /// Indicates whether the current page has audio available
         /// </summary>
-        public bool AudioAvailable
-        {
+        public bool AudioAvailable {
             get { return audioAvailabe; }
-            set { SetProperty(ref audioAvailabe, value); }
+            set { SetProperty (ref audioAvailabe, value); }
         }
 
         /// <summary>
         /// Indicates whether the audio toolbar is visible
         /// </summary>
-        public bool AudioToolbarVisible
-        {
+        public bool AudioToolbarVisible {
             get { return audioToolbarVisible; }
-            set { SetProperty(ref audioToolbarVisible, value); }
+            set { SetProperty (ref audioToolbarVisible, value); }
         }
 
         /// <summary>
         /// Viewmodel of audio toolbar which can be shown on the details page
         /// </summary>
-        public AudioToolbarViewModel AudioToolbar
-        {
+        public AudioToolbarViewModel AudioToolbar {
             get { return audioToolbar; }
             set { SetProperty (ref audioToolbar, value); }
         }
 
         #endregion
-
-
     }
 }

@@ -32,9 +32,17 @@
           <RowDefinition Height="80"/>
           <RowDefinition Height="0.1*"/>
         </Grid.RowDefinitions>
-          <controls:FadeoverImageView Images="{Binding Images}" SelectedValue="{Binding Source={x:Reference Slider}, Path=SelectedValue}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
+          <controls:FadeoverImageView Images="{Binding Images}" SelectedValue="{Binding Source={x:Reference Slider}, Path=SelectedValue}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+            <controls:FadeoverImageView.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding ToggleButtonVisibility}" />
+            </controls:FadeoverImageView.GestureRecognizers>
+          </controls:FadeoverImageView>
           <ScrollView Grid.Row="1" MinimumHeightRequest="100">
-            <Label Text="{Binding DisplayedText}" LineBreakMode="WordWrap" Margin="10"/>  
+            <Label Text="{Binding DisplayedText}" LineBreakMode="WordWrap" Margin="10">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding ToggleButtonVisibility}" />
+                </Label.GestureRecognizers>
+            </Label>
           </ScrollView>
           <controls:TimeSlider x:Name="Slider" Grid.Row="2" HorizontalOptions="FillAndExpand" VerticalOptions="Center" HeightRequest="80" Images="{Binding Images}" Texts="{Binding Years}" ItemWidth="100" SafezoneFraction="0.3" FadezoneFraction="0.7" SeparatorColor="{StaticResource AccentColor}" SelectedValue="{Binding SelectedValue, Mode=OneWayToSource}"/>
         </Grid>

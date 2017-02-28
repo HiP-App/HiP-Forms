@@ -46,7 +46,7 @@ namespace HipMobileUI.Tests.ViewModels.Views.ExhibitDetails
             var imagePage = Substitute.For<ImagePage>();
             imagePage.Image = CreateImage ();
 
-            return new ImageViewModel(imagePage);
+            return new ImageViewModel(imagePage, null);
         }
 
         private Image CreateImage()

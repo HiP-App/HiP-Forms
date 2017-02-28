@@ -76,7 +76,7 @@ namespace HipMobileUI.Tests.ViewModels.Views.ExhibitDetails
             timesliderPage.Title = "A title";
             timesliderPage.Text = "A text";
 
-            return new TimeSliderViewModel(timesliderPage);
+            return new TimeSliderViewModel(timesliderPage, null);
         }
 
         private Image CreateImage(string description)

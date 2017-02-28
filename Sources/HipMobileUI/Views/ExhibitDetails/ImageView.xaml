@@ -22,7 +22,11 @@
     <ContentView.Content>
         <views:BottomSheetView>
             <views:BottomSheetView.MainContent>
-                <controls:FadeInImage Source="{Binding Image}" DownsampleToViewSize="True"/>
+                <controls:FadeInImage Source="{Binding Image}" DownsampleToViewSize="True">
+                    <controls:FadeInImage.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ToggleButtonVisibility}" />
+                    </controls:FadeInImage.GestureRecognizers>
+                </controls:FadeInImage>
             </views:BottomSheetView.MainContent>
             <views:BottomSheetView.BottomSheet>
                 <StackLayout>

@@ -29,8 +29,16 @@
                             <controls:CustomFontLabel Text="{Binding Text}" 
                                                   FontFamilyName="{Binding FontFamily}"
                                                   HorizontalOptions="Center"
-                                                  FontSize="16"/>
-                            <BoxView HeightRequest="30" BackgroundColor="Transparent"/>
+                                                  FontSize="16">
+                                <controls:CustomFontLabel.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding ToggleButtonVisibility}" />
+                                </controls:CustomFontLabel.GestureRecognizers>
+                            </controls:CustomFontLabel>
+                            <BoxView HeightRequest="30" BackgroundColor="Transparent">
+                                <BoxView.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding ToggleButtonVisibility}" />
+                                </BoxView.GestureRecognizers>
+                            </BoxView>
                         </StackLayout>
                     </ScrollView>
                 </RelativeLayout>

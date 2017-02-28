@@ -13,39 +13,30 @@
 // limitations under the License.
 
 using System;
-using System.IO;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Windows.Input;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using Xamarin.Forms;
 
 namespace HipMobileUI.ViewModels.Views.ExhibitDetails
 {
-    public class TextViewModel : ExhibitSubviewHiddeableNavigationViewModel
-    {
-        private string text;
-        private string fontFamily;
+    /// <summary>
+    /// Base class for all viewmodels displayed in the exhibitdetailspage.
+    /// </summary>
+    public class ExhibitSubviewHiddeableNavigationViewModel : ExhibitSubviewViewModel {
 
-        public TextViewModel(TextPage page, Action toggleButtonVisibility) : base (toggleButtonVisibility)
+        private ICommand toggleButtonVisibilityCommand;
+
+        public ExhibitSubviewHiddeableNavigationViewModel(Action toggleButtonVisibility)
         {
-            Text = page.Text;
-            FontFamily = page.FontFamily;
+            ToggleButtonVisibility = new Command(toggleButtonVisibility);
         }
 
-        /// <summary>
-        /// Text of the page
-        /// </summary>
-        public string Text {
-            get { return text; }
-            set { SetProperty (ref text, value); }
-        }
-
-        /// <summary>
-        /// Name of the font family to be used
-        /// </summary>
-        public string FontFamily
+        public ICommand ToggleButtonVisibility
         {
-            get { return fontFamily; }
-            set { SetProperty (ref fontFamily, value); }
+            get { return toggleButtonVisibilityCommand; }
+            set { SetProperty (ref toggleButtonVisibilityCommand, value); }
         }
-
     }
 }
