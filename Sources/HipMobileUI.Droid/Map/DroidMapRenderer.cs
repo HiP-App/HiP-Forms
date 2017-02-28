@@ -59,7 +59,6 @@ namespace de.upb.hip.mobile.droid.Map {
         private RouteCalculator routeCalculator;
         private Polyline currentRouteOverlay;
 
-
         protected override void OnElementChanged (ElementChangedEventArgs<OsmMap> e)
         {
             base.OnElementChanged (e);
@@ -280,6 +279,21 @@ namespace de.upb.hip.mobile.droid.Map {
         {
             AppSharedData.MapZoomLevel = p0.ZoomLevel;
             return true;
+        }
+
+        /// <summary>
+        /// Called when this view will be disposed.
+        /// </summary>
+        /// <param name="disposing"></param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                osmMap.ExhibitSetChanged -= NewElementOnExhibitSetChanged;
+                osmMap.GpsLocationChanged -= NewElementOnGpsLocationChanged;
+                osmMap.DetailsRouteChanged -= NewElementOnDetailsRouteChanged;
+            }
+            base.Dispose(disposing);
         }
 
     }

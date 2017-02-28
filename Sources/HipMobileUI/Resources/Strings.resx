@@ -349,6 +349,18 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   <data name="RoutesOverviewView_Tags" xml:space="preserve">
     <value>Auf der Route:</value>
   </data>
+  <data name="AudioToolbarView_Caption" xml:space="preserve">
+    <value>Untertitel</value>
+  </data>
+  <data name="AudioToolbarView_Pause" xml:space="preserve">
+    <value>Pause</value>
+  </data>
+  <data name="AudioToolbarView_Play" xml:space="preserve">
+    <value>Play</value>
+  </data>
+  <data name="AudioToolbarView_Progress" xml:space="preserve">
+    <value>Fortschritt</value>
+  </data>
   <data name="SettingsScreenView_AppIntro_Title" xml:space="preserve">
     <value>App Einführung</value>
   </data>
@@ -378,5 +390,50 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   </data>
   <data name="SettingsScreenView_RepeatIntro_Text" xml:space="preserve">
     <value>Wenn aktiviert, wird die App Einführung beim nächsten Start erneut angezeigt</value>
+  </data>
+  <data name="ExhibitDetailsPage_AudioToolbar" xml:space="preserve">
+    <value>Audio Player</value>
+  </data>
+  <data name="ExhibitDetailsPage_AgreeFeature" xml:space="preserve">
+    <value>Ich möchte die Funktion nutzen</value>
+  </data>
+  <data name="ExhibitDetailsPage_AudioPlay" xml:space="preserve">
+    <value>Audio startet automatisch sobald eine neue Seite geöffnet wird. Diese Eigenschaft kann unter Menu &gt;&gt; Einstellungen geändert werden.</value>
+  </data>
+  <data name="ExhibitDetailsPage_DisagreeFeature" xml:space="preserve">
+    <value>Ich möchte die Funktion nicht nutzen</value>
+  </data>
+  <data name="ExhibitDetailsPage_Hinweis" xml:space="preserve">
+    <value>Hinweis</value>
+  </data>
+  <data name="ExhibitDetailsPage_PageSwitch" xml:space="preserve">
+    <value>Die Seiten werden automatisch gewechselt, wenn die Audiodatei abgespielt wurde. Diese Eigenschaft kann unter Menu &gt;&gt; Einstellungen geändert werden.</value>
+  </data>
+  <data name="UserOnboarding_Explore_Text" xml:space="preserve">
+    <value>Erlebe und entdecke selbst mit dem Smartphone Geschichte und Kultur vor Ort</value>
+  </data>
+  <data name="UserOnboarding_Explore_Title" xml:space="preserve">
+    <value>Paderborn erkunden</value>
+  </data>
+  <data name="UserOnboarding_Forward" xml:space="preserve">
+    <value>WEITER</value>
+  </data>
+  <data name="UserOnboarding_Ok" xml:space="preserve">
+    <value>ALLES KLAR</value>
+  </data>
+  <data name="UserOnboarding_Route_Text" xml:space="preserve">
+    <value>Erkunde frei oder anhand themenspezifischer Routen Paderborn</value>
+  </data>
+  <data name="UserOnboarding_Route_Title" xml:space="preserve">
+    <value>Themenspezifische Routen</value>
+  </data>
+  <data name="UserOnboarding_Skip" xml:space="preserve">
+    <value>ÜBERSPRINGEN</value>
+  </data>
+  <data name="UserOnboarding_Students_Text" xml:space="preserve">
+    <value>Eine sich weiterentwickelnde App erstellt von Studierenden der Universität Paderborn</value>
+  </data>
+  <data name="UserOnboarding_Students_Title" xml:space="preserve">
+    <value>Von Studierenden</value>
   </data>
 </root>

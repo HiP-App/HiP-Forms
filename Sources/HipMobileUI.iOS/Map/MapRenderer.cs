@@ -1,5 +1,4 @@
 ﻿using System;
-using System;
 using System.Collections.Generic;
 using CoreGraphics;
 using CoreLocation;
@@ -20,8 +19,9 @@ using Xamarin.Forms.Platform.iOS;
 
 namespace HipMobileUI.iOS.Map
 {
-    class MapRenderer : ViewRenderer<OsmMap, MKMapView>
-    {
+    class MapRenderer : ViewRenderer<OsmMap, MKMapView> {
+
+        private OsmMap osmMap;
 
         protected override void OnElementChanged(ElementChangedEventArgs<OsmMap> e)
         {
@@ -30,16 +30,16 @@ namespace HipMobileUI.iOS.Map
 
             if (Control == null)
             {
-                var mapView = new MKMapView();
-                this.SetNativeControl(mapView);
+                var mapView = new MKMapView ();
+                this.SetNativeControl (mapView);
 
-                var overlay = new MKTileOverlay("http://tile.openstreetmap.org/{z}/{x}/{y}.png") { CanReplaceMapContent = true };
-                mapView.AddOverlay(overlay, MKOverlayLevel.AboveLabels);
-                mapView.OverlayRenderer = (view, mkOverlay) => new MKTileOverlayRenderer(overlay);
+                var overlay = new MKTileOverlay ("http://tile.openstreetmap.org/{z}/{x}/{y}.png") {CanReplaceMapContent = true};
+                mapView.AddOverlay (overlay, MKOverlayLevel.AboveLabels);
+                mapView.OverlayRenderer = (view, mkOverlay) => new MKTileOverlayRenderer (overlay);
 
+            }
 
-
-                if (e.OldElement != null)
+            if (e.OldElement != null)
                 {
                     Control.GetViewForAnnotation = null;
                     Control.CalloutAccessoryControlTapped -= OnCalloutAccessoryControlTapped;
@@ -48,6 +48,7 @@ namespace HipMobileUI.iOS.Map
                 }
                 if (e.NewElement != null)
                 {
+                    osmMap = e.NewElement;
                     InitAnnotations(e.NewElement.ExhibitSet);
                     Control.GetViewForAnnotation = GetViewForAnnotation;
                     Control.CalloutAccessoryControlTapped += OnCalloutAccessoryControlTapped;
@@ -57,14 +58,13 @@ namespace HipMobileUI.iOS.Map
 
                 Control.ShowsUserLocation = true;
                 Control.ShowsCompass = true;
-                InitMapPosition(Control);
-            }
+                InitMapPosition (Control);
+            
         }
 
         private void OnExhibitSetChanged(ExhibitSet set)
         {
-            
-            InitAnnotations(set);
+           InitAnnotations (set);
         }
 
         private void OnGpsLocationChanged(GeoLocation location)
@@ -72,9 +72,9 @@ namespace HipMobileUI.iOS.Map
             Control.CenterCoordinate = new CLLocationCoordinate2D(location.Latitude, location.Longitude);
         }
 
-        private void InitMapPosition(MKMapView mapView)
+        private void InitMapPosition (MKMapView mapView)
         {
-            if (mapView.UserLocation.Coordinate.Equals(new CLLocationCoordinate2D(0, 0)) && CLLocationManager.LocationServicesEnabled)
+            if (mapView.UserLocation.Coordinate.Equals (new CLLocationCoordinate2D (0, 0)) && CLLocationManager.LocationServicesEnabled)
             {
                 MKCoordinateRegion region = mapView.Region;
                 var center = new CLLocationCoordinate2D(AppSharedData.PaderbornCenter.Latitude, AppSharedData.PaderbornCenter.Longitude);
@@ -86,7 +86,7 @@ namespace HipMobileUI.iOS.Map
         {
             MKAnnotationView annotationView = null;
             MKAnnotationView dequedView = null;
-            if (annotation.Coordinate.Equals(mapView.UserLocation.Coordinate) && !(annotation is ExhibitAnnotation)) //(annotation is MKUserLocation) doesn't work
+            if (annotation.Coordinate.Equals (mapView.UserLocation.Coordinate) && !(annotation is ExhibitAnnotation)) //(annotation is MKUserLocation) doesn't work
             {
                 const string userAnnotationReusableId = "UserAnnotation";
                 dequedView = mapView.DequeueReusableAnnotation(userAnnotationReusableId);
@@ -96,7 +96,7 @@ namespace HipMobileUI.iOS.Map
                 }
                 else
                 {
-                    annotationView = new UserAnnotationView(annotation, userAnnotationReusableId);
+                    annotationView = new UserAnnotationView (annotation, userAnnotationReusableId);
                     return annotationView;
                 }
             }
@@ -110,7 +110,7 @@ namespace HipMobileUI.iOS.Map
             }
             else
             {
-                annotationView = new ExhibitAnnotationView(annotation, annotationReusableId);
+                annotationView = new ExhibitAnnotationView (annotation, annotationReusableId);
                 annotationView.CalloutOffset = new CGPoint(0, 0);
                 annotationView.RightCalloutAccessoryView = UIButton.FromType(UIButtonType.DetailDisclosure);
             }
@@ -131,76 +131,25 @@ namespace HipMobileUI.iOS.Map
 
         private void InitAnnotations(ExhibitSet exhibitSet)
         {
-            if (exhibitSet != null)
+            foreach (var exhibit in exhibitSet.ActiveSet)
             {
-                foreach (var exhibit in exhibitSet.ActiveSet)
-                {
-                    var annotation = new ExhibitAnnotation (exhibit.Location.Latitude, exhibit.Location.Longitude, exhibit.Id,
-                                                            exhibit.Name, exhibit.Description);
-                    Control.AddAnnotation (annotation);
-                }
+                var annotation = new ExhibitAnnotation(exhibit.Location.Latitude, exhibit.Location.Longitude, exhibit.Id,
+                                                                                exhibit.Name, exhibit.Description);
+                Control.AddAnnotation (annotation);
             }
         }
+
+        protected override void Dispose (bool disposing)
+        {
+            if (disposing)
+            {
+                Control.CalloutAccessoryControlTapped -= OnCalloutAccessoryControlTapped;
+                osmMap.GpsLocationChanged -= OnGpsLocationChanged;
+                osmMap.ExhibitSetChanged -= OnExhibitSetChanged;
+            }
+
+            base.Dispose (disposing);
+        }
+
     }
 }
-
-
-//TODO use this when everything else is done to perform navigation some things have to be adjusted
-/* private void CreateRoute ()
- {
-     nativeMap.OverlayRenderer = OverlayRenderer;
-     string template = "http://tile.openstreetmap.org/{z}/{x}/{y}.png";
-     MKTileOverlay overlay = new MKTileOverlay (template);
-     overlay.CanReplaceMapContent = true;
-     nativeMap.AddOverlay (overlay);
-     var id = osmMap.DetailsRoute.Id;
-     // Center the map, for development purposes
-     MKCoordinateRegion region = nativeMap.Region;
-     region.Span.LatitudeDelta = 0.05;
-     region.Span.LongitudeDelta = 0.05;
-     region.Center = new CLLocationCoordinate2D (51.7166700, 8.7666700);
-     nativeMap.Region = region;
-
-     // Disable rotation programatically because value of designer is somehow ignored
-     nativeMap.RotateEnabled = false;
-
-
-     var locations = routeCalculator.CreateRouteWithSeveralWaypoints(new GeoLocation(nativeMap.UserLocation.Location.Coordinate.Latitude, nativeMap.UserLocation.Location.Coordinate.Longitude),id);
-     var geoPoints = new List<CLLocationCoordinate2D> { new CLLocationCoordinate2D(nativeMap.UserLocation.Location.Coordinate.Latitude, nativeMap.UserLocation.Location.Coordinate.Longitude) };
-
-     foreach (GeoLocation w in locations)
-     {
-         var point = new CLLocationCoordinate2D (w.Latitude, w.Longitude);
-         geoPoints.Add (point);
-     }
-
-     var line = MKPolyline.FromCoordinates (geoPoints.ToArray ());
-     nativeMap.AddOverlay (line);
-     //map.SetVisibleMapRect(line.BoundingMapRect, false);
-
-     if (UIDevice.CurrentDevice.CheckSystemVersion (8, 0))
-     {
-         locationManager.RequestWhenInUseAuthorization ();
-     }
- }
-
-
-private MKOverlayRenderer OverlayRenderer (MKMapView mapView, IMKOverlay overlay)
-        {
-            if (overlay is MKTileOverlay)
-            {
-                var renderer = new MKTileOverlayRenderer ((MKTileOverlay) overlay);
-                return renderer;
-            }
-            else if (overlay is MKPolyline)
-            {
-                MKPolylineRenderer polylineRenderer = new MKPolylineRenderer ((MKPolyline) overlay);
-                polylineRenderer.FillColor = UIColor.Blue;
-                polylineRenderer.StrokeColor = UIColor.Blue;
-                polylineRenderer.LineWidth = 5f;
-                return polylineRenderer;
-            }
-            return null;
-        }
-
-    }*/

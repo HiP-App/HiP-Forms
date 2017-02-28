@@ -86,7 +86,7 @@ namespace de.upb.hip.mobile.pcl.Helpers
         /// Show hint for audio playback again
         /// </summary>
         private const string RepeatHintAudioKey = "repeat_hint_audio_key";
-        private static readonly bool RepeatHintAudioDefault = false;
+        private static readonly bool RepeatHintAudioDefault = true;
 
         public static bool RepeatHintAudio
         {
@@ -98,7 +98,7 @@ namespace de.upb.hip.mobile.pcl.Helpers
         /// Show hint for automatically switching to next page again
         /// </summary>
         private const string RepeatHintAutoPageSwitchKey = "repeat_hint_auto_page_switch_key";
-        private static readonly bool RepeatHintAutoPageSwitchDefault = false;
+        private static readonly bool RepeatHintAutoPageSwitchDefault = true;
 
         public static bool RepeatHintAutoPageSwitch
         {
@@ -122,7 +122,7 @@ namespace de.upb.hip.mobile.pcl.Helpers
         /// Show app introduction by restarting the app again
         /// </summary>
         private const string RepeatIntroKey = "repeat_intro_key";
-        private static readonly bool RepeatIntroDefault = false;
+        private static readonly bool RepeatIntroDefault = true;
 
         public static bool RepeatIntro
         {

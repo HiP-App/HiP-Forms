@@ -28,5 +28,12 @@ namespace HipMobileUI.ViewModels
         {
         }
 
+        /// <summary>
+        /// Method called when the view appears. Note that this method is not called automatically for every view.
+        /// </summary>
+        public virtual void OnAppearing ()
+        {
+        }
+
     }
 }

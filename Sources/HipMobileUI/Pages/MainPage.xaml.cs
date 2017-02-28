@@ -13,6 +13,7 @@
 // limitations under the License.
 using System;
 using HipMobileUI.Navigation;
+using HipMobileUI.ViewModels;
 using HipMobileUI.ViewModels.Pages;
 using Xamarin.Forms;
 
@@ -20,17 +21,25 @@ namespace HipMobileUI.Pages
 {
     public partial class MainPage : IViewFor<MainPageViewModel>
     {
-        private bool isShown = true;
-        private Page page;
 
         private MainPageViewModel ViewModel => ((MainPageViewModel) BindingContext);
 
         public MainPage()
         {
             InitializeComponent();
+        }
+
+        protected override void OnBindingContextChanged ()
+        {
+            base.OnBindingContextChanged ();
             ViewModel.SelectedViewModel = ViewModel.MainScreenViewModels[0];
         }
 
+        /// <summary>
+        /// Hide the menu on phones once menu item was tapped.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ListView_OnItemTapped (object sender, ItemTappedEventArgs e)
         {
             if (Device.Idiom == TargetIdiom.Phone)
@@ -39,23 +48,35 @@ namespace HipMobileUI.Pages
             }
         }
 
+        /// <summary>
+        /// New page pushed to the navigation stack.
+        /// </summary>
+        /// <param name="sender">The sender of the event.</param>
+        /// <param name="e">The event parameters</param>
         private void NavigationPage_OnPushed (object sender, NavigationEventArgs e)
         {
             // Disable the swipe gesture when a page is pushed
             IsGestureEnabled = false;
-            if (isShown)
-            {
-                page = e.Page;
-                page.Disappearing += PageOnDisappearing;
-            }
         }
 
-        private void PageOnDisappearing(object sender, EventArgs eventArgs)
+        /// <summary>
+        /// page is popped from the navigation stack.
+        /// </summary>
+        /// <param name="sender">The sender of the event.</param>
+        /// <param name="e">The event parameters.</param>
+        private void NavigationPage_OnPopped (object sender, NavigationEventArgs e)
         {
             // enable the swipe gesture once this page becomes visible again
-            IsGestureEnabled = true;
-            page.Disappearing -= PageOnDisappearing;
-            page = null;
+            if (NavigationPage.CurrentPage == ContentPage)
+            {
+                IsGestureEnabled = true;
+            }
+
+            // inform the popped page in case it can listen to this event
+            if (e.Page is IPagePoppedListener)
+            {
+                ((IPagePoppedListener)e.Page).PagePopped ();
+            }
         }
 
     }

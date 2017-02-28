@@ -19,9 +19,6 @@
              x:Class="HipMobileUI.Pages.MainPage"
              xmlns:viewmodel="clr-namespace:HipMobileUI.ViewModels.Pages;assembly=HipMobileUI"
              xmlns:strings="clr-namespace:HipMobileUI.Helpers;assembly=HipMobileUI">
-<MasterDetailPage.BindingContext>
-    <viewmodel:MainPageViewModel />
-</MasterDetailPage.BindingContext>
     <MasterDetailPage.Master>
         <ContentPage Title="Menu" Padding="0">
             <Grid>
@@ -53,9 +50,9 @@
         </ContentPage>
     </MasterDetailPage.Master>
     <MasterDetailPage.Detail>
-        <NavigationPage Pushed="NavigationPage_OnPushed" x:Name="NavigationPage">
+        <NavigationPage Pushed="NavigationPage_OnPushed" Popped="NavigationPage_OnPopped" x:Name="NavigationPage">
           <x:Arguments>
-            <ContentPage Content="{Binding SelectedViewModel, Converter={StaticResource ViewModelViewConverter}}" Title="{Binding SelectedViewModel.Title}"/>
+            <ContentPage Content="{Binding SelectedViewModel, Converter={StaticResource ViewModelViewConverter}}" Title="{Binding SelectedViewModel.Title}" x:Name="ContentPage"/>
           </x:Arguments>
         </NavigationPage>
     </MasterDetailPage.Detail>

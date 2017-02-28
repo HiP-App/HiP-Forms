@@ -12,10 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.using System;
 
-using System;
 using Android.Content;
 using Android.Widget;
-using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.Common;
 using HipMobileUI.Navigation;
 using HipMobileUI.ViewModels.Pages;
@@ -27,6 +25,8 @@ namespace de.upb.hip.mobile.droid.Map {
     class ViaPointInfoWindow : MarkerInfoWindow {
 
         private string markerId;
+
+        
 
         public ViaPointInfoWindow (int layoutResId, MapView mapView, Context context) : base (layoutResId, mapView)
         {

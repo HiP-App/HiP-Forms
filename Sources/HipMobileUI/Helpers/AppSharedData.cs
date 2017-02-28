@@ -26,5 +26,10 @@ namespace HipMobileUI.Helpers
         public static readonly int MinDistanceChangeForUpdates = 10; // 10 metres
         public static readonly double ExhibitRadius = 0.02; // 20m
         public static int MapZoomLevel = 14;
+
+        public static readonly string WillSleepMessage = "WillSleep";
+
+        public static readonly string WillWakeUpMessage = "WillWakeUp";
+
     }
 }

@@ -17,6 +17,7 @@ using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using de.upb.hip.mobile.pcl.Common;
 using de.upb.hip.mobile.pcl.Common.Contracts;
 using de.upb.hip.mobile.pcl.DataAccessLayer;
+using HipMobileUI.AudioPlayer;
 using HipMobileUI.Navigation;
 using HipMobileUI.ViewModels.Views;
 using NSubstitute;
@@ -39,6 +40,7 @@ namespace HipMobileUI.Tests.ViewModels.Views
             IoCManager.RegisterInstance(typeof(INavigationService), navservice);
             IoCManager.RegisterInstance(typeof(IImageDimension), Substitute.For<IImageDimension>());
             IoCManager.RegisterInstance (typeof (IDataAccess), Substitute.For<IDataAccess> ());
+            IoCManager.RegisterInstance (typeof(IAudioPlayer), Substitute.For<IAudioPlayer> ());
         }
 
         [Test, Category("UnitTest")]
@@ -71,6 +73,7 @@ namespace HipMobileUI.Tests.ViewModels.Views
         {
             var locator = Substitute.For<IGeolocator> ();
             var sut = CreateSystemUnderTest(locator);
+            sut.OnAppearing ();
 
             locator.PositionChanged += Raise.EventWith (this, new PositionEventArgs (new Position () {Latitude = 51, Longitude = 7}));
 
