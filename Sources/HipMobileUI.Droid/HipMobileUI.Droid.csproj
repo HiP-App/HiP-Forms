@@ -303,6 +303,7 @@
     <AndroidResource Include="Resources\drawable-xxhdpi\ic_arrow_back.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\ic_arrow_back.png" />
     <AndroidResource Include="Resources\drawable\timeslider_background.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_my_location_black.png" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

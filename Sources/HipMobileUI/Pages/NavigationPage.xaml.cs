@@ -31,7 +31,5 @@ namespace HipMobileUI.Pages
 
             InitializeComponent();
         }
-
-
     }
 }

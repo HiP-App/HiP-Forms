@@ -1,9 +1,37 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
+
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:map="clr-namespace:HipMobileUI.Map;assembly=HipMobileUI"
              x:Class="HipMobileUI.Pages.NavigationPage"
              Title="{Binding Title}">
-  <ContentPage.Content>
-    <map:OsmMap x:Name="Map" GpsLocation="{Binding GpsLocation}" DetailsRoute="{Binding DetailsRoute}" ShowNavigation="{Binding ShowNavigation}" />
-  </ContentPage.Content>
+    <ContentPage.Content>
+        <RelativeLayout>
+            <map:OsmMap x:Name="Map" GpsLocation="{Binding GpsLocation}" DetailsRoute="{Binding DetailsRoute}"
+                        ShowNavigation="{Binding ShowNavigation}"
+
+                        RelativeLayout.WidthConstraint="{ConstraintExpression
+            Type=RelativeToParent,Property=Width,Factor=1,Constant=0}"
+                        RelativeLayout.HeightConstraint="{ConstraintExpression
+            Type=RelativeToParent,Property=Height,Factor=1,Constant=0}" />
+
+            <Image Source="ic_my_location_black.png"
+                   RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+            ElementName=Map,Property=Y,Factor=1,Constant=370}"
+                   RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
+            ElementName=Map,Property=X,Factor=1,Constant=225}"
+                   RelativeLayout.WidthConstraint="{ConstraintExpression
+            Type=RelativeToParent,Property=Width,Factor=.125,Constant=0}"
+                   RelativeLayout.HeightConstraint="{ConstraintExpression
+            Type=RelativeToParent,Property=Height,Factor=.125,Constant=0}">
+
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding FocusGps}"  />
+                </Image.GestureRecognizers>
+
+            </Image>
+
+
+        </RelativeLayout>
+
+    </ContentPage.Content>
 </ContentPage>

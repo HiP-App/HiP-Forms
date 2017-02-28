@@ -12,10 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.using System;
 
+using System;
+using System.Windows.Input;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using HipMobileUI.Helpers;
 using Plugin.Geolocator;
 using Plugin.Geolocator.Abstractions;
+using Xamarin.Forms;
 
 namespace HipMobileUI.ViewModels.Pages {
     class NavigationPageViewModel : ViewModels.NavigationViewModel {
@@ -35,7 +38,7 @@ namespace HipMobileUI.ViewModels.Pages {
             var locator = CrossGeolocator.Current;
             locator.PositionChanged += position_Changed;
             locator.StartListeningAsync (minTime: AppSharedData.MinTimeBwUpdates, minDistance: AppSharedData.MinDistanceChangeForUpdates);
-           
+            FocusGps = new Command(FocusGpsClicked);
 
         }
 
@@ -56,6 +59,11 @@ namespace HipMobileUI.ViewModels.Pages {
             };
             GpsLocation = newGpsLocation;
 
+
+        }
+
+        void FocusGpsClicked ()
+        {
 
         }
 
@@ -81,7 +89,7 @@ namespace HipMobileUI.ViewModels.Pages {
             set { SetProperty(ref showNavigation, value); }
         }
 
-
+        public ICommand FocusGps { get; }
 
     }
 }

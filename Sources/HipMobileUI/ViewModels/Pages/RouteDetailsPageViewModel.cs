@@ -97,7 +97,7 @@ namespace HipMobileUI.Viewmodels.Pages
 
         public GeoLocation GpsLocation
         {
-            get { return gpsLocation; }
+            get { return gpsLocation; } 
             set { SetProperty(ref gpsLocation, value); }
         }
 
