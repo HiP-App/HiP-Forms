@@ -5,10 +5,12 @@
              x:Class="HipMobileUI.Pages.LoadingPage"
              BackgroundColor="White">
     <ContentPage.Content>
-        <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Spacing="20">
-            <Label Text="{Binding Text}" HorizontalTextAlignment="Center" FontSize="20" FontAttributes="Bold" IsVisible="{Binding IsExtendedViewsVisible}"/>
-            <Label Text="{Binding Subtext}" HorizontalTextAlignment="Center" FontSize="16" IsVisible="{Binding IsExtendedViewsVisible}"/>
-            <ActivityIndicator IsRunning="True" Color="{StaticResource AccentColor}"/>
+        <StackLayout x:Name="OuterStack" Orientation="Vertical" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Spacing="20">
+            <StackLayout Orientation="Vertical" Spacing="20" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                <Label Text="{Binding Text}" HorizontalTextAlignment="Center" FontSize="20" FontAttributes="Bold" IsVisible="{Binding IsExtendedViewsVisible}"/>
+                <Label Text="{Binding Subtext}" HorizontalTextAlignment="Center" FontSize="16" IsVisible="{Binding IsExtendedViewsVisible}"/>
+                <ActivityIndicator IsRunning="True" Color="{StaticResource AccentColor}"/>
+            </StackLayout>
             <controls:FadeInImage Source="hiphop_transparent" IsVisible="{Binding IsExtendedViewsVisible}">
                 <OnPlatform x:TypeArguments="x:Int32">
                     <OnPlatform.Android>500</OnPlatform.Android>
