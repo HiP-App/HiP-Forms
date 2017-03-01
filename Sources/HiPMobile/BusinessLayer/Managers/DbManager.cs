@@ -71,5 +71,14 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Managers {
             }
         }
 
+        /// <summary>
+        /// Returns if the db is up to date.
+        /// </summary>
+        /// <returns>True if up to date, false otherwise.</returns>
+        public static bool IsDatabaseUpToDate ()
+        {
+            return DataAccess.GetVersion () >= DbDummyDataFiller.DatabaseVersion;
+        }
+
     }
 }

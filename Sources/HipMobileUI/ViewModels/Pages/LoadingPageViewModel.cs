@@ -36,6 +36,7 @@ namespace HipMobileUI.ViewModels.Pages
         private string text;
         private string subtext;
         private ICommand startLoading;
+        private bool isExtendedViewsVisible;
 
         public string Text {
             get { return text; }
@@ -52,11 +53,22 @@ namespace HipMobileUI.ViewModels.Pages
             set { SetProperty (ref startLoading, value); }
         }
 
+        public bool IsExtendedViewsVisible {
+            get { return isExtendedViewsVisible; }
+            set { SetProperty (ref isExtendedViewsVisible, value); }
+        }
+
         public void Load ()
         {
             Task.Factory.StartNew (() => {
                 IoCManager.RegisterType<IDataAccess, RealmDataAccess>();
                 IoCManager.RegisterType<IDataLoader, EmbeddedResourceDataLoader>();
+
+                // show text, activity indicator and image when db is initialized, otherwise just the indicator is shown
+                if (!DbManager.IsDatabaseUpToDate())
+                {
+                    IsExtendedViewsVisible = true;
+                }
                 DbManager.UpdateDatabase();
 
                 // force the db to load the exhibitset into cache
