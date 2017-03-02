@@ -32,7 +32,6 @@ namespace HipMobileUI.Views
         /// </summary>
         private readonly double bottomSheetExtensionFraction = 0.35;
         private BottomSheetState bottomSheetState = BottomSheetState.Collapsed;
-        private readonly PanGestureRecognizer swipeGestureRecognizer;
         private FloatingActionButton Button { get; }
 
         public BottomSheetView ()
@@ -46,9 +45,6 @@ namespace HipMobileUI.Views
 
             // Bottomsheet
             BottomSheetContentView = new ContentView {BackgroundColor = Color.White};
-            swipeGestureRecognizer = new PanGestureRecognizer ();
-            swipeGestureRecognizer.PanUpdated += GestureRecognizerOnPanUpdated;
-            BottomSheetContentView.GestureRecognizers.Add (swipeGestureRecognizer);
             layout.Children.Add (BottomSheetContentView, Constraint.RelativeToParent (parent => parent.X), Constraint.RelativeToParent (parent => parent.Height * 0.9),
                                  Constraint.RelativeToParent (parent => parent.Width), Constraint.RelativeToParent (parent => parent.Height));
 
@@ -77,10 +73,7 @@ namespace HipMobileUI.Views
 
             Content = layout;
 
-            BottomSheetContentView.ChildAdded+=BottomSheetContentViewOnChildAdded;
-            BottomSheetContentView.ChildRemoved-=BottomSheetContentViewOnChildRemoved;
-
-            // restore the state when the layout changes
+           // restore the state when the layout changes
             layout.LayoutChanged+=LayoutOnLayoutChanged;
         }
 
@@ -100,19 +93,6 @@ namespace HipMobileUI.Views
 
         #region BottomSheet Gesture
         /// <summary>
-        /// Make sure children of the bottomsheet listen to swipe gestures.
-        /// </summary>
-        /// <param name="sender">The sender of the event.</param>
-        /// <param name="elementEventArgs">The event params.</param>
-        private void BottomSheetContentViewOnChildAdded (object sender, ElementEventArgs elementEventArgs)
-        {
-            View view = (View)elementEventArgs.Element;
-            AddGestureRecognizer (view, swipeGestureRecognizer);
-            view.GestureRecognizers.Add (swipeGestureRecognizer);
-            view.ChildAdded += BottomSheetContentViewOnChildAdded;
-        }
-
-        /// <summary>
         /// Add gesture recognizers to all existing children.
         /// </summary>
         /// <param name="view">The view to which teh gesture recognizer should be added.</param>
@@ -128,19 +108,6 @@ namespace HipMobileUI.Views
                     AddGestureRecognizer (childView, recognizer);
                 }
             }
-        }
-
-        /// <summary>
-        /// Remove the gesture listeners when a child is removed from the bottom sheet.
-        /// </summary>
-        /// <param name="sender">The sender of the child removed event.</param>
-        /// <param name="elementEventArgs">The event params.</param>
-        private void BottomSheetContentViewOnChildRemoved(object sender, ElementEventArgs elementEventArgs)
-        {
-            View view = (View)elementEventArgs.Element;
-            RemoveGestureRecognizer (view, swipeGestureRecognizer);
-            view.GestureRecognizers.Remove(swipeGestureRecognizer);
-            view.ChildRemoved -= BottomSheetContentViewOnChildRemoved;
         }
 
         /// <summary>
