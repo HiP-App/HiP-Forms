@@ -18,7 +18,7 @@ namespace HipMobileUI.ViewModels.Views.ExhibitDetails
     /// <summary>
     /// Base class for all viewmodels displayed in the exhibitdetailspage.
     /// </summary>
-    public class ExhibitSubviewViewModel : NavigationViewModel
+    public abstract class ExhibitSubviewViewModel : NavigationViewModel
     {
 
     }

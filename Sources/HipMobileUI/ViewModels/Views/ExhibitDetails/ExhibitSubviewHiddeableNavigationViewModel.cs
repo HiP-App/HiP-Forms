@@ -24,7 +24,7 @@ namespace HipMobileUI.ViewModels.Views.ExhibitDetails
     /// <summary>
     /// Base class for all viewmodels displayed in the exhibitdetailspage.
     /// </summary>
-    public class ExhibitSubviewHiddeableNavigationViewModel : ExhibitSubviewViewModel {
+    public abstract class ExhibitSubviewHiddeableNavigationViewModel : ExhibitSubviewViewModel {
 
         private ICommand toggleButtonVisibilityCommand;
 

@@ -46,6 +46,5 @@ namespace HipMobileUI.ViewModels.Views.ExhibitDetails
             get { return fontFamily; }
             set { SetProperty (ref fontFamily, value); }
         }
-
     }
 }

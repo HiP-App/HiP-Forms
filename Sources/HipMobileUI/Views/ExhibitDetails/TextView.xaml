@@ -17,41 +17,20 @@
 
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="HipMobileUI.Views.ExhibitDetails.TextView"
-             xmlns:views="clr-namespace:HipMobileUI.Views;assembly=HipMobileUI"
              xmlns:controls="clr-namespace:HipMobileUI.Controls;assembly=HipMobileUI">
     <ContentView.Content>
-        <views:BottomSheetView>
-            <views:BottomSheetView.MainContent>
-                <RelativeLayout HorizontalOptions="Fill">
-                    <ScrollView RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.9}"
-                                RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}">
-                        <StackLayout HorizontalOptions="Fill" VerticalOptions="Center">
-                            <controls:CustomFontLabel Text="{Binding Text}" 
+        <ScrollView HorizontalOptions="Fill" VerticalOptions="Fill">
+            <StackLayout>
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding ToggleButtonVisibility}" />
+                </StackLayout.GestureRecognizers>
+                <controls:CustomFontLabel Text="{Binding Text}" 
                                                   FontFamilyName="{Binding FontFamily}"
                                                   HorizontalOptions="Center"
                                                   FontSize="16">
-                                <controls:CustomFontLabel.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding ToggleButtonVisibility}" />
-                                </controls:CustomFontLabel.GestureRecognizers>
-                            </controls:CustomFontLabel>
-                            <BoxView HeightRequest="30" BackgroundColor="Transparent">
-                                <BoxView.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding ToggleButtonVisibility}" />
-                                </BoxView.GestureRecognizers>
-                            </BoxView>
-                        </StackLayout>
-                    </ScrollView>
-                </RelativeLayout>
-            </views:BottomSheetView.MainContent>
-            <views:BottomSheetView.BottomSheet>
-                <StackLayout>
-                    <BoxView Color="#50000000" HeightRequest="1" />
-                    <StackLayout Margin="16,16" Spacing="10" BackgroundColor="White">
-                        <Label Text="{Binding Headline}" TextColor="#000000" FontSize="16" FontAttributes="Bold" />
-                        <Label Text="{Binding Description}" TextColor="#87000000" FontSize="14" />
-                    </StackLayout>
-                </StackLayout>
-            </views:BottomSheetView.BottomSheet>
-        </views:BottomSheetView>
+                </controls:CustomFontLabel>
+            </StackLayout>
+        </ScrollView>
     </ContentView.Content>
 </ContentView>
+

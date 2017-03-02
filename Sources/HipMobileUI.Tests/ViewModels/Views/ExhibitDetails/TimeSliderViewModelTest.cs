@@ -37,7 +37,7 @@ namespace HipMobileUI.Tests.ViewModels.Views.ExhibitDetails
         [Test, Category("UnitTest")]
         public void Creation_PropertiesFilled()
         {
-            var sut = CreateSystemUnderTest();
+            var sut = CreateSystemUnderTest(() => { });
 
             Assert.AreEqual(sut.Headline, "A title");
             Assert.AreEqual(sut.Description, "A text");
@@ -49,7 +49,7 @@ namespace HipMobileUI.Tests.ViewModels.Views.ExhibitDetails
         [Test, Category("UnitTest")]
         public void SelectedValue_DisplayedText ()
         {
-            var sut = CreateSystemUnderTest ();
+            var sut = CreateSystemUnderTest (() => { });
 
             sut.SelectedValue = 1;
             Assert.IsTrue(sut.DisplayedText.Equals("Bar"));
@@ -63,9 +63,20 @@ namespace HipMobileUI.Tests.ViewModels.Views.ExhibitDetails
             Assert.IsTrue(sut.DisplayedText.Equals("69"));
         }
 
+        [Test, Category("UnitTest")]
+        public void ToggleButtonVisibility_ActionCalled()
+        {
+            var actionSub = Substitute.For<Action>();
+            var sut = CreateSystemUnderTest(actionSub);
+
+            sut.ToggleButtonVisibility.Execute(null);
+
+            actionSub.ReceivedWithAnyArgs().Invoke();
+        }
+
         #region Helper Methods
 
-        public TimeSliderViewModel CreateSystemUnderTest()
+        public TimeSliderViewModel CreateSystemUnderTest(Action action)
         {
             var timesliderPage = Substitute.For<TimeSliderPage>();
             List<Image> imageList = new List<Image> ();
@@ -76,7 +87,7 @@ namespace HipMobileUI.Tests.ViewModels.Views.ExhibitDetails
             timesliderPage.Title = "A title";
             timesliderPage.Text = "A text";
 
-            return new TimeSliderViewModel(timesliderPage, null);
+            return new TimeSliderViewModel(timesliderPage, action);
         }
 
         private Image CreateImage(string description)
