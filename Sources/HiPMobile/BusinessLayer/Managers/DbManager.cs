@@ -60,13 +60,18 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Managers {
             return DataAccess.StartTransaction ();
         }
 
-        public static void UpdateDatabase ()
+        public static void UpdateDatabase (IProgressListener listener=null)
         {
             if (DataAccess.GetVersion () < DbDummyDataFiller.DatabaseVersion)
             {
                 DataAccess.DeleteDatabase ();
                 DataAccess.CreateDatabase (DbDummyDataFiller.DatabaseVersion);
-                new DbDummyDataFiller ().InsertData ();
+                DbDummyDataFiller dbDataFiller = new DbDummyDataFiller ();
+                if (listener != null)
+                {
+                    dbDataFiller.ProgressChanged += listener.UpdateProgress;
+                }
+                dbDataFiller.InsertData ();
                 Settings.DatabaseVersion = DbDummyDataFiller.DatabaseVersion;
             }
         }

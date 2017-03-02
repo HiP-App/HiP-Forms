@@ -19,12 +19,13 @@ using de.upb.hip.mobile.pcl.Common;
 using de.upb.hip.mobile.pcl.Common.Contracts;
 using de.upb.hip.mobile.pcl.DataAccessLayer;
 using de.upb.hip.mobile.pcl.DataLayer;
+using de.upb.hip.mobile.pcl.Helpers;
 using HipMobileUI.Resources;
 using Xamarin.Forms;
 
 namespace HipMobileUI.ViewModels.Pages
 {
-    class LoadingPageViewModel : NavigationViewModel
+    class LoadingPageViewModel : NavigationViewModel, IProgressListener
     {
 
         public LoadingPageViewModel ()
@@ -38,6 +39,7 @@ namespace HipMobileUI.ViewModels.Pages
         private string subtext;
         private ICommand startLoading;
         private bool isExtendedViewsVisible;
+        private string loadingProgressText;
 
         public string Text {
             get { return text; }
@@ -59,6 +61,11 @@ namespace HipMobileUI.ViewModels.Pages
             set { SetProperty (ref isExtendedViewsVisible, value); }
         }
 
+        public string LoadingProgressText {
+            get { return loadingProgressText; }
+            set { SetProperty (ref loadingProgressText, value); }
+        }
+
         public void Load ()
         {
             Task.Factory.StartNew (() => {
@@ -70,7 +77,7 @@ namespace HipMobileUI.ViewModels.Pages
                 {
                     IsExtendedViewsVisible = true;
                 }
-                DbManager.UpdateDatabase();
+                DbManager.UpdateDatabase(this);
 
                 // force the db to load the exhibitset into cache
                 ExhibitManager.GetExhibitSets ();
@@ -79,6 +86,16 @@ namespace HipMobileUI.ViewModels.Pages
                                                     Navigation.StartNewNavigationStack (new MainPageViewModel ());
                                                 });
             });
+        }
+
+        /// <summary>
+        /// React to progress updates.
+        /// </summary>
+        /// <param name="newProgress">The new progress value.</param>
+        /// <param name="maxProgress">The maximum propgress value.</param>
+        public void UpdateProgress (double newProgress, double maxProgress)
+        {
+            LoadingProgressText = (newProgress / maxProgress).ToString ("p0");
         }
 
     }

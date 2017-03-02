@@ -16,6 +16,7 @@ using System;
 using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using de.upb.hip.mobile.pcl.Common.Contracts;
+using de.upb.hip.mobile.pcl.Helpers;
 
 namespace de.upb.hip.mobile.pcl.Common
 {
@@ -23,6 +24,8 @@ namespace de.upb.hip.mobile.pcl.Common
     {
 
         private readonly IDataLoader dataLoader = IoCManager.Resolve<IDataLoader>();
+
+        public event UpdateDelegate ProgressChanged;
 
         private Exhibit CreateExhibit(string name, string description, double latitude, double longitude,
                                        string[] tags, string[] categories, Image image)
@@ -184,6 +187,11 @@ namespace de.upb.hip.mobile.pcl.Common
             routetag.Tag = tag;
             routetag.Image = image;
             return routetag;
+        }
+
+        private void UpdateProgress (double newProgress, double maxProgress)
+        {
+            ProgressChanged?.Invoke (newProgress, maxProgress);   
         }
 
     }

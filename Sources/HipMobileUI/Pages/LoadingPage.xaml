@@ -10,6 +10,7 @@
                 <Label Text="{Binding Text}" HorizontalTextAlignment="Center" FontSize="20" FontAttributes="Bold" IsVisible="{Binding IsExtendedViewsVisible}"/>
                 <Label Text="{Binding Subtext}" HorizontalTextAlignment="Center" FontSize="16" IsVisible="{Binding IsExtendedViewsVisible}"/>
                 <ActivityIndicator IsRunning="True" Color="{StaticResource AccentColor}"/>
+                <Label Text="{Binding LoadingProgressText}" HorizontalTextAlignment="Center" FontSize="16" IsVisible="{Binding IsExtendedViewsVisible}"/>
             </StackLayout>
             <controls:FadeInImage Source="hiphop_transparent" IsVisible="{Binding IsExtendedViewsVisible}">
                 <OnPlatform x:TypeArguments="x:Int32">
