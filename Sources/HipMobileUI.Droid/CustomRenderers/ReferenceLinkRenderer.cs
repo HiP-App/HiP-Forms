@@ -12,7 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using Android.Text;
+using Android.Text.Method;
+using Android.Text.Util;
 using de.upb.hip.mobile.droid.CustomRenderers;
 using de.upb.hip.mobile.droid.Helpers;
 using HipMobileUI.Views;
@@ -42,10 +43,10 @@ namespace de.upb.hip.mobile.droid.CustomRenderers
                 Control.TextFormatted = formattedSubtitles;
 
                 // Make links clickable
-                /*Control.MovementMethod = LinkMovementMethod.Instance;
+                Control.MovementMethod = LinkMovementMethod.Instance;
                 Control.AutoLinkMask = MatchOptions.All;
                 Control.Clickable = true;
-                Control.LinksClickable = true;*/
+                Control.LinksClickable = true;
             }
         }
     }

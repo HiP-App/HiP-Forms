@@ -13,10 +13,7 @@
 // limitations under the License.
 
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using de.upb.hip.mobile.pcl.BusinessLayer.InteractiveSources;
-using HipMobileUI.Properties;
 using MvvmHelpers;
 
 namespace HipMobileUI.ViewModels.Pages.AudioTranscript {

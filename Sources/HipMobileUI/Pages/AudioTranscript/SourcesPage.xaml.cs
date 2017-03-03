@@ -12,8 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System.Collections.Generic;
-using de.upb.hip.mobile.pcl.BusinessLayer.InteractiveSources;
 using HipMobileUI.Navigation;
 using HipMobileUI.ViewModels.Pages.AudioTranscript;
 using Xamarin.Forms;

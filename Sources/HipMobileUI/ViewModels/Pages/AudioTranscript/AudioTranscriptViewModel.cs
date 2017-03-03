@@ -13,9 +13,7 @@
 // limitations under the License.
 
 using System.Collections.Generic;
-using System.Linq;
 using de.upb.hip.mobile.pcl.BusinessLayer.InteractiveSources;
-using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 
 namespace HipMobileUI.ViewModels.Pages.AudioTranscript
 {
@@ -23,9 +21,6 @@ namespace HipMobileUI.ViewModels.Pages.AudioTranscript
 
         public AudioTranscriptViewModel (string subtitles)
         {
-            var id = ExhibitManager.GetExhibitSet().Last();
-            //var subtitles = id.Pages[1].Audio.Caption;
-
             var parser = new InteractiveSourcesParser(new ConsecutiveNumberAndConstantInteractiveSourceSubstitute(1, "Quelle"));
             var result = parser.Parse(subtitles);
 
