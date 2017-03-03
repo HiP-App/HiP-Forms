@@ -81,6 +81,7 @@ namespace HipMobileUI.ViewModels.Pages
 
                 // force the db to load the exhibitset into cache
                 ExhibitManager.GetExhibitSets ();
+                SetProgress(0.9);
 
                 Device.BeginInvokeOnMainThread (() => {
                                                     Navigation.StartNewNavigationStack (new MainPageViewModel ());
@@ -95,7 +96,12 @@ namespace HipMobileUI.ViewModels.Pages
         /// <param name="maxProgress">The maximum propgress value.</param>
         public void UpdateProgress (double newProgress, double maxProgress)
         {
-            LoadingProgressText = (newProgress / maxProgress).ToString ("p0");
+            SetProgress ((newProgress / maxProgress)*0.8);
+        }
+
+        private void SetProgress (double progress)
+        {
+            LoadingProgressText = (progress).ToString("p0");
         }
 
     }
