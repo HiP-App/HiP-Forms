@@ -102,7 +102,13 @@ namespace de.upb.hip.mobile.droid.Map {
                 NewElementOnExhibitSetChanged (e.NewElement.ExhibitSet);
                 e.NewElement.DetailsRouteChanged += NewElementOnDetailsRouteChanged;
                 NewElementOnDetailsRouteChanged (e.NewElement.DetailsRoute);
+                e.NewElement.CenterLocationCalled+=CenterMap;
             }
+        }
+
+        private void CenterMap (GeoLocation location)
+        {
+            mapController.SetCenter(new GeoPoint (location.Latitude, location.Longitude));
         }
 
         private void NewElementOnExhibitSetChanged (ExhibitSet set)
@@ -141,30 +147,28 @@ namespace de.upb.hip.mobile.droid.Map {
         private void NewElementOnDetailsRouteChanged (Route route)
         {
             //The direct polyline is only draw if related bool is true
-           
-            
-                PathOverlay myPath = new PathOverlay (Resources.GetColor (Resource.Color.colorPrimaryDark), 7, new DefaultResourceProxyImpl (activity));
+            PathOverlay myPath = new PathOverlay (Resources.GetColor (Resource.Color.colorPrimaryDark), 7, new DefaultResourceProxyImpl (activity));
 
-                if (userPosition != null)
+            if (userPosition != null)
+            {
+                myPath.AddPoint (userPosition);
+            }
+
+            if (route != null && route.Waypoints.Any ())
+            {
+                foreach (Waypoint waypoint in route.Waypoints)
                 {
-                    myPath.AddPoint (userPosition);
+                    myPath.AddPoint (new GeoPoint (waypoint.Location.Latitude, waypoint.Location.Longitude));
+                    var marker = new Marker (mapView);
+                    marker.SetIcon(ResourcesCompat.GetDrawable(Resources, Resource.Drawable.marker_blue, null));
+                    marker.Position = new GeoPoint(waypoint.Location.Latitude,waypoint.Location.Longitude);
+                    mapView.OverlayManager.Add(marker);
                 }
+            }
 
-                if (route != null && route.Waypoints.Any ())
-                {
-                    foreach (Waypoint waypoint in route.Waypoints)
-                    {
-                        myPath.AddPoint (new GeoPoint (waypoint.Location.Latitude, waypoint.Location.Longitude));
-                        var marker = new Marker (mapView);
-                        marker.SetIcon(ResourcesCompat.GetDrawable(Resources, Resource.Drawable.marker_blue, null));
-                        marker.Position = new GeoPoint(waypoint.Location.Latitude,waypoint.Location.Longitude);
-                        mapView.OverlayManager.Add(marker);
-                    }
-                }
-
-                if(osmMap.ShowDetailsRoute)
-                 mapView.OverlayManager.Add (myPath);
-                mapView.Invalidate ();
+            if(osmMap.ShowDetailsRoute)
+                mapView.OverlayManager.Add (myPath);
+            mapView.Invalidate ();
         }
 
         //here all Markers for the Exhibits in the Main Map are set

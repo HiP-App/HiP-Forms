@@ -17,7 +17,7 @@
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <AndroidUseLatestPlatformSdk>true</AndroidUseLatestPlatformSdk>
-    <TargetFrameworkVersion>v7.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v7.1</TargetFrameworkVersion>
     <AndroidSupportedAbis>armeabi,armeabi-v7a,x86</AndroidSupportedAbis>
     <AndroidStoreUncompressedFileExtensions />
     <MandroidI18n />
@@ -331,13 +331,17 @@
     <AndroidResource Include="Resources\drawable-xxhdpi\ic_arrow_back.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\ic_arrow_back.png" />
     <AndroidResource Include="Resources\drawable\timeslider_background.png" />
-    <AndroidResource Include="Resources\drawable-hdpi\ic_my_location_black.png" />
     <AndroidResource Include="Resources\drawable\ac_erkunden.jpg" />
     <AndroidResource Include="Resources\drawable\ac_route.jpg" />
     <AndroidResource Include="Resources\drawable\ac_students.png" />
     <AndroidResource Include="Resources\drawable\selected_circle.png" />
     <AndroidResource Include="Resources\drawable\unselected_circle.png" />
     <AndroidResource Include="Resources\drawable\ac_route2.jpg" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_my_location_white.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_my_location_white.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_my_location_white.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_my_location_white.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_my_location_white.png" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

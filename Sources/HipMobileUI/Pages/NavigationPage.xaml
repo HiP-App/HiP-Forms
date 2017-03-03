@@ -2,36 +2,16 @@
 
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:map="clr-namespace:HipMobileUI.Map;assembly=HipMobileUI"
+             xmlns:controls="clr-namespace:HipMobileUI.Controls;assembly=HipMobileUI"
              x:Class="HipMobileUI.Pages.NavigationPage"
              Title="{Binding Title}">
     <ContentPage.Content>
-        <RelativeLayout>
+        <AbsoluteLayout>
             <map:OsmMap x:Name="Map" GpsLocation="{Binding GpsLocation}" DetailsRoute="{Binding DetailsRoute}"
-                        ShowNavigation="{Binding ShowNavigation}"
+                        ShowNavigation="{Binding ShowNavigation}" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1" CenterCommand="{Binding MapFocusCommand, Mode=OneWayToSource}" CenterCommandParameter="{Binding GpsLocation}"/>
+            <controls:FloatingActionButton AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0.9,0.9" NormalColor="{StaticResource AccentColor}" RippleColor="{StaticResource AccentDarkColor}" Icon="ic_my_location_white" Command="{Binding FocusGps}"/>
 
-                        RelativeLayout.WidthConstraint="{ConstraintExpression
-            Type=RelativeToParent,Property=Width,Factor=1,Constant=0}"
-                        RelativeLayout.HeightConstraint="{ConstraintExpression
-            Type=RelativeToParent,Property=Height,Factor=1,Constant=0}" />
-
-            <Image Source="ic_my_location_black.png"
-                   RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
-            ElementName=Map,Property=Y,Factor=1,Constant=460}"
-                   RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,
-            ElementName=Map,Property=X,Factor=1,Constant=315}"
-                   RelativeLayout.WidthConstraint="{ConstraintExpression
-            Type=RelativeToParent,Property=Width,Factor=.125,Constant=0}"
-                   RelativeLayout.HeightConstraint="{ConstraintExpression
-            Type=RelativeToParent,Property=Height,Factor=.125,Constant=0}">
-
-                <Image.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding FocusGps}"  />
-                </Image.GestureRecognizers>
-
-            </Image>
-
-
-        </RelativeLayout>
+        </AbsoluteLayout>
 
     </ContentPage.Content>
 </ContentPage>

@@ -2465,7 +2465,7 @@ namespace de.upb.hip.mobile.droid
 			public const int ic_my_location = 2130837701;
 			
 			// aapt resource value: 0x7f0200c6
-			public const int ic_my_location_black = 2130837702;
+			public const int ic_my_location_white = 2130837702;
 			
 			// aapt resource value: 0x7f0200c7
 			public const int ic_pause_black = 2130837703;

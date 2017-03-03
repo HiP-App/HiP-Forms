@@ -64,9 +64,10 @@ namespace HipMobileUI.Viewmodels.Pages {
             StartRouteCommand = new Command (StartRoute);
             StartDescriptionPlaybackCommand = new Command (StartDescriptionPlayback);
             Tabs = new ObservableCollection<string> {"Description", "Map"};
-            var locator = CrossGeolocator.Current;
+            GpsLocation = new GeoLocation(AppSharedData.PaderbornMainStation.Latitude, AppSharedData.PaderbornMainStation.Longitude);
+            /*var locator = CrossGeolocator.Current;
             var pos = locator.GetPositionAsync(4000).Result;
-            GpsLocation = new GeoLocation(pos.Latitude, pos.Longitude);
+            GpsLocation = new GeoLocation(pos.Latitude, pos.Longitude);*/
             DetailsRoute = route;
             ShowDetailsRoute = true;
 

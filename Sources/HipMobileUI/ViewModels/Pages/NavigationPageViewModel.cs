@@ -27,6 +27,7 @@ namespace HipMobileUI.ViewModels.Pages {
         private GeoLocation gpsLocation;
         private Route detailsRoute;
         private bool showNavigation;
+        private ICommand mapFocusCommand;
 
         //TODO just for testing can be deleted later
         public NavigationPageViewModel (Route route)
@@ -34,12 +35,13 @@ namespace HipMobileUI.ViewModels.Pages {
             DetailsRoute = route;
             ShowNavigation = true;
             Title = "Navigation";
-            gpsLocation = new GeoLocation (AppSharedData.PaderbornMainStation.Latitude,AppSharedData.PaderbornMainStation.Longitude);
-            var locator = CrossGeolocator.Current;
+            GpsLocation = new GeoLocation (AppSharedData.PaderbornMainStation.Latitude,AppSharedData.PaderbornMainStation.Longitude);
+            /*var locator = CrossGeolocator.Current;
             locator.PositionChanged += position_Changed;
-            locator.StartListeningAsync (minTime: AppSharedData.MinTimeBwUpdates, minDistance: AppSharedData.MinDistanceChangeForUpdates);
-            var pos = locator.GetPositionAsync(4000).Result;
-            GpsLocation = new GeoLocation(pos.Latitude, pos.Longitude);
+            if (!locator.IsListening)
+            {
+                locator.StartListeningAsync (minTime: AppSharedData.MinTimeBwUpdates, minDistance: AppSharedData.MinDistanceChangeForUpdates);
+            }*/
             FocusGps = new Command(FocusGpsClicked);
 
         }
@@ -66,12 +68,7 @@ namespace HipMobileUI.ViewModels.Pages {
 
         void FocusGpsClicked ()
         {
-            var newGpsLocation = new GeoLocation
-            {
-                Latitude = GpsLocation.Latitude,
-                Longitude = GpsLocation.Longitude
-            };
-            GpsLocation = newGpsLocation;
+            MapFocusCommand.Execute (GpsLocation);
         }
 
 
@@ -97,6 +94,11 @@ namespace HipMobileUI.ViewModels.Pages {
         }
 
         public ICommand FocusGps { get; }
+
+        public ICommand MapFocusCommand {
+            get { return mapFocusCommand; }
+            set { SetProperty (ref mapFocusCommand, value); }
+        }
 
     }
 }
