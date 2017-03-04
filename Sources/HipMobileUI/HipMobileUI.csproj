@@ -75,6 +75,7 @@
     <Compile Include="Converters\ImageListConverter.cs" />
     <Compile Include="Converters\ItemTappedConverter.cs" />
     <Compile Include="Converters\ViewModelViewConverter.cs" />
+    <Compile Include="Effects\ProgressBarColorEffect.cs" />
     <Compile Include="Effects\SwitchColorEffect.cs" />
     <Compile Include="Helpers\AppSharedData.cs" />
     <Compile Include="Helpers\ExtensionMethods.cs" />
@@ -92,6 +93,9 @@
     <Compile Include="Navigation\NavigationService.cs" />
     <Compile Include="Pages\ExhibitDetailsPage.xaml.cs">
       <DependentUpon>ExhibitDetailsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\LoadingPage.xaml.cs">
+      <DependentUpon>LoadingPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -112,6 +116,7 @@
     </Compile>
     <Compile Include="ViewModels\NavigationViewModel.cs" />
     <Compile Include="ViewModels\Pages\ExhibitDetailsViewModel.cs" />
+    <Compile Include="ViewModels\Pages\LoadingPageViewModel.cs" />
     <Compile Include="ViewModels\Pages\UserOnboardingItemViewModel.cs" />
     <Compile Include="ViewModels\Pages\UserOnboardingPageViewModel.cs" />
     <Compile Include="ViewModels\Views\AudioToolbarViewModel.cs" />
@@ -341,6 +346,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Pages\UserOnboardingPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\LoadingPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

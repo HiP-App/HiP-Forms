@@ -26,4 +26,5 @@ limitations under the License.-->
   <!-- inverse text color: 87% black -->
   <item name="textColorPrimaryInverse" type="color">#DE000000</item>
   <item name="textColorSecondaryInverse" type="color">#9E9E9E</item>
+  <item name="colorWhite" type="color">#FFFFFF</item>
 </resources>

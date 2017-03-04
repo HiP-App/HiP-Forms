@@ -666,6 +666,24 @@ namespace HipMobileUI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Einen Moment bitte....
+        /// </summary>
+        public static string LoadingPage_Subtext {
+            get {
+                return ResourceManager.GetString("LoadingPage_Subtext", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Historisches Paderborn wird geladen.
+        /// </summary>
+        public static string LoadingPage_Text {
+            get {
+                return ResourceManager.GetString("LoadingPage_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Historisches Paderborn.
         /// </summary>
         public static string MainPage_MenuTitle {

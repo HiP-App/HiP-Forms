@@ -113,7 +113,7 @@ namespace HipMobileUI.ViewModels.Views
         private void WillWakeUp(App obj)
         {
             locator.PositionChanged += LocatorOnPositionChanged;
-            if (locator.IsListening)
+            if (!locator.IsListening)
             {
                 locator.StartListeningAsync(AppSharedData.MinTimeBwUpdates, AppSharedData.MinDistanceChangeForUpdates);
             }
