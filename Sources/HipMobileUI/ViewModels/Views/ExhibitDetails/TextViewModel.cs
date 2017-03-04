@@ -23,11 +23,15 @@ namespace HipMobileUI.ViewModels.Views.ExhibitDetails
     {
         private string text;
         private string fontFamily;
+        private string description;
+        private string headline;
 
         public TextViewModel(TextPage page, Action toggleButtonVisibility) : base (toggleButtonVisibility)
         {
             Text = page.Text;
             FontFamily = page.FontFamily;
+            Headline = page.Title;
+            Description = page.Description;
         }
 
         /// <summary>
@@ -44,7 +48,25 @@ namespace HipMobileUI.ViewModels.Views.ExhibitDetails
         public string FontFamily
         {
             get { return fontFamily; }
-            set { SetProperty (ref fontFamily, value); }
+            set { SetProperty(ref fontFamily, value); }
+        }
+
+        /// <summary>
+        /// Name of the font family to be used
+        /// </summary>
+        public string Headline
+        {
+            get { return headline; }
+            set { SetProperty (ref headline, value); }
+        }
+
+        /// <summary>
+        /// Name of the font family to be used
+        /// </summary>
+        public string Description
+        {
+            get { return description; }
+            set { SetProperty(ref description, value); }
         }
     }
 }

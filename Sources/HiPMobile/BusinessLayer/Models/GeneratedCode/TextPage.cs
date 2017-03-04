@@ -35,6 +35,10 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models
 
 		public virtual string FontFamily{ get; set; }
 
+		public virtual string Title{ get; set; }
+
+		public virtual string Description{ get; set; }
+
 		//Associations
 		public virtual Audio Audio{ get; set; }
 

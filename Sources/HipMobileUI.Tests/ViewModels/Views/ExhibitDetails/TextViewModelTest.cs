@@ -35,19 +35,19 @@ namespace HipMobileUI.Tests.ViewModels.Views.ExhibitDetails
         [Test, Category("UnitTest")]
         public void Creation_PropertiesFilled()
         {
-            const string text = "This is a test text.";
-            const string font = "Test Font";
-            var sut = CreateSystemUnderTest(text, font, () => { });
+            var sut = CreateSystemUnderTest(() => { });
 
-            Assert.AreEqual(text, sut.Text);
-            Assert.AreEqual(font, sut.FontFamily);
+            Assert.AreEqual(Text, sut.Text);
+            Assert.AreEqual(Font, sut.FontFamily);
+            Assert.AreEqual(Title, sut.Headline);
+            Assert.AreEqual(Description, sut.Description);
         }
 
         [Test, Category("UnitTest")]
         public void ToggleButtonVisibility_ActionCalled()
         {
             var actionSub = Substitute.For<Action>();
-            var sut = CreateSystemUnderTest(null, null, actionSub);
+            var sut = CreateSystemUnderTest(actionSub);
 
             sut.ToggleButtonVisibility.Execute(null);
 
@@ -56,11 +56,17 @@ namespace HipMobileUI.Tests.ViewModels.Views.ExhibitDetails
 
         #region Helper Methods
 
-        public TextViewModel CreateSystemUnderTest(string text, string font, Action action)
+        private const string Title = "Title Test";
+        private const string Description = "Description Test";
+        private const string Text = "This is a test text.";
+        private const string Font = "Test Font";
+        public TextViewModel CreateSystemUnderTest(Action action)
         {
             var textPage = Substitute.For<TextPage>();
-            textPage.Text = text;
-            textPage.FontFamily = font;
+            textPage.Text = Text;
+            textPage.FontFamily = Font;
+            textPage.Title = Title;
+            textPage.Description = Description;
 
             return new TextViewModel(textPage, action);
         }
