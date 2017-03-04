@@ -40,6 +40,7 @@ namespace HipMobileUI.ViewModels.Pages
         private ICommand startLoading;
         private bool isExtendedViewsVisible;
         private string loadingProgressText;
+        private double loadingProgress;
 
         public string Text {
             get { return text; }
@@ -66,9 +67,14 @@ namespace HipMobileUI.ViewModels.Pages
             set { SetProperty (ref loadingProgressText, value); }
         }
 
+        public double LoadingProgress {
+            get { return loadingProgress; }
+            set { SetProperty (ref loadingProgress, value); }
+        }
+
         public void Load ()
         {
-            Task.Factory.StartNew (() => {
+            Task.Factory.StartNew (async () => {
                 IoCManager.RegisterType<IDataAccess, RealmDataAccess>();
                 IoCManager.RegisterType<IDataLoader, EmbeddedResourceDataLoader>();
 
@@ -81,10 +87,14 @@ namespace HipMobileUI.ViewModels.Pages
 
                 // force the db to load the exhibitset into cache
                 ExhibitManager.GetExhibitSets ();
-                SetProgress(0.9);
+                LoadingProgress = 0.9;
+                await Task.Delay (100);
 
-                Device.BeginInvokeOnMainThread (() => {
-                                                    Navigation.StartNewNavigationStack (new MainPageViewModel ());
+                Device.BeginInvokeOnMainThread (async () => {
+                                                    var vm = new MainPageViewModel ();
+                                                    LoadingProgress = 1;
+                                                    await Task.Delay (100);
+                                                    Navigation.StartNewNavigationStack (vm);
                                                 });
             });
         }
@@ -96,12 +106,7 @@ namespace HipMobileUI.ViewModels.Pages
         /// <param name="maxProgress">The maximum propgress value.</param>
         public void UpdateProgress (double newProgress, double maxProgress)
         {
-            SetProgress ((newProgress / maxProgress)*0.8);
-        }
-
-        private void SetProgress (double progress)
-        {
-            LoadingProgressText = (progress).ToString("p0");
+            LoadingProgress = (newProgress / maxProgress)*0.8;
         }
 
     }

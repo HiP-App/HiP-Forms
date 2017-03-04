@@ -157,6 +157,7 @@
     <Compile Include="CustomRenderers\FloatingActionButtonIosRenderer.cs" />
     <Compile Include="CustomRenderers\IosOrientationContentPageRenderer.cs" />
     <Compile Include="CustomRenderers\IosTouchEventSlider.cs" />
+    <Compile Include="Effects\IosProgressBarColorEffect.cs" />
     <Compile Include="Effects\IosSwitchColorEffect.cs" />
     <Compile Include="Helpers\Settings.cs" />
     <Compile Include="ViewControllers\OrientationViewController.cs" />
