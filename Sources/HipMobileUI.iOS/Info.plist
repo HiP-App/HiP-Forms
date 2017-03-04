@@ -20,6 +20,10 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>UIAppFonts</key>
+	<array>
+		<string>fonts/AlteSchwabacher.ttf</string>
+	</array>
 	<key>MinimumOSVersion</key>
 	<string>7.0</string>
 	<key>CFBundleDisplayName</key>
@@ -69,11 +73,11 @@
 	<array>
 		<string>MKDirectionsModeWalking</string>
 	</array>
-  <key>NSLocationAlwaysUsageDescription</key>
-  <string>Dürfen wir Ihre Position verwenden</string>
-  <key>NSLocationWhenInUseUsageDescription</key>
-  <string>Wir benutzen Ihre Position</string>
-  <key>UIViewControllerBasedStatusBarAppearance</key>
-  <false/>
- </dict>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Dürfen wir Ihre Position verwenden</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Wir benutzen Ihre Position</string>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
+</dict>
 </plist>

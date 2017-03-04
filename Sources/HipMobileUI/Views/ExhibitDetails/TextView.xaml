@@ -16,17 +16,28 @@
 -->
 
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="HipMobileUI.Views.ExhibitDetails.ImageView"
-             xmlns:views="clr-namespace:HipMobileUI.Views;assembly=HipMobileUI"
-             xmlns:controls="clr-namespace:HipMobileUI.Controls;assembly=HipMobileUI">
+             x:Class="HipMobileUI.Views.ExhibitDetails.TextView"
+             xmlns:controls="clr-namespace:HipMobileUI.Controls;assembly=HipMobileUI"
+             xmlns:views="clr-namespace:HipMobileUI.Views;assembly=HipMobileUI">
     <ContentView.Content>
         <views:BottomSheetView>
             <views:BottomSheetView.MainContent>
-                <controls:FadeInImage Source="{Binding Image}" DownsampleToViewSize="True">
-                    <controls:FadeInImage.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding ToggleButtonVisibility}" />
-                    </controls:FadeInImage.GestureRecognizers>
-                </controls:FadeInImage>
+                <RelativeLayout HorizontalOptions="Fill">
+                    <ScrollView RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.9}"
+                                RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}">
+                        <StackLayout>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ToggleButtonVisibility}" />
+                            </StackLayout.GestureRecognizers>
+                            <controls:CustomFontLabel Text="{Binding Text}" 
+                                                  FontFamilyName="{Binding FontFamily}"
+                                                  HorizontalOptions="Center"
+                                                  FontSize="16"
+                                                  Margin="0,0,0,30" >
+                            </controls:CustomFontLabel>
+                        </StackLayout>
+                    </ScrollView>
+                </RelativeLayout>
             </views:BottomSheetView.MainContent>
             <views:BottomSheetView.BottomSheet>
                 <StackLayout>
@@ -40,3 +51,4 @@
         </views:BottomSheetView>
     </ContentView.Content>
 </ContentView>
+

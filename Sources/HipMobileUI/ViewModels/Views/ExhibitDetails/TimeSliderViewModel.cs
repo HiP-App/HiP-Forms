@@ -23,10 +23,10 @@ using Image = de.upb.hip.mobile.pcl.BusinessLayer.Models.Image;
 
 namespace HipMobileUI.ViewModels.Views.ExhibitDetails
 {
-    public class TimeSliderViewModel : ExhibitSubviewViewModel
+    public class TimeSliderViewModel : ExhibitSubviewHiddeableNavigationViewModel
     {
 
-        public TimeSliderViewModel (TimeSliderPage timesliderPage)
+        public TimeSliderViewModel (TimeSliderPage timesliderPage, Action toggleButtonVisibility) : base(toggleButtonVisibility)
         {
             Images = new ObservableCollection<ImageSource> ();
             Years = new ObservableCollection<string> ();

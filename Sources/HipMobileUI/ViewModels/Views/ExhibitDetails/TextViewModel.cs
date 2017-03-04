@@ -19,42 +19,54 @@ using Xamarin.Forms;
 
 namespace HipMobileUI.ViewModels.Views.ExhibitDetails
 {
-    public class ImageViewModel : ExhibitSubviewHiddeableNavigationViewModel
+    public class TextViewModel : ExhibitSubviewHiddeableNavigationViewModel
     {
-
-        private ImageSource image;
+        private string text;
+        private string fontFamily;
         private string description;
         private string headline;
 
-        public ImageViewModel (ImagePage page, Action toggleButtonVisibility) : base(toggleButtonVisibility)
+        public TextViewModel(TextPage page, Action toggleButtonVisibility) : base (toggleButtonVisibility)
         {
-            var data = page.Image.Data;
-            Image = ImageSource.FromStream (() => new MemoryStream (data));
-            Headline = page.Image.Title;
-            Description = page.Image.Description;
+            Text = page.Text;
+            FontFamily = page.FontFamily;
+            Headline = page.Title;
+            Description = page.Description;
         }
 
         /// <summary>
-        /// The displayed image of this view.
+        /// Text of the page
         /// </summary>
-        public ImageSource Image {
-            get { return image; }
-            set { SetProperty (ref image, value); }
+        public string Text {
+            get { return text; }
+            set { SetProperty (ref text, value); }
         }
 
         /// <summary>
-        /// The headline of the description.
+        /// Name of the font family to be used
         /// </summary>
-        public string Headline {
+        public string FontFamily
+        {
+            get { return fontFamily; }
+            set { SetProperty(ref fontFamily, value); }
+        }
+
+        /// <summary>
+        /// Name of the font family to be used
+        /// </summary>
+        public string Headline
+        {
             get { return headline; }
             set { SetProperty (ref headline, value); }
         }
 
-        // The description text.
-        public string Description {
+        /// <summary>
+        /// Name of the font family to be used
+        /// </summary>
+        public string Description
+        {
             get { return description; }
-            set { SetProperty (ref description, value); }
+            set { SetProperty(ref description, value); }
         }
-
     }
 }
