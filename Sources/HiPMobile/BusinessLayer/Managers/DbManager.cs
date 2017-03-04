@@ -73,6 +73,10 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Managers {
                 }
                 dbDataFiller.InsertData ();
                 Settings.DatabaseVersion = DbDummyDataFiller.DatabaseVersion;
+                if (listener != null)
+                {
+                    dbDataFiller.ProgressChanged -= listener.UpdateProgress;
+                }
             }
         }
 
