@@ -79,7 +79,10 @@ namespace HipMobileUI.iOS.Map
 
         private void CenterLocation (GeoLocation location)
         {
-            Control.CenterCoordinate = new CLLocationCoordinate2D(location.Latitude, location.Longitude);
+            if (location != null)
+            {
+                Control.CenterCoordinate = new CLLocationCoordinate2D (location.Latitude, location.Longitude);
+            }
         }
 
 
@@ -90,7 +93,10 @@ namespace HipMobileUI.iOS.Map
                 IList<CLLocationCoordinate2D> waypoints = new List<CLLocationCoordinate2D> ();
 
                 // add user location and route locations
-                waypoints.Add (new CLLocationCoordinate2D(osmMap.GpsLocation.Latitude, osmMap.GpsLocation.Longitude));
+                if (osmMap.GpsLocation != null)
+                {
+                    waypoints.Add (new CLLocationCoordinate2D (osmMap.GpsLocation.Latitude, osmMap.GpsLocation.Longitude));
+                }
                 waypoints = waypoints.Concat(route.Waypoints.Select (waypoint => new CLLocationCoordinate2D (waypoint.Location.Latitude, waypoint.Location.Longitude))).ToList ();
 
                 var polyline = MKPolyline.FromCoordinates(waypoints.ToArray ());

@@ -17,6 +17,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
+using de.upb.hip.mobile.pcl.BusinessLayer.Models;
+using Plugin.Geolocator.Abstractions;
 using Xamarin.Forms;
 using Image = de.upb.hip.mobile.pcl.BusinessLayer.Models.Image;
 
@@ -67,6 +69,20 @@ namespace HipMobileUI.Helpers {
                 }
             }
             return true;
+        }
+
+        /// <summary>
+        /// Converts the position to a geolocation.
+        /// </summary>
+        /// <param name="position">The position to convert</param>
+        /// <returns>The corresponding geolocation.</returns>
+        public static GeoLocation ToGeoLocation (this Position position)
+        {
+            if (position != null)
+            {
+                return new GeoLocation(position.Latitude, position.Longitude);
+            }
+            return null;
         }
 
     }

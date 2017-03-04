@@ -17,8 +17,10 @@ using System.IO;
 using System.Windows.Input;
 using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
+using de.upb.hip.mobile.pcl.Common;
 using de.upb.hip.mobile.pcl.Helpers;
 using HipMobileUI.Helpers;
+using HipMobileUI.Location;
 using HipMobileUI.Resources;
 using HipMobileUI.ViewModels;
 using HipMobileUI.ViewModels.Pages;
@@ -64,7 +66,7 @@ namespace HipMobileUI.Viewmodels.Pages {
             StartRouteCommand = new Command (StartRoute);
             StartDescriptionPlaybackCommand = new Command (StartDescriptionPlayback);
             Tabs = new ObservableCollection<string> {"Description", "Map"};
-            GpsLocation = new GeoLocation(AppSharedData.PaderbornMainStation.Latitude, AppSharedData.PaderbornMainStation.Longitude);
+            GpsLocation = IoCManager.Resolve<ILocationManager> ().LastKnownLocation.ToGeoLocation ();
             /*var locator = CrossGeolocator.Current;
             var pos = locator.GetPositionAsync(4000).Result;
             GpsLocation = new GeoLocation(pos.Latitude, pos.Longitude);*/

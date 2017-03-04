@@ -12,19 +12,20 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.using System;
 
-using System;
 using System.Windows.Input;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
+using de.upb.hip.mobile.pcl.Common;
 using HipMobileUI.Helpers;
-using Plugin.Geolocator;
+using HipMobileUI.Location;
 using Plugin.Geolocator.Abstractions;
 using Xamarin.Forms;
 
 namespace HipMobileUI.ViewModels.Pages {
-    class NavigationPageViewModel : ViewModels.NavigationViewModel {
+    class NavigationPageViewModel : ViewModels.NavigationViewModel, ILocationListener {
 
         private ExhibitSet exhibitSet;
         private GeoLocation gpsLocation;
+        private ILocationManager locationManager;
         private Route detailsRoute;
         private bool showNavigation;
         private ICommand mapFocusCommand;
@@ -35,7 +36,9 @@ namespace HipMobileUI.ViewModels.Pages {
             DetailsRoute = route;
             ShowNavigation = true;
             Title = "Navigation";
-            GpsLocation = new GeoLocation (AppSharedData.PaderbornMainStation.Latitude,AppSharedData.PaderbornMainStation.Longitude);
+            locationManager = IoCManager.Resolve<ILocationManager> ();
+            locationManager.AddLocationListener (this);
+            GpsLocation = locationManager.LastKnownLocation.ToGeoLocation ();
             /*var locator = CrossGeolocator.Current;
             locator.PositionChanged += position_Changed;
             if (!locator.IsListening)
@@ -43,26 +46,6 @@ namespace HipMobileUI.ViewModels.Pages {
                 locator.StartListeningAsync (minTime: AppSharedData.MinTimeBwUpdates, minDistance: AppSharedData.MinDistanceChangeForUpdates);
             }*/
             FocusGps = new Command(FocusGpsClicked);
-
-        }
-
-
-        // Callback function for when GPS location changes
-        void position_Changed (object obj, PositionEventArgs e)
-        {
-            UpdateGpsData (e.Position);
-        }
-
-        // Update GPS location displays and database
-        private void UpdateGpsData (Position position)
-        {
-            var newGpsLocation = new GeoLocation
-            {
-                Latitude = position.Latitude,
-                Longitude = position.Longitude
-            };
-            GpsLocation = newGpsLocation;
-
 
         }
 
@@ -98,6 +81,18 @@ namespace HipMobileUI.ViewModels.Pages {
         public ICommand MapFocusCommand {
             get { return mapFocusCommand; }
             set { SetProperty (ref mapFocusCommand, value); }
+        }
+
+        public void LocationChanged (object sender, PositionEventArgs args)
+        {
+            GpsLocation = args.Position.ToGeoLocation ();
+        }
+
+        public override void OnDisappearing ()
+        {
+            base.OnDisappearing ();
+
+            locationManager.RemoveLocationListener (this);
         }
 
     }

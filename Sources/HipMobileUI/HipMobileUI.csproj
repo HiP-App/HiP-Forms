@@ -81,6 +81,7 @@
     <Compile Include="Helpers\DeviceOrientation.cs" />
     <Compile Include="Helpers\OrientationController.cs" />
     <Compile Include="Helpers\Settings.cs" />
+    <Compile Include="Location\LocationManager.cs" />
     <Compile Include="ViewModels\Pages\NavigationPageViewModel.cs" />
     <Compile Include="Map\OsmMap.cs" />
     <Compile Include="Helpers\TranslateExtension.cs" />
