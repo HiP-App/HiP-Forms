@@ -255,6 +255,7 @@
     <Compile Include="CustomRenderers\AndroidOrientationPageRenderer.cs" />
     <Compile Include="CustomRenderers\DroidTouchEventSlider.cs" />
     <Compile Include="CustomRenderers\FloatingActionButtonAndroidRenderer.cs" />
+    <Compile Include="CustomRenderers\AndroidCustomFontLabelRenderer.cs" />
     <Compile Include="Effects\DroidSwitchColorEffect.cs" />
     <Compile Include="Helpers\Settings.cs" />
     <Compile Include="LinkRenderer.cs" />
@@ -267,6 +268,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <AndroidAsset Include="Assets\fonts\AlteSchwabacher.ttf" />
     <None Include="packages.config" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
