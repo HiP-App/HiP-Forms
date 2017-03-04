@@ -23,13 +23,13 @@ using NUnit.Framework;
 
 namespace HipMobileUI.Tests.ViewModels.Views.ExhibitDetails
 {
-    class ImageViewModelTest
+    [TestFixture]
+    public class TextViewModelTest
     {
         [TestFixtureSetUp]
         public void Init()
         {
             IoCManager.RegisterInstance(typeof(INavigationService), Substitute.For<INavigationService>());
-            IoCManager.RegisterInstance(typeof(IImageDimension), Substitute.For<IImageDimension>());
         }
 
         [Test, Category("UnitTest")]
@@ -37,40 +37,40 @@ namespace HipMobileUI.Tests.ViewModels.Views.ExhibitDetails
         {
             var sut = CreateSystemUnderTest(() => { });
 
-            Assert.AreEqual(sut.Headline, "Foo");
-            Assert.AreEqual(sut.Description, "Bar");
+            Assert.AreEqual(Text, sut.Text);
+            Assert.AreEqual(Font, sut.FontFamily);
+            Assert.AreEqual(Title, sut.Headline);
+            Assert.AreEqual(Description, sut.Description);
         }
 
         [Test, Category("UnitTest")]
         public void ToggleButtonVisibility_ActionCalled()
         {
-            var actionSub = Substitute.For<Action> ();
+            var actionSub = Substitute.For<Action>();
             var sut = CreateSystemUnderTest(actionSub);
 
-            sut.ToggleButtonVisibility.Execute (null);
+            sut.ToggleButtonVisibility.Execute(null);
 
-            actionSub.ReceivedWithAnyArgs().Invoke ();
+            actionSub.ReceivedWithAnyArgs().Invoke();
         }
 
         #region Helper Methods
 
-
-        public ImageViewModel CreateSystemUnderTest(Action toggleAction)
+        private const string Title = "Title Test";
+        private const string Description = "Description Test";
+        private const string Text = "This is a test text.";
+        private const string Font = "Test Font";
+        public TextViewModel CreateSystemUnderTest(Action action)
         {
-            var imagePage = Substitute.For<ImagePage>();
-            imagePage.Image = CreateImage ();
+            var textPage = Substitute.For<TextPage>();
+            textPage.Text = Text;
+            textPage.FontFamily = Font;
+            textPage.Title = Title;
+            textPage.Description = Description;
 
-            return new ImageViewModel(imagePage, toggleAction);
+            return new TextViewModel(textPage, action);
         }
 
-        private Image CreateImage()
-        {
-            var image = Substitute.For<Image>();
-            image.Data = new byte[] { 1, 2, 3, 4 };
-            image.Title = "Foo";
-            image.Description = "Bar";
-            return image;
-        }
         #endregion
     }
 }

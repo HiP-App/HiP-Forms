@@ -69,12 +69,16 @@ namespace de.upb.hip.mobile.pcl.Common
         }
 
         // ReSharper disable once UnusedMember.Local
-        private Page CreateTextPage(string text, Audio audio = null)
+        private Page CreateTextPage(string text, string title, string description, string fontFamilyName = null, Audio audio = null)
         {
             var page = DbManager.CreateBusinessObject<Page>();
             var textpage = DbManager.CreateBusinessObject<TextPage>();
             page.TextPage = textpage;
             textpage.Text = text;
+            textpage.FontFamily = fontFamilyName;
+            textpage.Title = title;
+            textpage.Description = description;
+
             if (audio != null)
                 page.Audio = audio;
             return page;

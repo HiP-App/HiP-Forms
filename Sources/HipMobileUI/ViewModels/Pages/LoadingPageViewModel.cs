@@ -42,31 +42,41 @@ namespace HipMobileUI.ViewModels.Pages
         private string loadingProgressText;
         private double loadingProgress;
 
+        /// <summary>
+        /// The headline text.
+        /// </summary>
         public string Text {
             get { return text; }
             set { SetProperty (ref text, value); }
         }
 
+        /// <summary>
+        /// the sub text.
+        /// </summary>
         public string Subtext {
             get { return subtext; }
             set { SetProperty (ref subtext, value); }
         }
 
+        /// <summary>
+        /// The command for starting loading of database.
+        /// </summary>
         public ICommand StartLoading {
             get { return startLoading; }
             set { SetProperty (ref startLoading, value); }
         }
 
+        /// <summary>
+        /// Indicates wether the extended view is visible or not. The extended view gives more information about the current progress.
+        /// </summary>
         public bool IsExtendedViewsVisible {
             get { return isExtendedViewsVisible; }
             set { SetProperty (ref isExtendedViewsVisible, value); }
         }
 
-        public string LoadingProgressText {
-            get { return loadingProgressText; }
-            set { SetProperty (ref loadingProgressText, value); }
-        }
-
+        /// <summary>
+        /// Value indicating the current loading progress.
+        /// </summary>
         public double LoadingProgress {
             get { return loadingProgress; }
             set { SetProperty (ref loadingProgress, value); }
@@ -78,7 +88,7 @@ namespace HipMobileUI.ViewModels.Pages
                 IoCManager.RegisterType<IDataAccess, RealmDataAccess>();
                 IoCManager.RegisterType<IDataLoader, EmbeddedResourceDataLoader>();
 
-                // show text, activity indicator and image when db is initialized, otherwise just the indicator is shown
+                // show text, progress bar and image when db is initialized, otherwise just the indicator is shown
                 if (!DbManager.IsDatabaseUpToDate())
                 {
                     IsExtendedViewsVisible = true;

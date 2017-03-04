@@ -23,7 +23,8 @@ using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 namespace de.upb.hip.mobile.pcl.Common {
     public partial class DbDummyDataFiller {
 
-        public static int DatabaseVersion { get; } = 25;
+        public static int DatabaseVersion { get; } = 21;
+
 
         public void InsertData ()
         {

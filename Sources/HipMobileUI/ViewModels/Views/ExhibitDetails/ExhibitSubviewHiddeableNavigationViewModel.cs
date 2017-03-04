@@ -11,15 +11,32 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+
+using System;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Windows.Input;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
+using Xamarin.Forms;
 
 namespace HipMobileUI.ViewModels.Views.ExhibitDetails
 {
     /// <summary>
     /// Base class for all viewmodels displayed in the exhibitdetailspage.
     /// </summary>
-    public abstract class ExhibitSubviewViewModel : NavigationViewModel
-    {
+    public abstract class ExhibitSubviewHiddeableNavigationViewModel : ExhibitSubviewViewModel {
 
+        private ICommand toggleButtonVisibilityCommand;
+
+        public ExhibitSubviewHiddeableNavigationViewModel(Action toggleButtonVisibility)
+        {
+            ToggleButtonVisibility = new Command(toggleButtonVisibility);
+        }
+
+        public ICommand ToggleButtonVisibility
+        {
+            get { return toggleButtonVisibilityCommand; }
+            set { SetProperty (ref toggleButtonVisibilityCommand, value); }
+        }
     }
 }
