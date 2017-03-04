@@ -31,8 +31,8 @@ namespace de.upb.hip.mobile.droid.Helpers {
         /// <returns>A SpannableString parsed from the textWithSubstitutes for the subtitles. Returns null, if the provided action is null.</returns>
         public SpannableString CreateSubtitlesText (IInteractiveSourceAction action, string textWithSubstitutes, List<Source> sources)
         {
-            //if (action == null)
-              //  return null;
+            if (action == null)
+                return null;
 
             var str = new SpannableString (textWithSubstitutes);
 

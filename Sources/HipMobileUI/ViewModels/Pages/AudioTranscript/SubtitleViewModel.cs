@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System;
 using System.Collections.Generic;
 using de.upb.hip.mobile.pcl.BusinessLayer.InteractiveSources;
 using MvvmHelpers;
@@ -21,11 +22,13 @@ namespace HipMobileUI.ViewModels.Pages.AudioTranscript {
 
         private string formatedText;
         private List<Source> sourcesList;
+        private Func<IInteractiveSourceAction> action;
 
-        public SubtitleViewModel(string formatedTextToInit, List<Source> sources)
+        public SubtitleViewModel(string formatedTextToInit, List<Source> sources, Func<IInteractiveSourceAction> actionToInit)
         {
             FormatedText = formatedTextToInit;
             SourcesList = sources;
+            Action = actionToInit;
         }
 
         public string FormatedText {
@@ -37,6 +40,12 @@ namespace HipMobileUI.ViewModels.Pages.AudioTranscript {
         {
             get { return sourcesList; }
             set { SetProperty (ref sourcesList, value); }
+        }
+
+        public Func<IInteractiveSourceAction> Action
+        {
+            get { return action; }
+            set { SetProperty(ref action, value); }
         }
     }
 }

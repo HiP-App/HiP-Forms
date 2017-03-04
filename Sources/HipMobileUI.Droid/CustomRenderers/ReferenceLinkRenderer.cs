@@ -36,9 +36,10 @@ namespace de.upb.hip.mobile.droid.CustomRenderers
                 referencelink = (ReferenceLink)elementChangedEventArgs.NewElement;
                 var srcList = referencelink.Sources;
                 var formatedText = referencelink.Text;
+                var action = referencelink.Action;
                 var spannableTextBuilder = new SpannableTextBuilder();
 
-                var formattedSubtitles = spannableTextBuilder.CreateSubtitlesText(null, formatedText, srcList);
+                var formattedSubtitles = spannableTextBuilder.CreateSubtitlesText(action(), formatedText, srcList);
 
                 Control.TextFormatted = formattedSubtitles;
 

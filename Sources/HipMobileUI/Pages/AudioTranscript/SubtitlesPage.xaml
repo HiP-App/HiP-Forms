@@ -22,7 +22,7 @@
         <StackLayout>
             <ScrollView>
                 <StackLayout>
-                    <views:ReferenceLink Text="{Binding FormatedText}" Sources="{Binding SourcesList}" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Margin="10,10"/>
+                    <views:ReferenceLink Text="{Binding FormatedText}" Sources="{Binding SourcesList}" Action="{Binding Action}" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Margin="10,10"/>
                 </StackLayout>
             </ScrollView>
         </StackLayout>

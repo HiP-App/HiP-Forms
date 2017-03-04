@@ -87,6 +87,7 @@
     <Compile Include="Navigation\IViewCreator.cs" />
     <Compile Include="Navigation\IViewFor.cs" />
     <Compile Include="Navigation\NavigationService.cs" />
+    <Compile Include="Pages\AudioTranscript\SwitchTabAndScrollToSourceAction.cs" />
     <Compile Include="Pages\ExhibitDetailsPage.xaml.cs">
       <DependentUpon>ExhibitDetailsPage.xaml</DependentUpon>
     </Compile>

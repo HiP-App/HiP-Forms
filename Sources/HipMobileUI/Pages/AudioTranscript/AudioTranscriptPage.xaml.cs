@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using de.upb.hip.mobile.pcl.BusinessLayer.InteractiveSources;
 using HipMobileUI.Navigation;
 using HipMobileUI.ViewModels.Pages.AudioTranscript;
 using Xamarin.Forms;
@@ -23,6 +24,22 @@ namespace HipMobileUI.Pages.AudioTranscript
         public AudioTranscriptPage()
         {
             InitializeComponent ();
+        }
+
+        public static readonly BindableProperty ActionProperty =
+            BindableProperty.Create("Action", typeof(IInteractiveSourceAction), typeof(AudioTranscriptPage), defaultValue:null);
+
+        public IInteractiveSourceAction Action
+        {
+            get { return (IInteractiveSourceAction)GetValue(ActionProperty); }
+            set { SetValue(ActionProperty, value); }
+        }
+
+        protected override void OnBindingContextChanged ()
+        {
+            base.OnBindingContextChanged();
+            this.SetBinding(ActionProperty, "Action", BindingMode.TwoWay);
+            Action = new SwitchTabAndScrollToSourceAction(this);
         }
     }
 }

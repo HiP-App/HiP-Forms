@@ -28,8 +28,10 @@ namespace HipMobileUI.ViewModels.Pages.AudioTranscript
             List<Source> references = result.Sources;
 
             SourcesTab = new SourcesViewModel (references);
-            SubtitleTab = new SubtitleViewModel (formatedText, references);
+            SubtitleTab = new SubtitleViewModel (formatedText, references, GetAction);
         }
+
+        public IInteractiveSourceAction GetAction() { return Action; }
 
         private SourcesViewModel sourcesTab;
         public SourcesViewModel SourcesTab
@@ -45,5 +47,11 @@ namespace HipMobileUI.ViewModels.Pages.AudioTranscript
             set { SetProperty(ref subtitleTab, value); }
         }
 
+        private IInteractiveSourceAction action;
+        public IInteractiveSourceAction Action
+        {
+            get { return action; }
+            set { SetProperty(ref action, value); }
+        }
     }
 }
