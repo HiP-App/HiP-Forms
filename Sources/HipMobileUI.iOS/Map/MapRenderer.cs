@@ -1,4 +1,17 @@
-﻿using System;
+﻿// Copyright (C) 2017 History in Paderborn App - Universität Paderborn
+//  
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//  
+//      http://www.apache.org/licenses/LICENSE-2.0
+//  
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -7,7 +20,6 @@ using CoreLocation;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using de.upb.hip.mobile.pcl.BusinessLayer.Routing;
 using de.upb.hip.mobile.pcl.Common;
-using de.upb.hip.mobile.pcl.Helpers;
 using HipMobileUI.Helpers;
 using HipMobileUI.iOS.Map;
 using HipMobileUI.Map;
@@ -38,6 +50,7 @@ namespace HipMobileUI.iOS.Map
             {
                 var mapView = new MKMapView ();
                 this.SetNativeControl (mapView);
+                Control.ShowsCompass = true;
 
                 var overlay = new MKTileOverlay ("http://tile.openstreetmap.org/{z}/{x}/{y}.png") {CanReplaceMapContent = true};
                 mapView.AddOverlay (overlay, MKOverlayLevel.AboveLabels);
@@ -56,6 +69,8 @@ namespace HipMobileUI.iOS.Map
                 Control.CalloutAccessoryControlTapped -= OnCalloutAccessoryControlTapped;
                 e.OldElement.GpsLocationChanged -= OnGpsLocationChanged;
                 e.OldElement.ExhibitSetChanged -= OnExhibitSetChanged;
+                e.OldElement.DetailsRouteChanged -= OnDetailsRouteChanged;
+                e.OldElement.CenterLocationCalled -= CenterLocation;
             }
 
             if (e.NewElement != null)
@@ -70,12 +85,11 @@ namespace HipMobileUI.iOS.Map
                 e.NewElement.DetailsRouteChanged+=OnDetailsRouteChanged;
                 OnDetailsRouteChanged (osmMap.DetailsRoute);
                 e.NewElement.CenterLocationCalled+=CenterLocation;
-            }
-
-            Control.ShowsCompass = true;
-            InitMapPosition (Control);
-            
+                InitMapPosition();
+            }      
         }
+
+
 
         private void CenterLocation (GeoLocation location)
         {
@@ -178,14 +192,18 @@ namespace HipMobileUI.iOS.Map
             Control.AddOverlay(navigationPolyline);
         }
 
-        private void InitMapPosition (MKMapView mapView)
+        private void InitMapPosition ()
         {
-            if (mapView.UserLocation.Coordinate.Equals (new CLLocationCoordinate2D (0, 0)) && CLLocationManager.LocationServicesEnabled)
+            CLLocationCoordinate2D center;
+            if (osmMap.GpsLocation != null)
             {
-                MKCoordinateRegion region = mapView.Region;
-                var center = new CLLocationCoordinate2D(AppSharedData.PaderbornCenter.Latitude, AppSharedData.PaderbornCenter.Longitude);
-                mapView.SetRegion(MKCoordinateRegion.FromDistance(center, 1000, 1000), true);
+                center = new CLLocationCoordinate2D (osmMap.GpsLocation.Latitude, osmMap.GpsLocation.Longitude);
             }
+            else
+            {
+                center = new CLLocationCoordinate2D (AppSharedData.PaderbornCenter.Latitude, AppSharedData.PaderbornCenter.Longitude);
+            }
+            Control.SetRegion(MKCoordinateRegion.FromDistance(center, 1000, 1000), true);
         }
 
         private MKAnnotationView GetViewForAnnotation(MKMapView mapView, IMKAnnotation annotation)
@@ -271,9 +289,12 @@ namespace HipMobileUI.iOS.Map
             {
                 foreach (Waypoint routeWaypoint in route.Waypoints)
                 {
-                    var annotation = new ExhibitAnnotation(routeWaypoint.Location.Latitude, routeWaypoint.Location.Longitude, routeWaypoint.Exhibit.Id,
-                                                                                routeWaypoint.Exhibit.Name, routeWaypoint.Exhibit.Description);
-                    Control.AddAnnotation(annotation);
+                    if (exhibitSet == null || !exhibitSet.Contains (routeWaypoint.Exhibit))
+                    {
+                        var annotation = new ExhibitAnnotation (routeWaypoint.Location.Latitude, routeWaypoint.Location.Longitude, routeWaypoint.Exhibit.Id,
+                                                                routeWaypoint.Exhibit.Name, routeWaypoint.Exhibit.Description);
+                        Control.AddAnnotation (annotation);
+                    }
                 }
             }
 
@@ -290,6 +311,8 @@ namespace HipMobileUI.iOS.Map
                 Control.CalloutAccessoryControlTapped -= OnCalloutAccessoryControlTapped;
                 osmMap.GpsLocationChanged -= OnGpsLocationChanged;
                 osmMap.ExhibitSetChanged -= OnExhibitSetChanged;
+                osmMap.DetailsRouteChanged -= OnDetailsRouteChanged;
+                osmMap.CenterLocationCalled -= CenterLocation;
             }
 
             base.Dispose (disposing);

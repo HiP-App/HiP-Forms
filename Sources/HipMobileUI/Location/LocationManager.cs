@@ -22,20 +22,44 @@ namespace HipMobileUI.Location
 {
     public interface ILocationListener {
 
+        /// <summary>
+        /// Called when the location changed.
+        /// </summary>
+        /// <param name="sender">The sender of the event.</param>
+        /// <param name="args">The event parameters including the lcoation.</param>
         void LocationChanged (object sender, PositionEventArgs args);
 
     }
 
     public interface ILocationManager {
 
+        /// <summary>
+        /// Adds a location listener which will receive location updates.
+        /// If it was the firtst listener added, location updates are turned on.
+        /// </summary>
+        /// <param name="listener">The listener to add.</param>
         void AddLocationListener (ILocationListener listener);
 
+        /// <summary>
+        /// Removes a location listener which will no longer receive location updates.
+        /// If the last listener was removed, location updates are turned off.
+        /// </summary>
+        /// <param name="listener">The listener to remove.</param>
         void RemoveLocationListener (ILocationListener listener);
 
+        /// <summary>
+        /// THe last known location. Might be null in the beginning.
+        /// </summary>
         Position LastKnownLocation { get; }
 
+        /// <summary>
+        /// Pauses location updates manually.
+        /// </summary>
         void PauseListening ();
 
+        /// <summary>
+        /// Starts location updates manually.
+        /// </summary>
         void StartListening ();
 
     }
@@ -51,6 +75,7 @@ namespace HipMobileUI.Location
             locator = CrossGeolocator.Current;
             locator.PositionChanged += (sender, args) => { LastKnownLocation = args.Position; };
 
+            // subscribe to events when the app sleeps/wakes up to enable7disable location updates
             MessagingCenter.Subscribe<App>(this, AppSharedData.WillSleepMessage, WillSleep);
             MessagingCenter.Subscribe<App>(this, AppSharedData.WillWakeUpMessage, WillWakeUp);
         }
@@ -59,6 +84,7 @@ namespace HipMobileUI.Location
         {
             if (listener != null)
             {
+                // remember the listener and start location updates if necessary
                 bool needToStartLocator = !locator.IsListening && registeredListeners.Count == 0 ;
                 registeredListeners.Add (listener);
                 locator.PositionChanged += listener.LocationChanged;
@@ -73,6 +99,7 @@ namespace HipMobileUI.Location
         {
             if (listener != null)
             {
+                // remove the listener and stop location updates if necessary
                 locator.PositionChanged -= listener.LocationChanged;
                 registeredListeners.Remove (listener);
                 if (locator.IsListening && registeredListeners.Count == 0)
@@ -83,6 +110,7 @@ namespace HipMobileUI.Location
         }
 
         public Position LastKnownLocation { get; private set; }
+
         public void PauseListening ()
         {
             if (locator.IsListening)
