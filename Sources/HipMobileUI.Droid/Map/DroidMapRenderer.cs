@@ -139,7 +139,6 @@ namespace de.upb.hip.mobile.droid.Map {
 				{
 					UpdateRoute (new GeoPoint(gpsLocation.Latitude,gpsLocation.Longitude));
 				}
-            
             }
 
         }

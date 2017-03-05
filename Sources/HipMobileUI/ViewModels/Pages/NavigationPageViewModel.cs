@@ -38,13 +38,6 @@ namespace HipMobileUI.ViewModels.Pages {
             Title = "Navigation";
             locationManager = IoCManager.Resolve<ILocationManager> ();
             locationManager.AddLocationListener (this);
-            GpsLocation = locationManager.LastKnownLocation.ToGeoLocation ();
-            /*var locator = CrossGeolocator.Current;
-            locator.PositionChanged += position_Changed;
-            if (!locator.IsListening)
-            {
-                locator.StartListeningAsync (minTime: AppSharedData.MinTimeBwUpdates, minDistance: AppSharedData.MinDistanceChangeForUpdates);
-            }*/
             FocusGps = new Command(FocusGpsClicked);
 
         }
