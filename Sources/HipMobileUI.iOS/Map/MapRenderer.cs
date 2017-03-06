@@ -86,6 +86,10 @@ namespace HipMobileUI.iOS.Map
                 OnDetailsRouteChanged (osmMap.DetailsRoute);
                 e.NewElement.CenterLocationCalled+=CenterLocation;
                 InitMapPosition();
+                if (e.NewElement.ShowNavigation)
+                {
+                    UpdateRoute ();
+                }
             }      
         }
 
@@ -96,6 +100,10 @@ namespace HipMobileUI.iOS.Map
             if (location != null)
             {
                 Control.CenterCoordinate = new CLLocationCoordinate2D (location.Latitude, location.Longitude);
+            }
+            else
+            {
+                Control.CenterCoordinate = new CLLocationCoordinate2D(AppSharedData.PaderbornCenter.Latitude, AppSharedData.PaderbornCenter.Longitude);
             }
         }
 
@@ -139,24 +147,28 @@ namespace HipMobileUI.iOS.Map
 
                 if (osmMap.ShowNavigation)
                 {
-                    UpdateRoute (location);
+                    UpdateRoute ();
                 }
             }
         }
 
-        private void UpdateRoute (GeoLocation location)
+        private void UpdateRoute ()
         {
             var id = osmMap.DetailsRoute.Id;
 
             ThreadPool.QueueUserWorkItem(state => {
-                var geoPoints = new List<CLLocationCoordinate2D> { new CLLocationCoordinate2D(osmMap.GpsLocation.Latitude, osmMap.GpsLocation.Longitude) };
+                var geoPoints = new List<CLLocationCoordinate2D> ();
+                if (osmMap.GpsLocation != null)
+                {
+                    geoPoints.Add (new CLLocationCoordinate2D(osmMap.GpsLocation.Latitude, osmMap.GpsLocation.Longitude));      
+                }
 
                 Action action;
 
                 try
                 {
-                    var locations = routeCalculator.CreateRouteWithSeveralWaypoints(new GeoLocation(osmMap.GpsLocation.Latitude, osmMap.GpsLocation.Longitude),
-                                                                                     id);
+                    
+                    var locations = routeCalculator.CreateRouteWithSeveralWaypoints(id, osmMap.GpsLocation);
 
                     foreach (var w in locations)
                     {
