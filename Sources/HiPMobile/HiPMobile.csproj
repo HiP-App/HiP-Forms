@@ -87,6 +87,7 @@
     <Compile Include="BusinessLayer\Models\NonGenerated\GeoLocationNonGenerated.cs" />
     <Compile Include="BusinessLayer\Models\NonGenerated\Image.cs" />
     <Compile Include="BusinessLayer\Models\NonGenerated\Page.cs" />
+    <Compile Include="BusinessLayer\Models\NonGenerated\PageType.cs" />
     <Compile Include="Common\DbDummyDataFillerGenerated.cs" />
     <Compile Include="Common\Contracts\IDataLoader.cs" />
     <Compile Include="Common\Contracts\IFabSizeCalculator.cs" />
@@ -100,6 +101,7 @@
     <Compile Include="DataAccessLayer\BaseTransaction.cs" />
     <Compile Include="DataLayer\RealmDataAccess.cs" />
     <Compile Include="DataLayer\RealmTransaction.cs" />
+    <Compile Include="Helpers\IProgressListener.cs" />
     <Compile Include="Helpers\MathUtil.cs" />
     <Compile Include="BusinessLayer\Routing\RouteCalculator.cs" />
     <Compile Include="Helpers\Settings.cs" />

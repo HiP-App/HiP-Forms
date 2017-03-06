@@ -83,8 +83,6 @@ namespace HipMobileUI.ViewModels.Views
             ExhibitsList.SortCollection (exhibit => exhibit.Distance);
         }
 
-        
-
         /// <summary>
         /// Called when the view was removed from the visual tree.
         /// </summary>

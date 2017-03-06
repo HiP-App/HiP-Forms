@@ -16,6 +16,7 @@ using System;
 using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using de.upb.hip.mobile.pcl.Common.Contracts;
+using de.upb.hip.mobile.pcl.Helpers;
 
 namespace de.upb.hip.mobile.pcl.Common
 {
@@ -23,6 +24,8 @@ namespace de.upb.hip.mobile.pcl.Common
     {
 
         private readonly IDataLoader dataLoader = IoCManager.Resolve<IDataLoader>();
+
+        public event UpdateDelegate ProgressChanged;
 
         private Exhibit CreateExhibit(string name, string description, double latitude, double longitude,
                                        string[] tags, string[] categories, Image image)
@@ -66,12 +69,16 @@ namespace de.upb.hip.mobile.pcl.Common
         }
 
         // ReSharper disable once UnusedMember.Local
-        private Page CreateTextPage(string text, Audio audio = null)
+        private Page CreateTextPage(string text, string title, string description, string fontFamilyName = null, Audio audio = null)
         {
             var page = DbManager.CreateBusinessObject<Page>();
             var textpage = DbManager.CreateBusinessObject<TextPage>();
             page.TextPage = textpage;
             textpage.Text = text;
+            textpage.FontFamily = fontFamilyName;
+            textpage.Title = title;
+            textpage.Description = description;
+
             if (audio != null)
                 page.Audio = audio;
             return page;
@@ -184,6 +191,11 @@ namespace de.upb.hip.mobile.pcl.Common
             routetag.Tag = tag;
             routetag.Image = image;
             return routetag;
+        }
+
+        private void UpdateProgress (double newProgress, double maxProgress)
+        {
+            ProgressChanged?.Invoke (newProgress, maxProgress);   
         }
 
     }

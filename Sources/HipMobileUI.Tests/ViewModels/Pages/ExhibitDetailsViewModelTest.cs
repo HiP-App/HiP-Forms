@@ -13,6 +13,7 @@
 // limitations under the License.
 
 using System.Collections.Generic;
+using System.Threading;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using de.upb.hip.mobile.pcl.Common;
 using de.upb.hip.mobile.pcl.Common.Contracts;
@@ -107,7 +108,20 @@ namespace HipMobileUI.Tests.ViewModels.Pages
             Assert.IsInstanceOf<TimeSliderViewModel>(sut.SelectedView);
         }
 
-        
+        [Test, Category("UnitTest")]
+        public void ToggleButtonVisibility_IsVisibleChangedAfter3Secs()
+        {
+            var sut = CreateSystemUnderTest ();
+            sut.NextViewCommand.Execute (null);
+
+            Assert.AreEqual(true, sut.NextVisible);
+            Assert.AreEqual(true, sut.PreviousVisible);
+
+            Thread.Sleep(3000);
+
+            Assert.AreEqual(false, sut.NextVisible);
+            Assert.AreEqual(false, sut.PreviousVisible);
+        }
 
         #region Helper Methods
 

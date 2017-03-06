@@ -11,6 +11,8 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+
+using System;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using de.upb.hip.mobile.pcl.Common;
 using de.upb.hip.mobile.pcl.Common.Contracts;
@@ -33,20 +35,32 @@ namespace HipMobileUI.Tests.ViewModels.Views.ExhibitDetails
         [Test, Category("UnitTest")]
         public void Creation_PropertiesFilled()
         {
-            var sut = CreateSystemUnderTest();
+            var sut = CreateSystemUnderTest(() => { });
 
             Assert.AreEqual(sut.Headline, "Foo");
             Assert.AreEqual(sut.Description, "Bar");
         }
 
+        [Test, Category("UnitTest")]
+        public void ToggleButtonVisibility_ActionCalled()
+        {
+            var actionSub = Substitute.For<Action> ();
+            var sut = CreateSystemUnderTest(actionSub);
+
+            sut.ToggleButtonVisibility.Execute (null);
+
+            actionSub.ReceivedWithAnyArgs().Invoke ();
+        }
+
         #region Helper Methods
 
-        public ImageViewModel CreateSystemUnderTest()
+
+        public ImageViewModel CreateSystemUnderTest(Action toggleAction)
         {
             var imagePage = Substitute.For<ImagePage>();
             imagePage.Image = CreateImage ();
 
-            return new ImageViewModel(imagePage);
+            return new ImageViewModel(imagePage, toggleAction);
         }
 
         private Image CreateImage()
