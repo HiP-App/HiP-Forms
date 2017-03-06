@@ -27,7 +27,7 @@ namespace HipMobileUI.ViewModels.Pages {
         private GeoLocation gpsLocation;
         private ILocationManager locationManager;
         private Route detailsRoute;
-        private bool showNavigation;
+        private bool showNavigation,isGpsAvailable;
         private ICommand mapFocusCommand;
 
         //TODO just for testing can be deleted later
@@ -38,6 +38,7 @@ namespace HipMobileUI.ViewModels.Pages {
             Title = "Navigation";
             locationManager = IoCManager.Resolve<ILocationManager> ();
             locationManager.AddLocationListener (this);
+            IsGpsAvailable = locationManager.GetCurrent ().IsGeolocationEnabled;
             FocusGps = new Command(FocusGpsClicked);
 
         }
@@ -67,6 +68,12 @@ namespace HipMobileUI.ViewModels.Pages {
         {
             get { return showNavigation; }
             set { SetProperty(ref showNavigation, value); }
+        }
+
+        public bool IsGpsAvailable
+        {
+            get { return isGpsAvailable; }
+            set { SetProperty(ref isGpsAvailable, value); }
         }
 
         public ICommand FocusGps { get; }

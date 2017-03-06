@@ -38,6 +38,8 @@ namespace HipMobileUI.Map {
         //Set this to true if want to have the navigation
         public static readonly  BindableProperty ShowNavigationProperty = BindableProperty.Create ("ShowNavigation",typeof(bool),typeof(OsmMap),false);
 
+        public static readonly BindableProperty IsGpsAvailableProperty = BindableProperty.Create ("GpsAvailable", typeof(bool), typeof(OsmMap), false);
+
         public static BindableProperty CenterCommandProperty =
             BindableProperty.Create(nameof(CenterCommand), typeof(ICommand), typeof(OsmMap), null, BindingMode.OneWayToSource);
 
@@ -60,6 +62,12 @@ namespace HipMobileUI.Map {
         public ExhibitSet ExhibitSet {
             get { return (ExhibitSet) GetValue (ExhibitSetProperty); }
             set { SetValue (ExhibitSetProperty, value); }
+        }
+
+
+        public bool IsGpsAvailable {
+            get { return (bool) GetValue (IsGpsAvailableProperty); }
+            set { SetValue (IsGpsAvailableProperty,value);}
         }
 
         public GeoLocation GpsLocation {

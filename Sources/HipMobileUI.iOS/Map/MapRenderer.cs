@@ -29,6 +29,7 @@ using MapKit;
 using UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
+using HipMobileUI.Resources;
 
 [assembly: ExportRenderer(typeof(OsmMap), typeof(MapRenderer))]
 
@@ -191,7 +192,7 @@ namespace HipMobileUI.iOS.Map
 
         private void ShowRouteCalculationError ()
         {
-            IoCManager.Resolve<INavigationService> ().DisplayAlert ("Fehler", "Sie befinden sich nicht innerhalb von Paderborn", "Ok");
+            IoCManager.Resolve<INavigationService> ().DisplayAlert ("Fehler", Strings.MapRenderer_NoLocation_Text, "Ok");
         }
 
         private void DrawRoute (List<CLLocationCoordinate2D> geoPoints)

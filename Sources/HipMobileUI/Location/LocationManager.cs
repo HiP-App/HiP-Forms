@@ -52,6 +52,8 @@ namespace HipMobileUI.Location
         /// </summary>
         Position LastKnownLocation { get; }
 
+        IGeolocator GetCurrent ();
+
         /// <summary>
         /// Pauses location updates manually.
         /// </summary>
@@ -78,6 +80,11 @@ namespace HipMobileUI.Location
             // subscribe to events when the app sleeps/wakes up to enable7disable location updates
             MessagingCenter.Subscribe<App>(this, AppSharedData.WillSleepMessage, WillSleep);
             MessagingCenter.Subscribe<App>(this, AppSharedData.WillWakeUpMessage, WillWakeUp);
+        }
+
+        public IGeolocator GetCurrent()
+        {
+            return locator;
         }
 
         public void AddLocationListener (ILocationListener listener)
