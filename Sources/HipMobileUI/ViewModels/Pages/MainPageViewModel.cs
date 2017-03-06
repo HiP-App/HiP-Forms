@@ -44,12 +44,6 @@ namespace HipMobileUI.ViewModels.Pages
                     Title = Strings.MainPageViewModel_Settings,
                     Icon = "ic_settings.png"
                 },
-                new DummyViewModel
-                {
-                    Title = Strings.MainPageViewModel_Feedback,
-                    Icon = "ic_feedback.png",
-                    Color = Color.Green
-                },
                 new LicenseScreenViewModel
                 {
                     Title = Strings.MainPageViewModel_LegalNotices,

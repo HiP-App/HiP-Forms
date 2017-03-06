@@ -100,13 +100,6 @@
             <effects:SwitchColorEffect Color="{StaticResource AccentColor}"></effects:SwitchColorEffect>
           </Switch.Effects>
         </Switch>
-          <BoxView Grid.Row="10" Grid.Column="0"/>
-        <Label Text="{strings:Translate SettingsScreenView_RepeatHintTimeSlider_Text}" HorizontalOptions="StartAndExpand" Grid.Row="11" Grid.Column="0"/>
-        <Switch IsToggled="{Binding RepeatHintTimeSlider, Mode=TwoWay}" HorizontalOptions="End" VerticalOptions="Center" Grid.Row="11" Grid.Column="1">
-          <Switch.Effects>
-            <effects:SwitchColorEffect Color="{StaticResource AccentColor}"></effects:SwitchColorEffect>
-          </Switch.Effects>
-        </Switch>
           <BoxView Grid.Row="12" Grid.Column="0"/>
         <Label Text="{strings:Translate SettingsScreenView_RepeatIntro_Text}" HorizontalOptions="StartAndExpand" Grid.Row="13" Grid.Column="0"/>
         <Switch IsToggled="{Binding RepeatIntro, Mode=TwoWay}" HorizontalOptions="End" VerticalOptions="Center" Grid.Row="13" Grid.Column="1">
