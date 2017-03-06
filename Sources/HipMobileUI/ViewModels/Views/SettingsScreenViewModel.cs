@@ -68,18 +68,6 @@ namespace HipMobileUI.ViewModels.Views {
         }
 
         /// <summary>
-        /// Show hint for timeslider again
-        /// </summary>
-        public bool RepeatHintTimeSlider
-        {
-            get { return Settings.RepeatHintTimeSlider; }
-            set {
-                Settings.RepeatHintTimeSlider = value;
-                OnPropertyChanged();
-            }
-        }
-
-        /// <summary>
         /// Show app introduction by restarting the app again
         /// </summary>
         public bool RepeatIntro
