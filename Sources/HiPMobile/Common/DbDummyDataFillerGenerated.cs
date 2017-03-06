@@ -517,13 +517,13 @@ var berlinMünzeVorderSeiteHighlighted = CreateImage (
 UpdateProgress(81, 229);
 var Berlin_TaufschaleWidukinds = CreateImage (
     "Berlin Taufschale Widukinds", 
-    "Die sogenannte Taufschale Widukinds, Montierung 12. Jh., Steinschliff wohl spätantik, grüner Serpentin, geschnitten und geschliffen; Montierung Bronze, gegossen, teilweise getrieben, vergoldet, Inschrift nielliert, Deckblech der Daumenplatte Silber, ehemals nielliert, Maße: 3,5 x 13, 15 x 17,5 cm, aus dem Schatz des Stiftes St. Dionysius zu Enger/Herford, Berlin, Staatliche Museen zu Berlin – Preußischer Kulturbesitz, Kunstgewerbemuseum, Inv. Nr. K 3672. © bpk / Kunstgewerbemuseum, SMB.", 
+    "Berlin Taufschale Widukinds", 
     "Berlin_TaufschaleWidukinds.jpg"
   );
 UpdateProgress(82, 229);
 var Berlin_TaufschaleWidukinds_Einfarbung_Inschrift = CreateImage (
     "Berlin Taufschale Widukinds", 
-    "Die sogenannte Taufschale Widukinds, Montierung 12. Jh., Steinschliff wohl spätantik, grüner Serpentin, geschnitten und geschliffen; Montierung Bronze, gegossen, teilweise getrieben, vergoldet, Inschrift nielliert, Deckblech der Daumenplatte Silber, ehemals nielliert, Maße: 3,5 x 13, 15 x 17,5 cm, aus dem Schatz des Stiftes St. Dionysius zu Enger/Herford, Berlin, Staatliche Museen zu Berlin – Preußischer Kulturbesitz, Kunstgewerbemuseum, Inv. Nr. K 3672. © bpk / Kunstgewerbemuseum, SMB.", 
+    "Berlin Taufschale Widukinds Einfarbung Inschrift", 
     "Berlin_TaufschaleWidukinds_Einfarbung_Inschrift.jpg"
   );
 UpdateProgress(83, 229);
@@ -1063,7 +1063,7 @@ TaufenAnDerPader.Pages.Add( CreateImagePage (noImage, null, null, _015) );
 UpdateProgress(222, 229);
 TaufenAnDerPader.Pages.Add( CreateImagePage (noImage, null, null, _016) );
 UpdateProgress(223, 229);
-TaufenAnDerPader.Pages.Add( CreateTimeSliderPage("", "Berlin Taufschale Widukinds", new long[]{0,1}, new []{Berlin_TaufschaleWidukinds,Berlin_TaufschaleWidukinds_Einfarbung_Inschrift}, true, _017) );
+TaufenAnDerPader.Pages.Add( CreateTimeSliderPage("Berlin Taufschale Widukinds", "Die sogenannte Taufschale Widukinds, Montierung 12. Jh., Steinschliff wohl spätantik, grüner Serpentin, geschnitten und geschliffen; Montierung Bronze, gegossen, teilweise getrieben, vergoldet, Inschrift nielliert, Deckblech der Daumenplatte Silber, ehemals nielliert, Maße: 3,5 x 13, 15 x 17,5 cm, aus dem Schatz des Stiftes St. Dionysius zu Enger/Herford, Berlin, Staatliche Museen zu Berlin – Preußischer Kulturbesitz, Kunstgewerbemuseum, Inv. Nr. K 3672. © bpk / Kunstgewerbemuseum, SMB.", new long[]{0,1}, new []{Berlin_TaufschaleWidukinds,Berlin_TaufschaleWidukinds_Einfarbung_Inschrift}, true, _017) );
 UpdateProgress(224, 229);
 TaufenAnDerPader.Pages.Add( CreateImagePage (noImage, null, null, _018) );
 UpdateProgress(225, 229);
