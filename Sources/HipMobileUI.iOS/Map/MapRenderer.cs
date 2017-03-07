@@ -41,6 +41,7 @@ namespace HipMobileUI.iOS.Map
         private UserAnnotation userAnnotation;
         private RouteCalculator routeCalculator;
         private MKPolyline navigationPolyline;
+        private bool CanShowError = true;
 
         protected override void OnElementChanged(ElementChangedEventArgs<OsmMap> e)
         {
@@ -192,7 +193,15 @@ namespace HipMobileUI.iOS.Map
 
         private void ShowRouteCalculationError ()
         {
-            IoCManager.Resolve<INavigationService> ().DisplayAlert ("Fehler", Strings.MapRenderer_NoLocation_Text, "Ok");
+            if (CanShowError)
+            {
+                CanShowError = false;
+                IoCManager.Resolve<INavigationService> ().DisplayAlert ("Fehler", Strings.MapRenderer_NoLocation_Text, "Ok");
+                Device.StartTimer (TimeSpan.FromSeconds (10), () => {
+                                       CanShowError = true;
+                                       return false;
+                                   });
+            }
         }
 
         private void DrawRoute (List<CLLocationCoordinate2D> geoPoints)

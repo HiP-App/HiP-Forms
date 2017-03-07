@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System;
 using System.Collections.Generic;
 using HipMobileUI.Helpers;
 using Plugin.Geolocator;
@@ -52,7 +53,11 @@ namespace HipMobileUI.Location
         /// </summary>
         Position LastKnownLocation { get; }
 
-        IGeolocator GetCurrent ();
+        /// <summary>
+        /// Gets whether the geolocation is available. The value might be a false positive on an emulator/simulator.
+        /// </summary>
+        /// <returns>True if the location is available, false otherwise.</returns>
+        bool IsLocationAvailable ();
 
         /// <summary>
         /// Pauses location updates manually.
@@ -80,11 +85,6 @@ namespace HipMobileUI.Location
             // subscribe to events when the app sleeps/wakes up to enable7disable location updates
             MessagingCenter.Subscribe<App>(this, AppSharedData.WillSleepMessage, WillSleep);
             MessagingCenter.Subscribe<App>(this, AppSharedData.WillWakeUpMessage, WillWakeUp);
-        }
-
-        public IGeolocator GetCurrent()
-        {
-            return locator;
         }
 
         public void AddLocationListener (ILocationListener listener)
@@ -117,6 +117,11 @@ namespace HipMobileUI.Location
         }
 
         public Position LastKnownLocation { get; private set; }
+
+        public bool IsLocationAvailable ()
+        {
+            return locator.IsGeolocationAvailable;
+        }
 
         public void PauseListening ()
         {
