@@ -41,17 +41,17 @@ namespace HipMobileUI.iOS.Map
         private UserAnnotation userAnnotation;
         private RouteCalculator routeCalculator;
         private MKPolyline navigationPolyline;
-        private bool CanShowError = true;
+        private bool canShowError = true;
 
         protected override void OnElementChanged(ElementChangedEventArgs<OsmMap> e)
         {
             base.OnElementChanged(e);
 
-
             if (Control == null)
             {
+                // set up the native control
                 var mapView = new MKMapView ();
-                this.SetNativeControl (mapView);
+                SetNativeControl (mapView);
                 Control.ShowsCompass = true;
 
                 var overlay = new MKTileOverlay ("http://tile.openstreetmap.org/{z}/{x}/{y}.png") {CanReplaceMapContent = true};
@@ -67,6 +67,7 @@ namespace HipMobileUI.iOS.Map
 
             if (e.OldElement != null)
             {
+                // remove connections to the old instance
                 Control.GetViewForAnnotation = null;
                 Control.CalloutAccessoryControlTapped -= OnCalloutAccessoryControlTapped;
                 e.OldElement.GpsLocationChanged -= OnGpsLocationChanged;
@@ -77,6 +78,7 @@ namespace HipMobileUI.iOS.Map
 
             if (e.NewElement != null)
             {
+                // setup connections to the new instance
                 osmMap = e.NewElement;
                 InitAnnotations(e.NewElement.ExhibitSet, e.NewElement.DetailsRoute);
                 Control.GetViewForAnnotation = GetViewForAnnotation;
@@ -95,8 +97,10 @@ namespace HipMobileUI.iOS.Map
             }      
         }
 
-
-
+        /// <summary>
+        /// Centers the map on a given lcoation if available. Otherwise the center of paderborn is centered.
+        /// </summary>
+        /// <param name="location">The location to center on.</param>
         private void CenterLocation (GeoLocation location)
         {
             if (location != null)
@@ -109,7 +113,10 @@ namespace HipMobileUI.iOS.Map
             }
         }
 
-
+        /// <summary>
+        /// React to changes in the route.
+        /// </summary>
+        /// <param name="route">The route that changed</param>
         private void OnDetailsRouteChanged (Route route)
         {
             if (route != null && osmMap.ShowDetailsRoute)
@@ -128,11 +135,19 @@ namespace HipMobileUI.iOS.Map
             }
         }
 
+        /// <summary>
+        /// React to changes in the exhibitset.
+        /// </summary>
+        /// <param name="set">The exhibitset that changed.</param>
         private void OnExhibitSetChanged(ExhibitSet set)
         {
            InitAnnotations (set, osmMap.DetailsRoute);
         }
 
+        /// <summary>
+        /// React to changes of the gps position.
+        /// </summary>
+        /// <param name="location">The position that changed.</param>
         private void OnGpsLocationChanged(GeoLocation location)
         {
             if (location != null)
@@ -154,6 +169,9 @@ namespace HipMobileUI.iOS.Map
             }
         }
 
+        /// <summary>
+        /// Update the displayed route. Route calculation is done in the background thread.
+        /// </summary>
         private void UpdateRoute ()
         {
             var id = osmMap.DetailsRoute.Id;
@@ -191,19 +209,26 @@ namespace HipMobileUI.iOS.Map
             });
         }
 
+        /// <summary>
+        /// Shows an error that route calculation is not currently possible.
+        /// </summary>
         private void ShowRouteCalculationError ()
         {
-            if (CanShowError)
+            if (canShowError)
             {
-                CanShowError = false;
+                canShowError = false;
                 IoCManager.Resolve<INavigationService> ().DisplayAlert ("Fehler", Strings.MapRenderer_NoLocation_Text, "Ok");
                 Device.StartTimer (TimeSpan.FromSeconds (10), () => {
-                                       CanShowError = true;
+                                       canShowError = true;
                                        return false;
                                    });
             }
         }
 
+        /// <summary>
+        /// Draw a route between the given geopoints.
+        /// </summary>
+        /// <param name="geoPoints">The geopoints of the route.</param>
         private void DrawRoute (List<CLLocationCoordinate2D> geoPoints)
         {
             if (navigationPolyline != null)
@@ -214,6 +239,9 @@ namespace HipMobileUI.iOS.Map
             Control.AddOverlay(navigationPolyline);
         }
 
+        /// <summary>
+        /// Init the map position by centering on teh user or paderborn center and setting the zoom level.
+        /// </summary>
         private void InitMapPosition ()
         {
             CLLocationCoordinate2D center;
@@ -228,6 +256,12 @@ namespace HipMobileUI.iOS.Map
             Control.SetRegion(MKCoordinateRegion.FromDistance(center, 1000, 1000), true);
         }
 
+        /// <summary>
+        /// Gets the view for an annotation.
+        /// </summary>
+        /// <param name="mapView">The mapview instance.</param>
+        /// <param name="annotation">The annotation to get the view for.</param>
+        /// <returns>The annotation view.</returns>
         private MKAnnotationView GetViewForAnnotation(MKMapView mapView, IMKAnnotation annotation)
         {
             MKAnnotationView annotationView = null;
@@ -264,6 +298,12 @@ namespace HipMobileUI.iOS.Map
             return annotationView;
         }
 
+        /// <summary>
+        /// Gets the overlay renderer for the given overlay.
+        /// </summary>
+        /// <param name="mapView">The instance of the mapview.</param>
+        /// <param name="overlay">The instance of the overlay.</param>
+        /// <returns>The corresponding overlay renderer.</returns>
         private MKOverlayRenderer OverlayRenderer(MKMapView mapView, IMKOverlay overlay)
         {
             var tileOverlay = ObjCRuntime.Runtime.GetNSObject(overlay.Handle) as MKTileOverlay;
@@ -284,6 +324,11 @@ namespace HipMobileUI.iOS.Map
             return null;
         }
 
+        /// <summary>
+        /// Callback for when the user taps a callout.
+        /// </summary>
+        /// <param name="sender">The sender of the event.</param>
+        /// <param name="e">The event parameters.</param>
         private void OnCalloutAccessoryControlTapped(object sender, MKMapViewAccessoryTappedEventArgs e)
         {
             var exhibitAnnotationView = e.View as ExhibitAnnotationView;
@@ -295,6 +340,11 @@ namespace HipMobileUI.iOS.Map
             }
         }
 
+        /// <summary>
+        /// Init the annotations on the map from a set of exhibits anr/or a route.
+        /// </summary>
+        /// <param name="exhibitSet">The set of exhibits.</param>
+        /// <param name="route">The route.</param>
         private void InitAnnotations(ExhibitSet exhibitSet, Route route)
         {
             if (exhibitSet != null)
@@ -326,6 +376,10 @@ namespace HipMobileUI.iOS.Map
             }
         }
 
+        /// <summary>
+        /// Disposes this view.
+        /// </summary>
+        /// <param name="disposing">Indicator if the view is actually disposing.</param>
         protected override void Dispose (bool disposing)
         {
             if (disposing)
