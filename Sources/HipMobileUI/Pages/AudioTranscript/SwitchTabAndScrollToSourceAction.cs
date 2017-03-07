@@ -27,8 +27,16 @@ namespace HipMobileUI.Pages.AudioTranscript {
 
         public void Display (Source src)
         {
-            TabbedPage.CurrentPage = TabbedPage.Children [1];
-        }
+            var sourcesPage = TabbedPage.Children[1] as SourcesPage;
+            if (sourcesPage != null)
+            {
+                var sourcesListView = sourcesPage.Content as ListView;
 
+                // scroll to the selected reference
+                TabbedPage.CurrentPage = sourcesPage;
+                if (sourcesListView != null)
+                    sourcesListView.ScrollTo(src, ScrollToPosition.Start, true);
+            }
+        }
     }
 }
