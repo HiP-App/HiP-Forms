@@ -30,7 +30,7 @@ namespace HipMobileUI.ViewModels.Views
     {
         private ObservableCollection<ExhibitsOverviewListItemViewModel> exhibitsList;
         private ICommand itemTappedCommand;
-        private readonly ILocationManager locationManager;
+        private ILocationManager locationManager;
         private bool displayDistances;
         private ExhibitSet displayedExhibitSet;
         private Position position;
