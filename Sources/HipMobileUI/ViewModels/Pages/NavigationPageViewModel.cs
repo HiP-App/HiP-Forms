@@ -42,6 +42,9 @@ namespace HipMobileUI.ViewModels.Pages {
 
         }
 
+        /// <summary>
+        /// Handles the button click
+        /// </summary>
         void FocusGpsClicked ()
         {
             MapFocusCommand.Execute (GpsLocation);

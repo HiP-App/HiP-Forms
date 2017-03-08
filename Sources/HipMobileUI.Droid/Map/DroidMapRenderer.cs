@@ -97,7 +97,8 @@ namespace de.upb.hip.mobile.droid.Map {
                 // Subscribe
                 osmMap = e.NewElement;
                 osmMap.GpsLocationChanged += NewElementOnGpsLocationChanged;
-                //Catch up the wrong error message because of double call is only working on a real device
+                //Catch up the wrong error message because of double when gps is enabled
+                //call is only working on a real device
                 if (osmMap.IsGpsAvailable == false)
                     NewElementOnGpsLocationChanged (e.NewElement.GpsLocation);
                 osmMap.ExhibitSetChanged += NewElementOnExhibitSetChanged;
@@ -109,6 +110,10 @@ namespace de.upb.hip.mobile.droid.Map {
             }
         }
 
+        /// <summary>
+        /// Called from center Button in navigation
+        /// </summary>
+        /// <param name="location"></param>
         private void CenterMap (GeoLocation location)
         {
             if (location != null)
@@ -119,15 +124,22 @@ namespace de.upb.hip.mobile.droid.Map {
             }
         }
 
+        /// <summary>
+        /// Displays all markers on Mainmap and updates it if set changes
+        /// </summary>
+        /// <param name="set"></param>
         private void NewElementOnExhibitSetChanged (ExhibitSet set)
         {
             SetAllMarkers (set);
         }
 
-
+        /// <summary>
+        /// Everything regarding location changes is handled here
+        /// </summary>
+        /// <param name="gpsLocation">Location from Gps</param>
         private void NewElementOnGpsLocationChanged (GeoLocation gpsLocation)
         {
-            //Userposition is always updated
+            //Userposition is always updated and shown if position is available
             if (gpsLocation != null)
             {
                 var userPosition = new GeoPoint (gpsLocation.Latitude, gpsLocation.Longitude);
@@ -152,6 +164,10 @@ namespace de.upb.hip.mobile.droid.Map {
                 DrawDetailsRoute (gpsLocation);
         }
 
+        /// <summary>
+        /// Draws the markers in navigation
+        /// </summary>
+        /// <param name="route">Route to process</param>
         private void NewElementOnDetailsRouteChanged (Route route)
         {
             //The direct polyline is only draw if related bool is true
@@ -170,6 +186,10 @@ namespace de.upb.hip.mobile.droid.Map {
             mapView.Invalidate ();
         }
 
+        /// <summary>
+        /// Here the direct route in routedetails is calculated
+        /// </summary>
+        /// <param name="location"></param>
         private void DrawDetailsRoute (GeoLocation location)
         {
             var myPath = new PathOverlay (Resources.GetColor (Resource.Color.colorPrimaryDark), 7, new DefaultResourceProxyImpl (activity));
@@ -223,6 +243,11 @@ namespace de.upb.hip.mobile.droid.Map {
             mapView.Invalidate ();
         }
 
+        /// <summary>
+        /// Calculates the navigation route in a seperate thread
+        /// and throws error message if no route was found
+        /// </summary>
+        /// <param name="userPosition">position of the user</param>
         private void CalculateRoute (GeoLocation userPosition)
         {
             var id = osmMap.DetailsRoute.Id;
@@ -265,6 +290,10 @@ namespace de.upb.hip.mobile.droid.Map {
             Toast.MakeText (activity, Strings.MapRenderer_NoLocation_Text, ToastLength.Long).Show ();
         }
 
+        /// <summary>
+        /// Settings how the line should look like
+        /// </summary>
+        /// <param name="geoPoints"></param>
         private void DrawRoute (List<GeoPoint> geoPoints)
         {
             //Cleanup route if drawn before
