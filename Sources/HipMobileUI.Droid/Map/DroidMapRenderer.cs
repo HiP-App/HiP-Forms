@@ -97,10 +97,7 @@ namespace de.upb.hip.mobile.droid.Map {
                 // Subscribe
                 osmMap = e.NewElement;
                 osmMap.GpsLocationChanged += NewElementOnGpsLocationChanged;
-                //Catch up the wrong error message because of double when gps is enabled
-                //call is only working on a real device
-                if (osmMap.IsGpsAvailable == false)
-                    NewElementOnGpsLocationChanged (e.NewElement.GpsLocation);
+                NewElementOnGpsLocationChanged (e.NewElement.GpsLocation);
                 osmMap.ExhibitSetChanged += NewElementOnExhibitSetChanged;
                 NewElementOnExhibitSetChanged (e.NewElement.ExhibitSet);
                 osmMap.DetailsRouteChanged += NewElementOnDetailsRouteChanged;
