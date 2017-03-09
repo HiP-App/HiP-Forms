@@ -67,7 +67,9 @@ namespace HipMobileUI.ViewModels.Views
         {
             Position = args.Position;
             SetDistances(args.Position);
+
             locationManager.CheckNearExhibit (displayedExhibitSet,null,new GeoLocation(args.Position.Latitude,args.Position.Longitude));
+
         }
 
         /// <summary>

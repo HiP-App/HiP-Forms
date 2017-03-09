@@ -54,8 +54,11 @@ namespace HipMobileUI.Location
         void RemoveLocationListener (ILocationListener listener);
 
 
+
   
         void CheckNearExhibit (ExhibitSet exhibitSet,Route route, GeoLocation gpsLocation);
+
+
         /// <summary>
         /// THe last known location. Might be null in the beginning.
         /// </summary>
@@ -94,6 +97,7 @@ namespace HipMobileUI.Location
             MessagingCenter.Subscribe<App>(this, AppSharedData.WillSleepMessage, WillSleep);
             MessagingCenter.Subscribe<App>(this, AppSharedData.WillWakeUpMessage, WillWakeUp);
         }
+
 
 
        public async void CheckNearExhibit (ExhibitSet exhibitSet,Route route, GeoLocation gpsLocation)
@@ -145,6 +149,7 @@ namespace HipMobileUI.Location
             }
         }
 
+
         public void AddLocationListener (ILocationListener listener)
         {
             if (listener != null)
@@ -178,7 +183,9 @@ namespace HipMobileUI.Location
 
         public bool IsLocationAvailable ()
         {
-            return locator.IsGeolocationEnabled;
+
+            return locator.IsGeolocationAvailable;
+
         }
 
         public void PauseListening ()

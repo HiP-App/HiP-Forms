@@ -97,10 +97,7 @@ namespace de.upb.hip.mobile.droid.Map {
                 // Subscribe
                 osmMap = e.NewElement;
                 osmMap.GpsLocationChanged += NewElementOnGpsLocationChanged;
-                //Catch up the wrong error message because of double when gps is enabled
-                //call is only working on a real device
-              //  if (osmMap.IsGpsAvailable == false)
-                    NewElementOnGpsLocationChanged (e.NewElement.GpsLocation);
+                NewElementOnGpsLocationChanged (e.NewElement.GpsLocation);
                 osmMap.ExhibitSetChanged += NewElementOnExhibitSetChanged;
                 NewElementOnExhibitSetChanged (e.NewElement.ExhibitSet);
                 osmMap.DetailsRouteChanged += NewElementOnDetailsRouteChanged;
@@ -130,7 +127,7 @@ namespace de.upb.hip.mobile.droid.Map {
         /// <param name="set"></param>
         private void NewElementOnExhibitSetChanged (ExhibitSet set)
         {
-            SetAllMarkers (set);
+            SetMainScreenMarkers (set);
         }
 
         /// <summary>
@@ -171,19 +168,23 @@ namespace de.upb.hip.mobile.droid.Map {
         private void NewElementOnDetailsRouteChanged (Route route)
         {
             //The direct polyline is only draw if related bool is true
-            var myPath = new PathOverlay (Resources.GetColor (Resource.Color.colorPrimaryDark), 7, new DefaultResourceProxyImpl (activity));
 
 
             if ((route != null) && route.Waypoints.Any ())
+            {
+                var markerInfoWindow = new ViaPointInfoWindow (Resource.Layout.navigation_info_window, mapView, activity);
+                var mapMarkerIcon = ContextCompat.GetDrawable (activity, Resource.Drawable.marker_blue);
+                var setMarker = new SetMarker (mapView, markerInfoWindow);
+
                 foreach (var waypoint in route.Waypoints)
                 {
-                    myPath.AddPoint (new GeoPoint (waypoint.Location.Latitude, waypoint.Location.Longitude));
-                    var marker = new Marker (mapView);
-                    marker.SetIcon (ResourcesCompat.GetDrawable (Resources, Resource.Drawable.marker_blue, null));
-                    marker.Position = new GeoPoint (waypoint.Location.Latitude, waypoint.Location.Longitude);
-                    mapView.OverlayManager.Add (marker);
+                    //Bubbles
+                    var geoPoint = new GeoPoint (waypoint.Exhibit.Location.Latitude, waypoint.Exhibit.Location.Longitude);
+                    var bubble = setMarker.AddMarker (null, waypoint.Exhibit.Name, waypoint.Exhibit.Description, geoPoint, mapMarkerIcon, waypoint.Exhibit.Id);
+                    mapView.OverlayManager.Add (bubble);
                 }
-            mapView.Invalidate ();
+                mapView.Invalidate ();
+            }
         }
 
         /// <summary>
@@ -193,7 +194,6 @@ namespace de.upb.hip.mobile.droid.Map {
         private void DrawDetailsRoute (GeoLocation location)
         {
             var myPath = new PathOverlay (Resources.GetColor (Resource.Color.colorPrimaryDark), 7, new DefaultResourceProxyImpl (activity));
-
             if (location != null)
                 myPath.AddPoint (new GeoPoint (location.Latitude, location.Longitude));
 
@@ -201,10 +201,7 @@ namespace de.upb.hip.mobile.droid.Map {
                 foreach (var waypoint in osmMap.DetailsRoute.Waypoints)
                 {
                     myPath.AddPoint (new GeoPoint (waypoint.Location.Latitude, waypoint.Location.Longitude));
-                    var marker = new Marker (mapView);
-                    marker.SetIcon (ResourcesCompat.GetDrawable (Resources, Resource.Drawable.marker_blue, null));
-                    marker.Position = new GeoPoint (waypoint.Location.Latitude, waypoint.Location.Longitude);
-                    mapView.OverlayManager.Add (marker);
+  
                 }
 
 
@@ -214,7 +211,7 @@ namespace de.upb.hip.mobile.droid.Map {
 
         //here all Markers for the Exhibits in the Main Map are set
         //and some general stuff
-        private void SetAllMarkers (ExhibitSet set)
+        private void SetMainScreenMarkers (ExhibitSet set)
         {
             locationOverlay = new MyLocationOverlay (activity, mapView);
             var compassOverlay = new CompassOverlay (activity, mapView);
