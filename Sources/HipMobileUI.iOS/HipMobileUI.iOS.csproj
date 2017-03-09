@@ -161,6 +161,7 @@
     <Compile Include="CustomRenderers\IosCustomFontLabelRenderer.cs" />
     <Compile Include="Effects\IosSwitchColorEffect.cs" />
     <Compile Include="Helpers\Settings.cs" />
+    <Compile Include="Map\UserAnnotation.cs" />
     <Compile Include="ViewControllers\OrientationViewController.cs" />
     <Compile Include="LinkRenderer.cs" />
     <Compile Include="Main.cs" />
@@ -365,6 +366,9 @@
     <BundleResource Include="Resources\ac_students.png" />
     <BundleResource Include="Resources\selected_circle.png" />
     <BundleResource Include="Resources\unselected_circle.png" />
+    <BundleResource Include="Resources\ic_my_location_white.png" />
+    <BundleResource Include="Resources\ic_my_location_white%402x.png" />
+    <BundleResource Include="Resources\ic_my_location_white%403x.png" />
     <BundleResource Include="Resources\hiphop_transparent.png" />
     <BundleResource Include="Resources\Icon.png" />
     <BundleResource Include="Resources\Icon%402x.png" />

@@ -442,4 +442,7 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   <data name="LoadingPage_Text" xml:space="preserve">
     <value>Historisches Paderborn wird geladen</value>
   </data>
+  <data name="MapRenderer_NoLocation_Text" xml:space="preserve">
+    <value>Sie sind nicht in Paderborn oder es ist momentan kein GPS Signal vorhanden</value>
+  </data>
 </root>

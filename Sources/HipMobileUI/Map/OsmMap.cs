@@ -12,11 +12,19 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.using System;
 
+using System.Windows.Input;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using Xamarin.Forms;
 
 namespace HipMobileUI.Map {
     public class OsmMap : View {
+
+        public OsmMap ()
+        {
+            CenterCommand = new Command (() => {
+                                             CenterLocationCalled?.Invoke ((GeoLocation)CenterCommandParameter);
+                                         });
+        }
 
         public static readonly BindableProperty ExhibitSetProperty =
             BindableProperty.Create ("ExhibitSet", typeof (ExhibitSet), typeof (OsmMap), null, propertyChanged: ExhibitPropertyChanged);
@@ -25,7 +33,28 @@ namespace HipMobileUI.Map {
         
         public static readonly BindableProperty DetailsRouteProperty = BindableProperty.Create ("DetailsRoute",typeof(Route),typeof(OsmMap),null, propertyChanged: DetailsRoutePropertyChanged);
 
-        public static readonly BindableProperty ShowDetailsRouteProperty = BindableProperty.Create ("ShowDetailsRoute",typeof(bool),typeof(OsmMap),false);
+        //Set this to true if you want to have direct polyline in routedetails screen for example
+		public static readonly BindableProperty ShowDetailsRouteProperty = BindableProperty.Create ("ShowDetailsRoute",typeof(bool),typeof(OsmMap),false);
+        //Set this to true if want to have the navigation
+        public static readonly  BindableProperty ShowNavigationProperty = BindableProperty.Create ("ShowNavigation",typeof(bool),typeof(OsmMap),false);
+
+        public static BindableProperty CenterCommandProperty =
+            BindableProperty.Create(nameof(CenterCommand), typeof(ICommand), typeof(OsmMap), null, BindingMode.OneWayToSource);
+
+        public static BindableProperty CenterCommandParameterProperty =
+            BindableProperty.Create(nameof(CenterCommand), typeof(object), typeof(OsmMap), null);
+
+        public ICommand CenterCommand
+        {
+            get { return (ICommand)GetValue(CenterCommandProperty); }
+            set { SetValue(CenterCommandProperty, value); }
+        }
+
+        public object CenterCommandParameter
+        {
+            get { return GetValue(CenterCommandParameterProperty); }
+            set { SetValue(CenterCommandParameterProperty, value); }
+        }
 
         // Property accessor
         public ExhibitSet ExhibitSet {
@@ -46,6 +75,12 @@ namespace HipMobileUI.Map {
         public bool ShowDetailsRoute {
             get { return (bool) GetValue (ShowDetailsRouteProperty); }
             set { SetValue (ShowDetailsRouteProperty,value);}
+        }
+
+        public bool ShowNavigation
+        {
+            get { return (bool)GetValue(ShowNavigationProperty); }
+            set { SetValue(ShowNavigationProperty, value); }
         }
 
 
@@ -92,7 +127,7 @@ namespace HipMobileUI.Map {
 
         public event DetailsRouteChangedHandler DetailsRouteChanged;
 
-
+        public event GpslocationChangedHandler CenterLocationCalled;
 
     }
 }

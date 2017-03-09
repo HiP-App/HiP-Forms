@@ -882,8 +882,7 @@ UpdateProgress(155, 229);
 var karldergroßeimwandelderzeit = CreateExhibit (
     "Karl der Große im Wandel der Zeit",
     "",
-    51.7199006,
-    8.754952000000003,
+    51.7199006, 8.754952000000003,
     new []{"Dom"},
     new []{"Dom"},
     karldergroßeimwandel_teaser

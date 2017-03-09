@@ -12,24 +12,22 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.using System;
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using HipMobileUI.Map;
 using HipMobileUI.Navigation;
-using Xamarin.Forms;
+using HipMobileUI.ViewModels.Pages;
 
-namespace HipMobileUI.Views
+namespace HipMobileUI.Pages
 {
-    public partial class MapView : IViewFor<MapViewModel>
-    {
-        public MapView()
+    public partial class NavigationPage : IViewFor<NavigationPageViewModel>, IPagePoppedListener {
+
+        public NavigationPage()
         {
             InitializeComponent();
         }
 
+        public void PagePopped ()
+        {
+            ((NavigationPageViewModel)BindingContext).OnDisappearing ();
+        }
 
     }
 }

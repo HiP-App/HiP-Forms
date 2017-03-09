@@ -18,6 +18,7 @@ using de.upb.hip.mobile.pcl.Common;
 using de.upb.hip.mobile.pcl.Common.Contracts;
 using de.upb.hip.mobile.pcl.DataAccessLayer;
 using HipMobileUI.AudioPlayer;
+using HipMobileUI.Location;
 using HipMobileUI.Navigation;
 using HipMobileUI.ViewModels.Views;
 using NSubstitute;
@@ -41,6 +42,7 @@ namespace HipMobileUI.Tests.ViewModels.Views
             IoCManager.RegisterInstance(typeof(IImageDimension), Substitute.For<IImageDimension>());
             IoCManager.RegisterInstance (typeof (IDataAccess), Substitute.For<IDataAccess> ());
             IoCManager.RegisterInstance (typeof(IAudioPlayer), Substitute.For<IAudioPlayer> ());
+            IoCManager.RegisterInstance(typeof(ILocationManager), Substitute.For<ILocationManager>());
         }
 
         [Test, Category("UnitTest")]
@@ -68,35 +70,15 @@ namespace HipMobileUI.Tests.ViewModels.Views
             navservice.ReceivedWithAnyArgs ().PushAsync (null);
         }
 
-        [Test, Category("UnitTest")]
-        public void ExhibitsList_LocationUpdate()
-        {
-            var locator = Substitute.For<IGeolocator> ();
-            var sut = CreateSystemUnderTest(locator);
-            sut.OnAppearing ();
-
-            locator.PositionChanged += Raise.EventWith (this, new PositionEventArgs (new Position () {Latitude = 51, Longitude = 7}));
-
-            Assert.IsTrue (sut.DisplayDistances);
-            for (int i = 0; i < sut.ExhibitsList.Count - 1; i++)
-            {
-                Assert.IsTrue (sut.ExhibitsList[i].Distance < sut.ExhibitsList[i+1].Distance);
-            }
-        }
-
         #region Helper Methods
-        private ExhibitsOverviewViewModel CreateSystemUnderTest ()
-        {
-            return CreateSystemUnderTest (Substitute.For<IGeolocator> ());
-        }
 
-        private ExhibitsOverviewViewModel CreateSystemUnderTest(IGeolocator locator)
+        private ExhibitsOverviewViewModel CreateSystemUnderTest()
         {
             var set = Substitute.For<ExhibitSet>();
             var exhibitList = new List<Exhibit> { CreateExhibit("Exhibit 1", 51, 7), CreateExhibit("Exhibit 2", 52, 8), CreateExhibit("Exhibit 3", 52.5, 7.5) };
             set.ActiveSet.Returns(exhibitList);
 
-            return new ExhibitsOverviewViewModel(set, locator);
+            return new ExhibitsOverviewViewModel(set);
         }
 
         private Exhibit CreateExhibit (string name, double latitude=0, double longitude=0)
