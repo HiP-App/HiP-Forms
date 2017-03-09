@@ -39,7 +39,6 @@ namespace HipMobileUI.ViewModels.Pages {
             locationManager.AddLocationListener (this);
             IsGpsAvailable = locationManager.IsLocationAvailable ();
             FocusGps = new Command(FocusGpsClicked);
-
         }
 
         /// <summary>
@@ -88,6 +87,7 @@ namespace HipMobileUI.ViewModels.Pages {
         public void LocationChanged (object sender, PositionEventArgs args)
         {
             GpsLocation = args.Position.ToGeoLocation ();
+            locationManager.CheckNearExhibit (null,detailsRoute, new GeoLocation(args.Position.Latitude, args.Position.Longitude));
         }
 
         public override void OnDisappearing ()

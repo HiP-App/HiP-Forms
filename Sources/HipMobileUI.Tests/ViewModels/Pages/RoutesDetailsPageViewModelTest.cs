@@ -44,7 +44,7 @@ namespace HipMobileUI.Tests.ViewModels.Pages {
             Assert.NotNull (sut.StartRouteCommand);
             Assert.NotNull (sut.StartDescriptionPlaybackCommand);
         }
-
+        
         #region HelperMethods
 
         private RouteDetailsPageViewModel CreateSystemUnderTest ()

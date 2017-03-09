@@ -14,7 +14,12 @@
 
 using System;
 using System.Collections.Generic;
+using de.upb.hip.mobile.pcl.BusinessLayer.Models;
+using de.upb.hip.mobile.pcl.Common;
+using de.upb.hip.mobile.pcl.Helpers;
 using HipMobileUI.Helpers;
+using HipMobileUI.Navigation;
+using HipMobileUI.ViewModels.Pages;
 using Plugin.Geolocator;
 using Plugin.Geolocator.Abstractions;
 using Xamarin.Forms;
@@ -48,6 +53,9 @@ namespace HipMobileUI.Location
         /// <param name="listener">The listener to remove.</param>
         void RemoveLocationListener (ILocationListener listener);
 
+
+  
+        void CheckNearExhibit (ExhibitSet exhibitSet,Route route, GeoLocation gpsLocation);
         /// <summary>
         /// THe last known location. Might be null in the beginning.
         /// </summary>
@@ -87,6 +95,56 @@ namespace HipMobileUI.Location
             MessagingCenter.Subscribe<App>(this, AppSharedData.WillWakeUpMessage, WillWakeUp);
         }
 
+
+       public async void CheckNearExhibit (ExhibitSet exhibitSet,Route route, GeoLocation gpsLocation)
+        {
+            double dist;
+            if (route == null)
+            {
+                foreach (Exhibit e in exhibitSet)
+                {
+                    dist = MathUtil.DistanceLatLonInMeter (e.Location, gpsLocation);
+                    if (dist < 30)
+                    {
+
+
+                        var result =
+                            await
+                                IoCManager.Resolve<INavigationService> ()
+                                          .DisplayAlert ("Sehenwürdigkeit in der Nähe", "Möchten sie sich " + e.Name + " genauer ansehen", "Ja", "Nein");
+
+                        if (result)
+                        {
+                            await IoCManager.Resolve<INavigationService> ().PushAsync (new ExhibitDetailsViewModel (e.Id));
+                            break;
+                        }
+                    }
+                }
+            }
+            else if (exhibitSet == null)
+            {
+                foreach (Waypoint r in route.Waypoints)
+                {
+                    dist = MathUtil.DistanceLatLonInMeter(r.Location, gpsLocation);
+                    if (dist < 30)
+                    {
+                        
+
+                        var result =
+                            await
+                                IoCManager.Resolve<INavigationService>()
+                                          .DisplayAlert("Sehenwürdigkeit in der Nähe", "Möchten sie sich " + r.Exhibit.Name + " genauer ansehen", "Ja", "Nein");
+
+                        if (result)
+                        {
+                            await IoCManager.Resolve<INavigationService>().PushAsync(new ExhibitDetailsViewModel(r.Exhibit.Id));
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+
         public void AddLocationListener (ILocationListener listener)
         {
             if (listener != null)
@@ -120,7 +178,7 @@ namespace HipMobileUI.Location
 
         public bool IsLocationAvailable ()
         {
-            return locator.IsGeolocationAvailable;
+            return locator.IsGeolocationEnabled;
         }
 
         public void PauseListening ()
