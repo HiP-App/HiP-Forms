@@ -12,22 +12,22 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using Android.Text.Method;
-using Android.Text.Util;
-using de.upb.hip.mobile.droid.CustomRenderers;
-using de.upb.hip.mobile.droid.Helpers;
+using System;
+using Foundation;
+using HipMobileUI.iOS.CustomRenderers;
+using HipMobileUI.iOS.Helpers;
 using HipMobileUI.Views;
+using UIKit;
 using Xamarin.Forms;
-using Xamarin.Forms.Platform.Android;
+using Xamarin.Forms.Platform.iOS;
 
 [assembly: ExportRenderer(typeof(ReferenceLink), typeof(ReferenceLinkRenderer))]
-namespace de.upb.hip.mobile.droid.CustomRenderers
-{
-    public class ReferenceLinkRenderer : LabelRenderer
+namespace HipMobileUI.iOS.CustomRenderers {
+    public class ReferenceLinkRenderer : ViewRenderer
     {
         private ReferenceLink referenceLink;
 
-        protected override void OnElementChanged(ElementChangedEventArgs<Label> elementChangedEventArgs)
+        protected override void OnElementChanged(ElementChangedEventArgs<View> elementChangedEventArgs)
         {
             base.OnElementChanged(elementChangedEventArgs);
 
@@ -45,13 +45,16 @@ namespace de.upb.hip.mobile.droid.CustomRenderers
 
                 var formattedSubtitles = spannableTextBuilder.CreateSubtitlesText(action(), formatedText, srcList);
 
-                Control.TextFormatted = formattedSubtitles;
+                formattedSubtitles.UserInteractionEnabled = true;
+                formattedSubtitles.Selectable = false;
 
-                // Make links clickable
-                Control.MovementMethod = LinkMovementMethod.Instance;
-                Control.AutoLinkMask = MatchOptions.All;
-                Control.Clickable = true;
-                Control.LinksClickable = true;
+                formattedSubtitles.Editable = false;
+                formattedSubtitles.ScrollEnabled = false;
+                formattedSubtitles.Font = UIFont.SystemFontOfSize(14);
+                formattedSubtitles.TextColor = UIColor.Gray;
+
+                // replace old Label with new TextView
+                SetNativeControl(formattedSubtitles);
             }
         }
     }
