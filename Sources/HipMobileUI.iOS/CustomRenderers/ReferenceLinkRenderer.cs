@@ -38,22 +38,16 @@ namespace HipMobileUI.iOS.CustomRenderers {
                 {
                     return;
                 }
-                var srcList = referenceLink.Sources;
-                var formatedText = referenceLink.Text;
+
                 var action = referenceLink.Action;
 
                 var textView = new UITextView();
-                textView.Text = formatedText;
-                textView.ApplySubtitlesLinks(action(), srcList);
-
-                textView.UserInteractionEnabled = true;
-                textView.Selectable = false;
-
+                textView.TextColor = UIColor.Gray;
+                textView.ApplySubtitlesLinks(action(), referenceLink.Sources, referenceLink.Text);
                 textView.Editable = false;
                 textView.ScrollEnabled = false;
                 textView.Font = UIFont.SystemFontOfSize(14);
-                textView.TextColor = UIColor.Gray;
-
+                
                 // replace old Label with new TextView
                 SetNativeControl(textView);
             }

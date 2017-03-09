@@ -30,23 +30,33 @@ namespace HipMobileUI.iOS.Helpers {
         /// <param name="action">Action that should be started when the user interacts with the source.</param>
         /// <param name="sources">The parsed sources</param>
         /// <param name="textView">Textiew the SubtitleLinks should be attached to</param>
-        public static void ApplySubtitlesLinks(this UITextView textView, IInteractiveSourceAction action, List<Source> sources)
+        /// <param name="text">Text representing the whole subtitle</param>
+        public static void ApplySubtitlesLinks(this UITextView textView, IInteractiveSourceAction action, List<Source> sources, string text)
         {
             if (action == null)
                 return;
 
             Dictionary<Source, FinalSourcePosition> sourcePositions = new Dictionary<Source, FinalSourcePosition> ();
+            var formattedTextWithSubstitutes = new NSMutableAttributedString(text);
 
+            // get the textpositions of each source and mark them orange
             foreach (var source in sources)
             {
-                int startIndex = textView.Text.IndexOf (source.SubstituteText, StringComparison.Ordinal);
+                if (source == null)
+                    continue;
+
+                int startIndex = text.IndexOf (source.SubstituteText, StringComparison.Ordinal);
                 sourcePositions.Add (source, new FinalSourcePosition
                 {
                     Start = startIndex,
                     End = startIndex + source.SubstituteText.Length - 1
                 });
-            }
 
+                formattedTextWithSubstitutes.AddAttribute(UIStringAttributeKey.ForegroundColor, UIColor.Orange, new NSRange(source.StartIndex, source.SubstituteText.Length));
+            }
+            textView.AttributedText = formattedTextWithSubstitutes;
+
+            // make the source links clickable
             textView.AddGestureRecognizer (new UITapGestureRecognizer(x => HandleTap(x, textView, sourcePositions, action)));
         }
 
@@ -57,6 +67,7 @@ namespace HipMobileUI.iOS.Helpers {
 
             var tapPos = textView.GetClosestPositionToPoint(point);
 
+            // if a source link has been tapped: show the reference
             nint clickedPos = textView.GetOffsetFromPosition(textView.BeginningOfDocument, tapPos);
             int pos = Convert.ToInt32 (clickedPos);
             var clickedSource = sourcePositions.SingleOrDefault (x => x.Value.Start <= pos && pos <= x.Value.End).Key;
@@ -64,25 +75,6 @@ namespace HipMobileUI.iOS.Helpers {
             {
                 action.Display(clickedSource);
             }
-
-            /*string textRightOfClicked = textView.Text.Substring (pos);
-            string textLeftOfClicked = textView.Text.Substring (0, pos + 1);
-
-            if (string.IsNullOrEmpty (textRightOfClicked) || string.IsNullOrEmpty (textLeftOfClicked))
-            {
-                return;
-            }
-
-            if (textLeftOfClicked.Count(x => x == '[') > textLeftOfClicked.Count(x=> x == ']') ||
-                textRightOfClicked.Count(x => x == ']') > textRightOfClicked.Count(x => x == '['))
-            {
-                string substituteText = textLeftOfClicked.Substring (textLeftOfClicked.LastIndexOf ('['))
-                                        + textRightOfClicked.Substring (1, textRightOfClicked.IndexOf (']'));
-
-                Source clickedSource = sources.Single(x => x.SubstituteText == substituteText);
-
-                action.Display(clickedSource);
-            }*/
         }
 
         private class FinalSourcePosition
