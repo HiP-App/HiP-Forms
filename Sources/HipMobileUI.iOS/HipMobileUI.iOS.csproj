@@ -159,7 +159,7 @@
     <Compile Include="CustomRenderers\ReferenceLinkRenderer.cs" />
     <Compile Include="Effects\IosSwitchColorEffect.cs" />
     <Compile Include="Helpers\Settings.cs" />
-    <Compile Include="Helpers\SpannableTextBuilder.cs" />
+    <Compile Include="Helpers\TextViewInteractiveSourcesExtension.cs" />
     <Compile Include="ViewControllers\OrientationViewController.cs" />
     <Compile Include="CustomRenderers\HtmlLinkRenderer.cs" />
     <Compile Include="Main.cs" />

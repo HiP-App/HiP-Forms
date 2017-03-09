@@ -41,20 +41,21 @@ namespace HipMobileUI.iOS.CustomRenderers {
                 var srcList = referenceLink.Sources;
                 var formatedText = referenceLink.Text;
                 var action = referenceLink.Action;
-                var spannableTextBuilder = new SpannableTextBuilder();
 
-                var formattedSubtitles = spannableTextBuilder.CreateSubtitlesText(action(), formatedText, srcList);
+                var textView = new UITextView();
+                textView.Text = formatedText;
+                textView.ApplySubtitlesLinks(action(), srcList);
 
-                formattedSubtitles.UserInteractionEnabled = true;
-                formattedSubtitles.Selectable = false;
+                textView.UserInteractionEnabled = true;
+                textView.Selectable = false;
 
-                formattedSubtitles.Editable = false;
-                formattedSubtitles.ScrollEnabled = false;
-                formattedSubtitles.Font = UIFont.SystemFontOfSize(14);
-                formattedSubtitles.TextColor = UIColor.Gray;
+                textView.Editable = false;
+                textView.ScrollEnabled = false;
+                textView.Font = UIFont.SystemFontOfSize(14);
+                textView.TextColor = UIColor.Gray;
 
                 // replace old Label with new TextView
-                SetNativeControl(formattedSubtitles);
+                SetNativeControl(textView);
             }
         }
     }
