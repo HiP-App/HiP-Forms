@@ -11,7 +11,7 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-
+using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Xamarin.Forms;
@@ -19,52 +19,34 @@ using Xamarin.Forms;
 namespace HipMobileUI.Container
 {
     /// <summary>
-    /// A <see cref="Layout"/> which can display an arbitrary amount of tabs. 
-    /// Since it is based on <see cref="StackLayout"/>, you can use the usual 
-    /// properties like BackgroundColor etc.
-    /// 
-    /// <example> 
-    /// This generic sample shows how to use the view. Refer to RouteDetailsPage.xaml 
-    /// for a concrete example.
-    /// <code><![CDATA[ 
-    ///   <container:TabView Tabs="{Binding Tabs}"> <!-- Where Tabs is of type ObservableCollection<string>-->
-    ///     <StackLayout>
-    ///       <!-- content for first tab goes here -->
-    ///     </StackLayout
-    ///     <StackLayout>
-    ///         <!-- content for second tab goes here -->
-    ///     </StackLayout>
-    ///     <!-- ... repeat for additional tabs -->
-    ///   </TabView> 
-    /// ]]>
-    /// </code>
-    /// </example>
+    /// View for displaying a collection of tabs. The tabs are shown at the top and can be clicked to switch the content below.
     /// </summary>
-    public class TabView : StackLayout
-    {
-        /// <summary>
-        /// The top bar containing the tabs.
-        /// </summary>
-        private readonly Grid tabBar;
+    public class TabContainerView : ContentView {
 
-        /// <summary>
-        /// Creates a new <see cref="TabView"/>. Initializes an empty tab bar adapting to the tab height. 
-        /// </summary>
-        public TabView()
+        private readonly Grid header;
+        private readonly ContentView contentContainer;
+
+        public TabContainerView()
         {
-            Orientation = StackOrientation.Vertical;
+            var layout = new StackLayout () {Orientation = StackOrientation.Vertical, Padding = new Thickness(0,0)};
 
-            tabBar = new Grid();
-            tabBar.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
-            Children.Add(tabBar);
+            header = new Grid ();
+            header.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+            
+            contentContainer = new ContentView () {HorizontalOptions = LayoutOptions.FillAndExpand, VerticalOptions = LayoutOptions.FillAndExpand};
+
+            layout.Children.Add (header);
+            layout.Children.Add (contentContainer);
+
+            Content = layout;
+
+            TabViews = new ObservableCollection<View> ();
         }
-
-        #region Tabs
 
         public static readonly BindableProperty TabsProperty = BindableProperty.Create(
             nameof(Tabs),
             typeof(ObservableCollection<string>),
-            typeof(TabView),
+            typeof(TabContainerView),
             propertyChanged: TabsPropertyChanged
         );
 
@@ -80,18 +62,18 @@ namespace HipMobileUI.Container
         /// <summary>
         /// Gets called when the <see cref="Tabs"/> property changes.
         /// Clears the tab bar and adds a new tab (with divider) for each string
-        /// in the <see cref="Tabs"/> collection. Sets all children of the <see cref="TabView"/> 
+        /// in the <see cref="Tabs"/> collection. Sets all children of the <see cref="TabContainerView"/> 
         /// to invisible.
         /// </summary>
         private static void TabsPropertyChanged(BindableObject bindable, object oldValue, object newValue)
         {
-            var tabView = bindable as TabView;
+            var tabView = bindable as TabContainerView;
             var newTabs = newValue as ObservableCollection<string>;
 
             if (tabView == null || newTabs == null)
                 return;
 
-            var tabBar = tabView.tabBar;
+            var tabBar = tabView.header;
 
             // replace current tabs with new ones
             tabBar.Children.Clear();
@@ -107,30 +89,19 @@ namespace HipMobileUI.Container
 
             tabBar.Children.RemoveAt(tabBar.Children.Count - 1);   // remove last divider
 
-            // hide all children except tab bar
-            foreach (var child in tabView.Children)
-            {
-                child.IsVisible = false;
-            }
-            tabView.Children.First().IsVisible = true;
-
             // reset current tab to first
             tabView.CurrentTab = "0";
         }
 
-        #endregion
-
-        #region CurrentTab
-
         public static readonly BindableProperty CurrentTabProperty = BindableProperty.Create(
-            nameof(Tabs),
+            nameof(CurrentTab),
             typeof(string),
-            typeof(TabView),
+            typeof(TabContainerView),
             propertyChanged: CurrentTabPropertyChanged
         );
 
         /// <summary>
-        /// The currently selected tab of the <see cref="TabView"/>.
+        /// The currently selected tab of the <see cref="TabContainerView"/>.
         /// </summary>
         public string CurrentTab
         {
@@ -145,9 +116,9 @@ namespace HipMobileUI.Container
         /// </summary>
         private static void CurrentTabPropertyChanged(BindableObject bindable, object oldvalue, object newvalue)
         {
-            var tabView = bindable as TabView;
+            var tabView = bindable as TabContainerView;
 
-            var tabBar = tabView?.Children.First() as Grid;
+            var tabBar = tabView?.header;
             if (tabBar == null)
                 return;
 
@@ -157,9 +128,6 @@ namespace HipMobileUI.Container
                 var previousTabIndex = int.Parse((string)oldvalue);
                 var tab = tabBar.Children.ElementAt(TranslateTabIndexToLabelIndex(previousTabIndex));
                 UnhighlightTabLabel(tab as Label);
-
-                var contents = tabView.Children.ElementAt(TranslateTabIndexToChildIndex(previousTabIndex));
-                contents.IsVisible = false;
             }
 
             // set new index
@@ -168,23 +136,36 @@ namespace HipMobileUI.Container
                 var currentTabIndex = int.Parse((string)newvalue);
                 HighlightTabLabel(tabBar.Children.ElementAt(TranslateTabIndexToLabelIndex(currentTabIndex)) as Label);
 
-                var contents = tabView.Children.ElementAt(TranslateTabIndexToChildIndex(currentTabIndex));
-                contents.IsVisible = true;
+                SetDisplayedView (tabView, TranslateTabIndexToChildIndex(currentTabIndex));
             }
 
         }
 
-        #endregion
+        public static readonly BindableProperty TabViewsProperty = BindableProperty.Create(
+            nameof(TabViews),
+            typeof(ObservableCollection<View>),
+            typeof(TabContainerView),
+            new ObservableCollection<View> ()
+        );
+
+        /// <summary>
+        /// The collection of the <see cref="TabContainerView"/>.
+        /// </summary>
+        public ObservableCollection<View> TabViews
+        {
+            get { return (ObservableCollection<View>)GetValue(TabViewsProperty); }
+            set { SetValue(TabViewsProperty, value); }
+        }
 
         /// <summary>
         /// Creates a new tab with the specified title which will be 
-        /// associated with the specified index of the specified <see cref="TabView"/>.
+        /// associated with the specified index of the specified <see cref="TabContainerView"/>.
         /// </summary>
-        /// <param name="tabView">The <see cref="TabView"/> the tab is created for.</param>
+        /// <param name="tabView">The <see cref="TabContainerView"/> the tab is created for.</param>
         /// <param name="title">The displayed title of the tab.</param>
         /// <param name="index">The index of the container to show when the tab is selected.</param>
         /// <returns>A <see cref="Label"/> representing the newly created tab.</returns>
-        private static View CreateTab(TabView tabView, string title, int index)
+        private static View CreateTab(TabContainerView tabView, string title, int index)
         {
             var lbl = new Label
             {
@@ -254,15 +235,28 @@ namespace HipMobileUI.Container
 
         /// <summary>
         /// Translates a tab index to the index of the corresponding
-        /// container within the children of the <see cref="TabView"/>. 
+        /// container within the children of the <see cref="TabContainerView"/>. 
         /// Necessary to skip the tab bar.
         /// </summary>
         /// <param name="index">The tab index.</param>
         /// <returns>The index of the corresponding child.</returns>
         private static int TranslateTabIndexToChildIndex(int index)
         {
-            return index + 1;
+            return index;
         }
 
+        /// <summary>
+        /// Sets the currently displayed view by index.
+        /// </summary>
+        /// <param name="control">The instance of the <see cref="TabContainerView"/>.</param>
+        /// <param name="index">The index to set.</param>
+        private static void SetDisplayedView (TabContainerView control, int index)
+        {
+            if (control == null || index < 0 || index >= control.TabViews.Count)
+            {
+                throw new ArgumentException ("Illegal arguments passed.");
+            }
+            control.contentContainer.Content = control.TabViews [index];
+        }
     }
 }

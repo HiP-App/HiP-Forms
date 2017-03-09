@@ -18,6 +18,7 @@ using Foundation;
 using HipMobileUI.AudioPlayer;
 using HipMobileUI.Contracts;
 using HipMobileUI.iOS.Contracts;
+using HipMobileUI.Location;
 using HipMobileUI.Navigation;
 using HipMobileUI.Pages;
 using UIKit;
@@ -49,6 +50,7 @@ namespace HipMobileUI.iOS
             // init other inversion of control classes
             IoCManager.RegisterInstance (typeof(IAudioPlayer), new IosAudioPlayer ());
             IoCManager.RegisterType<IStatusBarController, IosStatusBarController> ();
+            IoCManager.RegisterInstance(typeof(ILocationManager), new LocationManager());
 
             // init forms and third party libraries
             CachedImageRenderer.Init ();

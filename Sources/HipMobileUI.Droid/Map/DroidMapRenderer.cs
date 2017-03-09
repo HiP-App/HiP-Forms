@@ -12,12 +12,18 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.using System;
 
+using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using Android.App;
+using Android.OS;
 using Android.Support.V4.Content;
 using Android.Support.V4.Content.Res;
+using Android.Widget;
 using de.upb.hip.mobile.droid.Map;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
+using de.upb.hip.mobile.pcl.BusinessLayer.Routing;
 using HipMobileUI.Helpers;
 using HipMobileUI.Map;
 using Org.Osmdroid;
@@ -30,19 +36,33 @@ using Org.Osmdroid.Views.Overlay;
 using Org.Osmdroid.Views.Overlay.Compass;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
+using Color = Android.Graphics.Color;
+using HipMobileUI.Resources;
 
 [assembly: ExportRenderer (typeof (OsmMap), typeof (DroidMapRenderer))]
 
 namespace de.upb.hip.mobile.droid.Map {
-    class DroidMapRenderer : Xamarin.Forms.Platform.Android.AppCompat.ViewRenderer<OsmMap, MapView>, IMapListener {
+    internal class DroidMapRenderer : Xamarin.Forms.Platform.Android.AppCompat.ViewRenderer<OsmMap, MapView>, IMapListener {
 
-        private OsmMap osmMap;
-        private MapView mapView;
-        private MapController mapController;
-        private GeoPoint userPosition;
-        private Marker userMarkerPosition;
-        private MyLocationOverlay locationOverlay;
         private Activity activity;
+        private Polyline currentRouteOverlay;
+        private MyLocationOverlay locationOverlay;
+        private MapController mapController;
+        private MapView mapView;
+        private OsmMap osmMap;
+        private RouteCalculator routeCalculator;
+        private Marker userMarkerPosition;
+
+        public bool OnScroll (ScrollEvent p0)
+        {
+            return false;
+        }
+
+        public bool OnZoom (ZoomEvent p0)
+        {
+            AppSharedData.MapZoomLevel = p0.ZoomLevel;
+            return true;
+        }
 
         protected override void OnElementChanged (ElementChangedEventArgs<OsmMap> e)
         {
@@ -53,19 +73,14 @@ namespace de.upb.hip.mobile.droid.Map {
             {
                 mapView = new MapView (Forms.Context, 11);
                 activity = Context as Activity;
-
-                this.SetNativeControl (mapView);
-                userPosition = new GeoPoint (AppSharedData.PaderbornMainStation.Latitude, AppSharedData.PaderbornMainStation.Longitude);
+                routeCalculator = RouteCalculator.Instance;
+                SetNativeControl (mapView);
                 mapView.SetTileSource (TileSourceFactory.DefaultTileSource);
-                /*mapView.SetTileSource(new XYTileSource("
-                 * ", ResourceProxyString.OnlineMode, 0, 18, 1024, ".png",
-                new[] {"http://tile.openstreetmap.org/"}));*/
-
                 mapView.SetMultiTouchControls (true);
                 mapView.TilesScaledToDpi = true;
 
                 mapController = (MapController) mapView.Controller;
-                mapController.SetCenter (userPosition);
+                mapController.SetCenter (new GeoPoint (AppSharedData.PaderbornCenter.Latitude, AppSharedData.PaderbornCenter.Longitude));
                 mapController.SetZoom (AppSharedData.MapZoomLevel);
                 mapView.SetMapListener (this);
             }
@@ -81,81 +96,130 @@ namespace de.upb.hip.mobile.droid.Map {
             {
                 // Subscribe
                 osmMap = e.NewElement;
-                e.NewElement.GpsLocationChanged += NewElementOnGpsLocationChanged;
+                osmMap.GpsLocationChanged += NewElementOnGpsLocationChanged;
                 NewElementOnGpsLocationChanged (e.NewElement.GpsLocation);
-                e.NewElement.ExhibitSetChanged += NewElementOnExhibitSetChanged;
+                osmMap.ExhibitSetChanged += NewElementOnExhibitSetChanged;
                 NewElementOnExhibitSetChanged (e.NewElement.ExhibitSet);
-                e.NewElement.DetailsRouteChanged += NewElementOnDetailsRouteChanged;
-                NewElementOnDetailsRouteChanged (e.NewElement.DetailsRoute);
+                osmMap.DetailsRouteChanged += NewElementOnDetailsRouteChanged;
+                NewElementOnDetailsRouteChanged (osmMap.DetailsRoute);
+
+                e.NewElement.CenterLocationCalled += CenterMap;
             }
         }
 
+        /// <summary>
+        /// Called from center Button in navigation
+        /// </summary>
+        /// <param name="location"></param>
+        private void CenterMap (GeoLocation location)
+        {
+            if (location != null)
+                mapController.SetCenter (new GeoPoint (location.Latitude, location.Longitude));
+            else
+            {
+                mapController.SetCenter (new GeoPoint (AppSharedData.PaderbornCenter.Latitude, AppSharedData.PaderbornCenter.Longitude));
+            }
+        }
+
+        /// <summary>
+        /// Displays all markers on Mainmap and updates it if set changes
+        /// </summary>
+        /// <param name="set"></param>
         private void NewElementOnExhibitSetChanged (ExhibitSet set)
         {
-            SetAllMarkers (set);
+            SetMainScreenMarkers (set);
         }
 
-
+        /// <summary>
+        /// Everything regarding location changes is handled here
+        /// </summary>
+        /// <param name="gpsLocation">Location from Gps</param>
         private void NewElementOnGpsLocationChanged (GeoLocation gpsLocation)
         {
+            //Userposition is always updated and shown if position is available
             if (gpsLocation != null)
             {
-                userPosition = new GeoPoint (gpsLocation.Latitude, gpsLocation.Longitude);
+                var userPosition = new GeoPoint (gpsLocation.Latitude, gpsLocation.Longitude);
                 mapController.SetCenter (userPosition);
+
                 if (userMarkerPosition != null)
-                {
-                    userMarkerPosition.SetIcon (ResourcesCompat.GetDrawable (Resources, Resource.Drawable.ic_my_location, null));
-                    userMarkerPosition.Position = userPosition;
-                    userMarkerPosition.SetInfoWindow (null);
-                    mapView.OverlayManager.Add (userMarkerPosition);
-                    mapView.Invalidate ();
-                }
+                    mapView.OverlayManager.Remove (userMarkerPosition);
+
+
+                userMarkerPosition = new Marker (mapView);
+                userMarkerPosition.SetIcon (ResourcesCompat.GetDrawable (Resources, Resource.Drawable.ic_my_location, null));
+                userMarkerPosition.Position = userPosition;
+                userMarkerPosition.SetInfoWindow (null);
+                mapView.OverlayManager.Add (userMarkerPosition);
+                mapView.Invalidate ();
             }
+
+            //if navigation is enabled the route will be drawn and updated
+            if (osmMap.ShowNavigation)
+                CalculateRoute (gpsLocation);
+            else if (osmMap.ShowDetailsRoute)
+                DrawDetailsRoute (gpsLocation);
         }
 
+        /// <summary>
+        /// Draws the markers in navigation
+        /// </summary>
+        /// <param name="route">Route to process</param>
         private void NewElementOnDetailsRouteChanged (Route route)
         {
+            //The direct polyline is only draw if related bool is true
 
-            if (osmMap.ShowDetailsRoute)
+
+            if ((route != null) && route.Waypoints.Any ())
             {
-                PathOverlay myPath = new PathOverlay (Resources.GetColor (Resource.Color.colorPrimaryDark), 7, new DefaultResourceProxyImpl (activity));
+                var markerInfoWindow = new ViaPointInfoWindow (Resource.Layout.navigation_info_window, mapView, activity);
+                var mapMarkerIcon = ContextCompat.GetDrawable (activity, Resource.Drawable.marker_blue);
+                var setMarker = new SetMarker (mapView, markerInfoWindow);
 
-                if (userPosition != null)
+                foreach (var waypoint in route.Waypoints)
                 {
-                    myPath.AddPoint (userPosition);
+                    //Bubbles
+                    var geoPoint = new GeoPoint (waypoint.Exhibit.Location.Latitude, waypoint.Exhibit.Location.Longitude);
+                    var bubble = setMarker.AddMarker (null, waypoint.Exhibit.Name, waypoint.Exhibit.Description, geoPoint, mapMarkerIcon, waypoint.Exhibit.Id);
+                    mapView.OverlayManager.Add (bubble);
                 }
-
-                if (route != null && route.Waypoints.Any ())
-                {
-                    foreach (Waypoint waypoint in route.Waypoints)
-                    {
-                        myPath.AddPoint (new GeoPoint (waypoint.Location.Latitude, waypoint.Location.Longitude));
-                        var marker = new Marker (mapView);
-                        marker.SetIcon(ResourcesCompat.GetDrawable(Resources, Resource.Drawable.marker_blue, null));
-                        marker.Position = new GeoPoint(waypoint.Location.Latitude,waypoint.Location.Longitude);
-                        mapView.OverlayManager.Add(marker);
-                    }
-                }
-
-                mapView.OverlayManager.Add (myPath);
                 mapView.Invalidate ();
             }
         }
 
+        /// <summary>
+        /// Here the direct route in routedetails is calculated
+        /// </summary>
+        /// <param name="location"></param>
+        private void DrawDetailsRoute (GeoLocation location)
+        {
+            var myPath = new PathOverlay (Resources.GetColor (Resource.Color.colorPrimaryDark), 7, new DefaultResourceProxyImpl (activity));
+            if (location != null)
+                myPath.AddPoint (new GeoPoint (location.Latitude, location.Longitude));
 
-        private void SetAllMarkers (ExhibitSet set)
+            if ((osmMap.DetailsRoute != null) && osmMap.DetailsRoute.Waypoints.Any ())
+                foreach (var waypoint in osmMap.DetailsRoute.Waypoints)
+                {
+                    myPath.AddPoint (new GeoPoint (waypoint.Location.Latitude, waypoint.Location.Longitude));
+  
+                }
+
+
+            mapView.OverlayManager.Add (myPath);
+            mapView.Invalidate ();
+        }
+
+        //here all Markers for the Exhibits in the Main Map are set
+        //and some general stuff
+        private void SetMainScreenMarkers (ExhibitSet set)
         {
             locationOverlay = new MyLocationOverlay (activity, mapView);
-            CompassOverlay compassOverlay = new CompassOverlay (activity, mapView);
+            var compassOverlay = new CompassOverlay (activity, mapView);
             compassOverlay.EnableCompass ();
-            userMarkerPosition = new Marker (mapView);
-            userMarkerPosition.SetIcon (ResourcesCompat.GetDrawable (Resources, Resource.Drawable.ic_my_location, null));
-            userMarkerPosition.Position = userPosition;
-            userMarkerPosition.SetInfoWindow (null);
-            mapView.OverlayManager.Add (userMarkerPosition);
             mapView.OverlayManager.Add (locationOverlay);
             mapView.OverlayManager.Add (compassOverlay);
 
+            //Here all exhibit markers and bubbles are set if the Exhibit is not null
             if (set != null)
             {
                 var markerInfoWindow = new ViaPointInfoWindow (Resource.Layout.navigation_info_window, mapView, activity);
@@ -176,22 +240,81 @@ namespace de.upb.hip.mobile.droid.Map {
             mapView.Invalidate ();
         }
 
-        public bool OnScroll (ScrollEvent p0)
+        /// <summary>
+        /// Calculates the navigation route in a seperate thread
+        /// and throws error message if no route was found
+        /// </summary>
+        /// <param name="userPosition">position of the user</param>
+        private void CalculateRoute (GeoLocation userPosition)
         {
-            return false;
+            var id = osmMap.DetailsRoute.Id;
+
+            ThreadPool.QueueUserWorkItem (state => {
+                                              var geoPoints = new List<GeoPoint> ();
+
+                                              if (userPosition != null)
+                                                  geoPoints.Add (new GeoPoint (userPosition.Latitude, userPosition.Longitude));
+
+
+                                              Action action;
+
+                                              try
+                                              {
+                                                  var locations = routeCalculator.CreateRouteWithSeveralWaypoints (id, userPosition);
+
+                                                  foreach (var w in locations)
+                                                  {
+                                                      var point = new GeoPoint (w.Latitude, w.Longitude);
+                                                      geoPoints.Add (point);
+                                                  }
+
+                                                  action = () => DrawRoute (geoPoints);
+                                              }
+                                              catch (Exception)
+                                              {
+                                                  action = ShowRouteCalculationError;
+                                              }
+
+                                              activity.RunOnUiThread (() => {
+                                                                          var handler = new Handler ();
+                                                                          handler.PostDelayed (action, 0);
+                                                                      });
+                                          });
         }
 
-        public bool OnZoom (ZoomEvent p0)
+        private void ShowRouteCalculationError ()
         {
-            AppSharedData.MapZoomLevel = p0.ZoomLevel;
-            return true;
+            Toast.MakeText (activity, Strings.MapRenderer_NoLocation_Text, ToastLength.Long).Show ();
         }
 
         /// <summary>
-        /// Called when this view will be disposed.
+        /// Settings how the line should look like
+        /// </summary>
+        /// <param name="geoPoints"></param>
+        private void DrawRoute (List<GeoPoint> geoPoints)
+        {
+            //Cleanup route if drawn before
+            if (currentRouteOverlay != null)
+                mapView.OverlayManager.Remove (currentRouteOverlay);
+
+            currentRouteOverlay = new Polyline (activity)
+            {
+                Title = osmMap.DetailsRoute.Title,
+                Width = 5f,
+                Color = Color.Blue,
+                Points = geoPoints,
+                Geodesic = true
+            };
+            mapView.OverlayManager.Add (currentRouteOverlay);
+            mapView.Invalidate ();
+        }
+
+
+        /// <summary>
+        ///     Called when this view will be disposed.
         /// </summary>
         /// <param name="disposing"></param>
-        protected override void Dispose(bool disposing)
+        protected override void Dispose (bool disposing)
         {
             if (disposing)
             {
@@ -199,7 +322,7 @@ namespace de.upb.hip.mobile.droid.Map {
                 osmMap.GpsLocationChanged -= NewElementOnGpsLocationChanged;
                 osmMap.DetailsRouteChanged -= NewElementOnDetailsRouteChanged;
             }
-            base.Dispose(disposing);
+            base.Dispose (disposing);
         }
 
     }

@@ -738,6 +738,15 @@ namespace HipMobileUI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sie sind nicht in Paderborn oder es ist momentan kein GPS Signal vorhanden.
+        /// </summary>
+        public static string MapRenderer_NoLocation_Text {
+            get {
+                return ResourceManager.GetString("MapRenderer_NoLocation_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Vorlesen.
         /// </summary>
         public static string RouteDetailsPage_PlayAudio {
