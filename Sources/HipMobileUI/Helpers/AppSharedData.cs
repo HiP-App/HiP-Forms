@@ -24,7 +24,7 @@ namespace HipMobileUI.Helpers
 
         public static readonly int MinTimeBwUpdates = 2000; //4000 milliseconds (4seconds)
         public static readonly int MinDistanceChangeForUpdates = 10; // 10 metres
-        public static readonly double ExhibitRadius = 0.02; // 20m
+        public static readonly double ExhibitRadius = 20; // 20m
         public static int MapZoomLevel = 14;
 
         public static readonly string WillSleepMessage = "WillSleep";

@@ -99,7 +99,12 @@ namespace HipMobileUI.Location
         }
 
 
-
+        /// <summary>
+        /// Opens an alert dialogue if the user is near to an exhibit
+        /// </summary>
+        /// <param name="exhibitSet">The set of exhibits that should be checked</param>
+        /// <param name="route">The Exhibits of a route that should be checked</param>
+        /// <param name="gpsLocation">The user location</param>
        public async void CheckNearExhibit (ExhibitSet exhibitSet,Route route, GeoLocation gpsLocation)
         {
             double dist;
@@ -108,7 +113,7 @@ namespace HipMobileUI.Location
                 foreach (Exhibit e in exhibitSet)
                 {
                     dist = MathUtil.DistanceLatLonInMeter (e.Location, gpsLocation);
-                    if (dist < 30)
+                    if (dist < AppSharedData.ExhibitRadius)
                     {
 
 
