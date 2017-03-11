@@ -24,6 +24,7 @@ using HipMobileUI.Contracts;
 using HipMobileUI.Location;
 using HipMobileUI.Navigation;
 using HipMobileUI.Pages;
+using HockeyApp.Android;
 using Plugin.Permissions;
 
 namespace de.upb.hip.mobile.droid
@@ -51,6 +52,11 @@ namespace de.upb.hip.mobile.droid
             IoCManager.RegisterInstance (typeof(IAudioPlayer), new DroidAudioPlayer ());
             IoCManager.RegisterInstance (typeof(IStatusBarController), new DroidStatusBarController ());
             IoCManager.RegisterInstance (typeof(ILocationManager), new LocationManager ());
+            IoCManager.RegisterInstance (typeof(IKeyProvider), new AndroidKeyProvider ());
+
+            // setup crash reporting
+            IKeyProvider keyProvider = IoCManager.Resolve<IKeyProvider>();
+            CrashManager.Register(this, keyProvider.GetKeyByName("hockeyapp.android"));
 
             // init forms and third party libraries
             CachedImageRenderer.Init ();

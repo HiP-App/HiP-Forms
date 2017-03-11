@@ -11,6 +11,8 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+
+using de.upb.hip.mobile.ios.Contracts;
 using de.upb.hip.mobile.pcl.Common;
 using de.upb.hip.mobile.pcl.Common.Contracts;
 using FFImageLoading.Forms.Touch;
@@ -21,6 +23,7 @@ using HipMobileUI.iOS.Contracts;
 using HipMobileUI.Location;
 using HipMobileUI.Navigation;
 using HipMobileUI.Pages;
+using HockeyApp.iOS;
 using UIKit;
 
 namespace HipMobileUI.iOS
@@ -51,6 +54,13 @@ namespace HipMobileUI.iOS
             IoCManager.RegisterInstance (typeof(IAudioPlayer), new IosAudioPlayer ());
             IoCManager.RegisterType<IStatusBarController, IosStatusBarController> ();
             IoCManager.RegisterInstance(typeof(ILocationManager), new LocationManager());
+            IoCManager.RegisterInstance (typeof(IKeyProvider), new IosKeyProvider ());
+
+            // init crash manager
+            var manager = BITHockeyManager.SharedHockeyManager;
+            manager.Configure(IoCManager.Resolve<IKeyProvider> ().GetKeyByName ("hockeyapp.ios"));
+            manager.StartManager();
+            manager.Authenticator.AuthenticateInstallation();
 
             // init forms and third party libraries
             CachedImageRenderer.Init ();
