@@ -81,13 +81,13 @@ namespace HipMobileUI.ViewModels.Views
         /// </summary>
         public string FormatedDistance {
             get {
-                if (Distance < 1)
+                if (Distance < 1000)
                 {
-                    return $"{Distance * 1000:F0} m";
+                    return $"{Distance:F0} m";
                 }
                 else
                 {
-                    return $"{Distance:0.##} km";
+                    return $"{Distance/1000:0.##} km";
                 }
             }
         }
@@ -98,7 +98,7 @@ namespace HipMobileUI.ViewModels.Views
         /// <param name="position">The new position from which the distance is measured.</param>
         public void UpdateDistance (Position position)
         {
-            Distance = MathUtil.CalculateDistance (exhibit.Location.Latitude, exhibit.Location.Longitude, position.Latitude, position.Longitude);
+            Distance = MathUtil.CalculateDistance (exhibit.Location, new GeoLocation(position.Latitude,position.Longitude));
         }
 
         public override bool Equals (object obj)

@@ -13,21 +13,23 @@
 // limitations under the License.
 
 using System;
+using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 
 namespace de.upb.hip.mobile.pcl.Helpers {
     public class MathUtil {
 
         /// <summary>
-        ///     distance calculations as presented on http://andrew.hedges.name/experiments/haversine/
+        ///     distance calculations between two lat/lon coordinates in meter
         /// </summary>
-        public static double CalculateDistance(double lat1, double long1, double lat2, double long2)
+        public static double CalculateDistance(GeoLocation one,GeoLocation two)
         {
-            var dlon = ToRadians(long2 - long1);
-            var dlat = ToRadians(lat2 - lat1);
-            var a = Math.Pow(Math.Sin(dlat / 2), 2) + Math.Cos(ToRadians(lat1)) * Math.Cos(ToRadians(lat2)) * Math.Pow(Math.Sin(dlon / 2), 2);
+            var dlon = ToRadians(two.Longitude - one.Longitude);
+            var dlat = ToRadians(two.Latitude - one.Latitude);
+            var a = Math.Pow(Math.Sin(dlat / 2), 2) + Math.Cos(ToRadians(one.Latitude)) * Math.Cos(ToRadians(two.Latitude)) * Math.Pow(Math.Sin(dlon / 2), 2);
             var c = 2 * Math.Atan2(Math.Sqrt(a), Math.Sqrt(1 - a));
-            return 6373 * c;
+            return 6373 * c*1000;
         }
+
 
         /// <summary>
         /// Convert degree to radians.

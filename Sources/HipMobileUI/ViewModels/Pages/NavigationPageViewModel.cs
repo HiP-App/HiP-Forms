@@ -27,7 +27,9 @@ namespace HipMobileUI.ViewModels.Pages {
         private GeoLocation gpsLocation;
         private ILocationManager locationManager;
         private Route detailsRoute;
+
         private bool showNavigation;
+
         private ICommand mapFocusCommand;
 
         public NavigationPageViewModel (Route route)
@@ -38,7 +40,6 @@ namespace HipMobileUI.ViewModels.Pages {
             locationManager = IoCManager.Resolve<ILocationManager> ();
             locationManager.AddLocationListener (this);
             FocusGps = new Command(FocusGpsClicked);
-
         }
 
         /// <summary>
@@ -81,6 +82,9 @@ namespace HipMobileUI.ViewModels.Pages {
         public void LocationChanged (object sender, PositionEventArgs args)
         {
             GpsLocation = args.Position.ToGeoLocation ();
+
+            locationManager.CheckNearExhibit (null,detailsRoute, new GeoLocation(args.Position.Latitude, args.Position.Longitude));
+
         }
 
         public override void OnDisappearing ()

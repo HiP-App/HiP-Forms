@@ -25,7 +25,7 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models {
         /// <returns>The distance.</returns>
         public double GetDistance (GeoLocation location)
         {
-            return MathUtil.CalculateDistance (Location.Latitude, Location.Longitude, location.Latitude, location.Longitude);
+            return MathUtil.CalculateDistance (Location, location);
         }
 
     }
