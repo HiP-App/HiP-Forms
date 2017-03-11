@@ -24,8 +24,7 @@ using Plugin.Geolocator;
 using Plugin.Geolocator.Abstractions;
 using Xamarin.Forms;
 
-namespace HipMobileUI.Location
-{
+namespace HipMobileUI.Location {
     public interface ILocationListener {
 
         /// <summary>
@@ -54,9 +53,13 @@ namespace HipMobileUI.Location
         void RemoveLocationListener (ILocationListener listener);
 
 
-
-  
-        void CheckNearExhibit (ExhibitSet exhibitSet,Route route, GeoLocation gpsLocation);
+        /// <summary>
+        /// Opens an alert dialogue if the user is near to an exhibit
+        /// </summary>
+        /// <param name="exhibitSet">The set of exhibits that should be checked</param>
+        /// <param name="route">The Exhibits of a route that should be checked</param>
+        /// <param name="gpsLocation">The user location</param>
+        void CheckNearExhibit (ExhibitSet exhibitSet, Route route, GeoLocation gpsLocation);
 
 
         /// <summary>
@@ -94,29 +97,21 @@ namespace HipMobileUI.Location
             locator.PositionChanged += (sender, args) => { LastKnownLocation = args.Position; };
 
             // subscribe to events when the app sleeps/wakes up to enable7disable location updates
-            MessagingCenter.Subscribe<App>(this, AppSharedData.WillSleepMessage, WillSleep);
-            MessagingCenter.Subscribe<App>(this, AppSharedData.WillWakeUpMessage, WillWakeUp);
+            MessagingCenter.Subscribe<App> (this, AppSharedData.WillSleepMessage, WillSleep);
+            MessagingCenter.Subscribe<App> (this, AppSharedData.WillWakeUpMessage, WillWakeUp);
         }
 
 
-        /// <summary>
-        /// Opens an alert dialogue if the user is near to an exhibit
-        /// </summary>
-        /// <param name="exhibitSet">The set of exhibits that should be checked</param>
-        /// <param name="route">The Exhibits of a route that should be checked</param>
-        /// <param name="gpsLocation">The user location</param>
-       public async void CheckNearExhibit (ExhibitSet exhibitSet,Route route, GeoLocation gpsLocation)
+        public async void CheckNearExhibit (ExhibitSet exhibitSet, Route route, GeoLocation gpsLocation)
         {
             double dist;
             if (route == null)
             {
                 foreach (Exhibit e in exhibitSet)
                 {
-                    dist = MathUtil.DistanceLatLonInMeter (e.Location, gpsLocation);
+                    dist = MathUtil.CalculateDistance (e.Location, gpsLocation);
                     if (dist < AppSharedData.ExhibitRadius)
                     {
-
-
                         var result =
                             await
                                 IoCManager.Resolve<INavigationService> ()
@@ -134,19 +129,17 @@ namespace HipMobileUI.Location
             {
                 foreach (Waypoint r in route.Waypoints)
                 {
-                    dist = MathUtil.DistanceLatLonInMeter(r.Location, gpsLocation);
+                    dist = MathUtil.CalculateDistance (r.Location, gpsLocation);
                     if (dist < 30)
                     {
-                        
-
                         var result =
                             await
-                                IoCManager.Resolve<INavigationService>()
-                                          .DisplayAlert("Sehenwürdigkeit in der Nähe", "Möchten sie sich " + r.Exhibit.Name + " genauer ansehen", "Ja", "Nein");
+                                IoCManager.Resolve<INavigationService> ()
+                                          .DisplayAlert ("Sehenwürdigkeit in der Nähe", "Möchten sie sich " + r.Exhibit.Name + " genauer ansehen", "Ja", "Nein");
 
                         if (result)
                         {
-                            await IoCManager.Resolve<INavigationService>().PushAsync(new ExhibitDetailsViewModel(r.Exhibit.Id));
+                            await IoCManager.Resolve<INavigationService> ().PushAsync (new ExhibitDetailsViewModel (r.Exhibit.Id));
                             break;
                         }
                     }
@@ -160,7 +153,7 @@ namespace HipMobileUI.Location
             if (listener != null)
             {
                 // remember the listener and start location updates if necessary
-                bool needToStartLocator = !locator.IsListening && registeredListeners.Count == 0 ;
+                bool needToStartLocator = !locator.IsListening && registeredListeners.Count == 0;
                 registeredListeners.Add (listener);
                 locator.PositionChanged += listener.LocationChanged;
                 if (needToStartLocator)
@@ -188,9 +181,7 @@ namespace HipMobileUI.Location
 
         public bool IsLocationAvailable ()
         {
-
             return locator.IsGeolocationAvailable;
-
         }
 
         public void PauseListening ()
@@ -205,7 +196,7 @@ namespace HipMobileUI.Location
         {
             if (!locator.IsListening)
             {
-                locator.StartListeningAsync(AppSharedData.MinTimeBwUpdates, AppSharedData.MinDistanceChangeForUpdates);
+                locator.StartListeningAsync (AppSharedData.MinTimeBwUpdates, AppSharedData.MinDistanceChangeForUpdates);
             }
         }
 
@@ -213,7 +204,7 @@ namespace HipMobileUI.Location
         /// Called when the app will go to the background or the screen is locked.
         /// </summary>
         /// <param name="obj">The caller.</param>
-        private void WillSleep(App obj)
+        private void WillSleep (App obj)
         {
             PauseListening ();
         }
@@ -222,7 +213,7 @@ namespace HipMobileUI.Location
         /// Called when the app will wake up.
         /// </summary>
         /// <param name="obj">The sender of the event.</param>
-        private void WillWakeUp(App obj)
+        private void WillWakeUp (App obj)
         {
             StartListening ();
         }

@@ -19,32 +19,17 @@ namespace de.upb.hip.mobile.pcl.Helpers {
     public class MathUtil {
 
         /// <summary>
-        ///     distance calculations as presented on http://andrew.hedges.name/experiments/haversine/
+        ///     distance calculations between two lat/lon coordinates in meter
         /// </summary>
-        public static double CalculateDistance(double lat1, double long1, double lat2, double long2)
+        public static double CalculateDistance(GeoLocation one,GeoLocation two)
         {
-            var dlon = ToRadians(long2 - long1);
-            var dlat = ToRadians(lat2 - lat1);
-            var a = Math.Pow(Math.Sin(dlat / 2), 2) + Math.Cos(ToRadians(lat1)) * Math.Cos(ToRadians(lat2)) * Math.Pow(Math.Sin(dlon / 2), 2);
+            var dlon = ToRadians(two.Longitude - one.Longitude);
+            var dlat = ToRadians(two.Latitude - one.Latitude);
+            var a = Math.Pow(Math.Sin(dlat / 2), 2) + Math.Cos(ToRadians(one.Latitude)) * Math.Cos(ToRadians(two.Latitude)) * Math.Pow(Math.Sin(dlon / 2), 2);
             var c = 2 * Math.Atan2(Math.Sqrt(a), Math.Sqrt(1 - a));
-            return 6373 * c;
+            return 6373 * c*1000;
         }
 
-
-        public static double DistanceLatLonInMeter(GeoLocation user, GeoLocation exhibit) //(double lat1, double lat2, double lon1, double lon2, double el1, double el2)
-        {
-            const int r = 6371; // Radius of the earth
-
-            double latDistance = ToRadians(exhibit.Latitude - user.Latitude);
-            double lonDistance = ToRadians(exhibit.Longitude - user.Longitude);
-            double a = Math.Sin(latDistance / 2) * Math.Sin(latDistance / 2)
-                       + Math.Cos(ToRadians(user.Latitude)) * Math.Cos(ToRadians(exhibit.Latitude)) * Math.Sin(lonDistance / 2) * Math.Sin(lonDistance / 2);
-            double c = 2 * Math.Atan2(Math.Sqrt(a), Math.Sqrt(1 - a));
-            double distance = r * c * 1000; // convert to meters
-
-
-            return distance;
-        }
 
         /// <summary>
         /// Convert degree to radians.
