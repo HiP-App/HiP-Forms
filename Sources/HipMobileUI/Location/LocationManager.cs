@@ -105,7 +105,7 @@ namespace HipMobileUI.Location {
         public async void CheckNearExhibit (ExhibitSet exhibitSet, Route route, GeoLocation gpsLocation)
         {
             double dist;
-            if (route == null)
+            if (exhibitSet != null)
             {
                 foreach (Exhibit e in exhibitSet)
                 {
@@ -125,12 +125,12 @@ namespace HipMobileUI.Location {
                     }
                 }
             }
-            else if (exhibitSet == null)
+            else if (route != null)
             {
                 foreach (Waypoint r in route.Waypoints)
                 {
                     dist = MathUtil.CalculateDistance (r.Location, gpsLocation);
-                    if (dist < 30)
+                    if (dist < AppSharedData.ExhibitRadius)
                     {
                         var result =
                             await
