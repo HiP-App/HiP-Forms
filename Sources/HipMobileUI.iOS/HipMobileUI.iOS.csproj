@@ -177,7 +177,7 @@
     </None>
     <Compile Include="Map\ExhibitAnnotation.cs" />
     <Compile Include="Map\ExhibitAnnotationView.cs" />
-    <Compile Include="Map\MapRenderer.cs" />
+    <Compile Include="Map\IosMapRenderer.cs" />
     <Compile Include="Map\UserAnnotationView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <ITunesArtwork Include="iTunesArtwork" />
