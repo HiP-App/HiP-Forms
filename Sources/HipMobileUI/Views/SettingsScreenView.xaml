@@ -23,7 +23,7 @@
       <!-- Defined Styles for Labels -->
       <Style x:Key="TitleStyle" TargetType="Label">
         <Setter Property="FontSize" Value="Small" />
-        <Setter Property="TextColor" Value="Orange" />
+        <Setter Property="TextColor" Value="{StaticResource AccentColor}" />
         <Setter Property="FontAttributes" Value="Bold"/>
         <Setter Property="Grid.ColumnSpan" Value="2" />
       </Style>
@@ -46,8 +46,8 @@
     </ResourceDictionary>
   </ContentView.Resources>
   <ContentView.Content>
-    <ScrollView Margin="10">
-      <Grid HorizontalOptions="FillAndExpand">
+    <ScrollView>
+      <Grid HorizontalOptions="FillAndExpand" Padding="10">
         <Grid.RowDefinitions>
           <RowDefinition Height="Auto" />
           <RowDefinition Height="Auto" />
@@ -74,14 +74,16 @@
         <Label Style="{StaticResource Title2Style}" Text="{strings:Translate SettingsScreenView_AutoSwitchPage_Title}" Grid.Row="1" Grid.Column="0"/>
         <Label Text="{strings:Translate SettingsScreenView_AutoSwitchPage_Text}" Grid.Row="2" Grid.Column="0"/>
         <Switch IsToggled="{Binding AutoSwitchPage, Mode=TwoWay}" VerticalOptions="Center" Grid.Row="2" Grid.Column="1">
-          <Switch.Effects><effects:SwitchColorEffect Color="{StaticResource AccentColor}"></effects:SwitchColorEffect></Switch.Effects>
+          <Switch.Effects>
+            <effects:SwitchColorEffect Color="{StaticResource AccentColor}"/>
+          </Switch.Effects>
         </Switch>
           <BoxView Grid.Row="3" Grid.Column="0"/>
         <Label Style="{StaticResource Title2Style}" Text="{strings:Translate SettingsScreenView_AutoStartAudio_Title}" Grid.Row="4" Grid.Column="0"/>
         <Label Text="{strings:Translate SettingsScreenView_AutoStartAudio_Text}" HorizontalOptions="StartAndExpand" Grid.Row="5" Grid.Column="0"/>
         <Switch IsToggled="{Binding AutoStartAudio, Mode=TwoWay}" HorizontalOptions="End" VerticalOptions="Center" Grid.Row="5" Grid.Column="1">
           <Switch.Effects>
-            <effects:SwitchColorEffect Color="{StaticResource AccentColor}"></effects:SwitchColorEffect>
+            <effects:SwitchColorEffect Color="{StaticResource AccentColor}"/>
           </Switch.Effects>
         </Switch>
 
@@ -90,21 +92,21 @@
         <Label Text="{strings:Translate SettingsScreenView_RepeatHintAudio_Text}" HorizontalOptions="StartAndExpand" Grid.Row="7" Grid.Column="0"/>
         <Switch IsToggled="{Binding RepeatHintAudio, Mode=TwoWay}" HorizontalOptions="End" VerticalOptions="Center" Grid.Row="7" Grid.Column="1">
           <Switch.Effects>
-            <effects:SwitchColorEffect Color="{StaticResource AccentColor}"></effects:SwitchColorEffect>
+            <effects:SwitchColorEffect Color="{StaticResource AccentColor}"/>
           </Switch.Effects>
         </Switch>
           <BoxView Grid.Row="8" Grid.Column="0"/>
         <Label Text="{strings:Translate SettingsScreenView_RepeatHintAutoPageSwitch_Text}" HorizontalOptions="StartAndExpand" Grid.Row="9" Grid.Column="0"/>
         <Switch IsToggled="{Binding RepeatHintAutoPageSwitch, Mode=TwoWay}" HorizontalOptions="End" VerticalOptions="Center" Grid.Row="9" Grid.Column="1">
           <Switch.Effects>
-            <effects:SwitchColorEffect Color="{StaticResource AccentColor}"></effects:SwitchColorEffect>
+            <effects:SwitchColorEffect Color="{StaticResource AccentColor}"/>
           </Switch.Effects>
         </Switch>
           <BoxView Grid.Row="12" Grid.Column="0"/>
         <Label Text="{strings:Translate SettingsScreenView_RepeatIntro_Text}" HorizontalOptions="StartAndExpand" Grid.Row="13" Grid.Column="0"/>
         <Switch IsToggled="{Binding RepeatIntro, Mode=TwoWay}" HorizontalOptions="End" VerticalOptions="Center" Grid.Row="13" Grid.Column="1">
           <Switch.Effects>
-            <effects:SwitchColorEffect Color="{StaticResource AccentColor}"></effects:SwitchColorEffect>
+            <effects:SwitchColorEffect Color="{StaticResource AccentColor}"/>
           </Switch.Effects>
         </Switch>
       </Grid>

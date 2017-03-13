@@ -1,4 +1,4 @@
-// Copyright (C) 2017 History in Paderborn App - Universit�t Paderborn
+﻿// Copyright (C) 2017 History in Paderborn App - Universität Paderborn
 //  
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,21 +12,20 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using Android.OS;
-using Android.Text;
 using Android.Text.Method;
 using Android.Text.Util;
-using de.upb.hip.mobile.droid;
+using de.upb.hip.mobile.droid.CustomRenderers;
+using de.upb.hip.mobile.droid.Helpers;
 using HipMobileUI.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
-[assembly: ExportRenderer(typeof(Link), typeof(LinkRenderer))]
-namespace de.upb.hip.mobile.droid
+[assembly: ExportRenderer(typeof(ReferenceLink), typeof(ReferenceLinkRenderer))]
+namespace de.upb.hip.mobile.droid.CustomRenderers
 {
-    class LinkRenderer : LabelRenderer
+    public class ReferenceLinkRenderer : LabelRenderer
     {
-        private Link formslink;
+        private ReferenceLink referenceLink;
 
         protected override void OnElementChanged(ElementChangedEventArgs<Label> elementChangedEventArgs)
         {
@@ -34,18 +33,19 @@ namespace de.upb.hip.mobile.droid
 
             if (elementChangedEventArgs.NewElement != null)
             {
-                formslink = (Link) elementChangedEventArgs.NewElement;
-                // Workaround to avoid the "deprecated" warning
-                if (Build.VERSION.SdkInt >= BuildVersionCodes.N)
+                referenceLink = (ReferenceLink)elementChangedEventArgs.NewElement;
+                if (referenceLink == null)
                 {
-                    Control.TextFormatted = Html.FromHtml(formslink.Text.Replace("\n", "<br />"), FromHtmlOptions.ModeLegacy);
+                    return;
                 }
-                else
-                {
-#pragma warning disable 618
-                    Control.TextFormatted = Html.FromHtml(formslink.Text.Replace("\n", "<br />"));
-#pragma warning restore 618
-                }
+                var srcList = referenceLink.Sources;
+                var formatedText = referenceLink.Text;
+                var action = referenceLink.Action;
+                var spannableTextBuilder = new SpannableTextBuilder();
+
+                var formattedSubtitles = spannableTextBuilder.CreateSubtitlesText(action(), formatedText, srcList);
+
+                Control.TextFormatted = formattedSubtitles;
 
                 // Make links clickable
                 Control.MovementMethod = LinkMovementMethod.Instance;

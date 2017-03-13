@@ -50,7 +50,7 @@ namespace HipMobileUI.ViewModels.Pages {
         public ExhibitDetailsViewModel (Exhibit exhibit)
         {
             // init the audio toolbar
-            AudioToolbar = new AudioToolbarViewModel ();
+            AudioToolbar = new AudioToolbarViewModel (exhibit.Name);
             AudioToolbar.AudioPlayer.AudioCompleted += AudioPlayerOnAudioCompleted;
 
             // init the current view

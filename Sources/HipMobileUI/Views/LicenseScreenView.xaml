@@ -42,45 +42,45 @@
     </ResourceDictionary> 
   </ContentView.Resources>
   <ContentView.Content>
-    <ScrollView Margin="10">
-    <StackLayout>
+    <ScrollView>
+    <StackLayout Padding="10">
       <!-- Labels for licensing -->
       <Label Style="{StaticResource TitleStyle}" Text="{strings:Translate LicenseScreenView_License_Title}"/>
       <BoxView/>
       <Label Style="{StaticResource Title2Style}" Text="{strings:Translate LicenseScreenView_MaterialIcons_Title}"/>
-      <views:Link Text="{strings:Translate LicenseScreenView_MaterialIcons_Text}"/>
+      <views:HtmlLink Text="{strings:Translate LicenseScreenView_MaterialIcons_Text}"/>
       <Label Style="{StaticResource Title2Style}" Text="{strings:Translate LicenseScreenView_Osmdroid_Title}"/>
-      <views:Link Text="{strings:Translate LicenseScreenView_Osmdroid_Text}"/>
+      <views:HtmlLink Text="{strings:Translate LicenseScreenView_Osmdroid_Text}"/>
       <Label Style="{StaticResource Title2Style}" Text="{strings:Translate LicenseScreenView_OSMBonusPack_Title}"/>
-      <views:Link Text="{strings:Translate LicenseScreenView_OSMBonusPack_Text}"/>
+      <views:HtmlLink Text="{strings:Translate LicenseScreenView_OSMBonusPack_Text}"/>
       <Label Style="{StaticResource Title2Style}" Text="{strings:Translate LicenseScreenView_Realm_Title}"/>
-      <views:Link Text="{strings:Translate LicenseScreenView_Realm_Text}"/>
+      <views:HtmlLink Text="{strings:Translate LicenseScreenView_Realm_Text}"/>
       <Label Style="{StaticResource Title2Style}" Text="{strings:Translate LicenseScreenView_MapIcons_Title}"/>
-      <views:Link Text="{strings:Translate LicenseScreenView_MapIcons_Text}"/>
+      <views:HtmlLink Text="{strings:Translate LicenseScreenView_MapIcons_Text}"/>
       <Label Style="{StaticResource Title2Style}" Text="{strings:Translate LicenseScreenView_Unity_Title}"/>
-      <views:Link Text="{strings:Translate LicenseScreenView_Unity_Text}"/>
+      <views:HtmlLink Text="{strings:Translate LicenseScreenView_Unity_Text}"/>
       <Label Style="{StaticResource Title2Style}" Text="{strings:Translate LicenseScreenView_SettingsPlugin_Title}"/>
-      <views:Link Text="{strings:Translate LicenseScreenView_SettingsPlugin_Text}"/>
+      <views:HtmlLink Text="{strings:Translate LicenseScreenView_SettingsPlugin_Text}"/>
       <Label Style="{StaticResource Title2Style}" Text="{strings:Translate LicenseScreenView_HockeyApp_Title}"/>
-      <views:Link Text="{strings:Translate LicenseScreenView_HockeyApp_Text}"/>
+      <views:HtmlLink Text="{strings:Translate LicenseScreenView_HockeyApp_Text}"/>
       <Label Style="{StaticResource Title2Style}" Text="{strings:Translate LicenseScreenView_XSL_Title}"/>
-      <views:Link Text="{strings:Translate LicenseScreenView_XSL_Text}"/>
+      <views:HtmlLink Text="{strings:Translate LicenseScreenView_XSL_Text}"/>
       <Label Style="{StaticResource Title2Style}" Text="{strings:Translate LicenseScreenView_CSL_Title}"/>
-      <views:Link Text="{strings:Translate LicenseScreenView_CSL_Text}"/>
+      <views:HtmlLink Text="{strings:Translate LicenseScreenView_CSL_Text}"/>
       <Label Style="{StaticResource Title2Style}" Text="{strings:Translate LicenseScreenView_Fody_Title}"/>
-      <views:Link Text="{strings:Translate LicenseScreenView_Fody_Text}"/>
+      <views:HtmlLink Text="{strings:Translate LicenseScreenView_Fody_Text}"/>
       <Label Style="{StaticResource Title2Style}" Text="{strings:Translate LicenseScreenView_Itinero_Title}"/>
-      <views:Link Text="{strings:Translate LicenseScreenView_Itinero_Text}"/>
+      <views:HtmlLink Text="{strings:Translate LicenseScreenView_Itinero_Text}"/>
       <Label Style="{StaticResource Title2Style}" Text="{strings:Translate LicenseScreenView_OsmSharp_Title}"/>
-      <views:Link Text="{strings:Translate LicenseScreenView_OsmSharp_Text}"/>
+      <views:HtmlLink Text="{strings:Translate LicenseScreenView_OsmSharp_Text}"/>
       <Label Style="{StaticResource Title2Style}" Text="{strings:Translate LicenseScreenView_Reminiscence_Title}"/>
-      <views:Link Text="{strings:Translate LicenseScreenView_Reminiscence_Text}"/>
+      <views:HtmlLink Text="{strings:Translate LicenseScreenView_Reminiscence_Text}"/>
       
       <!-- Labels for contribution -->
       <Label Style="{StaticResource TitleStyle}" Text="{strings:Translate LicenseScreenView_Contribution_Title}"/>
       <BoxView/>
       <Label Style="{StaticResource Title2Style}" Text="{strings:Translate LicenseScreenView_CreditsImagesAutocarousel_Title}"/>
-      <views:Link Text="{strings:Translate LicenseScreenView_CreditsImagesAutocarousel_Text}"/>
+      <views:HtmlLink Text="{strings:Translate LicenseScreenView_CreditsImagesAutocarousel_Text}"/>
 
       <!-- Labels for Terms of Use -->
       <Label Style="{StaticResource TitleStyle}" Text="{strings:Translate LicenseScreenView_ToU_Title}"/>
@@ -112,7 +112,7 @@
 
       <!-- Labels for Impressum -->
       <Label Style="{StaticResource TitleStyle}" Text="{strings:Translate LicenseScreenView_Impressum_Title}"/>
-      <views:Link Text="{strings:Translate LicenseScreenView_Impressum_Text}"/>
+      <views:HtmlLink Text="{strings:Translate LicenseScreenView_Impressum_Text}"/>
     </StackLayout>
     </ScrollView>
   </ContentView.Content>

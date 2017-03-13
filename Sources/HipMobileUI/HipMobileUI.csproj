@@ -92,6 +92,7 @@
     <Compile Include="Navigation\IViewCreator.cs" />
     <Compile Include="Navigation\IViewFor.cs" />
     <Compile Include="Navigation\NavigationService.cs" />
+    <Compile Include="Pages\AudioTranscript\SwitchTabAndScrollToSourceAction.cs" />
     <Compile Include="Pages\ExhibitDetailsPage.xaml.cs">
       <DependentUpon>ExhibitDetailsPage.xaml</DependentUpon>
     </Compile>
@@ -105,6 +106,15 @@
     <Compile Include="Pages\RouteDetailsPage.xaml.cs">
       <DependentUpon>RouteDetailsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\AudioTranscript\AudioTranscriptPage.xaml.cs">
+      <DependentUpon>AudioTranscriptPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AudioTranscript\SourcesPage.xaml.cs">
+      <DependentUpon>SourcesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AudioTranscript\SubtitlesPage.xaml.cs">
+      <DependentUpon>SubtitlesPage.xaml</DependentUpon>
+	</Compile>
     <Compile Include="Pages\UserOnboardingPage.xaml.cs">
       <DependentUpon>UserOnboardingPage.xaml</DependentUpon>
     </Compile>
@@ -117,6 +127,9 @@
     </Compile>
     <Compile Include="ViewModels\NavigationViewModel.cs" />
     <Compile Include="ViewModels\Pages\ExhibitDetailsViewModel.cs" />
+    <Compile Include="ViewModels\Pages\AudioTranscript\AudioTranscriptViewModel.cs" />
+    <Compile Include="ViewModels\Pages\AudioTranscript\SourcesViewModel.cs" />
+    <Compile Include="ViewModels\Pages\AudioTranscript\SubtitleViewModel.cs" />
     <Compile Include="ViewModels\Pages\LoadingPageViewModel.cs" />
     <Compile Include="ViewModels\Pages\UserOnboardingItemViewModel.cs" />
     <Compile Include="ViewModels\Pages\UserOnboardingPageViewModel.cs" />
@@ -137,10 +150,10 @@
       <DependentUpon>AudioToolbarView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\Views\SettingsScreenViewModel.cs" />
+    <Compile Include="Views\HtmlLink.cs" />
     <Compile Include="Views\ExhibitDetails\TextView.xaml.cs">
       <DependentUpon>TextView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Link.cs" />
     <Compile Include="Views\DummyView.xaml.cs">
       <DependentUpon>DummyView.xaml</DependentUpon>
     </Compile>
@@ -165,6 +178,7 @@
     <Compile Include="Views\ExhibitsOverviewView.xaml.cs">
       <DependentUpon>ExhibitsOverviewView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ReferenceLink.cs" />
     <Compile Include="Views\RoutesOverviewView.xaml.cs">
       <DependentUpon>RoutesOverviewView.xaml</DependentUpon>
     </Compile>
@@ -328,6 +342,24 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Pages\RouteDetailsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\AudioTranscript\AudioTranscriptPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\AudioTranscript\SourcesPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\AudioTranscript\SubtitlesPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

@@ -16,25 +16,25 @@ using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using Foundation;
-using HipMobileUI.iOS;
+using HipMobileUI.iOS.CustomRenderers;
 using HipMobileUI.Views;
 using UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 
-[assembly: ExportRenderer(typeof(Link), typeof(LinkRenderer))]
-namespace HipMobileUI.iOS
+[assembly: ExportRenderer(typeof(HtmlLink), typeof(HtmlLinkRenderer))]
+namespace HipMobileUI.iOS.CustomRenderers
 {
-    public class LinkRenderer : ViewRenderer
+    public class HtmlLinkRenderer : ViewRenderer
     {
-        private Link formslink;
+        private HtmlLink formslink;
 
         protected override void OnElementChanged(ElementChangedEventArgs<View> e)
         {
             base.OnElementChanged(e);
             
             // just to get the text
-            formslink = (Link)e.NewElement;
+            formslink = (HtmlLink)e.NewElement;
             if (formslink == null)
             {
                 return;

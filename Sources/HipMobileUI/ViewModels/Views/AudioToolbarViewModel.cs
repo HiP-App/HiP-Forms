@@ -18,6 +18,7 @@ using System.Windows.Input;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using de.upb.hip.mobile.pcl.Common;
 using HipMobileUI.AudioPlayer;
+using HipMobileUI.ViewModels.Pages.AudioTranscript;
 using Xamarin.Forms;
 
 namespace HipMobileUI.ViewModels.Views {
@@ -34,14 +35,16 @@ namespace HipMobileUI.ViewModels.Views {
         private readonly bool automaticallyStartNewAudio;
 
         public IAudioPlayer AudioPlayer { get; private set; }
+        public string ExhibitTitle { get; set; }
 
         /// <summary>
         /// Creates a new audio toolbar viewmodel and specifies whether a new passed audio
         /// will be played automatically
         /// </summary>
         /// <param name="automaticallyStartNewAudio"></param>
-        public AudioToolbarViewModel (bool automaticallyStartNewAudio) 
+        public AudioToolbarViewModel (bool automaticallyStartNewAudio, string exhibitTitle) 
         {
+            ExhibitTitle = exhibitTitle;
             PauseCommand = new Command(PauseAudio);
             PlayCommand = new Command(PlayAudio);
             CaptionCommand = new Command(ShowCaption);
@@ -56,7 +59,7 @@ namespace HipMobileUI.ViewModels.Views {
         /// <summary>
         /// Creates a new audio toolbar viewmodel which does not automatically start new audio files
         /// </summary>
-        public AudioToolbarViewModel() : this(false)
+        public AudioToolbarViewModel(string exhibitTitle) : this(false, exhibitTitle)
         {
         }
 
@@ -82,7 +85,7 @@ namespace HipMobileUI.ViewModels.Views {
 
         private void ShowCaption()
         {
-            Navigation.DisplayAlert("Caption", "The caption dialog will be shown here!", "OK");
+            Navigation.PushAsync (new AudioTranscriptViewModel(AudioPlayer.CurrentAudio.Caption, ExhibitTitle));
         }
 
         /// <summary>
