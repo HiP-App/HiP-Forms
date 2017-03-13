@@ -19,8 +19,9 @@ namespace HipMobileUI.ViewModels.Pages.AudioTranscript
 {
     public class AudioTranscriptViewModel : NavigationViewModel{
 
-        public AudioTranscriptViewModel (string subtitles)
+        public AudioTranscriptViewModel (string subtitles, string exhibitTitle)
         {
+            Title = exhibitTitle;
             var parser = new InteractiveSourcesParser(new ConsecutiveNumberAndConstantInteractiveSourceSubstitute(1, "Quelle"));
             var result = parser.Parse(subtitles);
 

@@ -127,7 +127,7 @@ namespace HipMobileUI.Tests.ViewModels.Views
             audioPlayer.MaximumProgress.Returns(42);
 
             var audio = Substitute.For<Audio> ();
-            var viewmodel = new AudioToolbarViewModel (automaticallyStartAudio);
+            var viewmodel = new AudioToolbarViewModel (automaticallyStartAudio, "Title");
             viewmodel.SetNewAudioFile (audio);
 
             return viewmodel;
