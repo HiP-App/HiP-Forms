@@ -38,7 +38,6 @@ namespace HipMobileUI.ViewModels.Pages {
             ShowNavigation = true;
             Title = "Navigation";
             locationManager = IoCManager.Resolve<ILocationManager> ();
-            locationManager.AddLocationListener (this);
             FocusGps = new Command(FocusGpsClicked);
         }
 
@@ -81,10 +80,29 @@ namespace HipMobileUI.ViewModels.Pages {
 
         public void LocationChanged (object sender, PositionEventArgs args)
         {
-            GpsLocation = args.Position.ToGeoLocation ();
+            GpsLocation = args.Position.ToGeoLocation();
+            locationManager.CheckNearExhibit (null, detailsRoute, new GeoLocation (args.Position.Latitude, args.Position.Longitude));
+        }
 
-            locationManager.CheckNearExhibit (null,detailsRoute, new GeoLocation(args.Position.Latitude, args.Position.Longitude));
+        public override void OnAppearing ()
+        {
+            base.OnAppearing ();
 
+            locationManager.AddLocationListener (this);
+        }
+
+        public override void OnHidden ()
+        {
+            base.OnHidden ();
+
+            locationManager.RemoveLocationListener(this);
+        }
+
+        public override void OnRevealed ()
+        {
+            base.OnRevealed ();
+
+            locationManager.AddLocationListener(this);
         }
 
         public override void OnDisappearing ()

@@ -78,5 +78,33 @@ namespace HipMobileUI.ViewModels.Pages
             }
         }
 
+        public override void OnDisappearing ()
+        {
+            base.OnDisappearing ();
+
+            SelectedViewModel.OnDisappearing ();
+        }
+
+        public override void OnAppearing ()
+        {
+            base.OnAppearing ();
+
+            SelectedViewModel.OnAppearing ();
+        }
+
+        public override void OnHidden ()
+        {
+            base.OnHidden ();
+
+            SelectedViewModel.OnHidden ();
+        }
+
+        public override void OnRevealed ()
+        {
+            base.OnRevealed ();
+
+            SelectedViewModel.OnRevealed ();
+        }
+
     }
 }
