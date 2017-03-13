@@ -271,7 +271,7 @@ namespace de.upb.hip.mobile.droid.Map {
                                               }
                                               catch (Exception)
                                               {
-                                                  action = ShowRouteCalculationError;
+                                                  action = () => { };
                                               }
 
                                               activity.RunOnUiThread (() => {
@@ -281,17 +281,15 @@ namespace de.upb.hip.mobile.droid.Map {
                                           });
         }
 
-        private void ShowRouteCalculationError ()
-        {
-            Toast.MakeText (activity, Strings.MapRenderer_NoLocation_Text, ToastLength.Long).Show ();
-        }
-
         /// <summary>
         /// Settings how the line should look like
         /// </summary>
         /// <param name="geoPoints"></param>
         private void DrawRoute (List<GeoPoint> geoPoints)
         {
+            if (disposed)
+                return;
+
             //Cleanup route if drawn before
             if (currentRouteOverlay != null)
                 mapView.OverlayManager.Remove (currentRouteOverlay);
@@ -308,6 +306,7 @@ namespace de.upb.hip.mobile.droid.Map {
             mapView.Invalidate ();
         }
 
+        private bool disposed;
 
         /// <summary>
         ///     Called when this view will be disposed.
@@ -317,6 +316,8 @@ namespace de.upb.hip.mobile.droid.Map {
         {
             if (disposing)
             {
+                disposed = true;
+
                 osmMap.ExhibitSetChanged -= NewElementOnExhibitSetChanged;
                 osmMap.GpsLocationChanged -= NewElementOnGpsLocationChanged;
                 osmMap.DetailsRouteChanged -= NewElementOnDetailsRouteChanged;
