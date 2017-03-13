@@ -75,7 +75,9 @@ namespace de.upb.hip.mobile.droid.Map {
                 activity = Context as Activity;
                 routeCalculator = RouteCalculator.Instance;
                 SetNativeControl (mapView);
-                mapView.SetTileSource (TileSourceFactory.DefaultTileSource);
+                //for the app testing the tile server was changed to watercolor style (only for android)
+                mapView.SetTileSource (new XYTileSource ("OSM", null, 0, 18, 256, ".png",
+                                                         new[] {"http://c.tile.stamen.com/watercolor/"}));
                 mapView.SetMultiTouchControls (true);
                 mapView.TilesScaledToDpi = true;
 
@@ -140,8 +142,6 @@ namespace de.upb.hip.mobile.droid.Map {
             if (gpsLocation != null)
             {
                 var userPosition = new GeoPoint (gpsLocation.Latitude, gpsLocation.Longitude);
-                mapController.SetCenter (userPosition);
-
                 if (userMarkerPosition != null)
                     mapView.OverlayManager.Remove (userMarkerPosition);
 
@@ -201,7 +201,6 @@ namespace de.upb.hip.mobile.droid.Map {
                 foreach (var waypoint in osmMap.DetailsRoute.Waypoints)
                 {
                     myPath.AddPoint (new GeoPoint (waypoint.Location.Latitude, waypoint.Location.Longitude));
-  
                 }
 
 
