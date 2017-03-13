@@ -11,7 +11,6 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-
 using System;
 using HipMobileUI.Navigation;
 using HipMobileUI.ViewModels;
@@ -28,6 +27,11 @@ namespace HipMobileUI.Pages
         public MainPage()
         {
             InitializeComponent();
+        }
+
+        protected override void OnBindingContextChanged ()
+        {
+            base.OnBindingContextChanged ();
             ViewModel.SelectedViewModel = ViewModel.MainScreenViewModels[0];
         }
 

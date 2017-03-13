@@ -17,6 +17,7 @@ using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using de.upb.hip.mobile.pcl.Common;
 using de.upb.hip.mobile.pcl.Common.Contracts;
 using de.upb.hip.mobile.pcl.DataAccessLayer;
+using HipMobileUI.Location;
 using HipMobileUI.Navigation;
 using HipMobileUI.Viewmodels.Pages;
 using HipMobileUI.ViewModels.Views;
@@ -43,13 +44,14 @@ namespace HipMobileUI.Tests.ViewModels.Pages {
             Assert.NotNull (sut.StartRouteCommand);
             Assert.NotNull (sut.StartDescriptionPlaybackCommand);
         }
-
+        
         #region HelperMethods
 
         private RouteDetailsPageViewModel CreateSystemUnderTest ()
         {
             var imageDimensions = Substitute.For<IImageDimension>();
             IoCManager.RegisterInstance(typeof(IImageDimension), imageDimensions);
+            IoCManager.RegisterInstance (typeof(ILocationManager), Substitute.For<ILocationManager>());
 
             var route = Substitute.For<Route>();
 
@@ -67,7 +69,7 @@ namespace HipMobileUI.Tests.ViewModels.Pages {
             IoCManager.RegisterInstance (typeof (IDataAccess), dataAccess);
             IoCManager.RegisterInstance (typeof (INavigationService), Substitute.For<INavigationService> ());
 
-            return new RouteDetailsPageViewModel (route, null);
+            return new RouteDetailsPageViewModel (route);
         }
 
         #endregion

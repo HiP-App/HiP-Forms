@@ -33,7 +33,7 @@ namespace HipMobileUI.Converters {
                     var vm = (NavigationViewModel) value;
                     return navigation.InstantiateView (vm);
                 }
-                throw new Exception ("Cannot convert non NavigationViewModel!");
+                throw new Exception ("Cannot convert non NavigationPageViewModel!");
             }
             return null;
         }

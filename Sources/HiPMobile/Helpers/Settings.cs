@@ -107,22 +107,10 @@ namespace de.upb.hip.mobile.pcl.Helpers
         }
 
         /// <summary>
-        /// Show hint for timeslider again
-        /// </summary>
-        private const string RepeatHintTimeSliderKey = "repeat_hint_time_slider_key";
-        private static readonly bool RepeatHintTimeSliderDefault = false;
-
-        public static bool RepeatHintTimeSlider
-        {
-            get { return AppSettings.GetValueOrDefault<bool>(RepeatHintTimeSliderKey, RepeatHintTimeSliderDefault); }
-            set { AppSettings.AddOrUpdateValue<bool>(RepeatHintTimeSliderKey, value); }
-        }
-
-        /// <summary>
         /// Show app introduction by restarting the app again
         /// </summary>
         private const string RepeatIntroKey = "repeat_intro_key";
-        private static readonly bool RepeatIntroDefault = false;
+        private static readonly bool RepeatIntroDefault = true;
 
         public static bool RepeatIntro
         {

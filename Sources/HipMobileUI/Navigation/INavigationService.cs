@@ -91,5 +91,11 @@ namespace HipMobileUI.Navigation {
         /// <param name="asm">The assembly, to be parsed.</param>
         void RegisterViewModels (Assembly asm);
 
+        /// <summary>
+        /// Resets the current navigation stack and pushes the parameter as the new root.
+        /// </summary>
+        /// <param name="newRoot">The viewmodel which view is used as the new root.</param>
+        void StartNewNavigationStack (NavigationViewModel newRoot);
+
     }
 }

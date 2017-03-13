@@ -28,6 +28,7 @@ namespace HipMobileUI.UITests
     {
         [TestCase(Platform.Android, Category = "UITestAndroid")]
         [TestCase(Platform.iOS, Category = "UITestiOS")]
+        [Ignore]
         public void MenuEntrySelectionTest(Platform platform)
         {
             BeforeEachTest(platform);

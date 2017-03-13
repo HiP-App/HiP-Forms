@@ -18,16 +18,8 @@ namespace HipMobileUI.ViewModels.Views.ExhibitDetails
     /// <summary>
     /// Base class for all viewmodels displayed in the exhibitdetailspage.
     /// </summary>
-    public class ExhibitSubviewViewModel : NavigationViewModel
+    public abstract class ExhibitSubviewViewModel : NavigationViewModel
     {
-        /// <summary>
-        /// Gets the audio for this subview.
-        /// </summary>
-        /// <returns></returns>
-        public virtual Audio GetAudio ()
-        {
-            // To be done later
-            return null;
-        }
+
     }
 }

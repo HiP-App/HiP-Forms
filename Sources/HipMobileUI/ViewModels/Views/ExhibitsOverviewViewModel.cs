@@ -16,7 +16,9 @@ using System.Collections.ObjectModel;
 using System.Windows.Input;
 using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
+using de.upb.hip.mobile.pcl.Common;
 using HipMobileUI.Helpers;
+using HipMobileUI.Location;
 using HipMobileUI.ViewModels.Pages;
 using Plugin.Geolocator;
 using Plugin.Geolocator.Abstractions;
@@ -24,16 +26,16 @@ using Xamarin.Forms;
 
 namespace HipMobileUI.ViewModels.Views
 {
-    class ExhibitsOverviewViewModel : NavigationViewModel
+    class ExhibitsOverviewViewModel : NavigationViewModel, ILocationListener
     {
         private ObservableCollection<ExhibitsOverviewListItemViewModel> exhibitsList;
         private ICommand itemTappedCommand;
-        private readonly IGeolocator locator;
+        private ILocationManager locationManager;
         private bool displayDistances;
         private ExhibitSet displayedExhibitSet;
         private Position position;
 
-        public ExhibitsOverviewViewModel(ExhibitSet set, IGeolocator geolocator)
+        public ExhibitsOverviewViewModel(ExhibitSet set)
         {
             if (set != null)
             {
@@ -48,21 +50,8 @@ namespace HipMobileUI.ViewModels.Views
             ItemTappedCommand = new Command(item => NavigateToExhibitDetails(item as ExhibitsOverviewListItemViewModel));
             DisplayDistances = false;
 
-            if (geolocator != null)
-            {
-                locator = geolocator;
-                locator.DesiredAccuracy = AppSharedData.MinDistanceChangeForUpdates;
-                locator.PositionChanged += LocatorOnPositionChanged;
-                locator.StartListeningAsync(AppSharedData.MinTimeBwUpdates, AppSharedData.MinDistanceChangeForUpdates);
-            }
-        }
 
-        public ExhibitsOverviewViewModel (ExhibitSet set) : this(set, null)
-        {
-            locator = CrossGeolocator.Current;
-            locator.DesiredAccuracy = AppSharedData.MinDistanceChangeForUpdates;
-            locator.PositionChanged += LocatorOnPositionChanged;
-            locator.StartListeningAsync(AppSharedData.MinTimeBwUpdates, AppSharedData.MinDistanceChangeForUpdates);
+            locationManager = IoCManager.Resolve<ILocationManager> ();
         }
 
         public ExhibitsOverviewViewModel (string exhibitSetId) : this(ExhibitManager.GetExhibitSet(exhibitSetId))
@@ -73,10 +62,14 @@ namespace HipMobileUI.ViewModels.Views
         /// React to position changes.
         /// </summary>
         /// <param name="sender">The sender of the event.</param>
-        /// <param name="positionEventArgs">The event params.</param>
-        private void LocatorOnPositionChanged (object sender, PositionEventArgs positionEventArgs)
+        /// <param name="args">The event params.</param>
+        public void LocationChanged(object sender, PositionEventArgs args)
         {
-            SetDistances (positionEventArgs.Position);
+            Position = args.Position;
+            SetDistances(args.Position);
+
+            locationManager.CheckNearExhibit (displayedExhibitSet,null,new GeoLocation(args.Position.Latitude,args.Position.Longitude));
+
         }
 
         /// <summary>
@@ -85,7 +78,6 @@ namespace HipMobileUI.ViewModels.Views
         /// <param name="pos">The new position.</param>
         private void SetDistances (Position pos)
         {
-            Position = pos;
             DisplayDistances = true;
             foreach (var exhibit in ExhibitsList)
             {
@@ -95,13 +87,23 @@ namespace HipMobileUI.ViewModels.Views
         }
 
         /// <summary>
-        /// Remove the location listener once this view disappears.
+        /// Called when the view was removed from the visual tree.
         /// </summary>
         public override void OnDisappearing ()
         {
             base.OnDisappearing ();
 
-            locator.PositionChanged -= LocatorOnPositionChanged;
+            locationManager.RemoveLocationListener (this);
+        }
+
+        /// <summary>
+        /// Called when the view was added to the visual tree.
+        /// </summary>
+        public override void OnAppearing ()
+        {
+            base.OnAppearing ();
+
+            locationManager.AddLocationListener (this);
         }
 
         /// <summary>
@@ -155,6 +157,8 @@ namespace HipMobileUI.ViewModels.Views
             get { return position; }
             set { SetProperty (ref position, value); }
         }
+
+        
 
     }
 }

@@ -27,10 +27,13 @@
     <StackLayout Orientation="Vertical" Spacing="0">
       <Image Source="{Binding Image}" Aspect="AspectFill" HeightRequest="155" />
 
-      <container:TabView Tabs="{Binding Tabs}"
+      <container:TabContainerView Tabs="{Binding Tabs}"
                          HorizontalOptions="FillAndExpand"
                          VerticalOptions="FillAndExpand"
                          BackgroundColor="White">
+          <container:TabContainerView.TabViews>
+              
+          
         <!-- Description Tab -->
         <ScrollView>
             <StackLayout Padding="16,6,16,0" Orientation="Vertical">
@@ -51,13 +54,12 @@
 
         <!-- Map Tab -->
 
-        <BoxView Color="Gray" x:Name="Map" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
-        <!--<map:OsmMap x:Name="Map" ExhibitSet="{Binding ExhibitSet}" GpsLocation="{Binding GpsLocation}"
+        <map:OsmMap x:Name="Map" ExhibitSet="{Binding ExhibitSet}" GpsLocation="{Binding GpsLocation}"
                     DetailsRoute="{Binding DetailsRoute}" ShowDetailsRoute="{Binding ShowDetailsRoute}" HorizontalOptions="FillAndExpand"
                          VerticalOptions="FillAndExpand"
-                         BackgroundColor="Transparent" />-->
-
-      </container:TabView>
+                         BackgroundColor="Transparent" />
+                </container:TabContainerView.TabViews>
+            </container:TabContainerView>
 
       <!-- info & start route -->
       <BoxView HeightRequest="1" Color="#66000000" />

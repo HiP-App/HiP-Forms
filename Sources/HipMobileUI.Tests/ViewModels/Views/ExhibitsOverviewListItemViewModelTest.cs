@@ -39,9 +39,9 @@ namespace HipMobileUI.Tests.ViewModels.Views
         {
             var sut = CreateSystemUnderTest();
 
+            Assert.AreEqual("42 m", sut.FormatedDistance);
+            sut.Distance = 42000;
             Assert.AreEqual("42 km", sut.FormatedDistance);
-            sut.Distance = 0.1;
-            Assert.AreEqual("100 m", sut.FormatedDistance);
         }
 
         #region HelperMethods
