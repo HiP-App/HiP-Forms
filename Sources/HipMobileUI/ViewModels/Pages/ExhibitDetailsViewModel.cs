@@ -257,6 +257,8 @@ namespace HipMobileUI.ViewModels.Pages {
         {
             base.OnDisappearing ();
 
+            AudioToolbar.AudioPlayer.AudioCompleted -= AudioPlayerOnAudioCompleted;
+
             //inform the audio toolbar to clean up
             AudioToolbar.OnDisappearing ();
         }
