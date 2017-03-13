@@ -31,11 +31,11 @@ using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 using HipMobileUI.Resources;
 
-[assembly: ExportRenderer(typeof(OsmMap), typeof(MapRenderer))]
+[assembly: ExportRenderer(typeof(OsmMap), typeof(IosMapRenderer))]
 
 namespace HipMobileUI.iOS.Map
 {
-    class MapRenderer : ViewRenderer<OsmMap, MKMapView> {
+    class IosMapRenderer : ViewRenderer<OsmMap, MKMapView> {
 
         private OsmMap osmMap;
         private UserAnnotation userAnnotation;
@@ -200,7 +200,7 @@ namespace HipMobileUI.iOS.Map
                 }
                 catch (Exception)
                 {
-                    action = ShowRouteCalculationError;
+                    action = () => { };
                 }
 
                 Device.BeginInvokeOnMainThread (() => {
@@ -210,27 +210,14 @@ namespace HipMobileUI.iOS.Map
         }
 
         /// <summary>
-        /// Shows an error that route calculation is not currently possible.
-        /// </summary>
-        private void ShowRouteCalculationError ()
-        {
-            if (canShowError)
-            {
-                canShowError = false;
-                IoCManager.Resolve<INavigationService> ().DisplayAlert ("Fehler", Strings.MapRenderer_NoLocation_Text, "Ok");
-                Device.StartTimer (TimeSpan.FromSeconds (10), () => {
-                                       canShowError = true;
-                                       return false;
-                                   });
-            }
-        }
-
-        /// <summary>
         /// Draw a route between the given geopoints.
         /// </summary>
         /// <param name="geoPoints">The geopoints of the route.</param>
         private void DrawRoute (List<CLLocationCoordinate2D> geoPoints)
         {
+            if (disposed)
+                return;
+
             if (navigationPolyline != null)
             {
                 Control.RemoveOverlay (navigationPolyline);
@@ -376,6 +363,8 @@ namespace HipMobileUI.iOS.Map
             }
         }
 
+        private bool disposed;
+
         /// <summary>
         /// Disposes this view.
         /// </summary>
@@ -384,6 +373,8 @@ namespace HipMobileUI.iOS.Map
         {
             if (disposing)
             {
+                disposed = true;
+
                 Control.CalloutAccessoryControlTapped -= OnCalloutAccessoryControlTapped;
                 osmMap.GpsLocationChanged -= OnGpsLocationChanged;
                 osmMap.ExhibitSetChanged -= OnExhibitSetChanged;
