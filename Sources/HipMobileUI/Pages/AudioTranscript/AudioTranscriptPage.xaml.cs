@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System.ComponentModel;
 using de.upb.hip.mobile.pcl.BusinessLayer.InteractiveSources;
 using HipMobileUI.Navigation;
 using HipMobileUI.ViewModels.Pages.AudioTranscript;
@@ -19,11 +20,29 @@ using Xamarin.Forms;
 
 namespace HipMobileUI.Pages.AudioTranscript
 {
+    public delegate void CurrentPageChangedEventHandler();
     public partial class AudioTranscriptPage : TabbedPage, IViewFor<AudioTranscriptViewModel>
     {
+        public new event CurrentPageChangedEventHandler CurrentPageChanged;
+
         public AudioTranscriptPage()
         {
             InitializeComponent ();
+            PropertyChanged += OnPropertyChanged;
+        }
+
+        // Used to automatically switch tab page und scroll to reference
+        private void OnPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == "CurrentPage")
+            {
+                RaiseCurrentPageChanged();
+            }
+        }
+
+        private void RaiseCurrentPageChanged()
+        {
+            CurrentPageChanged?.Invoke();
         }
 
         public static readonly BindableProperty ActionProperty =

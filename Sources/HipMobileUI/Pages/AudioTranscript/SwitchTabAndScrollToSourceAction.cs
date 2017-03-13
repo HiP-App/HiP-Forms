@@ -12,31 +12,60 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System;
+using System.Threading.Tasks;
 using de.upb.hip.mobile.pcl.BusinessLayer.InteractiveSources;
 using Xamarin.Forms;
 
 namespace HipMobileUI.Pages.AudioTranscript {
     public class SwitchTabAndScrollToSourceAction : IInteractiveSourceAction {
 
+        public TabbedPage TabbedPage { get; set; }
+        public Source Source { get; set; }
+
         public SwitchTabAndScrollToSourceAction (TabbedPage tabbedPage)
         {
             TabbedPage = tabbedPage;
         }
 
-        public TabbedPage TabbedPage { get; set; }
+        private async void OnCurrentPageChanged (object sender, EventArgs e)
+        {
+            await Task.Delay (100);
+
+            var sourcesPage = TabbedPage.Children[1] as SourcesPage;
+            if (sourcesPage != null)
+            {
+                var sourcesListView = sourcesPage.Content as ListView;
+
+                if (sourcesListView != null)
+                {
+                    // Scroll automatically to the tapped reference
+                    ScrollToWithDelay (sourcesListView, Source, ScrollToPosition.Start);
+                }
+            }
+            TabbedPage.CurrentPageChanged -= OnCurrentPageChanged;
+        }
 
         public void Display (Source src)
         {
             var sourcesPage = TabbedPage.Children[1] as SourcesPage;
             if (sourcesPage != null)
             {
-                var sourcesListView = sourcesPage.Content as ListView;
+                Source = src;
+                TabbedPage.CurrentPageChanged += OnCurrentPageChanged;
 
-                // scroll to the selected reference
+                // Switch to the reference tab
                 TabbedPage.CurrentPage = sourcesPage;
-                if (sourcesListView != null)
-                    sourcesListView.ScrollTo(src, ScrollToPosition.Start, true);
             }
+        }
+
+        public static void ScrollToWithDelay(ListView lv, object item, ScrollToPosition position, bool animated = true)
+        {
+            Device.StartTimer(TimeSpan.FromMilliseconds(50), () =>
+            {
+                lv.ScrollTo(item, position, animated);
+                return false;
+            });
         }
     }
 }
