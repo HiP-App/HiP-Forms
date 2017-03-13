@@ -19,6 +19,7 @@ using de.upb.hip.mobile.pcl.BusinessLayer.InteractiveSources;
 using Foundation;
 using UIKit;
 using Xamarin.Forms;
+using Xamarin.Forms.Platform.iOS;
 
 namespace HipMobileUI.iOS.Helpers {
     public static class TextViewInteractiveSourcesExtension
@@ -39,7 +40,7 @@ namespace HipMobileUI.iOS.Helpers {
             Dictionary<Source, FinalSourcePosition> sourcePositions = new Dictionary<Source, FinalSourcePosition> ();
             var formattedTextWithSubstitutes = new NSMutableAttributedString(text);
 
-            // get the textpositions of each source and mark them orange
+            // get the textpositions of each source and mark them
             foreach (var source in sources)
             {
                 if (source == null)
@@ -52,7 +53,7 @@ namespace HipMobileUI.iOS.Helpers {
                     End = startIndex + source.SubstituteText.Length - 1
                 });
 
-                formattedTextWithSubstitutes.AddAttribute(UIStringAttributeKey.ForegroundColor, UIColor.Orange, new NSRange(source.StartIndex, source.SubstituteText.Length));
+                formattedTextWithSubstitutes.AddAttribute(UIStringAttributeKey.ForegroundColor, ((Color)Xamarin.Forms.Application.Current.Resources["AccentColor"]).ToUIColor(), new NSRange(source.StartIndex, source.SubstituteText.Length));
             }
             textView.AttributedText = formattedTextWithSubstitutes;
 
