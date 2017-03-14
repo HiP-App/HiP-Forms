@@ -35,5 +35,23 @@ namespace HipMobileUI.Views
             get { return (Func<IInteractiveSourceAction>)GetValue(ActionProperty); }
             set { SetValue(ActionProperty, value); }
         }
+
+        public string HtmlText
+        {
+            get
+            {
+                string text = Text.Replace("\n", "<br>");
+
+                //Add an <br> in front of all <ol> without a <br> 
+                text = text.Replace("<br><ol>", "<ol>");
+                text = text.Replace("<ol>", "<br><ol>");
+
+                //Add an <br> in front of all <ul> without a <br> 
+                text = text.Replace("<br><ul>", "<ul>");
+                text = text.Replace("<ul>", "<br><ul>");
+
+                return text;
+            }
+        }
     }
 }

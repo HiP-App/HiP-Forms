@@ -1,4 +1,4 @@
-﻿// Copyright (C) 2017 History in Paderborn App - Universität Paderborn
+// Copyright (C) 2017 History in Paderborn App - Universit�t Paderborn
 //  
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,6 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using Android.OS;
+using Android.Text;
 using Android.Text.Method;
 using Android.Text.Util;
 using de.upb.hip.mobile.droid.CustomRenderers;
@@ -20,32 +22,33 @@ using HipMobileUI.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
-[assembly: ExportRenderer(typeof(ReferenceLink), typeof(ReferenceLinkRenderer))]
+[assembly: ExportRenderer(typeof(HtmlLink), typeof(DroidHtmlLinkRenderer))]
 namespace de.upb.hip.mobile.droid.CustomRenderers
 {
-    public class ReferenceLinkRenderer : LabelRenderer
+    class DroidHtmlLinkRenderer : LabelRenderer
     {
-        private ReferenceLink referenceLink;
+        private HtmlLink formslink;
 
         protected override void OnElementChanged(ElementChangedEventArgs<Label> elementChangedEventArgs)
         {
             base.OnElementChanged(elementChangedEventArgs);
 
-            if (elementChangedEventArgs.NewElement != null)
+            formslink = elementChangedEventArgs.NewElement as HtmlLink;
+
+            if (formslink != null)
             {
-                referenceLink = (ReferenceLink)elementChangedEventArgs.NewElement;
-                if (referenceLink == null)
+                string html = new HtmlTagHelper ().FormatAdditionalTags (formslink.HtmlText);
+
+                if (Build.VERSION.SdkInt >= BuildVersionCodes.N)
                 {
-                    return;
+                    Control.TextFormatted = Html.FromHtml(html, FromHtmlOptions.ModeLegacy);
                 }
-                var srcList = referenceLink.Sources;
-                var formatedText = referenceLink.Text;
-                var action = referenceLink.Action;
-                var spannableTextBuilder = new SpannableTextBuilder();
-
-                var formattedSubtitles = spannableTextBuilder.CreateSubtitlesText(action(), formatedText, srcList);
-
-                Control.TextFormatted = formattedSubtitles;
+                else
+                {
+#pragma warning disable 618
+                    Control.TextFormatted = Html.FromHtml (html);
+#pragma warning restore 618
+                }
 
                 // Make links clickable
                 Control.MovementMethod = LinkMovementMethod.Instance;

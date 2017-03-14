@@ -21,9 +21,9 @@ using UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 
-[assembly: ExportRenderer(typeof(ReferenceLink), typeof(ReferenceLinkRenderer))]
+[assembly: ExportRenderer(typeof(ReferenceLink), typeof(IosReferenceLinkRenderer))]
 namespace HipMobileUI.iOS.CustomRenderers {
-    public class ReferenceLinkRenderer : ViewRenderer
+    public class IosReferenceLinkRenderer : ViewRenderer
     {
         private ReferenceLink referenceLink;
 
@@ -38,12 +38,21 @@ namespace HipMobileUI.iOS.CustomRenderers {
                 {
                     return;
                 }
+                NSAttributedString attributedString = null;
+                var htmlData = NSData.FromString(referenceLink.HtmlText);
+
+                if (htmlData != null)
+                {
+                    NSError error = new NSError();
+                    attributedString = new NSAttributedString(htmlData, new NSAttributedStringDocumentAttributes { DocumentType = NSDocumentType.HTML, StringEncoding = NSStringEncoding.UTF8 }, ref error);
+                }
+
 
                 var action = referenceLink.Action;
 
                 var textView = new UITextView();
                 textView.TextColor = UIColor.Gray;
-                textView.ApplySubtitlesLinks(action(), referenceLink.Sources, referenceLink.Text);
+                textView.ApplySubtitlesLinks(action(), referenceLink.Sources, attributedString);
                 textView.Editable = false;
                 textView.ScrollEnabled = false;
                 textView.Font = UIFont.SystemFontOfSize(14);
