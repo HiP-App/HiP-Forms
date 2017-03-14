@@ -16,13 +16,16 @@ using System.Collections.Generic;
 using System.Linq;
 using de.upb.hip.mobile.pcl.Common;
 using de.upb.hip.mobile.pcl.DataAccessLayer;
+using Realms;
 
 namespace de.upb.hip.mobile.pcl.BusinessLayer.Models
 {
     public partial class Route {
 
+        [Ignored]
         public IList<Waypoint> ActiveSet => Waypoints.Where (wp => !wp.Visited).ToList ();
 
+        [Ignored]
         public IList<Waypoint> PassiveSet => Waypoints.Where(wp => wp.Visited).ToList();
 
         /// <summary>
