@@ -32,7 +32,7 @@ namespace HipMobileUI.iOS.Helpers {
         /// <param name="sources">The parsed sources</param>
         /// <param name="textView">Textiew the SubtitleLinks should be attached to</param>
         /// <param name="text">Text representing the whole subtitle</param>
-        public static void ApplySubtitlesLinks(this UITextView textView, IInteractiveSourceAction action, List<Source> sources, string text)
+        public static void ApplySubtitlesLinks(this UITextView textView, IInteractiveSourceAction action, List<Source> sources, NSAttributedString text)
         {
             if (action == null)
                 return;
@@ -46,14 +46,15 @@ namespace HipMobileUI.iOS.Helpers {
                 if (source == null)
                     continue;
 
-                int startIndex = text.IndexOf (source.SubstituteText, StringComparison.Ordinal);
-                sourcePositions.Add (source, new FinalSourcePosition
+                int startIndex = text.Value.IndexOf (source.SubstituteText, StringComparison.Ordinal);
+                var finalPostion = new FinalSourcePosition
                 {
                     Start = startIndex,
                     End = startIndex + source.SubstituteText.Length - 1
-                });
+                };
+                sourcePositions.Add (source, finalPostion);
 
-                formattedTextWithSubstitutes.AddAttribute(UIStringAttributeKey.ForegroundColor, ((Color)Xamarin.Forms.Application.Current.Resources["AccentColor"]).ToUIColor(), new NSRange(source.StartIndex, source.SubstituteText.Length));
+                formattedTextWithSubstitutes.AddAttribute(UIStringAttributeKey.ForegroundColor, ((Color)Xamarin.Forms.Application.Current.Resources["AccentColor"]).ToUIColor(), new NSRange(finalPostion.Start, source.SubstituteText.Length));
             }
             textView.AttributedText = formattedTextWithSubstitutes;
 

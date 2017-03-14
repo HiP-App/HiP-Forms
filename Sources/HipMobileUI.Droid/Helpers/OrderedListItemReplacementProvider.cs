@@ -11,19 +11,14 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-using Xamarin.Forms;
-
-namespace HipMobileUI.Views
-{
-    public class HtmlLink : Label
+namespace de.upb.hip.mobile.droid.Helpers {
+    public class OrderedListItemReplacementProvider : IListReplacementProvider
     {
-        public string HtmlText
+        private int first = 1;
+
+        public string GetReplacement ()
         {
-            get
-            {
-                string text = Text.Replace ("\n", "<br>");
-                return text;
-            }
+            return $"\t{first++}. ";
         }
     }
 }
