@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" dslVersion="1.0.0.0" Id="6b05da09-e50e-49a4-b7cd-067c54ec5237" name="DomainModel" linkedPackageId="1d07aa28-da84-4248-8417-a1263c2ba8bf" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
+<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" dslVersion="1.0.0.0" Id="6b05da09-e50e-49a4-b7cd-067c54ec5237" name="DomainModel" linkedPackageId="1d07aa28-da84-4248-8417-a1263c2ba8bf" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
   <appliedStereotypesInternal>
     <stereotypeInstance Id="fb053eca-b839-49a2-8ced-e4d803ff45fa" name="namespace" profile="CSharpProfile">
       <elementDefinition Id="0f9065fc-a3ba-4906-bdc4-899451c2267d" />
@@ -3111,7 +3111,7 @@
                       <elementDefinition Id="9a318606-6532-465a-96b7-602ed1425ef6" />
                     </stereotypeInstanceHasPropertyInstances>
                     <stereotypeInstanceHasPropertyInstances Id="cd5ba129-2f2e-4a72-b827-91eadff599e2">
-                      <propertyInstance Id="79754ace-bb44-45b2-ba51-a4abf30c39ec" name="IsPartial" value="false">
+                      <propertyInstance Id="79754ace-bb44-45b2-ba51-a4abf30c39ec" name="IsPartial" value="true">
                         <elementDefinition Id="d7029f4c-bb2a-4c08-9e2f-f643d06dc336" />
                       </propertyInstance>
                       <elementDefinition Id="aeb0e770-aa9a-44d6-a3f9-4775533d8227" />
@@ -3181,7 +3181,7 @@
                   </relationshipOwnedElementsInternal>
                   <elementDefinition Id="a5236361-6d2b-4523-8a57-a3a385c11ef5" />
                 </association>
-                <association Id="59c61365-e747-4aaa-9180-564733282038" isDerived="false" sourceEndRoleName="Route" targetEndRoleName="Waypoints" isLeaf="false" isAbstract="false">
+                <association Id="59c61365-e747-4aaa-9180-564733282038" isDerived="false" sourceEndRoleName="Route" targetEndRoleName="PassiveSet" isLeaf="false" isAbstract="false">
                   <classMoniker Id="4a79e606-aa0d-4084-b5bb-57671a52554a" LastKnownName="Waypoint" />
                   <relationshipOwnedElementsInternal>
                     <associationHasOwnedEnds>
@@ -3190,7 +3190,7 @@
                       </memberEnd>
                     </associationHasOwnedEnds>
                     <associationHasOwnedEnds>
-                      <memberEnd Id="bab9c8c8-de80-4f83-ac1f-ab087cc92a84" name="Waypoints" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                      <memberEnd Id="bab9c8c8-de80-4f83-ac1f-ab087cc92a84" name="PassiveSet" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
                         <lowerValueInternal>
                           <literalString Id="a930ebda-fa54-4b14-bcb0-71f40f837631" name="Lower" value="*">
                             <elementDefinition Id="4565556d-54fc-43d3-9c92-dad62604e9c8" />
@@ -3206,6 +3206,32 @@
                     </associationHasOwnedEnds>
                   </relationshipOwnedElementsInternal>
                   <elementDefinition Id="13fb2bc1-d10b-4f4a-b816-cf6d870df83e" />
+                </association>
+                <association Id="d9e17d0b-6291-4b6c-a209-65cc2aae7590" isDerived="false" sourceEndRoleName="Route" targetEndRoleName="ActiveSet" isLeaf="false" isAbstract="false">
+                  <classMoniker Id="4a79e606-aa0d-4084-b5bb-57671a52554a" LastKnownName="Waypoint" />
+                  <relationshipOwnedElementsInternal>
+                    <associationHasOwnedEnds>
+                      <memberEnd Id="10d13a07-a072-4d1b-b538-2d9bbb76f238" name="Route" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                        <elementDefinition Id="d6d90da1-1902-4975-bf0c-2733affea3f8" />
+                      </memberEnd>
+                    </associationHasOwnedEnds>
+                    <associationHasOwnedEnds>
+                      <memberEnd Id="a3d10a89-a0b9-418e-834b-5f7c3565f12b" name="ActiveSet" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                        <lowerValueInternal>
+                          <literalString Id="a87a1eb4-08af-47a8-ab45-900f793d8d77" name="Lower" value="*">
+                            <elementDefinition Id="1848f9b2-6489-4bd3-b220-0e0bc528abdb" />
+                          </literalString>
+                        </lowerValueInternal>
+                        <upperValueInternal>
+                          <literalString Id="8821974a-a9f7-43f1-aa4c-4b825eb0b51b" name="Upper" value="*">
+                            <elementDefinition Id="c2f98e1c-4da9-4f13-9213-bf157570b228" />
+                          </literalString>
+                        </upperValueInternal>
+                        <elementDefinition Id="40b02f79-aabd-440c-b3c1-017d456b894f" />
+                      </memberEnd>
+                    </associationHasOwnedEnds>
+                  </relationshipOwnedElementsInternal>
+                  <elementDefinition Id="73a64f9d-1010-4291-b4f1-9f59e97a8b55" />
                 </association>
               </targetEnds>
               <ownedAttributesInternal>

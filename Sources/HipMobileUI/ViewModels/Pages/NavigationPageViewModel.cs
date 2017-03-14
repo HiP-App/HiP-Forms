@@ -12,6 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.using System;
 
+using System;
+using System.Linq;
 using System.Windows.Input;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using de.upb.hip.mobile.pcl.Common;
@@ -26,6 +28,7 @@ namespace HipMobileUI.ViewModels.Pages {
         private ExhibitSet exhibitSet;
         private GeoLocation gpsLocation;
         private ILocationManager locationManager;
+        private INearbyExhibitManager nearbyExhibitManager;
         private Route detailsRoute;
 
         private bool showNavigation;
@@ -38,6 +41,7 @@ namespace HipMobileUI.ViewModels.Pages {
             ShowNavigation = true;
             Title = "Navigation";
             locationManager = IoCManager.Resolve<ILocationManager> ();
+            nearbyExhibitManager = IoCManager.Resolve<INearbyExhibitManager> ();
             FocusGps = new Command(FocusGpsClicked);
         }
 
@@ -81,7 +85,7 @@ namespace HipMobileUI.ViewModels.Pages {
         public void LocationChanged (object sender, PositionEventArgs args)
         {
             GpsLocation = args.Position.ToGeoLocation();
-            locationManager.CheckNearExhibit (null, detailsRoute, new GeoLocation (args.Position.Latitude, args.Position.Longitude));
+            nearbyExhibitManager.CheckNearExhibit (detailsRoute.ActiveSet.Select (waypoint => waypoint.Exhibit), GpsLocation);
         }
 
         public override void OnAppearing ()
@@ -89,6 +93,17 @@ namespace HipMobileUI.ViewModels.Pages {
             base.OnAppearing ();
 
             locationManager.AddLocationListener (this);
+            nearbyExhibitManager.ExhibitVisitedEvent+=ExhibitVisited;
+        }
+
+        private void ExhibitVisited (object sender, Exhibit exhibit)
+        {
+            Waypoint waypoint = DetailsRoute.Waypoints.First (wp => Equals (wp.Exhibit, exhibit));
+            bool moved = DetailsRoute.MoveToPassiveSet (waypoint);
+            if (moved)
+            {
+                OnPropertyChanged (nameof(DetailsRoute));
+            }
         }
 
         public override void OnHidden ()
@@ -110,6 +125,12 @@ namespace HipMobileUI.ViewModels.Pages {
             base.OnDisappearing ();
 
             locationManager.RemoveLocationListener (this);
+
+            if (DetailsRoute.IsRouteFinished ())
+            {
+                DetailsRoute.ResetRoute ();
+            }
+            nearbyExhibitManager.ExhibitVisitedEvent -= ExhibitVisited;
         }
 
     }

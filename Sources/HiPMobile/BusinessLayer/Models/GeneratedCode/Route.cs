@@ -25,7 +25,7 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models
 	using System.Linq;
 	using System.Text;
 
-	public class Route : RealmObject, IIdentifiable
+	public partial class Route : RealmObject, IIdentifiable
 	{
 		//Attributes
 		[PrimaryKey]
@@ -44,7 +44,9 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models
 
 		public virtual Image Image{ get; set; }
 
-		public virtual IList<Waypoint> Waypoints{ get; }
+		public virtual IList<Waypoint> PassiveSet{ get; }
+
+		public virtual IList<Waypoint> ActiveSet{ get; }
 
 		// Contructor
 		public Route(){

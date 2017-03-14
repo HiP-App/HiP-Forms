@@ -451,4 +451,16 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   <data name="MapRenderer_NoLocation_Text" xml:space="preserve">
     <value>Sie sind nicht in Paderborn oder es ist momentan kein GPS Signal vorhanden</value>
   </data>
+  <data name="RouteDetailspageViewModel_Back" xml:space="preserve">
+    <value>Zurück</value>
+  </data>
+  <data name="RouteDetailspageViewModel_ContinueRoute" xml:space="preserve">
+    <value>Route fortführen</value>
+  </data>
+  <data name="RouteDetailspageViewModel_RestartRoute" xml:space="preserve">
+    <value>Route neu starten</value>
+  </data>
+  <data name="RouteDetailspageViewModel_RouteStarted" xml:space="preserve">
+    <value>Die Route wurde bereits begonnen:</value>
+  </data>
 </root>

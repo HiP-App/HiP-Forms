@@ -87,6 +87,8 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Routing {
             return result;
         }
 
+        
+
 
         /// <summary>
         ///     This method calculates one route from several waypoints
@@ -105,7 +107,7 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Routing {
                 locations.Add (new Coordinate ((float) userPosition.Latitude, (float) userPosition.Longitude));
             }
 
-            foreach (var v in RouteManager.GetRoute(id).Waypoints)
+            foreach (var v in RouteManager.GetRoute(id).ActiveSet)
                 locations.Add (new Coordinate ((float) v.Location.Latitude, (float) v.Location.Longitude));
 
             var route = routeRouter.TryCalculate (Vehicle.Pedestrian.Fastest (), locations.ToArray ());
