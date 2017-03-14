@@ -29,22 +29,38 @@ namespace de.upb.hip.mobile.droid.Helpers {
         /// <param name="textWithSubstitutes">The parsed text with substitutes</param>
         /// <param name="sources">The parsed sources</param>
         /// <returns>A SpannableString parsed from the textWithSubstitutes for the subtitles. Returns null, if the provided action is null.</returns>
-        public SpannableString CreateSubtitlesText (IInteractiveSourceAction action, string textWithSubstitutes, List<Source> sources)
+        public SpannableString CreateSubtitlesText (IInteractiveSourceAction action, ISpanned textWithSubstitutes, List<Source> sources)
         {
             if (action == null)
                 return null;
 
+            var sourcePositions = new Dictionary<Source, FinalSourcePosition>();
+
+            // get the textpositions of each source and mark them
+            foreach (var source in sources)
+            {
+                if (source == null)
+                    continue;
+
+                int startIndex = textWithSubstitutes.ToString ().IndexOf(source.SubstituteText, StringComparison.Ordinal);
+                sourcePositions.Add(source, new FinalSourcePosition
+                {
+                    Start = startIndex,
+                    End = startIndex + source.SubstituteText.Length
+                });
+            }
+
             var str = new SpannableString (textWithSubstitutes);
 
-            foreach (var src in sources)
+            foreach (var src in sourcePositions)
             {
-                if (src == null)
+                if (src.Key == null)
                     continue;
 
                 str.SetSpan (
-                    ConvertSrcToClickableSpan (src, action),
-                    src.StartIndex,
-                    src.StartIndex + src.SubstituteText.Length,
+                    ConvertSrcToClickableSpan (src.Key, action),
+                    src.Value.Start,
+                    src.Value.End,
                     SpanTypes.ExclusiveExclusive);
             }
 
@@ -79,6 +95,13 @@ namespace de.upb.hip.mobile.droid.Helpers {
             {
                 Click?.Invoke (widget);
             }
+        }
+
+        private class FinalSourcePosition
+        {
+            public int Start { get; set; }
+
+            public int End { get; set; }
         }
     }
 }

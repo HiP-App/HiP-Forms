@@ -12,6 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using Android.OS;
+using Android.Text;
 using Android.Text.Method;
 using Android.Text.Util;
 using de.upb.hip.mobile.droid.CustomRenderers;
@@ -20,10 +22,10 @@ using HipMobileUI.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
-[assembly: ExportRenderer(typeof(ReferenceLink), typeof(ReferenceLinkRenderer))]
+[assembly: ExportRenderer(typeof(ReferenceLink), typeof(DroidReferenceLinkRenderer))]
 namespace de.upb.hip.mobile.droid.CustomRenderers
 {
-    public class ReferenceLinkRenderer : LabelRenderer
+    public class DroidReferenceLinkRenderer : LabelRenderer
     {
         private ReferenceLink referenceLink;
 
@@ -39,13 +41,25 @@ namespace de.upb.hip.mobile.droid.CustomRenderers
                     return;
                 }
                 var srcList = referenceLink.Sources;
-                var formatedText = referenceLink.Text;
                 var action = referenceLink.Action;
                 var spannableTextBuilder = new SpannableTextBuilder();
 
-                var formattedSubtitles = spannableTextBuilder.CreateSubtitlesText(action(), formatedText, srcList);
+                ISpanned spannedText;
 
-                Control.TextFormatted = formattedSubtitles;
+                string html = new HtmlTagHelper().FormatAdditionalTags(referenceLink.HtmlText);
+
+                if (Build.VERSION.SdkInt >= BuildVersionCodes.N)
+                {
+                    spannedText = Html.FromHtml(html, FromHtmlOptions.ModeLegacy);
+                }
+                else
+                {
+#pragma warning disable 618
+                    spannedText = Html.FromHtml(html);
+#pragma warning restore 618
+                }
+
+                Control.TextFormatted = spannableTextBuilder.CreateSubtitlesText(action(), spannedText, srcList);
 
                 // Make links clickable
                 Control.MovementMethod = LinkMovementMethod.Instance;

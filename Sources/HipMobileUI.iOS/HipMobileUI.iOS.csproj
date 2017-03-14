@@ -160,7 +160,7 @@
     <Compile Include="CustomRenderers\FloatingActionButtonIosRenderer.cs" />
     <Compile Include="CustomRenderers\IosOrientationContentPageRenderer.cs" />
     <Compile Include="CustomRenderers\IosTouchEventSlider.cs" />
-    <Compile Include="CustomRenderers\ReferenceLinkRenderer.cs" />
+    <Compile Include="CustomRenderers\IosReferenceLinkRenderer.cs" />
     <Compile Include="Effects\IosSwitchColorEffect.cs" />
     <Compile Include="Helpers\Settings.cs" />
     <Compile Include="Helpers\TextViewInteractiveSourcesExtension.cs" />
