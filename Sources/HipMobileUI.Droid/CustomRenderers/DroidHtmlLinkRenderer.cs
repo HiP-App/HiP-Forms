@@ -17,14 +17,15 @@ using Android.Text;
 using Android.Text.Method;
 using Android.Text.Util;
 using de.upb.hip.mobile.droid.CustomRenderers;
+using de.upb.hip.mobile.droid.Helpers;
 using HipMobileUI.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
-[assembly: ExportRenderer(typeof(HtmlLink), typeof(HtmlLinkRenderer))]
+[assembly: ExportRenderer(typeof(HtmlLink), typeof(DroidHtmlLinkRenderer))]
 namespace de.upb.hip.mobile.droid.CustomRenderers
 {
-    class HtmlLinkRenderer : LabelRenderer
+    class DroidHtmlLinkRenderer : LabelRenderer
     {
         private HtmlLink formslink;
 
@@ -32,18 +33,20 @@ namespace de.upb.hip.mobile.droid.CustomRenderers
         {
             base.OnElementChanged(elementChangedEventArgs);
 
-            if (elementChangedEventArgs.NewElement != null)
+            formslink = elementChangedEventArgs.NewElement as HtmlLink;
+
+            if (formslink != null)
             {
-                formslink = (HtmlLink) elementChangedEventArgs.NewElement;
-                // Workaround to avoid the "deprecated" warning
+                string html = new HtmlTagHelper ().FormatAdditionalTags (formslink.HtmlText);
+
                 if (Build.VERSION.SdkInt >= BuildVersionCodes.N)
                 {
-                    Control.TextFormatted = Html.FromHtml(formslink.Text.Replace("\n", "<br />"), FromHtmlOptions.ModeLegacy);
+                    Control.TextFormatted = Html.FromHtml(html, FromHtmlOptions.ModeLegacy);
                 }
                 else
                 {
 #pragma warning disable 618
-                    Control.TextFormatted = Html.FromHtml(formslink.Text.Replace("\n", "<br />"));
+                    Control.TextFormatted = Html.FromHtml (html);
 #pragma warning restore 618
                 }
 

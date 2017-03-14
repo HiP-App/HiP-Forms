@@ -168,7 +168,7 @@
     <Compile Include="CustomRenderers\IosCustomFontLabelRenderer.cs" />
     <Compile Include="Map\UserAnnotation.cs" />
     <Compile Include="ViewControllers\OrientationViewController.cs" />
-    <Compile Include="CustomRenderers\HtmlLinkRenderer.cs" />
+    <Compile Include="CustomRenderers\IosHtmlLinkRenderer.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <None Include="Entitlements.plist" />

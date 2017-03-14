@@ -230,7 +230,11 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
     <value>OSMBonusPack</value>
   </data>
   <data name="LicenseScreenView_Osmdroid_Text" xml:space="preserve">
-    <value>Von &lt;a href="https://github.com/osmdroid/osmdroid"&gt;osmdroid&lt;/a&gt;, lizensiert unter &lt;a href="https://raw.githubusercontent.com/osmdroid/osmdroid/master/LICENSE"&gt;Apache License 2.0&lt;/a&gt;. Es wurden keine Änderungen vorgenommen.</value>
+    <value>Von &lt;a href="https://github.com/osmdroid/osmdroid"&gt;osmdroid&lt;/a&gt;, lizensiert unter &lt;a href="https://raw.githubusercontent.com/osmdroid/osmdroid/master/LICENSE"&gt;Apache License 2.0&lt;/a&gt;. 
+Es wurden keine Änderungen vorgenommen.
+&lt;ol&gt;&lt;li&gt;First&lt;/li&gt;&lt;li&gt;Second&lt;/li&gt;&lt;li&gt;Third&lt;/li&gt;&lt;/ol&gt; 
+&lt;ul&gt;&lt;li&gt;Coffee&lt;/li&gt;&lt;li&gt;Tea&lt;/li&gt;&lt;li&gt;Milk&lt;/li&gt;&lt;/ul&gt; 
+PaÞ(e)ra</value>
   </data>
   <data name="LicenseScreenView_Osmdroid_Title" xml:space="preserve">
     <value>osmdroid</value>
