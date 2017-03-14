@@ -24,6 +24,11 @@ namespace HipMobileUI.Pages
 
         private MainPageViewModel ViewModel => ((MainPageViewModel) BindingContext);
 
+        /// <summary>
+        /// Accessor to get the navigation page from other classes.
+        /// </summary>
+        public Xamarin.Forms.NavigationPage Navigationpage => NavigationPage;
+
         public MainPage()
         {
             InitializeComponent();
@@ -57,6 +62,7 @@ namespace HipMobileUI.Pages
         {
             // Disable the swipe gesture when a page is pushed
             IsGestureEnabled = false;
+            ((NavigationViewModel)e.Page.BindingContext).OnAppearing();
         }
 
         /// <summary>
@@ -72,11 +78,11 @@ namespace HipMobileUI.Pages
                 IsGestureEnabled = true;
             }
 
-            // inform the popped page in case it can listen to this event
-            if (e.Page is IPagePoppedListener)
-            {
-                ((IPagePoppedListener)e.Page).PagePopped ();
-            }
+            // inform the viewmodel...
+            // ... of popped page that it was popped
+            ((NavigationViewModel)e.Page.BindingContext).OnDisappearing ();
+            // ... of underlaying page that it is visible again
+            ((NavigationViewModel)NavigationPage.CurrentPage.BindingContext).OnRevealed ();
         }
 
     }

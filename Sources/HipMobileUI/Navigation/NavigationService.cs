@@ -16,8 +16,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
+using HipMobileUI.Pages;
 using HipMobileUI.ViewModels;
 using Xamarin.Forms;
+using NavigationPage = Xamarin.Forms.NavigationPage;
 
 namespace HipMobileUI.Navigation
 {
@@ -57,6 +59,13 @@ namespace HipMobileUI.Navigation
 
         private Page FormsPage => Application.Current.MainPage;
 
+        private NavigationPage NavigationPage {
+            get {
+                var mainPage = FormsPage as MainPage;
+                return mainPage?.Navigationpage;
+            }
+        }
+
         public async Task PopAsync (bool animate=false)
         {
             await FormsNavigation.PopAsync(animate);
@@ -69,19 +78,37 @@ namespace HipMobileUI.Navigation
 
         public async Task PushAsync (NavigationViewModel viewModel, bool animate=false)
         {
-            var view = InstantiateView(viewModel);
+            try
+            {
+                var oldViewModel = (NavigationViewModel) NavigationPage?.CurrentPage.BindingContext;
+                var view = InstantiateView (viewModel);
 
-            await FormsNavigation.PushAsync((Page)view, animate);
+                await FormsNavigation.PushAsync ((Page) view, animate);
+                oldViewModel?.OnHidden ();
+            }
+            catch
+            {
+                // ignored as non critical exceptions don't stop the app from working
+            }
         }
 
         public async Task PushModalAsync (NavigationViewModel viewModel, bool animate=false)
         {
-            var view = InstantiateView(viewModel);
+            try
+            {
+                var oldViewModel = (NavigationViewModel)NavigationPage?.CurrentPage.BindingContext;
+                var view = InstantiateView (viewModel);
 
-            // Most likely we're going to want to put this into a navigation page so we can have a title bar on it
-            var nv = new NavigationPage((Page)view);
+                // Most likely we're going to want to put this into a navigation page so we can have a title bar on it
+                var nv = new NavigationPage ((Page) view);
 
-            await FormsNavigation.PushModalAsync(nv, animate);
+                await FormsNavigation.PushModalAsync (nv, animate);
+                oldViewModel?.OnHidden();
+            }
+            catch
+            {
+                // ignored as non critical exceptions don't stop the app from working
+            }
         }
 
         public async Task PopToRootAsync (bool animate=false)
