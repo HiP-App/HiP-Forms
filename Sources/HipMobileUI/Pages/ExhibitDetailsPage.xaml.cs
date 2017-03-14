@@ -22,7 +22,7 @@ using HipMobileUI.ViewModels.Pages;
 using Xamarin.Forms;
 
 namespace HipMobileUI.Pages {
-    public partial class ExhibitDetailsPage : OrientationContentPage, IViewFor<ExhibitDetailsViewModel>, IPagePoppedListener {
+    public partial class ExhibitDetailsPage : OrientationContentPage, IViewFor<ExhibitDetailsViewModel> {
 
         private ExhibitDetailsViewModel ViewModel => (ExhibitDetailsViewModel) BindingContext;
         private HideableToolbarItem audioToolbarButton;
@@ -119,16 +119,6 @@ namespace HipMobileUI.Pages {
             isOnDisappearingContext = true;
             OrientationController = OrientationController.Sensor;
             isOnDisappearingContext = false;
-        }
-
-        /// <summary>
-        /// Called when this page is popped from the navigation stack.
-        /// </summary>
-        public void PagePopped ()
-        {
-            // clean up
-            ViewModel.OnDisappearing ();
-            MessagingCenter.Unsubscribe<App>(this, AppSharedData.WillWakeUpMessage);
         }
 
     }
