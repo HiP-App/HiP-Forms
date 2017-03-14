@@ -18,14 +18,11 @@ using System.Windows.Input;
 using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using de.upb.hip.mobile.pcl.Common;
-using de.upb.hip.mobile.pcl.Helpers;
 using HipMobileUI.Helpers;
 using HipMobileUI.Location;
 using HipMobileUI.Resources;
 using HipMobileUI.ViewModels;
 using HipMobileUI.ViewModels.Pages;
-using Plugin.Geolocator;
-using Plugin.Geolocator.Abstractions;
 using Xamarin.Forms;
 
 namespace HipMobileUI.Viewmodels.Pages {
@@ -104,9 +101,25 @@ namespace HipMobileUI.Viewmodels.Pages {
         /// <summary>
         /// Starts navigation for the route.
         /// </summary>
-        private void StartRoute ()
+        private async void StartRoute ()
         {
-            Navigation.PushAsync (new NavigationPageViewModel (DetailsRoute));
+            if (DetailsRoute.IsRouteStarted ())
+            {
+                string result =
+                    await
+                        Navigation.DisplayActionSheet (
+                            Strings.RouteDetailspageViewModel_RouteStarted,
+                            Strings.RouteDetailspageViewModel_Back, null, Strings.RouteDetailspageViewModel_ContinueRoute, Strings.RouteDetailspageViewModel_RestartRoute);
+                if (result.Equals (Strings.RouteDetailspageViewModel_RestartRoute))
+                {
+                    DetailsRoute.ResetRoute ();
+                }
+                else if (result.Equals (Strings.RouteDetailspageViewModel_Back))
+                {
+                    return;
+                }
+            }
+            await Navigation.PushAsync (new NavigationPageViewModel (DetailsRoute));
         }
 
         #region Properties

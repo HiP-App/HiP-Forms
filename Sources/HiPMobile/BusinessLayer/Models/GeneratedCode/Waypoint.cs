@@ -33,6 +33,8 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models
 
 		public virtual GeoLocation Location{ get; set; }
 
+		public virtual bool Visited{ get; set; }
+
 		//Associations
 		public virtual Exhibit Exhibit{ get; set; }
 

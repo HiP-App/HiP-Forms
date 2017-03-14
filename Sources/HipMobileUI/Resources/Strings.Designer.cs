@@ -792,6 +792,24 @@ namespace HipMobileUI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Zurück.
+        /// </summary>
+        public static string RouteDetailspageViewModel_Back {
+            get {
+                return ResourceManager.GetString("RouteDetailspageViewModel_Back", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Route fortführen.
+        /// </summary>
+        public static string RouteDetailspageViewModel_ContinueRoute {
+            get {
+                return ResourceManager.GetString("RouteDetailspageViewModel_ContinueRoute", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Beschreibung.
         /// </summary>
         public static string RouteDetailsPageViewModel_Description {
@@ -824,6 +842,24 @@ namespace HipMobileUI.Resources {
         public static string RouteDetailsPageViewModel_Map {
             get {
                 return ResourceManager.GetString("RouteDetailsPageViewModel_Map", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Route neu starten.
+        /// </summary>
+        public static string RouteDetailspageViewModel_RestartRoute {
+            get {
+                return ResourceManager.GetString("RouteDetailspageViewModel_RestartRoute", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Die Route wurde bereits begonnen:.
+        /// </summary>
+        public static string RouteDetailspageViewModel_RouteStarted {
+            get {
+                return ResourceManager.GetString("RouteDetailspageViewModel_RouteStarted", resourceCulture);
             }
         }
         

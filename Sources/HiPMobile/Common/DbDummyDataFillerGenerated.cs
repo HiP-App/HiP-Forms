@@ -23,7 +23,7 @@ using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 namespace de.upb.hip.mobile.pcl.Common {
     public partial class DbDummyDataFiller {
 
-        public static int DatabaseVersion { get; } = 23;
+        public static int DatabaseVersion { get; } = 24;
 
         public void InsertData ()
         {
@@ -882,7 +882,8 @@ UpdateProgress(155, 229);
 var karldergroßeimwandelderzeit = CreateExhibit (
     "Karl der Große im Wandel der Zeit",
     "",
-    51.7199006, 8.754952000000003,
+    51.7199006,
+    8.754952000000003,
     new []{"Dom"},
     new []{"Dom"},
     karldergroßeimwandel_teaser
@@ -1010,7 +1011,7 @@ PaderbrunnonPatresbrunPaderbruno.Pages.Add( CreateImagePage (noImage, null, null
 UpdateProgress(204, 229);
 PaderbrunnonPatresbrunPaderbruno.Pages.Add( CreateImagePage (noImage, null, null, _006) );
 UpdateProgress(205, 229);
-var Sachsenkriege = CreateExhibit (
+var sachsenkriege = CreateExhibit (
     "Sachsenkriege",
     "",
     51.719582883396335,
@@ -1020,21 +1021,21 @@ var Sachsenkriege = CreateExhibit (
     Teaser_Sachenkriege
   );
 UpdateProgress(206, 229);
-Sachsenkriege.Pages.Add( CreateAppetizerPage ("Karl der Große und die Sachsen – dreißig Jahre Krieg!", Teaser_Sachenkriege) );
+sachsenkriege.Pages.Add( CreateAppetizerPage ("Karl der Große und die Sachsen – dreißig Jahre Krieg!", Teaser_Sachenkriege) );
 UpdateProgress(207, 229);
-Sachsenkriege.Pages.Add( CreateImagePage (noImage, null, null, _019) );
+sachsenkriege.Pages.Add( CreateImagePage (noImage, null, null, _019) );
 UpdateProgress(208, 229);
-Sachsenkriege.Pages.Add( CreateImagePage (Stuttgart_WLB_Cod, null, null, _020) );
+sachsenkriege.Pages.Add( CreateImagePage (Stuttgart_WLB_Cod, null, null, _020) );
 UpdateProgress(209, 229);
-Sachsenkriege.Pages.Add( CreateImagePage (noImage, null, null, _021) );
+sachsenkriege.Pages.Add( CreateImagePage (noImage, null, null, _021) );
 UpdateProgress(210, 229);
-Sachsenkriege.Pages.Add( CreateImagePage (noImage, null, null, _022) );
+sachsenkriege.Pages.Add( CreateImagePage (noImage, null, null, _022) );
 UpdateProgress(211, 229);
-Sachsenkriege.Pages.Add( CreateImagePage (noImage, null, null, _023) );
+sachsenkriege.Pages.Add( CreateImagePage (noImage, null, null, _023) );
 UpdateProgress(212, 229);
-Sachsenkriege.Pages.Add( CreateImagePage (KarteDesAltsachsischenSprachraums, null, null, _024) );
+sachsenkriege.Pages.Add( CreateImagePage (KarteDesAltsachsischenSprachraums, null, null, _024) );
 UpdateProgress(213, 229);
-Sachsenkriege.Pages.Add( CreateImagePage (KarteDesAltsachsischenSprachraums, null, null, _025) );
+sachsenkriege.Pages.Add( CreateImagePage (KarteDesAltsachsischenSprachraums, null, null, _025) );
 UpdateProgress(214, 229);
 var TaufenAnDerPader = CreateExhibit (
     "Taufen an der Pader?",
@@ -1071,15 +1072,15 @@ UpdateProgress(226, 229);
 var restaurant = CreateRouteTag("Restaurant", "restaurant", CreateImage("","","route_tag_restaurant.png"));
 UpdateProgress(227, 229);
 var karlsrouteSet = DbManager.CreateBusinessObject<ExhibitSet> ();
-karlsrouteSet.ActiveSet.Add(kaiserpfalz);
 karlsrouteSet.ActiveSet.Add(PaderbrunnonPatresbrunPaderbruno);
-karlsrouteSet.ActiveSet.Add(TaufenAnDerPader);
 karlsrouteSet.ActiveSet.Add(LebenAmWasser);
-karlsrouteSet.ActiveSet.Add(Sachsenkriege);
-karlsrouteSet.ActiveSet.Add(Kaisermachtschule);
+karlsrouteSet.ActiveSet.Add(TaufenAnDerPader);
+karlsrouteSet.ActiveSet.Add(sachsenkriege);
 karlsrouteSet.ActiveSet.Add(ChristianisierungDerSachsen);
 karlsrouteSet.ActiveSet.Add(KarlsSiegUberDieSachsen);
+karlsrouteSet.ActiveSet.Add(kaiserpfalz);
 karlsrouteSet.ActiveSet.Add(karldergroßeimwandelderzeit);
+karlsrouteSet.ActiveSet.Add(Kaisermachtschule);
 var karlsroute = CreateRoute (
     "Karlsroute",
     "Auf der Spur Karls des Großen!",

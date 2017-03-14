@@ -31,6 +31,7 @@ namespace HipMobileUI.ViewModels.Views
         private ObservableCollection<ExhibitsOverviewListItemViewModel> exhibitsList;
         private ICommand itemTappedCommand;
         private ILocationManager locationManager;
+        private INearbyExhibitManager nearbyExhibitManager;
         private bool displayDistances;
         private ExhibitSet displayedExhibitSet;
         private Position position;
@@ -52,6 +53,7 @@ namespace HipMobileUI.ViewModels.Views
 
 
             locationManager = IoCManager.Resolve<ILocationManager> ();
+            nearbyExhibitManager = IoCManager.Resolve<INearbyExhibitManager> ();
         }
 
         public ExhibitsOverviewViewModel (string exhibitSetId) : this(ExhibitManager.GetExhibitSet(exhibitSetId))
@@ -68,8 +70,7 @@ namespace HipMobileUI.ViewModels.Views
             Position = args.Position;
             SetDistances(args.Position);
 
-            locationManager.CheckNearExhibit (displayedExhibitSet, null, new GeoLocation (args.Position.Latitude, args.Position.Longitude));
-
+            nearbyExhibitManager.CheckNearExhibit (displayedExhibitSet, args.Position.ToGeoLocation ());
         }
 
         /// <summary>
