@@ -21,7 +21,9 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models
 {
     public partial class Route {
 
-        public IList<Waypoint> Waypoints => ActiveSet.Concat (PassiveSet).ToList ();
+        public IList<Waypoint> ActiveSet => Waypoints.Where (wp => !wp.Visited).ToList ();
+
+        public IList<Waypoint> PassiveSet => Waypoints.Where(wp => wp.Visited).ToList();
 
         /// <summary>
         /// Tries to move the waypoint to the passive set.
@@ -34,10 +36,10 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models
             {
                 using (IoCManager.Resolve<IDataAccess>().StartTransaction ())
                 {
-                    bool exists = ActiveSet.Remove(waypoint);
+                    bool exists = ActiveSet.Contains (waypoint);
+                    waypoint.Visited = true;
                     if (exists)
                     {
-                        PassiveSet.Add(waypoint);
                         return true;
                     }
                 }
@@ -54,9 +56,8 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models
             {
                 foreach (Waypoint waypoint in PassiveSet)
                 {
-                    ActiveSet.Add (waypoint);
+                    waypoint.Visited = false;
                 }
-                PassiveSet.Clear ();
             }
         }
 

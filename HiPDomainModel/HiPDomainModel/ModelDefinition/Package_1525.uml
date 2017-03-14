@@ -4369,62 +4369,10 @@
             </relationshipOwnedElementsInternal>
           </association>
           <association
-            Id="13fb2bc1-d10b-4f4a-b816-cf6d870df83e"
-            isDerived="false"
-            sourceEndRoleName="Route"
-            targetEndRoleName="PassiveSet"
-            isLeaf="false"
-            isAbstract="false">
-            <classMoniker
-              Id="8975e7b8-deb3-4a36-82f5-4eeffaad4442"
-              LastKnownName="Waypoint"
-              LastKnownLocation="Package_1525.uml" />
-            <relationshipOwnedElementsInternal>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="747425e4-d5a8-4431-87cf-746c630f6e8a"
-                  name="Route"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="false"
-                  isNavigableOwned="false" />
-              </associationHasOwnedEnds>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="82419568-72ae-42ad-a68a-f57765cd6aa7"
-                  name="PassiveSet"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="false">
-                  <lowerValueInternal>
-                    <literalString
-                      Id="4565556d-54fc-43d3-9c92-dad62604e9c8"
-                      name="Lower"
-                      value="*" />
-                  </lowerValueInternal>
-                  <upperValueInternal>
-                    <literalString
-                      Id="3be46050-0bb8-43eb-be6a-e530dbcbd725"
-                      name="Upper"
-                      value="*" />
-                  </upperValueInternal>
-                </memberEnd>
-              </associationHasOwnedEnds>
-            </relationshipOwnedElementsInternal>
-          </association>
-          <association
             Id="73a64f9d-1010-4291-b4f1-9f59e97a8b55"
             isDerived="false"
             sourceEndRoleName="Route"
-            targetEndRoleName="ActiveSet"
+            targetEndRoleName="Waypoints"
             isLeaf="false"
             isAbstract="false">
             <classMoniker
@@ -4448,7 +4396,7 @@
               <associationHasOwnedEnds>
                 <memberEnd
                   Id="40b02f79-aabd-440c-b3c1-017d456b894f"
-                  name="ActiveSet"
+                  name="Waypoints"
                   isLeaf="false"
                   isStatic="false"
                   isReadOnly="false"
@@ -5850,6 +5798,24 @@
                 Id="1a1c8f48-d04c-4e79-8fc2-3570bf3d6e1a"
                 LastKnownName="GeoLocation"
                 LastKnownLocation="Package_1525.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="b67b6227-b6ff-47fa-8c52-c397cbc75a26"
+            name="Visited"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <primitiveTypeMoniker
+                Id="8943dc84-709e-4f62-b15a-a3273aa6f165"
+                LastKnownName="Boolean"
+                LastKnownLocation="HiPDomainModel.uml" />
             </type_NamedElement>
           </property>
         </ownedAttributesInternal>

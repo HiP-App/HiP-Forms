@@ -50,6 +50,8 @@ namespace HipMobileUI.ViewModels.Pages {
         /// </summary>
         void FocusGpsClicked ()
         {
+            LocationChanged(this, new PositionEventArgs(new Position() { Latitude = 51.7189826,
+                 Longitude = 8.754652599999986}));
             MapFocusCommand.Execute (GpsLocation);
         }
 

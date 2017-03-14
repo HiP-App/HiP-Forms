@@ -3181,33 +3181,7 @@
                   </relationshipOwnedElementsInternal>
                   <elementDefinition Id="a5236361-6d2b-4523-8a57-a3a385c11ef5" />
                 </association>
-                <association Id="59c61365-e747-4aaa-9180-564733282038" isDerived="false" sourceEndRoleName="Route" targetEndRoleName="PassiveSet" isLeaf="false" isAbstract="false">
-                  <classMoniker Id="4a79e606-aa0d-4084-b5bb-57671a52554a" LastKnownName="Waypoint" />
-                  <relationshipOwnedElementsInternal>
-                    <associationHasOwnedEnds>
-                      <memberEnd Id="56511d30-587a-41fa-9faa-2d2586d0bb11" name="Route" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
-                        <elementDefinition Id="747425e4-d5a8-4431-87cf-746c630f6e8a" />
-                      </memberEnd>
-                    </associationHasOwnedEnds>
-                    <associationHasOwnedEnds>
-                      <memberEnd Id="bab9c8c8-de80-4f83-ac1f-ab087cc92a84" name="PassiveSet" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
-                        <lowerValueInternal>
-                          <literalString Id="a930ebda-fa54-4b14-bcb0-71f40f837631" name="Lower" value="*">
-                            <elementDefinition Id="4565556d-54fc-43d3-9c92-dad62604e9c8" />
-                          </literalString>
-                        </lowerValueInternal>
-                        <upperValueInternal>
-                          <literalString Id="6be6ee68-f7b6-41d1-a361-d11d03d691f3" name="Upper" value="*">
-                            <elementDefinition Id="3be46050-0bb8-43eb-be6a-e530dbcbd725" />
-                          </literalString>
-                        </upperValueInternal>
-                        <elementDefinition Id="82419568-72ae-42ad-a68a-f57765cd6aa7" />
-                      </memberEnd>
-                    </associationHasOwnedEnds>
-                  </relationshipOwnedElementsInternal>
-                  <elementDefinition Id="13fb2bc1-d10b-4f4a-b816-cf6d870df83e" />
-                </association>
-                <association Id="d9e17d0b-6291-4b6c-a209-65cc2aae7590" isDerived="false" sourceEndRoleName="Route" targetEndRoleName="ActiveSet" isLeaf="false" isAbstract="false">
+                <association Id="d9e17d0b-6291-4b6c-a209-65cc2aae7590" isDerived="false" sourceEndRoleName="Route" targetEndRoleName="Waypoints" isLeaf="false" isAbstract="false">
                   <classMoniker Id="4a79e606-aa0d-4084-b5bb-57671a52554a" LastKnownName="Waypoint" />
                   <relationshipOwnedElementsInternal>
                     <associationHasOwnedEnds>
@@ -3216,7 +3190,7 @@
                       </memberEnd>
                     </associationHasOwnedEnds>
                     <associationHasOwnedEnds>
-                      <memberEnd Id="a3d10a89-a0b9-418e-834b-5f7c3565f12b" name="ActiveSet" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                      <memberEnd Id="a3d10a89-a0b9-418e-834b-5f7c3565f12b" name="Waypoints" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
                         <lowerValueInternal>
                           <literalString Id="a87a1eb4-08af-47a8-ab45-900f793d8d77" name="Lower" value="*">
                             <elementDefinition Id="1848f9b2-6489-4bd3-b220-0e0bc528abdb" />
@@ -4232,6 +4206,12 @@
                     <referencedTypeMoniker Id="afed4963-4c65-4580-81b0-71d9ff25cd90" LastKnownName="GeoLocation" />
                   </type_NamedElement>
                 </property>
+                <property Id="91d8ac4f-ea7d-450b-b3b0-26b844bc52e1" name="Visited" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="b67b6227-b6ff-47fa-8c52-c397cbc75a26" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="2332877a-d9e0-45ad-8329-109144f3bd44" LastKnownName="Boolean" />
+                  </type_NamedElement>
+                </property>
               </ownedAttributesInternal>
             </class>
           </packageHasNamedElement>
@@ -4766,6 +4746,11 @@
     <packageHasNamedElement>
       <referencedType Id="c022f5dc-7d76-4550-8228-fcdd173e3ea8" name="String" isAbstract="false" isLeaf="false" cachedFullName="String">
         <elementDefinition Id="59259974-6d55-42c6-b7bd-763d77ac8ef9" />
+      </referencedType>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <referencedType Id="2332877a-d9e0-45ad-8329-109144f3bd44" name="Boolean" isAbstract="false" isLeaf="false" cachedFullName="Boolean">
+        <elementDefinition Id="8943dc84-709e-4f62-b15a-a3273aa6f165" />
       </referencedType>
     </packageHasNamedElement>
   </packagedElements>

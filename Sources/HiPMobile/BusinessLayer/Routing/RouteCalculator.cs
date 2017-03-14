@@ -22,6 +22,7 @@ using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using Itinero;
 using Itinero.LocalGeo;
 using Itinero.Osm.Vehicles;
+using Route = de.upb.hip.mobile.pcl.BusinessLayer.Models.Route;
 
 namespace de.upb.hip.mobile.pcl.BusinessLayer.Routing {
     /// <summary>
@@ -87,14 +88,37 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Routing {
             return result;
         }
 
-        
+        /// <summary>
+        /// Calculates an ordered route. This means the set of geolocations which need to be visited ina specific order.
+        /// </summary>
+        /// <param name="routeId">The id of the route that shoudl be calculated.</param>
+        /// <param name="userLocation">The users geolocation.</param>
+        /// <returns></returns>
+        public OrderedRoute CreateOrderedRoute (string routeId, GeoLocation userLocation = null)
+        {
+            OrderedRoute resultRoute = new OrderedRoute ();
+            Route route = RouteManager.GetRoute (routeId);
+            if (route != null && route.ActiveSet.Count > 0)
+            {
+                // include the user location if possible
+                if (userLocation != null)
+                {
+                    resultRoute.AddSection (CreateSimpleRoute (userLocation, route.ActiveSet.First().Location).ToList ());
+                }
 
+                // calculate the route for exhibits
+                for (int i = 0; i <route.ActiveSet.Count - 1; i++)
+                {
+                    resultRoute.AddSection ((CreateSimpleRoute (route.ActiveSet[i].Location, route.ActiveSet[i+1].Location).ToList ()));
+                }
+            }
+            return resultRoute;
+        }
 
         /// <summary>
         ///     This method calculates one route from several waypoints
         /// </summary>
         /// <param name="userPosition">position of user</param>
-        /// <param name="listOfWayPoints">list of all waypoints</param>
         /// <returns>IList GeoLocation</returns>
         public IList<GeoLocation> CreateRouteWithSeveralWaypoints (string id, GeoLocation userPosition=null)
         {

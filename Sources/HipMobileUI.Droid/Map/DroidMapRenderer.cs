@@ -24,6 +24,7 @@ using Android.Widget;
 using de.upb.hip.mobile.droid.Map;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using de.upb.hip.mobile.pcl.BusinessLayer.Routing;
+using HipMobileUI;
 using HipMobileUI.Helpers;
 using HipMobileUI.Map;
 using Org.Osmdroid;
@@ -38,6 +39,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 using Color = Android.Graphics.Color;
 using HipMobileUI.Resources;
+using Application = Xamarin.Forms.Application;
 
 [assembly: ExportRenderer (typeof (OsmMap), typeof (DroidMapRenderer))]
 
@@ -46,6 +48,7 @@ namespace de.upb.hip.mobile.droid.Map {
 
         private Activity activity;
         private Polyline currentRouteOverlay;
+        private Polyline currentSectionOverlay;
         private MyLocationOverlay locationOverlay;
         private MapController mapController;
         private MapView mapView;
@@ -260,15 +263,15 @@ namespace de.upb.hip.mobile.droid.Map {
 
                                               try
                                               {
-                                                  var locations = routeCalculator.CreateRouteWithSeveralWaypoints (id, userPosition);
+                                                  OrderedRoute locations = routeCalculator.CreateOrderedRoute (id, userPosition);
 
-                                                  foreach (var w in locations)
+                                                  /*foreach (var w in locations)
                                                   {
                                                       var point = new GeoPoint (w.Latitude, w.Longitude);
                                                       geoPoints.Add (point);
-                                                  }
+                                                  }*/
 
-                                                  action = () => DrawRoute (geoPoints);
+                                                  action = () => DrawRoute (locations, userPosition != null);
                                               }
                                               catch (Exception)
                                               {
@@ -305,6 +308,60 @@ namespace de.upb.hip.mobile.droid.Map {
             };
             mapView.OverlayManager.Add (currentRouteOverlay);
             mapView.Invalidate ();
+        }
+
+        private void DrawRoute(OrderedRoute route, bool userLocationIncluded)
+        {
+            if (disposed)
+                return;
+
+            //Cleanup route if drawn before
+            if (currentRouteOverlay != null)
+                mapView.OverlayManager.Remove(currentRouteOverlay);
+            if (currentSectionOverlay != null)
+            {
+                mapView.OverlayManager.Remove (currentSectionOverlay);
+            }
+
+            if (userLocationIncluded)
+            {
+                currentSectionOverlay = new Polyline (activity)
+                {
+                    Title = osmMap.DetailsRoute.Title,
+                    Width = 5f,
+                    Color = ((Xamarin.Forms.Color) Application.Current.Resources ["AccentColor"]).ToAndroid (),
+                    //Color = Color.Orange,
+                    Points = route.FirstSection.Select (geoLocation => new GeoPoint (geoLocation.Latitude, geoLocation.Longitude)).ToList (),
+                    Geodesic = true
+                };
+                currentRouteOverlay = new Polyline (activity)
+                {
+                    Title = osmMap.DetailsRoute.Title,
+                    Width = 5f,
+                    Color = ((Xamarin.Forms.Color) Application.Current.Resources ["PrimaryColor"]).ToAndroid (),
+                    //Color = Color.Blue,
+                    Points = route.NonFirstSections.Select (geoLocation => new GeoPoint (geoLocation.Latitude, geoLocation.Longitude)).ToList (),
+                    Geodesic = true
+                };
+            }
+            else
+            {
+                currentRouteOverlay = new Polyline(activity)
+                {
+                    Title = osmMap.DetailsRoute.Title,
+                    Width = 5f,
+                    Color = ((Xamarin.Forms.Color)Application.Current.Resources["PrimaryColor"]).ToAndroid(),
+                    Points = route.Locations.Select(geoLocation => new GeoPoint(geoLocation.Latitude, geoLocation.Longitude)).ToList(),
+                    Geodesic = true
+                };
+            }
+            int index = mapView.OverlayManager.IndexOf (locationOverlay);
+            if (userLocationIncluded)
+            {
+                mapView.OverlayManager.Add (index, currentSectionOverlay);
+            }
+            mapView.OverlayManager.Add(index, currentRouteOverlay);
+            mapView.Invalidate();
         }
 
         private bool disposed;

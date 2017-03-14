@@ -44,9 +44,7 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models
 
 		public virtual Image Image{ get; set; }
 
-		public virtual IList<Waypoint> PassiveSet{ get; }
-
-		public virtual IList<Waypoint> ActiveSet{ get; }
+		public virtual IList<Waypoint> Waypoints{ get; }
 
 		// Contructor
 		public Route(){

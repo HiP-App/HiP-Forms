@@ -40,6 +40,7 @@ namespace HipMobileUI.iOS.Map
         private OsmMap osmMap;
         private UserAnnotation userAnnotation;
         private RouteCalculator routeCalculator;
+        private MKPolyline currentSectionPolyLine;
         private MKPolyline navigationPolyline;
         private bool canShowError = true;
 
@@ -188,15 +189,15 @@ namespace HipMobileUI.iOS.Map
                 try
                 {
                     
-                    var locations = routeCalculator.CreateRouteWithSeveralWaypoints(id, osmMap.GpsLocation);
+                    var locations = routeCalculator.CreateOrderedRoute(id, osmMap.GpsLocation);
 
-                    foreach (var w in locations)
+                    /*foreach (var w in locations)
                     {
                         var point = new CLLocationCoordinate2D(w.Latitude, w.Longitude);
                         geoPoints.Add(point);
-                    }
+                    }*/
 
-                    action = () => DrawRoute(geoPoints);
+                    action = () => DrawRoute(locations, osmMap.GpsLocation != null);
                 }
                 catch (Exception)
                 {
@@ -213,7 +214,7 @@ namespace HipMobileUI.iOS.Map
         /// Draw a route between the given geopoints.
         /// </summary>
         /// <param name="geoPoints">The geopoints of the route.</param>
-        private void DrawRoute (List<CLLocationCoordinate2D> geoPoints)
+        private void DrawRoute (OrderedRoute route, bool userLocationAvailable)
         {
             if (disposed)
                 return;
@@ -222,8 +223,22 @@ namespace HipMobileUI.iOS.Map
             {
                 Control.RemoveOverlay (navigationPolyline);
             }
-            navigationPolyline = MKPolyline.FromCoordinates(geoPoints.ToArray ());
-            Control.AddOverlay(navigationPolyline);
+            if (currentSectionPolyLine != null)
+            {
+                Control.RemoveOverlay (currentSectionPolyLine);
+            }
+            if (userLocationAvailable)
+            {
+                navigationPolyline = MKPolyline.FromCoordinates (route.NonFirstSections.Select (gl => new CLLocationCoordinate2D (gl.Latitude, gl.Longitude)).ToArray ());
+                Control.AddOverlay (navigationPolyline);
+                currentSectionPolyLine = MKPolyline.FromCoordinates (route.FirstSection.Select (gl => new CLLocationCoordinate2D (gl.Latitude, gl.Longitude)).ToArray ());
+                Control.AddOverlay (currentSectionPolyLine);
+            }
+            else
+            {
+                navigationPolyline = MKPolyline.FromCoordinates(route.Locations.Select(gl => new CLLocationCoordinate2D(gl.Latitude, gl.Longitude)).ToArray());
+                Control.AddOverlay(navigationPolyline);
+            }
         }
 
         /// <summary>
@@ -302,10 +317,27 @@ namespace HipMobileUI.iOS.Map
 
             if (overlay is MKPolyline)
             {
-                MKPolylineRenderer polylineRenderer = new MKPolylineRenderer((MKPolyline)overlay);
-                polylineRenderer.FillColor = UIColor.Blue;
-                polylineRenderer.StrokeColor = UIColor.Blue;
-                polylineRenderer.LineWidth = 2f;
+                MKPolylineRenderer polylineRenderer;
+                if (overlay.Equals (currentSectionPolyLine))
+                {
+                    UIColor color = ((Color) Xamarin.Forms.Application.Current.Resources ["AccentColor"]).ToUIColor ();
+                    polylineRenderer = new MKPolylineRenderer ((MKPolyline) overlay)
+                    {
+                        FillColor = color,
+                        StrokeColor = color,
+                        LineWidth = 2f
+                    };
+                }
+                else
+                {
+                    UIColor color = ((Color)Xamarin.Forms.Application.Current.Resources["PrimaryColor"]).ToUIColor();
+                    polylineRenderer = new MKPolylineRenderer((MKPolyline)overlay)
+                    {
+                        FillColor = color,
+                        StrokeColor = color,
+                        LineWidth = 2f
+                    };
+                }
                 return polylineRenderer;
             }
             return null;

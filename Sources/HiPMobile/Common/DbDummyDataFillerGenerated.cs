@@ -23,7 +23,7 @@ using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 namespace de.upb.hip.mobile.pcl.Common {
     public partial class DbDummyDataFiller {
 
-        public static int DatabaseVersion { get; } = 24;
+        public static int DatabaseVersion { get; } = 25;
 
         public void InsertData ()
         {
@@ -1086,7 +1086,7 @@ UpdateProgress(227, 228);
 
     foreach (var exhibit in karlsrouteSet.ActiveSet)
     {
-        karlsroute.ActiveSet.Add (CreateWayPoint (exhibit));
+        karlsroute.Waypoints.Add (CreateWayPoint (exhibit));
     }
   
 karlsroute.RouteTags.Add(bar);
