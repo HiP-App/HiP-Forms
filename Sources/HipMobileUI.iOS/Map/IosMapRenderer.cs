@@ -153,8 +153,6 @@ namespace HipMobileUI.iOS.Map
         {
             if (location != null)
             {
-                Control.CenterCoordinate = new CLLocationCoordinate2D (location.Latitude, location.Longitude);
-
                 // update user location
                 if (userAnnotation != null)
                 {

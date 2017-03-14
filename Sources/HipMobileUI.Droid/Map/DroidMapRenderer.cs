@@ -40,9 +40,9 @@ using Xamarin.Forms.Platform.Android;
 using Color = Android.Graphics.Color;
 using HipMobileUI.Resources;
 using Application = Xamarin.Forms.Application;
+using Org.Osmdroid.Tileprovider;
 
 [assembly: ExportRenderer (typeof (OsmMap), typeof (DroidMapRenderer))]
-
 namespace de.upb.hip.mobile.droid.Map {
     internal class DroidMapRenderer : Xamarin.Forms.Platform.Android.AppCompat.ViewRenderer<OsmMap, MapView>, IMapListener {
 
@@ -71,14 +71,22 @@ namespace de.upb.hip.mobile.droid.Map {
         {
             base.OnElementChanged (e);
 
-
             if (Control == null)
             {
                 mapView = new MapView (Forms.Context, 11);
                 activity = Context as Activity;
                 routeCalculator = RouteCalculator.Instance;
                 SetNativeControl (mapView);
-                mapView.SetTileSource (TileSourceFactory.DefaultTileSource);
+                //for the app testing the tile server was changed to watercolor style and layer was added (only for android)
+                mapView.SetTileSource (new XYTileSource ("OSM", null, 0, 18, 256, ".png",
+                                                         new[] {"http://c.tile.stamen.com/watercolor/"}));
+               MapTileProviderBasic tileProvider = new MapTileProviderBasic(activity);
+               ITileSource tileSource = new XYTileSource("MyCustomTiles", null, 1, 16, 256, ".png",
+                            new[] { "http://b.sm.mapstack.stamen.com/(watercolor,streets-and-labels)/" });
+                tileProvider.TileSource = (tileSource);
+                TilesOverlay tilesOverlay = new TilesOverlay(tileProvider, activity.BaseContext);
+                tilesOverlay.LoadingBackgroundColor = Color.Transparent;
+                mapView.OverlayManager.Add(tilesOverlay);
                 mapView.SetMultiTouchControls (true);
                 mapView.TilesScaledToDpi = true;
 
@@ -143,8 +151,6 @@ namespace de.upb.hip.mobile.droid.Map {
             if (gpsLocation != null)
             {
                 var userPosition = new GeoPoint (gpsLocation.Latitude, gpsLocation.Longitude);
-                mapController.SetCenter (userPosition);
-
                 if (userMarkerPosition != null)
                     mapView.OverlayManager.Remove (userMarkerPosition);
 
@@ -204,7 +210,6 @@ namespace de.upb.hip.mobile.droid.Map {
                 foreach (var waypoint in osmMap.DetailsRoute.Waypoints)
                 {
                     myPath.AddPoint (new GeoPoint (waypoint.Location.Latitude, waypoint.Location.Longitude));
-  
                 }
 
 
