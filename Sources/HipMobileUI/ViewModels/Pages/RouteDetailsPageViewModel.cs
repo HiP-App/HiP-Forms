@@ -19,6 +19,7 @@ using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using de.upb.hip.mobile.pcl.Common;
 using de.upb.hip.mobile.pcl.Helpers;
+using HipMobileUI.AudioPlayer;
 using HipMobileUI.Helpers;
 using HipMobileUI.Location;
 using HipMobileUI.Resources;
@@ -37,6 +38,9 @@ namespace HipMobileUI.Viewmodels.Pages {
         private GeoLocation gpsLocation;
         private Route detailsRoute;
         private bool showDetailsRoute;
+        private bool descriptionPlaying;
+
+        public IAudioPlayer AudioPlayer { get; private set; }
 
         /// <summary>
         /// Creates a new ViewModel for the route with the specified ID.
@@ -57,7 +61,7 @@ namespace HipMobileUI.Viewmodels.Pages {
         public RouteDetailsPageViewModel (Route route)
         {
             Title = route.Title;
-            Description = route.Description;
+            Description = route.Audio.Caption;
             Distance = string.Format (Strings.RouteDetailsPageViewModel_Distance, route.Distance);
             Duration = string.Format (Strings.RouteDetailsPageViewModel_Duration, route.Duration/60);
             Tags = new ObservableCollection<RouteTag> (route.RouteTags);
@@ -70,6 +74,11 @@ namespace HipMobileUI.Viewmodels.Pages {
             DetailsRoute = route;
             ShowDetailsRoute = true;
 
+            // init the audio button
+            AudioPlayer = IoCManager.Resolve<IAudioPlayer>();
+            AudioPlayer.CurrentAudio = route.Audio;
+            descriptionPlaying = false;
+
         }
 
         /// <summary>
@@ -77,11 +86,16 @@ namespace HipMobileUI.Viewmodels.Pages {
         /// </summary>
         private void StartDescriptionPlayback ()
         {
-            Navigation.DisplayAlert (
-                "Audio Playback",
-                "Audio playback is currently not supported!",
-                "Ok"
-            );
+            if (!descriptionPlaying)
+            {
+                AudioPlayer.Play ();
+                descriptionPlaying = !descriptionPlaying;
+            }
+            else
+            {
+                AudioPlayer.Pause ();
+                descriptionPlaying = !descriptionPlaying;
+            }
         }
 
 
