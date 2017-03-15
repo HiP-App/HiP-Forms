@@ -23,7 +23,7 @@ using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 namespace de.upb.hip.mobile.pcl.Common {
     public partial class DbDummyDataFiller {
 
-        public static int DatabaseVersion { get; } = 24;
+        public static int DatabaseVersion { get; } = 28;
 
         public void InsertData ()
         {
@@ -888,8 +888,8 @@ UpdateProgress(156, 230);
 var karldergroßeimwandelderzeit = CreateExhibit (
     "Karl der Große im Wandel der Zeit",
     "",
-    51.7199006,
-    8.754952000000003,
+    51.719782,
+    8.756691,
     new []{"Dom"},
     new []{"Dom"},
     karldergroßeimwandel_teaser
@@ -1017,7 +1017,7 @@ PaderbrunnonPatresbrunPaderbruno.Pages.Add( CreateImagePage (noImage, null, null
 UpdateProgress(205, 230);
 PaderbrunnonPatresbrunPaderbruno.Pages.Add( CreateImagePage (noImage, null, null, _006) );
 UpdateProgress(206, 230);
-var sachsenkriege = CreateExhibit (
+var Sachsenkriege = CreateExhibit (
     "Sachsenkriege",
     "",
     51.719582883396335,
@@ -1027,21 +1027,21 @@ var sachsenkriege = CreateExhibit (
     Teaser_Sachenkriege
   );
 UpdateProgress(207, 230);
-sachsenkriege.Pages.Add( CreateAppetizerPage ("Karl der Große und die Sachsen – dreißig Jahre Krieg!", Teaser_Sachenkriege) );
+Sachsenkriege.Pages.Add( CreateAppetizerPage ("Karl der Große und die Sachsen – dreißig Jahre Krieg!", Teaser_Sachenkriege) );
 UpdateProgress(208, 230);
-sachsenkriege.Pages.Add( CreateImagePage (noImage, null, null, _019) );
+Sachsenkriege.Pages.Add( CreateImagePage (noImage, null, null, _019) );
 UpdateProgress(209, 230);
-sachsenkriege.Pages.Add( CreateImagePage (Stuttgart_WLB_Cod, null, null, _020) );
+Sachsenkriege.Pages.Add( CreateImagePage (Stuttgart_WLB_Cod, null, null, _020) );
 UpdateProgress(210, 230);
-sachsenkriege.Pages.Add( CreateImagePage (noImage, null, null, _021) );
+Sachsenkriege.Pages.Add( CreateImagePage (noImage, null, null, _021) );
 UpdateProgress(211, 230);
-sachsenkriege.Pages.Add( CreateImagePage (noImage, null, null, _022) );
+Sachsenkriege.Pages.Add( CreateImagePage (noImage, null, null, _022) );
 UpdateProgress(212, 230);
-sachsenkriege.Pages.Add( CreateImagePage (noImage, null, null, _023) );
+Sachsenkriege.Pages.Add( CreateImagePage (noImage, null, null, _023) );
 UpdateProgress(213, 230);
-sachsenkriege.Pages.Add( CreateImagePage (KarteDesAltsachsischenSprachraums, null, null, _024) );
+Sachsenkriege.Pages.Add( CreateImagePage (KarteDesAltsachsischenSprachraums, null, null, _024) );
 UpdateProgress(214, 230);
-sachsenkriege.Pages.Add( CreateImagePage (KarteDesAltsachsischenSprachraums, null, null, _025) );
+Sachsenkriege.Pages.Add( CreateImagePage (KarteDesAltsachsischenSprachraums, null, null, _025) );
 UpdateProgress(215, 230);
 var TaufenAnDerPader = CreateExhibit (
     "Taufen an der Pader?",
@@ -1059,11 +1059,11 @@ TaufenAnDerPader.Pages.Add( CreateImagePage (noImage, null, null, _008) );
 UpdateProgress(218, 230);
 TaufenAnDerPader.Pages.Add( CreateImagePage (MünchenBSBClm22053_16r, null, null, _009) );
 UpdateProgress(219, 230);
-TaufenAnDerPader.Pages.Add( CreateTextPage("Sagst du dem Teufel ab?\n	Und er antwortet: Ich sage dem Teufel ab.\nUnd allem Teufelsopfer?\n	Er antwortet: Und ich sage ab allem Teufelsopfer.\nUnd allen Werken des Teufels?\n	Er antwortet: Und ich schwöre ab allen Werken und Worten \n	des Teufels, Donar und Wotan und Saxnot und all den \n	Teufeln, die ihre Genossen sind.\nGlaubst du an Gott, den allmächtigen Vater?\n	Ich glaube an Gott, den allmächtigen Vater.\nGlaubst du an Christus, den Sohn Gottes?\n	Ich glaube an Christus, den Sohn Gottes.\nGlaubst du an den Heiligen Geist?\n	Ich glaube an den Heiligen Geist.\n\n(Übersetzung zitiert nach: Walter Haug / Benedikt Konrad Vollmann (Hg.): Frühe deutsche Literatur und lateinische Literatur in Deutschland 800-1150 (Bibliothek des Mittelalters 1) (Bibliothek deutscher Klassiker 62), Frankfurt a.M. 1991, S. 19).", "Hochdeutschen Übersetzung des Altsächsischen Taufgelöbnisses", null, null, _010) );
+TaufenAnDerPader.Pages.Add( CreateTextPage("Sagst du dem Teufel ab?\n	Und er antwortet: Ich sage dem Teufel ab.\nUnd allem Teufelsopfer?\n	Er antwortet: Und ich sage ab allem Teufelsopfer.\nUnd allen Werken des Teufels?\n	Er antwortet: Und ich schwöre ab allen Werken und Worten \n	des Teufels, Donar und Wotan und Saxnot und all den \n	Teufeln, die ihre Genossen sind.\nGlaubst du an Gott, den allmächtigen Vater?\n	Ich glaube an Gott, den allmächtigen Vater.\nGlaubst du an Christus, den Sohn Gottes?\n	Ich glaube an Christus, den Sohn Gottes.\nGlaubst du an den Heiligen Geist?\n	Ich glaube an den Heiligen Geist.", "Hochdeutschen Übersetzung des Altsächsischen Taufgelöbnisses", "Übersetzung zitiert nach: Walter Haug / Benedikt Konrad Vollmann (Hg.): Frühe deutsche Literatur und lateinische Literatur in Deutschland 800-1150 (Bibliothek des Mittelalters 1) (Bibliothek deutscher Klassiker 62), Frankfurt a.M. 1991, S. 19.", null, _010) );
 UpdateProgress(220, 230);
-TaufenAnDerPader.Pages.Add( CreateTextPage("Sagst du dem Teufel ab?\n	Und er antwortet: Ich sage dem Teufel ab.\nUnd allem Teufelsopfer?\n	Er antwortet: Und ich sage ab allem Teufelsopfer.\nUnd allen Werken des Teufels?\n	Er antwortet: Und ich schwöre ab allen Werken und Worten \n	des Teufels, Donar und Wotan und Saxnot und all den \n	Teufeln, die ihre Genossen sind.\nGlaubst du an Gott, den allmächtigen Vater?\n	Ich glaube an Gott, den allmächtigen Vater.\nGlaubst du an Christus, den Sohn Gottes?\n	Ich glaube an Christus, den Sohn Gottes.\nGlaubst du an den Heiligen Geist?\n	Ich glaube an den Heiligen Geist.\n\n(Übersetzung zitiert nach: Walter Haug / Benedikt Konrad Vollmann (Hg.): Frühe deutsche Literatur und lateinische Literatur in Deutschland 800-1150 (Bibliothek des Mittelalters 1) (Bibliothek deutscher Klassiker 62), Frankfurt a.M. 1991, S. 19).", "Hochdeutschen Übersetzung des Altsächsischen Taufgelöbnisses", null, null, _011) );
+TaufenAnDerPader.Pages.Add( CreateTextPage("Sagst du dem Teufel ab?\n	Und er antwortet: Ich sage dem Teufel ab.\nUnd allem Teufelsopfer?\n	Er antwortet: Und ich sage ab allem Teufelsopfer.\nUnd allen Werken des Teufels?\n	Er antwortet: Und ich schwöre ab allen Werken und Worten \n	des Teufels, Donar und Wotan und Saxnot und all den \n	Teufeln, die ihre Genossen sind.\nGlaubst du an Gott, den allmächtigen Vater?\n	Ich glaube an Gott, den allmächtigen Vater.\nGlaubst du an Christus, den Sohn Gottes?\n	Ich glaube an Christus, den Sohn Gottes.\nGlaubst du an den Heiligen Geist?\n	Ich glaube an den Heiligen Geist.", "Hochdeutschen Übersetzung des Altsächsischen Taufgelöbnisses", "Übersetzung zitiert nach: Walter Haug / Benedikt Konrad Vollmann (Hg.): Frühe deutsche Literatur und lateinische Literatur in Deutschland 800-1150 (Bibliothek des Mittelalters 1) (Bibliothek deutscher Klassiker 62), Frankfurt a.M. 1991, S. 19.", null, _011) );
 UpdateProgress(221, 230);
-TaufenAnDerPader.Pages.Add( CreateTextPage("Priester: Widersagt ihr dem Satan?\n	Antwort: Ich widersage.\nPriester: Und all seiner Bosheit?\n	Antwort: Ich widersage.\nPriester: Und all seinen Verlockungen?\n	Antwort: Ich widersage.\nPriester: Glaubt ihr an Gott, den Vater, den Allmächtigen, den Schöpfer des Himmels und der Erde?\n	Antwort: Ich glaube.\nPriester: Glaubt ihr an Jesus Christus, seinen eingeborenen Sohn, unseren Herrn, der geboren ist \nvon der Jungfrau Maria, der gelitten hat und begraben wurde, von den Toten auferstand und zur Rechten des Vaters sitzt?\n	Antwort: Ich glaube.\nPriester: Glaubt ihr an den Heiligen Geist, die heilige katholische Kirche, die Gemeinschaft der Heiligen, die Vergebung der Sünden, die Auferstehung der Toten und das ewige Leben?\n	Antwort: Ich glaube.\n\n(zitiert nach: Anselm Schott / Erzabtei St. Martin zu Beuron: Volks-Schott. Für das Lesejahr B. Originaltexte der deutschsprachigen Altarausgabe des Meßbuchs und des Lektionars, Freiburg i.B. 1975, S. 198-199.)\n\n(Unter Mitarbeit von Thorsten Schlömer, Student der Germanistik)", null, null, null, _012) );
+TaufenAnDerPader.Pages.Add( CreateTextPage("Priester: Widersagt ihr dem Satan?\n	Antwort: Ich widersage.\nPriester: Und all seiner Bosheit?\n	Antwort: Ich widersage.\nPriester: Und all seinen Verlockungen?\n	Antwort: Ich widersage.\nPriester: Glaubt ihr an Gott, den Vater, den Allmächtigen, den Schöpfer des Himmels und der Erde?\n	Antwort: Ich glaube.\nPriester: Glaubt ihr an Jesus Christus, seinen eingeborenen Sohn, unseren Herrn, der geboren ist \nvon der Jungfrau Maria, der gelitten hat und begraben wurde, von den Toten auferstand und zur Rechten des Vaters sitzt?\n	Antwort: Ich glaube.\nPriester: Glaubt ihr an den Heiligen Geist, die heilige katholische Kirche, die Gemeinschaft der Heiligen, die Vergebung der Sünden, die Auferstehung der Toten und das ewige Leben?\n	Antwort: Ich glaube.", null, "zitiert nach: Anselm Schott / Erzabtei St. Martin zu Beuron: Volks-Schott. Für das Lesejahr B. Originaltexte der deutschsprachigen Altarausgabe des Meßbuchs und des Lektionars, Freiburg i.B. 1975, S. 198-199.\n\n(Unter Mitarbeit von Thorsten Schlömer, Student der Germanistik)", null, _012) );
 UpdateProgress(222, 230);
 TaufenAnDerPader.Pages.Add( CreateImagePage (noImage, null, null, _015) );
 UpdateProgress(223, 230);
@@ -1078,21 +1078,22 @@ UpdateProgress(227, 230);
 var restaurant = CreateRouteTag("Restaurant", "restaurant", CreateImage("","","route_tag_restaurant.png"));
 UpdateProgress(228, 230);
 var karlsrouteSet = DbManager.CreateBusinessObject<ExhibitSet> ();
-karlsrouteSet.ActiveSet.Add(kaiserpfalz);
 karlsrouteSet.ActiveSet.Add(PaderbrunnonPatresbrunPaderbruno);
-karlsrouteSet.ActiveSet.Add(TaufenAnDerPader);
 karlsrouteSet.ActiveSet.Add(LebenAmWasser);
+karlsrouteSet.ActiveSet.Add(TaufenAnDerPader);
 karlsrouteSet.ActiveSet.Add(Sachsenkriege);
-karlsrouteSet.ActiveSet.Add(Kaisermachtschule);
 karlsrouteSet.ActiveSet.Add(ChristianisierungDerSachsen);
 karlsrouteSet.ActiveSet.Add(KarlsSiegUberDieSachsen);
+karlsrouteSet.ActiveSet.Add(kaiserpfalz);
 karlsrouteSet.ActiveSet.Add(karldergroßeimwandelderzeit);
+karlsrouteSet.ActiveSet.Add(Kaisermachtschule);
 var karlsroute = CreateRoute (
     "Karlsroute",
     "Auf der Spur Karls des Großen!",
     1800,
     4.2,
-    theoTeaser
+    theoTeaser,
+    _003
   );
 UpdateProgress(229, 230);
 

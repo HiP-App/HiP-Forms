@@ -354,6 +354,7 @@
     <EmbeddedResource Include="Content\noImage.jpg" />
     <EmbeddedResource Include="Content\KarldergroßeImWandelDerZeit\GrabmalBischofRothosvonPaderborn.jpg" />
     <EmbeddedResource Include="Content\TaufenAnDerPader\Berlin_TaufschaleWidukinds_Einfarbung_Inschrift.jpg" />
+    <EmbeddedResource Include="Content\Karlsroute\003.mp3" />
     <Content Include="FodyWeavers.xml">
       <SubType>Designer</SubType>
     </Content>
