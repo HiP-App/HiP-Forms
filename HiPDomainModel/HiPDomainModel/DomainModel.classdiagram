@@ -3207,6 +3207,22 @@
                   </relationshipOwnedElementsInternal>
                   <elementDefinition Id="73a64f9d-1010-4291-b4f1-9f59e97a8b55" />
                 </association>
+                <association Id="51ed04db-5462-4935-b809-828237b2495c" isDerived="false" sourceEndRoleName="Route" targetEndRoleName="Audio" isLeaf="false" isAbstract="false">
+                  <classMoniker Id="ec3d9052-5386-498f-a385-d2a7d3ce0074" LastKnownName="Audio" />
+                  <relationshipOwnedElementsInternal>
+                    <associationHasOwnedEnds>
+                      <memberEnd Id="d4bf71fe-cd41-4752-93a0-ede028f020c3" name="Route" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                        <elementDefinition Id="3a0c93ac-9d00-4136-8624-22a1424f9ea1" />
+                      </memberEnd>
+                    </associationHasOwnedEnds>
+                    <associationHasOwnedEnds>
+                      <memberEnd Id="c80351b6-c9d5-4e3a-abeb-651d580357b4" name="Audio" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                        <elementDefinition Id="c24f074e-21b6-4959-a979-7fb41f7711b6" />
+                      </memberEnd>
+                    </associationHasOwnedEnds>
+                  </relationshipOwnedElementsInternal>
+                  <elementDefinition Id="7ccf21f8-e750-4ba3-813b-62db689cd0a6" />
+                </association>
               </targetEnds>
               <ownedAttributesInternal>
                 <property Id="2497b718-5480-416e-a7c3-64b3304e3060" name="Title" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">

@@ -35,9 +35,7 @@ namespace HipMobileUI.Viewmodels.Pages {
         private GeoLocation gpsLocation;
         private Route detailsRoute;
         private bool showDetailsRoute;
-        private bool descriptionPlaying;
-
-        public IAudioPlayer AudioPlayer { get; private set; }
+        private IAudioPlayer audioPlayer;
 
         /// <summary>
         /// Creates a new ViewModel for the route with the specified ID.
@@ -54,11 +52,10 @@ namespace HipMobileUI.Viewmodels.Pages {
         /// Creates a new ViewModel for the specified <see cref="Route"/>.
         /// </summary>
         /// <param name="route">The <see cref="Route"/> the ViewModel is created for.</param>
-        /// <param name="location"></param>
         public RouteDetailsPageViewModel (Route route)
         {
             Title = route.Title;
-            Description = route.Audio.Caption;
+            Description = route.Audio?.Caption;
             Distance = string.Format (Strings.RouteDetailsPageViewModel_Distance, route.Distance);
             Duration = string.Format (Strings.RouteDetailsPageViewModel_Duration, route.Duration/60);
             Tags = new ObservableCollection<RouteTag> (route.RouteTags);
@@ -72,10 +69,8 @@ namespace HipMobileUI.Viewmodels.Pages {
             ShowDetailsRoute = true;
 
             // init the audio button
-            AudioPlayer = IoCManager.Resolve<IAudioPlayer>();
-            AudioPlayer.CurrentAudio = route.Audio;
-            descriptionPlaying = false;
-
+            audioPlayer = IoCManager.Resolve<IAudioPlayer>();
+            audioPlayer.CurrentAudio = route.Audio;
         }
 
         /// <summary>
@@ -83,15 +78,13 @@ namespace HipMobileUI.Viewmodels.Pages {
         /// </summary>
         private void StartDescriptionPlayback ()
         {
-            if (!descriptionPlaying)
+            if (!audioPlayer.IsPlaying)
             {
-                AudioPlayer.Play ();
-                descriptionPlaying = !descriptionPlaying;
+                audioPlayer.Play ();
             }
             else
             {
-                AudioPlayer.Pause ();
-                descriptionPlaying = !descriptionPlaying;
+                audioPlayer.Pause ();
             }
         }
 
@@ -134,6 +127,24 @@ namespace HipMobileUI.Viewmodels.Pages {
                 }
             }
             await Navigation.PushAsync (new NavigationPageViewModel (DetailsRoute));
+        }
+
+        public override void OnDisappearing ()
+        {
+            base.OnDisappearing ();
+
+            audioPlayer.Stop ();
+        }
+
+        public override void OnRevealed ()
+        {
+            base.OnRevealed ();
+
+            if (audioPlayer.CurrentAudio==null || !audioPlayer.CurrentAudio.Id.Equals (DetailsRoute.Audio.Id))
+            {
+                // audio has been changed by exhibit details, reset it
+                audioPlayer.CurrentAudio = DetailsRoute.Audio;
+            }
         }
 
         #region Properties
