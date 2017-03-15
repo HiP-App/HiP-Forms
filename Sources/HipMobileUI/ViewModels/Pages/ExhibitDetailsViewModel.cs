@@ -18,7 +18,9 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
+using de.upb.hip.mobile.pcl.Common;
 using de.upb.hip.mobile.pcl.Helpers;
+using HipMobileUI.AudioPlayer;
 using HipMobileUI.Resources;
 using HipMobileUI.ViewModels.Views;
 using HipMobileUI.ViewModels.Views.ExhibitDetails;
@@ -49,6 +51,13 @@ namespace HipMobileUI.ViewModels.Pages {
 
         public ExhibitDetailsViewModel (Exhibit exhibit)
         {
+            // stop audio if necessary
+            IAudioPlayer player = IoCManager.Resolve<IAudioPlayer> ();
+            if (player.IsPlaying)
+            {
+                player.Stop ();
+            }
+
             // init the audio toolbar
             AudioToolbar = new AudioToolbarViewModel (exhibit.Name);
             AudioToolbar.AudioPlayer.AudioCompleted += AudioPlayerOnAudioCompleted;

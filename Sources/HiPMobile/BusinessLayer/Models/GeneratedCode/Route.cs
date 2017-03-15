@@ -46,6 +46,8 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models
 
 		public virtual IList<Waypoint> Waypoints{ get; }
 
+		public virtual Audio Audio{ get; set; }
+
 		// Contructor
 		public Route(){
 		}

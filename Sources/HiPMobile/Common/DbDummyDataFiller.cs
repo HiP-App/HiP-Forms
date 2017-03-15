@@ -164,7 +164,7 @@ namespace de.upb.hip.mobile.pcl.Common
             return audio;
         }
 
-        private Route CreateRoute(string title, string description, int duration, double distance, Image image)
+        private Route CreateRoute(string title, string description, int duration, double distance, Image image, Audio audio)
         {
             var route = DbManager.CreateBusinessObject<Route>();
             route.Title = title;
@@ -172,6 +172,7 @@ namespace de.upb.hip.mobile.pcl.Common
             route.Duration = duration;
             route.Distance = distance;
             route.Image = image;
+            route.Audio = audio;
 
             return route;
         }

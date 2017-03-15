@@ -4420,6 +4420,45 @@
               </associationHasOwnedEnds>
             </relationshipOwnedElementsInternal>
           </association>
+          <association
+            Id="7ccf21f8-e750-4ba3-813b-62db689cd0a6"
+            isDerived="false"
+            sourceEndRoleName="Route"
+            targetEndRoleName="Audio"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="054a31c1-5235-494a-9350-73fff63934b3"
+              LastKnownName="Audio"
+              LastKnownLocation="Package_1525.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="3a0c93ac-9d00-4136-8624-22a1424f9ea1"
+                  name="Route"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="c24f074e-21b6-4959-a979-7fb41f7711b6"
+                  name="Audio"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
         </targetEnds>
         <ownedAttributesInternal>
           <property

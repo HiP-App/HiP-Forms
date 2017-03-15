@@ -17,6 +17,7 @@ using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using de.upb.hip.mobile.pcl.Common;
 using de.upb.hip.mobile.pcl.Common.Contracts;
 using de.upb.hip.mobile.pcl.DataAccessLayer;
+using HipMobileUI.AudioPlayer;
 using HipMobileUI.Location;
 using HipMobileUI.Navigation;
 using HipMobileUI.Viewmodels.Pages;
@@ -35,7 +36,6 @@ namespace HipMobileUI.Tests.ViewModels.Pages {
             var sut = CreateSystemUnderTest ();
 
             Assert.AreEqual ("Test Title", sut.Title);
-            Assert.AreEqual ("Test Description", sut.Description);
             Assert.AreEqual ("10 km", sut.Distance);
             Assert.AreEqual ("60 min", sut.Duration);
             Assert.AreEqual (sut.Tabs.Count, 2);
@@ -52,13 +52,13 @@ namespace HipMobileUI.Tests.ViewModels.Pages {
             var imageDimensions = Substitute.For<IImageDimension>();
             IoCManager.RegisterInstance(typeof(IImageDimension), imageDimensions);
             IoCManager.RegisterInstance (typeof(ILocationManager), Substitute.For<ILocationManager>());
+            IoCManager.RegisterInstance (typeof(IAudioPlayer), Substitute.For<IAudioPlayer> ());
 
             var route = Substitute.For<Route>();
 
             var image = Substitute.For<Image>();
             image.Data = new byte[] { 1, 2, 3, 4 };
 
-            route.Description = "Test Description";
             route.Distance = 10;
             route.Duration = 3600;
             route.Title = "Test Title";
