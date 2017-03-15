@@ -23,7 +23,7 @@ using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 namespace de.upb.hip.mobile.pcl.Common {
     public partial class DbDummyDataFiller {
 
-        public static int DatabaseVersion { get; } = 24;
+        public static int DatabaseVersion { get; } = 25;
 
         public void InsertData ()
         {
@@ -882,8 +882,8 @@ UpdateProgress(155, 229);
 var karldergroßeimwandelderzeit = CreateExhibit (
     "Karl der Große im Wandel der Zeit",
     "",
-    51.7199006,
-    8.754952000000003,
+    51.719782,
+    8.756691,
     new []{"Dom"},
     new []{"Dom"},
     karldergroßeimwandel_teaser
