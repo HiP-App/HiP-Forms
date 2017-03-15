@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
   dslVersion="1.0.0.0"
   Id="3caf1348-0e28-421b-b4e6-66859b824a75"
   name="de.upb.hip.mobile.pcl.BusinessLayer.Models" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
@@ -4250,7 +4250,7 @@
                 <propertyInstance
                   Id="d7029f4c-bb2a-4c08-9e2f-f643d06dc336"
                   name="IsPartial"
-                  value="false" />
+                  value="true" />
               </stereotypeInstanceHasPropertyInstances>
               <stereotypeInstanceHasPropertyInstances
                 Id="9c2bfa43-dad3-4cdd-bde9-03d17c9ad192">
@@ -4369,7 +4369,7 @@
             </relationshipOwnedElementsInternal>
           </association>
           <association
-            Id="13fb2bc1-d10b-4f4a-b816-cf6d870df83e"
+            Id="73a64f9d-1010-4291-b4f1-9f59e97a8b55"
             isDerived="false"
             sourceEndRoleName="Route"
             targetEndRoleName="Waypoints"
@@ -4382,7 +4382,7 @@
             <relationshipOwnedElementsInternal>
               <associationHasOwnedEnds>
                 <memberEnd
-                  Id="747425e4-d5a8-4431-87cf-746c630f6e8a"
+                  Id="d6d90da1-1902-4975-bf0c-2733affea3f8"
                   name="Route"
                   isLeaf="false"
                   isStatic="false"
@@ -4395,7 +4395,7 @@
               </associationHasOwnedEnds>
               <associationHasOwnedEnds>
                 <memberEnd
-                  Id="82419568-72ae-42ad-a68a-f57765cd6aa7"
+                  Id="40b02f79-aabd-440c-b3c1-017d456b894f"
                   name="Waypoints"
                   isLeaf="false"
                   isStatic="false"
@@ -4406,13 +4406,13 @@
                   isComposite="false">
                   <lowerValueInternal>
                     <literalString
-                      Id="4565556d-54fc-43d3-9c92-dad62604e9c8"
+                      Id="1848f9b2-6489-4bd3-b220-0e0bc528abdb"
                       name="Lower"
                       value="*" />
                   </lowerValueInternal>
                   <upperValueInternal>
                     <literalString
-                      Id="3be46050-0bb8-43eb-be6a-e530dbcbd725"
+                      Id="c2f98e1c-4da9-4f13-9213-bf157570b228"
                       name="Upper"
                       value="*" />
                   </upperValueInternal>
@@ -5798,6 +5798,24 @@
                 Id="1a1c8f48-d04c-4e79-8fc2-3570bf3d6e1a"
                 LastKnownName="GeoLocation"
                 LastKnownLocation="Package_1525.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="b67b6227-b6ff-47fa-8c52-c397cbc75a26"
+            name="Visited"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <primitiveTypeMoniker
+                Id="8943dc84-709e-4f62-b15a-a3273aa6f165"
+                LastKnownName="Boolean"
+                LastKnownLocation="HiPDomainModel.uml" />
             </type_NamedElement>
           </property>
         </ownedAttributesInternal>

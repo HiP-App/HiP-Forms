@@ -24,6 +24,7 @@ using Android.Widget;
 using de.upb.hip.mobile.droid.Map;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using de.upb.hip.mobile.pcl.BusinessLayer.Routing;
+using HipMobileUI;
 using HipMobileUI.Helpers;
 using HipMobileUI.Map;
 using Org.Osmdroid;
@@ -38,14 +39,16 @@ using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 using Color = Android.Graphics.Color;
 using HipMobileUI.Resources;
+using Application = Xamarin.Forms.Application;
+using Org.Osmdroid.Tileprovider;
 
 [assembly: ExportRenderer (typeof (OsmMap), typeof (DroidMapRenderer))]
-
 namespace de.upb.hip.mobile.droid.Map {
     internal class DroidMapRenderer : Xamarin.Forms.Platform.Android.AppCompat.ViewRenderer<OsmMap, MapView>, IMapListener {
 
         private Activity activity;
         private Polyline currentRouteOverlay;
+        private Polyline currentSectionOverlay;
         private MyLocationOverlay locationOverlay;
         private MapController mapController;
         private MapView mapView;
@@ -68,14 +71,22 @@ namespace de.upb.hip.mobile.droid.Map {
         {
             base.OnElementChanged (e);
 
-
             if (Control == null)
             {
                 mapView = new MapView (Forms.Context, 11);
                 activity = Context as Activity;
                 routeCalculator = RouteCalculator.Instance;
                 SetNativeControl (mapView);
-                mapView.SetTileSource (TileSourceFactory.DefaultTileSource);
+                //for the app testing the tile server was changed to watercolor style and layer was added (only for android)
+                mapView.SetTileSource (new XYTileSource ("OSM", null, 0, 18, 256, ".png",
+                                                         new[] {"http://c.tile.stamen.com/watercolor/"}));
+               MapTileProviderBasic tileProvider = new MapTileProviderBasic(activity);
+               ITileSource tileSource = new XYTileSource("MyCustomTiles", null, 1, 16, 256, ".png",
+                            new[] { "http://b.sm.mapstack.stamen.com/(watercolor,streets-and-labels)/" });
+                tileProvider.TileSource = (tileSource);
+                TilesOverlay tilesOverlay = new TilesOverlay(tileProvider, activity.BaseContext);
+                tilesOverlay.LoadingBackgroundColor = Color.Transparent;
+                mapView.OverlayManager.Add(tilesOverlay);
                 mapView.SetMultiTouchControls (true);
                 mapView.TilesScaledToDpi = true;
 
@@ -140,8 +151,6 @@ namespace de.upb.hip.mobile.droid.Map {
             if (gpsLocation != null)
             {
                 var userPosition = new GeoPoint (gpsLocation.Latitude, gpsLocation.Longitude);
-                mapController.SetCenter (userPosition);
-
                 if (userMarkerPosition != null)
                     mapView.OverlayManager.Remove (userMarkerPosition);
 
@@ -201,7 +210,6 @@ namespace de.upb.hip.mobile.droid.Map {
                 foreach (var waypoint in osmMap.DetailsRoute.Waypoints)
                 {
                     myPath.AddPoint (new GeoPoint (waypoint.Location.Latitude, waypoint.Location.Longitude));
-  
                 }
 
 
@@ -260,19 +268,19 @@ namespace de.upb.hip.mobile.droid.Map {
 
                                               try
                                               {
-                                                  var locations = routeCalculator.CreateRouteWithSeveralWaypoints (id, userPosition);
+                                                  OrderedRoute locations = routeCalculator.CreateOrderedRoute (id, userPosition);
 
-                                                  foreach (var w in locations)
+                                                  /*foreach (var w in locations)
                                                   {
                                                       var point = new GeoPoint (w.Latitude, w.Longitude);
                                                       geoPoints.Add (point);
-                                                  }
+                                                  }*/
 
-                                                  action = () => DrawRoute (geoPoints);
+                                                  action = () => DrawRoute (locations, userPosition != null);
                                               }
                                               catch (Exception)
                                               {
-                                                  action = ShowRouteCalculationError;
+                                                  action = () => { };
                                               }
 
                                               activity.RunOnUiThread (() => {
@@ -282,17 +290,15 @@ namespace de.upb.hip.mobile.droid.Map {
                                           });
         }
 
-        private void ShowRouteCalculationError ()
-        {
-            Toast.MakeText (activity, Strings.MapRenderer_NoLocation_Text, ToastLength.Long).Show ();
-        }
-
         /// <summary>
         /// Settings how the line should look like
         /// </summary>
         /// <param name="geoPoints"></param>
         private void DrawRoute (List<GeoPoint> geoPoints)
         {
+            if (disposed)
+                return;
+
             //Cleanup route if drawn before
             if (currentRouteOverlay != null)
                 mapView.OverlayManager.Remove (currentRouteOverlay);
@@ -309,6 +315,61 @@ namespace de.upb.hip.mobile.droid.Map {
             mapView.Invalidate ();
         }
 
+        private void DrawRoute(OrderedRoute route, bool userLocationIncluded)
+        {
+            if (disposed)
+                return;
+
+            //Cleanup route if drawn before
+            if (currentRouteOverlay != null)
+                mapView.OverlayManager.Remove(currentRouteOverlay);
+            if (currentSectionOverlay != null)
+            {
+                mapView.OverlayManager.Remove (currentSectionOverlay);
+            }
+
+            if (userLocationIncluded)
+            {
+                currentSectionOverlay = new Polyline (activity)
+                {
+                    Title = osmMap.DetailsRoute.Title,
+                    Width = 5f,
+                    Color = ((Xamarin.Forms.Color) Application.Current.Resources ["AccentColor"]).ToAndroid (),
+                    //Color = Color.Orange,
+                    Points = route.FirstSection.Select (geoLocation => new GeoPoint (geoLocation.Latitude, geoLocation.Longitude)).ToList (),
+                    Geodesic = true
+                };
+                currentRouteOverlay = new Polyline (activity)
+                {
+                    Title = osmMap.DetailsRoute.Title,
+                    Width = 5f,
+                    Color = ((Xamarin.Forms.Color) Application.Current.Resources ["PrimaryColor"]).ToAndroid (),
+                    //Color = Color.Blue,
+                    Points = route.NonFirstSections.Select (geoLocation => new GeoPoint (geoLocation.Latitude, geoLocation.Longitude)).ToList (),
+                    Geodesic = true
+                };
+            }
+            else
+            {
+                currentRouteOverlay = new Polyline(activity)
+                {
+                    Title = osmMap.DetailsRoute.Title,
+                    Width = 5f,
+                    Color = ((Xamarin.Forms.Color)Application.Current.Resources["PrimaryColor"]).ToAndroid(),
+                    Points = route.Locations.Select(geoLocation => new GeoPoint(geoLocation.Latitude, geoLocation.Longitude)).ToList(),
+                    Geodesic = true
+                };
+            }
+            int index = mapView.OverlayManager.IndexOf (locationOverlay);
+            if (userLocationIncluded)
+            {
+                mapView.OverlayManager.Add (index, currentSectionOverlay);
+            }
+            mapView.OverlayManager.Add(index, currentRouteOverlay);
+            mapView.Invalidate();
+        }
+
+        private bool disposed;
 
         /// <summary>
         ///     Called when this view will be disposed.
@@ -318,6 +379,8 @@ namespace de.upb.hip.mobile.droid.Map {
         {
             if (disposing)
             {
+                disposed = true;
+
                 osmMap.ExhibitSetChanged -= NewElementOnExhibitSetChanged;
                 osmMap.GpsLocationChanged -= NewElementOnGpsLocationChanged;
                 osmMap.DetailsRouteChanged -= NewElementOnDetailsRouteChanged;

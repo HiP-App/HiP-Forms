@@ -84,11 +84,11 @@
     <Compile Include="Helpers\OrientationController.cs" />
     <Compile Include="Helpers\Settings.cs" />
     <Compile Include="Location\LocationManager.cs" />
+    <Compile Include="Location\NearbyExhibitManager.cs" />
     <Compile Include="ViewModels\Pages\NavigationPageViewModel.cs" />
     <Compile Include="Map\OsmMap.cs" />
     <Compile Include="Helpers\TranslateExtension.cs" />
     <Compile Include="Navigation\INavigationService.cs" />
-    <Compile Include="Navigation\IPagePoppedListener.cs" />
     <Compile Include="Navigation\IViewCreator.cs" />
     <Compile Include="Navigation\IViewFor.cs" />
     <Compile Include="Navigation\NavigationService.cs" />
@@ -114,7 +114,7 @@
     </Compile>
     <Compile Include="Pages\AudioTranscript\SubtitlesPage.xaml.cs">
       <DependentUpon>SubtitlesPage.xaml</DependentUpon>
-	</Compile>
+    </Compile>
     <Compile Include="Pages\UserOnboardingPage.xaml.cs">
       <DependentUpon>UserOnboardingPage.xaml</DependentUpon>
     </Compile>

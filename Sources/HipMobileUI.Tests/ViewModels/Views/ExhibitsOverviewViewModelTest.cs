@@ -43,6 +43,7 @@ namespace HipMobileUI.Tests.ViewModels.Views
             IoCManager.RegisterInstance (typeof (IDataAccess), Substitute.For<IDataAccess> ());
             IoCManager.RegisterInstance (typeof(IAudioPlayer), Substitute.For<IAudioPlayer> ());
             IoCManager.RegisterInstance(typeof(ILocationManager), Substitute.For<ILocationManager>());
+            IoCManager.RegisterInstance (typeof(INearbyExhibitManager), Substitute.For<INearbyExhibitManager> ());
         }
 
         [Test, Category("UnitTest")]

@@ -29,9 +29,23 @@ namespace HipMobileUI.ViewModels
         }
 
         /// <summary>
-        /// Method called when the view appears. Note that this method is not called automatically for every view.
+        /// Method called when the view appears for the first time. Note that this method is not called automatically for every view.
         /// </summary>
         public virtual void OnAppearing ()
+        {
+        }
+
+        /// <summary>
+        /// Method called when the view is hidden, for example another page is pushed on top of the view.
+        /// </summary>
+        public virtual void OnHidden ()
+        {
+        }
+
+        /// <summary>
+        /// Method called when the view is visible again, atfer it was hidden.
+        /// </summary>
+        public virtual void OnRevealed ()
         {
         }
 

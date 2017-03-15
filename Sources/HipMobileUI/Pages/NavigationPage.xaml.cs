@@ -17,16 +17,11 @@ using HipMobileUI.ViewModels.Pages;
 
 namespace HipMobileUI.Pages
 {
-    public partial class NavigationPage : IViewFor<NavigationPageViewModel>, IPagePoppedListener {
+    public partial class NavigationPage : IViewFor<NavigationPageViewModel> {
 
         public NavigationPage()
         {
             InitializeComponent();
-        }
-
-        public void PagePopped ()
-        {
-            ((NavigationPageViewModel)BindingContext).OnDisappearing ();
         }
 
     }
