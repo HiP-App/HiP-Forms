@@ -20,21 +20,10 @@ using NavigationPage = Xamarin.Forms.NavigationPage;
 
 namespace HipMobileUI.iOS.Contracts {
     public class IosBarsColorsChanger : IBarsColorsChanger {
-        private Page FormsPage => Xamarin.Forms.Application.Current.MainPage;
-
-        private NavigationPage NavigationPage
-        {
-            get
-            {
-                var mainPage = FormsPage as MainPage;
-                return mainPage?.Navigationpage;
-            }
-        }
 
         public void ChangeToolbarColor(Color statusBarColor, Color actionBarColor)
         {
-            NavigationPage.BarBackgroundColor = actionBarColor;
-            //activity.SetStatusBarColor(statusBarColor.ToUIColor());
+            
         }
 
     }

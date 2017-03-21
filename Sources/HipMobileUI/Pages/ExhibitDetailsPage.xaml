@@ -39,7 +39,7 @@
                                    RippleColor="{StaticResource AccentDarkColor}"
                                    IsVisible="{Binding AdditionalInformationButtonVisible}"
                                    Command="{Binding ShowAdditionalInformationCommand}"
-                                   AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="1,0.25" />
+                                   AbsoluteLayout.LayoutFlags="XProportional" AbsoluteLayout.LayoutBounds="1,100"/>
     <views:AudioToolbarView TranslationY="-100"
                             x:Name="AudioToolbar"
                             BackgroundColor="White"
