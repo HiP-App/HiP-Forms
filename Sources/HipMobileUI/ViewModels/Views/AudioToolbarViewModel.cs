@@ -31,6 +31,7 @@ namespace HipMobileUI.ViewModels.Views {
         private ICommand playCommand;
         private ICommand pauseCommand;
         private ICommand captionCommand;
+        private Audio currentAudio;
         private bool isAudioPlaying;
         private readonly bool automaticallyStartNewAudio;
 
@@ -94,6 +95,7 @@ namespace HipMobileUI.ViewModels.Views {
         /// <param name="newAudio"></param>
         public void SetNewAudioFile (Audio newAudio)
         {
+            currentAudio = newAudio;
             AudioPlayer.CurrentAudio = newAudio;
             if (newAudio != null)
                 MaxAudioProgress = AudioPlayer.MaximumProgress;
@@ -116,6 +118,30 @@ namespace HipMobileUI.ViewModels.Views {
             AudioPlayer.Stop ();
             AudioPlayer.AudioCompleted -= AudioPlayerOnAudioCompleted;
             AudioPlayer.IsPlayingChanged -= AudioPlayerOnIsPlayingChanged;
+        }
+
+        /// <summary>
+        /// Deregister events and stop audio.
+        /// </summary>
+        public override void OnHidden()
+        {
+            base.OnHidden();
+
+            IsAudioPlaying = false;
+            AudioPlayer.AudioCompleted -= AudioPlayerOnAudioCompleted;
+            AudioPlayer.IsPlayingChanged -= AudioPlayerOnIsPlayingChanged;
+        }
+
+        /// <summary>
+        /// Register events
+        /// </summary>
+        public override void OnRevealed()
+        {
+            base.OnRevealed();
+
+            AudioPlayer.CurrentAudio = currentAudio;
+            AudioPlayer.AudioCompleted += AudioPlayerOnAudioCompleted;
+            AudioPlayer.IsPlayingChanged += AudioPlayerOnIsPlayingChanged;
         }
 
         #region Properties

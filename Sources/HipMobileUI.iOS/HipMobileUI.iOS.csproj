@@ -155,6 +155,7 @@
       <Link>Contracts\IosKeyProvider.cs</Link>
     </Compile>
     <Compile Include="Contracts\IosAudioPlayer.cs" />
+    <Compile Include="Contracts\IosBarsColorsChanger.cs" />
     <Compile Include="Contracts\IosImageDimensions.cs" />
     <Compile Include="Contracts\IosStatusBarController.cs" />
     <Compile Include="CustomRenderers\FloatingActionButtonIosRenderer.cs" />
@@ -387,6 +388,9 @@
     <BundleResource Include="Resources\Icon-72%402x.png" />
     <BundleResource Include="Resources\Icon-Small-50.png" />
     <BundleResource Include="Resources\Icon-Small-50%402x.png" />
+    <BundleResource Include="Resources\ic_more%403x.png" />
+    <BundleResource Include="Resources\ic_more.png" />
+    <BundleResource Include="Resources\ic_more%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Resources\MapAnnotations.xcassets\AppIcons.appiconset\Contents.json">

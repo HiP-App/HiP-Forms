@@ -116,6 +116,15 @@ namespace HipMobileUI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Zusätzliche Informationen.
+        /// </summary>
+        public static string ExhibitDetailsPage_AdditionalInformation {
+            get {
+                return ResourceManager.GetString("ExhibitDetailsPage_AdditionalInformation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ich möchte die Funktion nutzen.
         /// </summary>
         public static string ExhibitDetailsPage_AgreeFeature {
