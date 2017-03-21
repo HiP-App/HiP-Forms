@@ -81,7 +81,7 @@ namespace HipMobileUI.Location
                     {
                         await IoCManager.Resolve<INavigationService>().PushAsync(new ExhibitDetailsViewModel(e.Id));
                         ExhibitVisitedEvent?.Invoke(this, e);
-                        break;
+                        return;
                     }
                 }
             }
