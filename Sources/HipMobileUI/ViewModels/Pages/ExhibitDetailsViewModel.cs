@@ -13,6 +13,8 @@
 // limitations under the License.
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -33,7 +35,7 @@ namespace HipMobileUI.ViewModels.Pages {
         private ExhibitSubviewViewModel selectedView;
         private AudioToolbarViewModel audioToolbar;
 
-        private readonly Exhibit exhibit;
+        private readonly IList<Page> pages;
         private ICommand nextViewCommand;
         private ICommand previousViewCommand;
         private ICommand audioToolbarCommand;
@@ -45,11 +47,16 @@ namespace HipMobileUI.ViewModels.Pages {
         private bool audioAvailabe;
         private bool audioToolbarVisible;
 
-        public ExhibitDetailsViewModel (string exhibitId) : this (ExhibitManager.GetExhibit (exhibitId))
+        public ExhibitDetailsViewModel(Exhibit exhibit) : this(exhibit.Pages, exhibit.Name)
         {
+
+        }
+        public ExhibitDetailsViewModel (string exhibitId) : this(ExhibitManager.GetExhibit(exhibitId).Pages, ExhibitManager.GetExhibit(exhibitId).Name)
+        {
+            
         }
 
-        public ExhibitDetailsViewModel (Exhibit exhibit)
+        public ExhibitDetailsViewModel (IList<Page> pages, string title)
         {
             // stop audio if necessary
             IAudioPlayer player = IoCManager.Resolve<IAudioPlayer> ();
@@ -59,20 +66,17 @@ namespace HipMobileUI.ViewModels.Pages {
             }
 
             // init the audio toolbar
-            AudioToolbar = new AudioToolbarViewModel (exhibit.Name);
+            AudioToolbar = new AudioToolbarViewModel (title);
             AudioToolbar.AudioPlayer.AudioCompleted += AudioPlayerOnAudioCompleted;
 
             // init the current view
             currentViewIndex = 0;
-            if (exhibit != null)
-            {
-                this.exhibit = exhibit;
-                SetCurrentView ().ConfigureAwait (true);
-                Title = exhibit.Name;
+            this.pages = pages;
+            SetCurrentView ().ConfigureAwait (true);
+            Title = title;
 
-                if (exhibit.Pages.Count > 1)
-                    NextViewAvailable = true;
-            }
+            if (pages.Count > 1)
+                NextViewAvailable = true;
 
             // init commands
             NextViewCommand = new Command (async () => await GotoNextView ());
@@ -154,7 +158,7 @@ namespace HipMobileUI.ViewModels.Pages {
         /// <returns></returns>
         private async Task GotoNextView ()
         {
-            if (currentViewIndex < exhibit.Pages.Count - 1)
+            if (currentViewIndex < pages.Count - 1)
             {
                 // stop audio
                 if (AudioToolbar.AudioPlayer.IsPlaying)
@@ -164,7 +168,7 @@ namespace HipMobileUI.ViewModels.Pages {
 
                 // update the UI
                 currentViewIndex++;
-                NextViewAvailable = currentViewIndex < exhibit.Pages.Count - 1;
+                NextViewAvailable = currentViewIndex < pages.Count - 1;
                 PreviousViewAvailable = true;
                 await SetCurrentView ();
             }
@@ -203,7 +207,7 @@ namespace HipMobileUI.ViewModels.Pages {
         private async Task SetCurrentView ()
         {
             // update UI
-            Page currentPage = exhibit.Pages [currentViewIndex];
+            Page currentPage = pages[currentViewIndex];
             AudioAvailable = currentPage.Audio != null;
             if (!AudioAvailable)
             {
@@ -215,7 +219,7 @@ namespace HipMobileUI.ViewModels.Pages {
             switch (currentPage.PageType)
             {
                 case PageType.AppetizerPage:
-                    SelectedView = new AppetizerViewModel(exhibit.Name, currentPage.AppetizerPage);
+                    SelectedView = new AppetizerViewModel(Title, currentPage.AppetizerPage);
                     break;
                 case PageType.ImagePage:
                     SelectedView = new ImageViewModel(currentPage.ImagePage, ToggleVisibilityOfNavigationButtons);
