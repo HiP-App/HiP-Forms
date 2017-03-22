@@ -170,6 +170,51 @@ namespace HipMobileUI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ja.
+        /// </summary>
+        public static string ExhibitNearby_Confirm {
+            get {
+                return ResourceManager.GetString("ExhibitNearby_Confirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sehenwürdigkeit in der Nähe.
+        /// </summary>
+        public static string ExhibitNearby_ExhibitNearby {
+            get {
+                return ResourceManager.GetString("ExhibitNearby_ExhibitNearby", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Möchten sie sich.
+        /// </summary>
+        public static string ExhibitNearby_Question_Part1 {
+            get {
+                return ResourceManager.GetString("ExhibitNearby_Question_Part1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to genauer ansehen?.
+        /// </summary>
+        public static string ExhibitNearby_Question_Part2 {
+            get {
+                return ResourceManager.GetString("ExhibitNearby_Question_Part2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nein.
+        /// </summary>
+        public static string ExhibitNearby_Reject {
+            get {
+                return ResourceManager.GetString("ExhibitNearby_Reject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Die Nutzung der App basiert auf Freiwilligkeit. Sämtliche Daten, die im Rahmen der Nutzung der Dienste und Applikation Verwendung finden, dürfen nur erhoben und verarbeitet werden, soweit dies für den Dienst und statistische Forschungs- und Evaluationszwecke erforderlich ist und den Regelungen der Universität Paderborn und dem Datenschutzgesetz NRW entspricht..
         /// </summary>
         public static string LicenseScreenView_Agreement_Text {

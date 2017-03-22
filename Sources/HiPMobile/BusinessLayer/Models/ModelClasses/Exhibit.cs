@@ -50,6 +50,8 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models
 
 		public virtual Image Image{ get; set; }
 
+        public DateTimeOffset? LastNearbyTime { get; set; }
+
 		// Contructor
 		public Exhibit(){
 		}

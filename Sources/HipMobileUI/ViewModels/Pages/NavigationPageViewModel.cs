@@ -85,7 +85,7 @@ namespace HipMobileUI.ViewModels.Pages {
         public void LocationChanged (object sender, PositionEventArgs args)
         {
             GpsLocation = args.Position.ToGeoLocation();
-            nearbyExhibitManager.CheckNearExhibit (detailsRoute.ActiveSet.Select (waypoint => waypoint.Exhibit), GpsLocation);
+            nearbyExhibitManager.CheckNearExhibit (detailsRoute.ActiveSet.Select (waypoint => waypoint.Exhibit), GpsLocation, false);
         }
 
         public override void OnAppearing ()
