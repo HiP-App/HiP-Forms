@@ -60,5 +60,17 @@ namespace HipMobileUI.iOS.CustomRenderers
             formsSlider?.TouchDownEvent?.Invoke (sender, null);
         }
 
+        protected override void Dispose (bool disposing)
+        {
+            if (disposing)
+            {
+                Control.TouchDown -= ControlOnTouchDown;
+                Control.TouchUpInside -= ControlOnTouchUp;
+                Control.TouchUpOutside -= ControlOnTouchUp;
+            }
+
+            base.Dispose (disposing);
+        }
+
     }
 }

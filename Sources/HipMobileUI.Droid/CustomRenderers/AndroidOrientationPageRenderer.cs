@@ -58,6 +58,7 @@ namespace de.upb.hip.mobile.droid.CustomRenderers
         {
             if (controller == OrientationController.LandscapeConstant)
             {
+
                 ((MainActivity) Context).RequestedOrientation = ScreenOrientation.Landscape;
             }
             else if (controller == OrientationController.PortraitConstant)
@@ -68,6 +69,16 @@ namespace de.upb.hip.mobile.droid.CustomRenderers
             {
                 ((MainActivity) Context).RequestedOrientation = ScreenOrientation.Sensor;
             }
+        }
+
+        protected override void Dispose (bool disposing)
+        {
+            if (disposing)
+            {
+                formsOrientationPage.PropertyChanged -= PagePropertyChanged;
+            }
+
+            base.Dispose (disposing);
         }
 
     }
