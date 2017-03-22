@@ -75,13 +75,11 @@ namespace HipMobileUI.ViewModels.Views {
         private void PlayAudio()
         {
             AudioPlayer.Play ();
-            PlayPauseCommand = PauseCommand;
         }
 
         private void PauseAudio()
         {
             AudioPlayer.Pause ();
-            PlayPauseCommand = PlayCommand;
         }
 
         private void ShowCaption()
@@ -171,7 +169,10 @@ namespace HipMobileUI.ViewModels.Views {
         public bool IsAudioPlaying
         {
             get { return isAudioPlaying; }
-            set { SetProperty(ref isAudioPlaying, value); }
+            set {
+                SetProperty(ref isAudioPlaying, value);
+                PlayPauseCommand = value ? PauseCommand : PlayCommand;
+            }
         }
 
         #endregion
