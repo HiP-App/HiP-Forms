@@ -89,6 +89,10 @@ namespace HipMobileUI.Pages {
             {
                 ToggleAudioBarVisibility ();
             }
+            if (propertyChangedEventArgs.PropertyName.Equals(nameof(ViewModel.WillDisappear)) && ViewModel.WillDisappear)
+            {
+                MessagingCenter.Unsubscribe<App>(this, AppSharedData.WillWakeUpMessage);
+            }
         }
 
         /// <summary>
@@ -120,6 +124,5 @@ namespace HipMobileUI.Pages {
             OrientationController = OrientationController.Sensor;
             isOnDisappearingContext = false;
         }
-
     }
 }
