@@ -37,7 +37,7 @@ namespace HipMobileUI.ViewModels.Pages
             Subtext = Strings.LoadingPage_Subtext;
             StartLoading = new Command (Load);
 
-            // 
+            // listen to sleep and wake up messages as the main screen cannot be started when the app is sleeping
             MessagingCenter.Subscribe<App>(this, AppSharedData.WillSleepMessage, WillSleep);
             MessagingCenter.Subscribe<App>(this, AppSharedData.WillWakeUpMessage, WillWakeUp);
         }
@@ -140,7 +140,10 @@ namespace HipMobileUI.ViewModels.Pages
         private void WillWakeUp(App obj)
         {
             // app was send to sleep before the main menu could be opened, open the menu now
-            Device.BeginInvokeOnMainThread(startupAction);
+            if (startupAction != null)
+            {
+                Device.BeginInvokeOnMainThread (startupAction);
+            }
         }
 
         private void WillSleep(App obj)

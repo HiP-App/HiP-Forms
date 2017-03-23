@@ -118,7 +118,7 @@ namespace HipMobileUI.Pages {
         {
             base.OnDisappearing ();
 
-            // reset the controller, cannot be called in OnDisappearing of vviewmodel as it is too late
+            // reset the controller, cannot be called in OnDisappearing of viewmodel as it is too late
             // in case it was called on app sleep, the state will be restored, when the app wakes up
             isOnDisappearingContext = true;
             OrientationController = OrientationController.Sensor;
