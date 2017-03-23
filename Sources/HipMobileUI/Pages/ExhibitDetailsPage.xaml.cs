@@ -54,7 +54,7 @@ namespace HipMobileUI.Pages {
         /// <param name="app">The instance of the app.</param>
         private void WillWakeUp (App app)
         {
-            //restore the old controller as it was changed by OnDisappearing(dcannot distinguish between sleep and page popped on Android)
+            //restore the old controller as it was changed by OnDisappearing(cannot distinguish between sleep and page popped on Android)
             OrientationController = savedControllerState;
         }
 
@@ -118,8 +118,8 @@ namespace HipMobileUI.Pages {
         {
             base.OnDisappearing ();
 
-            // reset the controller, cannot be called in PagePopped as it is too late
-            // in case it was called on app sleep, the state will be restored, when ethe app wakes up
+            // reset the controller, cannot be called in OnDisappearing of vviewmodel as it is too late
+            // in case it was called on app sleep, the state will be restored, when the app wakes up
             isOnDisappearingContext = true;
             OrientationController = OrientationController.Sensor;
             isOnDisappearingContext = false;
