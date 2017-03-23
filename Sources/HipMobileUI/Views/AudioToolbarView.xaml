@@ -43,7 +43,7 @@
                 <StackLayout.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding CaptionCommand}" />
                 </StackLayout.GestureRecognizers>
-                <Image Source="ic_closed_caption" HeightRequest="36" WidthRequest="36" HorizontalOptions="Center" VerticalOptions="Center" />
+                <Image Source="ic_closed_caption_black" HeightRequest="36" WidthRequest="36" HorizontalOptions="Center" VerticalOptions="Center" />
                 <Label Text="{strings:Translate AudioToolbarView_Caption}" HorizontalOptions="Center" />
             </StackLayout>
         </StackLayout>
