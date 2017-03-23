@@ -70,7 +70,7 @@ namespace HipMobileUI.ViewModels.Views
             Position = args.Position;
             SetDistances(args.Position);
 
-            nearbyExhibitManager.CheckNearExhibit (displayedExhibitSet, args.Position.ToGeoLocation ());
+            nearbyExhibitManager.CheckNearExhibit (displayedExhibitSet, args.Position.ToGeoLocation (), true);
         }
 
         /// <summary>

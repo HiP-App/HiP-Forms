@@ -12,8 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System;
-using System.ComponentModel;
 using System.Windows.Input;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using de.upb.hip.mobile.pcl.Common;
@@ -30,6 +28,7 @@ namespace HipMobileUI.ViewModels.Views {
         private double maxAudioProgress;
         private ICommand playCommand;
         private ICommand pauseCommand;
+        private ICommand playPauseCommand;
         private ICommand captionCommand;
         private Audio currentAudio;
         private bool isAudioPlaying;
@@ -156,6 +155,14 @@ namespace HipMobileUI.ViewModels.Views {
         }
 
         /// <summary>
+        /// Unified command for audio play/pause
+        /// </summary>
+        public ICommand PlayPauseCommand {
+            get { return IsAudioPlaying ? PauseCommand : PlayCommand; }
+            set { SetProperty (ref playPauseCommand, value); }
+        } 
+
+        /// <summary>
         /// Command for playing audio
         /// </summary>
         public ICommand PlayCommand
@@ -188,7 +195,10 @@ namespace HipMobileUI.ViewModels.Views {
         public bool IsAudioPlaying
         {
             get { return isAudioPlaying; }
-            set { SetProperty(ref isAudioPlaying, value); }
+            set {
+                SetProperty(ref isAudioPlaying, value);
+                PlayPauseCommand = value ? PauseCommand : PlayCommand;
+            }
         }
 
         #endregion
