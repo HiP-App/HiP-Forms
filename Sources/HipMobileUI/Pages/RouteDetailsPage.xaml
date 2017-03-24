@@ -32,34 +32,33 @@
                          VerticalOptions="FillAndExpand"
                          BackgroundColor="White">
           <container:TabContainerView.TabViews>
-              
           
-        <!-- Description Tab -->
-        <ScrollView>
-            <StackLayout Padding="16,6,16,0" Orientation="Vertical">
-              <StackLayout Orientation="Horizontal">
-                <StackLayout.GestureRecognizers>
-                  <TapGestureRecognizer Command="{Binding StartDescriptionPlaybackCommand}" />
-                </StackLayout.GestureRecognizers>
-                <Image Source="ic_volume_up.png" />
-                <Label VerticalTextAlignment="Center" Text="{strings:Translate RouteDetailsPage_PlayAudio}" />
-              </StackLayout>
-              <Label Text="{Binding Description}" FontSize="Small"/>
-              <Label Text="{strings:Translate RouteDetailsPage_Tags}" FontSize="19" Margin="0,24,0,0" />
-              <container:BindableChildrenStackLayout
-                Orientation="Vertical" Margin="8,4,0,0"
-                ChildElements="{Binding Tags, Converter= {StaticResource RouteTagViewListConverter}}" />
-            </StackLayout>
-        </ScrollView>
+            <!-- Description Tab -->
+            <ScrollView>
+                <StackLayout Padding="16,6,16,0" Orientation="Vertical">
+                    <StackLayout Orientation="Horizontal" Margin="0,0,0,8">
+                    <StackLayout.GestureRecognizers>
+                      <TapGestureRecognizer Command="{Binding StartDescriptionPlaybackCommand}" />
+                    </StackLayout.GestureRecognizers>
+                    <Image Source="ic_volume_up.png" />
+                    <Label VerticalTextAlignment="Center" Text="{strings:Translate RouteDetailsPage_PlayAudio}" 
+                           TextColor="{StaticResource AccentColor}" FontSize="Medium" />
+                  </StackLayout>
+                  <Label Text="{Binding Description}" FontSize="Small"/>
+                  <Label Text="{strings:Translate RouteDetailsPage_Tags}" FontSize="19" Margin="0,24,0,0" />
+                  <container:BindableChildrenStackLayout
+                    Orientation="Vertical" Margin="8,4,0,16"
+                    ChildElements="{Binding Tags, Converter= {StaticResource RouteTagViewListConverter}}" />
+                </StackLayout>
+            </ScrollView>
 
-        <!-- Map Tab -->
-
-        <map:OsmMap x:Name="Map" ExhibitSet="{Binding ExhibitSet}" GpsLocation="{Binding GpsLocation}"
-                    DetailsRoute="{Binding DetailsRoute}" ShowDetailsRoute="{Binding ShowDetailsRoute}" HorizontalOptions="FillAndExpand"
-                         VerticalOptions="FillAndExpand"
-                         BackgroundColor="Transparent" />
-                </container:TabContainerView.TabViews>
-            </container:TabContainerView>
+            <!-- Map Tab -->
+            <map:OsmMap x:Name="Map" ExhibitSet="{Binding ExhibitSet}" GpsLocation="{Binding GpsLocation}"
+                DetailsRoute="{Binding DetailsRoute}" ShowDetailsRoute="{Binding ShowDetailsRoute}" HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand" BackgroundColor="Transparent" />
+              
+          </container:TabContainerView.TabViews>
+      </container:TabContainerView>
 
       <!-- info & start route -->
       <BoxView HeightRequest="1" Color="#66000000" />

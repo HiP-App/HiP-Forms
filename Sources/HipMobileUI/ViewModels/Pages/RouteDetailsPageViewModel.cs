@@ -63,7 +63,7 @@ namespace HipMobileUI.Viewmodels.Pages {
             Image = ImageSource.FromStream (() => new MemoryStream (data));
             StartRouteCommand = new Command (StartRoute);
             StartDescriptionPlaybackCommand = new Command (StartDescriptionPlayback);
-            Tabs = new ObservableCollection<string> {"Description", "Map"};
+            Tabs = new ObservableCollection<string> {Strings.RouteDetailsPageViewModel_Description, Strings.RouteDetailsPageViewModel_Map};
             GpsLocation = IoCManager.Resolve<ILocationManager> ().LastKnownLocation.ToGeoLocation ();
             DetailsRoute = route;
             ShowDetailsRoute = true;
