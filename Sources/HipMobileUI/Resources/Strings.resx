@@ -334,6 +334,9 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   <data name="RouteDetailsPage_PlayAudio" xml:space="preserve">
     <value>Vorlesen</value>
   </data>
+  <data name="RouteDetailsPage_PauseAudio" xml:space="preserve">
+    <value>Vorlesen pausieren</value>
+  </data>
   <data name="RouteDetailsPage_StartRoute" xml:space="preserve">
     <value>Route starten</value>
   </data>

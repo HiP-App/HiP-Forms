@@ -41,7 +41,7 @@
                       <TapGestureRecognizer Command="{Binding StartDescriptionPlaybackCommand}" />
                     </StackLayout.GestureRecognizers>
                     <Image Source="ic_volume_up.png" />
-                    <Label VerticalTextAlignment="Center" Text="{strings:Translate RouteDetailsPage_PlayAudio}" 
+                    <Label VerticalTextAlignment="Center" Text="{Binding ReadOutCaption}" 
                            TextColor="{StaticResource AccentColor}" FontSize="Medium" />
                   </StackLayout>
                   <Label Text="{Binding Description}" FontSize="Small"/>
