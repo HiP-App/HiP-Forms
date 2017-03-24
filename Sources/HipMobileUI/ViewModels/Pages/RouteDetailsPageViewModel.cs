@@ -58,12 +58,13 @@ namespace HipMobileUI.Viewmodels.Pages {
             Description = route.Audio?.Caption;
             Distance = string.Format (Strings.RouteDetailsPageViewModel_Distance, route.Distance);
             Duration = string.Format (Strings.RouteDetailsPageViewModel_Duration, route.Duration/60);
+            ReadOutCaption = Strings.RouteDetailsPage_PlayAudio;
             Tags = new ObservableCollection<RouteTag> (route.RouteTags);
             var data = route.Image.Data;
             Image = ImageSource.FromStream (() => new MemoryStream (data));
             StartRouteCommand = new Command (StartRoute);
             StartDescriptionPlaybackCommand = new Command (StartDescriptionPlayback);
-            Tabs = new ObservableCollection<string> {"Description", "Map"};
+            Tabs = new ObservableCollection<string> {Strings.RouteDetailsPageViewModel_Description, Strings.RouteDetailsPageViewModel_Map};
             GpsLocation = IoCManager.Resolve<ILocationManager> ().LastKnownLocation.ToGeoLocation ();
             DetailsRoute = route;
             ShowDetailsRoute = true;
@@ -81,10 +82,12 @@ namespace HipMobileUI.Viewmodels.Pages {
             if (!audioPlayer.IsPlaying)
             {
                 audioPlayer.Play ();
+                ReadOutCaption = Strings.RouteDetailsPage_PauseAudio;
             }
             else
             {
                 audioPlayer.Pause ();
+                ReadOutCaption = Strings.RouteDetailsPage_PlayAudio;
             }
         }
 
@@ -162,6 +165,15 @@ namespace HipMobileUI.Viewmodels.Pages {
             get { return distance; }
             set { SetProperty (ref distance, value); }
         }
+
+        private string readOutCaption;
+
+        public string ReadOutCaption
+        {
+            get { return readOutCaption; }
+            set { SetProperty(ref readOutCaption, value); }
+        }
+
 
         private string duration;
 
