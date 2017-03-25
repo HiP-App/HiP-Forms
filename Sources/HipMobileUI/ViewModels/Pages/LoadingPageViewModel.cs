@@ -139,6 +139,8 @@ namespace HipMobileUI.ViewModels.Pages
 
         private void WillWakeUp(App obj)
         {
+            isSleeping = false;
+
             // app was send to sleep before the main menu could be opened, open the menu now
             if (startupAction != null)
             {
