@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
@@ -20,6 +21,7 @@ using de.upb.hip.mobile.pcl.Common.Contracts;
 using de.upb.hip.mobile.pcl.DataAccessLayer;
 using de.upb.hip.mobile.pcl.DataLayer;
 using de.upb.hip.mobile.pcl.Helpers;
+using HipMobileUI.Helpers;
 using HipMobileUI.Location;
 using HipMobileUI.Resources;
 using Xamarin.Forms;
@@ -34,14 +36,20 @@ namespace HipMobileUI.ViewModels.Pages
             Text = Strings.LoadingPage_Text;
             Subtext = Strings.LoadingPage_Subtext;
             StartLoading = new Command (Load);
+
+            // listen to sleep and wake up messages as the main screen cannot be started when the app is sleeping
+            MessagingCenter.Subscribe<App>(this, AppSharedData.WillSleepMessage, WillSleep);
+            MessagingCenter.Subscribe<App>(this, AppSharedData.WillWakeUpMessage, WillWakeUp);
         }
 
         private string text;
         private string subtext;
         private ICommand startLoading;
         private bool isExtendedViewsVisible;
-        private string loadingProgressText;
         private double loadingProgress;
+
+        private bool isSleeping;
+        private Action startupAction;
 
         /// <summary>
         /// The headline text.
@@ -102,12 +110,20 @@ namespace HipMobileUI.ViewModels.Pages
                 LoadingProgress = 0.9;
                 await Task.Delay (100);
 
-                Device.BeginInvokeOnMainThread (async () => {
-                                                    var vm = new MainPageViewModel ();
-                                                    LoadingProgress = 1;
-                                                    await Task.Delay (100);
-                                                    Navigation.StartNewNavigationStack (vm);
-                                                });
+                // if the app is not sleeping open the main menu, otherwise wait for it to wake up
+                startupAction = async () => {
+                    var vm = new MainPageViewModel ();
+                    LoadingProgress = 1;
+                    await Task.Delay (100);
+
+                    MessagingCenter.Unsubscribe<App> (this, AppSharedData.WillSleepMessage);
+                    MessagingCenter.Unsubscribe<App> (this, AppSharedData.WillWakeUpMessage);
+                    Navigation.StartNewNavigationStack (vm);
+                };
+                if (!isSleeping)
+                {
+                    Device.BeginInvokeOnMainThread (startupAction);
+                }
             });
         }
 
@@ -119,6 +135,22 @@ namespace HipMobileUI.ViewModels.Pages
         public void UpdateProgress (double newProgress, double maxProgress)
         {
             LoadingProgress = (newProgress / maxProgress)*0.8;
+        }
+
+        private void WillWakeUp(App obj)
+        {
+            isSleeping = false;
+
+            // app was send to sleep before the main menu could be opened, open the menu now
+            if (startupAction != null)
+            {
+                Device.BeginInvokeOnMainThread (startupAction);
+            }
+        }
+
+        private void WillSleep(App obj)
+        {
+            isSleeping = true;
         }
 
     }

@@ -157,7 +157,10 @@ namespace HipMobileUI.Navigation
 
         public void Register(Type viewModelType, Type viewType)
         {
-            viewModelViewDictionary.Add(viewModelType, viewType);
+            if (!viewModelViewDictionary.ContainsKey (viewModelType))
+            {
+                viewModelViewDictionary.Add (viewModelType, viewType);
+            }
         }
 
         public IViewFor InstantiateView(NavigationViewModel viewModel)
