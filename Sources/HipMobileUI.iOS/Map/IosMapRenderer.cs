@@ -11,6 +11,7 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,10 +32,9 @@ using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 using HipMobileUI.Resources;
 
-[assembly: ExportRenderer(typeof(OsmMap), typeof(IosMapRenderer))]
+[assembly: ExportRenderer (typeof (OsmMap), typeof (IosMapRenderer))]
 
-namespace HipMobileUI.iOS.Map
-{
+namespace HipMobileUI.iOS.Map {
     class IosMapRenderer : ViewRenderer<OsmMap, MKMapView> {
 
         private OsmMap osmMap;
@@ -44,9 +44,9 @@ namespace HipMobileUI.iOS.Map
         private MKPolyline navigationPolyline;
         private bool canShowError = true;
 
-        protected override void OnElementChanged(ElementChangedEventArgs<OsmMap> e)
+        protected override void OnElementChanged (ElementChangedEventArgs<OsmMap> e)
         {
-            base.OnElementChanged(e);
+            base.OnElementChanged (e);
 
             if (Control == null)
             {
@@ -55,10 +55,11 @@ namespace HipMobileUI.iOS.Map
                 SetNativeControl (mapView);
                 Control.ShowsCompass = true;
 
-                var overlay = new MKTileOverlay ("http://tile.openstreetmap.org/{z}/{x}/{y}.png") {CanReplaceMapContent = true};
-                mapView.AddOverlay (overlay, MKOverlayLevel.AboveLabels);
-                mapView.OverlayRenderer = OverlayRenderer;
 
+                var overlay = new MKTileOverlay ("http://b.sm.mapstack.stamen.com/(watercolor,streets-and-labels)/{z}/{x}/{y}.png");
+                mapView.AddOverlay (overlay, MKOverlayLevel.AboveLabels);
+
+                mapView.OverlayRenderer = OverlayRenderer;
             }
 
             if (routeCalculator == null)
@@ -81,21 +82,21 @@ namespace HipMobileUI.iOS.Map
             {
                 // setup connections to the new instance
                 osmMap = e.NewElement;
-                InitAnnotations(e.NewElement.ExhibitSet, e.NewElement.DetailsRoute);
+                InitAnnotations (e.NewElement.ExhibitSet, e.NewElement.DetailsRoute);
                 Control.GetViewForAnnotation = GetViewForAnnotation;
                 Control.CalloutAccessoryControlTapped += OnCalloutAccessoryControlTapped;
                 e.NewElement.GpsLocationChanged += OnGpsLocationChanged;
                 OnGpsLocationChanged (osmMap.GpsLocation);
                 e.NewElement.ExhibitSetChanged += OnExhibitSetChanged;
-                e.NewElement.DetailsRouteChanged+=OnDetailsRouteChanged;
+                e.NewElement.DetailsRouteChanged += OnDetailsRouteChanged;
                 OnDetailsRouteChanged (osmMap.DetailsRoute);
-                e.NewElement.CenterLocationCalled+=CenterLocation;
-                InitMapPosition();
+                e.NewElement.CenterLocationCalled += CenterLocation;
+                InitMapPosition ();
                 if (e.NewElement.ShowNavigation)
                 {
                     UpdateRoute ();
                 }
-            }      
+            }
         }
 
         /// <summary>
@@ -110,7 +111,7 @@ namespace HipMobileUI.iOS.Map
             }
             else
             {
-                Control.CenterCoordinate = new CLLocationCoordinate2D(AppSharedData.PaderbornCenter.Latitude, AppSharedData.PaderbornCenter.Longitude);
+                Control.CenterCoordinate = new CLLocationCoordinate2D (AppSharedData.PaderbornCenter.Latitude, AppSharedData.PaderbornCenter.Longitude);
             }
         }
 
@@ -129,9 +130,9 @@ namespace HipMobileUI.iOS.Map
                 {
                     waypoints.Add (new CLLocationCoordinate2D (osmMap.GpsLocation.Latitude, osmMap.GpsLocation.Longitude));
                 }
-                waypoints = waypoints.Concat(route.Waypoints.Select (waypoint => new CLLocationCoordinate2D (waypoint.Location.Latitude, waypoint.Location.Longitude))).ToList ();
+                waypoints = waypoints.Concat (route.Waypoints.Select (waypoint => new CLLocationCoordinate2D (waypoint.Location.Latitude, waypoint.Location.Longitude))).ToList ();
 
-                var polyline = MKPolyline.FromCoordinates(waypoints.ToArray ());
+                var polyline = MKPolyline.FromCoordinates (waypoints.ToArray ());
                 Control.AddOverlay (polyline);
             }
         }
@@ -140,16 +141,16 @@ namespace HipMobileUI.iOS.Map
         /// React to changes in the exhibitset.
         /// </summary>
         /// <param name="set">The exhibitset that changed.</param>
-        private void OnExhibitSetChanged(ExhibitSet set)
+        private void OnExhibitSetChanged (ExhibitSet set)
         {
-           InitAnnotations (set, osmMap.DetailsRoute);
+            InitAnnotations (set, osmMap.DetailsRoute);
         }
 
         /// <summary>
         /// React to changes of the gps position.
         /// </summary>
         /// <param name="location">The position that changed.</param>
-        private void OnGpsLocationChanged(GeoLocation location)
+        private void OnGpsLocationChanged (GeoLocation location)
         {
             if (location != null)
             {
@@ -175,37 +176,34 @@ namespace HipMobileUI.iOS.Map
         {
             var id = osmMap.DetailsRoute.Id;
 
-            ThreadPool.QueueUserWorkItem(state => {
-                var geoPoints = new List<CLLocationCoordinate2D> ();
-                if (osmMap.GpsLocation != null)
-                {
-                    geoPoints.Add (new CLLocationCoordinate2D(osmMap.GpsLocation.Latitude, osmMap.GpsLocation.Longitude));      
-                }
+            ThreadPool.QueueUserWorkItem (state => {
+                                              var geoPoints = new List<CLLocationCoordinate2D> ();
+                                              if (osmMap.GpsLocation != null)
+                                              {
+                                                  geoPoints.Add (new CLLocationCoordinate2D (osmMap.GpsLocation.Latitude, osmMap.GpsLocation.Longitude));
+                                              }
 
-                Action action;
+                                              Action action;
 
-                try
-                {
-                    
-                    var locations = routeCalculator.CreateOrderedRoute(id, osmMap.GpsLocation);
+                                              try
+                                              {
+                                                  var locations = routeCalculator.CreateOrderedRoute (id, osmMap.GpsLocation);
 
-                    /*foreach (var w in locations)
-                    {
-                        var point = new CLLocationCoordinate2D(w.Latitude, w.Longitude);
-                        geoPoints.Add(point);
-                    }*/
+                                                  /*foreach (var w in locations)
+                                                  {
+                                                      var point = new CLLocationCoordinate2D(w.Latitude, w.Longitude);
+                                                      geoPoints.Add(point);
+                                                  }*/
 
-                    action = () => DrawRoute(locations, osmMap.GpsLocation != null);
-                }
-                catch (Exception)
-                {
-                    action = () => { };
-                }
+                                                  action = () => DrawRoute (locations, osmMap.GpsLocation != null);
+                                              }
+                                              catch (Exception)
+                                              {
+                                                  action = () => { };
+                                              }
 
-                Device.BeginInvokeOnMainThread (() => {
-                    action.Invoke ();
-                });
-            });
+                                              Device.BeginInvokeOnMainThread (() => { action.Invoke (); });
+                                          });
         }
 
         /// <summary>
@@ -234,8 +232,8 @@ namespace HipMobileUI.iOS.Map
             }
             else
             {
-                navigationPolyline = MKPolyline.FromCoordinates(route.Locations.Select(gl => new CLLocationCoordinate2D(gl.Latitude, gl.Longitude)).ToArray());
-                Control.AddOverlay(navigationPolyline);
+                navigationPolyline = MKPolyline.FromCoordinates (route.Locations.Select (gl => new CLLocationCoordinate2D (gl.Latitude, gl.Longitude)).ToArray ());
+                Control.AddOverlay (navigationPolyline);
             }
         }
 
@@ -253,7 +251,7 @@ namespace HipMobileUI.iOS.Map
             {
                 center = new CLLocationCoordinate2D (AppSharedData.PaderbornCenter.Latitude, AppSharedData.PaderbornCenter.Longitude);
             }
-            Control.SetRegion(MKCoordinateRegion.FromDistance(center, 1000, 1000), true);
+            Control.SetRegion (MKCoordinateRegion.FromDistance (center, 1000, 1000), true);
         }
 
         /// <summary>
@@ -262,14 +260,14 @@ namespace HipMobileUI.iOS.Map
         /// <param name="mapView">The mapview instance.</param>
         /// <param name="annotation">The annotation to get the view for.</param>
         /// <returns>The annotation view.</returns>
-        private MKAnnotationView GetViewForAnnotation(MKMapView mapView, IMKAnnotation annotation)
+        private MKAnnotationView GetViewForAnnotation (MKMapView mapView, IMKAnnotation annotation)
         {
             MKAnnotationView annotationView = null;
             MKAnnotationView dequedView = null;
             if (annotation is UserAnnotation) //(annotation is MKUserLocation) doesn't work
             {
                 const string userAnnotationReusableId = "UserAnnotation";
-                dequedView = mapView.DequeueReusableAnnotation(userAnnotationReusableId);
+                dequedView = mapView.DequeueReusableAnnotation (userAnnotationReusableId);
                 if (dequedView != null)
                 {
                     return dequedView;
@@ -282,7 +280,7 @@ namespace HipMobileUI.iOS.Map
             }
 
             const string annotationReusableId = "ExhibitAnnotation";
-            dequedView = mapView.DequeueReusableAnnotation(annotationReusableId);
+            dequedView = mapView.DequeueReusableAnnotation (annotationReusableId);
             if (dequedView != null)
             {
                 dequedView.Annotation = annotation;
@@ -291,8 +289,8 @@ namespace HipMobileUI.iOS.Map
             else
             {
                 annotationView = new ExhibitAnnotationView (annotation, annotationReusableId);
-                annotationView.CalloutOffset = new CGPoint(0, 0);
-                annotationView.RightCalloutAccessoryView = UIButton.FromType(UIButtonType.DetailDisclosure);
+                annotationView.CalloutOffset = new CGPoint (0, 0);
+                annotationView.RightCalloutAccessoryView = UIButton.FromType (UIButtonType.DetailDisclosure);
             }
             annotationView.CanShowCallout = true;
             return annotationView;
@@ -304,12 +302,12 @@ namespace HipMobileUI.iOS.Map
         /// <param name="mapView">The instance of the mapview.</param>
         /// <param name="overlay">The instance of the overlay.</param>
         /// <returns>The corresponding overlay renderer.</returns>
-        private MKOverlayRenderer OverlayRenderer(MKMapView mapView, IMKOverlay overlay)
+        private MKOverlayRenderer OverlayRenderer (MKMapView mapView, IMKOverlay overlay)
         {
-            var tileOverlay = ObjCRuntime.Runtime.GetNSObject(overlay.Handle) as MKTileOverlay;
+            var tileOverlay = ObjCRuntime.Runtime.GetNSObject (overlay.Handle) as MKTileOverlay;
             if (tileOverlay != null)
             {
-                var renderer = new MKTileOverlayRenderer(tileOverlay);
+                var renderer = new MKTileOverlayRenderer (tileOverlay);
                 return renderer;
             }
 
@@ -328,8 +326,8 @@ namespace HipMobileUI.iOS.Map
                 }
                 else
                 {
-                    UIColor color = ((Color)Xamarin.Forms.Application.Current.Resources["PrimaryColor"]).ToUIColor();
-                    polylineRenderer = new MKPolylineRenderer((MKPolyline)overlay)
+                    UIColor color = ((Color) Xamarin.Forms.Application.Current.Resources ["PrimaryColor"]).ToUIColor ();
+                    polylineRenderer = new MKPolylineRenderer ((MKPolyline) overlay)
                     {
                         FillColor = color,
                         StrokeColor = color,
@@ -346,14 +344,14 @@ namespace HipMobileUI.iOS.Map
         /// </summary>
         /// <param name="sender">The sender of the event.</param>
         /// <param name="e">The event parameters.</param>
-        private void OnCalloutAccessoryControlTapped(object sender, MKMapViewAccessoryTappedEventArgs e)
+        private void OnCalloutAccessoryControlTapped (object sender, MKMapViewAccessoryTappedEventArgs e)
         {
             var exhibitAnnotationView = e.View as ExhibitAnnotationView;
             var annotation = exhibitAnnotationView?.Annotation as ExhibitAnnotation;
             if (annotation != null)
             {
                 var exhibitId = annotation.ExhibitId;
-                IoCManager.Resolve<INavigationService>().PushAsync(new ExhibitDetailsViewModel(exhibitId));
+                IoCManager.Resolve<INavigationService> ().PushAsync (new ExhibitDetailsViewModel (exhibitId));
             }
         }
 
@@ -362,7 +360,7 @@ namespace HipMobileUI.iOS.Map
         /// </summary>
         /// <param name="exhibitSet">The set of exhibits.</param>
         /// <param name="route">The route.</param>
-        private void InitAnnotations(ExhibitSet exhibitSet, Route route)
+        private void InitAnnotations (ExhibitSet exhibitSet, Route route)
         {
             if (exhibitSet != null)
             {
