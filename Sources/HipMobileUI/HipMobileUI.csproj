@@ -77,12 +77,14 @@
     <Compile Include="Converters\ViewModelViewConverter.cs" />
     <Compile Include="Effects\ProgressBarColorEffect.cs" />
     <Compile Include="Effects\SwitchColorEffect.cs" />
+    <Compile Include="Helpers\ApplicationResourcesProvider.cs" />
     <Compile Include="Helpers\AppSharedData.cs" />
     <Compile Include="Helpers\ExtensionMethods.cs" />
     <Compile Include="Container\BindableChildrenStackLayout.cs" />
     <Compile Include="Helpers\DeviceOrientation.cs" />
     <Compile Include="Helpers\OrientationController.cs" />
     <Compile Include="Helpers\Settings.cs" />
+    <Compile Include="Contracts\IBarsColorsChanger.cs" />
     <Compile Include="Location\LocationManager.cs" />
     <Compile Include="Location\NearbyExhibitManager.cs" />
     <Compile Include="ViewModels\Pages\NavigationPageViewModel.cs" />

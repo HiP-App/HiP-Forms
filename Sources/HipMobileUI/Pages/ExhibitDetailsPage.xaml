@@ -34,6 +34,12 @@
             IsVisible="{Binding NextVisible}"
             AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="1,0.5"
             BackgroundColor="#80D3D3D3" AutomationId="NextButton"/>
+    <controls:FloatingActionButton Icon="ic_more" 
+                                   NormalColor="{StaticResource AccentColor}"
+                                   RippleColor="{StaticResource AccentDarkColor}"
+                                   IsVisible="{Binding AdditionalInformationButtonVisible}"
+                                   Command="{Binding ShowAdditionalInformationCommand}"
+                                   AbsoluteLayout.LayoutFlags="XProportional" AbsoluteLayout.LayoutBounds="1,100" Margin="1"/>
     <views:AudioToolbarView TranslationY="-100"
                             x:Name="AudioToolbar"
                             BackgroundColor="White"

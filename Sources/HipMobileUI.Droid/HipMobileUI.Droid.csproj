@@ -261,6 +261,7 @@
     <Compile Include="Contracts\AndroidImageDimensions.cs" />
     <Compile Include="Contracts\DroidAudioPlayer.cs" />
     <Compile Include="Contracts\DroidStatusBarController.cs" />
+    <Compile Include="Contracts\DroidBarsColorsChanger.cs" />
     <Compile Include="CustomRenderers\AndroidOrientationPageRenderer.cs" />
     <Compile Include="CustomRenderers\DroidTouchEventSlider.cs" />
     <Compile Include="CustomRenderers\FloatingActionButtonAndroidRenderer.cs" />
@@ -364,6 +365,11 @@
     <AndroidResource Include="Resources\drawable-xxxhdpi\ic_my_location_white.png" />
     <AndroidResource Include="Resources\drawable\Splashscreen.xml" />
     <AndroidResource Include="Resources\drawable\hiphop_transparent.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_more.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_more.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_more.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_more.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_more.png" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

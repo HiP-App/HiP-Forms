@@ -42,8 +42,10 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Models
 
 		public virtual TimeSliderPage TimeSliderPage{ get; set; }
 
-		// Contructor
-		public Page(){
+	    public virtual IList<Page> AdditionalInformationPages { get; }
+
+	    // Contructor
+        public Page(){
 		}
 	}
 }
