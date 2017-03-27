@@ -82,6 +82,16 @@ namespace HipMobileUI.iOS.CustomRenderers
                 SetController(formsOrientationPage.OrientationController);
             }
         }
-        
+
+        protected override void Dispose (bool disposing)
+        {
+            if (disposing)
+            {
+                formsOrientationPage.PropertyChanged -= PagePropertyChanged;
+            }
+
+            base.Dispose (disposing);
+        }
+
     }
 }

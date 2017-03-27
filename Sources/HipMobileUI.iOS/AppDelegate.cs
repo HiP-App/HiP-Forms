@@ -55,6 +55,7 @@ namespace HipMobileUI.iOS
             IoCManager.RegisterType<IStatusBarController, IosStatusBarController> ();
             IoCManager.RegisterInstance(typeof(ILocationManager), new LocationManager());
             IoCManager.RegisterInstance (typeof(IKeyProvider), new IosKeyProvider ());
+            IoCManager.RegisterInstance (typeof(IBarsColorsChanger), new IosBarsColorsChanger ());
 
             // init crash manager
             var manager = BITHockeyManager.SharedHockeyManager;

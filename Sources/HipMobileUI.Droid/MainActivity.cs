@@ -26,6 +26,7 @@ using HipMobileUI.Navigation;
 using HipMobileUI.Pages;
 using HockeyApp.Android;
 using Plugin.Permissions;
+using Xamarin.Forms;
 
 namespace de.upb.hip.mobile.droid
 {
@@ -53,6 +54,7 @@ namespace de.upb.hip.mobile.droid
             IoCManager.RegisterInstance (typeof(IStatusBarController), new DroidStatusBarController ());
             IoCManager.RegisterInstance (typeof(ILocationManager), new LocationManager ());
             IoCManager.RegisterInstance (typeof(IKeyProvider), new AndroidKeyProvider ());
+            IoCManager.RegisterInstance (typeof(IBarsColorsChanger), new DroidBarsColorsChanger (this));
 
             // setup crash reporting
             IKeyProvider keyProvider = IoCManager.Resolve<IKeyProvider>();
@@ -70,6 +72,17 @@ namespace de.upb.hip.mobile.droid
         {
             PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
+
+        /// <summary>
+        /// Workaround for a IllegalStateException in Xamarin Forms 2.3. It should be fixed in 2.4 so this can be removed then.
+        /// Further discussion: https://forums.xamarin.com/discussion/83864/java-lang-illegalstateexception-activity-has-been-destroyed-when-using-admob
+        /// </summary>
+        protected override void OnDestroy ()
+        {
+            Xamarin.Forms.Application.Current.MainPage = new ContentPage();
+            base.OnDestroy ();
+        }
+
     }
 }
 

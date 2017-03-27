@@ -61,5 +61,16 @@ namespace de.upb.hip.mobile.droid.CustomRenderers
             formsSlider?.TouchDownEvent?.Invoke (sender, null);
         }
 
+        protected override void Dispose (bool disposing)
+        {
+            if (disposing)
+            {
+                Control.StartTrackingTouch -= SeekbarOnStartTrackingTouch;
+                Control.StopTrackingTouch -= SeekbarOnStopTrackingTouch;
+            }
+
+            base.Dispose (disposing);
+        }
+
     }
 }

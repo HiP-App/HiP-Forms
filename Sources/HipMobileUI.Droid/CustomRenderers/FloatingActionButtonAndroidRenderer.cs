@@ -88,5 +88,18 @@ namespace de.upb.hip.mobile.droid.CustomRenderers
             }
         }
 
+        protected override void Dispose (bool disposing)
+        {
+            if (disposing)
+            {
+                fab.Click -= FabOnClick;
+                formsButton.NormalColorChanged -= SetNormalColor;
+                formsButton.RippleColorChanged -= SetRippleColor;
+                formsButton.IconChanged -= SetIcon;
+            }
+
+            base.Dispose (disposing);
+        }
+
     }
 }

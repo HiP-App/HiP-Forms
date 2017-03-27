@@ -12,29 +12,38 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using Android.Content.PM;
-using Android.Views;
+using Android.Graphics.Drawables;
 using HipMobileUI.Contracts;
-using Plugin.CurrentActivity;
+using HipMobileUI.Pages;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
+using NavigationPage = Xamarin.Forms.NavigationPage;
 
 namespace de.upb.hip.mobile.droid.Contracts {
-    public class DroidStatusBarController : IStatusBarController{
+    public class DroidBarsColorsChanger : IBarsColorsChanger {
 
-        public void HideStatusBar ()
+        public DroidBarsColorsChanger (MainActivity activity)
         {
-            MainActivity main = ((MainActivity) CrossCurrentActivity.Current.Activity);
-            main.Window.SetFlags(WindowManagerFlags.Fullscreen, WindowManagerFlags.Fullscreen);
-            main.SetStatusBarColor (Color.Black.ToAndroid());
+            this.activity = activity;
         }
 
-        public void ShowStatusBar ()
+        private readonly MainActivity activity;
+
+        private Page FormsPage => Application.Current.MainPage;
+
+        private NavigationPage NavigationPage
         {
-            Color color = (Color) Application.Current.Resources ["PrimaryDarkColor"];
-            MainActivity main = ((MainActivity)CrossCurrentActivity.Current.Activity);
-            main.Window.ClearFlags(WindowManagerFlags.Fullscreen);
-            main.SetStatusBarColor(color.ToAndroid());
+            get
+            {
+                var mainPage = FormsPage as MainPage;
+                return mainPage?.Navigationpage;
+            }
+        }
+
+        public void ChangeToolbarColor(Color statusBarColor, Color actionBarColor)
+        {
+            NavigationPage.BarBackgroundColor = actionBarColor;
+            activity.SetStatusBarColor(statusBarColor.ToAndroid());
         }
 
     }

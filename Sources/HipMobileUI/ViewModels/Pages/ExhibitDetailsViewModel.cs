@@ -13,19 +13,25 @@
 // limitations under the License.
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using de.upb.hip.mobile.pcl.Common;
-using de.upb.hip.mobile.pcl.Helpers;
 using HipMobileUI.AudioPlayer;
+using HipMobileUI.Contracts;
+using HipMobileUI.Helpers;
+using HipMobileUI.Navigation;
 using HipMobileUI.Resources;
 using HipMobileUI.ViewModels.Views;
 using HipMobileUI.ViewModels.Views.ExhibitDetails;
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 using Page = de.upb.hip.mobile.pcl.BusinessLayer.Models.Page;
+using Settings = de.upb.hip.mobile.pcl.Helpers.Settings;
 
 namespace HipMobileUI.ViewModels.Pages {
     public class ExhibitDetailsViewModel : NavigationViewModel {
@@ -33,10 +39,11 @@ namespace HipMobileUI.ViewModels.Pages {
         private ExhibitSubviewViewModel selectedView;
         private AudioToolbarViewModel audioToolbar;
 
-        private readonly Exhibit exhibit;
+        private readonly IList<Page> pages;
         private ICommand nextViewCommand;
         private ICommand previousViewCommand;
         private ICommand audioToolbarCommand;
+        private ICommand additionalInformationCommand;
         private bool previousViewAvailable;
         private bool nextViewAvailable;
         private bool previousVisible;
@@ -44,13 +51,25 @@ namespace HipMobileUI.ViewModels.Pages {
         private int currentViewIndex;
         private bool audioAvailabe;
         private bool audioToolbarVisible;
+        private bool hasAdditionalInformation;
+        private bool additionalInformationButtonVisible;
 
-        public ExhibitDetailsViewModel (string exhibitId) : this (ExhibitManager.GetExhibit (exhibitId))
+        private bool additionalInformation;
+
+        public ExhibitDetailsViewModel(Exhibit exhibit) : this(exhibit.Pages, exhibit.Name)
         {
+
+        }
+        public ExhibitDetailsViewModel (string exhibitId) : this(ExhibitManager.GetExhibit(exhibitId).Pages, ExhibitManager.GetExhibit(exhibitId).Name)
+        {
+            
         }
 
-        public ExhibitDetailsViewModel (Exhibit exhibit)
+        public ExhibitDetailsViewModel (IList<Page> pages, string title, bool additionalInformation = false)
         {
+            this.additionalInformation = additionalInformation;
+            AdjustToolbarColor ();
+
             // stop audio if necessary
             IAudioPlayer player = IoCManager.Resolve<IAudioPlayer> ();
             if (player.IsPlaying)
@@ -59,28 +78,47 @@ namespace HipMobileUI.ViewModels.Pages {
             }
 
             // init the audio toolbar
-            AudioToolbar = new AudioToolbarViewModel (exhibit.Name);
+            AudioToolbar = new AudioToolbarViewModel (title);
             AudioToolbar.AudioPlayer.AudioCompleted += AudioPlayerOnAudioCompleted;
 
             // init the current view
             currentViewIndex = 0;
-            if (exhibit != null)
-            {
-                this.exhibit = exhibit;
-                SetCurrentView ().ConfigureAwait (true);
-                Title = exhibit.Name;
+            this.pages = pages;
+            SetCurrentView ().ConfigureAwait (true);
+            Title = title;
 
-                if (exhibit.Pages.Count > 1)
-                    NextViewAvailable = true;
-            }
+            if (pages.Count > 1)
+                NextViewAvailable = true;
 
             // init commands
             NextViewCommand = new Command (async () => await GotoNextView ());
             PreviousViewCommand = new Command (GotoPreviousView);
             ShowAudioToolbarCommand = new Command (SwitchAudioToolbarVisibleState);
+            ShowAdditionalInformationCommand = new Command (ShowAdditionalInformation);
+        }
+
+        private void AdjustToolbarColor ()
+        {
+            if (additionalInformation)
+            {
+                IoCManager.Resolve<IBarsColorsChanger>().ChangeToolbarColor(Color.FromRgb(128, 128, 128), Color.FromRgb (169, 169, 169));
+            }
+            else
+            {
+                var resources = IoCManager.Resolve<ApplicationResourcesProvider> ();
+                IoCManager.Resolve<IBarsColorsChanger>().ChangeToolbarColor((Color)resources.GetResourceValue("PrimaryDarkColor"), (Color)resources.GetResourceValue("PrimaryColor"));
+            }
+        }
+
+        private void ShowAdditionalInformation ()
+        {
+            var currentPage = pages [currentViewIndex];
+
+            Navigation.PushAsync(new ExhibitDetailsViewModel(currentPage.AdditionalInformationPages, Strings.ExhibitDetailsPage_AdditionalInformation, true));
         }
 
         private CancellationTokenSource tokenSource;
+        private bool willDisappear;
 
         /// <summary>
         /// Initializes the delayed toggling with possibility to cancel it using a tokenSource
@@ -122,6 +160,10 @@ namespace HipMobileUI.ViewModels.Pages {
             {
                 PreviousVisible = !PreviousVisible;
             }
+            if (HasAdditionalInformation)
+            {
+                AdditionalInformationButtonVisible = !AdditionalInformationButtonVisible;
+            }
 
             tokenSource?.Cancel();
         }
@@ -154,7 +196,7 @@ namespace HipMobileUI.ViewModels.Pages {
         /// <returns></returns>
         private async Task GotoNextView ()
         {
-            if (currentViewIndex < exhibit.Pages.Count - 1)
+            if (currentViewIndex < pages.Count - 1)
             {
                 // stop audio
                 if (AudioToolbar.AudioPlayer.IsPlaying)
@@ -164,7 +206,7 @@ namespace HipMobileUI.ViewModels.Pages {
 
                 // update the UI
                 currentViewIndex++;
-                NextViewAvailable = currentViewIndex < exhibit.Pages.Count - 1;
+                NextViewAvailable = currentViewIndex < pages.Count - 1;
                 PreviousViewAvailable = true;
                 await SetCurrentView ();
             }
@@ -203,7 +245,7 @@ namespace HipMobileUI.ViewModels.Pages {
         private async Task SetCurrentView ()
         {
             // update UI
-            Page currentPage = exhibit.Pages [currentViewIndex];
+            Page currentPage = pages[currentViewIndex];
             AudioAvailable = currentPage.Audio != null;
             if (!AudioAvailable)
             {
@@ -215,7 +257,7 @@ namespace HipMobileUI.ViewModels.Pages {
             switch (currentPage.PageType)
             {
                 case PageType.AppetizerPage:
-                    SelectedView = new AppetizerViewModel(exhibit.Name, currentPage.AppetizerPage);
+                    SelectedView = new AppetizerViewModel(Title, currentPage.AppetizerPage);
                     break;
                 case PageType.ImagePage:
                     SelectedView = new ImageViewModel(currentPage.ImagePage, ToggleVisibilityOfNavigationButtons);
@@ -226,6 +268,15 @@ namespace HipMobileUI.ViewModels.Pages {
                 case PageType.TimeSliderPage:
                     SelectedView = new TimeSliderViewModel(currentPage.TimeSliderPage, ToggleVisibilityOfNavigationButtons);
                     break;
+            }
+
+            if (currentPage.AdditionalInformationPages != null && currentPage.AdditionalInformationPages.Any ())
+            {
+                HasAdditionalInformation = true;
+            }
+            else
+            {
+                HasAdditionalInformation = false;
             }
 
             //Cancel disabling navigation buttons caused by page selected before
@@ -264,12 +315,35 @@ namespace HipMobileUI.ViewModels.Pages {
         /// </summary>
         public override void OnDisappearing ()
         {
+            WillDisappear = true;
+
             base.OnDisappearing ();
 
             AudioToolbar.AudioPlayer.AudioCompleted -= AudioPlayerOnAudioCompleted;
 
             //inform the audio toolbar to clean up
             AudioToolbar.OnDisappearing ();
+        }
+
+        public override void OnHidden ()
+        {
+            base.OnHidden ();
+
+            AudioToolbar.AudioPlayer.AudioCompleted -= AudioPlayerOnAudioCompleted;
+
+            //inform the audio toolbar to clean up
+            AudioToolbar.OnHidden();
+        }
+
+        public override void OnRevealed()
+        {
+            base.OnRevealed();
+
+            AdjustToolbarColor();
+            AudioToolbar.AudioPlayer.AudioCompleted += AudioPlayerOnAudioCompleted;
+
+            //Register audio again
+            AudioToolbar.OnRevealed ();
         }
 
         #region propeties
@@ -370,6 +444,44 @@ namespace HipMobileUI.ViewModels.Pages {
         public AudioToolbarViewModel AudioToolbar {
             get { return audioToolbar; }
             set { SetProperty (ref audioToolbar, value); }
+        }
+
+        /// <summary>
+        /// Indicates whether there are additional informations for this page
+        /// </summary>
+        public bool HasAdditionalInformation
+        {
+            get { return hasAdditionalInformation; }
+            set
+            {
+                AdditionalInformationButtonVisible = value;
+                SetProperty(ref hasAdditionalInformation, value);
+            }
+        }
+
+        /// <summary>
+        /// Indicator if additional information button is visible
+        /// </summary>
+        public bool AdditionalInformationButtonVisible
+        {
+            get { return additionalInformationButtonVisible; }
+            set { SetProperty(ref additionalInformationButtonVisible, value); }
+        }
+
+        /// <summary>
+        /// Navigates to the additional Information
+        /// </summary>
+        public ICommand ShowAdditionalInformationCommand {
+            get { return additionalInformationCommand; }
+            set { SetProperty (ref additionalInformationCommand, value); }
+        }
+
+        /// <summary>
+        /// Value indicating that the view of this viewmodel will disappear.
+        /// </summary>
+        public bool WillDisappear {
+            get { return willDisappear; }
+            set { SetProperty (ref willDisappear, value); }
         }
 
         #endregion
