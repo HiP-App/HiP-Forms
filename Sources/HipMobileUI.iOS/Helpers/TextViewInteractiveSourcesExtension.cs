@@ -16,7 +16,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using de.upb.hip.mobile.pcl.BusinessLayer.InteractiveSources;
+using de.upb.hip.mobile.pcl.Common;
 using Foundation;
+using HipMobileUI.Helpers;
 using UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
@@ -54,7 +56,8 @@ namespace HipMobileUI.iOS.Helpers {
                 };
                 sourcePositions.Add (source, finalPostion);
 
-                formattedTextWithSubstitutes.AddAttribute(UIStringAttributeKey.ForegroundColor, ((Color)Xamarin.Forms.Application.Current.Resources["AccentColor"]).ToUIColor(), new NSRange(finalPostion.Start, source.SubstituteText.Length));
+                var resources = IoCManager.Resolve<ApplicationResourcesProvider>();
+                formattedTextWithSubstitutes.AddAttribute(UIStringAttributeKey.ForegroundColor, ((Color)resources.GetResourceValue("AccentColor")).ToUIColor(), new NSRange(finalPostion.Start, source.SubstituteText.Length));
             }
             textView.AttributedText = formattedTextWithSubstitutes;
 

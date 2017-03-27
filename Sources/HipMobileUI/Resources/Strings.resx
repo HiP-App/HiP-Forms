@@ -466,6 +466,9 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   <data name="RouteDetailspageViewModel_RouteStarted" xml:space="preserve">
     <value>Die Route wurde bereits begonnen:</value>
   </data>
+  <data name="ExhibitDetailsPage_AdditionalInformation" xml:space="preserve">
+    <value>Zusätzliche Informationen</value>
+  </data>
   <data name="ExhibitNearby_Confirm" xml:space="preserve">
     <value>Ja</value>
   </data>
