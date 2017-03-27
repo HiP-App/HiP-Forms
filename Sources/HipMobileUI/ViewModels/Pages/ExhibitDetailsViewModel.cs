@@ -118,6 +118,7 @@ namespace HipMobileUI.ViewModels.Pages {
         }
 
         private CancellationTokenSource tokenSource;
+        private bool willDisappear;
 
         /// <summary>
         /// Initializes the delayed toggling with possibility to cancel it using a tokenSource
@@ -314,6 +315,8 @@ namespace HipMobileUI.ViewModels.Pages {
         /// </summary>
         public override void OnDisappearing ()
         {
+            WillDisappear = true;
+
             base.OnDisappearing ();
 
             AudioToolbar.AudioPlayer.AudioCompleted -= AudioPlayerOnAudioCompleted;
@@ -468,10 +471,17 @@ namespace HipMobileUI.ViewModels.Pages {
         /// <summary>
         /// Navigates to the additional Information
         /// </summary>
-        public ICommand ShowAdditionalInformationCommand
-        {
+        public ICommand ShowAdditionalInformationCommand {
             get { return additionalInformationCommand; }
-            set { SetProperty(ref additionalInformationCommand, value); }
+            set { SetProperty (ref additionalInformationCommand, value); }
+        }
+
+        /// <summary>
+        /// Value indicating that the view of this viewmodel will disappear.
+        /// </summary>
+        public bool WillDisappear {
+            get { return willDisappear; }
+            set { SetProperty (ref willDisappear, value); }
         }
 
         #endregion

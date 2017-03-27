@@ -12,20 +12,29 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using Android.Content.PM;
+using Android.Views;
 using HipMobileUI.Contracts;
+using Plugin.CurrentActivity;
 using Xamarin.Forms;
+using Xamarin.Forms.Platform.Android;
 
 namespace de.upb.hip.mobile.droid.Contracts {
     public class DroidStatusBarController : IStatusBarController{
 
         public void HideStatusBar ()
         {
-            Forms.SetTitleBarVisibility(AndroidTitleBarVisibility.Never);
+            MainActivity main = ((MainActivity) CrossCurrentActivity.Current.Activity);
+            main.Window.SetFlags(WindowManagerFlags.Fullscreen, WindowManagerFlags.Fullscreen);
+            main.SetStatusBarColor (Color.Black.ToAndroid());
         }
 
         public void ShowStatusBar ()
         {
-            Forms.SetTitleBarVisibility (AndroidTitleBarVisibility.Default);
+            Color color = (Color) Application.Current.Resources ["PrimaryDarkColor"];
+            MainActivity main = ((MainActivity)CrossCurrentActivity.Current.Activity);
+            main.Window.ClearFlags(WindowManagerFlags.Fullscreen);
+            main.SetStatusBarColor(color.ToAndroid());
         }
 
     }

@@ -819,6 +819,15 @@ namespace HipMobileUI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Vorlesen pausieren.
+        /// </summary>
+        public static string RouteDetailsPage_PauseAudio {
+            get {
+                return ResourceManager.GetString("RouteDetailsPage_PauseAudio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Vorlesen.
         /// </summary>
         public static string RouteDetailsPage_PlayAudio {

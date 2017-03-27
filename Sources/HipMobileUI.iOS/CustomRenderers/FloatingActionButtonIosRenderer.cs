@@ -83,5 +83,18 @@ namespace HipMobileUI.iOS.CustomRenderers
             }
         }
 
+        protected override void Dispose (bool disposing)
+        {
+            if (disposing)
+            {
+                fab.TouchUpInside -= FabPressed;
+                formsButton.NormalColorChanged -= SetNormalColor;
+                formsButton.RippleColorChanged -= SetRippleColor;
+                formsButton.IconChanged -= SetIcon;
+            }
+
+            base.Dispose (disposing);
+        }
+
     }
 }
