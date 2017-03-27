@@ -60,6 +60,7 @@ namespace HipMobileUI.iOS
             // init crash manager
             var manager = BITHockeyManager.SharedHockeyManager;
             manager.Configure(IoCManager.Resolve<IKeyProvider> ().GetKeyByName ("hockeyapp.ios"));
+            manager.DisableUpdateManager = true;
             manager.StartManager();
             manager.Authenticator.AuthenticateInstallation();
 

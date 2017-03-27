@@ -29,7 +29,7 @@
 	<key>CFBundleDisplayName</key>
 	<string>Historisches Paderborn</string>
 	<key>CFBundleIdentifier</key>
-	<string>de.upb.hip.mobile.ios</string>
+	<string>de.uni-paderborn.s-lab.hip.mobile.ios</string>
 	<key>CFBundleVersion</key>
 	<string>1.0</string>
 	<key>CFBundleIconFiles</key>
