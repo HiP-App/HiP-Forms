@@ -43,7 +43,7 @@ namespace HipMobileUI.iOS.Map {
         private MKPolyline currentSectionPolyLine;
         private MKPolyline navigationPolyline;
         private bool canShowError = true;
-        MKCoordinateRegion r = new MKCoordinateRegion();
+        MKCoordinateRegion backupRegion = new MKCoordinateRegion();
 
         protected override void OnElementChanged (ElementChangedEventArgs<OsmMap> e)
         {
@@ -107,10 +107,10 @@ namespace HipMobileUI.iOS.Map {
             
             if (GetZoomLevel () > 17.3f)
             {
-                Control.SetRegion (r,true);
+                Control.SetRegion (backupRegion,true);
             }
             else
-                r = Control.Region;
+                backupRegion = Control.Region;
         }
 
         /// <summary>
