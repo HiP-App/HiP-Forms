@@ -18,11 +18,16 @@ using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using de.upb.hip.mobile.pcl.Common;
 using de.upb.hip.mobile.pcl.Common.Contracts;
 using HipMobileUI.AudioPlayer;
+using HipMobileUI.Contracts;
+using HipMobileUI.Helpers;
 using HipMobileUI.Navigation;
 using HipMobileUI.ViewModels.Pages;
 using HipMobileUI.ViewModels.Views.ExhibitDetails;
 using NSubstitute;
 using NUnit.Framework;
+using Xamarin.Forms;
+using Image = de.upb.hip.mobile.pcl.BusinessLayer.Models.Image;
+using Page = de.upb.hip.mobile.pcl.BusinessLayer.Models.Page;
 
 namespace HipMobileUI.Tests.ViewModels.Pages
 {
@@ -34,6 +39,13 @@ namespace HipMobileUI.Tests.ViewModels.Pages
             IoCManager.RegisterInstance(typeof(INavigationService), Substitute.For<INavigationService>());
             IoCManager.RegisterInstance(typeof(IImageDimension), Substitute.For<IImageDimension>());
             IoCManager.RegisterInstance(typeof(IAudioPlayer), Substitute.For<IAudioPlayer>());
+            IoCManager.RegisterInstance (typeof(IBarsColorsChanger), Substitute.For<IBarsColorsChanger> ());
+            IoCManager.RegisterInstance (typeof (ApplicationResourcesProvider), new ApplicationResourcesProvider (
+                                             new Dictionary<string, object>
+                                             {
+                                                 {"PrimaryDarkColor", Color.Pink},
+                                                 {"PrimaryColor", Color.Pink}
+                                             }));
         }
 
         [Test, Category("UnitTest")]

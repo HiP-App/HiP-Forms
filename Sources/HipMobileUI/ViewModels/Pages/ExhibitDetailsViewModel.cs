@@ -105,7 +105,8 @@ namespace HipMobileUI.ViewModels.Pages {
             }
             else
             {
-                IoCManager.Resolve<IBarsColorsChanger>().ChangeToolbarColor((Color)Application.Current.Resources["PrimaryDarkColor"], (Color)Application.Current.Resources["PrimaryColor"]);
+                var resources = IoCManager.Resolve<ApplicationResourcesProvider> ();
+                IoCManager.Resolve<IBarsColorsChanger>().ChangeToolbarColor((Color)resources.GetResourceValue("PrimaryDarkColor"), (Color)resources.GetResourceValue("PrimaryColor"));
             }
         }
 

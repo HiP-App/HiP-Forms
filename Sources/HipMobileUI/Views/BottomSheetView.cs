@@ -17,6 +17,7 @@ using System.Threading.Tasks;
 using de.upb.hip.mobile.pcl.Common;
 using de.upb.hip.mobile.pcl.Common.Contracts;
 using HipMobileUI.Controls;
+using HipMobileUI.Helpers;
 using Xamarin.Forms;
 using Rectangle = Xamarin.Forms.Rectangle;
 
@@ -48,11 +49,12 @@ namespace HipMobileUI.Views
             layout.Children.Add (BottomSheetContentView, Constraint.RelativeToParent (parent => parent.X), Constraint.RelativeToParent (parent => parent.Height * 0.9),
                                  Constraint.RelativeToParent (parent => parent.Width), Constraint.RelativeToParent (parent => parent.Height));
 
+            var resources = IoCManager.Resolve<ApplicationResourcesProvider>();
             // Floating Action Button
             Button = new FloatingActionButton
             {
-                NormalColor = (Color) Application.Current.Resources ["AccentColor"],
-                RippleColor = (Color) Application.Current.Resources ["AccentDarkColor"],
+                NormalColor = (Color)resources.GetResourceValue("AccentColor"),
+                RippleColor = (Color)resources.GetResourceValue("AccentDarkColor"),
                 Command = new Command (ButtonOnClicked),
                 Icon = "ic_keyboard_arrow_up",
                 AutomationId = "Fab"

@@ -24,7 +24,9 @@ using Android.Widget;
 using de.upb.hip.mobile.droid.Map;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using de.upb.hip.mobile.pcl.BusinessLayer.Routing;
+using de.upb.hip.mobile.pcl.Common;
 using HipMobileUI;
+using HipMobileUI.Contracts;
 using HipMobileUI.Helpers;
 using HipMobileUI.Map;
 using Org.Osmdroid;
@@ -328,13 +330,14 @@ namespace de.upb.hip.mobile.droid.Map {
                 mapView.OverlayManager.Remove (currentSectionOverlay);
             }
 
+            var resources = IoCManager.Resolve<ApplicationResourcesProvider>();
             if (userLocationIncluded)
             {
                 currentSectionOverlay = new Polyline (activity)
                 {
                     Title = osmMap.DetailsRoute.Title,
                     Width = 5f,
-                    Color = ((Xamarin.Forms.Color) Application.Current.Resources ["AccentColor"]).ToAndroid (),
+                    Color = ((Xamarin.Forms.Color)resources.GetResourceValue("AccentColor")).ToAndroid (),
                     //Color = Color.Orange,
                     Points = route.FirstSection.Select (geoLocation => new GeoPoint (geoLocation.Latitude, geoLocation.Longitude)).ToList (),
                     Geodesic = true
@@ -343,7 +346,7 @@ namespace de.upb.hip.mobile.droid.Map {
                 {
                     Title = osmMap.DetailsRoute.Title,
                     Width = 5f,
-                    Color = ((Xamarin.Forms.Color) Application.Current.Resources ["PrimaryColor"]).ToAndroid (),
+                    Color = ((Xamarin.Forms.Color)resources.GetResourceValue("PrimaryColor")).ToAndroid (),
                     //Color = Color.Blue,
                     Points = route.NonFirstSections.Select (geoLocation => new GeoPoint (geoLocation.Latitude, geoLocation.Longitude)).ToList (),
                     Geodesic = true
@@ -355,7 +358,7 @@ namespace de.upb.hip.mobile.droid.Map {
                 {
                     Title = osmMap.DetailsRoute.Title,
                     Width = 5f,
-                    Color = ((Xamarin.Forms.Color)Application.Current.Resources["PrimaryColor"]).ToAndroid(),
+                    Color = ((Xamarin.Forms.Color)resources.GetResourceValue("PrimaryColor")).ToAndroid(),
                     Points = route.Locations.Select(geoLocation => new GeoPoint(geoLocation.Latitude, geoLocation.Longitude)).ToList(),
                     Geodesic = true
                 };

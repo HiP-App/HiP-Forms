@@ -20,6 +20,7 @@ using de.upb.hip.mobile.pcl.Common.Contracts;
 using de.upb.hip.mobile.pcl.DataAccessLayer;
 using de.upb.hip.mobile.pcl.DataLayer;
 using de.upb.hip.mobile.pcl.Helpers;
+using HipMobileUI.Helpers;
 using HipMobileUI.Location;
 using HipMobileUI.Resources;
 using Xamarin.Forms;
@@ -88,6 +89,8 @@ namespace HipMobileUI.ViewModels.Pages
             Task.Factory.StartNew (async () => {
                 IoCManager.RegisterType<IDataAccess, RealmDataAccess>();
                 IoCManager.RegisterType<IDataLoader, EmbeddedResourceDataLoader>();
+                IoCManager.RegisterInstance (typeof(ApplicationResourcesProvider), new ApplicationResourcesProvider (Application.Current.Resources));
+
                 IoCManager.RegisterInstance (typeof(INearbyExhibitManager), new NearbyExhibitManager ());
 
                 // show text, progress bar and image when db is initialized, otherwise just the indicator is shown
