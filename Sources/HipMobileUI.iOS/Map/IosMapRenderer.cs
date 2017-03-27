@@ -43,6 +43,7 @@ namespace HipMobileUI.iOS.Map {
         private MKPolyline currentSectionPolyLine;
         private MKPolyline navigationPolyline;
         private bool canShowError = true;
+        MKCoordinateRegion r = new MKCoordinateRegion();
 
         protected override void OnElementChanged (ElementChangedEventArgs<OsmMap> e)
         {
@@ -54,12 +55,13 @@ namespace HipMobileUI.iOS.Map {
                 var mapView = new MKMapView ();
                 SetNativeControl (mapView);
                 Control.ShowsCompass = true;
+               
 
-
-                var overlay = new MKTileOverlay ("http://b.sm.mapstack.stamen.com/(watercolor,streets-and-labels)/{z}/{x}/{y}.png");
+                var overlay = new MKTileOverlay ("http://b.sm.mapstack.stamen.com/(watercolor,streets-and-labels)/{z}/{x}/{y}.png") {CanReplaceMapContent = true};
                 mapView.AddOverlay (overlay, MKOverlayLevel.AboveLabels);
 
                 mapView.OverlayRenderer = OverlayRenderer;
+                mapView.RegionChanged+=MapViewOnRegionChanged;
             }
 
             if (routeCalculator == null)
@@ -97,6 +99,18 @@ namespace HipMobileUI.iOS.Map {
                     UpdateRoute ();
                 }
             }
+        }
+
+        private void MapViewOnRegionChanged (object sender, MKMapViewChangeEventArgs mkMapViewChangeEventArgs)
+        {
+            Console.WriteLine (GetZoomLevel ());
+            
+            if (GetZoomLevel () > 17.3f)
+            {
+                Control.SetRegion (r,true);
+            }
+            else
+                r = Control.Region;
         }
 
         /// <summary>
@@ -390,6 +404,18 @@ namespace HipMobileUI.iOS.Map {
                 userAnnotation = new UserAnnotation (osmMap.GpsLocation.Latitude, osmMap.GpsLocation.Longitude);
             }
         }
+
+        public double GetZoomLevel ()
+        {
+            double longitudeDelta = Control.Region.Span.LongitudeDelta;
+            float mapWidthInPixels = (float)Control.Bounds.Size.Width;
+            double zoomScale = longitudeDelta * 85445659.44705395 * Math.PI / (180.0 * mapWidthInPixels);
+            double zoomer = 20 - Math.Log(zoomScale);
+            if (zoomer < 0) zoomer = 0;
+            //  zoomer = round(zoomer);
+            return zoomer;
+        }
+
 
         private bool disposed;
 
