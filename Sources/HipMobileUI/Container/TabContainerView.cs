@@ -14,6 +14,9 @@
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using de.upb.hip.mobile.pcl.Common;
+using HipMobileUI.Contracts;
+using HipMobileUI.Helpers;
 using Xamarin.Forms;
 
 namespace HipMobileUI.Container
@@ -195,8 +198,8 @@ namespace HipMobileUI.Container
         /// <param name="tab">The tab to highlight.</param>
         private static void HighlightTabLabel(Label tab)
         {
-
-            tab.TextColor = (Color)Application.Current.Resources["AccentColor"];
+            var resources = IoCManager.Resolve<ApplicationResourcesProvider>();
+            tab.TextColor = (Color) resources.GetResourceValue ("AccentColor");
         }
 
         /// <summary>

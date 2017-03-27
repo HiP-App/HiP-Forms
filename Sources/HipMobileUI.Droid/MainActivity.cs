@@ -54,6 +54,7 @@ namespace de.upb.hip.mobile.droid
             IoCManager.RegisterInstance (typeof(IStatusBarController), new DroidStatusBarController ());
             IoCManager.RegisterInstance (typeof(ILocationManager), new LocationManager ());
             IoCManager.RegisterInstance (typeof(IKeyProvider), new AndroidKeyProvider ());
+            IoCManager.RegisterInstance (typeof(IBarsColorsChanger), new DroidBarsColorsChanger (this));
 
             // setup crash reporting
             IKeyProvider keyProvider = IoCManager.Resolve<IKeyProvider>();

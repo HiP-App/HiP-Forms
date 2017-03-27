@@ -18,6 +18,7 @@ using de.upb.hip.mobile.pcl.Common;
 using de.upb.hip.mobile.pcl.Common.Contracts;
 using de.upb.hip.mobile.pcl.DataAccessLayer;
 using de.upb.hip.mobile.pcl.DataLayer;
+using HipMobileUI.Contracts;
 using HipMobileUI.Helpers;
 using HipMobileUI.Navigation;
 using HipMobileUI.ViewModels.Pages;

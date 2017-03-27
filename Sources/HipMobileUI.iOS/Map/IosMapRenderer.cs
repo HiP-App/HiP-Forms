@@ -327,10 +327,12 @@ namespace HipMobileUI.iOS.Map {
 
             if (overlay is MKPolyline)
             {
+                var resources = IoCManager.Resolve<ApplicationResourcesProvider>();
+
                 MKPolylineRenderer polylineRenderer;
                 if (overlay.Equals (currentSectionPolyLine))
                 {
-                    UIColor color = ((Color) Xamarin.Forms.Application.Current.Resources ["AccentColor"]).ToUIColor ();
+                    UIColor color = ((Color)resources.GetResourceValue("AccentColor")).ToUIColor ();
                     polylineRenderer = new MKPolylineRenderer ((MKPolyline) overlay)
                     {
                         FillColor = color,
@@ -340,8 +342,8 @@ namespace HipMobileUI.iOS.Map {
                 }
                 else
                 {
-                    UIColor color = ((Color) Xamarin.Forms.Application.Current.Resources ["PrimaryColor"]).ToUIColor ();
-                    polylineRenderer = new MKPolylineRenderer ((MKPolyline) overlay)
+                    UIColor color = ((Color)resources.GetResourceValue("PrimaryColor")).ToUIColor();
+                    polylineRenderer = new MKPolylineRenderer((MKPolyline)overlay)
                     {
                         FillColor = color,
                         StrokeColor = color,
