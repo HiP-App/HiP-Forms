@@ -14,7 +14,7 @@
 
 using Xamarin.Forms.Maps;
 
-namespace HipMobileUI.Helpers
+namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers
 {
     public static class AppSharedData {
 

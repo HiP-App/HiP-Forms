@@ -12,10 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using de.upb.hip.mobile.pcl.BusinessLayer.InteractiveSources;
 using NUnit.Framework;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.InteractiveSources;
 
-namespace HipMobile.Tests.BusinessLayer.InteractiveSources {
+namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.BusinessLayer.InteractiveSources {
 
     [TestFixture]
     public class ConsecutiveNumberInteractiveSourceSubstituteTest

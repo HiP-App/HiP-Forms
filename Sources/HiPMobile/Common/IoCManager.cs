@@ -19,7 +19,7 @@ using System;
 using System.Linq;
 using Microsoft.Practices.Unity;
 
-namespace de.upb.hip.mobile.pcl.Common {
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Common {
     /// <summary>
     /// This class manages the access to the Inversion of Control container for the application.
     /// </summary>

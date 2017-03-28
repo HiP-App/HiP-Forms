@@ -16,9 +16,9 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using de.upb.hip.mobile.pcl.Common.Contracts;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
 
-namespace de.upb.hip.mobile.pcl.Common {
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Common {
     public class EmbeddedResourceDataLoader : IDataLoader{
 
         public byte[] LoadByteData (string name)

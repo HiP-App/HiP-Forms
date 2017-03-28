@@ -14,7 +14,7 @@
 
 using System;
 
-namespace de.upb.hip.mobile.pcl.DataAccessLayer {
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer {
     public abstract class BaseTransaction : IDisposable{
 
         /// <summary>

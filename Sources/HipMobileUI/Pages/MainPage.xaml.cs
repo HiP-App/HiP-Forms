@@ -11,13 +11,13 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-using System;
-using HipMobileUI.Navigation;
-using HipMobileUI.ViewModels;
-using HipMobileUI.ViewModels.Pages;
+
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
 using Xamarin.Forms;
 
-namespace HipMobileUI.Pages
+namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
 {
     public partial class MainPage : IViewFor<MainPageViewModel>
     {

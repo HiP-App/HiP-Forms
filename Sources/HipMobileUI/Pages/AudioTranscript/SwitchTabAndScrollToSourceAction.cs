@@ -14,10 +14,10 @@
 
 using System;
 using System.Threading.Tasks;
-using de.upb.hip.mobile.pcl.BusinessLayer.InteractiveSources;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.InteractiveSources;
 using Xamarin.Forms;
 
-namespace HipMobileUI.Pages.AudioTranscript {
+namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages.AudioTranscript {
     public class SwitchTabAndScrollToSourceAction : IInteractiveSourceAction {
 
         public TabbedPage TabbedPage { get; set; }
@@ -32,7 +32,7 @@ namespace HipMobileUI.Pages.AudioTranscript {
         {
             await Task.Delay (100);
 
-            var sourcesPage = TabbedPage.Children[1] as SourcesPage;
+            var sourcesPage = TabbedPage.Children[1] as PaderbornUniversity.SILab.Hip.Mobile.UI.Pages.AudioTranscript.SourcesPage;
             if (sourcesPage != null)
             {
                 var sourcesListView = sourcesPage.Content as ListView;
@@ -48,7 +48,7 @@ namespace HipMobileUI.Pages.AudioTranscript {
 
         public void Display (Source src)
         {
-            var sourcesPage = TabbedPage.Children[1] as SourcesPage;
+            var sourcesPage = TabbedPage.Children[1] as PaderbornUniversity.SILab.Hip.Mobile.UI.Pages.AudioTranscript.SourcesPage;
             if (sourcesPage != null)
             {
                 Source = src;

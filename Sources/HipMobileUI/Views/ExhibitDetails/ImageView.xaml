@@ -16,19 +16,19 @@
 -->
 
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="HipMobileUI.Views.ExhibitDetails.ImageView"
-             xmlns:views="clr-namespace:HipMobileUI.Views;assembly=HipMobileUI"
-             xmlns:controls="clr-namespace:HipMobileUI.Controls;assembly=HipMobileUI">
+             x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Views.ExhibitDetails.ImageView"
+             xmlns:controls1="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Controls;assembly=HipMobileUI"
+             xmlns:views1="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Views;assembly=HipMobileUI">
     <ContentView.Content>
-        <views:BottomSheetView>
-            <views:BottomSheetView.MainContent>
-                <controls:FadeInImage Source="{Binding Image}" DownsampleToViewSize="True">
-                    <controls:FadeInImage.GestureRecognizers>
+        <views1:BottomSheetView>
+            <views1:BottomSheetView.MainContent>
+                <controls1:FadeInImage Source="{Binding Image}" DownsampleToViewSize="True">
+                    <controls1:FadeInImage.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding ToggleButtonVisibility}" />
-                    </controls:FadeInImage.GestureRecognizers>
-                </controls:FadeInImage>
-            </views:BottomSheetView.MainContent>
-            <views:BottomSheetView.BottomSheet>
+                    </controls1:FadeInImage.GestureRecognizers>
+                </controls1:FadeInImage>
+            </views1:BottomSheetView.MainContent>
+            <views1:BottomSheetView.BottomSheet>
                 <StackLayout>
                     <BoxView Color="#50000000" HeightRequest="1" />
                     <StackLayout Margin="16,16" Spacing="1" BackgroundColor="White">
@@ -38,7 +38,10 @@
                     </ScrollView>
                     </StackLayout>
                 </StackLayout>
-            </views:BottomSheetView.BottomSheet>
-        </views:BottomSheetView>
+            </views1:BottomSheetView.BottomSheet>
+        </views1:BottomSheetView>
     </ContentView.Content>
 </ContentView>
+
+
+

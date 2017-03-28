@@ -16,9 +16,8 @@
 -->
 <MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="HipMobileUI.Pages.MainPage"
-             xmlns:viewmodel="clr-namespace:HipMobileUI.ViewModels.Pages;assembly=HipMobileUI"
-             xmlns:strings="clr-namespace:HipMobileUI.Helpers;assembly=HipMobileUI">
+             x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Pages.MainPage"
+             xmlns:helpers="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;assembly=HipMobileUI">
     <MasterDetailPage.Master>
         <ContentPage Title="Menu" Padding="0">
             <Grid>
@@ -30,7 +29,7 @@
                     <RowDefinition Height="0.7*" />
                 </Grid.RowDefinitions>
                 <BoxView Grid.Row="0" Color="{StaticResource PrimaryColor}" />
-                <Label Grid.Row="0" Text="{strings:Translate MainPage_MenuTitle}"
+                <Label Grid.Row="0" Text="{helpers:Translate MainPage_MenuTitle}"
                        TextColor="White" FontSize="Small" FontAttributes="Bold"
                        Margin="16,0,0,32" VerticalOptions="End" />
                 <ListView Grid.Row="1" x:Name="SelectedView" SeparatorVisibility="None" 

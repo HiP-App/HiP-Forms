@@ -20,7 +20,7 @@ using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using Xamarin.Forms;
 using Image = Xamarin.Forms.Image;
 
-namespace HipMobileUI.Converters
+namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Converters
 {
     /// <summary>
     /// Converter for ItemTappedEventArgs to the tapped item

@@ -12,10 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using HipMobileUI.Helpers;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 using Xamarin.Forms;
 
-namespace HipMobileUI.ViewModels.Pages
+namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 {
     public class UserOnboardingItemViewModel : NavigationViewModel
     {

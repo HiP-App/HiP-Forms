@@ -14,15 +14,15 @@
 
 using System.Linq;
 using Android.Support.V7.Widget;
-using de.upb.hip.mobile.droid.Effects;
-using HipMobileUI.Effects;
+using PaderbornUniversity.SILab.Hip.Mobile.Droid.Effects;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Effects;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 using Color = Android.Graphics.Color;
 
 [assembly: ResolutionGroupName("Hip")]
 [assembly: ExportEffect(typeof(DroidSwitchColorEffect), "SwitchColorEffect")]
-namespace de.upb.hip.mobile.droid.Effects
+namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Effects
 {
     class DroidSwitchColorEffect : PlatformEffect {
 

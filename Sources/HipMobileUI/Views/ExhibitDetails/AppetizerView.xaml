@@ -16,8 +16,8 @@
 -->
 
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="HipMobileUI.Views.ExhibitDetails.AppetizerView"
-             xmlns:controls="clr-namespace:HipMobileUI.Controls;assembly=HipMobileUI">
+             x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Views.ExhibitDetails.AppetizerView"
+             xmlns:controls1="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Controls;assembly=HipMobileUI">
     <ContentView.Content>
         <Grid>
             <Grid.ColumnDefinitions>
@@ -29,12 +29,12 @@
             </Grid.RowDefinitions>
             <Image Source="{Binding Image}" Aspect="AspectFit"/>
             <ContentView Grid.Row="1" Padding="10">
-                <controls:CardView>
+                <controls1:CardView>
                     <StackLayout Margin="10,16">
                         <Label Text="{Binding Headline}" TextColor="#000000" FontSize="16" FontAttributes="Bold"/>
                         <Label Text="{Binding Text}" TextColor="#87000000" FontSize="14"/>
                     </StackLayout>
-                </controls:CardView>
+                </controls1:CardView>
             </ContentView>
         </Grid>
     </ContentView.Content>

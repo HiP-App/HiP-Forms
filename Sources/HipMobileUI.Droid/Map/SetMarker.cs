@@ -18,7 +18,7 @@ using Org.Osmdroid.Util;
 using Org.Osmdroid.Views;
 using Object = Java.Lang.Object;
 
-namespace de.upb.hip.mobile.droid.Map
+namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Map
 {
     class SetMarker
     {

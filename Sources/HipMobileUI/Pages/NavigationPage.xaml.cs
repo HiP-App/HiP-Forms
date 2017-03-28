@@ -12,10 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.using System;
 
-using HipMobileUI.Navigation;
-using HipMobileUI.ViewModels.Pages;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
 
-namespace HipMobileUI.Pages
+namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
 {
     public partial class NavigationPage : IViewFor<NavigationPageViewModel> {
 

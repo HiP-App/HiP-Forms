@@ -14,10 +14,10 @@
 
 using System;
 using System.Collections.Generic;
-using de.upb.hip.mobile.pcl.BusinessLayer.InteractiveSources;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.InteractiveSources;
 using Xamarin.Forms;
 
-namespace HipMobileUI.Views
+namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
 {
     public class ReferenceLink : Label
     {

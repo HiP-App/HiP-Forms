@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-namespace de.upb.hip.mobile.pcl.BusinessLayer.InteractiveSources {
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.InteractiveSources {
     /// <summary>
     /// Interface for actions that are triggered when an InteractiveSource 
     /// is triggered (clicked).

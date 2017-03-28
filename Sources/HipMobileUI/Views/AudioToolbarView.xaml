@@ -17,9 +17,9 @@
 
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="HipMobileUI.Views.AudioToolbarView"
-             xmlns:strings="clr-namespace:HipMobileUI.Helpers;assembly=HipMobileUI"
-             xmlns:controls="clr-namespace:HipMobileUI.Controls;assembly=HipMobileUI">
+             x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Views.AudioToolbarView"
+             xmlns:controls="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Controls;assembly=HipMobileUI"
+             xmlns:helpers="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;assembly=HipMobileUI">
     <ContentView.Content>
         <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Spacing="0">
             <StackLayout Orientation="Vertical" Padding="16">
@@ -30,21 +30,21 @@
                        IsVisible="{Binding IsAudioPlaying, Converter={StaticResource InverseBooleanConverter}}"
                        Source="ic_play_arrow_black" HorizontalOptions="Center" VerticalOptions="Center" />
                 <Label IsVisible="{Binding IsAudioPlaying, Converter={StaticResource InverseBooleanConverter}}"
-                       Text="{strings:Translate AudioToolbarView_Play}" HorizontalOptions="Center"/>
+                       Text="{helpers:Translate AudioToolbarView_Play}" HorizontalOptions="Center"/>
                 <Image IsVisible="{Binding IsAudioPlaying}" HeightRequest="36" WidthRequest="36"
                        Source="ic_pause_black" HorizontalOptions="Center" VerticalOptions="Center" />
-                <Label IsVisible="{Binding IsAudioPlaying}" Text="{strings:Translate AudioToolbarView_Pause}" HorizontalOptions="Center" />
+                <Label IsVisible="{Binding IsAudioPlaying}" Text="{helpers:Translate AudioToolbarView_Pause}" HorizontalOptions="Center" />
             </StackLayout>
             <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="0,16">
                 <controls:TouchEventSlider x:Name="AudioSlider" Maximum="{Binding MaxAudioProgress}" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand" />
-                <Label Text="{strings:Translate AudioToolbarView_Progress}" HorizontalOptions="Center" VerticalOptions="End" />
+                <Label Text="{helpers:Translate AudioToolbarView_Progress}" HorizontalOptions="Center" VerticalOptions="End" />
             </StackLayout>
             <StackLayout Orientation="Vertical" Padding="16">
                 <StackLayout.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding CaptionCommand}" />
                 </StackLayout.GestureRecognizers>
                 <Image Source="ic_closed_caption_black" HeightRequest="36" WidthRequest="36" HorizontalOptions="Center" VerticalOptions="Center" />
-                <Label Text="{strings:Translate AudioToolbarView_Caption}" HorizontalOptions="Center" />
+                <Label Text="{helpers:Translate AudioToolbarView_Caption}" HorizontalOptions="Center" />
             </StackLayout>
         </StackLayout>
     </ContentView.Content>

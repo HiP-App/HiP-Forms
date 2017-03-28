@@ -12,17 +12,17 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using de.upb.hip.mobile.pcl.Common;
 using FFImageLoading.Forms;
-using HipMobileUI.Contracts;
-using HipMobileUI.Controls;
-using HipMobileUI.Helpers;
-using HipMobileUI.Navigation;
-using HipMobileUI.Resources;
-using HipMobileUI.ViewModels.Pages;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Contracts;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Controls;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
 using Xamarin.Forms;
 
-namespace HipMobileUI.Pages
+namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
 {
     public partial class UserOnboardingPage : ContentPage, IViewFor<UserOnboardingPageViewModel> {
 

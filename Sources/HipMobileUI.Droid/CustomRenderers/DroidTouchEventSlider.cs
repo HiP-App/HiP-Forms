@@ -13,13 +13,13 @@
 // limitations under the License.
 
 using Android.Widget;
-using de.upb.hip.mobile.droid.CustomRenderers;
-using HipMobileUI.Controls;
+using PaderbornUniversity.SILab.Hip.Mobile.Droid.CustomRenderers;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Controls;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
 [assembly: ExportRenderer(typeof(TouchEventSlider), typeof(DroidTouchEventSlider))]
-namespace de.upb.hip.mobile.droid.CustomRenderers
+namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.CustomRenderers
 {
     class DroidTouchEventSlider : SliderRenderer {
 

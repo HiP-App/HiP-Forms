@@ -15,7 +15,7 @@
 using System;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 
-namespace de.upb.hip.mobile.pcl.Helpers {
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers {
     public class MathUtil {
 
         /// <summary>

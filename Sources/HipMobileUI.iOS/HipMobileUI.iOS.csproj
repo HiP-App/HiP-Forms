@@ -8,7 +8,7 @@
     <ProjectGuid>{B00B332B-26E5-464B-80FB-F4F84D720CEF}</ProjectGuid>
     <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Exe</OutputType>
-    <RootNamespace>HipMobileUI.iOS</RootNamespace>
+    <RootNamespace>PaderbornUniversity.SILab.Hip.Mobile.Ios</RootNamespace>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
     <AssemblyName>HipMobileUI.iOS</AssemblyName>
     <NuGetPackageImportStamp>
@@ -163,7 +163,6 @@
     <Compile Include="CustomRenderers\IosTouchEventSlider.cs" />
     <Compile Include="CustomRenderers\IosReferenceLinkRenderer.cs" />
     <Compile Include="Effects\IosSwitchColorEffect.cs" />
-    <Compile Include="Helpers\Settings.cs" />
     <Compile Include="Helpers\TextViewInteractiveSourcesExtension.cs" />
     <Compile Include="Effects\IosProgressBarColorEffect.cs" />
     <Compile Include="CustomRenderers\IosCustomFontLabelRenderer.cs" />

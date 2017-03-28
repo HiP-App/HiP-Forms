@@ -12,10 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using HipMobileUI.Contracts;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Contracts;
 using UIKit;
 
-namespace HipMobileUI.iOS.Contracts {
+namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Contracts {
     public class IosStatusBarController : IStatusBarController{
 
         public void HideStatusBar ()

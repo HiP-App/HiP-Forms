@@ -14,16 +14,16 @@
 
 using System.ComponentModel;
 using Foundation;
-using HipMobileUI.Helpers;
-using HipMobileUI.iOS.CustomRenderers;
-using HipMobileUI.iOS.ViewControllers;
-using HipMobileUI.Pages;
+using PaderbornUniversity.SILab.Hip.Mobile.Ios.CustomRenderers;
+using PaderbornUniversity.SILab.Hip.Mobile.Ios.ViewControllers;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Pages;
 using UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 
 [assembly: ExportRenderer(typeof(OrientationContentPage), typeof(IosOrientationContentPageRenderer))]
-namespace HipMobileUI.iOS.CustomRenderers
+namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.CustomRenderers
 {
     class IosOrientationContentPageRenderer : PageRenderer
     {

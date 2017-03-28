@@ -15,7 +15,7 @@
 using CoreLocation;
 using MapKit;
 
-namespace HipMobileUI.iOS.Map
+namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Map
 {
     class UserAnnotation : MKAnnotation
     {

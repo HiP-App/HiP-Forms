@@ -17,7 +17,7 @@ using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
-namespace de.upb.hip.mobile.pcl.BusinessLayer.InteractiveSources
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.InteractiveSources
 {
     /// <summary>
     /// Provides functionality replace source markdown in a string with interactive sources.

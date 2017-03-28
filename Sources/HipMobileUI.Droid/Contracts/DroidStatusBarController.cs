@@ -12,14 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using Android.Content.PM;
 using Android.Views;
-using HipMobileUI.Contracts;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Contracts;
 using Plugin.CurrentActivity;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
-namespace de.upb.hip.mobile.droid.Contracts {
+namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Contracts {
     public class DroidStatusBarController : IStatusBarController{
 
         public void HideStatusBar ()

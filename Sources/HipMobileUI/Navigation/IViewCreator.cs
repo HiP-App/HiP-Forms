@@ -12,9 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using HipMobileUI.ViewModels;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels;
 
-namespace HipMobileUI.Navigation {
+namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation {
     public interface IViewCreator {
 
         IViewFor InstantiateView (NavigationViewModel viewModel);

@@ -14,9 +14,9 @@
 
 using Android.Graphics;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
-using de.upb.hip.mobile.pcl.Common.Contracts;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
 
-namespace de.upb.hip.mobile.droid.Contracts {
+namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Contracts {
     public class AndroidImageDimensions : IImageDimension{
 
         /// <summary>

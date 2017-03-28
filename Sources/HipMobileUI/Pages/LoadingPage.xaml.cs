@@ -12,13 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using HipMobileUI.Helpers;
-using HipMobileUI.Navigation;
-using HipMobileUI.ViewModels.Pages;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace HipMobileUI.Pages
+namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LoadingPage : ContentPage, IViewFor<LoadingPageViewModel> {

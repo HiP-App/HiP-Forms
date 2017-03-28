@@ -11,17 +11,18 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
-using HipMobileUI.Pages;
-using HipMobileUI.ViewModels;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels;
 using Xamarin.Forms;
+using MainPage = PaderbornUniversity.SILab.Hip.Mobile.UI.Pages.MainPage;
 using NavigationPage = Xamarin.Forms.NavigationPage;
 
-namespace HipMobileUI.Navigation
+namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation
 {
     public class NavigationService : INavigationService, IViewCreator {
 

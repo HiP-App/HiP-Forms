@@ -14,18 +14,17 @@
 
 using System.Collections.Generic;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
-using de.upb.hip.mobile.pcl.Common;
-using de.upb.hip.mobile.pcl.Common.Contracts;
-using de.upb.hip.mobile.pcl.DataAccessLayer;
-using HipMobileUI.AudioPlayer;
-using HipMobileUI.Location;
-using HipMobileUI.Navigation;
-using HipMobileUI.Viewmodels.Pages;
-using HipMobileUI.ViewModels.Views;
 using NSubstitute;
 using NUnit.Framework;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.AudioPlayer;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Location;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
 
-namespace HipMobileUI.Tests.ViewModels.Pages {
+namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Pages {
 
     [TestFixture]
     public class RoutesDetailsPageViewModelTest

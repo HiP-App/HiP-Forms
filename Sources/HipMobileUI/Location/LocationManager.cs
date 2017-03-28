@@ -14,16 +14,17 @@
 
 using System.Collections.Generic;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
-using de.upb.hip.mobile.pcl.Common;
-using de.upb.hip.mobile.pcl.Helpers;
-using HipMobileUI.Helpers;
-using HipMobileUI.Navigation;
-using HipMobileUI.ViewModels.Pages;
+using HipMobileUI;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
 using Plugin.Geolocator;
 using Plugin.Geolocator.Abstractions;
 using Xamarin.Forms;
 
-namespace HipMobileUI.Location {
+namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Location {
     public interface ILocationListener {
 
         /// <summary>

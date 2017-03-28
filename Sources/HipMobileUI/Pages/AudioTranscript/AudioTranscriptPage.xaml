@@ -17,11 +17,11 @@
 
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-            xmlns:audioTranscript="clr-namespace:HipMobileUI.Pages.AudioTranscript;assembly=HipMobileUI"
-            xmlns:strings="clr-namespace:HipMobileUI.Helpers;assembly=HipMobileUI"
+            xmlns:helpers="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;assembly=HipMobileUI"
+            xmlns:audioTranscript1="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Pages.AudioTranscript;assembly=HipMobileUI"
             Title="{Binding Title}"
-            x:Class="HipMobileUI.Pages.AudioTranscript.AudioTranscriptPage">
-    <audioTranscript:SubtitlesPage BindingContext="{Binding SubtitleTab}" Title="{strings:Translate AudioTranscriptView_Subtitles_Title}"/>
-    <audioTranscript:SourcesPage BindingContext="{Binding SourcesTab}" Title="{strings:Translate AudioTranscriptView_Sources_Title}"/>
+            x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Pages.AudioTranscript.AudioTranscriptPage">
+    <audioTranscript1:SubtitlesPage BindingContext="{Binding SubtitleTab}" Title="{helpers:Translate AudioTranscriptView_Subtitles_Title}"/>
+    <audioTranscript1:SourcesPage BindingContext="{Binding SourcesTab}" Title="{helpers:Translate AudioTranscriptView_Sources_Title}"/>
 
 </TabbedPage>

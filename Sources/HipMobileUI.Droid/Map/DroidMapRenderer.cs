@@ -20,33 +20,28 @@ using Android.App;
 using Android.OS;
 using Android.Support.V4.Content;
 using Android.Support.V4.Content.Res;
-using Android.Widget;
-using de.upb.hip.mobile.droid.Map;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
-using de.upb.hip.mobile.pcl.BusinessLayer.Routing;
-using de.upb.hip.mobile.pcl.Common;
-using HipMobileUI;
-using HipMobileUI.Contracts;
-using HipMobileUI.Helpers;
-using HipMobileUI.Map;
 using Org.Osmdroid;
 using Org.Osmdroid.Bonuspack.Overlays;
 using Org.Osmdroid.Events;
+using Org.Osmdroid.Tileprovider;
 using Org.Osmdroid.Tileprovider.Tilesource;
 using Org.Osmdroid.Util;
 using Org.Osmdroid.Views;
 using Org.Osmdroid.Views.Overlay;
 using Org.Osmdroid.Views.Overlay.Compass;
+using PaderbornUniversity.SILab.Hip.Mobile.Droid.Map;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Routing;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Map;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 using Color = Android.Graphics.Color;
-using HipMobileUI.Resources;
-using Application = Xamarin.Forms.Application;
-using Org.Osmdroid.Tileprovider;
 
 [assembly: ExportRenderer (typeof (OsmMap), typeof (DroidMapRenderer))]
 
-namespace de.upb.hip.mobile.droid.Map {
+namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Map {
     internal class DroidMapRenderer : Xamarin.Forms.Platform.Android.AppCompat.ViewRenderer<OsmMap, MapView>, IMapListener {
 
         private Activity activity;

@@ -16,7 +16,7 @@ using System.Windows.Input;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using Xamarin.Forms;
 
-namespace HipMobileUI.Map {
+namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Map {
     public class OsmMap : View {
 
         public OsmMap ()

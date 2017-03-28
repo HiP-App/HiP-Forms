@@ -15,7 +15,7 @@
 using System;
 using Xamarin.Forms;
 
-namespace HipMobileUI.Controls
+namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Controls
 {
     /// <summary>
     /// This slider behaves like a normal slider but offers events that fire when a touch event starts and ends. Idea from https://forums.xamarin.com/discussion/88051/slider-control-as-audio-seekbar

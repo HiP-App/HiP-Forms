@@ -22,7 +22,7 @@ using Plugin.Geolocator.Abstractions;
 using Xamarin.Forms;
 using Image = de.upb.hip.mobile.pcl.BusinessLayer.Models.Image;
 
-namespace HipMobileUI.Helpers {
+namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers {
     public static class ExtensionMethods {
 
         public static ImageSource GetImageSource (this Image image)

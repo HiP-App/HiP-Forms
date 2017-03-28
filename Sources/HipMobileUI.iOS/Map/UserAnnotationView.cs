@@ -15,7 +15,7 @@
 using MapKit;
 using UIKit;
 
-namespace HipMobileUI.iOS.Map {
+namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Map {
     public sealed class UserAnnotationView : MKAnnotationView {
 
         public  UserAnnotationView(IMKAnnotation annotation, string reuseId) : base(annotation, reuseId)

@@ -12,10 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using HipMobileUI.Helpers;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 using UIKit;
 
-namespace HipMobileUI.iOS.ViewControllers
+namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.ViewControllers
 {
     public class OrientationViewController : UIViewController {
 

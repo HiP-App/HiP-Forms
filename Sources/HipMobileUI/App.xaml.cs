@@ -12,22 +12,16 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
-using de.upb.hip.mobile.pcl.BusinessLayer.Routing;
-using de.upb.hip.mobile.pcl.Common;
-using de.upb.hip.mobile.pcl.Common.Contracts;
-using de.upb.hip.mobile.pcl.DataAccessLayer;
-using de.upb.hip.mobile.pcl.DataLayer;
-using HipMobileUI.Contracts;
-using HipMobileUI.Helpers;
-using HipMobileUI.Navigation;
-using HipMobileUI.ViewModels.Pages;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using Settings = de.upb.hip.mobile.pcl.Helpers.Settings;
+using Settings = PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers.Settings;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
-namespace HipMobileUI
+namespace PaderbornUniversity.SILab.Hip.Mobile.UI
 {
     public partial class App
     {

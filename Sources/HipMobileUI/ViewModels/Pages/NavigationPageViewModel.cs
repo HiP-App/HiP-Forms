@@ -12,18 +12,17 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.using System;
 
-using System;
 using System.Linq;
 using System.Windows.Input;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
-using de.upb.hip.mobile.pcl.Common;
-using HipMobileUI.Helpers;
-using HipMobileUI.Location;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Location;
 using Plugin.Geolocator.Abstractions;
 using Xamarin.Forms;
 
-namespace HipMobileUI.ViewModels.Pages {
-    class NavigationPageViewModel : ViewModels.NavigationViewModel, ILocationListener {
+namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
+    class NavigationPageViewModel : NavigationViewModel, ILocationListener {
 
         private ExhibitSet exhibitSet;
         private GeoLocation gpsLocation;

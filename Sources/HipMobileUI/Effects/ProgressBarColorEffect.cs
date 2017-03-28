@@ -11,9 +11,10 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+
 using Xamarin.Forms;
 
-namespace HipMobileUI.Effects
+namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Effects
 {
     /// <summary>
     /// Effect that specifies the fill color of a progress bar.

@@ -13,7 +13,7 @@
 // limitations under the License.
 
 
-namespace de.upb.hip.mobile.pcl.BusinessLayer.InteractiveSources {
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.InteractiveSources {
     /// <summary>
     /// Implements IInteractiveSourceSubstitute by returning a  constant text followed by a consecutive number combined enclosed in brackets.
     /// </summary>

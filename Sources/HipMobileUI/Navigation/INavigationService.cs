@@ -14,9 +14,9 @@
 
 using System.Reflection;
 using System.Threading.Tasks;
-using HipMobileUI.ViewModels;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels;
 
-namespace HipMobileUI.Navigation {
+namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation {
     public interface INavigationService {
 
         /// <summary>

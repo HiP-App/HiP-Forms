@@ -16,7 +16,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Xamarin.Forms;
 
-namespace HipMobileUI.Helpers {
+namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers {
 
     /// <summary>
     /// Should be initialized with Application.Current.Resources for the real application

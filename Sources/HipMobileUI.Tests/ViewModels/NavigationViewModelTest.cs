@@ -13,13 +13,13 @@
 // limitations under the License.
 
 using System.ComponentModel;
-using de.upb.hip.mobile.pcl.Common;
-using HipMobileUI.Navigation;
-using HipMobileUI.ViewModels;
 using NSubstitute;
 using NUnit.Framework;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels;
 
-namespace HipMobileUI.Tests.ViewModels {
+namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels {
     [TestFixture]
     public class NavigationViewModelTest {
 

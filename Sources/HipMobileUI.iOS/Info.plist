@@ -29,7 +29,7 @@
 	<key>CFBundleDisplayName</key>
 	<string>Historisches Paderborn</string>
 	<key>CFBundleIdentifier</key>
-	<string>de.uni-paderborn.s-lab.hip.mobile.ios</string>
+	<string>PaderbornUniversity.SILab</string>
 	<key>CFBundleVersion</key>
 	<string>1.0</string>
 	<key>CFBundleIconFiles</key>
@@ -66,7 +66,7 @@
 	<dict>
 		<key>NSExceptionDomains</key>
 		<dict>
-      <key>b.sm.mapstack.stamen.com</key>
+			<key>b.sm.mapstack.stamen.com</key>
 			<dict>
 				<key>NSExceptionAllowsInsecureHTTPLoads</key>
 				<true/>

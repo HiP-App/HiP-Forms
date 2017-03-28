@@ -13,13 +13,13 @@
 // limitations under the License.
 
 using System;
-using HipMobileUI.Controls;
-using HipMobileUI.iOS.CustomRenderers;
+using PaderbornUniversity.SILab.Hip.Mobile.Ios.CustomRenderers;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Controls;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 
 [assembly: ExportRenderer(typeof(TouchEventSlider), typeof(IosTouchEventSlider))]
-namespace HipMobileUI.iOS.CustomRenderers
+namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.CustomRenderers
 {
     class IosTouchEventSlider : SliderRenderer
     {

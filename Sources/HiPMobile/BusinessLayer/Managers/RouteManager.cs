@@ -14,10 +14,10 @@
 
 using System.Collections.Generic;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
-using de.upb.hip.mobile.pcl.Common;
-using de.upb.hip.mobile.pcl.DataAccessLayer;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
 
-namespace de.upb.hip.mobile.pcl.BusinessLayer.Managers {
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers {
     public static class RouteManager {
 
         private static readonly IDataAccess DataAccess = IoCManager.Resolve<IDataAccess> ();

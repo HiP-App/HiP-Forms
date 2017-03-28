@@ -13,9 +13,9 @@
 // limitations under the License.
 
 using System.Collections.Generic;
-using de.upb.hip.mobile.pcl.Common.Contracts;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
 
-namespace de.upb.hip.mobile.pcl.Common {
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Common {
     public class KeyManager {
 
         private static KeyManager instance;

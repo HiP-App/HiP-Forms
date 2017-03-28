@@ -12,12 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System;
 using System.ComponentModel;
 using FFImageLoading.Forms;
 using Xamarin.Forms;
 
-namespace HipMobileUI.Controls
+namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Controls
 {
     /// <summary>
     /// Image with a fade in transition when loaded.

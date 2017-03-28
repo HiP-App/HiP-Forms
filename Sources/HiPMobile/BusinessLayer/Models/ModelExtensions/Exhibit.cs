@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using de.upb.hip.mobile.pcl.Helpers;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 
 
 namespace de.upb.hip.mobile.pcl.BusinessLayer.Models {

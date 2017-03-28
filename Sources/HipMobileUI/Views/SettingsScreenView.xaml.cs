@@ -12,10 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using HipMobileUI.Navigation;
-using HipMobileUI.ViewModels.Views;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
 
-namespace HipMobileUI.Views
+namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
 {
     public partial class SettingsScreenView : IViewFor<SettingsScreenViewModel>
     {

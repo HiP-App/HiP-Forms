@@ -19,22 +19,21 @@ using System.Threading;
 using CoreGraphics;
 using CoreLocation;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
-using de.upb.hip.mobile.pcl.BusinessLayer.Routing;
-using de.upb.hip.mobile.pcl.Common;
-using HipMobileUI.Helpers;
-using HipMobileUI.iOS.Map;
-using HipMobileUI.Map;
-using HipMobileUI.Navigation;
-using HipMobileUI.ViewModels.Pages;
 using MapKit;
+using PaderbornUniversity.SILab.Hip.Mobile.Ios.Map;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Routing;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Map;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
 using UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
-using HipMobileUI.Resources;
 
 [assembly: ExportRenderer (typeof (OsmMap), typeof (IosMapRenderer))]
 
-namespace HipMobileUI.iOS.Map {
+namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Map {
     class IosMapRenderer : ViewRenderer<OsmMap, MKMapView> {
 
         private OsmMap osmMap;

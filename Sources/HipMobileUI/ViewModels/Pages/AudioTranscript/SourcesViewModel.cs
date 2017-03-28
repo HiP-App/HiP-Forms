@@ -13,10 +13,10 @@
 // limitations under the License.
 
 using System.Collections.Generic;
-using de.upb.hip.mobile.pcl.BusinessLayer.InteractiveSources;
 using MvvmHelpers;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.InteractiveSources;
 
-namespace HipMobileUI.ViewModels.Pages.AudioTranscript
+namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages.AudioTranscript
 {
     public class SourcesViewModel : BaseViewModel
     {

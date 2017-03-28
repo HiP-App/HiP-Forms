@@ -11,24 +11,25 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+
 using Android.App;
 using Android.Content.PM;
 using Android.OS;
-using de.upb.hip.mobile.droid.Contracts;
-using de.upb.hip.mobile.pcl.Common;
-using de.upb.hip.mobile.pcl.Common.Contracts;
 using FFImageLoading.Forms.Droid;
-using HipMobileUI;
-using HipMobileUI.AudioPlayer;
-using HipMobileUI.Contracts;
-using HipMobileUI.Location;
-using HipMobileUI.Navigation;
-using HipMobileUI.Pages;
 using HockeyApp.Android;
+using PaderbornUniversity.SILab.Hip.Mobile.Droid.Contracts;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.AudioPlayer;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Contracts;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Location;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using Plugin.Permissions;
 using Xamarin.Forms;
+using App = PaderbornUniversity.SILab.Hip.Mobile.UI.App;
+using MainPage = PaderbornUniversity.SILab.Hip.Mobile.UI.Pages.MainPage;
 
-namespace de.upb.hip.mobile.droid
+namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
 {
     [Activity(Label = "Historisches Paderborn", Icon = "@drawable/ic_launcher", Theme = "@style/splashscreen", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : Xamarin.Forms.Platform.Android.FormsAppCompatActivity

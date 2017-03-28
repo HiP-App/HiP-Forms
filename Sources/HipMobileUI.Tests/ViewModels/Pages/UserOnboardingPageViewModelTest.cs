@@ -12,14 +12,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using de.upb.hip.mobile.pcl.Common;
-using HipMobileUI.Contracts;
-using HipMobileUI.Navigation;
-using HipMobileUI.ViewModels.Pages;
 using NSubstitute;
 using NUnit.Framework;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Contracts;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
 
-namespace HipMobileUI.Tests.ViewModels.Pages {
+namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Pages {
     public class UserOnboardingPageViewModelTest {
 
         [TestFixtureSetUp]

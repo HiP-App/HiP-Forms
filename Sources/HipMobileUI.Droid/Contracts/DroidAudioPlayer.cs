@@ -18,13 +18,13 @@ using System.Threading;
 using Android.Media;
 using Android.Util;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
-using HipMobileUI.AudioPlayer;
 using Java.IO;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.AudioPlayer;
 using File = Java.IO.File;
 using IOException = Java.IO.IOException;
 using Stream = Android.Media.Stream;
 
-namespace de.upb.hip.mobile.droid.Contracts {
+namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Contracts {
     internal class DroidAudioPlayer : IAudioPlayer {
 
         private readonly MediaPlayer mediaPlayer;

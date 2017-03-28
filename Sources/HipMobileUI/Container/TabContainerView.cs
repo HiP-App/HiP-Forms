@@ -11,15 +11,15 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
-using de.upb.hip.mobile.pcl.Common;
-using HipMobileUI.Contracts;
-using HipMobileUI.Helpers;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 using Xamarin.Forms;
 
-namespace HipMobileUI.Container
+namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Container
 {
     /// <summary>
     /// View for displaying a collection of tabs. The tabs are shown at the top and can be clicked to switch the content below.

@@ -13,14 +13,14 @@
 // limitations under the License.
 
 using System.Linq;
-using HipMobileUI.Effects;
-using HipMobileUI.iOS.Effects;
+using PaderbornUniversity.SILab.Hip.Mobile.Ios.Effects;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Effects;
 using UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 
 [assembly: ExportEffect(typeof(IosProgressBarColorEffect), "ProgressBarColorEffect")]
-namespace HipMobileUI.iOS.Effects
+namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Effects
 {
     class IosProgressBarColorEffect : PlatformEffect
     {

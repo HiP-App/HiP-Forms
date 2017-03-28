@@ -12,20 +12,15 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text.RegularExpressions;
-using CoreGraphics;
 using Foundation;
-using HipMobileUI.iOS.CustomRenderers;
-using HipMobileUI.Views;
+using PaderbornUniversity.SILab.Hip.Mobile.Ios.CustomRenderers;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Views;
 using UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 
 [assembly: ExportRenderer(typeof(HtmlLink), typeof(IosHtmlLinkRenderer))]
-namespace HipMobileUI.iOS.CustomRenderers
+namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.CustomRenderers
 {
     public class IosHtmlLinkRenderer : ViewRenderer
     {

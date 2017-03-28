@@ -17,11 +17,11 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
-using HipMobileUI.Helpers;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 using Xamarin.Forms;
 using Image = de.upb.hip.mobile.pcl.BusinessLayer.Models.Image;
 
-namespace HipMobileUI.ViewModels.Views.ExhibitDetails
+namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views.ExhibitDetails
 {
     public class TimeSliderViewModel : ExhibitSubviewHiddeableNavigationViewModel
     {

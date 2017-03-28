@@ -13,12 +13,12 @@
 // limitations under the License.
 
 using System.ComponentModel;
-using de.upb.hip.mobile.pcl.BusinessLayer.InteractiveSources;
-using HipMobileUI.Navigation;
-using HipMobileUI.ViewModels.Pages.AudioTranscript;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.InteractiveSources;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages.AudioTranscript;
 using Xamarin.Forms;
 
-namespace HipMobileUI.Pages.AudioTranscript
+namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages.AudioTranscript
 {
     public delegate void CurrentPageChangedEventHandler();
     public partial class AudioTranscriptPage : TabbedPage, IViewFor<AudioTranscriptViewModel>

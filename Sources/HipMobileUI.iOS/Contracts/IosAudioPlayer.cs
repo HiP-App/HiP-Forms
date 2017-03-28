@@ -16,10 +16,10 @@ using System.Threading;
 using AVFoundation;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using Foundation;
-using HipMobileUI.AudioPlayer;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.AudioPlayer;
 using UIKit;
 
-namespace HipMobileUI.iOS.Contracts {
+namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Contracts {
     internal class IosAudioPlayer : IAudioPlayer {
 
         private AVAudioPlayer avAudioPlayer;

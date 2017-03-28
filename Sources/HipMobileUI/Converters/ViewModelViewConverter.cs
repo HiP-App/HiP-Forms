@@ -14,12 +14,12 @@
 
 using System;
 using System.Globalization;
-using de.upb.hip.mobile.pcl.Common;
-using HipMobileUI.Navigation;
-using HipMobileUI.ViewModels;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels;
 using Xamarin.Forms;
 
-namespace HipMobileUI.Converters {
+namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Converters {
     public class ViewModelViewConverter : IValueConverter {
 
         private readonly IViewCreator navigation = IoCManager.Resolve<IViewCreator> ();

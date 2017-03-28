@@ -17,10 +17,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 
-namespace de.upb.hip.mobile.pcl.Common {
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Common
+{
     public partial class DbDummyDataFiller {
 
         public static int DatabaseVersion { get; } = 28;

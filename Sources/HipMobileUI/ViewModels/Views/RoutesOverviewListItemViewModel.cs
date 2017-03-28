@@ -15,11 +15,11 @@
 using System.Collections.ObjectModel;
 using System.IO;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
-using HipMobileUI.Resources;
 using MvvmHelpers;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using Xamarin.Forms;
 
-namespace HipMobileUI.ViewModels.Views {
+namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views {
 
     /// <summary>
     /// View model of a list item in the <see cref="RoutesOverviewViewModel"/> screen

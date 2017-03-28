@@ -12,21 +12,22 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using de.upb.hip.mobile.ios.Contracts;
-using de.upb.hip.mobile.pcl.Common;
-using de.upb.hip.mobile.pcl.Common.Contracts;
 using FFImageLoading.Forms.Touch;
 using Foundation;
-using HipMobileUI.AudioPlayer;
-using HipMobileUI.Contracts;
-using HipMobileUI.iOS.Contracts;
-using HipMobileUI.Location;
-using HipMobileUI.Navigation;
-using HipMobileUI.Pages;
+using HipMobileUI;
 using HockeyApp.iOS;
+using PaderbornUniversity.SILab.Hip.Mobile.Ios.Contracts;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.AudioPlayer;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Contracts;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Location;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using UIKit;
+using App = PaderbornUniversity.SILab.Hip.Mobile.UI.App;
+using MainPage = PaderbornUniversity.SILab.Hip.Mobile.UI.Pages.MainPage;
 
-namespace HipMobileUI.iOS
+namespace PaderbornUniversity.SILab.Hip.Mobile.Ios
 {
     // The UIApplicationDelegate for the application. This class is responsible for launching the 
     // User Interface of the application, as well as listening (and optionally responding) to 

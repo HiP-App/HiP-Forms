@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace HipMobileUI.Resources {
+namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
     using System;
     using System.Reflection;
     
@@ -40,7 +40,7 @@ namespace HipMobileUI.Resources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("HipMobileUI.Resources.Strings", typeof(Strings).GetTypeInfo().Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("PaderbornUniversity.SILab.Hip.Mobile.UI.Resources.Strings", typeof(Strings).GetTypeInfo().Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

@@ -12,28 +12,25 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
-using de.upb.hip.mobile.pcl.Common;
-using HipMobileUI.AudioPlayer;
-using HipMobileUI.Contracts;
-using HipMobileUI.Helpers;
-using HipMobileUI.Navigation;
-using HipMobileUI.Resources;
-using HipMobileUI.ViewModels.Views;
-using HipMobileUI.ViewModels.Views.ExhibitDetails;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.AudioPlayer;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Contracts;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views.ExhibitDetails;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 using Page = de.upb.hip.mobile.pcl.BusinessLayer.Models.Page;
-using Settings = de.upb.hip.mobile.pcl.Helpers.Settings;
+using Settings = PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers.Settings;
 
-namespace HipMobileUI.ViewModels.Pages {
+namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
     public class ExhibitDetailsViewModel : NavigationViewModel {
 
         private ExhibitSubviewViewModel selectedView;

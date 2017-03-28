@@ -12,11 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using HipMobileUI.Navigation;
-using HipMobileUI.ViewModels.Pages.AudioTranscript;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages.AudioTranscript;
 using Xamarin.Forms;
 
-namespace HipMobileUI.Pages.AudioTranscript
+namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages.AudioTranscript
 {
     public partial class SubtitlesPage : ContentPage, IViewFor<SubtitleViewModel>
     {

@@ -16,7 +16,7 @@ using System;
 using System.Windows.Input;
 using Xamarin.Forms;
 
-namespace HipMobileUI.Behaviors
+namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Behaviors
 {
     /// <summary>
     /// Tapped behaviour for a list view which executes a bindable command once an element is tapped

@@ -12,15 +12,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System;
 using System.IO;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
-using de.upb.hip.mobile.pcl.Helpers;
 using MvvmHelpers;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using Plugin.Geolocator.Abstractions;
 using Xamarin.Forms;
 
-namespace HipMobileUI.ViewModels.Views
+namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 {
     class ExhibitsOverviewListItemViewModel : BaseViewModel
     {

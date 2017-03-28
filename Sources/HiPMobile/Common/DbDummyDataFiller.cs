@@ -13,12 +13,12 @@
 // limitations under the License.
 
 using System;
-using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
-using de.upb.hip.mobile.pcl.Common.Contracts;
-using de.upb.hip.mobile.pcl.Helpers;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 
-namespace de.upb.hip.mobile.pcl.Common
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Common
 {
     public partial class DbDummyDataFiller
     {

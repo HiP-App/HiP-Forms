@@ -15,14 +15,14 @@
 // limitations under the License.
 -->
 
-<pages:OrientationContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<pages1:OrientationContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:pages="clr-namespace:HipMobileUI.Pages;assembly=HipMobileUI"
-             x:Class="HipMobileUI.Pages.ExhibitDetailsPage"
+                               x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Pages.ExhibitDetailsPage"
              Title="{Binding Title}"
              OrientationController="PortraitConstant"
-             xmlns:controls="clr-namespace:HipMobileUI.Controls;assembly=HipMobileUI"
-             xmlns:views="clr-namespace:HipMobileUI.Views;assembly=HipMobileUI">
+                               xmlns:controls1="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Controls;assembly=HipMobileUI"
+             xmlns:pages1="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Pages;assembly=HipMobileUI"
+             xmlns:views1="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Views;assembly=HipMobileUI">
   <AbsoluteLayout>
     <ContentView Content="{Binding SelectedView, Converter={StaticResource ViewModelViewConverter}}"
                  AbsoluteLayout.LayoutFlags="SizeProportional" AbsoluteLayout.LayoutBounds="0,0,1,1"/>
@@ -34,17 +34,17 @@
             IsVisible="{Binding NextVisible}"
             AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="1,0.5"
             BackgroundColor="#80D3D3D3" AutomationId="NextButton"/>
-    <controls:FloatingActionButton Icon="ic_more" 
+    <controls1:FloatingActionButton Icon="ic_more" 
                                    NormalColor="{StaticResource AccentColor}"
                                    RippleColor="{StaticResource AccentDarkColor}"
                                    IsVisible="{Binding AdditionalInformationButtonVisible}"
                                    Command="{Binding ShowAdditionalInformationCommand}"
                                    AbsoluteLayout.LayoutFlags="XProportional" AbsoluteLayout.LayoutBounds="1,100" Margin="1"/>
-    <views:AudioToolbarView TranslationY="-100"
+    <views1:AudioToolbarView TranslationY="-100"
                             x:Name="AudioToolbar"
                             BackgroundColor="White"
                             AbsoluteLayout.LayoutBounds="0,0,1,AutoSize"
                             AbsoluteLayout.LayoutFlags="PositionProportional, WidthProportional"
                             BindingContext="{Binding AudioToolbar}" />
   </AbsoluteLayout>
-</pages:OrientationContentPage>
+</pages1:OrientationContentPage>

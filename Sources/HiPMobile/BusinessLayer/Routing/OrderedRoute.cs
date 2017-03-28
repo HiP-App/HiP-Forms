@@ -16,7 +16,7 @@ using System.Collections.Generic;
 using System.Linq;
 using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 
-namespace de.upb.hip.mobile.pcl.BusinessLayer.Routing
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Routing
 {
     /// <summary>
     /// Class representing an ordered route. This means multiple sections of a route represented by all the geolocations on these sections.
