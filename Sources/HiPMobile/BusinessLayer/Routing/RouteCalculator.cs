@@ -17,12 +17,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using de.upb.hip.mobile.pcl.BusinessLayer.Models;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using Itinero;
 using Itinero.LocalGeo;
 using Itinero.Osm.Vehicles;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
-using Route = de.upb.hip.mobile.pcl.BusinessLayer.Models.Route;
+using Route = PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.Route;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Routing {
     /// <summary>

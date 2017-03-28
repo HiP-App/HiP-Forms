@@ -13,7 +13,6 @@
 // limitations under the License.
 
 using System.ComponentModel;
-using HipMobileUI;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Controls;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;

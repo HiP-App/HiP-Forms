@@ -18,7 +18,7 @@ using System.Linq;
 using System.Threading;
 using CoreGraphics;
 using CoreLocation;
-using de.upb.hip.mobile.pcl.BusinessLayer.Models;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using MapKit;
 using PaderbornUniversity.SILab.Hip.Mobile.Ios.Map;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Routing;

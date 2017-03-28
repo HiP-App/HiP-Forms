@@ -17,7 +17,7 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
 using Realms;
 
-namespace de.upb.hip.mobile.pcl.BusinessLayer.Models {
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models {
     public partial class Image {
 
         private readonly IImageDimension imgDimension = IoCManager.Resolve<IImageDimension>();

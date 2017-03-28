@@ -14,7 +14,7 @@
 
 using System.Threading;
 using AVFoundation;
-using de.upb.hip.mobile.pcl.BusinessLayer.Models;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using Foundation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.AudioPlayer;
 using UIKit;

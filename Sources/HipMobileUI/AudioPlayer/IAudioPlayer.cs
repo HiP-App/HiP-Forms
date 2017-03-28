@@ -43,7 +43,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.AudioPlayer {
         /// <summary>
         /// Gets or sets the currently selected audio object.
         /// </summary>
-        de.upb.hip.mobile.pcl.BusinessLayer.Models.Audio CurrentAudio { get; set; }
+        Shared.BusinessLayer.Models.Audio CurrentAudio { get; set; }
 
         /// <summary>
         /// Event that is raised about 60 times a seconds delivering the current audio progress.

@@ -14,7 +14,7 @@
 
 using System;
 using System.Globalization;
-using de.upb.hip.mobile.pcl.BusinessLayer.Models;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using Plugin.Geolocator.Abstractions;
 using Xamarin.Forms;
 

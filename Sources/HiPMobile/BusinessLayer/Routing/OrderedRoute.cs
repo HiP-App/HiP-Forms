@@ -14,7 +14,7 @@
 
 using System.Collections.Generic;
 using System.Linq;
-using de.upb.hip.mobile.pcl.BusinessLayer.Models;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Routing
 {

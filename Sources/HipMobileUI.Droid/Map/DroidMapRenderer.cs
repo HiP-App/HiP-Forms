@@ -20,7 +20,7 @@ using Android.App;
 using Android.OS;
 using Android.Support.V4.Content;
 using Android.Support.V4.Content.Res;
-using de.upb.hip.mobile.pcl.BusinessLayer.Models;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using Org.Osmdroid;
 using Org.Osmdroid.Bonuspack.Overlays;
 using Org.Osmdroid.Events;

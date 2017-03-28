@@ -14,7 +14,7 @@
 
 using System;
 
-namespace de.upb.hip.mobile.pcl.BusinessLayer.Models
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 {
     public partial class Page
     {

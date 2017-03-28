@@ -15,7 +15,6 @@
 using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using HipMobileUI;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;

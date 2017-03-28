@@ -17,7 +17,7 @@ using System.IO;
 using System.Threading;
 using Android.Media;
 using Android.Util;
-using de.upb.hip.mobile.pcl.BusinessLayer.Models;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using Java.IO;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.AudioPlayer;
 using File = Java.IO.File;

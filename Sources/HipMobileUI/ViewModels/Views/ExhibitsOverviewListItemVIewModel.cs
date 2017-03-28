@@ -13,7 +13,7 @@
 // limitations under the License.
 
 using System.IO;
-using de.upb.hip.mobile.pcl.BusinessLayer.Models;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using MvvmHelpers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using Plugin.Geolocator.Abstractions;
