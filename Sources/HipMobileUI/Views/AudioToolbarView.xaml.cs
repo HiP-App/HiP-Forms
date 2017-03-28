@@ -11,15 +11,16 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+
 using System;
-using de.upb.hip.mobile.pcl.Common;
-using HipMobileUI.AudioPlayer;
-using HipMobileUI.Controls;
-using HipMobileUI.Navigation;
-using HipMobileUI.ViewModels.Views;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.AudioPlayer;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Controls;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
 using Xamarin.Forms;
 
-namespace HipMobileUI.Views
+namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
 {
     public partial class AudioToolbarView : IViewFor<AudioToolbarViewModel> {
 

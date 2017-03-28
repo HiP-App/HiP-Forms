@@ -14,11 +14,11 @@
 
 using System.Collections.Generic;
 using System.Linq;
-using de.upb.hip.mobile.pcl.Common;
-using de.upb.hip.mobile.pcl.DataAccessLayer;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
 using Realms;
 
-namespace de.upb.hip.mobile.pcl.BusinessLayer.Models
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 {
     public partial class Route {
 

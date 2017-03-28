@@ -14,16 +14,16 @@
 
 using System;
 using System.Collections.Generic;
-using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
-using de.upb.hip.mobile.pcl.BusinessLayer.Models;
-using de.upb.hip.mobile.pcl.Common;
-using de.upb.hip.mobile.pcl.Helpers;
-using HipMobileUI.Helpers;
-using HipMobileUI.Navigation;
-using HipMobileUI.Resources;
-using HipMobileUI.ViewModels.Pages;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
 
-namespace HipMobileUI.Location
+namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Location
 {
     public delegate void ExhibitVisitedDelegate (object sender, Exhibit exhibit);
     public interface INearbyExhibitManager {

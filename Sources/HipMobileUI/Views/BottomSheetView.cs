@@ -14,14 +14,14 @@
 
 using System;
 using System.Threading.Tasks;
-using de.upb.hip.mobile.pcl.Common;
-using de.upb.hip.mobile.pcl.Common.Contracts;
-using HipMobileUI.Controls;
-using HipMobileUI.Helpers;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Controls;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 using Xamarin.Forms;
 using Rectangle = Xamarin.Forms.Rectangle;
 
-namespace HipMobileUI.Views
+namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
 {
     /// <summary>
     /// A view consisting of a extensible bottom sheet and a main content view. The bottom sheet can be extended either by swiping or by a FAB.

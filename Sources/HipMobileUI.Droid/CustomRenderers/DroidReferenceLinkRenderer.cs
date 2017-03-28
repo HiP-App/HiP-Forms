@@ -16,14 +16,14 @@ using Android.OS;
 using Android.Text;
 using Android.Text.Method;
 using Android.Text.Util;
-using de.upb.hip.mobile.droid.CustomRenderers;
-using de.upb.hip.mobile.droid.Helpers;
-using HipMobileUI.Views;
+using PaderbornUniversity.SILab.Hip.Mobile.Droid.CustomRenderers;
+using PaderbornUniversity.SILab.Hip.Mobile.Droid.Helpers;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
 [assembly: ExportRenderer(typeof(ReferenceLink), typeof(DroidReferenceLinkRenderer))]
-namespace de.upb.hip.mobile.droid.CustomRenderers
+namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.CustomRenderers
 {
     public class DroidReferenceLinkRenderer : LabelRenderer
     {

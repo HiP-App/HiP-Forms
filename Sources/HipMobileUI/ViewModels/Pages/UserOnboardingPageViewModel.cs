@@ -14,13 +14,13 @@
 
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using de.upb.hip.mobile.pcl.Common;
-using de.upb.hip.mobile.pcl.Helpers;
-using HipMobileUI.Contracts;
-using HipMobileUI.Resources;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Contracts;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using Xamarin.Forms;
 
-namespace HipMobileUI.ViewModels.Pages
+namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 {
     public class UserOnboardingPageViewModel : NavigationViewModel
     {

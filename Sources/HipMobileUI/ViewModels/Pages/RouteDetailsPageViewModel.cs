@@ -15,18 +15,16 @@
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Windows.Input;
-using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
-using de.upb.hip.mobile.pcl.BusinessLayer.Models;
-using de.upb.hip.mobile.pcl.Common;
-using HipMobileUI.AudioPlayer;
-using HipMobileUI.Helpers;
-using HipMobileUI.Location;
-using HipMobileUI.Resources;
-using HipMobileUI.ViewModels;
-using HipMobileUI.ViewModels.Pages;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.AudioPlayer;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Location;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using Xamarin.Forms;
 
-namespace HipMobileUI.Viewmodels.Pages {
+namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
     /// <summary>
     /// ViewModel for the RouteDetailsPage.
     /// </summary>

@@ -16,15 +16,15 @@ using System.Linq;
 using Android.Graphics;
 using Android.Graphics.Drawables;
 using Android.Views;
-using de.upb.hip.mobile.droid.Effects;
-using HipMobileUI.Effects;
+using PaderbornUniversity.SILab.Hip.Mobile.Droid.Effects;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Effects;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 using Color = Android.Graphics.Color;
 using ProgressBar = Android.Widget.ProgressBar;
 
 [assembly: ExportEffect(typeof(DroidProgressBarColorEffect), "ProgressBarColorEffect")]
-namespace de.upb.hip.mobile.droid.Effects
+namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Effects
 {
     class DroidProgressBarColorEffect : PlatformEffect
     {

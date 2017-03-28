@@ -9,7 +9,7 @@
     <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>de.upb.hip.mobile.droid</RootNamespace>
+    <RootNamespace>PaderbornUniversity.SILab.Hip.Mobile.Droid</RootNamespace>
     <AssemblyName>HipMobileUI.Droid</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <AndroidApplication>true</AndroidApplication>
@@ -272,7 +272,6 @@
     <Compile Include="Helpers\HtmlTagHelper.cs" />
     <Compile Include="Helpers\IListReplacementProvider.cs" />
     <Compile Include="Helpers\OrderedListItemReplacementProvider.cs" />
-    <Compile Include="Helpers\Settings.cs" />
     <Compile Include="CustomRenderers\DroidHtmlLinkRenderer.cs" />
     <Compile Include="Helpers\SpannableTextBuilder.cs" />
     <Compile Include="Helpers\UnorderedListItemReplacementProvider.cs" />

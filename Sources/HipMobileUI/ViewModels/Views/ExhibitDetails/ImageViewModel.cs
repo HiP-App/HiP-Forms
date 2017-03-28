@@ -14,10 +14,10 @@
 
 using System;
 using System.IO;
-using de.upb.hip.mobile.pcl.BusinessLayer.Models;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using Xamarin.Forms;
 
-namespace HipMobileUI.ViewModels.Views.ExhibitDetails
+namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views.ExhibitDetails
 {
     public class ImageViewModel : ExhibitSubviewHiddeableNavigationViewModel
     {

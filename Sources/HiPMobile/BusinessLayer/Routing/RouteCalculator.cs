@@ -17,14 +17,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
-using de.upb.hip.mobile.pcl.BusinessLayer.Models;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using Itinero;
 using Itinero.LocalGeo;
 using Itinero.Osm.Vehicles;
-using Route = de.upb.hip.mobile.pcl.BusinessLayer.Models.Route;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
+using Route = PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.Route;
 
-namespace de.upb.hip.mobile.pcl.BusinessLayer.Routing {
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Routing {
     /// <summary>
     /// Class for routing operations
     /// 
@@ -45,7 +45,7 @@ namespace de.upb.hip.mobile.pcl.BusinessLayer.Routing {
             RouterDb routingDb;
 
             var assembly = typeof (RouteCalculator).GetTypeInfo ().Assembly;
-            using (var stream = assembly.GetManifestResourceStream ("de.upb.hip.mobile.pcl.BusinessLayer.Routing.osmfile.routerdb"))
+            using (var stream = assembly.GetManifestResourceStream ("PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Routing.osmfile.routerdb"))
             {
                 routingDb = RouterDb.Deserialize (stream);
             }

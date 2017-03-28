@@ -14,14 +14,14 @@
 
 using Android.Content;
 using Android.Widget;
-using de.upb.hip.mobile.pcl.Common;
-using HipMobileUI.Navigation;
-using HipMobileUI.ViewModels.Pages;
 using Org.Osmdroid.Bonuspack.Overlays;
 using Org.Osmdroid.Views;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
 using Object = Java.Lang.Object;
 
-namespace de.upb.hip.mobile.droid.Map {
+namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Map {
     class ViaPointInfoWindow : MarkerInfoWindow {
 
         private string markerId;

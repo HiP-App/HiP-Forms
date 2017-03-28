@@ -16,7 +16,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace de.upb.hip.mobile.pcl.BusinessLayer.Models {
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models {
     public partial class ExhibitSet : IEnumerable<Exhibit>
     {
         #region IEnumerable interface

@@ -7,7 +7,7 @@
     <ProjectGuid>{208F4414-3D51-46C2-9D4C-1EE7A40CEDC3}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>HipMobileUI.Tests</RootNamespace>
+    <RootNamespace>PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests</RootNamespace>
     <AssemblyName>HipMobileUI.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

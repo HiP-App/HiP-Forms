@@ -11,11 +11,12 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+
 using Android.Content.Res;
 using Android.OS;
-using de.upb.hip.mobile.pcl.Common.Contracts;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
 
-namespace de.upb.hip.mobile.droid.Contracts
+namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Contracts
 {
     class AndroidFabSizeCalculator : IFabSizeCalculator {
 

@@ -13,18 +13,13 @@
 // limitations under the License.
 
 using Android.Graphics;
-using Android.OS;
-using Android.Text;
-using Android.Text.Method;
-using Android.Text.Util;
-using de.upb.hip.mobile.droid.CustomRenderers;
-using HipMobileUI.Controls;
-using HipMobileUI.Views;
+using PaderbornUniversity.SILab.Hip.Mobile.Droid.CustomRenderers;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Controls;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
 [assembly: ExportRenderer(typeof(CustomFontLabel), typeof(AndroidCustomFontLabelRenderer))]
-namespace de.upb.hip.mobile.droid.CustomRenderers
+namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.CustomRenderers
 {
     public class AndroidCustomFontLabelRenderer : LabelRenderer
     {

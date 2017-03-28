@@ -12,11 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using de.upb.hip.mobile.pcl.BusinessLayer.Models;
-using de.upb.hip.mobile.pcl.Common;
-using de.upb.hip.mobile.pcl.DataAccessLayer;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
 
-namespace de.upb.hip.mobile.pcl.BusinessLayer.Managers {
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers {
     /// <summary>
     /// Pagemanager class for getting access to pages.
     /// </summary>

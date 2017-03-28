@@ -12,10 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using de.upb.hip.mobile.pcl.DataAccessLayer;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
 using Realms;
 
-namespace de.upb.hip.mobile.pcl.DataLayer {
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataLayer {
     public class RealmTransaction : BaseTransaction {
 
         public Transaction Transaction { get; set; }

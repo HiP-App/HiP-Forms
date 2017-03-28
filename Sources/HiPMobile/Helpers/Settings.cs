@@ -1,8 +1,9 @@
 // Helpers/Settings.cs
+
 using Plugin.Settings;
 using Plugin.Settings.Abstractions;
 
-namespace de.upb.hip.mobile.pcl.Helpers
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
 {
   /// <summary>
   /// This is the Settings static class that can be used in your Core solution or in any

@@ -12,17 +12,16 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System;
 using System.ComponentModel;
 using Android.Content.PM;
-using de.upb.hip.mobile.droid.CustomRenderers;
-using HipMobileUI.Helpers;
-using HipMobileUI.Pages;
+using PaderbornUniversity.SILab.Hip.Mobile.Droid.CustomRenderers;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Pages;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
 [assembly: ExportRenderer(typeof(OrientationContentPage), typeof(AndroidOrientationPageRenderer))]
-namespace de.upb.hip.mobile.droid.CustomRenderers
+namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.CustomRenderers
 {
     class AndroidOrientationPageRenderer : PageRenderer {
 

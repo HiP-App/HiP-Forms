@@ -14,7 +14,7 @@
 
 using Xamarin.Forms;
 
-namespace HipMobileUI.Controls {
+namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Controls {
     public class CustomFontLabel : Label {
 
         public static readonly BindableProperty FontFamilyNameProperty = BindableProperty.Create(nameof(FontFamilyName), typeof(string), typeof(CustomFontLabel));

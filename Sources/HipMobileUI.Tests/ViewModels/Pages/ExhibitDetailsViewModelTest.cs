@@ -14,22 +14,22 @@
 
 using System.Collections.Generic;
 using System.Threading;
-using de.upb.hip.mobile.pcl.BusinessLayer.Models;
-using de.upb.hip.mobile.pcl.Common;
-using de.upb.hip.mobile.pcl.Common.Contracts;
-using HipMobileUI.AudioPlayer;
-using HipMobileUI.Contracts;
-using HipMobileUI.Helpers;
-using HipMobileUI.Navigation;
-using HipMobileUI.ViewModels.Pages;
-using HipMobileUI.ViewModels.Views.ExhibitDetails;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using NSubstitute;
 using NUnit.Framework;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.AudioPlayer;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Contracts;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views.ExhibitDetails;
 using Xamarin.Forms;
-using Image = de.upb.hip.mobile.pcl.BusinessLayer.Models.Image;
-using Page = de.upb.hip.mobile.pcl.BusinessLayer.Models.Page;
+using Image = PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.Image;
+using Page = PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.Page;
 
-namespace HipMobileUI.Tests.ViewModels.Pages
+namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Pages
 {
     class ExhibitDetailsViewModelTest
     {

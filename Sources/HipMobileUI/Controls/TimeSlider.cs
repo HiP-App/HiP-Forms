@@ -17,7 +17,7 @@ using System.Collections.ObjectModel;
 using FFImageLoading.Forms;
 using Xamarin.Forms;
 
-namespace HipMobileUI.Controls {
+namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Controls {
 
     /// <summary>
     /// A slider where the slider can display images and/or texts. The slider returns the currently selected value indicating which item is currently under the middle separator.

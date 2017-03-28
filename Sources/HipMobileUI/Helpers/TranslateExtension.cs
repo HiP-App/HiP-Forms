@@ -18,7 +18,7 @@ using System.Resources;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace HipMobileUI.Helpers
+namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers
 {
     /// <summary>
     /// MarkupExtension which allows getting Texts from Strings.resx in Xaml
@@ -28,7 +28,7 @@ namespace HipMobileUI.Helpers
     [ContentProperty("Text")]
     public class TranslateExtension : IMarkupExtension {
 
-        private const string ResourceFile = "HipMobileUI.Resources.Strings";
+        private const string ResourceFile = "PaderbornUniversity.SILab.Hip.Mobile.UI.Resources.Strings";
 
         public string Text { get; set; }
 

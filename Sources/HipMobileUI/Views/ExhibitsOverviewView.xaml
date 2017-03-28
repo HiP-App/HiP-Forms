@@ -17,12 +17,12 @@
 -->
 
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="HipMobileUI.Views.ExhibitsOverviewView"
+             x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Views.ExhibitsOverviewView"
              xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              xmlns:ffTransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
-             xmlns:controls="clr-namespace:HipMobileUI.Controls;assembly=HipMobileUI"
-             xmlns:behaviors="clr-namespace:HipMobileUI.Behaviors;assembly=HipMobileUI"
-             xmlns:map="clr-namespace:HipMobileUI.Map;assembly=HipMobileUI"
+             xmlns:behaviors="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Behaviors;assembly=HipMobileUI"
+             xmlns:controls1="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Controls;assembly=HipMobileUI"
+             xmlns:map="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Map;assembly=HipMobileUI"
              x:Name="ExhibitsOveriew">
     <ContentView.Content>
         <Grid x:Name="Grid">
@@ -43,18 +43,18 @@
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout Orientation="Horizontal" Padding="5,5" Spacing="10">
-                                <controls:FadeInImage Source="{Binding Image}" HorizontalOptions="Start"
+                                <controls1:FadeInImage Source="{Binding Image}" HorizontalOptions="Start"
                                                       VerticalOptions="CenterAndExpand" DownsampleToViewSize="True" WidthRequest="70" HeightRequest="70">
-                                    <controls:FadeInImage.FadeInTime>
+                                    <controls1:FadeInImage.FadeInTime>
                                         <OnPlatform x:TypeArguments="x:Int32">
                                             <OnPlatform.Android>500</OnPlatform.Android>
                                             <OnPlatform.iOS>0</OnPlatform.iOS>
                                         </OnPlatform>
-                                    </controls:FadeInImage.FadeInTime>
+                                    </controls1:FadeInImage.FadeInTime>
                                     <ff:CachedImage.Transformations>
                                         <ffTransformations:CircleTransformation />
                                     </ff:CachedImage.Transformations>
-                                </controls:FadeInImage>
+                                </controls1:FadeInImage>
                                 <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" Padding="5,5">
                                     <Label Text="{Binding ExhibitName}" VerticalOptions="CenterAndExpand" FontSize="16"
                                            LineBreakMode="WordWrap" FontAttributes="Bold"/>
@@ -69,3 +69,4 @@
         </Grid>
     </ContentView.Content>
 </ContentView>
+

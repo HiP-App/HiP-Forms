@@ -13,15 +13,15 @@
 // limitations under the License.
 
 using System;
-using de.upb.hip.mobile.pcl.BusinessLayer.Models;
-using de.upb.hip.mobile.pcl.Common;
-using de.upb.hip.mobile.pcl.Common.Contracts;
-using HipMobileUI.Navigation;
-using HipMobileUI.ViewModels.Views.ExhibitDetails;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using NSubstitute;
 using NUnit.Framework;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views.ExhibitDetails;
 
-namespace HipMobileUI.Tests.ViewModels.Views.ExhibitDetails
+namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Views.ExhibitDetails
 {
     class ImageViewModelTest
     {

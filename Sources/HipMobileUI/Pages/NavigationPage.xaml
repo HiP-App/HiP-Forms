@@ -1,15 +1,15 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:map="clr-namespace:HipMobileUI.Map;assembly=HipMobileUI"
-             xmlns:controls="clr-namespace:HipMobileUI.Controls;assembly=HipMobileUI"
-             x:Class="HipMobileUI.Pages.NavigationPage"
+             xmlns:controls1="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Controls;assembly=HipMobileUI"
+             xmlns:map="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Map;assembly=HipMobileUI"
+             x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Pages.NavigationPage"
              Title="{Binding Title}">
     <ContentPage.Content>
         <AbsoluteLayout>
             <map:OsmMap x:Name="Map" GpsLocation="{Binding GpsLocation}" DetailsRoute="{Binding DetailsRoute}" 
                         ShowNavigation="{Binding ShowNavigation}" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1" CenterCommand="{Binding MapFocusCommand, Mode=OneWayToSource}" CenterCommandParameter="{Binding GpsLocation}"/>
-            <controls:FloatingActionButton AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0.9,0.9" NormalColor="{StaticResource AccentColor}" RippleColor="{StaticResource AccentDarkColor}" Icon="ic_my_location_white" Command="{Binding FocusGps}"/>
+            <controls1:FloatingActionButton AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0.9,0.9" NormalColor="{StaticResource AccentColor}" RippleColor="{StaticResource AccentDarkColor}" Icon="ic_my_location_white" Command="{Binding FocusGps}"/>
 
         </AbsoluteLayout>
 

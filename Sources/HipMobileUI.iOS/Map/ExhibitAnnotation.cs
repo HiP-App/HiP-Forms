@@ -13,11 +13,10 @@
 // // limitations under the License.
 
 
-using System;
 using CoreLocation;
 using MapKit;
 
-namespace HipMobileUI.iOS.Map {
+namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Map {
     public class ExhibitAnnotation : MKAnnotation {
 
         public override string Title { get; }

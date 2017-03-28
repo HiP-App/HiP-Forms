@@ -11,15 +11,16 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+
 using System;
 using Android.OS;
-using de.upb.hip.mobile.droid.CustomRenderers;
-using HipMobileUI.Controls;
+using PaderbornUniversity.SILab.Hip.Mobile.Droid.CustomRenderers;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Controls;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
 [assembly: ExportRenderer(typeof(FloatingActionButton), typeof(FloatingActionButtonAndroidRenderer))]
-namespace de.upb.hip.mobile.droid.CustomRenderers
+namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.CustomRenderers
 {
     public class FloatingActionButtonAndroidRenderer : Xamarin.Forms.Platform.Android.AppCompat.ViewRenderer<FloatingActionButton, Android.Support.Design.Widget.FloatingActionButton> {
 

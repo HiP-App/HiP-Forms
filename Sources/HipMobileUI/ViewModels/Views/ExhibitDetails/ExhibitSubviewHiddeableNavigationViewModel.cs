@@ -13,13 +13,10 @@
 // limitations under the License.
 
 using System;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Input;
-using de.upb.hip.mobile.pcl.BusinessLayer.Models;
 using Xamarin.Forms;
 
-namespace HipMobileUI.ViewModels.Views.ExhibitDetails
+namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views.ExhibitDetails
 {
     /// <summary>
     /// Base class for all viewmodels displayed in the exhibitdetailspage.

@@ -14,7 +14,7 @@
 
 using System.Collections.Generic;
 
-namespace de.upb.hip.mobile.pcl.BusinessLayer.InteractiveSources {
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.InteractiveSources {
     public class InteractiveSourcesParsingResult {
 
         public string TextWithSubstitutes { get; set; }

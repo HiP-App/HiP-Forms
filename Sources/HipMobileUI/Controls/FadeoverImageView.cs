@@ -18,7 +18,7 @@ using System.Collections.ObjectModel;
 using FFImageLoading.Forms;
 using Xamarin.Forms;
 
-namespace HipMobileUI.Controls
+namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Controls
 {
     /// <summary>
     /// A control that displays images and can fade between them. The displayed image is set by the selectedvalue property.

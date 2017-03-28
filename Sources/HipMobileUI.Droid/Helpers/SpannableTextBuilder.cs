@@ -17,9 +17,9 @@ using System.Collections.Generic;
 using Android.Text;
 using Android.Text.Style;
 using Android.Views;
-using de.upb.hip.mobile.pcl.BusinessLayer.InteractiveSources;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.InteractiveSources;
 
-namespace de.upb.hip.mobile.droid.Helpers {
+namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Helpers {
     public class SpannableTextBuilder {
 
         /// <summary>

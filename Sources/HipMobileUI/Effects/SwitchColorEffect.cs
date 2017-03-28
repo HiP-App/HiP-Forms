@@ -14,7 +14,7 @@
 
 using Xamarin.Forms;
 
-namespace HipMobileUI.Effects
+namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Effects
 {
     /// <summary>
     /// Effect that lets you set the highlight color of a switch.

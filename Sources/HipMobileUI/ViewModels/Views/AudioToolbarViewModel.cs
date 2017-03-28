@@ -13,13 +13,13 @@
 // limitations under the License.
 
 using System.Windows.Input;
-using de.upb.hip.mobile.pcl.BusinessLayer.Models;
-using de.upb.hip.mobile.pcl.Common;
-using HipMobileUI.AudioPlayer;
-using HipMobileUI.ViewModels.Pages.AudioTranscript;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.AudioPlayer;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages.AudioTranscript;
 using Xamarin.Forms;
 
-namespace HipMobileUI.ViewModels.Views {
+namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views {
     /// <summary>
     /// ViewModel for the audio toolbar which controls playing the audio
     /// </summary>

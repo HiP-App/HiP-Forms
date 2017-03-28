@@ -8,7 +8,7 @@
     <ProjectGuid>{8A545C1B-B2C8-425F-8303-BD5BD08A978D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>HipMobileUI</RootNamespace>
+    <RootNamespace>PaderbornUniversity.SILab.Hip.Mobile.UI</RootNamespace>
     <AssemblyName>HipMobileUI</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>

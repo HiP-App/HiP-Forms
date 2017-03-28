@@ -12,13 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using HipMobileUI.Contracts;
-using HipMobileUI.Pages;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Contracts;
 using Xamarin.Forms;
-using Xamarin.Forms.Platform.iOS;
-using NavigationPage = Xamarin.Forms.NavigationPage;
 
-namespace HipMobileUI.iOS.Contracts {
+namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Contracts {
     public class IosBarsColorsChanger : IBarsColorsChanger {
 
         public void ChangeToolbarColor(Color statusBarColor, Color actionBarColor)

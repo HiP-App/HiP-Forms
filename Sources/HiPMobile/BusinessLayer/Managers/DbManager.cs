@@ -12,13 +12,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using de.upb.hip.mobile.pcl.BusinessLayer.Models;
-using de.upb.hip.mobile.pcl.Common;
-using de.upb.hip.mobile.pcl.DataAccessLayer;
-using de.upb.hip.mobile.pcl.Helpers;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using Realms;
+using DbDummyDataFiller = PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.DbDummyDataFiller;
 
-namespace de.upb.hip.mobile.pcl.BusinessLayer.Managers {
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers {
     /// <summary>
     /// Access to database methods.
     /// </summary>

@@ -16,7 +16,7 @@ using System;
 using System.Globalization;
 using Xamarin.Forms;
 
-namespace HipMobileUI.Converters
+namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Converters
 {
     /// <summary>
     /// Converter for bool to the inverse of the bool

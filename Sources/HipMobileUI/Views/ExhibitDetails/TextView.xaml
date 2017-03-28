@@ -16,12 +16,12 @@
 -->
 
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="HipMobileUI.Views.ExhibitDetails.TextView"
-             xmlns:controls="clr-namespace:HipMobileUI.Controls;assembly=HipMobileUI"
-             xmlns:views="clr-namespace:HipMobileUI.Views;assembly=HipMobileUI">
+             x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Views.ExhibitDetails.TextView"
+             xmlns:controls1="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Controls;assembly=HipMobileUI"
+             xmlns:views1="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Views;assembly=HipMobileUI">
     <ContentView.Content>
-        <views:BottomSheetView>
-            <views:BottomSheetView.MainContent>
+        <views1:BottomSheetView>
+            <views1:BottomSheetView.MainContent>
                 <RelativeLayout HorizontalOptions="Fill">
                     <ScrollView RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.9}"
                                 RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}">
@@ -29,17 +29,17 @@
                             <StackLayout.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding ToggleButtonVisibility}" />
                             </StackLayout.GestureRecognizers>
-                            <controls:CustomFontLabel Text="{Binding Text}" 
+                            <controls1:CustomFontLabel Text="{Binding Text}" 
                                                   FontFamilyName="{Binding FontFamily}"
                                                   HorizontalOptions="Center"
                                                   FontSize="16"
                                                   Margin="0,0,0,30" >
-                            </controls:CustomFontLabel>
+                            </controls1:CustomFontLabel>
                         </StackLayout>
                     </ScrollView>
                 </RelativeLayout>
-            </views:BottomSheetView.MainContent>
-            <views:BottomSheetView.BottomSheet>
+            </views1:BottomSheetView.MainContent>
+            <views1:BottomSheetView.BottomSheet>
                 <StackLayout>
                     <BoxView Color="#50000000" HeightRequest="1" />
                     <StackLayout Margin="16,16" Spacing="10" BackgroundColor="White">
@@ -49,8 +49,10 @@
                         </ScrollView>
                     </StackLayout>
                 </StackLayout>
-            </views:BottomSheetView.BottomSheet>
-        </views:BottomSheetView>
+            </views1:BottomSheetView.BottomSheet>
+        </views1:BottomSheetView>
     </ContentView.Content>
 </ContentView>
+
+
 

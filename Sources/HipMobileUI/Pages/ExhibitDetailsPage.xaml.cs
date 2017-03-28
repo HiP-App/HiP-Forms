@@ -12,16 +12,15 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System;
 using System.ComponentModel;
-using HipMobileUI.Controls;
-using HipMobileUI.Helpers;
-using HipMobileUI.Navigation;
-using HipMobileUI.Resources;
-using HipMobileUI.ViewModels.Pages;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Controls;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
 using Xamarin.Forms;
 
-namespace HipMobileUI.Pages {
+namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages {
     public partial class ExhibitDetailsPage : OrientationContentPage, IViewFor<ExhibitDetailsViewModel> {
 
         private ExhibitDetailsViewModel ViewModel => (ExhibitDetailsViewModel) BindingContext;

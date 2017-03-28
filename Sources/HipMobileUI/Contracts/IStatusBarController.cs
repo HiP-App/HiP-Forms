@@ -11,7 +11,7 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-namespace HipMobileUI.Contracts {
+namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Contracts {
     /// <summary>
     /// Interface describing operations for controlling the status bar(upper most part of the screen where e.g. power level is shown).
     /// </summary>

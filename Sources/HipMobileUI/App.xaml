@@ -1,8 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
+<!--
+// Copyright (C) 2017 History in Paderborn App - Universität Paderborn
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+-->
 <Application xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="HipMobileUI.App"
-             xmlns:converters="clr-namespace:HipMobileUI.Converters;assembly=HipMobileUI">
+             x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.App"
+             xmlns:converters1="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Converters;assembly=HipMobileUI">
   <Application.Resources>
     <ResourceDictionary>
       <Color x:Key="PrimaryColor">#3F51B5</Color>
@@ -13,12 +28,12 @@
         <Setter Property="FontSize" Value="12" />
         <Setter Property="TextColor" Value="Black" />
       </Style>
-      <converters:ViewModelViewConverter x:Key="ViewModelViewConverter" />
-      <converters:ItemTappedConverter x:Key="ItemTappedConverter" />
-      <converters:ImageListConverter x:Key="ImageListConverter" />
-      <converters:RouteTagViewListConverter x:Key="RouteTagViewListConverter" />
-      <converters:PositionGeoLocationConverter x:Key="PositionGeoLocationConverter" />
-      <converters:InverseBooleanConverter x:Key="InverseBooleanConverter" />
+      <converters1:ViewModelViewConverter x:Key="ViewModelViewConverter" />
+      <converters1:ItemTappedConverter x:Key="ItemTappedConverter" />
+      <converters1:ImageListConverter x:Key="ImageListConverter" />
+      <converters1:RouteTagViewListConverter x:Key="RouteTagViewListConverter" />
+      <converters1:PositionGeoLocationConverter x:Key="PositionGeoLocationConverter" />
+      <converters1:InverseBooleanConverter x:Key="InverseBooleanConverter" />
         </ResourceDictionary>
   </Application.Resources>
 </Application>

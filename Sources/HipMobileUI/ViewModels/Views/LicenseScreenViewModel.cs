@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-namespace HipMobileUI.ViewModels.Views {
+namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views {
     public class LicenseScreenViewModel : NavigationViewModel {
 
     }

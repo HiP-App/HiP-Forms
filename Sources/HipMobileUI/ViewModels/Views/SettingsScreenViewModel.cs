@@ -12,9 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using de.upb.hip.mobile.pcl.Helpers;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 
-namespace HipMobileUI.ViewModels.Views {
+namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views {
     /// <summary>
     /// ViewModel for the SettingsScreenViewModel.
     /// </summary>

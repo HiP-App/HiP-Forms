@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-namespace HipMobileUI.AudioPlayer {
+namespace PaderbornUniversity.SILab.Hip.Mobile.UI.AudioPlayer {
 
     public delegate void ProgressChangedDelegate(double newProgress);
 
@@ -43,7 +43,7 @@ namespace HipMobileUI.AudioPlayer {
         /// <summary>
         /// Gets or sets the currently selected audio object.
         /// </summary>
-        de.upb.hip.mobile.pcl.BusinessLayer.Models.Audio CurrentAudio { get; set; }
+        Shared.BusinessLayer.Models.Audio CurrentAudio { get; set; }
 
         /// <summary>
         /// Event that is raised about 60 times a seconds delivering the current audio progress.

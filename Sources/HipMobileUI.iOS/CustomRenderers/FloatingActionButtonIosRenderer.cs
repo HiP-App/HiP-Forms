@@ -11,16 +11,17 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+
 using System;
-using HipMobileUI.Controls;
-using HipMobileUI.iOS.CustomRenderers;
 using MaterialControls;
+using PaderbornUniversity.SILab.Hip.Mobile.Ios.CustomRenderers;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Controls;
 using UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 
 [assembly: ExportRenderer(typeof(FloatingActionButton), typeof(FloatingActionButtonIosRenderer))]
-namespace HipMobileUI.iOS.CustomRenderers
+namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.CustomRenderers
 {
     class FloatingActionButtonIosRenderer : ViewRenderer<FloatingActionButton, UIView> {
 

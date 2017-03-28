@@ -12,12 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
-using de.upb.hip.mobile.pcl.Common;
-using de.upb.hip.mobile.pcl.Common.Contracts;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
 using Realms;
 
-namespace de.upb.hip.mobile.pcl.BusinessLayer.Models {
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models {
     public partial class Image {
 
         private readonly IImageDimension imgDimension = IoCManager.Resolve<IImageDimension>();

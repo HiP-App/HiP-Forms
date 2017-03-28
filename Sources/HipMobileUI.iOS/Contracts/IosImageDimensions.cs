@@ -13,12 +13,12 @@
 // limitations under the License.
 
 using System;
-using de.upb.hip.mobile.pcl.BusinessLayer.Models;
-using de.upb.hip.mobile.pcl.Common.Contracts;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using Foundation;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
 using UIKit;
 
-namespace HipMobileUI.iOS.Contracts {
+namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Contracts {
     public class IosImageDimensions : IImageDimension{
 
         public int[] GetDimensions(Image img)

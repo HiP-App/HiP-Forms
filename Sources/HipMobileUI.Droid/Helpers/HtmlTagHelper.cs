@@ -15,7 +15,7 @@
 using System;
 using System.Text.RegularExpressions;
 
-namespace de.upb.hip.mobile.droid.Helpers {
+namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Helpers {
     public class HtmlTagHelper {
 
         public string FormatAdditionalTags (string html)

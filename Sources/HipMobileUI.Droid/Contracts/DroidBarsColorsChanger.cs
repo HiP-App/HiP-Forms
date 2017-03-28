@@ -12,14 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using Android.Graphics.Drawables;
-using HipMobileUI.Contracts;
-using HipMobileUI.Pages;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Contracts;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
+using MainPage = PaderbornUniversity.SILab.Hip.Mobile.UI.Pages.MainPage;
 using NavigationPage = Xamarin.Forms.NavigationPage;
 
-namespace de.upb.hip.mobile.droid.Contracts {
+namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Contracts {
     public class DroidBarsColorsChanger : IBarsColorsChanger {
 
         public DroidBarsColorsChanger (MainActivity activity)

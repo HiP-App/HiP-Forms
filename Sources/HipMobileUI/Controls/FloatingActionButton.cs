@@ -11,9 +11,10 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+
 using Xamarin.Forms;
 
-namespace HipMobileUI.Controls
+namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Controls
 {
     /// <summary>
     /// Floating action button for android and ios in Xamarin forms. Do not set the width manually as the android support library only supports two sizes and the view will break when set otherwise.

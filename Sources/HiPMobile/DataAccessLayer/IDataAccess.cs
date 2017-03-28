@@ -15,10 +15,10 @@
 //  */
 
 using System.Collections.Generic;
-using de.upb.hip.mobile.pcl.BusinessLayer.Models;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using Realms;
 
-namespace de.upb.hip.mobile.pcl.DataAccessLayer {
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer {
     /// <summary>
     ///     The interface describing the access to the data layer.
     /// </summary>

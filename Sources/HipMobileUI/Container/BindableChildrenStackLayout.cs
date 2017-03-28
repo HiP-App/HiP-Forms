@@ -15,7 +15,7 @@
 using System.Collections.ObjectModel;
 using Xamarin.Forms;
 
-namespace HipMobileUI.Container
+namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Container
 {
     /// <summary>
     /// Extension of the <see cref="StackLayout"/> to enable displaying a stack layout containing a dynamically defined collection of children

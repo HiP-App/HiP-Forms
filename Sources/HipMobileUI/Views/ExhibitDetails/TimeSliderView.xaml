@@ -16,12 +16,12 @@
 -->
 
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:controls="clr-namespace:HipMobileUI.Controls;assembly=HipMobileUI"
-             xmlns:views="clr-namespace:HipMobileUI.Views;assembly=HipMobileUI"
-             x:Class="HipMobileUI.Views.ExhibitDetails.TimeSliderView">
+             xmlns:controls1="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Controls;assembly=HipMobileUI"
+             xmlns:views1="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Views;assembly=HipMobileUI"
+             x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Views.ExhibitDetails.TimeSliderView">
     <ContentView.Content>
-      <views:BottomSheetView>
-        <views:BottomSheetView.MainContent>
+      <views1:BottomSheetView>
+        <views1:BottomSheetView.MainContent>
         <Grid Margin="0,10,0,30">
           <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -32,11 +32,11 @@
           <RowDefinition Height="80"/>
           <RowDefinition Height="0.1*"/>
         </Grid.RowDefinitions>
-          <controls:FadeoverImageView Images="{Binding Images}" SelectedValue="{Binding Source={x:Reference Slider}, Path=SelectedValue}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-            <controls:FadeoverImageView.GestureRecognizers>
+          <controls1:FadeoverImageView Images="{Binding Images}" SelectedValue="{Binding Source={x:Reference Slider}, Path=SelectedValue}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+            <controls1:FadeoverImageView.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding ToggleButtonVisibility}" />
-            </controls:FadeoverImageView.GestureRecognizers>
-          </controls:FadeoverImageView>
+            </controls1:FadeoverImageView.GestureRecognizers>
+          </controls1:FadeoverImageView>
           <ScrollView Grid.Row="1" MinimumHeightRequest="100">
             <Label Text="{Binding DisplayedText}" LineBreakMode="WordWrap" Margin="10">
                 <Label.GestureRecognizers>
@@ -44,10 +44,10 @@
                 </Label.GestureRecognizers>
             </Label>
           </ScrollView>
-          <controls:TimeSlider x:Name="Slider" Grid.Row="2" HorizontalOptions="FillAndExpand" VerticalOptions="Center" HeightRequest="80" Images="{Binding Images}" Texts="{Binding Years}" ItemWidth="100" SafezoneFraction="0.3" FadezoneFraction="0.7" SeparatorColor="{StaticResource AccentColor}" SelectedValue="{Binding SelectedValue, Mode=OneWayToSource}"/>
+          <controls1:TimeSlider x:Name="Slider" Grid.Row="2" HorizontalOptions="FillAndExpand" VerticalOptions="Center" HeightRequest="80" Images="{Binding Images}" Texts="{Binding Years}" ItemWidth="100" SafezoneFraction="0.3" FadezoneFraction="0.7" SeparatorColor="{StaticResource AccentColor}" SelectedValue="{Binding SelectedValue, Mode=OneWayToSource}"/>
         </Grid>
-          </views:BottomSheetView.MainContent>
-      <views:BottomSheetView.BottomSheet>
+          </views1:BottomSheetView.MainContent>
+      <views1:BottomSheetView.BottomSheet>
         <StackLayout>
                     <BoxView Color="#50000000" HeightRequest="1" />
                     <StackLayout Margin="16,16" Spacing="15" BackgroundColor="White">
@@ -57,8 +57,14 @@
                         </ScrollView>
                     </StackLayout>
                 </StackLayout>
-      </views:BottomSheetView.BottomSheet>
-      </views:BottomSheetView>
+      </views1:BottomSheetView.BottomSheet>
+      </views1:BottomSheetView>
     </ContentView.Content>
 </ContentView>
+
+
+
+
+
+
 

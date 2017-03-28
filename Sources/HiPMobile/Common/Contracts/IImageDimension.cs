@@ -12,9 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using de.upb.hip.mobile.pcl.BusinessLayer.Models;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 
-namespace de.upb.hip.mobile.pcl.Common.Contracts {
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts {
     public interface IImageDimension {
 
         /// <summary>

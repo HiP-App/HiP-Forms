@@ -15,15 +15,15 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using de.upb.hip.mobile.pcl.BusinessLayer.InteractiveSources;
-using de.upb.hip.mobile.pcl.Common;
 using Foundation;
-using HipMobileUI.Helpers;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.InteractiveSources;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 using UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 
-namespace HipMobileUI.iOS.Helpers {
+namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Helpers {
     public static class TextViewInteractiveSourcesExtension
     {
 

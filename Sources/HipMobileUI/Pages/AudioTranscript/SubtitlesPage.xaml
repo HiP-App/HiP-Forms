@@ -16,13 +16,13 @@
 -->
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:views="clr-namespace:HipMobileUI.Views;assembly=HipMobileUI"
-             x:Class="HipMobileUI.Pages.AudioTranscript.SubtitlesPage">
+             xmlns:views1="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Views;assembly=HipMobileUI"
+             x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Pages.AudioTranscript.SubtitlesPage">
     <ContentPage.Content>
         <StackLayout>
             <ScrollView>
                 <StackLayout>
-                    <views:ReferenceLink Text="{Binding FormatedText}" Sources="{Binding SourcesList}" Action="{Binding Action}" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Margin="10,10"/>
+                    <views1:ReferenceLink Text="{Binding FormatedText}" Sources="{Binding SourcesList}" Action="{Binding Action}" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Margin="10,10"/>
                 </StackLayout>
             </ScrollView>
         </StackLayout>

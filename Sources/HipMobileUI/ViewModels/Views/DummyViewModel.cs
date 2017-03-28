@@ -14,11 +14,11 @@
 
 using System.Linq;
 using System.Windows.Input;
-using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
-using HipMobileUI.ViewModels.Pages;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
 using Xamarin.Forms;
 
-namespace HipMobileUI.ViewModels.Views {
+namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views {
     public class DummyViewModel : NavigationViewModel{
 
         public DummyViewModel ()

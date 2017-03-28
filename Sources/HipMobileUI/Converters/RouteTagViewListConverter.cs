@@ -16,11 +16,11 @@ using System;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.IO;
-using de.upb.hip.mobile.pcl.BusinessLayer.Models;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using Xamarin.Forms;
 using Image = Xamarin.Forms.Image;
 
-namespace HipMobileUI.Converters
+namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Converters
 {
     /// <summary>
     /// Converter for ItemTappedEventArgs to the tapped item

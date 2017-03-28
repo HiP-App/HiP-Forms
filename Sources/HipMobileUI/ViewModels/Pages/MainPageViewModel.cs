@@ -14,13 +14,12 @@
 
 using System.Collections.ObjectModel;
 using System.Linq;
-using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
-using de.upb.hip.mobile.pcl.BusinessLayer.Models;
-using HipMobileUI.Resources;
-using HipMobileUI.ViewModels.Views;
-using Xamarin.Forms;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
 
-namespace HipMobileUI.ViewModels.Pages
+namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 {
     public class MainPageViewModel : NavigationViewModel
     {

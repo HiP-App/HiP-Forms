@@ -15,18 +15,18 @@
 using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using de.upb.hip.mobile.pcl.BusinessLayer.Managers;
-using de.upb.hip.mobile.pcl.Common;
-using de.upb.hip.mobile.pcl.Common.Contracts;
-using de.upb.hip.mobile.pcl.DataAccessLayer;
-using de.upb.hip.mobile.pcl.DataLayer;
-using de.upb.hip.mobile.pcl.Helpers;
-using HipMobileUI.Helpers;
-using HipMobileUI.Location;
-using HipMobileUI.Resources;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataLayer;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Location;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using Xamarin.Forms;
 
-namespace HipMobileUI.ViewModels.Pages
+namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 {
     class LoadingPageViewModel : NavigationViewModel, IProgressListener
     {

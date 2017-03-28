@@ -12,19 +12,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System;
-using System.Collections.Generic;
-using System.Text.RegularExpressions;
-using Foundation;
-using HipMobileUI.Controls;
-using HipMobileUI.iOS.CustomRenderers;
-using HipMobileUI.Views;
+using PaderbornUniversity.SILab.Hip.Mobile.Ios.CustomRenderers;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Controls;
 using UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 
 [assembly: ExportRenderer(typeof(CustomFontLabel), typeof(IosCustomFontLabelRenderer))]
-namespace HipMobileUI.iOS.CustomRenderers
+namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.CustomRenderers
 {
     public class IosCustomFontLabelRenderer : LabelRenderer
     {
