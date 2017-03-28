@@ -14,7 +14,6 @@
 
 using FFImageLoading.Forms.Touch;
 using Foundation;
-using HipMobileUI;
 using HockeyApp.iOS;
 using PaderbornUniversity.SILab.Hip.Mobile.Ios.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
