@@ -33,21 +33,21 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
         /// </summary>
         private readonly double bottomSheetExtensionFraction = 0.35;
         private BottomSheetState bottomSheetState = BottomSheetState.Collapsed;
-        private FloatingActionButton Button { get; }
+        private FloatingActionButton Button { get; set; }
 
         public BottomSheetView ()
         {
-            RelativeLayout layout = new RelativeLayout ();
+            RelativeLayout layout = new RelativeLayout();
 
             // Main content
-            mainContentView = new ContentView ();
-            layout.Children.Add (mainContentView, Constraint.RelativeToParent (parent => parent.X), Constraint.RelativeToParent (parent => parent.Y),
-                                 Constraint.RelativeToParent (parent => parent.Width), Constraint.RelativeToParent (parent => parent.Height));
+            mainContentView = new ContentView();
+            layout.Children.Add(mainContentView, Constraint.RelativeToParent(parent => parent.X), Constraint.RelativeToParent(parent => parent.Y),
+                                 Constraint.RelativeToParent(parent => parent.Width), Constraint.RelativeToParent(parent => parent.Height));
 
             // Bottomsheet
-            BottomSheetContentView = new ContentView {BackgroundColor = Color.White};
-            layout.Children.Add (BottomSheetContentView, Constraint.RelativeToParent (parent => parent.X), Constraint.RelativeToParent (parent => parent.Height * 0.9),
-                                 Constraint.RelativeToParent (parent => parent.Width), Constraint.RelativeToParent (parent => parent.Height));
+            BottomSheetContentView = new ContentView { BackgroundColor = Color.White };
+            layout.Children.Add(BottomSheetContentView, Constraint.RelativeToParent(parent => parent.X), Constraint.RelativeToParent(parent => parent.Height * 0.9),
+                                    Constraint.RelativeToParent(parent => parent.Width), Constraint.RelativeToParent(parent => parent.Height));
 
             var resources = IoCManager.Resolve<ApplicationResourcesProvider>();
             // Floating Action Button
@@ -55,7 +55,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
             {
                 NormalColor = (Color)resources.GetResourceValue("AccentColor"),
                 RippleColor = (Color)resources.GetResourceValue("AccentDarkColor"),
-                Command = new Command (ButtonOnClicked),
+                Command = new Command(ButtonOnClicked),
                 Icon = "ic_keyboard_arrow_up",
                 AutomationId = "Fab"
             };
@@ -67,17 +67,31 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
             }
             else
             {
-                fabSize = IoCManager.Resolve<IFabSizeCalculator> ().CalculateFabSize ();
+                fabSize = IoCManager.Resolve<IFabSizeCalculator>().CalculateFabSize();
             }
 
-            layout.Children.Add (Button, Constraint.RelativeToParent (parent => parent.Width * 0.9 - fabSize),
-                                 Constraint.RelativeToView (BottomSheetContentView, (parent, view) => view.Y - fabSize / 2));
+            layout.Children.Add(Button, Constraint.RelativeToParent(parent => parent.Width * 0.9 - fabSize),
+                                    Constraint.RelativeToView(BottomSheetContentView, (parent, view) => view.Y - fabSize / 2));
+
+
 
             Content = layout;
 
-           // restore the state when the layout changes
-            layout.LayoutChanged+=LayoutOnLayoutChanged;
+            // restore the state when the layout changes
+            layout.LayoutChanged += LayoutOnLayoutChanged;
         }
+
+        protected override void OnBindingContextChanged ()
+        {
+            base.OnBindingContextChanged ();
+
+            if (!BottomSheetVisible)
+            {
+                Button.IsVisible = false;
+                BottomSheetContentView.IsVisible = false;
+            }
+        }
+
 
         /// <summary>
         /// React to layout changes, for example if the device was rotated.
@@ -92,75 +106,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
                 await ExtendBottomSheet ();
             }
         }
-
-        #region BottomSheet Gesture
-        /// <summary>
-        /// Add gesture recognizers to all existing children.
-        /// </summary>
-        /// <param name="view">The view to which teh gesture recognizer should be added.</param>
-        /// <param name="recognizer">The gesture recognizer to be added.</param>
-        private void AddGestureRecognizer (View view, GestureRecognizer recognizer)
-        {
-            if(!view.GestureRecognizers.Contains (recognizer))
-                view.GestureRecognizers.Add (recognizer);
-            if (view is Layout<View>)
-            {
-                foreach (View childView in ((Layout<View>)view).Children)
-                {
-                    AddGestureRecognizer (childView, recognizer);
-                }
-            }
-        }
-
-        /// <summary>
-        /// Remove existing gesture recognizers.
-        /// </summary>
-        /// <param name="view">The view from which the gesture recognizers should be removed.</param>
-        /// <param name="recognizer">The recognizer to remove.</param>
-        private void RemoveGestureRecognizer(View view, GestureRecognizer recognizer)
-        {
-            if (!view.GestureRecognizers.Contains(recognizer))
-                view.GestureRecognizers.Remove(recognizer);
-            if (view is Layout<View>)
-            {
-                foreach (View childView in ((Layout<View>)view).Children)
-                {
-                    RemoveGestureRecognizer(childView, recognizer);
-                }
-            }
-        }
-
-        /// <summary>
-        /// React to pan events on the bottom sheet.
-        /// </summary>
-        /// <param name="sender">The sender of the event.</param>
-        /// <param name="panUpdatedEventArgs">The event args.</param>
-        private async void GestureRecognizerOnPanUpdated (object sender, PanUpdatedEventArgs panUpdatedEventArgs)
-        {
-            if (panUpdatedEventArgs.StatusType == GestureStatus.Running)
-            {
-                // Set the state to pending if not done already
-                if (bottomSheetState == BottomSheetState.Collapsed || bottomSheetState == BottomSheetState.Extended)
-                {
-                    await SetBottomSheetPending ();
-                }
-                // Update the swipe direction
-                bottomSheetState = panUpdatedEventArgs.TotalY < 0 ? BottomSheetState.Extending : BottomSheetState.Collapsing;
-            }
-            else if (panUpdatedEventArgs.StatusType == GestureStatus.Completed || panUpdatedEventArgs.StatusType == GestureStatus.Canceled)
-            {
-                // Perform final animation
-                if (bottomSheetState == BottomSheetState.Extending)
-                {
-                    await ExtendBottomSheet ();
-                }
-                else if (bottomSheetState == BottomSheetState.Collapsing)
-                {
-                    await CollapseBottomSheet ();
-                }
-            }
-        }
-        #endregion
 
         /// <summary>
         /// React to a click on the FAB.
@@ -247,7 +192,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
         #endregion
 
         #region properties
-        private readonly ContentView mainContentView;
+        private ContentView mainContentView;
 
         public static readonly BindableProperty MainContentProperty =
             BindableProperty.Create ("MainContent", typeof (View), typeof (BottomSheetView), null, propertyChanged: MainContentPropertyChanged);
@@ -281,6 +226,24 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
         public View BottomSheet {
             get { return (View) GetValue (MainContentProperty); }
             set { SetValue (MainContentProperty, value); }
+        }
+
+
+        public static readonly BindableProperty BottomSheetVisibleProperty = BindableProperty.Create(nameof(BottomSheetVisible), typeof(bool), typeof(BottomSheetView), defaultValue: true, propertyChanged:BottomSheetVisiblePropertyChanged);
+
+        private static void BottomSheetVisiblePropertyChanged (BindableObject bindable, object oldValue, object newValue)
+        {
+            ((BottomSheetView)bindable).BottomSheetVisible = (bool) newValue;
+        }
+
+        /// <summary>
+        /// Should be bound to the property of the viewmodel providing the data for the views
+        /// so that the value converter can create views for this data.
+        /// </summary>
+        public bool BottomSheetVisible
+        {
+            get { return (bool)GetValue(BottomSheetVisibleProperty); }
+            set { SetValue(BottomSheetVisibleProperty, value); }
         }
 
 

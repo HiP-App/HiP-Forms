@@ -41,6 +41,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views.ExhibitDetail
             if(texts.Count>0)DisplayedText = texts [0];
             PropertyChanged+=OnPropertyChanged;
 
+            BottomSheetVisible = !(string.IsNullOrEmpty(Headline) && string.IsNullOrEmpty(Description));
+
             // TODO add year numbers once timeslider should be used with years
         }
 
@@ -60,6 +62,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views.ExhibitDetail
         private readonly List<string> texts;
         private string headline;
         private string description;
+        private bool bottomSheetVisible;
 
         public ObservableCollection<ImageSource> Images {
             get { return images; }
@@ -91,5 +94,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views.ExhibitDetail
             set { SetProperty (ref description, value); }
         }
 
+        /// <summary>
+        /// Inidicates whether the bottomsheet is visible
+        /// </summary>
+        public bool BottomSheetVisible
+        {
+            get { return bottomSheetVisible; }
+            set { SetProperty(ref bottomSheetVisible, value); }
+        }
     }
 }
