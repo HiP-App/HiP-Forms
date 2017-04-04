@@ -25,10 +25,23 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages.AudioTranscript
     {
         public new event CurrentPageChangedEventHandler CurrentPageChanged;
 
+        private Page FormsPage => Application.Current.MainPage;
+
+        private Xamarin.Forms.NavigationPage NavigationPage
+        {
+            get
+            {
+                var mainPage = FormsPage as MainPage;
+                return mainPage?.Navigationpage;
+            }
+        }
+
         public AudioTranscriptPage()
         {
             InitializeComponent ();
             PropertyChanged += OnPropertyChanged;
+
+            BarBackgroundColor = NavigationPage.BarBackgroundColor;
         }
 
         // Used to automatically switch tab page und scroll to reference
