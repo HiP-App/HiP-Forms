@@ -46,7 +46,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
 
             // Bottomsheet
             BottomSheetContentView = new ContentView {BackgroundColor = Color.White};
-            layout.Children.Add (BottomSheetContentView, Constraint.RelativeToParent (parent => parent.X), Constraint.RelativeToParent (parent => parent.Height * 0.9),
+            layout.Children.Add (BottomSheetContentView, Constraint.RelativeToParent (parent => parent.X), Constraint.RelativeToParent (parent => parent.Height * 0.875),
                                  Constraint.RelativeToParent (parent => parent.Width), Constraint.RelativeToParent (parent => parent.Height));
 
             var resources = IoCManager.Resolve<ApplicationResourcesProvider>();
@@ -210,7 +210,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
             Rectangle bottomSheetRect = new Rectangle
             {
                 Left = 0,
-                Top = Height * 0.9,
+                Top = Height * 0.875,
                 Size = new Size (Width, Height * 0.1)
             };
             Rectangle buttonRect = new Rectangle
