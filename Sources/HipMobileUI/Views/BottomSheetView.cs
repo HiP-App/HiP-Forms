@@ -211,7 +211,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
             {
                 Left = 0,
                 Top = Height - 64,
-                Size = new Size (Width, Height + 64)
+                Size = new Size (Width, 64)
             };
             Rectangle buttonRect = new Rectangle
             {
