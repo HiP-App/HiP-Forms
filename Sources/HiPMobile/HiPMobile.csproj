@@ -261,7 +261,7 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Content\Kaiserpfalz\kaiserpfalz_image_1.jpg" />
-    <EmbeddedResource Include="Content\Sachsenkriege\KarteDesAltsächsischenSprachraums.jpg" />
+    <EmbeddedResource Include="Content\Sachsenkriege\KarteDesAltsaechsischenSprachraums.jpg" />
     <EmbeddedResource Include="Content\Sachsenkriege\Stuttgart_WLB_Cod.bibl.fol.23_71v.jpg" />
     <EmbeddedResource Include="Content\noImage2.jpg" />
     <EmbeddedResource Include="Content\Sachsenkriege\020.mp3" />
@@ -303,9 +303,9 @@
     <EmbeddedResource Include="Content\KarldergroßeImWandelDerZeit\065.mp3" />
     <EmbeddedResource Include="Content\KarldergroßeImWandelDerZeit\075.mp3" />
     <EmbeddedResource Include="Content\KarldergroßeImWandelDerZeit\080.mp3" />
-    <EmbeddedResource Include="Content\KarldergroßeImWandelDerZeit\BerlinMünzeKarlsdesGroßenRückseiteGehighlightet.jpg" />
-    <EmbeddedResource Include="Content\KarldergroßeImWandelDerZeit\BerlinMünzeKarlsdesGroßeVorderseite.jpg" />
-    <EmbeddedResource Include="Content\KarldergroßeImWandelDerZeit\BerlinMünzeKarlsdesGroßeVorderseiteGehighlitet.jpg" />
+    <EmbeddedResource Include="Content\KarldergroßeImWandelDerZeit\BerlinMuenzeKarlsdesGroßenRueckseiteGehighlightet.jpg" />
+    <EmbeddedResource Include="Content\KarldergroßeImWandelDerZeit\BerlinMuenzeKarlsdesGroßeVorderseite.jpg" />
+    <EmbeddedResource Include="Content\KarldergroßeImWandelDerZeit\BerlinMuenzeKarlsdesGroßeVorderseiteGehighlitet.jpg" />
     <EmbeddedResource Include="Content\KarldergroßeImWandelDerZeit\DomRothoGrabmalDetailKdG.jpg" />
     <EmbeddedResource Include="Content\KarldergroßeImWandelDerZeit\karldergroßeimwandel_teaser.jpg" />
     <EmbeddedResource Include="Content\KarldergroßeImWandelDerZeit\ParisLouvreReiterstatuetteGesamt.jpg" />
@@ -323,12 +323,12 @@
     <EmbeddedResource Include="Content\KarldergroßeImWandelDerZeit\159.mp3" />
     <EmbeddedResource Include="Content\KarldergroßeImWandelDerZeit\DomRothoGrabmalDetailEngelNordseite1.jpg" />
     <EmbeddedResource Include="Content\KarldergroßeImWandelDerZeit\DomRothoGrabmalDetailEngelNordseite2.jpg" />
-    <EmbeddedResource Include="Content\KarldergroßeImWandelDerZeit\DomRothoGrabmalDetailEngelSüdseite.jpg" />
+    <EmbeddedResource Include="Content\KarldergroßeImWandelDerZeit\DomRothoGrabmalDetailEngelSuedseite.jpg" />
     <EmbeddedResource Include="Content\KarldergroßeImWandelDerZeit\DomRothograbmalDetailLeo.jpg" />
     <EmbeddedResource Include="Content\KarldergroßeImWandelDerZeit\DomRothograbmalGesamtansicht.jpg" />
-    <EmbeddedResource Include="Content\KarldergroßeImWandelDerZeit\DomRothograbmalGesamtansichtEinfärbungThuriferar.jpg" />
-    <EmbeddedResource Include="Content\KarldergroßeImWandelDerZeit\DomRothograbmalKarlderGroßeEinfärbungSpruchband.jpg" />
-    <EmbeddedResource Include="Content\KarldergroßeImWandelDerZeit\DomRothograbmalLeoEinfärbung.jpg" />
+    <EmbeddedResource Include="Content\KarldergroßeImWandelDerZeit\DomRothograbmalGesamtansichtEinfaerbungThuriferar.jpg" />
+    <EmbeddedResource Include="Content\KarldergroßeImWandelDerZeit\DomRothograbmalKarlderGroßeEinfaerbungSpruchband.jpg" />
+    <EmbeddedResource Include="Content\KarldergroßeImWandelDerZeit\DomRothograbmalLeoEinfaerbung.jpg" />
     <EmbeddedResource Include="Content\KarldergroßeImWandelDerZeit\ReproRatsgestuehlKarlderGroßeFockeMuseumBremenInventarNr00294.jpg" />
     <EmbeddedResource Include="Content\PaderbrunnonPatresbrunPaderbruno\004.mp3" />
     <EmbeddedResource Include="Content\PaderbrunnonPatresbrunPaderbruno\005.mp3" />
@@ -348,7 +348,7 @@
     <EmbeddedResource Include="Content\TaufenAnDerPader\017.mp3" />
     <EmbeddedResource Include="Content\TaufenAnDerPader\018.mp3" />
     <EmbeddedResource Include="Content\TaufenAnDerPader\Berlin_TaufschaleWidukinds.jpg" />
-    <EmbeddedResource Include="Content\TaufenAnDerPader\MünchenBSBClm22053_16r.jpg" />
+    <EmbeddedResource Include="Content\TaufenAnDerPader\MuenchenBSBClm22053_16r.jpg" />
     <EmbeddedResource Include="Content\TaufenAnDerPader\Teaser_TaufenAnDerPader.jpg" />
     <EmbeddedResource Include="Content\ChristianisierungDerSachsen\Teaser_Christianisierung.jpg" />
     <EmbeddedResource Include="Content\KarlsSiegUberDieSachsen\Teaser_KarlsSieg.jpg" />
@@ -357,7 +357,7 @@
     <EmbeddedResource Include="Content\KarldergroßeImWandelDerZeit\GrabmalBischofRothosvonPaderborn.jpg" />
     <EmbeddedResource Include="Content\TaufenAnDerPader\Berlin_TaufschaleWidukinds_Einfarbung_Inschrift.jpg" />
     <EmbeddedResource Include="Content\Karlsroute\003.mp3" />
-    <EmbeddedResource Include="Content\KarldergroßeImWandelDerZeit\DomRothograbmalGesamtansichtEinfärbung.jpg" />
+    <EmbeddedResource Include="Content\KarldergroßeImWandelDerZeit\DomRothograbmalGesamtansichtEinfaerbung.jpg" />
     <EmbeddedResource Include="Content\KarldergroßeImWandelDerZeit\123.mp3" />
     <Content Include="FodyWeavers.xml">
       <SubType>Designer</SubType>
