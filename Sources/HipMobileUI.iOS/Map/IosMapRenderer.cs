@@ -302,8 +302,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Map {
             else
             {
                 annotationView = new ExhibitAnnotationView (annotation, annotationReusableId);
-                annotationView.CalloutOffset = new CGPoint (0, 0);
-                annotationView.RightCalloutAccessoryView = UIButton.FromType (UIButtonType.DetailDisclosure);
             }
             annotationView.CanShowCallout = true;
             return annotationView;
@@ -382,7 +380,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Map {
                 foreach (var exhibit in exhibitSet)
                 {
                     var annotation = new ExhibitAnnotation (exhibit.Location.Latitude, exhibit.Location.Longitude, exhibit.Id,
-                                                            exhibit.Name, exhibit.Description);
+                                                            exhibit.Name);
                     Control.AddAnnotation (annotation);
                 }
             }
@@ -394,7 +392,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Map {
                     if (exhibitSet == null || !exhibitSet.Contains (routeWaypoint.Exhibit))
                     {
                         var annotation = new ExhibitAnnotation (routeWaypoint.Location.Latitude, routeWaypoint.Location.Longitude, routeWaypoint.Exhibit.Id,
-                                                                routeWaypoint.Exhibit.Name, routeWaypoint.Exhibit.Description);
+                                                                routeWaypoint.Exhibit.Name);
                         Control.AddAnnotation (annotation);
                     }
                 }

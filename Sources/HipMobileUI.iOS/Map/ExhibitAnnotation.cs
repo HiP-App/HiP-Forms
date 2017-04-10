@@ -19,20 +19,21 @@ using MapKit;
 namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Map {
     public class ExhibitAnnotation : MKAnnotation {
 
-        public override string Title { get; }
         public override string Subtitle { get; }
+
+        public override string Title => " ";
+
         public override CLLocationCoordinate2D Coordinate { get; }
         public string ExhibitId { get; }
 
-        public ExhibitAnnotation (CLLocationCoordinate2D coord, string exhibitId, string title, string subtitle = null)
+        public ExhibitAnnotation (CLLocationCoordinate2D coord, string exhibitId, string title)
         {
             Coordinate = coord;
-            Title = title;
-            Subtitle = subtitle;
+            Subtitle = title;
             ExhibitId = exhibitId;
         }
 
-        public ExhibitAnnotation(double latitude, double longitude, string exhibitId,  string title, string subtitle = null) : 
-            this(new CLLocationCoordinate2D(latitude, longitude), exhibitId, title, subtitle) {}
+        public ExhibitAnnotation(double latitude, double longitude, string exhibitId,  string title) : 
+            this(new CLLocationCoordinate2D(latitude, longitude), exhibitId, title) {}
     }
 }
