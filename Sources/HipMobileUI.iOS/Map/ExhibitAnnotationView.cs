@@ -11,6 +11,8 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+
+using CoreGraphics;
 using MapKit;
 using UIKit;
 
@@ -21,6 +23,16 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Map
         public ExhibitAnnotationView (IMKAnnotation annotation, string reuseId) : base (annotation, reuseId)
         {
             Image = UIImage.FromBundle ("ExhibitLocation");
+
+            CalloutOffset = new CGPoint(0, 0);
+            RightCalloutAccessoryView = UIButton.FromType(UIButtonType.DetailDisclosure);
+
+            DetailCalloutAccessoryView = new UILabel
+            {
+                Text = annotation.GetSubtitle(),
+                Lines = 10
+            };
         }
+
     }
 }

@@ -24,7 +24,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Common
 {
     public partial class DbDummyDataFiller {
 
-        public static int DatabaseVersion { get; } = 29;
+        public static int DatabaseVersion { get; } = 30;
 
         public void InsertData ()
         {
@@ -513,31 +513,31 @@ UpdateProgress(80, 237);
 var berlinMünzeRückseiteHighlighted = CreateImage (
     "Berlin Münze", 
     "Rückseite der Bildnismünze Karls des Großen, Frankfurt (?), nach 800, Silber geprägt, 1,71 g, Durchmesser: 19,9 mm, XPICTIANA RELIGIO (Christiana religio), Fassadenansicht einer tempelartigen Kirchenfront nach dem Beispiel einer antiken Tempelfassade mit vier Säulen und zwei Kreuzen, Berlin, Staatliche Museen zu Berlin, Münzkabinett, Inventar-Nr.: 18202748. © bpk / Münzkabinett, SMB / Lutz Jürgen Lübke", 
-    "BerlinMünzeKarlsdesGroßenRückseiteGehighlightet.jpg"
+    "BerlinMuenzeKarlsdesGroßenRueckseiteGehighlightet.jpg"
   );
 UpdateProgress(81, 237);
 var berlinMünzeVorderseite = CreateImage (
     "Berlin Münze", 
     "Das Bild Karls des Großen auf zeitgenössischen Münzen", 
-    "BerlinMünzeKarlsdesGroßeVorderseite.jpg"
+    "BerlinMuenzeKarlsdesGroßeVorderseite.jpg"
   );
 UpdateProgress(82, 237);
 var berlinMünzeVorderseite2 = CreateImage (
     "Berlin Münze", 
     "Vorderseite der Bildnismünze Karls des Großen", 
-    "BerlinMünzeKarlsdesGroßeVorderseite.jpg"
+    "BerlinMuenzeKarlsdesGroßeVorderseite.jpg"
   );
 UpdateProgress(83, 237);
 var berlinMünzeVorderseite3 = CreateImage (
     "Berlin Münze", 
     "Vorderseite der Bildnismünze Karls des Großen, Frankfurt (?), nach 800, Silber geprägt, 1,71 g, Durchmesser: 19,9 mm, KAROLVS IMP(erator) AVG(ustus), Berlin, Staatliche Museen zu Berlin, Münzkabinett, Inventar-Nr.: 18202748. © bpk / Münzkabinett, SMB / Lutz Jürgen Lübke", 
-    "BerlinMünzeKarlsdesGroßeVorderseite.jpg"
+    "BerlinMuenzeKarlsdesGroßeVorderseite.jpg"
   );
 UpdateProgress(84, 237);
 var berlinMünzeVorderSeiteHighlighted = CreateImage (
     "Berlin Münze", 
     "Vorderseite der Bildnismünze Karls des Großen mit farbig hervorgehobenem Paludamtentum, Lorbeerkranz und Schnurbart", 
-    "BerlinMünzeKarlsdesGroßeVorderseiteGehighlitet.jpg"
+    "BerlinMuenzeKarlsdesGroßeVorderseiteGehighlitet.jpg"
   );
 UpdateProgress(85, 237);
 var Berlin_TaufschaleWidukinds = CreateImage (
@@ -567,7 +567,7 @@ UpdateProgress(89, 237);
 var domRothoGrabmalDetailEngelSüdseite = CreateImage (
     "", 
     "Paderborn, Dom, Hasenkamp, Details der Nord- und Südseite des Grabmals Bischof Rothos von Paderborn (1036-1051), gestiftet von Wilhelm von Büren-Büsigheim und Irmgard zur Lippe, um 1435, Foto: Universität Paderborn, N.N.", 
-    "DomRothoGrabmalDetailEngelSüdseite.jpg"
+    "DomRothoGrabmalDetailEngelSuedseite.jpg"
   );
 UpdateProgress(90, 237);
 var domRothoGrabmalDetailKdG = CreateImage (
@@ -597,25 +597,25 @@ UpdateProgress(94, 237);
 var domRothoGrabmalGesamtansichtEinfärbung = CreateImage (
     "Rotho Grabmal", 
     "Paderborn, Dom, Hasenkamp, Grabmal Bischof Rothos von Paderborn (1036-1051), gestiftet von Wilhelm von Büren-Büsigheim und Irmgard zur Lippe, um 1435, Foto: Universität Paderborn, Kristina Stog.", 
-    "DomRothograbmalGesamtansichtEinfärbung.jpg"
+    "DomRothograbmalGesamtansichtEinfaerbung.jpg"
   );
 UpdateProgress(95, 237);
 var domRothograbmalGesamtansichtEinfärbungThuriferar = CreateImage (
     "Grabmal Bischof Rothos", 
     "Paderborn, Dom, Hasenkamp, Grabmal Bischof Rothos von Paderborn (1036-1051) mit der rot eingefärbten Darstellung des Thuriferars, gestiftet von Wilhelm von Büren-Büsigheim und Irmgard zur Lippe, um 1435, Foto: Universität Paderborn, Kristina Stog.", 
-    "DomRothograbmalGesamtansichtEinfärbungThuriferar.jpg"
+    "DomRothograbmalGesamtansichtEinfaerbungThuriferar.jpg"
   );
 UpdateProgress(96, 237);
 var domRothograbmalKarlderGroßeEinfärbungSpruchband = CreateImage (
     "Grabmal Bischof Rothos", 
     "Paderborn, Dom, Hasenkamp, Detail des Grabmals Bischof Rothos von Paderborn (1036-1051) mit der rot eingefärbten Inschrift unter Karl dem Großen, gestiftet von Wilhelm von Büren-Büsigheim und Irmgard zur Lippe, um 1435, Foto: Universität Paderborn, Kristina Stog.", 
-    "DomRothograbmalKarlderGroßeEinfärbungSpruchband.jpg"
+    "DomRothograbmalKarlderGroßeEinfaerbungSpruchband.jpg"
   );
 UpdateProgress(97, 237);
 var domRothograbmalLeoEinfärbung = CreateImage (
     "Grabmal Bischof Rothos", 
     "Paderborn, Dom, Hasenkamp, Detail des Grabmals Bischof Rothos von Paderborn (1036-1051) mit der rot eingefärbten Inschrift unter Papst Leo III., gestiftet von Wilhelm von Büren-Büsigheim und Irmgard zur Lippe, um 1435, Foto: Universität Paderborn, Kristina Stog.", 
-    "DomRothograbmalLeoEinfärbung.jpg"
+    "DomRothograbmalLeoEinfaerbung.jpg"
   );
 UpdateProgress(98, 237);
 var GrabmalBischofRothosvonPaderborn = CreateImage (
@@ -753,13 +753,13 @@ UpdateProgress(120, 237);
 var KarteDesAltsachsischenSprachraums = CreateImage (
     "Karte Des Altsächsischen Sprachraums", 
     "Der altsächsische Sprachraum im 9. Jh., veröffentlicht in : Gossens, Jan (Hg.): Niederdeutsch. Sprache und Literatur. Eine Einführung, Bd. 1: Sprache, Neumünster 1983, Abb. 1.", 
-    "KarteDesAltsächsischenSprachraums.jpg"
+    "KarteDesAltsaechsischenSprachraums.jpg"
   );
 UpdateProgress(121, 237);
 var MünchenBSBClm22053_16r = CreateImage (
     "Altes Buch", 
     "Darstellung einer Taufe in einer theologischen Sammelhandschrift des frühen 9. Jahrhunderts, Pergament, München, Bayerische Staatsbibliothek, Sign. Clm. 22053, fol 16r. © Bayerische Staatsbibliothek München, Signatur Clm. 22053, fol. 16r.", 
-    "MünchenBSBClm22053_16r.jpg"
+    "MuenchenBSBClm22053_16r.jpg"
   );
 UpdateProgress(122, 237);
 var noImage = CreateImage (

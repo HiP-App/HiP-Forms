@@ -45,9 +45,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
                                  Constraint.RelativeToParent(parent => parent.Width), Constraint.RelativeToParent(parent => parent.Height));
 
             // Bottomsheet
-            BottomSheetContentView = new ContentView { BackgroundColor = Color.White };
-            layout.Children.Add(BottomSheetContentView, Constraint.RelativeToParent(parent => parent.X), Constraint.RelativeToParent(parent => parent.Height * 0.9),
-                                    Constraint.RelativeToParent(parent => parent.Width), Constraint.RelativeToParent(parent => parent.Height));
+            BottomSheetContentView = new ContentView {BackgroundColor = Color.White};
+            layout.Children.Add (BottomSheetContentView, Constraint.RelativeToParent (parent => parent.X), Constraint.RelativeToParent (parent => parent.Height - 64),
+                                 Constraint.RelativeToParent (parent => parent.Width), Constraint.RelativeToParent (parent => parent.Height));
 
             var resources = IoCManager.Resolve<ApplicationResourcesProvider>();
             // Floating Action Button
@@ -155,8 +155,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
             Rectangle bottomSheetRect = new Rectangle
             {
                 Left = 0,
-                Top = Height * 0.9,
-                Size = new Size (Width, Height * 0.1)
+                Top = Height - 64,
+                Size = new Size (Width, 64)
             };
             Rectangle buttonRect = new Rectangle
             {
