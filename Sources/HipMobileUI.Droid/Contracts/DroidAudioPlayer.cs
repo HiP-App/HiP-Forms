@@ -41,8 +41,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Contracts
 
         private readonly MediaPlayer mediaPlayer;
         private Audio currentAudio;
+        private string currentAudioPath;
         private Timer progressUpdateTimer;
-        private bool isNotificationShown;
 
         public DroidAudioPlayer()
         {
@@ -68,8 +68,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Contracts
                 mediaPlayer.Reset();
                 if (value != null)
                 {
-                    var path = CopyAudioToTemp(value);
-                    mediaPlayer.SetDataSource(path);
+                    currentAudioPath = CopyAudioToTemp(value);
+                    mediaPlayer.SetDataSource(currentAudioPath);
                     mediaPlayer.Prepare();
                     ProgressChanged?.Invoke(0);
                 }
@@ -88,10 +88,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Contracts
         {
             var mainActivity = (MainActivity)CrossCurrentActivity.Current.Activity;
 
-            NotificationCompat.Builder builder = new NotificationCompat.Builder (mainActivity)
-                .SetOngoing (true)
-                .SetSmallIcon (Resource.Drawable.ic_headset_white)
-                .SetContentTitle ("Test test");
+            NotificationCompat.Builder builder = new NotificationCompat.Builder(mainActivity)
+                .SetOngoing(true)
+                .SetSmallIcon(Resource.Drawable.ic_headset_white)
+                .SetContentTitle("Test test");
 
             var contentView = new RemoteViews(mainActivity.PackageName, Resource.Layout.audioNotificationView);
 
@@ -101,7 +101,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Contracts
             contentView.SetTextViewText(Resource.Id.textViewTitle, "Die Pfalz Karls des Großen");
             contentView.SetImageViewResource(Resource.Id.btnPlayPause, setPlayImage ? Resource.Drawable.ic_pause : Resource.Drawable.ic_play_arrow);
 
-            builder = builder.SetCustomContentView (contentView);
+            builder = builder.SetCustomContentView(contentView);
 
             if (Build.VERSION.SdkInt >= BuildVersionCodes.Lollipop)
             {
@@ -112,8 +112,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Contracts
             var notificationManager = (NotificationManager)mainActivity.GetSystemService(Context.NotificationService);
             //notificationManager.Notify(AudioPlayerNotificationId, notificationBuilder.Build ());
             notificationManager.Notify(AudioPlayerNotificationId, builder.Build());
-
-            isNotificationShown = true;
         }
 
         private PendingIntent GetIntentForAction(string action)
@@ -133,26 +131,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Contracts
             notificationManager.Cancel(AudioPlayerNotificationId);
         }
 
-        private void UpdateNotification (bool setPlayImage)
-        {
-            DismissNotification ();
-            ShowNotification (setPlayImage);
-        }
-
         public void Play()
         {
             mediaPlayer.Start();
             IsPlayingChanged?.Invoke(true);
             StartUpdateTimer();
 
-            if (!isNotificationShown)
-            {
-                ShowNotification (true);
-            }
-            else
-            {
-                UpdateNotification (true);
-            }
+            ShowNotification(true);
         }
 
         public void Pause()
@@ -160,12 +145,17 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Contracts
             mediaPlayer.Pause();
             IsPlayingChanged?.Invoke(false);
             StopUpdateTimer();
-            UpdateNotification (false);
+            ShowNotification(false);
         }
 
         public void Stop()
         {
             mediaPlayer.Stop();
+            mediaPlayer.Reset();
+            mediaPlayer.SetDataSource(currentAudioPath);
+            mediaPlayer.Prepare();
+            mediaPlayer.SeekTo (0);
+
             IsPlayingChanged?.Invoke(false);
             StopUpdateTimer();
             DismissNotification();
@@ -239,7 +229,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Contracts
 
         public override void OnReceive(Context context, Intent intent)
         {
-            var player = IoCManager.Resolve<IAudioPlayer> ();
+            var player = IoCManager.Resolve<IAudioPlayer>();
 
             switch (intent.Action)
             {
