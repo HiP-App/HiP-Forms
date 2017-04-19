@@ -120,5 +120,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Contracts {
             ProgressChanged?.Invoke (CurrentProgress);
         }
 
+        public string AudioTitle { get; set; }
+
     }
 }

@@ -71,6 +71,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
             // init the audio button
             audioPlayer = IoCManager.Resolve<IAudioPlayer>();
             audioPlayer.CurrentAudio = route.Audio;
+            audioPlayer.AudioTitle = route.Title;
             audioPlayer.IsPlayingChanged += AudioPlayerOnIsPlayingChanged;
         }
 

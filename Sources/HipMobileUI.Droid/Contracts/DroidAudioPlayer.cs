@@ -75,6 +75,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Contracts
             }
         }
 
+        public string AudioTitle { get; set; } 
+
         public event ProgressChangedDelegate ProgressChanged;
         public event IsPlayingDelegate IsPlayingChanged;
         public event AudioCompletedDelegate AudioCompleted;
@@ -89,15 +91,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Contracts
 
             NotificationCompat.Builder builder = new NotificationCompat.Builder(mainActivity)
                 .SetOngoing(true)
-                .SetSmallIcon(Resource.Drawable.ic_headset_white)
-                .SetContentTitle("Test test");
+                .SetSmallIcon(Resource.Drawable.ic_headset_white);
 
             var contentView = new RemoteViews(mainActivity.PackageName, Resource.Layout.audioNotificationView);
 
             contentView.SetOnClickPendingIntent(Resource.Id.btnPlayPause, GetIntentForAction(PlayPauseAction));
             contentView.SetOnClickPendingIntent(Resource.Id.btnStop, GetIntentForAction(StopAction));
 
-            contentView.SetTextViewText(Resource.Id.textViewTitle, "Die Pfalz Karls des Groﬂen");
+            contentView.SetTextViewText(Resource.Id.textViewTitle, AudioTitle);
             contentView.SetImageViewResource(Resource.Id.btnPlayPause, setPlayImage ? Resource.Drawable.ic_pause : Resource.Drawable.ic_play_arrow);
             contentView.SetProgressBar(Resource.Id.audio_progress_bar, mediaPlayer.Duration, mediaPlayer.CurrentPosition, false);
 

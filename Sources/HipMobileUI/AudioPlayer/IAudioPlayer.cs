@@ -12,6 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Properties;
+
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.AudioPlayer {
 
     public delegate void ProgressChangedDelegate(double newProgress);
@@ -80,6 +82,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.AudioPlayer {
         /// </summary>
         /// <param name="progress"></param>
         void SeekTo (double progress);
+
+        /// <summary>
+        /// Title for the audio track used in the audio captions
+        /// </summary>
+        string AudioTitle { get; set; }
 
     }
 }
