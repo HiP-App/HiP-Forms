@@ -41,7 +41,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Contracts
 
         private readonly MediaPlayer mediaPlayer;
         private Audio currentAudio;
-        private string currentAudioPath;
         private Timer progressUpdateTimer;
 
         public DroidAudioPlayer()
@@ -68,8 +67,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Contracts
                 mediaPlayer.Reset();
                 if (value != null)
                 {
-                    currentAudioPath = CopyAudioToTemp(value);
-                    mediaPlayer.SetDataSource(currentAudioPath);
+                    var path = CopyAudioToTemp(value);
+                    mediaPlayer.SetDataSource(path);
                     mediaPlayer.Prepare();
                     ProgressChanged?.Invoke(0);
                 }
@@ -100,6 +99,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Contracts
 
             contentView.SetTextViewText(Resource.Id.textViewTitle, "Die Pfalz Karls des Groﬂen");
             contentView.SetImageViewResource(Resource.Id.btnPlayPause, setPlayImage ? Resource.Drawable.ic_pause : Resource.Drawable.ic_play_arrow);
+            contentView.SetProgressBar(Resource.Id.audio_progress_bar, mediaPlayer.Duration, mediaPlayer.CurrentPosition, false);
 
             builder = builder.SetCustomContentView(contentView);
 
@@ -151,14 +151,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Contracts
         public void Stop()
         {
             mediaPlayer.Stop();
-            mediaPlayer.Reset();
-            mediaPlayer.SetDataSource(currentAudioPath);
-            mediaPlayer.Prepare();
-            mediaPlayer.SeekTo (0);
-
-            IsPlayingChanged?.Invoke(false);
             StopUpdateTimer();
+            IsPlayingChanged?.Invoke(false);
             DismissNotification();
+            ProgressChanged?.Invoke(0);
+
+            mediaPlayer.Reset();
+            var path = CopyAudioToTemp(currentAudio);
+            mediaPlayer.SetDataSource(path);
+            mediaPlayer.Prepare();
         }
 
         public void SeekTo(double progress)
@@ -185,6 +186,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Contracts
         private void UpdateProgress(object state)
         {
             ProgressChanged?.Invoke(CurrentProgress);
+            ShowNotification(IsPlaying);
         }
 
         /// <summary>
@@ -197,7 +199,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Contracts
             var filepath = "";
             try
             {
-                var tempMp3 = File.CreateTempFile("temp", ".mp3", new File(Path.GetTempPath()));
+                string tempFileName = "temp_" + DateTime.Now.ToString ("yyyy_MM_dd_HH_mm_ss");
+                var tempMp3 = File.CreateTempFile(tempFileName, ".mp3", new File(Path.GetTempPath()));
                 tempMp3.DeleteOnExit();
                 var fos = new FileOutputStream(tempMp3);
                 fos.Write(audio.Data);

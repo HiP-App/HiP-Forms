@@ -13,14 +13,41 @@
     android:background="@android:color/transparent"
     android:src="@drawable/ic_launcher" />
 
-  <TextView
-    android:textSize="15dp"
-    android:id="@+id/textViewTitle"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:gravity="center|left"
-    android:layout_weight="1" 
-    android:background="@android:color/transparent" />
+  <LinearLayout
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:layout_weight="1">
+
+    <TextView
+      android:textSize="15dp"
+      android:id="@+id/textViewTitle"
+      android:layout_width="match_parent"
+      android:layout_height="45dp"
+      android:gravity="center_vertical|left"
+      android:background="@android:color/transparent" />
+    
+    <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="5dp"
+          android:gravity="center"
+          android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+          <ProgressBar
+              android:id="@+id/audio_progress_bar"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:maxHeight="3dp"
+              android:minHeight="3dp"
+              style="@android:style/Widget.ProgressBar.Horizontal" />
+      </LinearLayout>
+    </LinearLayout>
+  
+  </LinearLayout>
 
   <ImageView
     android:id="@+id/btnPlayPause"
