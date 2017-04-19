@@ -23,6 +23,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views.ExhibitDetail
         private string fontFamily;
         private string description;
         private string headline;
+        private bool bottomSheetVisible;
 
         public TextViewModel(TextPage page, Action toggleButtonVisibility) : base (toggleButtonVisibility)
         {
@@ -30,6 +31,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views.ExhibitDetail
             FontFamily = page.FontFamily;
             Headline = page.Title;
             Description = page.Description;
+            BottomSheetVisible = !(string.IsNullOrEmpty(Headline) && string.IsNullOrEmpty(Description));
         }
 
         /// <summary>
@@ -65,6 +67,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views.ExhibitDetail
         {
             get { return description; }
             set { SetProperty(ref description, value); }
+        }
+
+        /// <summary>
+        /// Inidicates whether the bottomsheet is visible
+        /// </summary>
+        public bool BottomSheetVisible
+        {
+            get { return bottomSheetVisible; }
+            set { SetProperty(ref bottomSheetVisible, value); }
         }
     }
 }

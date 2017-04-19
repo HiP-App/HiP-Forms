@@ -20,7 +20,7 @@
              xmlns:controls1="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Controls;assembly=HipMobileUI"
              xmlns:views1="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Views;assembly=HipMobileUI">
     <ContentView.Content>
-        <views1:BottomSheetView>
+        <views1:BottomSheetView BottomSheetVisible="{Binding BottomSheetVisible}">
             <views1:BottomSheetView.MainContent>
                 <controls1:FadeInImage Source="{Binding Image}" DownsampleToViewSize="True">
                     <controls1:FadeInImage.GestureRecognizers>
@@ -32,10 +32,10 @@
                 <StackLayout>
                     <BoxView Color="#50000000" HeightRequest="1" />
                     <StackLayout Margin="16,16" Spacing="1" BackgroundColor="White">
-                    <Label Text="{Binding Headline}" TextColor="#000000" FontSize="16" FontAttributes="Bold" />
-                    <ScrollView>
+                        <Label Text="{Binding Headline}" TextColor="#000000" FontSize="16" FontAttributes="Bold" />
+                        <ScrollView>
                             <Label Text="{Binding Description}" TextColor="#87000000" FontSize="14" />
-                    </ScrollView>
+                        </ScrollView>
                     </StackLayout>
                 </StackLayout>
             </views1:BottomSheetView.BottomSheet>
