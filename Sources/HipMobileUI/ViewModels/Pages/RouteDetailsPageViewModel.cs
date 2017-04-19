@@ -62,6 +62,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
             Image = ImageSource.FromStream (() => new MemoryStream (data));
             StartRouteCommand = new Command (StartRoute);
             StartDescriptionPlaybackCommand = new Command (StartDescriptionPlayback);
+
             Tabs = new ObservableCollection<string> {Strings.RouteDetailsPageViewModel_Description, Strings.RouteDetailsPageViewModel_Map};
             GpsLocation = IoCManager.Resolve<ILocationManager> ().LastKnownLocation.ToGeoLocation ();
             DetailsRoute = route;
@@ -70,6 +71,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
             // init the audio button
             audioPlayer = IoCManager.Resolve<IAudioPlayer>();
             audioPlayer.CurrentAudio = route.Audio;
+            audioPlayer.IsPlayingChanged += AudioPlayerOnIsPlayingChanged;
+        }
+
+        private void AudioPlayerOnIsPlayingChanged (bool newvalue)
+        {
+            ReadOutCaption = audioPlayer.IsPlaying ? Strings.RouteDetailsPage_PauseAudio : Strings.RouteDetailsPage_PlayAudio;
         }
 
         /// <summary>
@@ -80,12 +87,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
             if (!audioPlayer.IsPlaying)
             {
                 audioPlayer.Play ();
-                ReadOutCaption = Strings.RouteDetailsPage_PauseAudio;
             }
             else
             {
                 audioPlayer.Pause ();
-                ReadOutCaption = Strings.RouteDetailsPage_PlayAudio;
             }
         }
 
