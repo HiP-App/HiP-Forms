@@ -42,6 +42,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
             locationManager = IoCManager.Resolve<ILocationManager> ();
             nearbyExhibitManager = IoCManager.Resolve<INearbyExhibitManager> ();
             FocusGps = new Command(FocusGpsClicked);
+            SkipExhibit = new Command(SkipExhibitClicked);
         }
 
         /// <summary>
@@ -50,6 +51,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
         void FocusGpsClicked ()
         {
             MapFocusCommand.Execute (GpsLocation);
+        }
+
+        void SkipExhibitClicked ()
+        {
+            // TODO: Call ExhibitVisited (object sender, Exhibit exhibit) -> exhibit is missing!
+            return;
         }
 
 
@@ -75,6 +82,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
         }
 
         public ICommand FocusGps { get; }
+
+        public ICommand SkipExhibit { get; }
 
         public ICommand MapFocusCommand {
             get { return mapFocusCommand; }
