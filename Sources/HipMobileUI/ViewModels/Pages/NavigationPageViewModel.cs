@@ -55,8 +55,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
 
         void SkipExhibitClicked ()
         {
-            // TODO: Call ExhibitVisited (object sender, Exhibit exhibit) -> exhibit is missing!
-            return;
+            nearbyExhibitManager.SkipExhibit (detailsRoute.ActiveSet.Select (waypoint => waypoint.Exhibit));
         }
 
 
