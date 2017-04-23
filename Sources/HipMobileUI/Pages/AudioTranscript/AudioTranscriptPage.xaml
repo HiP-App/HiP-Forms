@@ -21,7 +21,12 @@
             xmlns:audioTranscript1="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Pages.AudioTranscript;assembly=HipMobileUI"
             Title="{Binding Title}"
             x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Pages.AudioTranscript.AudioTranscriptPage">
-    <audioTranscript1:SubtitlesPage BindingContext="{Binding SubtitleTab}" Title="{helpers:Translate AudioTranscriptView_Subtitles_Title}"/>
-    <audioTranscript1:SourcesPage BindingContext="{Binding SourcesTab}" Title="{helpers:Translate AudioTranscriptView_Sources_Title}"/>
-
+    <TabbedPage.ToolbarItems>
+        <ToolbarItem Text="format_size"
+                     Order="Primary"
+                     Clicked="OnToolbarItemClicked"
+                     Icon="ic_format_size.png" />
+    </TabbedPage.ToolbarItems>
+    <audioTranscript1:SubtitlesPage x:Name="SubtitlesPage" BindingContext="{Binding SubtitleTab}" Title="{helpers:Translate AudioTranscriptView_Subtitles_Title}"/>
+    <audioTranscript1:SourcesPage x:Name="SourcesPage" BindingContext="{Binding SourcesTab}" Title="{helpers:Translate AudioTranscriptView_Sources_Title}"/>
 </TabbedPage>

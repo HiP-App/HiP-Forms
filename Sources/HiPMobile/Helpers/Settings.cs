@@ -118,6 +118,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
             get { return AppSettings.GetValueOrDefault<bool>(RepeatIntroKey, RepeatIntroDefault); }
             set { AppSettings.AddOrUpdateValue<bool>(RepeatIntroKey, value); }
         }
+
+        private const string AudioTranscriptFontSizeKey = "audio_transcript_font_size_key";
+        private static readonly double AudioTranscriptFontSizeDefault = 19;
+
+        public static double AudioTranscriptFontSize
+        {
+            get { return AppSettings.GetValueOrDefault<double>(AudioTranscriptFontSizeKey, AudioTranscriptFontSizeDefault); }
+            set { AppSettings.AddOrUpdateValue<double>(AudioTranscriptFontSizeKey, value); }
+        }
         #endregion
     }
 }

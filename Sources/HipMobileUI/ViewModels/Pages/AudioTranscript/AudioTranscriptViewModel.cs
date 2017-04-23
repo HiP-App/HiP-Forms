@@ -14,6 +14,7 @@
 
 using System.Collections.Generic;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.InteractiveSources;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages.AudioTranscript
 {
@@ -53,6 +54,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages.AudioTranscri
         {
             get { return action; }
             set { SetProperty(ref action, value); }
+        }
+
+        private double fontSize;
+        public double FontSize
+        {
+            get { return Settings.AudioTranscriptFontSize; }
+            set { SetProperty(ref fontSize, value); }
         }
     }
 }

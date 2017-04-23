@@ -17,6 +17,8 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.InteractiveSourc
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages.AudioTranscript;
 using Xamarin.Forms;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
+using System.Collections.Generic;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages.AudioTranscript
 {
@@ -72,6 +74,28 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages.AudioTranscript
             base.OnBindingContextChanged();
             this.SetBinding(ActionProperty, "Action", BindingMode.TwoWay);
             Action = new SwitchTabAndScrollToSourceAction(this);
+        }
+
+        void OnToolbarItemClicked(object sender, AsyncCompletedEventArgs args)
+        {
+            ContentPage subtitlesPage = this.FindByName<ContentPage>("SubtitlesPage");
+            ContentPage sourcesPage = this.FindByName<ContentPage>("SourcesPage");
+
+            switch (Settings.AudioTranscriptFontSize)
+            {
+                case 14:
+                    Settings.AudioTranscriptFontSize = 19;
+                    break;
+                case 19:
+                    Settings.AudioTranscriptFontSize = 24;
+                    break;
+                case 24:
+                    Settings.AudioTranscriptFontSize = 14;
+                    break;
+            }
+
+            ((SubtitleViewModel)subtitlesPage.BindingContext).FontSize = Settings.AudioTranscriptFontSize;
+            ((SourcesViewModel)sourcesPage.BindingContext).FontSize = Settings.AudioTranscriptFontSize;
         }
     }
 }

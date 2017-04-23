@@ -15,12 +15,15 @@
 using System.Collections.Generic;
 using MvvmHelpers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.InteractiveSources;
+using Xamarin.Forms;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages.AudioTranscript
 {
     public class SourcesViewModel : BaseViewModel
     {
         private List<Source> references;
+        private double fontSize;
 
         public SourcesViewModel(List<Source> referencesToInit)
         {
@@ -31,6 +34,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages.AudioTranscri
         {
             get { return references; }
             set { SetProperty (ref references, value); }
+        }
+
+        public double FontSize
+        {
+            get { return Settings.AudioTranscriptFontSize; }
+            set { SetProperty(ref fontSize, value); }
         }
     }
 }
