@@ -118,8 +118,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
         }
 		private async void SkipExhibitVisited(IEnumerable<Exhibit> exhibits)
 		{
-			foreach (Exhibit e in exhibits)
-			{
+			var e  = exhibits.First();
 				var result =
 					await
 						IoCManager.Resolve<INavigationService>()
@@ -130,8 +129,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
 				{
 					ExhibitVisited(this, e);
 				}
-				break;
-			}
+
+		
 		}
         public override void OnHidden ()
         {
