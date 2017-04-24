@@ -42,6 +42,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Views
             IoCManager.RegisterInstance (typeof(IAudioPlayer), Substitute.For<IAudioPlayer> ());
             IoCManager.RegisterInstance(typeof(ILocationManager), Substitute.For<ILocationManager>());
             IoCManager.RegisterInstance (typeof(INearbyExhibitManager), Substitute.For<INearbyExhibitManager> ());
+            IoCManager.RegisterInstance(typeof(INearbyRouteManager), Substitute.For<INearbyRouteManager>());
         }
 
         [Test, Category("UnitTest")]
