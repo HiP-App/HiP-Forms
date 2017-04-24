@@ -30,7 +30,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Location
 
         event ExhibitVisitedDelegate ExhibitVisitedEvent;
 
-        void SkipExhibit (IEnumerable<Exhibit> exhibits);
+        
 
         /// <summary>
         /// Opens an alert dialogue if the user is near to an exhibit
@@ -46,24 +46,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Location
     {
         private readonly TimeSpan dialogTimeout = TimeSpan.FromMinutes (20);
         public event ExhibitVisitedDelegate ExhibitVisitedEvent;
-
-        public async void SkipExhibit (IEnumerable<Exhibit> exhibits)
-        {
-            foreach (Exhibit e in exhibits)
-            {
-                var result =
-                    await
-                        IoCManager.Resolve<INavigationService>()
-                                  .DisplayAlert(Strings.SkipExhibit_Title, Strings.SkipExhibit_Question_Part1 + " \"" + e.Name + "\" " + Strings.SkipExhibit_Question_Part2,
-                                                Strings.SkipExhibit_Confirm, Strings.SkipExhibit_Reject);
-
-                if (result)
-                {
-                    ExhibitVisitedEvent?.Invoke(this, e);
-                }
-                break;
-            }
-        }
 
         public async void CheckNearExhibit (IEnumerable<Exhibit> exhibits, GeoLocation gpsLocation, bool considerTimeouts)
         {
