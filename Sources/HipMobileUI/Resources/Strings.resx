@@ -487,4 +487,19 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   <data name="RouteNearby" xml:space="preserve">
     <value>Route in der Nähe</value>
   </data>
+  <data name="SkipExhibit_Confirm" xml:space="preserve">
+    <value>Ja</value>
+  </data>
+  <data name="SkipExhibit_Question_Part1" xml:space="preserve">
+    <value>Möchten Sie wirklich</value>
+  </data>
+  <data name="SkipExhibit_Question_Part2" xml:space="preserve">
+    <value>überspringen?</value>
+  </data>
+  <data name="SkipExhibit_Reject" xml:space="preserve">
+    <value>Nein</value>
+  </data>
+  <data name="SkipExhibit_Title" xml:space="preserve">
+    <value>Sehenswürdigkeit überspringen</value>
+  </data>
 </root>

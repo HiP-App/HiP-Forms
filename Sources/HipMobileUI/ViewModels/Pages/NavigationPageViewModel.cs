@@ -12,12 +12,15 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.using System;
 
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Input;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Location;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using Plugin.Geolocator.Abstractions;
 using Xamarin.Forms;
 
@@ -42,6 +45,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
             locationManager = IoCManager.Resolve<ILocationManager> ();
             nearbyExhibitManager = IoCManager.Resolve<INearbyExhibitManager> ();
             FocusGps = new Command(FocusGpsClicked);
+            SkipExhibit = new Command(SkipExhibitClicked);
         }
 
         /// <summary>
@@ -50,6 +54,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
         void FocusGpsClicked ()
         {
             MapFocusCommand.Execute (GpsLocation);
+        }
+
+        void SkipExhibitClicked ()
+        {
+			var exhibits = detailsRoute.ActiveSet.Select(waypoint => waypoint.Exhibit);
+			SkipExhibitVisited(exhibits);
         }
 
 
@@ -75,6 +85,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
         }
 
         public ICommand FocusGps { get; }
+
+        public ICommand SkipExhibit { get; }
 
         public ICommand MapFocusCommand {
             get { return mapFocusCommand; }
@@ -104,7 +116,22 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
                 OnPropertyChanged (nameof(DetailsRoute));
             }
         }
+		private async void SkipExhibitVisited(IEnumerable<Exhibit> exhibits)
+		{
+			var e  = exhibits.First();
+				var result =
+					await
+						IoCManager.Resolve<INavigationService>()
+								  .DisplayAlert(Strings.SkipExhibit_Title, Strings.SkipExhibit_Question_Part1 + " \"" + e.Name + "\" " + Strings.SkipExhibit_Question_Part2,
+												Strings.SkipExhibit_Confirm, Strings.SkipExhibit_Reject);
 
+				if (result)
+				{
+					ExhibitVisited(this, e);
+				}
+
+		
+		}
         public override void OnHidden ()
         {
             base.OnHidden ();
