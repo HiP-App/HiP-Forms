@@ -39,8 +39,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 
 		public virtual double Distance{ get; set; }
 
-		//Associations
-		public virtual IList<RouteTag> RouteTags{ get; }
+	    public virtual DateTimeOffset? LastTimeDismissed{ get; set; }
+
+        //Associations
+        public virtual IList<RouteTag> RouteTags{ get; }
 
 		public virtual Image Image{ get; set; }
 
@@ -48,8 +50,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 
 		public virtual Audio Audio{ get; set; }
 
-		// Contructor
-		public Route(){
+        // Contructor
+        public Route(){
 		}
 	}
 }

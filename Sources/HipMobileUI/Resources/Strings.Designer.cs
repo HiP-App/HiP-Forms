@@ -179,15 +179,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ja.
-        /// </summary>
-        public static string ExhibitNearby_Confirm {
-            get {
-                return ResourceManager.GetString("ExhibitNearby_Confirm", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Sehenwürdigkeit in der Nähe.
         /// </summary>
         public static string ExhibitNearby_ExhibitNearby {
@@ -197,29 +188,38 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ja.
+        /// </summary>
+        public static string ExhibitOrRouteNearby_Confirm {
+            get {
+                return ResourceManager.GetString("ExhibitOrRouteNearby_Confirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Möchten sie sich.
         /// </summary>
-        public static string ExhibitNearby_Question_Part1 {
+        public static string ExhibitOrRouteNearby_Question_Part1 {
             get {
-                return ResourceManager.GetString("ExhibitNearby_Question_Part1", resourceCulture);
+                return ResourceManager.GetString("ExhibitOrRouteNearby_Question_Part1", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to genauer ansehen?.
         /// </summary>
-        public static string ExhibitNearby_Question_Part2 {
+        public static string ExhibitOrRouteNearby_Question_Part2 {
             get {
-                return ResourceManager.GetString("ExhibitNearby_Question_Part2", resourceCulture);
+                return ResourceManager.GetString("ExhibitOrRouteNearby_Question_Part2", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Nein.
         /// </summary>
-        public static string ExhibitNearby_Reject {
+        public static string ExhibitOrRouteNearby_Reject {
             get {
-                return ResourceManager.GetString("ExhibitNearby_Reject", resourceCulture);
+                return ResourceManager.GetString("ExhibitOrRouteNearby_Reject", resourceCulture);
             }
         }
         
@@ -923,6 +923,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         public static string RouteDetailspageViewModel_RouteStarted {
             get {
                 return ResourceManager.GetString("RouteDetailspageViewModel_RouteStarted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Route in der Nähe.
+        /// </summary>
+        public static string RouteNearby {
+            get {
+                return ResourceManager.GetString("RouteNearby", resourceCulture);
             }
         }
         

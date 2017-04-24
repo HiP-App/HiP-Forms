@@ -31,6 +31,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         private ICommand itemTappedCommand;
         private ILocationManager locationManager;
         private INearbyExhibitManager nearbyExhibitManager;
+        private readonly INearbyRouteManager nearbyRouteManager;
         private bool displayDistances;
         private ExhibitSet displayedExhibitSet;
         private Position position;
@@ -53,6 +54,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 
             locationManager = IoCManager.Resolve<ILocationManager> ();
             nearbyExhibitManager = IoCManager.Resolve<INearbyExhibitManager> ();
+            nearbyRouteManager = IoCManager.Resolve<INearbyRouteManager>();
         }
 
         public ExhibitsOverviewViewModel (string exhibitSetId) : this(ExhibitManager.GetExhibitSet(exhibitSetId))
@@ -70,6 +72,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             SetDistances(args.Position);
 
             nearbyExhibitManager.CheckNearExhibit (displayedExhibitSet, args.Position.ToGeoLocation (), true);
+            nearbyRouteManager.CheckNearRoute(RouteManager.GetRoutes(), args.Position.ToGeoLocation ());
         }
 
         /// <summary>
