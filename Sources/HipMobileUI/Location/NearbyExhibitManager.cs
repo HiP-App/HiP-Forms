@@ -30,6 +30,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Location
 
         event ExhibitVisitedDelegate ExhibitVisitedEvent;
 
+        
+
         /// <summary>
         /// Opens an alert dialogue if the user is near to an exhibit
         /// </summary>
