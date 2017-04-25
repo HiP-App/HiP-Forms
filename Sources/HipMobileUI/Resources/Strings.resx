@@ -476,7 +476,7 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
     <value>Sehenwürdigkeit in der Nähe</value>
   </data>
   <data name="ExhibitOrRouteNearby_Question_Part1" xml:space="preserve">
-    <value>Möchten sie sich</value>
+    <value>Möchten Sie sich</value>
   </data>
   <data name="ExhibitOrRouteNearby_Question_Part2" xml:space="preserve">
     <value>genauer ansehen?</value>
