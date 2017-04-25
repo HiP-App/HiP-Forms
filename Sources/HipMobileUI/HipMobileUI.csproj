@@ -87,6 +87,7 @@
     <Compile Include="Contracts\IBarsColorsChanger.cs" />
     <Compile Include="Location\LocationManager.cs" />
     <Compile Include="Location\NearbyExhibitManager.cs" />
+    <Compile Include="Location\NearbyRouteManager.cs" />
     <Compile Include="ViewModels\Pages\NavigationPageViewModel.cs" />
     <Compile Include="Map\OsmMap.cs" />
     <Compile Include="Helpers\TranslateExtension.cs" />
@@ -293,6 +294,7 @@
     <EmbeddedResource Include="Resources\Strings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\RoutesOverviewView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
