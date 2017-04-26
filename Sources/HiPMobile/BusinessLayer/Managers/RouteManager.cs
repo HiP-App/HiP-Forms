@@ -13,6 +13,7 @@
 // limitations under the License.
 
 using System.Collections.Generic;
+using System.Linq;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
@@ -96,5 +97,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers {
             return true;
         }
 
+        /// <summary>
+        ///     Checks if a route is active
+        /// </summary>
+        /// <returns>true, if one route is active, false otherwise</returns>
+        public static bool IsOneRouteActive()
+        {
+            return GetRoutes().Any(route => route.IsRouteStarted());
+        }
     }
 }

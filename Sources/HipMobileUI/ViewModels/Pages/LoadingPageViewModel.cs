@@ -99,6 +99,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                 IoCManager.RegisterInstance (typeof(ApplicationResourcesProvider), new ApplicationResourcesProvider (Application.Current.Resources));
 
                 IoCManager.RegisterInstance (typeof(INearbyExhibitManager), new NearbyExhibitManager ());
+                IoCManager.RegisterInstance (typeof(INearbyRouteManager), new NearbyRouteManager ());
 
                 // show text, progress bar and image when db is initialized, otherwise just the indicator is shown
                 if (!DbManager.IsDatabaseUpToDate())
