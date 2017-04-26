@@ -75,7 +75,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Contracts
             }
         }
 
-        public string AudioTitle { get; set; } 
+        public string AudioTitle { private get; set; } 
 
         public event ProgressChangedDelegate ProgressChanged;
         public event IsPlayingDelegate IsPlayingChanged;

@@ -86,7 +86,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.AudioPlayer {
         /// <summary>
         /// Title for the audio track used in the audio captions
         /// </summary>
-        string AudioTitle { get; set; }
+        string AudioTitle { set; }
 
     }
 }
