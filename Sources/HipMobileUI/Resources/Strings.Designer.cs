@@ -1008,11 +1008,74 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Weitere Einstellungen.
+        /// </summary>
+        public static string SettingsScreenView_FurtherSettings_Title {
+            get {
+                return ResourceManager.GetString("SettingsScreenView_FurtherSettings_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sehenswürdigkeiten.
         /// </summary>
         public static string SettingsScreenView_POI_Title {
             get {
                 return ResourceManager.GetString("SettingsScreenView_POI_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Alle Downloads entfernen (Nutzen Sie diese Option, um Speicherplatz freizugeben).
+        /// </summary>
+        public static string SettingsScreenView_RemoveAllDownloads_Text {
+            get {
+                return ResourceManager.GetString("SettingsScreenView_RemoveAllDownloads_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Entfernen.
+        /// </summary>
+        public static string SettingsScreenView_RemoveAllDownloadsButton_Text {
+            get {
+                return ResourceManager.GetString("SettingsScreenView_RemoveAllDownloadsButton_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Entfernen.
+        /// </summary>
+        public static string SettingsScreenView_RemoveAllDownloadsPrompt_Confirm {
+            get {
+                return ResourceManager.GetString("SettingsScreenView_RemoveAllDownloadsPrompt_Confirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Möchten Sie wirklich alle Downloads entfernen? Hiermit geben Sie Speicherplatz frei. Bilder und Audio Dateien müssen aber bei Bedarf erneut runtergeladen werden..
+        /// </summary>
+        public static string SettingsScreenView_RemoveAllDownloadsPrompt_Question {
+            get {
+                return ResourceManager.GetString("SettingsScreenView_RemoveAllDownloadsPrompt_Question", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Abbrechen.
+        /// </summary>
+        public static string SettingsScreenView_RemoveAllDownloadsPrompt_Reject {
+            get {
+                return ResourceManager.GetString("SettingsScreenView_RemoveAllDownloadsPrompt_Reject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Alle Downloads entfernen.
+        /// </summary>
+        public static string SettingsScreenView_RemoveAllDownloadsPrompt_Title {
+            get {
+                return ResourceManager.GetString("SettingsScreenView_RemoveAllDownloadsPrompt_Title", resourceCulture);
             }
         }
         

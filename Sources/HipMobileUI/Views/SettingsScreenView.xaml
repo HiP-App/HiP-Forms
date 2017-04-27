@@ -69,8 +69,8 @@
           <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
           
-        <!-- Points of interests -->
-                <Label Style="{StaticResource TitleStyle}" Text="{helpers:Translate SettingsScreenView_POI_Title}" Grid.Row="0" Grid.Column="0" Margin="0,0,0,10"/>
+        <!-- Points of Interests -->
+        <Label Style="{StaticResource TitleStyle}" Text="{helpers:Translate SettingsScreenView_POI_Title}" Grid.Row="0" Grid.Column="0" Margin="0,0,0,10"/>
         <Label Style="{StaticResource Title2Style}" Text="{helpers:Translate SettingsScreenView_AutoSwitchPage_Title}" Grid.Row="1" Grid.Column="0"/>
         <Label Text="{helpers:Translate SettingsScreenView_AutoSwitchPage_Text}" Grid.Row="2" Grid.Column="0"/>
         <Switch IsToggled="{Binding AutoSwitchPage, Mode=TwoWay}" VerticalOptions="Center" Grid.Row="2" Grid.Column="1">
@@ -87,7 +87,7 @@
           </Switch.Effects>
         </Switch>
 
-          <!-- App Introduction -->
+        <!-- App Introduction -->
         <Label Style="{StaticResource TitleStyle}" Text="{helpers:Translate SettingsScreenView_AppIntro_Title}" Grid.Row="6" Grid.Column="0" Margin="0,20,0,10"/>
         <Label Text="{helpers:Translate SettingsScreenView_RepeatHintAudio_Text}" HorizontalOptions="StartAndExpand" Grid.Row="7" Grid.Column="0"/>
         <Switch IsToggled="{Binding RepeatHintAudio, Mode=TwoWay}" HorizontalOptions="End" VerticalOptions="Center" Grid.Row="7" Grid.Column="1">
@@ -102,13 +102,19 @@
             <effects:SwitchColorEffect Color="{StaticResource AccentColor}"/>
           </Switch.Effects>
         </Switch>
-          <BoxView Grid.Row="12" Grid.Column="0"/>
-        <Label Text="{helpers:Translate SettingsScreenView_RepeatIntro_Text}" HorizontalOptions="StartAndExpand" Grid.Row="13" Grid.Column="0"/>
-        <Switch IsToggled="{Binding RepeatIntro, Mode=TwoWay}" HorizontalOptions="End" VerticalOptions="Center" Grid.Row="13" Grid.Column="1">
+          <BoxView Grid.Row="10" Grid.Column="0"/>
+        <Label Text="{helpers:Translate SettingsScreenView_RepeatIntro_Text}" HorizontalOptions="StartAndExpand" Grid.Row="11" Grid.Column="0"/>
+        <Switch IsToggled="{Binding RepeatIntro, Mode=TwoWay}" HorizontalOptions="End" VerticalOptions="Center" Grid.Row="11" Grid.Column="1">
           <Switch.Effects>
             <effects:SwitchColorEffect Color="{StaticResource AccentColor}"/>
           </Switch.Effects>
         </Switch>
+
+        <!-- Further Settings -->
+        <Label Style="{StaticResource TitleStyle}" Text="{helpers:Translate SettingsScreenView_FurtherSettings_Title}" Grid.Row="12" Grid.Column="0" Margin="0,20,0,10"/>
+        <Label Text="{helpers:Translate SettingsScreenView_RemoveAllDownloads_Text}" HorizontalOptions="StartAndExpand" Grid.Row="13" Grid.Column="0"/>
+        <Button Text="{helpers:Translate SettingsScreenView_RemoveAllDownloadsButton_Text}" BackgroundColor="{StaticResource AccentColor}" TextColor="Black"
+                Command="{Binding RemoveAllDownloads}" HorizontalOptions="End" VerticalOptions="Center" Grid.Row="13" Grid.Column="1"/>
       </Grid>
     </ScrollView>
   </ContentView.Content>

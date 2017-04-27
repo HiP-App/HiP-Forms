@@ -502,4 +502,25 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   <data name="SkipExhibit_Title" xml:space="preserve">
     <value>Sehenswürdigkeit überspringen</value>
   </data>
+  <data name="SettingsScreenView_FurtherSettings_Title" xml:space="preserve">
+    <value>Weitere Einstellungen</value>
+  </data>
+  <data name="SettingsScreenView_RemoveAllDownloadsButton_Text" xml:space="preserve">
+    <value>Entfernen</value>
+  </data>
+  <data name="SettingsScreenView_RemoveAllDownloadsPrompt_Confirm" xml:space="preserve">
+    <value>Entfernen</value>
+  </data>
+  <data name="SettingsScreenView_RemoveAllDownloadsPrompt_Question" xml:space="preserve">
+    <value>Möchten Sie wirklich alle Downloads entfernen? Hiermit geben Sie Speicherplatz frei. Bilder und Audio Dateien müssen aber bei Bedarf erneut runtergeladen werden.</value>
+  </data>
+  <data name="SettingsScreenView_RemoveAllDownloadsPrompt_Reject" xml:space="preserve">
+    <value>Abbrechen</value>
+  </data>
+  <data name="SettingsScreenView_RemoveAllDownloadsPrompt_Title" xml:space="preserve">
+    <value>Alle Downloads entfernen</value>
+  </data>
+  <data name="SettingsScreenView_RemoveAllDownloads_Text" xml:space="preserve">
+    <value>Alle Downloads entfernen (Nutzen Sie diese Option, um Speicherplatz freizugeben)</value>
+  </data>
 </root>
