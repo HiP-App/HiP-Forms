@@ -1008,6 +1008,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Daten.
+        /// </summary>
+        public static string SettingsScreenView_Data_Title {
+            get {
+                return ResourceManager.GetString("SettingsScreenView_Data_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sehenswürdigkeiten.
         /// </summary>
         public static string SettingsScreenView_POI_Title {
@@ -1049,6 +1058,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         public static string SettingsScreenView_RepeatIntro_Text {
             get {
                 return ResourceManager.GetString("SettingsScreenView_RepeatIntro_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wenn aktiviert, werden Daten nur über Wlan heruntergeladen.
+        /// </summary>
+        public static string SettingsScreenView_WifiOnly_Text {
+            get {
+                return ResourceManager.GetString("SettingsScreenView_WifiOnly_Text", resourceCulture);
             }
         }
         
