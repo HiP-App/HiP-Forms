@@ -14,6 +14,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Threading;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
@@ -21,7 +22,10 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
+using Xamarin.Forms;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Location
 {
@@ -73,18 +77,21 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Location
                         }
                     }
 
-                    var result =
-                        await
-                            IoCManager.Resolve<INavigationService> ()
-                                      .DisplayAlert (Strings.ExhibitNearby_ExhibitNearby, Strings.ExhibitOrRouteNearby_Question_Part1 + " \"" + e.Name + "\" " +Strings.ExhibitOrRouteNearby_Question_Part2,
-                                                     Strings.ExhibitOrRouteNearby_Confirm, Strings.ExhibitOrRouteNearby_Reject);
-
-                    if (result)
-                    {
-                        await IoCManager.Resolve<INavigationService>().PushAsync(new ExhibitDetailsViewModel(e.Id));
-                        ExhibitVisitedEvent?.Invoke(this, e);
+                    NavigationViewModel nv = new ExhibitPreviewViewModel (e, this);
+           
+                    bool result = false;
+                    MessagingCenter.Subscribe <INearbyExhibitManager, bool> (this, "ReturnValue", (sender, arg) => {
+                    IoCManager.Resolve<INavigationService> ().PopModalAsync ();
+                    if (arg)
+                        {
+                        IoCManager.Resolve<INavigationService> ().PushAsync (new ExhibitDetailsViewModel (e.Id));
+                        ExhibitVisitedEvent?.Invoke (this, e);
                         return;
-                    }
+                        }
+                    });
+                    await IoCManager.Resolve<INavigationService> ()
+                                      .PushModalAsync (nv);
+
                 }
             }
         }
