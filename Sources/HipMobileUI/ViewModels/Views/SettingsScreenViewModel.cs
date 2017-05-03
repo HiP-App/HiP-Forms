@@ -18,12 +18,15 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using Xamarin.Forms;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views {
     /// <summary>
     /// ViewModel for the SettingsScreenViewModel.
     /// </summary>
     public class SettingsScreenViewModel : NavigationViewModel {
+
+        private static readonly IDataAccess DataAccess = IoCManager.Resolve<IDataAccess>();
 
         public SettingsScreenViewModel ()
         {
@@ -40,7 +43,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views {
 
             if (result)
             {
-                //TODO: Remove all data!
+                // Delete the whole DB
+                DataAccess.DeleteDatabase ();
             }
         }
 

@@ -224,6 +224,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Die Liste ist leer. Laden Sie Inhalte runter, um loszulegen!.
+        /// </summary>
+        public static string ExhibitsOverviewView_EmptyList {
+            get {
+                return ResourceManager.GetString("ExhibitsOverviewView_EmptyList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Die Nutzung der App basiert auf Freiwilligkeit. Sämtliche Daten, die im Rahmen der Nutzung der Dienste und Applikation Verwendung finden, dürfen nur erhoben und verarbeitet werden, soweit dies für den Dienst und statistische Forschungs- und Evaluationszwecke erforderlich ist und den Regelungen der Universität Paderborn und dem Datenschutzgesetz NRW entspricht..
         /// </summary>
         public static string LicenseScreenView_Agreement_Text {
@@ -950,6 +959,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         public static string RoutesOverviewListItemViewModel_Duration {
             get {
                 return ResourceManager.GetString("RoutesOverviewListItemViewModel_Duration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Die Liste ist leer. Laden Sie Inhalte runter, um loszulegen!.
+        /// </summary>
+        public static string RoutesOverviewView_EmptyList {
+            get {
+                return ResourceManager.GetString("RoutesOverviewView_EmptyList", resourceCulture);
             }
         }
         

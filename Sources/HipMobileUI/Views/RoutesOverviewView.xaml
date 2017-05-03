@@ -23,8 +23,10 @@
              xmlns:container1="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Container;assembly=HipMobileUI"
              xmlns:views="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;assembly=HipMobileUI"
              xmlns:helpers="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;assembly=HipMobileUI">
-  <ContentView.Content>
-    <ListView SeparatorVisibility="None" HasUnevenRows="True" Grid.Row="1" ItemsSource="{Binding Routes}">
+    <ContentView.Content>
+      <StackLayout>
+        <Label Text="{helpers:Translate RoutesOverviewView_EmptyList}" IsVisible="{Binding Routes, Converter={StaticResource EmptyListConverter}}" />
+        <ListView SeparatorVisibility="None" HasUnevenRows="True" ItemsSource="{Binding Routes}">
       <ListView.Behaviors>
         <behaviors:ListViewTappedItemBehavior Command="{Binding ItemSelectedCommand}" Converter="{StaticResource ItemTappedConverter}" />
       </ListView.Behaviors>
@@ -54,5 +56,6 @@
         </DataTemplate>
       </ListView.ItemTemplate>
     </ListView>
-  </ContentView.Content>
+    </StackLayout>
+    </ContentView.Content>
 </ContentView>

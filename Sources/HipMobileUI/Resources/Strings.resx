@@ -523,4 +523,10 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   <data name="SettingsScreenView_RemoveAllDownloads_Text" xml:space="preserve">
     <value>Alle Downloads entfernen (Nutzen Sie diese Option, um Speicherplatz freizugeben)</value>
   </data>
+  <data name="ExhibitsOverviewView_EmptyList" xml:space="preserve">
+    <value>Die Liste ist leer. Laden Sie Inhalte runter, um loszulegen!</value>
+  </data>
+  <data name="RoutesOverviewView_EmptyList" xml:space="preserve">
+    <value>Die Liste ist leer. Laden Sie Inhalte runter, um loszulegen!</value>
+  </data>
 </root>
