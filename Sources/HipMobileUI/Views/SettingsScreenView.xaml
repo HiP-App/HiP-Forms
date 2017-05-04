@@ -63,6 +63,8 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
@@ -111,8 +113,8 @@
                 </Switch>
 
                 <!-- Data -->
-                <Label Style="{StaticResource TitleStyle}" Text="{helpers:Translate SettingsScreenView_Data_Title}" Grid.Row="14" Grid.Column="0" Margin="0,20,0,10" />
-                <Label Text="{helpers:Translate SettingsScreenView_WifiOnly_Text}" HorizontalOptions="StartAndExpand" Grid.Row="15" Grid.Column="0" />
+                <Label Style="{StaticResource TitleStyle}" Text="{helpers:Translate SettingsScreenView_Data_Title}" Grid.Row="14" Grid.Column="0" Margin="0,20,0,10"/>
+                <Label Text="{helpers:Translate SettingsScreenView_WifiOnly_Text}" HorizontalOptions="StartAndExpand" Grid.Row="15" Grid.Column="0"/>
                 <Switch IsToggled="{Binding WifiOnly, Mode=TwoWay}" HorizontalOptions="End" VerticalOptions="Center" Grid.Row="15" Grid.Column="1">
                     <Switch.Effects>
                         <effects:SwitchColorEffect Color="{StaticResource AccentColor}"/>
