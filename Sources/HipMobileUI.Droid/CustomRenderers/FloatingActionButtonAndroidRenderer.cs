@@ -66,7 +66,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.CustomRenderers
 
         private void SetRippleColor (Color newColor)
         {
-            fab.SetRippleColor (newColor.ToAndroid());
+            fab.RippleColor = newColor.ToAndroid ();
         }
 
         private void SetNormalColor (Color newColor)
