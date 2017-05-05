@@ -149,6 +149,7 @@
     <Compile Include="ViewModels\Views\ExhibitsOverviewListItemViewModel.cs" />
     <Compile Include="ViewModels\Views\ExhibitsOverviewViewModel.cs" />
     <Compile Include="ViewModels\Views\LicenseScreenViewModel.cs" />
+    <Compile Include="ViewModels\Views\RoutePreviewViewModel.cs" />
     <Compile Include="Views\AudioToolbarView.xaml.cs">
       <DependentUpon>AudioToolbarView.xaml</DependentUpon>
     </Compile>
@@ -182,6 +183,9 @@
       <DependentUpon>ExhibitsOverviewView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ReferenceLink.cs" />
+    <Compile Include="Views\RoutePreviewView.xaml.cs">
+      <DependentUpon>RoutePreviewView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\RoutesOverviewView.xaml.cs">
       <DependentUpon>RoutesOverviewView.xaml</DependentUpon>
     </Compile>
@@ -399,6 +403,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Views\ExhibitDetails\TextView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\RoutePreviewView.xaml">
+      <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
