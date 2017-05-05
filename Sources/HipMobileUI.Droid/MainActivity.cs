@@ -24,6 +24,7 @@ using PaderbornUniversity.SILab.Hip.Mobile.UI.AudioPlayer;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Location;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels;
 using Plugin.Permissions;
 using Xamarin.Forms;
 using App = PaderbornUniversity.SILab.Hip.Mobile.UI.App;
@@ -80,8 +81,28 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
         /// </summary>
         protected override void OnDestroy ()
         {
+            CallOnDisappearingForAllOpenPages ();
+
             Xamarin.Forms.Application.Current.MainPage = new ContentPage();
             base.OnDestroy ();
+        }
+
+        private void CallOnDisappearingForAllOpenPages ()
+        {
+            var tabController = Xamarin.Forms.Application.Current.MainPage as TabbedPage;
+            var masterController = Xamarin.Forms.Application.Current.MainPage as MasterDetailPage;
+
+            // First check to see if we're on a tabbed page, then master detail, finally go to overall fallback
+            var nav = tabController?.CurrentPage?.Navigation ??
+                                 (masterController?.Detail as TabbedPage)?.CurrentPage?.Navigation ?? // special consideration for a tabbed page inside master/detail
+                                 masterController?.Detail?.Navigation ??
+                                 Xamarin.Forms.Application.Current.MainPage.Navigation;
+
+            foreach (var page in nav.NavigationStack)
+            {
+                var navigationViewModel = page.BindingContext as NavigationViewModel;
+                navigationViewModel?.OnDisappearing();
+            }
         }
 
     }
