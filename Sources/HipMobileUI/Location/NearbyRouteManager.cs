@@ -14,7 +14,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
@@ -22,10 +21,8 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
-using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
-using Xamarin.Forms;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Location
 {
@@ -57,32 +54,29 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Location
 
         public async void CheckNearRoute(IEnumerable<Route> routes, GeoLocation gpsLocation)    // Optimize for later: just send non-visited routes
         {
-            if (!popupActive)
+            if (popupActive)
+                return;
+
+            foreach (var r in routes)
             {
-                foreach (var r in routes)
+                if (!(MathUtil.CalculateDistance(r.Waypoints.First().Location, gpsLocation) < AppSharedData.RouteRadius))
+                    continue;
+
+                var now = DateTimeOffset.Now;
+                if (r.LastTimeDismissed.HasValue)
                 {
-                    if (!(MathUtil.CalculateDistance(r.Waypoints.First().Location, gpsLocation) < AppSharedData.RouteRadius))
-                        continue;
-
-                    var now = DateTimeOffset.Now;
-                    if (r.LastTimeDismissed.HasValue)
+                    if (now.Subtract (r.LastTimeDismissed.Value) <= TimeSpan.FromMinutes (30))
                     {
-                        if (now.Subtract (r.LastTimeDismissed.Value) <= TimeSpan.FromMinutes (30))
-                        {
-                            continue; // This route was dismissed in the last 30 minutes
-                        }
+                        continue; // This route was dismissed in the last 30 minutes
                     }
-                    
-                    if (popupActive)
-                        continue;
+                }
 
-                    await IoCManager.Resolve<INavigationService> ().PushModalAsync (new RoutePreviewViewModel (r, this));
-                    popupActive = true;
+                await IoCManager.Resolve<INavigationService> ().PushModalAsync (new RoutePreviewViewModel (r, this));
+                popupActive = true;
 
-                    using (DbManager.StartTransaction ())
-                    {
-                        r.LastTimeDismissed = now;
-                    }
+                using (DbManager.StartTransaction ())
+                {
+                    r.LastTimeDismissed = now;
                 }
             }
         }

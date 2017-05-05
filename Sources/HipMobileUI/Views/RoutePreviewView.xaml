@@ -3,8 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Views.RoutePreviewView"
              Title="{Binding RouteTitle}"
-             xmlns:container1="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Container;assembly=HipMobileUI"
-             xmlns:map="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Map;assembly=HipMobileUI"
              xmlns:helpers="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;assembly=HipMobileUI">
     <ContentPage.Content>
         <StackLayout Orientation="Vertical" Spacing="0" VerticalOptions="FillAndExpand">
