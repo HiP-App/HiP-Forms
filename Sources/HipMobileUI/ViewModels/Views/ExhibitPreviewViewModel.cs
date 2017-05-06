@@ -27,11 +27,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             Confirm = new Command (Accept);
             Decline = new Command (Deny);
 
-            ExhibitManger = exhibitManager;
+            ExhibitManager = exhibitManager;
             }
-
-        ExhibitVisitedDelegate privateDeletegate;
-        INearbyExhibitManager ExhibitManger;
 
         private Exhibit Exhibit;
         private INearbyExhibitManager ExhibitManager { get; }
@@ -45,7 +42,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             MessagingCenter.Send<NavigationViewModel, bool> (this, "ReturnValue", true);
             IoCManager.Resolve<INavigationService> ().PopModalAsync ();
             IoCManager.Resolve<INavigationService> ().PushAsync (new ExhibitDetailsViewModel (Exhibit.Id));
-            ExhibitManger.InvokeExhibitVistedEvent (Exhibit);
+            ExhibitManager.InvokeExhibitVistedEvent (Exhibit);
             }
 
         void Deny ()
