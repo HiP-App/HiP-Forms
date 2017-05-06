@@ -17,10 +17,10 @@
                     BackgroundColor="#05000000" VerticalOptions="End">
                 <Label Text="{helpers:Translate ExhibitOrRouteNearby_Confirm}" FontSize="12" TextColor="{StaticResource GreenDarkColor}"
                 HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-                    <Label.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding Confirm}" />
-                    </Label.GestureRecognizers>
-                </Label>
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Confirm}" />
+                        </Label.GestureRecognizers>
+                    </Label>
                 <BoxView WidthRequest="2" Color="{StaticResource GrayColor}"/>
                 <Label Text="{helpers:Translate ExhibitOrRouteNearby_Reject}" FontSize="12" TextColor="{StaticResource GreenDarkColor}"
                 HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
@@ -29,7 +29,7 @@
                     </Label.GestureRecognizers>
                 </Label>
             </StackLayout>
-        </StackLayout>
+            </StackLayout>
 
     </ContentPage.Content>
 </ContentPage>

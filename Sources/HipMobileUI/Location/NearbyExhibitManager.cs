@@ -34,8 +34,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Location
 
         event ExhibitVisitedDelegate ExhibitVisitedEvent;
 
-        
-
         /// <summary>
         /// Opens an alert dialogue if the user is near to an exhibit
         /// </summary>
@@ -43,6 +41,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Location
         /// <param name="gpsLocation">The gps location of the user</param>
         /// <param name="considerTimeouts">Parameter indicating if timeouts for displaying the exhibit nearby message should be taken into account.</param>
         void CheckNearExhibit(IEnumerable<Exhibit> exhibits, GeoLocation gpsLocation, bool considerTimeouts);
+        void InvokeExhibitVistedEvent (Exhibit exhibit);
 
     }
 
@@ -77,24 +76,19 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Location
                         }
                     }
 
-                    NavigationViewModel nv = new ExhibitPreviewViewModel (e, this);
-           
-                    bool result = false;
-                    MessagingCenter.Subscribe <INearbyExhibitManager, bool> (this, "ReturnValue", (sender, arg) => {
-                    IoCManager.Resolve<INavigationService> ().PopModalAsync ();
-                    if (arg)
-                        {
-                        IoCManager.Resolve<INavigationService> ().PushAsync (new ExhibitDetailsViewModel (e.Id));
-                        ExhibitVisitedEvent?.Invoke (this, e);
-                        return;
-                        }
-                    });
-                    await IoCManager.Resolve<INavigationService> ()
+                    NavigationViewModel nv = new ExhibitPreviewViewModel (e,this);
+                    await
+                            IoCManager.Resolve<INavigationService> ()
                                       .PushModalAsync (nv);
 
                 }
             }
         }
+
+        public void InvokeExhibitVistedEvent (Exhibit exhibit)
+            {
+            ExhibitVisitedEvent?.Invoke (this, exhibit);
+            }
 
     }
 }
