@@ -30,50 +30,41 @@
 
         <StackLayout Spacing="10" Padding="5" x:Name="OuterLayout" Orientation="Vertical">
 
+            <container1:TabContainerView Tabs="{Binding Tabs} "
+                                         HorizontalOptions="FillAndExpand"
+                                         VerticalOptions="FillAndExpand"
+                                         BackgroundColor="White">
+                <container1:TabContainerView.TabViews>
 
-            <StackLayout Orientation="Vertical" Padding="10">
-
-                <container1:TabContainerView Tabs="{Binding Tabs} "
-                                             HorizontalOptions="FillAndExpand"
-                                             VerticalOptions="FillAndExpand"
-                                             BackgroundColor="White">
-                    <container1:TabContainerView.TabViews>
-
-                        <ScrollView>
-                            <StackLayout Padding="16,6,16,0" Orientation="Vertical">
-                                <StackLayout Orientation="Horizontal" Margin="0,0,0,8">
-                                    <StackLayout.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding StartDescriptionPlaybackCommand}" />
-                                    </StackLayout.GestureRecognizers>
-                                    <Image Source="ic_volume_up.png" />
-                                    <Label VerticalTextAlignment="Center" Text="{Binding ReadOutCaption}" 
-                                           TextColor="{StaticResource AccentColor}" FontSize="Medium" />
-                                </StackLayout>
-                                <Label Text="{Binding Description}" FontSize="Small"/>
-                                <Label Text="{helpers:Translate RouteDetailsPage_Tags}" FontSize="19" Margin="0,24,0,0" />
-                                <container1:BindableChildrenStackLayout
-                                    Orientation="Vertical" Margin="8,4,0,16"
-                                    ChildElements="{Binding Tags, Converter= {StaticResource RouteTagViewListConverter}}" />
-
+                    <ScrollView>
+                        <StackLayout Padding="16,6,16,0" Orientation="Vertical">
+                            <StackLayout Orientation="Horizontal" Margin="0,0,0,8">
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding StartDescriptionPlaybackCommand}" />
+                                </StackLayout.GestureRecognizers>
+                                <Image Source="ic_volume_up.png" />
+                                <Label VerticalTextAlignment="Center" Text="{Binding ReadOutCaption}" 
+                                       TextColor="{StaticResource AccentColor}" FontSize="Medium" />
                             </StackLayout>
-                        </ScrollView>
+                            <Label Text="{Binding Description}" FontSize="Small"/>
+                            <Label Text="{helpers:Translate RouteDetailsPage_Tags}" FontSize="19" Margin="0,24,0,0" />
+                            <container1:BindableChildrenStackLayout
+                                Orientation="Vertical" Margin="8,4,0,16"
+                                ChildElements="{Binding Tags, Converter= {StaticResource RouteTagViewListConverter}}" />
 
-                        <map:OsmMap x:Name="Map" ExhibitSet="{Binding ExhibitSet}" GpsLocation="{Binding GpsLocation}"
-                                    DetailsRoute="{Binding DetailsRoute}" ShowDetailsRoute="{Binding ShowDetailsRoute}" HorizontalOptions="FillAndExpand"
-                                    VerticalOptions="FillAndExpand" BackgroundColor="Transparent" />
+                        </StackLayout>
+                    </ScrollView>
 
-                    </container1:TabContainerView.TabViews>
-                </container1:TabContainerView>
+                    <map:OsmMap x:Name="Map" ExhibitSet="{Binding ExhibitSet}" GpsLocation="{Binding GpsLocation}"
+                                DetailsRoute="{Binding DetailsRoute}" ShowDetailsRoute="{Binding ShowDetailsRoute}" HorizontalOptions="FillAndExpand"
+                                VerticalOptions="FillAndExpand" Margin="0,0,0,8" BackgroundColor="Transparent" />
+                </container1:TabContainerView.TabViews>
+            </container1:TabContainerView>
 
-            </StackLayout>
-
-
-            <StackLayout Orientation="Vertical" Padding="10" VerticalOptions="EndAndExpand">
-
+            <StackLayout Orientation="Vertical" Padding="0,0,0,0" VerticalOptions="End">
                 <Image Source="{Binding Image}" Aspect="AspectFill" HeightRequest="250"/>
-
                 <BoxView HeightRequest="1" Color="#66000000" />
-                <StackLayout Orientation="Horizontal" Padding="16,8,8,8" 
+                <StackLayout Orientation="Horizontal" Padding="16,6,16,0" 
                              HorizontalOptions="FillAndExpand" BackgroundColor="#05000000">
                     <StackLayout Orientation="Vertical">
                         <Image Source="ic_schedule.png" />
