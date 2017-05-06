@@ -19,19 +19,20 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         {
             public ExhibitPreviewViewModel (Exhibit exhibit, INearbyExhibitManager exhibitManager)
             {
-            Exhibit = exhibit;
-            Question = Strings.ExhibitOrRouteNearby_Question_Part1 + " \"" + Exhibit.Name + "\" " + Strings.ExhibitOrRouteNearby_Question_Part2;
+            this.exhibit = exhibit;
+            Question = Strings.ExhibitOrRouteNearby_Question_Part1 + " \"" + this.exhibit.Name + "\" " + Strings.ExhibitOrRouteNearby_Question_Part2;
             var data = exhibit.Image.Data;
             Image = ImageSource.FromStream (() => new MemoryStream (data));
 
             Confirm = new Command (Accept);
             Decline = new Command (Deny);
 
-            ExhibitManager = exhibitManager;
+            this.exhibitManager = exhibitManager;
             }
 
-        private Exhibit Exhibit;
-        private INearbyExhibitManager ExhibitManager { get; }
+        private readonly Exhibit exhibit;
+
+        private readonly INearbyExhibitManager exhibitManager;
         public string Question { set; get; }
         public ImageSource Image { set; get; }
         public ICommand Confirm { get; }
@@ -41,8 +42,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             {
             MessagingCenter.Send<NavigationViewModel, bool> (this, "ReturnValue", true);
             IoCManager.Resolve<INavigationService> ().PopModalAsync ();
-            IoCManager.Resolve<INavigationService> ().PushAsync (new ExhibitDetailsViewModel (Exhibit.Id));
-            ExhibitManager.InvokeExhibitVistedEvent (Exhibit);
+            IoCManager.Resolve<INavigationService> ().PushAsync (new ExhibitDetailsViewModel (exhibit.Id));
+            exhibitManager.InvokeExhibitVistedEvent (exhibit);
             }
 
         void Deny ()
