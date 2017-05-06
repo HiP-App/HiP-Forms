@@ -12,10 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System;
 using System.Threading;
 using AVFoundation;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using Foundation;
+using MediaPlayer;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.AudioPlayer;
 using UIKit;
 
@@ -31,7 +33,37 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Contracts {
             var session = AVAudioSession.SharedInstance ();
             session.SetActive (true);
             session.SetCategory (AVAudioSessionCategory.Playback);
-            UIApplication.SharedApplication.BeginReceivingRemoteControlEvents ();
+
+            var sharedCenter = MPRemoteCommandCenter.Shared;
+            sharedCenter.PlayCommand.Enabled = true;
+            sharedCenter.PlayCommand.AddTarget(PlayCommand);
+
+            sharedCenter.PauseCommand.Enabled = true;
+            sharedCenter.PauseCommand.AddTarget(PauseCommand);
+
+            UIApplication.SharedApplication.BeginReceivingRemoteControlEvents();
+        }
+
+        /// <summary>
+        /// Command for the play button on lockscreen and control center
+        /// </summary>
+        /// <param name="commandEvent"></param>
+        /// <returns></returns>
+        private MPRemoteCommandHandlerStatus PlayCommand(MPRemoteCommandEvent commandEvent)
+        {
+            Play ();
+            return MPRemoteCommandHandlerStatus.Success;
+        }
+
+        /// <summary>
+        /// Command for the pause button on lockscreen and control center
+        /// </summary>
+        /// <param name="commandEvent"></param>
+        /// <returns></returns>
+        private MPRemoteCommandHandlerStatus PauseCommand(MPRemoteCommandEvent commandEvent)
+        {
+            Pause ();
+            return MPRemoteCommandHandlerStatus.Success;
         }
 
         public bool IsPlaying => avAudioPlayer?.Playing ?? false;
@@ -49,6 +81,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Contracts {
                     NSError err;
                     avAudioPlayer = new AVAudioPlayer (NSData.FromArray (value.Data), "mp3", out err);
                     avAudioPlayer.FinishedPlaying += OnAvAudioPlayerOnFinishedPlaying;
+                    UpdateNowPlayingInfo(0);
                 }
             }
         }
@@ -69,11 +102,31 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Contracts {
         public event IsPlayingDelegate IsPlayingChanged;
         public event AudioCompletedDelegate AudioCompleted;
 
+        /// <summary>
+        /// Updates the information shown on lockscreen and control center
+        /// Note: Setting the rate is indispensable for properly showing the information
+        /// </summary>
+        /// <param name="rate"></param>
+        private void UpdateNowPlayingInfo (double rate)
+        {
+            MPNowPlayingInfoCenter.DefaultCenter.NowPlaying = new MPNowPlayingInfo
+            {
+                Title = AudioTitle,
+                Artwork = new MPMediaItemArtwork(UIImage.FromBundle("hiphop_transparent.png")),
+                MediaType = MPNowPlayingInfoMediaType.Audio,
+                PlaybackDuration = avAudioPlayer.Duration,
+                PlaybackRate = rate,
+                ElapsedPlaybackTime = avAudioPlayer.CurrentTime
+            };
+        }
+
         public void Play ()
         {
             avAudioPlayer.Play ();
             IsPlayingChanged?.Invoke (true);
             StartUpdateTimer ();
+
+            UpdateNowPlayingInfo (avAudioPlayer.Rate);
         }
 
         public void Pause ()
@@ -81,6 +134,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Contracts {
             avAudioPlayer.Pause ();
             IsPlayingChanged?.Invoke (false);
             StopUpdateTimer ();
+
+            UpdateNowPlayingInfo(0);
         }
 
         public void Stop ()
@@ -88,6 +143,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Contracts {
             avAudioPlayer.Stop ();
             IsPlayingChanged?.Invoke (false);
             StopUpdateTimer ();
+
+            MPNowPlayingInfoCenter.DefaultCenter.NowPlaying = null;
         }
 
         public void SeekTo (double progress)
@@ -119,6 +176,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Contracts {
         {
             ProgressChanged?.Invoke (CurrentProgress);
         }
+
+        public string AudioTitle { private get; set; }
 
     }
 }

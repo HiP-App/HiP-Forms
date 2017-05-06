@@ -502,4 +502,10 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   <data name="SkipExhibit_Title" xml:space="preserve">
     <value>Sehenswürdigkeit überspringen</value>
   </data>
+  <data name="SettingsScreenView_Data_Title" xml:space="preserve">
+    <value>Daten</value>
+  </data>
+  <data name="SettingsScreenView_WifiOnly_Text" xml:space="preserve">
+    <value>Wenn aktiviert, werden Daten nur über Wlan heruntergeladen</value>
+  </data>
 </root>
