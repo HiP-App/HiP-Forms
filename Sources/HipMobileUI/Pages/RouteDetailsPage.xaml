@@ -57,12 +57,12 @@
 
                     <map:OsmMap x:Name="Map" ExhibitSet="{Binding ExhibitSet}" GpsLocation="{Binding GpsLocation}"
                                 DetailsRoute="{Binding DetailsRoute}" ShowDetailsRoute="{Binding ShowDetailsRoute}" HorizontalOptions="FillAndExpand"
-                                VerticalOptions="FillAndExpand" Margin="0,0,0,8" BackgroundColor="Transparent" />
+                                VerticalOptions="FillAndExpand" BackgroundColor="Transparent" />
                 </container1:TabContainerView.TabViews>
             </container1:TabContainerView>
 
-            <StackLayout Orientation="Vertical" Padding="0,0,0,0" VerticalOptions="End">
-                <Image Source="{Binding Image}" Aspect="AspectFill" HeightRequest="250"/>
+            <StackLayout Orientation="Vertical" VerticalOptions="End">
+                <Image Source="{Binding Image}" Aspect="AspectFill" HeightRequest="200"/>
                 <BoxView HeightRequest="1" Color="#66000000" />
                 <StackLayout Orientation="Horizontal" Padding="16,6,16,0" 
                              HorizontalOptions="FillAndExpand" BackgroundColor="#05000000">
