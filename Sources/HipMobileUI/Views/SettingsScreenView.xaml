@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
 // Copyright (C) 2017 History in Paderborn App - Universität Paderborn
 //
@@ -63,6 +63,7 @@
           <RowDefinition Height="Auto" />
           <RowDefinition Height="Auto" />
           <RowDefinition Height="Auto" />
+		  <RowDefinition Height="Auto" />			
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
           <ColumnDefinition Width="*" />
@@ -109,6 +110,13 @@
             <effects:SwitchColorEffect Color="{StaticResource AccentColor}"/>
           </Switch.Effects>
         </Switch>
+		<BoxView Grid.Row="14" Grid.Column="0"/>		
+		<Label Text="{helpers:Translate SettingsScreenView_DownloadData_Text}" HorizontalOptions="StartAndExpand" Grid.Row="15" Grid.Column="0"/>
+        <Switch IsToggled="{Binding DownloadData, Mode=TwoWay}" HorizontalOptions="End" VerticalOptions="Center" Grid.Row="15" Grid.Column="1">
+          <Switch.Effects>
+            <effects:SwitchColorEffect Color="{StaticResource AccentColor}"/>
+          </Switch.Effects>
+        </Switch>		
       </Grid>
     </ScrollView>
   </ContentView.Content>

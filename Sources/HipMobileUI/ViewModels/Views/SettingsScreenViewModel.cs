@@ -78,5 +78,17 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views {
                 OnPropertyChanged ();
             }
         }
+		/// <summary>
+		/// Allow user to enable prompt for data download when data updated
+		/// </summary>
+		public bool DownloadData
+		{
+			get { return Settings.DownloadData; }
+			set
+			{
+				Settings.DownloadData = value;
+				OnPropertyChanged();
+			}
+		}
     }
 }

@@ -118,6 +118,17 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
             get { return AppSettings.GetValueOrDefault<bool>(RepeatIntroKey, RepeatIntroDefault); }
             set { AppSettings.AddOrUpdateValue<bool>(RepeatIntroKey, value); }
         }
+		/// <summary>
+		/// Allow user to enable prompt for data download when data updated
+		/// </summary>
+		private const string DownloadDataKey = "download_data_key";
+		private static readonly bool DownloadDataDefault = true;
+
+		public static bool DownloadData
+		{
+			get { return AppSettings.GetValueOrDefault<bool>(DownloadDataKey, DownloadDataDefault); }
+			set { AppSettings.AddOrUpdateValue<bool>(DownloadDataKey, value); }
+		}
         #endregion
     }
 }
