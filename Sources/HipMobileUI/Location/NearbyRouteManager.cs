@@ -21,14 +21,13 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
-using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Location
 {
 
-    public interface INearbyRouteManager
-    {
+    public interface INearbyRouteManager {
 
         /// <summary>
         /// Opens a notification if the user is near a route
@@ -36,52 +35,61 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Location
         /// <param name="routes">The routes to check</param>
         /// <param name="gpsLocation">The gps location of the user</param>
         void CheckNearRoute(IEnumerable<Route> routes, GeoLocation gpsLocation);
+        
+        /// <summary>
+        /// Opens the details view of the route with the given id
+        /// </summary>
+        /// <param name="routeId">The ID of the route for the details view</param>
+        void OpenRouteDetailsView(string routeId);
 
+        /// <summary>
+        /// Closes the pop-up for the route preview
+        /// </summary>
+        void ClosePopUp ();
     }
 
     public class NearbyRouteManager : INearbyRouteManager
     {
+        private bool popupActive;
 
         public async void CheckNearRoute(IEnumerable<Route> routes, GeoLocation gpsLocation)    // Optimize for later: just send non-visited routes
         {
-            foreach (Route r in routes)
+            if (popupActive)
+                return;
+
+            foreach (var r in routes)
             {
-                var dist = MathUtil.CalculateDistance (r.Waypoints.First ().Location, gpsLocation);
-                if (dist < AppSharedData.RouteRadius)
+                if (!(MathUtil.CalculateDistance(r.Waypoints.First().Location, gpsLocation) < AppSharedData.RouteRadius))
+                    continue;
+
+                var now = DateTimeOffset.Now;
+                if (r.LastTimeDismissed.HasValue)
                 {
-                    DateTimeOffset now = DateTimeOffset.Now;
-                    if (r.LastTimeDismissed.HasValue)
+                    if (now.Subtract (r.LastTimeDismissed.Value) <= TimeSpan.FromMinutes (30))
                     {
-                        if (now.Subtract (r.LastTimeDismissed.Value) <= TimeSpan.FromMinutes (30))
-                        {
-                            continue; // This route was dismissed in the last 30 minutes
-                        }
+                        continue; // This route was dismissed in the last 30 minutes
                     }
+                }
 
-                    var result =
-                        await IoCManager.Resolve<INavigationService> ()
-                                        .DisplayAlert (Strings.RouteNearby, Strings.ExhibitOrRouteNearby_Question_Part1 + " \"" + r.Title + "\" " + Strings.ExhibitOrRouteNearby_Question_Part2,
-                                                        Strings.ExhibitOrRouteNearby_Confirm, Strings.ExhibitOrRouteNearby_Reject);
+                await IoCManager.Resolve<INavigationService> ().PushModalAsync (new RoutePreviewViewModel (r, this));
+                popupActive = true;
 
-                    if (result) // Switch to details
-                    {
-                        using (DbManager.StartTransaction())
-                        {
-                            r.LastTimeDismissed = now;
-                        }
-                        await IoCManager.Resolve<INavigationService> ().PushAsync (new RouteDetailsPageViewModel (r.Id));
-                        return;
-                    }
-                    else // Dismissed
-                    {
-                        using (DbManager.StartTransaction())
-                        {
-                            r.LastTimeDismissed = now;
-                        }
-                    }
+                using (DbManager.StartTransaction ())
+                {
+                    r.LastTimeDismissed = now;
                 }
             }
         }
 
+        public void OpenRouteDetailsView (string routeId)
+        {
+            IoCManager.Resolve<INavigationService>().PushAsync(new RouteDetailsPageViewModel(routeId));
+        }
+
+        public void ClosePopUp ()
+        {
+            IoCManager.Resolve<INavigationService>().PopModalAsync();
+            popupActive = false;
+        }
     }
 }

@@ -18,22 +18,24 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.App"
              xmlns:converters1="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Converters;assembly=HipMobileUI">
-  <Application.Resources>
-    <ResourceDictionary>
-      <Color x:Key="PrimaryColor">#3F51B5</Color>
-      <Color x:Key="PrimaryDarkColor">#303F9F</Color>
-      <Color x:Key="AccentColor">#FF9800</Color>
-      <Color x:Key="AccentDarkColor">#E65100</Color>
-      <Style TargetType="Label">
-        <Setter Property="FontSize" Value="12" />
-        <Setter Property="TextColor" Value="Black" />
-      </Style>
-      <converters1:ViewModelViewConverter x:Key="ViewModelViewConverter" />
-      <converters1:ItemTappedConverter x:Key="ItemTappedConverter" />
-      <converters1:ImageListConverter x:Key="ImageListConverter" />
-      <converters1:RouteTagViewListConverter x:Key="RouteTagViewListConverter" />
-      <converters1:PositionGeoLocationConverter x:Key="PositionGeoLocationConverter" />
-      <converters1:InverseBooleanConverter x:Key="InverseBooleanConverter" />
+    <Application.Resources>
+        <ResourceDictionary>
+            <Color x:Key="PrimaryColor">#3F51B5</Color>
+            <Color x:Key="PrimaryDarkColor">#303F9F</Color>
+            <Color x:Key="AccentColor">#FF9800</Color>
+            <Color x:Key="AccentDarkColor">#E65100</Color>
+            <Color x:Key="LightGrayColor">#05000000</Color>
+            <Color x:Key="DarkGrayColor">#66000000</Color>
+            <Style TargetType="Label">
+                <Setter Property="FontSize" Value="12" />
+                <Setter Property="TextColor" Value="Black" />
+            </Style>
+            <converters1:ViewModelViewConverter x:Key="ViewModelViewConverter" />
+            <converters1:ItemTappedConverter x:Key="ItemTappedConverter" />
+            <converters1:ImageListConverter x:Key="ImageListConverter" />
+            <converters1:RouteTagViewListConverter x:Key="RouteTagViewListConverter" />
+            <converters1:PositionGeoLocationConverter x:Key="PositionGeoLocationConverter" />
+            <converters1:InverseBooleanConverter x:Key="InverseBooleanConverter" />
         </ResourceDictionary>
-  </Application.Resources>
+    </Application.Resources>
 </Application>
