@@ -9,8 +9,8 @@
             <Image Source="{Binding Image}" Aspect="AspectFill" BackgroundColor="White" VerticalOptions="Center"/>
             <BoxView HeightRequest="1" Margin="0,0,0,0" Color="{StaticResource PrimaryDarkColor}"/>
             <BoxView HeightRequest="1" Margin="0,0,0,0" Color="{StaticResource DarkGrayColor}"/>
-            <Frame Padding="10,10,10,10" BackgroundColor="{StaticResource LightGrayColor}">
-                <Label Text="{Binding RouteDescription}" FontSize="Large" FontAttributes="Bold" HorizontalTextAlignment="Center" TextColor="{StaticResource PrimaryColor}" VerticalOptions="Start"/>
+            <Frame Padding="10,10,10,10" BackgroundColor="{StaticResource LightGrayColor}" HasShadow="False">
+                <Label Text="{Binding RouteDescription}" FontSize="Large" FontAttributes="Bold" HorizontalTextAlignment="Center" TextColor="{StaticResource AccentDarkColor}" VerticalOptions="Start"/>
             </Frame>
             <BoxView HeightRequest="2" Margin="0,0,0,0" Color="{StaticResource DarkGrayColor}"/>
             <Frame Padding="10,30,10,30" VerticalOptions="FillAndExpand">
