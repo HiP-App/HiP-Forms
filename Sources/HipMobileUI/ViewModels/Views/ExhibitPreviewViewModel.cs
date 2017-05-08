@@ -28,6 +28,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             Decline = new Command (Deny);
 
             ExhibitManager = exhibitManager;
+            ExhibitName = exhibit.Name;
             }
 
         private Exhibit Exhibit;
@@ -37,6 +38,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         public ICommand Confirm { get; }
         public ICommand Decline { get; }
 
+        public string ExhibitName { get; }
         void Accept ()
             {
             MessagingCenter.Send<NavigationViewModel, bool> (this, "ReturnValue", true);
