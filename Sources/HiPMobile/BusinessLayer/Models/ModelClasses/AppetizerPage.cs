@@ -36,7 +36,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 		//Associations
 		public virtual Image Image{ get; set; }
 
-		// Contructor
+		// Constructor
 		public AppetizerPage(){
 		}
 	}
