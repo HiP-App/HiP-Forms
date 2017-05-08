@@ -125,7 +125,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
 		private const string DownloadDataKey = "download_data_key";
 		private static readonly bool DownloadDataDefault = true;
 
-		public static bool DownloadData
+		public static bool AlwaysDownloadData
 		{
 			get { return AppSettings.GetValueOrDefault<bool>(DownloadDataKey, DownloadDataDefault); }
 			set { AppSettings.AddOrUpdateValue<bool>(DownloadDataKey, value); }

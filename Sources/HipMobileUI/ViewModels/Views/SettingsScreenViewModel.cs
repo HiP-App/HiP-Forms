@@ -84,10 +84,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views {
 		/// </summary>
 		public bool AlwaysDownloadData
 		{
-			get { return Settings.DownloadData; }
+			get { return Settings.AlwaysDownloadData; }
 			set
 			{
-				Settings.DownloadData = value;
+				Settings.AlwaysDownloadData = value;
 				OnPropertyChanged();
 			}
 		}

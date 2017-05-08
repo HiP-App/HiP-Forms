@@ -106,21 +106,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
 			SelectedViewModel.OnRevealed();
 		}
-		/// <summary>
-		/// Shows prompt to allow data download
-		/// </summary>
-		private async void AllowDataDownload()
-		{	if (Settings.DownloadData == true)
-			{
-				
-					string result =
-						await
-							Navigation.DisplayActionSheet(
-								Strings.DownloadData_Title,
-							Strings.DownloadData_Cancel, null, Strings.DownloadData_Accept, Strings.DownloadData_Always);
-			
-			}
 
-		}
 	}
 }

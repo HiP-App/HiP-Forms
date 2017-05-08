@@ -182,7 +182,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 		/// </summary>
 		private async void AllowDataDownload()
 		{
-			if (Shared.Helpers.Settings.DownloadData == true)
+			if (Shared.Helpers.Settings.AlwaysDownloadData == true)
 			{
 
 				string result =
@@ -192,7 +192,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 						Strings.DownloadData_Cancel, null, Strings.DownloadData_Accept, Strings.DownloadData_Always);
 				if (result == Strings.DownloadData_Always)
 				{
-					Shared.Helpers.Settings.DownloadData = true;
+					Shared.Helpers.Settings.AlwaysDownloadData = true;
 				}	
 			}
 
