@@ -30,6 +30,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Location
 
         event ExhibitVisitedDelegate ExhibitVisitedEvent;
 
+        
+
         /// <summary>
         /// Opens an alert dialogue if the user is near to an exhibit
         /// </summary>
@@ -74,8 +76,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Location
                     var result =
                         await
                             IoCManager.Resolve<INavigationService> ()
-                                      .DisplayAlert (Strings.ExhibitNearby_ExhibitNearby, Strings.ExhibitNearby_Question_Part1 + " \"" + e.Name + "\" " +Strings.ExhibitNearby_Question_Part2,
-                                                     Strings.ExhibitNearby_Confirm, Strings.ExhibitNearby_Reject);
+                                      .DisplayAlert (Strings.ExhibitNearby_ExhibitNearby, Strings.ExhibitOrRouteNearby_Question_Part1 + " \"" + e.Name + "\" " +Strings.ExhibitOrRouteNearby_Question_Part2,
+                                                     Strings.ExhibitOrRouteNearby_Confirm, Strings.ExhibitOrRouteNearby_Reject);
 
                     if (result)
                     {

@@ -20,7 +20,7 @@
              xmlns:controls1="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Controls;assembly=HipMobileUI"
              xmlns:views1="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Views;assembly=HipMobileUI">
     <ContentView.Content>
-        <views1:BottomSheetView>
+        <views1:BottomSheetView BottomSheetVisible="{Binding BottomSheetVisible}">
             <views1:BottomSheetView.MainContent>
                 <RelativeLayout HorizontalOptions="Fill">
                     <ScrollView RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.9}"

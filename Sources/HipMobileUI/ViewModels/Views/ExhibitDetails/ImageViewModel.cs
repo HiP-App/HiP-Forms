@@ -25,6 +25,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views.ExhibitDetail
         private ImageSource image;
         private string description;
         private string headline;
+        private bool bottomSheetVisible;
 
         public ImageViewModel (ImagePage page, Action toggleButtonVisibility) : base(toggleButtonVisibility)
         {
@@ -32,6 +33,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views.ExhibitDetail
             Image = ImageSource.FromStream (() => new MemoryStream (data));
             Headline = page.Image.Title;
             Description = page.Image.Description;
+            BottomSheetVisible = Headline != "No Image" && !(string.IsNullOrEmpty (Headline) && string.IsNullOrEmpty (Description));
         }
 
         /// <summary>
@@ -54,6 +56,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views.ExhibitDetail
         public string Description {
             get { return description; }
             set { SetProperty (ref description, value); }
+        }
+
+        /// <summary>
+        /// Inidicates whether the bottomsheet is visible
+        /// </summary>
+        public bool BottomSheetVisible {
+            get { return bottomSheetVisible; }
+            set { SetProperty (ref bottomSheetVisible, value); }
         }
 
     }

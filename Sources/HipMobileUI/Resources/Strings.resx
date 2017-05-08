@@ -469,19 +469,37 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   <data name="ExhibitDetailsPage_AdditionalInformation" xml:space="preserve">
     <value>Zusätzliche Informationen</value>
   </data>
-  <data name="ExhibitNearby_Confirm" xml:space="preserve">
+  <data name="ExhibitOrRouteNearby_Confirm" xml:space="preserve">
     <value>Ja</value>
   </data>
   <data name="ExhibitNearby_ExhibitNearby" xml:space="preserve">
     <value>Sehenwürdigkeit in der Nähe</value>
   </data>
-  <data name="ExhibitNearby_Question_Part1" xml:space="preserve">
-    <value>Möchten sie sich</value>
+  <data name="ExhibitOrRouteNearby_Question_Part1" xml:space="preserve">
+    <value>Möchten Sie sich</value>
   </data>
-  <data name="ExhibitNearby_Question_Part2" xml:space="preserve">
+  <data name="ExhibitOrRouteNearby_Question_Part2" xml:space="preserve">
     <value>genauer ansehen?</value>
   </data>
-  <data name="ExhibitNearby_Reject" xml:space="preserve">
+  <data name="ExhibitOrRouteNearby_Reject" xml:space="preserve">
     <value>Nein</value>
+  </data>
+  <data name="RouteNearby" xml:space="preserve">
+    <value>Route in der Nähe</value>
+  </data>
+  <data name="SkipExhibit_Confirm" xml:space="preserve">
+    <value>Ja</value>
+  </data>
+  <data name="SkipExhibit_Question_Part1" xml:space="preserve">
+    <value>Möchten Sie wirklich</value>
+  </data>
+  <data name="SkipExhibit_Question_Part2" xml:space="preserve">
+    <value>überspringen?</value>
+  </data>
+  <data name="SkipExhibit_Reject" xml:space="preserve">
+    <value>Nein</value>
+  </data>
+  <data name="SkipExhibit_Title" xml:space="preserve">
+    <value>Sehenswürdigkeit überspringen</value>
   </data>
 </root>

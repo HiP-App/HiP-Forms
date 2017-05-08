@@ -50,17 +50,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Location {
         /// </summary>
         /// <param name="listener">The listener to remove.</param>
         void RemoveLocationListener (ILocationListener listener);
-
-
-        /// <summary>
-        /// Opens an alert dialogue if the user is near to an exhibit
-        /// </summary>
-        /// <param name="exhibitSet">The set of exhibits that should be checked</param>
-        /// <param name="route">The Exhibits of a route that should be checked</param>
-        /// <param name="gpsLocation">The user location</param>
-        void CheckNearExhibit (ExhibitSet exhibitSet, Route route, GeoLocation gpsLocation);
-
-
+        
         /// <summary>
         /// THe last known location. Might be null in the beginning.
         /// </summary>
@@ -100,52 +90,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Location {
             MessagingCenter.Subscribe<App> (this, AppSharedData.WillWakeUpMessage, WillWakeUp);
         }
 
-
-        public async void CheckNearExhibit (ExhibitSet exhibitSet, Route route, GeoLocation gpsLocation)
-        {
-            double dist;
-            if (exhibitSet != null)
-            {
-                foreach (Exhibit e in exhibitSet)
-                {
-                    dist = MathUtil.CalculateDistance (e.Location, gpsLocation);
-                    if (dist < AppSharedData.ExhibitRadius)
-                    {
-                        var result =
-                            await
-                                IoCManager.Resolve<INavigationService> ()
-                                          .DisplayAlert ("Sehenwürdigkeit in der Nähe", "Möchten sie sich " + e.Name + " genauer ansehen", "Ja", "Nein");
-
-                        if (result)
-                        {
-                            await IoCManager.Resolve<INavigationService> ().PushAsync (new ExhibitDetailsViewModel (e.Id));
-                            break;
-                        }
-                    }
-                }
-            }
-            else if (route != null)
-            {
-                foreach (Waypoint r in route.Waypoints)
-                {
-                    dist = MathUtil.CalculateDistance (r.Location, gpsLocation);
-                    if (dist < AppSharedData.ExhibitRadius)
-                    {
-                        var result =
-                            await
-                                IoCManager.Resolve<INavigationService> ()
-                                          .DisplayAlert ("Sehenwürdigkeit in der Nähe", "Möchten sie sich " + r.Exhibit.Name + " genauer ansehen", "Ja", "Nein");
-
-                        if (result)
-                        {
-                            await IoCManager.Resolve<INavigationService> ().PushAsync (new ExhibitDetailsViewModel (r.Exhibit.Id));
-                            break;
-                        }
-                    }
-                }
-            }
-        }
-
+        
 
         public void AddLocationListener (ILocationListener listener)
         {
