@@ -20,6 +20,8 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Location;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using Plugin.Geolocator.Abstractions;
 using Xamarin.Forms;
 
@@ -175,7 +177,26 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             set { SetProperty (ref position, value); }
         }
 
-        
+		/// <summary>
+		/// Shows prompt to allow data download
+		/// </summary>
+		private async void AllowDataDownload()
+		{
+			if (Shared.Helpers.Settings.DownloadData == true)
+			{
+
+				string result =
+					await
+						Navigation.DisplayActionSheet(
+							Strings.DownloadData_Title,
+						Strings.DownloadData_Cancel, null, Strings.DownloadData_Accept, Strings.DownloadData_Always);
+				if (result == Strings.DownloadData_Always)
+				{
+					Shared.Helpers.Settings.DownloadData = true;
+				}	
+			}
+
+		}
 
     }
 }

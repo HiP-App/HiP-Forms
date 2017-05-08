@@ -82,7 +82,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views {
 		/// <summary>
 		/// Allow user to enable prompt for data download when data updated
 		/// </summary>
-		public bool DownloadData
+		public bool AlwaysDownloadData
 		{
 			get { return Settings.DownloadData; }
 			set
