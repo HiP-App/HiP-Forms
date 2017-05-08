@@ -76,25 +76,5 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages.AudioTranscript
             this.SetBinding(ActionProperty, "Action", BindingMode.TwoWay);
             Action = new SwitchTabAndScrollToSourceAction(this);
         }
-
-        void OnToolbarItemClicked(object sender, EventArgs args)
-        {
-            ContentPage subtitlesPage = this.FindByName<ContentPage>("SubtitlesPage");
-            ContentPage sourcesPage = this.FindByName<ContentPage>("SourcesPage");
-
-            if(Settings.AudioTranscriptFontSize == 14)
-            {
-                Settings.AudioTranscriptFontSize = 19; 
-            } else if (Settings.AudioTranscriptFontSize == 19)
-            {
-                Settings.AudioTranscriptFontSize = 24;
-            } else
-            {
-                Settings.AudioTranscriptFontSize = 14;
-            }
-
-            ((SubtitleViewModel)subtitlesPage.BindingContext).FontSize = Settings.AudioTranscriptFontSize;
-            ((SourcesViewModel)sourcesPage.BindingContext).FontSize = Settings.AudioTranscriptFontSize;
-        }
     }
 }

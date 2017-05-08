@@ -24,7 +24,7 @@
     <TabbedPage.ToolbarItems>
         <ToolbarItem Text="format_size"
                      Order="Primary"
-                     Clicked="OnToolbarItemClicked"
+                     Command="{Binding ChangeFontSizeCommand}"
                      Icon="ic_format_size.png" />
     </TabbedPage.ToolbarItems>
     <audioTranscript1:SubtitlesPage x:Name="SubtitlesPage" BindingContext="{Binding SubtitleTab}" Title="{helpers:Translate AudioTranscriptView_Subtitles_Title}"/>
