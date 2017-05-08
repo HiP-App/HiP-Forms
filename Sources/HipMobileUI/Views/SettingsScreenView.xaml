@@ -18,106 +18,118 @@
              xmlns:effects="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Effects;assembly=HipMobileUI"
              xmlns:helpers="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;assembly=HipMobileUI"
              x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Views.SettingsScreenView">
-  <ContentView.Resources>
-    <ResourceDictionary>
-      <!-- Defined Styles for Labels -->
-      <Style x:Key="TitleStyle" TargetType="Label">
-        <Setter Property="FontSize" Value="Small" />
-        <Setter Property="TextColor" Value="{StaticResource AccentColor}" />
-        <Setter Property="FontAttributes" Value="Bold"/>
-        <Setter Property="Grid.ColumnSpan" Value="2" />
-      </Style>
-      <Style x:Key="Title2Style" TargetType="Label">
-        <Setter Property="FontSize" Value="Medium" />
-        <Setter Property="TextColor" Value="Black" />
-        <Setter Property="Grid.ColumnSpan" Value="2" />
-      </Style>
-      <Style TargetType="Label">
-        <Setter Property="FontSize" Value="Small" />
-        <Setter Property="TextColor" Value="Gray" />
-      </Style>
-    <Style TargetType="BoxView">
-        <Setter Property="HeightRequest" Value="1" />
-        <Setter Property="BackgroundColor" Value="Gray" />
-        <Setter Property="HorizontalOptions" Value="FillAndExpand" />
-        <Setter Property="Grid.ColumnSpan" Value="2" />
-        <Setter Property="Margin" Value="0,5,0,5"/>
-      </Style>
-    </ResourceDictionary>
-  </ContentView.Resources>
-  <ContentView.Content>
-    <ScrollView>
-      <Grid HorizontalOptions="FillAndExpand" Padding="10">
-        <Grid.RowDefinitions>
-          <RowDefinition Height="Auto" />
-          <RowDefinition Height="Auto" />
-          <RowDefinition Height="Auto" />
-          <RowDefinition Height="Auto" />
-          <RowDefinition Height="Auto" />
-          <RowDefinition Height="Auto" />
-          <RowDefinition Height="Auto" />
-          <RowDefinition Height="Auto" />
-          <RowDefinition Height="Auto" />
-          <RowDefinition Height="Auto" />
-          <RowDefinition Height="Auto" />
-          <RowDefinition Height="Auto" />
-          <RowDefinition Height="Auto" />
-          <RowDefinition Height="Auto" />
-		  <RowDefinition Height="Auto" />			
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-          <ColumnDefinition Width="*" />
-          <ColumnDefinition Width="Auto" />
-        </Grid.ColumnDefinitions>
-          
-        <!-- Points of interests -->
-                <Label Style="{StaticResource TitleStyle}" Text="{helpers:Translate SettingsScreenView_POI_Title}" Grid.Row="0" Grid.Column="0" Margin="0,0,0,10"/>
-        <Label Style="{StaticResource Title2Style}" Text="{helpers:Translate SettingsScreenView_AutoSwitchPage_Title}" Grid.Row="1" Grid.Column="0"/>
-        <Label Text="{helpers:Translate SettingsScreenView_AutoSwitchPage_Text}" Grid.Row="2" Grid.Column="0"/>
-        <Switch IsToggled="{Binding AutoSwitchPage, Mode=TwoWay}" VerticalOptions="Center" Grid.Row="2" Grid.Column="1">
-          <Switch.Effects>
-            <effects:SwitchColorEffect Color="{StaticResource AccentColor}"/>
-          </Switch.Effects>
-        </Switch>
-          <BoxView Grid.Row="3" Grid.Column="0"/>
-        <Label Style="{StaticResource Title2Style}" Text="{helpers:Translate SettingsScreenView_AutoStartAudio_Title}" Grid.Row="4" Grid.Column="0"/>
-        <Label Text="{helpers:Translate SettingsScreenView_AutoStartAudio_Text}" HorizontalOptions="StartAndExpand" Grid.Row="5" Grid.Column="0"/>
-        <Switch IsToggled="{Binding AutoStartAudio, Mode=TwoWay}" HorizontalOptions="End" VerticalOptions="Center" Grid.Row="5" Grid.Column="1">
-          <Switch.Effects>
-            <effects:SwitchColorEffect Color="{StaticResource AccentColor}"/>
-          </Switch.Effects>
-        </Switch>
 
-          <!-- App Introduction -->
-        <Label Style="{StaticResource TitleStyle}" Text="{helpers:Translate SettingsScreenView_AppIntro_Title}" Grid.Row="6" Grid.Column="0" Margin="0,20,0,10"/>
-        <Label Text="{helpers:Translate SettingsScreenView_RepeatHintAudio_Text}" HorizontalOptions="StartAndExpand" Grid.Row="7" Grid.Column="0"/>
-        <Switch IsToggled="{Binding RepeatHintAudio, Mode=TwoWay}" HorizontalOptions="End" VerticalOptions="Center" Grid.Row="7" Grid.Column="1">
-          <Switch.Effects>
-            <effects:SwitchColorEffect Color="{StaticResource AccentColor}"/>
-          </Switch.Effects>
-        </Switch>
-          <BoxView Grid.Row="8" Grid.Column="0"/>
-        <Label Text="{helpers:Translate SettingsScreenView_RepeatHintAutoPageSwitch_Text}" HorizontalOptions="StartAndExpand" Grid.Row="9" Grid.Column="0"/>
-        <Switch IsToggled="{Binding RepeatHintAutoPageSwitch, Mode=TwoWay}" HorizontalOptions="End" VerticalOptions="Center" Grid.Row="9" Grid.Column="1">
-          <Switch.Effects>
-            <effects:SwitchColorEffect Color="{StaticResource AccentColor}"/>
-          </Switch.Effects>
-        </Switch>
-          <BoxView Grid.Row="12" Grid.Column="0"/>
-        <Label Text="{helpers:Translate SettingsScreenView_RepeatIntro_Text}" HorizontalOptions="StartAndExpand" Grid.Row="13" Grid.Column="0"/>
-        <Switch IsToggled="{Binding RepeatIntro, Mode=TwoWay}" HorizontalOptions="End" VerticalOptions="Center" Grid.Row="13" Grid.Column="1">
-          <Switch.Effects>
-            <effects:SwitchColorEffect Color="{StaticResource AccentColor}"/>
-          </Switch.Effects>
-        </Switch>
-		<BoxView Grid.Row="14" Grid.Column="0"/>		
-		<Label Text="{helpers:Translate SettingsScreenView_DownloadData_Text}" HorizontalOptions="StartAndExpand" Grid.Row="15" Grid.Column="0"/>
-        <Switch IsToggled="{Binding DownloadData, Mode=TwoWay}" HorizontalOptions="End" VerticalOptions="Center" Grid.Row="15" Grid.Column="1">
-          <Switch.Effects>
-            <effects:SwitchColorEffect Color="{StaticResource AccentColor}"/>
-          </Switch.Effects>
-        </Switch>		
-      </Grid>
-    </ScrollView>
-  </ContentView.Content>
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <!-- Defined Styles for Labels -->
+            <Style x:Key="TitleStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="Small" />
+                <Setter Property="TextColor" Value="{StaticResource AccentColor}" />
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="Grid.ColumnSpan" Value="2" />
+            </Style>
+            <Style x:Key="Title2Style" TargetType="Label">
+                <Setter Property="FontSize" Value="Medium" />
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="Grid.ColumnSpan" Value="2" />
+            </Style>
+            <Style TargetType="Label">
+                <Setter Property="FontSize" Value="Small" />
+                <Setter Property="TextColor" Value="Gray" />
+            </Style>
+            <Style TargetType="BoxView">
+                <Setter Property="HeightRequest" Value="1" />
+                <Setter Property="BackgroundColor" Value="Gray" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="Grid.ColumnSpan" Value="2" />
+                <Setter Property="Margin" Value="0,5,0,5"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <ContentView.Content>
+        <ScrollView>
+            <Grid HorizontalOptions="FillAndExpand" Padding="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <!-- Points of interests -->
+                <Label Style="{StaticResource TitleStyle}" Text="{helpers:Translate SettingsScreenView_POI_Title}" Grid.Row="0" Grid.Column="0" Margin="0,0,0,10"/>
+                <Label Style="{StaticResource Title2Style}" Text="{helpers:Translate SettingsScreenView_AutoSwitchPage_Title}" Grid.Row="1" Grid.Column="0"/>
+                <Label Text="{helpers:Translate SettingsScreenView_AutoSwitchPage_Text}" Grid.Row="2" Grid.Column="0"/>
+                <Switch IsToggled="{Binding AutoSwitchPage, Mode=TwoWay}" VerticalOptions="Center" Grid.Row="2" Grid.Column="1">
+                    <Switch.Effects>
+                        <effects:SwitchColorEffect Color="{StaticResource AccentColor}"/>
+                    </Switch.Effects>
+                </Switch>
+                <BoxView Grid.Row="3" Grid.Column="0"/>
+                <Label Style="{StaticResource Title2Style}" Text="{helpers:Translate SettingsScreenView_AutoStartAudio_Title}" Grid.Row="4" Grid.Column="0"/>
+                <Label Text="{helpers:Translate SettingsScreenView_AutoStartAudio_Text}" HorizontalOptions="StartAndExpand" Grid.Row="5" Grid.Column="0"/>
+                <Switch IsToggled="{Binding AutoStartAudio, Mode=TwoWay}" HorizontalOptions="End" VerticalOptions="Center" Grid.Row="5" Grid.Column="1">
+                    <Switch.Effects>
+                        <effects:SwitchColorEffect Color="{StaticResource AccentColor}"/>
+                    </Switch.Effects>
+                </Switch>
+
+                <!-- App Introduction -->
+                <Label Style="{StaticResource TitleStyle}" Text="{helpers:Translate SettingsScreenView_AppIntro_Title}" Grid.Row="6" Grid.Column="0" Margin="0,20,0,10"/>
+                <Label Text="{helpers:Translate SettingsScreenView_RepeatHintAudio_Text}" HorizontalOptions="StartAndExpand" Grid.Row="7" Grid.Column="0"/>
+                <Switch IsToggled="{Binding RepeatHintAudio, Mode=TwoWay}" HorizontalOptions="End" VerticalOptions="Center" Grid.Row="7" Grid.Column="1">
+                    <Switch.Effects>
+                        <effects:SwitchColorEffect Color="{StaticResource AccentColor}"/>
+                    </Switch.Effects>
+                </Switch>
+                <BoxView Grid.Row="8" Grid.Column="0"/>
+                <Label Text="{helpers:Translate SettingsScreenView_RepeatHintAutoPageSwitch_Text}" HorizontalOptions="StartAndExpand" Grid.Row="9" Grid.Column="0"/>
+                <Switch IsToggled="{Binding RepeatHintAutoPageSwitch, Mode=TwoWay}" HorizontalOptions="End" VerticalOptions="Center" Grid.Row="9" Grid.Column="1">
+                    <Switch.Effects>
+                        <effects:SwitchColorEffect Color="{StaticResource AccentColor}"/>
+                    </Switch.Effects>
+                </Switch>
+                <BoxView Grid.Row="12" Grid.Column="0"/>
+                <Label Text="{helpers:Translate SettingsScreenView_RepeatIntro_Text}" HorizontalOptions="StartAndExpand" Grid.Row="13" Grid.Column="0"/>
+                <Switch IsToggled="{Binding RepeatIntro, Mode=TwoWay}" HorizontalOptions="End" VerticalOptions="Center" Grid.Row="13" Grid.Column="1">
+                    <Switch.Effects>
+                        <effects:SwitchColorEffect Color="{StaticResource AccentColor}"/>
+                    </Switch.Effects>
+                </Switch>
+                <BoxView Grid.Row="14" Grid.Column="0"/>
+                <Label Text="{helpers:Translate SettingsScreenView_DownloadData_Text}" HorizontalOptions="StartAndExpand" Grid.Row="15" Grid.Column="0"/>
+                <Switch IsToggled="{Binding DownloadData, Mode=TwoWay}" HorizontalOptions="End" VerticalOptions="Center" Grid.Row="15" Grid.Column="1">
+                    <Switch.Effects>
+                        <effects:SwitchColorEffect Color="{StaticResource AccentColor}"/>
+                    </Switch.Effects>
+                </Switch>
+                <!-- Data -->
+                <Label Style="{StaticResource TitleStyle}" Text="{helpers:Translate SettingsScreenView_Data_Title}" Grid.Row="16" Grid.Column="0" Margin="0,20,0,10"/>
+                <Label Text="{helpers:Translate SettingsScreenView_WifiOnly_Text}" HorizontalOptions="StartAndExpand" Grid.Row="17" Grid.Column="0"/>
+                <Switch IsToggled="{Binding WifiOnly, Mode=TwoWay}" HorizontalOptions="End" VerticalOptions="Center" Grid.Row="17" Grid.Column="1">
+                    <Switch.Effects>
+                        <effects:SwitchColorEffect Color="{StaticResource AccentColor}"/>
+                    </Switch.Effects>
+                </Switch>
+            </Grid>
+        </ScrollView>
+    </ContentView.Content>
 </ContentView>

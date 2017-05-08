@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -395,7 +395,7 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
     <value>Wenn aktiviert, wird die App Einführung beim nächsten Start erneut angezeigt</value>
   </data>
   <data name="SettingsScreenView_DownloadData_Text" xml:space="preserve">
-    <value>Wenn aktiviert, fordert den Benutzer auf, wenn aktualisierte Daten heruntergeladen werden</value>
+    <value>Benachrichtige den Nutzer, wenn ein Datenupdate verfügbar ist</value>
   </data>
   <data name="ExhibitDetailsPage_AudioToolbar" xml:space="preserve">
     <value>Audio Player</value>
@@ -517,4 +517,10 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   <data name="DownloadData_Always" xml:space="preserve">
     <value>Immer Ja</value>
   </data>	
+  <data name="SettingsScreenView_Data_Title" xml:space="preserve">
+    <value>Daten</value>
+  </data>
+  <data name="SettingsScreenView_WifiOnly_Text" xml:space="preserve">
+    <value>Wenn aktiviert, werden Daten nur über Wlan heruntergeladen</value>
+  </data>
 </root>

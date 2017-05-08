@@ -118,6 +118,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
             get { return AppSettings.GetValueOrDefault<bool>(RepeatIntroKey, RepeatIntroDefault); }
             set { AppSettings.AddOrUpdateValue<bool>(RepeatIntroKey, value); }
         }
+
 		/// <summary>
 		/// Allow user to enable prompt for data download when data updated
 		/// </summary>
@@ -129,6 +130,20 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
 			get { return AppSettings.GetValueOrDefault<bool>(DownloadDataKey, DownloadDataDefault); }
 			set { AppSettings.AddOrUpdateValue<bool>(DownloadDataKey, value); }
 		}
+
+
+        /// <summary>
+        /// Download data only over wifi
+        /// </summary>
+        private const string WifiOnlyKey = "wifi_only_key";
+        private static readonly bool WifiOnlyDefault = true;
+
+        public static bool WifiOnly
+        {
+            get { return AppSettings.GetValueOrDefault<bool>(WifiOnlyKey, WifiOnlyDefault); }
+            set { AppSettings.AddOrUpdateValue<bool>(WifiOnlyKey, value); }
+        }
+
         #endregion
     }
 }

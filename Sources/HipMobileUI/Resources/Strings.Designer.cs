@@ -814,5 +814,17 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
                 return ResourceManager.GetString("DownloadData_Always", resourceCulture);
             }
         }
+        
+        public static string SettingsScreenView_Data_Title {
+            get {
+                return ResourceManager.GetString("SettingsScreenView_Data_Title", resourceCulture);
+            }
+        }
+        
+        public static string SettingsScreenView_WifiOnly_Text {
+            get {
+                return ResourceManager.GetString("SettingsScreenView_WifiOnly_Text", resourceCulture);
+            }
+        }
     }
 }

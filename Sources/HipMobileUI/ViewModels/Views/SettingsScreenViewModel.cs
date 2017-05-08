@@ -1,4 +1,4 @@
-﻿// Copyright (C) 2017 History in Paderborn App - Universität Paderborn
+// Copyright (C) 2017 History in Paderborn App - Universität Paderborn
 //  
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -78,6 +78,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views {
                 OnPropertyChanged ();
             }
         }
+
 		/// <summary>
 		/// Allow user to enable prompt for data download when data updated
 		/// </summary>
@@ -90,5 +91,17 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views {
 				OnPropertyChanged();
 			}
 		}
+
+
+        public bool WifiOnly
+        {
+            get { return Settings.WifiOnly; }
+            set
+            {
+                Settings.WifiOnly = value;
+                OnPropertyChanged();
+            }
+        }
+
     }
 }

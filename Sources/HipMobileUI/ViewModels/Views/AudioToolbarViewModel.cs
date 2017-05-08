@@ -42,6 +42,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views {
         /// will be played automatically
         /// </summary>
         /// <param name="automaticallyStartNewAudio"></param>
+        /// <param name="exhibitTitle"></param>
         public AudioToolbarViewModel (bool automaticallyStartNewAudio, string exhibitTitle) 
         {
             ExhibitTitle = exhibitTitle;
@@ -52,6 +53,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views {
             AudioPlayer = IoCManager.Resolve<IAudioPlayer> ();
             AudioPlayer.AudioCompleted += AudioPlayerOnAudioCompleted;
             AudioPlayer.IsPlayingChanged += AudioPlayerOnIsPlayingChanged;
+
+            AudioPlayer.AudioTitle = exhibitTitle;
 
             this.automaticallyStartNewAudio = automaticallyStartNewAudio;
         }
