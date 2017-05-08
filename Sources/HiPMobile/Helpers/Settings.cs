@@ -127,6 +127,18 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
             get { return AppSettings.GetValueOrDefault<double>(AudioTranscriptFontSizeKey, AudioTranscriptFontSizeDefault); }
             set { AppSettings.AddOrUpdateValue<double>(AudioTranscriptFontSizeKey, value); }
         }
+
+        /// <summary>
+        /// Download data only over wifi
+        /// </summary>
+        private const string WifiOnlyKey = "wifi_only_key";
+        private static readonly bool WifiOnlyDefault = true;
+
+        public static bool WifiOnly
+        {
+            get { return AppSettings.GetValueOrDefault<bool>(WifiOnlyKey, WifiOnlyDefault); }
+            set { AppSettings.AddOrUpdateValue<bool>(WifiOnlyKey, value); }
+        }
         #endregion
     }
 }

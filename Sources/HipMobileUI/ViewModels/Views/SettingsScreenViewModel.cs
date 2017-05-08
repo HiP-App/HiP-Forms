@@ -78,5 +78,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views {
                 OnPropertyChanged ();
             }
         }
+
+        public bool WifiOnly
+        {
+            get { return Settings.WifiOnly; }
+            set
+            {
+                Settings.WifiOnly = value;
+                OnPropertyChanged();
+            }
+        }
     }
 }
