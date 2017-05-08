@@ -17,7 +17,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
     {
     class ExhibitPreviewViewModel : NavigationViewModel
         {
-            public ExhibitPreviewViewModel (Exhibit exhibit, INearbyExhibitManager exhibitManager)
+            public ExhibitPreviewViewModel (Exhibit exhibit, INearbyExhibitManager exManager)
             {
             this.exhibit = exhibit;
             Question = Strings.ExhibitOrRouteNearby_Question_Part1 + " \"" + this.exhibit.Name + "\" " + Strings.ExhibitOrRouteNearby_Question_Part2;
@@ -27,7 +27,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             Confirm = new Command (Accept);
             Decline = new Command (Deny);
 
-            exhibitManager = exhibitManager;
+            exhibitManager = exManager;
             ExhibitName = exhibit.Name;
             }
 
