@@ -14,6 +14,8 @@
 
 using System.Collections.Generic;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.InteractiveSources;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
+using Xamarin.Forms;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages.AudioTranscript
 {
@@ -30,7 +32,35 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages.AudioTranscri
 
             SourcesTab = new SourcesViewModel (references);
             SubtitleTab = new SubtitleViewModel (formatedText, references, GetAction);
+
+            changeFontSize = new Command (ChangeFontSize);
         }
+
+        private void ChangeFontSize ()
+        {
+            if(Settings.AudioTranscriptFontSize == 14)
+            {
+                Settings.AudioTranscriptFontSize = 19;
+            } else if (Settings.AudioTranscriptFontSize == 19)
+            {
+                Settings.AudioTranscriptFontSize = 24;
+            }
+            else
+            {
+                Settings.AudioTranscriptFontSize = 14;
+            }
+
+            SubtitleTab.FontSize = Settings.AudioTranscriptFontSize;
+            SourcesTab.FontSize = Settings.AudioTranscriptFontSize;
+        }
+
+        private Command changeFontSize;
+
+        public Command ChangeFontSizeCommand {
+            get { return changeFontSize; }
+            set { SetProperty (ref changeFontSize, value); }
+        }
+
 
         public IInteractiveSourceAction GetAction() { return Action; }
 
@@ -53,6 +83,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages.AudioTranscri
         {
             get { return action; }
             set { SetProperty(ref action, value); }
+        }
+
+        private double fontSize;
+        public double FontSize
+        {
+            get { return Settings.AudioTranscriptFontSize; }
+            set { SetProperty(ref fontSize, value); }
         }
     }
 }

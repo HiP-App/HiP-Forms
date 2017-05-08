@@ -14,6 +14,7 @@
 
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages.AudioTranscript;
+using System;
 using Xamarin.Forms;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages.AudioTranscript
@@ -23,6 +24,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages.AudioTranscript
         public SourcesPage()
         {
             InitializeComponent();
+        }
+
+        void OnViewCellTapped(object sender, EventArgs e)
+        {
+            ViewCell viewCell = (ViewCell)sender;
+            viewCell.ForceUpdateSize();
         }
     }
 }

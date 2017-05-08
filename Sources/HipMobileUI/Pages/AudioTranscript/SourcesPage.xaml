@@ -21,10 +21,10 @@
     <ListView ItemsSource="{Binding References}" HasUnevenRows="true">
       <ListView.ItemTemplate>
         <DataTemplate>
-          <ViewCell>
+          <ViewCell Tapped="OnViewCellTapped">
             <StackLayout Padding="15,0" HorizontalOptions="StartAndExpand" Orientation="Vertical">
-              <Label x:Name="referenceTitle" Text="{Binding SubstituteText}" TextColor="{StaticResource AccentColor}"/>
-              <Label Text="{Binding Text}" VerticalTextAlignment="Center" FontSize="Small"/>
+              <Label x:Name="referenceTitle" Text="{Binding SubstituteText}" TextColor="{StaticResource AccentColor}" FontSize="{Binding BindingContext.FontSize, Source={x:Reference SourcesPage}}"/>
+              <Label Text="{Binding Text}" VerticalTextAlignment="Center" FontSize="{Binding BindingContext.FontSize, Source={x:Reference SourcesPage}}"/>
             </StackLayout>
           </ViewCell>
         </DataTemplate>

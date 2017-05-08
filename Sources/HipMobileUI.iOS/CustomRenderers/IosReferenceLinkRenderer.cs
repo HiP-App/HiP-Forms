@@ -16,6 +16,8 @@ using Foundation;
 using PaderbornUniversity.SILab.Hip.Mobile.Ios.CustomRenderers;
 using PaderbornUniversity.SILab.Hip.Mobile.Ios.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Views;
+using System;
+using System.ComponentModel;
 using UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
@@ -25,6 +27,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.CustomRenderers {
     public class IosReferenceLinkRenderer : ViewRenderer
     {
         private ReferenceLink referenceLink;
+        private UITextView textView;
 
         protected override void OnElementChanged(ElementChangedEventArgs<View> elementChangedEventArgs)
         {
@@ -33,10 +36,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.CustomRenderers {
             if (elementChangedEventArgs.NewElement != null)
             {
                 referenceLink = (ReferenceLink)elementChangedEventArgs.NewElement;
+                
+
                 if (referenceLink == null)
                 {
                     return;
                 }
+                referenceLink.PropertyChanged += OnPropertyChanged;
+
+                
                 NSAttributedString attributedString = null;
                 var htmlData = NSData.FromString(referenceLink.HtmlText);
 
@@ -49,16 +57,29 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.CustomRenderers {
 
                 var action = referenceLink.Action;
 
-                var textView = new UITextView();
+                textView = new UITextView();
                 textView.TextColor = UIColor.Gray;
                 textView.ApplySubtitlesLinks(action(), referenceLink.Sources, attributedString);
                 textView.Editable = false;
                 textView.ScrollEnabled = false;
-                textView.Font = UIFont.SystemFontOfSize(14);
-                
+                textView.Font = UIFont.SystemFontOfSize((nfloat)referenceLink.FontSize);
+
                 // replace old Label with new TextView
                 SetNativeControl(textView);
+                
+            }
+
+            
+        }
+
+        private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
+        {
+            if(args.PropertyName == "FontSize")
+            {
+                textView.Font = UIFont.SystemFontOfSize((nfloat)referenceLink.FontSize);
             }
         }
+
+        
     }
 }
