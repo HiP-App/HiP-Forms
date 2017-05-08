@@ -27,7 +27,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             Confirm = new Command (Accept);
             Decline = new Command (Deny);
 
-            ExhibitManager = exhibitManager;
+            exhibitManager = exhibitManager;
             ExhibitName = exhibit.Name;
             }
 
