@@ -41,13 +41,26 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
                     this.Grid.ColumnDefinitions.Clear();
 
                     this.Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.5, GridUnitType.Star) });
-                    this.Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.5, GridUnitType.Star) });
-                    this.Grid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(1, GridUnitType.Star) });
+                    if (Label.IsVisible)
+                    {
+                        // hide empty list and show hint label
+                        this.Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0, GridUnitType.Star) });
+                        this.Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.5, GridUnitType.Star) });
+                    }
+                    else
+                    {
+                        // show list and hide hint label
+                        this.Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.5, GridUnitType.Star) });
+                        this.Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0, GridUnitType.Star) });
+                    }
+                    this.Grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
 
                     Grid.SetRow(Map, 0);
                     Grid.SetRow(List, 1);
+                    Grid.SetRow(Label, 2);
                     Grid.SetColumn(Map, 0);
                     Grid.SetColumn(List, 0);
+                    Grid.SetColumn(Label, 0);
 
                     deviceOrientation = DeviceOrientation.Portrait;
                 }
@@ -61,13 +74,26 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
                     this.Grid.ColumnDefinitions.Clear();
 
                     this.Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
-                    this.Grid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(0.5, GridUnitType.Star) });
-                    this.Grid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(0.5, GridUnitType.Star) });
+                    this.Grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(0.5, GridUnitType.Star) });
+                    if (Label.IsVisible)
+                    {
+                        // hide empty list and show hint label
+                        this.Grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(0, GridUnitType.Star) });
+                        this.Grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(0.5, GridUnitType.Star) });
+                    }
+                    else
+                    {
+                        // show list and hide hint label
+                        this.Grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(0.5, GridUnitType.Star) });
+                        this.Grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(0, GridUnitType.Star) });
+                    }
 
                     Grid.SetRow(Map, 0);
                     Grid.SetRow(List, 0);
+                    Grid.SetRow(Label, 0);
                     Grid.SetColumn(Map, 0);
                     Grid.SetColumn(List, 1);
+                    Grid.SetColumn(Label, 2);
 
                     deviceOrientation = DeviceOrientation.Landscape;
                 }

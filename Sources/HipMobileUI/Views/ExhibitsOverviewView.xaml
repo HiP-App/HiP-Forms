@@ -33,10 +33,9 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="0.5*" />
                 <RowDefinition Height="0.5*" />
+                <RowDefinition Height="0*" />
             </Grid.RowDefinitions>
-          <map:OsmMap x:Name="Map" ExhibitSet="{Binding DisplayedExhibitSet}" GpsLocation="{Binding Position, Converter={StaticResource PositionGeoLocationConverter}}" ShowDetailsRoute="False"/>
-            <Label Grid.Row="1" Text="{helpers:Translate ExhibitsOverviewView_EmptyList}" IsVisible="{Binding ExhibitsList, Converter={StaticResource EmptyListConverter}}"
-                   TextColor="Gray" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+            <map:OsmMap Grid.Row="0" x:Name="Map" ExhibitSet="{Binding DisplayedExhibitSet}" GpsLocation="{Binding Position, Converter={StaticResource PositionGeoLocationConverter}}" ShowDetailsRoute="False"/>
             <ListView Grid.Row="1" ItemsSource="{Binding ExhibitsList}" HasUnevenRows="True" x:Name="List">
                 <ListView.Behaviors>
                     <behaviors:ListViewTappedItemBehavior Command="{Binding ItemTappedCommand}"
@@ -69,6 +68,8 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+            <Label x:Name="Label" Grid.Row="2" Text="{helpers:Translate ExhibitsOverviewView_EmptyList}" IsVisible="{Binding ExhibitsList, Converter={StaticResource EmptyListConverter}}"
+                   TextColor="Gray" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
         </Grid>
     </ContentView.Content>
 </ContentView>
