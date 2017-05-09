@@ -61,6 +61,8 @@
     <Compile Include="BusinessLayer\Managers\ExhibitManager.cs" />
     <Compile Include="BusinessLayer\Managers\PageManager.cs" />
     <Compile Include="BusinessLayer\Managers\RouteManager.cs" />
+    <Compile Include="BusinessLayer\Models\DtoToModelConverters\DtoToModelConverter.cs" />
+    <Compile Include="BusinessLayer\Models\DtoToModelConverters\ExhibitConverter.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiAccess.cs" />
     <Compile Include="ServiceAccessLayer\IRestQueryableContent.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiDtos\ExhibitDto.cs" />
