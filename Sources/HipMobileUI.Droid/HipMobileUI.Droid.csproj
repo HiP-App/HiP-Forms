@@ -384,6 +384,11 @@
     <AndroidResource Include="Resources\drawable-xhdpi\ic_more.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\ic_more.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\ic_more.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_format_size.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_format_size.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_format_size.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_format_size.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_format_size.png" />
     <AndroidResource Include="Resources\drawable-hdpi\ic_stop.png" />
     <AndroidResource Include="Resources\drawable-mdpi\ic_stop.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\ic_stop.png" />

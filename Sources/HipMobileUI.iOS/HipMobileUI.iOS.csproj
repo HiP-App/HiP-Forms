@@ -390,6 +390,9 @@
     <BundleResource Include="Resources\ic_more%403x.png" />
     <BundleResource Include="Resources\ic_more.png" />
     <BundleResource Include="Resources\ic_more%402x.png" />
+    <BundleResource Include="Resources\ic_format_size%403x.png" />
+    <BundleResource Include="Resources\ic_format_size.png" />
+    <BundleResource Include="Resources\ic_format_size%402x.png" />
     <BundleResource Include="Resources\ic_stop.png" />
     <BundleResource Include="Resources\ic_stop%402x.png" />
     <BundleResource Include="Resources\ic_stop%403x.png" />
