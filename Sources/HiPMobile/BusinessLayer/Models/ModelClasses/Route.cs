@@ -28,7 +28,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 	using System.Linq;
 	using System.Text;
 
-	public partial class Route : RealmObject, IIdentifiable, IRestQueryableContent
+	public partial class Route : RealmObject, IIdentifiable
 	{
 		//Attributes
 		[PrimaryKey]

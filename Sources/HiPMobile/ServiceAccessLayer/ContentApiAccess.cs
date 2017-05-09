@@ -13,28 +13,19 @@
 // limitations under the License.
 
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos;
 using Remotion.Linq.Parsing;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer {
-    public class ContentApiAccess {
+    public class ContentApiAccess : IContentApiAccess {
 
-        public TDtoObject GetFromContentApi<TModelObject, TDtoObject> (TModelObject oldObject) where TModelObject : IRestQueryableContent
-        {
-            return GetFromContentApi<TDtoObject> (oldObject.IdForRestApi);
-        }
-
-        public TDtoObject GetFromContentApi<TDtoObject>(long id)
-        {
-            //Build Url and Fetch from server
-
-            string json = "";
-            return JsonConvert.DeserializeObject<TDtoObject>(json);
-        }
+        private const string ServerUrl = "http://bla.blabla";
 
         /// <summary>
         /// Returns json string if webcall was successful (Status 200)
@@ -42,11 +33,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer {
         /// Throws a <see cref="NetworkAccessFailedException"/> if the server is not reachable
         /// Throws an <see cref="ArgumentException"/> if there is an unexpected response code
         /// </summary>
-        /// <param name="url">Http request url</param>
+        /// <param name="urlPath">Http request url path</param>
         /// <returns>Json result of the requested url</returns>
-        private async Task<string> GetFromUrl(string url)
+        public async Task<string> GetJsonFromUrl(string urlPath)
         {
-            var request = (HttpWebRequest)WebRequest.Create(url);
+            string fullUrl = ServerUrl + urlPath;
+            var request = (HttpWebRequest)WebRequest.Create(fullUrl);
             try
             {
                 var response = (HttpWebResponse)await request.GetResponseAsync ();
@@ -77,6 +69,5 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer {
                 }
             }
         }
-
     }
 }

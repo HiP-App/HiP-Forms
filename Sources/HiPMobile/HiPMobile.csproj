@@ -49,6 +49,7 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="BusinessLayer\ContentApiFetchers\BaseDataFetcher.cs" />
     <Compile Include="BusinessLayer\InteractiveSources\ConsecutiveNumberAndConstantInteractiveSourceSubstitute.cs" />
     <Compile Include="BusinessLayer\InteractiveSources\ConsecutiveNumberInteractiveSourceSubstitute.cs" />
     <Compile Include="BusinessLayer\InteractiveSources\ConstantInteractiveSourceSubstitute.cs" />
@@ -63,8 +64,12 @@
     <Compile Include="BusinessLayer\Managers\RouteManager.cs" />
     <Compile Include="BusinessLayer\Models\DtoToModelConverters\DtoToModelConverter.cs" />
     <Compile Include="BusinessLayer\Models\DtoToModelConverters\ExhibitConverter.cs" />
+    <Compile Include="Helpers\UriQueryBuilder.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiAccess.cs" />
-    <Compile Include="ServiceAccessLayer\IRestQueryableContent.cs" />
+    <Compile Include="ServiceAccessLayer\ContentApiAccesses\ExhibitsApiAccess.cs" />
+    <Compile Include="ServiceAccessLayer\ContentApiAccesses\IExhibitsApiAccess.cs" />
+    <Compile Include="ServiceAccessLayer\ContentApiDtos\FileDto.cs" />
+    <Compile Include="ServiceAccessLayer\IContentApiAccess.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiDtos\ExhibitDto.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiDtos\ExhibitsDto.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiDtos\MediaDto.cs" />
@@ -439,6 +444,7 @@
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\..\packages\Fody.1.29.4\build\portable-net+sl+win+wpa+wp\Fody.targets" Condition="Exists('..\..\packages\Fody.1.29.4\build\portable-net+sl+win+wpa+wp\Fody.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

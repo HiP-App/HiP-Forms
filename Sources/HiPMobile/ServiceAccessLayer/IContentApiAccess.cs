@@ -13,13 +13,12 @@
 // limitations under the License.
 
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos {
-    public class ExhibitsDto {
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer {
+    public interface IContentApiAccess {
 
-        public int Total { get; set; }
-
-        public IList<ExhibitDto> Items { get; set; }
+        Task<string> GetJsonFromUrl (string url);
 
     }
 }

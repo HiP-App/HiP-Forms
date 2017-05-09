@@ -11,15 +11,10 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-
-using System.Collections.Generic;
-
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos {
-    public class ExhibitsDto {
+    public class FileDto {
 
-        public int Total { get; set; }
-
-        public IList<ExhibitDto> Items { get; set; }
+        
 
     }
 }

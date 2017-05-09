@@ -11,12 +11,21 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer {
-    public interface IRestQueryableContent {
 
-        int IdForRestApi { get; set; }
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos;
 
-        long UnixTimestamp { get; set; } 
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses {
+    public interface IExhibitsApiAccess {
+
+        Task<ExhibitsDto> GetExhibits ();
+
+        Task<ExhibitsDto> GetExhibits(long timestamp);
+
+        Task<ExhibitsDto> GetExhibits(IList<int> includeOnly);
+
+        Task<ExhibitsDto> GetExhibits(long timestamp, IList<int> includeOnly);
 
     }
 }

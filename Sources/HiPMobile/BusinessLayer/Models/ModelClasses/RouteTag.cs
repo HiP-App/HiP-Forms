@@ -28,7 +28,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 	using System.Linq;
 	using System.Text;
 
-	public class RouteTag : RealmObject, IIdentifiable, IRestQueryableContent
+	public class RouteTag : RealmObject, IIdentifiable
 	{
 		//Attributes
 		[PrimaryKey]

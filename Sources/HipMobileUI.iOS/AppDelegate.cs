@@ -18,6 +18,8 @@ using HockeyApp.iOS;
 using PaderbornUniversity.SILab.Hip.Mobile.Ios.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.AudioPlayer;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Location;
@@ -56,6 +58,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios
             IoCManager.RegisterInstance(typeof(ILocationManager), new LocationManager());
             IoCManager.RegisterInstance (typeof(IKeyProvider), new IosKeyProvider ());
             IoCManager.RegisterInstance (typeof(IBarsColorsChanger), new IosBarsColorsChanger ());
+
+            //init api ioc classes
+            IoCManager.RegisterInstance(typeof(IContentApiAccess), new ContentApiAccess());
+            IoCManager.RegisterInstance(typeof(IExhibitsApiAccess), new ExhibitsApiAccess());
 
             // init crash manager
             var manager = BITHockeyManager.SharedHockeyManager;
