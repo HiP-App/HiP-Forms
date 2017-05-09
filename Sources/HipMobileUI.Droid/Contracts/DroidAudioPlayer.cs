@@ -15,26 +15,38 @@
 using System;
 using System.IO;
 using System.Threading;
+using Android.App;
+using Android.Content;
 using Android.Media;
+using Android.OS;
+using Android.Support.V4.App;
 using Android.Util;
+using Android.Widget;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using Java.IO;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.AudioPlayer;
+using Plugin.CurrentActivity;
 using File = Java.IO.File;
 using IOException = Java.IO.IOException;
 using Stream = Android.Media.Stream;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Contracts {
-    internal class DroidAudioPlayer : IAudioPlayer {
+namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Contracts
+{
+
+    [BroadcastReceiver(Enabled = true)]
+    [IntentFilter(new[] { PlayPauseAction, StopAction })]
+    internal class DroidAudioPlayer : BroadcastReceiver, IAudioPlayer
+    {
 
         private readonly MediaPlayer mediaPlayer;
         private Audio currentAudio;
         private Timer progressUpdateTimer;
 
-        public DroidAudioPlayer ()
+        public DroidAudioPlayer()
         {
-            mediaPlayer = new MediaPlayer ();
-            mediaPlayer.SetAudioStreamType (Stream.Music);
+            mediaPlayer = new MediaPlayer();
+            mediaPlayer.SetAudioStreamType(Stream.Music);
             mediaPlayer.Completion += MediaPlayerOnCompletion;
         }
 
@@ -44,50 +56,119 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Contracts {
 
         public double MaximumProgress => mediaPlayer.Duration;
 
-        public Audio CurrentAudio {
+        public Audio CurrentAudio
+        {
             get { return currentAudio; }
-            set {
+            set
+            {
                 currentAudio = value;
-                mediaPlayer.Stop ();
-                mediaPlayer.Reset ();
+                DismissNotification();
+                mediaPlayer.Stop();
+                mediaPlayer.Reset();
                 if (value != null)
                 {
-                    var path = CopyAudioToTemp (value);
-                    mediaPlayer.SetDataSource (path);
-                    mediaPlayer.Prepare ();
-                    ProgressChanged?.Invoke (0);
+                    var path = CopyAudioToTemp(value);
+                    mediaPlayer.SetDataSource(path);
+                    mediaPlayer.Prepare();
+                    ProgressChanged?.Invoke(0);
                 }
             }
         }
+
+        public string AudioTitle { private get; set; } 
 
         public event ProgressChangedDelegate ProgressChanged;
         public event IsPlayingDelegate IsPlayingChanged;
         public event AudioCompletedDelegate AudioCompleted;
 
-        public void Play ()
+        private static readonly int AudioPlayerNotificationId = 14041993;
+        private const string PlayPauseAction = "PaderbornUniversity.SILab.Hip.Mobile.Droid.PlayPause";
+        private const string StopAction = "PaderbornUniversity.SILab.Hip.Mobile.Droid.Stop";
+
+        private void ShowNotification(bool setPlayImage)
         {
-            mediaPlayer.Start ();
-            IsPlayingChanged?.Invoke (true);
-            StartUpdateTimer ();
+            var mainActivity = (MainActivity)CrossCurrentActivity.Current.Activity;
+
+            NotificationCompat.Builder builder = new NotificationCompat.Builder(mainActivity)
+                .SetOngoing(true)
+                .SetSmallIcon(Resource.Drawable.ic_headset_white);
+
+            var contentView = new RemoteViews(mainActivity.PackageName, Resource.Layout.audioNotificationView);
+
+            contentView.SetOnClickPendingIntent(Resource.Id.btnPlayPause, GetIntentForAction(PlayPauseAction));
+            contentView.SetOnClickPendingIntent(Resource.Id.btnStop, GetIntentForAction(StopAction));
+
+            contentView.SetTextViewText(Resource.Id.textViewTitle, AudioTitle);
+            contentView.SetImageViewResource(Resource.Id.btnPlayPause, setPlayImage ? Resource.Drawable.ic_pause : Resource.Drawable.ic_play_arrow);
+            contentView.SetProgressBar(Resource.Id.audio_progress_bar, mediaPlayer.Duration, mediaPlayer.CurrentPosition, false);
+
+            builder = builder.SetCustomContentView(contentView);
+
+            if (Build.VERSION.SdkInt >= BuildVersionCodes.Lollipop)
+            {
+                builder.SetVisibility((int)NotificationVisibility.Public);
+            }
+
+            // Finally, publish the notification
+            var notificationManager = (NotificationManager)mainActivity.GetSystemService(Context.NotificationService);
+            //notificationManager.Notify(AudioPlayerNotificationId, notificationBuilder.Build ());
+            notificationManager.Notify(AudioPlayerNotificationId, builder.Build());
         }
 
-        public void Pause ()
+        private PendingIntent GetIntentForAction(string action)
         {
-            mediaPlayer.Pause ();
+            var mainActivity = (MainActivity)CrossCurrentActivity.Current.Activity;
+
+            Intent intent = new Intent(mainActivity, typeof(DroidAudioPlayer));
+            intent.SetAction(action);
+            return PendingIntent.GetBroadcast(mainActivity, 0, intent, 0);
+        }
+
+        private void DismissNotification()
+        {
+            var mainActivity = (MainActivity)CrossCurrentActivity.Current.Activity;
+            var notificationManager = (NotificationManager)mainActivity.GetSystemService(Context.NotificationService);
+
+            notificationManager.Cancel(AudioPlayerNotificationId);
+        }
+
+        public void Play()
+        {
+            mediaPlayer.Start();
+            IsPlayingChanged?.Invoke(true);
+            StartUpdateTimer();
+
+            ShowNotification(true);
+        }
+
+        public void Pause()
+        {
+            mediaPlayer.Pause();
             IsPlayingChanged?.Invoke(false);
-            StopUpdateTimer ();
+            StopUpdateTimer();
+            ShowNotification(false);
         }
 
-        public void Stop ()
+        public void Stop()
         {
-            mediaPlayer.Stop ();
+            mediaPlayer.Stop();
+            StopUpdateTimer();
             IsPlayingChanged?.Invoke(false);
-            StopUpdateTimer ();
+            DismissNotification();
+            ProgressChanged?.Invoke(0);
+
+            if (currentAudio != null)
+            {
+                mediaPlayer.Reset();
+                var path = CopyAudioToTemp(currentAudio);
+                mediaPlayer.SetDataSource(path);
+                mediaPlayer.Prepare();
+            }
         }
 
-        public void SeekTo (double progress)
+        public void SeekTo(double progress)
         {
-            mediaPlayer.SeekTo (Convert.ToInt32 (progress));
+            mediaPlayer.SeekTo(Convert.ToInt32(progress));
         }
 
         /// <summary>
@@ -95,10 +176,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Contracts {
         /// </summary>
         /// <param name="sender">The sender of the event.</param>
         /// <param name="eventArgs">The event parameters</param>
-        private void MediaPlayerOnCompletion (object sender, EventArgs eventArgs)
+        private void MediaPlayerOnCompletion(object sender, EventArgs eventArgs)
         {
-            StopUpdateTimer ();
-            AudioCompleted?.Invoke ();
+            StopUpdateTimer();
+            AudioCompleted?.Invoke();
             IsPlayingChanged?.Invoke(IsPlaying);
         }
 
@@ -106,9 +187,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Contracts {
         /// Informs all listeners about an updated progress.
         /// </summary>
         /// <param name="state">Ignored.</param>
-        private void UpdateProgress (object state)
+        private void UpdateProgress(object state)
         {
-            ProgressChanged?.Invoke (CurrentProgress);
+            ProgressChanged?.Invoke(CurrentProgress);
+            ShowNotification(IsPlaying);
         }
 
         /// <summary>
@@ -116,21 +198,22 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Contracts {
         /// </summary>
         /// <param name="audio">The audio object which data should be copied.</param>
         /// <returns>The string to the file path.</returns>
-        private string CopyAudioToTemp (Audio audio)
+        private string CopyAudioToTemp(Audio audio)
         {
             var filepath = "";
             try
             {
-                var tempMp3 = File.CreateTempFile ("temp", ".mp3", new File (Path.GetTempPath ()));
-                tempMp3.DeleteOnExit ();
-                var fos = new FileOutputStream (tempMp3);
-                fos.Write (audio.Data);
-                fos.Close ();
+                string tempFileName = "temp_" + DateTime.Now.ToString ("yyyy_MM_dd_HH_mm_ss");
+                var tempMp3 = File.CreateTempFile(tempFileName, ".mp3", new File(Path.GetTempPath()));
+                tempMp3.DeleteOnExit();
+                var fos = new FileOutputStream(tempMp3);
+                fos.Write(audio.Data);
+                fos.Close();
                 filepath = tempMp3.AbsolutePath;
             }
             catch (IOException ioe)
             {
-                Log.Warn ("AndroidMediaPlayer", "Could not write audio to temp file, exception message:" + ioe.Message);
+                Log.Warn("AndroidMediaPlayer", "Could not write audio to temp file, exception message:" + ioe.Message);
             }
             return filepath;
         }
@@ -138,18 +221,39 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Contracts {
         /// <summary>
         /// Starts a timer that fires an progress update event at a fixed rate.
         /// </summary>
-        private void StartUpdateTimer ()
+        private void StartUpdateTimer()
         {
-            progressUpdateTimer = new Timer (UpdateProgress, null, 0, 16);
+            progressUpdateTimer = new Timer(UpdateProgress, null, 0, 16);
         }
 
         /// <summary>
         /// Stops the timer sending progress updates.
         /// </summary>
-        private void StopUpdateTimer ()
+        private void StopUpdateTimer()
         {
-            progressUpdateTimer?.Dispose ();
+            progressUpdateTimer?.Dispose();
         }
 
+        public override void OnReceive(Context context, Intent intent)
+        {
+            var player = IoCManager.Resolve<IAudioPlayer>();
+
+            switch (intent.Action)
+            {
+                case PlayPauseAction:
+                    if (player.IsPlaying)
+                    {
+                        player.Pause();
+                    }
+                    else
+                    {
+                        player.Play();
+                    }
+                    break;
+                case StopAction:
+                    player.Stop();
+                    break;
+            }
+        }
     }
 }

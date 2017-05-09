@@ -390,6 +390,18 @@
     <BundleResource Include="Resources\ic_more%403x.png" />
     <BundleResource Include="Resources\ic_more.png" />
     <BundleResource Include="Resources\ic_more%402x.png" />
+    <BundleResource Include="Resources\ic_format_size%403x.png" />
+    <BundleResource Include="Resources\ic_format_size.png" />
+    <BundleResource Include="Resources\ic_format_size%402x.png" />
+    <BundleResource Include="Resources\ic_stop.png" />
+    <BundleResource Include="Resources\ic_stop%402x.png" />
+    <BundleResource Include="Resources\ic_stop%403x.png" />
+    <BundleResource Include="Resources\ic_play_arrow.png" />
+    <BundleResource Include="Resources\ic_play_arrow%402x.png" />
+    <BundleResource Include="Resources\ic_play_arrow%403x.png" />
+    <BundleResource Include="Resources\ic_pause.png" />
+    <BundleResource Include="Resources\ic_pause%402x.png" />
+    <BundleResource Include="Resources\ic_pause%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Resources\MapAnnotations.xcassets\AppIcons.appiconset\Contents.json">

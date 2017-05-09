@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System.ComponentModel;
 using Android.OS;
 using Android.Text;
 using Android.Text.Method;
@@ -29,6 +30,16 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.CustomRenderers
     {
         private ReferenceLink referenceLink;
 
+        protected override void OnElementPropertyChanged (object sender, PropertyChangedEventArgs e)
+        {
+            base.OnElementPropertyChanged (sender, e);
+
+            if (referenceLink != null)
+            {
+                UpdateUi();
+            }
+        }
+
         protected override void OnElementChanged(ElementChangedEventArgs<Label> elementChangedEventArgs)
         {
             base.OnElementChanged(elementChangedEventArgs);
@@ -40,33 +51,38 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.CustomRenderers
                 {
                     return;
                 }
-                var srcList = referenceLink.Sources;
-                var action = referenceLink.Action;
-                var spannableTextBuilder = new SpannableTextBuilder();
-
-                ISpanned spannedText;
-
-                string html = new HtmlTagHelper().FormatAdditionalTags(referenceLink.HtmlText);
-
-                if (Build.VERSION.SdkInt >= BuildVersionCodes.N)
-                {
-                    spannedText = Html.FromHtml(html, FromHtmlOptions.ModeLegacy);
-                }
-                else
-                {
-#pragma warning disable 618
-                    spannedText = Html.FromHtml(html);
-#pragma warning restore 618
-                }
-
-                Control.TextFormatted = spannableTextBuilder.CreateSubtitlesText(action(), spannedText, srcList);
-
-                // Make links clickable
-                Control.MovementMethod = LinkMovementMethod.Instance;
-                Control.AutoLinkMask = MatchOptions.All;
-                Control.Clickable = true;
-                Control.LinksClickable = true;
+                UpdateUi ();
             }
+        }
+
+        private void UpdateUi ()
+        {
+            var srcList = referenceLink.Sources;
+            var action = referenceLink.Action;
+            var spannableTextBuilder = new SpannableTextBuilder();
+
+            ISpanned spannedText;
+
+            string html = new HtmlTagHelper().FormatAdditionalTags(referenceLink.HtmlText);
+
+            if (Build.VERSION.SdkInt >= BuildVersionCodes.N)
+            {
+                spannedText = Html.FromHtml(html, FromHtmlOptions.ModeLegacy);
+            }
+            else
+            {
+#pragma warning disable 618
+                spannedText = Html.FromHtml(html);
+#pragma warning restore 618
+            }
+
+            Control.TextFormatted = spannableTextBuilder.CreateSubtitlesText(action(), spannedText, srcList);
+
+            // Make links clickable
+            Control.MovementMethod = LinkMovementMethod.Instance;
+            Control.AutoLinkMask = MatchOptions.All;
+            Control.Clickable = true;
+            Control.LinksClickable = true;
         }
     }
 }

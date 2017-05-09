@@ -118,6 +118,43 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
             get { return AppSettings.GetValueOrDefault<bool>(RepeatIntroKey, RepeatIntroDefault); }
             set { AppSettings.AddOrUpdateValue<bool>(RepeatIntroKey, value); }
         }
+
+		    /// <summary>
+		    /// Always download new data if available
+		    /// </summary>
+		    private const string DownloadDataKey = "download_data_key";
+		    private static readonly bool DownloadDataDefault = true;
+
+		    public static bool AlwaysDownloadData
+		    {
+			    get { return AppSettings.GetValueOrDefault<bool>(DownloadDataKey, DownloadDataDefault); }
+			    set { AppSettings.AddOrUpdateValue<bool>(DownloadDataKey, value); }
+		    }
+
+        /// <summary>
+		    /// Font size used for the audio transcripts
+		    /// </summary>
+        private const string AudioTranscriptFontSizeKey = "audio_transcript_font_size_key";
+        private static readonly double AudioTranscriptFontSizeDefault = 19;
+
+        public static double AudioTranscriptFontSize
+        {
+            get { return AppSettings.GetValueOrDefault<double>(AudioTranscriptFontSizeKey, AudioTranscriptFontSizeDefault); }
+            set { AppSettings.AddOrUpdateValue<double>(AudioTranscriptFontSizeKey, value); }
+        }
+
+        /// <summary>
+        /// Download data only over wifi
+        /// </summary>
+        private const string WifiOnlyKey = "wifi_only_key";
+        private static readonly bool WifiOnlyDefault = true;
+
+        public static bool WifiOnly
+        {
+            get { return AppSettings.GetValueOrDefault<bool>(WifiOnlyKey, WifiOnlyDefault); }
+            set { AppSettings.AddOrUpdateValue<bool>(WifiOnlyKey, value); }
+        }
+
         #endregion
     }
 }

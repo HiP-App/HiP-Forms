@@ -116,6 +116,42 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ja.
+        /// </summary>
+        public static string DownloadData_Accept {
+            get {
+                return ResourceManager.GetString("DownloadData_Accept", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Immer.
+        /// </summary>
+        public static string DownloadData_Always {
+            get {
+                return ResourceManager.GetString("DownloadData_Always", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nein.
+        /// </summary>
+        public static string DownloadData_Cancel {
+            get {
+                return ResourceManager.GetString("DownloadData_Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Neue Daten herunterladen?.
+        /// </summary>
+        public static string DownloadData_Title {
+            get {
+                return ResourceManager.GetString("DownloadData_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Zusätzliche Informationen.
         /// </summary>
         public static string ExhibitDetailsPage_AdditionalInformation {
@@ -1031,6 +1067,24 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         public static string SettingsScreenView_FurtherSettings_Title {
             get {
                 return ResourceManager.GetString("SettingsScreenView_FurtherSettings_Title", resourceCulture);
+			}
+		}
+		
+		/// <summary>
+        ///   Looks up a localized string similar to Daten.
+        /// </summary>
+        public static string SettingsScreenView_Data_Title {
+            get {
+                return ResourceManager.GetString("SettingsScreenView_Data_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wenn aktiviert, werden Datenupdates automatisch heruntergeladen.
+        /// </summary>
+        public static string SettingsScreenView_DownloadData_Text {
+            get {
+                return ResourceManager.GetString("SettingsScreenView_DownloadData_Text", resourceCulture);
             }
         }
         
@@ -1130,6 +1184,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         public static string SettingsScreenView_RepeatIntro_Text {
             get {
                 return ResourceManager.GetString("SettingsScreenView_RepeatIntro_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wenn aktiviert, werden Daten nur über Wlan heruntergeladen.
+        /// </summary>
+        public static string SettingsScreenView_WifiOnly_Text {
+            get {
+                return ResourceManager.GetString("SettingsScreenView_WifiOnly_Text", resourceCulture);
             }
         }
         

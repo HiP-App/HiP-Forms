@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
 // Copyright (C) 2017 History in Paderborn App - Universität Paderborn
 //
@@ -63,6 +63,10 @@
           <RowDefinition Height="Auto" />
           <RowDefinition Height="Auto" />
           <RowDefinition Height="Auto" />
+		  <RowDefinition Height="Auto" />
+		  <RowDefinition Height="Auto" />
+		  <RowDefinition Height="Auto" />
+		  <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
           <ColumnDefinition Width="*" />
@@ -110,11 +114,27 @@
           </Switch.Effects>
         </Switch>
 
+		<!-- Data -->
+        <Label Style="{StaticResource TitleStyle}" Text="{helpers:Translate SettingsScreenView_Data_Title}" Grid.Row="12" Grid.Column="0" Margin="0,20,0,10"/>
+        <Label Text="{helpers:Translate SettingsScreenView_WifiOnly_Text}" HorizontalOptions="StartAndExpand" Grid.Row="13" Grid.Column="0"/>
+        <Switch IsToggled="{Binding WifiOnly, Mode=TwoWay}" HorizontalOptions="End" VerticalOptions="Center" Grid.Row="13" Grid.Column="1">
+            <Switch.Effects>
+                <effects:SwitchColorEffect Color="{StaticResource AccentColor}"/>
+            </Switch.Effects>
+        </Switch>
+        <BoxView Grid.Row="14" Grid.Column="0"/>
+        <Label Text="{helpers:Translate SettingsScreenView_DownloadData_Text}" HorizontalOptions="StartAndExpand" Grid.Row="15" Grid.Column="0"/>
+        <Switch IsToggled="{Binding AlwaysDownloadData, Mode=TwoWay}" HorizontalOptions="End" VerticalOptions="Center" Grid.Row="15" Grid.Column="1">
+            <Switch.Effects>
+                <effects:SwitchColorEffect Color="{StaticResource AccentColor}"/>
+            </Switch.Effects>
+        </Switch>
+		
         <!-- Further Settings -->
-        <Label Style="{StaticResource TitleStyle}" Text="{helpers:Translate SettingsScreenView_FurtherSettings_Title}" Grid.Row="12" Grid.Column="0" Margin="0,20,0,10"/>
-        <Label Text="{helpers:Translate SettingsScreenView_RemoveAllDownloads_Text}" HorizontalOptions="StartAndExpand" Grid.Row="13" Grid.Column="0"/>
+        <Label Style="{StaticResource TitleStyle}" Text="{helpers:Translate SettingsScreenView_FurtherSettings_Title}" Grid.Row="16" Grid.Column="0" Margin="0,20,0,10"/>
+        <Label Text="{helpers:Translate SettingsScreenView_RemoveAllDownloads_Text}" HorizontalOptions="StartAndExpand" Grid.Row="17" Grid.Column="0"/>
         <Button Text="{helpers:Translate SettingsScreenView_RemoveAllDownloadsButton_Text}" BackgroundColor="{StaticResource AccentColor}" TextColor="Black"
-                Command="{Binding RemoveAllDownloads}" HorizontalOptions="End" VerticalOptions="Center" Grid.Row="13" Grid.Column="1"/>
+                Command="{Binding RemoveAllDownloads}" HorizontalOptions="End" VerticalOptions="Center" Grid.Row="17" Grid.Column="1"/>
       </Grid>
     </ScrollView>
   </ContentView.Content>
