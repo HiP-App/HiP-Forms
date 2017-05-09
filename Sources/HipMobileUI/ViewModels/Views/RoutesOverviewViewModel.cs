@@ -70,6 +70,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 
         public ICommand ItemSelectedCommand { get; set; }
 
+        /// <summary>
+        /// Refreshs the routes depending on the changed database
+        /// </summary>
         public void DbChanged ()
         {
             Routes = new ObservableCollection<RoutesOverviewListItemViewModel>();

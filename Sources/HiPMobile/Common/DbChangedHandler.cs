@@ -44,11 +44,19 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Common {
             observers = new List<IDbChangedObserver> ();
         }
 
+        /// <summary>
+        /// Adds an observer
+        /// </summary>
+        /// /// <param name="observer">The observer to be added.</param>
         public void AddObserver (IDbChangedObserver observer)
         {
             observers.Add (observer);
         }
 
+        /// <summary>
+        /// Removes an observer
+        /// </summary>
+        /// /// <param name="observer">The observer to be removed.</param>
         public void RemoveObserver (IDbChangedObserver observer)
         {
             observers.Remove (observer);

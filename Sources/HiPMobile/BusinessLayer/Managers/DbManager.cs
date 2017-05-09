@@ -81,6 +81,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers {
             }
         }
 
+        /// <summary>
+        /// Deletes the whole database
+        /// </summary>
         public static void DeleteDatabase ()
         {
             DataAccess.DeleteDatabase ();
