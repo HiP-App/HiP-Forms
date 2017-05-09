@@ -146,6 +146,7 @@
     <Compile Include="ViewModels\Pages\MainPageViewModel.cs" />
     <Compile Include="ViewModels\Pages\RouteDetailsPageViewModel.cs" />
     <Compile Include="ViewModels\Views\DummyViewModel.cs" />
+    <Compile Include="ViewModels\Views\ExhibitPreviewViewModel.cs" />
     <Compile Include="ViewModels\Views\ExhibitsOverviewListItemViewModel.cs" />
     <Compile Include="ViewModels\Views\ExhibitsOverviewViewModel.cs" />
     <Compile Include="ViewModels\Views\LicenseScreenViewModel.cs" />
@@ -154,6 +155,9 @@
       <DependentUpon>AudioToolbarView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\Views\SettingsScreenViewModel.cs" />
+    <Compile Include="Views\ExhibitPreviewView.xaml.cs">
+      <DependentUpon>ExhibitPreviewView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\HtmlLink.cs" />
     <Compile Include="Views\ExhibitDetails\TextView.xaml.cs">
       <DependentUpon>TextView.xaml</DependentUpon>
@@ -402,6 +406,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\ExhibitDetails\TextView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\ExhibitPreviewView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
