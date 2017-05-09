@@ -180,16 +180,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 		/// <summary>
 		/// Shows prompt to allow data download
 		/// </summary>
-		private async void AllowDataDownload()
+		private async void AllowAlwaysDataDownload()
 		{
-			if (Shared.Helpers.Settings.AlwaysDownloadData == true)
+			if (!Shared.Helpers.Settings.AlwaysDownloadData)
 			{
-
 				string result =
 					await
 						Navigation.DisplayActionSheet(
 							Strings.DownloadData_Title,
-						Strings.DownloadData_Cancel, null, Strings.DownloadData_Accept, Strings.DownloadData_Always);
+						null, null, Strings.DownloadData_Accept, Strings.DownloadData_Cancel, Strings.DownloadData_Always);
 				if (result == Strings.DownloadData_Always)
 				{
 					Shared.Helpers.Settings.AlwaysDownloadData = true;

@@ -506,17 +506,17 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
     <value>Sehenswürdigkeit überspringen</value>
   </data>
   <data name="DownloadData_Title" xml:space="preserve">
-    <value>Es sind neue Daten verfügbar, sollen diese heruntergeladen werden?</value>
+    <value>Neue Daten herunterladen?</value>
   </data>
   <data name="DownloadData_Cancel" xml:space="preserve">
     <value>Nein</value>
-  </data>	
+  </data>
   <data name="DownloadData_Accept" xml:space="preserve">
     <value>Ja</value>
   </data>
   <data name="DownloadData_Always" xml:space="preserve">
     <value>Immer</value>
-  </data>	
+  </data>
   <data name="SettingsScreenView_Data_Title" xml:space="preserve">
     <value>Daten</value>
   </data>
