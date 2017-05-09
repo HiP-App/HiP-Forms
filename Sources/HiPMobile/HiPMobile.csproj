@@ -61,10 +61,18 @@
     <Compile Include="BusinessLayer\Managers\ExhibitManager.cs" />
     <Compile Include="BusinessLayer\Managers\PageManager.cs" />
     <Compile Include="BusinessLayer\Managers\RouteManager.cs" />
-    <Compile Include="BusinessLayer\Models\JsonConverters\ExhibitConverter.cs" />
-    <Compile Include="BusinessLayer\Models\JsonConverters\JsonConverter.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiAccess.cs" />
     <Compile Include="ServiceAccessLayer\IRestQueryableContent.cs" />
+    <Compile Include="ServiceAccessLayer\ContentApiDtos\ExhibitDto.cs" />
+    <Compile Include="ServiceAccessLayer\ContentApiDtos\ExhibitsDto.cs" />
+    <Compile Include="ServiceAccessLayer\ContentApiDtos\MediaDto.cs" />
+    <Compile Include="ServiceAccessLayer\ContentApiDtos\MediasDto.cs" />
+    <Compile Include="ServiceAccessLayer\ContentApiDtos\PageDto.cs" />
+    <Compile Include="ServiceAccessLayer\ContentApiDtos\PagesDto.cs" />
+    <Compile Include="ServiceAccessLayer\ContentApiDtos\RouteDto.cs" />
+    <Compile Include="ServiceAccessLayer\ContentApiDtos\RoutesDto.cs" />
+    <Compile Include="ServiceAccessLayer\ContentApiDtos\TagDto.cs" />
+    <Compile Include="ServiceAccessLayer\ContentApiDtos\TagsDto.cs" />
     <Compile Include="BusinessLayer\Models\ModelClasses\AppetizerPage.cs" />
     <Compile Include="BusinessLayer\Models\ModelClasses\Audio.cs" />
     <Compile Include="BusinessLayer\Models\ModelClasses\Exhibit.cs" />
@@ -112,6 +120,7 @@
     <Compile Include="BusinessLayer\Routing\RouteCalculator.cs" />
     <Compile Include="Helpers\Settings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceAccessLayer\NetworkAccessFailedException.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Content\Kaiserpfalz\abdinghof.jpg" />
@@ -388,6 +397,9 @@
       <HintPath>..\..\packages\Unity.4.0.1\lib\portable-net45+wp80+win8+wpa81+MonoAndroid10+MonoTouch10\Microsoft.Practices.Unity.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.10.0.2\lib\portable-net45+win8+wpa81+wp8\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="OsmSharp, Version=5.0.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\OsmSharp.5.0.2-rc1\lib\portable-net403+sl50+win+wp80+Xamarin.iOS10+MonoAndroid10+MonoTouch10\OsmSharp.dll</HintPath>
       <Private>True</Private>
@@ -422,7 +434,9 @@
     <EmbeddedResource Include="BusinessLayer\Routing\osmfile.routerdb" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\..\packages\Fody.1.29.4\build\portable-net+sl+win+wpa+wp\Fody.targets" Condition="Exists('..\..\packages\Fody.1.29.4\build\portable-net+sl+win+wpa+wp\Fody.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

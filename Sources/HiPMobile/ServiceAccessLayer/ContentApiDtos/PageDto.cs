@@ -11,20 +11,10 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos {
+    public class PageDto {
 
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
-using Realms;
-
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.JsonConverters {
-    public abstract class JsonConverter<T> where T : RealmObject, IIdentifiable, new()
-    {
-
-        public abstract T Convert (string json, T oldObject);
-
-        public T Convert (JsonValue json)
-        {
-            return Convert (json, DbManager.CreateBusinessObject<T> ());
-        }
+        
 
     }
 }

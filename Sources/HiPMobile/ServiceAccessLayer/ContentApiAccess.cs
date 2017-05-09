@@ -15,22 +15,68 @@
 using System;
 using System.IO;
 using System.Net;
+using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
+using Remotion.Linq.Parsing;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer {
     public class ContentApiAccess {
 
-        public string GetFromContentApi<T> (T oldObject) where T : IRestQueryableContent
+        public TDtoObject GetFromContentApi<TModelObject, TDtoObject> (TModelObject oldObject) where TModelObject : IRestQueryableContent
         {
-            return GetFromContentApi<T> (oldObject.IdForRestApi);
+            return GetFromContentApi<TDtoObject> (oldObject.IdForRestApi);
         }
 
-        public string GetFromContentApi<T>(long id) where T : IRestQueryableContent
+        public TDtoObject GetFromContentApi<TDtoObject>(long id)
         {
-            //Fetch from server
+            //Build Url and Fetch from server
 
-            return "";
+            string json = "";
+            return JsonConvert.DeserializeObject<TDtoObject>(json);
         }
-        
+
+        /// <summary>
+        /// Returns json string if webcall was successful (Status 200)
+        /// Returns null if the requested url returns not modified (Status 304)
+        /// Throws a <see cref="NetworkAccessFailedException"/> if the server is not reachable
+        /// Throws an <see cref="ArgumentException"/> if there is an unexpected response code
+        /// </summary>
+        /// <param name="url">Http request url</param>
+        /// <returns>Json result of the requested url</returns>
+        private async Task<string> GetFromUrl(string url)
+        {
+            var request = (HttpWebRequest)WebRequest.Create(url);
+            try
+            {
+                var response = (HttpWebResponse)await request.GetResponseAsync ();
+
+                switch (response.StatusCode)
+                {
+                    case HttpStatusCode.OK:
+                        using (Stream responseStream = response.GetResponseStream())
+                        {
+                            StreamReader reader = new StreamReader(responseStream, Encoding.UTF8);
+                            return reader.ReadToEnd();
+                        }
+                    case HttpStatusCode.NotModified:
+                        return null;
+                    default:
+                        throw new ArgumentException($"Unexpected response status: {response.StatusCode}");
+                }
+            }
+            catch (WebException ex)
+            {
+                WebResponse errorResponse = ex.Response;
+                using (Stream responseStream = errorResponse.GetResponseStream())
+                {
+                    StreamReader reader = new StreamReader(responseStream, Encoding.GetEncoding("utf-8"));
+                    String errorText = reader.ReadToEnd();
+
+                    throw new NetworkAccessFailedException(errorText);
+                }
+            }
+        }
+
     }
 }
