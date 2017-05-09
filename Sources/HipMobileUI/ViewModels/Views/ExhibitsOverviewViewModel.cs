@@ -25,13 +25,14 @@ using Xamarin.Forms;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 {
-    class ExhibitsOverviewViewModel : NavigationViewModel, ILocationListener
+    class ExhibitsOverviewViewModel : NavigationViewModel, ILocationListener, IDbChangedObserver
     {
         private ObservableCollection<ExhibitsOverviewListItemViewModel> exhibitsList;
         private ICommand itemTappedCommand;
         private ILocationManager locationManager;
         private INearbyExhibitManager nearbyExhibitManager;
         private readonly INearbyRouteManager nearbyRouteManager;
+        private IDbChangedHandler dbChangedHandler;
         private bool displayDistances;
         private ExhibitSet displayedExhibitSet;
         private Position position;
@@ -55,6 +56,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             locationManager = IoCManager.Resolve<ILocationManager> ();
             nearbyExhibitManager = IoCManager.Resolve<INearbyExhibitManager> ();
             nearbyRouteManager = IoCManager.Resolve<INearbyRouteManager>();
+            dbChangedHandler = IoCManager.Resolve<IDbChangedHandler> ();
+            dbChangedHandler.AddObserver (this);
         }
 
         public ExhibitsOverviewViewModel (string exhibitSetId) : this(ExhibitManager.GetExhibitSet(exhibitSetId))
@@ -175,7 +178,18 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             set { SetProperty (ref position, value); }
         }
 
-        
+
+        public void DbChanged ()
+        {
+            var set = ExhibitManager.GetExhibitSet ();
+            DisplayedExhibitSet = set;
+            ExhibitsList = new ObservableCollection<ExhibitsOverviewListItemViewModel>();
+            foreach (Exhibit exhibit in set)
+            {
+                var listItem = new ExhibitsOverviewListItemViewModel(exhibit);
+                ExhibitsList.Add(listItem);
+            }
+        }
 
     }
 }

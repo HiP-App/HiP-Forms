@@ -81,6 +81,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers {
             }
         }
 
+        public static void DeleteDatabase ()
+        {
+            DataAccess.DeleteDatabase ();
+            IoCManager.Resolve<IDbChangedHandler> ().NotifyAll ();
+        }
+
         /// <summary>
         /// Returns if the db is up to date.
         /// </summary>

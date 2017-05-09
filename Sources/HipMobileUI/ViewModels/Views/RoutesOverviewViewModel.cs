@@ -16,6 +16,7 @@ using System.Collections.ObjectModel;
 using System.Windows.Input;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
 using Xamarin.Forms;
 
@@ -24,8 +25,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
     /// <summary>
     /// View model for the overview screen of all routes
     /// </summary>
-    public class RoutesOverviewViewModel : NavigationViewModel
+    public class RoutesOverviewViewModel : NavigationViewModel, IDbChangedObserver
     {
+        private IDbChangedHandler dbChangedHandler;
         private ObservableCollection<RoutesOverviewListItemViewModel> routes;
         public ObservableCollection<RoutesOverviewListItemViewModel> Routes
         {
@@ -45,6 +47,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             }
 
             ItemSelectedCommand = new Command(x => NavigateToRoute(x as RoutesOverviewListItemViewModel));
+
+            dbChangedHandler = IoCManager.Resolve<IDbChangedHandler>();
+            dbChangedHandler.AddObserver(this);
         }
 
         /// <summary>
@@ -65,5 +70,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 
         public ICommand ItemSelectedCommand { get; set; }
 
+        public void DbChanged ()
+        {
+            Routes = new ObservableCollection<RoutesOverviewListItemViewModel>();
+            foreach (Route route in RouteManager.GetRoutes())
+            {
+                Routes.Add(new RoutesOverviewListItemViewModel(route));
+            }
+        }
     }
 }

@@ -13,20 +13,18 @@
 // limitations under the License.
 
 using System.Windows.Input;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using Xamarin.Forms;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views {
     /// <summary>
     /// ViewModel for the SettingsScreenViewModel.
     /// </summary>
     public class SettingsScreenViewModel : NavigationViewModel {
-
-        private static readonly IDataAccess DataAccess = IoCManager.Resolve<IDataAccess>();
 
         public SettingsScreenViewModel ()
         {
@@ -43,8 +41,20 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views {
 
             if (result)
             {
+                // delete from "cache" to see the changes instantly
+                var exhibitsSets = ExhibitManager.GetExhibitSets();
+                foreach (var exhibitsSet in exhibitsSets)
+                {
+                    ExhibitManager.DeleteExhibitSet(exhibitsSet);
+                }
+                var routes = RouteManager.GetRoutes();
+                foreach (var route in routes)
+                {
+                    RouteManager.DeleteRoute(route);
+                }
+
                 // Delete the whole DB
-                DataAccess.DeleteDatabase ();
+                DbManager.DeleteDatabase ();
             }
         }
 
