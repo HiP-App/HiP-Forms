@@ -343,7 +343,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
             AudioToolbar.OnRevealed ();
         }
 
-        #region propeties
+        #region properties
 
         /// <summary>
         /// The currently displayed subview.

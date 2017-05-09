@@ -17,6 +17,9 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.InteractiveSourc
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages.AudioTranscript;
 using Xamarin.Forms;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
+using System.Collections.Generic;
+using System;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages.AudioTranscript
 {

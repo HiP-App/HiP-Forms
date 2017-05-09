@@ -75,6 +75,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation
         public async Task PopModalAsync (bool animate=false)
         {
             await FormsNavigation.PopModalAsync(animate);
+
+            var currentPageBindingContext = (NavigationViewModel)NavigationPage?.CurrentPage.BindingContext;
+            currentPageBindingContext?.OnRevealed ();
         }
 
         public async Task PushAsync (NavigationViewModel viewModel, bool animate=false)

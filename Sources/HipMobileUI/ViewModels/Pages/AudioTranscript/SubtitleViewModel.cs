@@ -16,6 +16,8 @@ using System;
 using System.Collections.Generic;
 using MvvmHelpers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.InteractiveSources;
+using Xamarin.Forms;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages.AudioTranscript {
     public class SubtitleViewModel : BaseViewModel {
@@ -23,6 +25,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages.AudioTranscri
         private string formatedText;
         private List<Source> sourcesList;
         private Func<IInteractiveSourceAction> action;
+        private double fontSize;
 
         public SubtitleViewModel(string formatedTextToInit, List<Source> sources, Func<IInteractiveSourceAction> actionToInit)
         {
@@ -40,6 +43,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages.AudioTranscri
         {
             get { return sourcesList; }
             set { SetProperty (ref sourcesList, value); }
+        }
+
+        public double FontSize
+        {
+            get { return Settings.AudioTranscriptFontSize; }
+            set { SetProperty(ref fontSize, value);  }
         }
 
         public Func<IInteractiveSourceAction> Action
