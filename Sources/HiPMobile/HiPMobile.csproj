@@ -61,6 +61,10 @@
     <Compile Include="BusinessLayer\Managers\ExhibitManager.cs" />
     <Compile Include="BusinessLayer\Managers\PageManager.cs" />
     <Compile Include="BusinessLayer\Managers\RouteManager.cs" />
+    <Compile Include="BusinessLayer\Models\JsonConverters\ExhibitConverter.cs" />
+    <Compile Include="BusinessLayer\Models\JsonConverters\JsonConverter.cs" />
+    <Compile Include="ServiceAccessLayer\ContentApiAccess.cs" />
+    <Compile Include="ServiceAccessLayer\IRestQueryableContent.cs" />
     <Compile Include="BusinessLayer\Models\ModelClasses\AppetizerPage.cs" />
     <Compile Include="BusinessLayer\Models\ModelClasses\Audio.cs" />
     <Compile Include="BusinessLayer\Models\ModelClasses\Exhibit.cs" />
