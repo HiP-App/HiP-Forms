@@ -18,92 +18,94 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 {
-    public class MainPageViewModel : NavigationViewModel
-    {
+	public class MainPageViewModel : NavigationViewModel
+	{
 
-        public MainPageViewModel (ExhibitSet set)
-        {
-            MainScreenViewModels = new ObservableCollection<NavigationViewModel>
-            {
-                new ExhibitsOverviewViewModel (set)
-                {
-                    Title = Strings.MainPageViewModel_OverviewPage,
-                    Icon = "ic_home.png"
-                },
-                new RoutesOverviewViewModel
-                {
-                    Title = Strings.MainPageViewModel_Routes,
-                    Icon = "ic_directions.png"
-                },
-                new SettingsScreenViewModel
-                {
-                    Title = Strings.MainPageViewModel_Settings,
-                    Icon = "ic_settings.png"
-                },
-                new LicenseScreenViewModel
-                {
-                    Title = Strings.MainPageViewModel_LegalNotices,
-                    Icon = "ic_gavel.png"
-                }
-            };
-        }
+		public MainPageViewModel(ExhibitSet set)
+		{
+			MainScreenViewModels = new ObservableCollection<NavigationViewModel>
+			{
+				new ExhibitsOverviewViewModel (set)
+				{
+					Title = Strings.MainPageViewModel_OverviewPage,
+					Icon = "ic_home.png"
+				},
+				new RoutesOverviewViewModel
+				{
+					Title = Strings.MainPageViewModel_Routes,
+					Icon = "ic_directions.png"
+				},
+				new SettingsScreenViewModel
+				{
+					Title = Strings.MainPageViewModel_Settings,
+					Icon = "ic_settings.png"
+				},
+				new LicenseScreenViewModel
+				{
+					Title = Strings.MainPageViewModel_LegalNotices,
+					Icon = "ic_gavel.png"
+				}
+			};
+		}
 
-        public MainPageViewModel() : this(ExhibitManager.GetExhibitSets().FirstOrDefault())
-        {   
-        }
+		public MainPageViewModel() : this(ExhibitManager.GetExhibitSets().FirstOrDefault())
+		{
+		}
 
-        private ObservableCollection<NavigationViewModel> mainScreenViewModels;
-        private NavigationViewModel selectedViewModel;
+		private ObservableCollection<NavigationViewModel> mainScreenViewModels;
+		private NavigationViewModel selectedViewModel;
 
-        public ObservableCollection<NavigationViewModel> MainScreenViewModels
-        {
-            get { return mainScreenViewModels; }
-            set { SetProperty(ref mainScreenViewModels, value); }
-        }
+		public ObservableCollection<NavigationViewModel> MainScreenViewModels
+		{
+			get { return mainScreenViewModels; }
+			set { SetProperty(ref mainScreenViewModels, value); }
+		}
 
-        public NavigationViewModel SelectedViewModel
-        {
-            get { return selectedViewModel; }
-            set {
-                var oldViewModel = SelectedViewModel;
-                if (SetProperty (ref (selectedViewModel), value))
-                {
-                    oldViewModel?.OnDisappearing ();
-                    SelectedViewModel?.OnAppearing ();
-                }
-            }
-        }
+		public NavigationViewModel SelectedViewModel
+		{
+			get { return selectedViewModel; }
+			set
+			{
+				var oldViewModel = SelectedViewModel;
+				if (SetProperty(ref (selectedViewModel), value))
+				{
+					oldViewModel?.OnDisappearing();
+					SelectedViewModel?.OnAppearing();
+				}
+			}
+		}
 
-        public override void OnDisappearing ()
-        {
-            base.OnDisappearing ();
+		public override void OnDisappearing()
+		{
+			base.OnDisappearing();
 
-            SelectedViewModel.OnDisappearing ();
-        }
+			SelectedViewModel.OnDisappearing();
+		}
 
-        public override void OnAppearing ()
-        {
-            base.OnAppearing ();
+		public override void OnAppearing()
+		{
+			base.OnAppearing();
 
-            SelectedViewModel.OnAppearing ();
-        }
+			SelectedViewModel.OnAppearing();
+		}
 
-        public override void OnHidden ()
-        {
-            base.OnHidden ();
+		public override void OnHidden()
+		{
+			base.OnHidden();
 
-            SelectedViewModel.OnHidden ();
-        }
+			SelectedViewModel.OnHidden();
+		}
 
-        public override void OnRevealed ()
-        {
-            base.OnRevealed ();
+		public override void OnRevealed()
+		{
+			base.OnRevealed();
 
-            SelectedViewModel.OnRevealed ();
-        }
+			SelectedViewModel.OnRevealed();
+		}
 
-    }
+	}
 }

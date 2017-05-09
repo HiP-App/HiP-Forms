@@ -157,10 +157,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Contracts
             DismissNotification();
             ProgressChanged?.Invoke(0);
 
-            mediaPlayer.Reset();
-            var path = CopyAudioToTemp(currentAudio);
-            mediaPlayer.SetDataSource(path);
-            mediaPlayer.Prepare();
+            if (currentAudio != null)
+            {
+                mediaPlayer.Reset();
+                var path = CopyAudioToTemp(currentAudio);
+                mediaPlayer.SetDataSource(path);
+                mediaPlayer.Prepare();
+            }
         }
 
         public void SeekTo(double progress)
