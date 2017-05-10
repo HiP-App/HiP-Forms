@@ -90,6 +90,7 @@
     <Compile Include="BusinessLayer\Models\ModelExtensions\PageType.cs" />
     <Compile Include="BusinessLayer\Models\ModelExtensions\Route.cs" />
     <Compile Include="BusinessLayer\Routing\OrderedRoute.cs" />
+    <Compile Include="Common\DbChangedHandler.cs" />
     <Compile Include="Common\DbDummyDataFillerGenerated.cs" />
     <Compile Include="Common\Contracts\IDataLoader.cs" />
     <Compile Include="Common\Contracts\IFabSizeCalculator.cs" />

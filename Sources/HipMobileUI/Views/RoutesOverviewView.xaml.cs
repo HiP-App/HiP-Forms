@@ -14,6 +14,7 @@
 
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
+using Xamarin.Forms;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
 {
@@ -23,5 +24,34 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
         {
             InitializeComponent();
         }
+
+        protected override void OnSizeAllocated (double width, double height)
+        {
+            base.OnSizeAllocated (width, height);
+
+            // prepared for later definitions regarding portrait/landscape mode
+            this.Grid.RowDefinitions.Clear();
+            this.Grid.ColumnDefinitions.Clear();
+
+            if (Label.IsVisible)
+            {
+                // hide empty list and show hint label
+                this.Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0, GridUnitType.Star) });
+                this.Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
+            }
+            else
+            {
+                // show list and hide hint label
+                this.Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
+                this.Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0, GridUnitType.Star) });
+            }
+            this.Grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+
+            Grid.SetRow(List, 0);
+            Grid.SetRow(Label, 1);
+            Grid.SetColumn(List, 0);
+            Grid.SetColumn(Label, 0);
+        }
+
     }
 }
