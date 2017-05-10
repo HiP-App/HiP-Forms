@@ -16,10 +16,12 @@ using FFImageLoading.Forms.Touch;
 using Foundation;
 using HockeyApp.iOS;
 using PaderbornUniversity.SILab.Hip.Mobile.Ios.Contracts;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelConverters;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.AudioPlayer;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Location;
@@ -62,6 +64,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios
             //init api ioc classes
             IoCManager.RegisterInstance(typeof(IContentApiAccess), new ContentApiAccess());
             IoCManager.RegisterInstance(typeof(IExhibitsApiAccess), new ExhibitsApiAccess());
+            IoCManager.RegisterInstance(typeof(IMediasApiAccess), new MediasApiAccess());
 
             // init crash manager
             var manager = BITHockeyManager.SharedHockeyManager;

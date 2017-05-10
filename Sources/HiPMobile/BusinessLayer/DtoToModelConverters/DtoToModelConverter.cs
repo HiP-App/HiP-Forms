@@ -13,19 +13,22 @@
 // limitations under the License.
 
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using Realms;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.DtoToModelConverters {
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelConverters {
     public abstract class DtoToModelConverter<TModelObject, TDtoObject> where TModelObject : RealmObject, IIdentifiable, new ()
     {
         public TModelObject Convert (TDtoObject dto)
         {
             var modelObject = DbManager.CreateBusinessObject<TModelObject> ();
 
-            return Convert (dto, modelObject);
+            Convert (dto, modelObject);
+
+            return modelObject;
         }
 
-        public abstract TModelObject Convert (TDtoObject dto, TModelObject existingModelObject);
+        public abstract void Convert (TDtoObject dto, TModelObject existingModelObject);
 
     }
 }

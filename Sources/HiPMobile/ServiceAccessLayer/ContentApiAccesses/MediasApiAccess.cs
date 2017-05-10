@@ -21,37 +21,38 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiA
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses {
-    public class ExhibitsApiAccess : IExhibitsApiAccess {
+    public class MediasApiAccess : IMediasApiAccess {
 
         private readonly IContentApiAccess contentApiAccess = IoCManager.Resolve<IContentApiAccess> ();
 
-        public async Task<ExhibitsDto> GetExhibits ()
+        public async Task<MediasDto> GetMedias ()
         {
-            return await GetExhibitsDto (null, null);
+            return await GetMediasDto(null, null);
         }
 
-        public async Task<ExhibitsDto> GetExhibits (long timestamp)
+        public async Task<MediasDto> GetMedias (long timestamp)
         {
-            return await GetExhibits(timestamp, null);
+            return await GetMediasDto(timestamp, null);
         }
 
-        public async Task<ExhibitsDto> GetExhibits (IList<int> includeOnly)
+        public async Task<MediasDto> GetMedias (IList<int> includeOnly)
         {
-            return await GetExhibitsDto(null, includeOnly);
+            return await GetMediasDto(null, includeOnly);
         }
 
-        public async Task<ExhibitsDto> GetExhibits (long timestamp, IList<int> includeOnly)
+        public async Task<MediasDto> GetMedias (long timestamp, IList<int> includeOnly)
         {
-            return await GetExhibitsDto(timestamp, includeOnly);
+            return await GetMediasDto (timestamp, includeOnly);
         }
 
-        private async Task<ExhibitsDto> GetExhibitsDto (long? timestamp, IList<int> includeOnly)
+        private async Task<MediasDto> GetMediasDto(long? timestamp, IList<int> includeOnly)
         {
-            string requestPath = @"/Exhibits";
-            requestPath += UriQueryBuilder.GetAdditionalParametersQuery (timestamp, includeOnly);
+            string requestPath = @"/Media";
+            requestPath += UriQueryBuilder.GetAdditionalParametersQuery(timestamp, includeOnly);
 
             string json = await contentApiAccess.GetResponseFromUrl(requestPath);
-            return JsonConvert.DeserializeObject<ExhibitsDto>(json);
+            return JsonConvert.DeserializeObject<MediasDto>(json);
         }
+
     }
 }

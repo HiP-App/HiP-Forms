@@ -11,22 +11,21 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos {
-    public class MediaDto
+
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos;
+
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses.Contracts {
+    public interface IMediasApiAccess
     {
-        public int Id { get; set; }
+        Task<MediasDto> GetMedias();
 
-        public string Title { get; set; }
+        Task<MediasDto> GetMedias(long timestamp);
 
-        public string Description { get; set; }
+        Task<MediasDto> GetMedias(IList<int> includeOnly);
 
-        public string Type { get; set; }
-
-        public long Timestamp { get; set; }
-
-        public string Status { get; set; }
-
-        public bool Used { get; set; }
+        Task<MediasDto> GetMedias(long timestamp, IList<int> includeOnly);
 
     }
 }

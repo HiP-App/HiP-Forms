@@ -12,21 +12,20 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.DtoToModelConverters {
-    public class ExhibitConverter : DtoToModelConverter<Exhibit, ExhibitDto> {
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses.Contracts {
+    public interface IExhibitsApiAccess {
 
-        public override Exhibit Convert (ExhibitDto dto, Exhibit existingModelObject)
-        {
-            existingModelObject.IdForRestApi = dto.Id;
-            existingModelObject.Description = dto.Description;
-            existingModelObject.Location = new GeoLocation (dto.Latitude, dto.Longitude);
-            existingModelObject.Name = dto.Name;
-            existingModelObject.UnixTimestamp = dto.Timestamp;
+        Task<ExhibitsDto> GetExhibits ();
 
-            return existingModelObject;
-        }
+        Task<ExhibitsDto> GetExhibits(long timestamp);
+
+        Task<ExhibitsDto> GetExhibits(IList<int> includeOnly);
+
+        Task<ExhibitsDto> GetExhibits(long timestamp, IList<int> includeOnly);
 
     }
 }

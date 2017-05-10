@@ -50,6 +50,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="BusinessLayer\ContentApiFetchers\BaseDataFetcher.cs" />
+    <Compile Include="BusinessLayer\DtoToModelConverters\MediaToAudioConverter.cs" />
+    <Compile Include="BusinessLayer\DtoToModelConverters\MediaToImageConverter.cs" />
     <Compile Include="BusinessLayer\InteractiveSources\ConsecutiveNumberAndConstantInteractiveSourceSubstitute.cs" />
     <Compile Include="BusinessLayer\InteractiveSources\ConsecutiveNumberInteractiveSourceSubstitute.cs" />
     <Compile Include="BusinessLayer\InteractiveSources\ConstantInteractiveSourceSubstitute.cs" />
@@ -62,12 +64,17 @@
     <Compile Include="BusinessLayer\Managers\ExhibitManager.cs" />
     <Compile Include="BusinessLayer\Managers\PageManager.cs" />
     <Compile Include="BusinessLayer\Managers\RouteManager.cs" />
-    <Compile Include="BusinessLayer\Models\DtoToModelConverters\DtoToModelConverter.cs" />
-    <Compile Include="BusinessLayer\Models\DtoToModelConverters\ExhibitConverter.cs" />
+    <Compile Include="BusinessLayer\DtoToModelConverters\DtoToModelConverter.cs" />
+    <Compile Include="BusinessLayer\DtoToModelConverters\ExhibitConverter.cs" />
     <Compile Include="Helpers\UriQueryBuilder.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiAccess.cs" />
+    <Compile Include="ServiceAccessLayer\ContentApiAccesses\Contracts\IFileApiAccess.cs" />
+    <Compile Include="ServiceAccessLayer\ContentApiAccesses\FileApiAccess.cs" />
+    <Compile Include="ServiceAccessLayer\ContentApiAccesses\MediasApiAccess.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiAccesses\ExhibitsApiAccess.cs" />
-    <Compile Include="ServiceAccessLayer\ContentApiAccesses\IExhibitsApiAccess.cs" />
+    <Compile Include="ServiceAccessLayer\ContentApiAccesses\Contracts\IMediasApiAccess.cs" />
+    <Compile Include="ServiceAccessLayer\ContentApiAccesses\Contracts\IPagesApiAccess.cs" />
+    <Compile Include="ServiceAccessLayer\ContentApiAccesses\Contracts\IExhibitsApiAccess.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiDtos\FileDto.cs" />
     <Compile Include="ServiceAccessLayer\IContentApiAccess.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiDtos\ExhibitDto.cs" />

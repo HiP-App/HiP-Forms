@@ -13,19 +13,30 @@
 // limitations under the License.
 
 using System.Collections.Generic;
+using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses {
-    public interface IExhibitsApiAccess {
+    public class FileApiAccess : IFileApiAccess {
 
-        Task<ExhibitsDto> GetExhibits ();
+        private readonly IContentApiAccess contentApiAccess = IoCManager.Resolve<IContentApiAccess> ();
 
-        Task<ExhibitsDto> GetExhibits(long timestamp);
+        public async Task<FileDto> GetFile (int mediaId)
+        {
+            string requestPath = $@"/Media/{mediaId}/File";
+            string response = await contentApiAccess.GetResponseFromUrl(requestPath);
 
-        Task<ExhibitsDto> GetExhibits(IList<int> includeOnly);
-
-        Task<ExhibitsDto> GetExhibits(long timestamp, IList<int> includeOnly);
+            return new FileDto
+                {
+                    Data = Encoding.UTF8.GetBytes (response),
+                    MediaId = mediaId
+                };
+        }
 
     }
 }

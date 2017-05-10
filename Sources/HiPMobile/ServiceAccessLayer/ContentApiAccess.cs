@@ -35,7 +35,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer {
         /// </summary>
         /// <param name="urlPath">Http request url path</param>
         /// <returns>Json result of the requested url</returns>
-        public async Task<string> GetJsonFromUrl(string urlPath)
+        public async Task<string> GetResponseFromUrl(string urlPath)
         {
             string fullUrl = ServerUrl + urlPath;
             var request = (HttpWebRequest)WebRequest.Create(fullUrl);

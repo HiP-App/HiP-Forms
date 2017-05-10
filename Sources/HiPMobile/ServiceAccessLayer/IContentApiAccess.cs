@@ -18,7 +18,7 @@ using System.Threading.Tasks;
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer {
     public interface IContentApiAccess {
 
-        Task<string> GetJsonFromUrl (string url);
+        Task<string> GetResponseFromUrl (string url);
 
     }
 }

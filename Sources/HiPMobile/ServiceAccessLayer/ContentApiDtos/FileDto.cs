@@ -12,9 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos {
-    public class FileDto {
+    public class FileDto
+    {
+        public int MediaId { get; set; }
 
+        public byte[] Data { get; set; }
         
-
     }
 }
