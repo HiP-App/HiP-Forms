@@ -260,7 +260,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Die Liste ist leer. Laden Sie Inhalte runter, um loszulegen!.
+        ///   Looks up a localized string similar to Keine Sehenswürdigkeiten verfügbar. Laden Sie Sehenswürdigkeiten herunter, um loszulegen!.
         /// </summary>
         public static string ExhibitsOverviewView_EmptyList {
             get {
@@ -999,7 +999,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Die Liste ist leer. Laden Sie Inhalte runter, um loszulegen!.
+        ///   Looks up a localized string similar to Keine Routen verfügbar. Laden Sie Routen herunter, um loszulegen!.
         /// </summary>
         public static string RoutesOverviewView_EmptyList {
             get {
@@ -1062,15 +1062,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Weitere Einstellungen.
-        /// </summary>
-        public static string SettingsScreenView_FurtherSettings_Title {
-            get {
-                return ResourceManager.GetString("SettingsScreenView_FurtherSettings_Title", resourceCulture);
-			}
-		}
-		
-		/// <summary>
         ///   Looks up a localized string similar to Daten.
         /// </summary>
         public static string SettingsScreenView_Data_Title {
@@ -1085,6 +1076,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         public static string SettingsScreenView_DownloadData_Text {
             get {
                 return ResourceManager.GetString("SettingsScreenView_DownloadData_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Weitere Einstellungen.
+        /// </summary>
+        public static string SettingsScreenView_FurtherSettings_Title {
+            get {
+                return ResourceManager.GetString("SettingsScreenView_FurtherSettings_Title", resourceCulture);
             }
         }
         
@@ -1125,7 +1125,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Möchten Sie wirklich alle Downloads entfernen? Hiermit geben Sie Speicherplatz frei. Bilder und Audio Dateien müssen aber bei Bedarf erneut runtergeladen werden..
+        ///   Looks up a localized string similar to Möchten Sie wirklich alle Downloads entfernen?.
         /// </summary>
         public static string SettingsScreenView_RemoveAllDownloadsPrompt_Question {
             get {

@@ -41,18 +41,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views {
 
             if (result)
             {
-                // delete from "cache" to see the changes instantly
-                var exhibitsSets = ExhibitManager.GetExhibitSets();
-                foreach (var exhibitsSet in exhibitsSets)
-                {
-                    ExhibitManager.DeleteExhibitSet(exhibitsSet);
-                }
-                var routes = RouteManager.GetRoutes();
-                foreach (var route in routes)
-                {
-                    RouteManager.DeleteRoute(route);
-                }
-
                 // Delete the whole DB
                 DbManager.DeleteDatabase ();
             }

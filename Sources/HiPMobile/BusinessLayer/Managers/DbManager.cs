@@ -86,6 +86,18 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers {
         /// </summary>
         public static void DeleteDatabase ()
         {
+            // delete from "cache" to see the changes instantly
+            var exhibitsSets = ExhibitManager.GetExhibitSets();
+            foreach (var exhibitsSet in exhibitsSets)
+            {
+                ExhibitManager.DeleteExhibitSet(exhibitsSet);
+            }
+            var routes = RouteManager.GetRoutes();
+            foreach (var route in routes)
+            {
+                RouteManager.DeleteRoute(route);
+            }
+
             DataAccess.DeleteDatabase ();
             IoCManager.Resolve<IDbChangedHandler> ().NotifyAll ();
         }

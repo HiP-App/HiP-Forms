@@ -63,7 +63,7 @@
                 </ListView.ItemTemplate>
             </ListView>
             <Label x:Name="Label" Grid.Row="1" Text="{helpers:Translate RoutesOverviewView_EmptyList}" IsVisible="{Binding Routes, Converter={StaticResource EmptyListConverter}}"
-                   TextColor="Gray" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                   TextColor="Gray" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="16" Margin="5"/>
         </Grid>
     </ContentView.Content>
 </ContentView>

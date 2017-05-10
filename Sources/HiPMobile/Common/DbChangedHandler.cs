@@ -18,10 +18,21 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Common {
 
     public interface IDbChangedHandler {
 
+        /// <summary>
+        /// Adds an observer
+        /// </summary>
+        /// /// <param name="observer">The observer to be added.</param>
         void AddObserver (IDbChangedObserver observer);
 
+        /// <summary>
+        /// Removes an observer
+        /// </summary>
+        /// /// <param name="observer">The observer to be removed.</param>
         void RemoveObserver (IDbChangedObserver observer);
 
+        /// <summary>
+        /// Notifies all observers to handle
+        /// </summary>
         void NotifyAll ();
 
     }
@@ -44,19 +55,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Common {
             observers = new List<IDbChangedObserver> ();
         }
 
-        /// <summary>
-        /// Adds an observer
-        /// </summary>
-        /// /// <param name="observer">The observer to be added.</param>
         public void AddObserver (IDbChangedObserver observer)
         {
             observers.Add (observer);
         }
 
-        /// <summary>
-        /// Removes an observer
-        /// </summary>
-        /// /// <param name="observer">The observer to be removed.</param>
         public void RemoveObserver (IDbChangedObserver observer)
         {
             observers.Remove (observer);
