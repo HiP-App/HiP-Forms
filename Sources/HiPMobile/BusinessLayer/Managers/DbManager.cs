@@ -82,6 +82,27 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers {
         }
 
         /// <summary>
+        /// Deletes the whole database
+        /// </summary>
+        public static void DeleteDatabase ()
+        {
+            // delete from "cache" to see the changes instantly
+            var exhibitsSets = ExhibitManager.GetExhibitSets();
+            foreach (var exhibitsSet in exhibitsSets)
+            {
+                ExhibitManager.DeleteExhibitSet(exhibitsSet);
+            }
+            var routes = RouteManager.GetRoutes();
+            foreach (var route in routes)
+            {
+                RouteManager.DeleteRoute(route);
+            }
+
+            DataAccess.DeleteDatabase ();
+            IoCManager.Resolve<IDbChangedHandler> ().NotifyAll ();
+        }
+
+        /// <summary>
         /// Returns if the db is up to date.
         /// </summary>
         /// <returns>True if up to date, false otherwise.</returns>

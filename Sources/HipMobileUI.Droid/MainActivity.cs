@@ -57,6 +57,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
             IoCManager.RegisterInstance (typeof(ILocationManager), new LocationManager ());
             IoCManager.RegisterInstance (typeof(IKeyProvider), new AndroidKeyProvider ());
             IoCManager.RegisterInstance (typeof(IBarsColorsChanger), new DroidBarsColorsChanger (this));
+            IoCManager.RegisterInstance (typeof(IDbChangedHandler), new DbChangedHandler ());
 
             // setup crash reporting
             IKeyProvider keyProvider = IoCManager.Resolve<IKeyProvider>();

@@ -23,6 +23,7 @@
              xmlns:behaviors="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Behaviors;assembly=HipMobileUI"
              xmlns:controls1="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Controls;assembly=HipMobileUI"
              xmlns:map="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Map;assembly=HipMobileUI"
+             xmlns:helpers="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;assembly=HipMobileUI"
              x:Name="ExhibitsOveriew">
     <ContentView.Content>
         <Grid x:Name="Grid">
@@ -32,8 +33,9 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="0.5*" />
                 <RowDefinition Height="0.5*" />
+                <RowDefinition Height="0*" />
             </Grid.RowDefinitions>
-          <map:OsmMap x:Name="Map" ExhibitSet="{Binding DisplayedExhibitSet}" GpsLocation="{Binding Position, Converter={StaticResource PositionGeoLocationConverter}}" ShowDetailsRoute="False"/>
+            <map:OsmMap Grid.Row="0" x:Name="Map" ExhibitSet="{Binding DisplayedExhibitSet}" GpsLocation="{Binding Position, Converter={StaticResource PositionGeoLocationConverter}}" ShowDetailsRoute="False"/>
             <ListView Grid.Row="1" ItemsSource="{Binding ExhibitsList}" HasUnevenRows="True" x:Name="List">
                 <ListView.Behaviors>
                     <behaviors:ListViewTappedItemBehavior Command="{Binding ItemTappedCommand}"
@@ -67,6 +69,8 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+            <Label x:Name="Label" Grid.Row="2" Text="{helpers:Translate ExhibitsOverviewView_EmptyList}" IsVisible="{Binding ExhibitsList, Converter={StaticResource EmptyListConverter}}"
+                   TextColor="Gray" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="16" Margin="5"/>
         </Grid>
     </ContentView.Content>
 </ContentView>
