@@ -25,7 +25,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.BusinessLayer.DtoT
     [TestFixture]
     public class ExhibitConverterTest {
 
-        [Test, Category ("UnitTest")]
+        //TODO Realm under Windows first [Test, Category ("UnitTest")]
         public void GetExhibits_SingleExhibit ()
         {
             var sut = CreateSystemUnderTest ();
