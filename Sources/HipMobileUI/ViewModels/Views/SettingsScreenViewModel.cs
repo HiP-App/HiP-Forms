@@ -12,13 +12,40 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System.Windows.Input;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
+using Xamarin.Forms;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views {
     /// <summary>
     /// ViewModel for the SettingsScreenViewModel.
     /// </summary>
     public class SettingsScreenViewModel : NavigationViewModel {
+
+        public SettingsScreenViewModel ()
+        {
+            RemoveAllDownloads = new Command(RemoveAllDownloadsClicked);
+        }
+
+        public ICommand RemoveAllDownloads { get; }
+
+        private async void RemoveAllDownloadsClicked()
+        {
+            var result = await IoCManager.Resolve<INavigationService>()
+                              .DisplayAlert(Strings.SettingsScreenView_RemoveAllDownloadsPrompt_Title, Strings.SettingsScreenView_RemoveAllDownloadsPrompt_Question,
+                                            Strings.SettingsScreenView_RemoveAllDownloadsPrompt_Confirm, Strings.SettingsScreenView_RemoveAllDownloadsPrompt_Reject);
+
+            if (result)
+            {
+                // Delete the whole DB
+                DbManager.DeleteDatabase ();
+            }
+        }
+
         /// <summary>
         /// After end of audio playback, switch automatically to next page
         /// </summary>

@@ -61,6 +61,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
             IoCManager.RegisterInstance (typeof(ILocationManager), new LocationManager ());
             IoCManager.RegisterInstance (typeof(IKeyProvider), new AndroidKeyProvider ());
             IoCManager.RegisterInstance (typeof(IBarsColorsChanger), new DroidBarsColorsChanger (this));
+            IoCManager.RegisterInstance (typeof(IDbChangedHandler), new DbChangedHandler ());
 
             //init api classes
             IoCManager.RegisterInstance(typeof(IContentApiAccess), new ContentApiAccess());

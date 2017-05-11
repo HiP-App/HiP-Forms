@@ -260,6 +260,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Keine Sehenswürdigkeiten verfügbar. Laden Sie Sehenswürdigkeiten herunter, um loszulegen!.
+        /// </summary>
+        public static string ExhibitsOverviewView_EmptyList {
+            get {
+                return ResourceManager.GetString("ExhibitsOverviewView_EmptyList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Die Nutzung der App basiert auf Freiwilligkeit. Sämtliche Daten, die im Rahmen der Nutzung der Dienste und Applikation Verwendung finden, dürfen nur erhoben und verarbeitet werden, soweit dies für den Dienst und statistische Forschungs- und Evaluationszwecke erforderlich ist und den Regelungen der Universität Paderborn und dem Datenschutzgesetz NRW entspricht..
         /// </summary>
         public static string LicenseScreenView_Agreement_Text {
@@ -990,6 +999,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Keine Routen verfügbar. Laden Sie Routen herunter, um loszulegen!.
+        /// </summary>
+        public static string RoutesOverviewView_EmptyList {
+            get {
+                return ResourceManager.GetString("RoutesOverviewView_EmptyList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Auf der Route:.
         /// </summary>
         public static string RoutesOverviewView_Tags {
@@ -1062,11 +1080,74 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Weitere Einstellungen.
+        /// </summary>
+        public static string SettingsScreenView_FurtherSettings_Title {
+            get {
+                return ResourceManager.GetString("SettingsScreenView_FurtherSettings_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sehenswürdigkeiten.
         /// </summary>
         public static string SettingsScreenView_POI_Title {
             get {
                 return ResourceManager.GetString("SettingsScreenView_POI_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Alle Downloads entfernen (Nutzen Sie diese Option, um Speicherplatz freizugeben).
+        /// </summary>
+        public static string SettingsScreenView_RemoveAllDownloads_Text {
+            get {
+                return ResourceManager.GetString("SettingsScreenView_RemoveAllDownloads_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Entfernen.
+        /// </summary>
+        public static string SettingsScreenView_RemoveAllDownloadsButton_Text {
+            get {
+                return ResourceManager.GetString("SettingsScreenView_RemoveAllDownloadsButton_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Entfernen.
+        /// </summary>
+        public static string SettingsScreenView_RemoveAllDownloadsPrompt_Confirm {
+            get {
+                return ResourceManager.GetString("SettingsScreenView_RemoveAllDownloadsPrompt_Confirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Möchten Sie wirklich alle Downloads entfernen?.
+        /// </summary>
+        public static string SettingsScreenView_RemoveAllDownloadsPrompt_Question {
+            get {
+                return ResourceManager.GetString("SettingsScreenView_RemoveAllDownloadsPrompt_Question", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Abbrechen.
+        /// </summary>
+        public static string SettingsScreenView_RemoveAllDownloadsPrompt_Reject {
+            get {
+                return ResourceManager.GetString("SettingsScreenView_RemoveAllDownloadsPrompt_Reject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Alle Downloads entfernen.
+        /// </summary>
+        public static string SettingsScreenView_RemoveAllDownloadsPrompt_Title {
+            get {
+                return ResourceManager.GetString("SettingsScreenView_RemoveAllDownloadsPrompt_Title", resourceCulture);
             }
         }
         

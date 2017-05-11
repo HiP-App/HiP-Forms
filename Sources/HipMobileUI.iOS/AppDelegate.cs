@@ -60,6 +60,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios
             IoCManager.RegisterInstance(typeof(ILocationManager), new LocationManager());
             IoCManager.RegisterInstance (typeof(IKeyProvider), new IosKeyProvider ());
             IoCManager.RegisterInstance (typeof(IBarsColorsChanger), new IosBarsColorsChanger ());
+            IoCManager.RegisterInstance (typeof(IDbChangedHandler), new DbChangedHandler ());
 
             //init api ioc classes
             IoCManager.RegisterInstance(typeof(IContentApiAccess), new ContentApiAccess());
