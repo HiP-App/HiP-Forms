@@ -23,7 +23,12 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiD
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses {
     public class ExhibitsApiAccess : IExhibitsApiAccess {
 
-        private readonly IContentApiAccess contentApiAccess = IoCManager.Resolve<IContentApiAccess> ();
+        private readonly IContentApiAccess contentApiAccess;
+
+        public ExhibitsApiAccess (IContentApiAccess contentApiAccess)
+        {
+            this.contentApiAccess = contentApiAccess;
+        }
 
         public async Task<ExhibitsDto> GetExhibits ()
         {

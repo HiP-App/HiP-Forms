@@ -15,68 +15,90 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.Practices.Unity;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelConverters;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers
-{
-    public class BaseDataFetcher
-    {
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers {
+    public class BaseDataFetcher : IBaseDataFetcher {
 
-        private readonly IExhibitsApiAccess exhibitsApiAccess = IoCManager.Resolve<IExhibitsApiAccess>();
-        private readonly IMediasApiAccess mediasApiAccess = IoCManager.Resolve<IMediasApiAccess>();
-        private readonly IFileApiAccess fileApiAccess = IoCManager.Resolve<IFileApiAccess> ();
+        private readonly IExhibitsApiAccess exhibitsApiAccess;
+        private readonly IMediasApiAccess mediasApiAccess;
+        private readonly IFileApiAccess fileApiAccess;
 
-        private readonly ExhibitConverter exhibitConverter = new ExhibitConverter ();
-        private readonly MediaToImageConverter imageConverter = new MediaToImageConverter();
+        [Dependency]
+        public ExhibitConverter ExhibitConverter { private get; set; }
+
+        [Dependency]
+        public MediaToImageConverter ImageConverter { private get; set; }
 
 
-        public async void FetchBaseDataIntoDatabase()
+        private IList<ExhibitDto> fetchedChangedExhibits;
+
+        public BaseDataFetcher (IExhibitsApiAccess exhibitsApiAccess, IMediasApiAccess mediasApiAccess, IFileApiAccess fileApiAccess)
         {
-            //There must be at most one exhibit set in the db at every moment
-            var exhibitSet = ExhibitManager.GetExhibitSets().SingleOrDefault();
+            this.exhibitsApiAccess = exhibitsApiAccess;
+            this.mediasApiAccess = mediasApiAccess;
+            this.fileApiAccess = fileApiAccess;
+        }
 
-            var exhibits = await FetchExhibits(exhibitSet);
+        public async Task<bool> IsDatabaseUpToDate ()
+        {
+            var exhibitSet = ExhibitManager.GetExhibitSets ().SingleOrDefault ();
 
-            var newExhibits = new List<ExhibitDto>();
-            var updatedExhibits = new Dictionary<ExhibitDto, Exhibit>();
-            var requiredAppetizerPages = new List<int>();
-            var requiredImages = new List<int>();
+            fetchedChangedExhibits = await FetchExhibits (exhibitSet);
+
+            return fetchedChangedExhibits.Any ();
+        }
+
+        public async Task FetchBaseDataIntoDatabase ()
+        {
+            var exhibitSet = ExhibitManager.GetExhibitSets ().SingleOrDefault ();
+
+            if (fetchedChangedExhibits == null)
+            {
+                fetchedChangedExhibits = await FetchExhibits (exhibitSet);
+            }
 
             if (exhibitSet == null)
             {
-                using (DbManager.StartTransaction())
+                using (DbManager.StartTransaction ())
                 {
-                    DbManager.CreateBusinessObject<ExhibitSet>();
+                    exhibitSet = DbManager.CreateBusinessObject<ExhibitSet> ();
                 }
             }
 
-            foreach (var exhibit in exhibits)
+            var newExhibits = new List<ExhibitDto> ();
+            var updatedExhibits = new Dictionary<ExhibitDto, Exhibit> ();
+            var requiredAppetizerPages = new List<int> ();
+            var requiredImages = new List<int> ();
+
+            foreach (var exhibit in fetchedChangedExhibits)
             {
-                var dbExhibit = exhibitSet.SingleOrDefault(x => x.IdForRestApi == exhibit.Id);
+                var dbExhibit = exhibitSet.SingleOrDefault (x => x.IdForRestApi == exhibit.Id);
 
                 if (dbExhibit != null && exhibit.Timestamp != dbExhibit.UnixTimestamp)
                 {
-                    updatedExhibits.Add(exhibit, dbExhibit);
-                    if (exhibit.Pages.Any())
+                    updatedExhibits.Add (exhibit, dbExhibit);
+                    if (exhibit.Pages.Any ())
                     {
-                        requiredAppetizerPages.Add(exhibit.Pages.First());
+                        requiredAppetizerPages.Add (exhibit.Pages.First ());
                     }
-                    requiredImages.Add(exhibit.Image);
+                    requiredImages.Add (exhibit.Image);
                 }
                 else
                 {
-                    newExhibits.Add(exhibit);
-                    if (exhibit.Pages.Any())
+                    newExhibits.Add (exhibit);
+                    if (exhibit.Pages.Any ())
                     {
-                        requiredAppetizerPages.Add(exhibit.Pages.First());
+                        requiredAppetizerPages.Add (exhibit.Pages.First ());
                     }
-                    requiredImages.Add(exhibit.Image);
+                    requiredImages.Add (exhibit.Image);
                 }
             }
 
@@ -86,34 +108,34 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             var images = await FetchImages (requiredImages);
             var files = await FetchFiles (requiredImages);
 
-            using (DbManager.StartTransaction())
+            using (DbManager.StartTransaction ())
             {
-                ProcessUpdatedExhibits(updatedExhibits, images, files);
-                ProcessNewExhibits(newExhibits, images, files);
+                ProcessUpdatedExhibits (updatedExhibits, images, files);
+                ProcessNewExhibits (newExhibits, images, files);
             }
         }
 
-        private void ProcessUpdatedExhibits(Dictionary<ExhibitDto, Exhibit> updatedExhibits, IList<MediaDto> images, IList<FileDto> files)
+        private void ProcessUpdatedExhibits (Dictionary<ExhibitDto, Exhibit> updatedExhibits, IList<MediaDto> images, IList<FileDto> files)
         {
             foreach (var exhibitPair in updatedExhibits)
             {
                 var exhibitDto = exhibitPair.Key;
                 var dbExhibit = exhibitPair.Value;
 
-                exhibitConverter.Convert(exhibitDto, dbExhibit);
+                ExhibitConverter.Convert (exhibitDto, dbExhibit);
 
-                AddImageToExhibit(dbExhibit, exhibitDto.Image, images, files);
+                AddImageToExhibit (dbExhibit, exhibitDto.Image, images, files);
 
                 //TODO: If exhibits content was already downloaded 
                 //-> Show dialog whether to download new data or do it directly depending on setting
             }
         }
 
-        private void ProcessNewExhibits(IEnumerable<ExhibitDto> newExhibits, IList<MediaDto> images, IList<FileDto> files)
+        private void ProcessNewExhibits (IEnumerable<ExhibitDto> newExhibits, IList<MediaDto> images, IList<FileDto> files)
         {
             foreach (var exhibitDto in newExhibits)
             {
-                var dbExhibit = exhibitConverter.Convert(exhibitDto);
+                var dbExhibit = ExhibitConverter.Convert (exhibitDto);
 
                 AddImageToExhibit (dbExhibit, exhibitDto.Image, images, files);
             }
@@ -121,12 +143,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
 
         private void AddImageToExhibit (Exhibit exhibit, int mediaId, IList<MediaDto> images, IList<FileDto> files)
         {
-            var exhibitImage = images.SingleOrDefault(x => x.Id == mediaId);
+            var exhibitImage = images.SingleOrDefault (x => x.Id == mediaId);
             if (exhibitImage != null)
             {
-                exhibit.Image = imageConverter.Convert(exhibitImage);
+                exhibit.Image = ImageConverter.Convert (exhibitImage);
 
-                var imageFile = files.SingleOrDefault(x => x.MediaId == mediaId);
+                var imageFile = files.SingleOrDefault (x => x.MediaId == mediaId);
                 if (imageFile != null)
                 {
                     exhibit.Image.Data = imageFile.Data;
@@ -134,22 +156,22 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             }
         }
 
-        private async Task<IList<ExhibitDto>> FetchExhibits(ExhibitSet exhibitSet)
+        private async Task<IList<ExhibitDto>> FetchExhibits (ExhibitSet exhibitSet)
         {
             ExhibitsDto exhibits;
             if (exhibitSet != null)
             {
-                exhibits = await exhibitsApiAccess.GetExhibits(exhibitSet.Timestamp);
+                exhibits = await exhibitsApiAccess.GetExhibits (exhibitSet.Timestamp);
             }
             else
             {
-                exhibits = await exhibitsApiAccess.GetExhibits();
+                exhibits = await exhibitsApiAccess.GetExhibits ();
             }
 
             return exhibits.Items;
         }
 
-        private async Task<IList<MediaDto>> FetchImages(IList<int> requiredImages)
+        private async Task<IList<MediaDto>> FetchImages (IList<int> requiredImages)
         {
             var medias = await mediasApiAccess.GetMedias (requiredImages);
             return medias.Items;
@@ -160,11 +182,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             var files = new List<FileDto> ();
             foreach (int mediaId in requiredImages)
             {
-                var file = await fileApiAccess.GetFile(mediaId);
+                var file = await fileApiAccess.GetFile (mediaId);
                 files.Add (file);
             }
 
             return files;
         }
+
     }
 }

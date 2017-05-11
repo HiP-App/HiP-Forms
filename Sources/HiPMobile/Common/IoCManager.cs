@@ -37,6 +37,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Common {
             Instance.RegisterType<TSuper, TSub>();
         }
 
+        public static void RegisterType<T> ()
+        {
+            Instance.RegisterType<T> ();
+        }
+
         public static void RegisterInstance(Type interf, object impl)
         {
             Instance.RegisterInstance(interf, impl);

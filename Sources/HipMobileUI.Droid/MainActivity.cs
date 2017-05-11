@@ -63,11 +63,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
             IoCManager.RegisterInstance (typeof(IBarsColorsChanger), new DroidBarsColorsChanger (this));
             IoCManager.RegisterInstance (typeof(IDbChangedHandler), new DbChangedHandler ());
 
-            //init api classes
-            IoCManager.RegisterInstance(typeof(IContentApiAccess), new ContentApiAccess());
-            IoCManager.RegisterInstance(typeof(IExhibitsApiAccess), new ExhibitsApiAccess());
-            IoCManager.RegisterInstance(typeof(IMediasApiAccess), new MediasApiAccess());
-
             // setup crash reporting
             IKeyProvider keyProvider = IoCManager.Resolve<IKeyProvider>();
             CrashManager.Register(this, keyProvider.GetKeyByName("hockeyapp.android"));

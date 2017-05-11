@@ -15,12 +15,18 @@
 using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers.Contracts;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelConverters;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataLayer;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Location;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
@@ -98,6 +104,18 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                 IoCManager.RegisterType<IDataLoader, EmbeddedResourceDataLoader>();
                 IoCManager.RegisterInstance (typeof(ApplicationResourcesProvider), new ApplicationResourcesProvider (Application.Current.Resources));
 
+                //init serviceaccesslayer
+                IoCManager.RegisterType<IContentApiAccess, ContentApiAccess>();
+                IoCManager.RegisterType<IExhibitsApiAccess, ExhibitsApiAccess>();
+                IoCManager.RegisterType<IMediasApiAccess, MediasApiAccess>();
+                IoCManager.RegisterType<IFileApiAccess, FileApiAccess> ();
+
+                //init converters
+                IoCManager.RegisterType<ExhibitConverter> ();
+                IoCManager.RegisterType<MediaToAudioConverter>();
+                IoCManager.RegisterType<MediaToImageConverter>();
+
+                IoCManager.RegisterType<IBaseDataFetcher, BaseDataFetcher>();
                 IoCManager.RegisterInstance (typeof(INearbyExhibitManager), new NearbyExhibitManager ());
                 IoCManager.RegisterInstance (typeof(INearbyRouteManager), new NearbyRouteManager ());
 

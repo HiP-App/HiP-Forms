@@ -12,19 +12,21 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses {
     public class FileApiAccess : IFileApiAccess {
 
-        private readonly IContentApiAccess contentApiAccess = IoCManager.Resolve<IContentApiAccess> ();
+        private readonly IContentApiAccess contentApiAccess;
+
+        public FileApiAccess (IContentApiAccess contentApiAccess)
+        {
+            this.contentApiAccess = contentApiAccess;
+        }
 
         public async Task<FileDto> GetFile (int mediaId)
         {

@@ -62,11 +62,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios
             IoCManager.RegisterInstance (typeof(IBarsColorsChanger), new IosBarsColorsChanger ());
             IoCManager.RegisterInstance (typeof(IDbChangedHandler), new DbChangedHandler ());
 
-            //init api ioc classes
-            IoCManager.RegisterInstance(typeof(IContentApiAccess), new ContentApiAccess());
-            IoCManager.RegisterInstance(typeof(IExhibitsApiAccess), new ExhibitsApiAccess());
-            IoCManager.RegisterInstance(typeof(IMediasApiAccess), new MediasApiAccess());
-
             // init crash manager
             var manager = BITHockeyManager.SharedHockeyManager;
             manager.Configure(IoCManager.Resolve<IKeyProvider> ().GetKeyByName ("hockeyapp.ios"));

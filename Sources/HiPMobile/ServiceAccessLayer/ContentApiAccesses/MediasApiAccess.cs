@@ -23,7 +23,12 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiD
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses {
     public class MediasApiAccess : IMediasApiAccess {
 
-        private readonly IContentApiAccess contentApiAccess = IoCManager.Resolve<IContentApiAccess> ();
+        private readonly IContentApiAccess contentApiAccess;
+
+        public MediasApiAccess (IContentApiAccess contentApiAccess)
+        {
+            this.contentApiAccess = contentApiAccess;
+        }
 
         public async Task<MediasDto> GetMedias ()
         {

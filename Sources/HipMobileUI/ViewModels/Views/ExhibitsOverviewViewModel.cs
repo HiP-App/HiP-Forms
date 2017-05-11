@@ -13,6 +13,7 @@
 // limitations under the License.
 
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows.Input;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
@@ -184,8 +185,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         /// Refreshs the exhibitsList depending on the changed database
         /// </summary>
         public void DbChanged ()
-        {
-            var set = ExhibitManager.GetExhibitSet ();
+		{
+		    var set = ExhibitManager.GetExhibitSets ().Single();
             DisplayedExhibitSet = set;
             ExhibitsList = new ObservableCollection<ExhibitsOverviewListItemViewModel>();
             foreach (Exhibit exhibit in set)
