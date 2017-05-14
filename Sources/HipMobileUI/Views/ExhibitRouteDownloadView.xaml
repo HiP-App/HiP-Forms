@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Views.ExhibitRouteDownloadView"
+             Title="{Binding InterestTitle}"
+             xmlns:helpers="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;assembly=HipMobileUI"
+             xmlns:effects="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Effects;assembly=HipMobileUI">
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical" Spacing="0" VerticalOptions="FillAndExpand">
+            <Image Source="{Binding Image}" Aspect="AspectFill" BackgroundColor="White" VerticalOptions="Center"/>
+            <BoxView HeightRequest="1" Margin="0,0,0,0" Color="{StaticResource PrimaryDarkColor}"/>
+            <BoxView HeightRequest="1" Margin="0,0,0,0" Color="{StaticResource DarkGrayColor}"/>
+            <Frame Padding="10,20,10,20" BackgroundColor="{StaticResource LightGrayColor}" HasShadow="False">
+                <Label Text="{Binding Message}" FontSize="Medium" FontAttributes="Bold" TextColor="{StaticResource AccentDarkColor}" HorizontalTextAlignment="Center" VerticalOptions="Center"/>
+            </Frame>
+            <BoxView HeightRequest="1" Margin="0,0,0,0" Color="{StaticResource DarkGrayColor}"/>
+            <StackLayout Padding="10,30,10,30" VerticalOptions="FillAndExpand">
+                <ProgressBar Progress="{Binding LoadingProgress}" Margin="20,0">
+                    <ProgressBar.Effects>
+                        <effects:ProgressBarColorEffect Color="{StaticResource PrimaryColor}"/>
+                    </ProgressBar.Effects>
+                </ProgressBar>
+                <Label Text="{Binding LoadingProgress, StringFormat='{0:p0}'}" HorizontalTextAlignment="Center" FontSize="16"/>
+            </StackLayout>
+            <BoxView HeightRequest="1" Margin="0,0,0,0" Color="{StaticResource DarkGrayColor}"/>
+            
+            
+            <StackLayout Orientation="Horizontal" Padding="16,8,8,8" BackgroundColor="{StaticResource LightGrayColor}" VerticalOptions="End">
+                <Label IsVisible="{Binding DownloadFinished}" Text="Übersicht" FontSize="20" TextColor="{StaticResource AccentColor}"
+                HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding GoToOverviewCommand}" />
+                    </Label.GestureRecognizers>
+                </Label>
+                <BoxView IsVisible="{Binding DownloadFinished}" WidthRequest="1" Color="{StaticResource DarkGrayColor}"/>
+                <Label IsVisible="{Binding DownloadFinished}" Text="Details" FontSize="20" TextColor="{StaticResource AccentColor}"
+                HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding GoToDetailsCommand}" />
+                    </Label.GestureRecognizers>
+                </Label>
+                
+                <Label IsVisible="{Binding DownloadPending}" Text="Abbrechen" FontSize="20" TextColor="{StaticResource AccentColor}"
+                HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding CancelCommand}" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

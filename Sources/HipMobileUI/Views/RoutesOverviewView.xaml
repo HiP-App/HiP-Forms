@@ -56,6 +56,17 @@
                                         <Label Text="{helpers:Translate RoutesOverviewView_Tags}" VerticalOptions="Center"/>
                                         <container1:BindableChildrenStackLayout  ChildElements="{Binding Tags, Converter= {StaticResource ImageListConverter}}" Orientation="Horizontal" />
                                     </StackLayout>
+                                    
+                                    <!-- The download field -->
+                                    <StackLayout IsVisible="{Binding IsDownloadPanelVisible}" Orientation="Horizontal" BackgroundColor="{StaticResource DarkGrayColor}">
+                                        <Label Text="Daten herunterladen" TextColor="{StaticResource AccentColor}"
+                                         HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                                            <Label.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding DownloadCommand}" />
+                                            </Label.GestureRecognizers>
+                                        </Label>
+                                    </StackLayout>
+                                    
                                 </StackLayout>
                             </StackLayout>
                         </ViewCell>
