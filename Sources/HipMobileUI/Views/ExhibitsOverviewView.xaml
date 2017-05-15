@@ -63,7 +63,7 @@
                                     <Label Text="{Binding FormatedDistance}" IsVisible="{Binding Source={x:Reference ExhibitsOveriew}, Path=BindingContext.DisplayDistances}" VerticalOptions="End" FontSize="14"
                                            TextColor="Gray" />
                                 </StackLayout>
-                                <Button Image="ic_file_download.png" BackgroundColor="White" Opacity="1"></Button>
+                                <Button Image="ic_file_download.png" BackgroundColor="White" Opacity="1" IsVisible="{Binding IsDownloadButtonVisible}" Command="{Binding DownloadCommand}"></Button>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>

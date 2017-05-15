@@ -52,8 +52,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 
         public DateTimeOffset? LastNearbyTime { get; set; }
 
-		// Contructor
-		public Exhibit(){
+        public virtual Boolean DetailsDataLoaded { get; set; }
+
+        // Contructor
+        public Exhibit(){
 		}
 	}
 }
