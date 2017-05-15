@@ -35,7 +35,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 
         void Accept()
         {
-            NearbyRouteManager.ClosePopUp ();
+            Deny ();
             NearbyRouteManager.OpenRouteDetailsView (RouteId);
         }
 
