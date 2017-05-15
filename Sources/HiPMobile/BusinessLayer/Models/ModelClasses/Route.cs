@@ -25,7 +25,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 	using System.Linq;
 	using System.Text;
 
-	public partial class Route : RealmObject, IIdentifiable
+	public partial class Route : RealmObject, IIdentifiable, IDownloadable
 	{
 		//Attributes
 		[PrimaryKey]
@@ -33,7 +33,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 
 		public virtual string Title{ get; set; }
 
-		public virtual string Description{ get; set; }
+        public string Name {
+            get { return Title; }
+            set { Title = value; }
+        }
+
+	    public virtual string Description{ get; set; }
 
 		public virtual int Duration{ get; set; }
 

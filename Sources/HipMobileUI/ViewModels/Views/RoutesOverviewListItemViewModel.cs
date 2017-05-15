@@ -31,7 +31,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views {
     /// <summary>
     /// View model of a list item in the <see cref="RoutesOverviewViewModel"/> screen
     /// </summary>
-    public class RoutesOverviewListItemViewModel : BaseViewModel, IExRoListItemViewModel {
+    public class RoutesOverviewListItemViewModel : NavigationViewModel, DownloadableListItemViewModel {
 
         /// <summary>
         /// Route data displayed by this list item
@@ -85,7 +85,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views {
         private async void OpenDownloadDialog()
         {
             // Open the download dialog
-            await IoCManager.Resolve<INavigationService>().PushAsync(new ExhibitRouteDownloadViewModel(Route, this));
+            downloadPage = new ExhibitRouteDownloadViewModel (Route, this);
+            await Navigation.PushAsync(downloadPage);
         }
 
         public void CloseDownloadPage()
@@ -95,7 +96,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views {
 
         public void OpenDetailsView(string id)
         {
-            IoCManager.Resolve<INavigationService>().PushAsync(new RouteDetailsPageViewModel(id));
+            Navigation.InsertPageBefore (new RouteDetailsPageViewModel (id), downloadPage);
+            Navigation.PopAsync ();
         }
 
         public void SetDetailsAvailable (bool available)
@@ -158,6 +160,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views {
             get { return isDownloadPanelVisible; }
             set { SetProperty(ref isDownloadPanelVisible, value); }
         }
+
+        private ExhibitRouteDownloadViewModel downloadPage;
 
         public ICommand DownloadCommand { get; set; }
     }

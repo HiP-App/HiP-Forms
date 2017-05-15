@@ -550,4 +550,10 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   <data name="SettingsScreenView_WifiOnly_Text" xml:space="preserve">
     <value>Wenn aktiviert, werden Daten nur über Wlan heruntergeladen</value>
   </data>
+  <data name="DownloadDetails_Text_Part1" xml:space="preserve">
+    <value>Lade Daten zu </value>
+  </data>
+  <data name="DownloadDetails_Text_Part2" xml:space="preserve">
+    <value> herunter</value>
+  </data>
 </root>

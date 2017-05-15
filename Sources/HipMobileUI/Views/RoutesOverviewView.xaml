@@ -58,14 +58,15 @@
                                     </StackLayout>
                                     
                                     <!-- The download field -->
-                                    <StackLayout IsVisible="{Binding IsDownloadPanelVisible}" Orientation="Horizontal" BackgroundColor="{StaticResource DarkGrayColor}">
+                                    <Button Image="ic_file_download.png" IsVisible="{Binding IsDownloadPanelVisible}" Command="{Binding DownloadCommand}"></Button>
+                                    <!--StackLayout IsVisible="{Binding IsDownloadPanelVisible}" Orientation="Horizontal">
                                         <Label Text="Daten herunterladen" TextColor="{StaticResource AccentColor}"
                                          HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
                                             <Label.GestureRecognizers>
                                                 <TapGestureRecognizer Command="{Binding DownloadCommand}" />
                                             </Label.GestureRecognizers>
                                         </Label>
-                                    </StackLayout>
+                                    </-->
                                     
                                 </StackLayout>
                             </StackLayout>

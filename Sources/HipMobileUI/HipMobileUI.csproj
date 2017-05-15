@@ -86,7 +86,7 @@
     <Compile Include="Helpers\OrientationController.cs" />
     <Compile Include="Helpers\Settings.cs" />
     <Compile Include="Contracts\IBarsColorsChanger.cs" />
-    <Compile Include="ViewModels\Views\IExRoListItemViewModel.cs" />
+    <Compile Include="ViewModels\Views\DownloadableListItemViewModel.cs" />
     <Compile Include="Location\LocationManager.cs" />
     <Compile Include="Location\NearbyExhibitManager.cs" />
     <Compile Include="Location\NearbyRouteManager.cs" />

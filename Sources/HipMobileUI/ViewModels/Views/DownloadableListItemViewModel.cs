@@ -1,6 +1,6 @@
 ﻿namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 {
-    public interface IExRoListItemViewModel {
+    public interface DownloadableListItemViewModel {
 
         void CloseDownloadPage ();
         void OpenDetailsView (string id);
