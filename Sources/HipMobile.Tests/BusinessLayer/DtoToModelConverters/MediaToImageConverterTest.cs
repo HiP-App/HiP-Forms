@@ -13,57 +13,59 @@
 // limitations under the License.
 
 using NSubstitute;
+using NUnit.Core;
 using NUnit.Framework;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelConverters;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.BusinessLayer.DtoToModelConverters {
 
     [TestFixture]
-    public class ExhibitConverterTest {
-
-        //TODO Realm under Windows first [Test, Category ("UnitTest")]
-        public void Convert_ExhibitTest()
+    public class MediaToImageConverterTest
+    {
+        [TestFixtureSetUp]
+        public void Init()
         {
-            var sut = CreateSystemUnderTest ();
+            IoCManager.RegisterInstance(typeof(IImageDimension), Substitute.For<IImageDimension>());
+        }
 
-            var exhibit = Substitute.For<Exhibit> ();
-            var exhibitDto = CreateExhibitDto ();
+        [Test, Category ("UnitTest")]
+        public void Convert_MediaToImageTest()
+        {
+            var sut = CreateSystemUnderTest();
 
-            sut.Convert (exhibitDto, exhibit);
-            Assert.AreEqual (1, exhibit.IdForRestApi);
-            Assert.AreEqual (1234, exhibit.UnixTimestamp);
-            Assert.AreEqual ("Test Description", exhibit.Description);
-            Assert.AreEqual ("Test Name", exhibit.Name);
-            Assert.AreEqual (42.1, exhibit.Location.Latitude);
-            Assert.AreEqual (42.2, exhibit.Location.Longitude);
+            var image = Substitute.For<Image>();
+            var mediaDto = CreateMediaDto();
+
+            sut.Convert(mediaDto, image);
+            Assert.AreEqual(1, image.IdForRestApi);
+            Assert.AreEqual(1234, image.UnixTimestamp);
+            Assert.AreEqual("Test Description", image.Description);
+            Assert.AreEqual("Test Title", image.Title);
         }
 
         #region HelperMethods
 
-        private ExhibitDto CreateExhibitDto ()
+        private MediaDto CreateMediaDto()
         {
-            return new ExhibitDto
+            return new MediaDto
             {
                 Id = 1,
                 Timestamp = 1234,
                 Description = "Test Description",
-                Name = "Test Name",
-                Latitude = 42.1,
-                Longitude = 42.2
+                Title = "Test Title"
             };
         }
 
-        private ExhibitConverter CreateSystemUnderTest()
+        private MediaToImageConverter CreateSystemUnderTest()
         {
-            return new ExhibitConverter ();
+            return new MediaToImageConverter();
         }
 
         #endregion
-
 
     }
 }

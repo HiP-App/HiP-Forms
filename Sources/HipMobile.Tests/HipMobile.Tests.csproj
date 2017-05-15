@@ -80,12 +80,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusinessLayer\DtoToModelConverters\ExhibitConverterTest.cs" />
+    <Compile Include="BusinessLayer\DtoToModelConverters\MediaToImageConverterTest.cs" />
+    <Compile Include="BusinessLayer\DtoToModelConverters\MediaToAudioConverterTest.cs" />
     <Compile Include="BusinessLayer\InteractiveSources\ConsecutiveNumberInteractiveSourceSubstituteTest.cs" />
     <Compile Include="BusinessLayer\InteractiveSources\ConsecutiveNumberAndConstantInteractiveSourceSubstituteTest.cs" />
     <Compile Include="BusinessLayer\InteractiveSources\ConstantInteractiveSourceSubstituteTest.cs" />
     <Compile Include="BusinessLayer\InteractiveSources\InteractiveSourcesParserTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiAccesses\ExhibitsApiAccessTest.cs" />
+    <Compile Include="ServiceAccessLayer\ContentApiAccesses\FileApiAccessTest.cs" />
+    <Compile Include="ServiceAccessLayer\ContentApiAccesses\MediasApiAccessTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

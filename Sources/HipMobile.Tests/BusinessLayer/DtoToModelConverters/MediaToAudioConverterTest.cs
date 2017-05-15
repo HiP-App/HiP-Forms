@@ -13,57 +13,51 @@
 // limitations under the License.
 
 using NSubstitute;
+using NUnit.Core;
 using NUnit.Framework;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelConverters;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.BusinessLayer.DtoToModelConverters {
 
     [TestFixture]
-    public class ExhibitConverterTest {
+    public class MediaToAudioConverterTest {
 
-        //TODO Realm under Windows first [Test, Category ("UnitTest")]
-        public void Convert_ExhibitTest()
+        [Test, Category ("UnitTest")]
+        public void Convert_MediaToAudioTest()
         {
-            var sut = CreateSystemUnderTest ();
+            var sut = CreateSystemUnderTest();
 
-            var exhibit = Substitute.For<Exhibit> ();
-            var exhibitDto = CreateExhibitDto ();
+            var audio = Substitute.For<Audio>();
+            var mediaDto = CreateMediaDto();
 
-            sut.Convert (exhibitDto, exhibit);
-            Assert.AreEqual (1, exhibit.IdForRestApi);
-            Assert.AreEqual (1234, exhibit.UnixTimestamp);
-            Assert.AreEqual ("Test Description", exhibit.Description);
-            Assert.AreEqual ("Test Name", exhibit.Name);
-            Assert.AreEqual (42.1, exhibit.Location.Latitude);
-            Assert.AreEqual (42.2, exhibit.Location.Longitude);
+            sut.Convert(mediaDto, audio);
+            Assert.AreEqual(1, audio.IdForRestApi);
+            Assert.AreEqual(1234, audio.UnixTimestamp);
+            Assert.AreEqual("Test Description", audio.Caption);
+            Assert.AreEqual("Test Title", audio.Title);
         }
 
         #region HelperMethods
 
-        private ExhibitDto CreateExhibitDto ()
+        private MediaDto CreateMediaDto()
         {
-            return new ExhibitDto
+            return new MediaDto
             {
                 Id = 1,
                 Timestamp = 1234,
                 Description = "Test Description",
-                Name = "Test Name",
-                Latitude = 42.1,
-                Longitude = 42.2
+                Title = "Test Title"
             };
         }
 
-        private ExhibitConverter CreateSystemUnderTest()
+        private MediaToAudioConverter CreateSystemUnderTest()
         {
-            return new ExhibitConverter ();
+            return new MediaToAudioConverter();
         }
 
         #endregion
-
 
     }
 }
