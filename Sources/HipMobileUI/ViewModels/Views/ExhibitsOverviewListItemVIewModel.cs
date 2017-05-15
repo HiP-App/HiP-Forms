@@ -18,7 +18,6 @@ using MvvmHelpers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
-using PaderbornUniversity.SILab.Hip.Mobile.UI.Location;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
 using Plugin.Geolocator.Abstractions;
@@ -28,7 +27,7 @@ using System.Windows.Input;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 {
-    class ExhibitsOverviewListItemViewModel : BaseViewModel, DownloadableListItemViewModel
+    class ExhibitsOverviewListItemViewModel : NavigationViewModel, DownloadableListItemViewModel
     {
 
         public ExhibitsOverviewListItemViewModel (Exhibit exhibit, double distance = -1)
@@ -51,6 +50,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         private double distance;
         private ImageSource image;
         private Boolean isDownloadButtonVisible;
+        private ExhibitRouteDownloadViewModel downloadPage;
 
         /// <summary>
         /// The name of the exhibit.
@@ -122,7 +122,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 
         public void OpenDetailsView(string id)
         {
-            IoCManager.Resolve<INavigationService>().PushAsync(new ExhibitDetailsViewModel(id));
+            Navigation.InsertPageBefore(new ExhibitDetailsViewModel(id), downloadPage);
+            Navigation.PopAsync();
         }
 
         public void SetDetailsAvailable(bool available)
@@ -139,7 +140,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 
         private async void OpenDownloadDialog()
         {
-            await IoCManager.Resolve<INavigationService>().PushAsync(new ExhibitRouteDownloadViewModel(Exhibit, this));
+            downloadPage = new ExhibitRouteDownloadViewModel(Exhibit, this);
+            await Navigation.PushAsync(downloadPage);
         }
 
         public void CloseDownloadPage()
