@@ -11,34 +11,13 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-
-using System.Collections.Generic;
-
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos {
-    public class PageDto
-    {
-        public int ExhibitId { get; set; }
+    public enum PageTypeDto {
 
-        public int Id { get; set; }
+        AppetizerPage,
+        ImagePage,
+        SliderPage,
+        TextPage
 
-        public PageTypeDto Type { get; set; }
-
-        public string Title { get; set; }
-
-        public string Text { get; set; }
-
-        public int Audio { get; set; }
-
-        public int Image { get; set; }
-
-        public IList<PageImageDto> Images { get; set; }
-
-        public bool HideYearNumbers { get; set; }
-
-        public IList<int> AdditionalInformationPages { get; set; }
-
-        public string Status { get; set; }
-
-        public long Timestamp { get; set; }
     }
 }

@@ -20,7 +20,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
 
         public string Description { get; set; }
 
-        public string Type { get; set; }
+        public MediaTypeDto Type { get; set; }
 
         public long Timestamp { get; set; }
 

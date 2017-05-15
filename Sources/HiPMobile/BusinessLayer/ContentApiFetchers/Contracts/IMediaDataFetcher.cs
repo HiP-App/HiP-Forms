@@ -13,32 +13,12 @@
 // limitations under the License.
 
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos {
-    public class PageDto
-    {
-        public int ExhibitId { get; set; }
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers.Contracts {
+    public interface IMediaDataFetcher {
 
-        public int Id { get; set; }
+        Task<FetchedMediaData> FetchMedias (IList<int> mediaIds);
 
-        public PageTypeDto Type { get; set; }
-
-        public string Title { get; set; }
-
-        public string Text { get; set; }
-
-        public int Audio { get; set; }
-
-        public int Image { get; set; }
-
-        public IList<PageImageDto> Images { get; set; }
-
-        public bool HideYearNumbers { get; set; }
-
-        public IList<int> AdditionalInformationPages { get; set; }
-
-        public string Status { get; set; }
-
-        public long Timestamp { get; set; }
     }
 }

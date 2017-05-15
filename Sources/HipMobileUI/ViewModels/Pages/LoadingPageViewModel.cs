@@ -109,15 +109,22 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                 IoCManager.RegisterType<IExhibitsApiAccess, ExhibitsApiAccess>();
                 IoCManager.RegisterType<IMediasApiAccess, MediasApiAccess>();
                 IoCManager.RegisterType<IFileApiAccess, FileApiAccess> ();
+                IoCManager.RegisterType<IPagesApiAccess, PagesApiAccess>();
 
                 //init converters
                 IoCManager.RegisterType<ExhibitConverter> ();
                 IoCManager.RegisterType<MediaToAudioConverter>();
                 IoCManager.RegisterType<MediaToImageConverter>();
+                IoCManager.RegisterType<PageConverter>();
 
+                //init fetchers
+                IoCManager.RegisterType<IMediaDataFetcher, MediaDataFetcher>();
                 IoCManager.RegisterType<IBaseDataFetcher, BaseDataFetcher>();
+
                 IoCManager.RegisterInstance (typeof(INearbyExhibitManager), new NearbyExhibitManager ());
                 IoCManager.RegisterInstance (typeof(INearbyRouteManager), new NearbyRouteManager ());
+
+                var baseDataFetcher = IoCManager.Resolve<IBaseDataFetcher> ();
 
                 // show text, progress bar and image when db is initialized, otherwise just the indicator is shown
                 if (!DbManager.IsDatabaseUpToDate())

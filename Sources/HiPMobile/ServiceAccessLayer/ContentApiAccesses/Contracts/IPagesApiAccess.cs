@@ -17,8 +17,16 @@ using System.Threading.Tasks;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses.Contracts {
-    public interface IPagesApiAccess
-    {
+    public interface IPagesApiAccess {
+
+        Task<PagesDto> GetPages();
+
+        Task<PagesDto> GetPages(long timestamp);
+
+        Task<PagesDto> GetPages(IList<int> includeOnly);
+
+        Task<PagesDto> GetPages(long timestamp, IList<int> includeOnly);
+
         Task<PagesDto> GetPages(int exhibitId);
 
         Task<PagesDto> GetPages(int exhibitId, long timestamp);
