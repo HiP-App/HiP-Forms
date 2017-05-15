@@ -1,27 +1,27 @@
-﻿using System.Diagnostics;
+﻿using System;
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Location;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using Xamarin.Forms;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 {
     class ExhibitRouteDownloadViewModel : NavigationViewModel, IProgressListener
     {
-        public ExhibitRouteDownloadViewModel (Exhibit exhibit, ExhibitsOverviewListItemViewModel exhibitsOverviewListItemViewModel)
+        public ExhibitRouteDownloadViewModel (IDownloadable downloadable, DownloadableListItemViewModel downloadableListItemViewModel)
         {
-            InterestTitle = exhibit.Name;
-            InterestId = exhibit.Id;
+            DownloadableId = downloadable.Id;
+            DownloadableName = downloadable.Name;
             
-            Message = "Lade Daten";    // Modify this message if generic type available; pass in constructor or generate here with Strings.xxx
-            var data = exhibit.Image.Data;
+            Message = Strings.DownloadDetails_Text_Part1 + DownloadableName + Strings.DownloadDetails_Text_Part2;
+            var data = downloadable.Image.Data;
             Image = ImageSource.FromStream(() => new MemoryStream(data));
-            ExRoListItemViewModel = exhibitsOverviewListItemViewModel;
-
-            // The commands for the buttons
+            DownloadableListItemViewModel = downloadableListItemViewModel;
+            
             CancelCommand = new Command(CancelDownload);
             GoToDetailsCommand = new Command(GoToDetails);
             GoToOverviewCommand = new Command(CloseDownloadPage);
@@ -29,42 +29,23 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             StartDownload = new Command(DownloadData);
 
             DownloadPending = true;
-            DownloadFinished = false;   // Since false is the default value this is just a reminder in case the database wants to set this to true when generating this item
+            DownloadFinished = !DownloadPending;   // Since false is the default value this is just a reminder in case the database wants to set this to true when generating this item
         }
-        public ExhibitRouteDownloadViewModel(Route route, RoutesOverviewListItemViewModel routesOverviewListItemViewModel)
+
+        private DownloadableListItemViewModel DownloadableListItemViewModel { get; set; }
+
+        private string downloadableName;
+        public string DownloadableName
         {
-            InterestTitle = route.Title;
-            InterestId = route.Id;
-            
-            Message = "Lade Daten";    // Modify this message if generic type available
-            var data = route.Image.Data;
-            Image = ImageSource.FromStream(() => new MemoryStream(data));
-            ExRoListItemViewModel = routesOverviewListItemViewModel;
-            
-            // The commands for the buttons
-            CancelCommand = new Command (CancelDownload);
-            GoToDetailsCommand = new Command (GoToDetails);
-            GoToOverviewCommand = new Command (CloseDownloadPage);
-
-            StartDownload = new Command (DownloadData);
-
-            DownloadPending = true;
-            DownloadFinished = false;
+            get { return downloadableName; }
+            set { SetProperty(ref downloadableName, value); }
         }
 
-        private IExRoListItemViewModel ExRoListItemViewModel { get; set; }
-
-        private string interestTitle;
-        public string InterestTitle
+        private string downloadableId;
+        public string DownloadableId
         {
-            get { return interestTitle; }
-            set { SetProperty(ref interestTitle, value); }
-        }
-
-        private string interestId;
-        public string InterestId {
-            get { return interestId; }
-            set { SetProperty(ref interestId, value); }
+            get { return downloadableId; }
+            set { SetProperty(ref downloadableId, value); }
         }
 
         private string message;
@@ -122,41 +103,35 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 
         void CloseDownloadPage ()
         {
-            ExRoListItemViewModel.CloseDownloadPage ();
+            DownloadableListItemViewModel.CloseDownloadPage ();
         }
 
         void GoToDetails ()
         {
-            CloseDownloadPage ();
-            ExRoListItemViewModel.OpenDetailsView (InterestId);
+            DownloadableListItemViewModel.OpenDetailsView (DownloadableId);
         }
 
         async void DownloadData ()
         {
             // This is where all the the data will be downloaded
-            // This method is called within OnAppearing() of the ExhibitRouteDownloadViewModel-page
             // maybe you do something like this:   Database.loadInterestDataFor(InterestId);    // Interests are Routes and Exhibits
             
-            Debug.WriteLine ("##### Starting Download #####");
             LoadingProgress = 0;
-            for (var x = 0; x < 100; x++)
+            for (var x = 0; x < 50; x++)
             {
-                UpdateProgress (LoadingProgress+.01, 1);
+                UpdateProgress (LoadingProgress+.02, 1);
                 await Task.Delay (50);
                 if (downloadAborted)
                     return;     // Shouldn't this break the whole function instead of only the loop?
             }
-
-            // At the end: Set parameters for hiding/displaying the buttons
-            if (!downloadAborted)
-                SetDetailsAvailable ();
+            SetDetailsAvailable ();
         }
 
         void SetDetailsAvailable ()
         {
             DownloadPending = false;
             DownloadFinished = !DownloadPending;
-            ExRoListItemViewModel.SetDetailsAvailable (DownloadFinished);
+            DownloadableListItemViewModel.SetDetailsAvailable (DownloadFinished);
         }
 
         public void UpdateProgress (double newProgress, double maxProgress)
@@ -164,5 +139,16 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             LoadingProgress = newProgress / maxProgress;
         }
 
+        public override void OnAppearing()
+        {
+            base.OnAppearing();
+            StartDownload.Execute(null);
+        }
+
+        public override void OnDisappearing ()
+        {
+            base.OnDisappearing ();
+            downloadAborted = true;
+        }
     }
 }

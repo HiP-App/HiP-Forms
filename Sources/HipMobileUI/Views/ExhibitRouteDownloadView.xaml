@@ -7,7 +7,7 @@
              xmlns:effects="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Effects;assembly=HipMobileUI">
     <ContentPage.Content>
         <StackLayout Orientation="Vertical" Spacing="0" VerticalOptions="FillAndExpand">
-            <Image Source="{Binding Image}" Aspect="AspectFill" BackgroundColor="White" VerticalOptions="Center"/>
+            <Image x:Name="Image" Source="{Binding Image}" Aspect="AspectFill" BackgroundColor="White" VerticalOptions="Center"/>
             <BoxView HeightRequest="1" Margin="0,0,0,0" Color="{StaticResource PrimaryDarkColor}"/>
             <BoxView HeightRequest="1" Margin="0,0,0,0" Color="{StaticResource DarkGrayColor}"/>
             <Frame Padding="10,20,10,20" BackgroundColor="{StaticResource LightGrayColor}" HasShadow="False">

@@ -26,7 +26,7 @@ using Xamarin.Forms;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 {
-    class ExhibitsOverviewListItemViewModel : BaseViewModel, IExRoListItemViewModel
+    class ExhibitsOverviewListItemViewModel : BaseViewModel, DownloadableListItemViewModel
     {
 
         public ExhibitsOverviewListItemViewModel (Exhibit exhibit, double distance = -1)
