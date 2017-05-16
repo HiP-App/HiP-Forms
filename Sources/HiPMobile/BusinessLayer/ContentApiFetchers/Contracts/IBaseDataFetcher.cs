@@ -12,14 +12,16 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System.Threading;
 using System.Threading.Tasks;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers.Contracts {
     public interface IBaseDataFetcher {
 
-        Task<bool> IsDatabaseUpToDate ();
+        Task<bool> IsDatabaseUpToDate (CancellationToken token);
 
-        Task FetchBaseDataIntoDatabase ();
+        Task FetchBaseDataIntoDatabase (CancellationToken token, IProgressListener listener);
 
     }
 }

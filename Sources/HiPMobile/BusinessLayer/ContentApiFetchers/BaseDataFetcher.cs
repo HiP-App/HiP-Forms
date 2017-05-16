@@ -14,12 +14,14 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Practices.Unity;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelConverters;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos;
 
@@ -27,7 +29,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
 {
     public class BaseDataFetcher : IBaseDataFetcher
     {
-
         private readonly IExhibitsApiAccess exhibitsApiAccess;
 
         private readonly IPagesApiAccess pagesApiAccess;
@@ -49,7 +50,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             this.mediaDataFetcher = mediaDataFetcher;
         }
 
-        public async Task<bool> IsDatabaseUpToDate()
+        public async Task<bool> IsDatabaseUpToDate(CancellationToken token)
         {
             var exhibitSet = ExhibitManager.GetExhibitSets().SingleOrDefault();
 
@@ -58,10 +59,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             return fetchedChangedExhibits.Any();
         }
 
-        public async Task FetchBaseDataIntoDatabase()
+        public async Task FetchBaseDataIntoDatabase(CancellationToken token, IProgressListener listener)
         {
             var exhibitSet = ExhibitManager.GetExhibitSets().SingleOrDefault();
-
             if (fetchedChangedExhibits == null)
             {
                 fetchedChangedExhibits = await FetchExhibits(exhibitSet);
@@ -82,20 +82,24 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
 
             foreach (var exhibit in fetchedChangedExhibits)
             {
+                if (token.IsCancellationRequested)
+                {
+                    return;
+                }
+
                 var dbExhibit = exhibitSet.SingleOrDefault(x => x.IdForRestApi == exhibit.Id);
 
                 if (dbExhibit != null && exhibit.Timestamp != dbExhibit.UnixTimestamp)
                 {
                     updatedExhibits.Add(exhibit, dbExhibit);
-                    if (exhibit.Pages.Any())
-                    {
-                        requiredAppetizerPages.Add(exhibit.Pages.First());
-                    }
-                    requiredImages.Add(exhibit.Image);
                 }
                 else if (dbExhibit == null)
                 {
                     newExhibits.Add(exhibit);
+                }
+
+                if (dbExhibit == null || exhibit.Timestamp != dbExhibit.UnixTimestamp)
+                {
                     if (exhibit.Pages.Any())
                     {
                         requiredAppetizerPages.Add(exhibit.Pages.First());
@@ -103,6 +107,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                     requiredImages.Add(exhibit.Image);
                 }
             }
+
+            double totalSteps = requiredAppetizerPages.Count + requiredImages.Count + fetchedChangedExhibits.Count;
+            listener.SetMaxProgress (totalSteps);
 
             var appetizerPages = (await pagesApiAccess.GetPages(requiredAppetizerPages)).Items;
             foreach (var page in appetizerPages)
@@ -110,16 +117,29 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                 requiredImages.Add(page.Image);
             }
 
-            using (DbManager.StartTransaction())
+            if (token.IsCancellationRequested)
             {
-                var fetchedMedia = await mediaDataFetcher.FetchMedias(requiredImages);
+                return;
+            }
+            using (var transaction = DbManager.StartTransaction())
+            {
+                var fetchedMedia = await mediaDataFetcher.FetchMedias(requiredImages, token, listener);
+                if (token.IsCancellationRequested)
+                {
+                    transaction.Rollback ();
+                    return;
+                }
+                ProcessUpdatedExhibits(updatedExhibits, fetchedMedia, appetizerPages, listener);
+                ProcessNewExhibits(newExhibits, fetchedMedia, appetizerPages, listener);
 
-                ProcessUpdatedExhibits(updatedExhibits, fetchedMedia, appetizerPages);
-                ProcessNewExhibits(newExhibits, fetchedMedia, appetizerPages);
+                if (token.IsCancellationRequested)
+                {
+                    transaction.Rollback();
+                }
             }
         }
 
-        private void ProcessUpdatedExhibits(Dictionary<ExhibitDto, Exhibit> updatedExhibits, FetchedMediaData fetchedMediaData, IList<PageDto> pages)
+        private void ProcessUpdatedExhibits(Dictionary<ExhibitDto, Exhibit> updatedExhibits, FetchedMediaData fetchedMediaData, IList<PageDto> pages, IProgressListener listener)
         {
             foreach (var exhibitPair in updatedExhibits)
             {
@@ -132,6 +152,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                 AddAppetizerPageToExhibit(pages, exhibitDto, dbExhibit);
                 //TODO: If exhibits content was already downloaded 
                 //-> Show dialog whether to download new data or do it directly depending on setting
+
+                listener.ProgressOneStep();
             }
         }
 
@@ -165,7 +187,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             }
         }
 
-        private void ProcessNewExhibits(IEnumerable<ExhibitDto> newExhibits, FetchedMediaData fetchedMediaData, IList<PageDto> pages)
+        private void ProcessNewExhibits(IEnumerable<ExhibitDto> newExhibits, FetchedMediaData fetchedMediaData, IList<PageDto> pages, IProgressListener listener)
         {
             foreach (var exhibitDto in newExhibits)
             {
@@ -173,6 +195,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
 
                 AddImageToExhibit(dbExhibit, exhibitDto.Image, fetchedMediaData);
                 AddAppetizerPageToExhibit(pages, exhibitDto, dbExhibit);
+
+                listener.ProgressOneStep();
             }
         }
 

@@ -14,16 +14,20 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Practices.Unity;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelConverters;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers {
-    public class MediaDataFetcher : IMediaDataFetcher {
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers
+{
+    public class MediaDataFetcher : IMediaDataFetcher
+    {
 
         private readonly IMediasApiAccess mediasApiAccess;
         private readonly IFileApiAccess fileApiAccess;
@@ -40,24 +44,33 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             this.fileApiAccess = fileApiAccess;
         }
 
-        public async Task<FetchedMediaData> FetchMedias(IList<int> mediaIds)
+        public async Task<FetchedMediaData> FetchMedias(IList<int> mediaIds, CancellationToken token, IProgressListener progressListener)
         {
-            var media = await FetchMediaDtos (mediaIds);
-            var files = await FetchFileDtos(mediaIds);
+            var media = await FetchMediaDtos(mediaIds);
+            var files = await FetchFileDtos(mediaIds, token, progressListener);
 
-            return CombineMediasAndFiles (media, files);
+            if (token.IsCancellationRequested)
+            {
+                return null;
+            }
+
+            return CombineMediasAndFiles(media, files, token);
         }
 
-        private FetchedMediaData CombineMediasAndFiles(IList<MediaDto> medias, IList<FileDto> files)
+        private FetchedMediaData CombineMediasAndFiles(IList<MediaDto> medias, IList<FileDto> files, CancellationToken token)
         {
             var fetchedData = new FetchedMediaData
             {
-                Audios = new List<Audio> (),
-                Images = new List<Image> ()
+                Audios = new List<Audio>(),
+                Images = new List<Image>()
             };
-            
+
             foreach (var media in medias)
             {
+                if (token.IsCancellationRequested)
+                {
+                    break;
+                }
                 switch (media.Type)
                 {
                     case MediaTypeDto.Audio:
@@ -92,13 +105,18 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             return medias.Items;
         }
 
-        private async Task<IList<FileDto>> FetchFileDtos(IList<int> requiredImages)
+        private async Task<IList<FileDto>> FetchFileDtos(IList<int> requiredImages, CancellationToken token, IProgressListener progressListener)
         {
             var files = new List<FileDto>();
             foreach (int mediaId in requiredImages)
             {
+                if (token.IsCancellationRequested)
+                {
+                    break;
+                }
                 var file = await fileApiAccess.GetFile(mediaId);
                 files.Add(file);
+                progressListener.ProgressOneStep();
             }
 
             return files;

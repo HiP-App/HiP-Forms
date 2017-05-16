@@ -13,12 +13,14 @@
 // limitations under the License.
 
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers.Contracts {
     public interface IMediaDataFetcher {
 
-        Task<FetchedMediaData> FetchMedias (IList<int> mediaIds);
+        Task<FetchedMediaData> FetchMedias (IList<int> mediaIds, CancellationToken token, IProgressListener progressListener);
 
     }
 }

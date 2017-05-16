@@ -21,7 +21,7 @@ using System.Threading.Tasks;
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer {
     public class ContentApiAccess : IContentApiAccess {
 
-        private const string ServerUrl = "http://bla.blabla";
+        private const string ServerUrl = "https://docker-hip.cs.upb.de/";
 
         /// <summary>
         /// Returns json string if webcall was successful (Status 200)
@@ -58,7 +58,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer {
                 WebResponse errorResponse = ex.Response;
                 using (Stream responseStream = errorResponse.GetResponseStream())
                 {
-                    StreamReader reader = new StreamReader(responseStream, Encoding.GetEncoding("utf-8"));
+                    StreamReader reader = new StreamReader(responseStream, Encoding.UTF8);
                     String errorText = reader.ReadToEnd();
 
                     throw new NetworkAccessFailedException(errorText);

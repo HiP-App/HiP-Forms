@@ -13,7 +13,7 @@
 // limitations under the License.
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos {
     public class PageImageDto {
-        public string Date { get; set; }
+        public long Date { get; set; }
 
         public int Image { get; set; }
 

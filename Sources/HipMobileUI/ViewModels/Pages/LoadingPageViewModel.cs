@@ -13,6 +13,7 @@
 // limitations under the License.
 
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers;
@@ -42,6 +43,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             Text = Strings.LoadingPage_Text;
             Subtext = Strings.LoadingPage_Subtext;
             StartLoading = new Command (Load);
+            cancellationTokenSource = new CancellationTokenSource();
 
             // listen to sleep and wake up messages as the main screen cannot be started when the app is sleeping
             MessagingCenter.Subscribe<App>(this, AppSharedData.WillSleepMessage, WillSleep);
@@ -53,6 +55,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         private ICommand startLoading;
         private bool isExtendedViewsVisible;
         private double loadingProgress;
+        private readonly CancellationTokenSource cancellationTokenSource;
 
         private bool isSleeping;
         private Action startupAction;
@@ -110,12 +113,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                 IoCManager.RegisterType<IMediasApiAccess, MediasApiAccess>();
                 IoCManager.RegisterType<IFileApiAccess, FileApiAccess> ();
                 IoCManager.RegisterType<IPagesApiAccess, PagesApiAccess>();
+                IoCManager.RegisterType<IRoutesApiAccess, RoutesApiAccess>();
 
                 //init converters
                 IoCManager.RegisterType<ExhibitConverter> ();
                 IoCManager.RegisterType<MediaToAudioConverter>();
                 IoCManager.RegisterType<MediaToImageConverter>();
                 IoCManager.RegisterType<PageConverter>();
+                IoCManager.RegisterType<RouteConverter>();
 
                 //init fetchers
                 IoCManager.RegisterType<IMediaDataFetcher, MediaDataFetcher>();
@@ -125,6 +130,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                 IoCManager.RegisterInstance (typeof(INearbyRouteManager), new NearbyRouteManager ());
 
                 var baseDataFetcher = IoCManager.Resolve<IBaseDataFetcher> ();
+                /*
+                var token = cancellationTokenSource.Token;
+                bool isUpToDate = await baseDataFetcher.IsDatabaseUpToDate (token);
+                if (isUpToDate)
+                {
+                    IsExtendedViewsVisible = true;
+                    await baseDataFetcher.FetchBaseDataIntoDatabase (token, this);
+                }*/
 
                 // show text, progress bar and image when db is initialized, otherwise just the indicator is shown
                 if (!DbManager.IsDatabaseUpToDate())
@@ -165,6 +178,20 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             LoadingProgress = (newProgress / maxProgress)*0.8;
         }
 
+        private double maximumProgress;
+        private double currentProgress;
+
+        public void ProgressOneStep()
+        {
+            currentProgress++;
+            LoadingProgress = (currentProgress / maximumProgress) * 0.8;
+        }
+
+        public void SetMaxProgress(double maxProgress)
+        {
+            maximumProgress = maxProgress;
+        }
+
         private void WillWakeUp(App obj)
         {
             isSleeping = false;
@@ -181,5 +208,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             isSleeping = true;
         }
 
+        public override void OnDisappearing ()
+        {
+            base.OnDisappearing ();
+            cancellationTokenSource.Cancel();
+        }
     }
 }

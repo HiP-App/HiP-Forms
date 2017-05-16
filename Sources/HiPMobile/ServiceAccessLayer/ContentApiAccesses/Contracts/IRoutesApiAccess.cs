@@ -13,13 +13,19 @@
 // limitations under the License.
 
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos {
-    public class RoutesDto {
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses.Contracts {
+    public interface IRoutesApiAccess
+    {
+        Task<RoutesDto> GetRoutes ();
 
-        public int Total { get; set; }
+        Task<RoutesDto> GetRoutes(long timestamp);
 
-        public IList<RouteDto> Items { get; set; }
+        Task<RoutesDto> GetRoutes(IList<int> includeOnly);
+
+        Task<RoutesDto> GetRoutes(long timestamp, IList<int> includeOnly);
 
     }
 }
