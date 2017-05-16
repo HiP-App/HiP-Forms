@@ -17,6 +17,9 @@
   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   See the License for the specific language governing permissions and
   limitations under the License.*/
+
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer;
+
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 {
 	using Realms;
@@ -47,6 +50,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 	    // Contructor
         public Page(){
 		}
-	}
+
+        public virtual int IdForRestApi { get; set; }
+        public virtual long UnixTimestamp { get; set; }
+    }
 }
 
