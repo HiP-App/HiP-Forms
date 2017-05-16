@@ -139,6 +139,16 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             LoadingProgress = newProgress / maxProgress;
         }
 
+        public void ProgressOneStep ()
+        {
+            throw new NotImplementedException ();
+        }
+
+        public void SetMaxProgress (double maxProgress)
+        {
+            throw new NotImplementedException ();
+        }
+
         public override void OnAppearing()
         {
             base.OnAppearing();
