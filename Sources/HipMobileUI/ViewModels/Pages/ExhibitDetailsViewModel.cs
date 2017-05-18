@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -23,6 +24,7 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.AudioPlayer;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views.ExhibitDetails;
@@ -50,7 +52,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
         private bool audioToolbarVisible;
         private bool hasAdditionalInformation;
         private bool additionalInformationButtonVisible;
-
+        private Exhibit exhibit;
         private bool additionalInformation;
 
         public ExhibitDetailsViewModel(Exhibit exhibit) : this(exhibit.Pages, exhibit.Name)
@@ -191,6 +193,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
         /// Go to the next available view.
         /// </summary>
         /// <returns></returns>
+        public Exhibit Exhibit
+        {
+            get { return exhibit; }
+            set { SetProperty(ref exhibit, value); }
+        }
+
+
         private async Task GotoNextView ()
         {
             if (currentViewIndex < pages.Count - 1)
@@ -198,15 +207,27 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
                 // stop audio
                 if (AudioToolbar.AudioPlayer.IsPlaying)
                 {
-                    AudioToolbar.AudioPlayer.Stop ();
+                    AudioToolbar.AudioPlayer.Stop();
                 }
 
                 // update the UI
+
+
+            }           
+            if (exhibit.Unlocked.Equals (true))
+            {
                 currentViewIndex++;
                 NextViewAvailable = currentViewIndex < pages.Count - 1;
                 PreviousViewAvailable = true;
-                await SetCurrentView ();
+                await SetCurrentView();
+
             }
+            else
+            {
+                await IoCManager.Resolve<INavigationService>()
+                                .DisplayAlert("NOT allowed to see details", "Sorry,you are too far from the Exhibit", "OK");
+            }
+
         }
 
         private void SwitchAudioToolbarVisibleState ()

@@ -134,7 +134,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
 
 				if (result)
 				{
-					ExhibitVisited(this, e);
+               
+                ExhibitVisited(this, e);
 				}
 
 		
