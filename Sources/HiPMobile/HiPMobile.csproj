@@ -52,8 +52,12 @@
     <Compile Include="BusinessLayer\ContentApiFetchers\BaseDataFetcher.cs" />
     <Compile Include="BusinessLayer\ContentApiFetchers\Contracts\IBaseDataFetcher.cs" />
     <Compile Include="BusinessLayer\ContentApiFetchers\Contracts\IMediaDataFetcher.cs" />
+    <Compile Include="BusinessLayer\ContentApiFetchers\Contracts\IExhibitsBaseDataFetcher.cs" />
+    <Compile Include="BusinessLayer\ContentApiFetchers\Contracts\IRoutesBaseDataFetcher.cs" />
+    <Compile Include="BusinessLayer\ContentApiFetchers\ExhibitsBaseDataFetcher.cs" />
     <Compile Include="BusinessLayer\ContentApiFetchers\FetchedMediaData.cs" />
     <Compile Include="BusinessLayer\ContentApiFetchers\MediaDataFetcher.cs" />
+    <Compile Include="BusinessLayer\ContentApiFetchers\RoutesBaseDataFetcher.cs" />
     <Compile Include="BusinessLayer\DtoToModelConverters\RouteConverter.cs" />
     <Compile Include="BusinessLayer\DtoToModelConverters\MediaToAudioConverter.cs" />
     <Compile Include="BusinessLayer\DtoToModelConverters\MediaToImageConverter.cs" />

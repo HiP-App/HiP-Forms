@@ -38,11 +38,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
     class LoadingPageViewModel : NavigationViewModel, IProgressListener
     {
 
-        public LoadingPageViewModel ()
+        public LoadingPageViewModel()
         {
             Text = Strings.LoadingPage_Text;
             Subtext = Strings.LoadingPage_Subtext;
-            StartLoading = new Command (Load);
+            StartLoading = new Command(Load);
             cancellationTokenSource = new CancellationTokenSource();
 
             // listen to sleep and wake up messages as the main screen cannot be started when the app is sleeping
@@ -63,60 +63,66 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         /// <summary>
         /// The headline text.
         /// </summary>
-        public string Text {
+        public string Text
+        {
             get { return text; }
-            set { SetProperty (ref text, value); }
+            set { SetProperty(ref text, value); }
         }
 
         /// <summary>
         /// the sub text.
         /// </summary>
-        public string Subtext {
+        public string Subtext
+        {
             get { return subtext; }
-            set { SetProperty (ref subtext, value); }
+            set { SetProperty(ref subtext, value); }
         }
 
         /// <summary>
         /// The command for starting loading of database.
         /// </summary>
-        public ICommand StartLoading {
+        public ICommand StartLoading
+        {
             get { return startLoading; }
-            set { SetProperty (ref startLoading, value); }
+            set { SetProperty(ref startLoading, value); }
         }
 
         /// <summary>
         /// Indicates wether the extended view is visible or not. The extended view gives more information about the current progress.
         /// </summary>
-        public bool IsExtendedViewsVisible {
+        public bool IsExtendedViewsVisible
+        {
             get { return isExtendedViewsVisible; }
-            set { SetProperty (ref isExtendedViewsVisible, value); }
+            set { SetProperty(ref isExtendedViewsVisible, value); }
         }
 
         /// <summary>
         /// Value indicating the current loading progress.
         /// </summary>
-        public double LoadingProgress {
+        public double LoadingProgress
+        {
             get { return loadingProgress; }
-            set { SetProperty (ref loadingProgress, value); }
+            set { SetProperty(ref loadingProgress, value); }
         }
 
-        public void Load ()
+        public void Load()
         {
-            Task.Factory.StartNew (async () => {
+            Task.Factory.StartNew(async () =>
+            {
                 IoCManager.RegisterType<IDataAccess, RealmDataAccess>();
                 IoCManager.RegisterType<IDataLoader, EmbeddedResourceDataLoader>();
-                IoCManager.RegisterInstance (typeof(ApplicationResourcesProvider), new ApplicationResourcesProvider (Application.Current.Resources));
+                IoCManager.RegisterInstance(typeof(ApplicationResourcesProvider), new ApplicationResourcesProvider(Application.Current.Resources));
 
                 //init serviceaccesslayer
                 IoCManager.RegisterType<IContentApiAccess, ContentApiAccess>();
                 IoCManager.RegisterType<IExhibitsApiAccess, ExhibitsApiAccess>();
                 IoCManager.RegisterType<IMediasApiAccess, MediasApiAccess>();
-                IoCManager.RegisterType<IFileApiAccess, FileApiAccess> ();
+                IoCManager.RegisterType<IFileApiAccess, FileApiAccess>();
                 IoCManager.RegisterType<IPagesApiAccess, PagesApiAccess>();
                 IoCManager.RegisterType<IRoutesApiAccess, RoutesApiAccess>();
 
                 //init converters
-                IoCManager.RegisterType<ExhibitConverter> ();
+                IoCManager.RegisterType<ExhibitConverter>();
                 IoCManager.RegisterType<MediaToAudioConverter>();
                 IoCManager.RegisterType<MediaToImageConverter>();
                 IoCManager.RegisterType<PageConverter>();
@@ -124,12 +130,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
                 //init fetchers
                 IoCManager.RegisterType<IMediaDataFetcher, MediaDataFetcher>();
+                IoCManager.RegisterType<IExhibitsBaseDataFetcher, ExhibitsBaseDataFetcher>();
+                IoCManager.RegisterType<IRoutesBaseDataFetcher, RoutesBaseDataFetcher>();
                 IoCManager.RegisterType<IBaseDataFetcher, BaseDataFetcher>();
 
-                IoCManager.RegisterInstance (typeof(INearbyExhibitManager), new NearbyExhibitManager ());
-                IoCManager.RegisterInstance (typeof(INearbyRouteManager), new NearbyRouteManager ());
+                IoCManager.RegisterInstance(typeof(INearbyExhibitManager), new NearbyExhibitManager());
+                IoCManager.RegisterInstance(typeof(INearbyRouteManager), new NearbyRouteManager());
 
-                var baseDataFetcher = IoCManager.Resolve<IBaseDataFetcher> ();
+                var baseDataFetcher = IoCManager.Resolve<IBaseDataFetcher>();
                 /*
                 var token = cancellationTokenSource.Token;
                 bool isUpToDate = await baseDataFetcher.IsDatabaseUpToDate (token);
@@ -147,23 +155,24 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                 DbManager.UpdateDatabase(this);
 
                 // force the db to load the exhibitset into cache
-                ExhibitManager.GetExhibitSets ();
+                ExhibitManager.GetExhibitSets();
                 LoadingProgress = 0.9;
-                await Task.Delay (100);
+                await Task.Delay(100);
 
                 // if the app is not sleeping open the main menu, otherwise wait for it to wake up
-                startupAction = async () => {
-                    var vm = new MainPageViewModel ();
+                startupAction = async () =>
+                {
+                    var vm = new MainPageViewModel();
                     LoadingProgress = 1;
-                    await Task.Delay (100);
+                    await Task.Delay(100);
 
-                    MessagingCenter.Unsubscribe<App> (this, AppSharedData.WillSleepMessage);
-                    MessagingCenter.Unsubscribe<App> (this, AppSharedData.WillWakeUpMessage);
-                    Navigation.StartNewNavigationStack (vm);
+                    MessagingCenter.Unsubscribe<App>(this, AppSharedData.WillSleepMessage);
+                    MessagingCenter.Unsubscribe<App>(this, AppSharedData.WillWakeUpMessage);
+                    Navigation.StartNewNavigationStack(vm);
                 };
                 if (!isSleeping)
                 {
-                    Device.BeginInvokeOnMainThread (startupAction);
+                    Device.BeginInvokeOnMainThread(startupAction);
                 }
             });
         }
@@ -173,9 +182,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         /// </summary>
         /// <param name="newProgress">The new progress value.</param>
         /// <param name="maxProgress">The maximum propgress value.</param>
-        public void UpdateProgress (double newProgress, double maxProgress)
+        public void UpdateProgress(double newProgress, double maxProgress)
         {
-            LoadingProgress = (newProgress / maxProgress)*0.8;
+            LoadingProgress = (newProgress / maxProgress) * 0.8;
         }
 
         private double maximumProgress;
@@ -199,7 +208,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             // app was send to sleep before the main menu could be opened, open the menu now
             if (startupAction != null)
             {
-                Device.BeginInvokeOnMainThread (startupAction);
+                Device.BeginInvokeOnMainThread(startupAction);
             }
         }
 
@@ -208,9 +217,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             isSleeping = true;
         }
 
-        public override void OnDisappearing ()
+        public override void OnDisappearing()
         {
-            base.OnDisappearing ();
+            base.OnDisappearing();
             cancellationTokenSource.Cancel();
         }
     }
