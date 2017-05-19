@@ -12,11 +12,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 {
     class ExhibitRouteDownloadViewModel : NavigationViewModel, IProgressListener
     {
-        public ExhibitRouteDownloadViewModel (IDownloadable downloadable, DownloadableListItemViewModel downloadableListItemViewModel)
+        public ExhibitRouteDownloadViewModel (IDownloadable downloadable, IDownloadableListItemViewModel downloadableListItemViewModel)
         {
             DownloadableId = downloadable.Id;
             DownloadableName = downloadable.Name;
-            
+            DownloadableDescription = downloadable.Description;
+
             Message = Strings.DownloadDetails_Text_Part1 + DownloadableName + Strings.DownloadDetails_Text_Part2;
             var data = downloadable.Image.Data;
             Image = ImageSource.FromStream(() => new MemoryStream(data));
@@ -32,7 +33,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             DownloadFinished = !DownloadPending;   // Since false is the default value this is just a reminder in case the database wants to set this to true when generating this item
         }
 
-        private DownloadableListItemViewModel DownloadableListItemViewModel { get; set; }
+        private IDownloadableListItemViewModel DownloadableListItemViewModel { get; set; }
 
         private string downloadableName;
         public string DownloadableName
@@ -46,6 +47,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         {
             get { return downloadableId; }
             set { SetProperty(ref downloadableId, value); }
+        }
+
+        private string downloadableDescription;
+        public string DownloadableDescription
+        {
+            get { return downloadableDescription; }
+            set { SetProperty(ref downloadableDescription, value); }
         }
 
         private string message;
@@ -122,7 +130,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
                 UpdateProgress (LoadingProgress+.02, 1);
                 await Task.Delay (50);
                 if (downloadAborted)
-                    return;     // Shouldn't this break the whole function instead of only the loop?
+                    return;
             }
             SetDetailsAvailable ();
         }

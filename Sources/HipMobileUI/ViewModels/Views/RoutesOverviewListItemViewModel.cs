@@ -31,7 +31,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views {
     /// <summary>
     /// View model of a list item in the <see cref="RoutesOverviewViewModel"/> screen
     /// </summary>
-    public class RoutesOverviewListItemViewModel : NavigationViewModel, DownloadableListItemViewModel {
+    public class RoutesOverviewListItemViewModel : NavigationViewModel, IDownloadableListItemViewModel {
 
         /// <summary>
         /// Route data displayed by this list item
