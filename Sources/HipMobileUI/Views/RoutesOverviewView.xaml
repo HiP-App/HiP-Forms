@@ -41,7 +41,7 @@
                         <ViewCell>
                             <StackLayout Orientation="Horizontal" Padding="5,5,5,10" d:DataContext="{d:DesignInstance views:RoutesOverviewListItemViewModel}">
                                 <Image Source="{Binding Image}" HeightRequest="100" />
-                                <StackLayout Orientation="Vertical">
+                                <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
                                     <Label Text="{Binding RouteTitle}" TextColor="Black" FontSize="18" />
                                     <Label Text="{Binding RouteDescription}" TextColor="Black" />
                                     <StackLayout Orientation="Horizontal">
@@ -56,19 +56,8 @@
                                         <Label Text="{helpers:Translate RoutesOverviewView_Tags}" VerticalOptions="Center"/>
                                         <container1:BindableChildrenStackLayout  ChildElements="{Binding Tags, Converter= {StaticResource ImageListConverter}}" Orientation="Horizontal" />
                                     </StackLayout>
-                                    
-                                    <!-- The download field -->
-                                    <Button Image="ic_file_download.png" IsVisible="{Binding IsDownloadPanelVisible}" Command="{Binding DownloadCommand}"></Button>
-                                    <!--StackLayout IsVisible="{Binding IsDownloadPanelVisible}" Orientation="Horizontal">
-                                        <Label Text="Daten herunterladen" TextColor="{StaticResource AccentColor}"
-                                         HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-                                            <Label.GestureRecognizers>
-                                                <TapGestureRecognizer Command="{Binding DownloadCommand}" />
-                                            </Label.GestureRecognizers>
-                                        </Label>
-                                    </-->
-                                    
                                 </StackLayout>
+                                <Button BorderRadius="2" WidthRequest="40" Image="ic_file_download.png" IsVisible="{Binding IsDownloadPanelVisible}" Command="{Binding DownloadCommand}"></Button>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>

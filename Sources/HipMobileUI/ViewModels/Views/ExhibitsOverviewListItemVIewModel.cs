@@ -27,7 +27,7 @@ using System.Windows.Input;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 {
-    class ExhibitsOverviewListItemViewModel : NavigationViewModel, DownloadableListItemViewModel
+    class ExhibitsOverviewListItemViewModel : BaseViewModel, IDownloadableListItemViewModel
     {
 
         public ExhibitsOverviewListItemViewModel (Exhibit exhibit, double distance = -1)
