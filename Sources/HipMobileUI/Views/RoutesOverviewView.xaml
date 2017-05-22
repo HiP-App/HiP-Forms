@@ -57,7 +57,7 @@
                                         <container1:BindableChildrenStackLayout  ChildElements="{Binding Tags, Converter= {StaticResource ImageListConverter}}" Orientation="Horizontal" />
                                     </StackLayout>
                                 </StackLayout>
-                                <Button BorderRadius="2" WidthRequest="40" Image="ic_file_download.png" IsVisible="{Binding IsDownloadPanelVisible}" Command="{Binding DownloadCommand}"></Button>
+                                <Button BorderRadius="2" BorderColor="{StaticResource DarkGrayColor}" BorderWidth="1" BackgroundColor="{StaticResource LightGrayColor}" WidthRequest="40" Image="ic_file_download.png" IsVisible="{Binding IsDownloadPanelVisible}" Command="{Binding DownloadCommand}"></Button>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>

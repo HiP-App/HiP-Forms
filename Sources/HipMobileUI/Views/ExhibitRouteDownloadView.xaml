@@ -17,7 +17,7 @@
             </Grid.RowDefinitions>
 
             <Image x:Name="ImageView" Grid.Row="0" Source="{Binding Image}" Aspect="AspectFill" BackgroundColor="White" VerticalOptions="CenterAndExpand"/>
-            <Frame x:Name="DescriptionView" Grid.Row="1" BackgroundColor="{StaticResource LightGrayColor}" Padding="0" Margin="2">
+            <Frame x:Name="DescriptionView" Grid.Row="1" BackgroundColor="{StaticResource LightGrayColor}" Padding="0" Margin="2" HasShadow="False">
                 <Label Text="{Binding DownloadableDescription}" FontSize="Medium" FontAttributes="Bold" TextColor="{StaticResource AccentDarkColor}" HorizontalTextAlignment="Center" VerticalOptions="Center"/>
             </Frame>
 
