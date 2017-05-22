@@ -12,21 +12,35 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers.Contracts
 {
+    /// <summary>
+    /// Fetcher for base exhibits data
+    /// </summary>
     public interface IExhibitsBaseDataFetcher
     {
-
+        /// <summary>
+        /// Preload data needed for processing the exhibits
+        /// </summary>
+        /// <returns></returns>
         Task<int> FetchNeededDataForExhibits();
 
+        /// <summary>
+        /// Load the images and put the exhibits into the database
+        /// </summary>
+        /// <param name="token"></param>
+        /// <param name="listener"></param>
+        /// <returns></returns>
         Task ProcessExhibits(CancellationToken token, IProgressListener listener);
 
+        /// <summary>
+        /// Indicates whether any exhibit was changed
+        /// </summary>
+        /// <returns></returns>
         Task<bool> AnyExhibitChanged();
 
     }

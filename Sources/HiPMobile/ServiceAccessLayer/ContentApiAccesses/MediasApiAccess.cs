@@ -56,7 +56,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
             requestPath += UriQueryBuilder.GetAdditionalParametersQuery(timestamp, includeOnly);
 
             string json = await contentApiAccess.GetResponseFromUrl(requestPath);
-            return JsonConvert.DeserializeObject<MediasDto>(json);
+            if (json != null)
+            {
+                return JsonConvert.DeserializeObject<MediasDto>(json);
+            }
+
+            return new MediasDto { Items = new List<MediaDto>(), Total = 0 };
         }
 
     }

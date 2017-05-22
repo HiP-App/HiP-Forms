@@ -36,7 +36,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
             requestPath += UriQueryBuilder.GetAdditionalParametersQuery(timestamp, includeOnly);
 
             string json = await contentApiAccess.GetResponseFromUrl(requestPath);
-            return JsonConvert.DeserializeObject<PagesDto>(json);
+            if (json != null)
+            {
+                return JsonConvert.DeserializeObject<PagesDto>(json);
+            }
+
+            return new PagesDto { Items = new List<PageDto>(), Total = 0 };
         }
 
         private async Task<PagesDto> GetPagesDto (long? timestamp, IList<int> includeOnly)
@@ -45,7 +50,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
             requestPath += UriQueryBuilder.GetAdditionalParametersQuery (timestamp, includeOnly);
 
             string json = await contentApiAccess.GetResponseFromUrl(requestPath);
-            return JsonConvert.DeserializeObject<PagesDto>(json);
+            if (json != null)
+            {
+                return JsonConvert.DeserializeObject<PagesDto>(json);
+            }
+
+            return new PagesDto { Items = new List<PageDto>(), Total = 0 };
         }
 
         public async Task<PagesDto> GetPages ()

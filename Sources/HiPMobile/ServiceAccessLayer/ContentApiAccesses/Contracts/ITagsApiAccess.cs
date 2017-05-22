@@ -18,14 +18,37 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiD
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses.Contracts
 {
+    /// <summary>
+    /// Providing access to the tags rest api
+    /// </summary>
     public interface ITagsApiAccess
     {
+        /// <summary>
+        /// Get all tags
+        /// </summary>
+        /// <returns></returns>
         Task<TagsDto> GetTags();
 
+        /// <summary>
+        /// Get all tags after the specified timestamp
+        /// </summary>
+        /// <param name="timestamp"></param>
+        /// <returns></returns>
         Task<TagsDto> GetTags(long timestamp);
 
+        /// <summary>
+        /// Get all tags for the given ids
+        /// </summary>
+        /// <param name="includeOnly"></param>
+        /// <returns></returns>
         Task<TagsDto> GetTags(IList<int> includeOnly);
 
+        /// <summary>
+        /// Get all tags for the given ids after the specified timestamp
+        /// </summary>
+        /// <param name="timestamp"></param>
+        /// <param name="includeOnly"></param>
+        /// <returns></returns>
         Task<TagsDto> GetTags(long timestamp, IList<int> includeOnly);
 
     }

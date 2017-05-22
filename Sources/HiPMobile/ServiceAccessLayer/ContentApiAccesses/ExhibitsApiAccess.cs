@@ -20,43 +20,50 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses {
-    public class ExhibitsApiAccess : IExhibitsApiAccess {
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses
+{
+    public class ExhibitsApiAccess : IExhibitsApiAccess
+    {
 
         private readonly IContentApiAccess contentApiAccess;
 
-        public ExhibitsApiAccess (IContentApiAccess contentApiAccess)
+        public ExhibitsApiAccess(IContentApiAccess contentApiAccess)
         {
             this.contentApiAccess = contentApiAccess;
         }
 
-        public async Task<ExhibitsDto> GetExhibits ()
+        public async Task<ExhibitsDto> GetExhibits()
         {
-            return await GetExhibitsDto (null, null);
+            return await GetExhibitsDto(null, null);
         }
 
-        public async Task<ExhibitsDto> GetExhibits (long timestamp)
+        public async Task<ExhibitsDto> GetExhibits(long timestamp)
         {
             return await GetExhibits(timestamp, null);
         }
 
-        public async Task<ExhibitsDto> GetExhibits (IList<int> includeOnly)
+        public async Task<ExhibitsDto> GetExhibits(IList<int> includeOnly)
         {
             return await GetExhibitsDto(null, includeOnly);
         }
 
-        public async Task<ExhibitsDto> GetExhibits (long timestamp, IList<int> includeOnly)
+        public async Task<ExhibitsDto> GetExhibits(long timestamp, IList<int> includeOnly)
         {
             return await GetExhibitsDto(timestamp, includeOnly);
         }
 
-        private async Task<ExhibitsDto> GetExhibitsDto (long? timestamp, IList<int> includeOnly)
+        private async Task<ExhibitsDto> GetExhibitsDto(long? timestamp, IList<int> includeOnly)
         {
             string requestPath = @"/Exhibits";
-            requestPath += UriQueryBuilder.GetAdditionalParametersQuery (timestamp, includeOnly);
+            requestPath += UriQueryBuilder.GetAdditionalParametersQuery(timestamp, includeOnly);
 
             string json = await contentApiAccess.GetResponseFromUrl(requestPath);
-            return JsonConvert.DeserializeObject<ExhibitsDto>(json);
+            if (json != null)
+            {
+                return JsonConvert.DeserializeObject<ExhibitsDto>(json);
+            }
+
+            return new ExhibitsDto { Items = new List<ExhibitDto>(), Total = 0 };
         }
     }
 }

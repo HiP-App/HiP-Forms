@@ -16,8 +16,17 @@ using System.Threading.Tasks;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses.Contracts {
+
+    /// <summary>
+    /// Providing access to the files rest api
+    /// </summary>
     public interface IFileApiAccess
     {
+        /// <summary>
+        /// Get the file for the given mediaId
+        /// </summary>
+        /// <param name="mediaId"></param>
+        /// <returns></returns>
         Task<FileDto> GetFile(int mediaId);
 
     }

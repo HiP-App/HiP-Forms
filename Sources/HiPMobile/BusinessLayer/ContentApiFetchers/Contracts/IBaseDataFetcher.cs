@@ -17,10 +17,24 @@ using System.Threading.Tasks;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers.Contracts {
+    /// <summary>
+    /// Fetcher for base routes and exhibits data
+    /// </summary>
     public interface IBaseDataFetcher {
 
+        /// <summary>
+        /// Indicates whether there is new base data on the server
+        /// </summary>
+        /// <param name="token">Used for cancelling the download</param>
+        /// <returns></returns>
         Task<bool> IsDatabaseUpToDate (CancellationToken token);
 
+        /// <summary>
+        /// Gets the newest base data for routes and exhibits
+        /// </summary>
+        /// <param name="token">Used for cancelling the download</param>
+        /// <param name="listener">Used for reporting progress</param>
+        /// <returns></returns>
         Task FetchBaseDataIntoDatabase (CancellationToken token, IProgressListener listener);
 
     }

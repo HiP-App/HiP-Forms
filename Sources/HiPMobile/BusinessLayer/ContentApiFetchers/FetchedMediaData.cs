@@ -13,14 +13,24 @@
 // limitations under the License.
 
 using System.Collections.Generic;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers {
+    /// <summary>
+    /// Container for results of the <see cref="IMediaDataFetcher"/>
+    /// </summary>
     public class FetchedMediaData {
 
+        /// <summary>
+        /// Fetched image data and files
+        /// </summary>
         public IList<Image> Images { get; set; }
 
+        /// <summary>
+        /// Fetched audio data and files
+        /// </summary>
         public IList<Audio> Audios { get; set; }
 
     }
