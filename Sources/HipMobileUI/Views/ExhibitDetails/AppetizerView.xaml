@@ -37,7 +37,7 @@
                     </StackLayout>
                 </controls1:CardView>
             </ContentView>
-            <Button Grid.Row="2" Image="ic_file_download.png"></Button>
+            <Button Grid.Row="2" Image="ic_file_download.png" IsVisible="{Binding IsDownloadButtonVisible}" Command="{Binding DownloadCommand}"></Button>
         </Grid>
     </ContentView.Content>
 </ContentView>

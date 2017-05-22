@@ -7,6 +7,7 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Location;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using Xamarin.Forms;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views.ExhibitDetails;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 {
@@ -140,6 +141,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             DownloadPending = false;
             DownloadFinished = !DownloadPending;
             DownloadableListItemViewModel.SetDetailsAvailable (DownloadFinished);
+
+            //Close DownloadPage directly if download was started from the AppetizerView
+            if(DownloadFinished && (DownloadableListItemViewModel.GetType() == typeof(AppetizerViewModel)))
+            {
+                CloseDownloadPage();
+            }
         }
 
         public void UpdateProgress (double newProgress, double maxProgress)
