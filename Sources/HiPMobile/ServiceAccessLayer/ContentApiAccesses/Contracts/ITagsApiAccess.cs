@@ -13,13 +13,20 @@
 // limitations under the License.
 
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos {
-    public class TagsDto {
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses.Contracts
+{
+    public interface ITagsApiAccess
+    {
+        Task<TagsDto> GetTags();
 
-        public int Total { get; set; }
+        Task<TagsDto> GetTags(long timestamp);
 
-        public IList<TagDto> Items { get; set; }
+        Task<TagsDto> GetTags(IList<int> includeOnly);
+
+        Task<TagsDto> GetTags(long timestamp, IList<int> includeOnly);
 
     }
 }

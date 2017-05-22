@@ -79,6 +79,7 @@
     <Reference Include="System.ComponentModel.Composition" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusinessLayer\DtoToModelConverters\TagConverterTest.cs" />
     <Compile Include="BusinessLayer\DtoToModelConverters\RouteConverterTest.cs" />
     <Compile Include="BusinessLayer\DtoToModelConverters\ExhibitConverterTest.cs" />
     <Compile Include="BusinessLayer\DtoToModelConverters\MediaToImageConverterTest.cs" />
@@ -89,6 +90,7 @@
     <Compile Include="BusinessLayer\InteractiveSources\InteractiveSourcesParserTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiAccesses\PagesApiAccessTest.cs" />
+    <Compile Include="ServiceAccessLayer\ContentApiAccesses\TagsApiAccessTest.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiAccesses\RoutesApiAccessTest.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiAccesses\ExhibitsApiAccessTest.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiAccesses\FileApiAccessTest.cs" />
