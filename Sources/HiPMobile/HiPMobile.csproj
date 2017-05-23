@@ -60,6 +60,7 @@
     <Compile Include="BusinessLayer\ContentApiFetchers\FetchedMediaData.cs" />
     <Compile Include="BusinessLayer\ContentApiFetchers\MediaDataFetcher.cs" />
     <Compile Include="BusinessLayer\ContentApiFetchers\RoutesBaseDataFetcher.cs" />
+    <Compile Include="BusinessLayer\DtoToModelConverters\BackupData.cs" />
     <Compile Include="BusinessLayer\DtoToModelConverters\TagConverter.cs" />
     <Compile Include="BusinessLayer\DtoToModelConverters\RouteConverter.cs" />
     <Compile Include="BusinessLayer\DtoToModelConverters\MediaToAudioConverter.cs" />
