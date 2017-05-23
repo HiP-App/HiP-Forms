@@ -52,16 +52,17 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
         private bool audioToolbarVisible;
         private bool hasAdditionalInformation;
         private bool additionalInformationButtonVisible;
-        private Exhibit exhibit;
+        //private Exhibit exhibit;
+        private bool ExhibitUnblocked = true;
         private bool additionalInformation;
 
         public ExhibitDetailsViewModel(Exhibit exhibit) : this(exhibit.Pages, exhibit.Name)
         {
-
+            ExhibitUnblocked = exhibit.Unlocked;
         }
-        public ExhibitDetailsViewModel (string exhibitId) : this(ExhibitManager.GetExhibit(exhibitId).Pages, ExhibitManager.GetExhibit(exhibitId).Name)
+        public ExhibitDetailsViewModel (string exhibitId, Exhibit exhibit) : this(ExhibitManager.GetExhibit(exhibitId).Pages, ExhibitManager.GetExhibit(exhibitId).Name,exhibit.Unlocked)
         {
-            
+            ExhibitUnblocked = ExhibitManager.GetExhibit (exhibitId).Unlocked;
         }
 
         public ExhibitDetailsViewModel (IList<Page> pages, string title, bool additionalInformation = false)
@@ -90,10 +91,16 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
                 NextViewAvailable = true;
 
             // init commands
+          //this.ExhibitUnblocked = ExhibitUnblocked;        
             NextViewCommand = new Command (async () => await GotoNextView ());
             PreviousViewCommand = new Command (GotoPreviousView);
             ShowAudioToolbarCommand = new Command (SwitchAudioToolbarVisibleState);
             ShowAdditionalInformationCommand = new Command (ShowAdditionalInformation);
+        }
+
+        public ExhibitDetailsViewModel(string id)
+        {
+            this.id = id;
         }
 
         private void AdjustToolbarColor ()
@@ -131,6 +138,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
         }
 
         private const int NavigationButtonsToggleDelay = 2000;
+        private string id;
+
         /// <summary>
         /// Toggles the visibility of then navigation buttons after <see cref="NavigationButtonsToggleDelay"/> milliseconds
         /// unless the task has been canceled using the token
@@ -193,11 +202,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
         /// Go to the next available view.
         /// </summary>
         /// <returns></returns>
-        public Exhibit Exhibit
-        {
-            get { return exhibit; }
-            set { SetProperty(ref exhibit, value); }
-        }
+    
 
 
         private async Task GotoNextView ()
@@ -209,12 +214,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
                 {
                     AudioToolbar.AudioPlayer.Stop();
                 }
-
                 // update the UI
-
-
-            }           
-            if (exhibit.Unlocked.Equals (true))
+            }
+            if (ExhibitUnblocked)
             {
                 currentViewIndex++;
                 NextViewAvailable = currentViewIndex < pages.Count - 1;
@@ -225,7 +227,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
             else
             {
                 await IoCManager.Resolve<INavigationService>()
-                                .DisplayAlert("NOT allowed to see details", "Sorry,you are too far from the Exhibit", "OK");
+                                .DisplayAlert(Strings.ExhibitDetailsPage_Distance_alert1, Strings.ExhibitDetailsPage_Distance_alert2, Strings.ExhibitDetailsPage_Distance_alert_confirm);
             }
 
         }

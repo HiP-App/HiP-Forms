@@ -550,4 +550,13 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   <data name="SettingsScreenView_WifiOnly_Text" xml:space="preserve">
     <value>Wenn aktiviert, werden Daten nur über Wlan heruntergeladen</value>
   </data>
+  <data name="ExhibitDetailsPage_Distance_alert1" xml:space="preserve">
+    <value>NOT allowed to see details</value>
+  </data>
+  <data name="ExhibitDetailsPage_Distance_alert2" xml:space="preserve">
+    <value>Sorry, you are too far from the Exhibit</value>
+  </data>
+  <data name="ExhibitDetailsPage_Distance_alert_confirm" xml:space="preserve">
+    <value>OK</value>
+  </data>
 </root>

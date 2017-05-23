@@ -119,7 +119,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
 			     {
 			        exhibit.Unlocked = true;            
 			     }
-
 				OnPropertyChanged (nameof(DetailsRoute));
             }
         }

@@ -197,6 +197,33 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        public static string ExhibitDetailsPage_Distance_alert_confirm {
+            get {
+                return ResourceManager.GetString("ExhibitDetailsPage_Distance_alert_confirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to NOT allowed to see details.
+        /// </summary>
+        public static string ExhibitDetailsPage_Distance_alert1 {
+            get {
+                return ResourceManager.GetString("ExhibitDetailsPage_Distance_alert1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sorry, you are too far from the Exhibit.
+        /// </summary>
+        public static string ExhibitDetailsPage_Distance_alert2 {
+            get {
+                return ResourceManager.GetString("ExhibitDetailsPage_Distance_alert2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Hinweis.
         /// </summary>
         public static string ExhibitDetailsPage_Hinweis {
