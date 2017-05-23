@@ -17,14 +17,38 @@ using System.Threading.Tasks;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses.Contracts {
+
+    /// <summary>
+    /// Providing access to the medias rest api
+    /// </summary>
     public interface IMediasApiAccess
     {
+        /// <summary>
+        /// Get all medias
+        /// </summary>
+        /// <returns></returns>
         Task<MediasDto> GetMedias();
 
+        /// <summary>
+        /// Get all medias after the specified timestamp
+        /// </summary>
+        /// <param name="timestamp"></param>
+        /// <returns></returns>
         Task<MediasDto> GetMedias(long timestamp);
 
+        /// <summary>
+        /// Get all medias for the given ids
+        /// </summary>
+        /// <param name="includeOnly"></param>
+        /// <returns></returns>
         Task<MediasDto> GetMedias(IList<int> includeOnly);
 
+        /// <summary>
+        /// Get all medias for the given ids after the specified timestamp
+        /// </summary>
+        /// <param name="timestamp"></param>
+        /// <param name="includeOnly"></param>
+        /// <returns></returns>
         Task<MediasDto> GetMedias(long timestamp, IList<int> includeOnly);
 
     }

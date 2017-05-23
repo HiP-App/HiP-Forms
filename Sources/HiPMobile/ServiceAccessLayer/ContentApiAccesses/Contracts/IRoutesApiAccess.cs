@@ -17,14 +17,37 @@ using System.Threading.Tasks;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses.Contracts {
+    /// <summary>
+    /// Providing access to the routes rest api
+    /// </summary>
     public interface IRoutesApiAccess
     {
+        /// <summary>
+        /// Get all routes
+        /// </summary>
+        /// <returns></returns>
         Task<RoutesDto> GetRoutes ();
 
+        /// <summary>
+        /// Get all routes after the specified timestamp
+        /// </summary>
+        /// <param name="timestamp"></param>
+        /// <returns></returns>
         Task<RoutesDto> GetRoutes(long timestamp);
 
+        /// <summary>
+        /// Get all routes for the given ids
+        /// </summary>
+        /// <param name="includeOnly"></param>
+        /// <returns></returns>
         Task<RoutesDto> GetRoutes(IList<int> includeOnly);
 
+        /// <summary>
+        /// Get all routes for the given ids after the specified timestamp
+        /// </summary>
+        /// <param name="timestamp"></param>
+        /// <param name="includeOnly"></param>
+        /// <returns></returns>
         Task<RoutesDto> GetRoutes(long timestamp, IList<int> includeOnly);
 
     }

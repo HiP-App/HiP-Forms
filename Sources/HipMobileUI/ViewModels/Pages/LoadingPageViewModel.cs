@@ -120,6 +120,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                 IoCManager.RegisterType<IFileApiAccess, FileApiAccess>();
                 IoCManager.RegisterType<IPagesApiAccess, PagesApiAccess>();
                 IoCManager.RegisterType<IRoutesApiAccess, RoutesApiAccess>();
+                IoCManager.RegisterType<ITagsApiAccess, TagsApiAccess>();
 
                 //init converters
                 IoCManager.RegisterType<ExhibitConverter>();
@@ -127,6 +128,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                 IoCManager.RegisterType<MediaToImageConverter>();
                 IoCManager.RegisterType<PageConverter>();
                 IoCManager.RegisterType<RouteConverter>();
+                IoCManager.RegisterType<TagConverter>();
 
                 //init fetchers
                 IoCManager.RegisterType<IMediaDataFetcher, MediaDataFetcher>();

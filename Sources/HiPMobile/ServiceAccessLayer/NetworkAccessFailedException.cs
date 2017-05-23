@@ -15,6 +15,9 @@
 using System;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer {
+    /// <summary>
+    /// Exception thrown if there is no network connection
+    /// </summary>
     public class NetworkAccessFailedException : Exception {
 
         public NetworkAccessFailedException (string message) : base (message)

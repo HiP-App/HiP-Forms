@@ -21,6 +21,9 @@ using System.Threading.Tasks;
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer {
     public class ContentApiAccess : IContentApiAccess {
 
+        /// <summary>
+        /// Urlpath for the docker container running the HiP-DataStore instance
+        /// </summary>
         private const string ServerUrl = "https://docker-hip.cs.upb.de/";
 
         /// <summary>

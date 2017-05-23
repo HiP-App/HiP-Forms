@@ -17,8 +17,19 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using Realms;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelConverters {
+    /// <summary>
+    /// Provides functionality for converting a dto of type <typeparamref name="TDtoObject"/> to 
+    /// a model class of type <typeparamref name="TModelObject"/>
+    /// </summary>
+    /// <typeparam name="TModelObject"></typeparam>
+    /// <typeparam name="TDtoObject"></typeparam>
     public abstract class DtoToModelConverter<TModelObject, TDtoObject> where TModelObject : RealmObject, IIdentifiable, new ()
     {
+        /// <summary>
+        /// Converts the given <paramref name="dto"/> to a new model object
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <returns></returns>
         public TModelObject Convert (TDtoObject dto)
         {
             var modelObject = DbManager.CreateBusinessObject<TModelObject> ();
@@ -28,6 +39,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelCo
             return modelObject;
         }
 
+        /// <summary>
+        /// Converts the given <paramref name="dto"/> to the <paramref name="existingModelObject"/>
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <param name="existingModelObject"></param>
         public abstract void Convert (TDtoObject dto, TModelObject existingModelObject);
 
     }

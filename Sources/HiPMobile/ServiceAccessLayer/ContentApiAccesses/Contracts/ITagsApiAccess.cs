@@ -16,40 +16,40 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses.Contracts {
-    
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses.Contracts
+{
     /// <summary>
-    /// Providing access to the exhibits rest api
+    /// Providing access to the tags rest api
     /// </summary>
-    public interface IExhibitsApiAccess {
-
+    public interface ITagsApiAccess
+    {
         /// <summary>
-        /// Get all exhibits
+        /// Get all tags
         /// </summary>
         /// <returns></returns>
-        Task<ExhibitsDto> GetExhibits ();
+        Task<TagsDto> GetTags();
 
         /// <summary>
-        /// Get all exhibits after the specified timestamp
+        /// Get all tags after the specified timestamp
         /// </summary>
         /// <param name="timestamp"></param>
         /// <returns></returns>
-        Task<ExhibitsDto> GetExhibits(long timestamp);
+        Task<TagsDto> GetTags(long timestamp);
 
         /// <summary>
-        /// Get the exhibits for the given ids
+        /// Get all tags for the given ids
         /// </summary>
         /// <param name="includeOnly"></param>
         /// <returns></returns>
-        Task<ExhibitsDto> GetExhibits(IList<int> includeOnly);
+        Task<TagsDto> GetTags(IList<int> includeOnly);
 
         /// <summary>
-        /// Get the exhibits for the given ids after the specified timestamp
+        /// Get all tags for the given ids after the specified timestamp
         /// </summary>
         /// <param name="timestamp"></param>
         /// <param name="includeOnly"></param>
         /// <returns></returns>
-        Task<ExhibitsDto> GetExhibits(long timestamp, IList<int> includeOnly);
+        Task<TagsDto> GetTags(long timestamp, IList<int> includeOnly);
 
     }
 }

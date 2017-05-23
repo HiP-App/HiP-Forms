@@ -25,30 +25,38 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers {
-    public class RoutesBaseDataFetcher : IRoutesBaseDataFetcher{
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers
+{
+    public class RoutesBaseDataFetcher : IRoutesBaseDataFetcher
+    {
+
+        [Dependency]
+        public TagConverter TagConverter { private get; set; }
 
         [Dependency]
         public RouteConverter RouteConverter { private get; set; }
 
         private readonly IRoutesApiAccess routesApiAccess;
-
         private readonly IMediaDataFetcher mediaDataFetcher;
+        private readonly ITagsApiAccess tagsApiAccess;
 
         private IList<int> requiredRouteImages;
+        private IList<TagDto> routeTags;
         private IDictionary<RouteDto, Route> updatedRoutes;
         private IList<RouteDto> newRoutes;
         private IList<RouteDto> fetchedChangedRoutes;
 
-        public RoutesBaseDataFetcher (IMediaDataFetcher mediaDataFetcher, IRoutesApiAccess routesApiAccess)
+        public RoutesBaseDataFetcher(IMediaDataFetcher mediaDataFetcher, IRoutesApiAccess routesApiAccess, ITagsApiAccess tagsApiAccess)
         {
             this.mediaDataFetcher = mediaDataFetcher;
             this.routesApiAccess = routesApiAccess;
+            this.tagsApiAccess = tagsApiAccess;
         }
 
         public async Task<int> FetchNeededDataForRoutes()
         {
             requiredRouteImages = new List<int>();
+            var requiredRouteTags = new List<int>();
             updatedRoutes = new Dictionary<RouteDto, Route>();
             newRoutes = new List<RouteDto>();
 
@@ -57,21 +65,29 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             {
                 await AnyRouteChanged();
             }
+
             foreach (var routeDto in fetchedChangedRoutes)
             {
-
                 var dbRoute = dbRoutes.SingleOrDefault(x => x.IdForRestApi == routeDto.Id);
 
                 if (dbRoute != null && dbRoute.UnixTimestamp != routeDto.Timestamp)
                 {
                     updatedRoutes.Add(routeDto, dbRoute);
                     requiredRouteImages.Add(routeDto.Image);
+                    requiredRouteTags.AddRange(routeDto.Tags);
                 }
-                else
+                else if (dbRoute == null)
                 {
                     newRoutes.Add(routeDto);
                     requiredRouteImages.Add(routeDto.Image);
+                    requiredRouteTags.AddRange(routeDto.Tags);
                 }
+            }
+
+            routeTags = (await tagsApiAccess.GetTags(requiredRouteTags)).Items;
+            foreach (var tag in routeTags)
+            {
+                requiredRouteImages.Add(tag.Image);
             }
 
             return requiredRouteImages.Count + fetchedChangedRoutes.Count;
@@ -98,6 +114,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                 RouteConverter.Convert(routeDto, dbRoute);
 
                 AddImageToRoute(dbRoute, routeDto.Image, fetchedMediaData);
+                AddTagsToRoute(dbRoute, routeDto, fetchedMediaData);
+                AddExhibitsToRoute(dbRoute, routeDto);
+
                 //TODO: If route content was already downloaded 
                 //-> Show dialog whether to download new data or do it directly depending on setting
 
@@ -112,6 +131,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                 var dbRoute = RouteConverter.Convert(routeDto);
 
                 AddImageToRoute(dbRoute, routeDto.Image, fetchedMediaData);
+                AddTagsToRoute(dbRoute, routeDto, fetchedMediaData);
+                AddExhibitsToRoute(dbRoute, routeDto);
 
                 listener.ProgressOneStep();
             }
@@ -124,6 +145,53 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             if (image != null)
             {
                 dbRoute.Image = image;
+            }
+        }
+
+        private void AddTagsToRoute(Route dbRoute, RouteDto routeDto, FetchedMediaData fetchedMediaData)
+        {
+            foreach (var tagId in routeDto.Tags)
+            {
+                var tagDto = routeTags.SingleOrDefault(x => x.Id == tagId);
+
+                if (tagDto != null)
+                {
+                    RouteTag dbTag = dbRoute.RouteTags.SingleOrDefault(x => x.IdForRestApi == tagId);
+                    if (dbTag != null)
+                    {
+                        TagConverter.Convert(tagDto, dbTag);
+                    }
+                    else
+                    {
+                        dbTag = TagConverter.Convert(tagDto);
+                        dbRoute.RouteTags.Add(dbTag);
+                    }
+
+                    var tagImage = fetchedMediaData.Images.SingleOrDefault(x => x.IdForRestApi == tagDto.Image);
+                    if (tagImage != null)
+                    {
+                        dbTag.Image = tagImage;
+                    }
+                }
+            }
+        }
+
+        private void AddExhibitsToRoute(Route dbRoute, RouteDto routeDto)
+        {
+            var exhibits = ExhibitManager.GetExhibits().ToList();
+
+            foreach (var exhibitId in routeDto.Exhibits)
+            {
+                var dbExhibit = exhibits.SingleOrDefault(x => x.IdForRestApi == exhibitId);
+
+                if (dbExhibit != null)
+                {
+                    var waypoint = DbManager.CreateBusinessObject<Waypoint>();
+                    waypoint.Exhibit = dbExhibit;
+                    waypoint.Location = dbExhibit.Location;
+
+                    dbRoute.Waypoints.Add(waypoint);
+                }
             }
         }
 

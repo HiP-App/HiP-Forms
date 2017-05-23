@@ -58,6 +58,7 @@
     <Compile Include="BusinessLayer\ContentApiFetchers\FetchedMediaData.cs" />
     <Compile Include="BusinessLayer\ContentApiFetchers\MediaDataFetcher.cs" />
     <Compile Include="BusinessLayer\ContentApiFetchers\RoutesBaseDataFetcher.cs" />
+    <Compile Include="BusinessLayer\DtoToModelConverters\TagConverter.cs" />
     <Compile Include="BusinessLayer\DtoToModelConverters\RouteConverter.cs" />
     <Compile Include="BusinessLayer\DtoToModelConverters\MediaToAudioConverter.cs" />
     <Compile Include="BusinessLayer\DtoToModelConverters\MediaToImageConverter.cs" />
@@ -78,8 +79,10 @@
     <Compile Include="BusinessLayer\DtoToModelConverters\ExhibitConverter.cs" />
     <Compile Include="Helpers\UriQueryBuilder.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiAccess.cs" />
+    <Compile Include="ServiceAccessLayer\ContentApiAccesses\Contracts\ITagsApiAccess.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiAccesses\Contracts\IRoutesApiAccess.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiAccesses\Contracts\IFileApiAccess.cs" />
+    <Compile Include="ServiceAccessLayer\ContentApiAccesses\TagsApiAccess.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiAccesses\RoutesApiAccess.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiAccesses\PagesApiAccess.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiAccesses\FileApiAccess.cs" />

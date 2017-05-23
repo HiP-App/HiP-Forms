@@ -18,8 +18,18 @@ using System.Threading.Tasks;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers.Contracts {
+    /// <summary>
+    /// Fetcher for audio and images
+    /// </summary>
     public interface IMediaDataFetcher {
 
+        /// <summary>
+        /// Fetches the media data including the real files for the given ids
+        /// </summary>
+        /// <param name="mediaIds"></param>
+        /// <param name="token">Can be provided for canceling the action</param>
+        /// <param name="progressListener">Can be provided for reporting progress on the download</param>
+        /// <returns></returns>
         Task<FetchedMediaData> FetchMedias (IList<int> mediaIds, CancellationToken token, IProgressListener progressListener);
 
     }

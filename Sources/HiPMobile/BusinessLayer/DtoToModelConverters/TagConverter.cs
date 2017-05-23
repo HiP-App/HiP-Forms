@@ -12,22 +12,19 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System.Threading.Tasks;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses.Contracts {
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelConverters {
+    public class TagConverter : DtoToModelConverter<RouteTag, TagDto> {
 
-    /// <summary>
-    /// Providing access to the files rest api
-    /// </summary>
-    public interface IFileApiAccess
-    {
-        /// <summary>
-        /// Get the file for the given mediaId
-        /// </summary>
-        /// <param name="mediaId"></param>
-        /// <returns></returns>
-        Task<FileDto> GetFile(int mediaId);
-
+        public override void Convert (TagDto dto, RouteTag existingModelObject)
+        {
+            existingModelObject.IdForRestApi = dto.Id;
+            existingModelObject.UnixTimestamp = dto.Timestamp;
+            
+            existingModelObject.Tag = dto.Title;
+            existingModelObject.Name = dto.Description;
+        }
     }
 }

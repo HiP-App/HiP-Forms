@@ -20,50 +20,45 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses
-{
-    public class ExhibitsApiAccess : IExhibitsApiAccess
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses {
+    public class TagsApiAccess : ITagsApiAccess
     {
 
         private readonly IContentApiAccess contentApiAccess;
 
-        public ExhibitsApiAccess(IContentApiAccess contentApiAccess)
+        public TagsApiAccess(IContentApiAccess contentApiAccess)
         {
             this.contentApiAccess = contentApiAccess;
         }
-
-        public async Task<ExhibitsDto> GetExhibits()
+       
+        private async Task<TagsDto> GetTagsDto (long? timestamp, IList<int> includeOnly)
         {
-            return await GetExhibitsDto(null, null);
-        }
-
-        public async Task<ExhibitsDto> GetExhibits(long timestamp)
-        {
-            return await GetExhibits(timestamp, null);
-        }
-
-        public async Task<ExhibitsDto> GetExhibits(IList<int> includeOnly)
-        {
-            return await GetExhibitsDto(null, includeOnly);
-        }
-
-        public async Task<ExhibitsDto> GetExhibits(long timestamp, IList<int> includeOnly)
-        {
-            return await GetExhibitsDto(timestamp, includeOnly);
-        }
-
-        private async Task<ExhibitsDto> GetExhibitsDto(long? timestamp, IList<int> includeOnly)
-        {
-            string requestPath = @"/Exhibits";
-            requestPath += UriQueryBuilder.GetAdditionalParametersQuery(timestamp, includeOnly);
+            string requestPath = @"/Tags";
+            requestPath += UriQueryBuilder.GetAdditionalParametersQuery (timestamp, includeOnly);
 
             string json = await contentApiAccess.GetResponseFromUrl(requestPath);
-            if (json != null)
-            {
-                return JsonConvert.DeserializeObject<ExhibitsDto>(json);
-            }
-
-            return new ExhibitsDto { Items = new List<ExhibitDto>(), Total = 0 };
+            return JsonConvert.DeserializeObject<TagsDto>(json);
         }
+
+        public async Task<TagsDto> GetTags ()
+        {
+            return await GetTagsDto (null, null);
+        }
+
+        public async Task<TagsDto> GetTags (long timestamp)
+        {
+            return await GetTagsDto(timestamp, null);
+        }
+
+        public async Task<TagsDto> GetTags (IList<int> includeOnly)
+        {
+            return await GetTagsDto(null, includeOnly);
+        }
+
+        public async Task<TagsDto> GetTags (long timestamp, IList<int> includeOnly)
+        {
+            return await GetTagsDto(timestamp, includeOnly);
+        }
+
     }
 }
