@@ -28,9 +28,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
 
         public double Distance { get; set; }
 
-        public int Image { get; set; }
+        public int? Image { get; set; }
 
-        public int Audio { get; set; }
+        public int? Audio { get; set; }
 
         public IList<int> Exhibits { get; set; }
 

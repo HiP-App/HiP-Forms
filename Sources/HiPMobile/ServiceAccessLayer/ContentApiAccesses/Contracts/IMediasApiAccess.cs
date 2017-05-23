@@ -51,5 +51,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
         /// <returns></returns>
         Task<MediasDto> GetMedias(long timestamp, IList<int> includeOnly);
 
+        /// <summary>
+        /// Get the ids of all existing medias
+        /// </summary>
+        /// <returns></returns>
+        Task<IList<int>> GetIds();
     }
 }

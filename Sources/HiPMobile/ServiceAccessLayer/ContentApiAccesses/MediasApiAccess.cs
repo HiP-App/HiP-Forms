@@ -64,5 +64,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
             return new MediasDto { Items = new List<MediaDto>(), Total = 0 };
         }
 
+        public async Task<IList<int>> GetIds()
+        {
+            string requestPath = @"/Media/ids";
+            string json = await contentApiAccess.GetResponseFromUrl(requestPath);
+
+            return JsonConvert.DeserializeObject<IList<int>>(json);
+        }
+
     }
 }

@@ -40,7 +40,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
         private readonly IMediaDataFetcher mediaDataFetcher;
         private readonly ITagsApiAccess tagsApiAccess;
 
-        private IList<int> requiredRouteImages;
+        private IList<int?> requiredRouteImages;
         private IList<TagDto> routeTags;
         private IDictionary<RouteDto, Route> updatedRoutes;
         private IList<RouteDto> newRoutes;
@@ -55,7 +55,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
 
         public async Task<int> FetchNeededDataForRoutes()
         {
-            requiredRouteImages = new List<int>();
+            requiredRouteImages = new List<int?>();
             var requiredRouteTags = new List<int>();
             updatedRoutes = new Dictionary<RouteDto, Route>();
             newRoutes = new List<RouteDto>();
@@ -138,13 +138,20 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             }
         }
 
-        private void AddImageToRoute(Route dbRoute, int mediaId, FetchedMediaData fetchedMediaData)
+        private void AddImageToRoute(Route dbRoute, int? mediaId, FetchedMediaData fetchedMediaData)
         {
-            var image = fetchedMediaData.Images.SingleOrDefault(x => x.IdForRestApi == mediaId);
-
-            if (image != null)
+            if (mediaId.HasValue)
             {
-                dbRoute.Image = image;
+                var image = fetchedMediaData.Images.SingleOrDefault(x => x.IdForRestApi == mediaId);
+
+                if (image != null)
+                {
+                    dbRoute.Image = image;
+                }
+            }
+            else
+            {
+                dbRoute.Image = BackupData.BackupImage;
             }
         }
 
@@ -167,10 +174,17 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                         dbRoute.RouteTags.Add(dbTag);
                     }
 
-                    var tagImage = fetchedMediaData.Images.SingleOrDefault(x => x.IdForRestApi == tagDto.Image);
-                    if (tagImage != null)
+                    if (tagDto.Image.HasValue)
                     {
-                        dbTag.Image = tagImage;
+                        var tagImage = fetchedMediaData.Images.SingleOrDefault(x => x.IdForRestApi == tagDto.Image);
+                        if (tagImage != null)
+                        {
+                            dbTag.Image = tagImage;
+                        }
+                    }
+                    else
+                    {
+                        dbTag.Image = BackupData.BackupImage;
                     }
                 }
             }

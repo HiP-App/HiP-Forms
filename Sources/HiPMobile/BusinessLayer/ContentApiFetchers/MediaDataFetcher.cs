@@ -44,7 +44,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             this.fileApiAccess = fileApiAccess;
         }
 
-        public async Task<FetchedMediaData> FetchMedias(IList<int> mediaIds, CancellationToken token, IProgressListener progressListener)
+        public async Task<FetchedMediaData> FetchMedias(IList<int?> mediaIds, CancellationToken token, IProgressListener progressListener)
         {
             var media = await FetchMediaDtos(mediaIds);
             var files = await FetchFileDtos(mediaIds, token, progressListener);
@@ -99,22 +99,26 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             return fetchedData;
         }
 
-        private async Task<IList<MediaDto>> FetchMediaDtos(IList<int> requiredImages)
+        private async Task<IList<MediaDto>> FetchMediaDtos(IList<int?> requiredImages)
         {
-            var medias = await mediasApiAccess.GetMedias(requiredImages);
+            var medias = await mediasApiAccess.GetMedias(requiredImages.Where(x => x.HasValue).Select(y => y.Value).ToList());
             return medias.Items;
         }
 
-        private async Task<IList<FileDto>> FetchFileDtos(IList<int> requiredImages, CancellationToken token, IProgressListener progressListener)
+        private async Task<IList<FileDto>> FetchFileDtos(IList<int?> requiredImages, CancellationToken token, IProgressListener progressListener)
         {
             var files = new List<FileDto>();
-            foreach (int mediaId in requiredImages)
+            foreach (int? mediaId in requiredImages)
             {
+                if (!mediaId.HasValue)
+                {
+                    continue;
+                }
                 if (token.IsCancellationRequested)
                 {
                     break;
                 }
-                var file = await fileApiAccess.GetFile(mediaId);
+                var file = await fileApiAccess.GetFile(mediaId.Value);
                 files.Add(file);
                 progressListener.ProgressOneStep();
             }

@@ -97,5 +97,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
         {
             return await GetPagesDtoWithExhibitConstraint(exhibitId, timestamp, includeOnly);
         }
+
+        public async Task<IList<int>> GetIds()
+        {
+            string requestPath = @"/Exhibits/Pages/ids";
+            string json = await contentApiAccess.GetResponseFromUrl(requestPath);
+
+            return JsonConvert.DeserializeObject<IList<int>>(json);
+        }
     }
 }

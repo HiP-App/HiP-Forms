@@ -51,5 +51,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
         /// <returns></returns>
         Task<ExhibitsDto> GetExhibits(long timestamp, IList<int> includeOnly);
 
+        /// <summary>
+        /// Get the ids of all existing exhibits
+        /// </summary>
+        /// <returns></returns>
+        Task<IList<int>> GetIds ();
+
     }
 }

@@ -60,5 +60,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
             return await GetTagsDto(timestamp, includeOnly);
         }
 
+        public async Task<IList<int>> GetIds()
+        {
+            string requestPath = @"/Tags/ids";
+            string json = await contentApiAccess.GetResponseFromUrl(requestPath);
+
+            return JsonConvert.DeserializeObject<IList<int>>(json);
+        }
     }
 }

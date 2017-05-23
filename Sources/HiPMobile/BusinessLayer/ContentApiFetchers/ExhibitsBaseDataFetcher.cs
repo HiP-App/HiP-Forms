@@ -21,6 +21,7 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetche
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelConverters;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos;
@@ -31,6 +32,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
         private readonly IExhibitsApiAccess exhibitsApiAccess;
         private readonly IPagesApiAccess pagesApiAccess;
         private readonly IMediaDataFetcher mediaDataFetcher;
+        private readonly IDataLoader dataLoader;
 
         [Dependency]
         public ExhibitConverter ExhibitConverter { private get; set; }
@@ -38,15 +40,16 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
         [Dependency]
         public PageConverter PageConverter { private get; set; }
 
-        public ExhibitsBaseDataFetcher (IExhibitsApiAccess exhibitsApiAccess, IPagesApiAccess pagesApiAccess, IMediaDataFetcher mediaDataFetcher)
+        public ExhibitsBaseDataFetcher (IExhibitsApiAccess exhibitsApiAccess, IPagesApiAccess pagesApiAccess, IMediaDataFetcher mediaDataFetcher, IDataLoader dataLoader)
         {
             this.exhibitsApiAccess = exhibitsApiAccess;
             this.pagesApiAccess = pagesApiAccess;
             this.mediaDataFetcher = mediaDataFetcher;
+            this.dataLoader = dataLoader;
         }
 
         private IList<ExhibitDto> fetchedChangedExhibits;
-        private IList<int> requiredExhibitImages;
+        private IList<int?> requiredExhibitImages;
         private IList<ExhibitDto> newExhibits;
         private IDictionary<ExhibitDto, Exhibit> updatedExhibits;
         private IList<PageDto> appetizerPages;
@@ -66,7 +69,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                 }
             }
 
-            requiredExhibitImages = new List<int>();
+            requiredExhibitImages = new List<int?>();
             newExhibits = new List<ExhibitDto>();
             updatedExhibits = new Dictionary<ExhibitDto, Exhibit>();
             var requiredAppetizerPages = new List<int>();
@@ -162,23 +165,37 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                         dbExhibit.Pages.Add(PageConverter.Convert(page));
                     }
 
-                    var image = fetchedMediaData.Images.SingleOrDefault(x => x.IdForRestApi == page.Image);
-
-                    if (image != null)
+                    if (page.Image.HasValue)
                     {
-                        dbExhibit.Pages.First().AppetizerPage.Image = image;
+                        var image = fetchedMediaData.Images.SingleOrDefault(x => x.IdForRestApi == page.Image);
+
+                        if (image != null)
+                        {
+                            dbExhibit.Pages.First().AppetizerPage.Image = image;
+                        }
+                    }
+                    else
+                    {
+                        dbExhibit.Pages.First().AppetizerPage.Image = BackupData.BackupImage;
                     }
                 }
             }
         }
 
-        private void AddImageToExhibit(Exhibit dbExhibit, int mediaId, FetchedMediaData fetchedMediaData)
+        private void AddImageToExhibit(Exhibit dbExhibit, int? mediaId, FetchedMediaData fetchedMediaData)
         {
-            var image = fetchedMediaData.Images.SingleOrDefault(x => x.IdForRestApi == mediaId);
-
-            if (image != null)
+            if (mediaId.HasValue)
             {
-                dbExhibit.Image = image;
+                var image = fetchedMediaData.Images.SingleOrDefault (x => x.IdForRestApi == mediaId);
+
+                if (image != null)
+                {
+                    dbExhibit.Image = image;
+                }
+            }
+            else
+            {
+                dbExhibit.Image = BackupData.BackupImage;
             }
         }
 
@@ -198,6 +215,5 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
 
             return fetchedChangedExhibits.Any();
         }
-
     }
 }

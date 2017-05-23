@@ -51,9 +51,11 @@
   <ItemGroup>
     <Compile Include="BusinessLayer\ContentApiFetchers\BaseDataFetcher.cs" />
     <Compile Include="BusinessLayer\ContentApiFetchers\Contracts\IBaseDataFetcher.cs" />
+    <Compile Include="BusinessLayer\ContentApiFetchers\Contracts\IDataToRemoveFetcher.cs" />
     <Compile Include="BusinessLayer\ContentApiFetchers\Contracts\IMediaDataFetcher.cs" />
     <Compile Include="BusinessLayer\ContentApiFetchers\Contracts\IExhibitsBaseDataFetcher.cs" />
     <Compile Include="BusinessLayer\ContentApiFetchers\Contracts\IRoutesBaseDataFetcher.cs" />
+    <Compile Include="BusinessLayer\ContentApiFetchers\DataToRemoveFetcher.cs" />
     <Compile Include="BusinessLayer\ContentApiFetchers\ExhibitsBaseDataFetcher.cs" />
     <Compile Include="BusinessLayer\ContentApiFetchers\FetchedMediaData.cs" />
     <Compile Include="BusinessLayer\ContentApiFetchers\MediaDataFetcher.cs" />

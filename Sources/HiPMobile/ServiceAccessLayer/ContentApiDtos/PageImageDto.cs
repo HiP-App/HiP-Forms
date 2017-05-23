@@ -15,7 +15,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
     public class PageImageDto {
         public long Date { get; set; }
 
-        public int Image { get; set; }
+        public int? Image { get; set; }
 
     }
 }

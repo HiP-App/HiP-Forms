@@ -27,9 +27,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
 
         public string Text { get; set; }
 
-        public int Audio { get; set; }
+        public int? Audio { get; set; }
 
-        public int Image { get; set; }
+        public int? Image { get; set; }
 
         public IList<PageImageDto> Images { get; set; }
 

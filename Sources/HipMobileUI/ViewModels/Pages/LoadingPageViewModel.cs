@@ -132,6 +132,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
                 //init fetchers
                 IoCManager.RegisterType<IMediaDataFetcher, MediaDataFetcher>();
+                IoCManager.RegisterType<IDataToRemoveFetcher, DataToRemoveFetcher>();
                 IoCManager.RegisterType<IExhibitsBaseDataFetcher, ExhibitsBaseDataFetcher>();
                 IoCManager.RegisterType<IRoutesBaseDataFetcher, RoutesBaseDataFetcher>();
                 IoCManager.RegisterType<IBaseDataFetcher, BaseDataFetcher>();

@@ -50,5 +50,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
         /// <returns></returns>
         Task<RoutesDto> GetRoutes(long timestamp, IList<int> includeOnly);
 
+        /// <summary>
+        /// Get the ids of all existing routes
+        /// </summary>
+        /// <returns></returns>
+        Task<IList<int>> GetIds();
     }
 }
