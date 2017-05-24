@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
-using PaderbornUniversity.SILab.Hip.Mobile.UI.Location;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using Xamarin.Forms;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views.ExhibitDetails;
@@ -27,12 +30,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             CancelCommand = new Command(CancelDownload);
             GoToDetailsCommand = new Command(GoToDetails);
             GoToOverviewCommand = new Command(CloseDownloadPage);
-
             StartDownload = new Command(DownloadData);
+
+            cancellationTokenSource = new CancellationTokenSource();
 
             DownloadPending = true;
             DownloadFinished = !DownloadPending;   // Since false is the default value this is just a reminder in case the database wants to set this to true when generating this item
         }
+
+        private readonly CancellationTokenSource cancellationTokenSource;
 
         private IDownloadableListItemViewModel DownloadableListItemViewModel { get; set; }
 
@@ -124,7 +130,45 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         {
             // This is where all the the data will be downloaded
             // maybe you do something like this:   Database.loadInterestDataFor(InterestId);    // Interests are Routes and Exhibits
-            
+
+            string messageToShow = null;
+            string titleToShow = null;
+            //var fullExhibitDataFetcher = IoCManager.Resolve<IFullExhibitDataFetcher>(); // TODO: Implementation
+            var networkAccessStatus = IoCManager.Resolve<INetworkAccessChecker>().GetNetworkAccessStatus();
+
+            if (networkAccessStatus == NetworkAccessStatus.WifiAccess
+                || (networkAccessStatus == NetworkAccessStatus.MobileAccess && !Settings.WifiOnly))
+            {
+                try
+                {
+                    var token = cancellationTokenSource.Token;
+                    //await fullExhibitDataFetcher.FetchFullExhibitDataIntoDatabase(token, this); // TODO: Implementation
+                }
+                catch (Exception e)
+                {
+                    titleToShow = Strings.LoadingPageViewModel_BaseData_DownloadFailed_Title;
+                    messageToShow = Strings.LoadingPageViewModel_BaseData_DownloadFailed_Text;
+                    Debug.WriteLine(e.Message);
+                    Debug.WriteLine(e.StackTrace);
+                }
+            }
+            else
+            {
+                titleToShow = Strings.LoadingPageViewModel_BaseData_DownloadFailed_Title;
+                messageToShow = Strings.LoadingPageViewModel_BaseData_DownloadFailed_Text;
+                if (networkAccessStatus == NetworkAccessStatus.MobileAccess)
+                {
+                    messageToShow += Environment.NewLine + Strings.LoadingPageViewModel_BaseData_OnlyMobile;
+                }
+            }
+
+            if (messageToShow != null)
+            {
+                await Navigation.DisplayAlert(titleToShow, messageToShow, "OK");
+            }
+
+
+            // TODO: Bind LoadingProgress with download
             LoadingProgress = 0;
             for (var x = 0; x < 50; x++)
             {
