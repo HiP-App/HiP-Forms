@@ -21,7 +21,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.ServiceAccessLayer
     [TestFixture]
     public class MediasApiAccessTest {
 
-        private IContentApiAccess contentApiSubstitute;
+        private IContentApiClient contentApiSubstitute;
 
         [Test, Category ("UnitTest")]
         public async void GetMedias_SingleMedia()
@@ -110,7 +110,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.ServiceAccessLayer
 
         private MediasApiAccess CreateSystemUnderTest ()
         {
-            contentApiSubstitute = Substitute.For<IContentApiAccess> ();
+            contentApiSubstitute = Substitute.For<IContentApiClient> ();
 
             return new MediasApiAccess (contentApiSubstitute);
         }

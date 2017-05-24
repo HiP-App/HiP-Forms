@@ -24,11 +24,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
     {
         private readonly IRoutesBaseDataFetcher routesBaseDataFetcher;
         private readonly IExhibitsBaseDataFetcher exhibitsBaseDataFetcher;
+        private readonly IDataToRemoveFetcher dataToRemoveFetcher;
 
-        public BaseDataFetcher(IRoutesBaseDataFetcher routesBaseDataFetcher, IExhibitsBaseDataFetcher exhibitsBaseDataFetcher)
+        public BaseDataFetcher(IRoutesBaseDataFetcher routesBaseDataFetcher, IExhibitsBaseDataFetcher exhibitsBaseDataFetcher, IDataToRemoveFetcher dataToRemoveFetcher)
         {
             this.routesBaseDataFetcher = routesBaseDataFetcher;
             this.exhibitsBaseDataFetcher = exhibitsBaseDataFetcher;
+            this.dataToRemoveFetcher = dataToRemoveFetcher;
         }
 
         public async Task<bool> IsDatabaseUpToDate(CancellationToken token)
@@ -59,6 +61,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                     transaction.Rollback();
                 }
                 await routesBaseDataFetcher.ProcessRoutes(token, listener);
+                if (token.IsCancellationRequested)
+                {
+                    transaction.Rollback();
+                }
+                await dataToRemoveFetcher.CleaupRemovedData(token);
                 if (token.IsCancellationRequested)
                 {
                     transaction.Rollback();

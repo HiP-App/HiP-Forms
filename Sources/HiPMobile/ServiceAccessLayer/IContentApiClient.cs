@@ -12,33 +12,20 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System.Collections.Generic;
+using System.Threading.Tasks;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos
-{
-    public class ExhibitDto
-    {
-        public int Id { get; set; }
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer {
+    /// <summary>
+    /// Get response for the given path path of the content api server
+    /// </summary>
+    public interface IContentApiClient {
 
-        public string Name { get; set; }
-
-        public string Description { get; set; }
-
-        public double Latitude { get; set; }
-
-        public double Longitude { get; set; }
-
-        public long Timestamp { get; set; }
-
-        public bool Used { get; set; }
-
-        public IList<int> Tags { get; set; }
-
-        public IList<int> Pages { get; set; }
-
-        public string Status { get; set; }
-
-        public int? Image { get; set; }
+        /// <summary>
+        /// Get result for the given path on the content api server
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns>String result of the api call</returns>
+        Task<string> GetResponseFromUrl (string path);
 
     }
 }

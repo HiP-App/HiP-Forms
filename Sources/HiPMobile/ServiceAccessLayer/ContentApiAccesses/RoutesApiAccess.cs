@@ -24,11 +24,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
     public class RoutesApiAccess : IRoutesApiAccess
     {
 
-        private readonly IContentApiAccess contentApiAccess;
+        private readonly IContentApiClient contentApiClient;
 
-        public RoutesApiAccess(IContentApiAccess contentApiAccess)
+        public RoutesApiAccess(IContentApiClient contentApiClient)
         {
-            this.contentApiAccess = contentApiAccess;
+            this.contentApiClient = contentApiClient;
         }
        
         private async Task<RoutesDto> GetRoutesDto (long? timestamp, IList<int> includeOnly)
@@ -36,7 +36,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
             string requestPath = @"/Routes";
             requestPath += UriQueryBuilder.GetAdditionalParametersQuery (timestamp, includeOnly);
 
-            string json = await contentApiAccess.GetResponseFromUrl(requestPath);
+            string json = await contentApiClient.GetResponseFromUrl(requestPath);
             return JsonConvert.DeserializeObject<RoutesDto>(json);
         }
 
@@ -60,5 +60,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
             return await GetRoutesDto(timestamp, includeOnly);
         }
 
+        public async Task<IList<int>> GetIds()
+        {
+            string requestPath = @"/Routes/ids";
+            string json = await contentApiClient.GetResponseFromUrl(requestPath);
+
+            return JsonConvert.DeserializeObject<IList<int>>(json);
+        }
     }
 }

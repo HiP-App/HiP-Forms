@@ -819,6 +819,33 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Die aktuellen Daten konnten nicht heruntergeladen werden..
+        /// </summary>
+        public static string LoadingPageViewModel_BaseData_DownloadFailed_Text {
+            get {
+                return ResourceManager.GetString("LoadingPageViewModel_BaseData_DownloadFailed_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Daten Download.
+        /// </summary>
+        public static string LoadingPageViewModel_BaseData_DownloadFailed_Title {
+            get {
+                return ResourceManager.GetString("LoadingPageViewModel_BaseData_DownloadFailed_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In den Einstellungen haben Sie die Möglichkeit, den Download der Daten auch über Mobile Datenverbindungen zu erlauben..
+        /// </summary>
+        public static string LoadingPageViewModel_BaseData_OnlyMobile {
+            get {
+                return ResourceManager.GetString("LoadingPageViewModel_BaseData_OnlyMobile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Historisches Paderborn.
         /// </summary>
         public static string MainPage_MenuTitle {

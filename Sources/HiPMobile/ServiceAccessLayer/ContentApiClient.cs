@@ -19,7 +19,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer {
-    public class ContentApiAccess : IContentApiAccess {
+    public class ContentApiClient : IContentApiClient {
 
         /// <summary>
         /// Urlpath for the docker container running the HiP-DataStore instance

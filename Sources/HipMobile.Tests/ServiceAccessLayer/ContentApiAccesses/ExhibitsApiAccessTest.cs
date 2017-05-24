@@ -22,7 +22,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.ServiceAccessLayer
     [TestFixture]
     public class ExhibitsApiAccessTest {
 
-        private IContentApiAccess contentApiSubstitute;
+        private IContentApiClient contentApiSubstitute;
 
         [Test, Category("UnitTest")]
         public async void GetExhibits_SingleExhibit()
@@ -159,7 +159,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.ServiceAccessLayer
 
         private ExhibitsApiAccess CreateSystemUnderTest()
         {
-            contentApiSubstitute = Substitute.For<IContentApiAccess>();
+            contentApiSubstitute = Substitute.For<IContentApiClient>();
 
             return new ExhibitsApiAccess(contentApiSubstitute);
         }

@@ -275,6 +275,7 @@
     <Compile Include="Contracts\AndroidFabSizeCalculator.cs" />
     <Compile Include="Contracts\AndroidImageDimensions.cs" />
     <Compile Include="Contracts\DroidAudioPlayer.cs" />
+    <Compile Include="Contracts\DroidNetworkAccessChecker.cs" />
     <Compile Include="Contracts\DroidStatusBarController.cs" />
     <Compile Include="Contracts\DroidBarsColorsChanger.cs" />
     <Compile Include="CustomRenderers\AndroidOrientationPageRenderer.cs" />

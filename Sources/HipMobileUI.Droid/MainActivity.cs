@@ -55,20 +55,21 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
             IoCManager.RegisterInstance(typeof(IViewCreator), NavigationService.Instance);
 
             // init other inversion of control classes
-            IoCManager.RegisterInstance (typeof(IFabSizeCalculator), new AndroidFabSizeCalculator ());
-            IoCManager.RegisterInstance (typeof(IAudioPlayer), new DroidAudioPlayer ());
-            IoCManager.RegisterInstance (typeof(IStatusBarController), new DroidStatusBarController ());
-            IoCManager.RegisterInstance (typeof(ILocationManager), new LocationManager ());
-            IoCManager.RegisterInstance (typeof(IKeyProvider), new AndroidKeyProvider ());
-            IoCManager.RegisterInstance (typeof(IBarsColorsChanger), new DroidBarsColorsChanger (this));
-            IoCManager.RegisterInstance (typeof(IDbChangedHandler), new DbChangedHandler ());
+            IoCManager.RegisterInstance(typeof(IFabSizeCalculator), new AndroidFabSizeCalculator());
+            IoCManager.RegisterInstance(typeof(IAudioPlayer), new DroidAudioPlayer());
+            IoCManager.RegisterInstance(typeof(IStatusBarController), new DroidStatusBarController());
+            IoCManager.RegisterInstance(typeof(ILocationManager), new LocationManager());
+            IoCManager.RegisterInstance(typeof(IKeyProvider), new AndroidKeyProvider());
+            IoCManager.RegisterInstance(typeof(IBarsColorsChanger), new DroidBarsColorsChanger(this));
+            IoCManager.RegisterInstance(typeof(IDbChangedHandler), new DbChangedHandler());
+            IoCManager.RegisterInstance(typeof(INetworkAccessChecker), new DroidNetworkAccessChecker());
 
             // setup crash reporting
             IKeyProvider keyProvider = IoCManager.Resolve<IKeyProvider>();
             CrashManager.Register(this, keyProvider.GetKeyByName("hockeyapp.android"));
 
             // init forms and third party libraries
-            CachedImageRenderer.Init ();
+            CachedImageRenderer.Init();
             Forms.Init(this, bundle);
             Xamarin.FormsMaps.Init(this, bundle);
 
@@ -84,15 +85,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
         /// Workaround for a IllegalStateException in Xamarin Forms 2.3. It should be fixed in 2.4 so this can be removed then.
         /// Further discussion: https://forums.xamarin.com/discussion/83864/java-lang-illegalstateexception-activity-has-been-destroyed-when-using-admob
         /// </summary>
-        protected override void OnDestroy ()
+        protected override void OnDestroy()
         {
-            CallOnDisappearingForAllOpenPages ();
+            CallOnDisappearingForAllOpenPages();
 
             Xamarin.Forms.Application.Current.MainPage = new ContentPage();
-            base.OnDestroy ();
+            base.OnDestroy();
         }
 
-        private void CallOnDisappearingForAllOpenPages ()
+        private void CallOnDisappearingForAllOpenPages()
         {
             var tabController = Xamarin.Forms.Application.Current.MainPage as TabbedPage;
             var masterController = Xamarin.Forms.Application.Current.MainPage as MasterDetailPage;

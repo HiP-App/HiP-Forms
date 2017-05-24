@@ -24,11 +24,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
     public class TagsApiAccess : ITagsApiAccess
     {
 
-        private readonly IContentApiAccess contentApiAccess;
+        private readonly IContentApiClient contentApiClient;
 
-        public TagsApiAccess(IContentApiAccess contentApiAccess)
+        public TagsApiAccess(IContentApiClient contentApiClient)
         {
-            this.contentApiAccess = contentApiAccess;
+            this.contentApiClient = contentApiClient;
         }
        
         private async Task<TagsDto> GetTagsDto (long? timestamp, IList<int> includeOnly)
@@ -36,7 +36,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
             string requestPath = @"/Tags";
             requestPath += UriQueryBuilder.GetAdditionalParametersQuery (timestamp, includeOnly);
 
-            string json = await contentApiAccess.GetResponseFromUrl(requestPath);
+            string json = await contentApiClient.GetResponseFromUrl(requestPath);
             return JsonConvert.DeserializeObject<TagsDto>(json);
         }
 
@@ -60,5 +60,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
             return await GetTagsDto(timestamp, includeOnly);
         }
 
+        public async Task<IList<int>> GetIds()
+        {
+            string requestPath = @"/Tags/ids";
+            string json = await contentApiClient.GetResponseFromUrl(requestPath);
+
+            return JsonConvert.DeserializeObject<IList<int>>(json);
+        }
     }
 }

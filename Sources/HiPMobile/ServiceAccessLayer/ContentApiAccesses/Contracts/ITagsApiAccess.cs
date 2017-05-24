@@ -51,5 +51,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
         /// <returns></returns>
         Task<TagsDto> GetTags(long timestamp, IList<int> includeOnly);
 
+        /// <summary>
+        /// Get the ids of all existing tags
+        /// </summary>
+        /// <returns></returns>
+        Task<IList<int>> GetIds();
     }
 }

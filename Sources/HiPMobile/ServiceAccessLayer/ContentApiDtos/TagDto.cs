@@ -20,7 +20,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
 
         public string Description { get; set; }
 
-        public int Image { get; set; }
+        public int? Image { get; set; }
 
         public string Status { get; set; }
 

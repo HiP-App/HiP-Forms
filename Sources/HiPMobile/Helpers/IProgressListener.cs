@@ -29,8 +29,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
         /// <param name="maxProgress">The maximum progress.</param>
         void UpdateProgress(double newProgress, double maxProgress);
 
+        /// <summary>
+        /// Called when the progress changed
+        /// </summary>
         void ProgressOneStep();
 
+        /// <summary>
+        /// Sets the maximum progress that can be reached
+        /// </summary>
+        /// <param name="maxProgress"></param>
         void SetMaxProgress(double maxProgress);
 
     }

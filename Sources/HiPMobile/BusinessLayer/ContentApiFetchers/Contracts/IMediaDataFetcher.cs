@@ -30,7 +30,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
         /// <param name="token">Can be provided for canceling the action</param>
         /// <param name="progressListener">Can be provided for reporting progress on the download</param>
         /// <returns></returns>
-        Task<FetchedMediaData> FetchMedias (IList<int> mediaIds, CancellationToken token, IProgressListener progressListener);
+        Task<FetchedMediaData> FetchMedias (IList<int?> mediaIds, CancellationToken token, IProgressListener progressListener);
 
     }
 }
