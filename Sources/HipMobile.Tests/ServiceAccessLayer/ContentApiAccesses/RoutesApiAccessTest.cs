@@ -23,7 +23,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.ServiceAccessLayer
     public class RoutesApiAccessTest
     {
 
-        private IContentApiAccess contentApiSubstitute;
+        private IContentApiClient contentApiSubstitute;
 
         [Test, Category("UnitTest")]
         public async void GetRoutes_SingleRoute()
@@ -169,7 +169,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.ServiceAccessLayer
 
         private RoutesApiAccess CreateSystemUnderTest()
         {
-            contentApiSubstitute = Substitute.For<IContentApiAccess>();
+            contentApiSubstitute = Substitute.For<IContentApiClient>();
 
             return new RoutesApiAccess(contentApiSubstitute);
         }

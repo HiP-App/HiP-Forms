@@ -22,7 +22,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.ServiceAccessLayer
     [TestFixture]
     public class FileApiAccessTest
     {
-        private IContentApiAccess contentApiSubstitute;
+        private IContentApiClient contentApiSubstitute;
 
         [Test, Category("UnitTest")]
         public async void GetFile_Test()
@@ -61,7 +61,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.ServiceAccessLayer
 
         private FileApiAccess CreateSystemUnderTest()
         {
-            contentApiSubstitute = Substitute.For<IContentApiAccess>();
+            contentApiSubstitute = Substitute.For<IContentApiClient>();
 
             return new FileApiAccess(contentApiSubstitute);
         }

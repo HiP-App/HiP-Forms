@@ -22,7 +22,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.ServiceAccessLayer
     [TestFixture]
     public class TagsApiAccessTest
     {
-        private IContentApiAccess contentApiSubstitute;
+        private IContentApiClient contentApiSubstitute;
 
         [Test, Category("UnitTest")]
         public async void GetTags_SingleTag()
@@ -114,7 +114,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.ServiceAccessLayer
 
         private TagsApiAccess CreateSystemUnderTest()
         {
-            contentApiSubstitute = Substitute.For<IContentApiAccess>();
+            contentApiSubstitute = Substitute.For<IContentApiClient>();
 
             return new TagsApiAccess(contentApiSubstitute);
         }

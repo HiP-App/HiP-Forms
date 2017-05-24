@@ -23,11 +23,11 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiD
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses {
     public class MediasApiAccess : IMediasApiAccess {
 
-        private readonly IContentApiAccess contentApiAccess;
+        private readonly IContentApiClient contentApiClient;
 
-        public MediasApiAccess (IContentApiAccess contentApiAccess)
+        public MediasApiAccess (IContentApiClient contentApiClient)
         {
-            this.contentApiAccess = contentApiAccess;
+            this.contentApiClient = contentApiClient;
         }
 
         public async Task<MediasDto> GetMedias ()
@@ -55,7 +55,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
             string requestPath = @"/Media";
             requestPath += UriQueryBuilder.GetAdditionalParametersQuery(timestamp, includeOnly);
 
-            string json = await contentApiAccess.GetResponseFromUrl(requestPath);
+            string json = await contentApiClient.GetResponseFromUrl(requestPath);
             if (json != null)
             {
                 return JsonConvert.DeserializeObject<MediasDto>(json);
@@ -67,7 +67,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
         public async Task<IList<int>> GetIds()
         {
             string requestPath = @"/Media/ids";
-            string json = await contentApiAccess.GetResponseFromUrl(requestPath);
+            string json = await contentApiClient.GetResponseFromUrl(requestPath);
 
             return JsonConvert.DeserializeObject<IList<int>>(json);
         }

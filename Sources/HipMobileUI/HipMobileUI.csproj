@@ -84,7 +84,6 @@
     <Compile Include="Container\BindableChildrenStackLayout.cs" />
     <Compile Include="Helpers\DeviceOrientation.cs" />
     <Compile Include="Helpers\OrientationController.cs" />
-    <Compile Include="Helpers\Settings.cs" />
     <Compile Include="Contracts\IBarsColorsChanger.cs" />
     <Compile Include="Location\LocationManager.cs" />
     <Compile Include="Location\NearbyExhibitManager.cs" />

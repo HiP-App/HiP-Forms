@@ -12,20 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System.Threading.Tasks;
-
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer {
-    /// <summary>
-    /// Get response for the given path path of the content api server
-    /// </summary>
-    public interface IContentApiAccess {
-
-        /// <summary>
-        /// Get result for the given path on the content api server
-        /// </summary>
-        /// <param name="path"></param>
-        /// <returns>String result of the api call</returns>
-        Task<string> GetResponseFromUrl (string path);
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts
+{
+    public interface INetworkAccessChecker
+    {
+        NetworkAccessStatus GetNetworkAccessStatus();
 
     }
 }

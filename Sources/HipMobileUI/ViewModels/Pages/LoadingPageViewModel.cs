@@ -13,6 +13,7 @@
 // limitations under the License.
 
 using System;
+using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -109,62 +110,106 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         {
             Task.Factory.StartNew(async () =>
             {
-                IoCManager.RegisterType<IDataAccess, RealmDataAccess>();
-                IoCManager.RegisterType<IDataLoader, EmbeddedResourceDataLoader>();
-                IoCManager.RegisterInstance(typeof(ApplicationResourcesProvider), new ApplicationResourcesProvider(Application.Current.Resources));
+                string messageToShowOnStartup = null;
+                string titleToShowOnStartup = null;
 
-                //init serviceaccesslayer
-                IoCManager.RegisterType<IContentApiAccess, ContentApiAccess>();
-                IoCManager.RegisterType<IExhibitsApiAccess, ExhibitsApiAccess>();
-                IoCManager.RegisterType<IMediasApiAccess, MediasApiAccess>();
-                IoCManager.RegisterType<IFileApiAccess, FileApiAccess>();
-                IoCManager.RegisterType<IPagesApiAccess, PagesApiAccess>();
-                IoCManager.RegisterType<IRoutesApiAccess, RoutesApiAccess>();
-                IoCManager.RegisterType<ITagsApiAccess, TagsApiAccess>();
-
-                //init converters
-                IoCManager.RegisterType<ExhibitConverter>();
-                IoCManager.RegisterType<MediaToAudioConverter>();
-                IoCManager.RegisterType<MediaToImageConverter>();
-                IoCManager.RegisterType<PageConverter>();
-                IoCManager.RegisterType<RouteConverter>();
-                IoCManager.RegisterType<TagConverter>();
-
-                //init fetchers
-                IoCManager.RegisterType<IMediaDataFetcher, MediaDataFetcher>();
-                IoCManager.RegisterType<IDataToRemoveFetcher, DataToRemoveFetcher>();
-                IoCManager.RegisterType<IExhibitsBaseDataFetcher, ExhibitsBaseDataFetcher>();
-                IoCManager.RegisterType<IRoutesBaseDataFetcher, RoutesBaseDataFetcher>();
-                IoCManager.RegisterType<IBaseDataFetcher, BaseDataFetcher>();
-
-                IoCManager.RegisterInstance(typeof(INearbyExhibitManager), new NearbyExhibitManager());
-                IoCManager.RegisterInstance(typeof(INearbyRouteManager), new NearbyRouteManager());
-
-                var baseDataFetcher = IoCManager.Resolve<IBaseDataFetcher>();
-                /*
-                var token = cancellationTokenSource.Token;
-                bool isUpToDate = await baseDataFetcher.IsDatabaseUpToDate (token);
-                if (isUpToDate)
+                try
                 {
-                    IsExtendedViewsVisible = true;
-                    await baseDataFetcher.FetchBaseDataIntoDatabase (token, this);
-                }*/
+                    IoCManager.RegisterType<IDataAccess, RealmDataAccess>();
+                    IoCManager.RegisterType<IDataLoader, EmbeddedResourceDataLoader>();
+                    IoCManager.RegisterInstance(typeof(ApplicationResourcesProvider), new ApplicationResourcesProvider(Application.Current.Resources));
 
-                // show text, progress bar and image when db is initialized, otherwise just the indicator is shown
-                if (!DbManager.IsDatabaseUpToDate())
-                {
-                    IsExtendedViewsVisible = true;
+                    //init serviceaccesslayer
+                    IoCManager.RegisterType<IContentApiClient, ContentApiClient>();
+                    IoCManager.RegisterType<IExhibitsApiAccess, ExhibitsApiAccess>();
+                    IoCManager.RegisterType<IMediasApiAccess, MediasApiAccess>();
+                    IoCManager.RegisterType<IFileApiAccess, FileApiAccess>();
+                    IoCManager.RegisterType<IPagesApiAccess, PagesApiAccess>();
+                    IoCManager.RegisterType<IRoutesApiAccess, RoutesApiAccess>();
+                    IoCManager.RegisterType<ITagsApiAccess, TagsApiAccess>();
+
+                    //init converters
+                    IoCManager.RegisterType<ExhibitConverter>();
+                    IoCManager.RegisterType<MediaToAudioConverter>();
+                    IoCManager.RegisterType<MediaToImageConverter>();
+                    IoCManager.RegisterType<PageConverter>();
+                    IoCManager.RegisterType<RouteConverter>();
+                    IoCManager.RegisterType<TagConverter>();
+
+                    //init fetchers
+                    IoCManager.RegisterType<IMediaDataFetcher, MediaDataFetcher>();
+                    IoCManager.RegisterType<IDataToRemoveFetcher, DataToRemoveFetcher>();
+                    IoCManager.RegisterType<IExhibitsBaseDataFetcher, ExhibitsBaseDataFetcher>();
+                    IoCManager.RegisterType<IRoutesBaseDataFetcher, RoutesBaseDataFetcher>();
+                    IoCManager.RegisterType<IBaseDataFetcher, BaseDataFetcher>();
+
+                    IoCManager.RegisterInstance(typeof(INearbyExhibitManager), new NearbyExhibitManager());
+                    IoCManager.RegisterInstance(typeof(INearbyRouteManager), new NearbyRouteManager());
+
+                    var baseDataFetcher = IoCManager.Resolve<IBaseDataFetcher>();
+
+                    var networkAccessStatus = IoCManager.Resolve<INetworkAccessChecker>().GetNetworkAccessStatus();
+
+                    if (networkAccessStatus == NetworkAccessStatus.WifiAccess
+                        || (networkAccessStatus == NetworkAccessStatus.MobileAccess && !Settings.WifiOnly))
+                    {
+                        try
+                        {
+                            var token = cancellationTokenSource.Token;
+                            bool isUpToDate = await baseDataFetcher.IsDatabaseUpToDate(token);
+                            if (isUpToDate)
+                            {
+                                IsExtendedViewsVisible = true;
+                                await baseDataFetcher.FetchBaseDataIntoDatabase(token, this);
+                            }
+                        }
+                        catch (Exception e)
+                        {
+                            titleToShowOnStartup = Strings.LoadingPageViewModel_BaseData_DownloadFailed_Title;
+                            messageToShowOnStartup = Strings.LoadingPageViewModel_BaseData_DownloadFailed_Text;
+                            Debug.WriteLine(e.Message);
+                            Debug.WriteLine(e.StackTrace);
+                        }
+                    }
+                    else
+                    {
+                        titleToShowOnStartup = Strings.LoadingPageViewModel_BaseData_DownloadFailed_Title;
+                        messageToShowOnStartup = Strings.LoadingPageViewModel_BaseData_DownloadFailed_Text;
+                        if (networkAccessStatus == NetworkAccessStatus.MobileAccess)
+                        {
+                            messageToShowOnStartup += Environment.NewLine + Strings.LoadingPageViewModel_BaseData_OnlyMobile;
+                        }
+                    }
+
+                    // show text, progress bar and image when db is initialized, otherwise just the indicator is shown
+                    if (!DbManager.IsDatabaseUpToDate())
+                    {
+                        IsExtendedViewsVisible = true;
+                    }
+                    DbManager.UpdateDatabase(this);
+
+                    // force the db to load the exhibitset into cache
+                    ExhibitManager.GetExhibitSets();
+                    LoadingProgress = 0.9;
+                    await Task.Delay(100);
+
+
                 }
-                DbManager.UpdateDatabase(this);
-
-                // force the db to load the exhibitset into cache
-                ExhibitManager.GetExhibitSets();
-                LoadingProgress = 0.9;
-                await Task.Delay(100);
-
+                catch (Exception e)
+                {
+                    // Catch all exceptions happening on startup cause otherwise the loading page will be shown indefinitely 
+                    // This should only happen during development
+                    messageToShowOnStartup = e.Message;
+                    titleToShowOnStartup = "Error";
+                }
                 // if the app is not sleeping open the main menu, otherwise wait for it to wake up
                 startupAction = async () =>
                 {
+                    if (messageToShowOnStartup != null)
+                    {
+                        await Navigation.DisplayAlert(titleToShowOnStartup, messageToShowOnStartup, "OK");
+                    }
+
                     var vm = new MainPageViewModel();
                     LoadingProgress = 1;
                     await Task.Delay(100);

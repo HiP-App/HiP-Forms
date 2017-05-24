@@ -21,17 +21,17 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiD
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses {
     public class FileApiAccess : IFileApiAccess {
 
-        private readonly IContentApiAccess contentApiAccess;
+        private readonly IContentApiClient contentApiClient;
 
-        public FileApiAccess (IContentApiAccess contentApiAccess)
+        public FileApiAccess (IContentApiClient contentApiClient)
         {
-            this.contentApiAccess = contentApiAccess;
+            this.contentApiClient = contentApiClient;
         }
 
         public async Task<FileDto> GetFile (int mediaId)
         {
             string requestPath = $@"/Media/{mediaId}/File";
-            string response = await contentApiAccess.GetResponseFromUrl(requestPath);
+            string response = await contentApiClient.GetResponseFromUrl(requestPath);
 
             return new FileDto
                 {

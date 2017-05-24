@@ -24,7 +24,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.ServiceAccessLayer
     public class PagesApiAccessTest
     {
 
-        private IContentApiAccess contentApiSubstitute;
+        private IContentApiClient contentApiSubstitute;
 
         [Test, Category("UnitTest")]
         public async void GetPages_AppetizerPage()
@@ -219,7 +219,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.ServiceAccessLayer
 
         private PagesApiAccess CreateSystemUnderTest()
         {
-            contentApiSubstitute = Substitute.For<IContentApiAccess>();
+            contentApiSubstitute = Substitute.For<IContentApiClient>();
 
             return new PagesApiAccess(contentApiSubstitute);
         }
