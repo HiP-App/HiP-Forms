@@ -26,13 +26,14 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers {
-    public class ExhibitsBaseDataFetcher : IExhibitsBaseDataFetcher {
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers
+{
+    public class ExhibitsBaseDataFetcher : IExhibitsBaseDataFetcher
+    {
 
         private readonly IExhibitsApiAccess exhibitsApiAccess;
         private readonly IPagesApiAccess pagesApiAccess;
         private readonly IMediaDataFetcher mediaDataFetcher;
-        private readonly IDataLoader dataLoader;
 
         [Dependency]
         public ExhibitConverter ExhibitConverter { private get; set; }
@@ -40,12 +41,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
         [Dependency]
         public PageConverter PageConverter { private get; set; }
 
-        public ExhibitsBaseDataFetcher (IExhibitsApiAccess exhibitsApiAccess, IPagesApiAccess pagesApiAccess, IMediaDataFetcher mediaDataFetcher, IDataLoader dataLoader)
+        public ExhibitsBaseDataFetcher(IExhibitsApiAccess exhibitsApiAccess, IPagesApiAccess pagesApiAccess, IMediaDataFetcher mediaDataFetcher)
         {
             this.exhibitsApiAccess = exhibitsApiAccess;
             this.pagesApiAccess = pagesApiAccess;
             this.mediaDataFetcher = mediaDataFetcher;
-            this.dataLoader = dataLoader;
         }
 
         private IList<ExhibitDto> fetchedChangedExhibits;
@@ -115,6 +115,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             }
             ProcessUpdatedExhibits(fetchedMedia, listener);
             ProcessNewExhibits(fetchedMedia, listener);
+
+            var exhibitSet = ExhibitManager.GetExhibitSets().SingleOrDefault();
+            exhibitSet.UnixTimestamp = fetchedChangedExhibits.Max(x => x.Timestamp);
         }
 
         private void ProcessUpdatedExhibits(FetchedMediaData fetchedMediaData, IProgressListener listener)
@@ -186,7 +189,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
         {
             if (mediaId.HasValue)
             {
-                var image = fetchedMediaData.Images.SingleOrDefault (x => x.IdForRestApi == mediaId);
+                var image = fetchedMediaData.Images.SingleOrDefault(x => x.IdForRestApi == mediaId);
 
                 if (image != null)
                 {
@@ -205,7 +208,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             ExhibitsDto exhibits;
             if (exhibitSet != null)
             {
-                exhibits = await exhibitsApiAccess.GetExhibits(exhibitSet.Timestamp);
+                exhibits = await exhibitsApiAccess.GetExhibits(exhibitSet.UnixTimestamp);
             }
             else
             {

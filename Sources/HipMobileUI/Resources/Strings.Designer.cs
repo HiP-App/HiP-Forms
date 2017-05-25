@@ -801,6 +801,24 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Basis Daten verfügbar.
+        /// </summary>
+        public static string LoadingPageViewModel_BaseData_DataAvailable {
+            get {
+                return ResourceManager.GetString("LoadingPageViewModel_BaseData_DataAvailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Es konnte nicht überprüft werden, ob es neue Routen oder Sehenswürdigkeiten Daten gibt. Überprüfen Sie Ihre Internetverbindung..
+        /// </summary>
+        public static string LoadingPageViewModel_BaseData_DatabaseUpToDateCheckFailed {
+            get {
+                return ResourceManager.GetString("LoadingPageViewModel_BaseData_DatabaseUpToDateCheckFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Die aktuellen Daten konnten nicht heruntergeladen werden..
         /// </summary>
         public static string LoadingPageViewModel_BaseData_DownloadFailed_Text {
@@ -819,11 +837,38 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to In den Einstellungen haben Sie die Möglichkeit, den Download der Daten auch über Mobile Datenverbindungen zu erlauben..
+        ///   Looks up a localized string similar to Es wird empfohlen die Basis Daten immer aktuell zu halten. In den Einstellungen ist festgelegt, dass Daten nicht über Mobile Datenverbindungen heruntergeladen werden sollen. Möchten Sie diese Basis Daten jetzt trotzdem herunterladen?.
         /// </summary>
-        public static string LoadingPageViewModel_BaseData_OnlyMobile {
+        public static string LoadingPageViewModel_BaseData_DownloadViaMobile {
             get {
-                return ResourceManager.GetString("LoadingPageViewModel_BaseData_OnlyMobile", resourceCulture);
+                return ResourceManager.GetString("LoadingPageViewModel_BaseData_DownloadViaMobile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nein.
+        /// </summary>
+        public static string LoadingPageViewModel_BaseData_MobileDownload_Cancel {
+            get {
+                return ResourceManager.GetString("LoadingPageViewModel_BaseData_MobileDownload_Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ja.
+        /// </summary>
+        public static string LoadingPageViewModel_BaseData_MobileDownload_Confirm {
+            get {
+                return ResourceManager.GetString("LoadingPageViewModel_BaseData_MobileDownload_Confirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        public static string LoadingPageViewModel_LoadingError_Confirm {
+            get {
+                return ResourceManager.GetString("LoadingPageViewModel_LoadingError_Confirm", resourceCulture);
             }
         }
         
