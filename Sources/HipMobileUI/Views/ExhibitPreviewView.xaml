@@ -3,34 +3,42 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Views.ExhibitPreviewView"
              Title="{Binding ExhibitName}"
-             xmlns:container1="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Container;assembly=HipMobileUI"
-             xmlns:map="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Map;assembly=HipMobileUI"
              xmlns:helpers="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;assembly=HipMobileUI">
     <ContentPage.Content>
-        <StackLayout Orientation="Vertical" Spacing="0" VerticalOptions="FillAndExpand">
-            <BoxView  HeightRequest="2" Margin="0,0,0,0" Color="{StaticResource PrimaryDarkColor}"/>
-            <Image Source="{Binding Image}" Aspect="AspectFill" BackgroundColor="White" VerticalOptions="Center"/>
-            <BoxView HeightRequest="2" Margin="0,0,0,0" Color="{StaticResource DarkGrayColor}"/>
-            <Frame Padding="10,30,10,30" VerticalOptions="FillAndExpand">
-            <Label Text="{Binding Question}" FontSize="Medium" HorizontalTextAlignment ="Start" VerticalOptions="Start"/>
-            </Frame>
-            <BoxView  HeightRequest="1" Margin="0,0,0,0" Color="{StaticResource DarkGrayColor}"/>
-            <StackLayout Orientation="Horizontal" Padding="16,8,8,8" BackgroundColor="{StaticResource LightGrayColor}" VerticalOptions="End">
-                <Label Text="{helpers:Translate ExhibitOrRouteNearby_Confirm}" FontSize="20" TextColor="{StaticResource AccentColor}"
-                HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+        <Grid x:Name="PageGrid">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.5*"/>
+                <RowDefinition Height="0.35*"/>
+                <RowDefinition Height="0.15*"/>
+            </Grid.RowDefinitions>
+
+            <Image x:Name="ImageView" Grid.Row="0" Source="{Binding Image}" Aspect="AspectFill" BackgroundColor="{StaticResource LightGrayColor}" Margin="0" VerticalOptions="Fill" HorizontalOptions="Fill"/>
+
+            <StackLayout x:Name="QuestionView" Grid.Row="2" Padding="10,0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                <Label Text="{Binding Question}" FontSize="Medium" HorizontalTextAlignment="Start"/>
+            </StackLayout>
+
+            <StackLayout x:Name="ButtonView" Grid.Row="2" Orientation="Vertical" VerticalOptions="End" Padding="0">
+                <BoxView HeightRequest="1" Color="{StaticResource DarkGrayColor}"/>
+                <StackLayout Orientation="Horizontal" Padding="16,8,8,8" BackgroundColor="{StaticResource LightGrayColor}" VerticalOptions="End">
+                    <Label Text="{helpers:Translate ExhibitOrRouteNearby_Confirm}" FontSize="20" TextColor="{StaticResource AccentColor}"
+                        HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
                         <Label.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding Confirm}" />
                         </Label.GestureRecognizers>
                     </Label>
                     <BoxView WidthRequest="2" Color="{StaticResource DarkGrayColor}"/>
-                <Label Text="{helpers:Translate ExhibitOrRouteNearby_Reject}" FontSize="20" TextColor="{StaticResource AccentColor}"
-                HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-                    <Label.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding Decline}" />
-                    </Label.GestureRecognizers>
-                </Label>
+                    <Label Text="{helpers:Translate ExhibitOrRouteNearby_Reject}" FontSize="20" TextColor="{StaticResource AccentColor}"
+                        HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Decline}" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                </StackLayout>
             </StackLayout>
-            </StackLayout>
-
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
