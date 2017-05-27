@@ -1,9 +1,24 @@
-﻿using System;
+﻿// Copyright (C) 2017 History in Paderborn App - Universität Paderborn
+//  
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//  
+//      http://www.apache.org/licenses/LICENSE-2.0
+//  
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+using System;
 using System.Diagnostics;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
@@ -19,6 +34,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         public ExhibitRouteDownloadViewModel (IDownloadable downloadable, IDownloadableListItemViewModel downloadableListItemViewModel)
         {
             DownloadableId = downloadable.Id;
+            DownloadableIdForRestApi = downloadable.IdForRestApi;
             DownloadableName = downloadable.Name;
             DownloadableDescription = downloadable.Description;
 
@@ -54,6 +70,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         {
             get { return downloadableId; }
             set { SetProperty(ref downloadableId, value); }
+        }
+
+        private int downloadableIdForRestApi;
+        public int DownloadableIdForRestApi
+        {
+            get { return downloadableIdForRestApi; }
+            set { SetProperty(ref downloadableIdForRestApi, value); }
         }
 
         private string downloadableDescription;
@@ -133,7 +156,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 
             string messageToShow = null;
             string titleToShow = null;
-            //var fullExhibitDataFetcher = IoCManager.Resolve<IFullExhibitDataFetcher>(); // TODO: Implementation
+            var fullExhibitDataFetcher = IoCManager.Resolve<IFullExhibitDataFetcher>();
             var networkAccessStatus = IoCManager.Resolve<INetworkAccessChecker>().GetNetworkAccessStatus();
 
             if (networkAccessStatus == NetworkAccessStatus.WifiAccess
@@ -142,7 +165,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
                 try
                 {
                     var token = cancellationTokenSource.Token;
-                    //await fullExhibitDataFetcher.FetchFullExhibitDataIntoDatabase(token, this); // TODO: Implementation
+                    await fullExhibitDataFetcher.FetchFullExhibitDataIntoDatabase(DownloadableIdForRestApi, token, this);
                 }
                 catch (Exception e)
                 {
