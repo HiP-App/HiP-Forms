@@ -1242,6 +1242,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Belegter Speicherplatz für Daten.
+        /// </summary>
+        public static string StorageTitle {
+            get {
+                return ResourceManager.GetString("StorageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Erlebe und entdecke selbst mit dem Smartphone Geschichte und Kultur vor Ort.
         /// </summary>
         public static string UserOnboarding_Explore_Text {

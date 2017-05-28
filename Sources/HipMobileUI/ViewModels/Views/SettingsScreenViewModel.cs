@@ -15,6 +15,8 @@
 using System.Windows.Input;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
@@ -25,7 +27,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views {
     /// ViewModel for the SettingsScreenViewModel.
     /// </summary>
     public class SettingsScreenViewModel : NavigationViewModel {
-
+        private static readonly IDataAccess DataAccess = IoCManager.Resolve<IDataAccess> ();
         public SettingsScreenViewModel ()
         {
             RemoveAllDownloads = new Command(RemoveAllDownloadsClicked);
@@ -119,6 +121,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views {
 			}
 		}
 
+        public string Size
+        {
+         get { return IoCManager.Resolve<IStorageSizeProvider> ().GetDatabaseSize ().ToString()+ " MB"; }
+        }
 
         public bool WifiOnly
         {
