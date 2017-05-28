@@ -152,6 +152,24 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Lade Daten zu .
+        /// </summary>
+        public static string DownloadDetails_Text_Part1 {
+            get {
+                return ResourceManager.GetString("DownloadDetails_Text_Part1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  herunter.
+        /// </summary>
+        public static string DownloadDetails_Text_Part2 {
+            get {
+                return ResourceManager.GetString("DownloadDetails_Text_Part2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Zusätzliche Informationen.
         /// </summary>
         public static string ExhibitDetailsPage_AdditionalInformation {

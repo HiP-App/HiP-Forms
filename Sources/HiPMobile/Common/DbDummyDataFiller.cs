@@ -173,6 +173,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Common
             route.Distance = distance;
             route.Image = image;
             route.Audio = audio;
+            route.DetailsDataLoaded = false;
 
             return route;
         }

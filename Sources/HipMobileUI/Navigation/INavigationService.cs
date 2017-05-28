@@ -49,6 +49,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation {
         /// <returns>The task.</returns>
         Task PushModalAsync(NavigationViewModel viewModel, bool animate= true);
 
+        void RemovePage (NavigationViewModel viewModel);
+
+        void InsertPageBefore (NavigationViewModel viewModel, NavigationViewModel before);
+
         /// <summary>
         /// Pops all but the root viewmodel off the navigation stack, with optional animation.
         /// </summary>
