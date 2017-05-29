@@ -115,6 +115,20 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation
             }
         }
 
+        public void RemovePage (NavigationViewModel viewModel)
+        {
+            var page = FormsNavigation.NavigationStack.FirstOrDefault (x => x.BindingContext == viewModel);
+            FormsNavigation.RemovePage (page);
+        }
+
+        public void InsertPageBefore (NavigationViewModel viewModel, NavigationViewModel before)
+        {
+            var pageBefore = FormsNavigation.NavigationStack.FirstOrDefault(x => x.BindingContext == before);
+            var view = InstantiateView(viewModel);
+
+            FormsNavigation.InsertPageBefore ((Page)view, pageBefore);
+        }
+
         public async Task PopToRootAsync (bool animate=false)
         {
             await FormsNavigation.PopToRootAsync(animate);

@@ -558,5 +558,12 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   </data>
   <data name="ExhibitDetailsPage_Distance_alert_confirm" xml:space="preserve">
     <value>OK</value>
+ </data>
+  <data name="DownloadDetails_Text_Part1" xml:space="preserve">
+    <value>Lade Daten zu </value>
+  </data>
+  <data name="DownloadDetails_Text_Part2" xml:space="preserve">
+    <value> herunter</value>
+>>>>>>> origin/master
   </data>
 </root>
