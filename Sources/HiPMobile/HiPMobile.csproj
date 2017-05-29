@@ -63,6 +63,7 @@
     <Compile Include="BusinessLayer\Managers\RouteManager.cs" />
     <Compile Include="BusinessLayer\Models\ModelClasses\AppetizerPage.cs" />
     <Compile Include="BusinessLayer\Models\ModelClasses\Audio.cs" />
+    <Compile Include="BusinessLayer\Models\ModelClasses\IDownloadable.cs" />
     <Compile Include="BusinessLayer\Models\ModelClasses\Exhibit.cs" />
     <Compile Include="BusinessLayer\Models\ModelClasses\ExhibitSet.cs" />
     <Compile Include="BusinessLayer\Models\ModelClasses\GeoLocation.cs" />

@@ -4,7 +4,7 @@
 //     Changes to this file will be lost if the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-/*Copyright (C) 2016 History in Paderborn App - Universit�t Paderborn
+/*Copyright (C) 2016 History in Paderborn App - Universität Paderborn
  
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
@@ -25,7 +25,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 	using System.Linq;
 	using System.Text;
 
-	public partial class Route : RealmObject, IIdentifiable
+	public partial class Route : RealmObject, IIdentifiable, IDownloadable
 	{
 		//Attributes
 		[PrimaryKey]
@@ -33,7 +33,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 
 		public virtual string Title{ get; set; }
 
-		public virtual string Description{ get; set; }
+        public string Name {
+            get { return Title; }
+            set { Title = value; }
+        }
+
+	    public virtual string Description{ get; set; }
 
 		public virtual int Duration{ get; set; }
 
@@ -41,6 +46,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 
 	    public virtual DateTimeOffset? LastTimeDismissed{ get; set; }
 
+        public virtual Boolean DetailsDataLoaded { get; set; }
         //Associations
         public virtual IList<RouteTag> RouteTags{ get; }
 
@@ -50,7 +56,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 
 		public virtual Audio Audio{ get; set; }
 
-        // Contructor
+        // Constructor
 	    public Route ()
 	    {
 	        
