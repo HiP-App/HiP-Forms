@@ -21,17 +21,23 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using Xamarin.Forms;
+using System.ComponentModel;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views {
     /// <summary>
     /// ViewModel for the SettingsScreenViewModel.
     /// </summary>
-    public class SettingsScreenViewModel : NavigationViewModel {
+    public class SettingsScreenViewModel : NavigationViewModel
+        {
         private static readonly IDataAccess DataAccess = IoCManager.Resolve<IDataAccess> ();
+        private string size;
+
         public SettingsScreenViewModel ()
         {
             RemoveAllDownloads = new Command(RemoveAllDownloadsClicked);
-        }
+            size =  IoCManager.Resolve<IStorageSizeProvider> ().GetDatabaseSize ().ToString () + " MB";
+
+            }
 
         public ICommand RemoveAllDownloads { get; }
 
@@ -45,7 +51,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views {
             {
                 // Delete the whole DB
                 DbManager.DeleteDatabase ();
-            }
+                Size = IoCManager.Resolve<IStorageSizeProvider> ().GetDatabaseSize ().ToString () + " MB";
+
+                }
         }
 
         /// <summary>
@@ -123,6 +131,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views {
 
         public string Size
         {
+            set
+                {
+                    if (size != value)
+                    {
+                    size = value;
+                    OnPropertyChanged ("Size");
+                    }
+                }
          get { return IoCManager.Resolve<IStorageSizeProvider> ().GetDatabaseSize ().ToString()+ " MB"; }
         }
 
