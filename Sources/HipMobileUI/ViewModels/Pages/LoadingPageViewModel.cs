@@ -118,6 +118,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                 try
                 {
                     InitIoCContainer();
+
+                    //TODO: Remove once downloading data finished, instead create new database if there is none
+                    if (!DbManager.IsDatabaseUpToDate())
+                    {
+                        IsExtendedViewsVisible = true;
+                    }
+                    DbManager.UpdateDatabase(this);
+
                     var networkAccessStatus = IoCManager.Resolve<INetworkAccessChecker>().GetNetworkAccessStatus();
 
                     if (networkAccessStatus != NetworkAccessStatus.NoAccess)
@@ -228,14 +236,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         {
             try
             {
-                //TODO: Remove once downloading data finished
-                // show text, progress bar and image when db is initialized, otherwise just the indicator is shown
-                if (!DbManager.IsDatabaseUpToDate())
-                {
-                    IsExtendedViewsVisible = true;
-                }
-                DbManager.UpdateDatabase(this);
-
                 // force the db to load the exhibitset into cache
                 ExhibitManager.GetExhibitSets();
                 LoadingProgress = 0.9;
