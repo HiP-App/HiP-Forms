@@ -403,6 +403,9 @@
     <BundleResource Include="Resources\ic_pause.png" />
     <BundleResource Include="Resources\ic_pause%402x.png" />
     <BundleResource Include="Resources\ic_pause%403x.png" />
+    <BundleResource Include="Resources\ic_file_download.png" />
+    <BundleResource Include="Resources\ic_file_download%402x.png" />
+    <BundleResource Include="Resources\ic_file_download%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Resources\MapAnnotations.xcassets\AppIcons.appiconset\Contents.json">

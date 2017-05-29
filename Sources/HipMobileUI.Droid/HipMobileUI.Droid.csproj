@@ -405,6 +405,11 @@
     <AndroidResource Include="Resources\drawable-xhdpi\ic_pause.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\ic_pause.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\ic_pause.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_file_download.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_file_download.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_file_download.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_file_download.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_file_download.png" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

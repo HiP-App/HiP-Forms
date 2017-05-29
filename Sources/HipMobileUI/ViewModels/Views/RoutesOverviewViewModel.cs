@@ -65,6 +65,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 
             var route = selectedRouteItemViewModel.Route;
 
+            if (!route.DetailsDataLoaded)
+                return;
+
             Navigation.PushAsync (new RouteDetailsPageViewModel (route));
         }
 

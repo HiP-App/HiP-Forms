@@ -41,7 +41,7 @@
                         <ViewCell>
                             <StackLayout Orientation="Horizontal" Padding="5,5,5,10" d:DataContext="{d:DesignInstance views:RoutesOverviewListItemViewModel}">
                                 <Image Source="{Binding Image}" HeightRequest="100" />
-                                <StackLayout Orientation="Vertical">
+                                <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
                                     <Label Text="{Binding RouteTitle}" TextColor="Black" FontSize="18" />
                                     <Label Text="{Binding RouteDescription}" TextColor="Black" />
                                     <StackLayout Orientation="Horizontal">
@@ -57,6 +57,7 @@
                                         <container1:BindableChildrenStackLayout  ChildElements="{Binding Tags, Converter= {StaticResource ImageListConverter}}" Orientation="Horizontal" />
                                     </StackLayout>
                                 </StackLayout>
+                                <Button BorderRadius="2" BorderColor="{StaticResource DarkGrayColor}" BorderWidth="1" BackgroundColor="{StaticResource LightGrayColor}" WidthRequest="40" Image="ic_file_download.png" IsVisible="{Binding IsDownloadPanelVisible}" Command="{Binding DownloadCommand}"></Button>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
