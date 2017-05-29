@@ -86,10 +86,10 @@
     <Compile Include="Helpers\OrientationController.cs" />
     <Compile Include="Helpers\Settings.cs" />
     <Compile Include="Contracts\IBarsColorsChanger.cs" />
-    <Compile Include="Pages\ProfilePage.xaml.cs">
-      <DependentUpon>ProfilePage.xaml</DependentUpon>
+    <Compile Include="Views\ProfileScreenView.xaml.cs">
+      <DependentUpon>ProfileScreenView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\Pages\ProfilePageViewModel.cs" />
+    <Compile Include="ViewModels\Views\ProfileScreenViewModel.cs" />
     <Compile Include="ViewModels\Views\AccountScreenViewModel.cs" />
     <Compile Include="ViewModels\Views\IDownloadableListItemViewModel.cs" />
     <Compile Include="Location\LocationManager.cs" />
@@ -449,7 +449,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Pages\ProfilePage.xaml">
+    <EmbeddedResource Include="Views\ProfileScreenView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

@@ -16,6 +16,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
 
@@ -26,7 +27,18 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
 		public MainPageViewModel(ExhibitSet set)
 		{
-			MainScreenViewModels = new ObservableCollection<NavigationViewModel>
+		    profileScreenViewModel = new ProfileScreenViewModel (this)
+		    {
+		        Title = Strings.MainPageViewModel_Profile,
+		        Icon = "ic_account_circle.png"
+		    };
+            accountScreenViewModel = new AccountScreenViewModel (this)
+		    {
+		        Title = Strings.MainPageViewModel_Account,
+		        Icon = "ic_account_circle.png"
+		    };
+
+            MainScreenViewModels = new ObservableCollection<NavigationViewModel>
 			{
 				new ExhibitsOverviewViewModel (set)
 				{
@@ -48,20 +60,43 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 					Title = Strings.MainPageViewModel_LegalNotices,
 					Icon = "ic_gavel.png"
 				},
-                new AccountScreenViewModel
-                {
-                    Title = Strings.MainPageViewModel_Account,
-                    Icon = "ic_account_circle.png"
-                }
+                profileScreenViewModel
 			};
+		    UpdateAccountViews ();
 		}
 
-		public MainPageViewModel() : this(ExhibitManager.GetExhibitSets().FirstOrDefault())
-		{
-		}
+        /** Call this method after a change to 'Settings.IsLoggedIn' to display the correct view. */
+	    public void UpdateAccountViews ()
+	    {
+            if (Settings.IsLoggedIn)
+                SwitchToProfileView ();
+            else
+                SwitchToAccountView ();
+            SelectedViewModel = mainScreenViewModels[4];
+        }
+
+        private void SwitchToAccountView ()
+	    {
+            mainScreenViewModels.RemoveAt(4);
+            mainScreenViewModels.Insert(4, accountScreenViewModel);
+        }
+
+	    private void SwitchToProfileView ()
+	    {
+            mainScreenViewModels.RemoveAt(4);
+            mainScreenViewModels.Insert(4, profileScreenViewModel);
+	    }
+
+	    public MainPageViewModel () : this (ExhibitManager.GetExhibitSets ().FirstOrDefault ())
+	    {
+	        
+	    }
 
 		private ObservableCollection<NavigationViewModel> mainScreenViewModels;
-		private NavigationViewModel selectedViewModel;
+	    private readonly ProfileScreenViewModel profileScreenViewModel;
+	    private readonly AccountScreenViewModel accountScreenViewModel;
+
+        private NavigationViewModel selectedViewModel;
 
 		public ObservableCollection<NavigationViewModel> MainScreenViewModels
 		{

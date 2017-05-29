@@ -864,6 +864,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Profil.
+        /// </summary>
+        public static string MainPageViewModel_Profile {
+            get {
+                return ResourceManager.GetString("MainPageViewModel_Profile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Routen.
         /// </summary>
         public static string MainPageViewModel_Routes {
