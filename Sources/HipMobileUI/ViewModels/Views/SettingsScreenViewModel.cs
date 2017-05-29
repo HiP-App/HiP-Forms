@@ -15,21 +15,29 @@
 using System.Windows.Input;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using Xamarin.Forms;
+using System.ComponentModel;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views {
     /// <summary>
     /// ViewModel for the SettingsScreenViewModel.
     /// </summary>
-    public class SettingsScreenViewModel : NavigationViewModel {
+    public class SettingsScreenViewModel : NavigationViewModel
+        {
+        private static readonly IDataAccess DataAccess = IoCManager.Resolve<IDataAccess> ();
+        private string size;
 
         public SettingsScreenViewModel ()
         {
             RemoveAllDownloads = new Command(RemoveAllDownloadsClicked);
-        }
+            size =  IoCManager.Resolve<IStorageSizeProvider> ().GetDatabaseSize ().ToString () + " MB";
+
+            }
 
         public ICommand RemoveAllDownloads { get; }
 
@@ -43,7 +51,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views {
             {
                 // Delete the whole DB
                 DbManager.DeleteDatabase ();
-            }
+                Size = IoCManager.Resolve<IStorageSizeProvider> ().GetDatabaseSize ().ToString () + " MB";
+
+                }
         }
 
         /// <summary>
@@ -106,19 +116,31 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views {
             }
         }
 
-		/// <summary>
-		/// Allow user to enable prompt for data download when data updated
-		/// </summary>
-		public bool AlwaysDownloadData
-		{
-			get { return Settings.AlwaysDownloadData; }
-			set
-			{
-				Settings.AlwaysDownloadData = value;
-				OnPropertyChanged();
-			}
-		}
+        /// <summary>
+        /// Allow user to enable prompt for data download when data updated
+        /// </summary>
+        public bool AlwaysDownloadData
+        {
+            get { return Settings.AlwaysDownloadData; }
+            set
+            {
+                Settings.AlwaysDownloadData = value;
+                OnPropertyChanged();
+            }
+        }
 
+        public string Size
+        {
+            set
+                {
+                    if (size != value)
+                    {
+                    size = value;
+                    OnPropertyChanged ();
+                    }
+                }
+            get { return IoCManager.Resolve<IStorageSizeProvider> ().GetDatabaseSize ().ToString()+ " MB"; }
+        }
 
         public bool WifiOnly
         {
