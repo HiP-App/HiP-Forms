@@ -18,7 +18,6 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 {
@@ -48,7 +47,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 				{
 					Title = Strings.MainPageViewModel_LegalNotices,
 					Icon = "ic_gavel.png"
-				}
+				},
+                new AccountScreenViewModel
+                {
+                    Title = Strings.MainPageViewModel_Account,
+                    Icon = "ic_account_circle.png"
+                }
 			};
 		}
 

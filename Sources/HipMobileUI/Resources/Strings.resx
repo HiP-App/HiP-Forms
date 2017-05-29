@@ -556,4 +556,7 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   <data name="DownloadDetails_Text_Part2" xml:space="preserve">
     <value> herunter</value>
   </data>
+  <data name="MainPageViewModel_Account" xml:space="preserve">
+    <value>Account</value>
+  </data>
 </root>

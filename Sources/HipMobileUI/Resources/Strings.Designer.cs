@@ -828,6 +828,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Account.
+        /// </summary>
+        public static string MainPageViewModel_Account {
+            get {
+                return ResourceManager.GetString("MainPageViewModel_Account", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Feedback.
         /// </summary>
         public static string MainPageViewModel_Feedback {
