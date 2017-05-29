@@ -10,17 +10,17 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
   /// of your client applications. All settings are laid out the same exact way with getters
   /// and setters. 
   /// </summary>
-  public static class Settings
-  {
-    private static ISettings AppSettings
+    public static class Settings
     {
-      get
-      {
-        return CrossSettings.Current;
-      }
-    }
+        private static ISettings AppSettings
+        {
+            get
+            {
+            return CrossSettings.Current;
+            }
+        }
 
-    #region Setting Constants
+        #region Setting Constants
 
     private const string SettingsKey = "settings_key";
     private static readonly string SettingsDefault = string.Empty;
@@ -30,14 +30,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
 
     public static string GeneralSettings
     {
-      get
-      {
-        return AppSettings.GetValueOrDefault<string>(SettingsKey, SettingsDefault);
-      }
-      set
-      {
-        AppSettings.AddOrUpdateValue<string>(SettingsKey, value);
-      }
+        get
+        {
+            return AppSettings.GetValueOrDefault<string>(SettingsKey, SettingsDefault);
+        }
+        set
+        {
+            AppSettings.AddOrUpdateValue<string>(SettingsKey, value);
+        }
     }
 
         /// <summary>
@@ -153,6 +153,61 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
         {
             get { return AppSettings.GetValueOrDefault<bool>(WifiOnlyKey, WifiOnlyDefault); }
             set { AppSettings.AddOrUpdateValue<bool>(WifiOnlyKey, value); }
+        }
+
+        #endregion
+
+        /// <summary>
+        /// User data
+        /// </summary>
+        #region UserData
+        
+        /// <summary>
+        /// Indicator flag if a user is logged in
+        /// </summary>
+        private const string IsLoggedInKey = "is_logged_in_key";
+        private static readonly bool IsLoggedInDefault = false;
+
+        public static bool IsLoggedIn
+        {
+            get { return AppSettings.GetValueOrDefault (IsLoggedInKey, IsLoggedInDefault); }
+            set { AppSettings.AddOrUpdateValue (IsLoggedInKey, value); }
+        }
+
+        /// <summary>
+        /// The username of the current user
+        /// </summary>
+        private const string UserNameKey = "username_key";
+        private static readonly string UsernameDefault = "";
+
+        public static string Username
+        {
+            get { return AppSettings.GetValueOrDefault(UserNameKey, UsernameDefault); }
+            set { AppSettings.AddOrUpdateValue(UserNameKey, value); }
+        }
+
+        /// <summary>
+        /// The e-mail of the current user
+        /// </summary>
+        private const string EMailKey = "email_key";
+        private static readonly string EMailDefault = "";
+
+        public static string EMail
+        {
+            get { return AppSettings.GetValueOrDefault(EMailKey, EMailDefault); }
+            set { AppSettings.AddOrUpdateValue(EMailKey, value); }
+        }
+
+        /// <summary>
+        /// The e-mail of the current user
+        /// </summary>
+        private const string PasswordKey = "password_key";
+        private static readonly string PasswordDefault = "";
+
+        public static string Password
+        {
+            get { return AppSettings.GetValueOrDefault(PasswordKey, PasswordDefault); }
+            set { AppSettings.AddOrUpdateValue(PasswordKey, value); }
         }
 
         #endregion
