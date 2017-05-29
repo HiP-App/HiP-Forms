@@ -26,6 +26,7 @@ using PaderbornUniversity.SILab.Hip.Mobile.UI.AudioPlayer;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Location;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
 using UIKit;
 using App = PaderbornUniversity.SILab.Hip.Mobile.UI.App;
 using MainPage = PaderbornUniversity.SILab.Hip.Mobile.UI.Pages.MainPage;
@@ -62,6 +63,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios
             IoCManager.RegisterInstance(typeof(IBarsColorsChanger), new IosBarsColorsChanger());
             IoCManager.RegisterInstance(typeof(IDbChangedHandler), new DbChangedHandler());
             IoCManager.RegisterInstance(typeof(INetworkAccessChecker), new IosNetworkAccessChecker());
+            IoCManager.RegisterInstance(typeof(IStorageSizeProvider), new IosStorageSizeProvider ());
 
             // init crash manager
             var manager = BITHockeyManager.SharedHockeyManager;

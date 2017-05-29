@@ -85,6 +85,7 @@
     <Compile Include="Helpers\DeviceOrientation.cs" />
     <Compile Include="Helpers\OrientationController.cs" />
     <Compile Include="Contracts\IBarsColorsChanger.cs" />
+    <Compile Include="ViewModels\Views\IDownloadableListItemViewModel.cs" />
     <Compile Include="Location\LocationManager.cs" />
     <Compile Include="Location\NearbyExhibitManager.cs" />
     <Compile Include="Location\NearbyRouteManager.cs" />
@@ -147,6 +148,7 @@
     <Compile Include="ViewModels\Pages\RouteDetailsPageViewModel.cs" />
     <Compile Include="ViewModels\Views\DummyViewModel.cs" />
     <Compile Include="ViewModels\Views\ExhibitPreviewViewModel.cs" />
+    <Compile Include="ViewModels\Views\ExhibitRouteDownloadViewModel.cs" />
     <Compile Include="ViewModels\Views\ExhibitsOverviewListItemViewModel.cs" />
     <Compile Include="ViewModels\Views\ExhibitsOverviewViewModel.cs" />
     <Compile Include="ViewModels\Views\LicenseScreenViewModel.cs" />
@@ -157,6 +159,9 @@
     <Compile Include="ViewModels\Views\SettingsScreenViewModel.cs" />
     <Compile Include="Views\ExhibitPreviewView.xaml.cs">
       <DependentUpon>ExhibitPreviewView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ExhibitRouteDownloadView.xaml.cs">
+      <DependentUpon>ExhibitRouteDownloadView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\HtmlLink.cs" />
     <Compile Include="Views\ExhibitDetails\TextView.xaml.cs">
@@ -419,6 +424,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Views\RoutePreviewView.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\ExhibitRouteDownloadView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>

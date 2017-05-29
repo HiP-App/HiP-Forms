@@ -28,7 +28,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 	using System.Linq;
 	using System.Text;
 
-	public partial class Exhibit : RealmObject, IIdentifiable
+	public partial class Exhibit : RealmObject, IIdentifiable, IDownloadable
 	{
 		//Attributes
 		[PrimaryKey]

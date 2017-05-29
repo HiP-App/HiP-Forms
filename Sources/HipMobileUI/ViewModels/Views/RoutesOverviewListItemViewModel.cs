@@ -12,11 +12,18 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System;
 using System.Collections.ObjectModel;
 using System.IO;
+using System.Windows.Input;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using MvvmHelpers;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Location;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
 using Xamarin.Forms;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views {
@@ -24,7 +31,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views {
     /// <summary>
     /// View model of a list item in the <see cref="RoutesOverviewViewModel"/> screen
     /// </summary>
-    public class RoutesOverviewListItemViewModel : BaseViewModel {
+    public class RoutesOverviewListItemViewModel : NavigationViewModel, IDownloadableListItemViewModel {
 
         /// <summary>
         /// Route data displayed by this list item
@@ -42,6 +49,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views {
             RouteDescription = Route.Description;
             Duration = GetRouteDurationText (Route.Duration);
             Distance = GetRouteDistanceText (Route.Distance);
+            
+            using (DbManager.StartTransaction())
+                Route.DetailsDataLoaded = false;
+            IsDownloadPanelVisible = !Route.DetailsDataLoaded;
 
             Tags = new ObservableCollection<ImageSource> ();
 
@@ -56,6 +67,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views {
             // Required to reference first due to threading problems in Realm
             var imageData = Route.Image.Data;
             Image = ImageSource.FromStream(() => new MemoryStream(imageData));
+
+            DownloadCommand = new Command(OpenDownloadDialog);
         }
 
         internal string GetRouteDistanceText (double routeDistance)
@@ -67,6 +80,36 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views {
         {
             int durationInMinutes = routeDuration / 60;
             return string.Format (Strings.RoutesOverviewListItemViewModel_Duration, durationInMinutes);
+        }
+        
+        private async void OpenDownloadDialog()
+        {
+            // Open the download dialog
+            downloadPage = new ExhibitRouteDownloadViewModel (Route, this);
+            await Navigation.PushAsync(downloadPage);
+        }
+
+        public void CloseDownloadPage()
+        {
+            IoCManager.Resolve<INavigationService>().PopAsync();
+        }
+
+        public void OpenDetailsView(string id)
+        {
+            Navigation.InsertPageBefore (new RouteDetailsPageViewModel (id), downloadPage);
+            Navigation.PopAsync ();
+        }
+
+        public void SetDetailsAvailable (bool available)
+        {
+            if (!available)
+                return;
+
+            using (DbManager.StartTransaction())
+            {
+                Route.DetailsDataLoaded = true;
+            }
+            IsDownloadPanelVisible = !Route.DetailsDataLoaded;
         }
 
         private ImageSource image; 
@@ -110,5 +153,16 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views {
             get { return tags; }
             set { SetProperty(ref tags, value); }
         }
+
+        private Boolean isDownloadPanelVisible;
+        public Boolean IsDownloadPanelVisible
+        {
+            get { return isDownloadPanelVisible; }
+            set { SetProperty(ref isDownloadPanelVisible, value); }
+        }
+
+        private ExhibitRouteDownloadViewModel downloadPage;
+
+        public ICommand DownloadCommand { get; set; }
     }
 }

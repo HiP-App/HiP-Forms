@@ -574,4 +574,13 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   <data name="LoadingPageViewModel_LoadingError_Confirm" xml:space="preserve">
     <value>OK</value>
   </data>
+  <data name="StorageTitle" xml:space="preserve">
+    <value>Belegter Speicherplatz für Daten</value>
+  </data>
+  <data name="DownloadDetails_Text_Part1" xml:space="preserve">
+    <value>Lade Daten zu </value>
+  </data>
+  <data name="DownloadDetails_Text_Part2" xml:space="preserve">
+    <value> herunter</value>
+  </data>
 </root>

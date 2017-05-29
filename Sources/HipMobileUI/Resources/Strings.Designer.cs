@@ -152,6 +152,24 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Lade Daten zu .
+        /// </summary>
+        public static string DownloadDetails_Text_Part1 {
+            get {
+                return ResourceManager.GetString("DownloadDetails_Text_Part1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  herunter.
+        /// </summary>
+        public static string DownloadDetails_Text_Part2 {
+            get {
+                return ResourceManager.GetString("DownloadDetails_Text_Part2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Zusätzliche Informationen.
         /// </summary>
         public static string ExhibitDetailsPage_AdditionalInformation {
@@ -1310,6 +1328,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         public static string SkipExhibit_Title {
             get {
                 return ResourceManager.GetString("SkipExhibit_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Belegter Speicherplatz für Daten.
+        /// </summary>
+        public static string StorageTitle {
+            get {
+                return ResourceManager.GetString("StorageTitle", resourceCulture);
             }
         }
         

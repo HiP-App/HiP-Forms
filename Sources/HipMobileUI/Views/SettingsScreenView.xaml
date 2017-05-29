@@ -67,6 +67,9 @@
 		  <RowDefinition Height="Auto" />
 		  <RowDefinition Height="Auto" />
 		  <RowDefinition Height="Auto" />
+          <RowDefinition Height="Auto" />
+          <RowDefinition Height="Auto" />
+          <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
           <ColumnDefinition Width="*" />
@@ -132,10 +135,13 @@
 		
         <!-- Further Settings -->
         <Label Style="{StaticResource TitleStyle}" Text="{helpers:Translate SettingsScreenView_FurtherSettings_Title}" Grid.Row="16" Grid.Column="0" Margin="0,20,0,10"/>
-        <Label Text="{helpers:Translate SettingsScreenView_RemoveAllDownloads_Text}" HorizontalOptions="StartAndExpand" Grid.Row="17" Grid.Column="0"/>
+        <Label Text="{helpers:Translate StorageTitle}" Grid.Row="17" Grid.Column="0"/>
+        <Label Text="{Binding Size, Mode=OneWay}" Grid.Row="17" Grid.Column="1" HorizontalOptions="End" VerticalOptions="Center"/>
+        <BoxView Grid.Row="18" Grid.Column="0"/>
+        <Label Text="{helpers:Translate SettingsScreenView_RemoveAllDownloads_Text}" HorizontalOptions="StartAndExpand" Grid.Row="19" Grid.Column="0"/>
         <Button Text="{helpers:Translate SettingsScreenView_RemoveAllDownloadsButton_Text}" BackgroundColor="{StaticResource AccentColor}" TextColor="Black"
-                Command="{Binding RemoveAllDownloads}" HorizontalOptions="End" VerticalOptions="Center" Grid.Row="17" Grid.Column="1"/>
-      </Grid>
+                Command="{Binding RemoveAllDownloads}" HorizontalOptions="End" VerticalOptions="Center" Grid.Row="19" Grid.Column="1"/>
+        </Grid>
     </ScrollView>
   </ContentView.Content>
 </ContentView>

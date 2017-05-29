@@ -66,6 +66,7 @@
     <Compile Include="BusinessLayer\DtoToModelConverters\MediaToAudioConverter.cs" />
     <Compile Include="BusinessLayer\DtoToModelConverters\MediaToImageConverter.cs" />
     <Compile Include="BusinessLayer\DtoToModelConverters\PageConverter.cs" />
+    <Compile Include="Common\Contracts\IStorageSizeProvider.cs" />
     <Compile Include="BusinessLayer\InteractiveSources\ConsecutiveNumberAndConstantInteractiveSourceSubstitute.cs" />
     <Compile Include="BusinessLayer\InteractiveSources\ConsecutiveNumberInteractiveSourceSubstitute.cs" />
     <Compile Include="BusinessLayer\InteractiveSources\ConstantInteractiveSourceSubstitute.cs" />
@@ -111,6 +112,7 @@
     <Compile Include="ServiceAccessLayer\ContentApiDtos\TagsDto.cs" />
     <Compile Include="BusinessLayer\Models\ModelClasses\AppetizerPage.cs" />
     <Compile Include="BusinessLayer\Models\ModelClasses\Audio.cs" />
+    <Compile Include="BusinessLayer\Models\ModelClasses\IDownloadable.cs" />
     <Compile Include="BusinessLayer\Models\ModelClasses\Exhibit.cs" />
     <Compile Include="BusinessLayer\Models\ModelClasses\ExhibitSet.cs" />
     <Compile Include="BusinessLayer\Models\ModelClasses\GeoLocation.cs" />
