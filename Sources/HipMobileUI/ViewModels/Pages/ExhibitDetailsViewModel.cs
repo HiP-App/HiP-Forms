@@ -227,7 +227,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
             else
             {
                 await IoCManager.Resolve<INavigationService>()
-                                .DisplayAlert(Strings.ExhibitDetailsPage_Distance_alert1, Strings.ExhibitDetailsPage_Distance_alert2, Strings.ExhibitDetailsPage_Distance_alert_confirm);
+                                .DisplayAlert(Strings.ExhibitDetailsPage_Distance_Title, Strings.ExhibitDetailsPage_Distance_Text, Strings.ExhibitDetailsPage_Distance_alert_confirm);
             }
 
         }
