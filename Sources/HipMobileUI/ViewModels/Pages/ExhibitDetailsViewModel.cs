@@ -52,17 +52,16 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
         private bool audioToolbarVisible;
         private bool hasAdditionalInformation;
         private bool additionalInformationButtonVisible;
-        //private Exhibit exhibit;
-        private bool ExhibitUnblocked = true;
+        private bool exhibitUnblocked = true;
         private bool additionalInformation;
 
         public ExhibitDetailsViewModel(Exhibit exhibit) : this(exhibit.Pages, exhibit.Name)
         {
-            ExhibitUnblocked = exhibit.Unlocked;
+            exhibitUnblocked = exhibit.Unlocked;
         }
         public ExhibitDetailsViewModel (string exhibitId, Exhibit exhibit) : this(ExhibitManager.GetExhibit(exhibitId).Pages, ExhibitManager.GetExhibit(exhibitId).Name,exhibit.Unlocked)
         {
-            ExhibitUnblocked = ExhibitManager.GetExhibit (exhibitId).Unlocked;
+            exhibitUnblocked = ExhibitManager.GetExhibit (exhibitId).Unlocked;
         }
 
         public ExhibitDetailsViewModel (IList<Page> pages, string title, bool additionalInformation = false)
@@ -216,7 +215,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
                 }
                 // update the UI
             }
-            if (ExhibitUnblocked)
+            if (exhibitUnblocked)
             {
                 currentViewIndex++;
                 NextViewAvailable = currentViewIndex < pages.Count - 1;
