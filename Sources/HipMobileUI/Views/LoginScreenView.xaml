@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:effects="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Effects;assembly=HipMobileUI"
+             xmlns:helpers="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;assembly=HipMobileUI"
+             x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Views.LoginScreenView">
+    <ContentView.Content>
+        <Grid Padding="10,10,10,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.1*" />
+                <RowDefinition Height="0.1*" />
+                <RowDefinition Height="0.1*" />
+                <RowDefinition Height="0.1*" />
+                <RowDefinition Height="0.1*" />
+                <RowDefinition Height="0.1*" />
+                <RowDefinition Height="0.1*" />
+                <RowDefinition Height="0.1*" />
+                <RowDefinition Height="0.1*" />
+                <RowDefinition Height="0.1*" />
+            </Grid.RowDefinitions>
+            <Entry Grid.Row="0" Placeholder="Username"></Entry>
+            <Entry Grid.Row="1" Placeholder="Password" IsPassword="True"></Entry>
+            <Label Grid.Row="2" Text="Error" TextColor="Red"></Label>
+            <Button Grid.Row="3" Text="Login" IsEnabled="True"></Button>
+            <Label Grid.Row="4" Text="Forgot password?"></Label>
+            <Label Grid.Row="5" Text="No account? Register!"></Label>
+        </Grid>
+    </ContentView.Content>
+</ContentView>
+
+

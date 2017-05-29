@@ -154,6 +154,7 @@
     <Compile Include="ViewModels\Views\ExhibitsOverviewListItemViewModel.cs" />
     <Compile Include="ViewModels\Views\ExhibitsOverviewViewModel.cs" />
     <Compile Include="ViewModels\Views\LicenseScreenViewModel.cs" />
+    <Compile Include="ViewModels\Views\LoginScreenViewModel.cs" />
     <Compile Include="ViewModels\Views\RoutePreviewViewModel.cs" />
     <Compile Include="Views\AccountScreenView.xaml.cs">
       <DependentUpon>AccountScreenView.xaml</DependentUpon>
@@ -195,6 +196,9 @@
     <Compile Include="ViewModels\Views\RoutesOverviewViewModel.cs" />
     <Compile Include="Views\ExhibitsOverviewView.xaml.cs">
       <DependentUpon>ExhibitsOverviewView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LoginScreenView.xaml.cs">
+      <DependentUpon>LoginScreenView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ReferenceLink.cs" />
     <Compile Include="Views\RoutePreviewView.xaml.cs">
@@ -440,6 +444,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\AccountScreenView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\LoginScreenView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

@@ -37,7 +37,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
         protected override void OnBindingContextChanged ()
         {
             base.OnBindingContextChanged ();
-            ViewModel.SelectedViewModel = ViewModel.MainScreenViewModels[0];
+            ViewModel.SelectedViewModel = ViewModel.MainScree nViewModels[0];
         }
 
         /// <summary>
