@@ -18,6 +18,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Contracts
             {
             string path = IoCManager.Resolve<IDataAccess> ().DatabasePath;
             System.IO.FileInfo fileInfo = new FileInfo (path);
+
+            if (!fileInfo.Exists)
+                return 0.0;
+
             return (fileInfo.Length / 1024f) / 1024f;;
             }
 

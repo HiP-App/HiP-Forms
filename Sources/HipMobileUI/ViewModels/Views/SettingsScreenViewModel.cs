@@ -116,18 +116,18 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views {
             }
         }
 
-		/// <summary>
-		/// Allow user to enable prompt for data download when data updated
-		/// </summary>
-		public bool AlwaysDownloadData
-		{
-			get { return Settings.AlwaysDownloadData; }
-			set
-			{
-				Settings.AlwaysDownloadData = value;
-				OnPropertyChanged();
-			}
-		}
+        /// <summary>
+        /// Allow user to enable prompt for data download when data updated
+        /// </summary>
+        public bool AlwaysDownloadData
+        {
+            get { return Settings.AlwaysDownloadData; }
+            set
+            {
+                Settings.AlwaysDownloadData = value;
+                OnPropertyChanged();
+            }
+        }
 
         public string Size
         {
@@ -136,10 +136,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views {
                     if (size != value)
                     {
                     size = value;
-                    OnPropertyChanged ("Size");
+                    OnPropertyChanged ();
                     }
                 }
-         get { return IoCManager.Resolve<IStorageSizeProvider> ().GetDatabaseSize ().ToString()+ " MB"; }
+            get { return IoCManager.Resolve<IStorageSizeProvider> ().GetDatabaseSize ().ToString()+ " MB"; }
         }
 
         public bool WifiOnly
