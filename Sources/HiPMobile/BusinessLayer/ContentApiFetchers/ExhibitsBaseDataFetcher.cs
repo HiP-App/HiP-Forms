@@ -144,13 +144,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
 
         private void ProcessNewExhibits(IProgressListener listener)
         {
+            var exhibitSet = ExhibitManager.GetExhibitSets().SingleOrDefault();
+
             foreach (var exhibitDto in newExhibits)
             {
                 var dbExhibit = ExhibitConverter.Convert(exhibitDto);
 
                 AddImageToExhibit(dbExhibit, exhibitDto.Image, fetchedMedia);
                 AddAppetizerPageToExhibit(exhibitDto, dbExhibit, fetchedMedia);
-
+                exhibitSet.ActiveSet.Add (dbExhibit);
                 listener.ProgressOneStep();
             }
         }
