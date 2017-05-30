@@ -562,4 +562,7 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   <data name="MainPageViewModel_Account" xml:space="preserve">
     <value>Account</value>
   </data>
+  <data name="MainPageViewModel_Profile" xml:space="preserve">
+    <value>Profil</value>
+  </data>
 </root>

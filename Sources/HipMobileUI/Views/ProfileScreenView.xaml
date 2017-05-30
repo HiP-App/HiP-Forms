@@ -1,15 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Views.AccountScreenView">
+             x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Views.ProfileScreenView">
     <ContentView.Content>
         <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-            <Label FontSize="30" TextColor="{StaticResource PrimaryDarkColor}">Account View</Label>
+            <Label FontSize="30" TextColor="{StaticResource PrimaryDarkColor}">Profile View</Label>
             <Frame OutlineColor="Black" Padding="0">
-                <Label Text="Einloggen" FontSize="20" TextColor="{StaticResource AccentColor}"
+                <Label Text="Ausloggen" FontSize="20" TextColor="{StaticResource AccentColor}"
                         HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
                     <Label.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding Login}" />
+                        <TapGestureRecognizer Command="{Binding Logout}" />
                     </Label.GestureRecognizers>
                 </Label>
             </Frame>

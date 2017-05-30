@@ -86,10 +86,10 @@
     <Compile Include="Helpers\OrientationController.cs" />
     <Compile Include="Helpers\Settings.cs" />
     <Compile Include="Contracts\IBarsColorsChanger.cs" />
-    <Compile Include="Pages\ProfilePage.xaml.cs">
-      <DependentUpon>ProfilePage.xaml</DependentUpon>
+    <Compile Include="Views\ProfileScreenView.xaml.cs">
+      <DependentUpon>ProfileScreenView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\Pages\ProfilePageViewModel.cs" />
+    <Compile Include="ViewModels\Views\ProfileScreenViewModel.cs" />
     <Compile Include="ViewModels\Views\AccountScreenViewModel.cs" />
     <Compile Include="ViewModels\Views\IDownloadableListItemViewModel.cs" />
     <Compile Include="Location\LocationManager.cs" />
@@ -158,7 +158,6 @@
     <Compile Include="ViewModels\Views\ExhibitsOverviewListItemViewModel.cs" />
     <Compile Include="ViewModels\Views\ExhibitsOverviewViewModel.cs" />
     <Compile Include="ViewModels\Views\LicenseScreenViewModel.cs" />
-    <Compile Include="ViewModels\Views\LoginScreenViewModel.cs" />
     <Compile Include="ViewModels\Views\RoutePreviewViewModel.cs" />
     <Compile Include="Views\AccountScreenView.xaml.cs">
       <DependentUpon>AccountScreenView.xaml</DependentUpon>
@@ -200,9 +199,6 @@
     <Compile Include="ViewModels\Views\RoutesOverviewViewModel.cs" />
     <Compile Include="Views\ExhibitsOverviewView.xaml.cs">
       <DependentUpon>ExhibitsOverviewView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\LoginScreenView.xaml.cs">
-      <DependentUpon>LoginScreenView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ReferenceLink.cs" />
     <Compile Include="Views\RoutePreviewView.xaml.cs">
@@ -453,11 +449,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\LoginScreenView.xaml">
-	  <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Pages\ProfilePage.xaml">
+    <EmbeddedResource Include="Views\ProfileScreenView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

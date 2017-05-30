@@ -6,24 +6,24 @@ using Xamarin.Forms;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 {
-    public class AccountScreenViewModel : NavigationViewModel
+    public class ProfileScreenViewModel : NavigationViewModel
     {
 
         private readonly MainPageViewModel mainPageViewModel;
-        public AccountScreenViewModel(MainPageViewModel mainPageVm)
+        public ProfileScreenViewModel (MainPageViewModel mainPageVm)
         {
             mainPageViewModel = mainPageVm;
 
-            Login = new Command(LoginDummy);
+            Logout = new Command (LogoutDummy);
         }
 
-        public ICommand Login { get; }
+        public ICommand Logout { get; }
 
-        void LoginDummy()
+        void LogoutDummy ()
         {
-            Debug.WriteLine("##### LOGIN #####");
-            Settings.IsLoggedIn = true;
-            mainPageViewModel.UpdateAccountViews();
+            Debug.WriteLine("##### LOGOUT #####");
+            Settings.IsLoggedIn = false;
+            mainPageViewModel.UpdateAccountViews ();
         }
     }
 }
