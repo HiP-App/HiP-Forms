@@ -24,6 +24,7 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Location;
 using Xamarin.Forms;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views.ExhibitDetails;
 
@@ -153,7 +154,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         {
             // This is where all the the data will be downloaded
             // maybe you do something like this:   Database.loadInterestDataFor(InterestId);    // Interests are Routes and Exhibits
-
+			
             string messageToShow = null;
             string titleToShow = null;
             var fullExhibitDataFetcher = IoCManager.Resolve<IFullExhibitDataFetcher>();
@@ -189,7 +190,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             {
                 await Navigation.DisplayAlert(titleToShow, messageToShow, "OK");
             }
-
 
             // TODO: Bind LoadingProgress with download
             LoadingProgress = 0;

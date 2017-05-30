@@ -94,7 +94,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataLayer {
         {
             lock (Locker)
             {
-                return Convert.ToInt32(Configuragion.SchemaVersion);
+                return Convert.ToInt32(Configuration.SchemaVersion);
             }
         }
 
@@ -102,13 +102,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataLayer {
         {
             lock (Locker)
             {
-                Realm.DeleteRealm (Configuragion);
+                Realm.DeleteRealm (Configuration);
             }
         }
 
         public void CreateDatabase (int version)
         {
-            Configuragion = new RealmConfiguration {SchemaVersion = Convert.ToUInt64(version)};
+            Configuration = new RealmConfiguration {SchemaVersion = Convert.ToUInt64(version)};
         }
 
         private static string GenerateId()
@@ -116,11 +116,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataLayer {
             return Guid.NewGuid().ToString();
         }
 
-        private Realm Instance => Realm.GetInstance(Configuragion);
+        private Realm Instance => Realm.GetInstance(Configuration);
 
         private static RealmConfiguration config;
 
-        private static RealmConfiguration Configuragion {
+        private static RealmConfiguration Configuration {
             get {
                 if (config == null)
                 {
@@ -129,6 +129,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataLayer {
                 return config;
             }
             set { config = value; }
+
+        }
+
+        public string DatabasePath {
+            get { return Configuration.DatabasePath; }
         }
 
     }
