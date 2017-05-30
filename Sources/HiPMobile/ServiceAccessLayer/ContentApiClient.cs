@@ -24,7 +24,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer {
         /// <summary>
         /// Urlpath for the docker container running the HiP-DataStore instance
         /// </summary>
-        private const string ServerUrl = "https://docker-hip.cs.upb.de/";
+        private const string ServerUrl = "https://docker-hip.cs.uni-paderborn.de/develop/datastore/api";
 
         /// <summary>
         /// Returns json string if webcall was successful (Status 200)

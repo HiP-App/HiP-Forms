@@ -153,7 +153,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         async void DownloadData ()
         {
             // This is where all the the data will be downloaded
-            // maybe you do something like this:   Database.loadInterestDataFor(InterestId);    // Interests are Routes and Exhibits
 			
             string messageToShow = null;
             string titleToShow = null;
@@ -167,6 +166,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
                 {
                     var token = cancellationTokenSource.Token;
                     await fullExhibitDataFetcher.FetchFullExhibitDataIntoDatabase(DownloadableId, DownloadableIdForRestApi, token, this);
+                    SetDetailsAvailable();
                 }
                 catch (Exception e)
                 {
@@ -190,17 +190,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             {
                 await Navigation.DisplayAlert(titleToShow, messageToShow, "OK");
             }
-
-            // TODO: Bind LoadingProgress with download
-            LoadingProgress = 0;
-            for (var x = 0; x < 50; x++)
-            {
-                UpdateProgress (LoadingProgress+.02, 1);
-                await Task.Delay (50);
-                if (downloadAborted)
-                    return;
-            }
-            SetDetailsAvailable ();
         }
 
         void SetDetailsAvailable ()

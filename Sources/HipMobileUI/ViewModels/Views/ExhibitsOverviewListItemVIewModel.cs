@@ -39,8 +39,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             Image = ImageSource.FromStream (() => new MemoryStream (data));
             Exhibit = exhibit;
 
-            using (DbManager.StartTransaction())
-                Exhibit.DetailsDataLoaded = false;
+            //using (DbManager.StartTransaction())
+                //Exhibit.DetailsDataLoaded = false;
             IsDownloadButtonVisible = !Exhibit.DetailsDataLoaded;
 
             DownloadCommand = new Command(OpenDownloadDialog);

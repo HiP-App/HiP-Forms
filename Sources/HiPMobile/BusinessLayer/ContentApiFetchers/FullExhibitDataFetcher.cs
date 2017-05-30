@@ -98,15 +98,20 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                 return;
             }
 
+            Exhibit exhibit = ExhibitManager.GetExhibit(exhibitId);
+
             foreach (var pageDto in pageItems)
             {
                 var dbPage = PageConverter.Convert(pageDto);
 
                 AddContentToPage(dbPage, pageDto, fetchedMediaImages, fetchedMediaAudios);
-                AddPageToExhibit(exhibitId, dbPage);
+                // Add Page with content to the exhibit
+                exhibit.Pages.Add(dbPage);
 
                 listener.ProgressOneStep();
             }
+
+            exhibit.DetailsDataLoaded = true;
         }
 
         private void AddContentToPage(Page dbPage, PageDto content, FetchedMediaData fetchedMediaImages, FetchedMediaData fetchedMediaAudios)
@@ -152,12 +157,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             {
                 dbPage.Audio = audio;
             }
-        }
-
-        private void AddPageToExhibit(string exhibitId, Page dbPage)
-        {
-            Exhibit exhibit = ExhibitManager.GetExhibit (exhibitId);
-            exhibit.Pages.Add (dbPage);
         }
     }
 }
