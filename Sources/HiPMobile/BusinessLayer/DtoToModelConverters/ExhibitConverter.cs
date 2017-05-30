@@ -21,7 +21,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelCo
         public override void Convert (ExhibitDto dto, Exhibit existingModelObject)
         {
             existingModelObject.IdForRestApi = dto.Id;
-            existingModelObject.UnixTimestamp = dto.Timestamp;
+            existingModelObject.Timestamp = dto.Timestamp;
 
             existingModelObject.Name = dto.Name;
             existingModelObject.Description = dto.Description;

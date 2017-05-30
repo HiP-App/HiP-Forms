@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
@@ -31,7 +32,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
             this.contentApiClient = contentApiClient;
         }
        
-        private async Task<TagsDto> GetTagsDto (long? timestamp, IList<int> includeOnly)
+        private async Task<TagsDto> GetTagsDto (DateTimeOffset? timestamp, IList<int> includeOnly)
         {
             string requestPath = @"/Tags";
             requestPath += UriQueryBuilder.GetAdditionalParametersQuery (timestamp, includeOnly);
@@ -45,7 +46,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
             return await GetTagsDto (null, null);
         }
 
-        public async Task<TagsDto> GetTags (long timestamp)
+        public async Task<TagsDto> GetTags (DateTimeOffset timestamp)
         {
             return await GetTagsDto(timestamp, null);
         }
@@ -55,7 +56,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
             return await GetTagsDto(null, includeOnly);
         }
 
-        public async Task<TagsDto> GetTags (long timestamp, IList<int> includeOnly)
+        public async Task<TagsDto> GetTags (DateTimeOffset timestamp, IList<int> includeOnly)
         {
             return await GetTagsDto(timestamp, includeOnly);
         }

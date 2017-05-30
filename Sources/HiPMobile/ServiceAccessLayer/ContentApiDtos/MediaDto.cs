@@ -11,6 +11,9 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+
+using System;
+
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos {
     public class MediaDto
     {
@@ -22,7 +25,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
 
         public MediaTypeDto Type { get; set; }
 
-        public long Timestamp { get; set; }
+        public DateTimeOffset Timestamp { get; set; }
 
         public string Status { get; set; }
 

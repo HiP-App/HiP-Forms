@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System;
 using NSubstitute;
 using NUnit.Core;
 using NUnit.Framework;
@@ -42,7 +43,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.BusinessLayer.DtoT
 
             sut.Convert(mediaDto, image);
             Assert.AreEqual(1, image.IdForRestApi);
-            Assert.AreEqual(1234, image.UnixTimestamp);
+            Assert.AreEqual(new DateTimeOffset(2017, 5, 29, 10, 10, 10, 10, TimeSpan.Zero), image.Timestamp);
             Assert.AreEqual("Test Description", image.Description);
             Assert.AreEqual("Test Title", image.Title);
         }
@@ -54,7 +55,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.BusinessLayer.DtoT
             return new MediaDto
             {
                 Id = 1,
-                Timestamp = 1234,
+                Timestamp = new DateTimeOffset(2017, 5, 29, 10, 10, 10, 10, TimeSpan.Zero),
                 Description = "Test Description",
                 Title = "Test Title"
             };

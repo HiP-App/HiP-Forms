@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System;
 using NSubstitute;
 using NUnit.Framework;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer;
@@ -40,7 +41,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.ServiceAccessLayer
                                 "\"text\": \"Test Text\"," +
                                 "\"image\": 42," +
                                 "\"status\": \"Test Status\"," +
-                                "\"timestamp\": 1492029999," +
+                                "\"timestamp\": \"2017-05-29T10:10:10.10+00:00\"," +
                                 "\"additionalInformationPages\": [4, 5]," +
                                 "}" +
                                 "]" +
@@ -64,7 +65,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.ServiceAccessLayer
             Assert.AreEqual(5, additionalInformationPages[1]);
 
             Assert.AreEqual("Test Status", firstPage.Status);
-            Assert.AreEqual(1492029999, firstPage.Timestamp);
+            Shared.Helpers.AssertionHelper.AreEqual(new DateTimeOffset(2017, 5, 29, 10, 10, 10, 10, TimeSpan.Zero), firstPage.Timestamp);
         }
 
         [Test, Category("UnitTest")]
@@ -81,7 +82,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.ServiceAccessLayer
                                 "\"image\": 42," +
                                 "\"audio\": 17," +
                                 "\"status\": \"Test Status\"," +
-                                "\"timestamp\": 1492029999," +
+                                "\"timestamp\": \"2017-05-29T10:10:10.10+00:00\"," +
                                 "\"additionalInformationPages\": [4, 5]" +
                                 "}" +
                                 "]" +
@@ -105,7 +106,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.ServiceAccessLayer
             Assert.AreEqual(5, additionalInformationPages[1]);
 
             Assert.AreEqual("Test Status", firstPage.Status);
-            Assert.AreEqual(1492029999, firstPage.Timestamp);
+            Shared.Helpers.AssertionHelper.AreEqual(new DateTimeOffset(2017, 5, 29, 10, 10, 10, 20, TimeSpan.Zero), firstPage.Timestamp);
         }
 
         [Test, Category("UnitTest")]
@@ -123,7 +124,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.ServiceAccessLayer
                                 "\"text\": \"Test Text\"," +
                                 "\"audio\": 17," +
                                 "\"status\": \"Test Status\"," +
-                                "\"timestamp\": 1492029999," +
+                                "\"timestamp\": \"2017-05-29T10:10:10.10+00:00\"," +
                                 "\"additionalInformationPages\": [4, 5]" +
                                 "}" +
                                 "]" +
@@ -149,7 +150,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.ServiceAccessLayer
             Assert.AreEqual(5, additionalInformationPages[1]);
 
             Assert.AreEqual("Test Status", firstPage.Status);
-            Assert.AreEqual(1492029999, firstPage.Timestamp);
+            Shared.Helpers.AssertionHelper.AreEqual(new DateTimeOffset(2017, 5, 29, 10, 10, 10, 10, TimeSpan.Zero), firstPage.Timestamp);
         }
 
         [Test, Category("UnitTest")]
@@ -178,7 +179,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.ServiceAccessLayer
                                 "]," +
                                 "\"hideYearNumbers\": true," +
                                 "\"status\": \"Test Status\"," +
-                                "\"timestamp\": 1492029999," +
+                                "\"timestamp\": \"2017-05-29T10:10:10.10+00:00\"," +
                                 "\"additionalInformationPages\": [4, 5]" +
                                 "}" +
                                 "]" +
@@ -212,7 +213,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.ServiceAccessLayer
             Assert.AreEqual(true, firstPage.HideYearNumbers);
             Assert.AreEqual(PageTypeDto.SliderPage, firstPage.Type);
             Assert.AreEqual("Test Status", firstPage.Status);
-            Assert.AreEqual(1492029999, firstPage.Timestamp);
+            Shared.Helpers.AssertionHelper.AreEqual(new DateTimeOffset(2017, 5, 29, 10, 10, 10, 10, TimeSpan.Zero), firstPage.Timestamp);
         }
 
         #region HelperMethods

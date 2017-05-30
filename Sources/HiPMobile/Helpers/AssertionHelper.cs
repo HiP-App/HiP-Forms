@@ -12,15 +12,20 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System.Threading;
-using System.Threading.Tasks;
+using System;
+using NUnit.Framework;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers.Contracts {
-    public interface IDataToRemoveFetcher {
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers {
+    public static class AssertionHelper {
 
-        Task FetchDataToDelete(CancellationToken token);
-
-        void CleaupRemovedData();
+        public static void AreEqual (DateTimeOffset first, DateTimeOffset second)
+        {
+            var distance = first - second;
+            if (Math.Abs(distance.Milliseconds) < 1)
+            {
+                throw new AssertionException($"Excepted {first} but was {second}");
+            }
+        }
 
     }
 }

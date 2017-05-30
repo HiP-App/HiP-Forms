@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
@@ -37,7 +38,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
             return await GetExhibitsDto(null, null);
         }
 
-        public async Task<ExhibitsDto> GetExhibits(long timestamp)
+        public async Task<ExhibitsDto> GetExhibits(DateTimeOffset timestamp)
         {
             return await GetExhibits(timestamp, null);
         }
@@ -47,12 +48,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
             return await GetExhibitsDto(null, includeOnly);
         }
 
-        public async Task<ExhibitsDto> GetExhibits(long timestamp, IList<int> includeOnly)
+        public async Task<ExhibitsDto> GetExhibits(DateTimeOffset timestamp, IList<int> includeOnly)
         {
             return await GetExhibitsDto(timestamp, includeOnly);
         }
 
-        private async Task<ExhibitsDto> GetExhibitsDto(long? timestamp, IList<int> includeOnly)
+        private async Task<ExhibitsDto> GetExhibitsDto(DateTimeOffset? timestamp, IList<int> includeOnly)
         {
             string requestPath = @"/Exhibits";
             requestPath += UriQueryBuilder.GetAdditionalParametersQuery(timestamp, includeOnly);

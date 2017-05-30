@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos;
@@ -33,7 +34,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
         /// </summary>
         /// <param name="timestamp"></param>
         /// <returns></returns>
-        Task<RoutesDto> GetRoutes(long timestamp);
+        Task<RoutesDto> GetRoutes(DateTimeOffset timestamp);
 
         /// <summary>
         /// Get all routes for the given ids
@@ -48,7 +49,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
         /// <param name="timestamp"></param>
         /// <param name="includeOnly"></param>
         /// <returns></returns>
-        Task<RoutesDto> GetRoutes(long timestamp, IList<int> includeOnly);
+        Task<RoutesDto> GetRoutes(DateTimeOffset timestamp, IList<int> includeOnly);
 
         /// <summary>
         /// Get the ids of all existing routes

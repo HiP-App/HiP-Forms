@@ -111,6 +111,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             set { SetProperty(ref loadingProgress, value); }
         }
 
+        private IBaseDataFetcher baseDataFetcher;
         public void Load()
         {
             Task.Factory.StartNew(async () =>
@@ -118,13 +119,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                 try
                 {
                     InitIoCContainer();
-
+                    baseDataFetcher = IoCManager.Resolve<IBaseDataFetcher>();
                     //TODO: Remove once downloading data finished, instead create new database if there is none
-                    if (!DbManager.IsDatabaseUpToDate())
+                    /*if (!DbManager.IsDatabaseUpToDate())
                     {
                         IsExtendedViewsVisible = true;
                     }
-                    DbManager.UpdateDatabase(this);
+                    DbManager.UpdateDatabase(this);*/
 
                     var networkAccessStatus = IoCManager.Resolve<INetworkAccessChecker>().GetNetworkAccessStatus();
 
@@ -199,8 +200,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
         private async Task CheckForUpdatedDatabase()
         {
-            var baseDataFetcher = IoCManager.Resolve<IBaseDataFetcher>();
-
             try
             {
                 isDatabaseUpToDate = await baseDataFetcher.IsDatabaseUpToDate(cancellationTokenSource.Token);
@@ -217,7 +216,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
         private async Task UpdateDatabase()
         {
-            var baseDataFetcher = IoCManager.Resolve<IBaseDataFetcher>();
             IsExtendedViewsVisible = true;
             try
             {
@@ -282,7 +280,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             IoCManager.RegisterInstance(typeof(ApplicationResourcesProvider), new ApplicationResourcesProvider(Application.Current.Resources));
 
             //init serviceaccesslayer
-            IoCManager.RegisterType<IContentApiClient, ContentApiClient>();
+            IoCManager.RegisterInstance(typeof(IContentApiClient), new ContentApiClient());
             IoCManager.RegisterType<IExhibitsApiAccess, ExhibitsApiAccess>();
             IoCManager.RegisterType<IMediasApiAccess, MediasApiAccess>();
             IoCManager.RegisterType<IFileApiAccess, FileApiAccess>();

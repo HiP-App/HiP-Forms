@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System;
 using NSubstitute;
 using NUnit.Framework;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer;
@@ -37,7 +38,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.ServiceAccessLayer
                                 "\"description\": \"Test Description\"," +
                                 "\"image\": 42," +
                                 "\"status\": \"Test Status\"," +
-                                "\"timestamp\": 1492029999," +
+                                "\"timestamp\": \"2017-05-29T10:10:10.10+00:00\"," +
                                 "\"used\": true" +
                                 "}" +
                                 "]" +
@@ -55,7 +56,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.ServiceAccessLayer
             Assert.AreEqual(42, firstTag.Image);
 
             Assert.AreEqual("Test Status", firstTag.Status);
-            Assert.AreEqual(1492029999, firstTag.Timestamp);
+            Shared.Helpers.AssertionHelper.AreEqual(new DateTimeOffset(2017, 5, 29, 10, 10, 10, 10, TimeSpan.Zero), firstTag.Timestamp);
         }
 
         [Test, Category("UnitTest")]
@@ -71,7 +72,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.ServiceAccessLayer
                                 "\"description\": \"Test Description\"," +
                                 "\"image\": 42," +
                                 "\"status\": \"Test Status\"," +
-                                "\"timestamp\": 1492029999," +
+                                "\"timestamp\": \"2017-05-29T10:10:10.10+00:00\"," +
                                 "\"used\": true" +
                                 "}," +
                                 "{" +
@@ -80,7 +81,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.ServiceAccessLayer
                                 "\"description\": \"Test Description2\"," +
                                 "\"image\": 43," +
                                 "\"status\": \"Test Status2\"," +
-                                "\"timestamp\": 2492029999," +
+                                "\"timestamp\": \"2017-05-29T10:10:10.20+00:00\"," +
                                 "\"used\": false" +
                                 "}" +
                                 "]" +
@@ -98,7 +99,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.ServiceAccessLayer
             Assert.AreEqual(42, firstTag.Image);
 
             Assert.AreEqual("Test Status", firstTag.Status);
-            Assert.AreEqual(1492029999, firstTag.Timestamp);
+            Shared.Helpers.AssertionHelper.AreEqual(new DateTimeOffset(2017, 5, 29, 10, 10, 10, 10, TimeSpan.Zero), firstTag.Timestamp);
 
             var secondTag = tags.Items[1];
             Assert.AreEqual(2, secondTag.Id);
@@ -107,7 +108,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.ServiceAccessLayer
             Assert.AreEqual(43, secondTag.Image);
 
             Assert.AreEqual("Test Status2", secondTag.Status);
-            Assert.AreEqual(2492029999, secondTag.Timestamp);
+            Shared.Helpers.AssertionHelper.AreEqual(new DateTimeOffset(2017, 5, 29, 10, 10, 10, 20, TimeSpan.Zero), secondTag.Timestamp);
         }
 
         #region HelperMethods

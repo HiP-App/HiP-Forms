@@ -21,6 +21,7 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetche
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses.Contracts;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos;
 using Realms;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers
@@ -43,33 +44,39 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             this.tagsApiAccess = tagsApiAccess;
         }
 
-        public async Task CleaupRemovedData(CancellationToken token)
+        private IList<int> allExhibits;
+        private IList<int> allRoutes;
+        private IList<int> allPages;
+        private IList<int> allMedias;
+        private IList<int> allTags;
+
+        public async Task FetchDataToDelete (CancellationToken token)
         {
-            var allExhibits = await exhibitsApiAccess.GetIds();
+            allExhibits = await exhibitsApiAccess.GetIds();
             if (token.IsCancellationRequested)
             {
                 return;
             }
-            var allRoutes = await routesApiAccess.GetIds();
+            allRoutes = await routesApiAccess.GetIds();
             if (token.IsCancellationRequested)
             {
                 return;
             }
-            var allPages = await pagesApiAccess.GetIds();
+            allPages = await pagesApiAccess.GetIds();
             if (token.IsCancellationRequested)
             {
                 return;
             }
-            var allMedias = await mediasApiAccess.GetIds();
+            allMedias = await mediasApiAccess.GetIds();
             if (token.IsCancellationRequested)
             {
                 return;
             }
-            var allTags = await tagsApiAccess.GetIds();
-            if (token.IsCancellationRequested)
-            {
-                return;
-            }
+            allTags = await tagsApiAccess.GetIds();
+        }
+
+        public void CleaupRemovedData()
+        {
             //Backup data fake id
             allMedias.Add (-1);
 
@@ -87,7 +94,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             foreach (var route in routes)
             {
                 RemoveWaypoints(route, deletedWaypoints, deletedExhibits);
-                RemoveRouteTags(route, deletedTags, deletedImages, allTags, allMedias);
+                RemoveRouteTags(route, deletedTags, deletedImages);
                 if (route.Image != null && !allMedias.Contains(route.Image.IdForRestApi))
                 {
                     deletedImages.Add(route.Image);
@@ -101,7 +108,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             }
             foreach (var exhibit in exhibits)
             {
-                RemovePages(exhibit, deletedPages, deletedImages, deletedAudios, allPages, allMedias);
+                RemovePages(exhibit, deletedPages, deletedImages, deletedAudios);
                 if (exhibit.Image != null && !allMedias.Contains(exhibit.Image.IdForRestApi))
                 {
                     deletedImages.Add(exhibit.Image);
@@ -154,7 +161,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             }
         }
 
-        private void RemoveRouteTags(Route route, List<RouteTag> deletedTags, List<Image> deletedImages, IList<int> allTags, IList<int> allMedias)
+        private void RemoveRouteTags(Route route, List<RouteTag> deletedTags, List<Image> deletedImages)
         {
             foreach (var tag in route.RouteTags)
             {
@@ -174,7 +181,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             }
         }
 
-        private void RemovePages(Exhibit exhibit, List<Page> deletedPages, List<Image> deletedImages, List<Audio> deletedAudios, IList<int> allPages, IList<int> allMedias)
+        private void RemovePages(Exhibit exhibit, List<Page> deletedPages, List<Image> deletedImages, List<Audio> deletedAudios)
         {
             foreach (var page in exhibit.Pages)
             {
@@ -187,7 +194,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                     deletedAudios.Add(page.Audio);
                     page.Audio = null;
                 }
-                RemovePagesImages(page, deletedImages, allMedias);
+                RemovePagesImages(page, deletedImages);
             }
             foreach (var pageToRemove in deletedPages)
             {
@@ -195,7 +202,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             }
         }
 
-        private void RemovePagesImages(Page page, List<Image> deletedImages, IList<int> allMedias)
+        private void RemovePagesImages(Page page, List<Image> deletedImages)
         {
             if (page.IsImagePage())
             {

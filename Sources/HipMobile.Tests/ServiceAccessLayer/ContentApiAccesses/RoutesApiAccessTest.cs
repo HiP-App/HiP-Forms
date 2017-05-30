@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System;
 using NSubstitute;
 using NUnit.Framework;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer;
@@ -43,7 +44,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.ServiceAccessLayer
                                 "\"exhibits\": [ 1, 2, 3, 5, 6 ]," +
                                 "\"status\": \"Test Status\"," +
                                 "\"tags\": [ 2, 4 ]," +
-                                "\"timestamp\": 1492029999" +
+                                "\"timestamp\": \"2017-05-29T10:10:10.10+00:00\"" +
                                 "}"+
                                 "]" +
                                 "}";
@@ -63,7 +64,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.ServiceAccessLayer
             Assert.AreEqual(103, firstRoute.Audio);
 
             Assert.AreEqual("Test Status", firstRoute.Status);
-            Assert.AreEqual(1492029999, firstRoute.Timestamp);
+            Shared.Helpers.AssertionHelper.AreEqual(new DateTimeOffset(2017, 5, 29, 10, 10, 10, 10, TimeSpan.Zero), firstRoute.Timestamp);
 
             Assert.AreEqual(2, firstRoute.Tags.Count);
             Assert.AreEqual(2, firstRoute.Tags[0]);
@@ -95,7 +96,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.ServiceAccessLayer
                                 "\"exhibits\": [ 1, 2, 3, 5, 6 ]," +
                                 "\"status\": \"Test Status\"," +
                                 "\"tags\": [ 2, 4 ]," +
-                                "\"timestamp\": 1492029999" +
+                                "\"timestamp\": \"2017-05-29T10:10:10.10+00:00\"" +
                                 "}," +
                                 "{" +
                                 "\"id\": 2," +
@@ -108,7 +109,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.ServiceAccessLayer
                                 "\"exhibits\": [ 2, 3, 4, 6, 7 ]," +
                                 "\"status\": \"Test Status2\"," +
                                 "\"tags\": [ 3, 5 ]," +
-                                "\"timestamp\": 2492029999" +
+                                "\"timestamp\": \"2017-05-29T10:10:10.20+00:00\"" +
                                 "}" +
                                 "]" +
                                 "}";
@@ -128,7 +129,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.ServiceAccessLayer
             Assert.AreEqual(103, firstRoute.Audio);
 
             Assert.AreEqual("Test Status", firstRoute.Status);
-            Assert.AreEqual(1492029999, firstRoute.Timestamp);
+            Shared.Helpers.AssertionHelper.AreEqual(new DateTimeOffset(2017, 5, 29, 10, 10, 10, 10, TimeSpan.Zero), firstRoute.Timestamp);
 
             Assert.AreEqual(2, firstRoute.Tags.Count);
             Assert.AreEqual(2, firstRoute.Tags[0]);
@@ -151,7 +152,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.ServiceAccessLayer
             Assert.AreEqual(104, secondRoute.Audio);
 
             Assert.AreEqual("Test Status2", secondRoute.Status);
-            Assert.AreEqual(2492029999, secondRoute.Timestamp);
+            Shared.Helpers.AssertionHelper.AreEqual(new DateTimeOffset(2017, 5, 29, 10, 10, 10, 20, TimeSpan.Zero), secondRoute.Timestamp);
 
             Assert.AreEqual(2, secondRoute.Tags.Count);
             Assert.AreEqual(3, secondRoute.Tags[0]);

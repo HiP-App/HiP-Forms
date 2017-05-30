@@ -78,7 +78,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             {
                 var dbExhibit = exhibitSet.SingleOrDefault(x => x.IdForRestApi == exhibit.Id);
 
-                if (dbExhibit != null && exhibit.Timestamp != dbExhibit.UnixTimestamp)
+                if (dbExhibit != null && exhibit.Timestamp != dbExhibit.Timestamp)
                 {
                     updatedExhibits.Add(exhibit, dbExhibit);
                 }
@@ -87,9 +87,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                     newExhibits.Add(exhibit);
                 }
 
-                if (dbExhibit == null || exhibit.Timestamp != dbExhibit.UnixTimestamp)
+                if (dbExhibit == null || exhibit.Timestamp != dbExhibit.Timestamp)
                 {
-                    if (exhibit.Pages.Any())
+                    if (exhibit.Pages != null && exhibit.Pages.Any())
                     {
                         requiredAppetizerPages.Add(exhibit.Pages.First());
                     }
@@ -97,30 +97,34 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                 }
             }
 
-            appetizerPages = (await pagesApiAccess.GetPages(requiredAppetizerPages)).Items;
-            foreach (var page in appetizerPages)
+            if (requiredAppetizerPages.Any ())
             {
-                requiredExhibitImages.Add(page.Image);
+                appetizerPages = (await pagesApiAccess.GetPages(requiredAppetizerPages)).Items;
+                foreach (var page in appetizerPages)
+                {
+                    requiredExhibitImages.Add(page.Image);
+                }
             }
 
             return requiredExhibitImages.Count + fetchedChangedExhibits.Count;
         }
 
-        public async Task ProcessExhibits(CancellationToken token, IProgressListener listener)
+        public async Task FetchMediaData (CancellationToken token, IProgressListener listener)
         {
-            var fetchedMedia = await mediaDataFetcher.FetchMedias(requiredExhibitImages, token, listener);
-            if (token.IsCancellationRequested)
-            {
-                return;
-            }
-            ProcessUpdatedExhibits(fetchedMedia, listener);
-            ProcessNewExhibits(fetchedMedia, listener);
-
-            var exhibitSet = ExhibitManager.GetExhibitSets().SingleOrDefault();
-            exhibitSet.UnixTimestamp = fetchedChangedExhibits.Max(x => x.Timestamp);
+            fetchedMedia = await mediaDataFetcher.FetchMedias(requiredExhibitImages, token, listener);
         }
 
-        private void ProcessUpdatedExhibits(FetchedMediaData fetchedMediaData, IProgressListener listener)
+        private FetchedMediaData fetchedMedia;
+        public void ProcessExhibits(IProgressListener listener)
+        {
+            ProcessUpdatedExhibits(listener);
+            ProcessNewExhibits(listener);
+
+            var exhibitSet = ExhibitManager.GetExhibitSets().SingleOrDefault();
+            exhibitSet.Timestamp = fetchedChangedExhibits.Max(x => x.Timestamp);
+        }
+
+        private void ProcessUpdatedExhibits(IProgressListener listener)
         {
             foreach (var exhibitPair in updatedExhibits)
             {
@@ -129,8 +133,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
 
                 ExhibitConverter.Convert(exhibitDto, dbExhibit);
 
-                AddImageToExhibit(dbExhibit, exhibitDto.Image, fetchedMediaData);
-                AddAppetizerPageToExhibit(exhibitDto, dbExhibit, fetchedMediaData);
+                AddImageToExhibit(dbExhibit, exhibitDto.Image, fetchedMedia);
+                AddAppetizerPageToExhibit(exhibitDto, dbExhibit, fetchedMedia);
                 //TODO: If exhibits content was already downloaded 
                 //-> Show dialog whether to download new data or do it directly depending on setting
 
@@ -138,14 +142,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             }
         }
 
-        private void ProcessNewExhibits(FetchedMediaData fetchedMediaData, IProgressListener listener)
+        private void ProcessNewExhibits(IProgressListener listener)
         {
             foreach (var exhibitDto in newExhibits)
             {
                 var dbExhibit = ExhibitConverter.Convert(exhibitDto);
 
-                AddImageToExhibit(dbExhibit, exhibitDto.Image, fetchedMediaData);
-                AddAppetizerPageToExhibit(exhibitDto, dbExhibit, fetchedMediaData);
+                AddImageToExhibit(dbExhibit, exhibitDto.Image, fetchedMedia);
+                AddAppetizerPageToExhibit(exhibitDto, dbExhibit, fetchedMedia);
 
                 listener.ProgressOneStep();
             }
@@ -153,7 +157,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
 
         private void AddAppetizerPageToExhibit(ExhibitDto exhibitDto, Exhibit dbExhibit, FetchedMediaData fetchedMediaData)
         {
-            if (exhibitDto.Pages.Any())
+            if (exhibitDto.Pages != null && exhibitDto.Pages.Any())
             {
                 var page = appetizerPages.SingleOrDefault(x => x.Id == exhibitDto.Pages.First());
 
@@ -208,7 +212,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             ExhibitsDto exhibits;
             if (exhibitSet != null)
             {
-                exhibits = await exhibitsApiAccess.GetExhibits(exhibitSet.UnixTimestamp);
+                exhibits = await exhibitsApiAccess.GetExhibits(exhibitSet.Timestamp);
             }
             else
             {

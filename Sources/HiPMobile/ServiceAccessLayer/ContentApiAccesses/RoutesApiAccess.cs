@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
@@ -31,7 +32,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
             this.contentApiClient = contentApiClient;
         }
        
-        private async Task<RoutesDto> GetRoutesDto (long? timestamp, IList<int> includeOnly)
+        private async Task<RoutesDto> GetRoutesDto (DateTimeOffset? timestamp, IList<int> includeOnly)
         {
             string requestPath = @"/Routes";
             requestPath += UriQueryBuilder.GetAdditionalParametersQuery (timestamp, includeOnly);
@@ -45,7 +46,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
             return await GetRoutesDto (null, null);
         }
 
-        public async Task<RoutesDto> GetRoutes (long timestamp)
+        public async Task<RoutesDto> GetRoutes (DateTimeOffset timestamp)
         {
             return await GetRoutesDto(timestamp, null);
         }
@@ -55,7 +56,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
             return await GetRoutesDto(null, includeOnly);
         }
 
-        public async Task<RoutesDto> GetRoutes (long timestamp, IList<int> includeOnly)
+        public async Task<RoutesDto> GetRoutes (DateTimeOffset timestamp, IList<int> includeOnly)
         {
             return await GetRoutesDto(timestamp, includeOnly);
         }

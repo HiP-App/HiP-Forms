@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos;
@@ -34,7 +35,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
         /// </summary>
         /// <param name="timestamp"></param>
         /// <returns></returns>
-        Task<PagesDto> GetPages(long timestamp);
+        Task<PagesDto> GetPages(DateTimeOffset timestamp);
 
         /// <summary>
         /// Get all pages for the given ids
@@ -49,7 +50,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
         /// <param name="timestamp"></param>
         /// <param name="includeOnly"></param>
         /// <returns></returns>
-        Task<PagesDto> GetPages(long timestamp, IList<int> includeOnly);
+        Task<PagesDto> GetPages(DateTimeOffset timestamp, IList<int> includeOnly);
 
         /// <summary>
         /// Get all pages of an exhibit
@@ -64,7 +65,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
         /// <param name="exhibitId"></param>
         /// <param name="timestamp"></param>
         /// <returns></returns>
-        Task<PagesDto> GetPages(int exhibitId, long timestamp);
+        Task<PagesDto> GetPages(int exhibitId, DateTimeOffset timestamp);
 
         /// <summary>
         /// Get all pages of an exhibit for the given ids
@@ -81,7 +82,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
         /// <param name="timestamp"></param>
         /// <param name="includeOnly"></param>
         /// <returns></returns>
-        Task<PagesDto> GetPages(int exhibitId, long timestamp, IList<int> includeOnly);
+        Task<PagesDto> GetPages(int exhibitId, DateTimeOffset timestamp, IList<int> includeOnly);
 
         /// <summary>
         /// Get the ids of all existing pages

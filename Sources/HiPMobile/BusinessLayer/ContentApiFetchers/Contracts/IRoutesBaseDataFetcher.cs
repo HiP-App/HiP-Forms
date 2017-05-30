@@ -30,12 +30,19 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
         Task<int> FetchNeededDataForRoutes();
 
         /// <summary>
-        /// Load the images and put the routes into the database
+        /// Load images for routes
         /// </summary>
         /// <param name="token"></param>
         /// <param name="listener"></param>
         /// <returns></returns>
-        Task ProcessRoutes(CancellationToken token, IProgressListener listener);
+        Task FetchMediaData(CancellationToken token, IProgressListener listener);
+
+        /// <summary>
+        /// Put the routes into the database
+        /// </summary>
+        /// <param name="listener"></param>
+        /// <returns></returns>
+        void ProcessRoutes(IProgressListener listener);
 
         /// <summary>
         /// Indicates whether any route was changed

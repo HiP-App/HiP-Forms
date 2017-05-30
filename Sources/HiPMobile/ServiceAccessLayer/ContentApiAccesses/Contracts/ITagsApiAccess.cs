@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos;
@@ -34,7 +35,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
         /// </summary>
         /// <param name="timestamp"></param>
         /// <returns></returns>
-        Task<TagsDto> GetTags(long timestamp);
+        Task<TagsDto> GetTags(DateTimeOffset timestamp);
 
         /// <summary>
         /// Get all tags for the given ids
@@ -49,7 +50,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
         /// <param name="timestamp"></param>
         /// <param name="includeOnly"></param>
         /// <returns></returns>
-        Task<TagsDto> GetTags(long timestamp, IList<int> includeOnly);
+        Task<TagsDto> GetTags(DateTimeOffset timestamp, IList<int> includeOnly);
 
         /// <summary>
         /// Get the ids of all existing tags

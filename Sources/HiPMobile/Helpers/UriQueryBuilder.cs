@@ -16,16 +16,17 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using Newtonsoft.Json;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers {
     public class UriQueryBuilder {
 
-        public static string GetAdditionalParametersQuery (long? timestamp, IList<int> includeOnly)
+        public static string GetAdditionalParametersQuery (DateTimeOffset? timestamp, IList<int> includeOnly)
         {
             Dictionary<string, string> parameters = new Dictionary<string, string> ();
             if (timestamp.HasValue)
             {
-                parameters.Add ("timestamp", timestamp.ToString ());
+                parameters.Add ("timestamp", JsonConvert.SerializeObject(timestamp).Replace ("\"", ""));
             }
             if (includeOnly != null && includeOnly.Any ())
             {
@@ -43,7 +44,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers {
             }
 
             IEnumerable<string> segments = from key in parameters.Keys
-                                           select $"{key}={Uri.EscapeUriString(parameters[key])}";
+                                           select $"{key}={Uri.EscapeDataString(parameters[key])}";
             return "?" + string.Join ("&", segments);
         }
 

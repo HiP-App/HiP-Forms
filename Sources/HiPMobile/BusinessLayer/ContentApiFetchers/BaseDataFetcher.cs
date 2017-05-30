@@ -38,7 +38,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             bool anyExhibitChanged = await exhibitsBaseDataFetcher.AnyExhibitChanged();
             bool anyRouteChanged = await routesBaseDataFetcher.AnyRouteChanged();
 
-            return anyExhibitChanged || anyRouteChanged;
+            return !(anyExhibitChanged || anyRouteChanged);
         }
 
         public async Task FetchBaseDataIntoDatabase(CancellationToken token, IProgressListener listener)
@@ -53,19 +53,35 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
 
             listener.SetMaxProgress(totalSteps);
 
+            await exhibitsBaseDataFetcher.FetchMediaData(token, listener);
+            if (token.IsCancellationRequested)
+            {
+                return;
+            }
+            await exhibitsBaseDataFetcher.FetchMediaData(token, listener);
+            if (token.IsCancellationRequested)
+            {
+                return;
+            }
+            await dataToRemoveFetcher.FetchDataToDelete(token);
+            if (token.IsCancellationRequested)
+            {
+                return;
+            }
+
             using (var transaction = DbManager.StartTransaction())
             {
-                await exhibitsBaseDataFetcher.ProcessExhibits(token, listener);
+                exhibitsBaseDataFetcher.ProcessExhibits(listener);
                 if (token.IsCancellationRequested)
                 {
                     transaction.Rollback();
                 }
-                await routesBaseDataFetcher.ProcessRoutes(token, listener);
+                routesBaseDataFetcher.ProcessRoutes(listener);
                 if (token.IsCancellationRequested)
                 {
                     transaction.Rollback();
                 }
-                await dataToRemoveFetcher.CleaupRemovedData(token);
+                dataToRemoveFetcher.CleaupRemovedData();
                 if (token.IsCancellationRequested)
                 {
                     transaction.Rollback();

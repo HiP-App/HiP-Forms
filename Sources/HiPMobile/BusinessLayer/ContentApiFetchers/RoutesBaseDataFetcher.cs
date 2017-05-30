@@ -70,41 +70,51 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             {
                 var dbRoute = dbRoutes.SingleOrDefault(x => x.IdForRestApi == routeDto.Id);
 
-                if (dbRoute != null && dbRoute.UnixTimestamp != routeDto.Timestamp)
+                if (dbRoute != null && dbRoute.Timestamp != routeDto.Timestamp)
                 {
                     updatedRoutes.Add(routeDto, dbRoute);
                     requiredRouteImages.Add(routeDto.Image);
-                    requiredRouteTags.AddRange(routeDto.Tags);
+                    if (routeDto.Tags != null)
+                    {
+                        requiredRouteTags.AddRange(routeDto.Tags);
+                    }
                 }
                 else if (dbRoute == null)
                 {
                     newRoutes.Add(routeDto);
                     requiredRouteImages.Add(routeDto.Image);
-                    requiredRouteTags.AddRange(routeDto.Tags);
+                    if(routeDto.Tags != null)
+                    {
+                        requiredRouteTags.AddRange(routeDto.Tags);
+                    }
                 }
             }
 
-            routeTags = (await tagsApiAccess.GetTags(requiredRouteTags)).Items;
-            foreach (var tag in routeTags)
+            if(requiredRouteTags.Any ())
             {
-                requiredRouteImages.Add(tag.Image);
+                routeTags = (await tagsApiAccess.GetTags(requiredRouteTags)).Items;
+                foreach (var tag in routeTags)
+                {
+                    requiredRouteImages.Add(tag.Image);
+                }
             }
 
             return requiredRouteImages.Count + fetchedChangedRoutes.Count;
         }
 
-        public async Task ProcessRoutes(CancellationToken token, IProgressListener listener)
+        public async Task FetchMediaData(CancellationToken token, IProgressListener listener)
         {
-            var fetchedMedia = await mediaDataFetcher.FetchMedias(requiredRouteImages, token, listener);
-            if (token.IsCancellationRequested)
-            {
-                return;
-            }
-            ProcessUpdatedRoutes(fetchedMedia, listener);
-            ProcessNewRoutes(fetchedMedia, listener);
+            fetchedMedia = await mediaDataFetcher.FetchMedias(requiredRouteImages, token, listener);
         }
 
-        private void ProcessUpdatedRoutes(FetchedMediaData fetchedMediaData, IProgressListener listener)
+        private FetchedMediaData fetchedMedia;
+        public void ProcessRoutes(IProgressListener listener)
+        {
+            ProcessUpdatedRoutes(listener);
+            ProcessNewRoutes(listener);
+        }
+
+        private void ProcessUpdatedRoutes(IProgressListener listener)
         {
             foreach (var routePair in updatedRoutes)
             {
@@ -113,8 +123,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
 
                 RouteConverter.Convert(routeDto, dbRoute);
 
-                AddImageToRoute(dbRoute, routeDto.Image, fetchedMediaData);
-                AddTagsToRoute(dbRoute, routeDto, fetchedMediaData);
+                AddImageToRoute(dbRoute, routeDto.Image, fetchedMedia);
+                AddTagsToRoute(dbRoute, routeDto, fetchedMedia);
                 AddExhibitsToRoute(dbRoute, routeDto);
 
                 //TODO: If route content was already downloaded 
@@ -124,14 +134,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             }
         }
 
-        private void ProcessNewRoutes(FetchedMediaData fetchedMediaData, IProgressListener listener)
+        private void ProcessNewRoutes(IProgressListener listener)
         {
             foreach (var routeDto in newRoutes)
             {
                 var dbRoute = RouteConverter.Convert(routeDto);
 
-                AddImageToRoute(dbRoute, routeDto.Image, fetchedMediaData);
-                AddTagsToRoute(dbRoute, routeDto, fetchedMediaData);
+                AddImageToRoute(dbRoute, routeDto.Image, fetchedMedia);
+                AddTagsToRoute(dbRoute, routeDto, fetchedMedia);
                 AddExhibitsToRoute(dbRoute, routeDto);
 
                 listener.ProgressOneStep();
@@ -157,34 +167,37 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
 
         private void AddTagsToRoute(Route dbRoute, RouteDto routeDto, FetchedMediaData fetchedMediaData)
         {
-            foreach (var tagId in routeDto.Tags)
+            if (routeDto.Tags != null && routeDto.Tags.Any ())
             {
-                var tagDto = routeTags.SingleOrDefault(x => x.Id == tagId);
-
-                if (tagDto != null)
+                foreach (var tagId in routeDto.Tags)
                 {
-                    RouteTag dbTag = dbRoute.RouteTags.SingleOrDefault(x => x.IdForRestApi == tagId);
-                    if (dbTag != null)
-                    {
-                        TagConverter.Convert(tagDto, dbTag);
-                    }
-                    else
-                    {
-                        dbTag = TagConverter.Convert(tagDto);
-                        dbRoute.RouteTags.Add(dbTag);
-                    }
+                    var tagDto = routeTags.SingleOrDefault(x => x.Id == tagId);
 
-                    if (tagDto.Image.HasValue)
+                    if (tagDto != null)
                     {
-                        var tagImage = fetchedMediaData.Images.SingleOrDefault(x => x.IdForRestApi == tagDto.Image);
-                        if (tagImage != null)
+                        RouteTag dbTag = dbRoute.RouteTags.SingleOrDefault(x => x.IdForRestApi == tagId);
+                        if (dbTag != null)
                         {
-                            dbTag.Image = tagImage;
+                            TagConverter.Convert(tagDto, dbTag);
                         }
-                    }
-                    else
-                    {
-                        dbTag.Image = BackupData.BackupImage;
+                        else
+                        {
+                            dbTag = TagConverter.Convert(tagDto);
+                            dbRoute.RouteTags.Add(dbTag);
+                        }
+
+                        if (tagDto.Image.HasValue)
+                        {
+                            var tagImage = fetchedMediaData.Images.SingleOrDefault(x => x.IdForRestApi == tagDto.Image);
+                            if (tagImage != null)
+                            {
+                                dbTag.Image = tagImage;
+                            }
+                        }
+                        else
+                        {
+                            dbTag.Image = BackupData.BackupImage;
+                        }
                     }
                 }
             }
@@ -215,7 +228,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             RoutesDto changedRoutes;
             if (dbRoutes.Any())
             {
-                var latestTimestamp = dbRoutes.Max(x => x.UnixTimestamp);
+                var latestTimestamp = dbRoutes.Max(x => x.Timestamp);
                 changedRoutes = await routesApiAccess.GetRoutes(latestTimestamp);
             }
             else

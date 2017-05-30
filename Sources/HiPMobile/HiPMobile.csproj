@@ -81,6 +81,7 @@
     <Compile Include="BusinessLayer\Managers\RouteManager.cs" />
     <Compile Include="BusinessLayer\DtoToModelConverters\DtoToModelConverter.cs" />
     <Compile Include="BusinessLayer\DtoToModelConverters\ExhibitConverter.cs" />
+    <Compile Include="Helpers\AssertionHelper.cs" />
     <Compile Include="Helpers\UriQueryBuilder.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiClient.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiAccesses\Contracts\ITagsApiAccess.cs" />
@@ -440,6 +441,9 @@
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Newtonsoft.Json.10.0.2\lib\portable-net45+win8+wpa81+wp8\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="OsmSharp, Version=5.0.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\OsmSharp.5.0.2-rc1\lib\portable-net403+sl50+win+wp80+Xamarin.iOS10+MonoAndroid10+MonoTouch10\OsmSharp.dll</HintPath>
