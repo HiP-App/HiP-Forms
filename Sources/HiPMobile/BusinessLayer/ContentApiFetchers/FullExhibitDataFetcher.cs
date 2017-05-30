@@ -40,20 +40,18 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             this.mediaDataFetcher = mediaDataFetcher;
         }
 
-        private int idForRestApi;
         private IList<int?> requiredPages;
         private IList<int?> requiredImages;
         private IList<int?> requiredAudios;
         private IList<PageDto> pageItems;
 
-        public async Task FetchFullExhibitDataIntoDatabase (int idForRestApi, CancellationToken token, IProgressListener listener)
+        public async Task FetchFullExhibitDataIntoDatabase (string exhibitId, int idForRestApi, CancellationToken token, IProgressListener listener)
         {
-            this.idForRestApi = idForRestApi;
             requiredPages = new List<int?> ();
             requiredImages = new List<int?>();
             requiredAudios = new List<int?>();
 
-            double totalSteps = await FetchNeededPagesForFullExhibit();
+            double totalSteps = await FetchNeededPagesForFullExhibit(idForRestApi);
 
             if (token.IsCancellationRequested)
             {
@@ -64,7 +62,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
 
             using (var transaction = DbManager.StartTransaction())
             {
-                await ProcessPages(token, listener);
+                await ProcessPages(exhibitId, token, listener);
                 if (token.IsCancellationRequested)
                 {
                     transaction.Rollback();
@@ -72,7 +70,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             }
         }
 
-        private async Task<int> FetchNeededPagesForFullExhibit()
+        private async Task<int> FetchNeededPagesForFullExhibit(int idForRestApi)
         {
             pageItems = (await pagesApiAccess.GetPages(idForRestApi)).Items;
             foreach (var page in pageItems)
@@ -87,10 +85,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                     requiredAudios.Add (page.Audio);
                 }
             }
-            return requiredPages.Count + requiredImages.Count + requiredAudios.Count;
+            return requiredPages.Count;
         }
 
-        private async Task ProcessPages(CancellationToken token, IProgressListener listener)
+        private async Task ProcessPages(string exhibitId, CancellationToken token, IProgressListener listener)
         {
             var fetchedMediaImages = await mediaDataFetcher.FetchMedias(requiredImages, token, listener);
             var fetchedMediaAudios = await mediaDataFetcher.FetchMedias(requiredAudios, token, listener);
@@ -105,7 +103,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                 var dbPage = PageConverter.Convert(pageDto);
 
                 AddContentToPage(dbPage, pageDto, fetchedMediaImages, fetchedMediaAudios);
-                //AddPageToExhibit(pageDto, dbPage, fetchedMediaImages, fetchedMediaAudios); TODO: implementation
+                AddPageToExhibit(exhibitId, dbPage);
 
                 listener.ProgressOneStep();
             }
@@ -154,6 +152,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             {
                 dbPage.Audio = audio;
             }
+        }
+
+        private void AddPageToExhibit(string exhibitId, Page dbPage)
+        {
+            Exhibit exhibit = ExhibitManager.GetExhibit (exhibitId);
+            exhibit.Pages.Add (dbPage);
         }
     }
 }

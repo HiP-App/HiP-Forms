@@ -166,7 +166,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
                 try
                 {
                     var token = cancellationTokenSource.Token;
-                    await fullExhibitDataFetcher.FetchFullExhibitDataIntoDatabase(DownloadableIdForRestApi, token, this);
+                    await fullExhibitDataFetcher.FetchFullExhibitDataIntoDatabase(DownloadableId, DownloadableIdForRestApi, token, this);
                 }
                 catch (Exception e)
                 {

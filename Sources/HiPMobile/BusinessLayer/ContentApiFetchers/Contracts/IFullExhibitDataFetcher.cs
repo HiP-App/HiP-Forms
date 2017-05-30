@@ -25,11 +25,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
         /// <summary>
         /// Gets the pages for an exhibit
         /// </summary>
+        /// <param name="exhibitId">The id of the exhibit to be fetched</param>
         /// <param name="idForRestApi">The id for the REST API of the exhibit to be fetched</param>
         /// <param name="token">Used for cancelling the download</param>
         /// <param name="listener">Used for reporting progress</param>
         /// <returns></returns>
-        Task FetchFullExhibitDataIntoDatabase(int idForRestApi, CancellationToken token, IProgressListener listener);
+        Task FetchFullExhibitDataIntoDatabase(string exhibitId, int idForRestApi, CancellationToken token, IProgressListener listener);
 
     }
 }
