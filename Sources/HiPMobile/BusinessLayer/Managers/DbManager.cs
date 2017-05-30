@@ -61,26 +61,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers {
             return DataAccess.StartTransaction ();
         }
 
-        public static void UpdateDatabase (IProgressListener listener=null)
-        {
-            if (DataAccess.GetVersion () < DbDummyDataFiller.DatabaseVersion)
-            {
-                DataAccess.DeleteDatabase ();
-                DataAccess.CreateDatabase (DbDummyDataFiller.DatabaseVersion);
-                DbDummyDataFiller dbDataFiller = new DbDummyDataFiller ();
-                if (listener != null)
-                {
-                    dbDataFiller.ProgressChanged += listener.UpdateProgress;
-                }
-                dbDataFiller.InsertData ();
-                Settings.DatabaseVersion = DbDummyDataFiller.DatabaseVersion;
-                if (listener != null)
-                {
-                    dbDataFiller.ProgressChanged -= listener.UpdateProgress;
-                }
-            }
-        }
-
         /// <summary>
         /// Deletes the whole database
         /// </summary>

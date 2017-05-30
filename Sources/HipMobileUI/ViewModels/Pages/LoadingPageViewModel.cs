@@ -120,12 +120,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                 {
                     InitIoCContainer();
                     baseDataFetcher = IoCManager.Resolve<IBaseDataFetcher>();
-                    //TODO: Remove once downloading data finished, instead create new database if there is none
-                    /*if (!DbManager.IsDatabaseUpToDate())
-                    {
-                        IsExtendedViewsVisible = true;
-                    }
-                    DbManager.UpdateDatabase(this);*/
 
                     var networkAccessStatus = IoCManager.Resolve<INetworkAccessChecker>().GetNetworkAccessStatus();
 
