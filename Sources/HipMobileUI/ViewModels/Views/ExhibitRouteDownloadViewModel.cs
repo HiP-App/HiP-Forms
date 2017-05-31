@@ -16,15 +16,14 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers.Contracts;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
-using PaderbornUniversity.SILab.Hip.Mobile.UI.Location;
 using Xamarin.Forms;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views.ExhibitDetails;
 
@@ -138,6 +137,17 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             // Do some stuff to abort the download; this distincts this method from the one below
             downloadAborted = true;
             CloseDownloadPage ();
+
+            Exhibit exhibit = ExhibitManager.GetExhibit (DownloadableId);
+            using (DbManager.StartTransaction ())
+            {
+                // Remove all already downloaded pages except the first one (appetizer page)
+                int pagesCount = exhibit.Pages.Count;
+                for (int i = pagesCount - 1; i > 0; i--)
+                {
+                    exhibit.Pages.RemoveAt(i);
+                }
+            }
         }
 
         void CloseDownloadPage ()
