@@ -73,7 +73,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Controls
         {
             if (oldValue != null && oldValue != newValue)
             {
-                ((TimeSlider)bindable).UpdateLayout();
+                ((TimeSlider)bindable).UpdateLayout(((TimeSlider)bindable).Width, ((TimeSlider)bindable).Height);
             }
         }
 
@@ -81,7 +81,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Controls
         {
             if (oldValue != null && oldValue != newValue)
             {
-                ((TimeSlider)bindable).UpdateLayout();
+                ((TimeSlider)bindable).UpdateLayout(((TimeSlider)bindable).Width, ((TimeSlider)bindable).Height);
             }
         }
 
@@ -109,7 +109,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Controls
         {
             if (oldValue != null && oldValue != newValue)
             {
-                ((TimeSlider)bindable).UpdateLayout();
+                ((TimeSlider)bindable).UpdateLayout(((TimeSlider)bindable).Width, ((TimeSlider)bindable).Height);
             }
         }
 
@@ -201,7 +201,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Controls
             {
                 initialLayout = false;
                 // do initial layout
-                UpdateLayout();
+                UpdateLayout(width, height);
             }
 
             base.OnSizeAllocated(width, height);
@@ -219,19 +219,19 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Controls
         /// <summary>
         /// Force the layout to be set.
         /// </summary>
-        private void UpdateLayout()
+        private void UpdateLayout(double width, double height)
         {
             if (initialLayout)
             {
                 return;
             }
 
-            RelativeLayout layout = new RelativeLayout() { BackgroundColor = Color.Gray };
-
+            AbsoluteLayout absoluteLayout = new AbsoluteLayout {BackgroundColor = Color.Gray};
+            
             // background image
             FadeInImage background = new FadeInImage() { Source = ImageSource.FromFile("timeslider_background.png"), DownsampleToViewSize = true, Aspect = Aspect.Fill };
-            layout.Children.Add(background, Constraint.Constant(0), Constraint.Constant(0), Constraint.RelativeToParent(parent => parent.Width),
-                                 Constraint.RelativeToParent(parent => parent.Height));
+
+            absoluteLayout.Children.Add(background, new Rectangle(0, 0, width, height));
 
             int gridRows = 0;
             int gridColumns = 0;
@@ -292,14 +292,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Controls
             AddSwipeGestureListener(slider);
             slider.ChildAdded += BottomSheetContentViewOnChildAdded;
 
-            layout.Children.Add(slider, Constraint.RelativeToView(box, (relativeLayout, view) => view.X + box.Width - ItemWidth / 2),
-                                 Constraint.RelativeToView(box, (relativeLayout, view) => view.Y));
-            layout.Children.Add(box, Constraint.RelativeToParent(parent => parent.Width / 2), Constraint.Constant(0), Constraint.Constant(2),
-                                 Constraint.RelativeToParent(parent => parent.Height));
-
+            absoluteLayout.Children.Add(slider, new Point(width / 2 + 2 - ItemWidth / 2, 0));
+            absoluteLayout.Children.Add (box, new Rectangle(width/2, 0, 2, height));
+            
             SelectedValue = 0;
 
-            Content = layout;
+            Content = absoluteLayout;
         }
 
         /// <summary>
