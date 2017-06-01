@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -78,7 +79,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             {
                 var dbExhibit = exhibitSet.SingleOrDefault(x => x.IdForRestApi == exhibit.Id);
 
-                if (dbExhibit != null && exhibit.Timestamp != dbExhibit.Timestamp)
+                if (dbExhibit != null && Math.Abs((exhibit.Timestamp - dbExhibit.Timestamp).Seconds) > 1)
                 {
                     updatedExhibits.Add(exhibit, dbExhibit);
                 }
@@ -87,7 +88,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                     newExhibits.Add(exhibit);
                 }
 
-                if (dbExhibit == null || exhibit.Timestamp != dbExhibit.Timestamp)
+                if (dbExhibit == null || Math.Abs((exhibit.Timestamp - dbExhibit.Timestamp).Seconds) > 1)
                 {
                     if (exhibit.Pages != null && exhibit.Pages.Any())
                     {
@@ -111,12 +112,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
 
         public async Task FetchMediaData (CancellationToken token, IProgressListener listener)
         {
-            fetchedMedia = await mediaDataFetcher.FetchMedias(requiredExhibitImages, token, listener);
+            await mediaDataFetcher.FetchMedias(requiredExhibitImages, token, listener);
         }
 
         private FetchedMediaData fetchedMedia;
         public void ProcessExhibits(IProgressListener listener)
         {
+            fetchedMedia = mediaDataFetcher.CombineMediasAndFiles();
+
             ProcessUpdatedExhibits(listener);
             ProcessNewExhibits(listener);
 

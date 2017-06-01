@@ -163,6 +163,7 @@
     <Compile Include="Common\Contracts\INetworkAccessChecker.cs" />
     <Compile Include="ServiceAccessLayer\NetworkAccessFailedException.cs" />
     <Compile Include="Common\NetworkAccessStatus.cs" />
+    <Compile Include="ServiceAccessLayer\NotFoundException.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Content\Kaiserpfalz\abdinghof.jpg" />

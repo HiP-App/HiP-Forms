@@ -12,13 +12,27 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System.Linq;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelConverters {
     public static class BackupData {
+
+        private static byte[] backupImageData;
+        public static byte[] BackupImageData {
+            get {
+                if (backupImageData == null)
+                {
+                    var dataLoader = IoCManager.Resolve<IDataLoader>();
+                    backupImageData = dataLoader.LoadByteData("noImage.jpg");
+                }
+                return backupImageData;
+            }
+        }
 
         private static Image backupImage;
         public static Image BackupImage {
@@ -26,13 +40,17 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelCo
             {
                 if (backupImage == null)
                 {
-                    var dataLoader = IoCManager.Resolve<IDataLoader>();
-                    backupImage = DbManager.CreateBusinessObject<Image>();
+                    var dataAccess = IoCManager.Resolve<IDataAccess>();
+                    backupImage = dataAccess.GetItems<Image> ().SingleOrDefault(x => x.IdForRestApi == -1);
+                    if (backupImage == null)
+                    {
+                        backupImage = DbManager.CreateBusinessObject<Image>();
 
-                    backupImage.Title = "No Image";
-                    backupImage.Description = "Hier fehlt das Bild";
-                    backupImage.Data = dataLoader.LoadByteData("noImage.jpg");
-                    backupImage.IdForRestApi = -1;
+                        backupImage.Title = "No Image";
+                        backupImage.Description = "Hier fehlt das Bild";
+                        backupImage.Data = backupImageData;
+                        backupImage.IdForRestApi = -1;
+                    }
                 }
 
                 return backupImage;

@@ -18,8 +18,10 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer {
-    public class ContentApiClient : IContentApiClient {
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer
+{
+    public class ContentApiClient : IContentApiClient
+    {
 
         /// <summary>
         /// Urlpath for the docker container running the HiP-DataStore instance
@@ -27,10 +29,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer {
         private const string ServerUrl = "https://docker-hip.cs.uni-paderborn.de/develop/datastore/api";
 
         /// <summary>
-        /// Returns json string if webcall was successful (Status 200)
+        /// Returns json string if get was successful (Status 200)
         /// Returns null if the requested url returns not modified (Status 304)
         /// Throws a <see cref="NetworkAccessFailedException"/> if the server is not reachable
         /// Throws an <see cref="ArgumentException"/> if there is an unexpected response code
+        /// Throws a <see cref="NotFoundException"/> if the requestes url was not found (Status 404)
         /// </summary>
         /// <param name="urlPath">Http request url path</param>
         /// <returns>Json result of the requested url</returns>
@@ -40,7 +43,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer {
             var request = (HttpWebRequest)WebRequest.Create(fullUrl);
             try
             {
-                var response = (HttpWebResponse)await request.GetResponseAsync ();
+                var response = (HttpWebResponse)await request.GetResponseAsync();
 
                 switch (response.StatusCode)
                 {
@@ -59,12 +62,18 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer {
             catch (WebException ex)
             {
                 WebResponse errorResponse = ex.Response;
+                var httpResponse = errorResponse as HttpWebResponse;
+                if (httpResponse != null && httpResponse.StatusCode == HttpStatusCode.NotFound)
+                {
+                    throw new NotFoundException(fullUrl);
+                }
+
                 using (Stream responseStream = errorResponse.GetResponseStream())
                 {
                     StreamReader reader = new StreamReader(responseStream, Encoding.UTF8);
                     String errorText = reader.ReadToEnd();
 
-                    throw new NetworkAccessFailedException(errorText);
+                    throw new NetworkAccessFailedException(errorText, ex);
                 }
             }
         }

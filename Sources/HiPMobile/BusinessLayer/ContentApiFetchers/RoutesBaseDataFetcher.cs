@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -70,7 +71,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             {
                 var dbRoute = dbRoutes.SingleOrDefault(x => x.IdForRestApi == routeDto.Id);
 
-                if (dbRoute != null && dbRoute.Timestamp != routeDto.Timestamp)
+                if (dbRoute != null && Math.Abs((routeDto.Timestamp - dbRoute.Timestamp).Seconds) > 1)
                 {
                     updatedRoutes.Add(routeDto, dbRoute);
                     requiredRouteImages.Add(routeDto.Image);
@@ -104,12 +105,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
 
         public async Task FetchMediaData(CancellationToken token, IProgressListener listener)
         {
-            fetchedMedia = await mediaDataFetcher.FetchMedias(requiredRouteImages, token, listener);
+            await mediaDataFetcher.FetchMedias(requiredRouteImages, token, listener);
         }
 
         private FetchedMediaData fetchedMedia;
         public void ProcessRoutes(IProgressListener listener)
         {
+            fetchedMedia = mediaDataFetcher.CombineMediasAndFiles();
+
             ProcessUpdatedRoutes(listener);
             ProcessNewRoutes(listener);
         }

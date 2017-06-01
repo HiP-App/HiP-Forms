@@ -15,14 +15,13 @@
 using System;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer {
-    /// <summary>
-    /// Exception thrown if there is no network connection
-    /// </summary>
-    public class NetworkAccessFailedException : Exception {
+    public class NotFoundException : Exception {
 
-        public NetworkAccessFailedException (string message, Exception innerException) : base (message, innerException)
+        public string RequestedUrl { get; private set; }
+
+        public NotFoundException (string requestedUrl)
         {
-            
+            RequestedUrl = requestedUrl;
         }
 
     }

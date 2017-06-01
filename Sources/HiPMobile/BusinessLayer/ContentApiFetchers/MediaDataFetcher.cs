@@ -21,6 +21,7 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetche
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelConverters;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos;
 
@@ -28,7 +29,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
 {
     public class MediaDataFetcher : IMediaDataFetcher
     {
-
         private readonly IMediasApiAccess mediasApiAccess;
         private readonly IFileApiAccess fileApiAccess;
 
@@ -44,20 +44,16 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             this.fileApiAccess = fileApiAccess;
         }
 
-        public async Task<FetchedMediaData> FetchMedias(IList<int?> mediaIds, CancellationToken token, IProgressListener progressListener)
+        private IList<MediaDto> fetchedMedias;
+        private IList<FileDto> fetchedFiles;
+
+        public async Task FetchMedias(IList<int?> mediaIds, CancellationToken token, IProgressListener progressListener)
         {
-            var media = await FetchMediaDtos(mediaIds);
-            var files = await FetchFileDtos(mediaIds, token, progressListener);
-
-            if (token.IsCancellationRequested)
-            {
-                return null;
-            }
-
-            return CombineMediasAndFiles(media, files, token);
+            fetchedMedias = await FetchMediaDtos(mediaIds);
+            fetchedFiles = await FetchFileDtos(mediaIds, token, progressListener);
         }
 
-        private FetchedMediaData CombineMediasAndFiles(IList<MediaDto> medias, IList<FileDto> files, CancellationToken token)
+        public FetchedMediaData CombineMediasAndFiles()
         {
             var fetchedData = new FetchedMediaData
             {
@@ -65,17 +61,18 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                 Images = new List<Image>()
             };
 
-            foreach (var media in medias)
+            if (fetchedMedias == null)
             {
-                if (token.IsCancellationRequested)
-                {
-                    break;
-                }
+                return fetchedData;
+            }
+
+            foreach (var media in fetchedMedias)
+            {
                 switch (media.Type)
                 {
                     case MediaTypeDto.Audio:
                         var audio = AudioConverter.Convert(media);
-                        var audioFile = files.SingleOrDefault(x => x.MediaId == media.Id);
+                        var audioFile = fetchedFiles?.SingleOrDefault(x => x.MediaId == media.Id);
 
                         if (audioFile != null)
                         {
@@ -85,7 +82,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                         break;
                     case MediaTypeDto.Image:
                         var image = ImageConverter.Convert(media);
-                        var imageFile = files.SingleOrDefault(x => x.MediaId == media.Id);
+                        var imageFile = fetchedFiles?.SingleOrDefault(x => x.MediaId == media.Id);
 
                         if (imageFile != null)
                         {
@@ -118,7 +115,16 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                 {
                     break;
                 }
-                var file = await fileApiAccess.GetFile(mediaId.Value);
+
+                FileDto file;
+                try
+                {
+                    file = await fileApiAccess.GetFile(mediaId.Value);
+                }
+                catch (NotFoundException)
+                {
+                    file = new FileDto {Data = BackupData.BackupImageData, MediaId = mediaId.Value};
+                }
                 files.Add(file);
                 progressListener.ProgressOneStep();
             }

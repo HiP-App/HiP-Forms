@@ -81,15 +81,5 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers {
             DataAccess.DeleteDatabase ();
             IoCManager.Resolve<IDbChangedHandler> ().NotifyAll ();
         }
-
-        /// <summary>
-        /// Returns if the db is up to date.
-        /// </summary>
-        /// <returns>True if up to date, false otherwise.</returns>
-        public static bool IsDatabaseUpToDate ()
-        {
-            return DataAccess.GetVersion () >= DbDummyDataFiller.DatabaseVersion;
-        }
-
     }
 }
