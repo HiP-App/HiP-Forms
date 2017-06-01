@@ -45,6 +45,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             Text = Strings.LoadingPage_Text;
             Subtext = Strings.LoadingPage_Subtext;
             StartLoading = new Command(Load);
+            CancelCommand = new Command (CancelLoading);
             cancellationTokenSource = new CancellationTokenSource();
 
             // listen to sleep and wake up messages as the main screen cannot be started when the app is sleeping
@@ -55,6 +56,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         private string text;
         private string subtext;
         private ICommand startLoading;
+        private ICommand cancel;
         private bool isExtendedViewsVisible;
         private double loadingProgress;
         private readonly CancellationTokenSource cancellationTokenSource;
@@ -91,6 +93,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         {
             get { return startLoading; }
             set { SetProperty(ref startLoading, value); }
+        }
+
+        /// <summary>
+        /// The command for canceling loading of database.
+        /// </summary>
+        public ICommand CancelCommand
+        {
+            get { return cancel; }
+            set { SetProperty(ref cancel, value); }
         }
 
         /// <summary>
@@ -339,6 +350,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         private void WillSleep(App obj)
         {
             isSleeping = true;
+        }
+
+        private void CancelLoading()
+        {
+            cancellationTokenSource?.Cancel();
         }
 
         public override void OnDisappearing()
