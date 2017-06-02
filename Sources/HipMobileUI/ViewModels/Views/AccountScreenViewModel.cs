@@ -21,7 +21,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 
         void LoginDummy()
         {
-            Debug.WriteLine("##### LOGIN #####");
             Settings.IsLoggedIn = true;
             mainPageViewModel.UpdateAccountViews();
         }

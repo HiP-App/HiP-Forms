@@ -1,14 +1,13 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
-using PaderbornUniversity.SILab.Hip.Mobile.UI.Location;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
 using Xamarin.Forms;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
+namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 {
     class ExhibitRouteDownloadViewModel : NavigationViewModel, IProgressListener
     {

@@ -1,10 +1,10 @@
 ﻿using System;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
-using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
 using Xamarin.Forms;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views {
+namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages {
 
     public partial class ExhibitRouteDownloadView : ContentPage, IViewFor<ExhibitRouteDownloadViewModel> {
 

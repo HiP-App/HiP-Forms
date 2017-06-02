@@ -900,6 +900,24 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Erfolge.
+        /// </summary>
+        public static string ProfileView_Achievements {
+            get {
+                return ResourceManager.GetString("ProfileView_Achievements", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Statistik.
+        /// </summary>
+        public static string ProfileView_Statistic {
+            get {
+                return ResourceManager.GetString("ProfileView_Statistic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Vorlesen pausieren.
         /// </summary>
         public static string RouteDetailsPage_PauseAudio {
