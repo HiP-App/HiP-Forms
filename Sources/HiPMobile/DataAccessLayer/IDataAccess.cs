@@ -76,6 +76,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer {
         /// </summary>
         /// <param name="version">The version of the new database.</param>
         void CreateDatabase (int version);
+        /// <summary>
+        /// Return database path
+        /// </summary> 
+        string DatabasePath { get; }
 
     }
 }
