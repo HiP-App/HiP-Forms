@@ -10,14 +10,17 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
     {
 
         private readonly MainPageViewModel mainPageViewModel;
+		private readonly RegisterViewModel registerViewModel;
         public AccountScreenViewModel(MainPageViewModel mainPageVm)
         {
             mainPageViewModel = mainPageVm;
 
             Login = new Command(LoginDummy);
+			Register = new Command(RegisterDummy);
         }
 
         public ICommand Login { get; }
+		public ICommand Register{get; }
 
         void LoginDummy()
         {
@@ -25,5 +28,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             Settings.IsLoggedIn = true;
             mainPageViewModel.UpdateAccountViews();
         }
+		void RegisterDummy()
+		{
+			Debug.WriteLine("##### REGISTER #####");
+			registerViewModel();
+		}
     }
 }

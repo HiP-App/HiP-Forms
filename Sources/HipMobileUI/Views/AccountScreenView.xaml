@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Views.AccountScreenView">
@@ -10,6 +10,14 @@
                         HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding Login}" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </Frame>
+			<Frame OutlineColor="Black" Padding="0">
+                <Label Text="Register" FontSize="20" TextColor="{StaticResource AccentColor}"
+                        HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding Register}" />
                     </Label.GestureRecognizers>
                 </Label>
             </Frame>
