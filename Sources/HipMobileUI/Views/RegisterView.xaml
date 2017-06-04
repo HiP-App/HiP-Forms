@@ -5,13 +5,19 @@
              xmlns:helpers="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;assembly=HipMobileUI">
     <ContentPage.Content>
         <StackLayout Orientation="Vertical" Spacing="0" VerticalOptions="FillAndExpand">
-            <BoxView  HeightRequest="2" Margin="0,0,0,0" Color="{StaticResource PrimaryDarkColor}"/>
-            <Image Source="{Binding Image}" Aspect="AspectFill" BackgroundColor="White" VerticalOptions="Center"/>
-            <BoxView HeightRequest="2" Margin="0,0,0,0" Color="{StaticResource DarkGrayColor}"/>
-            <Frame Padding="10,30,10,30" VerticalOptions="FillAndExpand">
-                <Label Text="{Binding Question}" FontSize="Medium" HorizontalTextAlignment ="Start" VerticalOptions="Start"/>
-            </Frame>
-            <BoxView  HeightRequest="1" Margin="0,0,0,0" Color="{StaticResource DarkGrayColor}"/>
+            <StackLayout Orientation="Horizontal" Padding="16,8,8,8" BackgroundColor="{StaticResource LightGrayColor}" VerticalOptions="End">
+               <Label Text="Email:" FontSize="15" TextColor="{StaticResource AccentColor}"
+                HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand">
+                </Label>
+				<Entry Text= "Email" FontSize="15" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" />
+            </StackLayout>
+			 <StackLayout Orientation="Horizontal" Padding="16,8,8,8" BackgroundColor="{StaticResource LightGrayColor}" VerticalOptions="End">
+               <Label Text="Passwort:" FontSize="15" TextColor="{StaticResource AccentColor}"
+                HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand">
+                </Label>
+				<Entry Text= "Passwort" FontSize="15" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" />
+            </StackLayout>
+			<BoxView  HeightRequest="1" Margin="0,0,0,0" Color="{StaticResource DarkGrayColor}"/>
             <StackLayout Orientation="Horizontal" Padding="16,8,8,8" BackgroundColor="{StaticResource LightGrayColor}" VerticalOptions="End">
                 <Label Text="{helpers:Translate Register}" FontSize="20" TextColor="{StaticResource AccentColor}"
                 HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
@@ -23,3 +29,4 @@
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
+

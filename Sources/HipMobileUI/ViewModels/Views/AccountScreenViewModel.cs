@@ -2,6 +2,8 @@
 using System.Windows.Input;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using Xamarin.Forms;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
@@ -10,7 +12,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
     {
 
         private readonly MainPageViewModel mainPageViewModel;
-		private readonly RegisterViewModel registerViewModel;
+
         public AccountScreenViewModel(MainPageViewModel mainPageVm)
         {
             mainPageViewModel = mainPageVm;
@@ -31,7 +33,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 		void RegisterDummy()
 		{
 			Debug.WriteLine("##### REGISTER #####");
-			registerViewModel();
+			IoCManager.Resolve<INavigationService> ().PushAsync(new RegisterViewModel());
 		}
     }
 }

@@ -210,11 +210,19 @@
     <Compile Include="Views\SettingsScreenView.xaml.cs">
       <DependentUpon>SettingsScreenView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\Views\RegisterViewModel.cs" />
+    <Compile Include="Views\RegisterView.xaml.cs">
+      <DependentUpon>RegisterView.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="App.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\RegisterView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -432,7 +440,7 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\RoutePreviewView.xaml">
-      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
