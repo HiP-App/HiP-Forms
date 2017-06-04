@@ -161,7 +161,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &gt;&gt;&gt;&gt;&gt;&gt;&gt; origin/master.
+        ///   Looks up a localized string similar to  herunter.
         /// </summary>
         public static string DownloadDetails_Text_Part2 {
             get {
