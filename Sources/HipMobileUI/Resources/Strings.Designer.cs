@@ -143,7 +143,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Neue Daten herunterladen?.
+        ///   Looks up a localized string similar to Neue Detail Daten herunterladen?.
         /// </summary>
         public static string DownloadData_Title {
             get {

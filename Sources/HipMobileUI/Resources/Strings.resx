@@ -533,7 +533,7 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
     <value>Keine Routen verfügbar. Laden Sie Routen herunter, um loszulegen!</value>
   </data>
   <data name="DownloadData_Title" xml:space="preserve">
-    <value>Neue Daten herunterladen?</value>
+    <value>Neue Detail Daten herunterladen?</value>
   </data>
   <data name="DownloadData_Cancel" xml:space="preserve">
     <value>Nein</value>

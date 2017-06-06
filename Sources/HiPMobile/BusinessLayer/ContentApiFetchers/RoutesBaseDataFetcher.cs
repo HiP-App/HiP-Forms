@@ -19,9 +19,11 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Practices.Unity;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers.Contracts;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentHandling;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelConverters;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos;
@@ -130,8 +132,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                 AddTagsToRoute(dbRoute, routeDto, fetchedMedia);
                 AddExhibitsToRoute(dbRoute, routeDto);
 
-                //TODO: If route content was already downloaded 
-                //-> Show dialog whether to download new data or do it directly depending on setting
+                if (dbRoute.DetailsDataLoaded)
+                {
+                    IoCManager.Resolve<INewDataCenter>().AddRouteToBeUpdated(dbRoute);
+                }
 
                 listener.ProgressOneStep();
             }

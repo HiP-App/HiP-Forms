@@ -58,7 +58,9 @@
     <Compile Include="BusinessLayer\ContentApiFetchers\DataToRemoveFetcher.cs" />
     <Compile Include="BusinessLayer\ContentApiFetchers\ExhibitsBaseDataFetcher.cs" />
     <Compile Include="BusinessLayer\ContentApiFetchers\FetchedMediaData.cs" />
+    <Compile Include="BusinessLayer\ContentHandling\INewDataCenter.cs" />
     <Compile Include="BusinessLayer\ContentApiFetchers\MediaDataFetcher.cs" />
+    <Compile Include="BusinessLayer\ContentHandling\NewDataCenter.cs" />
     <Compile Include="BusinessLayer\ContentApiFetchers\RoutesBaseDataFetcher.cs" />
     <Compile Include="BusinessLayer\DtoToModelConverters\BackupData.cs" />
     <Compile Include="BusinessLayer\DtoToModelConverters\TagConverter.cs" />

@@ -22,6 +22,7 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetche
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelConverters;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses.Contracts;
@@ -138,9 +139,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
 
                 AddImageToExhibit(dbExhibit, exhibitDto.Image, fetchedMedia);
                 AddAppetizerPageToExhibit(exhibitDto, dbExhibit, fetchedMedia);
-                //TODO: If exhibits content was already downloaded 
-                //-> Show dialog whether to download new data or do it directly depending on setting
-
+                //TODO: Check if exhibit was already downloaded
+                //if(dbExhibit.DetailsDataLoaded)
+                //{
+                //    IoCManager.Resolve<INewDataCenter>().AddExhibitToBeUpdated(dbExhibit);
+                //}
                 listener.ProgressOneStep();
             }
         }
