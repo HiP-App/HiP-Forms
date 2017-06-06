@@ -2,7 +2,8 @@
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Views.ProfileScreenView"
-             xmlns:container1="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Container;assembly=HipMobileUI">
+             xmlns:container1="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Container;assembly=HipMobileUI"
+             xmlns:helpers="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;assembly=HipMobileUI">
     <ContentView.Content>
         <container1:TabContainerView Tabs="{Binding Tabs}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="White">
             <container1:TabContainerView.TabViews>
@@ -23,63 +24,76 @@
                         <Label Text="{Binding EMail}" FontSize="10" HorizontalTextAlignment="Center" Margin="0"/>
                     </StackLayout>
                     <StackLayout x:Name="Scores" Grid.Row="1" Spacing="0" Orientation="Vertical" VerticalOptions="StartAndExpand" Padding="5,5,5,0">
-                        <Label FontSize="14" Text="Punkte:" Margin="3,5,3,0" HorizontalTextAlignment="Center"
+                        <Label FontSize="14" Text="{helpers:Translate ProfileView_Overview_Score}" Margin="3,5,3,0" HorizontalTextAlignment="Center"
                                TextColor="{StaticResource PrimaryColor}" BackgroundColor="{StaticResource MediumGrayColor}"/>
                         <Label FontSize="25" Text="{Binding Score}" Margin="3,0" HorizontalTextAlignment="Center"
                                TextColor="{StaticResource AccentColor}" FontAttributes="Bold" BackgroundColor="{StaticResource LightGrayColor}"/>
-                        <Label FontSize="14" Text="Erfolge:" Margin="3,5,3,0" HorizontalTextAlignment="Center"
+                        <Label FontSize="14" Text="{helpers:Translate ProfileView_Overview_Achievements}" Margin="3,5,3,0" HorizontalTextAlignment="Center"
                                TextColor="{StaticResource PrimaryColor}" BackgroundColor="{StaticResource MediumGrayColor}"/>
-                        <Label FontSize="25" Text="{Binding Achievements}" Margin="3,0" HorizontalTextAlignment="Center"
+                        <Label FontSize="25" Text="{Binding AchievementCount}" Margin="3,0" HorizontalTextAlignment="Center"
                                TextColor="{StaticResource AccentColor}" FontAttributes="Bold" BackgroundColor="{StaticResource LightGrayColor}"/>
-                        <Label FontSize="14" Text="Fortschritt:" Margin="3,5,3,0" HorizontalTextAlignment="Center"
+                        <Label FontSize="14" Text="{helpers:Translate ProfileView_Overview_Progress}" Margin="3,5,3,0" HorizontalTextAlignment="Center"
                                TextColor="{StaticResource PrimaryColor}" BackgroundColor="{StaticResource MediumGrayColor}"/>
                         <Label FontSize="25" Text="{Binding Completeness}" Margin="3,0" HorizontalTextAlignment="Center"
                                TextColor="{StaticResource AccentColor}" FontAttributes="Bold" BackgroundColor="{StaticResource LightGrayColor}"/>
                     </StackLayout>
                     <StackLayout x:Name="Logout" Grid.Row="2" HorizontalOptions="Center" VerticalOptions="End" Padding="3">
                         <Button WidthRequest="200" HeightRequest="40" BorderRadius="2" BorderColor="{StaticResource DarkGrayColor}" BorderWidth="1"
-                                Command="{Binding Logout}" Text="Abmelden" TextColor="{StaticResource AccentDarkColor}" BackgroundColor="{StaticResource MediumGrayColor}"></Button>
+                                Command="{Binding Logout}" Text="{helpers:Translate Logout}" TextColor="{StaticResource AccentDarkColor}" BackgroundColor="{StaticResource MediumGrayColor}"></Button>
                     </StackLayout>
                 </Grid>
-                
-                <Grid x:Name="AchievementsGrid">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="0.5*"/>
-                        <RowDefinition Height="0.5*"/>
-                    </Grid.RowDefinitions>
 
-                    <StackLayout x:Name="AchievementsTitle" Grid.Row="0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-                        <Label FontSize="30" HorizontalTextAlignment="Center">Erfolge: 12 / 30</Label>
-                    </StackLayout>
-                    <ScrollView x:Name="ScrollView" Grid.Row="1">
-                        <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-                            <Label FontSize="30" HorizontalTextAlignment="Center">Erfolg</Label>
-                            <Label FontSize="30" HorizontalTextAlignment="Center">Erfolg</Label>
-                            <Label FontSize="30" HorizontalTextAlignment="Center">Erfolg</Label>
-                            <Label FontSize="30" HorizontalTextAlignment="Center">Erfolg</Label>
-                            <Label FontSize="30" HorizontalTextAlignment="Center">Erfolg</Label>
-                            <Label FontSize="30" HorizontalTextAlignment="Center">Erfolg</Label>
-                            <Label FontSize="30" HorizontalTextAlignment="Center">Erfolg</Label>
-                            <Label FontSize="30" HorizontalTextAlignment="Center">Erfolg</Label>
-                        </StackLayout>
+                <StackLayout Orientation="Vertical" HorizontalOptions="Fill" VerticalOptions="Fill" Spacing="0">
+                    <ScrollView>
+                        <ListView SeparatorVisibility="None" HasUnevenRows="True" ItemsSource="{Binding Achievements}">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" Padding="0" Margin="3" HeightRequest="60" Spacing="0">
+                                            <Image Source="ic_directions_walk.png" WidthRequest="60" HeightRequest="60" BackgroundColor="{StaticResource MediumGrayColor}" Aspect="AspectFit"/>
+                                            <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand" VerticalOptions="Fill" Spacing="0" Margin="3,0" BackgroundColor="{StaticResource LightGrayColor}">
+                                                <!-- Use seperate ViewModel with DataContext for binding -->
+                                                <Label Text="Achievement title" FontSize="16" TextColor="{StaticResource PrimaryColor}" BackgroundColor="{StaticResource MediumGrayColor}"/>
+                                                <Label Text="Achievement description - This could explain what has to be done to get this achievement"/>
+                                            </StackLayout>
+                                            <Image Source="ic_feedback.png" BackgroundColor="Red" WidthRequest="40"/>
+                                        </StackLayout>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
                     </ScrollView>
-                </Grid>
-                
-                <Grid x:Name="StatisticsGrid">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-                    
-                    <StackLayout Grid.Row="0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-                        <Label FontSize="30" HorizontalTextAlignment="Center">Statistik</Label>
+                    <BoxView HeightRequest="2" HorizontalOptions="Fill" Margin="0,5" Color="{StaticResource DarkGrayColor}"/>
+                    <StackLayout HorizontalOptions="Fill" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource LightGrayColor}" Padding="5">
+                        <Label FontSize="28" Text="{Binding AchievementCount}" FontAttributes="Bold" HorizontalTextAlignment="Center" VerticalOptions="CenterAndExpand" TextColor="{StaticResource AccentColor}"/>
                     </StackLayout>
-                </Grid>
+                </StackLayout>
+
+                <ScrollView>
+                    <StackLayout HorizontalOptions="Fill" VerticalOptions="StartAndExpand" Spacing="0" Padding="3">
+                        <!-- This could also be changed to use DataTemplates -->
+                        <Label FontSize="20" Text="Statistik 1" HorizontalTextAlignment="Start" BackgroundColor="{StaticResource MediumGrayColor}"/>
+                        <Label FontSize="20" Text="Statistik 2" HorizontalTextAlignment="Start" BackgroundColor="{StaticResource LightGrayColor}"/>
+                        <Label FontSize="20" Text="Statistik 3" HorizontalTextAlignment="Start" BackgroundColor="{StaticResource MediumGrayColor}"/>
+                        <Label FontSize="20" Text="Statistik 4" HorizontalTextAlignment="Start" BackgroundColor="{StaticResource LightGrayColor}"/>
+                        <Label FontSize="20" Text="Statistik 5" HorizontalTextAlignment="Start" BackgroundColor="{StaticResource MediumGrayColor}"/>
+                        <Label FontSize="20" Text="Statistik 6" HorizontalTextAlignment="Start" BackgroundColor="{StaticResource LightGrayColor}"/>
+                        <Label FontSize="20" Text="Statistik 7" HorizontalTextAlignment="Start" BackgroundColor="{StaticResource MediumGrayColor}"/>
+                        <Label FontSize="20" Text="Statistik 8" HorizontalTextAlignment="Start" BackgroundColor="{StaticResource LightGrayColor}"/>
+                        <Label FontSize="20" Text="Statistik 9" HorizontalTextAlignment="Start" BackgroundColor="{StaticResource MediumGrayColor}"/>
+                        <Label FontSize="20" Text="Statistik 10" HorizontalTextAlignment="Start" BackgroundColor="{StaticResource LightGrayColor}"/>
+                        <Label FontSize="20" Text="Statistik 11" HorizontalTextAlignment="Start" BackgroundColor="{StaticResource MediumGrayColor}"/>
+                        <Label FontSize="20" Text="Statistik 12" HorizontalTextAlignment="Start" BackgroundColor="{StaticResource LightGrayColor}"/>
+                        <Label FontSize="20" Text="Statistik 13" HorizontalTextAlignment="Start" BackgroundColor="{StaticResource MediumGrayColor}"/>
+                        <Label FontSize="20" Text="Statistik 14" HorizontalTextAlignment="Start" BackgroundColor="{StaticResource LightGrayColor}"/>
+                        <Label FontSize="20" Text="Statistik 15" HorizontalTextAlignment="Start" BackgroundColor="{StaticResource MediumGrayColor}"/>
+                        <Label FontSize="20" Text="Statistik 16" HorizontalTextAlignment="Start" BackgroundColor="{StaticResource LightGrayColor}"/>
+                        <Label FontSize="20" Text="Statistik 17" HorizontalTextAlignment="Start" BackgroundColor="{StaticResource MediumGrayColor}"/>
+                        <Label FontSize="20" Text="Statistik 18" HorizontalTextAlignment="Start" BackgroundColor="{StaticResource LightGrayColor}"/>
+                        <Label FontSize="20" Text="Statistik 19" HorizontalTextAlignment="Start" BackgroundColor="{StaticResource MediumGrayColor}"/>
+                        <Label FontSize="20" Text="Statistik 20" HorizontalTextAlignment="Start" BackgroundColor="{StaticResource LightGrayColor}"/>
+                    </StackLayout>
+                </ScrollView>
 
             </container1:TabContainerView.TabViews>
         </container1:TabContainerView>

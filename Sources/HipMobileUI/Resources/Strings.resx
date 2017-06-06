@@ -571,4 +571,16 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   <data name="ProfileView_Statistic" xml:space="preserve">
     <value>Statistik</value>
   </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Abmelden</value>
+  </data>
+  <data name="ProfileView_Overview_Achievements" xml:space="preserve">
+    <value>Erfolge:</value>
+  </data>
+  <data name="ProfileView_Overview_Progress" xml:space="preserve">
+    <value>Fortschritt:</value>
+  </data>
+  <data name="ProfileView_Overview_Score" xml:space="preserve">
+    <value>Punkte:</value>
+  </data>
 </root>

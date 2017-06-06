@@ -819,6 +819,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Abmelden.
+        /// </summary>
+        public static string Logout {
+            get {
+                return ResourceManager.GetString("Logout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Historisches Paderborn.
         /// </summary>
         public static string MainPage_MenuTitle {
@@ -905,6 +914,33 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         public static string ProfileView_Achievements {
             get {
                 return ResourceManager.GetString("ProfileView_Achievements", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Erfolge:.
+        /// </summary>
+        public static string ProfileView_Overview_Achievements {
+            get {
+                return ResourceManager.GetString("ProfileView_Overview_Achievements", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fortschritt:.
+        /// </summary>
+        public static string ProfileView_Overview_Progress {
+            get {
+                return ResourceManager.GetString("ProfileView_Overview_Progress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Punkte:.
+        /// </summary>
+        public static string ProfileView_Overview_Score {
+            get {
+                return ResourceManager.GetString("ProfileView_Overview_Score", resourceCulture);
             }
         }
         

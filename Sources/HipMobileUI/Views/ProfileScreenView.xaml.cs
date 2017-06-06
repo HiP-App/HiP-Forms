@@ -54,19 +54,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
                 Grid.SetColumn(Logout, 0);
 
                 // Achievements
-                AchievementsGrid.RowDefinitions.Clear();
-                AchievementsGrid.ColumnDefinitions.Clear();
-
-                AchievementsGrid.RowDefinitions.Add (new RowDefinition { Height = new GridLength(0.5, GridUnitType.Star) });
-                AchievementsGrid.RowDefinitions.Add (new RowDefinition { Height = new GridLength(0.5, GridUnitType.Star) });
-
-                AchievementsGrid.ColumnDefinitions.Add (new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
-
-                Grid.SetRow (AchievementsTitle, 0);
-                Grid.SetRow (ScrollView, 1);
-
-                Grid.SetColumn (AchievementsTitle, 0);
-                Grid.SetColumn (ScrollView, 0);
+                
 
 
                 deviceOrientation = DeviceOrientation.Portrait;
@@ -97,19 +85,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
                 Grid.SetRowSpan(Scores, 2);
 
                 // Achievements
-                AchievementsGrid.RowDefinitions.Clear();
-                AchievementsGrid.ColumnDefinitions.Clear();
-
-                AchievementsGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
-
-                AchievementsGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(0.5, GridUnitType.Star) });
-                AchievementsGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(0.5, GridUnitType.Star) });
-
-                Grid.SetRow(AchievementsTitle, 0);
-                Grid.SetRow(ScrollView, 0);
-
-                Grid.SetColumn(AchievementsTitle, 0);
-                Grid.SetColumn(ScrollView, 1);
+               
 
 
                 deviceOrientation = DeviceOrientation.Landscape;
