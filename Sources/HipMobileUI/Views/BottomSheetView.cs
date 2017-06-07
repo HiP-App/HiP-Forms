@@ -13,6 +13,7 @@
 // limitations under the License.
 
 using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
@@ -26,29 +27,20 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
     /// <summary>
     /// A view consisting of a extensible bottom sheet and a main content view. The bottom sheet can be extended either by swiping or by a FAB.
     /// </summary>
-    public class BottomSheetView : ContentView {
-
+    public class BottomSheetView : ContentView
+    {
         /// <summary>
         /// The fraction of how much the bottom sheet is extended relative to the whole view.
         /// </summary>
         private readonly double bottomSheetExtensionFraction = 0.35;
         private BottomSheetState bottomSheetState = BottomSheetState.Collapsed;
         private FloatingActionButton Button { get; set; }
+        private bool initLayout = true;
 
-        public BottomSheetView ()
+        public BottomSheetView()
         {
-            RelativeLayout layout = new RelativeLayout();
-
-            // Main content
             mainContentView = new ContentView();
-            layout.Children.Add(mainContentView, Constraint.RelativeToParent(parent => parent.X), Constraint.RelativeToParent(parent => parent.Y),
-                                 Constraint.RelativeToParent(parent => parent.Width), Constraint.RelativeToParent(parent => parent.Height));
-
-            // Bottomsheet
-            BottomSheetContentView = new ContentView {BackgroundColor = Color.White};
-            layout.Children.Add (BottomSheetContentView, Constraint.RelativeToParent (parent => parent.X), Constraint.RelativeToParent (parent => parent.Height - 64),
-                                 Constraint.RelativeToParent (parent => parent.Width), Constraint.RelativeToParent (parent => parent.Height));
-
+            BottomSheetContentView = new ContentView { BackgroundColor = Color.White };
             var resources = IoCManager.Resolve<ApplicationResourcesProvider>();
             // Floating Action Button
             Button = new FloatingActionButton
@@ -59,31 +51,39 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
                 Icon = "ic_keyboard_arrow_up",
                 AutomationId = "Fab"
             };
-
-            double fabSize;
-            if (Device.OS == TargetPlatform.iOS)
-            {
-                fabSize = FloatingActionButton.IosSize;
-            }
-            else
-            {
-                fabSize = IoCManager.Resolve<IFabSizeCalculator>().CalculateFabSize();
-            }
-
-            layout.Children.Add(Button, Constraint.RelativeToParent(parent => parent.Width * 0.9 - fabSize),
-                                    Constraint.RelativeToView(BottomSheetContentView, (parent, view) => view.Y - fabSize / 2));
-
-
-
-            Content = layout;
-
-            // restore the state when the layout changes
-            layout.LayoutChanged += LayoutOnLayoutChanged;
         }
 
-        protected override void OnBindingContextChanged ()
+        protected override void OnSizeAllocated(double width, double height)
         {
-            base.OnBindingContextChanged ();
+            if (initLayout)
+            {
+                AbsoluteLayout absoluteLayout = new AbsoluteLayout();
+                absoluteLayout.Children.Add(mainContentView, new Rectangle(0, 0, width, height));
+                absoluteLayout.Children.Add(BottomSheetContentView, new Rectangle(0, height - 64, width, 64));
+
+                double fabSize;
+                if (Device.OS == TargetPlatform.iOS)
+                {
+                    fabSize = FloatingActionButton.IosSize;
+                }
+                else
+                {
+                    fabSize = IoCManager.Resolve<IFabSizeCalculator>().CalculateFabSize();
+                }
+                absoluteLayout.Children.Add(Button, new Point(width * 0.9 - fabSize, height - 64 - fabSize / 2));
+
+                Content = absoluteLayout;
+
+                // restore the state when the layout changes
+                absoluteLayout.LayoutChanged += OnLayoutChanged;
+                initLayout = false;
+            }
+            base.OnSizeAllocated(width, height);
+        }
+
+        protected override void OnBindingContextChanged()
+        {
+            base.OnBindingContextChanged();
 
             if (!BottomSheetVisible)
             {
@@ -92,33 +92,32 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
             }
         }
 
-
         /// <summary>
         /// React to layout changes, for example if the device was rotated.
         /// </summary>
         /// <param name="sender">The sender of the event.</param>
         /// <param name="eventArgs">The event params.</param>
-        private async void LayoutOnLayoutChanged (object sender, EventArgs eventArgs)
+        private async void OnLayoutChanged(object sender, EventArgs eventArgs)
         {
             // restore the state
             if (bottomSheetState == BottomSheetState.Extended || bottomSheetState == BottomSheetState.Extending)
             {
-                await ExtendBottomSheet ();
+                await ExtendBottomSheet();
             }
         }
 
         /// <summary>
         /// React to a click on the FAB.
         /// </summary>
-        private async void ButtonOnClicked ()
+        private async void ButtonOnClicked()
         {
             if (bottomSheetState == BottomSheetState.Collapsed)
             {
-                await ExtendBottomSheet ();
+                await ExtendBottomSheet();
             }
             else if (bottomSheetState == BottomSheetState.Extended)
             {
-                await CollapseBottomSheet ();
+                await CollapseBottomSheet();
             }
         }
 
@@ -128,21 +127,21 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
         /// Layout the bottom sheet to its extended state, with animation.
         /// </summary>
         /// <returns>The task.</returns>
-        private async Task ExtendBottomSheet ()
+        private async Task ExtendBottomSheet()
         {
             Rectangle bottomSheetRect = new Rectangle
             {
                 Left = 0,
                 Top = Height * (1 - bottomSheetExtensionFraction),
-                Size = new Size (Width, Height * bottomSheetExtensionFraction)
+                Size = new Size(Width, Height * bottomSheetExtensionFraction)
             };
             Rectangle buttonRect = new Rectangle
             {
                 Top = bottomSheetRect.Top - Button.Height / 2,
-                Size = new Size (Button.Width, Button.Height),
+                Size = new Size(Button.Width, Button.Height),
                 X = Button.X
             };
-            await Task.WhenAll (BottomSheetContentView.LayoutTo (bottomSheetRect), Button.LayoutTo (buttonRect), Button.RotateXTo (180));
+            await Task.WhenAll(BottomSheetContentView.LayoutTo(bottomSheetRect), Button.LayoutTo(buttonRect), Button.RotateXTo(180));
             bottomSheetState = BottomSheetState.Extended;
         }
 
@@ -150,90 +149,71 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
         /// Layout the bottom sheet to its collapsed state, with animation.
         /// </summary>
         /// <returns>The task.</returns>
-        private async Task CollapseBottomSheet ()
+        private async Task CollapseBottomSheet()
         {
             Rectangle bottomSheetRect = new Rectangle
             {
                 Left = 0,
                 Top = Height - 64,
-                Size = new Size (Width, 64)
+                Size = new Size(Width, 64)
             };
             Rectangle buttonRect = new Rectangle
             {
                 Top = bottomSheetRect.Top - Button.Height / 2,
-                Size = new Size (Button.Width, Button.Height),
+                Size = new Size(Button.Width, Button.Height),
                 X = Button.X
             };
-            await Task.WhenAll (BottomSheetContentView.LayoutTo (bottomSheetRect), Button.LayoutTo (buttonRect), Button.RotateXTo (0));
+            await Task.WhenAll(BottomSheetContentView.LayoutTo(bottomSheetRect), Button.LayoutTo(buttonRect), Button.RotateXTo(0));
             bottomSheetState = BottomSheetState.Collapsed;
         }
-
-        /// <summary>
-        /// Layout the botton sheet to it's pending state, with animation.
-        /// </summary>
-        /// <returns>The task.</returns>
-        private async Task SetBottomSheetPending ()
-        {
-            Rectangle bottomSheetRect = new Rectangle
-            {
-                Left = 0,
-                Top = Height * (1 - bottomSheetExtensionFraction / 2),
-                Size = new Size (Width, Height * bottomSheetExtensionFraction / 2)
-            };
-            Rectangle buttonRect = new Rectangle
-            {
-                Top = bottomSheetRect.Top - Button.Height / 2,
-                Size = new Size (Button.Width, Button.Height),
-                X = Button.X
-            };
-            await Task.WhenAll (BottomSheetContentView.LayoutTo (bottomSheetRect), Button.LayoutTo (buttonRect));
-        }
-
+       
         #endregion
 
         #region properties
         private ContentView mainContentView;
 
         public static readonly BindableProperty MainContentProperty =
-            BindableProperty.Create ("MainContent", typeof (View), typeof (BottomSheetView), null, propertyChanged: MainContentPropertyChanged);
+            BindableProperty.Create("MainContent", typeof(View), typeof(BottomSheetView), null, propertyChanged: MainContentPropertyChanged);
 
-        private static void MainContentPropertyChanged (BindableObject bindable, object oldValue, object newValue)
+        private static void MainContentPropertyChanged(BindableObject bindable, object oldValue, object newValue)
         {
-            ((BottomSheetView) bindable).mainContentView.Content = (View) newValue;
+            ((BottomSheetView)bindable).mainContentView.Content = (View)newValue;
         }
 
         /// <summary>
         /// The View displaying the main content.
         /// </summary>
-        public View MainContent {
-            get { return (View) GetValue (MainContentProperty); }
-            set { SetValue (MainContentProperty, value); }
+        public View MainContent
+        {
+            get { return (View)GetValue(MainContentProperty); }
+            set { SetValue(MainContentProperty, value); }
         }
 
         public ContentView BottomSheetContentView;
 
         public static readonly BindableProperty BottomSheetProperty =
-            BindableProperty.Create ("BottomSheet", typeof (View), typeof (BottomSheetView), null, propertyChanged: BottomSheetPropertyChanged);
+            BindableProperty.Create("BottomSheet", typeof(View), typeof(BottomSheetView), null, propertyChanged: BottomSheetPropertyChanged);
 
-        private static void BottomSheetPropertyChanged (BindableObject bindable, object oldValue, object newValue)
+        private static void BottomSheetPropertyChanged(BindableObject bindable, object oldValue, object newValue)
         {
-            ((BottomSheetView) bindable).BottomSheetContentView.Content = (View) newValue;
+            ((BottomSheetView)bindable).BottomSheetContentView.Content = (View)newValue;
         }
 
         /// <summary>
         /// The view displaying the bottom sheet content.
         /// </summary>
-        public View BottomSheet {
-            get { return (View) GetValue (MainContentProperty); }
-            set { SetValue (MainContentProperty, value); }
+        public View BottomSheet
+        {
+            get { return (View)GetValue(MainContentProperty); }
+            set { SetValue(MainContentProperty, value); }
         }
 
 
-        public static readonly BindableProperty BottomSheetVisibleProperty = BindableProperty.Create(nameof(BottomSheetVisible), typeof(bool), typeof(BottomSheetView), defaultValue: true, propertyChanged:BottomSheetVisiblePropertyChanged);
+        public static readonly BindableProperty BottomSheetVisibleProperty = BindableProperty.Create(nameof(BottomSheetVisible), typeof(bool), typeof(BottomSheetView), defaultValue: true, propertyChanged: BottomSheetVisiblePropertyChanged);
 
-        private static void BottomSheetVisiblePropertyChanged (BindableObject bindable, object oldValue, object newValue)
+        private static void BottomSheetVisiblePropertyChanged(BindableObject bindable, object oldValue, object newValue)
         {
-            ((BottomSheetView)bindable).BottomSheetVisible = (bool) newValue;
+            ((BottomSheetView)bindable).BottomSheetVisible = (bool)newValue;
         }
 
         /// <summary>
@@ -253,7 +233,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
     /// <summary>
     /// States for a bottom sheet.
     /// </summary>
-    public enum BottomSheetState {
+    public enum BottomSheetState
+    {
         Collapsed,
         Collapsing,
         Extending,
