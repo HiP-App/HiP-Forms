@@ -107,13 +107,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             var files = new List<FileDto>();
             foreach (int? mediaId in requiredImages)
             {
-                if (!mediaId.HasValue)
-                {
-                    continue;
-                }
                 if (token.IsCancellationRequested)
                 {
                     break;
+                }
+                if (!mediaId.HasValue)
+                {
+                    continue;
                 }
 
                 FileDto file;

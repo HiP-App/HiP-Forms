@@ -208,7 +208,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         {
             try
             {
-                isDatabaseUpToDate = await baseDataFetcher.IsDatabaseUpToDate(cancellationTokenSource.Token);
+                isDatabaseUpToDate = await baseDataFetcher.IsDatabaseUpToDate();
             }
             catch (Exception e)
             {

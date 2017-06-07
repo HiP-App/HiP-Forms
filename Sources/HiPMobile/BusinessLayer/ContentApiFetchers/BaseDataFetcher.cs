@@ -33,7 +33,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             this.dataToRemoveFetcher = dataToRemoveFetcher;
         }
 
-        public async Task<bool> IsDatabaseUpToDate(CancellationToken token)
+        public async Task<bool> IsDatabaseUpToDate()
         {
             bool anyExhibitChanged = await exhibitsBaseDataFetcher.AnyExhibitChanged();
             bool anyRouteChanged = await routesBaseDataFetcher.AnyRouteChanged();
@@ -75,16 +75,19 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                 if (token.IsCancellationRequested)
                 {
                     transaction.Rollback();
+                    return;
                 }
                 routesBaseDataFetcher.ProcessRoutes(listener);
                 if (token.IsCancellationRequested)
                 {
                     transaction.Rollback();
+                    return;
                 }
                 dataToRemoveFetcher.CleaupRemovedData();
                 if (token.IsCancellationRequested)
                 {
                     transaction.Rollback();
+                    return;
                 }
             }
         }

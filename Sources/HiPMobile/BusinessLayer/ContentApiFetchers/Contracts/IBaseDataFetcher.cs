@@ -25,9 +25,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
         /// <summary>
         /// Indicates whether there is new base data on the server
         /// </summary>
-        /// <param name="token">Used for cancelling the download</param>
         /// <returns></returns>
-        Task<bool> IsDatabaseUpToDate (CancellationToken token);
+        Task<bool> IsDatabaseUpToDate ();
 
         /// <summary>
         /// Gets the newest base data for routes and exhibits

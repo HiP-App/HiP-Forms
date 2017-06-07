@@ -13,20 +13,18 @@
 // limitations under the License.
 
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer
 {
     public class ContentApiClient : IContentApiClient
     {
-
-        /// <summary>
-        /// Urlpath for the docker container running the HiP-DataStore instance
-        /// </summary>
-        private const string ServerUrl = "https://docker-hip.cs.uni-paderborn.de/develop/datastore/api";
+        private const int MaxRetryCount = 5;
 
         /// <summary>
         /// Returns json string if get was successful (Status 200)
@@ -39,29 +37,45 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer
         /// <returns>Json result of the requested url</returns>
         public async Task<string> GetResponseFromUrl(string urlPath)
         {
-            string fullUrl = ServerUrl + urlPath;
-            var request = (HttpWebRequest)WebRequest.Create(fullUrl);
-            try
-            {
-                var response = (HttpWebResponse)await request.GetResponseAsync();
+            string fullUrl = ServerEndpoints.DatastoreApiPath + urlPath;
+            Exception innerException = null;
 
-                switch (response.StatusCode)
+            for (int i = 0; i < MaxRetryCount; i++)
+            {
+                if (i != 0)
                 {
-                    case HttpStatusCode.OK:
-                        using (Stream responseStream = response.GetResponseStream())
-                        {
-                            StreamReader reader = new StreamReader(responseStream, Encoding.UTF8);
-                            return reader.ReadToEnd();
-                        }
-                    case HttpStatusCode.NotModified:
-                        return null;
-                    default:
-                        throw new ArgumentException($"Unexpected response status: {response.StatusCode}");
+                    await Task.Delay(300);
+                }
+
+                try
+                {
+                    var request = (HttpWebRequest)WebRequest.Create(fullUrl);
+                    var response = (HttpWebResponse)await request.GetResponseAsync();
+
+                    switch (response.StatusCode)
+                    {
+                        case HttpStatusCode.OK:
+                            using (Stream responseStream = response.GetResponseStream())
+                            {
+                                StreamReader reader = new StreamReader(responseStream, Encoding.UTF8);
+                                return reader.ReadToEnd();
+                            }
+                        case HttpStatusCode.NotModified:
+                            return null;
+                        default:
+                            throw new WebException($"Unexpected response status: {response.StatusCode}");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    innerException = ex;
                 }
             }
-            catch (WebException ex)
+
+            WebException webException = innerException as WebException;
+            if (webException != null)
             {
-                WebResponse errorResponse = ex.Response;
+                WebResponse errorResponse = webException.Response;
                 var httpResponse = errorResponse as HttpWebResponse;
                 if (httpResponse != null && httpResponse.StatusCode == HttpStatusCode.NotFound)
                 {
@@ -71,11 +85,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer
                 using (Stream responseStream = errorResponse.GetResponseStream())
                 {
                     StreamReader reader = new StreamReader(responseStream, Encoding.UTF8);
-                    String errorText = reader.ReadToEnd();
-
-                    throw new NetworkAccessFailedException(errorText, ex);
+                    string exceptionMessage = reader.ReadToEnd();
+                    throw new NetworkAccessFailedException(exceptionMessage, webException);
                 }
             }
+            throw new ArgumentException("Unexpected error during fetching data");
         }
     }
 }
