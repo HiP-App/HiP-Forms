@@ -565,4 +565,25 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   <data name="MainPageViewModel_Profile" xml:space="preserve">
     <value>Profil</value>
   </data>
+  <data name="LoginScreenView_Error_Unknown_Email" xml:space="preserve">
+    <value>Unbekannte E-Mail Adresse</value>
+  </data>
+  <data name="LoginScreenView_Error_Wrong_Password" xml:space="preserve">
+    <value>Falsches Passwort</value>
+  </data>
+  <data name="LoginScreenView_Login" xml:space="preserve">
+    <value>Einloggen</value>
+  </data>
+  <data name="LoginScreenView_Password" xml:space="preserve">
+    <value>Passwort</value>
+  </data>
+  <data name="LoginScreenView_Register" xml:space="preserve">
+    <value>Registrieren</value>
+  </data>
+  <data name="LoginScreenView_Email" xml:space="preserve">
+    <value>E-Mail</value>
+  </data>
+  <data name="LoginScreenView_Forgot_Password" xml:space="preserve">
+    <value>Passwort vergessen?</value>
+  </data>
 </root>

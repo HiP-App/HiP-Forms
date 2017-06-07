@@ -819,6 +819,69 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to E-Mail.
+        /// </summary>
+        public static string LoginScreenView_Email {
+            get {
+                return ResourceManager.GetString("LoginScreenView_Email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unbekannte E-Mail Adresse.
+        /// </summary>
+        public static string LoginScreenView_Error_Unknown_Email {
+            get {
+                return ResourceManager.GetString("LoginScreenView_Error_Unknown_Email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Falsches Passwort.
+        /// </summary>
+        public static string LoginScreenView_Error_Wrong_Password {
+            get {
+                return ResourceManager.GetString("LoginScreenView_Error_Wrong_Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Passwort vergessen?.
+        /// </summary>
+        public static string LoginScreenView_Forgot_Password {
+            get {
+                return ResourceManager.GetString("LoginScreenView_Forgot_Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Einloggen.
+        /// </summary>
+        public static string LoginScreenView_Login {
+            get {
+                return ResourceManager.GetString("LoginScreenView_Login", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Passwort.
+        /// </summary>
+        public static string LoginScreenView_Password {
+            get {
+                return ResourceManager.GetString("LoginScreenView_Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Registrieren.
+        /// </summary>
+        public static string LoginScreenView_Register {
+            get {
+                return ResourceManager.GetString("LoginScreenView_Register", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Historisches Paderborn.
         /// </summary>
         public static string MainPage_MenuTitle {

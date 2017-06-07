@@ -32,7 +32,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 		        Title = Strings.MainPageViewModel_Profile,
 		        Icon = "ic_account_circle.png"
 		    };
-            accountScreenViewModel = new AccountScreenViewModel (this)
+            loginScreenViewModel = new LoginScreenViewModel (this)
 		    {
 		        Title = Strings.MainPageViewModel_Account,
 		        Icon = "ic_account_circle.png"
@@ -78,7 +78,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         private void SwitchToAccountView ()
 	    {
             mainScreenViewModels.RemoveAt(4);
-            mainScreenViewModels.Insert(4, accountScreenViewModel);
+            mainScreenViewModels.Insert(4, loginScreenViewModel);
         }
 
 	    private void SwitchToProfileView ()
@@ -94,7 +94,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
 		private ObservableCollection<NavigationViewModel> mainScreenViewModels;
 	    private readonly ProfileScreenViewModel profileScreenViewModel;
-	    private readonly AccountScreenViewModel accountScreenViewModel;
+	    private readonly LoginScreenViewModel loginScreenViewModel;
 
         private NavigationViewModel selectedViewModel;
 

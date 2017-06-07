@@ -90,7 +90,7 @@
       <DependentUpon>ProfileScreenView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\Views\ProfileScreenViewModel.cs" />
-    <Compile Include="ViewModels\Views\AccountScreenViewModel.cs" />
+    <Compile Include="ViewModels\Views\LoginScreenViewModel.cs" />
     <Compile Include="ViewModels\Views\IDownloadableListItemViewModel.cs" />
     <Compile Include="Location\LocationManager.cs" />
     <Compile Include="Location\NearbyExhibitManager.cs" />
@@ -159,8 +159,8 @@
     <Compile Include="ViewModels\Views\ExhibitsOverviewViewModel.cs" />
     <Compile Include="ViewModels\Views\LicenseScreenViewModel.cs" />
     <Compile Include="ViewModels\Views\RoutePreviewViewModel.cs" />
-    <Compile Include="Views\AccountScreenView.xaml.cs">
-      <DependentUpon>AccountScreenView.xaml</DependentUpon>
+    <Compile Include="Views\LoginScreenView.xaml.cs">
+      <DependentUpon>LoginScreenView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\AudioToolbarView.xaml.cs">
       <DependentUpon>AudioToolbarView.xaml</DependentUpon>
@@ -451,7 +451,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\AccountScreenView.xaml">
+    <EmbeddedResource Include="Views\LoginScreenView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
