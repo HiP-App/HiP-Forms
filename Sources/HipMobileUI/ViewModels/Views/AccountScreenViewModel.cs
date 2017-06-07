@@ -18,7 +18,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             mainPageViewModel = mainPageVm;
 
             Login = new Command(LoginDummy);
-			Register = new Command(RegisterDummy);
+
         }
 
         public ICommand Login { get; }
@@ -30,10 +30,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             Settings.IsLoggedIn = true;
             mainPageViewModel.UpdateAccountViews();
         }
-		void RegisterDummy()
-		{
-			Debug.WriteLine("##### REGISTER #####");
-			IoCManager.Resolve<INavigationService> ().PushAsync(new RegisterViewModel());
-		}
+
     }
 }
