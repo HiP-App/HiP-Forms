@@ -2,6 +2,8 @@
 using System.Windows.Input;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using Xamarin.Forms;
 using System;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
@@ -39,7 +41,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 
         void GoToRegisterScreenView()
         {
-            //Go to RegisterScreenView here
+           IoCManager.Resolve<INavigationService> ().PushAsync(new RegisterViewModel());
+
         }
 
         void GoToForgotPasswordScreenView()
