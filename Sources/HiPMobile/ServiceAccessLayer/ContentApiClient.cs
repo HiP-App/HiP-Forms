@@ -35,7 +35,39 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer
         /// </summary>
         /// <param name="urlPath">Http request url path</param>
         /// <returns>Json result of the requested url</returns>
-        public async Task<string> GetResponseFromUrl(string urlPath)
+        public async Task<string> GetResponseFromUrlAsString(string urlPath)
+        {
+            var response = await GetHttpWebResponse(urlPath);
+            using (Stream responseStream = response.GetResponseStream())
+            {
+                StreamReader reader = new StreamReader(responseStream, Encoding.UTF8);
+                return reader.ReadToEnd();
+            }
+        }
+
+        /// <summary>
+        /// Returns response as byte array if get was successful (Status 200)
+        /// Returns null if the requested url returns not modified (Status 304)
+        /// Throws a <see cref="NetworkAccessFailedException"/> if the server is not reachable
+        /// Throws an <see cref="ArgumentException"/> if there is an unexpected response code
+        /// Throws a <see cref="NotFoundException"/> if the requestes url was not found (Status 404)
+        /// </summary>
+        /// <param name="urlPath">Http request url path</param>
+        /// <returns>Byte array result of the requested url</returns>
+        public async Task<byte[]> GetResponseFromUrlAsBytes(string urlPath)
+        {
+            var response = await GetHttpWebResponse (urlPath);
+            using (Stream responseStream = response.GetResponseStream ())
+            {
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    responseStream.CopyTo(ms);
+                    return ms.ToArray();
+                }
+            }
+        }
+
+        private async Task<HttpWebResponse> GetHttpWebResponse(string urlPath)
         {
             string fullUrl = ServerEndpoints.DatastoreApiPath + urlPath;
             Exception innerException = null;
@@ -55,11 +87,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer
                     switch (response.StatusCode)
                     {
                         case HttpStatusCode.OK:
-                            using (Stream responseStream = response.GetResponseStream())
-                            {
-                                StreamReader reader = new StreamReader(responseStream, Encoding.UTF8);
-                                return reader.ReadToEnd();
-                            }
+                            return response;
                         case HttpStatusCode.NotModified:
                             return null;
                         default:

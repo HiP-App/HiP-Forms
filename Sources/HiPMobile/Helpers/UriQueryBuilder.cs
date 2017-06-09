@@ -30,7 +30,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers {
             }
             if (includeOnly != null && includeOnly.Any ())
             {
-                parameters.Add ("includeOnly", string.Join (",", includeOnly));
+                foreach (int include in includeOnly)
+                {
+                    parameters.Add("includeOnly", include.ToString ());
+                }
             }
 
             return ToQueryString (parameters);

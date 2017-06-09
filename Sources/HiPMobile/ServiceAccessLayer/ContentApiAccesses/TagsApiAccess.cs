@@ -37,7 +37,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
             string requestPath = @"/Tags";
             requestPath += UriQueryBuilder.GetAdditionalParametersQuery (timestamp, includeOnly);
 
-            string json = await contentApiClient.GetResponseFromUrl(requestPath);
+            string json = await contentApiClient.GetResponseFromUrlAsString(requestPath);
             return JsonConvert.DeserializeObject<TagsDto>(json);
         }
 
@@ -64,7 +64,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
         public async Task<IList<int>> GetIds()
         {
             string requestPath = @"/Tags/ids";
-            string json = await contentApiClient.GetResponseFromUrl(requestPath);
+            string json = await contentApiClient.GetResponseFromUrlAsString(requestPath);
 
             return JsonConvert.DeserializeObject<IList<int>>(json);
         }

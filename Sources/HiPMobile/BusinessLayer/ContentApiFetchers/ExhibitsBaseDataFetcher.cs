@@ -124,8 +124,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             ProcessUpdatedExhibits(listener);
             ProcessNewExhibits(listener);
 
-            var exhibitSet = ExhibitManager.GetExhibitSets().SingleOrDefault();
-            exhibitSet.Timestamp = fetchedChangedExhibits.Max(x => x.Timestamp);
+            if (fetchedChangedExhibits.Any ())
+            {
+                var exhibitSet = ExhibitManager.GetExhibitSets().SingleOrDefault();
+                exhibitSet.Timestamp = fetchedChangedExhibits.Max(x => x.Timestamp);
+            }
         }
 
         private void ProcessUpdatedExhibits(IProgressListener listener)

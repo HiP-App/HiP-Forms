@@ -43,7 +43,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.ServiceAccessLayer
                                 "}" +
                                 "]" +
                                 "}";
-            contentApiSubstitute.GetResponseFromUrl(null).ReturnsForAnyArgs(jsonReturn);
+            contentApiSubstitute.GetResponseFromUrlAsString(null).ReturnsForAnyArgs(jsonReturn);
 
             var tags = await sut.GetTags();
             Assert.AreEqual(1, tags.Total);
@@ -86,7 +86,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.ServiceAccessLayer
                                 "}" +
                                 "]" +
                                 "}";
-            contentApiSubstitute.GetResponseFromUrl(null).ReturnsForAnyArgs(jsonReturn);
+            contentApiSubstitute.GetResponseFromUrlAsString(null).ReturnsForAnyArgs(jsonReturn);
 
             var tags = await sut.GetTags();
             Assert.AreEqual(2, tags.Total);

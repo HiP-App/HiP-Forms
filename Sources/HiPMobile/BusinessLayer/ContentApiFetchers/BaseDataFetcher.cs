@@ -58,7 +58,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             {
                 return;
             }
-            await exhibitsBaseDataFetcher.FetchMediaData(token, listener);
+            await routesBaseDataFetcher.FetchMediaData(token, listener);
             if (token.IsCancellationRequested)
             {
                 return;

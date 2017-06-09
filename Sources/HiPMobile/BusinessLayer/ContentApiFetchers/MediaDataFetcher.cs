@@ -49,8 +49,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
 
         public async Task FetchMedias(IList<int?> mediaIds, CancellationToken token, IProgressListener progressListener)
         {
-            fetchedMedias = await FetchMediaDtos(mediaIds);
-            fetchedFiles = await FetchFileDtos(mediaIds, token, progressListener);
+            var requiredImages = mediaIds.Where (x => x.HasValue).Select (y => y.Value).Distinct().ToList ();
+
+            if (requiredImages.Any())
+            {
+                fetchedMedias = await FetchMediaDtos(requiredImages);
+                fetchedFiles = await FetchFileDtos(requiredImages, token, progressListener);
+            }
         }
 
         public FetchedMediaData CombineMediasAndFiles()
@@ -96,34 +101,30 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             return fetchedData;
         }
 
-        private async Task<IList<MediaDto>> FetchMediaDtos(IList<int?> requiredImages)
+        private async Task<IList<MediaDto>> FetchMediaDtos(IList<int> requiredImages)
         {
-            var medias = await mediasApiAccess.GetMedias(requiredImages.Where(x => x.HasValue).Select(y => y.Value).ToList());
+            var medias = await mediasApiAccess.GetMedias(requiredImages);
             return medias.Items;
         }
 
-        private async Task<IList<FileDto>> FetchFileDtos(IList<int?> requiredImages, CancellationToken token, IProgressListener progressListener)
+        private async Task<IList<FileDto>> FetchFileDtos(IList<int> requiredImages, CancellationToken token, IProgressListener progressListener)
         {
             var files = new List<FileDto>();
-            foreach (int? mediaId in requiredImages)
+            foreach (int mediaId in requiredImages)
             {
                 if (token.IsCancellationRequested)
                 {
                     break;
                 }
-                if (!mediaId.HasValue)
-                {
-                    continue;
-                }
 
                 FileDto file;
                 try
                 {
-                    file = await fileApiAccess.GetFile(mediaId.Value);
+                    file = await fileApiAccess.GetFile(mediaId);
                 }
                 catch (NotFoundException)
                 {
-                    file = new FileDto {Data = BackupData.BackupImageData, MediaId = mediaId.Value};
+                    file = new FileDto {Data = BackupData.BackupImageData, MediaId = mediaId};
                 }
                 files.Add(file);
                 progressListener.ProgressOneStep();

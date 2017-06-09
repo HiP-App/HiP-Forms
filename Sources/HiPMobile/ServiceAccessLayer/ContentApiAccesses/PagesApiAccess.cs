@@ -36,7 +36,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
             string requestPath = $@"/Exhibits/{exhibitId}/Pages";
             requestPath += UriQueryBuilder.GetAdditionalParametersQuery(timestamp, includeOnly);
 
-            string json = await contentApiClient.GetResponseFromUrl(requestPath);
+            string json = await contentApiClient.GetResponseFromUrlAsString(requestPath);
             if (json != null)
             {
                 return JsonConvert.DeserializeObject<PagesDto>(json);
@@ -50,7 +50,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
             string requestPath = @"/Exhibits/Pages";
             requestPath += UriQueryBuilder.GetAdditionalParametersQuery (timestamp, includeOnly);
 
-            string json = await contentApiClient.GetResponseFromUrl(requestPath);
+            string json = await contentApiClient.GetResponseFromUrlAsString(requestPath);
             if (json != null)
             {
                 return JsonConvert.DeserializeObject<PagesDto>(json);
@@ -102,7 +102,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
         public async Task<IList<int>> GetIds()
         {
             string requestPath = @"/Exhibits/Pages/ids";
-            string json = await contentApiClient.GetResponseFromUrl(requestPath);
+            string json = await contentApiClient.GetResponseFromUrlAsString(requestPath);
 
             return JsonConvert.DeserializeObject<IList<int>>(json);
         }

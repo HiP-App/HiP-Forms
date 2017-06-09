@@ -46,7 +46,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.ServiceAccessLayer
                                 "}" +
                                 "]" +
                                 "}";
-            contentApiSubstitute.GetResponseFromUrl(null).ReturnsForAnyArgs(jsonReturn);
+            contentApiSubstitute.GetResponseFromUrlAsString(null).ReturnsForAnyArgs(jsonReturn);
 
             var pages = await sut.GetPages();
             Assert.AreEqual(1, pages.Total);
@@ -87,7 +87,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.ServiceAccessLayer
                                 "}" +
                                 "]" +
                                 "}";
-            contentApiSubstitute.GetResponseFromUrl(null).ReturnsForAnyArgs(jsonReturn);
+            contentApiSubstitute.GetResponseFromUrlAsString(null).ReturnsForAnyArgs(jsonReturn);
 
             var pages = await sut.GetPages();
             Assert.AreEqual(1, pages.Total);
@@ -129,7 +129,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.ServiceAccessLayer
                                 "}" +
                                 "]" +
                                 "}";
-            contentApiSubstitute.GetResponseFromUrl(null).ReturnsForAnyArgs(jsonReturn);
+            contentApiSubstitute.GetResponseFromUrlAsString(null).ReturnsForAnyArgs(jsonReturn);
 
             var pages = await sut.GetPages();
             Assert.AreEqual(1, pages.Total);
@@ -184,7 +184,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.ServiceAccessLayer
                                 "}" +
                                 "]" +
                                 "}";
-            contentApiSubstitute.GetResponseFromUrl(null).ReturnsForAnyArgs(jsonReturn);
+            contentApiSubstitute.GetResponseFromUrlAsString(null).ReturnsForAnyArgs(jsonReturn);
 
             var pages = await sut.GetPages();
             Assert.AreEqual(1, pages.Total);
