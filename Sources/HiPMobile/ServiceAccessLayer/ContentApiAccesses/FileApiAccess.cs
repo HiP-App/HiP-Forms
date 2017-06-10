@@ -31,11 +31,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
         public async Task<FileDto> GetFile (int mediaId)
         {
             string requestPath = $@"/Media/{mediaId}/File";
-            string response = await contentApiClient.GetResponseFromUrl(requestPath);
+            var response = await contentApiClient.GetResponseFromUrlAsBytes(requestPath);
 
             return new FileDto
                 {
-                    Data = Encoding.UTF8.GetBytes (response),
+                    Data = response,
                     MediaId = mediaId
                 };
         }

@@ -44,6 +44,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
         private IList<int?> requiredImages;
         private IList<int?> requiredAudios;
         private IList<PageDto> pageItems;
+        private FetchedMediaData fetchedMedia;
 
         public async Task FetchFullExhibitDataIntoDatabase (string exhibitId, int idForRestApi, CancellationToken token, IProgressListener listener)
         {
@@ -88,10 +89,16 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             return requiredPages.Count;
         }
 
+        public async Task FetchMediaData(CancellationToken token, IProgressListener listener)
+        {
+            await mediaDataFetcher.FetchMedias(requiredImages, token, listener);
+            await mediaDataFetcher.FetchMedias(requiredAudios, token, listener);
+        }
+
         private async Task ProcessPages(string exhibitId, CancellationToken token, IProgressListener listener)
         {
-            var fetchedMediaImages = await mediaDataFetcher.FetchMedias(requiredImages, token, listener);
-            var fetchedMediaAudios = await mediaDataFetcher.FetchMedias(requiredAudios, token, listener);
+            await FetchMediaData(token, listener);
+            fetchedMedia = mediaDataFetcher.CombineMediasAndFiles();
 
             if (token.IsCancellationRequested)
             {
@@ -104,7 +111,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             {
                 var dbPage = PageConverter.Convert(pageDto);
 
-                AddContentToPage(dbPage, pageDto, fetchedMediaImages, fetchedMediaAudios);
+                AddContentToPage(dbPage, pageDto, fetchedMedia.Images, fetchedMedia.Audios);
                 // Add Page with content to the exhibit
                 exhibit.Pages.Add(dbPage);
 
@@ -114,14 +121,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             exhibit.DetailsDataLoaded = true;
         }
 
-        private void AddContentToPage(Page dbPage, PageDto content, FetchedMediaData fetchedMediaImages, FetchedMediaData fetchedMediaAudios)
+        private void AddContentToPage(Page dbPage, PageDto content, IList<Image> fetchedMediaImages, IList<Audio> fetchedMediaAudios)
         {
             switch (dbPage.PageType)
             {
                 case PageType.AppetizerPage:
                     break;
                 case PageType.ImagePage:
-                    var image = fetchedMediaImages.Images.SingleOrDefault(x => x.IdForRestApi == content.Image);
+                    var image = fetchedMediaImages.SingleOrDefault(x => x.IdForRestApi == content.Image);
                 
                     if (image != null)
                     {
@@ -135,7 +142,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                 case PageType.TextPage:
                     break;
                 case PageType.TimeSliderPage:
-                    var images = fetchedMediaImages.Images;
+                    var images = fetchedMediaImages;
 
                     if (images.Count > 0)
                     {
@@ -151,7 +158,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                     break;
             }
 
-            var audio = fetchedMediaAudios.Audios.SingleOrDefault(x => x.IdForRestApi == content.Audio);
+            var audio = fetchedMediaAudios.SingleOrDefault(x => x.IdForRestApi == content.Audio);
 
             if (audio != null)
             {

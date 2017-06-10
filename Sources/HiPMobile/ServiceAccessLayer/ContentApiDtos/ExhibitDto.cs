@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System;
 using System.Collections.Generic;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos
@@ -28,7 +29,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
 
         public double Longitude { get; set; }
 
-        public long Timestamp { get; set; }
+        public DateTimeOffset Timestamp { get; set; }
 
         public bool Used { get; set; }
 

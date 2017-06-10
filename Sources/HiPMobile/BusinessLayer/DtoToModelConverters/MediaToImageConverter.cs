@@ -22,7 +22,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelCo
         public override void Convert(MediaDto dto, Image existingModelObject)
         {
             existingModelObject.IdForRestApi = dto.Id;
-            existingModelObject.UnixTimestamp = dto.Timestamp;
+            existingModelObject.Timestamp = dto.Timestamp;
 
             existingModelObject.Title = dto.Title;
             existingModelObject.Description = dto.Description;

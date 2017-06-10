@@ -12,21 +12,24 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System;
 using NSubstitute;
 using NUnit.Framework;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.ServiceAccessLayer.ContentApiAccesses {
+namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.ServiceAccessLayer.ContentApiAccesses
+{
     [TestFixture]
-    public class MediasApiAccessTest {
+    public class MediasApiAccessTest
+    {
 
         private IContentApiClient contentApiSubstitute;
 
-        [Test, Category ("UnitTest")]
+        [Test, Category("UnitTest")]
         public async void GetMedias_SingleMedia()
         {
-            var sut = CreateSystemUnderTest ();
+            var sut = CreateSystemUnderTest();
             string jsonReturn = "{" +
                                 "total: 1," +
                                 "items: [" +
@@ -35,25 +38,25 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.ServiceAccessLayer
                                 "\"title\": \"Test Title\"," +
                                 "\"description\": \"Test Description\"," +
                                 "\"type\": \"image\"," +
-                                "\"timestamp\": 1492029999," +
+                                "\"timestamp\": \"2017-05-29T10:10:10.10+00:00\"," +
                                 "\"status\": \"Test Status\"," +
                                 "\"used\": true" +
                                 "}" +
                                 "]" +
                                 "}";
-            contentApiSubstitute.GetResponseFromUrl (null).ReturnsForAnyArgs (jsonReturn);
+            contentApiSubstitute.GetResponseFromUrlAsString(null).ReturnsForAnyArgs(jsonReturn);
 
             var medias = await sut.GetMedias();
-            Assert.AreEqual (1, medias.Total);
-            Assert.AreEqual (1, medias.Items.Count);
+            Assert.AreEqual(1, medias.Total);
+            Assert.AreEqual(1, medias.Items.Count);
 
-            var firstMedia = medias.Items [0];
-            Assert.AreEqual (1, firstMedia.Id);
-            Assert.AreEqual ("Test Title", firstMedia.Title);
-            Assert.AreEqual ("Test Description", firstMedia.Description);
-            Assert.AreEqual ("Test Status", firstMedia.Status);
-            Assert.AreEqual (1492029999, firstMedia.Timestamp);
-            Assert.AreEqual (true, firstMedia.Used);
+            var firstMedia = medias.Items[0];
+            Assert.AreEqual(1, firstMedia.Id);
+            Assert.AreEqual("Test Title", firstMedia.Title);
+            Assert.AreEqual("Test Description", firstMedia.Description);
+            Assert.AreEqual("Test Status", firstMedia.Status);
+            Shared.Helpers.AssertionHelper.AreEqual(new DateTimeOffset(2017, 5, 29, 10, 10, 10, 10, TimeSpan.Zero), firstMedia.Timestamp);
+            Assert.AreEqual(true, firstMedia.Used);
         }
 
         [Test, Category("UnitTest")]
@@ -68,7 +71,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.ServiceAccessLayer
                                 "\"title\": \"Test Title\"," +
                                 "\"description\": \"Test Description\"," +
                                 "\"type\": \"image\"," +
-                                "\"timestamp\": 1492029999," +
+                                "\"timestamp\": \"2017-05-29T10:10:10.10+00:00\"," +
                                 "\"status\": \"Test Status\"," +
                                 "\"used\": true" +
                                 "}," +
@@ -77,13 +80,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.ServiceAccessLayer
                                 "\"title\": \"Test Title2\"," +
                                 "\"description\": \"Test Description2\"," +
                                 "\"type\": \"audio\"," +
-                                "\"timestamp\": 2492029999," +
+                                "\"timestamp\": \"2017-05-29T10:10:10.20+00:00\"," +
                                 "\"status\": \"Test Status2\"," +
                                 "\"used\": false" +
                                 "}" +
                                 "]" +
                                 "}";
-            contentApiSubstitute.GetResponseFromUrl(null).ReturnsForAnyArgs(jsonReturn);
+            contentApiSubstitute.GetResponseFromUrlAsString(null).ReturnsForAnyArgs(jsonReturn);
 
             var medias = await sut.GetMedias();
             Assert.AreEqual(2, medias.Total);
@@ -94,7 +97,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.ServiceAccessLayer
             Assert.AreEqual("Test Title", firstMedia.Title);
             Assert.AreEqual("Test Description", firstMedia.Description);
             Assert.AreEqual("Test Status", firstMedia.Status);
-            Assert.AreEqual(1492029999, firstMedia.Timestamp);
+            Shared.Helpers.AssertionHelper.AreEqual(new DateTimeOffset(2017, 5, 29, 10, 10, 10, 10, TimeSpan.Zero), firstMedia.Timestamp);
             Assert.AreEqual(true, firstMedia.Used);
 
             var secondMedia = medias.Items[1];
@@ -102,17 +105,17 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.ServiceAccessLayer
             Assert.AreEqual("Test Title2", secondMedia.Title);
             Assert.AreEqual("Test Description2", secondMedia.Description);
             Assert.AreEqual("Test Status2", secondMedia.Status);
-            Assert.AreEqual(2492029999, secondMedia.Timestamp);
+            Shared.Helpers.AssertionHelper.AreEqual(new DateTimeOffset(2017, 5, 29, 10, 10, 10, 20, TimeSpan.Zero), secondMedia.Timestamp);
             Assert.AreEqual(false, secondMedia.Used);
         }
 
         #region HelperMethods
 
-        private MediasApiAccess CreateSystemUnderTest ()
+        private MediasApiAccess CreateSystemUnderTest()
         {
-            contentApiSubstitute = Substitute.For<IContentApiClient> ();
+            contentApiSubstitute = Substitute.For<IContentApiClient>();
 
-            return new MediasApiAccess (contentApiSubstitute);
+            return new MediasApiAccess(contentApiSubstitute);
         }
 
         #endregion

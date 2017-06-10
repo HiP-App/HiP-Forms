@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
@@ -35,7 +36,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
             return await GetMediasDto(null, null);
         }
 
-        public async Task<MediasDto> GetMedias (long timestamp)
+        public async Task<MediasDto> GetMedias (DateTimeOffset timestamp)
         {
             return await GetMediasDto(timestamp, null);
         }
@@ -45,17 +46,17 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
             return await GetMediasDto(null, includeOnly);
         }
 
-        public async Task<MediasDto> GetMedias (long timestamp, IList<int> includeOnly)
+        public async Task<MediasDto> GetMedias (DateTimeOffset timestamp, IList<int> includeOnly)
         {
             return await GetMediasDto (timestamp, includeOnly);
         }
 
-        private async Task<MediasDto> GetMediasDto(long? timestamp, IList<int> includeOnly)
+        private async Task<MediasDto> GetMediasDto(DateTimeOffset? timestamp, IList<int> includeOnly)
         {
             string requestPath = @"/Media";
             requestPath += UriQueryBuilder.GetAdditionalParametersQuery(timestamp, includeOnly);
 
-            string json = await contentApiClient.GetResponseFromUrl(requestPath);
+            string json = await contentApiClient.GetResponseFromUrlAsString(requestPath);
             if (json != null)
             {
                 return JsonConvert.DeserializeObject<MediasDto>(json);
@@ -67,7 +68,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
         public async Task<IList<int>> GetIds()
         {
             string requestPath = @"/Media/ids";
-            string json = await contentApiClient.GetResponseFromUrl(requestPath);
+            string json = await contentApiClient.GetResponseFromUrlAsString(requestPath);
 
             return JsonConvert.DeserializeObject<IList<int>>(json);
         }

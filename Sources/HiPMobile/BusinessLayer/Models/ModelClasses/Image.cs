@@ -43,7 +43,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 		}
 
         public virtual int IdForRestApi { get; set; }
-        public virtual long UnixTimestamp { get; set; }
+        public virtual DateTimeOffset Timestamp { get; set; }
     }
 }
 

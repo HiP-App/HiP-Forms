@@ -163,7 +163,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         async void DownloadData ()
         {
             // This is where all the the data will be downloaded
-			
             string messageToShow = null;
             string titleToShow = null;
             var fullExhibitDataFetcher = IoCManager.Resolve<IFullExhibitDataFetcher>();
@@ -192,7 +191,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
                 messageToShow = Strings.LoadingPageViewModel_BaseData_DownloadFailed_Text;
                 if (networkAccessStatus == NetworkAccessStatus.MobileAccess)
                 {
-                    messageToShow += Environment.NewLine + Strings.LoadingPageViewModel_BaseData_OnlyMobile;
+                    messageToShow += Environment.NewLine + Strings.LoadingPageViewModel_BaseData_DownloadViaMobile;
                 }
             }
 
@@ -215,21 +214,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             }
         }
 
-        public void UpdateProgress (double newProgress, double maxProgress)
-        {
-            LoadingProgress = newProgress / maxProgress;
-        }
-
-        public void ProgressOneStep ()
-        {
-            throw new NotImplementedException ();
-        }
-
-        public void SetMaxProgress (double maxProgress)
-        {
-            throw new NotImplementedException ();
-        }
-
         public override void OnAppearing()
         {
             base.OnAppearing();
@@ -240,6 +224,25 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         {
             base.OnDisappearing ();
             downloadAborted = true;
+        }
+
+        private double maximumProgress;
+        private double currentProgress;
+
+        public void ProgressOneStep ()
+        {
+            currentProgress++;
+            LoadingProgress = currentProgress/maximumProgress;
+        }
+
+        public void SetMaxProgress (double maxProgress)
+        {
+            maximumProgress = maxProgress;
+        }
+
+        public void UpdateProgress(double newProgress, double maxProgress)
+        {
+            LoadingProgress = newProgress/maxProgress;
         }
     }
 }

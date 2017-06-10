@@ -25,7 +25,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelCo
         public override void Convert(PageDto dto, Page existingModelObject)
         {
             existingModelObject.IdForRestApi = dto.Id;
-            existingModelObject.UnixTimestamp = dto.Timestamp;
+            existingModelObject.Timestamp = dto.Timestamp;
             switch (dto.Type)
             {
                 case PageTypeDto.AppetizerPage:

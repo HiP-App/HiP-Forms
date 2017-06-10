@@ -20,7 +20,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer {
     /// </summary>
     public class NetworkAccessFailedException : Exception {
 
-        public NetworkAccessFailedException (string message) : base (message)
+        public NetworkAccessFailedException (string message, Exception innerException) : base (message, innerException)
         {
             
         }

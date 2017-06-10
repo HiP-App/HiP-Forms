@@ -12,15 +12,17 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System.Threading;
-using System.Threading.Tasks;
+using System;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers.Contracts {
-    public interface IDataToRemoveFetcher {
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer {
+    public class NotFoundException : Exception {
 
-        Task FetchDataToDelete(CancellationToken token);
+        public string RequestedUrl { get; private set; }
 
-        void CleaupRemovedData();
+        public NotFoundException (string requestedUrl)
+        {
+            RequestedUrl = requestedUrl;
+        }
 
     }
 }

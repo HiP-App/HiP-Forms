@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System;
 using NSubstitute;
 using NUnit.Framework;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelConverters;
@@ -36,7 +37,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.BusinessLayer.DtoT
 
             sut.Convert (routeDto, route);
             Assert.AreEqual (1, route.IdForRestApi);
-            Assert.AreEqual (1234, route.UnixTimestamp);
+            Assert.AreEqual (new DateTimeOffset(2017, 5, 29, 10, 10, 10, 10, TimeSpan.Zero), route.Timestamp);
             Assert.AreEqual ("Test Description", route.Name);
             Assert.AreEqual ("Test Title", route.Tag);
         }
@@ -48,7 +49,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.BusinessLayer.DtoT
             return new TagDto
             {
                 Id = 1,
-                Timestamp = 1234,
+                Timestamp = new DateTimeOffset(2017, 5, 29, 10, 10, 10, 10, TimeSpan.Zero),
                 Description = "Test Description",
                 Title = "Test Title"
             };

@@ -12,15 +12,19 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System.Threading;
 using System.Threading.Tasks;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers.Contracts {
-    public interface IDataToRemoveFetcher {
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentHandling {
+    public interface INewDataCenter {
 
-        Task FetchDataToDelete(CancellationToken token);
+        void AddRouteToBeUpdated(Route route);
 
-        void CleaupRemovedData();
+        void AddExhibitToBeUpdated(Exhibit exhibit);
+
+        bool IsNewDataAvailabe();
+
+        Task UpdateData();
 
     }
 }

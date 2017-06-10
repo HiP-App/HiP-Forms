@@ -29,7 +29,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.ServiceAccessLayer
         {
             var sut = CreateSystemUnderTest();
             string jsonReturn = "ThisIsATestByteArray";
-            contentApiSubstitute.GetResponseFromUrl(null).ReturnsForAnyArgs(jsonReturn);
+            contentApiSubstitute.GetResponseFromUrlAsString(null).ReturnsForAnyArgs(jsonReturn);
 
             var file = await sut.GetFile(42);
             Assert.AreEqual(42, file.MediaId);

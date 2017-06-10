@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -21,18 +22,20 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetche
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelConverters;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers {
-    public class ExhibitsBaseDataFetcher : IExhibitsBaseDataFetcher {
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers
+{
+    public class ExhibitsBaseDataFetcher : IExhibitsBaseDataFetcher
+    {
 
         private readonly IExhibitsApiAccess exhibitsApiAccess;
         private readonly IPagesApiAccess pagesApiAccess;
         private readonly IMediaDataFetcher mediaDataFetcher;
-        private readonly IDataLoader dataLoader;
 
         [Dependency]
         public ExhibitConverter ExhibitConverter { private get; set; }
@@ -40,12 +43,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
         [Dependency]
         public PageConverter PageConverter { private get; set; }
 
-        public ExhibitsBaseDataFetcher (IExhibitsApiAccess exhibitsApiAccess, IPagesApiAccess pagesApiAccess, IMediaDataFetcher mediaDataFetcher, IDataLoader dataLoader)
+        public ExhibitsBaseDataFetcher(IExhibitsApiAccess exhibitsApiAccess, IPagesApiAccess pagesApiAccess, IMediaDataFetcher mediaDataFetcher)
         {
             this.exhibitsApiAccess = exhibitsApiAccess;
             this.pagesApiAccess = pagesApiAccess;
             this.mediaDataFetcher = mediaDataFetcher;
-            this.dataLoader = dataLoader;
         }
 
         private IList<ExhibitDto> fetchedChangedExhibits;
@@ -78,7 +80,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             {
                 var dbExhibit = exhibitSet.SingleOrDefault(x => x.IdForRestApi == exhibit.Id);
 
-                if (dbExhibit != null && exhibit.Timestamp != dbExhibit.UnixTimestamp)
+                if (dbExhibit != null && Math.Abs((exhibit.Timestamp - dbExhibit.Timestamp).Seconds) > 1)
                 {
                     updatedExhibits.Add(exhibit, dbExhibit);
                 }
@@ -87,9 +89,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                     newExhibits.Add(exhibit);
                 }
 
-                if (dbExhibit == null || exhibit.Timestamp != dbExhibit.UnixTimestamp)
+                if (dbExhibit == null || Math.Abs((exhibit.Timestamp - dbExhibit.Timestamp).Seconds) > 1)
                 {
-                    if (exhibit.Pages.Any())
+                    if (exhibit.Pages != null && exhibit.Pages.Any())
                     {
                         requiredAppetizerPages.Add(exhibit.Pages.First());
                     }
@@ -97,27 +99,39 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                 }
             }
 
-            appetizerPages = (await pagesApiAccess.GetPages(requiredAppetizerPages)).Items;
-            foreach (var page in appetizerPages)
+            if (requiredAppetizerPages.Any ())
             {
-                requiredExhibitImages.Add(page.Image);
+                appetizerPages = (await pagesApiAccess.GetPages(requiredAppetizerPages)).Items;
+                foreach (var page in appetizerPages)
+                {
+                    requiredExhibitImages.Add(page.Image);
+                }
             }
 
             return requiredExhibitImages.Count + fetchedChangedExhibits.Count;
         }
 
-        public async Task ProcessExhibits(CancellationToken token, IProgressListener listener)
+        public async Task FetchMediaData (CancellationToken token, IProgressListener listener)
         {
-            var fetchedMedia = await mediaDataFetcher.FetchMedias(requiredExhibitImages, token, listener);
-            if (token.IsCancellationRequested)
-            {
-                return;
-            }
-            ProcessUpdatedExhibits(fetchedMedia, listener);
-            ProcessNewExhibits(fetchedMedia, listener);
+            await mediaDataFetcher.FetchMedias(requiredExhibitImages, token, listener);
         }
 
-        private void ProcessUpdatedExhibits(FetchedMediaData fetchedMediaData, IProgressListener listener)
+        private FetchedMediaData fetchedMedia;
+        public void ProcessExhibits(IProgressListener listener)
+        {
+            fetchedMedia = mediaDataFetcher.CombineMediasAndFiles();
+
+            ProcessUpdatedExhibits(listener);
+            ProcessNewExhibits(listener);
+
+            if (fetchedChangedExhibits.Any ())
+            {
+                var exhibitSet = ExhibitManager.GetExhibitSets().SingleOrDefault();
+                exhibitSet.Timestamp = fetchedChangedExhibits.Max(x => x.Timestamp);
+            }
+        }
+
+        private void ProcessUpdatedExhibits(IProgressListener listener)
         {
             foreach (var exhibitPair in updatedExhibits)
             {
@@ -126,31 +140,35 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
 
                 ExhibitConverter.Convert(exhibitDto, dbExhibit);
 
-                AddImageToExhibit(dbExhibit, exhibitDto.Image, fetchedMediaData);
-                AddAppetizerPageToExhibit(exhibitDto, dbExhibit, fetchedMediaData);
-                //TODO: If exhibits content was already downloaded 
-                //-> Show dialog whether to download new data or do it directly depending on setting
-
+                AddImageToExhibit(dbExhibit, exhibitDto.Image, fetchedMedia);
+                AddAppetizerPageToExhibit(exhibitDto, dbExhibit, fetchedMedia);
+                //TODO: Check if exhibit was already downloaded
+                //if(dbExhibit.DetailsDataLoaded)
+                //{
+                //    IoCManager.Resolve<INewDataCenter>().AddExhibitToBeUpdated(dbExhibit);
+                //}
                 listener.ProgressOneStep();
             }
         }
 
-        private void ProcessNewExhibits(FetchedMediaData fetchedMediaData, IProgressListener listener)
+        private void ProcessNewExhibits(IProgressListener listener)
         {
+            var exhibitSet = ExhibitManager.GetExhibitSets().SingleOrDefault();
+
             foreach (var exhibitDto in newExhibits)
             {
                 var dbExhibit = ExhibitConverter.Convert(exhibitDto);
 
-                AddImageToExhibit(dbExhibit, exhibitDto.Image, fetchedMediaData);
-                AddAppetizerPageToExhibit(exhibitDto, dbExhibit, fetchedMediaData);
-
+                AddImageToExhibit(dbExhibit, exhibitDto.Image, fetchedMedia);
+                AddAppetizerPageToExhibit(exhibitDto, dbExhibit, fetchedMedia);
+                exhibitSet.ActiveSet.Add (dbExhibit);
                 listener.ProgressOneStep();
             }
         }
 
         private void AddAppetizerPageToExhibit(ExhibitDto exhibitDto, Exhibit dbExhibit, FetchedMediaData fetchedMediaData)
         {
-            if (exhibitDto.Pages.Any())
+            if (exhibitDto.Pages != null && exhibitDto.Pages.Any())
             {
                 var page = appetizerPages.SingleOrDefault(x => x.Id == exhibitDto.Pages.First());
 
@@ -186,7 +204,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
         {
             if (mediaId.HasValue)
             {
-                var image = fetchedMediaData.Images.SingleOrDefault (x => x.IdForRestApi == mediaId);
+                var image = fetchedMediaData.Images.SingleOrDefault(x => x.IdForRestApi == mediaId);
 
                 if (image != null)
                 {

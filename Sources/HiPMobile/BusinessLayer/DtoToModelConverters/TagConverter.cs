@@ -21,7 +21,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelCo
         public override void Convert (TagDto dto, RouteTag existingModelObject)
         {
             existingModelObject.IdForRestApi = dto.Id;
-            existingModelObject.UnixTimestamp = dto.Timestamp;
+            existingModelObject.Timestamp = dto.Timestamp;
             
             existingModelObject.Tag = dto.Title;
             existingModelObject.Name = dto.Description;

@@ -21,11 +21,18 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer {
     public interface IContentApiClient {
 
         /// <summary>
-        /// Get result for the given path on the content api server
+        /// Get result for the given path on the content api server as string
         /// </summary>
-        /// <param name="path"></param>
+        /// <param name="urlPath"></param>
         /// <returns>String result of the api call</returns>
-        Task<string> GetResponseFromUrl (string path);
+        Task<string> GetResponseFromUrlAsString (string urlPath);
+
+        /// <summary>
+        /// Get result for the given path on the content api server as byte array
+        /// </summary>
+        /// <param name="urlPath"></param>
+        /// <returns>String result of the api call</returns>
+        Task<byte[]> GetResponseFromUrlAsBytes (string urlPath);
 
     }
 }

@@ -29,8 +29,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
         /// <param name="mediaIds"></param>
         /// <param name="token">Can be provided for canceling the action</param>
         /// <param name="progressListener">Can be provided for reporting progress on the download</param>
+        Task FetchMedias (IList<int?> mediaIds, CancellationToken token, IProgressListener progressListener);
+
+        /// <summary>
+        /// Combines media data and files
+        /// Must be called inside a database transaction
+        /// </summary>
         /// <returns></returns>
-        Task<FetchedMediaData> FetchMedias (IList<int?> mediaIds, CancellationToken token, IProgressListener progressListener);
+        FetchedMediaData CombineMediasAndFiles();
 
     }
 }

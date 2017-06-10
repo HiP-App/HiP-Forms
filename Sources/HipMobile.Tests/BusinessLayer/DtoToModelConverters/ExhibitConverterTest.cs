@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System;
 using NSubstitute;
 using NUnit.Framework;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelConverters;
@@ -35,7 +36,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.BusinessLayer.DtoT
 
             sut.Convert (exhibitDto, exhibit);
             Assert.AreEqual (1, exhibit.IdForRestApi);
-            Assert.AreEqual (1234, exhibit.UnixTimestamp);
+            Assert.AreEqual (new DateTimeOffset(2017, 5, 29, 10, 10, 10, 10, TimeSpan.Zero), exhibit.Timestamp);
             Assert.AreEqual ("Test Description", exhibit.Description);
             Assert.AreEqual ("Test Name", exhibit.Name);
             Assert.AreEqual (42.1, exhibit.Location.Latitude);
@@ -49,7 +50,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.BusinessLayer.DtoT
             return new ExhibitDto
             {
                 Id = 1,
-                Timestamp = 1234,
+                Timestamp = new DateTimeOffset(2017, 5, 29, 10, 10, 10, 10, TimeSpan.Zero),
                 Description = "Test Description",
                 Name = "Test Name",
                 Latitude = 42.1,

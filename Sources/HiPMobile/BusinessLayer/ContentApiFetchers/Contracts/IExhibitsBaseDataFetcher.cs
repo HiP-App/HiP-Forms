@@ -30,12 +30,19 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
         Task<int> FetchNeededDataForExhibits();
 
         /// <summary>
-        /// Load the images and put the exhibits into the database
+        /// Load images for exhibits
         /// </summary>
         /// <param name="token"></param>
         /// <param name="listener"></param>
         /// <returns></returns>
-        Task ProcessExhibits(CancellationToken token, IProgressListener listener);
+        Task FetchMediaData(CancellationToken token, IProgressListener listener);
+
+        /// <summary>
+        /// Put the exhibits into the database
+        /// </summary>
+        /// <param name="listener"></param>
+        /// <returns></returns>
+        void ProcessExhibits(IProgressListener listener);
 
         /// <summary>
         /// Indicates whether any exhibit was changed

@@ -13,60 +13,111 @@
 // limitations under the License.
 
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer {
-    public class ContentApiClient : IContentApiClient {
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer
+{
+    public class ContentApiClient : IContentApiClient
+    {
+        private const int MaxRetryCount = 5;
 
         /// <summary>
-        /// Urlpath for the docker container running the HiP-DataStore instance
-        /// </summary>
-        private const string ServerUrl = "https://docker-hip.cs.uni-paderborn.de/develop/datastore/api";
-
-        /// <summary>
-        /// Returns json string if webcall was successful (Status 200)
+        /// Returns json string if get was successful (Status 200)
         /// Returns null if the requested url returns not modified (Status 304)
         /// Throws a <see cref="NetworkAccessFailedException"/> if the server is not reachable
         /// Throws an <see cref="ArgumentException"/> if there is an unexpected response code
+        /// Throws a <see cref="NotFoundException"/> if the requestes url was not found (Status 404)
         /// </summary>
         /// <param name="urlPath">Http request url path</param>
         /// <returns>Json result of the requested url</returns>
-        public async Task<string> GetResponseFromUrl(string urlPath)
+        public async Task<string> GetResponseFromUrlAsString(string urlPath)
         {
-            string fullUrl = ServerUrl + urlPath;
-            var request = (HttpWebRequest)WebRequest.Create(fullUrl);
-            try
+            var response = await GetHttpWebResponse(urlPath);
+            using (Stream responseStream = response.GetResponseStream())
             {
-                var response = (HttpWebResponse)await request.GetResponseAsync ();
+                StreamReader reader = new StreamReader(responseStream, Encoding.UTF8);
+                return reader.ReadToEnd();
+            }
+        }
 
-                switch (response.StatusCode)
+        /// <summary>
+        /// Returns response as byte array if get was successful (Status 200)
+        /// Returns null if the requested url returns not modified (Status 304)
+        /// Throws a <see cref="NetworkAccessFailedException"/> if the server is not reachable
+        /// Throws an <see cref="ArgumentException"/> if there is an unexpected response code
+        /// Throws a <see cref="NotFoundException"/> if the requestes url was not found (Status 404)
+        /// </summary>
+        /// <param name="urlPath">Http request url path</param>
+        /// <returns>Byte array result of the requested url</returns>
+        public async Task<byte[]> GetResponseFromUrlAsBytes(string urlPath)
+        {
+            var response = await GetHttpWebResponse (urlPath);
+            using (Stream responseStream = response.GetResponseStream ())
+            {
+                using (MemoryStream ms = new MemoryStream())
                 {
-                    case HttpStatusCode.OK:
-                        using (Stream responseStream = response.GetResponseStream())
-                        {
-                            StreamReader reader = new StreamReader(responseStream, Encoding.UTF8);
-                            return reader.ReadToEnd();
-                        }
-                    case HttpStatusCode.NotModified:
-                        return null;
-                    default:
-                        throw new ArgumentException($"Unexpected response status: {response.StatusCode}");
+                    responseStream.CopyTo(ms);
+                    return ms.ToArray();
                 }
             }
-            catch (WebException ex)
+        }
+
+        private async Task<HttpWebResponse> GetHttpWebResponse(string urlPath)
+        {
+            string fullUrl = ServerEndpoints.DatastoreApiPath + urlPath;
+            Exception innerException = null;
+
+            for (int i = 0; i < MaxRetryCount; i++)
             {
-                WebResponse errorResponse = ex.Response;
+                if (i != 0)
+                {
+                    await Task.Delay(300);
+                }
+
+                try
+                {
+                    var request = (HttpWebRequest)WebRequest.Create(fullUrl);
+                    var response = (HttpWebResponse)await request.GetResponseAsync();
+
+                    switch (response.StatusCode)
+                    {
+                        case HttpStatusCode.OK:
+                            return response;
+                        case HttpStatusCode.NotModified:
+                            return null;
+                        default:
+                            throw new WebException($"Unexpected response status: {response.StatusCode}");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    innerException = ex;
+                }
+            }
+
+            WebException webException = innerException as WebException;
+            if (webException != null)
+            {
+                WebResponse errorResponse = webException.Response;
+                var httpResponse = errorResponse as HttpWebResponse;
+                if (httpResponse != null && httpResponse.StatusCode == HttpStatusCode.NotFound)
+                {
+                    throw new NotFoundException(fullUrl);
+                }
+
                 using (Stream responseStream = errorResponse.GetResponseStream())
                 {
                     StreamReader reader = new StreamReader(responseStream, Encoding.UTF8);
-                    String errorText = reader.ReadToEnd();
-
-                    throw new NetworkAccessFailedException(errorText);
+                    string exceptionMessage = reader.ReadToEnd();
+                    throw new NetworkAccessFailedException(exceptionMessage, webException);
                 }
             }
+            throw new ArgumentException("Unexpected error during fetching data");
         }
     }
 }

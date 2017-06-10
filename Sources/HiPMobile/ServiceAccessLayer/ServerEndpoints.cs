@@ -11,16 +11,13 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer {
+    public class ServerEndpoints {
 
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers.Contracts {
-    public interface IDataToRemoveFetcher {
-
-        Task FetchDataToDelete(CancellationToken token);
-
-        void CleaupRemovedData();
+        /// <summary>
+        /// Urlpath for the docker container running the HiP-DataStore instance
+        /// </summary>
+        public const string DatastoreApiPath = "https://docker-hip.cs.uni-paderborn.de/develop/datastore/api";
 
     }
 }
