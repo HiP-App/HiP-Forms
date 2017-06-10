@@ -5,9 +5,9 @@ using Xamarin.Forms.Xaml;
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class AccountScreenView : IViewFor<AccountScreenViewModel>
+    public partial class LoginScreenView : IViewFor<LoginScreenViewModel>
     {
-        public AccountScreenView()
+        public LoginScreenView()
         {
             InitializeComponent();
         }
