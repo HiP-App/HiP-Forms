@@ -214,21 +214,21 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
                     AudioToolbar.AudioPlayer.Stop();
                 }
                 // update the UI
-            }
-            if (exhibitUnblocked)
-            {
-                currentViewIndex++;
-                NextViewAvailable = currentViewIndex < pages.Count - 1;
-                PreviousViewAvailable = true;
-                await SetCurrentView();
 
-            }
-            else
-            {
-                await IoCManager.Resolve<INavigationService>()
-                                .DisplayAlert(Strings.ExhibitDetailsPage_Distance_Title, Strings.ExhibitDetailsPage_Distance_Text, Strings.ExhibitDetailsPage_Distance_alert_confirm);
-            }
+                if (exhibitUnblocked)
+                {
+                    currentViewIndex++;
+                    NextViewAvailable = currentViewIndex < pages.Count - 1;
+                    PreviousViewAvailable = true;
+                    await SetCurrentView();
 
+                }
+                else
+                {
+                    await IoCManager.Resolve<INavigationService>()
+                                    .DisplayAlert(Strings.ExhibitDetailsPage_Distance_Title, Strings.ExhibitDetailsPage_Distance_Text, Strings.ExhibitDetailsPage_Distance_alert_confirm);
+                }
+            }
         }
 
         private void SwitchAudioToolbarVisibleState ()
