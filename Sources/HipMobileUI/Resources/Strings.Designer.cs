@@ -287,6 +287,60 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to E-Mail.
+        /// </summary>
+        public static string ForgotPasswordScreenView_Email {
+            get {
+                return ResourceManager.GetString("ForgotPasswordScreenView_Email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Passwort vergessen?.
+        /// </summary>
+        public static string ForgotPasswordScreenView_Forgot_Password {
+            get {
+                return ResourceManager.GetString("ForgotPasswordScreenView_Forgot_Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kein Problem. Wir schicken dir eine E-Mail zum Zurücksetzen deines Passworts..
+        /// </summary>
+        public static string ForgotPasswordScreenView_Info {
+            get {
+                return ResourceManager.GetString("ForgotPasswordScreenView_Info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ungültige E-Mail-Adresse.
+        /// </summary>
+        public static string ForgotPasswordScreenView_Invalid_Email {
+            get {
+                return ResourceManager.GetString("ForgotPasswordScreenView_Invalid_Email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Passwort zurücksetzen.
+        /// </summary>
+        public static string ForgotPasswordScreenView_Reset_Password {
+            get {
+                return ResourceManager.GetString("ForgotPasswordScreenView_Reset_Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unbekannte E-Mail-Adresse. Bitte registriere dich mit deiner E-Mail-Adresse..
+        /// </summary>
+        public static string ForgotPasswordScreenView_Unknown_Email {
+            get {
+                return ResourceManager.GetString("ForgotPasswordScreenView_Unknown_Email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Die Nutzung der App basiert auf Freiwilligkeit. Sämtliche Daten, die im Rahmen der Nutzung der Dienste und Applikation Verwendung finden, dürfen nur erhoben und verarbeitet werden, soweit dies für den Dienst und statistische Forschungs- und Evaluationszwecke erforderlich ist und den Regelungen der Universität Paderborn und dem Datenschutzgesetz NRW entspricht..
         /// </summary>
         public static string LicenseScreenView_Agreement_Text {

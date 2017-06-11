@@ -1,0 +1,62 @@
+﻿using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Input;
+using Xamarin.Forms;
+
+namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
+{
+    class ForgotPasswordScreenViewModel : NavigationViewModel
+    {
+        private readonly MainPageViewModel mainPageViewModel;
+        private String email;
+        private String errorMessage;
+
+        public ICommand ResetPassword { get; }
+
+        public ForgotPasswordScreenViewModel(MainPageViewModel mainPageVm)
+        {
+            mainPageViewModel = mainPageVm;
+
+            ResetPassword = new Command(SendResetPasswordEmail);
+        }
+
+        void SendResetPasswordEmail()
+        {
+            Debug.WriteLine("##### Send password reset email to " + Email + " #####");
+            mainPageViewModel.SwitchToLoginView();
+        }
+
+        void displayInvalidEmailErrorMessage()
+        {
+            ErrorMessage = Strings.ForgotPasswordScreenView_Invalid_Email;
+        }
+
+        void displayUnknownEmailErrorMessage()
+        {
+            ErrorMessage = Strings.ForgotPasswordScreenView_Unknown_Email;
+        }
+
+        void clearErrorMessage()
+        {
+            ErrorMessage = "";
+        }
+
+        public String Email
+        {
+            get { return email; }
+            set { SetProperty(ref email, value); }
+        }
+
+        public String ErrorMessage
+        {
+            get { return errorMessage; }
+            set { SetProperty(ref errorMessage, value); }
+        }
+    }
+}

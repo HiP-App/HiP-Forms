@@ -582,7 +582,7 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   </data>
   <data name="ProfileView_Overview_Score" xml:space="preserve">
     <value>Punkte:</value>
-    </data>
+  </data>
   <data name="LoginScreenView_Error_Unknown_Email" xml:space="preserve">
     <value>Unbekannte E-Mail Adresse</value>
   </data>
@@ -603,5 +603,23 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   </data>
   <data name="LoginScreenView_Forgot_Password" xml:space="preserve">
     <value>Passwort vergessen?</value>
+  </data>
+  <data name="ForgotPasswordScreenView_Email" xml:space="preserve">
+    <value>E-Mail</value>
+  </data>
+  <data name="ForgotPasswordScreenView_Forgot_Password" xml:space="preserve">
+    <value>Passwort vergessen?</value>
+  </data>
+  <data name="ForgotPasswordScreenView_Info" xml:space="preserve">
+    <value>Kein Problem. Wir schicken dir eine E-Mail zum Zurücksetzen deines Passworts.</value>
+  </data>
+  <data name="ForgotPasswordScreenView_Invalid_Email" xml:space="preserve">
+    <value>Ungültige E-Mail-Adresse</value>
+  </data>
+  <data name="ForgotPasswordScreenView_Reset_Password" xml:space="preserve">
+    <value>Passwort zurücksetzen</value>
+  </data>
+  <data name="ForgotPasswordScreenView_Unknown_Email" xml:space="preserve">
+    <value>Unbekannte E-Mail-Adresse. Bitte registriere dich mit deiner E-Mail-Adresse.</value>
   </data>
 </root>
