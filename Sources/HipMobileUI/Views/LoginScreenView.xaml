@@ -4,33 +4,21 @@
              xmlns:helpers="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;assembly=HipMobileUI"
              x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Views.LoginScreenView">
     <ContentView.Content>
-        <Grid Padding="10" HorizontalOptions="Fill">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="0.1*" />
-                <RowDefinition Height="0.1*" />
-                <RowDefinition Height="0.1*" />
-                <RowDefinition Height="0.1*" />
-                <RowDefinition Height="0.1*" />
-                <RowDefinition Height="0.1*" />
-                <RowDefinition Height="0.1*" />
-                <RowDefinition Height="0.1*" />
-                <RowDefinition Height="0.1*" />
-                <RowDefinition Height="0.1*" />
-            </Grid.RowDefinitions>
-            <Entry Grid.Row="4" Keyboard="Email" Placeholder="{helpers:Translate LoginScreenView_Email}" Text="{Binding Email}"></Entry>
-            <Entry Grid.Row="5" IsPassword="True" Placeholder="{helpers:Translate LoginScreenView_Password}" Text="{Binding Password}"></Entry>
-            <Label Grid.Row="6" FontSize="Small" HorizontalOptions="Center" TextColor="Red" Text="{Binding ErrorMessage}"></Label>
-            <Label Grid.Row="7" FontSize="Small" HorizontalOptions="Center" TextColor="Blue" Text="{helpers:Translate LoginScreenView_Register}">
+        <Grid x:Name="Grid" Padding="10" HorizontalOptions="Fill">
+            <Entry x:Name="EmailEntry" Keyboard="Email" Placeholder="{helpers:Translate LoginScreenView_Email}" Text="{Binding Email}"></Entry>
+            <Entry x:Name="PasswordEntry" IsPassword="True" Placeholder="{helpers:Translate LoginScreenView_Password}" Text="{Binding Password}"></Entry>
+            <Label x:Name="ErrorMessageLabel" FontSize="Small" HorizontalOptions="Center" TextColor="Red" Text="{Binding ErrorMessage}"></Label>
+            <Label x:Name="RegisterLabel" FontSize="Small" HorizontalOptions="Center" TextColor="Blue" Text="{helpers:Translate LoginScreenView_Register}">
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding Register}" />
                 </Label.GestureRecognizers>
             </Label>
-            <Label Grid.Row="8" FontSize="Small" HorizontalOptions="Center" TextColor="Blue" Text="{helpers:Translate LoginScreenView_Forgot_Password}">
+            <Label x:Name="ForgotPasswordLabel" FontSize="Small" HorizontalOptions="Center" TextColor="Blue" Text="{helpers:Translate LoginScreenView_Forgot_Password}">
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding ForgotPassword}" />
                 </Label.GestureRecognizers>
             </Label>
-            <Button Grid.Row="9" Text="{helpers:Translate LoginScreenView_Login}" Command="{Binding Login}"></Button>
+            <Button x:Name="LoginButton" Text="{helpers:Translate LoginScreenView_Login}" Command="{Binding Login}"></Button>
         </Grid>
     </ContentView.Content>
 </ContentView>

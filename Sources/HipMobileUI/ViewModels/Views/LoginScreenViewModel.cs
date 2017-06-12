@@ -58,7 +58,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 
         void GoToForgotPasswordScreenView()
         {
+            Debug.WriteLine("Switching to ForgotPassword");
             //Go to ForgotPasswordScreenView here
+            mainPageViewModel.SwitchToForgotPasswordView();
         }
 
         void displayUnknownEmailErrorMessage()
