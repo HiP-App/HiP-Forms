@@ -126,7 +126,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer
             {
             using (HttpClient client = new HttpClient ())
                 {
+                // Lambda expression executed
+                // ReSharper disable AccessToDisposedClosure
                 var result = await TransientRetry.Do (() => client.PostAsync (url, content), new TimeSpan (0, 0, 0, 3));
+                // ReSharper restore AccessToDisposedClosure
                 return result;
                 }
             }
