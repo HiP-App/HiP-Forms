@@ -4,7 +4,11 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
 using Xamarin.Forms;
 using System;
+using System.Threading.Tasks;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.User;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.UserManagement;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Exceptions;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 {
@@ -29,11 +33,28 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         public ICommand Register { get; }
         public ICommand ForgotPassword { get; }
 
-        void PerformLogin()
+        async void PerformLogin()
         {
             Debug.WriteLine("##### LOGIN #####");
-            Debug.WriteLine("Email: " + Email + " Password: " + Password);
-            Settings.IsLoggedIn = true;
+            Debug.WriteLine ("Email: " + Email + " Password: " + Password);
+
+            try
+            {
+            User user = new User (Email, password);
+            UserStatus userTask = await UserManager.LoginUser (new User (email, password));
+            //userTask.Wait ();
+
+            if (userTask == UserStatus.LoggedIn)
+                Settings.IsLoggedIn = true;
+            }
+            catch (InvalidUserNamePassword)
+            {
+            Settings.IsLoggedIn = false;
+            }
+
+
+            
+           
             mainPageViewModel.UpdateAccountViews();
         }
 

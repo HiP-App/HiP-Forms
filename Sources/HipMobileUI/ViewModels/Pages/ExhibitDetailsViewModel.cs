@@ -36,6 +36,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
         private ExhibitSubviewViewModel selectedView;
         private AudioToolbarViewModel audioToolbar;
 
+        private Exhibit exhibit;
         private readonly IList<Page> pages;
         private ICommand nextViewCommand;
         private ICommand previousViewCommand;
@@ -53,17 +54,18 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
 
         private bool additionalInformation;
 
-        public ExhibitDetailsViewModel(Exhibit exhibit) : this(exhibit.Pages, exhibit.Name)
+        public ExhibitDetailsViewModel(Exhibit exhibit) : this(exhibit, exhibit.Pages, exhibit.Name)
         {
 
         }
-        public ExhibitDetailsViewModel (string exhibitId) : this(ExhibitManager.GetExhibit(exhibitId).Pages, ExhibitManager.GetExhibit(exhibitId).Name)
+        public ExhibitDetailsViewModel (string exhibitId) : this(ExhibitManager.GetExhibit(exhibitId), ExhibitManager.GetExhibit(exhibitId).Pages, ExhibitManager.GetExhibit(exhibitId).Name)
         {
             
         }
 
-        public ExhibitDetailsViewModel (IList<Page> pages, string title, bool additionalInformation = false)
+        public ExhibitDetailsViewModel (Exhibit exhibit, IList<Page> pages, string title, bool additionalInformation = false)
         {
+            Exhibit = exhibit;
             this.additionalInformation = additionalInformation;
             AdjustToolbarColor ();
 
@@ -111,7 +113,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
         {
             var currentPage = pages [currentViewIndex];
 
-            Navigation.PushAsync(new ExhibitDetailsViewModel(currentPage.AdditionalInformationPages, Strings.ExhibitDetailsPage_AdditionalInformation, true));
+            Navigation.PushAsync(new ExhibitDetailsViewModel(Exhibit, currentPage.AdditionalInformationPages, Strings.ExhibitDetailsPage_AdditionalInformation, true));
         }
 
         private CancellationTokenSource tokenSource;
@@ -254,7 +256,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
             switch (currentPage.PageType)
             {
                 case PageType.AppetizerPage:
-                    SelectedView = new AppetizerViewModel(Title, currentPage.AppetizerPage);
+                    SelectedView = new AppetizerViewModel(Exhibit, Title, currentPage.AppetizerPage);
                     break;
                 case PageType.ImagePage:
                     SelectedView = new ImageViewModel(currentPage.ImagePage, ToggleVisibilityOfNavigationButtons);
@@ -344,6 +346,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
         }
 
         #region properties
+
+
+        public Exhibit Exhibit
+        {
+            get { return exhibit; }
+            set { SetProperty(ref exhibit, value); }
+        }
+
 
         /// <summary>
         /// The currently displayed subview.
