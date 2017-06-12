@@ -10,6 +10,7 @@ using Newtonsoft.Json;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.User;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.AuthApiDto;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.AuthenticationApiAccess;
@@ -32,7 +33,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.UserManageme
                 {
                 user.Token = await AuthApiAccess.GetToken (user.UserName, user.Password);
                 user.CurrentStatus = UserStatus.LoggedIn;
-                
+                Settings.Username = user.UserName;
+                Settings.Password = user.Password;
+
                 }
             catch (InvalidUserNamePassword)
                 {

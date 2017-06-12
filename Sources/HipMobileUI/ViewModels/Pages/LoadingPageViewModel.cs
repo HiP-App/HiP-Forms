@@ -315,9 +315,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
             IoCManager.RegisterInstance(typeof(INearbyExhibitManager), new NearbyExhibitManager());
             IoCManager.RegisterInstance(typeof(INearbyRouteManager), new NearbyRouteManager());
-            IoCManager.RegisterInstance (typeof(IUserManager), new UserManager ());
 
             IoCManager.RegisterType<IAuthApiAccess, AuthApiAccess> ();
+            IoCManager.RegisterInstance (typeof(IUserManager), new UserManager ());
+
+
         }
 
         /// <summary>
