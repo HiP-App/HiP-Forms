@@ -4,24 +4,12 @@
              x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Views.RegisterView"
              xmlns:helpers="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;assembly=HipMobileUI">
 <ContentView.Content>
-        <Grid Padding="10" HorizontalOptions="Fill">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="0.1*" />
-                <RowDefinition Height="0.1*" />
-                <RowDefinition Height="0.1*" />
-                <RowDefinition Height="0.1*" />
-                <RowDefinition Height="0.1*" />
-                <RowDefinition Height="0.1*" />
-                <RowDefinition Height="0.1*" />
-                <RowDefinition Height="0.1*" />
-				<RowDefinition Height="0.1*" />
-				<RowDefinition Height="0.1*" />
-            </Grid.RowDefinitions>
-            <Entry Grid.Row="2" Keyboard="Email" Placeholder="{helpers:Translate RegisterScreenView_Email}" Text="{Binding Email}"></Entry>
-            <Entry Grid.Row="4" IsPassword="True" Placeholder="{helpers:Translate RegisterScreenView_Password}" Text="{Binding Password}"></Entry>
-            <Entry Grid.Row="6" IsPassword="True" Placeholder="{helpers:Translate RegisterScreenView_RepeatPassword}" Text="{Binding RepeatPassword}"></Entry>
-			<Label Grid.Row="8" FontSize="Small" HorizontalOptions="Center" TextColor="Red" Text="{Binding ErrorMessage}"></Label>
-			<StackLayout x:Name="ButtonView" Grid.Row="9" Orientation="Vertical" VerticalOptions="End" Padding="0">
+        <Grid x:Name="Grid" Padding="10" HorizontalOptions="Fill">
+            <Entry x:Name="EmailEntry" Keyboard="Email" Placeholder="{helpers:Translate RegisterScreenView_Email}" Text="{Binding Email}"></Entry>
+            <Entry x:Name="PasswordEntry" IsPassword="True" Placeholder="{helpers:Translate RegisterScreenView_Password}" Text="{Binding Password}"></Entry>
+            <Entry x:Name="RePasswordEntry" IsPassword="True" Placeholder="{helpers:Translate RegisterScreenView_RepeatPassword}" Text="{Binding RepeatPassword}"></Entry>
+			<Label x:Name="ErrorMsgLabel" FontSize="Small" HorizontalOptions="Center" TextColor="Red" Text="{Binding ErrorMessage}"></Label>
+			<StackLayout x:Name="ButtonView" Orientation="Vertical" VerticalOptions="End" Padding="0">
 				<Label Text="{helpers:Translate RegisterScreenView_Register}" FontSize="20" TextColor="{StaticResource AccentColor}"
 	                HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
 	                    <Label.GestureRecognizers>

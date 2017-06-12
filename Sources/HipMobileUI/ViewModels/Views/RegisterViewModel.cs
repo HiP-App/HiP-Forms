@@ -22,6 +22,16 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 		private String repassword;
 		private String errorMessage;
 
+		//Register = new Command(RegisterUser);
+
+		//public ICommand Register { get; }
+
+		void RegisterUser()
+		{
+			//Throw error if incorrect user details
+			//If successful then add user and redirect to login page
+		}
+
 		void clearErrorMessage()
 		{
 			ErrorMessage = "";

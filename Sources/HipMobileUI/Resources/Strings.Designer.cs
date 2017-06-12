@@ -742,30 +742,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
             }
         }
         
-        public static string AudioToolbarView_Caption {
-            get {
-                return ResourceManager.GetString("AudioToolbarView_Caption", resourceCulture);
-            }
-        }
-        
-        public static string AudioToolbarView_Pause {
-            get {
-                return ResourceManager.GetString("AudioToolbarView_Pause", resourceCulture);
-            }
-        }
-        
-        public static string AudioToolbarView_Play {
-            get {
-                return ResourceManager.GetString("AudioToolbarView_Play", resourceCulture);
-            }
-        }
-        
-        public static string AudioToolbarView_Progress {
-            get {
-                return ResourceManager.GetString("AudioToolbarView_Progress", resourceCulture);
-            }
-        }
-        
         public static string SettingsScreenView_AppIntro_Title {
             get {
                 return ResourceManager.GetString("SettingsScreenView_AppIntro_Title", resourceCulture);
@@ -832,54 +808,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
             }
         }
         
-        public static string ExhibitDetailsPage_AudioToolbar {
-            get {
-                return ResourceManager.GetString("ExhibitDetailsPage_AudioToolbar", resourceCulture);
-            }
-        }
-        
-        public static string ExhibitDetailsPage_AgreeFeature {
-            get {
-                return ResourceManager.GetString("ExhibitDetailsPage_AgreeFeature", resourceCulture);
-            }
-        }
-        
-        public static string ExhibitDetailsPage_AudioPlay {
-            get {
-                return ResourceManager.GetString("ExhibitDetailsPage_AudioPlay", resourceCulture);
-            }
-        }
-        
-        public static string ExhibitDetailsPage_DisagreeFeature {
-            get {
-                return ResourceManager.GetString("ExhibitDetailsPage_DisagreeFeature", resourceCulture);
-            }
-        }
-        
-        public static string ExhibitDetailsPage_Hinweis {
-            get {
-                return ResourceManager.GetString("ExhibitDetailsPage_Hinweis", resourceCulture);
-            }
-        }
-        
-        public static string ExhibitDetailsPage_PageSwitch {
-            get {
-                return ResourceManager.GetString("ExhibitDetailsPage_PageSwitch", resourceCulture);
-            }
-        }
-        
-        public static string AudioTranscriptView_Sources_Title {
-            get {
-                return ResourceManager.GetString("AudioTranscriptView_Sources_Title", resourceCulture);
-            }
-        }
-        
-        public static string AudioTranscriptView_Subtitles_Title {
-            get {
-                return ResourceManager.GetString("AudioTranscriptView_Subtitles_Title", resourceCulture);
-            }
-        }
-        
+
         public static string UserOnboarding_Explore_Text {
             get {
                 return ResourceManager.GetString("UserOnboarding_Explore_Text", resourceCulture);
@@ -976,42 +905,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
             }
         }
         
-        public static string ExhibitDetailsPage_AdditionalInformation {
-            get {
-                return ResourceManager.GetString("ExhibitDetailsPage_AdditionalInformation", resourceCulture);
-            }
-        }
-        
-        public static string ExhibitOrRouteNearby_Confirm {
-            get {
-                return ResourceManager.GetString("ExhibitOrRouteNearby_Confirm", resourceCulture);
-            }
-        }
-        
-        public static string ExhibitNearby_ExhibitNearby {
-            get {
-                return ResourceManager.GetString("ExhibitNearby_ExhibitNearby", resourceCulture);
-            }
-        }
-        
-        public static string ExhibitOrRouteNearby_Question_Part1 {
-            get {
-                return ResourceManager.GetString("ExhibitOrRouteNearby_Question_Part1", resourceCulture);
-            }
-        }
-        
-        public static string ExhibitOrRouteNearby_Question_Part2 {
-            get {
-                return ResourceManager.GetString("ExhibitOrRouteNearby_Question_Part2", resourceCulture);
-            }
-        }
-        
-        public static string ExhibitOrRouteNearby_Reject {
-            get {
-                return ResourceManager.GetString("ExhibitOrRouteNearby_Reject", resourceCulture);
-            }
-        }
-        
         public static string RouteNearby {
             get {
                 return ResourceManager.GetString("RouteNearby", resourceCulture);
@@ -1090,41 +983,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
             }
         }
         
-        public static string ExhibitsOverviewView_EmptyList {
-            get {
-                return ResourceManager.GetString("ExhibitsOverviewView_EmptyList", resourceCulture);
-            }
-        }
+
         
         public static string RoutesOverviewView_EmptyList {
             get {
                 return ResourceManager.GetString("RoutesOverviewView_EmptyList", resourceCulture);
             }
         }
-        
-        public static string DownloadData_Title {
-            get {
-                return ResourceManager.GetString("DownloadData_Title", resourceCulture);
-            }
-        }
-        
-        public static string DownloadData_Cancel {
-            get {
-                return ResourceManager.GetString("DownloadData_Cancel", resourceCulture);
-            }
-        }
-        
-        public static string DownloadData_Accept {
-            get {
-                return ResourceManager.GetString("DownloadData_Accept", resourceCulture);
-            }
-        }
-        
-        public static string DownloadData_Always {
-            get {
-                return ResourceManager.GetString("DownloadData_Always", resourceCulture);
-            }
-        }
+
+
         
         public static string SettingsScreenView_Data_Title {
             get {
@@ -1143,18 +1010,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
                 return ResourceManager.GetString("StorageTitle", resourceCulture);
             }
         }
-        
-        public static string DownloadDetails_Text_Part1 {
-            get {
-                return ResourceManager.GetString("DownloadDetails_Text_Part1", resourceCulture);
-            }
-        }
-        
-        public static string DownloadDetails_Text_Part2 {
-            get {
-                return ResourceManager.GetString("DownloadDetails_Text_Part2", resourceCulture);
-            }
-        }
+
         
         public static string MainPageViewModel_Account {
             get {
