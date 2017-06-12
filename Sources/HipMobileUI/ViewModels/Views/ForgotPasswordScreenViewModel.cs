@@ -32,17 +32,17 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             mainPageViewModel.SwitchToLoginView();
         }
 
-        void displayInvalidEmailErrorMessage()
+        void DisplayInvalidEmailErrorMessage()
         {
             ErrorMessage = Strings.ForgotPasswordScreenView_Invalid_Email;
         }
 
-        void displayUnknownEmailErrorMessage()
+        void DisplayUnknownEmailErrorMessage()
         {
             ErrorMessage = Strings.ForgotPasswordScreenView_Unknown_Email;
         }
 
-        void clearErrorMessage()
+        void ClearErrorMessage()
         {
             ErrorMessage = "";
         }
