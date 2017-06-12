@@ -38,23 +38,16 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             Debug.WriteLine("##### LOGIN #####");
             Debug.WriteLine ("Email: " + Email + " Password: " + Password);
 
-            try
-            {
             User user = new User (Email, password);
-            UserStatus userTask = await UserManager.LoginUser (new User (email, password));
-            //userTask.Wait ();
+            UserStatus userStatus = await UserManager.LoginUser (new User (email, password));
 
-            if (userTask == UserStatus.LoggedIn)
+            if (userStatus == UserStatus.LoggedIn)
                 Settings.IsLoggedIn = true;
-            }
-            catch (InvalidUserNamePassword)
-            {
-            Settings.IsLoggedIn = false;
-            }
 
+            //Implement
+            //if (userStatus == UserStatus.InCorrectUserNameandPassword)
+                //??
 
-            
-           
             mainPageViewModel.UpdateAccountViews();
         }
 
