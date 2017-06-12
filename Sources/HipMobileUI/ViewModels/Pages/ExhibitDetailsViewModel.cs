@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -23,6 +24,7 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.AudioPlayer;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views.ExhibitDetails;
@@ -50,16 +52,16 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
         private bool audioToolbarVisible;
         private bool hasAdditionalInformation;
         private bool additionalInformationButtonVisible;
-
+        private bool exhibitUnblocked = true;
         private bool additionalInformation;
 
         public ExhibitDetailsViewModel(Exhibit exhibit) : this(exhibit.Pages, exhibit.Name)
         {
-
+            exhibitUnblocked = exhibit.Unlocked;
         }
-        public ExhibitDetailsViewModel (string exhibitId) : this(ExhibitManager.GetExhibit(exhibitId).Pages, ExhibitManager.GetExhibit(exhibitId).Name)
+        public ExhibitDetailsViewModel (string exhibitId, Exhibit exhibit) : this(ExhibitManager.GetExhibit(exhibitId).Pages, ExhibitManager.GetExhibit(exhibitId).Name,exhibit.Unlocked)
         {
-            
+            exhibitUnblocked = ExhibitManager.GetExhibit (exhibitId).Unlocked;
         }
 
         public ExhibitDetailsViewModel (IList<Page> pages, string title, bool additionalInformation = false)
@@ -88,10 +90,16 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
                 NextViewAvailable = true;
 
             // init commands
+          //this.ExhibitUnblocked = ExhibitUnblocked;        
             NextViewCommand = new Command (async () => await GotoNextView ());
             PreviousViewCommand = new Command (GotoPreviousView);
             ShowAudioToolbarCommand = new Command (SwitchAudioToolbarVisibleState);
             ShowAdditionalInformationCommand = new Command (ShowAdditionalInformation);
+        }
+
+        public ExhibitDetailsViewModel(string id)
+        {
+            this.id = id;
         }
 
         private void AdjustToolbarColor ()
@@ -129,6 +137,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
         }
 
         private const int NavigationButtonsToggleDelay = 2000;
+        private string id;
+
         /// <summary>
         /// Toggles the visibility of then navigation buttons after <see cref="NavigationButtonsToggleDelay"/> milliseconds
         /// unless the task has been canceled using the token
@@ -191,6 +201,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
         /// Go to the next available view.
         /// </summary>
         /// <returns></returns>
+    
+
+
         private async Task GotoNextView ()
         {
             if (currentViewIndex < pages.Count - 1)
@@ -198,14 +211,23 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
                 // stop audio
                 if (AudioToolbar.AudioPlayer.IsPlaying)
                 {
-                    AudioToolbar.AudioPlayer.Stop ();
+                    AudioToolbar.AudioPlayer.Stop();
                 }
-
                 // update the UI
-                currentViewIndex++;
-                NextViewAvailable = currentViewIndex < pages.Count - 1;
-                PreviousViewAvailable = true;
-                await SetCurrentView ();
+
+                if (exhibitUnblocked)
+                {
+                    currentViewIndex++;
+                    NextViewAvailable = currentViewIndex < pages.Count - 1;
+                    PreviousViewAvailable = true;
+                    await SetCurrentView();
+
+                }
+                else
+                {
+                    await IoCManager.Resolve<INavigationService>()
+                                    .DisplayAlert(Strings.ExhibitDetailsPage_Distance_Title, Strings.ExhibitDetailsPage_Distance_Text, Strings.ExhibitDetailsPage_Distance_alert_confirm);
+                }
             }
         }
 
