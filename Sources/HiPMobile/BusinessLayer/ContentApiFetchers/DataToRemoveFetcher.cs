@@ -62,7 +62,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             {
                 return;
             }
-            //allPages = await pagesApiAccess.GetIds();
+            allPages = await pagesApiAccess.GetIds();
             if (token.IsCancellationRequested)
             {
                 return;
@@ -108,7 +108,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             }
             foreach (var exhibit in exhibits)
             {
-                //RemovePages(exhibit, deletedPages, deletedImages, deletedAudios);
+                RemovePages(exhibit, deletedPages, deletedImages, deletedAudios);
                 if (exhibit.Image != null && !allMedias.Contains(exhibit.Image.IdForRestApi))
                 {
                     deletedImages.Add(exhibit.Image);
@@ -140,10 +140,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             {
                 DbManager.DeleteBusinessEntity(audio);
             }
-            /*foreach (var page in deletedPages)
+            foreach (var page in deletedPages)
             {
                 DbManager.DeleteBusinessEntity(page);
-            }*/
+            }
         }
 
         private void RemoveWaypoints(Route route, List<Waypoint> deletedWaypoints, List<Exhibit> deletedExhibits)
