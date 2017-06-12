@@ -11,7 +11,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Authent
 
      Task<Token> GetToken (string userName, string password);
 
-     Task<string> Register (string userName, string password, string confirmPassword);
+     Task<bool> Register (string userName, string password, string confirmPassword);
 
      Task<string> ForgotPassword (string userName);
 

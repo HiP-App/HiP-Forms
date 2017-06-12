@@ -30,7 +30,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Authent
                 new KeyValuePair<string, string> (Constants.Password, password)
             });
 
-            var result = await clientApiClient.PostRequestFormBased (Constants.TokenUrl, content);
+            var result = await clientApiClient.PostRequestFormBased (ServerEndpoints.TokenUrl, content);
             
             if (result.StatusCode == HttpStatusCode.BadRequest)
                 {
@@ -44,9 +44,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Authent
             Token token = JsonConvert.DeserializeObject<Token> (jsonPayload);
             return token;
             }
-        public async Task<string> Register (string userName, string password, string confirmPassword)
+        public async Task<bool> Register (string userName, string password, string confirmPassword)
             {
-
             FormUrlEncodedContent content = new FormUrlEncodedContent (new[]
             {
             new KeyValuePair<string, string> (Constants.UserName, userName),
@@ -54,8 +53,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Authent
             new KeyValuePair<string, string> (Constants.ConfirmPassword, confirmPassword)
             });
             IContentApiClient client = new ContentApiClient ();
-            var result = await client.PostRequestFormBased (Constants.TokenUrl, content);
-            return await result.Content.ReadAsStringAsync ();
+            var result = await client.PostRequestFormBased (ServerEndpoints.TokenUrl, content);
+
+            if (result.StatusCode == HttpStatusCode.OK)
+                {
+                return true;
+                }
+            return false;
             }
 
         public async Task<string> ForgotPassword (string userName)
@@ -64,7 +68,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Authent
             {
             new KeyValuePair<string, string> (Constants.UserName, userName),
             });
-            var result = await clientApiClient.PostRequestFormBased (Constants.TokenUrl, content);
+            var result = await clientApiClient.PostRequestFormBased (ServerEndpoints.ForgotPasswordUrl, content);
             return await result.Content.ReadAsStringAsync ();
             }
 

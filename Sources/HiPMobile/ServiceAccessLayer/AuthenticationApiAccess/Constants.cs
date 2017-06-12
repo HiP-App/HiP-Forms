@@ -17,12 +17,6 @@ using System.Collections.Generic;
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.AuthenticationApiAccess{
     public class Constants {
 
-        //Url
-        private const  string BaseUrl = "https://docker-hip.cs.uni-paderborn.de/develop/authv2/";
-        public  const  string TokenUrl = BaseUrl + "connect/token";
-        public  const  string RegistrationUrl = BaseUrl + "Account/Register";
-        public  const  string ForgotPasswordUrl = BaseUrl + "ForgotUrl";
-
         public const string UserName = "username";
         public const string Password = "password";
         public const string ConfirmPassword = "confirmpassword";

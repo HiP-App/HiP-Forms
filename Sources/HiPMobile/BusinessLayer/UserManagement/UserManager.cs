@@ -17,10 +17,16 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Exceptions;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.UserManagement
     {
-    public class UserManager {
+    public interface IUserManager {
+        Task<UserStatus> LoginUser (User user);
+        Task<UserStatus> Logout (User user);
+        Task<UserStatus> RegisterUser (User user);
+
+    }
+    public class UserManager:IUserManager {
 
         private readonly static IAuthApiAccess AuthApiAccess = IoCManager.Resolve<IAuthApiAccess> ();
-        public async static Task<UserStatus> LoginUser (User user)
+        public async Task<UserStatus> LoginUser (User user)
             {
             try
                 {
@@ -35,13 +41,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.UserManageme
             return user.CurrentStatus;
             }
 
-        public UserStatus Logout (User user)
+        public  async Task<UserStatus> Logout (User user)
             {
             user.Token = null;
             return UserStatus.LoggedOut;
             }
 
-        public UserStatus RegisterUser (User user)
+        public async Task<UserStatus> RegisterUser (User user)
         {
         return UserStatus.Registered;
         }

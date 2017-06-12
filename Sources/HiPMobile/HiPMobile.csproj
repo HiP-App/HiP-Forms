@@ -70,9 +70,9 @@
     <Compile Include="BusinessLayer\DtoToModelConverters\MediaToAudioConverter.cs" />
     <Compile Include="BusinessLayer\DtoToModelConverters\MediaToImageConverter.cs" />
     <Compile Include="BusinessLayer\DtoToModelConverters\PageConverter.cs" />
-    <Compile Include="BusinessLayer\Models\ModelClasses\User\User.cs" />
+    <Compile Include="BusinessLayer\Models\User\User.cs" />
     <Compile Include="BusinessLayer\UserManagement\UserManager.cs" />
-    <Compile Include="BusinessLayer\Models\ModelClasses\User\UserStatus.cs" />
+    <Compile Include="BusinessLayer\Models\User\UserStatus.cs" />
     <Compile Include="Common\Contracts\IStorageSizeProvider.cs" />
     <Compile Include="BusinessLayer\InteractiveSources\ConsecutiveNumberAndConstantInteractiveSourceSubstitute.cs" />
     <Compile Include="BusinessLayer\InteractiveSources\ConsecutiveNumberInteractiveSourceSubstitute.cs" />
