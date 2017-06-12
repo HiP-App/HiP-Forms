@@ -175,18 +175,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
         }
 
         /// <summary>
-        /// The username of the current user
-        /// </summary>
-        private const string UserNameKey = "username_key";
-        private static readonly string UsernameDefault = "Max Power";
-
-        public static string Username
-        {
-            get { return AppSettings.GetValueOrDefault(UserNameKey, UsernameDefault); }
-            set { AppSettings.AddOrUpdateValue(UserNameKey, value); }
-        }
-
-        /// <summary>
         /// The e-mail of the current user
         /// </summary>
         private const string EMailKey = "email_key";
@@ -199,7 +187,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
         }
 
         /// <summary>
-        /// The e-mail of the current user
+        /// The password of the current user
         /// </summary>
         private const string PasswordKey = "password_key";
         private static readonly string PasswordDefault = "";
