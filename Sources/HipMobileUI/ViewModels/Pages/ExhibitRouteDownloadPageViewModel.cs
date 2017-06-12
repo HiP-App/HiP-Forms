@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Diagnostics;
+using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
@@ -9,10 +10,12 @@ using Xamarin.Forms;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 {
-    class ExhibitRouteDownloadViewModel : NavigationViewModel, IProgressListener
-    {
+    class ExhibitRouteDownloadViewModel : NavigationViewModel, IProgressListener {
+
+        private IDownloadable downloadable;
         public ExhibitRouteDownloadViewModel (IDownloadable downloadable, IDownloadableListItemViewModel downloadableListItemViewModel)
         {
+            this.downloadable = downloadable;
             DownloadableId = downloadable.Id;
             DownloadableName = downloadable.Name;
             DownloadableDescription = downloadable.Description;
@@ -121,9 +124,31 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         async void DownloadData ()
         {
             // This is where all the the data will be downloaded
-            // maybe you do something like this:   Database.loadInterestDataFor(InterestId);    // Interests are Routes and Exhibits
-            
+            if (downloadable == null)
+                return;
             LoadingProgress = 0;
+
+            if (downloadable.GetType () == typeof (Exhibit))
+            {
+                // We want to download an Exhibit
+                // This should be implemented by Rico
+            }
+            else
+            {
+                if (downloadable.GetType () == typeof (Route))
+                {
+                    // We want to download a Route
+                    // Load audio for description
+                    // Load all to this route related exhibits
+                }
+                else
+                {
+                    return; // This case should never occure since we only have exhibits and routes that can create the page related to this viewmodel
+                }
+            }
+
+            // This can be called from the class that actually handles the download of the data
+            // Move the updates up to where the actual download happens
             for (var x = 0; x < 50; x++)
             {
                 UpdateProgress (LoadingProgress+.02, 1);
@@ -131,6 +156,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                 if (downloadAborted)
                     return;
             }
+
             SetDetailsAvailable ();
         }
 
