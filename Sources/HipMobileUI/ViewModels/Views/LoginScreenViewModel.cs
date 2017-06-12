@@ -47,17 +47,17 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             //Go to ForgotPasswordScreenView here
         }
 
-        void displayUnknownEmailErrorMessage()
+        void DisplayUnknownEmailErrorMessage()
         {
             ErrorMessage = Strings.LoginScreenView_Error_Unknown_Email;
         }
 
-        void displayWrongPasswordErrorMessage()
+        void DisplayWrongPasswordErrorMessage()
         {
             ErrorMessage = Strings.LoginScreenView_Error_Wrong_Password;
         }
 
-        void clearErrorMessage()
+        void ClearErrorMessage()
         {
             ErrorMessage = "";
         }
