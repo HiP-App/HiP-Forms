@@ -24,29 +24,51 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         {
             mainPageViewModel = mainPageVm;
 
-            Login = new Command(PerformLogin);
-            Register = new Command(GoToRegisterScreenView);
-            ForgotPassword = new Command(GoToForgotPasswordScreenView);
+            LoginCommand = new Command(OnLoginClicked);
+            RegisterCommand = new Command(OnRegisterClicked);
+            ForgotPasswordCommand = new Command(OnForgotPasswordClicked);
         }
 
-        public ICommand Login { get; }
-        public ICommand Register { get; }
-        public ICommand ForgotPassword { get; }
+        public ICommand LoginCommand { get; }
+        public ICommand RegisterCommand { get; }
+        public ICommand ForgotPasswordCommand { get; }
+
+        void OnLoginClicked()
+        {
+            if(String.IsNullOrWhiteSpace(Email))
+            {
+                // Display Error
+            }
+
+            if(String.IsNullOrWhiteSpace(Password))
+            {
+                // Display Error
+            }
+
+            PerformLogin();
+        }
+
+        void OnRegisterClicked()
+        {
+            GoToRegisterScreenView();
+        }
+
+        void OnForgotPasswordClicked()
+        {
+            GoToForgotPasswordScreenView();
+        }
 
         async void PerformLogin()
         {
-            Debug.WriteLine("##### LOGIN #####");
-            Debug.WriteLine ("Email: " + Email + " Password: " + Password);
-
-            User user = new User (Email, password);
-            UserStatus userStatus = await UserManager.LoginUser (new User (email, password));
+            User user = new User (Email, Password);
+            UserStatus userStatus = await UserManager.LoginUser (new User (Email, Password));
 
             if (userStatus == UserStatus.LoggedIn)
                 Settings.IsLoggedIn = true;
 
-            //Implement
-            //if (userStatus == UserStatus.InCorrectUserNameandPassword)
-                //??
+            if (userStatus == UserStatus.InCorrectUserNameandPassword)
+                DisplayWrongPasswordErrorMessage();
+                
 
             mainPageViewModel.UpdateAccountViews();
         }
@@ -58,8 +80,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 
         void GoToForgotPasswordScreenView()
         {
-            Debug.WriteLine("Switching to ForgotPassword");
-            //Go to ForgotPasswordScreenView here
             mainPageViewModel.SwitchToForgotPasswordView();
         }
 

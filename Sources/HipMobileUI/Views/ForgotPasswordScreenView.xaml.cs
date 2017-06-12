@@ -24,6 +24,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
             deviceOrientation = DeviceOrientation.Undefined;
         }
 
+        private void EmailEntry_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            ErrorMessageLabel.Text = "";
+        }
+
         protected override void OnSizeAllocated(double width, double height)
         {
             base.OnSizeAllocated(width, height);
