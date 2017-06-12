@@ -41,6 +41,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.UserManageme
             return UserStatus.LoggedOut;
             }
 
+        public UserStatus RegisterUser (User user)
+        {
+        return UserStatus.Registered;
+        }
+
         }
     }
 

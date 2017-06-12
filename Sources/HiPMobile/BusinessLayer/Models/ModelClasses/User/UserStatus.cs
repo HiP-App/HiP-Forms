@@ -6,5 +6,6 @@
         LoggedOut,
         InCorrectUserNameandPassword,
         ServerError,
+        Registered,
         }
     }
