@@ -24,10 +24,11 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
-using Xamarin.Forms;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views.ExhibitDetails;
+using Xamarin.Forms;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
+namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 {
     class ExhibitRouteDownloadViewModel : NavigationViewModel, IProgressListener
     {

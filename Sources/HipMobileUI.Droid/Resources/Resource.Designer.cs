@@ -2498,26 +2498,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
 			// aapt resource value: 0x7f020057
 			public const int avd_hide_password = 2130837591;
 			
-			// aapt resource value: 0x7f02015d
-			public const int avd_hide_password_1 = 2130837853;
-			
-			// aapt resource value: 0x7f02015e
-			public const int avd_hide_password_2 = 2130837854;
-			
-			// aapt resource value: 0x7f02015f
-			public const int avd_hide_password_3 = 2130837855;
-			
 			// aapt resource value: 0x7f020058
 			public const int avd_show_password = 2130837592;
-			
-			// aapt resource value: 0x7f020160
-			public const int avd_show_password_1 = 2130837856;
-			
-			// aapt resource value: 0x7f020161
-			public const int avd_show_password_2 = 2130837857;
-			
-			// aapt resource value: 0x7f020162
-			public const int avd_show_password_3 = 2130837858;
 			
 			// aapt resource value: 0x7f020059
 			public const int bonuspack_bubble_new = 2130837593;

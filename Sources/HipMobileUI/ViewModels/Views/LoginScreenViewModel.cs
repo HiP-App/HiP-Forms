@@ -7,6 +7,7 @@ using System;
 using System.Threading.Tasks;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.User;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.UserManagement;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Exceptions;
 
@@ -60,8 +61,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 
         async void PerformLogin()
         {
-            User user = new User (Email, Password);
-            UserStatus userStatus = await UserManager.LoginUser (new User (Email, Password));
+            User user = new User (Email, password);
+            UserStatus userStatus = await IoCManager.Resolve<IUserManager> ().LoginUser (new User (email, password));
 
             if (userStatus == UserStatus.LoggedIn)
                 Settings.IsLoggedIn = true;
