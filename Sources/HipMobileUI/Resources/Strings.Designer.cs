@@ -215,6 +215,33 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        public static string ExhibitDetailsPage_Distance_alert_confirm {
+            get {
+                return ResourceManager.GetString("ExhibitDetailsPage_Distance_alert_confirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sie müssen die Sehenswürdigkeit zuerst besucht haben, um die Details zu sehen!.
+        /// </summary>
+        public static string ExhibitDetailsPage_Distance_Text {
+            get {
+                return ResourceManager.GetString("ExhibitDetailsPage_Distance_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nicht freigeschaltet.
+        /// </summary>
+        public static string ExhibitDetailsPage_Distance_Title {
+            get {
+                return ResourceManager.GetString("ExhibitDetailsPage_Distance_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Hinweis.
         /// </summary>
         public static string ExhibitDetailsPage_Hinweis {
