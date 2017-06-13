@@ -12,6 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
@@ -27,7 +29,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
         /// Preload data needed for processing the exhibits
         /// </summary>
         /// <returns></returns>
-        Task<int> FetchNeededDataForExhibits();
+        Task<int> FetchNeededDataForExhibits(Dictionary<int, DateTimeOffset> existingExhibitsIdTimestampMapping);
 
         /// <summary>
         /// Load images for exhibits

@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers.Contracts;
@@ -43,8 +44,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
 
         public async Task FetchBaseDataIntoDatabase(CancellationToken token, IProgressListener listener)
         {
-            double totalSteps = await exhibitsBaseDataFetcher.FetchNeededDataForExhibits();
-            totalSteps += await routesBaseDataFetcher.FetchNeededDataForRoutes();
+            var routes = RouteManager.GetRoutes().ToDictionary(x => x.IdForRestApi, x => x.Timestamp);
+            var exhibits = ExhibitManager.GetExhibits().ToDictionary(x => x.IdForRestApi, x => x.Timestamp);
+
+            double totalSteps = await exhibitsBaseDataFetcher.FetchNeededDataForExhibits(exhibits);
+            totalSteps += await routesBaseDataFetcher.FetchNeededDataForRoutes(routes);
 
             if (token.IsCancellationRequested)
             {
@@ -87,7 +91,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                 if (token.IsCancellationRequested)
                 {
                     transaction.Rollback();
-                    return;
                 }
             }
         }
