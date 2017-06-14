@@ -215,6 +215,7 @@
       <DependentUpon>RegisterView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Behaviors\PasswordValidationBehavior.cs" />
+    <Compile Include="Behaviors\EmailValidationBehavior.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="App.xaml">

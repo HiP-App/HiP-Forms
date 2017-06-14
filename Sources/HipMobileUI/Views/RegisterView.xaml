@@ -6,11 +6,15 @@
              xmlns:helpers="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;assembly=HipMobileUI">
 <ContentView.Content>
         <Grid x:Name="Grid" Padding="10" HorizontalOptions="Fill">
-            <Entry x:Name="EmailEntry" Keyboard="Email" Placeholder="{helpers:Translate RegisterScreenView_Email}" Text="{Binding Email}"></Entry>
-            <Entry x:Name="PasswordEntry" IsPassword="True" Placeholder="{helpers:Translate RegisterScreenView_Password}" Text="{Binding Password}"></Entry>
+            <Entry x:Name="EmailEntry" Keyboard="Email" Placeholder="{helpers:Translate RegisterScreenView_Email}" Text="{Binding Email}">
+            	<Entry.Behaviors>
+        	   		<local:EmailValidationBehavior x:Name="validEmailBehavior" />
+    		    </Entry.Behaviors>
+			</Entry>	
+			<Entry x:Name="PasswordEntry" IsPassword="True" Placeholder="{helpers:Translate RegisterScreenView_Password}" Text="{Binding Password}"></Entry>
             <Entry x:Name="RePasswordEntry" IsPassword="True" Placeholder="{helpers:Translate RegisterScreenView_RepeatPassword}" Text="{Binding RepeatPassword}">
 			   <Entry.Behaviors>
-        	   	<local:ComparisonBehavior x:Name="confirmPasswordBehavior" CompareToEntry="{Binding Source={x:Reference PasswordEntry}}" />
+        	   		<local:ComparisonBehavior x:Name="confirmPasswordBehavior" CompareToEntry="{Binding Source={x:Reference PasswordEntry}}" />
     		   </Entry.Behaviors>
 			</Entry>
 			<Label x:Name="ErrorMsgLabel" FontSize="Small" HorizontalOptions="Center" TextColor="Red" Text="{Binding ErrorMessage}"></Label>
@@ -25,4 +29,5 @@
         </Grid>
     </ContentView.Content>
 </ContentPage>
+
 
