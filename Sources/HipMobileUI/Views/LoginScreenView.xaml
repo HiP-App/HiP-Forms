@@ -5,20 +5,20 @@
              x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Views.LoginScreenView">
     <ContentView.Content>
         <Grid x:Name="Grid" Padding="10" HorizontalOptions="Fill">
-            <Entry x:Name="EmailEntry" Keyboard="Email" Placeholder="{helpers:Translate LoginScreenView_Email}" Text="{Binding Email}"></Entry>
-            <Entry x:Name="PasswordEntry" IsPassword="True" Placeholder="{helpers:Translate LoginScreenView_Password}" Text="{Binding Password}"></Entry>
+            <Entry x:Name="EmailEntry" Keyboard="Email" Placeholder="{helpers:Translate LoginScreenView_Email}" Text="{Binding Email}" TextChanged="Entry_TextChanged"></Entry>
+            <Entry x:Name="PasswordEntry" IsPassword="True" Placeholder="{helpers:Translate LoginScreenView_Password}" Text="{Binding Password}" TextChanged="Entry_TextChanged"></Entry>
             <Label x:Name="ErrorMessageLabel" FontSize="Small" HorizontalOptions="Center" TextColor="Red" Text="{Binding ErrorMessage}"></Label>
             <Label x:Name="RegisterLabel" FontSize="Small" HorizontalOptions="Center" TextColor="Blue" Text="{helpers:Translate LoginScreenView_Register}">
                 <Label.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding Register}" />
+                    <TapGestureRecognizer Command="{Binding RegisterCommand}" />
                 </Label.GestureRecognizers>
             </Label>
             <Label x:Name="ForgotPasswordLabel" FontSize="Small" HorizontalOptions="Center" TextColor="Blue" Text="{helpers:Translate LoginScreenView_Forgot_Password}">
                 <Label.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding ForgotPassword}" />
+                    <TapGestureRecognizer Command="{Binding ForgotPasswordCommand}" />
                 </Label.GestureRecognizers>
             </Label>
-            <Button x:Name="LoginButton" Text="{helpers:Translate LoginScreenView_Login}" Command="{Binding Login}"></Button>
+            <Button x:Name="LoginButton" Text="{helpers:Translate LoginScreenView_Login}" Command="{Binding LoginCommand}"></Button>
         </Grid>
     </ContentView.Content>
 </ContentView>

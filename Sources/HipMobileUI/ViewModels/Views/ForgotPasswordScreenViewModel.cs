@@ -17,18 +17,33 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         private String email;
         private String errorMessage;
 
-        public ICommand ResetPassword { get; }
+        public ICommand ResetPasswordCommand { get; }
 
         public ForgotPasswordScreenViewModel(MainPageViewModel mainPageVm)
         {
             mainPageViewModel = mainPageVm;
 
-            ResetPassword = new Command(SendResetPasswordEmail);
+            ResetPasswordCommand = new Command(OnResetPasswordClicked);
+        }
+
+        void OnResetPasswordClicked()
+        {
+            if (String.IsNullOrWhiteSpace(Email))
+            {
+                // Display Error
+            } else
+            {
+                SendResetPasswordEmail();
+            }
+        }
+
+        void OnTextChanged()
+        {
+            ClearErrorMessage();
         }
 
         void SendResetPasswordEmail()
         {
-            Debug.WriteLine("##### Send password reset email to " + Email + " #####");
             mainPageViewModel.SwitchToLoginView();
         }
 
