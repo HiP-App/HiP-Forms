@@ -40,7 +40,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             this.mediaDataFetcher = mediaDataFetcher;
         }
 
-        private IList<int?> requiredPages;
         private IList<int?> requiredImages;
         private IList<int?> requiredAudios;
         private IList<PageDto> pageItems;
@@ -48,11 +47,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
 
         public async Task FetchFullExhibitDataIntoDatabase (string exhibitId, int idForRestApi, CancellationToken token, IProgressListener listener)
         {
-            requiredPages = new List<int?> ();
             requiredImages = new List<int?>();
             requiredAudios = new List<int?>();
 
-            double totalSteps = await FetchNeededPagesForFullExhibit(idForRestApi);
+            double totalSteps = await FetchNeededMediaForFullExhibit(idForRestApi);
 
             if (token.IsCancellationRequested)
             {
@@ -71,22 +69,42 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             }
         }
 
-        private async Task<int> FetchNeededPagesForFullExhibit(int idForRestApi)
+        private async Task<int> FetchNeededMediaForFullExhibit(int idForRestApi)
         {
             pageItems = (await pagesApiAccess.GetPages(idForRestApi)).Items;
             foreach (var page in pageItems)
             {
-                requiredPages.Add (page.Id);
-                if (page.Image.HasValue)
+                // Since AppetizerPages have been loaded before, do not consider them anymore
+                if (page.Type != PageTypeDto.AppetizerPage)
                 {
-                    requiredImages.Add (page.Image);
+                    if (page.Image.HasValue)
+                    {
+                        requiredImages.Add(page.Image);
+                    }
+                    if (page.Type == PageTypeDto.SliderPage)
+                    {
+                        if (page.Images.Count > 0)
+                        {
+                            foreach (var image in page.Images)
+                            {
+                                if (image.Image.HasValue)
+                                {
+                                    requiredImages.Add(image.Image);
+                                }
+                            }
+                        }
+                    }
+                    if (page.Audio.HasValue)
+                    {
+                        requiredAudios.Add(page.Audio);
+                    }
                 }
-                if (page.Audio.HasValue)
+                else
                 {
-                    requiredAudios.Add (page.Audio);
+                    pageItems.Remove (page);
                 }
             }
-            return requiredPages.Count;
+            return requiredImages.Count + requiredAudios.Count;
         }
 
         public async Task FetchMediaData(CancellationToken token, IProgressListener listener)
@@ -111,58 +129,65 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             {
                 var dbPage = PageConverter.Convert(pageDto);
 
-                AddContentToPage(dbPage, pageDto, fetchedMedia.Images, fetchedMedia.Audios);
+                AddContentToPage(dbPage, pageDto, fetchedMedia.Images, fetchedMedia.Audios, listener);
                 // Add Page with content to the exhibit
                 exhibit.Pages.Add(dbPage);
-
-                listener.ProgressOneStep();
             }
 
             exhibit.DetailsDataLoaded = true;
         }
 
-        private void AddContentToPage(Page dbPage, PageDto content, IList<Image> fetchedMediaImages, IList<Audio> fetchedMediaAudios)
+        private void AddContentToPage(Page dbPage, PageDto content, IList<Image> fetchedMediaImages, IList<Audio> fetchedMediaAudios, IProgressListener listener)
         {
-            switch (dbPage.PageType)
+            if (content != null && dbPage != null)
             {
-                case PageType.AppetizerPage:
-                    break;
-                case PageType.ImagePage:
-                    var image = fetchedMediaImages.SingleOrDefault(x => x.IdForRestApi == content.Image);
-                
-                    if (image != null)
-                    {
-                        dbPage.ImagePage.Image = image;
-                    }
-                    else
-                    {
-                        dbPage.ImagePage.Image = BackupData.BackupImage;
-                    }
-                    break;
-                case PageType.TextPage:
-                    break;
-                case PageType.TimeSliderPage:
-                    var images = fetchedMediaImages;
+                PageConverter.Convert (content, dbPage);
 
-                    if (images.Count > 0)
-                    {
-                        foreach (var img in images)
+                switch (dbPage.PageType)
+                {
+                    case PageType.AppetizerPage:
+                        // Should not be reached
+                        break;
+                    case PageType.ImagePage:
+                        var image = fetchedMediaImages.SingleOrDefault(x => x.IdForRestApi == content.Image);
+
+                        if (image != null)
                         {
-                            dbPage.TimeSliderPage.Images.Add (img);
+                            dbPage.ImagePage.Image = image;
+                            listener.ProgressOneStep();
                         }
-                    }
-                    else
-                    {
-                        dbPage.TimeSliderPage.Images.Add(BackupData.BackupImage);
-                    }
-                    break;
-            }
+                        else
+                        {
+                            dbPage.ImagePage.Image = BackupData.BackupImage;
+                        }
+                        break;
+                    case PageType.TextPage:
+                        break;
+                    case PageType.TimeSliderPage:
+                        var images = fetchedMediaImages;
 
-            var audio = fetchedMediaAudios.SingleOrDefault(x => x.IdForRestApi == content.Audio);
+                        if (images.Count > 0)
+                        {
+                            foreach (var img in images)
+                            {
+                                dbPage.TimeSliderPage.Images.Add(img);
+                                listener.ProgressOneStep();
+                            }
+                        }
+                        else
+                        {
+                            dbPage.TimeSliderPage.Images.Add(BackupData.BackupImage);
+                        }
+                        break;
+                }
 
-            if (audio != null)
-            {
-                dbPage.Audio = audio;
+                var audio = fetchedMediaAudios.SingleOrDefault(x => x.IdForRestApi == content.Audio);
+
+                if (audio != null)
+                {
+                    dbPage.Audio = audio;
+                    listener.ProgressOneStep();
+                }
             }
         }
     }
