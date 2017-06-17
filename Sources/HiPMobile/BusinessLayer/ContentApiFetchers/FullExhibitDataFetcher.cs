@@ -40,15 +40,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             this.mediaDataFetcher = mediaDataFetcher;
         }
 
-        private IList<int?> requiredImages;
-        private IList<int?> requiredAudios;
+        private IList<int?> requiredMedias;
         private IList<PageDto> pageItems;
-        private FetchedMediaData fetchedMedia;
 
         public async Task FetchFullExhibitDataIntoDatabase (string exhibitId, int idForRestApi, CancellationToken token, IProgressListener listener)
         {
-            requiredImages = new List<int?>();
-            requiredAudios = new List<int?>();
+            requiredMedias = new List<int?>();
 
             double totalSteps = await FetchNeededMediaForFullExhibit(idForRestApi);
 
@@ -72,14 +69,16 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
         private async Task<int> FetchNeededMediaForFullExhibit(int idForRestApi)
         {
             pageItems = (await pagesApiAccess.GetPages(idForRestApi)).Items;
+
+            // Since AppetizerPages have been loaded before, do not consider them anymore
+            List<PageDto> appetizerPagesToRemove = new List<PageDto> ();
             foreach (var page in pageItems)
             {
-                // Since AppetizerPages have been loaded before, do not consider them anymore
                 if (page.Type != PageTypeDto.AppetizerPage)
                 {
                     if (page.Image.HasValue)
                     {
-                        requiredImages.Add(page.Image);
+                        requiredMedias.Add(page.Image);
                     }
                     if (page.Type == PageTypeDto.SliderPage)
                     {
@@ -89,34 +88,34 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                             {
                                 if (image.Image.HasValue)
                                 {
-                                    requiredImages.Add(image.Image);
+                                    requiredMedias.Add(image.Image);
                                 }
                             }
                         }
                     }
                     if (page.Audio.HasValue)
                     {
-                        requiredAudios.Add(page.Audio);
+                        requiredMedias.Add(page.Audio);
                     }
                 }
                 else
                 {
-                    pageItems.Remove (page);
+                    appetizerPagesToRemove.Add(page);
                 }
             }
-            return requiredImages.Count + requiredAudios.Count;
-        }
 
-        public async Task FetchMediaData(CancellationToken token, IProgressListener listener)
-        {
-            await mediaDataFetcher.FetchMedias(requiredImages, token, listener);
-            await mediaDataFetcher.FetchMedias(requiredAudios, token, listener);
+            foreach (var appPage in appetizerPagesToRemove)
+            {
+                pageItems.Remove(appPage);
+            }
+            
+            return requiredMedias.Count;
         }
 
         private async Task ProcessPages(string exhibitId, CancellationToken token, IProgressListener listener)
         {
             await FetchMediaData(token, listener);
-            fetchedMedia = mediaDataFetcher.CombineMediasAndFiles();
+            var fetchedMedia = mediaDataFetcher.CombineMediasAndFiles();
 
             if (token.IsCancellationRequested)
             {
@@ -129,7 +128,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             {
                 var dbPage = PageConverter.Convert(pageDto);
 
-                AddContentToPage(dbPage, pageDto, fetchedMedia.Images, fetchedMedia.Audios, listener);
+                AddContentToPage(dbPage, pageDto, fetchedMedia, listener);
                 // Add Page with content to the exhibit
                 exhibit.Pages.Add(dbPage);
             }
@@ -137,7 +136,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             exhibit.DetailsDataLoaded = true;
         }
 
-        private void AddContentToPage(Page dbPage, PageDto content, IList<Image> fetchedMediaImages, IList<Audio> fetchedMediaAudios, IProgressListener listener)
+        private async Task FetchMediaData(CancellationToken token, IProgressListener listener)
+        {
+            await mediaDataFetcher.FetchMedias(requiredMedias, token, listener);
+        }
+
+        private void AddContentToPage(Page dbPage, PageDto content, FetchedMediaData fetchedMedia, IProgressListener listener)
         {
             if (content != null && dbPage != null)
             {
@@ -149,12 +153,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                         // Should not be reached
                         break;
                     case PageType.ImagePage:
-                        var image = fetchedMediaImages.SingleOrDefault(x => x.IdForRestApi == content.Image);
+                        var image = fetchedMedia.Images.SingleOrDefault(x => x.IdForRestApi == content.Image);
 
                         if (image != null)
                         {
                             dbPage.ImagePage.Image = image;
-                            listener.ProgressOneStep();
                         }
                         else
                         {
@@ -164,14 +167,19 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                     case PageType.TextPage:
                         break;
                     case PageType.TimeSliderPage:
-                        var images = fetchedMediaImages;
+                        var fetchedImages = fetchedMedia.Images;
 
-                        if (images.Count > 0)
+                        if (fetchedImages.Count > 0)
                         {
-                            foreach (var img in images)
+                            foreach (var fImg in fetchedImages)
                             {
-                                dbPage.TimeSliderPage.Images.Add(img);
-                                listener.ProgressOneStep();
+                                foreach (var cImg in content.Images)
+                                {
+                                    if (fImg.IdForRestApi == cImg.Image)
+                                    {
+                                        dbPage.TimeSliderPage.Images.Add(fImg);
+                                    }
+                                }
                             }
                         }
                         else
@@ -181,7 +189,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                         break;
                 }
 
-                var audio = fetchedMediaAudios.SingleOrDefault(x => x.IdForRestApi == content.Audio);
+                var audio = fetchedMedia.Audios.SingleOrDefault(x => x.IdForRestApi == content.Audio);
 
                 if (audio != null)
                 {
