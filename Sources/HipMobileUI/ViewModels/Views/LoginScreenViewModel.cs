@@ -68,10 +68,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
                 Settings.IsLoggedIn = true;
 
             if (userStatus == UserStatus.InCorrectUserNameandPassword)
-                await Task.Run (() => {
-                    this.ErrorMessage = "Wrong Password";
-                });
-
+                DisplayWrongPasswordErrorMessage();
+                
 
             mainPageViewModel.UpdateAccountViews();
         }
