@@ -7,7 +7,7 @@
         <Grid x:Name="Grid" Padding="10" HorizontalOptions="Fill">
             <Entry x:Name="EmailEntry" Keyboard="Email" Placeholder="{helpers:Translate LoginScreenView_Email}" Text="{Binding Email}" TextChanged="Entry_TextChanged"></Entry>
             <Entry x:Name="PasswordEntry" IsPassword="True" Placeholder="{helpers:Translate LoginScreenView_Password}" Text="{Binding Password}" TextChanged="Entry_TextChanged"></Entry>
-            <Label x:Name="ErrorMessageLabel" FontSize="Small" HorizontalOptions="Center" TextColor="Red" Text="{Binding ErrorMessage}"></Label>
+            <Label x:Name="ErrorMessageLabel" FontSize="Small" HorizontalOptions="Center" TextColor="Red" Text="{Binding ErrorMessage, Mode=TwoWay}"></Label>
             <Label x:Name="RegisterLabel" FontSize="Small" HorizontalOptions="Center" TextColor="Blue" Text="{helpers:Translate LoginScreenView_Register}">
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding RegisterCommand}" />
