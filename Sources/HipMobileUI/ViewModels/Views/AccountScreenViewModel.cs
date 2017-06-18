@@ -2,8 +2,6 @@
 using System.Windows.Input;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
-using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using Xamarin.Forms;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
@@ -12,24 +10,19 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
     {
 
         private readonly MainPageViewModel mainPageViewModel;
-
         public AccountScreenViewModel(MainPageViewModel mainPageVm)
         {
             mainPageViewModel = mainPageVm;
 
             Login = new Command(LoginDummy);
-
         }
 
         public ICommand Login { get; }
-		public ICommand Register{get; }
 
         void LoginDummy()
         {
-            Debug.WriteLine("##### LOGIN #####");
             Settings.IsLoggedIn = true;
             mainPageViewModel.UpdateAccountViews();
         }
-
     }
 }

@@ -23,10 +23,12 @@ using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
 using Plugin.Geolocator.Abstractions;
 using Xamarin.Forms;
+using System;
+using System.Windows.Input;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 {
-    class ExhibitsOverviewListItemViewModel : BaseViewModel, IDownloadableListItemViewModel
+    class ExhibitsOverviewListItemViewModel : NavigationViewModel, IDownloadableListItemViewModel
     {
 
         public ExhibitsOverviewListItemViewModel (Exhibit exhibit, double distance = -1)
@@ -36,12 +38,20 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             var data = exhibit.Image.Data;
             Image = ImageSource.FromStream (() => new MemoryStream (data));
             Exhibit = exhibit;
+
+            //using (DbManager.StartTransaction())
+                //Exhibit.DetailsDataLoaded = false;
+            IsDownloadButtonVisible = !Exhibit.DetailsDataLoaded;
+
+            DownloadCommand = new Command(OpenDownloadDialog);
         }
 
         private Exhibit exhibit;
         private string exhibitName;
         private double distance;
         private ImageSource image;
+        private Boolean isDownloadButtonVisible;
+        private ExhibitRouteDownloadViewModel downloadPage;
 
         /// <summary>
         /// The name of the exhibit.
@@ -96,6 +106,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             }
         }
 
+        public Boolean IsDownloadButtonVisible
+        {
+            get { return isDownloadButtonVisible; }
+            set { SetProperty(ref isDownloadButtonVisible, value); }
+        }
+
         /// <summary>
         /// Update the displayed distance according to the position.
         /// </summary>
@@ -105,27 +121,36 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             Distance = MathUtil.CalculateDistance (exhibit.Location, new GeoLocation(position.Latitude,position.Longitude));
         }
 
-        public void CloseDownloadPage()
-        {
-            IoCManager.Resolve<INavigationService>().PopModalAsync();
-        }
         public void OpenDetailsView(string id)
         {
-            // IoCManager.Resolve<INavigationService>().PushAsync(new InsertYourDetailsViewModelHere(id));
+            Navigation.InsertPageBefore(new ExhibitDetailsViewModel(id), downloadPage);
+            Navigation.PopAsync();
         }
+
         public void SetDetailsAvailable(bool available)
         {
             if (!available)
                 return;
 
-            // Add the changes you make after the download is finished here; below is the code I execute as a dummy in my corresponding class
-            //using (DbManager.StartTransaction())
-            //{
-            //    Route.DetailsDataLoaded = true;   // Details loaded
-            //}
-            //IsDownloadPanelVisible = !Route.DetailsDataLoaded;    // Download-button is now hidden
+            using (DbManager.StartTransaction())
+            {
+                Exhibit.DetailsDataLoaded = true;
+            }
+            IsDownloadButtonVisible = !Exhibit.DetailsDataLoaded;
         }
 
+        private async void OpenDownloadDialog()
+        {
+            downloadPage = new ExhibitRouteDownloadViewModel(Exhibit, this);
+            await Navigation.PushAsync(downloadPage);
+        }
+
+        public void CloseDownloadPage()
+        {
+            IoCManager.Resolve<INavigationService>().PopAsync();
+        }
+
+        public ICommand DownloadCommand { get; set; }
 
         public override bool Equals (object obj)
         {

@@ -11,21 +11,34 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers {
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
+{
 
-    public delegate void UpdateDelegate (double newProgress, double maxProgress);
+    public delegate void UpdateDelegate(double newProgress, double maxProgress);
 
     /// <summary>
     /// Progress listener interface.
     /// </summary>
-    public interface IProgressListener {
+    public interface IProgressListener
+    {
 
         /// <summary>
         /// Called when the progress changed.
         /// </summary>
         /// <param name="newProgress">The updated, current progress.</param>
         /// <param name="maxProgress">The maximum progress.</param>
-        void UpdateProgress (double newProgress, double maxProgress);
+        void UpdateProgress(double newProgress, double maxProgress);
+
+        /// <summary>
+        /// Called when the progress changed
+        /// </summary>
+        void ProgressOneStep();
+
+        /// <summary>
+        /// Sets the maximum progress that can be reached
+        /// </summary>
+        /// <param name="maxProgress"></param>
+        void SetMaxProgress(double maxProgress);
 
     }
 }

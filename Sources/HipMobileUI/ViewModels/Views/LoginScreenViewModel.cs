@@ -6,7 +6,12 @@ using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using Xamarin.Forms;
 using System;
+using System.Threading.Tasks;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.User;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.UserManagement;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Exceptions;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 {
@@ -22,20 +27,52 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         {
             mainPageViewModel = mainPageVm;
 
-            Login = new Command(PerformLogin);
-            Register = new Command(GoToRegisterScreenView);
-            ForgotPassword = new Command(GoToForgotPasswordScreenView);
+            LoginCommand = new Command(OnLoginClicked);
+            RegisterCommand = new Command(OnRegisterClicked);
+            ForgotPasswordCommand = new Command(OnForgotPasswordClicked);
         }
 
-        public ICommand Login { get; }
-        public ICommand Register { get; }
-        public ICommand ForgotPassword { get; }
+        public ICommand LoginCommand { get; }
+        public ICommand RegisterCommand { get; }
+        public ICommand ForgotPasswordCommand { get; }
 
-        void PerformLogin()
+        void OnLoginClicked()
         {
-            Debug.WriteLine("##### LOGIN #####");
-            Debug.WriteLine("Email: " + Email + " Password: " + Password);
-            Settings.IsLoggedIn = true;
+            if(String.IsNullOrWhiteSpace(Email))
+            {
+                // Display Error
+            }
+
+            if(String.IsNullOrWhiteSpace(Password))
+            {
+                // Display Error
+            }
+
+            PerformLogin();
+        }
+
+        void OnRegisterClicked()
+        {
+            GoToRegisterScreenView();
+        }
+
+        void OnForgotPasswordClicked()
+        {
+            GoToForgotPasswordScreenView();
+        }
+
+        async void PerformLogin()
+        {
+            User user = new User (Email, password);
+            UserStatus userStatus = await IoCManager.Resolve<IUserManager> ().LoginUser (new User (email, password));
+
+            if (userStatus == UserStatus.LoggedIn)
+                Settings.IsLoggedIn = true;
+
+            if (userStatus == UserStatus.InCorrectUserNameandPassword)
+                DisplayWrongPasswordErrorMessage();
+                
+
             mainPageViewModel.UpdateAccountViews();
         }
 
@@ -47,20 +84,20 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 
         void GoToForgotPasswordScreenView()
         {
-            //Go to ForgotPasswordScreenView here
+            mainPageViewModel.SwitchToForgotPasswordView();
         }
 
-        void displayUnknownEmailErrorMessage()
+        void DisplayUnknownEmailErrorMessage()
         {
             ErrorMessage = Strings.LoginScreenView_Error_Unknown_Email;
         }
 
-        void displayWrongPasswordErrorMessage()
+        void DisplayWrongPasswordErrorMessage()
         {
             ErrorMessage = Strings.LoginScreenView_Error_Wrong_Password;
         }
 
-        void clearErrorMessage()
+        void ClearErrorMessage()
         {
             ErrorMessage = "";
         }

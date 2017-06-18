@@ -178,7 +178,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
         /// The username of the current user
         /// </summary>
         private const string UserNameKey = "username_key";
-        private static readonly string UsernameDefault = "";
+        private static readonly string UsernameDefault = "Max Power";
 
         public static string Username
         {
@@ -190,7 +190,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
         /// The e-mail of the current user
         /// </summary>
         private const string EMailKey = "email_key";
-        private static readonly string EMailDefault = "";
+        private static readonly string EMailDefault = "max@power.com";
 
         public static string EMail
         {
@@ -208,6 +208,42 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
         {
             get { return AppSettings.GetValueOrDefault(PasswordKey, PasswordDefault); }
             set { AppSettings.AddOrUpdateValue(PasswordKey, value); }
+        }
+        
+        /// <summary>
+        /// The score of the current user
+        /// </summary>
+        private const string ScoreKey = "score_key";
+        private static readonly int ScoreDefault = 420;
+
+        public static int Score
+        {
+            get { return AppSettings.GetValueOrDefault(ScoreKey, ScoreDefault); }
+            set { AppSettings.AddOrUpdateValue(ScoreKey, value); }
+        }
+        
+        /// <summary>
+        /// The number of gained achievements of the current user
+        /// </summary>
+        private const string AchievementsKey = "achievements_key";
+        private static readonly int AchievementsDefault = 12;
+
+        public static int Achievements
+        {
+            get { return AppSettings.GetValueOrDefault(AchievementsKey, AchievementsDefault); }
+            set { AppSettings.AddOrUpdateValue(AchievementsKey, value); }
+        }
+        
+        /// <summary>
+        /// The part of everything you can do with the app as a percentage
+        /// </summary>
+        private const string CompletenessKey = "completeness_key";
+        private static readonly int CompletenessDefault = 10;
+
+        public static int Completeness
+        {
+            get { return AppSettings.GetValueOrDefault(CompletenessKey, CompletenessDefault); }
+            set { AppSettings.AddOrUpdateValue(CompletenessKey, value); }
         }
 
         #endregion

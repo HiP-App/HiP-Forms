@@ -43,6 +43,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 		// Contructor
 		public ExhibitSet(){
 		}
+
+        public virtual DateTimeOffset Timestamp { get; set; }
 	}
 }
 
