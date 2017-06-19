@@ -62,6 +62,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.UserManageme
         return UserStatus.Registered;
         }
 
+        public async Task<UserStatus> ForgotPassword (string email)
+        {
+        return UserStatus.PasswordResetEmailSent;
+        }
         }
     }
 
