@@ -157,6 +157,7 @@
     <Compile Include="Contracts\IosAudioPlayer.cs" />
     <Compile Include="Contracts\IosBarsColorsChanger.cs" />
     <Compile Include="Contracts\IosImageDimensions.cs" />
+    <Compile Include="Contracts\IosNetworkAccessChecker.cs" />
     <Compile Include="Contracts\IosStatusBarController.cs" />
     <Compile Include="Contracts\IosStorageSizeProvider.cs" />
     <Compile Include="CustomRenderers\FloatingActionButtonIosRenderer.cs" />

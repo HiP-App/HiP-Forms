@@ -18,10 +18,13 @@ using Android.OS;
 using FFImageLoading.Forms.Droid;
 using HockeyApp.Android;
 using PaderbornUniversity.SILab.Hip.Mobile.Droid.Contracts;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelConverters;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.AudioPlayer;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Location;
@@ -53,22 +56,23 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
             IoCManager.RegisterInstance(typeof(IViewCreator), NavigationService.Instance);
 
             // init other inversion of control classes
-            IoCManager.RegisterInstance (typeof(IFabSizeCalculator), new AndroidFabSizeCalculator ());
-            IoCManager.RegisterInstance (typeof(IAudioPlayer), new DroidAudioPlayer ());
-            IoCManager.RegisterInstance (typeof(IStatusBarController), new DroidStatusBarController ());
-            IoCManager.RegisterInstance (typeof(ILocationManager), new LocationManager ());
-            IoCManager.RegisterInstance (typeof(IKeyProvider), new AndroidKeyProvider ());
-            IoCManager.RegisterInstance (typeof(IBarsColorsChanger), new DroidBarsColorsChanger (this));
-            IoCManager.RegisterInstance (typeof(IDbChangedHandler), new DbChangedHandler ());
-            IoCManager.RegisterInstance (typeof(IStorageSizeProvider), new DroidStorageSizeProvider ());
+            IoCManager.RegisterInstance(typeof(IFabSizeCalculator), new AndroidFabSizeCalculator());
+            IoCManager.RegisterInstance(typeof(IAudioPlayer), new DroidAudioPlayer());
+            IoCManager.RegisterInstance(typeof(IStatusBarController), new DroidStatusBarController());
+            IoCManager.RegisterInstance(typeof(ILocationManager), new LocationManager());
+            IoCManager.RegisterInstance(typeof(IKeyProvider), new AndroidKeyProvider());
+            IoCManager.RegisterInstance(typeof(IBarsColorsChanger), new DroidBarsColorsChanger(this));
+            IoCManager.RegisterInstance(typeof(IDbChangedHandler), new DbChangedHandler());
+            IoCManager.RegisterInstance(typeof(INetworkAccessChecker), new DroidNetworkAccessChecker());
+			IoCManager.RegisterInstance (typeof(IStorageSizeProvider), new DroidStorageSizeProvider ());
 
             // setup crash reporting
             IKeyProvider keyProvider = IoCManager.Resolve<IKeyProvider>();
             CrashManager.Register(this, keyProvider.GetKeyByName("hockeyapp.android"));
 
             // init forms and third party libraries
-            CachedImageRenderer.Init ();
-            Xamarin.Forms.Forms.Init(this, bundle);
+            CachedImageRenderer.Init();
+            Forms.Init(this, bundle);
             Xamarin.FormsMaps.Init(this, bundle);
 
             LoadApplication(new App());
@@ -83,15 +87,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
         /// Workaround for a IllegalStateException in Xamarin Forms 2.3. It should be fixed in 2.4 so this can be removed then.
         /// Further discussion: https://forums.xamarin.com/discussion/83864/java-lang-illegalstateexception-activity-has-been-destroyed-when-using-admob
         /// </summary>
-        protected override void OnDestroy ()
+        protected override void OnDestroy()
         {
-            CallOnDisappearingForAllOpenPages ();
+            CallOnDisappearingForAllOpenPages();
 
             Xamarin.Forms.Application.Current.MainPage = new ContentPage();
-            base.OnDestroy ();
+            base.OnDestroy();
         }
 
-        private void CallOnDisappearingForAllOpenPages ()
+        private void CallOnDisappearingForAllOpenPages()
         {
             var tabController = Xamarin.Forms.Application.Current.MainPage as TabbedPage;
             var masterController = Xamarin.Forms.Application.Current.MainPage as MasterDetailPage;

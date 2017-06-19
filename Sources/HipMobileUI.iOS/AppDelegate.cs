@@ -16,8 +16,12 @@ using FFImageLoading.Forms.Touch;
 using Foundation;
 using HockeyApp.iOS;
 using PaderbornUniversity.SILab.Hip.Mobile.Ios.Contracts;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelConverters;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.AudioPlayer;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Location;
@@ -47,28 +51,29 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios
             IoCManager.RegisterType<IImageDimension, IosImageDimensions>();
 
             // Init Navigation
-            NavigationService.Instance.RegisterViewModels (typeof(MainPage).Assembly);
-            IoCManager.RegisterInstance (typeof(INavigationService), NavigationService.Instance);
+            NavigationService.Instance.RegisterViewModels(typeof(MainPage).Assembly);
+            IoCManager.RegisterInstance(typeof(INavigationService), NavigationService.Instance);
             IoCManager.RegisterInstance(typeof(IViewCreator), NavigationService.Instance);
 
             // init other inversion of control classes
-            IoCManager.RegisterInstance (typeof(IAudioPlayer), new IosAudioPlayer ());
-            IoCManager.RegisterType<IStatusBarController, IosStatusBarController> ();
+            IoCManager.RegisterInstance(typeof(IAudioPlayer), new IosAudioPlayer());
+            IoCManager.RegisterType<IStatusBarController, IosStatusBarController>();
             IoCManager.RegisterInstance(typeof(ILocationManager), new LocationManager());
-            IoCManager.RegisterInstance (typeof(IKeyProvider), new IosKeyProvider ());
-            IoCManager.RegisterInstance (typeof(IBarsColorsChanger), new IosBarsColorsChanger ());
-            IoCManager.RegisterInstance (typeof(IDbChangedHandler), new DbChangedHandler ());
-            IoCManager.RegisterInstance (typeof(IStorageSizeProvider), new IosStorageSizeProvider ());
+            IoCManager.RegisterInstance(typeof(IKeyProvider), new IosKeyProvider());
+            IoCManager.RegisterInstance(typeof(IBarsColorsChanger), new IosBarsColorsChanger());
+            IoCManager.RegisterInstance(typeof(IDbChangedHandler), new DbChangedHandler());
+            IoCManager.RegisterInstance(typeof(INetworkAccessChecker), new IosNetworkAccessChecker());
+            IoCManager.RegisterInstance(typeof(IStorageSizeProvider), new IosStorageSizeProvider ());
 
             // init crash manager
             var manager = BITHockeyManager.SharedHockeyManager;
-            manager.Configure(IoCManager.Resolve<IKeyProvider> ().GetKeyByName ("hockeyapp.ios"));
+            manager.Configure(IoCManager.Resolve<IKeyProvider>().GetKeyByName("hockeyapp.ios"));
             manager.DisableUpdateManager = true;
             manager.StartManager();
             manager.Authenticator.AuthenticateInstallation();
 
             // init forms and third party libraries
-            CachedImageRenderer.Init ();
+            CachedImageRenderer.Init();
             Xamarin.Forms.Forms.Init();
             Xamarin.FormsMaps.Init();
 

@@ -124,10 +124,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             // This is where all the the data will be downloaded
             // maybe you do something like this:   Database.loadInterestDataFor(InterestId);    // Interests are Routes and Exhibits
             
-            LoadingProgress = 0;
+            SetMaxProgress (50);
             for (var x = 0; x < 50; x++)
             {
-                UpdateProgress (LoadingProgress+.02, 1);
+                ProgressOneStep ();
                 await Task.Delay (50);
                 if (downloadAborted)
                     return;
@@ -142,11 +142,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             DownloadableListItemViewModel.SetDetailsAvailable (DownloadFinished);
         }
 
-        public void UpdateProgress (double newProgress, double maxProgress)
-        {
-            LoadingProgress = newProgress / maxProgress;
-        }
-
         public override void OnAppearing()
         {
             base.OnAppearing();
@@ -157,6 +152,25 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         {
             base.OnDisappearing ();
             downloadAborted = true;
+        }
+
+        private double maximumProgress;
+        private double currentProgress;
+
+        public void ProgressOneStep ()
+        {
+            currentProgress++;
+            LoadingProgress = currentProgress/maximumProgress;
+        }
+
+        public void SetMaxProgress (double maxProgress)
+        {
+            maximumProgress = maxProgress;
+        }
+
+        public void UpdateProgress(double newProgress, double maxProgress)
+        {
+            LoadingProgress = newProgress/maxProgress;
         }
     }
 }

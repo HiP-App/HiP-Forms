@@ -533,7 +533,7 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
     <value>Keine Routen verfügbar. Laden Sie Routen herunter, um loszulegen!</value>
   </data>
   <data name="DownloadData_Title" xml:space="preserve">
-    <value>Neue Daten herunterladen?</value>
+    <value>Neue Detail Daten herunterladen?</value>
   </data>
   <data name="DownloadData_Cancel" xml:space="preserve">
     <value>Nein</value>
@@ -549,6 +549,30 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   </data>
   <data name="SettingsScreenView_WifiOnly_Text" xml:space="preserve">
     <value>Wenn aktiviert, werden Daten nur über Wlan heruntergeladen</value>
+  </data>
+  <data name="LoadingPageViewModel_BaseData_DownloadFailed_Text" xml:space="preserve">
+    <value>Die aktuellen Daten konnten nicht heruntergeladen werden.</value>
+  </data>
+  <data name="LoadingPageViewModel_BaseData_DownloadFailed_Title" xml:space="preserve">
+    <value>Daten Download</value>
+  </data>
+  <data name="LoadingPageViewModel_BaseData_DatabaseUpToDateCheckFailed" xml:space="preserve">
+    <value>Es konnte nicht überprüft werden, ob es neue Routen oder Sehenswürdigkeiten Daten gibt. Überprüfen Sie Ihre Internetverbindung.</value>
+  </data>
+  <data name="LoadingPageViewModel_BaseData_DataAvailable" xml:space="preserve">
+    <value>Basis Daten verfügbar</value>
+  </data>
+  <data name="LoadingPageViewModel_BaseData_DownloadViaMobile" xml:space="preserve">
+    <value>Es wird empfohlen die Basis Daten immer aktuell zu halten. In den Einstellungen ist festgelegt, dass Daten nicht über Mobile Datenverbindungen heruntergeladen werden sollen. Möchten Sie diese Basis Daten jetzt trotzdem herunterladen?</value>
+  </data>
+  <data name="LoadingPageViewModel_BaseData_MobileDownload_Cancel" xml:space="preserve">
+    <value>Nein</value>
+  </data>
+  <data name="LoadingPageViewModel_BaseData_MobileDownload_Confirm" xml:space="preserve">
+    <value>Ja</value>
+  </data>
+  <data name="LoadingPageViewModel_LoadingError_Confirm" xml:space="preserve">
+    <value>OK</value>
   </data>
   <data name="ExhibitDetailsPage_Distance_Title" xml:space="preserve">
     <value>Nicht freigeschaltet</value>
