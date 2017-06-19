@@ -682,4 +682,10 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   <data name="Alert_Unknown_Error_Title" xml:space="preserve">
     <value>Unbekannter Fehler</value>
   </data>
+  <data name="LicenseScreenView_User_Dialogs_Text" xml:space="preserve">
+    <value>Von &lt;a href="https://github.com/aritchie/userdialogs"&gt;Allan Ritchie&lt;/a&gt;, lizensiert unter &lt;a href="https://github.com/aritchie/userdialogs/blob/master/LICENSE.md"&gt;MIT&lt;/a&gt;. Es wurden keine Änderungen vorgenommen.</value>
+  </data>
+  <data name="LicenseScreenView_User_Dialogs_Title" xml:space="preserve">
+    <value>ACR User Dialogs</value>
+  </data>
 </root>

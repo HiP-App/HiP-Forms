@@ -909,6 +909,24 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Von &lt;a href=&quot;https://github.com/aritchie/userdialogs&quot;&gt;Allan Ritchie&lt;/a&gt;, lizensiert unter &lt;a href=&quot;https://github.com/aritchie/userdialogs/blob/master/LICENSE.md&quot;&gt;MIT&lt;/a&gt;. Es wurden keine Änderungen vorgenommen..
+        /// </summary>
+        public static string LicenseScreenView_User_Dialogs_Text {
+            get {
+                return ResourceManager.GetString("LicenseScreenView_User_Dialogs_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ACR User Dialogs.
+        /// </summary>
+        public static string LicenseScreenView_User_Dialogs_Title {
+            get {
+                return ResourceManager.GetString("LicenseScreenView_User_Dialogs_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Von &lt;a href=&quot;https://github.com/xamarin/AndroidSupportComponents&quot;&gt;Xamarin&lt;/a&gt;, lizensiert unter &lt;a href=&quot;https://github.com/xamarin/AndroidSupportComponents/blob/master/LICENSE.md&quot;&gt;MIT&lt;/a&gt;. Es wurden keine Änderungen vorgenommen..
         /// </summary>
         public static string LicenseScreenView_XSL_Text {
