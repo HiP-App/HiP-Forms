@@ -13,6 +13,15 @@
 // limitations under the License.
 using System;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.User;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.UserManagement;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
+using System.Windows.Input;
+using Xamarin.Forms;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
+
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 {
 	public class RegisterViewModel : NavigationViewModel
@@ -21,15 +30,52 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 		private String password;
 		private String repassword;
 		private String errorMessage;
+		private readonly MainPageViewModel mainPageViewModel;
 
-		//Register = new Command(RegisterUser);
 
-		//public ICommand Register { get; }
-
-		void RegisterUser()
+		public RegisterViewModel(MainPageViewModel mainPageVm)
 		{
-			//Throw error if incorrect user details
-			//If successful then add user and redirect to login page
+			mainPageViewModel = mainPageVm;
+			Register = new Command(OnRegisterClicked);
+
+		}
+
+		public ICommand Register { get; }
+
+
+
+
+
+		async void RegisterUser()
+		{
+			
+			User user = new User(Email, password);
+			UserStatus userStatus = await IoCManager.Resolve<IUserManager>().RegisterUser(user);
+
+			if (userStatus == UserStatus.Registered)
+			{
+				mainPageViewModel.SwitchToLoginView();
+				await Application.Current.MainPage.DisplayAlert(Strings.RegisterScreenView_Alert_Registered, Strings.RegisterScreenView_Alert_Description, Strings.RegisterScreenView_Alert_Ok);
+
+			}
+			else
+				DisplayRegisterFailedErrorMessage();
+
+		}
+
+		void DisplayEmptyEmailAndPasswordErrorMessage()
+		{
+			ErrorMessage = Strings.RegisterScreenView_Error_Empty_Email_And_Password;
+		}
+
+		void DisplayRegisterFailedErrorMessage()
+		{
+			ErrorMessage = Strings.RegisterScreenView_Error_Register_Fail; 
+		}
+
+		void DisplayEmptyPasswordErrorMessage()
+		{
+			ErrorMessage = Strings.RegisterScreenView_Error_Empty_Password;
 		}
 
 		void clearErrorMessage()
@@ -37,6 +83,20 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 			ErrorMessage = "";
 		}
 
+		void OnRegisterClicked()
+		{
+			if (String.IsNullOrWhiteSpace(Email) && String.IsNullOrWhiteSpace(Password))
+
+				DisplayEmptyEmailAndPasswordErrorMessage();
+			
+			else if (String.IsNullOrWhiteSpace(Password))
+
+				DisplayEmptyPasswordErrorMessage();
+
+			else
+
+				RegisterUser();
+		}
 		public String ErrorMessage
 		{
 			get { return errorMessage; }

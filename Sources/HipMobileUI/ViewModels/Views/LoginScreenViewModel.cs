@@ -78,7 +78,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 
         void GoToRegisterScreenView()
         {
-           IoCManager.Resolve<INavigationService> ().PushAsync(new RegisterViewModel());
+           mainPageViewModel.SwitchToRegisterView();
 
         }
 

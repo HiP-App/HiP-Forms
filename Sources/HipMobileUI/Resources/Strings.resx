@@ -661,4 +661,24 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   <data name="RegisterScreenView_Register" xml:space="preserve">
     <value>Registrieren</value>
   </data>
+	<data name="RegisterScreenView_Error_Register_Fail" xml:space="preserve">
+    <value>Registrierung fehlgeschlagen</value>
+  </data>
+  <data name="RegisterScreenView_Alert_Description" xml:space="preserve">
+    <value>Eine E-Mail wurde Ihnen gesendet. Bitte bestätigen Sie diese E-Mail, um sich einzuloggen zu können.</value>
+  </data>
+  <data name="RegisterScreenView_Alert_Ok" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+  <data name="RegisterScreenView_Alert_Registered" xml:space="preserve">
+    <value>Benutzer Registrierung</value>
+  </data>
+	<data name="RegisterScreenView_Error_Empty_Email_And_Password" xml:space="preserve">
+    <value>Das E-Mail und Passwort-Eingabefeld ist leer</value>
+  </data>
+  	<data name="RegisterScreenView_Error_Empty_Password" xml:space="preserve">
+    <value>Das Passwort-Eingabefeld ist leer</value>
+  </data>
+
+	
 </root>

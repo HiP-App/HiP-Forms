@@ -42,7 +42,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                 Title = Strings.MainPageViewModel_Account,
                 Icon = "ic_account_circle.png"
             };
-
+			 registerViewModel = new RegisterViewModel(this)
+			{
+				Title = Strings.MainPageViewModel_Account,
+			    Icon = "ic_account_circle.png"
+			 };
             MainScreenViewModels = new ObservableCollection<NavigationViewModel>
 			{
 				new ExhibitsOverviewViewModel (set)
@@ -99,6 +103,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             mainScreenViewModels.Insert(4, profileScreenViewModel);
             SelectedViewModel = mainScreenViewModels[4];
         }
+		public void SwitchToRegisterView()
+		{
+			mainScreenViewModels.RemoveAt(4);
+			mainScreenViewModels.Insert(4, registerViewModel);
+			SelectedViewModel = mainScreenViewModels[4];
+		}
 
 	    public MainPageViewModel () : this (ExhibitManager.GetExhibitSets ().FirstOrDefault ())
 	    {
@@ -109,6 +119,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 	    private readonly ProfileScreenViewModel profileScreenViewModel;
 	    private readonly LoginScreenViewModel loginScreenViewModel;
         private readonly ForgotPasswordScreenViewModel forgotPasswordScreenViewModel;
+		private readonly RegisterViewModel registerViewModel;
 
         private NavigationViewModel selectedViewModel;
 

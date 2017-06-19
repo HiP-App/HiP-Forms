@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Views.RegisterView"
 			 xmlns:local="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Behaviors"
@@ -17,17 +17,11 @@
         	   		<local:ComparisonBehavior x:Name="confirmPasswordBehavior" CompareToEntry="{Binding Source={x:Reference PasswordEntry}}" />
     		   </Entry.Behaviors>
 			</Entry>
-			<Label x:Name="ErrorMsgLabel" FontSize="Small" HorizontalOptions="Center" TextColor="Red" Text="{Binding ErrorMessage}"></Label>
-			<StackLayout x:Name="ButtonView" Orientation="Vertical" VerticalOptions="End" Padding="0">
-				<Label Text="{helpers:Translate RegisterScreenView_Register}" FontSize="20" TextColor="{StaticResource AccentColor}"
-	                HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-	                    <Label.GestureRecognizers>
-	                        <TapGestureRecognizer Command="{Binding Register}" />
-	                    </Label.GestureRecognizers>
-	             </Label>
-            </StackLayout>
+			<Label x:Name="ErrorMsgLabel" FontSize="Small" HorizontalOptions="Center" TextColor="Red" Text="{Binding ErrorMessage, Mode=TwoWay}"></Label>
+
+			<Button x:Name="ButtonView" Text="{helpers:Translate RegisterScreenView_Register}" Command="{Binding Register}"></Button>
         </Grid>
     </ContentView.Content>
-</ContentPage>
+</ContentView>
 
 
