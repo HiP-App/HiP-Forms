@@ -50,6 +50,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="BusinessLayer\ContentApiFetchers\BaseDataFetcher.cs" />
+    <Compile Include="BusinessLayer\ContentApiFetchers\Contracts\IFullRouteDataFetcher.cs" />
+    <Compile Include="BusinessLayer\ContentApiFetchers\FullRouteDataFetcher.cs" />
     <Compile Include="BusinessLayer\ContentApiFetchers\Contracts\IBaseDataFetcher.cs" />
     <Compile Include="BusinessLayer\ContentApiFetchers\Contracts\IDataToRemoveFetcher.cs" />
     <Compile Include="BusinessLayer\ContentApiFetchers\Contracts\IFullExhibitDataFetcher.cs" />
