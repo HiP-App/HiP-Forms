@@ -24,7 +24,7 @@ using System;
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages.AudioTranscript
 {
     public delegate void CurrentPageChangedEventHandler();
-    public partial class AudioTranscriptPage : TabbedPage, IViewFor<AudioTranscriptViewModel>
+    public partial class AudioTranscriptPage : IViewFor<AudioTranscriptViewModel>
     {
         public new event CurrentPageChangedEventHandler CurrentPageChanged;
 
@@ -62,7 +62,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages.AudioTranscript
         }
 
         public static readonly BindableProperty ActionProperty =
-            BindableProperty.Create("Action", typeof(IInteractiveSourceAction), typeof(AudioTranscriptPage), defaultValue:null);
+            BindableProperty.Create("Action", typeof(IInteractiveSourceAction), typeof(AudioTranscriptPage));
 
         public IInteractiveSourceAction Action
         {

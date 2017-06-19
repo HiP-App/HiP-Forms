@@ -32,7 +32,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages.AudioTranscript {
         {
             await Task.Delay (100);
 
-            var sourcesPage = TabbedPage.Children[1] as PaderbornUniversity.SILab.Hip.Mobile.UI.Pages.AudioTranscript.SourcesPage;
+            var sourcesPage = TabbedPage.Children[1] as SourcesPage;
             if (sourcesPage != null)
             {
                 var sourcesListView = sourcesPage.Content as ListView;
@@ -48,7 +48,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages.AudioTranscript {
 
         public void Display (Source src)
         {
-            var sourcesPage = TabbedPage.Children[1] as PaderbornUniversity.SILab.Hip.Mobile.UI.Pages.AudioTranscript.SourcesPage;
+            var sourcesPage = TabbedPage.Children[1] as SourcesPage;
             if (sourcesPage != null)
             {
                 Source = src;

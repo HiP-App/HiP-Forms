@@ -8,7 +8,7 @@ using Xamarin.Forms.Xaml;
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class RoutePreviewView : ContentPage, IViewFor<RoutePreviewViewModel>
+    public partial class RoutePreviewView : IViewFor<RoutePreviewViewModel>
     {
         private double thisWidth, thisHeight;
         private DeviceOrientation deviceOrientation;

@@ -42,7 +42,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Map {
             BindableProperty.Create(nameof(CenterCommand), typeof(ICommand), typeof(OsmMap), null, BindingMode.OneWayToSource);
 
         public static BindableProperty CenterCommandParameterProperty =
-            BindableProperty.Create(nameof(CenterCommand), typeof(object), typeof(OsmMap), null);
+            BindableProperty.Create(nameof(CenterCommand), typeof(object), typeof(OsmMap));
 
         public ICommand CenterCommand
         {

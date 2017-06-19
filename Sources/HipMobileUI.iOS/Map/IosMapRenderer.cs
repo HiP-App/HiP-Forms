@@ -41,8 +41,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Map {
         private RouteCalculator routeCalculator;
         private MKPolyline currentSectionPolyLine;
         private MKPolyline navigationPolyline;
-        private bool canShowError = true;
-        MKCoordinateRegion backupRegion = new MKCoordinateRegion();
+        MKCoordinateRegion backupRegion;
 
         protected override void OnElementChanged (ElementChangedEventArgs<OsmMap> e)
         {
@@ -223,6 +222,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Map {
         /// Draw a route between the given geopoints.
         /// </summary>
         /// <param name="geoPoints">The geopoints of the route.</param>
+        /// <param name="route">The route of navigation</param>
+        /// <param name="userLocationAvailable"></param>
         private void DrawRoute (OrderedRoute route, bool userLocationAvailable)
         {
             if (disposed)
@@ -275,8 +276,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Map {
         /// <returns>The annotation view.</returns>
         private MKAnnotationView GetViewForAnnotation (MKMapView mapView, IMKAnnotation annotation)
         {
-            MKAnnotationView annotationView = null;
-            MKAnnotationView dequedView = null;
+            MKAnnotationView annotationView;
+            MKAnnotationView dequedView;
             if (annotation is UserAnnotation) //(annotation is MKUserLocation) doesn't work
             {
                 const string userAnnotationReusableId = "UserAnnotation";

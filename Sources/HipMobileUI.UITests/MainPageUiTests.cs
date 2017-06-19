@@ -38,7 +38,7 @@ namespace HipMobileUI.UITests
             // intended duplicated for loop (because selecting an already selected element has no effect)
             foreach (var title in titles)
             {
-                TestEntry(platform, title, false);
+                TestEntry(platform, title);
             }
             foreach (var title in titles)
             {

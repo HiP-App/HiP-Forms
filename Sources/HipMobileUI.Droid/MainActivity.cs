@@ -68,7 +68,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
 
             // init forms and third party libraries
             CachedImageRenderer.Init ();
-            Xamarin.Forms.Forms.Init(this, bundle);
+            Forms.Init(this, bundle);
             Xamarin.FormsMaps.Init(this, bundle);
 
             LoadApplication(new App());

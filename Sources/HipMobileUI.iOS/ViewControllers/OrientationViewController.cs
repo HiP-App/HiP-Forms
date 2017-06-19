@@ -88,8 +88,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.ViewControllers
             this.controller = controller;
             foreach (UIViewController uiViewController in childs)
             {
-                this.AddChildViewController(uiViewController);
-                this.View.AddSubview(uiViewController.View);
+                AddChildViewController(uiViewController);
+                View.AddSubview(uiViewController.View);
             }
            
         }

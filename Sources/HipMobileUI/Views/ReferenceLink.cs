@@ -22,7 +22,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
     public class ReferenceLink : Label
     {
         public static readonly BindableProperty SourcesProperty = BindableProperty.Create(nameof(Sources), typeof(List<Source>), typeof(ReferenceLink), defaultValue: new List<Source>());
-        public static readonly BindableProperty ActionProperty = BindableProperty.Create(nameof(Action), typeof(Func<IInteractiveSourceAction>), typeof(ReferenceLink), defaultValue: null);
+        public static readonly BindableProperty ActionProperty = BindableProperty.Create(nameof(Action), typeof(Func<IInteractiveSourceAction>), typeof(ReferenceLink));
 
         public List<Source> Sources
         {

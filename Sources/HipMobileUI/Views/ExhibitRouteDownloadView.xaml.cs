@@ -6,7 +6,7 @@ using Xamarin.Forms;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views {
 
-    public partial class ExhibitRouteDownloadView : ContentPage, IViewFor<ExhibitRouteDownloadViewModel> {
+    public partial class ExhibitRouteDownloadView : IViewFor<ExhibitRouteDownloadViewModel> {
 
         private double thisWidth, thisHeight;
         private DeviceOrientation deviceOrientation;

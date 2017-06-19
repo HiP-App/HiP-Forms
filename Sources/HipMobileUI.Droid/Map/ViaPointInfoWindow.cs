@@ -14,23 +14,24 @@
 
 using Android.Content;
 using Android.Widget;
+using Java.Lang;
 using Org.Osmdroid.Bonuspack.Overlays;
 using Org.Osmdroid.Views;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
-using Object = Java.Lang.Object;
+using Obejct = Java.Lang.Object;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Map {
-    class ViaPointInfoWindow : MarkerInfoWindow {
+     class ViaPointInfoWindow : MarkerInfoWindow {
 
         private string markerId;
 
         
 
-        public ViaPointInfoWindow (int layoutResId, MapView mapView, Context context) : base (layoutResId, mapView)
+        public ViaPointInfoWindow (int layoutResId, MapView mapView, Context context ) : base (layoutResId, mapView)
         {
-            Button infoButton = this.View.FindViewById<Button> (Resource.Id.bubble_info);
+            Button infoButton = View.FindViewById<Button> (Resource.Id.bubble_info);
 
             infoButton.Click += (sender, e) => {
                 if (markerId != null)
