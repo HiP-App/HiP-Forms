@@ -29,14 +29,19 @@ using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views.ExhibitDetails;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 {
-    class ExhibitRouteDownloadViewModel : NavigationViewModel, IProgressListener
-    {
+    class ExhibitRouteDownloadViewModel : NavigationViewModel, IProgressListener {
+
+        private readonly string downloadableId;
+        private readonly int downloadableIdForRestApi;
+        private readonly DownloadableType type;
+
         public ExhibitRouteDownloadViewModel (IDownloadable downloadable, IDownloadableListItemViewModel downloadableListItemViewModel)
         {
-            DownloadableId = downloadable.Id;
-            DownloadableIdForRestApi = downloadable.IdForRestApi;
+            downloadableId = downloadable.Id;
+            downloadableIdForRestApi = downloadable.IdForRestApi;
             DownloadableName = downloadable.Name;
             DownloadableDescription = downloadable.Description;
+            type = downloadable.Type;
 
             Message = Strings.DownloadDetails_Text_Part1 + DownloadableName + Strings.DownloadDetails_Text_Part2;
             var data = downloadable.Image.Data;
@@ -63,20 +68,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         {
             get { return downloadableName; }
             set { SetProperty(ref downloadableName, value); }
-        }
-
-        private string downloadableId;
-        public string DownloadableId
-        {
-            get { return downloadableId; }
-            set { SetProperty(ref downloadableId, value); }
-        }
-
-        private int downloadableIdForRestApi;
-        public int DownloadableIdForRestApi
-        {
-            get { return downloadableIdForRestApi; }
-            set { SetProperty(ref downloadableIdForRestApi, value); }
         }
 
         private string downloadableDescription;
@@ -132,13 +123,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         public ICommand GoToDetailsCommand { get; }
 
         private bool downloadAborted;
-        void CancelDownload ()
+        private void CancelDownload ()
         {
             // Do some stuff to abort the download; this distincts this method from the one below
             downloadAborted = true;
-            CloseDownloadPage ();
 
-            Exhibit exhibit = ExhibitManager.GetExhibit (DownloadableId);
+            Exhibit exhibit = ExhibitManager.GetExhibit (downloadableId);
             using (DbManager.StartTransaction ())
             {
                 // Remove all already downloaded pages except the first one (appetizer page)
@@ -148,25 +138,32 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
                     exhibit.Pages.RemoveAt(i);
                 }
             }
+            
+            CloseDownloadPage ();
         }
 
-        void CloseDownloadPage ()
+        private void CloseDownloadPage ()
         {
             DownloadableListItemViewModel.CloseDownloadPage ();
         }
 
-        void GoToDetails ()
+        private void GoToDetails ()
         {
-            DownloadableListItemViewModel.OpenDetailsView (DownloadableId);
+            DownloadableListItemViewModel.OpenDetailsView (downloadableId);
         }
 
-        async void DownloadData ()
+        private async void DownloadData ()
         {
             // This is where all the the data will be downloaded
             string messageToShow = null;
             string titleToShow = null;
-            var fullExhibitDataFetcher = IoCManager.Resolve<IFullExhibitDataFetcher>();
             var networkAccessStatus = IoCManager.Resolve<INetworkAccessChecker>().GetNetworkAccessStatus();
+            IFullDataFetcher fullDataFetcher;
+
+            if (type == DownloadableType.Exhibit)
+                fullDataFetcher = IoCManager.Resolve<IFullExhibitDataFetcher> ();
+            else
+                fullDataFetcher = IoCManager.Resolve<IFullRouteDataFetcher> ();
 
             if (networkAccessStatus == NetworkAccessStatus.WifiAccess
                 || (networkAccessStatus == NetworkAccessStatus.MobileAccess && !Settings.WifiOnly))
@@ -174,7 +171,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
                 try
                 {
                     var token = cancellationTokenSource.Token;
-                    await fullExhibitDataFetcher.FetchFullExhibitDataIntoDatabase(DownloadableId, DownloadableIdForRestApi, token, this);
+                    await fullDataFetcher.FetchFullDataIntoDatabase(downloadableId, downloadableIdForRestApi, token, this);
                     SetDetailsAvailable();
                 }
                 catch (Exception e)
@@ -201,7 +198,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             }
         }
 
-        void SetDetailsAvailable ()
+        private void SetDetailsAvailable ()
         {
             DownloadPending = false;
             DownloadFinished = !DownloadPending;

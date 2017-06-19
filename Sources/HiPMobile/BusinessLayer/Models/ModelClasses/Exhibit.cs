@@ -59,12 +59,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 
         public virtual Boolean DetailsDataLoaded { get; set; }
 
-        // Contructor
+        public DownloadableType Type { get { return DownloadableType.Exhibit; }}
+
+        // Constructor
         public Exhibit(){
 		}
 
         public virtual int IdForRestApi { get; set; }
         public virtual DateTimeOffset Timestamp { get; set; }
-    }
+
+	}
 }
 

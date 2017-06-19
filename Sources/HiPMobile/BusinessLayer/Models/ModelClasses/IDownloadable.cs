@@ -7,5 +7,14 @@
         string Name { get; set; }
         string Description { get; set; }
         Image Image { get; set; }
+        DownloadableType Type { get; }
+    }
+
+    public enum DownloadableType
+    {
+
+        Exhibit,
+        Route
+
     }
 }

@@ -20,17 +20,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
     /// <summary>
     /// Fetcher for full exhibits data
     /// </summary>
-    public interface IFullExhibitDataFetcher {
-
-        /// <summary>
-        /// Gets the pages for an exhibit
-        /// </summary>
-        /// <param name="exhibitId">The id of the exhibit to be fetched</param>
-        /// <param name="idForRestApi">The id for the REST API of the exhibit to be fetched</param>
-        /// <param name="token">Used for cancelling the download</param>
-        /// <param name="listener">Used for reporting progress</param>
-        /// <returns></returns>
-        Task FetchFullExhibitDataIntoDatabase(string exhibitId, int idForRestApi, CancellationToken token, IProgressListener listener);
+    public interface IFullExhibitDataFetcher : IFullDataFetcher {
 
     }
 }

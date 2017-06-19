@@ -20,17 +20,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
     /// <summary>
     /// Fetcher for full route data
     /// </summary>
-    public interface IFullRouteDataFetcher {
-
-        /// <summary>
-        /// Gets the audio and missing exhibits for a route
-        /// </summary>
-        /// <param name="routeId">The id of the route to be fetched</param>
-        /// <param name="idForRestApi">The id for the REST API of the route to be fetched</param>
-        /// <param name="token">Used for cancelling the download</param>
-        /// <param name="listener">Used for reporting progress</param>
-        /// <returns></returns>
-        Task LoadFullRouteDataIntoDatabase (string routeId, int idForRestApi, CancellationToken token, IProgressListener listener);
-
+    public interface IFullRouteDataFetcher : IFullDataFetcher {
+        
     }
 }

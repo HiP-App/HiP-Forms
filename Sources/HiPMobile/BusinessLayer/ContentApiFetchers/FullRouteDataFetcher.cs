@@ -25,11 +25,11 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiA
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers
 {
-    class FullRouteDataFetcher : IFullRouteDataFetcher
+    public class FullRouteDataFetcher : IFullRouteDataFetcher
     {
         private readonly IRoutesApiAccess routesApiAccess;
         private readonly IMediaDataFetcher mediaDataFetcher;
-        private readonly IFullExhibitDataFetcher fullExhibitDataFetcher;
+        private readonly IFullExhibitDataFetcher fullExhibitDataFetcher;    // Is this ever initialized in the constructor? -> Maybe do it manually in a method
 
         public FullRouteDataFetcher (IRoutesApiAccess routesApiAccess, IMediaDataFetcher mediaDataFetcher, IFullExhibitDataFetcher fullExhibitDataFetcher)
         {
@@ -40,18 +40,23 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
 
         private RouteDto routeDto;
         private IList<int?> requiredMedia;
-        private IList<Exhibit> remainingExhibits;
+        private List<Exhibit> missingExhibitsForRoute;
 
-        public async Task LoadFullRouteDataIntoDatabase (string routeId, int idForRestApi, CancellationToken token, IProgressListener listener)
+        public async Task FetchFullDataIntoDatabase (string routeId, int idForRestApi, CancellationToken token, IProgressListener listener)
         {
-            requiredMedia = new List<int?> ();
-            remainingExhibits = ExhibitManager.GetExhibits ().ToList ().FindAll (x => !x.DetailsDataLoaded);
+            routeDto = (await routesApiAccess.GetRoutes(new List<int> { idForRestApi })).Items.First();     // This is the RouteDTO
 
-            double totalSteps = await FetchNeededMediaForFullRoute (idForRestApi);  // This is actually just the audio file
+            requiredMedia = new List<int?> ();
+
+            IList<Exhibit> allMissingExhibits = ExhibitManager.GetExhibits ().ToList ().FindAll (x => !x.DetailsDataLoaded);    // Get all exhibits not yet fully loaded
+            missingExhibitsForRoute = allMissingExhibits.ToList ().FindAll (x => routeDto.Exhibits.Contains (x.IdForRestApi));  // These should be the missing exhibits related to the route
+            
+            double totalSteps = FetchNeededMediaForFullRoute ();  // This is just the audio file
             if (token.IsCancellationRequested)
                 return;
+            totalSteps += missingExhibitsForRoute.Count;  // Add missing exhibits for route
 
-            listener.SetMaxProgress (totalSteps);   // This is certainly not all since there is also the data for the missing exhibits to be downloaded. How to estimate this? Pass from FullExhibits outside?
+            listener.SetMaxProgress (totalSteps);
 
             await FetchMediaData (token, listener);
             if (token.IsCancellationRequested)
@@ -59,16 +64,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
 
             using (var transaction = DbManager.StartTransaction ())
             {
-                ProcessRoute (routeId, token, listener);    // Should this method be async to work with the token below?
+                ProcessRoute (routeId, token, listener);
                 if (token.IsCancellationRequested)
                     transaction.Rollback ();
             }
         }
         
-        private async Task<int> FetchNeededMediaForFullRoute (int idForRestApi)
+        private int FetchNeededMediaForFullRoute ()
         {
-            routeDto = (await routesApiAccess.GetRoutes (new List<int> {idForRestApi})).Items.First();  // This could already be useful in the upper method
-
             if (routeDto.Audio.HasValue)
                 requiredMedia.Add (routeDto.Audio);
 
@@ -81,14 +84,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             if (token.IsCancellationRequested)
                 return;
 
-            Route route = RouteManager.GetRoute (routeId);
+            var route = RouteManager.GetRoute (routeId);
 
             AddAudioToRoute (route, routeDto.Audio, fetchedMedia);
             listener.ProgressOneStep ();
 
             AddFullExhibitsToRoute (route, token, listener);
-
-            
         }
 
         private async Task FetchMediaData(CancellationToken token, IProgressListener listener)
@@ -115,12 +116,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
         {
             foreach (var waypoint in route.Waypoints)
             {
-                var dbExhibit = remainingExhibits.SingleOrDefault (x => x.IdForRestApi == waypoint.Exhibit.IdForRestApi);
+                var dbExhibit = missingExhibitsForRoute.SingleOrDefault (x => x.IdForRestApi == waypoint.Exhibit.IdForRestApi);
 
                 if (dbExhibit == null)
                     continue;
 
-                await fullExhibitDataFetcher.FetchFullExhibitDataIntoDatabase (dbExhibit.Id, dbExhibit.IdForRestApi, token, listener);
+                await fullExhibitDataFetcher.FetchFullDataIntoDatabase (dbExhibit.Id, dbExhibit.IdForRestApi, token, listener);
                 if (token.IsCancellationRequested)
                     return;
                 listener.ProgressOneStep ();

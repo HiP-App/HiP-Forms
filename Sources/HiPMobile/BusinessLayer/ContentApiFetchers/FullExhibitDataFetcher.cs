@@ -43,7 +43,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
         private IList<int?> requiredMedias;
         private IList<PageDto> pageItems;
 
-        public async Task FetchFullExhibitDataIntoDatabase (string exhibitId, int idForRestApi, CancellationToken token, IProgressListener listener)
+        public async Task FetchFullDataIntoDatabase (string exhibitId, int idForRestApi, CancellationToken token, IProgressListener listener)
         {
             requiredMedias = new List<int?>();
 
