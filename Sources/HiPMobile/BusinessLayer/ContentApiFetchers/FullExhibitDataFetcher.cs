@@ -78,27 +78,18 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             {
                 if (page.Type != PageTypeDto.AppetizerPage)
                 {
-                    if (page.Image.HasValue)
-                    {
-                        requiredMedias.Add(page.Image);
-                    }
+                    AddMediaId(page.Image);
                     if (page.Type == PageTypeDto.SliderPage)
                     {
                         if (page.Images.Count > 0)
                         {
                             foreach (var image in page.Images)
                             {
-                                if (image.Image.HasValue)
-                                {
-                                    requiredMedias.Add(image.Image);
-                                }
+                                AddMediaId(image.Image);
                             }
                         }
                     }
-                    if (page.Audio.HasValue)
-                    {
-                        requiredMedias.Add(page.Audio);
-                    }
+                    AddMediaId(page.Audio);
                 }
                 else
                 {
@@ -112,6 +103,18 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             }
             
             return requiredMedias.Count;
+        }
+
+        private void AddMediaId (int? mediaId)
+        {
+            if (mediaId.HasValue)
+            {
+                // Only add media IDs if not already in list
+                if (!requiredMedias.Contains(mediaId))
+                {
+                    requiredMedias.Add(mediaId);
+                }
+            }
         }
 
         private async Task ProcessPages(string exhibitId, CancellationToken token, IProgressListener listener)
@@ -196,7 +199,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                 if (audio != null)
                 {
                     dbPage.Audio = audio;
-                    listener.ProgressOneStep();
                 }
             }
         }
