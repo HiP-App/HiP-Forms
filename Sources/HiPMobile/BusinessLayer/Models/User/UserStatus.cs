@@ -6,6 +6,8 @@
         LoggedOut,
         InCorrectUserNameandPassword,
         ServerError,
+        NetworkConnectionFailed,
         Registered,
+        UnkownError,
         }
     }

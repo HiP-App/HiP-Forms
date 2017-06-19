@@ -30,7 +30,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         {
             if (String.IsNullOrWhiteSpace(Email))
             {
-                // Display Error
+                DisplayEmptyEmailErrorMessage();
             } else
             {
                 SendResetPasswordEmail();
@@ -42,19 +42,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             ClearErrorMessage();
         }
 
-        void SendResetPasswordEmail()
+        async void SendResetPasswordEmail()
         {
             mainPageViewModel.SwitchToLoginView();
+            await Application.Current.MainPage.DisplayAlert(Strings.ForgotPasswordScreenView_Alert_Password_Resetted, Strings.ForgotPasswordScreenView_Alert_Description, Strings.ForgotPasswordScreenView_Alert_Ok);
         }
 
-        void DisplayInvalidEmailErrorMessage()
+        void DisplayEmptyEmailErrorMessage()
         {
-            ErrorMessage = Strings.ForgotPasswordScreenView_Invalid_Email;
-        }
-
-        void DisplayUnknownEmailErrorMessage()
-        {
-            ErrorMessage = Strings.ForgotPasswordScreenView_Unknown_Email;
+            ErrorMessage = Strings.ForgotPasswordScreenView_Error_Empty_Email;
         }
 
         void ClearErrorMessage()

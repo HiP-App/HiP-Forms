@@ -601,11 +601,8 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   <data name="ProfileView_Overview_Score" xml:space="preserve">
     <value>Punkte:</value>
   </data>
-  <data name="LoginScreenView_Error_Unknown_Email" xml:space="preserve">
-    <value>Unbekannte E-Mail Adresse</value>
-  </data>
-  <data name="LoginScreenView_Error_Wrong_Password" xml:space="preserve">
-    <value>Falsches Passwort</value>
+  <data name="LoginScreenView_Error_Wrong_Credentials" xml:space="preserve">
+    <value>Falsche E-Mail/Passwort Kombination</value>
   </data>
   <data name="LoginScreenView_Login" xml:space="preserve">
     <value>Einloggen</value>
@@ -640,13 +637,28 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   <data name="ForgotPasswordScreenView_Info" xml:space="preserve">
     <value>Kein Problem. Wir schicken dir eine E-Mail zum Zurücksetzen deines Passworts.</value>
   </data>
-  <data name="ForgotPasswordScreenView_Invalid_Email" xml:space="preserve">
-    <value>Ungültige E-Mail-Adresse</value>
-  </data>
   <data name="ForgotPasswordScreenView_Reset_Password" xml:space="preserve">
     <value>Passwort zurücksetzen</value>
   </data>
-  <data name="ForgotPasswordScreenView_Unknown_Email" xml:space="preserve">
-    <value>Unbekannte E-Mail-Adresse. Bitte registriere dich mit deiner E-Mail-Adresse.</value>
+  <data name="ForgotPasswordScreenView_Alert_Description" xml:space="preserve">
+    <value>Wir haben dir eine E-Mail mit Anweisungen zum Zurücksetzen deines Passworts geschickt</value>
+  </data>
+  <data name="ForgotPasswordScreenView_Alert_Ok" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+  <data name="ForgotPasswordScreenView_Alert_Password_Resetted" xml:space="preserve">
+    <value>Passwort zurückgesetzt</value>
+  </data>
+  <data name="ForgotPasswordScreenView_Error_Empty_Email" xml:space="preserve">
+    <value>Das E-Mail-Eingabefeld ist leer</value>
+  </data>
+  <data name="LoginScreenView_Error_Empty_Email" xml:space="preserve">
+    <value>Das E-Mail-Eingabefeld ist leer</value>
+  </data>
+  <data name="LoginScreenView_Error_Empty_Email_And_Password" xml:space="preserve">
+    <value>Das E-Mail- und Passwort-Eingabefeld ist leer</value>
+  </data>
+  <data name="LoginScreenView_Error_Empty_Password" xml:space="preserve">
+    <value>Das Passwort-Eingabefeld ist leer</value>
   </data>
 </root>

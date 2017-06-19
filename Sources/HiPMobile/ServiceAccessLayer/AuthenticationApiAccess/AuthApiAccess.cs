@@ -40,6 +40,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Authent
                     throw  new InvalidUserNamePassword();
                 return null;
                 }
+                if (result.StatusCode == HttpStatusCode.GatewayTimeout)
+                {
+                throw new NetworkAccessFailedException ("Network Connection not available", new TimeoutException ());
+                return null;
+                }
+
             string jsonPayload = await result.Content.ReadAsStringAsync ();
             Token token = JsonConvert.DeserializeObject<Token> (jsonPayload);
             return token;

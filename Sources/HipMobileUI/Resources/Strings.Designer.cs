@@ -143,7 +143,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Neue Detail Daten herunterladen?.
+        ///   Looks up a localized string similar to Neue Daten herunterladen?.
         /// </summary>
         public static string DownloadData_Title {
             get {
@@ -287,11 +287,47 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Wir haben dir eine E-Mail mit Anweisungen zum Zurücksetzen deines Passworts geschickt.
+        /// </summary>
+        public static string ForgotPasswordScreenView_Alert_Description {
+            get {
+                return ResourceManager.GetString("ForgotPasswordScreenView_Alert_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ok.
+        /// </summary>
+        public static string ForgotPasswordScreenView_Alert_Ok {
+            get {
+                return ResourceManager.GetString("ForgotPasswordScreenView_Alert_Ok", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Passwort zurückgesetzt.
+        /// </summary>
+        public static string ForgotPasswordScreenView_Alert_Password_Resetted {
+            get {
+                return ResourceManager.GetString("ForgotPasswordScreenView_Alert_Password_Resetted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to E-Mail.
         /// </summary>
         public static string ForgotPasswordScreenView_Email {
             get {
                 return ResourceManager.GetString("ForgotPasswordScreenView_Email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Das E-Mail-Eingabefeld ist leer.
+        /// </summary>
+        public static string ForgotPasswordScreenView_Error_Empty_Email {
+            get {
+                return ResourceManager.GetString("ForgotPasswordScreenView_Error_Empty_Email", resourceCulture);
             }
         }
         
@@ -314,29 +350,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ungültige E-Mail-Adresse.
-        /// </summary>
-        public static string ForgotPasswordScreenView_Invalid_Email {
-            get {
-                return ResourceManager.GetString("ForgotPasswordScreenView_Invalid_Email", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Passwort zurücksetzen.
         /// </summary>
         public static string ForgotPasswordScreenView_Reset_Password {
             get {
                 return ResourceManager.GetString("ForgotPasswordScreenView_Reset_Password", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Unbekannte E-Mail-Adresse. Bitte registriere dich mit deiner E-Mail-Adresse..
-        /// </summary>
-        public static string ForgotPasswordScreenView_Unknown_Email {
-            get {
-                return ResourceManager.GetString("ForgotPasswordScreenView_Unknown_Email", resourceCulture);
             }
         }
         
@@ -873,95 +891,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to E-Mail.
-        /// </summary>
-        public static string LoginScreenView_Email {
-            get {
-                return ResourceManager.GetString("LoginScreenView_Email", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Unbekannte E-Mail Adresse.
-        /// </summary>
-        public static string LoginScreenView_Error_Unknown_Email {
-            get {
-                return ResourceManager.GetString("LoginScreenView_Error_Unknown_Email", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Falsches Passwort.
-        /// </summary>
-        public static string LoginScreenView_Error_Wrong_Password {
-            get {
-                return ResourceManager.GetString("LoginScreenView_Error_Wrong_Password", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Passwort vergessen?.
-        /// </summary>
-        public static string LoginScreenView_Forgot_Password {
-            get {
-                return ResourceManager.GetString("LoginScreenView_Forgot_Password", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Einloggen.
-        /// </summary>
-        public static string LoginScreenView_Login {
-            get {
-                return ResourceManager.GetString("LoginScreenView_Login", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Passwort.
-        /// </summary>
-        public static string LoginScreenView_Password {
-            get {
-                return ResourceManager.GetString("LoginScreenView_Password", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Registrieren.
-        /// </summary>
-        public static string LoginScreenView_Register {
-            get {
-                return ResourceManager.GetString("LoginScreenView_Register", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Abmelden.
-        /// </summary>
-        public static string Logout {
-            get {
-                return ResourceManager.GetString("Logout", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Historisches Paderborn.
-        /// </summary>
-        public static string MainPage_MenuTitle {
-            get {
-                return ResourceManager.GetString("MainPage_MenuTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Account.
-        /// </summary>
-        public static string MainPageViewModel_Account {
-            get {
-                return ResourceManager.GetString("MainPageViewModel_Account", resourceCulture);
-            }
-        }
-        /// <summary>
         ///   Looks up a localized string similar to Basis Daten verfügbar.
         /// </summary>
         public static string LoadingPageViewModel_BaseData_DataAvailable {
@@ -1025,11 +954,128 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to In den Einstellungen haben Sie die Möglichkeit, den Download der Daten auch über Mobile Datenverbindungen zu erlauben..
+        /// </summary>
+        public static string LoadingPageViewModel_BaseData_OnlyMobile {
+            get {
+                return ResourceManager.GetString("LoadingPageViewModel_BaseData_OnlyMobile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to OK.
         /// </summary>
         public static string LoadingPageViewModel_LoadingError_Confirm {
             get {
                 return ResourceManager.GetString("LoadingPageViewModel_LoadingError_Confirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to E-Mail.
+        /// </summary>
+        public static string LoginScreenView_Email {
+            get {
+                return ResourceManager.GetString("LoginScreenView_Email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Das E-Mail-Eingabefeld ist leer.
+        /// </summary>
+        public static string LoginScreenView_Error_Empty_Email {
+            get {
+                return ResourceManager.GetString("LoginScreenView_Error_Empty_Email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Das E-Mail- und Passwort-Eingabefeld ist leer.
+        /// </summary>
+        public static string LoginScreenView_Error_Empty_Email_And_Password {
+            get {
+                return ResourceManager.GetString("LoginScreenView_Error_Empty_Email_And_Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Das Passwort-Eingabefeld ist leer.
+        /// </summary>
+        public static string LoginScreenView_Error_Empty_Password {
+            get {
+                return ResourceManager.GetString("LoginScreenView_Error_Empty_Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Falsche E-Mail/Passwort Kombination.
+        /// </summary>
+        public static string LoginScreenView_Error_Wrong_Credentials {
+            get {
+                return ResourceManager.GetString("LoginScreenView_Error_Wrong_Credentials", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Passwort vergessen?.
+        /// </summary>
+        public static string LoginScreenView_Forgot_Password {
+            get {
+                return ResourceManager.GetString("LoginScreenView_Forgot_Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Einloggen.
+        /// </summary>
+        public static string LoginScreenView_Login {
+            get {
+                return ResourceManager.GetString("LoginScreenView_Login", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Passwort.
+        /// </summary>
+        public static string LoginScreenView_Password {
+            get {
+                return ResourceManager.GetString("LoginScreenView_Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Registrieren.
+        /// </summary>
+        public static string LoginScreenView_Register {
+            get {
+                return ResourceManager.GetString("LoginScreenView_Register", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Abmelden.
+        /// </summary>
+        public static string Logout {
+            get {
+                return ResourceManager.GetString("Logout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Historisches Paderborn.
+        /// </summary>
+        public static string MainPage_MenuTitle {
+            get {
+                return ResourceManager.GetString("MainPage_MenuTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Account.
+        /// </summary>
+        public static string MainPageViewModel_Account {
+            get {
+                return ResourceManager.GetString("MainPageViewModel_Account", resourceCulture);
             }
         }
         
