@@ -972,6 +972,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Melde an.
+        /// </summary>
+        public static string LoginScreenView_Dialog_Login {
+            get {
+                return ResourceManager.GetString("LoginScreenView_Dialog_Login", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to E-Mail.
         /// </summary>
         public static string LoginScreenView_Email {

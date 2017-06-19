@@ -10,6 +10,7 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.UserManagement;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Exceptions;
+using Acr.UserDialogs;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 {
@@ -20,7 +21,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         private String email;
         private String password;
         private String errorMessage;
-      
+        private Boolean isLoading;
+
         public LoginScreenViewModel(MainPageViewModel mainPageVm)
         {
             mainPageViewModel = mainPageVm;
@@ -28,6 +30,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             LoginCommand = new Command(OnLoginClicked);
             RegisterCommand = new Command(OnRegisterClicked);
             ForgotPasswordCommand = new Command(OnForgotPasswordClicked);
+
+            Email = "your_name_here";
+            Password = "sup3rS3cr3tP@ssw0rd!";
         }
 
         public ICommand LoginCommand { get; }
@@ -64,7 +69,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         async void PerformLogin()
         {
             User user = new User (Email, password);
+
+            UserDialogs.Instance.ShowLoading(Strings.LoginScreenView_Dialog_Login, MaskType.Black);
             UserStatus userStatus = await IoCManager.Resolve<IUserManager> ().LoginUser (new User (email, password));
+            UserDialogs.Instance.HideLoading();
 
             if (userStatus == UserStatus.LoggedIn)
                 Settings.IsLoggedIn = true;
@@ -128,6 +136,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         {
             get { return password; }
             set { SetProperty(ref password, value); }
+        }
+
+        public Boolean IsLoading
+        {
+            get { return isLoading; }
+            set { SetProperty(ref isLoading, value); }
         }
     }
 }

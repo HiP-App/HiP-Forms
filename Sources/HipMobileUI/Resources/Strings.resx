@@ -661,4 +661,7 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   <data name="LoginScreenView_Error_Empty_Password" xml:space="preserve">
     <value>Das Passwort-Eingabefeld ist leer</value>
   </data>
+  <data name="LoginScreenView_Dialog_Login" xml:space="preserve">
+    <value>Melde an</value>
+  </data>
 </root>
