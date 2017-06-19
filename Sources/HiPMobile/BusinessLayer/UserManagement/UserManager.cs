@@ -37,9 +37,16 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.UserManageme
                 Settings.Password = user.Password;
 
                 }
-            catch (InvalidUserNamePassword)
+            catch (Exception ex)
                 {
-                user.CurrentStatus = UserStatus.InCorrectUserNameandPassword;
+                if (ex is NetworkAccessFailedException)
+                    user.CurrentStatus = UserStatus.NetworkConnectionFailed;
+
+                if (ex is InvalidUserNamePassword)
+                    user.CurrentStatus = UserStatus.InCorrectUserNameandPassword;
+
+                else 
+                    user.CurrentStatus = UserStatus.UnkownError;
                 }
             return user.CurrentStatus;
             }
@@ -55,6 +62,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.UserManageme
         return UserStatus.Registered;
         }
 
+        public async Task<UserStatus> ForgotPassword (string email)
+        {
+        return UserStatus.PasswordResetEmailSent;
+        }
         }
     }
 
