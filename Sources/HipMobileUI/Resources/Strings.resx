@@ -576,11 +576,10 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   </data>
   <data name="ExhibitDetailsPage_Distance_alert_confirm" xml:space="preserve">
     <value>OK</value>
- </data>
+  </data>
   <data name="StorageTitle" xml:space="preserve">
     <value>Belegter Speicherplatz für Daten</value>
   </data>
-
   <data name="DownloadDetails_Text_Part1" xml:space="preserve">
     <value>Lade Daten zu </value>
   </data>
@@ -595,5 +594,14 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   </data>
   <data name="LoadingPageViewModel_BaseData_OnlyMobile" xml:space="preserve">
     <value>In den Einstellungen haben Sie die Möglichkeit, den Download der Daten auch über Mobile Datenverbindungen zu erlauben.</value>
+  </data>
+  <data name="LicenseScreenViewModel_UnlockExhibits_Confirm" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="LicenseScreenViewModel_UnlockExhibits_Text" xml:space="preserve">
+    <value>Alle Sehenswüdigkeiten freigeschaltet!</value>
+  </data>
+  <data name="LicenseScreenViewModel_UnlockExhibits_Title" xml:space="preserve">
+    <value>Sehenswürdigkeiten freigeschaltet</value>
   </data>
 </root>

@@ -111,7 +111,11 @@
                 <Label Text="{helpers:Translate LicenseScreenView_FurtherInfo_Text}"/>
 
       <!-- Labels for Impressum -->
-                <Label Style="{StaticResource TitleStyle}" Text="{helpers:Translate LicenseScreenView_Impressum_Title}"/>
+                <Label Style="{StaticResource TitleStyle}" Text="{helpers:Translate LicenseScreenView_Impressum_Title}">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding UnlockExhibits}" />
+                    </Label.GestureRecognizers>
+                </Label>
                 <views1:HtmlLink Text="{helpers:Translate LicenseScreenView_Impressum_Text}"/>
     </StackLayout>
     </ScrollView>

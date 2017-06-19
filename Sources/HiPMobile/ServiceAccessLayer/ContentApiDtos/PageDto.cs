@@ -14,6 +14,8 @@
 
 using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos {
     public class PageDto
@@ -22,6 +24,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
 
         public int Id { get; set; }
 
+        [JsonConverter(typeof(StringEnumConverter))]
         public PageTypeDto Type { get; set; }
 
         public string Title { get; set; }
