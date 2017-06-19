@@ -74,12 +74,26 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             UserStatus userStatus = await IoCManager.Resolve<IUserManager> ().LoginUser (new User (email, password));
             UserDialogs.Instance.HideLoading();
 
-            if (userStatus == UserStatus.LoggedIn)
-                Settings.IsLoggedIn = true;
-
-            if (userStatus == UserStatus.InCorrectUserNameandPassword)
-                DisplayWrongCredentialsErrorMessage();
-                
+            switch(userStatus)
+            {
+                case UserStatus.InCorrectUserNameandPassword:
+                    DisplayWrongCredentialsErrorMessage();
+                    break;
+                case UserStatus.LoggedIn:
+                    Settings.IsLoggedIn = true;
+                    break;
+                case UserStatus.NetworkConnectionFailed:
+                    UserDialogs.Instance.Alert(Strings.Alert_No_Internet_Description, Strings.Alert_No_Internet_Title);
+                    break;
+                case UserStatus.ServerError:
+                    UserDialogs.Instance.Alert(Strings.Alert_Server_Error_Description, Strings.Alert_Server_Error_Title);
+                    break;
+                case UserStatus.UnkownError:
+                    UserDialogs.Instance.Alert(Strings.Alert_Unknown_Error_Description, Strings.Alert_Unknown_Error_Title);
+                    break;
+                default:
+                    break;
+            }
 
             mainPageViewModel.UpdateAccountViews();
         }

@@ -664,4 +664,22 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   <data name="LoginScreenView_Dialog_Login" xml:space="preserve">
     <value>Melde an</value>
   </data>
+  <data name="Alert_No_Internet_Description" xml:space="preserve">
+    <value>Wir konnten keine Verbindung mit dem Internet herstellen. Bitte überprüfe deine Netzwerkverbindung.</value>
+  </data>
+  <data name="Alert_No_Internet_Title" xml:space="preserve">
+    <value>Keine Netzwerkverbindung</value>
+  </data>
+  <data name="Alert_Server_Error_Description" xml:space="preserve">
+    <value>Es ist ein Server fehler aufgetreten. Bitte versuche es später noch einmal.</value>
+  </data>
+  <data name="Alert_Server_Error_Title" xml:space="preserve">
+    <value>Server Fehler</value>
+  </data>
+  <data name="Alert_Unknown_Error_Description" xml:space="preserve">
+    <value>Es ist ein unbekannter Fehler aufgetreten.</value>
+  </data>
+  <data name="Alert_Unknown_Error_Title" xml:space="preserve">
+    <value>Unbekannter Fehler</value>
+  </data>
 </root>
