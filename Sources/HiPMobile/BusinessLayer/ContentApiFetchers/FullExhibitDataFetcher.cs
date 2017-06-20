@@ -138,6 +138,38 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                 exhibit.Pages.Add(dbPage);
             }
 
+            // Rearrange additional information pages
+            var pagesToBeRemoved = new List<Page> ();
+            foreach (var pageDto in pageItems)
+            {
+                if (pageDto.AdditionalInformationPages.Count > 0)
+                {
+                    foreach (var existingPageWithInfo in exhibit.Pages)
+                    {
+                        if (pageDto.Id == existingPageWithInfo.IdForRestApi)
+                        {
+                            foreach (var pageId in pageDto.AdditionalInformationPages)
+                            {
+
+                                foreach (var pageToBeAdded in exhibit.Pages)
+                                {
+                                    if (pageToBeAdded.IdForRestApi == pageId)
+                                    {
+                                        existingPageWithInfo.AdditionalInformationPages.Add(pageToBeAdded);
+                                        pagesToBeRemoved.Add (pageToBeAdded);
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            foreach (var pageToBeRemoved in pagesToBeRemoved)
+            {
+                exhibit.Pages.Remove (pageToBeRemoved);
+            }
+
             exhibit.DetailsDataLoaded = true;
         }
 
