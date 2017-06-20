@@ -33,17 +33,22 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views.ExhibitDetail
             texts = new List<string> ();
             Headline = timesliderPage.Title;
             Description = timesliderPage.Text;
-            foreach (Image timesliderPageImage in timesliderPage.Images)
+
+            for (int i = 0; i < timesliderPage.Images.Count; i++)
             {
-                Images.Add (timesliderPageImage.GetImageSource ());
-                texts.Add (timesliderPageImage.Description);
+                Image timesliderPageImage = timesliderPage.Images[i];
+                if (timesliderPageImage.Data.Length > 0)
+                {
+                    Images.Add(timesliderPageImage.GetImageSource());
+                    texts.Add(timesliderPageImage.Description);
+                    Years.Add(timesliderPage.Dates[i].Value.ToString());
+                }
             }
+
             if(texts.Count>0)DisplayedText = texts [0];
             PropertyChanged+=OnPropertyChanged;
 
             BottomSheetVisible = !(string.IsNullOrEmpty(Headline) && string.IsNullOrEmpty(Description));
-
-            // TODO add year numbers once timeslider should be used with years
         }
 
         private void OnPropertyChanged (object sender, PropertyChangedEventArgs propertyChangedEventArgs)

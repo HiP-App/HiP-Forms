@@ -14,6 +14,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -270,7 +271,18 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
                 AudioToolbarVisible = false;
             }
 
-            AudioToolbar.SetNewAudioFile (currentPage.Audio);
+            // It's possible to get no audio data even if it should exist
+            try
+            {
+                AudioToolbar.SetNewAudioFile (currentPage.Audio);
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e.Message);
+                Debug.WriteLine(e.StackTrace);
+                AudioToolbar.SetNewAudioFile(null);
+                AudioToolbarVisible = false;
+            }
 
             switch (currentPage.PageType)
             {
