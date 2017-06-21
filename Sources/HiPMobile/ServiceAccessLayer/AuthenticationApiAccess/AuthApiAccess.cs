@@ -31,23 +31,19 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Authent
             });
 
             var result = await clientApiClient.PostRequestFormBased (ServerEndpoints.TokenUrl, content);
-            
-            if (result.StatusCode == HttpStatusCode.BadRequest)
-                {
-                string payload = await result.Content.ReadAsStringAsync ();
-                Error error = JsonConvert.DeserializeObject<Error> (payload);
-                if (error.ErrorDescription == "invalid_username_or_password")
-                    throw  new InvalidUserNamePassword();
-                return null;
-                }
-                if (result.StatusCode == HttpStatusCode.GatewayTimeout)
-                {
-                throw new NetworkAccessFailedException ("Network Connection not available", new TimeoutException ());
-                return null;
-                }
-
             string jsonPayload = await result.Content.ReadAsStringAsync ();
             Token token = JsonConvert.DeserializeObject<Token> (jsonPayload);
+
+            if (result.StatusCode == HttpStatusCode.BadRequest || result.StatusCode == HttpStatusCode.NotFound)
+                {
+                throw  new InvalidUserNamePassword();
+                }
+            
+            if (result.StatusCode == HttpStatusCode.GatewayTimeout)
+                {
+                throw new TimeoutException ("Request timed out");
+                }
+
             return token;
             }
         public async Task<bool> Register (string userName, string password, string confirmPassword)
