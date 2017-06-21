@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System.Text;
 using NSubstitute;
 using NUnit.Framework;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer;
@@ -29,7 +30,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.ServiceAccessLayer
         {
             var sut = CreateSystemUnderTest();
             string jsonReturn = "ThisIsATestByteArray";
-            contentApiSubstitute.GetResponseFromUrlAsString(null).ReturnsForAnyArgs(jsonReturn);
+            var byteData = Encoding.UTF8.GetBytes(jsonReturn);
+            contentApiSubstitute.GetResponseFromUrlAsBytes(null).ReturnsForAnyArgs(byteData);
 
             var file = await sut.GetFile(42);
             Assert.AreEqual(42, file.MediaId);
