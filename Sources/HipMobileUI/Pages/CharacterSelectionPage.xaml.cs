@@ -31,6 +31,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
             statusBarController.HideStatusBar();
         }
 
+        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+
+        }
+
         protected override void OnSizeAllocated(double width, double height)
         {
             base.OnSizeAllocated(width, height);
@@ -54,7 +59,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
                 MainGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
 
                 MainGrid.Children.Add(AdventurerGrid, 0, 0);
-                MainGrid.Children.Add(ProfessorGrid,0 , 1);
+                MainGrid.Children.Add(ProfessorGrid, 0, 1);
 
                 deviceOrientation = DeviceOrientation.Portrait;
             }
@@ -71,7 +76,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
                 MainGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
 
                 MainGrid.Children.Add(AdventurerGrid, 0, 0);
-                MainGrid.Children.Add(ProfessorGrid,1 , 0);
+                MainGrid.Children.Add(ProfessorGrid, 1, 0);
 
                 deviceOrientation = DeviceOrientation.Landscape;
             }
