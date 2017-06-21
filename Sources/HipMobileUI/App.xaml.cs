@@ -39,7 +39,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI
             }
             else
             {
-                navigationService.StartNewNavigationStack(new LoadingPageViewModel ());
+                navigationService.StartNewNavigationStack(new CharacterSelectionPageViewModel ());
             }
         }
 

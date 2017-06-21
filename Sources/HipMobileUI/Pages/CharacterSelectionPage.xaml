@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Pages.CharacterSelectionPage">
+    <ContentPage.Content>
+        <Grid x:Name="MainGrid" RowSpacing="0" ColumnSpacing="0">
+            <Grid x:Name="AdventurerGrid" BackgroundColor="Orange">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.7*"/>
+                    <RowDefinition Height="0.3*"/>
+                </Grid.RowDefinitions>
+                <Image x:Name="AdventurerImage" Grid.Row="0" Source="hiphop_transparent" Aspect="AspectFit" Margin="10"></Image>
+                <Label x:Name="AdventurerLabel" Grid.Row="1" Text="Discover Paderborn on your own! Encounter new Experiences!" TextColor="White" FontSize="Medium" XAlign="Center" YAlign="Center"></Label>
+            </Grid>
+            <Grid x:Name="ProfessorGrid" BackgroundColor="Blue">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.7*"/>
+                    <RowDefinition Height="0.3*"/>
+                </Grid.RowDefinitions>
+                <Image x:Name="ProfessorImage" Grid.Row="0" Source="hiphop_transparent" Aspect="AspectFit" Margin="10"></Image>
+                <Label x:Name="ProfessorText" Grid.Row="1" Text="Follow the guided tours to discover Paderborn!" TextColor="White" FontSize="Medium" XAlign="Center" YAlign="Center"></Label>
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
