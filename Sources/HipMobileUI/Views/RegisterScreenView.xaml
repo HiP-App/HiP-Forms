@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Views.RegisterView"
+             x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Views.RegisterScreenView"
 			 xmlns:local="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Behaviors"
              xmlns:helpers="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;assembly=HipMobileUI">
 <ContentView.Content>

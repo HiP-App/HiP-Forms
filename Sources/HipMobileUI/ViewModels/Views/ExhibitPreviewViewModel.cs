@@ -8,7 +8,6 @@ using System.Windows.Input;
 using Xamarin.Forms;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Location;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
@@ -46,8 +45,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             MessagingCenter.Send<NavigationViewModel, bool> (this, "ReturnValue", true);
             IoCManager.Resolve<INavigationService> ().PopModalAsync ();
             IoCManager.Resolve<INavigationService> ().PushAsync (new ExhibitDetailsViewModel (exhibit.Id));
-            exhibitManager.InvokeExhibitVistedEvent (exhibit);              
-        }
+            exhibitManager.InvokeExhibitVistedEvent (exhibit);
+            }
 
         void Deny ()
             {

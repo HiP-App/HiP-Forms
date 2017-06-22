@@ -12,6 +12,7 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.UserManagement;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Exceptions;
+using Acr.UserDialogs;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 {
@@ -22,6 +23,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         private String email;
         private String password;
         private String errorMessage;
+        private Boolean isLoading;
 
         public LoginScreenViewModel(MainPageViewModel mainPageVm)
         {
@@ -30,6 +32,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             LoginCommand = new Command(OnLoginClicked);
             RegisterCommand = new Command(OnRegisterClicked);
             ForgotPasswordCommand = new Command(OnForgotPasswordClicked);
+
+            Email = "your_name_here";
+            Password = "sup3rS3cr3tP@ssw0rd!";
         }
 
         public ICommand LoginCommand { get; }
@@ -38,17 +43,19 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 
         void OnLoginClicked()
         {
-            if(String.IsNullOrWhiteSpace(Email))
+            if (String.IsNullOrWhiteSpace(Email) && String.IsNullOrWhiteSpace(Password))
             {
-                // Display Error
-            }
-
-            if(String.IsNullOrWhiteSpace(Password))
+                DisplayEmptyEmailAndPasswordErrorMessage();
+            } else if(String.IsNullOrWhiteSpace(Email))
             {
-                // Display Error
+                DisplayEmptyEmailErrorMessage();
+            } else if(String.IsNullOrWhiteSpace(Password))
+            {
+                DisplayEmptyPasswordErrorMessage();
+            } else 
+            {
+                PerformLogin();
             }
-
-            PerformLogin();
         }
 
         void OnRegisterClicked()
@@ -64,14 +71,31 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         async void PerformLogin()
         {
             User user = new User (Email, password);
+
+            UserDialogs.Instance.ShowLoading(Strings.LoginScreenView_Dialog_Login, MaskType.Black);
             UserStatus userStatus = await IoCManager.Resolve<IUserManager> ().LoginUser (new User (email, password));
+            UserDialogs.Instance.HideLoading();
 
-            if (userStatus == UserStatus.LoggedIn)
-                Settings.IsLoggedIn = true;
-
-            if (userStatus == UserStatus.InCorrectUserNameandPassword)
-                DisplayWrongPasswordErrorMessage();
-                
+            switch(userStatus)
+            {
+                case UserStatus.InCorrectUserNameandPassword:
+                    DisplayWrongCredentialsErrorMessage();
+                    break;
+                case UserStatus.LoggedIn:
+                    Settings.IsLoggedIn = true;
+                    break;
+                case UserStatus.NetworkConnectionFailed:
+                    UserDialogs.Instance.Alert(Strings.Alert_No_Internet_Description, Strings.Alert_No_Internet_Title);
+                    break;
+                case UserStatus.ServerError:
+                    UserDialogs.Instance.Alert(Strings.Alert_Server_Error_Description, Strings.Alert_Server_Error_Title);
+                    break;
+                case UserStatus.UnkownError:
+                    UserDialogs.Instance.Alert(Strings.Alert_Unknown_Error_Description, Strings.Alert_Unknown_Error_Title);
+                    break;
+                default:
+                    break;
+            }
 
             mainPageViewModel.UpdateAccountViews();
         }
@@ -87,14 +111,25 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             mainPageViewModel.SwitchToForgotPasswordView();
         }
 
-        void DisplayUnknownEmailErrorMessage()
+        void DisplayWrongCredentialsErrorMessage()
         {
-            ErrorMessage = Strings.LoginScreenView_Error_Unknown_Email;
+            ErrorMessage = Strings.LoginScreenView_Error_Wrong_Credentials;
         }
 
-        void DisplayWrongPasswordErrorMessage()
+        void DisplayEmptyEmailErrorMessage()
         {
-            ErrorMessage = Strings.LoginScreenView_Error_Wrong_Password;
+            ErrorMessage = Strings.LoginScreenView_Error_Empty_Email;
+        }
+
+        void DisplayEmptyPasswordErrorMessage()
+        {
+            ErrorMessage = Strings.LoginScreenView_Error_Empty_Password;
+        }
+
+        void DisplayEmptyEmailAndPasswordErrorMessage()
+        {
+            ErrorMessage = Strings.LoginScreenView_Error_Empty_Email_And_Password;
+            
         }
 
         void ClearErrorMessage()
@@ -118,6 +153,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         {
             get { return password; }
             set { SetProperty(ref password, value); }
+        }
+
+        public Boolean IsLoading
+        {
+            get { return isLoading; }
+            set { SetProperty(ref isLoading, value); }
         }
     }
 }

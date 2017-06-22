@@ -995,6 +995,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
             }
         }
         
+        public static string LoginScreenView_Error_Wrong_Credentials {
+            get {
+                return ResourceManager.GetString("LoginScreenView_Error_Wrong_Credentials", resourceCulture);
+            }
+        }
+        
         public static string LoginScreenView_Login {
             get {
                 return ResourceManager.GetString("LoginScreenView_Login", resourceCulture);
@@ -1136,6 +1142,102 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         public static string RegisterScreenView_Error_Empty_Password {
             get {
                 return ResourceManager.GetString("RegisterScreenView_Error_Empty_Password", resourceCulture);
+            }
+        }
+        
+        public static string ForgotPasswordScreenView_Alert_Description {
+            get {
+                return ResourceManager.GetString("ForgotPasswordScreenView_Alert_Description", resourceCulture);
+            }
+        }
+        
+        public static string ForgotPasswordScreenView_Alert_Ok {
+            get {
+                return ResourceManager.GetString("ForgotPasswordScreenView_Alert_Ok", resourceCulture);
+            }
+        }
+        
+        public static string ForgotPasswordScreenView_Alert_Password_Resetted {
+            get {
+                return ResourceManager.GetString("ForgotPasswordScreenView_Alert_Password_Resetted", resourceCulture);
+            }
+        }
+        
+        public static string ForgotPasswordScreenView_Error_Empty_Email {
+            get {
+                return ResourceManager.GetString("ForgotPasswordScreenView_Error_Empty_Email", resourceCulture);
+            }
+        }
+        
+        public static string LoginScreenView_Error_Empty_Email {
+            get {
+                return ResourceManager.GetString("LoginScreenView_Error_Empty_Email", resourceCulture);
+            }
+        }
+        
+        public static string LoginScreenView_Error_Empty_Email_And_Password {
+            get {
+                return ResourceManager.GetString("LoginScreenView_Error_Empty_Email_And_Password", resourceCulture);
+            }
+        }
+        
+        public static string LoginScreenView_Error_Empty_Password {
+            get {
+                return ResourceManager.GetString("LoginScreenView_Error_Empty_Password", resourceCulture);
+            }
+        }
+        
+        public static string LoginScreenView_Dialog_Login {
+            get {
+                return ResourceManager.GetString("LoginScreenView_Dialog_Login", resourceCulture);
+            }
+        }
+        
+        public static string Alert_No_Internet_Description {
+            get {
+                return ResourceManager.GetString("Alert_No_Internet_Description", resourceCulture);
+            }
+        }
+        
+        public static string Alert_No_Internet_Title {
+            get {
+                return ResourceManager.GetString("Alert_No_Internet_Title", resourceCulture);
+            }
+        }
+        
+        public static string Alert_Server_Error_Description {
+            get {
+                return ResourceManager.GetString("Alert_Server_Error_Description", resourceCulture);
+            }
+        }
+        
+        public static string Alert_Server_Error_Title {
+            get {
+                return ResourceManager.GetString("Alert_Server_Error_Title", resourceCulture);
+            }
+        }
+        
+        public static string Alert_Unknown_Error_Description {
+            get {
+                return ResourceManager.GetString("Alert_Unknown_Error_Description", resourceCulture);
+            }
+        }
+        
+        public static string Alert_Unknown_Error_Title {
+            get {
+                return ResourceManager.GetString("Alert_Unknown_Error_Title", resourceCulture);
+            }
+        }
+        
+        public static string LicenseScreenView_User_Dialogs_Text {
+            get {
+                return ResourceManager.GetString("LicenseScreenView_User_Dialogs_Text", resourceCulture);
+            }
+        }
+        
+        public static string LicenseScreenView_User_Dialogs_Title {
+            get {
+                return ResourceManager.GetString("LicenseScreenView_User_Dialogs_Title", resourceCulture);
             }
         }
     }

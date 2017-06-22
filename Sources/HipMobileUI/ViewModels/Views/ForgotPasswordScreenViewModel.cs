@@ -1,4 +1,5 @@
-﻿using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
+﻿using Acr.UserDialogs;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
 using System;
 using System.Collections.Generic;
@@ -30,7 +31,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         {
             if (String.IsNullOrWhiteSpace(Email))
             {
-                // Display Error
+                DisplayEmptyEmailErrorMessage();
             } else
             {
                 SendResetPasswordEmail();
@@ -45,16 +46,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         void SendResetPasswordEmail()
         {
             mainPageViewModel.SwitchToLoginView();
+            UserDialogs.Instance.Alert(Strings.ForgotPasswordScreenView_Alert_Description, Strings.ForgotPasswordScreenView_Alert_Password_Resetted);
         }
 
-        void DisplayInvalidEmailErrorMessage()
+        void DisplayEmptyEmailErrorMessage()
         {
-            ErrorMessage = Strings.ForgotPasswordScreenView_Invalid_Email;
-        }
-
-        void DisplayUnknownEmailErrorMessage()
-        {
-            ErrorMessage = Strings.ForgotPasswordScreenView_Unknown_Email;
+            ErrorMessage = Strings.ForgotPasswordScreenView_Error_Empty_Email;
         }
 
         void ClearErrorMessage()

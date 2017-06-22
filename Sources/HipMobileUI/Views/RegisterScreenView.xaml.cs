@@ -28,13 +28,13 @@ using Xamarin.Forms.Xaml;
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class RegisterView : IViewFor<RegisterViewModel>
+	public partial class RegisterScreenView : IViewFor<RegisterScreenViewModel>
 	{
     
         private double thisWidth, thisHeight;
 		private DeviceOrientation deviceOrientation;
 
-		public RegisterView()
+		public RegisterScreenView()
 		{
 			InitializeComponent();
 			deviceOrientation = DeviceOrientation.Undefined;

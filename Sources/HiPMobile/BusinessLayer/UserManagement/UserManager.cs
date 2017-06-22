@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.User;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer;
@@ -28,18 +29,31 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.UserManageme
 
         private readonly static IAuthApiAccess AuthApiAccess = IoCManager.Resolve<IAuthApiAccess> ();
         public async Task<UserStatus> LoginUser (User user)
-            {
+        {
             try
                 {
+                if (!CheckNetworkAccess ())
+                    {
+                    user.CurrentStatus = UserStatus.NetworkConnectionFailed;
+                    return user.CurrentStatus;
+                    }
+
                 user.Token = await AuthApiAccess.GetToken (user.UserName, user.Password);
                 user.CurrentStatus = UserStatus.LoggedIn;
                 Settings.Username = user.UserName;
                 Settings.Password = user.Password;
-
                 }
-            catch (InvalidUserNamePassword)
+
+            catch (Exception ex)
                 {
-                user.CurrentStatus = UserStatus.InCorrectUserNameandPassword;
+                if (ex is NetworkAccessFailedException)
+                    user.CurrentStatus = UserStatus.NetworkConnectionFailed;
+
+                if (ex is InvalidUserNamePassword)
+                    user.CurrentStatus = UserStatus.InCorrectUserNameandPassword;
+
+                else 
+                    user.CurrentStatus = UserStatus.UnkownError;
                 }
             return user.CurrentStatus;
             }
@@ -55,6 +69,18 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.UserManageme
         return UserStatus.Registered;
         }
 
+        public bool CheckNetworkAccess ()
+        {
+        var networkAccessStatus = IoCManager.Resolve<INetworkAccessChecker> ().GetNetworkAccessStatus ();
+        if (networkAccessStatus == NetworkAccessStatus.NoAccess)
+            return  false;
+        return true;
+        }
+
+        public async Task<UserStatus> ForgotPassword (string email)
+        {
+        return UserStatus.PasswordResetEmailSent;
+        }
         }
     }
 

@@ -24,7 +24,7 @@ using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 {
-	public class RegisterViewModel : NavigationViewModel
+	public class RegisterScreenViewModel : NavigationViewModel
 	{
 		private String email;
 		private String password;
@@ -33,7 +33,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 		private readonly MainPageViewModel mainPageViewModel;
 
 
-		public RegisterViewModel(MainPageViewModel mainPageVm)
+		public RegisterScreenViewModel(MainPageViewModel mainPageVm)
 		{
 			mainPageViewModel = mainPageVm;
 			Register = new Command(OnRegisterClicked);

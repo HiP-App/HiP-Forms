@@ -48,8 +48,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 
 		public virtual int Radius{ get; set; }
 
-		public virtual bool Unlocked { get; set;}
-
 		//Associations
 		public virtual IList<Page> Pages{ get; }
 
