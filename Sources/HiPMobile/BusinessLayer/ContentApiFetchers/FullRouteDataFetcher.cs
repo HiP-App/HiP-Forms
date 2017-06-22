@@ -29,7 +29,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
     {
         private readonly IRoutesApiAccess routesApiAccess;
         private readonly IMediaDataFetcher mediaDataFetcher;
-        private readonly IFullExhibitDataFetcher fullExhibitDataFetcher;    // Is this ever initialized in the constructor? -> Maybe do it manually in a method
+        private readonly IFullExhibitDataFetcher fullExhibitDataFetcher;
 
         public FullRouteDataFetcher (IRoutesApiAccess routesApiAccess, IMediaDataFetcher mediaDataFetcher, IFullExhibitDataFetcher fullExhibitDataFetcher)
         {
@@ -42,7 +42,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
         private IList<int?> requiredMedia;
         private List<Exhibit> missingExhibitsForRoute;
 
-        public async Task FetchFullDataIntoDatabase (string routeId, int idForRestApi, CancellationToken token, IProgressListener listener)
+        public async Task FetchFullDownloadableDataIntoDatabase (string routeId, int idForRestApi, CancellationToken token, IProgressListener listener)
         {
             routeDto = (await routesApiAccess.GetRoutes(new List<int> { idForRestApi })).Items.First();     // This is the RouteDTO
 
@@ -54,7 +54,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             double totalSteps = FetchNeededMediaForFullRoute ();  // This is just the audio file
             if (token.IsCancellationRequested)
                 return;
-            totalSteps += missingExhibitsForRoute.Count;  // Add missing exhibits for route
+            totalSteps += missingExhibitsForRoute.Count;  // Add missing exhibits for route; instead of exhibits you could add the media associated with it; change code in other full fetcher
 
             listener.SetMaxProgress (totalSteps);
 
@@ -121,10 +121,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                 if (dbExhibit == null)
                     continue;
 
-                await fullExhibitDataFetcher.FetchFullDataIntoDatabase (dbExhibit.Id, dbExhibit.IdForRestApi, token, listener);
+                await fullExhibitDataFetcher.FetchFullDownloadableDataIntoDatabase (dbExhibit.Id, dbExhibit.IdForRestApi, token, listener);
                 if (token.IsCancellationRequested)
                     return;
-                listener.ProgressOneStep ();
+                listener.ProgressOneStep ();    // This listener could be changed depending on the media passed up from the FullExhibitDataFetcher
             }
         }
     }

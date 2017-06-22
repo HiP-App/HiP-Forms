@@ -20,7 +20,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
     /// <summary>
     /// Fetcher for full exhibits data
     /// </summary>
-    public interface IFullExhibitDataFetcher : IFullDataFetcher {
+    public interface IFullExhibitDataFetcher : IFullDownloadableDataFetcher {
 
     }
 }

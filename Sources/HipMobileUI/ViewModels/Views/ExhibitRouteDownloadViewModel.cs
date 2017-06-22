@@ -122,7 +122,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         public ICommand GoToOverviewCommand { get; }
         public ICommand GoToDetailsCommand { get; }
 
-        private bool downloadAborted;
+        private bool downloadAborted;   // Can probably be removed
         private void CancelDownload ()
         {
             // Do some stuff to abort the download; this distincts this method from the one below
@@ -158,12 +158,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             string messageToShow = null;
             string titleToShow = null;
             var networkAccessStatus = IoCManager.Resolve<INetworkAccessChecker>().GetNetworkAccessStatus();
-            IFullDataFetcher fullDataFetcher;
+            IFullDownloadableDataFetcher fullDownloadableDataFetcher;
 
             if (type == DownloadableType.Exhibit)
-                fullDataFetcher = IoCManager.Resolve<IFullExhibitDataFetcher> ();
+                fullDownloadableDataFetcher = IoCManager.Resolve<IFullExhibitDataFetcher> ();
             else
-                fullDataFetcher = IoCManager.Resolve<IFullRouteDataFetcher> ();
+                fullDownloadableDataFetcher = IoCManager.Resolve<IFullRouteDataFetcher> ();
 
             if (networkAccessStatus == NetworkAccessStatus.WifiAccess
                 || (networkAccessStatus == NetworkAccessStatus.MobileAccess && !Settings.WifiOnly))
@@ -171,7 +171,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
                 try
                 {
                     var token = cancellationTokenSource.Token;
-                    await fullDataFetcher.FetchFullDataIntoDatabase(downloadableId, downloadableIdForRestApi, token, this);
+                    await fullDownloadableDataFetcher.FetchFullDownloadableDataIntoDatabase(downloadableId, downloadableIdForRestApi, token, this);
                     SetDetailsAvailable();
                 }
                 catch (Exception e)

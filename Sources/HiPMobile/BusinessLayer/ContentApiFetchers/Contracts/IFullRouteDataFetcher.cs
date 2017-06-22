@@ -20,7 +20,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
     /// <summary>
     /// Fetcher for full route data
     /// </summary>
-    public interface IFullRouteDataFetcher : IFullDataFetcher {
+    public interface IFullRouteDataFetcher : IFullDownloadableDataFetcher {
         
     }
 }
