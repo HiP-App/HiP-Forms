@@ -133,8 +133,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 
         void CancelDownload ()
         {
-            CloseDownloadPage ();
             cancellationTokenSource?.Cancel();
+            CloseDownloadPage ();
         }
 
         void CloseDownloadPage ()
@@ -213,7 +213,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         public override void OnDisappearing ()
         {
             base.OnDisappearing ();
-            CancelDownload ();
+            cancellationTokenSource?.Cancel();
         }
 
         private double maximumProgress;
