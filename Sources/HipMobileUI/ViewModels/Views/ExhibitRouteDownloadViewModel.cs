@@ -122,23 +122,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         public ICommand GoToOverviewCommand { get; }
         public ICommand GoToDetailsCommand { get; }
 
-        private bool downloadAborted;   // Can probably be removed
-        private void CancelDownload ()
+        void CancelDownload ()
         {
-            // Do some stuff to abort the download; this distincts this method from the one below
-            downloadAborted = true;
-
-            Exhibit exhibit = ExhibitManager.GetExhibit (downloadableId);
-            using (DbManager.StartTransaction ())
-            {
-                // Remove all already downloaded pages except the first one (appetizer page)
-                int pagesCount = exhibit.Pages.Count;
-                for (int i = pagesCount - 1; i > 0; i--)
-                {
-                    exhibit.Pages.RemoveAt(i);
-                }
-            }
-            
+            cancellationTokenSource?.Cancel();
             CloseDownloadPage ();
         }
 
@@ -154,7 +140,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 
         private async void DownloadData ()
         {
-            // This is where all the the data will be downloaded
             string messageToShow = null;
             string titleToShow = null;
             var networkAccessStatus = IoCManager.Resolve<INetworkAccessChecker>().GetNetworkAccessStatus();
@@ -165,21 +150,25 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             else
                 fullDownloadableDataFetcher = IoCManager.Resolve<IFullRouteDataFetcher> ();
 
-            if (networkAccessStatus == NetworkAccessStatus.WifiAccess
-                || (networkAccessStatus == NetworkAccessStatus.MobileAccess && !Settings.WifiOnly))
+            if (networkAccessStatus != NetworkAccessStatus.NoAccess)
             {
                 try
                 {
-                    var token = cancellationTokenSource.Token;
-                    await fullDownloadableDataFetcher.FetchFullDownloadableDataIntoDatabase(downloadableId, downloadableIdForRestApi, token, this);
-                    SetDetailsAvailable();
+                    await fullDownloadableDataFetcher.FetchFullDownloadableDataIntoDatabase (downloadableId, downloadableIdForRestApi, cancellationTokenSource.Token, this);
+                    if (!cancellationTokenSource.IsCancellationRequested)
+                    {
+                        SetDetailsAvailable();
+                    }
                 }
                 catch (Exception e)
                 {
-                    titleToShow = Strings.LoadingPageViewModel_BaseData_DownloadFailed_Title;
-                    messageToShow = Strings.LoadingPageViewModel_BaseData_DownloadFailed_Text;
-                    Debug.WriteLine(e.Message);
-                    Debug.WriteLine(e.StackTrace);
+                    if (!cancellationTokenSource.IsCancellationRequested)
+                    {
+                        titleToShow = Strings.LoadingPageViewModel_BaseData_DownloadFailed_Title;
+                        messageToShow = Strings.LoadingPageViewModel_BaseData_DownloadFailed_Text;
+                        Debug.WriteLine(e.Message);
+                        Debug.WriteLine(e.StackTrace);
+                    }
                 }
             }
             else
@@ -220,7 +209,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         public override void OnDisappearing ()
         {
             base.OnDisappearing ();
-            downloadAborted = true;
+            cancellationTokenSource?.Cancel();
         }
 
         private double maximumProgress;

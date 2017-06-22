@@ -21,6 +21,7 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetche
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelConverters;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos;
@@ -64,6 +65,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                     transaction.Rollback();
                 }
             }
+            IoCManager.Resolve<IDbChangedHandler>().NotifyAll();
         }
 
         private async Task<int> FetchNeededMediaForFullExhibit(int idForRestApi)
@@ -76,27 +78,18 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             {
                 if (page.Type != PageTypeDto.AppetizerPage)
                 {
-                    if (page.Image.HasValue)
-                    {
-                        requiredMedias.Add(page.Image);
-                    }
+                    AddMediaId(page.Image);
                     if (page.Type == PageTypeDto.SliderPage)
                     {
                         if (page.Images.Count > 0)
                         {
                             foreach (var image in page.Images)
                             {
-                                if (image.Image.HasValue)
-                                {
-                                    requiredMedias.Add(image.Image);
-                                }
+                                AddMediaId(image.Image);
                             }
                         }
                     }
-                    if (page.Audio.HasValue)
-                    {
-                        requiredMedias.Add(page.Audio);
-                    }
+                    AddMediaId(page.Audio);
                 }
                 else
                 {
@@ -110,6 +103,18 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             }
             
             return requiredMedias.Count;
+        }
+
+        private void AddMediaId (int? mediaId)
+        {
+            if (mediaId.HasValue)
+            {
+                // Only add media IDs if not already in list
+                if (!requiredMedias.Contains(mediaId))
+                {
+                    requiredMedias.Add(mediaId);
+                }
+            }
         }
 
         private async Task ProcessPages(string exhibitId, CancellationToken token, IProgressListener listener)
@@ -131,6 +136,37 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                 AddContentToPage(dbPage, pageDto, fetchedMedia, listener);
                 // Add Page with content to the exhibit
                 exhibit.Pages.Add(dbPage);
+            }
+
+            // Rearrange additional information pages
+            var pagesToBeRemoved = new List<Page> ();
+            foreach (var pageDto in pageItems)
+            {
+                if (pageDto.AdditionalInformationPages.Count > 0)
+                {
+                    foreach (var existingPageWithInfo in exhibit.Pages)
+                    {
+                        if (pageDto.Id == existingPageWithInfo.IdForRestApi)
+                        {
+                            foreach (var pageId in pageDto.AdditionalInformationPages)
+                            {
+                                foreach (var pageToBeAdded in exhibit.Pages)
+                                {
+                                    if (pageToBeAdded.IdForRestApi == pageId)
+                                    {
+                                        existingPageWithInfo.AdditionalInformationPages.Add(pageToBeAdded);
+                                        pagesToBeRemoved.Add (pageToBeAdded);
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            foreach (var pageToBeRemoved in pagesToBeRemoved)
+            {
+                exhibit.Pages.Remove (pageToBeRemoved);
             }
 
             exhibit.DetailsDataLoaded = true;
@@ -194,7 +230,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                 if (audio != null)
                 {
                     dbPage.Audio = audio;
-                    listener.ProgressOneStep();
                 }
             }
         }

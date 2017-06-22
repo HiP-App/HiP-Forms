@@ -14,6 +14,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -33,8 +34,8 @@ using Page = PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.Pa
 using Settings = PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers.Settings;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
-    public class ExhibitDetailsViewModel : NavigationViewModel {
-
+    public class ExhibitDetailsViewModel : NavigationViewModel, IDbChangedObserver
+    {
         private ExhibitSubviewViewModel selectedView;
         private AudioToolbarViewModel audioToolbar;
 
@@ -44,6 +45,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
         private ICommand previousViewCommand;
         private ICommand audioToolbarCommand;
         private ICommand additionalInformationCommand;
+        private IDbChangedHandler dbChangedHandler;
         private bool previousViewAvailable;
         private bool nextViewAvailable;
         private bool previousVisible;
@@ -98,6 +100,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
             PreviousViewCommand = new Command (GotoPreviousView);
             ShowAudioToolbarCommand = new Command (SwitchAudioToolbarVisibleState);
             ShowAdditionalInformationCommand = new Command (ShowAdditionalInformation);
+
+            dbChangedHandler = IoCManager.Resolve<IDbChangedHandler>();
+            dbChangedHandler.AddObserver(this);
         }
 
         private void AdjustToolbarColor ()
@@ -199,9 +204,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
         /// Go to the next available view.
         /// </summary>
         /// <returns></returns>
-    
-
-
         private async Task GotoNextView ()
         {
             if (currentViewIndex < pages.Count - 1)
@@ -269,7 +271,18 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
                 AudioToolbarVisible = false;
             }
 
-            AudioToolbar.SetNewAudioFile (currentPage.Audio);
+            // It's possible to get no audio data even if it should exist
+            try
+            {
+                AudioToolbar.SetNewAudioFile (currentPage.Audio);
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e.Message);
+                Debug.WriteLine(e.StackTrace);
+                AudioToolbar.SetNewAudioFile(null);
+                AudioToolbarVisible = false;
+            }
 
             switch (currentPage.PageType)
             {
@@ -324,6 +337,21 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
                 {
                     AudioToolbar.AudioPlayer.Play ();
                 }
+            }
+        }
+
+        /// <summary>
+        /// Refreshs the availability of the pages depending on the changed database
+        /// </summary>
+        public async void DbChanged()
+        {
+            string exhibitId = Exhibit.Id;
+            Exhibit = ExhibitManager.GetExhibit (exhibitId);
+            if (Exhibit.DetailsDataLoaded)
+            {
+                NextViewAvailable = currentViewIndex < pages.Count - 1;
+                PreviousViewAvailable = currentViewIndex > 0;
+                await SetCurrentView ();
             }
         }
 

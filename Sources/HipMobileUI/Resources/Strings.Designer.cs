@@ -828,6 +828,33 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        public static string LicenseScreenViewModel_UnlockExhibits_Confirm {
+            get {
+                return ResourceManager.GetString("LicenseScreenViewModel_UnlockExhibits_Confirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Alle Sehenswüdigkeiten freigeschaltet!.
+        /// </summary>
+        public static string LicenseScreenViewModel_UnlockExhibits_Text {
+            get {
+                return ResourceManager.GetString("LicenseScreenViewModel_UnlockExhibits_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sehenswürdigkeiten freigeschaltet.
+        /// </summary>
+        public static string LicenseScreenViewModel_UnlockExhibits_Title {
+            get {
+                return ResourceManager.GetString("LicenseScreenViewModel_UnlockExhibits_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Einen Moment bitte....
         /// </summary>
         public static string LoadingPage_Subtext {
