@@ -656,7 +656,7 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
     <value>Passwort</value>
   </data>
   <data name="RegisterScreenView_RepeatPassword" xml:space="preserve">
-    <value>Re-Enter Passwort</value>
+    <value>Passwort wiederholen</value>
    </data>
   <data name="RegisterScreenView_Register" xml:space="preserve">
     <value>Registrieren</value>
@@ -679,6 +679,5 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   	<data name="RegisterScreenView_Error_Empty_Password" xml:space="preserve">
     <value>Das Passwort-Eingabefeld ist leer</value>
   </data>
-
-	
+  	
 </root>
