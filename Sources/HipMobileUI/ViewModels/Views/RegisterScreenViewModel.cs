@@ -78,7 +78,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 			ErrorMessage = Strings.RegisterScreenView_Error_Empty_Password;
 		}
 
-		void clearErrorMessage()
+		void ClearErrorMessage()
 		{
 			ErrorMessage = "";
 		}
