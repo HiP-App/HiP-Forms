@@ -149,9 +149,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
             // This can be called from the class that actually handles the download of the data
             // Move the updates up to where the actual download happens
+            
+            SetMaxProgress (50);
             for (var x = 0; x < 50; x++)
             {
-                UpdateProgress (LoadingProgress+.02, 1);
+                ProgressOneStep ();
                 await Task.Delay (50);
                 if (downloadAborted)
                     return;
@@ -167,11 +169,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             DownloadableListItemViewModel.SetDetailsAvailable (DownloadFinished);
         }
 
-        public void UpdateProgress (double newProgress, double maxProgress)
-        {
-            LoadingProgress = newProgress / maxProgress;
-        }
-
         public override void OnAppearing()
         {
             base.OnAppearing();
@@ -182,6 +179,25 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         {
             base.OnDisappearing ();
             downloadAborted = true;
+        }
+
+        private double maximumProgress;
+        private double currentProgress;
+
+        public void ProgressOneStep ()
+        {
+            currentProgress++;
+            LoadingProgress = currentProgress/maximumProgress;
+        }
+
+        public void SetMaxProgress (double maxProgress)
+        {
+            maximumProgress = maxProgress;
+        }
+
+        public void UpdateProgress(double newProgress, double maxProgress)
+        {
+            LoadingProgress = newProgress/maxProgress;
         }
     }
 }

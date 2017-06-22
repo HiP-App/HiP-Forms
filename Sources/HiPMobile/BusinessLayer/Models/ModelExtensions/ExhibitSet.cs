@@ -39,31 +39,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models {
         #endregion
 
         /// <summary>
-        /// Update the currently active categories.
-        /// </summary>
-        /// <param name="categories">The categories to set, as strings.</param>
-        public void UpdateCategories (List<string> categories)
-        {
-            foreach (Exhibit exhibit in ActiveSet)
-            {
-                ActiveSet.Remove (exhibit);
-            }
-
-            foreach (string category in categories)
-            {
-                foreach (Exhibit exhibit in InitSet)
-                {
-                    if (exhibit.Categories.Count (element => element.Value == category) > 0)
-                    {
-                        ActiveSet.Add (exhibit);
-                    }
-                }
-            }
-
-            OrderByDistance ();
-        }
-
-        /// <summary>
         /// Order the set of active exhibits by distance.
         /// </summary>
         private void OrderByDistance ()

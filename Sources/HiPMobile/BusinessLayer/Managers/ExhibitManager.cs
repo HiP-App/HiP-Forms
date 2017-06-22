@@ -40,29 +40,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers {
         }
 
         /// <summary>
-        /// Returns an exhibitset with all exhibits (mainly for ExtendedLocationListener)
-        /// </summary>
-        /// <returns></returns>
-        public static ExhibitSet GetExhibitSet()
-        {
-            IEnumerable<ExhibitSet> exhibitSets = GetExhibitSets();
-            ExhibitSet exhibitSet = new ExhibitSet();
-            foreach (ExhibitSet curSet in exhibitSets)
-            {
-                foreach (Exhibit curEx in curSet)
-                {
-                    if (!exhibitSet.InitSet.Contains(curEx))
-                    {
-                        exhibitSet.InitSet.Insert(exhibitSet.InitSet.Count, curEx);
-                        exhibitSet.ActiveSet.Insert(exhibitSet.ActiveSet.Count, curEx);
-                    }
-                }
-            }
-
-            return exhibitSet;
-        }
-
-        /// <summary>
         /// Get all available exhibitsets.
         /// </summary>
         /// <returns>The enumerable of all available exibitsets.</returns>

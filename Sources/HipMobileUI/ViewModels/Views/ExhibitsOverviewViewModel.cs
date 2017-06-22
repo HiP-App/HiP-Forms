@@ -13,7 +13,9 @@
 // limitations under the License.
 
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows.Input;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentHandling;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
@@ -55,15 +57,17 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             DisplayDistances = false;
 
 
-            locationManager = IoCManager.Resolve<ILocationManager> ();
-            nearbyExhibitManager = IoCManager.Resolve<INearbyExhibitManager> ();
+            locationManager = IoCManager.Resolve<ILocationManager>();
+            nearbyExhibitManager = IoCManager.Resolve<INearbyExhibitManager>();
             nearbyRouteManager = IoCManager.Resolve<INearbyRouteManager>();
-            dbChangedHandler = IoCManager.Resolve<IDbChangedHandler> ();
-            dbChangedHandler.AddObserver (this);
+            dbChangedHandler = IoCManager.Resolve<IDbChangedHandler>();
+            dbChangedHandler.AddObserver(this);
+
+            DownloadUpdatedData();
         }
 
-        public ExhibitsOverviewViewModel (string exhibitSetId) : this(ExhibitManager.GetExhibitSet(exhibitSetId))
-        {   
+        public ExhibitsOverviewViewModel(string exhibitSetId) : this(ExhibitManager.GetExhibitSet(exhibitSetId))
+        {
         }
 
         /// <summary>
@@ -76,54 +80,54 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             Position = args.Position;
             SetDistances(args.Position);
 
-            nearbyExhibitManager.CheckNearExhibit (displayedExhibitSet, args.Position.ToGeoLocation (), true);
-            nearbyRouteManager.CheckNearRoute(RouteManager.GetRoutes(), args.Position.ToGeoLocation ());
+            nearbyExhibitManager.CheckNearExhibit(displayedExhibitSet, args.Position.ToGeoLocation(), true);
+            nearbyRouteManager.CheckNearRoute(RouteManager.GetRoutes(), args.Position.ToGeoLocation());
         }
 
         /// <summary>
         /// Update the distances according to the new position.
         /// </summary>
         /// <param name="pos">The new position.</param>
-        private void SetDistances (Position pos)
+        private void SetDistances(Position pos)
         {
             DisplayDistances = true;
             foreach (var exhibit in ExhibitsList)
             {
                 exhibit.UpdateDistance(pos);
             }
-            ExhibitsList.SortCollection (exhibit => exhibit.Distance);
+            ExhibitsList.SortCollection(exhibit => exhibit.Distance);
         }
 
         /// <summary>
         /// Called when the view was removed from the visual tree.
         /// </summary>
-        public override void OnDisappearing ()
+        public override void OnDisappearing()
         {
-            base.OnDisappearing ();
+            base.OnDisappearing();
 
-            locationManager.RemoveLocationListener (this);
+            locationManager.RemoveLocationListener(this);
         }
 
         /// <summary>
         /// Called when the view was added to the visual tree.
         /// </summary>
-        public override void OnAppearing ()
+        public override void OnAppearing()
         {
-            base.OnAppearing ();
+            base.OnAppearing();
 
-            locationManager.AddLocationListener (this);
+            locationManager.AddLocationListener(this);
         }
 
-        public override void OnHidden ()
+        public override void OnHidden()
         {
-            base.OnHidden ();
+            base.OnHidden();
 
             locationManager.RemoveLocationListener(this);
         }
 
-        public override void OnRevealed ()
+        public override void OnRevealed()
         {
-            base.OnRevealed ();
+            base.OnRevealed();
 
             locationManager.AddLocationListener(this);
         }
@@ -132,60 +136,65 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         /// Open the exhibitdetails page.
         /// </summary>
         /// <param name="item"></param>
-        private void NavigateToExhibitDetails (ExhibitsOverviewListItemViewModel item)
+        private void NavigateToExhibitDetails(ExhibitsOverviewListItemViewModel item)
         {
             if (item != null)
             {
-                Navigation.PushAsync (new ExhibitDetailsViewModel (item.Exhibit));
+                Navigation.PushAsync(new ExhibitDetailsViewModel(item.Exhibit));
             }
         }
 
         /// <summary>
         /// The list of displayed exhibits.
         /// </summary>
-        public ObservableCollection<ExhibitsOverviewListItemViewModel> ExhibitsList {
+        public ObservableCollection<ExhibitsOverviewListItemViewModel> ExhibitsList
+        {
             get { return exhibitsList; }
-            set { SetProperty (ref exhibitsList, value); }
+            set { SetProperty(ref exhibitsList, value); }
         }
 
         /// <summary>
         /// The command for tapping on exhibits.
         /// </summary>
-        public ICommand ItemTappedCommand {
+        public ICommand ItemTappedCommand
+        {
             get { return itemTappedCommand; }
-            set { SetProperty (ref itemTappedCommand, value); }
+            set { SetProperty(ref itemTappedCommand, value); }
         }
 
         /// <summary>
         /// Whether to display the distance to exhibit.
         /// </summary>
-        public bool DisplayDistances {
+        public bool DisplayDistances
+        {
             get { return displayDistances; }
-            set { SetProperty (ref displayDistances, value); }
+            set { SetProperty(ref displayDistances, value); }
         }
 
         /// <summary>
         /// The displayed set of exhibits on the map.
         /// </summary>
-        public ExhibitSet DisplayedExhibitSet {
+        public ExhibitSet DisplayedExhibitSet
+        {
             get { return displayedExhibitSet; }
-            set { SetProperty (ref displayedExhibitSet, value); }
+            set { SetProperty(ref displayedExhibitSet, value); }
         }
 
         /// <summary>
         /// The geolocation of the user
         /// </summary>
-        public Position Position {
+        public Position Position
+        {
             get { return position; }
-            set { SetProperty (ref position, value); }
+            set { SetProperty(ref position, value); }
         }
 
-		/// <summary>
+        /// <summary>
         /// Refreshs the exhibitsList depending on the changed database
         /// </summary>
-        public void DbChanged ()
+        public void DbChanged()
         {
-            var set = ExhibitManager.GetExhibitSet ();
+            var set = ExhibitManager.GetExhibitSets().Single();
             DisplayedExhibitSet = set;
             ExhibitsList = new ObservableCollection<ExhibitsOverviewListItemViewModel>();
             foreach (Exhibit exhibit in set)
@@ -195,23 +204,42 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             }
         }
 
-		/// <summary>
-		/// Shows prompt to allow data download
-		/// </summary>
-		private async void AllowAlwaysDataDownload()
-		{
-			if (!Shared.Helpers.Settings.AlwaysDownloadData)
-			{
-				string result =
-					await
-						Navigation.DisplayActionSheet(
-							Strings.DownloadData_Title,
-						null, null, Strings.DownloadData_Accept, Strings.DownloadData_Cancel, Strings.DownloadData_Always);
-				if (result == Strings.DownloadData_Always)
-				{
-					Shared.Helpers.Settings.AlwaysDownloadData = true;
-				}	
-			}
-		}
+        /// <summary>
+        /// Download updated data
+        /// </summary>
+        private async void DownloadUpdatedData()
+        {
+            var newDataCenter = IoCManager.Resolve<INewDataCenter>();
+
+            if (newDataCenter.IsNewDataAvailabe())
+            {
+                bool downloadData = false;
+                if (!Settings.AlwaysDownloadData)
+                {
+                    string result = await Navigation.DisplayActionSheet(Strings.DownloadData_Title,
+                                null, null, Strings.DownloadData_Accept, Strings.DownloadData_Cancel, Strings.DownloadData_Always);
+
+                    if (result == Strings.DownloadData_Always)
+                    {
+                        Settings.AlwaysDownloadData = true;
+                        downloadData = true;
+                    }
+                    else if (result == Strings.DownloadData_Accept)
+                    {
+                        downloadData = true;
+                    }
+                }
+                else
+                {
+                    downloadData = true;
+                }
+
+                if (downloadData)
+                {
+                    //TODO Not defined until now what screen should be displayed while new data is downloaded
+                    await newDataCenter.UpdateData();
+                }
+            }
+        }
     }
 }

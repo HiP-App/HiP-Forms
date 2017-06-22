@@ -12,8 +12,49 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views {
-    public class LicenseScreenViewModel : NavigationViewModel {
+using System;
+using System.Windows.Input;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
+using Xamarin.Forms;
+
+namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
+{
+    public class LicenseScreenViewModel : NavigationViewModel
+    {
+
+        public LicenseScreenViewModel()
+        {
+            UnlockExhibits = new Command(Unlock);
+        }
+
+        private int tapCounter;
+
+        /// <summary>
+        /// Unlocks all exhibits for testing purposes
+        /// </summary>
+        private async void Unlock()
+        {
+            tapCounter++;
+
+            if (tapCounter == 10)
+            {
+                using (DbManager.StartTransaction())
+                {
+                    foreach (var exhibit in ExhibitManager.GetExhibits())
+                    {
+                        exhibit.Unlocked = true;
+                    }
+                }
+                await Navigation.DisplayAlert(Strings.LicenseScreenViewModel_UnlockExhibits_Title,
+                    Strings.LicenseScreenViewModel_UnlockExhibits_Text, Strings.LicenseScreenViewModel_UnlockExhibits_Confirm);
+            }
+        }
+
+
+
+        public ICommand UnlockExhibits { get; }
+
 
     }
 }
