@@ -188,6 +188,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             if (messageToShow != null)
             {
                 await Navigation.DisplayAlert(titleToShow, messageToShow, "OK");
+                CloseDownloadPage ();
             }
         }
 
