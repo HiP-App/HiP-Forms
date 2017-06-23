@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:helpers="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;assembly=HipMobileUI"
              x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Pages.CharacterSelectionPage">
     <ContentPage.Content>
         <Grid x:Name="MainGrid" RowSpacing="0" ColumnSpacing="0">
@@ -12,8 +13,8 @@
                     <RowDefinition Height="0.7*"/>
                     <RowDefinition Height="0.3*"/>
                 </Grid.RowDefinitions>
-                <Image x:Name="AdventurerImage" Grid.Row="0" Source="hiphop_transparent" Aspect="AspectFit" Margin="10"></Image>
-                <Label x:Name="AdventurerLabel" Grid.Row="1" Text="Discover Paderborn on your own! Encounter new Experiences!" TextColor="White" FontSize="Medium" XAlign="Center" YAlign="Center"></Label>
+                <Image x:Name="AdventurerImage" Grid.Row="0" Source="ic_adventurer" Aspect="AspectFit" Margin="10"></Image>
+                <Label x:Name="AdventurerLabel" Grid.Row="1" Text="{helpers:Translate CharacterSelectionPage_Adventurer_Text}" TextColor="White" FontSize="Medium" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
             </Grid>
             <Grid x:Name="ProfessorGrid" BackgroundColor="Blue">
                 <Grid.GestureRecognizers>
@@ -23,8 +24,8 @@
                     <RowDefinition Height="0.7*"/>
                     <RowDefinition Height="0.3*"/>
                 </Grid.RowDefinitions>
-                <Image x:Name="ProfessorImage" Grid.Row="0" Source="hiphop_transparent" Aspect="AspectFit" Margin="10"></Image>
-                <Label x:Name="ProfessorText" Grid.Row="1" Text="Follow the guided tours to discover Paderborn!" TextColor="White" FontSize="Medium" XAlign="Center" YAlign="Center"></Label>
+                <Image x:Name="ProfessorImage" Grid.Row="0" Source="ic_professor" Aspect="AspectFit" Margin="10"></Image>
+                <Label x:Name="ProfessorText" Grid.Row="1" Text="{helpers:Translate CharacterSelectionPage_Professor_Text}" TextColor="White" FontSize="Medium" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
             </Grid>
         </Grid>
     </ContentPage.Content>

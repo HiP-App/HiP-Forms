@@ -407,6 +407,8 @@
     <BundleResource Include="Resources\ic_file_download.png" />
     <BundleResource Include="Resources\ic_file_download%402x.png" />
     <BundleResource Include="Resources\ic_file_download%403x.png" />
+    <BundleResource Include="Resources\ic_adventurer.png" />
+    <BundleResource Include="Resources\ic_professor.png" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Resources\MapAnnotations.xcassets\AppIcons.appiconset\Contents.json">
