@@ -30,16 +30,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             LoginCommand = new Command(OnLoginClicked);
             RegisterCommand = new Command(OnRegisterClicked);
             ForgotPasswordCommand = new Command(OnForgotPasswordClicked);
-
-            Email = "your_name_here";
-            Password = "sup3rS3cr3tP@ssw0rd!";
         }
 
         public ICommand LoginCommand { get; }
         public ICommand RegisterCommand { get; }
         public ICommand ForgotPasswordCommand { get; }
 
-        void OnLoginClicked()
+        private void OnLoginClicked()
         {
             if (String.IsNullOrWhiteSpace(Email) && String.IsNullOrWhiteSpace(Password))
             {
@@ -56,20 +53,18 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             }
         }
 
-        void OnRegisterClicked()
+        private void OnRegisterClicked()
         {
             GoToRegisterScreenView();
         }
 
-        void OnForgotPasswordClicked()
+        private void OnForgotPasswordClicked()
         {
             GoToForgotPasswordScreenView();
         }
 
-        async void PerformLogin()
+        private async void PerformLogin()
         {
-            User user = new User (Email, password);
-
             UserDialogs.Instance.ShowLoading(Strings.LoginScreenView_Dialog_Login, MaskType.Black);
             UserStatus userStatus = await IoCManager.Resolve<IUserManager> ().LoginUser (new User (email, password));
             UserDialogs.Instance.HideLoading();
@@ -98,40 +93,35 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             mainPageViewModel.UpdateAccountViews();
         }
 
-        void GoToRegisterScreenView()
+        private void GoToRegisterScreenView()
         {
             //Go to RegisterScreenView here
         }
 
-        void GoToForgotPasswordScreenView()
+        private void GoToForgotPasswordScreenView()
         {
             mainPageViewModel.SwitchToForgotPasswordView();
         }
 
-        void DisplayWrongCredentialsErrorMessage()
+        private void DisplayWrongCredentialsErrorMessage()
         {
             ErrorMessage = Strings.LoginScreenView_Error_Wrong_Credentials;
         }
 
-        void DisplayEmptyEmailErrorMessage()
+        private void DisplayEmptyEmailErrorMessage()
         {
             ErrorMessage = Strings.LoginScreenView_Error_Empty_Email;
         }
 
-        void DisplayEmptyPasswordErrorMessage()
+        private void DisplayEmptyPasswordErrorMessage()
         {
             ErrorMessage = Strings.LoginScreenView_Error_Empty_Password;
         }
 
-        void DisplayEmptyEmailAndPasswordErrorMessage()
+        private void DisplayEmptyEmailAndPasswordErrorMessage()
         {
             ErrorMessage = Strings.LoginScreenView_Error_Empty_Email_And_Password;
             
-        }
-
-        void ClearErrorMessage()
-        {
-            ErrorMessage = "";
         }
 
         public String ErrorMessage
