@@ -27,7 +27,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             ResetPasswordCommand = new Command(OnResetPasswordClicked);
         }
 
-        void OnResetPasswordClicked()
+        private void OnResetPasswordClicked()
         {
             if (String.IsNullOrWhiteSpace(Email))
             {
@@ -38,25 +38,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             }
         }
 
-        void OnTextChanged()
-        {
-            ClearErrorMessage();
-        }
-
-        void SendResetPasswordEmail()
+        private void SendResetPasswordEmail()
         {
             mainPageViewModel.SwitchToLoginView();
             UserDialogs.Instance.Alert(Strings.ForgotPasswordScreenView_Alert_Description, Strings.ForgotPasswordScreenView_Alert_Password_Resetted);
         }
 
-        void DisplayEmptyEmailErrorMessage()
+        private void DisplayEmptyEmailErrorMessage()
         {
             ErrorMessage = Strings.ForgotPasswordScreenView_Error_Empty_Email;
-        }
-
-        void ClearErrorMessage()
-        {
-            ErrorMessage = "";
         }
 
         public String Email

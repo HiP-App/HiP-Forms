@@ -609,6 +609,13 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
     </data>
   <data name="LoginScreenView_Error_Wrong_Credentials" xml:space="preserve">
     <value>Falsche E-Mail/Passwort Kombination</value>
+
+  </data>
+  <data name="LoginScreenView_Error_Unknown_Email" xml:space="preserve">
+    <value>Unbekannte E-Mail Adresse</value>
+  </data>
+  <data name="LoginScreenView_Error_Wrong_Password" xml:space="preserve">
+    <value>Falsches Passwort</value>
   </data>
     <data name="LoginScreenView_Login" xml:space="preserve">
     <value>Einloggen</value>
@@ -726,6 +733,9 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   </data>
   <data name="Alert_Unknown_Error_Title" xml:space="preserve">
     <value>Unbekannter Fehler</value>
+  </data>
+  <data name="LicenseScreenViewModel_UnlockExhibits_Confirm" xml:space="preserve">
+    <value>OK</value>
   </data>
   <data name="LicenseScreenView_User_Dialogs_Text" xml:space="preserve">
     <value>Von &lt;a href="https://github.com/aritchie/userdialogs"&gt;Allan Ritchie&lt;/a&gt;, lizensiert unter &lt;a href="https://github.com/aritchie/userdialogs/blob/master/LICENSE.md"&gt;MIT&lt;/a&gt;. Es wurden keine Änderungen vorgenommen.</value>

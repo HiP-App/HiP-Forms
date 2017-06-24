@@ -110,6 +110,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 			SelectedViewModel = mainScreenViewModels[4];
 		}
 
+
 	    public MainPageViewModel () : this (ExhibitManager.GetExhibitSets ().FirstOrDefault ())
 	    {
 	        
@@ -120,6 +121,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 	    private readonly LoginScreenViewModel loginScreenViewModel;
         private readonly ForgotPasswordScreenViewModel forgotPasswordScreenViewModel;
 		private readonly RegisterScreenViewModel registerScreenViewModel;
+
 
         private NavigationViewModel selectedViewModel;
 
