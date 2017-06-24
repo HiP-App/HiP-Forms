@@ -25,6 +25,7 @@
             <Color x:Key="AccentColor">#FF9800</Color>
             <Color x:Key="AccentDarkColor">#E65100</Color>
             <Color x:Key="LightGrayColor">#05000000</Color>
+            <Color x:Key="MediumGrayColor">#15000000</Color>
             <Color x:Key="DarkGrayColor">#66000000</Color>
             <Style TargetType="Label">
                 <Setter Property="FontSize" Value="12" />

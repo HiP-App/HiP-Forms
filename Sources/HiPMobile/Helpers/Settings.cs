@@ -10,17 +10,17 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
   /// of your client applications. All settings are laid out the same exact way with getters
   /// and setters. 
   /// </summary>
-  public static class Settings
-  {
-    private static ISettings AppSettings
+    public static class Settings
     {
-      get
-      {
-        return CrossSettings.Current;
-      }
-    }
+        private static ISettings AppSettings
+        {
+            get
+            {
+            return CrossSettings.Current;
+            }
+        }
 
-    #region Setting Constants
+        #region Setting Constants
 
     private const string SettingsKey = "settings_key";
     private static readonly string SettingsDefault = string.Empty;
@@ -30,14 +30,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
 
     public static string GeneralSettings
     {
-      get
-      {
-        return AppSettings.GetValueOrDefault<string>(SettingsKey, SettingsDefault);
-      }
-      set
-      {
-        AppSettings.AddOrUpdateValue<string>(SettingsKey, value);
-      }
+        get
+        {
+            return AppSettings.GetValueOrDefault<string>(SettingsKey, SettingsDefault);
+        }
+        set
+        {
+            AppSettings.AddOrUpdateValue<string>(SettingsKey, value);
+        }
     }
 
         /// <summary>
@@ -168,6 +168,97 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
         {
             get { return AppSettings.GetValueOrDefault<bool>(AdventurerModeKey, AdventurerModeDefault); }
             set { AppSettings.AddOrUpdateValue<bool>(AdventurerModeKey, value); }
+        }
+
+        #endregion
+
+        /// <summary>
+        /// User data
+        /// </summary>
+        #region UserData
+        
+        /// <summary>
+        /// Indicator flag if a user is logged in
+        /// </summary>
+        private const string IsLoggedInKey = "is_logged_in_key";
+        private static readonly bool IsLoggedInDefault = false;
+
+        public static bool IsLoggedIn
+        {
+            get { return AppSettings.GetValueOrDefault (IsLoggedInKey, IsLoggedInDefault); }
+            set { AppSettings.AddOrUpdateValue (IsLoggedInKey, value); }
+        }
+
+        /// <summary>
+        /// The username of the current user
+        /// </summary>
+        private const string UserNameKey = "username_key";
+        private static readonly string UsernameDefault = "Max Power";
+
+        public static string Username
+        {
+            get { return AppSettings.GetValueOrDefault(UserNameKey, UsernameDefault); }
+            set { AppSettings.AddOrUpdateValue(UserNameKey, value); }
+        }
+
+        /// <summary>
+        /// The e-mail of the current user
+        /// </summary>
+        private const string EMailKey = "email_key";
+        private static readonly string EMailDefault = "max@power.com";
+
+        public static string EMail
+        {
+            get { return AppSettings.GetValueOrDefault(EMailKey, EMailDefault); }
+            set { AppSettings.AddOrUpdateValue(EMailKey, value); }
+        }
+
+        /// <summary>
+        /// The password of the current user
+        /// </summary>
+        private const string PasswordKey = "password_key";
+        private static readonly string PasswordDefault = "";
+
+        public static string Password
+        {
+            get { return AppSettings.GetValueOrDefault(PasswordKey, PasswordDefault); }
+            set { AppSettings.AddOrUpdateValue(PasswordKey, value); }
+        }
+        
+        /// <summary>
+        /// The score of the current user
+        /// </summary>
+        private const string ScoreKey = "score_key";
+        private static readonly int ScoreDefault = 420;
+
+        public static int Score
+        {
+            get { return AppSettings.GetValueOrDefault(ScoreKey, ScoreDefault); }
+            set { AppSettings.AddOrUpdateValue(ScoreKey, value); }
+        }
+        
+        /// <summary>
+        /// The number of gained achievements of the current user
+        /// </summary>
+        private const string AchievementsKey = "achievements_key";
+        private static readonly int AchievementsDefault = 12;
+
+        public static int Achievements
+        {
+            get { return AppSettings.GetValueOrDefault(AchievementsKey, AchievementsDefault); }
+            set { AppSettings.AddOrUpdateValue(AchievementsKey, value); }
+        }
+        
+        /// <summary>
+        /// The part of everything you can do with the app as a percentage
+        /// </summary>
+        private const string CompletenessKey = "completeness_key";
+        private static readonly int CompletenessDefault = 10;
+
+        public static int Completeness
+        {
+            get { return AppSettings.GetValueOrDefault(CompletenessKey, CompletenessDefault); }
+            set { AppSettings.AddOrUpdateValue(CompletenessKey, value); }
         }
 
         #endregion
