@@ -22,5 +22,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
     /// </summary>
     public interface IFullExhibitDataFetcher : IFullDownloadableDataFetcher {
 
+        /// <summary>
+        /// Fetches the media associated with an exhibit
+        /// </summary>
+        /// <param name="idForRestApi">The id for the REST API of the exhibit to be fetched</param>
+        /// <returns></returns>
+        Task<int> FetchNeededMediaForFullExhibit (int idForRestApi);
+
     }
 }

@@ -50,8 +50,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views {
             Duration = GetRouteDurationText (Route.Duration);
             Distance = GetRouteDistanceText (Route.Distance);
             
-            using (DbManager.StartTransaction())
-                Route.DetailsDataLoaded = false;
             IsDownloadPanelVisible = !Route.DetailsDataLoaded;
 
             Tags = new ObservableCollection<ImageSource> ();
@@ -84,7 +82,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views {
         
         private async void OpenDownloadDialog()
         {
-            // Open the download dialog
             downloadPage = new ExhibitRouteDownloadViewModel (Route, this);
             await Navigation.PushAsync(downloadPage);
         }

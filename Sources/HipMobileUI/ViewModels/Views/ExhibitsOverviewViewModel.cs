@@ -33,10 +33,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
     {
         private ObservableCollection<ExhibitsOverviewListItemViewModel> exhibitsList;
         private ICommand itemTappedCommand;
-        private ILocationManager locationManager;
-        private INearbyExhibitManager nearbyExhibitManager;
+        private readonly ILocationManager locationManager;
+        private readonly INearbyExhibitManager nearbyExhibitManager;
         private readonly INearbyRouteManager nearbyRouteManager;
-        private IDbChangedHandler dbChangedHandler;
         private bool displayDistances;
         private ExhibitSet displayedExhibitSet;
         private Position position;
@@ -56,11 +55,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             ItemTappedCommand = new Command(item => NavigateToExhibitDetails(item as ExhibitsOverviewListItemViewModel));
             DisplayDistances = false;
 
-
             locationManager = IoCManager.Resolve<ILocationManager>();
             nearbyExhibitManager = IoCManager.Resolve<INearbyExhibitManager>();
             nearbyRouteManager = IoCManager.Resolve<INearbyRouteManager>();
-            dbChangedHandler = IoCManager.Resolve<IDbChangedHandler>();
+            var dbChangedHandler = IoCManager.Resolve<IDbChangedHandler>();
             dbChangedHandler.AddObserver(this);
 
             DownloadUpdatedData();

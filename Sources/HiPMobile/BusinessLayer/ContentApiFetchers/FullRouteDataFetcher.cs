@@ -21,6 +21,7 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses.Contracts;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers
@@ -42,32 +43,33 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
         private IList<int?> requiredMedia;
         private List<Exhibit> missingExhibitsForRoute;
 
-        public async Task FetchFullDownloadableDataIntoDatabase (string routeId, int idForRestApi, CancellationToken token, IProgressListener listener)
+        public async Task FetchFullDownloadableDataIntoDatabase (string routeId, int idForRestApi, CancellationToken token, IProgressListener listener, bool calledFromRouteFetcher)
         {
-            routeDto = (await routesApiAccess.GetRoutes(new List<int> { idForRestApi })).Items.First();     // This is the RouteDTO
+            routeDto = (await routesApiAccess.GetRoutes(new List<int> { idForRestApi })).Items.First(); 
 
             requiredMedia = new List<int?> ();
 
-            IList<Exhibit> allMissingExhibits = ExhibitManager.GetExhibits ().ToList ().FindAll (x => !x.DetailsDataLoaded);    // Get all exhibits not yet fully loaded
-            missingExhibitsForRoute = allMissingExhibits.ToList ().FindAll (x => routeDto.Exhibits.Contains (x.IdForRestApi));  // These should be the missing exhibits related to the route
+            IList<Exhibit> allMissingExhibits = ExhibitManager.GetExhibits ().ToList ().FindAll (x => !x.DetailsDataLoaded);    // Exhibits not fully loaded yet
+            missingExhibitsForRoute = allMissingExhibits.ToList ().FindAll (x => routeDto.Exhibits.Contains (x.IdForRestApi));  // Select those part of the route
             
-            double totalSteps = FetchNeededMediaForFullRoute ();  // This is just the audio file
+            double totalSteps = FetchNeededMediaForFullRoute ();
             if (token.IsCancellationRequested)
                 return;
-            totalSteps += missingExhibitsForRoute.Count;  // Add missing exhibits for route; instead of exhibits you could add the media associated with it; change code in other full fetcher
+
+            foreach (var exhibit in missingExhibitsForRoute)
+            {
+                totalSteps += await fullExhibitDataFetcher.FetchNeededMediaForFullExhibit (exhibit.IdForRestApi);
+            }
 
             listener.SetMaxProgress (totalSteps);
-
-            await FetchMediaData (token, listener);
-            if (token.IsCancellationRequested)
-                return;
-
+            
             using (var transaction = DbManager.StartTransaction ())
             {
                 ProcessRoute (routeId, token, listener);
                 if (token.IsCancellationRequested)
                     transaction.Rollback ();
             }
+            IoCManager.Resolve<IDbChangedHandler>().NotifyAll();
         }
         
         private int FetchNeededMediaForFullRoute ()
@@ -78,16 +80,16 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             return requiredMedia.Count;
         }
 
-        private void ProcessRoute(string routeId, CancellationToken token, IProgressListener listener)
+        private async void ProcessRoute(string routeId, CancellationToken token, IProgressListener listener)
         {
+            await FetchMediaData (token, listener);
             var fetchedMedia = mediaDataFetcher.CombineMediasAndFiles();
             if (token.IsCancellationRequested)
                 return;
 
             var route = RouteManager.GetRoute (routeId);
 
-            AddAudioToRoute (route, routeDto.Audio, fetchedMedia);
-            listener.ProgressOneStep ();
+            AddAudioToRoute (route, routeDto.Audio, fetchedMedia, listener);
 
             AddFullExhibitsToRoute (route, token, listener);
         }
@@ -97,20 +99,18 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             await mediaDataFetcher.FetchMedias(requiredMedia, token, listener);
         }
 
-       private void AddAudioToRoute(Route dbRoute, int? mediaId, FetchedMediaData fetchedMediaData)
+       private void AddAudioToRoute(Route dbRoute, int? mediaId, FetchedMediaData fetchedMediaData, IProgressListener listener)
        {
-            if (mediaId.HasValue)
-            {
-                var audio = fetchedMediaData.Audios.SingleOrDefault(x => x.IdForRestApi == mediaId);
+           if (!mediaId.HasValue)
+               return;
 
-                if (audio != null)
-                    dbRoute.Audio = audio;
-            }
-            else
-            {
-                // No backup for audio? -> Discard this branch
-            }
-        }
+           var audio = fetchedMediaData.Audios.SingleOrDefault(x => x.IdForRestApi == mediaId);
+           if (audio == null)
+               return;
+
+           dbRoute.Audio = audio;
+           listener.ProgressOneStep ();
+       }
 
         private async void AddFullExhibitsToRoute (Route route, CancellationToken token, IProgressListener listener)
         {
@@ -121,10 +121,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                 if (dbExhibit == null)
                     continue;
 
-                await fullExhibitDataFetcher.FetchFullDownloadableDataIntoDatabase (dbExhibit.Id, dbExhibit.IdForRestApi, token, listener);
+                await fullExhibitDataFetcher.FetchFullDownloadableDataIntoDatabase (dbExhibit.Id, dbExhibit.IdForRestApi, token, listener, true);
                 if (token.IsCancellationRequested)
                     return;
-                listener.ProgressOneStep ();    // This listener could be changed depending on the media passed up from the FullExhibitDataFetcher
             }
         }
     }

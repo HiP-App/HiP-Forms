@@ -44,10 +44,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
         private IList<int?> requiredMedias;
         private IList<PageDto> pageItems;
 
-        public async Task FetchFullDownloadableDataIntoDatabase (string exhibitId, int idForRestApi, CancellationToken token, IProgressListener listener)
+        public async Task FetchFullDownloadableDataIntoDatabase (string exhibitId, int idForRestApi, CancellationToken token, IProgressListener listener, bool calledFromRouteFetcher)
         {
-            requiredMedias = new List<int?>();
-
             double totalSteps = await FetchNeededMediaForFullExhibit(idForRestApi);
 
             if (token.IsCancellationRequested)
@@ -55,7 +53,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                 return;
             }
 
-            listener.SetMaxProgress(totalSteps);
+            if (!calledFromRouteFetcher)
+                listener.SetMaxProgress(totalSteps);
 
             using (var transaction = DbManager.StartTransaction())
             {
@@ -68,8 +67,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             IoCManager.Resolve<IDbChangedHandler>().NotifyAll();
         }
 
-        private async Task<int> FetchNeededMediaForFullExhibit(int idForRestApi)
+        public async Task<int> FetchNeededMediaForFullExhibit(int idForRestApi)
         {
+            requiredMedias = new List<int?>();
             pageItems = (await pagesApiAccess.GetPages(idForRestApi)).Items;
 
             // Since AppetizerPages have been loaded before, do not consider them anymore
@@ -127,13 +127,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                 return;
             }
 
-            Exhibit exhibit = ExhibitManager.GetExhibit(exhibitId);
+            var exhibit = ExhibitManager.GetExhibit(exhibitId);
 
             foreach (var pageDto in pageItems)
             {
                 var dbPage = PageConverter.Convert(pageDto);
 
-                AddContentToPage(dbPage, pageDto, fetchedMedia, listener);
+                AddContentToPage(dbPage, pageDto, fetchedMedia);
                 // Add Page with content to the exhibit
                 exhibit.Pages.Add(dbPage);
             }
@@ -177,7 +177,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             await mediaDataFetcher.FetchMedias(requiredMedias, token, listener);
         }
 
-        private void AddContentToPage(Page dbPage, PageDto content, FetchedMediaData fetchedMedia, IProgressListener listener)
+        private void AddContentToPage(Page dbPage, PageDto content, FetchedMediaData fetchedMedia)
         {
             if (content != null && dbPage != null)
             {

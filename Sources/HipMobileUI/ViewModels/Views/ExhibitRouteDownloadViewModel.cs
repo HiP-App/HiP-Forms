@@ -18,7 +18,6 @@ using System.IO;
 using System.Threading;
 using System.Windows.Input;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers.Contracts;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
@@ -29,7 +28,7 @@ using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views.ExhibitDetails;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 {
-    class ExhibitRouteDownloadViewModel : NavigationViewModel, IProgressListener {
+    public class ExhibitRouteDownloadViewModel : NavigationViewModel, IProgressListener {
 
         private readonly string downloadableId;
         private readonly int downloadableIdForRestApi;
@@ -122,7 +121,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         public ICommand GoToOverviewCommand { get; }
         public ICommand GoToDetailsCommand { get; }
 
-        void CancelDownload ()
+        private void CancelDownload ()
         {
             cancellationTokenSource?.Cancel();
             CloseDownloadPage ();
@@ -154,7 +153,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             {
                 try
                 {
-                    await fullDownloadableDataFetcher.FetchFullDownloadableDataIntoDatabase (downloadableId, downloadableIdForRestApi, cancellationTokenSource.Token, this);
+                    await fullDownloadableDataFetcher.FetchFullDownloadableDataIntoDatabase (downloadableId, downloadableIdForRestApi, cancellationTokenSource.Token, this, false);
                     if (!cancellationTokenSource.IsCancellationRequested)
                     {
                         SetDetailsAvailable();
@@ -195,7 +194,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             DownloadableListItemViewModel.SetDetailsAvailable (DownloadFinished);
 
             //Close DownloadPage directly if download was started from the AppetizerView
-            if(DownloadFinished && (DownloadableListItemViewModel.GetType() == typeof(AppetizerViewModel)))
+            if(DownloadFinished && DownloadableListItemViewModel.GetType() == typeof(AppetizerViewModel))
             {
                 CloseDownloadPage();
             }
