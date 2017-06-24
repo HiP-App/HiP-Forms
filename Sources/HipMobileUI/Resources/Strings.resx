@@ -592,6 +592,51 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   <data name="DownloadDetails_Text_Part2" xml:space="preserve">
     <value> herunter</value>
   </data>
+  <data name="MainPageViewModel_Account" xml:space="preserve">
+    <value>Account</value>
+  </data>
+  <data name="MainPageViewModel_Profile" xml:space="preserve">
+    <value>Profil</value>
+  </data>
+  <data name="ProfileView_Achievements" xml:space="preserve">
+    <value>Erfolge</value>
+  </data>
+  <data name="ProfileView_Statistic" xml:space="preserve">
+    <value>Statistik</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Abmelden</value>
+  </data>
+  <data name="ProfileView_Overview_Achievements" xml:space="preserve">
+    <value>Erfolge:</value>
+  </data>
+  <data name="ProfileView_Overview_Progress" xml:space="preserve">
+    <value>Fortschritt:</value>
+  </data>
+  <data name="ProfileView_Overview_Score" xml:space="preserve">
+    <value>Punkte:</value>
+    </data>
+  <data name="LoginScreenView_Error_Unknown_Email" xml:space="preserve">
+    <value>Unbekannte E-Mail Adresse</value>
+  </data>
+  <data name="LoginScreenView_Error_Wrong_Password" xml:space="preserve">
+    <value>Falsches Passwort</value>
+  </data>
+  <data name="LoginScreenView_Login" xml:space="preserve">
+    <value>Einloggen</value>
+  </data>
+  <data name="LoginScreenView_Password" xml:space="preserve">
+    <value>Passwort</value>
+  </data>
+  <data name="LoginScreenView_Register" xml:space="preserve">
+    <value>Registrieren</value>
+  </data>
+  <data name="LoginScreenView_Email" xml:space="preserve">
+    <value>E-Mail</value>
+  </data>
+  <data name="LoginScreenView_Forgot_Password" xml:space="preserve">
+    <value>Passwort vergessen?</value>
+  </data>
   <data name="LicenseScreenViewModel_UnlockExhibits_Confirm" xml:space="preserve">
     <value>OK</value>
   </data>

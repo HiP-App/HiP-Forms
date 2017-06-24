@@ -945,11 +945,92 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to E-Mail.
+        /// </summary>
+        public static string LoginScreenView_Email {
+            get {
+                return ResourceManager.GetString("LoginScreenView_Email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unbekannte E-Mail Adresse.
+        /// </summary>
+        public static string LoginScreenView_Error_Unknown_Email {
+            get {
+                return ResourceManager.GetString("LoginScreenView_Error_Unknown_Email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Falsches Passwort.
+        /// </summary>
+        public static string LoginScreenView_Error_Wrong_Password {
+            get {
+                return ResourceManager.GetString("LoginScreenView_Error_Wrong_Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Passwort vergessen?.
+        /// </summary>
+        public static string LoginScreenView_Forgot_Password {
+            get {
+                return ResourceManager.GetString("LoginScreenView_Forgot_Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Einloggen.
+        /// </summary>
+        public static string LoginScreenView_Login {
+            get {
+                return ResourceManager.GetString("LoginScreenView_Login", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Passwort.
+        /// </summary>
+        public static string LoginScreenView_Password {
+            get {
+                return ResourceManager.GetString("LoginScreenView_Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Registrieren.
+        /// </summary>
+        public static string LoginScreenView_Register {
+            get {
+                return ResourceManager.GetString("LoginScreenView_Register", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Abmelden.
+        /// </summary>
+        public static string Logout {
+            get {
+                return ResourceManager.GetString("Logout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Historisches Paderborn.
         /// </summary>
         public static string MainPage_MenuTitle {
             get {
                 return ResourceManager.GetString("MainPage_MenuTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Account.
+        /// </summary>
+        public static string MainPageViewModel_Account {
+            get {
+                return ResourceManager.GetString("MainPageViewModel_Account", resourceCulture);
             }
         }
         
@@ -981,6 +1062,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Profil.
+        /// </summary>
+        public static string MainPageViewModel_Profile {
+            get {
+                return ResourceManager.GetString("MainPageViewModel_Profile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Routen.
         /// </summary>
         public static string MainPageViewModel_Routes {
@@ -1004,6 +1094,51 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         public static string MapRenderer_NoLocation_Text {
             get {
                 return ResourceManager.GetString("MapRenderer_NoLocation_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Erfolge.
+        /// </summary>
+        public static string ProfileView_Achievements {
+            get {
+                return ResourceManager.GetString("ProfileView_Achievements", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Erfolge:.
+        /// </summary>
+        public static string ProfileView_Overview_Achievements {
+            get {
+                return ResourceManager.GetString("ProfileView_Overview_Achievements", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fortschritt:.
+        /// </summary>
+        public static string ProfileView_Overview_Progress {
+            get {
+                return ResourceManager.GetString("ProfileView_Overview_Progress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Punkte:.
+        /// </summary>
+        public static string ProfileView_Overview_Score {
+            get {
+                return ResourceManager.GetString("ProfileView_Overview_Score", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Statistik.
+        /// </summary>
+        public static string ProfileView_Statistic {
+            get {
+                return ResourceManager.GetString("ProfileView_Statistic", resourceCulture);
             }
         }
         
