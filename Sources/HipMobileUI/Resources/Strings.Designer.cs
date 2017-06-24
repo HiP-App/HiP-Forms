@@ -1078,22 +1078,36 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
                 return ResourceManager.GetString("LoginScreenView_Error_Empty_Email_And_Password", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Das Passwort-Eingabefeld ist leer.
         /// </summary>
         public static string LoginScreenView_Error_Empty_Password {
+            get { return ResourceManager.GetString ("LoginScreenView_Error_Empty_Password", resourceCulture); }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Unbekannte E-Mail Adresse.
+        /// </summary>
+        public static string LoginScreenView_Error_Unknown_Email {
             get {
-                return ResourceManager.GetString("LoginScreenView_Error_Empty_Password", resourceCulture);
+                return ResourceManager.GetString("LoginScreenView_Error_Unknown_Email", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Falsche E-Mail/Passwort Kombination.
         /// </summary>
         public static string LoginScreenView_Error_Wrong_Credentials {
+            get { return ResourceManager.GetString ("LoginScreenView_Error_Wrong_Credentials", resourceCulture); }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Falsches Passwort.
+        /// </summary>
+        public static string LoginScreenView_Error_Wrong_Password {
             get {
-                return ResourceManager.GetString("LoginScreenView_Error_Wrong_Credentials", resourceCulture);
+                return ResourceManager.GetString("LoginScreenView_Error_Wrong_Password", resourceCulture);
             }
         }
         

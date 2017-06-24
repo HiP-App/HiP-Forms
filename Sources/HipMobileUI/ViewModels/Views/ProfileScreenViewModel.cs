@@ -25,7 +25,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views {
         public ICommand Logout { get; }
 
         public ImageSource Avatar => ImageSource.FromFile ("ic_account_circle.png");
-        public String Name => Settings.Username;
+        public String Username => Settings.Username;
         public String EMail => Settings.EMail;
         public int Score => Settings.Score;
         public String AchievementCount => Settings.Achievements+" / 30";

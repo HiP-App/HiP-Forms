@@ -11,6 +11,7 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Exceptions;
 using Acr.UserDialogs;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 {
@@ -21,7 +22,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         private String email;
         private String password;
         private String errorMessage;
-        private Boolean isLoading;
 
         public LoginScreenViewModel(MainPageViewModel mainPageVm)
         {
@@ -121,8 +121,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         private void DisplayEmptyEmailAndPasswordErrorMessage()
         {
             ErrorMessage = Strings.LoginScreenView_Error_Empty_Email_And_Password;
-            
-        }
+		}
 
         public String ErrorMessage
         {
@@ -140,12 +139,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         {
             get { return password; }
             set { SetProperty(ref password, value); }
-        }
-
-        public Boolean IsLoading
-        {
-            get { return isLoading; }
-            set { SetProperty(ref isLoading, value); }
         }
     }
 }

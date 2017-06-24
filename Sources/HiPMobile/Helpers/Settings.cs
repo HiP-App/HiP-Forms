@@ -199,7 +199,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
         }
 
         /// <summary>
-        /// The e-mail of the current user
+        /// The password of the current user
         /// </summary>
         private const string PasswordKey = "password_key";
         private static readonly string PasswordDefault = "";

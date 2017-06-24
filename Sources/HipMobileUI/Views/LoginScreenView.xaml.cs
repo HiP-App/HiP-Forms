@@ -1,4 +1,4 @@
-﻿using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
 using System;
@@ -86,6 +86,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
 
                 deviceOrientation = DeviceOrientation.Landscape;
             }
-        }
+		}
     }
 }

@@ -1,41 +1,23 @@
-﻿// Copyright (C) 2017 History in Paderborn App - Universität Paderborn
-//  
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//  
-//      http://www.apache.org/licenses/LICENSE-2.0
-//  
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
-
-using System;
 using System.Diagnostics;
 using System.IO;
-using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Input;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers.Contracts;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
-using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views.ExhibitDetails;
 using Xamarin.Forms;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 {
     class ExhibitRouteDownloadViewModel : NavigationViewModel, IProgressListener
     {
-        public ExhibitRouteDownloadViewModel (IDownloadable downloadable, IDownloadableListItemViewModel downloadableListItemViewModel)
+
+        private IDownloadable downloadable;
+        public ExhibitRouteDownloadViewModel(IDownloadable downloadable, IDownloadableListItemViewModel downloadableListItemViewModel)
         {
+            this.downloadable = downloadable;
             DownloadableId = downloadable.Id;
-            DownloadableIdForRestApi = downloadable.IdForRestApi;
             DownloadableName = downloadable.Name;
             DownloadableDescription = downloadable.Description;
 
@@ -43,19 +25,16 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             var data = downloadable.Image.Data;
             Image = ImageSource.FromStream(() => new MemoryStream(data));
             DownloadableListItemViewModel = downloadableListItemViewModel;
-            
+
             CancelCommand = new Command(CancelDownload);
             GoToDetailsCommand = new Command(GoToDetails);
             GoToOverviewCommand = new Command(CloseDownloadPage);
-            StartDownload = new Command(DownloadData);
 
-            cancellationTokenSource = new CancellationTokenSource();
+            StartDownload = new Command(DownloadData);
 
             DownloadPending = true;
             DownloadFinished = !DownloadPending;   // Since false is the default value this is just a reminder in case the database wants to set this to true when generating this item
         }
-
-        private readonly CancellationTokenSource cancellationTokenSource;
 
         private IDownloadableListItemViewModel DownloadableListItemViewModel { get; set; }
 
@@ -71,13 +50,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         {
             get { return downloadableId; }
             set { SetProperty(ref downloadableId, value); }
-        }
-
-        private int downloadableIdForRestApi;
-        public int DownloadableIdForRestApi
-        {
-            get { return downloadableIdForRestApi; }
-            set { SetProperty(ref downloadableIdForRestApi, value); }
         }
 
         private string downloadableDescription;
@@ -100,7 +72,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             get { return image; }
             set { SetProperty(ref image, value); }
         }
-        
+
         private double loadingProgress;
         public double LoadingProgress
         {
@@ -112,14 +84,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         public bool DownloadFinished
         {
             get { return downloadFinished; }
-            set { SetProperty (ref downloadFinished, value); }
+            set { SetProperty(ref downloadFinished, value); }
         }
 
         private bool downloadPending;
         public bool DownloadPending
         {
             get { return downloadPending; }
-            set { SetProperty (ref downloadPending, value); }
+            set { SetProperty(ref downloadPending, value); }
         }
 
         private ICommand startDownload;
@@ -133,86 +105,69 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         public ICommand GoToDetailsCommand { get; }
 
         private bool downloadAborted;
-        void CancelDownload ()
+        void CancelDownload()
         {
             // Do some stuff to abort the download; this distincts this method from the one below
             downloadAborted = true;
-            CloseDownloadPage ();
-
-            Exhibit exhibit = ExhibitManager.GetExhibit (DownloadableId);
-            using (DbManager.StartTransaction ())
-            {
-                // Remove all already downloaded pages except the first one (appetizer page)
-                int pagesCount = exhibit.Pages.Count;
-                for (int i = pagesCount - 1; i > 0; i--)
-                {
-                    exhibit.Pages.RemoveAt(i);
-                }
-            }
+            CloseDownloadPage();
         }
 
-        void CloseDownloadPage ()
+        void CloseDownloadPage()
         {
-            DownloadableListItemViewModel.CloseDownloadPage ();
+            DownloadableListItemViewModel.CloseDownloadPage();
         }
 
-        void GoToDetails ()
+        void GoToDetails()
         {
-            DownloadableListItemViewModel.OpenDetailsView (DownloadableId);
+            DownloadableListItemViewModel.OpenDetailsView(DownloadableId);
         }
 
-        async void DownloadData ()
+        async void DownloadData()
         {
             // This is where all the the data will be downloaded
-            string messageToShow = null;
-            string titleToShow = null;
-            var fullExhibitDataFetcher = IoCManager.Resolve<IFullExhibitDataFetcher>();
-            var networkAccessStatus = IoCManager.Resolve<INetworkAccessChecker>().GetNetworkAccessStatus();
+            if (downloadable == null)
+                return;
+            LoadingProgress = 0;
 
-            if (networkAccessStatus == NetworkAccessStatus.WifiAccess
-                || (networkAccessStatus == NetworkAccessStatus.MobileAccess && !Settings.WifiOnly))
+            if (downloadable.GetType() == typeof(Exhibit))
             {
-                try
-                {
-                    var token = cancellationTokenSource.Token;
-                    await fullExhibitDataFetcher.FetchFullExhibitDataIntoDatabase(DownloadableId, DownloadableIdForRestApi, token, this);
-                    SetDetailsAvailable();
-                }
-                catch (Exception e)
-                {
-                    titleToShow = Strings.LoadingPageViewModel_BaseData_DownloadFailed_Title;
-                    messageToShow = Strings.LoadingPageViewModel_BaseData_DownloadFailed_Text;
-                    Debug.WriteLine(e.Message);
-                    Debug.WriteLine(e.StackTrace);
-                }
+                // We want to download an Exhibit
+                // This should be implemented by Rico
             }
             else
             {
-                titleToShow = Strings.LoadingPageViewModel_BaseData_DownloadFailed_Title;
-                messageToShow = Strings.LoadingPageViewModel_BaseData_DownloadFailed_Text;
-                if (networkAccessStatus == NetworkAccessStatus.MobileAccess)
+                if (downloadable.GetType() == typeof(Route))
                 {
-                    messageToShow += Environment.NewLine + Strings.LoadingPageViewModel_BaseData_DownloadViaMobile;
+                    // We want to download a Route
+                    // Load audio for description
+                    // Load all to this route related exhibits
+                }
+                else
+                {
+                    return; // This case should never occure since we only have exhibits and routes that can create the page related to this viewmodel
                 }
             }
 
-            if (messageToShow != null)
+            // This can be called from the class that actually handles the download of the data
+            // Move the updates up to where the actual download happens
+
+            SetMaxProgress(50);
+            for (var x = 0; x < 50; x++)
             {
-                await Navigation.DisplayAlert(titleToShow, messageToShow, "OK");
+                ProgressOneStep();
+                await Task.Delay(50);
+                if (downloadAborted)
+                    return;
             }
+
+            SetDetailsAvailable();
         }
 
-        void SetDetailsAvailable ()
+        void SetDetailsAvailable()
         {
             DownloadPending = false;
             DownloadFinished = !DownloadPending;
-            DownloadableListItemViewModel.SetDetailsAvailable (DownloadFinished);
-
-            //Close DownloadPage directly if download was started from the AppetizerView
-            if(DownloadFinished && (DownloadableListItemViewModel.GetType() == typeof(AppetizerViewModel)))
-            {
-                CloseDownloadPage();
-            }
+            DownloadableListItemViewModel.SetDetailsAvailable(DownloadFinished);
         }
 
         public override void OnAppearing()
@@ -221,29 +176,29 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             StartDownload.Execute(null);
         }
 
-        public override void OnDisappearing ()
+        public override void OnDisappearing()
         {
-            base.OnDisappearing ();
+            base.OnDisappearing();
             downloadAborted = true;
         }
 
         private double maximumProgress;
         private double currentProgress;
 
-        public void ProgressOneStep ()
+        public void ProgressOneStep()
         {
             currentProgress++;
-            LoadingProgress = currentProgress/maximumProgress;
+            LoadingProgress = currentProgress / maximumProgress;
         }
 
-        public void SetMaxProgress (double maxProgress)
+        public void SetMaxProgress(double maxProgress)
         {
             maximumProgress = maxProgress;
         }
 
         public void UpdateProgress(double newProgress, double maxProgress)
         {
-            LoadingProgress = newProgress/maxProgress;
+            LoadingProgress = newProgress / maxProgress;
         }
     }
 }
