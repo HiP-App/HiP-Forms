@@ -66,8 +66,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             // update the settings to not show this page next time
             Settings.RepeatIntro = false;
 
-            // open the main page
-            Navigation.StartNewNavigationStack (new LoadingPageViewModel ());
+            // open the character selection page
+            Navigation.StartNewNavigationStack (new CharacterSelectionPageViewModel ());
         }
 
         /// <summary>
