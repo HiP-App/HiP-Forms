@@ -1,4 +1,4 @@
-﻿using System.Diagnostics;
+using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -10,10 +10,11 @@ using Xamarin.Forms;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 {
-    class ExhibitRouteDownloadViewModel : NavigationViewModel, IProgressListener {
+    class ExhibitRouteDownloadViewModel : NavigationViewModel, IProgressListener
+    {
 
         private IDownloadable downloadable;
-        public ExhibitRouteDownloadViewModel (IDownloadable downloadable, IDownloadableListItemViewModel downloadableListItemViewModel)
+        public ExhibitRouteDownloadViewModel(IDownloadable downloadable, IDownloadableListItemViewModel downloadableListItemViewModel)
         {
             this.downloadable = downloadable;
             DownloadableId = downloadable.Id;
@@ -24,7 +25,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             var data = downloadable.Image.Data;
             Image = ImageSource.FromStream(() => new MemoryStream(data));
             DownloadableListItemViewModel = downloadableListItemViewModel;
-            
+
             CancelCommand = new Command(CancelDownload);
             GoToDetailsCommand = new Command(GoToDetails);
             GoToOverviewCommand = new Command(CloseDownloadPage);
@@ -71,7 +72,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             get { return image; }
             set { SetProperty(ref image, value); }
         }
-        
+
         private double loadingProgress;
         public double LoadingProgress
         {
@@ -83,14 +84,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         public bool DownloadFinished
         {
             get { return downloadFinished; }
-            set { SetProperty (ref downloadFinished, value); }
+            set { SetProperty(ref downloadFinished, value); }
         }
 
         private bool downloadPending;
         public bool DownloadPending
         {
             get { return downloadPending; }
-            set { SetProperty (ref downloadPending, value); }
+            set { SetProperty(ref downloadPending, value); }
         }
 
         private ICommand startDownload;
@@ -104,38 +105,38 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         public ICommand GoToDetailsCommand { get; }
 
         private bool downloadAborted;
-        void CancelDownload ()
+        void CancelDownload()
         {
             // Do some stuff to abort the download; this distincts this method from the one below
             downloadAborted = true;
-            CloseDownloadPage ();
+            CloseDownloadPage();
         }
 
-        void CloseDownloadPage ()
+        void CloseDownloadPage()
         {
-            DownloadableListItemViewModel.CloseDownloadPage ();
+            DownloadableListItemViewModel.CloseDownloadPage();
         }
 
-        void GoToDetails ()
+        void GoToDetails()
         {
-            DownloadableListItemViewModel.OpenDetailsView (DownloadableId);
+            DownloadableListItemViewModel.OpenDetailsView(DownloadableId);
         }
 
-        async void DownloadData ()
+        async void DownloadData()
         {
             // This is where all the the data will be downloaded
             if (downloadable == null)
                 return;
             LoadingProgress = 0;
 
-            if (downloadable.GetType () == typeof (Exhibit))
+            if (downloadable.GetType() == typeof(Exhibit))
             {
                 // We want to download an Exhibit
                 // This should be implemented by Rico
             }
             else
             {
-                if (downloadable.GetType () == typeof (Route))
+                if (downloadable.GetType() == typeof(Route))
                 {
                     // We want to download a Route
                     // Load audio for description
@@ -149,24 +150,24 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
             // This can be called from the class that actually handles the download of the data
             // Move the updates up to where the actual download happens
-            
-            SetMaxProgress (50);
+
+            SetMaxProgress(50);
             for (var x = 0; x < 50; x++)
             {
-                ProgressOneStep ();
-                await Task.Delay (50);
+                ProgressOneStep();
+                await Task.Delay(50);
                 if (downloadAborted)
                     return;
             }
 
-            SetDetailsAvailable ();
+            SetDetailsAvailable();
         }
 
-        void SetDetailsAvailable ()
+        void SetDetailsAvailable()
         {
             DownloadPending = false;
             DownloadFinished = !DownloadPending;
-            DownloadableListItemViewModel.SetDetailsAvailable (DownloadFinished);
+            DownloadableListItemViewModel.SetDetailsAvailable(DownloadFinished);
         }
 
         public override void OnAppearing()
@@ -175,29 +176,29 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             StartDownload.Execute(null);
         }
 
-        public override void OnDisappearing ()
+        public override void OnDisappearing()
         {
-            base.OnDisappearing ();
+            base.OnDisappearing();
             downloadAborted = true;
         }
 
         private double maximumProgress;
         private double currentProgress;
 
-        public void ProgressOneStep ()
+        public void ProgressOneStep()
         {
             currentProgress++;
-            LoadingProgress = currentProgress/maximumProgress;
+            LoadingProgress = currentProgress / maximumProgress;
         }
 
-        public void SetMaxProgress (double maxProgress)
+        public void SetMaxProgress(double maxProgress)
         {
             maximumProgress = maxProgress;
         }
 
         public void UpdateProgress(double newProgress, double maxProgress)
         {
-            LoadingProgress = newProgress/maxProgress;
+            LoadingProgress = newProgress / maxProgress;
         }
     }
 }

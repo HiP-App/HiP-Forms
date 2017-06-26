@@ -18,48 +18,37 @@ using System.Linq;
 using System.Net.Http;
 using Newtonsoft.Json;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
-{
-    public class UriQueryBuilder
-    {
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers {
+    public class UriQueryBuilder {
 
-        public static string GetAdditionalParametersQuery(DateTimeOffset? timestamp, IList<int> includeOnly)
+        public static string GetAdditionalParametersQuery (DateTimeOffset? timestamp, IList<int> includeOnly)
         {
-            var keys = new List<string>();
-            var values = new List<string>();
-            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            Dictionary<string, string> parameters = new Dictionary<string, string> ();
             if (timestamp.HasValue)
             {
-                keys.Add("timestamp");
-                values.Add(JsonConvert.SerializeObject(timestamp).Replace("\"", ""));
+                parameters.Add ("timestamp", JsonConvert.SerializeObject(timestamp).Replace ("\"", ""));
             }
-            if (includeOnly != null && includeOnly.Any())
+            if (includeOnly != null && includeOnly.Any ())
             {
                 foreach (int include in includeOnly)
                 {
-                    keys.Add("includeOnly");
-                    values.Add(include.ToString());
+                    parameters.Add("includeOnly", include.ToString ());
                 }
             }
 
-            return ToQueryString(keys, values);
+            return ToQueryString (parameters);
         }
 
-        public static string ToQueryString(List<string> keys, List<string> values)
+        public static string ToQueryString (Dictionary<string, string> parameters)
         {
-            if (!keys.Any())
+            if (!parameters.Any ())
             {
                 return string.Empty;
             }
 
-            var segments = new List<string>();
-
-            for (int i = 0; i < keys.Count; i++)
-            {
-                segments.Add($"{keys[i]}={Uri.EscapeDataString(values[i])}");
-            }
-
-            return "?" + string.Join("&", segments);
+            IEnumerable<string> segments = from key in parameters.Keys
+                                           select $"{key}={Uri.EscapeDataString(parameters[key])}";
+            return "?" + string.Join ("&", segments);
         }
 
     }

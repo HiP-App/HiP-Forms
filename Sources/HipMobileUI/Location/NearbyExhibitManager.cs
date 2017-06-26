@@ -26,7 +26,6 @@ using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
 using Xamarin.Forms;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Location
 {
@@ -55,18 +54,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Location
         {
             foreach (Exhibit e in exhibits)
             {
-
-                
                 var dist = MathUtil.CalculateDistance(e.Location, gpsLocation);
                 if (dist < AppSharedData.ExhibitRadius)
                 {
-                    using (IoCManager.Resolve<IDataAccess>().StartTransaction())
-                    {
-                        e.Unlocked = true;
-                    }
                     if (considerTimeouts)
                     {
-
                         DateTimeOffset now = DateTimeOffset.Now;
                         if (e.LastNearbyTime.HasValue)
                         {
@@ -94,9 +86,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Location
         }
 
         public void InvokeExhibitVistedEvent (Exhibit exhibit)
-        {           
+            {
             ExhibitVisitedEvent?.Invoke (this, exhibit);
-        }
+            }
 
     }
 }
