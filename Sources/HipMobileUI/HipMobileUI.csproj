@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -89,6 +89,10 @@
     <Compile Include="Views\ForgotPasswordScreenView.xaml.cs">
       <DependentUpon>ForgotPasswordScreenView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\CharacterSelectionPage.xaml.cs">
+      <DependentUpon>CharacterSelectionPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\Pages\CharacterSelectionPageViewModel.cs" />
     <Compile Include="Views\ProfileScreenView.xaml.cs">
       <DependentUpon>ProfileScreenView.xaml</DependentUpon>
     </Compile>
@@ -478,6 +482,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\ForgotPasswordScreenView.xaml">
+	<Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\CharacterSelectionPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

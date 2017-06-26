@@ -601,12 +601,6 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
     <data name="ProfileView_Overview_Score" xml:space="preserve">
     <value>Punkte:</value>
   </data>
-    <data name="LoginScreenView_Error_Unknown_Email" xml:space="preserve">
-    <value>Unbekannte E-Mail Adresse</value>
-  </data>
-    <data name="LoginScreenView_Error_Wrong_Password" xml:space="preserve">
-    <value>Falsches Passwort</value>
-    </data>
   <data name="LoginScreenView_Error_Wrong_Credentials" xml:space="preserve">
     <value>Falsche E-Mail/Passwort Kombination</value>
 
