@@ -1246,5 +1246,29 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
                 return ResourceManager.GetString("LicenseScreenView_User_Dialogs_Title", resourceCulture);
             }
         }
+        
+        public static string CharacterSelectionPage_Adventurer_Text {
+            get {
+                return ResourceManager.GetString("CharacterSelectionPage_Adventurer_Text", resourceCulture);
+            }
+        }
+        
+        public static string CharacterSelectionPage_Professor_Text {
+            get {
+                return ResourceManager.GetString("CharacterSelectionPage_Professor_Text", resourceCulture);
+            }
+        }
+        
+        public static string LicenseScreenView_CreditsImagesCharacterSelection_Text {
+            get {
+                return ResourceManager.GetString("LicenseScreenView_CreditsImagesCharacterSelection_Text", resourceCulture);
+            }
+        }
+        
+        public static string LicenseScreenView_CreditsImagesCharacterSelection_Title {
+            get {
+                return ResourceManager.GetString("LicenseScreenView_CreditsImagesCharacterSelection_Title", resourceCulture);
+            }
+        }
     }
 }

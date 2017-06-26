@@ -743,5 +743,16 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   <data name="LicenseScreenView_User_Dialogs_Title" xml:space="preserve">
     <value>ACR User Dialogs</value>
   </data>
-  	
+  <data name="CharacterSelectionPage_Adventurer_Text" xml:space="preserve">
+    <value>Entdecke Paderborn auf eigene Faust! Mache neue Erfahrungen!</value>
+  </data>
+  <data name="CharacterSelectionPage_Professor_Text" xml:space="preserve">
+    <value>Folge den geführten Touren um Paderborn zu entdecken!</value>
+  </data>
+  <data name="LicenseScreenView_CreditsImagesCharacterSelection_Text" xml:space="preserve">
+    <value>Icons made by &lt;a href="http://www.freepik.com" title="Freepik"&gt;Freepik&lt;/a&gt; from &lt;a href="http://www.flaticon.com" title="Flaticon"&gt;www.flaticon.com&lt;/a&gt;. Bilder erstellt von &lt;a href="http://www.freepik.com" title="Freepik"&gt;Freepik&lt;/a&gt; von &lt;a href="http://www.flaticon.com" title="Flaticon"&gt;www.flaticon.com&lt;/a&gt;.</value>
+  </data>
+  <data name="LicenseScreenView_CreditsImagesCharacterSelection_Title" xml:space="preserve">
+    <value>Credits der Bilder in der Avatar Auswahl</value>
+  </data>
 </root>
