@@ -170,6 +170,24 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Entdecke Paderborn auf eigene Faust! Mache neue Erfahrungen!.
+        /// </summary>
+        public static string CharacterSelectionPage_Adventurer_Text {
+            get {
+                return ResourceManager.GetString("CharacterSelectionPage_Adventurer_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Folge den geführten Touren um Paderborn zu entdecken!.
+        /// </summary>
+        public static string CharacterSelectionPage_Professor_Text {
+            get {
+                return ResourceManager.GetString("CharacterSelectionPage_Professor_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ja.
         /// </summary>
         public static string DownloadData_Accept {
@@ -472,6 +490,24 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         public static string LicenseScreenView_CreditsImagesAutocarousel_Title {
             get {
                 return ResourceManager.GetString("LicenseScreenView_CreditsImagesAutocarousel_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Icons made by &lt;a href=&quot;http://www.freepik.com&quot; title=&quot;Freepik&quot;&gt;Freepik&lt;/a&gt; from &lt;a href=&quot;http://www.flaticon.com&quot; title=&quot;Flaticon&quot;&gt;www.flaticon.com&lt;/a&gt;. Bilder erstellt von &lt;a href=&quot;http://www.freepik.com&quot; title=&quot;Freepik&quot;&gt;Freepik&lt;/a&gt; von &lt;a href=&quot;http://www.flaticon.com&quot; title=&quot;Flaticon&quot;&gt;www.flaticon.com&lt;/a&gt;..
+        /// </summary>
+        public static string LicenseScreenView_CreditsImagesCharacterSelection_Text {
+            get {
+                return ResourceManager.GetString("LicenseScreenView_CreditsImagesCharacterSelection_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Credits der Bilder in der Avatar Auswahl.
+        /// </summary>
+        public static string LicenseScreenView_CreditsImagesCharacterSelection_Title {
+            get {
+                return ResourceManager.GetString("LicenseScreenView_CreditsImagesCharacterSelection_Title", resourceCulture);
             }
         }
         

@@ -155,6 +155,21 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
             set { AppSettings.AddOrUpdateValue<bool>(WifiOnlyKey, value); }
         }
 
+        
+        private const string AdventurerModeKey = "adventurer_mode_key";
+        private static readonly bool AdventurerModeDefault = true;
+
+        /// <summary>
+        /// Indicates wether the app is in adventurer or professor mode.
+        /// True: App is in Adventurer mode.
+        /// False: App is in Professor mode.
+        /// </summary>
+        public static bool AdventurerMode
+        {
+            get { return AppSettings.GetValueOrDefault<bool>(AdventurerModeKey, AdventurerModeDefault); }
+            set { AppSettings.AddOrUpdateValue<bool>(AdventurerModeKey, value); }
+        }
+
         #endregion
 
         /// <summary>
