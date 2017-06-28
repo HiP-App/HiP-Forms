@@ -28,7 +28,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelCo
             existingModelObject.Timestamp = dto.Timestamp;
             switch (dto.Type)
             {
-                case PageTypeDto.AppetizerPage:
+                case PageTypeDto.Appetizer_Page:
                     if(existingModelObject.AppetizerPage == null)
                     {
                         existingModelObject.AppetizerPage = DbManager.CreateBusinessObject<AppetizerPage>();
@@ -36,13 +36,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelCo
                     existingModelObject.AppetizerPage.Text = dto.Text;
 
                     break;
-                case PageTypeDto.ImagePage:
+                case PageTypeDto.Image_Page:
                     if (existingModelObject.ImagePage == null)
                     {
                         existingModelObject.ImagePage = DbManager.CreateBusinessObject<ImagePage>();
                     }
                     break;
-                case PageTypeDto.SliderPage:
+                case PageTypeDto.Slider_Page:
                     if (existingModelObject.TimeSliderPage == null)
                     {
                         existingModelObject.TimeSliderPage = DbManager.CreateBusinessObject<TimeSliderPage>();
@@ -57,7 +57,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelCo
                         existingModelObject.TimeSliderPage.Dates.Add(longElement);
                     }
                     break;
-                case PageTypeDto.TextPage:
+                case PageTypeDto.Text_Page:
                     if (existingModelObject.TextPage == null)
                     {
                         existingModelObject.TextPage = DbManager.CreateBusinessObject<TextPage>();

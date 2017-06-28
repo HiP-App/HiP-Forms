@@ -14,10 +14,10 @@
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos {
     public enum PageTypeDto {
 
-        AppetizerPage,
-        ImagePage,
-        SliderPage,
-        TextPage
+        Appetizer_Page,
+        Image_Page,
+        Slider_Page,
+        Text_Page
 
     }
 }

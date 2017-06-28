@@ -57,7 +57,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.ServiceAccessLayer
             Assert.AreEqual(17, firstPage.ExhibitId);
             Assert.AreEqual("Test Text", firstPage.Text);
             Assert.AreEqual(42, firstPage.Image);
-            Assert.AreEqual(PageTypeDto.AppetizerPage, firstPage.Type);
+            Assert.AreEqual(PageTypeDto.Appetizer_Page, firstPage.Type);
 
             var additionalInformationPages = firstPage.AdditionalInformationPages;
             Assert.AreEqual(2, additionalInformationPages.Count);
@@ -98,7 +98,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.ServiceAccessLayer
             Assert.AreEqual(17, firstPage.ExhibitId);
             Assert.AreEqual(42, firstPage.Image);
             Assert.AreEqual(17, firstPage.Audio);
-            Assert.AreEqual(PageTypeDto.ImagePage, firstPage.Type);
+            Assert.AreEqual(PageTypeDto.Image_Page, firstPage.Type);
 
             var additionalInformationPages = firstPage.AdditionalInformationPages;
             Assert.AreEqual(2, additionalInformationPages.Count);
@@ -142,7 +142,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.ServiceAccessLayer
             Assert.AreEqual("Test Text", firstPage.Text);
             Assert.AreEqual("Test Title", firstPage.Title);
             Assert.AreEqual(17, firstPage.Audio);
-            Assert.AreEqual(PageTypeDto.TextPage, firstPage.Type);
+            Assert.AreEqual(PageTypeDto.Text_Page, firstPage.Type);
 
             var additionalInformationPages = firstPage.AdditionalInformationPages;
             Assert.AreEqual(2, additionalInformationPages.Count);
@@ -211,7 +211,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.ServiceAccessLayer
             Assert.AreEqual(5, additionalInformationPages[1]);
 
             Assert.AreEqual(true, firstPage.HideYearNumbers);
-            Assert.AreEqual(PageTypeDto.SliderPage, firstPage.Type);
+            Assert.AreEqual(PageTypeDto.Slider_Page, firstPage.Type);
             Assert.AreEqual("Test Status", firstPage.Status);
             Shared.Helpers.AssertionHelper.AreEqual(new DateTimeOffset(2017, 5, 29, 10, 10, 10, 10, TimeSpan.Zero), firstPage.Timestamp);
         }
