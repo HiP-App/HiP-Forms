@@ -39,6 +39,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Pages
             IoCManager.RegisterInstance(typeof(INavigationService), Substitute.For<INavigationService>());
             IoCManager.RegisterInstance(typeof(IImageDimension), Substitute.For<IImageDimension>());
             IoCManager.RegisterInstance(typeof(IAudioPlayer), Substitute.For<IAudioPlayer>());
+            IoCManager.RegisterInstance(typeof(IDbChangedHandler), Substitute.For<IDbChangedHandler>());
             IoCManager.RegisterInstance(typeof(ApplicationResourcesProvider), new ApplicationResourcesProvider(
                                              new Dictionary<string, object>
                                              {
@@ -145,7 +146,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Pages
         {
             var resources = Substitute.For<IBarsColorsChanger> ();
             IoCManager.RegisterInstance(typeof(IBarsColorsChanger), resources);
-            var sut = new ExhibitDetailsViewModel(new List<Page>(), "Test", true);
+            var sut = new ExhibitDetailsViewModel(new Exhibit (), new List<Page>(), "Test", true);
 
             resources.Received().ChangeToolbarColor(Color.FromRgb(128, 128, 128), Color.FromRgb(169, 169, 169));
         }
@@ -155,7 +156,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Pages
         {
             var resources = Substitute.For<IBarsColorsChanger>();
             IoCManager.RegisterInstance(typeof(IBarsColorsChanger), resources);
-            var sut = new ExhibitDetailsViewModel (new List<Page> (), "Test");
+            var sut = new ExhibitDetailsViewModel (new Exhibit (), new List<Page> (), "Test");
 
             resources.Received().ChangeToolbarColor(Color.Pink, Color.Pink);
         }
@@ -167,7 +168,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Pages
             var exhibit = Substitute.For<Exhibit>();
             var pages = new List<Page> { CreateAppetizerPage(), CreateImagePage(), CreateTimeSliderPage() };
             exhibit.Pages.Returns(pages);
-            exhibit.Unlocked = true;
+
             return new ExhibitDetailsViewModel(exhibit);
         }
 

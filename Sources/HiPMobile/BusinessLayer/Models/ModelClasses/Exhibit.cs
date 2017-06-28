@@ -17,6 +17,9 @@
   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   See the License for the specific language governing permissions and
   limitations under the License.*/
+
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer;
+
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 {
 	using Realms;
@@ -45,8 +48,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 
 		public virtual int Radius{ get; set; }
 
-		public virtual bool Unlocked { get; set;}
-
 		//Associations
 		public virtual IList<Page> Pages{ get; }
 
@@ -54,9 +55,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 
         public DateTimeOffset? LastNearbyTime { get; set; }
 
-		// Contructor
-		public Exhibit(){
+        public virtual Boolean DetailsDataLoaded { get; set; }
+
+        // Contructor
+        public Exhibit(){
 		}
-	}
+
+        public virtual int IdForRestApi { get; set; }
+        public virtual DateTimeOffset Timestamp { get; set; }
+    }
 }
 

@@ -75,14 +75,19 @@
                 <views1:HtmlLink Text="{helpers:Translate LicenseScreenView_OsmSharp_Text}"/>
                 <Label Style="{StaticResource Title2Style}" Text="{helpers:Translate LicenseScreenView_Reminiscence_Title}"/>
                 <views1:HtmlLink Text="{helpers:Translate LicenseScreenView_Reminiscence_Text}"/>
-      
-      <!-- Labels for contribution -->
+                <Label Style="{StaticResource Title2Style}" Text="{helpers:Translate LicenseScreenView_User_Dialogs_Title}"/>
+                <views1:HtmlLink Text="{helpers:Translate LicenseScreenView_User_Dialogs_Text}"/>
+        
+                <!-- Labels for contribution -->
                 <Label Style="{StaticResource TitleStyle}" Text="{helpers:Translate LicenseScreenView_Contribution_Title}"/>
       <BoxView/>
                 <Label Style="{StaticResource Title2Style}" Text="{helpers:Translate LicenseScreenView_CreditsImagesAutocarousel_Title}"/>
                 <views1:HtmlLink Text="{helpers:Translate LicenseScreenView_CreditsImagesAutocarousel_Text}"/>
 
-      <!-- Labels for Terms of Use -->
+                <Label Style="{StaticResource Title2Style}" Text="{helpers:Translate LicenseScreenView_CreditsImagesCharacterSelection_Title}"/>
+                <views1:HtmlLink Text="{helpers:Translate LicenseScreenView_CreditsImagesCharacterSelection_Text}"/>
+
+                <!-- Labels for Terms of Use -->
                 <Label Style="{StaticResource TitleStyle}" Text="{helpers:Translate LicenseScreenView_ToU_Title}"/>
       <BoxView/>
                 <Label Text="{helpers:Translate LicenseScreenView_ToU_Text}"/>

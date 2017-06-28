@@ -41,6 +41,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 		// Contructor
 		public Audio(){
 		}
-	}
+
+        public virtual int IdForRestApi { get; set; }
+        public virtual DateTimeOffset Timestamp { get; set; }
+    }
 }
 

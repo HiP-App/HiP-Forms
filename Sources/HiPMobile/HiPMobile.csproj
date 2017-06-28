@@ -49,6 +49,30 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="BusinessLayer\ContentApiFetchers\BaseDataFetcher.cs" />
+    <Compile Include="BusinessLayer\ContentApiFetchers\Contracts\IBaseDataFetcher.cs" />
+    <Compile Include="BusinessLayer\ContentApiFetchers\Contracts\IDataToRemoveFetcher.cs" />
+    <Compile Include="BusinessLayer\ContentApiFetchers\Contracts\IFullExhibitDataFetcher.cs" />
+    <Compile Include="BusinessLayer\ContentApiFetchers\Contracts\IMediaDataFetcher.cs" />
+    <Compile Include="BusinessLayer\ContentApiFetchers\Contracts\IExhibitsBaseDataFetcher.cs" />
+    <Compile Include="BusinessLayer\ContentApiFetchers\Contracts\IRoutesBaseDataFetcher.cs" />
+    <Compile Include="BusinessLayer\ContentApiFetchers\DataToRemoveFetcher.cs" />
+    <Compile Include="BusinessLayer\ContentApiFetchers\ExhibitsBaseDataFetcher.cs" />
+    <Compile Include="BusinessLayer\ContentApiFetchers\FetchedMediaData.cs" />
+    <Compile Include="BusinessLayer\ContentApiFetchers\FullExhibitDataFetcher.cs" />
+    <Compile Include="BusinessLayer\ContentHandling\INewDataCenter.cs" />
+    <Compile Include="BusinessLayer\ContentApiFetchers\MediaDataFetcher.cs" />
+    <Compile Include="BusinessLayer\ContentHandling\NewDataCenter.cs" />
+    <Compile Include="BusinessLayer\ContentApiFetchers\RoutesBaseDataFetcher.cs" />
+    <Compile Include="BusinessLayer\DtoToModelConverters\BackupData.cs" />
+    <Compile Include="BusinessLayer\DtoToModelConverters\TagConverter.cs" />
+    <Compile Include="BusinessLayer\DtoToModelConverters\RouteConverter.cs" />
+    <Compile Include="BusinessLayer\DtoToModelConverters\MediaToAudioConverter.cs" />
+    <Compile Include="BusinessLayer\DtoToModelConverters\MediaToImageConverter.cs" />
+    <Compile Include="BusinessLayer\DtoToModelConverters\PageConverter.cs" />
+    <Compile Include="BusinessLayer\Models\User\User.cs" />
+    <Compile Include="BusinessLayer\UserManagement\UserManager.cs" />
+    <Compile Include="BusinessLayer\Models\User\UserStatus.cs" />
     <Compile Include="Common\Contracts\IStorageSizeProvider.cs" />
     <Compile Include="BusinessLayer\InteractiveSources\ConsecutiveNumberAndConstantInteractiveSourceSubstitute.cs" />
     <Compile Include="BusinessLayer\InteractiveSources\ConsecutiveNumberInteractiveSourceSubstitute.cs" />
@@ -62,6 +86,44 @@
     <Compile Include="BusinessLayer\Managers\ExhibitManager.cs" />
     <Compile Include="BusinessLayer\Managers\PageManager.cs" />
     <Compile Include="BusinessLayer\Managers\RouteManager.cs" />
+    <Compile Include="BusinessLayer\DtoToModelConverters\DtoToModelConverter.cs" />
+    <Compile Include="BusinessLayer\DtoToModelConverters\ExhibitConverter.cs" />
+    <Compile Include="Helpers\AssertionHelper.cs" />
+    <Compile Include="Helpers\UriQueryBuilder.cs" />
+    <Compile Include="ServiceAccessLayer\AuthenticationApiAccess\AuthApiAccess.cs" />
+    <Compile Include="ServiceAccessLayer\AuthApiDto\Error.cs" />
+    <Compile Include="ServiceAccessLayer\AuthApiDto\Token.cs" />
+    <Compile Include="ServiceAccessLayer\AuthenticationApiAccess\Constants.cs" />
+    <Compile Include="ServiceAccessLayer\ContentApiClient.cs" />
+    <Compile Include="ServiceAccessLayer\ContentApiAccesses\Contracts\ITagsApiAccess.cs" />
+    <Compile Include="ServiceAccessLayer\ContentApiAccesses\Contracts\IRoutesApiAccess.cs" />
+    <Compile Include="ServiceAccessLayer\ContentApiAccesses\Contracts\IFileApiAccess.cs" />
+    <Compile Include="ServiceAccessLayer\ContentApiAccesses\TagsApiAccess.cs" />
+    <Compile Include="ServiceAccessLayer\ContentApiAccesses\RoutesApiAccess.cs" />
+    <Compile Include="ServiceAccessLayer\ContentApiAccesses\PagesApiAccess.cs" />
+    <Compile Include="ServiceAccessLayer\ContentApiAccesses\FileApiAccess.cs" />
+    <Compile Include="ServiceAccessLayer\ContentApiAccesses\MediasApiAccess.cs" />
+    <Compile Include="ServiceAccessLayer\ContentApiAccesses\ExhibitsApiAccess.cs" />
+    <Compile Include="ServiceAccessLayer\ContentApiAccesses\Contracts\IMediasApiAccess.cs" />
+    <Compile Include="ServiceAccessLayer\ContentApiAccesses\Contracts\IPagesApiAccess.cs" />
+    <Compile Include="ServiceAccessLayer\ContentApiAccesses\Contracts\IExhibitsApiAccess.cs" />
+    <Compile Include="ServiceAccessLayer\ContentApiDtos\FileDto.cs" />
+    <Compile Include="ServiceAccessLayer\ContentApiDtos\MediaTypeDto.cs" />
+    <Compile Include="ServiceAccessLayer\ContentApiDtos\PageImageDto.cs" />
+    <Compile Include="ServiceAccessLayer\ContentApiDtos\PageTypeDto.cs" />
+    <Compile Include="ServiceAccessLayer\AuthenticationApiAccess\IAuthApiAccess.cs" />
+    <Compile Include="ServiceAccessLayer\Exceptions\InvalidUserNamePassword.cs" />
+    <Compile Include="ServiceAccessLayer\IContentApiClient.cs" />
+    <Compile Include="ServiceAccessLayer\ContentApiDtos\ExhibitDto.cs" />
+    <Compile Include="ServiceAccessLayer\ContentApiDtos\ExhibitsDto.cs" />
+    <Compile Include="ServiceAccessLayer\ContentApiDtos\MediaDto.cs" />
+    <Compile Include="ServiceAccessLayer\ContentApiDtos\MediasDto.cs" />
+    <Compile Include="ServiceAccessLayer\ContentApiDtos\PageDto.cs" />
+    <Compile Include="ServiceAccessLayer\ContentApiDtos\PagesDto.cs" />
+    <Compile Include="ServiceAccessLayer\ContentApiDtos\RouteDto.cs" />
+    <Compile Include="ServiceAccessLayer\ContentApiDtos\RoutesDto.cs" />
+    <Compile Include="ServiceAccessLayer\ContentApiDtos\TagDto.cs" />
+    <Compile Include="ServiceAccessLayer\ContentApiDtos\TagsDto.cs" />
     <Compile Include="BusinessLayer\Models\ModelClasses\AppetizerPage.cs" />
     <Compile Include="BusinessLayer\Models\ModelClasses\Audio.cs" />
     <Compile Include="BusinessLayer\Models\ModelClasses\IDownloadable.cs" />
@@ -111,6 +173,12 @@
     <Compile Include="BusinessLayer\Routing\RouteCalculator.cs" />
     <Compile Include="Helpers\Settings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Common\Contracts\INetworkAccessChecker.cs" />
+    <Compile Include="ServiceAccessLayer\NetworkAccessFailedException.cs" />
+    <Compile Include="Common\NetworkAccessStatus.cs" />
+    <Compile Include="ServiceAccessLayer\NotFoundException.cs" />
+    <Compile Include="ServiceAccessLayer\ServerEndpoints.cs" />
+    <Compile Include="ServiceAccessLayer\TransientRetry.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Content\Kaiserpfalz\abdinghof.jpg" />
@@ -387,6 +455,12 @@
       <HintPath>..\..\packages\Unity.4.0.1\lib\portable-net45+wp80+win8+wpa81+MonoAndroid10+MonoTouch10\Microsoft.Practices.Unity.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.10.0.2\lib\portable-net45+win8+wpa81+wp8\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
+    </Reference>
     <Reference Include="OsmSharp, Version=5.0.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\OsmSharp.5.0.2-rc1\lib\portable-net403+sl50+win+wp80+Xamarin.iOS10+MonoAndroid10+MonoTouch10\OsmSharp.dll</HintPath>
       <Private>True</Private>
@@ -415,6 +489,7 @@
       <HintPath>..\..\packages\Remotion.Linq.2.1.1\lib\portable-net45+win+wpa81+wp80\Remotion.Linq.dll</HintPath>
       <Private>True</Private>
     </Reference>
+<<<<<<< HEAD
     <Reference Include="Xamarin.Forms.Core, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Xamarin.Forms.2.3.3.193\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.Core.dll</HintPath>
     </Reference>
@@ -423,6 +498,13 @@
     </Reference>
     <Reference Include="Xamarin.Forms.Xaml, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Xamarin.Forms.2.3.3.193\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.Xaml.dll</HintPath>
+=======
+    <Reference Include="System.Net.Http.Extensions, Version=2.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Net.Http.2.2.29\lib\portable-net45+win8\System.Net.Http.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Primitives, Version=4.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Net.Http.2.2.29\lib\portable-net45+win8\System.Net.Http.Primitives.dll</HintPath>
+>>>>>>> origin/iss-hipm-684
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -430,17 +512,30 @@
     <EmbeddedResource Include="BusinessLayer\Routing\osmfile.routerdb" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
-  <Import Project="..\..\packages\Fody.1.29.4\build\portable-net+sl+win+wpa+wp\Fody.targets" Condition="Exists('..\..\packages\Fody.1.29.4\build\portable-net+sl+win+wpa+wp\Fody.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\..\packages\Fody.1.29.4\build\portable-net+sl+win+wpa+wp\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Fody.1.29.4\build\portable-net+sl+win+wpa+wp\Fody.targets'))" />
     <Error Condition="!Exists('..\..\packages\Realm.0.81.0\build\Realm.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Realm.0.81.0\build\Realm.targets'))" />
+<<<<<<< HEAD
     <Error Condition="!Exists('..\..\packages\Xamarin.Forms.2.3.3.193\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Xamarin.Forms.2.3.3.193\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets'))" />
   </Target>
   <Import Project="..\..\packages\Realm.0.81.0\build\Realm.targets" Condition="Exists('..\..\packages\Realm.0.81.0\build\Realm.targets')" />
   <Import Project="..\..\packages\Xamarin.Forms.2.3.3.193\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets" Condition="Exists('..\..\packages\Xamarin.Forms.2.3.3.193\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" />
+=======
+    <Error Condition="!Exists('..\..\packages\Fody.1.29.4\build\portable-net+sl+win+wpa+wp\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Fody.1.29.4\build\portable-net+sl+win+wpa+wp\Fody.targets'))" />
+  </Target>
+  <Import Project="..\..\packages\Realm.0.81.0\build\Realm.targets" Condition="Exists('..\..\packages\Realm.0.81.0\build\Realm.targets')" />
+  <Import Project="..\..\packages\Fody.1.29.4\build\portable-net+sl+win+wpa+wp\Fody.targets" Condition="Exists('..\..\packages\Fody.1.29.4\build\portable-net+sl+win+wpa+wp\Fody.targets')" />
+  <Import Project="..\..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
+  <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">
+    <Error Condition="!Exists('..\..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." HelpKeyword="BCLBUILD2001" />
+    <Error Condition="Exists('..\..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://go.microsoft.com/fwlink/?LinkID=317568." HelpKeyword="BCLBUILD2002" />
+  </Target>
+>>>>>>> origin/iss-hipm-684
 </Project>
