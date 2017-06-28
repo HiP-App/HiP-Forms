@@ -133,7 +133,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             {
                 var dbPage = PageConverter.Convert(pageDto);
 
-                AddContentToPage(dbPage, pageDto, fetchedMedia, listener);
+                AddContentToPage(dbPage, pageDto, fetchedMedia);
                 // Add Page with content to the exhibit
                 exhibit.Pages.Add(dbPage);
             }
@@ -178,7 +178,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             await mediaDataFetcher.FetchMedias(requiredMedias, token, listener);
         }
 
-        private void AddContentToPage(Page dbPage, PageDto content, FetchedMediaData fetchedMedia, IProgressListener listener)
+        private void AddContentToPage(Page dbPage, PageDto content, FetchedMediaData fetchedMedia)
         {
             if (content != null && dbPage != null)
             {
