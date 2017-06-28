@@ -14,6 +14,11 @@
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer {
     public class ServerEndpoints {
 
+        private const string BaseUrl = "https://docker-hip.cs.uni-paderborn.de/develop/authv2/";
+
+        public const string TokenUrl = BaseUrl + "connect/token";
+        public const string RegistrationUrl = BaseUrl + "Account/Register";
+        public const string ForgotPasswordUrl = BaseUrl + "ForgotUrl";
         /// <summary>
         /// Urlpath for the docker container running the HiP-DataStore instance
         /// </summary>

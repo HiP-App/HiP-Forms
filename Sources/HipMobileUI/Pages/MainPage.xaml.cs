@@ -15,6 +15,7 @@
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
 using Xamarin.Forms;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
@@ -22,7 +23,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
     public partial class MainPage : IViewFor<MainPageViewModel>
     {
 
-        private MainPageViewModel ViewModel => ((MainPageViewModel) BindingContext);
+        private MainPageViewModel ViewModel => ((MainPageViewModel)BindingContext);
 
         /// <summary>
         /// Accessor to get the navigation page from other classes.
@@ -34,9 +35,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
             InitializeComponent();
         }
 
-        protected override void OnBindingContextChanged ()
+        protected override void OnBindingContextChanged()
         {
-            base.OnBindingContextChanged ();
+            base.OnBindingContextChanged();
             ViewModel.SelectedViewModel = ViewModel.MainScreenViewModels[0];
         }
 
@@ -45,7 +46,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void ListView_OnItemTapped (object sender, ItemTappedEventArgs e)
+        private void ListView_OnItemTapped(object sender, ItemTappedEventArgs e)
         {
             if (Device.Idiom == TargetIdiom.Phone)
             {
@@ -58,7 +59,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
         /// </summary>
         /// <param name="sender">The sender of the event.</param>
         /// <param name="e">The event parameters</param>
-        private void NavigationPage_OnPushed (object sender, NavigationEventArgs e)
+        private void NavigationPage_OnPushed(object sender, NavigationEventArgs e)
         {
             // Disable the swipe gesture when a page is pushed
             IsGestureEnabled = false;
@@ -70,7 +71,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
         /// </summary>
         /// <param name="sender">The sender of the event.</param>
         /// <param name="e">The event parameters.</param>
-        private void NavigationPage_OnPopped (object sender, NavigationEventArgs e)
+        private void NavigationPage_OnPopped(object sender, NavigationEventArgs e)
         {
             // enable the swipe gesture once this page becomes visible again
             if (NavigationPage.CurrentPage == ContentPage)
@@ -80,9 +81,21 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
 
             // inform the viewmodel...
             // ... of popped page that it was popped
-            ((NavigationViewModel)e.Page.BindingContext).OnDisappearing ();
+            ((NavigationViewModel)e.Page.BindingContext).OnDisappearing();
             // ... of underlaying page that it is visible again
-            ((NavigationViewModel)NavigationPage.CurrentPage.BindingContext).OnRevealed ();
+            ((NavigationViewModel)NavigationPage.CurrentPage.BindingContext).OnRevealed();
+        }
+
+        protected override bool OnBackButtonPressed()
+        {
+            if(ViewModel.SelectedViewModel.GetType() == typeof(ForgotPasswordScreenViewModel))
+            {
+                ViewModel.SwitchToLoginView();
+                return true;
+            } else
+            {
+                return base.OnBackButtonPressed();
+            }
         }
 
     }

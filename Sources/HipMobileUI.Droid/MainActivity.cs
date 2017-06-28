@@ -34,6 +34,7 @@ using Plugin.Permissions;
 using Xamarin.Forms;
 using App = PaderbornUniversity.SILab.Hip.Mobile.UI.App;
 using MainPage = PaderbornUniversity.SILab.Hip.Mobile.UI.Pages.MainPage;
+using Acr.UserDialogs;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
 {
@@ -74,6 +75,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
             CachedImageRenderer.Init();
             Forms.Init(this, bundle);
             Xamarin.FormsMaps.Init(this, bundle);
+
+            UserDialogs.Init(() => (Activity)Forms.Context);
 
             LoadApplication(new App());
         }

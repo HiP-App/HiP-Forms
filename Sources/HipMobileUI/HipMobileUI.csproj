@@ -85,6 +85,19 @@
     <Compile Include="Helpers\DeviceOrientation.cs" />
     <Compile Include="Helpers\OrientationController.cs" />
     <Compile Include="Contracts\IBarsColorsChanger.cs" />
+    <Compile Include="ViewModels\Views\ForgotPasswordScreenViewModel.cs" />
+    <Compile Include="Views\ForgotPasswordScreenView.xaml.cs">
+      <DependentUpon>ForgotPasswordScreenView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\CharacterSelectionPage.xaml.cs">
+      <DependentUpon>CharacterSelectionPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\Pages\CharacterSelectionPageViewModel.cs" />
+    <Compile Include="Views\ProfileScreenView.xaml.cs">
+      <DependentUpon>ProfileScreenView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\Views\ProfileScreenViewModel.cs" />
+    <Compile Include="ViewModels\Views\LoginScreenViewModel.cs" />
     <Compile Include="ViewModels\Views\IDownloadableListItemViewModel.cs" />
     <Compile Include="Location\LocationManager.cs" />
     <Compile Include="Location\NearbyExhibitManager.cs" />
@@ -148,11 +161,14 @@
     <Compile Include="ViewModels\Pages\RouteDetailsPageViewModel.cs" />
     <Compile Include="ViewModels\Views\DummyViewModel.cs" />
     <Compile Include="ViewModels\Views\ExhibitPreviewViewModel.cs" />
-    <Compile Include="ViewModels\Views\ExhibitRouteDownloadViewModel.cs" />
+    <Compile Include="ViewModels\Pages\ExhibitRouteDownloadPageViewModel.cs" />
     <Compile Include="ViewModels\Views\ExhibitsOverviewListItemViewModel.cs" />
     <Compile Include="ViewModels\Views\ExhibitsOverviewViewModel.cs" />
     <Compile Include="ViewModels\Views\LicenseScreenViewModel.cs" />
     <Compile Include="ViewModels\Views\RoutePreviewViewModel.cs" />
+    <Compile Include="Views\LoginScreenView.xaml.cs">
+      <DependentUpon>LoginScreenView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\AudioToolbarView.xaml.cs">
       <DependentUpon>AudioToolbarView.xaml</DependentUpon>
     </Compile>
@@ -160,8 +176,8 @@
     <Compile Include="Views\ExhibitPreviewView.xaml.cs">
       <DependentUpon>ExhibitPreviewView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ExhibitRouteDownloadView.xaml.cs">
-      <DependentUpon>ExhibitRouteDownloadView.xaml</DependentUpon>
+    <Compile Include="Pages\ExhibitRouteDownloadPage.xaml.cs">
+      <DependentUpon>ExhibitRouteDownloadPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\HtmlLink.cs" />
     <Compile Include="Views\ExhibitDetails\TextView.xaml.cs">
@@ -215,6 +231,12 @@
     <Content Include="FodyWeavers.xml" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Acr.UserDialogs, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Acr.UserDialogs.6.5.1\lib\netstandard1.1\Acr.UserDialogs.dll</HintPath>
+    </Reference>
+    <Reference Include="Acr.UserDialogs.Interface, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Acr.UserDialogs.6.5.1\lib\netstandard1.1\Acr.UserDialogs.Interface.dll</HintPath>
+    </Reference>
     <Reference Include="DotNetCross.Memory.Unsafe, Version=0.2.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\DotNetCross.Memory.Unsafe.0.2.2\lib\portable-net40+win8+sl4+wp7\DotNetCross.Memory.Unsafe.dll</HintPath>
       <Private>True</Private>
@@ -269,6 +291,9 @@
     <Reference Include="Remotion.Linq, Version=2.1.0.0, Culture=neutral, PublicKeyToken=fee00910d6e5f53b, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Remotion.Linq.2.1.1\lib\portable-net45+win+wpa81+wp80\Remotion.Linq.dll</HintPath>
       <Private>True</Private>
+    </Reference>
+    <Reference Include="Splat, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Splat.2.0.0\lib\netstandard1.1\Splat.dll</HintPath>
     </Reference>
     <Reference Include="System.Collections.NonGeneric">
       <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\Xamarin.iOS\v1.0\Facades\System.Collections.NonGeneric.dll</HintPath>
@@ -428,7 +453,31 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\ExhibitRouteDownloadView.xaml">
+    <EmbeddedResource Include="Pages\ExhibitRouteDownloadPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\LoginScreenView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\ProfileScreenView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\ForgotPasswordScreenView.xaml">
+	<Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\CharacterSelectionPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

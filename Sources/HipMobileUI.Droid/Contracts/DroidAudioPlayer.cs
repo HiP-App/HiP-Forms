@@ -75,7 +75,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Contracts
             }
         }
 
-        public string AudioTitle { private get; set; } 
+        public string AudioTitle { private get; set; }
 
         public event ProgressChangedDelegate ProgressChanged;
         public event IsPlayingDelegate IsPlayingChanged;
@@ -203,7 +203,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Contracts
             var filepath = "";
             try
             {
-                string tempFileName = "temp_" + DateTime.Now.ToString ("yyyy_MM_dd_HH_mm_ss");
+                string tempFileName = "temp_" + DateTime.Now.ToString("yyyy_MM_dd_HH_mm_ss");
                 var tempMp3 = File.CreateTempFile(tempFileName, ".mp3", new File(Path.GetTempPath()));
                 tempMp3.DeleteOnExit();
                 var fos = new FileOutputStream(tempMp3);
