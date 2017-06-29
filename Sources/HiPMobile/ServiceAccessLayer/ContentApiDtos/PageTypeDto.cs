@@ -11,13 +11,19 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+
+using System.Runtime.Serialization;
+
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos {
     public enum PageTypeDto {
-
-        Appetizer_Page,
-        Image_Page,
-        Slider_Page,
-        Text_Page
+        [EnumMember(Value = "Appetizer_Page")]
+        AppetizerPage,
+        [EnumMember(Value = "Image_Page")]
+        ImagePage,
+        [EnumMember(Value = "Slider_Page")]
+        SliderPage,
+        [EnumMember(Value = "Text_Page")]
+        TextPage
 
     }
 }

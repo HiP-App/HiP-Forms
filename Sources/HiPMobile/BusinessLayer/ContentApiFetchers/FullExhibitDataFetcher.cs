@@ -75,10 +75,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             List<PageDto> appetizerPagesToRemove = new List<PageDto> ();
             foreach (var page in pageItems)
             {
-                if (page.Type != PageTypeDto.Appetizer_Page)
+                if (page.Type != PageTypeDto.AppetizerPage)
                 {
                     AddMediaId(page.Image);
-                    if (page.Type == PageTypeDto.Slider_Page)
+                    if (page.Type == PageTypeDto.SliderPage)
                     {
                         if (page.Images.Count > 0)
                         {

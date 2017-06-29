@@ -18,46 +18,48 @@ using System.Linq;
 using System.Net.Http;
 using Newtonsoft.Json;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers {
-    public class UriQueryBuilder {
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
+{
+    public class UriQueryBuilder
+    {
 
-        public static string GetAdditionalParametersQuery (DateTimeOffset? timestamp, IList<int> includeOnly)
+        public static string GetAdditionalParametersQuery(DateTimeOffset? timestamp, IList<int> includeOnly)
         {
-            Dictionary<string, string> timestampParameter = new Dictionary<string, string> ();
-            string includeOnlyString = "";
+            var keys = new List<string>();
+            var values = new List<string>();
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
             if (timestamp.HasValue)
             {
-                timestampParameter.Add ("timestamp", JsonConvert.SerializeObject (timestamp).Replace ("\"", ""));
+                keys.Add("timestamp");
+                values.Add(JsonConvert.SerializeObject(timestamp).Replace("\"", ""));
             }
-            else
+            if (includeOnly != null && includeOnly.Any())
             {
-                includeOnlyString = includeOnlyString + "?";
-            }
-            if (includeOnly != null && includeOnly.Any ())
-            {
-                includeOnlyString = includeOnlyString + "&";
                 foreach (int include in includeOnly)
                 {
-                    includeOnlyString = includeOnlyString + "IncludeOnly"  + "=" + include + "&";
+                    keys.Add("includeOnly");
+                    values.Add(include.ToString());
                 }
             }
-            if (includeOnlyString.Length > 0)
-            {
-                includeOnlyString = includeOnlyString.Remove(includeOnlyString.Length - 1);
-            }
-            return ToQueryString (timestampParameter) + includeOnlyString;
+
+            return ToQueryString(keys, values);
         }
 
-        public static string ToQueryString (Dictionary<string, string> parameters)
+        public static string ToQueryString(List<string> keys, List<string> values)
         {
-            if (!parameters.Any ())
+            if (!keys.Any())
             {
                 return string.Empty;
             }
 
-            IEnumerable<string> segments = from key in parameters.Keys
-                                           select $"{key}={Uri.EscapeDataString(parameters[key])}";
-            return "?" + string.Join ("&", segments);
+            var segments = new List<string>();
+
+            for (int i = 0; i < keys.Count; i++)
+            {
+                segments.Add($"{keys[i]}={Uri.EscapeDataString(values[i])}");
+            }
+
+            return "?" + string.Join("&", segments);
         }
 
     }
