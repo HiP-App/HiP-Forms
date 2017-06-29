@@ -983,6 +983,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
             }
         }
         
+        public static string LoginScreenView_Error_Wrong_Credentials {
+            get {
+                return ResourceManager.GetString("LoginScreenView_Error_Wrong_Credentials", resourceCulture);
+            }
+        }
+        
         public static string LoginScreenView_Error_Unknown_Email {
             get {
                 return ResourceManager.GetString("LoginScreenView_Error_Unknown_Email", resourceCulture);
@@ -992,12 +998,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         public static string LoginScreenView_Error_Wrong_Password {
             get {
                 return ResourceManager.GetString("LoginScreenView_Error_Wrong_Password", resourceCulture);
-            }
-        }
-        
-        public static string LoginScreenView_Error_Wrong_Credentials {
-            get {
-                return ResourceManager.GetString("LoginScreenView_Error_Wrong_Credentials", resourceCulture);
             }
         }
         
@@ -1268,6 +1268,24 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         public static string LicenseScreenView_CreditsImagesCharacterSelection_Title {
             get {
                 return ResourceManager.GetString("LicenseScreenView_CreditsImagesCharacterSelection_Title", resourceCulture);
+            }
+        }
+        
+        public static string RegisterScreenView_Error_Empty_Email {
+            get {
+                return ResourceManager.GetString("RegisterScreenView_Error_Empty_Email", resourceCulture);
+            }
+        }
+        
+        public static string RegisterScreenView_Error_Mismatch_Password {
+            get {
+                return ResourceManager.GetString("RegisterScreenView_Error_Mismatch_Password", resourceCulture);
+            }
+        }
+        
+        public static string RegisterScreenView_Error_Invalid_Email {
+            get {
+                return ResourceManager.GetString("RegisterScreenView_Error_Invalid_Email", resourceCulture);
             }
         }
     }

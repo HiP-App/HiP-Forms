@@ -70,9 +70,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
 				Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.1, GridUnitType.Star) });
 
 				Grid.SetRow(EmailEntry, 2);
-				Grid.SetRow(PasswordEntry, 4);
-				Grid.SetRow(RePasswordEntry, 6);
-				Grid.SetRow(ErrorMsgLabel, 8);
+				Grid.SetRow(PasswordEntry, 3);
+				Grid.SetRow(RePasswordEntry, 4);
+				Grid.SetRow(ErrorMsgLabel, 5);
 				Grid.SetRow(ButtonView, 9);
 
 				deviceOrientation = DeviceOrientation.Portrait;

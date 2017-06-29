@@ -13,9 +13,6 @@
 			</Entry>	
 			<Entry x:Name="PasswordEntry" IsPassword="True" Placeholder="{helpers:Translate RegisterScreenView_Password}" Text="{Binding Password, Mode=OneWayToSource}"></Entry>
             <Entry x:Name="RePasswordEntry" IsPassword="True" Placeholder="{helpers:Translate RegisterScreenView_RepeatPassword}" Text="{Binding RepeatPassword, Mode=OneWayToSource}">
-			   <Entry.Behaviors>
-        	   		<local:ComparisonBehavior x:Name="ConfirmPasswordBehavior" CompareToEntry="{Binding Source={x:Reference PasswordEntry}}" />
-    		   </Entry.Behaviors>
 			</Entry>
 			<Label x:Name="ErrorMsgLabel" FontSize="Small" HorizontalOptions="Center" TextColor="Red" Text="{Binding ErrorMessage, Mode=TwoWay}"></Label>
 

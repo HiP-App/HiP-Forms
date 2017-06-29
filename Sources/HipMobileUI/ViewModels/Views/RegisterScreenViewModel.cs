@@ -19,6 +19,7 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.UserManagement;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using System.Windows.Input;
+using System.Text.RegularExpressions;
 using Xamarin.Forms;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 
@@ -43,15 +44,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 		public ICommand Register { get; }
 
 
-
-
-
 		async void RegisterUser()
 		{
 			
 			User user = new User(Email, password);
 			UserStatus userStatus = await IoCManager.Resolve<IUserManager>().RegisterUser(user);
-
+			const string EmailRegex = @"^(?("")("".+?(?<!\\)""@)|(([0-9a-z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-z])@))" +
+			@"(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-z][-\w]*[0-9a-z]*\.)+[a-z0-9][\-a-z0-9]{0,22}[a-z0-9]))$";
 			if (userStatus == UserStatus.Registered)
 			{
 				mainPageViewModel.SwitchToLoginView();
@@ -77,7 +76,18 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 		{
 			ErrorMessage = Strings.RegisterScreenView_Error_Empty_Password;
 		}
-
+		void DisplayPasswordMismatchErrorMessage()
+		{
+			ErrorMessage = Strings.RegisterScreenView_Error_Mismatch_Password;
+		}
+		void DisplayEmptyEmailErrorMessage()
+		{
+			ErrorMessage = Strings.RegisterScreenView_Error_Empty_Email;
+		}
+		void DisplayInvalidEmailErrorMessage()
+		{
+			ErrorMessage = Strings.RegisterScreenView_Error_Invalid_Email;
+		}
 		void ClearErrorMessage()
 		{
 			ErrorMessage = "";
@@ -85,14 +95,29 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 
 		void OnRegisterClicked()
 		{
-			if (String.IsNullOrWhiteSpace(Email) && String.IsNullOrWhiteSpace(Password))
+			const string EmailRegex = @"^(?("")("".+?(?<!\\)""@)|(([0-9a-z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-z])@))" +
+				@"(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-z][-\w]*[0-9a-z]*\.)+[a-z0-9][\-a-z0-9]{0,22}[a-z0-9]))$";
+			bool isValid = false;
+			isValid = (Regex.IsMatch(Email, EmailRegex, RegexOptions.IgnoreCase));
+
+			if (String.IsNullOrWhiteSpace(Email) && (String.IsNullOrWhiteSpace(Password) || String.IsNullOrWhiteSpace(RepeatPassword)))
 
 				DisplayEmptyEmailAndPasswordErrorMessage();
-			
-			else if (String.IsNullOrWhiteSpace(Password))
+
+			else if (String.IsNullOrWhiteSpace(Email))
+
+				DisplayEmptyEmailErrorMessage();
+
+			else if (String.IsNullOrWhiteSpace(Password) || String.IsNullOrWhiteSpace(RepeatPassword))
 
 				DisplayEmptyPasswordErrorMessage();
+			else if (isValid == false)
 
+				DisplayInvalidEmailErrorMessage();
+			
+			else if (Password != RepeatPassword)
+
+				DisplayPasswordMismatchErrorMessage();
 			else
 
 				RegisterUser();

@@ -88,11 +88,17 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
 
         protected override bool OnBackButtonPressed()
         {
-            if(ViewModel.SelectedViewModel.GetType() == typeof(ForgotPasswordScreenViewModel))
+			if(ViewModel.SelectedViewModel.GetType() == typeof(ForgotPasswordScreenViewModel))
             {
                 ViewModel.SwitchToLoginView();
                 return true;
-            } else
+            }
+			else if(ViewModel.SelectedViewModel.GetType() == typeof(RegisterScreenViewModel))
+			{
+                ViewModel.SwitchToLoginView();
+                return true;
+            }	
+			else
             {
                 return base.OnBackButtonPressed();
             }

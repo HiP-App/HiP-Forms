@@ -749,4 +749,13 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   <data name="LicenseScreenView_CreditsImagesCharacterSelection_Title" xml:space="preserve">
     <value>Credits der Bilder in der Avatar Auswahl</value>
   </data>
+  <data name="RegisterScreenView_Error_Empty_Email" xml:space="preserve">
+    <value>Das E-Mail-Eingabefeld ist leer</value>
+  </data>
+  <data name="RegisterScreenView_Error_Mismatch_Password" xml:space="preserve">
+    <value>Die Passwörter stimmen nicht überein</value>
+  </data>
+  <data name="RegisterScreenView_Error_Invalid_Email" xml:space="preserve">
+    <value>Ungültige E-Mail</value>
+  </data>
 </root>
