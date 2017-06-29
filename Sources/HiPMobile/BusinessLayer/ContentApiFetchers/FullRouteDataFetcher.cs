@@ -46,9 +46,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
         public async Task FetchFullDownloadableDataIntoDatabase (string routeId, int idForRestApi, CancellationToken token, IProgressListener listener, bool calledFromRouteFetcher)
         {
             routeDto = (await routesApiAccess.GetRoutes(new List<int> { idForRestApi })).Items.First(); 
-
-            requiredMedia = new List<int?> ();
-
+            
             IList<Exhibit> allMissingExhibits = ExhibitManager.GetExhibits ().ToList ().FindAll (x => !x.DetailsDataLoaded);    // Exhibits not fully loaded yet
             missingExhibitsForRoute = allMissingExhibits.ToList ().FindAll (x => routeDto.Exhibits.Contains (x.IdForRestApi));  // Select those part of the route
             
@@ -74,6 +72,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
         
         private int FetchNeededMediaForFullRoute ()
         {
+            requiredMedia = new List<int?>();
+
             if (routeDto.Audio.HasValue)
                 requiredMedia.Add (routeDto.Audio);
 
@@ -109,7 +109,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                return;
 
            dbRoute.Audio = audio;
-           listener.ProgressOneStep ();
        }
 
         private async void AddFullExhibitsToRoute (Route route, CancellationToken token, IProgressListener listener)
