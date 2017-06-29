@@ -23,20 +23,29 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers {
 
         public static string GetAdditionalParametersQuery (DateTimeOffset? timestamp, IList<int> includeOnly)
         {
-            Dictionary<string, string> parameters = new Dictionary<string, string> ();
+            Dictionary<string, string> timestampParameter = new Dictionary<string, string> ();
+            string includeOnlyString = "";
             if (timestamp.HasValue)
             {
-                parameters.Add ("timestamp", JsonConvert.SerializeObject(timestamp).Replace ("\"", ""));
+                timestampParameter.Add ("timestamp", JsonConvert.SerializeObject (timestamp).Replace ("\"", ""));
+            }
+            else
+            {
+                includeOnlyString = includeOnlyString + "?";
             }
             if (includeOnly != null && includeOnly.Any ())
             {
+                includeOnlyString = includeOnlyString + "&";
                 foreach (int include in includeOnly)
                 {
-                    parameters.Add("includeOnly", include.ToString ());
+                    includeOnlyString = includeOnlyString + "IncludeOnly"  + "=" + include + "&";
                 }
             }
-
-            return ToQueryString (parameters);
+            if (includeOnlyString.Length > 0)
+            {
+                includeOnlyString = includeOnlyString.Remove(includeOnlyString.Length - 1);
+            }
+            return ToQueryString (timestampParameter) + includeOnlyString;
         }
 
         public static string ToQueryString (Dictionary<string, string> parameters)
