@@ -65,7 +65,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                     transaction.Rollback();
                 }
             }
-            IoCManager.Resolve<IDbChangedHandler>().NotifyAll();
         }
 
         private async Task<int> FetchNeededMediaForFullExhibit(int idForRestApi)
