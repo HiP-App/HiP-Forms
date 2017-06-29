@@ -37,7 +37,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.ServiceAccessLayer
                                 "{" +
                                 "\"exhibitId\": 17," +
                                 "\"id\": 1," +
-                                "\"type\": \"Appetizer_Page\"," +
+                                "\"type\": \"appetizerpage\"," +
                                 "\"text\": \"Test Text\"," +
                                 "\"image\": 42," +
                                 "\"status\": \"Test Status\"," +
@@ -78,7 +78,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.ServiceAccessLayer
                                 "{" +
                                 "\"exhibitId\": 17," +
                                 "\"id\": 1," +
-                                "\"type\": \"Image_Page\"," +
+                                "\"type\": \"imagepage\"," +
                                 "\"image\": 42," +
                                 "\"audio\": 17," +
                                 "\"status\": \"Test Status\"," +
@@ -119,7 +119,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.ServiceAccessLayer
                                 "{" +
                                 "\"exhibitId\": 17," +
                                 "\"id\": 1," +
-                                "\"type\": \"Text_Page\"," +
+                                "\"type\": \"textpage\"," +
                                 "\"title\": \"Test Title\"," +
                                 "\"text\": \"Test Text\"," +
                                 "\"audio\": 17," +
@@ -163,7 +163,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.ServiceAccessLayer
                                 "{" +
                                 "\"exhibitId\": 17," +
                                 "\"id\": 1," +
-                                "\"type\": \"Slider_Page\"," +
+                                "\"type\": \"sliderpage\"," +
                                 "\"title\": \"Test Title\"," +
                                 "\"text\": \"Test Text\"," +
                                 "\"audio\": 17," +
