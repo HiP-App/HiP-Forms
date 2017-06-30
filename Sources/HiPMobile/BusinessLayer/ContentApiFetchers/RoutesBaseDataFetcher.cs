@@ -45,7 +45,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
 
         private IList<int?> requiredRouteImages;
         private IList<TagDto> routeTags;
-        private IDictionary<RouteDto, Route> updatedRoutes;
+        private IList<RouteDto> updatedRoutes;
         private IList<RouteDto> newRoutes;
         private IList<RouteDto> fetchedChangedRoutes;
 
@@ -56,44 +56,42 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             this.tagsApiAccess = tagsApiAccess;
         }
 
-        public async Task<int> FetchNeededDataForRoutes()
+        public async Task<int> FetchNeededDataForRoutes(Dictionary<int, DateTimeOffset> existingRoutesIdTimestampMapping)
         {
             requiredRouteImages = new List<int?>();
             var requiredRouteTags = new List<int>();
-            updatedRoutes = new Dictionary<RouteDto, Route>();
+            updatedRoutes = new List<RouteDto>();
             newRoutes = new List<RouteDto>();
-
-            var dbRoutes = RouteManager.GetRoutes().ToList();
-            if (fetchedChangedRoutes == null)
-            {
-                await AnyRouteChanged();
-            }
 
             foreach (var routeDto in fetchedChangedRoutes)
             {
-                var dbRoute = dbRoutes.SingleOrDefault(x => x.IdForRestApi == routeDto.Id);
-
-                if (dbRoute != null && Math.Abs((routeDto.Timestamp - dbRoute.Timestamp).Seconds) > 1)
+                DateTimeOffset? dbRouteData = null;
+                if (existingRoutesIdTimestampMapping.ContainsKey(routeDto.Id))
                 {
-                    updatedRoutes.Add(routeDto, dbRoute);
+                    dbRouteData = existingRoutesIdTimestampMapping[routeDto.Id];
+                }
+
+                if (dbRouteData.HasValue && Math.Abs((routeDto.Timestamp - dbRouteData.Value).Seconds) > 1)
+                {
+                    updatedRoutes.Add(routeDto);
                     requiredRouteImages.Add(routeDto.Image);
                     if (routeDto.Tags != null)
                     {
                         requiredRouteTags.AddRange(routeDto.Tags);
                     }
                 }
-                else if (dbRoute == null)
+                else if (!dbRouteData.HasValue)
                 {
                     newRoutes.Add(routeDto);
                     requiredRouteImages.Add(routeDto.Image);
-                    if(routeDto.Tags != null)
+                    if (routeDto.Tags != null)
                     {
                         requiredRouteTags.AddRange(routeDto.Tags);
                     }
                 }
             }
 
-            if(requiredRouteTags.Any ())
+            if (requiredRouteTags.Any())
             {
                 routeTags = (await tagsApiAccess.GetTags(requiredRouteTags)).Items;
                 foreach (var tag in routeTags)
@@ -121,10 +119,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
 
         private void ProcessUpdatedRoutes(IProgressListener listener)
         {
-            foreach (var routePair in updatedRoutes)
+            var routes = RouteManager.GetRoutes().ToList();
+
+            foreach (var routeDto in updatedRoutes)
             {
-                var routeDto = routePair.Key;
-                var dbRoute = routePair.Value;
+                var dbRoute = routes.First(x => x.IdForRestApi == routeDto.Id);
 
                 RouteConverter.Convert(routeDto, dbRoute);
 
@@ -174,7 +173,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
 
         private void AddTagsToRoute(Route dbRoute, RouteDto routeDto, FetchedMediaData fetchedMediaData)
         {
-            if (routeDto.Tags != null && routeDto.Tags.Any ())
+            if (routeDto.Tags != null && routeDto.Tags.Any())
             {
                 foreach (var tagId in routeDto.Tags)
                 {
@@ -231,8 +230,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
 
         public async Task<bool> AnyRouteChanged()
         {
-            var dbRoutes = RouteManager.GetRoutes().ToList();
             RoutesDto changedRoutes;
+
+            var dbRoutes = RouteManager.GetRoutes().ToList();
             if (dbRoutes.Any())
             {
                 var latestTimestamp = dbRoutes.Max(x => x.Timestamp);

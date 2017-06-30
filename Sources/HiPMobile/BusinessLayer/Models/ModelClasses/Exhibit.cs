@@ -57,6 +57,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 
         public virtual Boolean DetailsDataLoaded { get; set; }
 
+        public virtual bool Unlocked { get; set; }
+
         // Contructor
         public Exhibit(){
 		}
