@@ -287,6 +287,33 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        public static string ExhibitDetailsPage_Distance_alert_confirm {
+            get {
+                return ResourceManager.GetString("ExhibitDetailsPage_Distance_alert_confirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sie müssen die Sehenswürdigkeit zuerst besucht haben, um die Details zu sehen!.
+        /// </summary>
+        public static string ExhibitDetailsPage_Distance_Text {
+            get {
+                return ResourceManager.GetString("ExhibitDetailsPage_Distance_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nicht freigeschaltet.
+        /// </summary>
+        public static string ExhibitDetailsPage_Distance_Title {
+            get {
+                return ResourceManager.GetString("ExhibitDetailsPage_Distance_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Hinweis.
         /// </summary>
         public static string ExhibitDetailsPage_Hinweis {
@@ -630,7 +657,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         ///
         ///Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz: DE 811209907
         ///
-        ///Zuständige Aufsichtsbehörde: Ministerium für Innovation, Wissenschaft, Forschung und Technolo [rest of string was truncated]&quot;;.
+        ///Zuständige Aufsichtsbehörde: Ministerium für Innovation, Wissenschaft, Forschung und Technologie (MIWFT [rest of string was truncated]&quot;;.
         /// </summary>
         public static string LicenseScreenView_Impressum_Text {
             get {
@@ -981,6 +1008,33 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        public static string LicenseScreenViewModel_UnlockExhibits_Confirm {
+            get {
+                return ResourceManager.GetString("LicenseScreenViewModel_UnlockExhibits_Confirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Alle Sehenswürdigkeiten freigeschaltet!.
+        /// </summary>
+        public static string LicenseScreenViewModel_UnlockExhibits_Text {
+            get {
+                return ResourceManager.GetString("LicenseScreenViewModel_UnlockExhibits_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sehenswürdigkeiten freigeschaltet.
+        /// </summary>
+        public static string LicenseScreenViewModel_UnlockExhibits_Title {
+            get {
+                return ResourceManager.GetString("LicenseScreenViewModel_UnlockExhibits_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Einen Moment bitte....
         /// </summary>
         public static string LoadingPage_Subtext {
@@ -1114,14 +1168,16 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
                 return ResourceManager.GetString("LoginScreenView_Error_Empty_Email_And_Password", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Das Passwort-Eingabefeld ist leer.
         /// </summary>
         public static string LoginScreenView_Error_Empty_Password {
-            get { return ResourceManager.GetString ("LoginScreenView_Error_Empty_Password", resourceCulture); }
+            get {
+                return ResourceManager.GetString("LoginScreenView_Error_Empty_Password", resourceCulture);
+            }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Unbekannte E-Mail Adresse.
         /// </summary>
@@ -1130,14 +1186,16 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
                 return ResourceManager.GetString("LoginScreenView_Error_Unknown_Email", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Falsche E-Mail/Passwort Kombination.
         /// </summary>
         public static string LoginScreenView_Error_Wrong_Credentials {
-            get { return ResourceManager.GetString ("LoginScreenView_Error_Wrong_Credentials", resourceCulture); }
+            get {
+                return ResourceManager.GetString("LoginScreenView_Error_Wrong_Credentials", resourceCulture);
+            }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Falsches Passwort.
         /// </summary>
