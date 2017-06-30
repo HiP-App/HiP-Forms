@@ -15,85 +15,27 @@
 using System.IO;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using Xamarin.Forms;
-using System;
-using System.Windows.Input;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
-using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
-using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views.ExhibitDetails
 {
-    public class AppetizerViewModel : ExhibitSubviewViewModel, IDownloadableListItemViewModel
+    public class AppetizerViewModel : ExhibitSubviewViewModel
     {
 
-        private Exhibit exhibit;
         private ImageSource image;
         private string text;
         private string headline;
 
-        public AppetizerViewModel (Exhibit exhibit, string exhibitName, AppetizerPage page)
+        public AppetizerViewModel (string exhibitName, AppetizerPage page)
         {
             if (page != null)
             {
-                Exhibit = exhibit;
                 Headline = exhibitName;
                 Text = page.Text;
 
                 // workaround for realm bug
                 var imageData = page.Image.Data;
                 Image = ImageSource.FromStream (() => new MemoryStream (imageData));
-
-                IsDownloadButtonVisible = !Exhibit.DetailsDataLoaded;
-
-                DownloadCommand = new Command(OpenDownloadDialog);
             }
-        }
-
-        private async void OpenDownloadDialog()
-        {
-            // Open the download dialog
-            downloadPage = new ExhibitRouteDownloadViewModel(Exhibit, this);
-            await Navigation.PushAsync(downloadPage);
-        }
-
-        public void CloseDownloadPage()
-        {
-            IoCManager.Resolve<INavigationService>().PopAsync();
-        }
-
-        public void OpenDetailsView(string id)
-        {
-            //Do nothing. Never called
-        }
-
-        private Boolean isDownloadButtonVisible;
-        public Boolean IsDownloadButtonVisible
-        {
-            get { return isDownloadButtonVisible; }
-            set { SetProperty(ref isDownloadButtonVisible, value); }
-        }
-
-        public void SetDetailsAvailable(bool available)
-        {
-            if (!available)
-                return;
-
-            using (DbManager.StartTransaction())
-            {
-                Exhibit.DetailsDataLoaded = true;
-            }
-            IsDownloadButtonVisible = !Exhibit.DetailsDataLoaded;
-        }
-
-        private ExhibitRouteDownloadViewModel downloadPage;
-
-        public ICommand DownloadCommand { get; set; }
-
-        public Exhibit Exhibit
-        {
-            get { return exhibit; }
-            set { SetProperty(ref exhibit, value); }
         }
 
         /// <summary>

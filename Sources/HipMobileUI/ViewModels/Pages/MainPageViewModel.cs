@@ -37,11 +37,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 		        Title = Strings.MainPageViewModel_Account,
 		        Icon = "ic_account_circle.png"
 		    };
-            forgotPasswordScreenViewModel = new ForgotPasswordScreenViewModel(this)
-            {
-                Title = Strings.MainPageViewModel_Account,
-                Icon = "ic_account_circle.png"
-            };
 
             MainScreenViewModels = new ObservableCollection<NavigationViewModel>
 			{
@@ -77,29 +72,20 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                 SwitchToProfileView ();
             else
                 SwitchToLoginView ();
+            SelectedViewModel = mainScreenViewModels[4];
         }
 
-        public void SwitchToLoginView ()
+        private void SwitchToLoginView ()
 	    {
             mainScreenViewModels.RemoveAt(4);
             mainScreenViewModels.Insert(4, loginScreenViewModel);
-            SelectedViewModel = mainScreenViewModels[4];
-        }
-
-        public void SwitchToForgotPasswordView()
-        {
-            mainScreenViewModels.RemoveAt(4);
-            mainScreenViewModels.Insert(4, forgotPasswordScreenViewModel);
-            SelectedViewModel = mainScreenViewModels[4];
         }
 
 	    private void SwitchToProfileView ()
 	    {
             mainScreenViewModels.RemoveAt(4);
             mainScreenViewModels.Insert(4, profileScreenViewModel);
-            SelectedViewModel = mainScreenViewModels[4];
-        }
-
+	    }
 
 	    public MainPageViewModel () : this (ExhibitManager.GetExhibitSets ().FirstOrDefault ())
 	    {
@@ -109,8 +95,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 		private ObservableCollection<NavigationViewModel> mainScreenViewModels;
 	    private readonly ProfileScreenViewModel profileScreenViewModel;
 	    private readonly LoginScreenViewModel loginScreenViewModel;
-        private readonly ForgotPasswordScreenViewModel forgotPasswordScreenViewModel;
-
 
         private NavigationViewModel selectedViewModel;
 

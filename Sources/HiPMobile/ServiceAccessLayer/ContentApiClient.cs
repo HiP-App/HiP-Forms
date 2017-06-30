@@ -16,7 +16,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
-using System.Net.Http;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -119,26 +118,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer
                 }
             }
             throw new ArgumentException("Unexpected error during fetching data");
-        }
-        public async Task<HttpResponseMessage> PostRequestFormBased (string url, FormUrlEncodedContent content)
-        {
-        try
-            {
-            using (HttpClient client = new HttpClient ())
-                {
-                // Lambda expression executed
-                // ReSharper disable AccessToDisposedClosure
-                var result = await TransientRetry.Do (() => client.PostAsync (url, content), new TimeSpan (0, 0, 0, 3));
-                // ReSharper restore AccessToDisposedClosure
-                return result;
-                }
-            }
-            catch (Exception ex)
-            {
-            throw new Exception(ex.Message);
-            }
-
-
         }
     }
 }

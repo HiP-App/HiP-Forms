@@ -12,7 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer {
@@ -34,8 +33,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer {
         /// <param name="urlPath"></param>
         /// <returns>String result of the api call</returns>
         Task<byte[]> GetResponseFromUrlAsBytes (string urlPath);
-
-        Task<HttpResponseMessage> PostRequestFormBased (string url, FormUrlEncodedContent content);
 
     }
 }

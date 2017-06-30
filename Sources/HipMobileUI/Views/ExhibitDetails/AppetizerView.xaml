@@ -24,9 +24,8 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="0.6*" />
+                <RowDefinition Height="0.7*" />
                 <RowDefinition Height="0.3*" />
-                <RowDefinition Height="0.1*" />
             </Grid.RowDefinitions>
             <Image Source="{Binding Image}" Aspect="AspectFit"/>
             <ContentView Grid.Row="1" Padding="10">
@@ -37,7 +36,6 @@
                     </StackLayout>
                 </controls1:CardView>
             </ContentView>
-            <Button Grid.Row="2" Image="ic_file_download.png" IsVisible="{Binding IsDownloadButtonVisible}" Command="{Binding DownloadCommand}"></Button>
         </Grid>
     </ContentView.Content>
 </ContentView>

@@ -75,10 +75,8 @@
                 <views1:HtmlLink Text="{helpers:Translate LicenseScreenView_OsmSharp_Text}"/>
                 <Label Style="{StaticResource Title2Style}" Text="{helpers:Translate LicenseScreenView_Reminiscence_Title}"/>
                 <views1:HtmlLink Text="{helpers:Translate LicenseScreenView_Reminiscence_Text}"/>
-                <Label Style="{StaticResource Title2Style}" Text="{helpers:Translate LicenseScreenView_User_Dialogs_Title}"/>
-                <views1:HtmlLink Text="{helpers:Translate LicenseScreenView_User_Dialogs_Text}"/>
-        
-                <!-- Labels for contribution -->
+      
+      <!-- Labels for contribution -->
                 <Label Style="{StaticResource TitleStyle}" Text="{helpers:Translate LicenseScreenView_Contribution_Title}"/>
       <BoxView/>
                 <Label Style="{StaticResource Title2Style}" Text="{helpers:Translate LicenseScreenView_CreditsImagesAutocarousel_Title}"/>
@@ -116,7 +114,11 @@
                 <Label Text="{helpers:Translate LicenseScreenView_FurtherInfo_Text}"/>
 
       <!-- Labels for Impressum -->
-                <Label Style="{StaticResource TitleStyle}" Text="{helpers:Translate LicenseScreenView_Impressum_Title}"/>
+                <Label Style="{StaticResource TitleStyle}" Text="{helpers:Translate LicenseScreenView_Impressum_Title}">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding UnlockExhibits}" />
+                    </Label.GestureRecognizers>
+                </Label>
                 <views1:HtmlLink Text="{helpers:Translate LicenseScreenView_Impressum_Text}"/>
     </StackLayout>
     </ScrollView>

@@ -34,7 +34,6 @@ using Plugin.Permissions;
 using Xamarin.Forms;
 using App = PaderbornUniversity.SILab.Hip.Mobile.UI.App;
 using MainPage = PaderbornUniversity.SILab.Hip.Mobile.UI.Pages.MainPage;
-using Acr.UserDialogs;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
 {
@@ -65,7 +64,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
             IoCManager.RegisterInstance(typeof(IBarsColorsChanger), new DroidBarsColorsChanger(this));
             IoCManager.RegisterInstance(typeof(IDbChangedHandler), new DbChangedHandler());
             IoCManager.RegisterInstance(typeof(INetworkAccessChecker), new DroidNetworkAccessChecker());
-			IoCManager.RegisterInstance(typeof(IStorageSizeProvider), new DroidStorageSizeProvider ());
+			IoCManager.RegisterInstance (typeof(IStorageSizeProvider), new DroidStorageSizeProvider ());
 
             // setup crash reporting
             IKeyProvider keyProvider = IoCManager.Resolve<IKeyProvider>();
@@ -75,8 +74,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
             CachedImageRenderer.Init();
             Forms.Init(this, bundle);
             Xamarin.FormsMaps.Init(this, bundle);
-
-            UserDialogs.Init(() => (Activity)Forms.Context);
 
             LoadApplication(new App());
         }
