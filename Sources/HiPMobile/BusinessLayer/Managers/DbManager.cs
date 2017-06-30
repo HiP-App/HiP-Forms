@@ -15,7 +15,9 @@
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using Realms;
+using DbDummyDataFiller = PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.DbDummyDataFiller;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers {
     /// <summary>

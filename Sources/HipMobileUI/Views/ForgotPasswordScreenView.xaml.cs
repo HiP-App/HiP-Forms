@@ -1,25 +1,30 @@
-using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
+﻿using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class LoginScreenView : IViewFor<LoginScreenViewModel>
+    public partial class ForgotPasswordScreenView : IViewFor<ForgotPasswordScreenViewModel>
     {
         private double thisWidth, thisHeight;
         private DeviceOrientation deviceOrientation;
 
-        public LoginScreenView()
+        public ForgotPasswordScreenView()
         {
             InitializeComponent();
             deviceOrientation = DeviceOrientation.Undefined;
         }
 
-        private void Entry_TextChanged(object sender, TextChangedEventArgs e)
+        private void EmailEntry_TextChanged(object sender, TextChangedEventArgs e)
         {
             ErrorMessageLabel.Text = "";
         }
@@ -53,12 +58,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
                 Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.1, GridUnitType.Star) });
                 Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.1, GridUnitType.Star) });
 
-                Grid.SetRow(EmailEntry, 4);
-                Grid.SetRow(PasswordEntry, 5);
-                Grid.SetRow(ErrorMessageLabel, 6);
-                Grid.SetRow(RegisterLabel, 7);
-                Grid.SetRow(ForgotPasswordLabel, 8);
-                Grid.SetRow(LoginButton, 9);
+                Grid.SetRow(TitleLabel, 0);
+                Grid.SetRow(InfoLabel, 1);
+                Grid.SetRow(EmailEntry, 2);
+                Grid.SetRow(ErrorMessageLabel, 3);
+                Grid.SetRow(ResetPasswordButton, 9);
 
                 deviceOrientation = DeviceOrientation.Portrait;
             }
@@ -77,15 +81,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
                 Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.1, GridUnitType.Star) });
                 Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.1, GridUnitType.Star) });
 
-                Grid.SetRow(EmailEntry, 0);
-                Grid.SetRow(PasswordEntry, 1);
-                Grid.SetRow(ErrorMessageLabel, 2);
-                Grid.SetRow(RegisterLabel, 3);
-                Grid.SetRow(ForgotPasswordLabel, 4);
-                Grid.SetRow(LoginButton, 5);
+                Grid.SetRow(TitleLabel, 0);
+                Grid.SetRow(InfoLabel, 1);
+                Grid.SetRow(EmailEntry, 2);
+                Grid.SetRow(ErrorMessageLabel, 3);
+                Grid.SetRow(ResetPasswordButton, 5);
 
                 deviceOrientation = DeviceOrientation.Landscape;
             }
-		}
+        }
     }
 }
