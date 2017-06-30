@@ -37,7 +37,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
 
         public IList<PageImageDto> Images { get; set; }
 
-        public bool HideYearNumbers { get; set; }
+        public bool? HideYearNumbers { get; set; }
 
         public IList<int> AdditionalInformationPages { get; set; }
 
