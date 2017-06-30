@@ -53,43 +53,34 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
         private IList<ExhibitDto> fetchedChangedExhibits;
         private IList<int?> requiredExhibitImages;
         private IList<ExhibitDto> newExhibits;
-        private IDictionary<ExhibitDto, Exhibit> updatedExhibits;
+        private IList<ExhibitDto> updatedExhibits;
         private IList<PageDto> appetizerPages;
 
-        public async Task<int> FetchNeededDataForExhibits()
+        public async Task<int> FetchNeededDataForExhibits(Dictionary<int, DateTimeOffset> existingExhibitsIdTimestampMapping)
         {
-            var exhibitSet = ExhibitManager.GetExhibitSets().SingleOrDefault();
-            if (fetchedChangedExhibits == null)
-            {
-                await AnyExhibitChanged();
-            }
-            if (exhibitSet == null)
-            {
-                using (DbManager.StartTransaction())
-                {
-                    exhibitSet = DbManager.CreateBusinessObject<ExhibitSet>();
-                }
-            }
-
             requiredExhibitImages = new List<int?>();
             newExhibits = new List<ExhibitDto>();
-            updatedExhibits = new Dictionary<ExhibitDto, Exhibit>();
+            updatedExhibits = new List<ExhibitDto>();
             var requiredAppetizerPages = new List<int>();
 
             foreach (var exhibit in fetchedChangedExhibits)
             {
-                var dbExhibit = exhibitSet.SingleOrDefault(x => x.IdForRestApi == exhibit.Id);
-
-                if (dbExhibit != null && Math.Abs((exhibit.Timestamp - dbExhibit.Timestamp).Seconds) > 1)
+                DateTimeOffset? dbExhibitData = null;
+                if (existingExhibitsIdTimestampMapping.ContainsKey(exhibit.Id))
                 {
-                    updatedExhibits.Add(exhibit, dbExhibit);
+                    dbExhibitData = existingExhibitsIdTimestampMapping[exhibit.Id];
                 }
-                else if (dbExhibit == null)
+
+                if (dbExhibitData.HasValue && Math.Abs((exhibit.Timestamp - dbExhibitData.Value).Seconds) > 1)
+                {
+                    updatedExhibits.Add(exhibit);
+                }
+                else if (!dbExhibitData.HasValue)
                 {
                     newExhibits.Add(exhibit);
                 }
 
-                if (dbExhibit == null || Math.Abs((exhibit.Timestamp - dbExhibit.Timestamp).Seconds) > 1)
+                if (!dbExhibitData.HasValue || Math.Abs((exhibit.Timestamp - dbExhibitData.Value).Seconds) > 1)
                 {
                     if (exhibit.Pages != null && exhibit.Pages.Any())
                     {
@@ -99,7 +90,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                 }
             }
 
-            if (requiredAppetizerPages.Any ())
+            if (requiredAppetizerPages.Any())
             {
                 appetizerPages = (await pagesApiAccess.GetPages(requiredAppetizerPages)).Items;
                 foreach (var page in appetizerPages)
@@ -111,7 +102,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             return requiredExhibitImages.Count + fetchedChangedExhibits.Count;
         }
 
-        public async Task FetchMediaData (CancellationToken token, IProgressListener listener)
+        public async Task FetchMediaData(CancellationToken token, IProgressListener listener)
         {
             await mediaDataFetcher.FetchMedias(requiredExhibitImages, token, listener);
         }
@@ -124,7 +115,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             ProcessUpdatedExhibits(listener);
             ProcessNewExhibits(listener);
 
-            if (fetchedChangedExhibits.Any ())
+            if (fetchedChangedExhibits.Any())
             {
                 var exhibitSet = ExhibitManager.GetExhibitSets().SingleOrDefault();
                 exhibitSet.Timestamp = fetchedChangedExhibits.Max(x => x.Timestamp);
@@ -133,10 +124,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
 
         private void ProcessUpdatedExhibits(IProgressListener listener)
         {
-            foreach (var exhibitPair in updatedExhibits)
+            var exhibits = ExhibitManager.GetExhibits().ToList();
+
+            foreach (var exhibitDto in updatedExhibits)
             {
-                var exhibitDto = exhibitPair.Key;
-                var dbExhibit = exhibitPair.Value;
+                var dbExhibit = exhibits.First(x => x.IdForRestApi == exhibitDto.Id);
 
                 ExhibitConverter.Convert(exhibitDto, dbExhibit);
 
@@ -161,7 +153,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
 
                 AddImageToExhibit(dbExhibit, exhibitDto.Image, fetchedMedia);
                 AddAppetizerPageToExhibit(exhibitDto, dbExhibit, fetchedMedia);
-                exhibitSet.ActiveSet.Add (dbExhibit);
+                exhibitSet.ActiveSet.Add(dbExhibit);
                 listener.ProgressOneStep();
             }
         }
@@ -219,8 +211,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
 
         public async Task<bool> AnyExhibitChanged()
         {
-            var exhibitSet = ExhibitManager.GetExhibitSets().SingleOrDefault();
             ExhibitsDto exhibits;
+            var exhibitSet = ExhibitManager.GetExhibitSets().SingleOrDefault();
             if (exhibitSet != null)
             {
                 exhibits = await exhibitsApiAccess.GetExhibits(exhibitSet.Timestamp);
@@ -228,7 +220,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             else
             {
                 exhibits = await exhibitsApiAccess.GetExhibits();
+
+                using (DbManager.StartTransaction())
+                {
+                    DbManager.CreateBusinessObject<ExhibitSet>();
+                }
             }
+
             fetchedChangedExhibits = exhibits.Items;
 
             return fetchedChangedExhibits.Any();
