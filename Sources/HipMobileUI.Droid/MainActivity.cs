@@ -72,11 +72,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
             CrashManager.Register(this, keyProvider.GetKeyByName("hockeyapp.android"));
 
             // init forms and third party libraries
-<<<<<<< HEAD
-            CachedImageRenderer.Init ();
-=======
             CachedImageRenderer.Init();
->>>>>>> origin/iss-hipm-684
+
             Forms.Init(this, bundle);
             Xamarin.FormsMaps.Init(this, bundle);
 

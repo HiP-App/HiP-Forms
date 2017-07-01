@@ -56,9 +56,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
         private bool hasAdditionalInformation;
         private bool additionalInformationButtonVisible;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
         private bool exhibitUnblocked = true;
 >>>>>>> master
+=======
+        private bool exhibitUnblocked = true;
+>>>>>>> 8c1cc897a51cf1345bb30b19b5829571b89467e3
         private bool additionalInformation;
 
         public ExhibitDetailsViewModel(Exhibit exhibit) : this(exhibit, exhibit.Pages, exhibit.Name)
