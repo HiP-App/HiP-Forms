@@ -709,4 +709,19 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   <data name="LicenseScreenView_CreditsImagesCharacterSelection_Title" xml:space="preserve">
     <value>Credits der Bilder in der Avatar Auswahl</value>
   </data>
+  <data name="ExhibitDetailsPage_Distance_alert_confirm" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="ExhibitDetailsPage_Distance_Text" xml:space="preserve">
+    <value>Sie müssen die Sehenswürdigkeit zuerst besucht haben, um die Details zu sehen!</value>
+  </data>
+  <data name="ExhibitDetailsPage_Distance_Title" xml:space="preserve">
+    <value>Nicht freigeschaltet</value>
+  </data>
+  <data name="LicenseScreenViewModel_UnlockExhibits_Text" xml:space="preserve">
+    <value>Alle Sehenswürdigkeiten freigeschaltet!</value>
+  </data>
+  <data name="LicenseScreenViewModel_UnlockExhibits_Title" xml:space="preserve">
+    <value>Sehenswürdigkeiten freigeschaltet</value>
+  </data>
 </root>

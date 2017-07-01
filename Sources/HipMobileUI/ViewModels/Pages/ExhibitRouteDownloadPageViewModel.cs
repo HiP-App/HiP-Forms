@@ -166,10 +166,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                     try
                     {
                         await fullExhibitDataFetcher.FetchFullExhibitDataIntoDatabase(DownloadableId, DownloadableIdForRestApi, cancellationTokenSource.Token, this);
-                        if (!cancellationTokenSource.IsCancellationRequested)
-                        {
-                            SetDetailsAvailable();
-                        }
                     }
                     catch (Exception e)
                     {
@@ -215,7 +211,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             // This can be called from the class that actually handles the download of the data
             // Move the updates up to where the actual download happens
 
-            SetDetailsAvailable();
+            if (!cancellationTokenSource.IsCancellationRequested)
+            {
+                SetDetailsAvailable();
+                IoCManager.Resolve<IDbChangedHandler>().NotifyAll();
+            }
         }
 
         void SetDetailsAvailable()
