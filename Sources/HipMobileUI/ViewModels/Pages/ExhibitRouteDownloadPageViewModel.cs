@@ -1,12 +1,32 @@
+﻿// Copyright (C) 2017 History in Paderborn App - Universität Paderborn
+//  
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//  
+//      http://www.apache.org/licenses/LICENSE-2.0
+//  
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+using System;
 using System.Diagnostics;
 using System.IO;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Windows.Input;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers.Contracts;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
 using Xamarin.Forms;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views.ExhibitDetails;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 {
@@ -18,6 +38,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         {
             this.downloadable = downloadable;
             DownloadableId = downloadable.Id;
+            DownloadableIdForRestApi = downloadable.IdForRestApi;
             DownloadableName = downloadable.Name;
             DownloadableDescription = downloadable.Description;
 
@@ -29,12 +50,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             CancelCommand = new Command(CancelDownload);
             GoToDetailsCommand = new Command(GoToDetails);
             GoToOverviewCommand = new Command(CloseDownloadPage);
-
             StartDownload = new Command(DownloadData);
+
+            cancellationTokenSource = new CancellationTokenSource();
 
             DownloadPending = true;
             DownloadFinished = !DownloadPending;   // Since false is the default value this is just a reminder in case the database wants to set this to true when generating this item
         }
+
+        private readonly CancellationTokenSource cancellationTokenSource;
 
         private IDownloadableListItemViewModel DownloadableListItemViewModel { get; set; }
 
@@ -50,6 +74,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         {
             get { return downloadableId; }
             set { SetProperty(ref downloadableId, value); }
+        }
+
+        private int downloadableIdForRestApi;
+        public int DownloadableIdForRestApi
+        {
+            get { return downloadableIdForRestApi; }
+            set { SetProperty(ref downloadableIdForRestApi, value); }
         }
 
         private string downloadableDescription;
@@ -104,12 +135,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         public ICommand GoToOverviewCommand { get; }
         public ICommand GoToDetailsCommand { get; }
 
-        private bool downloadAborted;
-        void CancelDownload()
+        void CancelDownload ()
         {
-            // Do some stuff to abort the download; this distincts this method from the one below
-            downloadAborted = true;
-            CloseDownloadPage();
+            cancellationTokenSource?.Cancel();
+            CloseDownloadPage ();
         }
 
         void CloseDownloadPage()
@@ -124,15 +153,46 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
         async void DownloadData()
         {
-            // This is where all the the data will be downloaded
-            if (downloadable == null)
-                return;
-            LoadingProgress = 0;
-
             if (downloadable.GetType() == typeof(Exhibit))
             {
                 // We want to download an Exhibit
-                // This should be implemented by Rico
+                string messageToShow = null;
+                string titleToShow = null;
+                var fullExhibitDataFetcher = IoCManager.Resolve<IFullExhibitDataFetcher>();
+                var networkAccessStatus = IoCManager.Resolve<INetworkAccessChecker>().GetNetworkAccessStatus();
+
+                if (networkAccessStatus != NetworkAccessStatus.NoAccess)
+                {
+                    try
+                    {
+                        await fullExhibitDataFetcher.FetchFullExhibitDataIntoDatabase(DownloadableId, DownloadableIdForRestApi, cancellationTokenSource.Token, this);
+                    }
+                    catch (Exception e)
+                    {
+                        if (!cancellationTokenSource.IsCancellationRequested)
+                        {
+                            titleToShow = Strings.LoadingPageViewModel_BaseData_DownloadFailed_Title;
+                            messageToShow = Strings.LoadingPageViewModel_BaseData_DownloadFailed_Text;
+                            Debug.WriteLine(e.Message);
+                            Debug.WriteLine(e.StackTrace);
+                        }
+                    }
+                }
+                else
+                {
+                    titleToShow = Strings.LoadingPageViewModel_BaseData_DownloadFailed_Title;
+                    messageToShow = Strings.LoadingPageViewModel_BaseData_DownloadFailed_Text;
+                    if (networkAccessStatus == NetworkAccessStatus.MobileAccess)
+                    {
+                        messageToShow += Environment.NewLine + Strings.LoadingPageViewModel_BaseData_DownloadViaMobile;
+                    }
+                }
+
+                if (messageToShow != null)
+                {
+                    await Navigation.DisplayAlert(titleToShow, messageToShow, "OK");
+                    CloseDownloadPage();
+                }
             }
             else
             {
@@ -151,23 +211,24 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             // This can be called from the class that actually handles the download of the data
             // Move the updates up to where the actual download happens
 
-            SetMaxProgress(50);
-            for (var x = 0; x < 50; x++)
+            if (!cancellationTokenSource.IsCancellationRequested)
             {
-                ProgressOneStep();
-                await Task.Delay(50);
-                if (downloadAborted)
-                    return;
+                SetDetailsAvailable();
+                IoCManager.Resolve<IDbChangedHandler>().NotifyAll();
             }
-
-            SetDetailsAvailable();
         }
 
         void SetDetailsAvailable()
         {
             DownloadPending = false;
             DownloadFinished = !DownloadPending;
-            DownloadableListItemViewModel.SetDetailsAvailable(DownloadFinished);
+            DownloadableListItemViewModel.SetDetailsAvailable (DownloadFinished);
+
+            //Close DownloadPage directly if download was started from the AppetizerView
+            if(DownloadFinished && (DownloadableListItemViewModel.GetType() == typeof(AppetizerViewModel)))
+            {
+                CloseDownloadPage();
+            }
         }
 
         public override void OnAppearing()
@@ -178,8 +239,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
         public override void OnDisappearing()
         {
-            base.OnDisappearing();
-            downloadAborted = true;
+            base.OnDisappearing ();
+            cancellationTokenSource?.Cancel();
         }
 
         private double maximumProgress;

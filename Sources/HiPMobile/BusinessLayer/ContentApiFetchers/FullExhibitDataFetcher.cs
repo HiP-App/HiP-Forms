@@ -21,6 +21,7 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetche
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelConverters;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos;
@@ -40,19 +41,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             this.mediaDataFetcher = mediaDataFetcher;
         }
 
-        private IList<int?> requiredPages;
-        private IList<int?> requiredImages;
-        private IList<int?> requiredAudios;
+        private IList<int?> requiredMedias;
         private IList<PageDto> pageItems;
-        private FetchedMediaData fetchedMedia;
 
         public async Task FetchFullExhibitDataIntoDatabase (string exhibitId, int idForRestApi, CancellationToken token, IProgressListener listener)
         {
-            requiredPages = new List<int?> ();
-            requiredImages = new List<int?>();
-            requiredAudios = new List<int?>();
+            requiredMedias = new List<int?>();
 
-            double totalSteps = await FetchNeededPagesForFullExhibit(idForRestApi);
+            double totalSteps = await FetchNeededMediaForFullExhibit(idForRestApi);
 
             if (token.IsCancellationRequested)
             {
@@ -71,34 +67,59 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             }
         }
 
-        private async Task<int> FetchNeededPagesForFullExhibit(int idForRestApi)
+        private async Task<int> FetchNeededMediaForFullExhibit(int idForRestApi)
         {
             pageItems = (await pagesApiAccess.GetPages(idForRestApi)).Items;
+
+            // Since AppetizerPages have been loaded before, do not consider them anymore
+            List<PageDto> appetizerPagesToRemove = new List<PageDto> ();
             foreach (var page in pageItems)
             {
-                requiredPages.Add (page.Id);
-                if (page.Image.HasValue)
+                if (page.Type != PageTypeDto.AppetizerPage)
                 {
-                    requiredImages.Add (page.Image);
+                    AddMediaId(page.Image);
+                    if (page.Type == PageTypeDto.SliderPage)
+                    {
+                        if (page.Images.Count > 0)
+                        {
+                            foreach (var image in page.Images)
+                            {
+                                AddMediaId(image.Image);
+                            }
+                        }
+                    }
+                    AddMediaId(page.Audio);
                 }
-                if (page.Audio.HasValue)
+                else
                 {
-                    requiredAudios.Add (page.Audio);
+                    appetizerPagesToRemove.Add(page);
                 }
             }
-            return requiredPages.Count;
+
+            foreach (var appPage in appetizerPagesToRemove)
+            {
+                pageItems.Remove(appPage);
+            }
+            
+            return requiredMedias.Count;
         }
 
-        public async Task FetchMediaData(CancellationToken token, IProgressListener listener)
+        private void AddMediaId (int? mediaId)
         {
-            await mediaDataFetcher.FetchMedias(requiredImages, token, listener);
-            await mediaDataFetcher.FetchMedias(requiredAudios, token, listener);
+            if (mediaId.HasValue)
+            {
+                // Only add media IDs if not already in list
+                if (!requiredMedias.Contains(mediaId))
+                {
+                    requiredMedias.Add(mediaId);
+                }
+            }
         }
 
         private async Task ProcessPages(string exhibitId, CancellationToken token, IProgressListener listener)
         {
             await FetchMediaData(token, listener);
-            fetchedMedia = mediaDataFetcher.CombineMediasAndFiles();
+            var fetchedMedia = mediaDataFetcher.CombineMediasAndFiles();
 
             if (token.IsCancellationRequested)
             {
@@ -111,58 +132,105 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             {
                 var dbPage = PageConverter.Convert(pageDto);
 
-                AddContentToPage(dbPage, pageDto, fetchedMedia.Images, fetchedMedia.Audios);
+                AddContentToPage(dbPage, pageDto, fetchedMedia);
                 // Add Page with content to the exhibit
                 exhibit.Pages.Add(dbPage);
+            }
 
-                listener.ProgressOneStep();
+            // Rearrange additional information pages
+            var pagesToBeRemoved = new List<Page> ();
+            foreach (var pageDto in pageItems)
+            {
+                if (pageDto.AdditionalInformationPages.Count > 0)
+                {
+                    foreach (var existingPageWithInfo in exhibit.Pages)
+                    {
+                        if (pageDto.Id == existingPageWithInfo.IdForRestApi)
+                        {
+                            foreach (var pageId in pageDto.AdditionalInformationPages)
+                            {
+
+                                foreach (var pageToBeAdded in exhibit.Pages)
+                                {
+                                    if (pageToBeAdded.IdForRestApi == pageId)
+                                    {
+                                        existingPageWithInfo.AdditionalInformationPages.Add(pageToBeAdded);
+                                        pagesToBeRemoved.Add (pageToBeAdded);
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            foreach (var pageToBeRemoved in pagesToBeRemoved)
+            {
+                exhibit.Pages.Remove (pageToBeRemoved);
             }
 
             exhibit.DetailsDataLoaded = true;
         }
 
-        private void AddContentToPage(Page dbPage, PageDto content, IList<Image> fetchedMediaImages, IList<Audio> fetchedMediaAudios)
+        private async Task FetchMediaData(CancellationToken token, IProgressListener listener)
         {
-            switch (dbPage.PageType)
-            {
-                case PageType.AppetizerPage:
-                    break;
-                case PageType.ImagePage:
-                    var image = fetchedMediaImages.SingleOrDefault(x => x.IdForRestApi == content.Image);
-                
-                    if (image != null)
-                    {
-                        dbPage.ImagePage.Image = image;
-                    }
-                    else
-                    {
-                        dbPage.ImagePage.Image = BackupData.BackupImage;
-                    }
-                    break;
-                case PageType.TextPage:
-                    break;
-                case PageType.TimeSliderPage:
-                    var images = fetchedMediaImages;
+            await mediaDataFetcher.FetchMedias(requiredMedias, token, listener);
+        }
 
-                    if (images.Count > 0)
-                    {
-                        foreach (var img in images)
+        private void AddContentToPage(Page dbPage, PageDto content, FetchedMediaData fetchedMedia)
+        {
+            if (content != null && dbPage != null)
+            {
+                PageConverter.Convert (content, dbPage);
+
+                switch (dbPage.PageType)
+                {
+                    case PageType.AppetizerPage:
+                        // Should not be reached
+                        break;
+                    case PageType.ImagePage:
+                        var image = fetchedMedia.Images.SingleOrDefault(x => x.IdForRestApi == content.Image);
+
+                        if (image != null)
                         {
-                            dbPage.TimeSliderPage.Images.Add (img);
+                            dbPage.ImagePage.Image = image;
                         }
-                    }
-                    else
-                    {
-                        dbPage.TimeSliderPage.Images.Add(BackupData.BackupImage);
-                    }
-                    break;
-            }
+                        else
+                        {
+                            dbPage.ImagePage.Image = BackupData.BackupImage;
+                        }
+                        break;
+                    case PageType.TextPage:
+                        break;
+                    case PageType.TimeSliderPage:
+                        var fetchedImages = fetchedMedia.Images;
 
-            var audio = fetchedMediaAudios.SingleOrDefault(x => x.IdForRestApi == content.Audio);
+                        if (fetchedImages.Count > 0)
+                        {
+                            foreach (var fImg in fetchedImages)
+                            {
+                                foreach (var cImg in content.Images)
+                                {
+                                    if (fImg.IdForRestApi == cImg.Image)
+                                    {
+                                        dbPage.TimeSliderPage.Images.Add(fImg);
+                                    }
+                                }
+                            }
+                        }
+                        else
+                        {
+                            dbPage.TimeSliderPage.Images.Add(BackupData.BackupImage);
+                        }
+                        break;
+                }
 
-            if (audio != null)
-            {
-                dbPage.Audio = audio;
+                var audio = fetchedMedia.Audios.SingleOrDefault(x => x.IdForRestApi == content.Audio);
+
+                if (audio != null)
+                {
+                    dbPage.Audio = audio;
+                }
             }
         }
     }

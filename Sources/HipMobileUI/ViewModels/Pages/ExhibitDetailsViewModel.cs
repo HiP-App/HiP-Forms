@@ -14,6 +14,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -31,10 +32,11 @@ using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views.ExhibitDetails;
 using Xamarin.Forms;
 using Page = PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.Page;
 using Settings = PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers.Settings;
+using System;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
-    public class ExhibitDetailsViewModel : NavigationViewModel {
-
+    public class ExhibitDetailsViewModel : NavigationViewModel, IDbChangedObserver
+    {
         private ExhibitSubviewViewModel selectedView;
         private AudioToolbarViewModel audioToolbar;
 
@@ -60,7 +62,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
         {
             exhibitUnblocked = exhibit.Unlocked;
         }
-        public ExhibitDetailsViewModel (string exhibitId, Exhibit exhibit) : this(ExhibitManager.GetExhibit(exhibitId), ExhibitManager.GetExhibit(exhibitId).Pages, ExhibitManager.GetExhibit(exhibitId).Name,exhibit.Unlocked)
+
+        public ExhibitDetailsViewModel (string exhibitId) : this(ExhibitManager.GetExhibit(exhibitId), ExhibitManager.GetExhibit(exhibitId).Pages, ExhibitManager.GetExhibit(exhibitId).Name)
         {
             exhibitUnblocked = ExhibitManager.GetExhibit (exhibitId).Unlocked;
         }
@@ -97,11 +100,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
             PreviousViewCommand = new Command (GotoPreviousView);
             ShowAudioToolbarCommand = new Command (SwitchAudioToolbarVisibleState);
             ShowAdditionalInformationCommand = new Command (ShowAdditionalInformation);
-        }
 
-        public ExhibitDetailsViewModel(string id)
-        {
-            this.id = id;
+            var dbChangedHandler = IoCManager.Resolve<IDbChangedHandler>();
+            dbChangedHandler.AddObserver(this);
         }
 
         private void AdjustToolbarColor ()
@@ -273,7 +274,18 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
                 AudioToolbarVisible = false;
             }
 
-            AudioToolbar.SetNewAudioFile (currentPage.Audio);
+            // It's possible to get no audio data even if it should exist
+            try
+            {
+                AudioToolbar.SetNewAudioFile (currentPage.Audio);
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e.Message);
+                Debug.WriteLine(e.StackTrace);
+                AudioToolbar.SetNewAudioFile(null);
+                AudioToolbarVisible = false;
+            }
 
             switch (currentPage.PageType)
             {
@@ -328,6 +340,21 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
                 {
                     AudioToolbar.AudioPlayer.Play ();
                 }
+            }
+        }
+
+        /// <summary>
+        /// Refreshs the availability of the pages depending on the changed database
+        /// </summary>
+        public async void DbChanged()
+        {
+            string exhibitId = Exhibit.Id;
+            Exhibit = ExhibitManager.GetExhibit (exhibitId);
+            if (Exhibit.DetailsDataLoaded)
+            {
+                NextViewAvailable = currentViewIndex < pages.Count - 1;
+                PreviousViewAvailable = currentViewIndex > 0;
+                await SetCurrentView ();
             }
         }
 
