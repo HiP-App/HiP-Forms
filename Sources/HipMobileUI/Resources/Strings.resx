@@ -603,7 +603,6 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   </data>
   <data name="LoginScreenView_Error_Wrong_Credentials" xml:space="preserve">
     <value>Falsche E-Mail/Passwort Kombination</value>
-
   </data>
   <data name="LoginScreenView_Error_Unknown_Email" xml:space="preserve">
     <value>Unbekannte E-Mail Adresse</value>
@@ -757,5 +756,20 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   </data>
   <data name="RegisterScreenView_Error_Invalid_Email" xml:space="preserve">
     <value>Ungültige E-Mail</value>
+</data>
+  <data name="ExhibitDetailsPage_Distance_alert_confirm" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="ExhibitDetailsPage_Distance_Text" xml:space="preserve">
+    <value>Sie müssen die Sehenswürdigkeit zuerst besucht haben, um die Details zu sehen!</value>
+  </data>
+  <data name="ExhibitDetailsPage_Distance_Title" xml:space="preserve">
+    <value>Nicht freigeschaltet</value>
+  </data>
+  <data name="LicenseScreenViewModel_UnlockExhibits_Text" xml:space="preserve">
+    <value>Alle Sehenswürdigkeiten freigeschaltet!</value>
+  </data>
+  <data name="LicenseScreenViewModel_UnlockExhibits_Title" xml:space="preserve">
+    <value>Sehenswürdigkeiten freigeschaltet</value>
   </data>
 </root>

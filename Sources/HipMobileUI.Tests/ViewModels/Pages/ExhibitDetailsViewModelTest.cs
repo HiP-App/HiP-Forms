@@ -39,6 +39,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Pages
             IoCManager.RegisterInstance(typeof(INavigationService), Substitute.For<INavigationService>());
             IoCManager.RegisterInstance(typeof(IImageDimension), Substitute.For<IImageDimension>());
             IoCManager.RegisterInstance(typeof(IAudioPlayer), Substitute.For<IAudioPlayer>());
+            IoCManager.RegisterInstance(typeof(IDbChangedHandler), Substitute.For<IDbChangedHandler>());
             IoCManager.RegisterInstance(typeof(ApplicationResourcesProvider), new ApplicationResourcesProvider(
                                              new Dictionary<string, object>
                                              {
@@ -168,6 +169,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Pages
             var pages = new List<Page> { CreateAppetizerPage(), CreateImagePage(), CreateTimeSliderPage() };
             exhibit.Pages.Returns(pages);
 
+            exhibit.Unlocked = true;
             return new ExhibitDetailsViewModel(exhibit);
         }
 

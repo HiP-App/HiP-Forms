@@ -1288,5 +1288,35 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
                 return ResourceManager.GetString("RegisterScreenView_Error_Invalid_Email", resourceCulture);
             }
         }
+        
+        public static string ExhibitDetailsPage_Distance_alert_confirm {
+            get {
+                return ResourceManager.GetString("ExhibitDetailsPage_Distance_alert_confirm", resourceCulture);
+            }
+        }
+        
+        public static string ExhibitDetailsPage_Distance_Text {
+            get {
+                return ResourceManager.GetString("ExhibitDetailsPage_Distance_Text", resourceCulture);
+            }
+        }
+        
+        public static string ExhibitDetailsPage_Distance_Title {
+            get {
+                return ResourceManager.GetString("ExhibitDetailsPage_Distance_Title", resourceCulture);
+            }
+        }
+        
+        public static string LicenseScreenViewModel_UnlockExhibits_Text {
+            get {
+                return ResourceManager.GetString("LicenseScreenViewModel_UnlockExhibits_Text", resourceCulture);
+            }
+        }
+        
+        public static string LicenseScreenViewModel_UnlockExhibits_Title {
+            get {
+                return ResourceManager.GetString("LicenseScreenViewModel_UnlockExhibits_Title", resourceCulture);
+            }
+        }
     }
 }
