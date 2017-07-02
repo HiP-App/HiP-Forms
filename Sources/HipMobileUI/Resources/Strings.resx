@@ -668,7 +668,7 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
     <value>Registrierung fehlgeschlagen</value>
   </data>
   <data name="RegisterScreenView_Alert_Description" xml:space="preserve">
-    <value>Eine E-Mail wurde Ihnen gesendet. Bitte bestätigen Sie diese E-Mail, um sich einzuloggen zu können.</value>
+    <value>Eine E-Mail wurde Ihnen gesendet. Bitte bestätigen Sie diese E-Mail, um sich einloggen zu können.</value>
   </data>
   <data name="RegisterScreenView_Alert_Ok" xml:space="preserve">
     <value>Ok</value>
