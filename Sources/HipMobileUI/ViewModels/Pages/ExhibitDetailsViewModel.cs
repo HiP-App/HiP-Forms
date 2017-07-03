@@ -38,14 +38,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
     {
         private ExhibitSubviewViewModel selectedView;
         private AudioToolbarViewModel audioToolbar;
-
-        private Exhibit exhibit;
+        
+        private Exhibit exhibit; 
         private readonly IList<Page> pages;
         private ICommand nextViewCommand;
         private ICommand previousViewCommand;
         private ICommand audioToolbarCommand;
         private ICommand additionalInformationCommand;
-        private IDbChangedHandler dbChangedHandler;
         private bool previousViewAvailable;
         private bool nextViewAvailable;
         private bool previousVisible;
@@ -100,8 +99,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
             PreviousViewCommand = new Command (GotoPreviousView);
             ShowAudioToolbarCommand = new Command (SwitchAudioToolbarVisibleState);
             ShowAdditionalInformationCommand = new Command (ShowAdditionalInformation);
-
-            dbChangedHandler = IoCManager.Resolve<IDbChangedHandler>();
+            
+            var dbChangedHandler = IoCManager.Resolve<IDbChangedHandler>();
             dbChangedHandler.AddObserver(this);
         }
 
@@ -140,7 +139,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
         }
 
         private const int NavigationButtonsToggleDelay = 2000;
-        private string id;
 
         /// <summary>
         /// Toggles the visibility of then navigation buttons after <see cref="NavigationButtonsToggleDelay"/> milliseconds
@@ -392,14 +390,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
         }
 
         #region properties
-
-
+        
         public Exhibit Exhibit
         {
             get { return exhibit; }
             set { SetProperty(ref exhibit, value); }
         }
-
 
         /// <summary>
         /// The currently displayed subview.

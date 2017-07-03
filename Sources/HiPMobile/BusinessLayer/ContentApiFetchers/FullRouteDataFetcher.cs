@@ -63,11 +63,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             
             using (var transaction = DbManager.StartTransaction ())
             {
-                ProcessRoute (routeId, token, listener);
+                await ProcessRoute (routeId, token, listener);
                 if (token.IsCancellationRequested)
                     transaction.Rollback ();
             }
-            IoCManager.Resolve<IDbChangedHandler>().NotifyAll();
         }
         
         private int FetchNeededMediaForFullRoute ()
@@ -80,7 +79,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             return requiredMedia.Count;
         }
 
-        private async void ProcessRoute(string routeId, CancellationToken token, IProgressListener listener)
+        private async Task ProcessRoute(string routeId, CancellationToken token, IProgressListener listener)
         {
             await FetchMediaData (token, listener);
             var fetchedMedia = mediaDataFetcher.CombineMediasAndFiles();

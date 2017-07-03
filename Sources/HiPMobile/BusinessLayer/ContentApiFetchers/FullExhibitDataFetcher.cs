@@ -43,7 +43,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
 
         private IList<int?> requiredMedias;
         private IList<PageDto> pageItems;
-
+        
         public async Task FetchFullDownloadableDataIntoDatabase (string exhibitId, int idForRestApi, CancellationToken token, IProgressListener listener, bool calledFromRouteFetcher)
         {
             double totalSteps = await FetchNeededMediaForFullExhibit(idForRestApi);
@@ -52,7 +52,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             {
                 return;
             }
-
+            
             if (!calledFromRouteFetcher)
                 listener.SetMaxProgress(totalSteps);
 
@@ -64,7 +64,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                     transaction.Rollback();
                 }
             }
-            IoCManager.Resolve<IDbChangedHandler>().NotifyAll();
         }
 
         public async Task<int> FetchNeededMediaForFullExhibit(int idForRestApi)
@@ -126,7 +125,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             {
                 return;
             }
-
+            
             var exhibit = ExhibitManager.GetExhibit(exhibitId);
 
             foreach (var pageDto in pageItems)

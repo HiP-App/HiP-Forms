@@ -48,7 +48,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelCo
 
                         backupImage.Title = "No Image";
                         backupImage.Description = "Hier fehlt das Bild";
-                        backupImage.Data = backupImageData;
+                        backupImage.Data = BackupImageData;
                         backupImage.IdForRestApi = -1;
                     }
                 }

@@ -73,6 +73,9 @@
     <Compile Include="BusinessLayer\DtoToModelConverters\MediaToAudioConverter.cs" />
     <Compile Include="BusinessLayer\DtoToModelConverters\MediaToImageConverter.cs" />
     <Compile Include="BusinessLayer\DtoToModelConverters\PageConverter.cs" />
+    <Compile Include="BusinessLayer\Models\User\User.cs" />
+    <Compile Include="BusinessLayer\UserManagement\UserManager.cs" />
+    <Compile Include="BusinessLayer\Models\User\UserStatus.cs" />
     <Compile Include="Common\Contracts\IStorageSizeProvider.cs" />
     <Compile Include="BusinessLayer\InteractiveSources\ConsecutiveNumberAndConstantInteractiveSourceSubstitute.cs" />
     <Compile Include="BusinessLayer\InteractiveSources\ConsecutiveNumberInteractiveSourceSubstitute.cs" />
@@ -90,6 +93,10 @@
     <Compile Include="BusinessLayer\DtoToModelConverters\ExhibitConverter.cs" />
     <Compile Include="Helpers\AssertionHelper.cs" />
     <Compile Include="Helpers\UriQueryBuilder.cs" />
+    <Compile Include="ServiceAccessLayer\AuthenticationApiAccess\AuthApiAccess.cs" />
+    <Compile Include="ServiceAccessLayer\AuthApiDto\Error.cs" />
+    <Compile Include="ServiceAccessLayer\AuthApiDto\Token.cs" />
+    <Compile Include="ServiceAccessLayer\AuthenticationApiAccess\Constants.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiClient.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiAccesses\Contracts\ITagsApiAccess.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiAccesses\Contracts\IRoutesApiAccess.cs" />
@@ -107,6 +114,8 @@
     <Compile Include="ServiceAccessLayer\ContentApiDtos\MediaTypeDto.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiDtos\PageImageDto.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiDtos\PageTypeDto.cs" />
+    <Compile Include="ServiceAccessLayer\AuthenticationApiAccess\IAuthApiAccess.cs" />
+    <Compile Include="ServiceAccessLayer\Exceptions\InvalidUserNamePassword.cs" />
     <Compile Include="ServiceAccessLayer\IContentApiClient.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiDtos\ExhibitDto.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiDtos\ExhibitsDto.cs" />
@@ -170,13 +179,7 @@
     <Compile Include="Common\NetworkAccessStatus.cs" />
     <Compile Include="ServiceAccessLayer\NotFoundException.cs" />
     <Compile Include="ServiceAccessLayer\ServerEndpoints.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Content\noImage2.jpg" />
-    <EmbeddedResource Include="Content\noImage.jpg" />
-    <Content Include="FodyWeavers.xml">
-      <SubType>Designer</SubType>
-    </Content>
+    <Compile Include="ServiceAccessLayer\TransientRetry.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="DotNetCross.Memory.Unsafe, Version=0.2.2.0, Culture=neutral, processorArchitecture=MSIL">
@@ -233,6 +236,12 @@
       <HintPath>..\..\packages\Remotion.Linq.2.1.1\lib\portable-net45+win+wpa81+wp80\Remotion.Linq.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Net.Http.Extensions, Version=2.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Net.Http.2.2.29\lib\portable-net45+win8\System.Net.Http.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Primitives, Version=4.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Net.Http.2.2.29\lib\portable-net45+win8\System.Net.Http.Primitives.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="BusinessLayer\Routing\Route_Network_Paderborn.pbf" />
@@ -242,7 +251,13 @@
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+	<EmbeddedResource Include="Content\noImage2.jpg" />
+	<EmbeddedResource Include="Content\noImage.jpg" />
+    <Content Include="FodyWeavers.xml">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
@@ -253,4 +268,9 @@
   </Target>
   <Import Project="..\..\packages\Realm.0.81.0\build\Realm.targets" Condition="Exists('..\..\packages\Realm.0.81.0\build\Realm.targets')" />
   <Import Project="..\..\packages\Fody.1.29.4\build\portable-net+sl+win+wpa+wp\Fody.targets" Condition="Exists('..\..\packages\Fody.1.29.4\build\portable-net+sl+win+wpa+wp\Fody.targets')" />
+  <Import Project="..\..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
+  <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">
+    <Error Condition="!Exists('..\..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." HelpKeyword="BCLBUILD2001" />
+    <Error Condition="Exists('..\..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://go.microsoft.com/fwlink/?LinkID=317568." HelpKeyword="BCLBUILD2002" />
+  </Target>
 </Project>

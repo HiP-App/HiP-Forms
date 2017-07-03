@@ -533,7 +533,7 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
     <value>Keine Routen verfügbar. Laden Sie Routen herunter, um loszulegen!</value>
   </data>
   <data name="DownloadData_Title" xml:space="preserve">
-    <value>Neue Detail Daten herunterladen?</value>
+    <value>Neue Daten herunterladen?</value>
   </data>
   <data name="DownloadData_Cancel" xml:space="preserve">
     <value>Nein</value>
@@ -568,15 +568,6 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   <data name="LoadingPageViewModel_LoadingError_Confirm" xml:space="preserve">
     <value>OK</value>
   </data>
-  <data name="ExhibitDetailsPage_Distance_Title" xml:space="preserve">
-    <value>Nicht freigeschaltet</value>
-  </data>
-  <data name="ExhibitDetailsPage_Distance_Text" xml:space="preserve">
-    <value>Sie müssen die Sehenswürdigkeit zuerst besucht haben, um die Details zu sehen!</value>
-  </data>
-  <data name="ExhibitDetailsPage_Distance_alert_confirm" xml:space="preserve">
-    <value>OK</value>
-  </data>
   <data name="StorageTitle" xml:space="preserve">
     <value>Belegter Speicherplatz für Daten</value>
   </data>
@@ -585,6 +576,54 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   </data>
   <data name="DownloadDetails_Text_Part2" xml:space="preserve">
     <value> herunter</value>
+  </data>
+  <data name="MainPageViewModel_Account" xml:space="preserve">
+    <value>Account</value>
+  </data>
+  <data name="MainPageViewModel_Profile" xml:space="preserve">
+    <value>Profil</value>
+  </data>
+  <data name="ProfileView_Achievements" xml:space="preserve">
+    <value>Erfolge</value>
+  </data>
+  <data name="ProfileView_Statistic" xml:space="preserve">
+    <value>Statistik</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Abmelden</value>
+  </data>
+  <data name="ProfileView_Overview_Achievements" xml:space="preserve">
+    <value>Erfolge:</value>
+  </data>
+  <data name="ProfileView_Overview_Progress" xml:space="preserve">
+    <value>Fortschritt:</value>
+  </data>
+  <data name="ProfileView_Overview_Score" xml:space="preserve">
+    <value>Punkte:</value>
+  </data>
+  <data name="LoginScreenView_Error_Wrong_Credentials" xml:space="preserve">
+    <value>Falsche E-Mail/Passwort Kombination</value>
+  </data>
+  <data name="LoginScreenView_Error_Unknown_Email" xml:space="preserve">
+    <value>Unbekannte E-Mail Adresse</value>
+  </data>
+  <data name="LoginScreenView_Error_Wrong_Password" xml:space="preserve">
+    <value>Falsches Passwort</value>
+  </data>
+  <data name="LoginScreenView_Login" xml:space="preserve">
+    <value>Einloggen</value>
+  </data>
+  <data name="LoginScreenView_Password" xml:space="preserve">
+    <value>Passwort</value>
+  </data>
+  <data name="LoginScreenView_Register" xml:space="preserve">
+    <value>Registrieren</value>
+  </data>
+  <data name="LoginScreenView_Email" xml:space="preserve">
+    <value>E-Mail</value>
+  </data>
+  <data name="LoginScreenView_Forgot_Password" xml:space="preserve">
+    <value>Passwort vergessen?</value>
   </data>
   <data name="LoadingPageViewModel_BaseData_DownloadFailed_Text" xml:space="preserve">
     <value>Die aktuellen Daten konnten nicht heruntergeladen werden.</value>
@@ -595,11 +634,92 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   <data name="LoadingPageViewModel_BaseData_OnlyMobile" xml:space="preserve">
     <value>In den Einstellungen haben Sie die Möglichkeit, den Download der Daten auch über Mobile Datenverbindungen zu erlauben.</value>
   </data>
+  <data name="ForgotPasswordScreenView_Email" xml:space="preserve">
+    <value>E-Mail</value>
+  </data>
+  <data name="ForgotPasswordScreenView_Forgot_Password" xml:space="preserve">
+    <value>Passwort vergessen?</value>
+  </data>
+  <data name="ForgotPasswordScreenView_Info" xml:space="preserve">
+    <value>Kein Problem. Wir schicken dir eine E-Mail zum Zurücksetzen deines Passworts.</value>
+  </data>
+  <data name="ForgotPasswordScreenView_Reset_Password" xml:space="preserve">
+    <value>Passwort zurücksetzen</value>
+  </data>
+  <data name="ForgotPasswordScreenView_Alert_Description" xml:space="preserve">
+    <value>Wir haben dir eine E-Mail mit Anweisungen zum Zurücksetzen deines Passworts geschickt</value>
+  </data>
+  <data name="ForgotPasswordScreenView_Alert_Ok" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+  <data name="ForgotPasswordScreenView_Alert_Password_Resetted" xml:space="preserve">
+    <value>Passwort zurückgesetzt</value>
+  </data>
+  <data name="ForgotPasswordScreenView_Error_Empty_Email" xml:space="preserve">
+    <value>Das E-Mail-Eingabefeld ist leer</value>
+  </data>
+  <data name="LoginScreenView_Error_Empty_Email" xml:space="preserve">
+    <value>Das E-Mail-Eingabefeld ist leer</value>
+  </data>
+  <data name="LoginScreenView_Error_Empty_Email_And_Password" xml:space="preserve">
+    <value>Das E-Mail- und Passwort-Eingabefeld ist leer</value>
+  </data>
+  <data name="LoginScreenView_Error_Empty_Password" xml:space="preserve">
+    <value>Das Passwort-Eingabefeld ist leer</value>
+  </data>
+  <data name="LoginScreenView_Dialog_Login" xml:space="preserve">
+    <value>Melde an</value>
+  </data>
+  <data name="Alert_No_Internet_Description" xml:space="preserve">
+    <value>Wir konnten keine Verbindung mit dem Internet herstellen. Bitte überprüfe deine Netzwerkverbindung.</value>
+  </data>
+  <data name="Alert_No_Internet_Title" xml:space="preserve">
+    <value>Keine Netzwerkverbindung</value>
+  </data>
+  <data name="Alert_Server_Error_Description" xml:space="preserve">
+    <value>Es ist ein Server fehler aufgetreten. Bitte versuche es später noch einmal.</value>
+  </data>
+  <data name="Alert_Server_Error_Title" xml:space="preserve">
+    <value>Server Fehler</value>
+  </data>
+  <data name="Alert_Unknown_Error_Description" xml:space="preserve">
+    <value>Es ist ein unbekannter Fehler aufgetreten.</value>
+  </data>
+  <data name="Alert_Unknown_Error_Title" xml:space="preserve">
+    <value>Unbekannter Fehler</value>
+  </data>
   <data name="LicenseScreenViewModel_UnlockExhibits_Confirm" xml:space="preserve">
     <value>OK</value>
   </data>
+  <data name="LicenseScreenView_User_Dialogs_Text" xml:space="preserve">
+    <value>Von &lt;a href="https://github.com/aritchie/userdialogs"&gt;Allan Ritchie&lt;/a&gt;, lizensiert unter &lt;a href="https://github.com/aritchie/userdialogs/blob/master/LICENSE.md"&gt;MIT&lt;/a&gt;. Es wurden keine Änderungen vorgenommen.</value>
+  </data>
+  <data name="LicenseScreenView_User_Dialogs_Title" xml:space="preserve">
+    <value>ACR User Dialogs</value>
+  </data>
+  <data name="CharacterSelectionPage_Adventurer_Text" xml:space="preserve">
+    <value>Entdecke Paderborn auf eigene Faust! Mache neue Erfahrungen!</value>
+  </data>
+  <data name="CharacterSelectionPage_Professor_Text" xml:space="preserve">
+    <value>Folge den geführten Touren um Paderborn zu entdecken!</value>
+  </data>
+  <data name="LicenseScreenView_CreditsImagesCharacterSelection_Text" xml:space="preserve">
+    <value>Icons made by &lt;a href="http://www.freepik.com" title="Freepik"&gt;Freepik&lt;/a&gt; from &lt;a href="http://www.flaticon.com" title="Flaticon"&gt;www.flaticon.com&lt;/a&gt;. Bilder erstellt von &lt;a href="http://www.freepik.com" title="Freepik"&gt;Freepik&lt;/a&gt; von &lt;a href="http://www.flaticon.com" title="Flaticon"&gt;www.flaticon.com&lt;/a&gt;.</value>
+  </data>
+  <data name="LicenseScreenView_CreditsImagesCharacterSelection_Title" xml:space="preserve">
+    <value>Credits der Bilder in der Avatar Auswahl</value>
+  </data>
+  <data name="ExhibitDetailsPage_Distance_alert_confirm" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="ExhibitDetailsPage_Distance_Text" xml:space="preserve">
+    <value>Sie müssen die Sehenswürdigkeit zuerst besucht haben, um die Details zu sehen!</value>
+  </data>
+  <data name="ExhibitDetailsPage_Distance_Title" xml:space="preserve">
+    <value>Nicht freigeschaltet</value>
+  </data>
   <data name="LicenseScreenViewModel_UnlockExhibits_Text" xml:space="preserve">
-    <value>Alle Sehenswüdigkeiten freigeschaltet!</value>
+    <value>Alle Sehenswürdigkeiten freigeschaltet!</value>
   </data>
   <data name="LicenseScreenViewModel_UnlockExhibits_Title" xml:space="preserve">
     <value>Sehenswürdigkeiten freigeschaltet</value>

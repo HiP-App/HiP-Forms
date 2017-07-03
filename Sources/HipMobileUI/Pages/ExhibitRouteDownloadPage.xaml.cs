@@ -1,16 +1,17 @@
 ﻿using System;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
 using Xamarin.Forms;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views {
+namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages {
 
-    public partial class ExhibitRouteDownloadView : ContentPage, IViewFor<ExhibitRouteDownloadViewModel> {
+    public partial class ExhibitRouteDownloadPage : ContentPage, IViewFor<ExhibitRouteDownloadPageViewModel> {
 
         private double thisWidth, thisHeight;
         private DeviceOrientation deviceOrientation;
-        public ExhibitRouteDownloadView ()
+        public ExhibitRouteDownloadPage ()
         {
             InitializeComponent ();
             deviceOrientation = DeviceOrientation.Undefined;

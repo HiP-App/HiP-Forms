@@ -53,7 +53,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views.ExhibitDetail
         private async void OpenDownloadDialog()
         {
             // Open the download dialog
-            downloadPage = new ExhibitRouteDownloadViewModel(Exhibit, this);
+            downloadPage = new ExhibitRouteDownloadPageViewModel(Exhibit, this);
             await Navigation.PushAsync(downloadPage);
         }
 
@@ -86,7 +86,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views.ExhibitDetail
             IsDownloadButtonVisible = !Exhibit.DetailsDataLoaded;
         }
 
-        private ExhibitRouteDownloadViewModel downloadPage;
+        private ExhibitRouteDownloadPageViewModel downloadPage;
 
         public ICommand DownloadCommand { get; set; }
 

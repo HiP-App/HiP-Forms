@@ -37,7 +37,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 
 		public virtual IList<LongElement> Dates{ get; }
 
-		public virtual bool HideYearNumbers{ get; set; }
+		public virtual bool? HideYearNumbers{ get; set; }
 
 		//Associations
 		public virtual Audio Audio{ get; set; }
