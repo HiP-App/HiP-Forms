@@ -724,4 +724,10 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   <data name="LicenseScreenViewModel_UnlockExhibits_Title" xml:space="preserve">
     <value>Sehenswürdigkeiten freigeschaltet</value>
   </data>
+  <data name="SettingsScreenView_CharacterSelection_IsAdventurer" xml:space="preserve">
+    <value>Du nutzt die App im Abenteurer-Modus. Tippe hier um den App-Modus zu wechseln.</value>
+  </data>
+  <data name="SettingsScreenView_CharacterSelection_IsProfessor" xml:space="preserve">
+    <value>Du nutzt die App im Professor-Modus. Tippe hier um den App-Modus zu wechseln.</value>
+  </data>
 </root>

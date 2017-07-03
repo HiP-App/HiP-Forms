@@ -657,7 +657,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         ///
         ///Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz: DE 811209907
         ///
-        ///Zuständige Aufsichtsbehörde: Ministerium für Innovation, Wissenschaft, Forschung und Technologie (MIWFT [rest of string was truncated]&quot;;.
+        ///Zuständige Aufsichtsbehörde: Ministerium für Innovation, Wissenschaft, Forschung und Technolo [rest of string was truncated]&quot;;.
         /// </summary>
         public static string LicenseScreenView_Impressum_Text {
             get {
@@ -1571,6 +1571,24 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         public static string SettingsScreenView_AutoSwitchPage_Title {
             get {
                 return ResourceManager.GetString("SettingsScreenView_AutoSwitchPage_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Du nutzt die App im Abenteurer-Modus. Tippe hier um den App-Modus zu wechseln..
+        /// </summary>
+        public static string SettingsScreenView_CharacterSelection_IsAdventurer {
+            get {
+                return ResourceManager.GetString("SettingsScreenView_CharacterSelection_IsAdventurer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Du nutzt die App im Professor-Modus. Tippe hier um den App-Modus zu wechseln..
+        /// </summary>
+        public static string SettingsScreenView_CharacterSelection_IsProfessor {
+            get {
+                return ResourceManager.GetString("SettingsScreenView_CharacterSelection_IsProfessor", resourceCulture);
             }
         }
         
