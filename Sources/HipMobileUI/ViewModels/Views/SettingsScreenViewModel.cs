@@ -137,7 +137,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views {
         }
 
        public string AppModeText {
-            get { return Settings.AdventurerMode ? Strings.SettingsScreenView_CharacterSelection_IsAdventurer : Strings.SettingsScreenView_CharacterSelection_IsProfessor; }
+            get { return Settings.AdventurerMode ? Strings.SettingsScreenView_CharacterSelection_Text_IsAdventurer : Strings.SettingsScreenView_CharacterSelection_Text_IsProfessor; }
        }
 
         public string Size

@@ -137,11 +137,8 @@
 		
         <!-- Further Settings -->
         <Label Style="{StaticResource TitleStyle}" Text="{helpers:Translate SettingsScreenView_FurtherSettings_Title}" Grid.Row="16" Grid.Column="0" Margin="0,20,0,10"/>
-        <Label Grid.Row="17" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding AppModeText}">
-            <Label.GestureRecognizers>
-                <TapGestureRecognizer Command="{Binding SelectCharacterCommand}" NumberOfTapsRequired="1"></TapGestureRecognizer>
-            </Label.GestureRecognizers>
-        </Label>
+        <Label Grid.Row="17" Grid.Column="0" Text="{Binding AppModeText}"/>
+        <Button Grid.Row="17" Grid.Column="1" Command="{Binding SelectCharacterCommand}" Text="{helpers:Translate SettingsScreenView_CharacterSelection_Button_Text}" BackgroundColor="{StaticResource AccentColor}"/>
         <BoxView Grid.Row="18" Grid.Column="0"></BoxView>
         <Label Text="{helpers:Translate StorageTitle}" Grid.Row="19" Grid.Column="0"/>
         <Label Text="{Binding Size, Mode=OneWay}" Grid.Row="19" Grid.Column="1" HorizontalOptions="End" VerticalOptions="Center"/>

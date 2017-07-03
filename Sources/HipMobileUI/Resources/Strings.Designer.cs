@@ -1575,20 +1575,29 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Du nutzt die App im Abenteurer-Modus. Tippe hier um den App-Modus zu wechseln..
+        ///   Looks up a localized string similar to Ändern.
         /// </summary>
-        public static string SettingsScreenView_CharacterSelection_IsAdventurer {
+        public static string SettingsScreenView_CharacterSelection_Button_Text {
             get {
-                return ResourceManager.GetString("SettingsScreenView_CharacterSelection_IsAdventurer", resourceCulture);
+                return ResourceManager.GetString("SettingsScreenView_CharacterSelection_Button_Text", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Du nutzt die App im Professor-Modus. Tippe hier um den App-Modus zu wechseln..
+        ///   Looks up a localized string similar to Du nutzt die App im Abenteurer-Modus. .
         /// </summary>
-        public static string SettingsScreenView_CharacterSelection_IsProfessor {
+        public static string SettingsScreenView_CharacterSelection_Text_IsAdventurer {
             get {
-                return ResourceManager.GetString("SettingsScreenView_CharacterSelection_IsProfessor", resourceCulture);
+                return ResourceManager.GetString("SettingsScreenView_CharacterSelection_Text_IsAdventurer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Du nutzt die App im Professor-Modus..
+        /// </summary>
+        public static string SettingsScreenView_CharacterSelection_Text_IsProfessor {
+            get {
+                return ResourceManager.GetString("SettingsScreenView_CharacterSelection_Text_IsProfessor", resourceCulture);
             }
         }
         
