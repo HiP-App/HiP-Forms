@@ -17,6 +17,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelConverters;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using Plugin.Geolocator.Abstractions;
 using Xamarin.Forms;
@@ -27,8 +28,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers {
 
         public static ImageSource GetImageSource (this Image image)
         {
-            var data = image.Data;
-            return ImageSource.FromStream (() => new MemoryStream (data));
+            var imageData = image.Data;
+            if (imageData != null)
+            {
+                return ImageSource.FromStream(() => new MemoryStream(imageData));
+            }
+            else
+            {
+                return ImageSource.FromStream(() => new MemoryStream(BackupData.BackupImageData));
+            }
         }
 
         /// <summary>

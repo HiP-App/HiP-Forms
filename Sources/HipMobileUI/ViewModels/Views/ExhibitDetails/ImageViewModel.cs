@@ -14,6 +14,7 @@
 
 using System;
 using System.IO;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelConverters;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using Xamarin.Forms;
 
@@ -29,8 +30,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views.ExhibitDetail
 
         public ImageViewModel (ImagePage page, Action toggleButtonVisibility) : base(toggleButtonVisibility)
         {
-            var data = page.Image.Data;
-            Image = ImageSource.FromStream (() => new MemoryStream (data));
+            var imageData = page.Image.Data;
+            if (imageData != null)
+            {
+                Image = ImageSource.FromStream(() => new MemoryStream(imageData));
+            }
+            else
+            {
+                Image = ImageSource.FromStream(() => new MemoryStream(BackupData.BackupImageData));
+            }
             Headline = page.Image.Title;
             Description = page.Image.Description;
             BottomSheetVisible = Headline != "No Image" && !(string.IsNullOrEmpty (Headline) && string.IsNullOrEmpty (Description));
