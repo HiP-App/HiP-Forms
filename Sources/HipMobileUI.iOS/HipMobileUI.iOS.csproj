@@ -349,7 +349,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="FodyWeavers.xml" />
+    <Content Include="FodyWeavers.xml" />
     <BundleResource Include="Resources\Icon-Small-40.png" />
     <BundleResource Include="Resources\Icon-Small.png" />
     <BundleResource Include="Resources\ic_keyboard_arrow_up%403x.png" />
