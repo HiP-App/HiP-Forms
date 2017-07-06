@@ -41,13 +41,16 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             if (String.IsNullOrWhiteSpace(Email) && String.IsNullOrWhiteSpace(Password))
             {
                 DisplayEmptyEmailAndPasswordErrorMessage();
-            } else if(String.IsNullOrWhiteSpace(Email))
+            }
+            else if (String.IsNullOrWhiteSpace(Email))
             {
                 DisplayEmptyEmailErrorMessage();
-            } else if(String.IsNullOrWhiteSpace(Password))
+            }
+            else if (String.IsNullOrWhiteSpace(Password))
             {
                 DisplayEmptyPasswordErrorMessage();
-            } else 
+            }
+            else
             {
                 PerformLogin();
             }
@@ -66,10 +69,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         private async void PerformLogin()
         {
             UserDialogs.Instance.ShowLoading(Strings.LoginScreenView_Dialog_Login, MaskType.Black);
-            UserStatus userStatus = await IoCManager.Resolve<IUserManager> ().LoginUser (new User (email, password));
+            UserStatus userStatus = await IoCManager.Resolve<IUserManager>().LoginUser(new User(email, password));
             UserDialogs.Instance.HideLoading();
 
-            switch(userStatus)
+            switch (userStatus)
             {
                 case UserStatus.InCorrectUserNameandPassword:
                     DisplayWrongCredentialsErrorMessage();
