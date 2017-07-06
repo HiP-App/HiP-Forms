@@ -2,6 +2,8 @@
 using System.Windows.Input;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using Xamarin.Forms;
 using System;
 using System.Threading.Tasks;
@@ -66,6 +68,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             GoToForgotPasswordScreenView();
         }
 
+
         private async void PerformLogin()
         {
             UserDialogs.Instance.ShowLoading(Strings.LoginScreenView_Dialog_Login, MaskType.Black);
@@ -98,7 +101,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 
         private void GoToRegisterScreenView()
         {
-            //Go to RegisterScreenView here
+           mainPageViewModel.SwitchToRegisterView();
+
         }
 
         private void GoToForgotPasswordScreenView()
