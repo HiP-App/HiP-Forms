@@ -33,11 +33,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 
         public ExhibitsOverviewListItemViewModel (Exhibit exhibit, double distance = -1)
         {
-            ExhibitName = exhibit.Name;
-            Distance = distance;
-            var data = exhibit.Image.Data;
-            Image = ImageSource.FromStream (() => new MemoryStream (data));
             Exhibit = exhibit;
+            ExhibitName = Exhibit.Name;
+            Distance = distance;
+            var data = Exhibit.Image.Data;
+            Image = ImageSource.FromStream (() => new MemoryStream (data));
 
             IsDownloadButtonVisible = !Exhibit.DetailsDataLoaded;
 

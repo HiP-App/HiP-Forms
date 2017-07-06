@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
@@ -28,6 +29,23 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
         /// <param name="idForRestApi">The id for the REST API of the exhibit to be fetched</param>
         /// <returns></returns>
         Task<int> FetchNeededMediaForFullExhibit (int idForRestApi);
+
+        /// <summary>
+        /// Fetch exhibit data with prefetched media
+        /// </summary>
+        /// <param name="exhibitId">The id of the exhibit in the database</param>
+        /// <param name="requiredMedia">List of prefetched media related to the exhibit</param>
+        /// <param name="token">For cancellation</param>
+        /// <param name="listener">To update the progressbar of the downloadpage</param>
+        /// <returns></returns>
+        Task FetchFullDownloadableDataIntoDatabaseWithFetchedMedia (string exhibitId, IList<int?> requiredMedia, CancellationToken token, IProgressListener listener);
+
+        /// <summary>
+        /// Prefetch media of an exhibit for later use in a full route fetcher
+        /// </summary>
+        /// <param name="idForRestApi">The id for the REST API of the exhibit to be fetched</param>
+        /// <returns></returns>
+        Task<IList<int?>> FetchNeededMediaForFullExhibitFromRoute (int idForRestApi);
 
     }
 }

@@ -167,7 +167,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             {
                 try
                 {
-                    await fullDownloadableDataFetcher.FetchFullDownloadableDataIntoDatabase(DownloadableId, DownloadableIdForRestApi, cancellationTokenSource.Token, this, false);
+                    await fullDownloadableDataFetcher.FetchFullDownloadableDataIntoDatabase(DownloadableId, DownloadableIdForRestApi, cancellationTokenSource.Token, this);
                 }
                 catch (Exception e)
                 {

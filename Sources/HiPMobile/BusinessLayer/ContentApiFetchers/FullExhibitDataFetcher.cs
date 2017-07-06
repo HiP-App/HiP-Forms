@@ -13,6 +13,7 @@
 // limitations under the License.
 
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -21,7 +22,6 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetche
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelConverters;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos;
@@ -44,7 +44,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
         private IList<int?> requiredMedias;
         private IList<PageDto> pageItems;
         
-        public async Task FetchFullDownloadableDataIntoDatabase (string exhibitId, int idForRestApi, CancellationToken token, IProgressListener listener, bool calledFromRouteFetcher)
+        public async Task FetchFullDownloadableDataIntoDatabase (string exhibitId, int idForRestApi, CancellationToken token, IProgressListener listener)
         {
             double totalSteps = await FetchNeededMediaForFullExhibit(idForRestApi);
 
@@ -52,9 +52,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             {
                 return;
             }
-            
-            if (!calledFromRouteFetcher)
-                listener.SetMaxProgress(totalSteps);
+            listener.SetMaxProgress (totalSteps);
 
             using (var transaction = DbManager.StartTransaction())
             {
@@ -65,6 +63,33 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                 }
             }
         }
+
+        public async Task FetchFullDownloadableDataIntoDatabaseWithFetchedMedia (string exhibitId, IList<int?> requiredMedia, CancellationToken token, IProgressListener listener)
+        {
+            requiredMedias = requiredMedia;
+            try
+            {
+                using (var transaction = DbManager.StartTransaction ())
+                {
+                    await ProcessPages (exhibitId, token, listener);
+                    if (token.IsCancellationRequested)
+                    {
+                        transaction.Rollback ();
+                    }
+                }
+            }
+            catch (System.Exception e)
+            {
+                Debug.WriteLine (e.Message);
+                Debug.WriteLine (e.StackTrace);
+            }
+        }
+
+        public async Task<IList<int?>> FetchNeededMediaForFullExhibitFromRoute (int idForRestApi)
+        {
+            await FetchNeededMediaForFullExhibit (idForRestApi);
+            return requiredMedias;
+        } 
 
         public async Task<int> FetchNeededMediaForFullExhibit(int idForRestApi)
         {
