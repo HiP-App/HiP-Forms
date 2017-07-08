@@ -67,21 +67,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
         public async Task FetchFullDownloadableDataIntoDatabaseWithFetchedMedia (string exhibitId, IList<int?> requiredMedia, CancellationToken token, IProgressListener listener)
         {
             requiredMedias = requiredMedia;
-            try
+
+            using (var transaction = DbManager.StartTransaction ())
             {
-                using (var transaction = DbManager.StartTransaction ())
+                await ProcessPages (exhibitId, token, listener);
+                if (token.IsCancellationRequested)
                 {
-                    await ProcessPages (exhibitId, token, listener);
-                    if (token.IsCancellationRequested)
-                    {
-                        transaction.Rollback ();
-                    }
+                    transaction.Rollback ();
                 }
-            }
-            catch (System.Exception e)
-            {
-                Debug.WriteLine (e.Message);
-                Debug.WriteLine (e.StackTrace);
             }
         }
 

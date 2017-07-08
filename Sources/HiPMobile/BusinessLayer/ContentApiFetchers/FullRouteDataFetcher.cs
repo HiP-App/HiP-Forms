@@ -39,15 +39,17 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
         }
 
         private RouteDto routeDto;
+        private Route route;
         private IList<int?> requiredMedia;
         private List<Exhibit> missingExhibitsForRoute;
         private IList<IList<int?>> requiredMediaForExhibits;
 
         public async Task FetchFullDownloadableDataIntoDatabase (string routeId, int idForRestApi, CancellationToken token, IProgressListener listener)
         {
-            requiredMediaForExhibits = new List<IList<int?>> ();
-            routeDto = (await routesApiAccess.GetRoutes(new List<int> { idForRestApi })).Items.First(); 
-            
+            routeDto = (await routesApiAccess.GetRoutes(new List<int> { idForRestApi })).Items.First();
+            route = RouteManager.GetRoute (routeId);
+            requiredMediaForExhibits = new List<IList<int?>>();
+
             IList<Exhibit> allMissingExhibits = ExhibitManager.GetExhibits ().ToList ().FindAll (x => !x.DetailsDataLoaded);    // Exhibits not fully loaded yet
             missingExhibitsForRoute = allMissingExhibits.ToList ().FindAll (x => routeDto.Exhibits.Contains (x.IdForRestApi));  // Select those part of the route
             
@@ -63,36 +65,33 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             }
 
             listener.SetMaxProgress (totalSteps);
-            
+
+            await AddFullExhibitsToRoute(route, token, listener);   // Download all missing exhibits
+
             using (var transaction = DbManager.StartTransaction ())
             {
-                await ProcessRoute (routeId, token, listener);
+                await ProcessRoute (token, listener);      // Download audio
                 if (token.IsCancellationRequested)
                     transaction.Rollback ();
             }
-
-            var route = RouteManager.GetRoute(routeId);
-            await AddFullExhibitsToRoute (route, token, listener);
         }
         
         private int FetchNeededMediaForFullRoute ()
         {
             requiredMedia = new List<int?>();
 
-            if (routeDto.Audio.HasValue)
+            if (routeDto.Audio.HasValue && route.Audio==null)
                 requiredMedia.Add (routeDto.Audio);
 
             return requiredMedia.Count;
         }
 
-        private async Task ProcessRoute(string routeId, CancellationToken token, IProgressListener listener)
+        private async Task ProcessRoute(CancellationToken token, IProgressListener listener)
         {
             await FetchMediaData (token, listener);
             var fetchedMedia = mediaDataFetcher.CombineMediasAndFiles();
             if (token.IsCancellationRequested)
                 return;
-
-            var route = RouteManager.GetRoute (routeId);
 
             AddAudioToRoute (route, routeDto.Audio, fetchedMedia);
         }
