@@ -36,7 +36,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views {
 
         private void OnChangeAppModeTapped ()
         {
-            Navigation.StartNewNavigationStack (new CharacterSelectionPageViewModel ());
+            Navigation.StartNewNavigationStack (new CharacterSelectionPageViewModel (this));
         }
 
         async void LogoutDummy ()

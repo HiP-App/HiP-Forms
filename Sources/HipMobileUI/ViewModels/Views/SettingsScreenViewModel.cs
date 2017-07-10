@@ -45,7 +45,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views {
 
         private void OnSelectCharacterTapped ()
         {
-            Navigation.StartNewNavigationStack (new CharacterSelectionPageViewModel ());
+            Navigation.StartNewNavigationStack (new CharacterSelectionPageViewModel (this));
         }
 
         private async void RemoveAllDownloadsClicked()

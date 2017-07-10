@@ -67,7 +67,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             Settings.RepeatIntro = false;
 
             // open the character selection page
-            Navigation.StartNewNavigationStack (new CharacterSelectionPageViewModel ());
+            Navigation.StartNewNavigationStack (new CharacterSelectionPageViewModel (this));
         }
 
         /// <summary>
