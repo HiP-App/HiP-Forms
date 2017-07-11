@@ -22,6 +22,7 @@ using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using Xamarin.Forms;
 using System.ComponentModel;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views {
     /// <summary>
@@ -35,11 +36,17 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views {
         public SettingsScreenViewModel ()
         {
             RemoveAllDownloads = new Command(RemoveAllDownloadsClicked);
+            SelectCharacterCommand = new Command (OnSelectCharacterTapped);
             size =  IoCManager.Resolve<IStorageSizeProvider> ().GetDatabaseSize ().ToString () + " MB";
-
-            }
+        }
 
         public ICommand RemoveAllDownloads { get; }
+        public ICommand SelectCharacterCommand { get; }
+
+        private void OnSelectCharacterTapped ()
+        {
+            Navigation.StartNewNavigationStack (new CharacterSelectionPageViewModel (this));
+        }
 
         private async void RemoveAllDownloadsClicked()
         {
@@ -128,6 +135,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views {
                 OnPropertyChanged();
             }
         }
+
+       public string AppModeText {
+            get { return Settings.AdventurerMode ? Strings.SettingsScreenView_CharacterSelection_Text_IsAdventurer : Strings.SettingsScreenView_CharacterSelection_Text_IsProfessor; }
+       }
 
         public string Size
         {

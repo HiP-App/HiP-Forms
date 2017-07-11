@@ -99,7 +99,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             SelectedViewModel = mainScreenViewModels[4];
         }
 
-	    private void SwitchToProfileView ()
+	    public void SwitchToProfileView ()
 	    {
             mainScreenViewModels.RemoveAt(4);
             mainScreenViewModels.Insert(4, profileScreenViewModel);
@@ -113,7 +113,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 			SelectedViewModel = mainScreenViewModels[4];
 		}
 
-
+	    public void SwitchToSettingsScreenView ()
+	    {
+	        SelectedViewModel = mainScreenViewModels [2];
+	    }
 
 	    public MainPageViewModel () : this (ExhibitManager.GetExhibitSets ().FirstOrDefault ())
 	    {

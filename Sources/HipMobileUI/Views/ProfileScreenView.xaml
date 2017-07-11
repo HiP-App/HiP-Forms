@@ -20,7 +20,8 @@
 
                     <StackLayout x:Name="NameAndIcon" Grid.Row="0" Orientation="Vertical" VerticalOptions="CenterAndExpand" Padding="5,15">
                         <Image WidthRequest="200" HeightRequest="50" Aspect="AspectFit" Source="{Binding Avatar}"></Image>
-                        <Label Text="{Binding Username}" FontAttributes="Bold" FontSize="20" HorizontalTextAlignment="Center" TextColor="{StaticResource AccentColor}" Margin="5"/>
+                        <Label Text="{Binding Username}" FontAttributes="Bold" FontSize="20" HorizontalTextAlignment="Center" TextColor="{StaticResource AccentColor}"/>
+                        <Label Text="{Binding Character}" FontSize="15" HorizontalTextAlignment="Center" TextColor="{StaticResource AccentColor}"/>
                         <Label Text="{Binding EMail}" FontSize="10" HorizontalTextAlignment="Center" Margin="0"/>
                     </StackLayout>
                     <StackLayout x:Name="Scores" Grid.Row="1" Spacing="0" Orientation="Vertical" VerticalOptions="StartAndExpand" Padding="5,5,5,0">
@@ -38,6 +39,8 @@
                                TextColor="{StaticResource AccentColor}" FontAttributes="Bold" BackgroundColor="{StaticResource LightGrayColor}"/>
                     </StackLayout>
                     <StackLayout x:Name="Logout" Grid.Row="2" HorizontalOptions="Center" VerticalOptions="End" Padding="3">
+                        <Button WidthRequest="200" HeightRequest="40" BorderRadius="2" BorderColor="{StaticResource DarkGrayColor}" BorderWidth="1"
+                                Command="{Binding ChangeAppModeCommand}" Text="{helpers:Translate ProfileView_Button_Change_App_Mode}" TextColor="{StaticResource AccentDarkColor}" BackgroundColor="{StaticResource MediumGrayColor}"></Button>
                         <Button WidthRequest="200" HeightRequest="40" BorderRadius="2" BorderColor="{StaticResource DarkGrayColor}" BorderWidth="1"
                                 Command="{Binding Logout}" Text="{helpers:Translate Logout}" TextColor="{StaticResource AccentDarkColor}" BackgroundColor="{StaticResource MediumGrayColor}"></Button>
                     </StackLayout>
