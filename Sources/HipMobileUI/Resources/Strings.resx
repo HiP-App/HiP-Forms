@@ -643,8 +643,44 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   <data name="ForgotPasswordScreenView_Info" xml:space="preserve">
     <value>Kein Problem. Wir schicken dir eine E-Mail zum Zurücksetzen deines Passworts.</value>
   </data>
+  <data name="ForgotPasswordScreenView_Invalid_Email" xml:space="preserve">
+    <value>Ungültige E-Mail-Adresse</value>
+  </data>
   <data name="ForgotPasswordScreenView_Reset_Password" xml:space="preserve">
     <value>Passwort zurücksetzen</value>
+  </data>
+  <data name="ForgotPasswordScreenView_Unknown_Email" xml:space="preserve">
+    <value>Unbekannte E-Mail-Adresse. Bitte registriere dich mit deiner E-Mail-Adresse.</value>
+  </data>
+  <data name="RegisterScreenView_Email" xml:space="preserve">
+    <value>E-Mail</value>
+  </data>
+  <data name="RegisterScreenView_Password" xml:space="preserve">
+    <value>Passwort</value>
+  </data>
+  <data name="RegisterScreenView_RepeatPassword" xml:space="preserve">
+    <value>Passwort wiederholen</value>
+  </data>
+  <data name="RegisterScreenView_Register" xml:space="preserve">
+    <value>Registrieren</value>
+  </data>
+  <data name="RegisterScreenView_Error_Register_Fail" xml:space="preserve">
+    <value>Registrierung fehlgeschlagen</value>
+  </data>
+  <data name="RegisterScreenView_Alert_Description" xml:space="preserve">
+    <value>Eine E-Mail wurde Ihnen gesendet. Bitte bestätigen Sie diese E-Mail, um sich einloggen zu können.</value>
+  </data>
+  <data name="RegisterScreenView_Alert_Ok" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+  <data name="RegisterScreenView_Alert_Registered" xml:space="preserve">
+    <value>Benutzer Registrierung</value>
+  </data>
+  <data name="RegisterScreenView_Error_Empty_Email_And_Password" xml:space="preserve">
+    <value>Das E-Mail und Passwort-Eingabefeld ist leer</value>
+  </data>
+  <data name="RegisterScreenView_Error_Empty_Password" xml:space="preserve">
+    <value>Das Passwort-Eingabefeld ist leer</value>
   </data>
   <data name="ForgotPasswordScreenView_Alert_Description" xml:space="preserve">
     <value>Wir haben dir eine E-Mail mit Anweisungen zum Zurücksetzen deines Passworts geschickt</value>
@@ -707,7 +743,16 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
     <value>Icons made by &lt;a href="http://www.freepik.com" title="Freepik"&gt;Freepik&lt;/a&gt; from &lt;a href="http://www.flaticon.com" title="Flaticon"&gt;www.flaticon.com&lt;/a&gt;. Bilder erstellt von &lt;a href="http://www.freepik.com" title="Freepik"&gt;Freepik&lt;/a&gt; von &lt;a href="http://www.flaticon.com" title="Flaticon"&gt;www.flaticon.com&lt;/a&gt;.</value>
   </data>
   <data name="LicenseScreenView_CreditsImagesCharacterSelection_Title" xml:space="preserve">
-    <value>Credits der Bilder in der Avatar Auswahl</value>
+    <value>Credits der Bilder in der Avatar Auswahl und in der Profil Ansicht</value>
+  </data>
+  <data name="RegisterScreenView_Error_Empty_Email" xml:space="preserve">
+    <value>Das E-Mail-Eingabefeld ist leer</value>
+  </data>
+  <data name="RegisterScreenView_Error_Mismatch_Password" xml:space="preserve">
+    <value>Die Passwörter stimmen nicht überein</value>
+  </data>
+  <data name="RegisterScreenView_Error_Invalid_Email" xml:space="preserve">
+    <value>Ungültige E-Mail</value>
   </data>
   <data name="ExhibitDetailsPage_Distance_alert_confirm" xml:space="preserve">
     <value>OK</value>
@@ -723,5 +768,23 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   </data>
   <data name="LicenseScreenViewModel_UnlockExhibits_Title" xml:space="preserve">
     <value>Sehenswürdigkeiten freigeschaltet</value>
+  </data>
+  <data name="SettingsScreenView_CharacterSelection_Text_IsAdventurer" xml:space="preserve">
+    <value>Sie nutzen die App im Abenteurer-Modus. </value>
+  </data>
+  <data name="SettingsScreenView_CharacterSelection_Text_IsProfessor" xml:space="preserve">
+    <value>Sie nutzen die App im Professor-Modus.</value>
+  </data>
+  <data name="SettingsScreenView_CharacterSelection_Button_Text" xml:space="preserve">
+    <value>Ändern</value>
+  </data>
+  <data name="ProfileView_Adventurer" xml:space="preserve">
+    <value>Abenteurer</value>
+  </data>
+  <data name="ProfileView_Button_Change_App_Mode" xml:space="preserve">
+    <value>Charakter ändern</value>
+  </data>
+  <data name="ProfileView_Professor" xml:space="preserve">
+    <value>Professor</value>
   </data>
 </root>
