@@ -17,6 +17,7 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using Xamarin.Forms;
 using System;
 using System.Windows.Input;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelConverters;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
@@ -42,7 +43,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views.ExhibitDetail
 
                 // workaround for realm bug
                 var imageData = page.Image.Data;
-                Image = ImageSource.FromStream (() => new MemoryStream (imageData));
+                if (imageData != null)
+                {
+                    Image = ImageSource.FromStream (() => new MemoryStream (imageData));
+                }
+                else
+                {
+                    Image = ImageSource.FromStream(() => new MemoryStream(BackupData.BackupImageData));
+                }
 
                 IsDownloadButtonVisible = !Exhibit.DetailsDataLoaded;
 
