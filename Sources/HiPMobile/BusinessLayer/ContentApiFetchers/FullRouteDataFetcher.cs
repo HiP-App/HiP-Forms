@@ -42,7 +42,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
         private Route route;
         private IList<int?> requiredMedia;
         private List<Exhibit> missingExhibitsForRoute;
-        private IList<IList<int?>> requiredMediaForMissingExhibits;
+        private IList<ExhibitPagesAndMediaContainer> pagesAndMediaForMissingExhibits;
 
         public async Task FetchFullDownloadableDataIntoDatabase (string routeId, int idForRestApi, CancellationToken token, IProgressListener listener)
         {
@@ -51,7 +51,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                 return;
 
             route = RouteManager.GetRoute (routeId);
-            requiredMediaForMissingExhibits = new List<IList<int?>>();
+            pagesAndMediaForMissingExhibits = new List<ExhibitPagesAndMediaContainer> ();
 
             IList<Exhibit> allMissingExhibits = ExhibitManager.GetExhibits ().ToList ().FindAll (x => !x.DetailsDataLoaded);    // Exhibits not fully loaded yet
             missingExhibitsForRoute = allMissingExhibits.ToList ().FindAll (x => routeDto.Exhibits.Contains (x.IdForRestApi));  // Select those part of the route
@@ -60,12 +60,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
 
             foreach (var exhibit in missingExhibitsForRoute)        // Fetch media for missing exhibits and save them for later download
             {
-                var requiredMediaForExhibit = await fullExhibitDataFetcher.FetchNeededMediaForFullExhibitFromRoute(exhibit.IdForRestApi);
+                var pagesAndRequiredMediaForExhibit = await fullExhibitDataFetcher.FetchPagesAndMediaForExhibitFromRouteFetcher(exhibit.IdForRestApi);
                 if (token.IsCancellationRequested)
                     return;
 
-                requiredMediaForMissingExhibits.Add (requiredMediaForExhibit);
-                totalSteps += requiredMediaForExhibit.Count;
+                pagesAndMediaForMissingExhibits.Add (pagesAndRequiredMediaForExhibit);
+                totalSteps += pagesAndRequiredMediaForExhibit.RequiredMedia.Count;
             }
 
             listener.SetMaxProgress (totalSteps);
@@ -121,7 +121,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
         
         private async Task AddFullExhibitsToRoute (Route r, CancellationToken token, IProgressListener listener)
         {
-            var mediaListIndex = 0;
             foreach (var waypoint in r.Waypoints)
             {
                 var dbExhibit = missingExhibitsForRoute.SingleOrDefault (x => x.IdForRestApi == waypoint.Exhibit.IdForRestApi);
@@ -129,10 +128,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                 if (dbExhibit == null)
                     continue;
 
-                await fullExhibitDataFetcher.FetchFullDownloadableDataIntoDatabaseWithFetchedMedia (dbExhibit.Id, requiredMediaForMissingExhibits [mediaListIndex], token, listener);
+                var pagesAndMediaContainerForExhibit = pagesAndMediaForMissingExhibits.SingleOrDefault (x => x.ExhibitIdForRestApi == dbExhibit.IdForRestApi);
+                await fullExhibitDataFetcher.FetchFullExhibitDataIntoDatabaseWithFetchedPagesAndMedia (dbExhibit.Id, pagesAndMediaContainerForExhibit, token, listener);
                 if (token.IsCancellationRequested)
                     return;
-                mediaListIndex++;
+                pagesAndMediaForMissingExhibits.Remove (pagesAndMediaContainerForExhibit);
             }
         }
     }

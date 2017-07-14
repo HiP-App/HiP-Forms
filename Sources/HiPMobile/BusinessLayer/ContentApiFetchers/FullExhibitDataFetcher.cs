@@ -13,7 +13,6 @@
 // limitations under the License.
 
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -41,7 +40,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             this.mediaDataFetcher = mediaDataFetcher;
         }
 
-        private IList<int?> requiredMedias;
+        private IList<int?> requiredMedia;
         private IList<PageDto> pageItems;
         
         public async Task FetchFullDownloadableDataIntoDatabase (string exhibitId, int idForRestApi, CancellationToken token, IProgressListener listener)
@@ -64,9 +63,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             }
         }
 
-        public async Task FetchFullDownloadableDataIntoDatabaseWithFetchedMedia (string exhibitId, IList<int?> requiredMedia, CancellationToken token, IProgressListener listener)
+        public async Task FetchFullExhibitDataIntoDatabaseWithFetchedPagesAndMedia (string exhibitId, ExhibitPagesAndMediaContainer exhibitPagesAndMediaContainer, CancellationToken token, IProgressListener listener)
         {
-            requiredMedias = requiredMedia;
+            requiredMedia = exhibitPagesAndMediaContainer.RequiredMedia;
+            pageItems = exhibitPagesAndMediaContainer.PageDtos;
 
             using (var transaction = DbManager.StartTransaction ())
             {
@@ -78,15 +78,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             }
         }
 
-        public async Task<IList<int?>> FetchNeededMediaForFullExhibitFromRoute (int idForRestApi)
+        public async Task<ExhibitPagesAndMediaContainer> FetchPagesAndMediaForExhibitFromRouteFetcher (int idForRestApi)
         {
             await FetchNeededMediaForFullExhibit (idForRestApi);
-            return requiredMedias;
+            return new ExhibitPagesAndMediaContainer (idForRestApi, requiredMedia, pageItems);
         } 
 
         public async Task<int> FetchNeededMediaForFullExhibit(int idForRestApi)
         {
-            requiredMedias = new List<int?>();
+            requiredMedia = new List<int?>();
             pageItems = (await pagesApiAccess.GetPages(idForRestApi)).Items;
 
             // Since AppetizerPages have been loaded before, do not consider them anymore
@@ -119,7 +119,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                 pageItems.Remove(appPage);
             }
             
-            return requiredMedias.Count;
+            return requiredMedia.Count;
         }
 
         private void AddMediaId (int? mediaId)
@@ -127,9 +127,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             if (mediaId.HasValue)
             {
                 // Only add media IDs if not already in list
-                if (!requiredMedias.Contains(mediaId))
+                if (!requiredMedia.Contains(mediaId))
                 {
-                    requiredMedias.Add(mediaId);
+                    requiredMedia.Add(mediaId);
                 }
             }
         }
@@ -191,7 +191,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
 
         private async Task FetchMediaData(CancellationToken token, IProgressListener listener)
         {
-            await mediaDataFetcher.FetchMedias(requiredMedias, token, listener);
+            await mediaDataFetcher.FetchMedias(requiredMedia, token, listener);
         }
 
         private void AddContentToPage(Page dbPage, PageDto content, FetchedMediaData fetchedMedia)

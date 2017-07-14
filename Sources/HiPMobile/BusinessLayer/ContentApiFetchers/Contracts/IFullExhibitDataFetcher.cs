@@ -24,28 +24,21 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
     public interface IFullExhibitDataFetcher : IFullDownloadableDataFetcher {
 
         /// <summary>
-        /// Fetches the media associated with an exhibit
-        /// </summary>
-        /// <param name="idForRestApi">The id for the REST API of the exhibit to be fetched</param>
-        /// <returns></returns>
-        Task<int> FetchNeededMediaForFullExhibit (int idForRestApi);
-
-        /// <summary>
         /// Fetch exhibit data with prefetched media
         /// </summary>
         /// <param name="exhibitId">The id of the exhibit in the database</param>
-        /// <param name="requiredMedia">List of prefetched media related to the exhibit</param>
+        /// <param name="pagesAndMediaContainer">Container for all pages and prefetched media related to the exhibit</param>
         /// <param name="token">For cancellation</param>
         /// <param name="listener">To update the progressbar of the downloadpage</param>
         /// <returns></returns>
-        Task FetchFullDownloadableDataIntoDatabaseWithFetchedMedia (string exhibitId, IList<int?> requiredMedia, CancellationToken token, IProgressListener listener);
+        Task FetchFullExhibitDataIntoDatabaseWithFetchedPagesAndMedia (string exhibitId, ExhibitPagesAndMediaContainer pagesAndMediaContainer, CancellationToken token, IProgressListener listener);
 
         /// <summary>
-        /// Prefetch media of an exhibit for later use in a full route fetcher
+        /// Load pages for related exhibit and prefetch media of an exhibit for later use in a full route fetcher
         /// </summary>
         /// <param name="idForRestApi">The id for the REST API of the exhibit to be fetched</param>
         /// <returns></returns>
-        Task<IList<int?>> FetchNeededMediaForFullExhibitFromRoute (int idForRestApi);
+        Task<ExhibitPagesAndMediaContainer> FetchPagesAndMediaForExhibitFromRouteFetcher (int idForRestApi);
 
     }
 }

@@ -199,8 +199,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             if (!cancellationTokenSource.IsCancellationRequested)
             {
                 SetDetailsAvailable();
-                IoCManager.Resolve<IDbChangedHandler>().NotifyAll();
             }
+            IoCManager.Resolve<IDbChangedHandler>().NotifyAll();
         }
 
         void SetDetailsAvailable()
