@@ -64,6 +64,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelCo
                     }
                     existingModelObject.TextPage.Title = dto.Title;
                     existingModelObject.TextPage.Text = dto.Text;
+                    existingModelObject.TextPage.Description = dto.Description;
+                    existingModelObject.TextPage.FontFamily = dto.FontFamily;
                     break;
 
             }
