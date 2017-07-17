@@ -449,11 +449,29 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ungültige E-Mail-Adresse.
+        /// </summary>
+        public static string ForgotPasswordScreenView_Invalid_Email {
+            get {
+                return ResourceManager.GetString("ForgotPasswordScreenView_Invalid_Email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Passwort zurücksetzen.
         /// </summary>
         public static string ForgotPasswordScreenView_Reset_Password {
             get {
                 return ResourceManager.GetString("ForgotPasswordScreenView_Reset_Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unbekannte E-Mail-Adresse. Bitte registriere dich mit deiner E-Mail-Adresse..
+        /// </summary>
+        public static string ForgotPasswordScreenView_Unknown_Email {
+            get {
+                return ResourceManager.GetString("ForgotPasswordScreenView_Unknown_Email", resourceCulture);
             }
         }
         
@@ -530,7 +548,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Credits der Bilder in der Avatar Auswahl.
+        ///   Looks up a localized string similar to Credits der Bilder in der Avatar Auswahl und in der Profil Ansicht.
         /// </summary>
         public static string LicenseScreenView_CreditsImagesCharacterSelection_Title {
             get {
@@ -657,7 +675,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         ///
         ///Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz: DE 811209907
         ///
-        ///Zuständige Aufsichtsbehörde: Ministerium für Innovation, Wissenschaft, Forschung und Technologie (MIWFT [rest of string was truncated]&quot;;.
+        ///Zuständige Aufsichtsbehörde: Ministerium für Innovation, Wissenschaft, Forschung und Technolo [rest of string was truncated]&quot;;.
         /// </summary>
         public static string LicenseScreenView_Impressum_Text {
             get {
@@ -1341,6 +1359,24 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Abenteurer.
+        /// </summary>
+        public static string ProfileView_Adventurer {
+            get {
+                return ResourceManager.GetString("ProfileView_Adventurer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Charakter ändern.
+        /// </summary>
+        public static string ProfileView_Button_Change_App_Mode {
+            get {
+                return ResourceManager.GetString("ProfileView_Button_Change_App_Mode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Erfolge:.
         /// </summary>
         public static string ProfileView_Overview_Achievements {
@@ -1368,11 +1404,137 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Professor.
+        /// </summary>
+        public static string ProfileView_Professor {
+            get {
+                return ResourceManager.GetString("ProfileView_Professor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Statistik.
         /// </summary>
         public static string ProfileView_Statistic {
             get {
                 return ResourceManager.GetString("ProfileView_Statistic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Eine E-Mail wurde Ihnen gesendet. Bitte bestätigen Sie diese E-Mail, um sich einloggen zu können..
+        /// </summary>
+        public static string RegisterScreenView_Alert_Description {
+            get {
+                return ResourceManager.GetString("RegisterScreenView_Alert_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ok.
+        /// </summary>
+        public static string RegisterScreenView_Alert_Ok {
+            get {
+                return ResourceManager.GetString("RegisterScreenView_Alert_Ok", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Benutzer Registrierung.
+        /// </summary>
+        public static string RegisterScreenView_Alert_Registered {
+            get {
+                return ResourceManager.GetString("RegisterScreenView_Alert_Registered", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to E-Mail.
+        /// </summary>
+        public static string RegisterScreenView_Email {
+            get {
+                return ResourceManager.GetString("RegisterScreenView_Email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Das E-Mail-Eingabefeld ist leer.
+        /// </summary>
+        public static string RegisterScreenView_Error_Empty_Email {
+            get {
+                return ResourceManager.GetString("RegisterScreenView_Error_Empty_Email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Das E-Mail und Passwort-Eingabefeld ist leer.
+        /// </summary>
+        public static string RegisterScreenView_Error_Empty_Email_And_Password {
+            get {
+                return ResourceManager.GetString("RegisterScreenView_Error_Empty_Email_And_Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Das Passwort-Eingabefeld ist leer.
+        /// </summary>
+        public static string RegisterScreenView_Error_Empty_Password {
+            get {
+                return ResourceManager.GetString("RegisterScreenView_Error_Empty_Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ungültige E-Mail.
+        /// </summary>
+        public static string RegisterScreenView_Error_Invalid_Email {
+            get {
+                return ResourceManager.GetString("RegisterScreenView_Error_Invalid_Email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Die Passwörter stimmen nicht überein.
+        /// </summary>
+        public static string RegisterScreenView_Error_Mismatch_Password {
+            get {
+                return ResourceManager.GetString("RegisterScreenView_Error_Mismatch_Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Registrierung fehlgeschlagen.
+        /// </summary>
+        public static string RegisterScreenView_Error_Register_Fail {
+            get {
+                return ResourceManager.GetString("RegisterScreenView_Error_Register_Fail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Passwort.
+        /// </summary>
+        public static string RegisterScreenView_Password {
+            get {
+                return ResourceManager.GetString("RegisterScreenView_Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Registrieren.
+        /// </summary>
+        public static string RegisterScreenView_Register {
+            get {
+                return ResourceManager.GetString("RegisterScreenView_Register", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Passwort wiederholen.
+        /// </summary>
+        public static string RegisterScreenView_RepeatPassword {
+            get {
+                return ResourceManager.GetString("RegisterScreenView_RepeatPassword", resourceCulture);
             }
         }
         
@@ -1571,6 +1733,33 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         public static string SettingsScreenView_AutoSwitchPage_Title {
             get {
                 return ResourceManager.GetString("SettingsScreenView_AutoSwitchPage_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ändern.
+        /// </summary>
+        public static string SettingsScreenView_CharacterSelection_Button_Text {
+            get {
+                return ResourceManager.GetString("SettingsScreenView_CharacterSelection_Button_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sie nutzen die App im Abenteurer-Modus. .
+        /// </summary>
+        public static string SettingsScreenView_CharacterSelection_Text_IsAdventurer {
+            get {
+                return ResourceManager.GetString("SettingsScreenView_CharacterSelection_Text_IsAdventurer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sie nutzen die App im Professor-Modus..
+        /// </summary>
+        public static string SettingsScreenView_CharacterSelection_Text_IsProfessor {
+            get {
+                return ResourceManager.GetString("SettingsScreenView_CharacterSelection_Text_IsProfessor", resourceCulture);
             }
         }
         
