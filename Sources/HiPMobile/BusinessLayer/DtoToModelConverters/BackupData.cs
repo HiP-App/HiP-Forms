@@ -57,7 +57,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelCo
             }
         }
         
-        /** Not working; maybe take a look at it later [used in RoutesBaseDataFetcher.cs]
         private static byte[] backupImageDataTag;
         public static byte[] BackupImageDataTag
         {
@@ -79,7 +78,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelCo
                 if (backupImageTag == null)
                 {
                     var dataAccess = IoCManager.Resolve<IDataAccess>();
-                    backupImageTag = dataAccess.GetItems<Image> ().SingleOrDefault(x => x.IdForRestApi == -2);  // This image is only locally available right now
+                    backupImageTag = dataAccess.GetItems<Image> ().SingleOrDefault(x => x.IdForRestApi == -2);
                     if (backupImageTag == null)
                     {
                         backupImageTag = DbManager.CreateBusinessObject<Image>();
@@ -94,6 +93,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelCo
                 return backupImageTag;
             }
         }
-        */
+        
     }
 }

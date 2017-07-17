@@ -260,6 +260,7 @@
   <ItemGroup>
     <EmbeddedResource Include="Content\noImage2.jpg" />
     <EmbeddedResource Include="Content\noImage.jpg" />
+    <EmbeddedResource Include="Content\noImageTag.jpg" />
     <Content Include="FodyWeavers.xml">
       <SubType>Designer</SubType>
     </Content>

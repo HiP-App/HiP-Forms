@@ -202,7 +202,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                         }
                         else
                         {
-                            dbTag.Image = BackupData.BackupImage;
+                            dbTag.Image = BackupData.BackupImageTag;
                         }
                     }
                 }
