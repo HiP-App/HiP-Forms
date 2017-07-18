@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System.Text.RegularExpressions;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos;
 
@@ -25,7 +26,16 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelCo
             existingModelObject.Timestamp = dto.Timestamp;
 
             existingModelObject.Title = dto.Title;
-            existingModelObject.Description = dto.Description;
+            // Necessary for iOS
+            if (dto.Description != null)
+            {
+                existingModelObject.Description = Regex.Unescape (dto.Description);
+            }
+            else
+            {
+                existingModelObject.Description = dto.Description;
+            }
+            
         }
 
     }
