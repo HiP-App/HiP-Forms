@@ -45,8 +45,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Contracts
         {
             if (defaultRouteReachability == null)
             {
-                var ipAddress = new IPAddress(0);
-                defaultRouteReachability = new NetworkReachability(ipAddress.MapToIPv6());
+                defaultRouteReachability = new NetworkReachability("google.com");
                 defaultRouteReachability.Schedule(CFRunLoop.Current, CFRunLoop.ModeDefault);
             }
             return defaultRouteReachability.TryGetFlags(out flags) && IsReachableWithoutRequiringConnection(flags);
