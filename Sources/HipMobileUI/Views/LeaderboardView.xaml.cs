@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,6 +17,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
         public LeaderboardView()
         {
             InitializeComponent();
+            ScrollToOwnRanking ();
+        }
+
+        private async void ScrollToOwnRanking ()
+        {
+            await Task.Delay (100);
+            LeaderboardListView.ScrollTo (LeaderboardListView.SelectedItem, ScrollToPosition.MakeVisible, false);
         }
     }
 }
