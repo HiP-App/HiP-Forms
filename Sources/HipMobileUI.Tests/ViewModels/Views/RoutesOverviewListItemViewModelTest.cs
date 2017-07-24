@@ -24,7 +24,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Views
     [TestFixture]
     public class RoutesOverviewListItemViewModelTest {
 
-        [Test, NUnit.Framework.Category("UnitTest")]
+        [Test, Category("UnitTest")]
         public void GetRouteDistanceText_FormatedText()
         {
             var sut = CreateSystemUnderTest();
@@ -33,7 +33,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Views
             Assert.AreEqual ("10 Kilometer", distanceText);
         }
 
-        [Test, NUnit.Framework.Category("UnitTest")]
+        [Test, Category("UnitTest")]
         public void GetRouteDurationText_FormatedText()
         {
             var sut = CreateSystemUnderTest();
@@ -42,7 +42,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Views
             Assert.AreEqual("8 Minuten", distanceText);
         }
 
-        [Test, NUnit.Framework.Category("UnitTest")]
+        [Test, Category("UnitTest")]
         public void Creation_PropertiesFilled ()
         {
             var sut = CreateSystemUnderTest ();

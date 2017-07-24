@@ -111,7 +111,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages {
         }
 
         /// <summary>
-        /// Called when the page is popped from the navigation stack(Android&iOS) or the app is about to start sleeping(display turned off, app went to background9(only Android)
+        /// Called when the page is popped from the navigation stack(Android& iOS) or the app is about to start sleeping(display turned off, app went to background9(only Android)
         /// </summary>
         protected override void OnDisappearing ()
         {

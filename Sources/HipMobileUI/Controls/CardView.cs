@@ -24,12 +24,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Controls
         public CardView()
         {
             Padding = 0;
-            if (Device.OS == TargetPlatform.iOS)
-            {
-                HasShadow = false;
-                OutlineColor = Color.Transparent;
-                BackgroundColor = Color.Transparent;
-            }
+            if (Device.RuntimePlatform == Device.iOS)
+                return;
+            HasShadow = false;
+            OutlineColor = Color.Transparent;
+            BackgroundColor = Color.Transparent;
         }
     }
 }

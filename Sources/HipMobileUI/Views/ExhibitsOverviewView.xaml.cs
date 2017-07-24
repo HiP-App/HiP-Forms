@@ -37,23 +37,23 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
                 if (deviceOrientation != DeviceOrientation.Portrait)
                 {
                     // portrait mode
-                    this.Grid.RowDefinitions.Clear();
-                    this.Grid.ColumnDefinitions.Clear();
+                    Grid.RowDefinitions.Clear();
+                    Grid.ColumnDefinitions.Clear();
 
-                    this.Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.5, GridUnitType.Star) });
+                    Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.5, GridUnitType.Star) });
                     if (Label.IsVisible)
                     {
                         // hide empty list and show hint label
-                        this.Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0, GridUnitType.Star) });
-                        this.Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.5, GridUnitType.Star) });
+                        Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0, GridUnitType.Star) });
+                        Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.5, GridUnitType.Star) });
                     }
                     else
                     {
                         // show list and hide hint label
-                        this.Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.5, GridUnitType.Star) });
-                        this.Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0, GridUnitType.Star) });
+                        Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.5, GridUnitType.Star) });
+                        Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0, GridUnitType.Star) });
                     }
-                    this.Grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+                    Grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
 
                     Grid.SetRow(Map, 0);
                     Grid.SetRow(List, 1);
@@ -70,22 +70,22 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
                 if (deviceOrientation != DeviceOrientation.Landscape)
                 {
                     // landscape mode
-                    this.Grid.RowDefinitions.Clear();
-                    this.Grid.ColumnDefinitions.Clear();
+                    Grid.RowDefinitions.Clear();
+                    Grid.ColumnDefinitions.Clear();
 
-                    this.Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
-                    this.Grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(0.5, GridUnitType.Star) });
+                    Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
+                    Grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(0.5, GridUnitType.Star) });
                     if (Label.IsVisible)
                     {
                         // hide empty list and show hint label
-                        this.Grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(0, GridUnitType.Star) });
-                        this.Grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(0.5, GridUnitType.Star) });
+                        Grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(0, GridUnitType.Star) });
+                        Grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(0.5, GridUnitType.Star) });
                     }
                     else
                     {
                         // show list and hide hint label
-                        this.Grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(0.5, GridUnitType.Star) });
-                        this.Grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(0, GridUnitType.Star) });
+                        Grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(0.5, GridUnitType.Star) });
+                        Grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(0, GridUnitType.Star) });
                     }
 
                     Grid.SetRow(Map, 0);

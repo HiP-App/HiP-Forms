@@ -68,7 +68,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Authent
             {
             FormUrlEncodedContent content = new FormUrlEncodedContent (new[]
             {
-            new KeyValuePair<string, string> (Constants.UserName, userName),
+            new KeyValuePair<string, string> (Constants.UserName, userName)
             });
             var result = await clientApiClient.PostRequestFormBased (ServerEndpoints.ForgotPasswordUrl, content);
             return await result.Content.ReadAsStringAsync ();

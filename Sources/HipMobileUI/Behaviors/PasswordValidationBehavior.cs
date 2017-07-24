@@ -29,10 +29,10 @@ public class ComparisonBehavior : Behavior<Entry>
 
 	public Entry CompareToEntry
 	{
-		get { return (Entry)base.GetValue(CompareToEntryProperty); }
+		get { return (Entry)GetValue(CompareToEntryProperty); }
 		set
 		{
-			base.SetValue(CompareToEntryProperty, value);
+			SetValue(CompareToEntryProperty, value);
 			if (CompareToEntry != null)
 				CompareToEntry.TextChanged -= baseValue_changed;
 			value.TextChanged += baseValue_changed;
@@ -48,8 +48,8 @@ public class ComparisonBehavior : Behavior<Entry>
 
 	public bool IsValid
 	{
-		get { return (bool)base.GetValue(IsValidProperty); }
-		private set { base.SetValue(IsValidPropertyKey, value); }
+		get { return (bool)GetValue(IsValidProperty); }
+		private set { SetValue(IsValidPropertyKey, value); }
 	}
 	protected override void OnAttachedTo(Entry bindable)
 	{

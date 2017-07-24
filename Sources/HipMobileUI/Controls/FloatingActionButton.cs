@@ -32,7 +32,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Controls
 
         public FloatingActionButton ()
         {
-            if (Device.OS == TargetPlatform.iOS)
+            if (Device.RuntimePlatform == Device.iOS)
             {
                 // on iOS set the size manually
                 WidthRequest = IosSize;

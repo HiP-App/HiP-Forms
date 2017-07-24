@@ -57,8 +57,8 @@
                                                       VerticalOptions="CenterAndExpand" DownsampleToViewSize="True" WidthRequest="70" HeightRequest="70" Grid.Row="0" Grid.Column="0">
                                     <controls1:FadeInImage.FadeInTime>
                                         <OnPlatform x:TypeArguments="x:Int32">
-                                            <OnPlatform.Android>500</OnPlatform.Android>
-                                            <OnPlatform.iOS>0</OnPlatform.iOS>
+                                            <On Platform="Android" Value="500" />
+                                            <On Platform="iOS" Value="0" />
                                         </OnPlatform>
                                     </controls1:FadeInImage.FadeInTime>
                                     <ff:CachedImage.Transformations>

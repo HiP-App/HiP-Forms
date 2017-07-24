@@ -30,7 +30,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Map {
 
         public ViaPointInfoWindow (int layoutResId, MapView mapView, Context context) : base (layoutResId, mapView)
         {
-            Button infoButton = this.View.FindViewById<Button> (Resource.Id.bubble_info);
+            Button infoButton = View.FindViewById<Button> (Resource.Id.bubble_info);
 
             infoButton.Click += (sender, e) => {
                 if (markerId != null)

@@ -9,6 +9,6 @@
         NetworkConnectionFailed,
         Registered,
         UnkownError,
-        PasswordResetEmailSent,
+        PasswordResetEmailSent
         }
     }

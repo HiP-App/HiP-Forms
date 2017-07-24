@@ -62,7 +62,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
                 absoluteLayout.Children.Add(BottomSheetContentView, new Rectangle(0, height - 64, width, 64));
 
                 double fabSize;
-                if (Device.OS == TargetPlatform.iOS)
+                if (Device.RuntimePlatform == Device.iOS)
                 {
                     fabSize = FloatingActionButton.IosSize;
                 }

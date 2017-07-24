@@ -70,7 +70,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             allMedias = await mediasApiAccess.GetIds();
             if (token.IsCancellationRequested)
             {
-                return;
             }
             //allTags = await tagsApiAccess.GetIds();
         }

@@ -118,6 +118,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Routing {
         /// <summary>
         ///     This method calculates one route from several waypoints
         /// </summary>
+        /// <param name="id"></param>
         /// <param name="userPosition">position of user</param>
         /// <returns>IList GeoLocation</returns>
         public IList<GeoLocation> CreateRouteWithSeveralWaypoints (string id, GeoLocation userPosition=null)

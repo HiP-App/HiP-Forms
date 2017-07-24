@@ -341,7 +341,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Controls
 
         private void AddSwipeGestureListener(Layout layout)
         {
-            if (Device.OS == TargetPlatform.Android)
+            if (Device.RuntimePlatform == Device.iOS)
             {
                 // on android recursively add the gesture recognizer to all childs
                 AddGestureRecognizer(layout, swipeGestureRecognizer);
@@ -380,7 +380,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Controls
             }
 
             double dx;
-            if (Device.OS == TargetPlatform.Android)
+            if (Device.RuntimePlatform == Device.iOS)
             {
                 // calculate the offset when the slider would be moved
                 dx = slider.TranslationX + panUpdatedEventArgs.TotalX;
@@ -401,7 +401,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Controls
                 dx = ItemWidth / 2 - slider.Width;
             }
 
-            if (Device.OS == TargetPlatform.Android)
+            if (Device.RuntimePlatform == Device.iOS)
             {
                 // use an animation for smooth scrolling
                 ViewExtensions.CancelAnimations(slider);
