@@ -72,8 +72,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
                 OverviewGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(0.5, GridUnitType.Star) });
                 OverviewGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(0.5, GridUnitType.Star) });
 
-                OverviewGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.8, GridUnitType.Star) });
-                OverviewGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.2, GridUnitType.Star) });
+                OverviewGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.6, GridUnitType.Star) });
+                OverviewGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.4, GridUnitType.Star) });
 
                 Grid.SetColumn(NameAndIcon, 0);
                 Grid.SetColumn(Scores, 1);

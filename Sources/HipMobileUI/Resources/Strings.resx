@@ -743,7 +743,7 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
     <value>Icons made by &lt;a href="http://www.freepik.com" title="Freepik"&gt;Freepik&lt;/a&gt; from &lt;a href="http://www.flaticon.com" title="Flaticon"&gt;www.flaticon.com&lt;/a&gt;. Bilder erstellt von &lt;a href="http://www.freepik.com" title="Freepik"&gt;Freepik&lt;/a&gt; von &lt;a href="http://www.flaticon.com" title="Flaticon"&gt;www.flaticon.com&lt;/a&gt;.</value>
   </data>
   <data name="LicenseScreenView_CreditsImagesCharacterSelection_Title" xml:space="preserve">
-    <value>Credits der Bilder in der Avatar Auswahl</value>
+    <value>Credits der Bilder in der Avatar Auswahl und in der Profil Ansicht</value>
   </data>
   <data name="RegisterScreenView_Error_Empty_Email" xml:space="preserve">
     <value>Das E-Mail-Eingabefeld ist leer</value>
@@ -771,5 +771,23 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   </data>
   <data name="MainPageViewModel_Leaderboard" xml:space="preserve">
     <value>Rangliste</value>
+  </data>
+  <data name="SettingsScreenView_CharacterSelection_Text_IsAdventurer" xml:space="preserve">
+    <value>Sie nutzen die App im Abenteurer-Modus. </value>
+  </data>
+  <data name="SettingsScreenView_CharacterSelection_Text_IsProfessor" xml:space="preserve">
+    <value>Sie nutzen die App im Professor-Modus.</value>
+  </data>
+  <data name="SettingsScreenView_CharacterSelection_Button_Text" xml:space="preserve">
+    <value>Ändern</value>
+  </data>
+  <data name="ProfileView_Adventurer" xml:space="preserve">
+    <value>Abenteurer</value>
+  </data>
+  <data name="ProfileView_Button_Change_App_Mode" xml:space="preserve">
+    <value>Charakter ändern</value>
+  </data>
+  <data name="ProfileView_Professor" xml:space="preserve">
+    <value>Professor</value>
   </data>
 </root>

@@ -20,6 +20,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
         private double thisWidth, thisHeight;
         private DeviceOrientation deviceOrientation;
 
+        private CharacterSelectionPageViewModel ViewModel => ((CharacterSelectionPageViewModel)BindingContext);
+
         public CharacterSelectionPage()
         {
             InitializeComponent();
@@ -29,11 +31,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
             // hide the status bar for this page
             IStatusBarController statusBarController = IoCManager.Resolve<IStatusBarController>();
             statusBarController.HideStatusBar();
-        }
-
-        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
-        {
-
         }
 
         protected override void OnSizeAllocated(double width, double height)
@@ -80,7 +77,16 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
 
                 deviceOrientation = DeviceOrientation.Landscape;
             }
+        }
 
+        protected override bool OnBackButtonPressed()
+        {
+            //The user cannot go back when he has to select the character on the first app start
+            if (ViewModel.ParentViewModel.GetType () != typeof (UserOnboardingPageViewModel))
+            {
+                ViewModel.SwitchToNextPage ();
+            }
+            return true;
         }
     }
 }

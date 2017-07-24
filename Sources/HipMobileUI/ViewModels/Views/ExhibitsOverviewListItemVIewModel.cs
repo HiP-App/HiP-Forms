@@ -33,14 +33,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 
         public ExhibitsOverviewListItemViewModel (Exhibit exhibit, double distance = -1)
         {
-            ExhibitName = exhibit.Name;
-            Distance = distance;
-            var data = exhibit.Image.Data;
-            Image = ImageSource.FromStream (() => new MemoryStream (data));
             Exhibit = exhibit;
+            ExhibitName = Exhibit.Name;
+            Distance = distance;
+            var data = Exhibit.Image.Data;
+            Image = ImageSource.FromStream (() => new MemoryStream (data));
 
-            //using (DbManager.StartTransaction())
-                //Exhibit.DetailsDataLoaded = false;
             IsDownloadButtonVisible = !Exhibit.DetailsDataLoaded;
 
             DownloadCommand = new Command(OpenDownloadDialog);
@@ -51,7 +49,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         private double distance;
         private ImageSource image;
         private Boolean isDownloadButtonVisible;
-        private ExhibitRouteDownloadViewModel downloadPage;
+        private ExhibitRouteDownloadPageViewModel downloadPage;
 
         /// <summary>
         /// The name of the exhibit.
@@ -141,7 +139,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 
         private async void OpenDownloadDialog()
         {
-            downloadPage = new ExhibitRouteDownloadViewModel(Exhibit, this);
+            downloadPage = new ExhibitRouteDownloadPageViewModel(Exhibit, this);
             await Navigation.PushAsync(downloadPage);
         }
 

@@ -18,35 +18,35 @@ using System.IO;
 using System.Threading;
 using System.Windows.Input;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers.Contracts;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
-using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
 using Xamarin.Forms;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views.ExhibitDetails;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
+namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 {
-    class ExhibitRouteDownloadPageViewModel : NavigationViewModel, IProgressListener
-    {
+    public class ExhibitRouteDownloadViewModel : NavigationViewModel, IProgressListener {
 
-        private IDownloadable downloadable;
-        public ExhibitRouteDownloadPageViewModel(IDownloadable downloadable, IDownloadableListItemViewModel downloadableListItemViewModel)
+        private readonly string downloadableId;
+        private readonly int downloadableIdForRestApi;
+        private readonly DownloadableType type;
+
+        public ExhibitRouteDownloadViewModel (IDownloadable downloadable, IDownloadableListItemViewModel downloadableListItemViewModel)
         {
-            this.downloadable = downloadable;
-            DownloadableId = downloadable.Id;
-            DownloadableIdForRestApi = downloadable.IdForRestApi;
+            downloadableId = downloadable.Id;
+            downloadableIdForRestApi = downloadable.IdForRestApi;
             DownloadableName = downloadable.Name;
             DownloadableDescription = downloadable.Description;
+            type = downloadable.Type;
 
             Message = Strings.DownloadDetails_Text_Part1 + DownloadableName + Strings.DownloadDetails_Text_Part2;
             var data = downloadable.Image.Data;
             Image = ImageSource.FromStream(() => new MemoryStream(data));
             DownloadableListItemViewModel = downloadableListItemViewModel;
-
+            
             CancelCommand = new Command(CancelDownload);
             GoToDetailsCommand = new Command(GoToDetails);
             GoToOverviewCommand = new Command(CloseDownloadPage);
@@ -69,20 +69,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             set { SetProperty(ref downloadableName, value); }
         }
 
-        private string downloadableId;
-        public string DownloadableId
-        {
-            get { return downloadableId; }
-            set { SetProperty(ref downloadableId, value); }
-        }
-
-        private int downloadableIdForRestApi;
-        public int DownloadableIdForRestApi
-        {
-            get { return downloadableIdForRestApi; }
-            set { SetProperty(ref downloadableIdForRestApi, value); }
-        }
-
         private string downloadableDescription;
         public string DownloadableDescription
         {
@@ -103,7 +89,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             get { return image; }
             set { SetProperty(ref image, value); }
         }
-
+        
         private double loadingProgress;
         public double LoadingProgress
         {
@@ -115,14 +101,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         public bool DownloadFinished
         {
             get { return downloadFinished; }
-            set { SetProperty(ref downloadFinished, value); }
+            set { SetProperty (ref downloadFinished, value); }
         }
 
         private bool downloadPending;
         public bool DownloadPending
         {
             get { return downloadPending; }
-            set { SetProperty(ref downloadPending, value); }
+            set { SetProperty (ref downloadPending, value); }
         }
 
         private ICommand startDownload;
@@ -135,39 +121,43 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         public ICommand GoToOverviewCommand { get; }
         public ICommand GoToDetailsCommand { get; }
 
-        void CancelDownload ()
+        private void CancelDownload ()
         {
             cancellationTokenSource?.Cancel();
             CloseDownloadPage ();
         }
 
-        void CloseDownloadPage()
+        private void CloseDownloadPage ()
         {
-            DownloadableListItemViewModel.CloseDownloadPage();
+            DownloadableListItemViewModel.CloseDownloadPage ();
         }
 
-        void GoToDetails()
+        private void GoToDetails ()
         {
-            DownloadableListItemViewModel.OpenDetailsView(DownloadableId);
+            DownloadableListItemViewModel.OpenDetailsView (downloadableId);
         }
 
-        async void DownloadData()
+        private async void DownloadData ()
         {
             string messageToShow = null;
             string titleToShow = null;
             var networkAccessStatus = IoCManager.Resolve<INetworkAccessChecker>().GetNetworkAccessStatus();
             IFullDownloadableDataFetcher fullDownloadableDataFetcher;
 
-            if (downloadable.Type == DownloadableType.Exhibit)
-                fullDownloadableDataFetcher = IoCManager.Resolve<IFullExhibitDataFetcher>();
+            if (type == DownloadableType.Exhibit)
+                fullDownloadableDataFetcher = IoCManager.Resolve<IFullExhibitDataFetcher> ();
             else
-                fullDownloadableDataFetcher = IoCManager.Resolve<IFullRouteDataFetcher>();
+                fullDownloadableDataFetcher = IoCManager.Resolve<IFullRouteDataFetcher> ();
 
             if (networkAccessStatus != NetworkAccessStatus.NoAccess)
             {
                 try
                 {
-                    await fullDownloadableDataFetcher.FetchFullDownloadableDataIntoDatabase(DownloadableId, DownloadableIdForRestApi, cancellationTokenSource.Token, this);
+                    await fullDownloadableDataFetcher.FetchFullDownloadableDataIntoDatabase (downloadableId, downloadableIdForRestApi, cancellationTokenSource.Token, this, false);
+                    if (!cancellationTokenSource.IsCancellationRequested)
+                    {
+                        SetDetailsAvailable();
+                    }
                 }
                 catch (Exception e)
                 {
@@ -193,24 +183,18 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             if (messageToShow != null)
             {
                 await Navigation.DisplayAlert(titleToShow, messageToShow, "OK");
-                CloseDownloadPage();
+                CloseDownloadPage ();
             }
-
-            if (!cancellationTokenSource.IsCancellationRequested)
-            {
-                SetDetailsAvailable();
-            }
-            IoCManager.Resolve<IDbChangedHandler>().NotifyAll();
         }
 
-        void SetDetailsAvailable()
+        private void SetDetailsAvailable ()
         {
             DownloadPending = false;
             DownloadFinished = !DownloadPending;
             DownloadableListItemViewModel.SetDetailsAvailable (DownloadFinished);
 
             //Close DownloadPage directly if download was started from the AppetizerView
-            if(DownloadFinished && (DownloadableListItemViewModel.GetType() == typeof(AppetizerViewModel)))
+            if(DownloadFinished && DownloadableListItemViewModel.GetType() == typeof(AppetizerViewModel))
             {
                 CloseDownloadPage();
             }
@@ -222,7 +206,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             StartDownload.Execute(null);
         }
 
-        public override void OnDisappearing()
+        public override void OnDisappearing ()
         {
             base.OnDisappearing ();
             cancellationTokenSource?.Cancel();
@@ -231,20 +215,20 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         private double maximumProgress;
         private double currentProgress;
 
-        public void ProgressOneStep()
+        public void ProgressOneStep ()
         {
             currentProgress++;
-            LoadingProgress = currentProgress / maximumProgress;
+            LoadingProgress = currentProgress/maximumProgress;
         }
 
-        public void SetMaxProgress(double maxProgress)
+        public void SetMaxProgress (double maxProgress)
         {
             maximumProgress = maxProgress;
         }
 
         public void UpdateProgress(double newProgress, double maxProgress)
         {
-            LoadingProgress = newProgress / maxProgress;
+            LoadingProgress = newProgress/maxProgress;
         }
     }
 }

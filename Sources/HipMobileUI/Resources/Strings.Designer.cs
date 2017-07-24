@@ -548,7 +548,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Credits der Bilder in der Avatar Auswahl.
+        ///   Looks up a localized string similar to Credits der Bilder in der Avatar Auswahl und in der Profil Ansicht.
         /// </summary>
         public static string LicenseScreenView_CreditsImagesCharacterSelection_Title {
             get {
@@ -1368,6 +1368,24 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Abenteurer.
+        /// </summary>
+        public static string ProfileView_Adventurer {
+            get {
+                return ResourceManager.GetString("ProfileView_Adventurer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Charakter ändern.
+        /// </summary>
+        public static string ProfileView_Button_Change_App_Mode {
+            get {
+                return ResourceManager.GetString("ProfileView_Button_Change_App_Mode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Erfolge:.
         /// </summary>
         public static string ProfileView_Overview_Achievements {
@@ -1391,6 +1409,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         public static string ProfileView_Overview_Score {
             get {
                 return ResourceManager.GetString("ProfileView_Overview_Score", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Professor.
+        /// </summary>
+        public static string ProfileView_Professor {
+            get {
+                return ResourceManager.GetString("ProfileView_Professor", resourceCulture);
             }
         }
         
@@ -1715,6 +1742,33 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         public static string SettingsScreenView_AutoSwitchPage_Title {
             get {
                 return ResourceManager.GetString("SettingsScreenView_AutoSwitchPage_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ändern.
+        /// </summary>
+        public static string SettingsScreenView_CharacterSelection_Button_Text {
+            get {
+                return ResourceManager.GetString("SettingsScreenView_CharacterSelection_Button_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sie nutzen die App im Abenteurer-Modus. .
+        /// </summary>
+        public static string SettingsScreenView_CharacterSelection_Text_IsAdventurer {
+            get {
+                return ResourceManager.GetString("SettingsScreenView_CharacterSelection_Text_IsAdventurer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sie nutzen die App im Professor-Modus..
+        /// </summary>
+        public static string SettingsScreenView_CharacterSelection_Text_IsProfessor {
+            get {
+                return ResourceManager.GetString("SettingsScreenView_CharacterSelection_Text_IsProfessor", resourceCulture);
             }
         }
         

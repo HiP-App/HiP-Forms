@@ -312,6 +312,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 			IoCManager.RegisterType<IFullExhibitDataFetcher, FullExhibitDataFetcher> ();
             IoCManager.RegisterType<IRoutesBaseDataFetcher, RoutesBaseDataFetcher>();
             IoCManager.RegisterType<IBaseDataFetcher, BaseDataFetcher>();
+            IoCManager.RegisterType<IFullRouteDataFetcher, FullRouteDataFetcher> ();
 
             IoCManager.RegisterInstance(typeof(INearbyExhibitManager), new NearbyExhibitManager());
             IoCManager.RegisterInstance(typeof(INearbyRouteManager), new NearbyRouteManager());

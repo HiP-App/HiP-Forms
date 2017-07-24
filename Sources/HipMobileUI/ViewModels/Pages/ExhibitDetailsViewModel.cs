@@ -32,14 +32,13 @@ using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views.ExhibitDetails;
 using Xamarin.Forms;
 using Page = PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.Page;
 using Settings = PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers.Settings;
-using System;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
     public class ExhibitDetailsViewModel : NavigationViewModel, IDbChangedObserver
     {
         private ExhibitSubviewViewModel selectedView;
         private AudioToolbarViewModel audioToolbar;
-
+        
         private Exhibit exhibit; 
         private readonly IList<Page> pages;
         private ICommand nextViewCommand;
@@ -100,7 +99,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
             PreviousViewCommand = new Command (GotoPreviousView);
             ShowAudioToolbarCommand = new Command (SwitchAudioToolbarVisibleState);
             ShowAdditionalInformationCommand = new Command (ShowAdditionalInformation);
-
+            
             var dbChangedHandler = IoCManager.Resolve<IDbChangedHandler>();
             dbChangedHandler.AddObserver(this);
         }
@@ -140,7 +139,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
         }
 
         private const int NavigationButtonsToggleDelay = 2000;
-        private string id;
 
         /// <summary>
         /// Toggles the visibility of then navigation buttons after <see cref="NavigationButtonsToggleDelay"/> milliseconds
@@ -204,9 +202,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
         /// Go to the next available view.
         /// </summary>
         /// <returns></returns>
-    
-
-
         private async Task GotoNextView ()
         {
             if (currentViewIndex < pages.Count - 1)
@@ -395,7 +390,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
         }
 
         #region properties
-
+        
         public Exhibit Exhibit
         {
             get { return exhibit; }
