@@ -70,6 +70,7 @@
     <Compile Include="BusinessLayer\DtoToModelConverters\MediaToAudioConverter.cs" />
     <Compile Include="BusinessLayer\DtoToModelConverters\MediaToImageConverter.cs" />
     <Compile Include="BusinessLayer\DtoToModelConverters\PageConverter.cs" />
+    <Compile Include="BusinessLayer\Models\ModelClasses\Ranking.cs" />
     <Compile Include="BusinessLayer\Models\User\User.cs" />
     <Compile Include="BusinessLayer\UserManagement\UserManager.cs" />
     <Compile Include="BusinessLayer\Models\User\UserStatus.cs" />
@@ -249,8 +250,8 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-	<EmbeddedResource Include="Content\noImage2.jpg" />
-	<EmbeddedResource Include="Content\noImage.jpg" />
+    <EmbeddedResource Include="Content\noImage2.jpg" />
+    <EmbeddedResource Include="Content\noImage.jpg" />
     <Content Include="FodyWeavers.xml">
       <SubType>Designer</SubType>
     </Content>

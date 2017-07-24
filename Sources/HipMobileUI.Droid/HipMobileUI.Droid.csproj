@@ -436,6 +436,11 @@
     <AndroidResource Include="Resources\drawable-mdpi\ic_account_circle.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\ic_account_circle.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\ic_account_circle.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_equalizer.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_equalizer.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_equalizer.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_equalizer.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_equalizer.png" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
