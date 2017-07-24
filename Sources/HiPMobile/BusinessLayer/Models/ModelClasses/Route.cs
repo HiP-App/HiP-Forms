@@ -59,8 +59,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 
 		public virtual Audio Audio{ get; set; }
 
+        public DownloadableType Type { get { return DownloadableType.Route; } }
+
         // Constructor
-	    public Route ()
+        public Route ()
 	    {
 	        
 	    }

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Pages.ExhibitRouteDownloadView"
+             x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Pages.ExhibitRouteDownloadPage"
              Title="{Binding DownloadableName}"
              xmlns:effects="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Effects;assembly=HipMobileUI">
     <ContentPage.Content>

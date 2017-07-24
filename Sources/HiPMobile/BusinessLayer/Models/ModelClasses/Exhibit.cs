@@ -56,15 +56,18 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
         public DateTimeOffset? LastNearbyTime { get; set; }
 
         public virtual Boolean DetailsDataLoaded { get; set; }
-
+        
+        public DownloadableType Type { get { return DownloadableType.Exhibit; }}
+        
         public virtual bool Unlocked { get; set; }
 
-        // Contructor
+        // Constructor
         public Exhibit(){
 		}
 
         public virtual int IdForRestApi { get; set; }
         public virtual DateTimeOffset Timestamp { get; set; }
-    }
+
+	}
 }
 
