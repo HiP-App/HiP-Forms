@@ -436,6 +436,9 @@
     <BundleResource Include="Resources\ic_account_circle%403x.png" />
     <BundleResource Include="Resources\ic_account_circle%402x.png" />
     <BundleResource Include="Resources\ic_account_circle.png" />
+    <BundleResource Include="Resources\ic_equalizer%403x.png" />
+    <BundleResource Include="Resources\ic_equalizer.png" />
+    <BundleResource Include="Resources\ic_equalizer%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Resources\MapAnnotations.xcassets\AppIcons.appiconset\Contents.json">
