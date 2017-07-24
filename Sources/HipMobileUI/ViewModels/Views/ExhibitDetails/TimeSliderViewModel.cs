@@ -41,7 +41,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views.ExhibitDetail
                 {
                     Images.Add(timesliderPageImage.GetImageSource());
                     texts.Add(timesliderPageImage.Description);
-                    Years.Add(timesliderPage.Dates[i].Value.ToString());
+                    if (timesliderPage.HideYearNumbers == false)
+                    {
+                        Years.Add(timesliderPage.Dates[i].Value.ToString());
+                    }
                 }
             }
 

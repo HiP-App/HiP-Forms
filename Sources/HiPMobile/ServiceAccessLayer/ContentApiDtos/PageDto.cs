@@ -44,5 +44,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
         public string Status { get; set; }
 
         public DateTimeOffset Timestamp { get; set; }
+
+        public string Description { get; set; }
+
+        public string FontFamily { get; set; }
+
     }
 }

@@ -40,8 +40,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 		public virtual bool? HideYearNumbers{ get; set; }
 
 		//Associations
-		public virtual Audio Audio{ get; set; }
-
 		public virtual IList<Image> Images{ get; }
 
 		// Contructor

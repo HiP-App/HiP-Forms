@@ -12,7 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System;
 using System.Linq;
+using System.Text.RegularExpressions;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos;
@@ -33,7 +35,16 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelCo
                     {
                         existingModelObject.AppetizerPage = DbManager.CreateBusinessObject<AppetizerPage>();
                     }
-                    existingModelObject.AppetizerPage.Text = dto.Text;
+                    // Necessary for iOS
+                    if (dto.Text != null)
+                    {
+                        existingModelObject.AppetizerPage.Text = Regex.Unescape (dto.Text);
+                    }
+                    else
+                    {
+                        existingModelObject.AppetizerPage.Text = dto.Text;
+                    }
+                    
 
                     break;
                 case PageTypeDto.ImagePage:
@@ -49,7 +60,16 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelCo
                     }
                     existingModelObject.TimeSliderPage.HideYearNumbers = dto.HideYearNumbers;
                     existingModelObject.TimeSliderPage.Title = dto.Title;
-                    existingModelObject.TimeSliderPage.Text = dto.Text;
+                    // Necessary for iOS
+                    if (dto.Text != null)
+                    {
+                        existingModelObject.TimeSliderPage.Text = Regex.Unescape (dto.Text);
+                    }
+                    else
+                    {
+                        existingModelObject.TimeSliderPage.Text = dto.Text;
+                    }
+                    
                     foreach (var image in dto.Images)
                     {
                         var longElement = DbManager.CreateBusinessObject<LongElement>();
@@ -63,7 +83,25 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelCo
                         existingModelObject.TextPage = DbManager.CreateBusinessObject<TextPage>();
                     }
                     existingModelObject.TextPage.Title = dto.Title;
-                    existingModelObject.TextPage.Text = dto.Text;
+                    // Necessary for iOS
+                    if (dto.Text != null)
+                    {
+                        existingModelObject.TextPage.Text = Regex.Unescape (dto.Text);
+                    }
+                    else
+                    {
+                        existingModelObject.TextPage.Text = dto.Text;
+                    }
+                    // Necessary for iOS
+                    if (dto.Description != null)
+                    {
+                        existingModelObject.TextPage.Description = Regex.Unescape (dto.Description);
+                    }
+                    else
+                    {
+                        existingModelObject.TextPage.Description = dto.Description;
+                    }
+                    existingModelObject.TextPage.FontFamily = dto.FontFamily;
                     break;
 
             }
