@@ -1,4 +1,4 @@
-﻿namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.ModelClasses
+﻿namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 {
     class Ranking
     {
