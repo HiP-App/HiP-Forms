@@ -37,6 +37,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views {
         /// Route data displayed by this list item
         /// </summary>
         public Route Route { get; }
+        private ExhibitRouteDownloadPageViewModel downloadPage;
 
         /// <summary>
         /// Creates a list item using the provided route data
@@ -50,8 +51,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views {
             Duration = GetRouteDurationText (Route.Duration);
             Distance = GetRouteDistanceText (Route.Distance);
             
-            using (DbManager.StartTransaction())
-                Route.DetailsDataLoaded = false;
             IsDownloadPanelVisible = !Route.DetailsDataLoaded;
 
             Tags = new ObservableCollection<ImageSource> ();
@@ -70,6 +69,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views {
 
             DownloadCommand = new Command(OpenDownloadDialog);
         }
+        public ICommand DownloadCommand { get; set; }
 
         internal string GetRouteDistanceText (double routeDistance)
         {
@@ -84,8 +84,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views {
         
         private async void OpenDownloadDialog()
         {
-            // Open the download dialog
-            downloadPage = new ExhibitRouteDownloadViewModel (Route, this);
+            downloadPage = new ExhibitRouteDownloadPageViewModel (Route, this);
             await Navigation.PushAsync(downloadPage);
         }
 
@@ -160,9 +159,5 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views {
             get { return isDownloadPanelVisible; }
             set { SetProperty(ref isDownloadPanelVisible, value); }
         }
-
-        private ExhibitRouteDownloadViewModel downloadPage;
-
-        public ICommand DownloadCommand { get; set; }
     }
 }

@@ -50,6 +50,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="BusinessLayer\ContentApiFetchers\BaseDataFetcher.cs" />
+    <Compile Include="BusinessLayer\ContentApiFetchers\Contracts\IFullDownloadableDataFetcher.cs" />
+    <Compile Include="BusinessLayer\ContentApiFetchers\Contracts\IFullRouteDataFetcher.cs" />
+    <Compile Include="BusinessLayer\ContentApiFetchers\ExhibitPagesAndMediaContainer.cs" />
+    <Compile Include="BusinessLayer\ContentApiFetchers\FullRouteDataFetcher.cs" />
     <Compile Include="BusinessLayer\ContentApiFetchers\Contracts\IBaseDataFetcher.cs" />
     <Compile Include="BusinessLayer\ContentApiFetchers\Contracts\IDataToRemoveFetcher.cs" />
     <Compile Include="BusinessLayer\ContentApiFetchers\Contracts\IFullExhibitDataFetcher.cs" />
@@ -256,6 +260,7 @@
   <ItemGroup>
     <EmbeddedResource Include="Content\noImage2.jpg" />
     <EmbeddedResource Include="Content\noImage.jpg" />
+    <EmbeddedResource Include="Content\noImageTag.jpg" />
     <Content Include="FodyWeavers.xml">
       <SubType>Designer</SubType>
     </Content>

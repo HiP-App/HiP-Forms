@@ -29,7 +29,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.CustomRenderers
 
             CustomFontLabel label = elementChangedEventArgs.NewElement as CustomFontLabel;
 
-            if (label?.FontFamilyName != null)
+            if (label?.FontFamilyName != null && label.FontFamilyName != "DEFAULT")
             {
                 Control.Typeface = Typeface.CreateFromAsset (Context.Assets, $"fonts/{label.FontFamilyName}.ttf");
             }

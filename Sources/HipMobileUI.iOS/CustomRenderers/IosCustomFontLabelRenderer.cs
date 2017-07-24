@@ -29,7 +29,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.CustomRenderers
 
             CustomFontLabel label = elementChangedEventArgs.NewElement as CustomFontLabel;
 
-            if (label?.FontFamilyName != null)
+            if (label?.FontFamilyName != null && label.FontFamilyName != "DEFAULT")
             {
                 Control.Font = UIFont.FromName (label.FontFamilyName, Control.Font.PointSize);
             }

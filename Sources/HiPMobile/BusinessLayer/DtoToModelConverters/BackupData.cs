@@ -33,7 +33,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelCo
                 return backupImageData;
             }
         }
-
+        
         private static Image backupImage;
         public static Image BackupImage {
             get
@@ -48,7 +48,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelCo
 
                         backupImage.Title = "No Image";
                         backupImage.Description = "Hier fehlt das Bild";
-                        backupImage.Data = backupImageData;
+                        backupImage.Data = BackupImageData;
                         backupImage.IdForRestApi = -1;
                     }
                 }
@@ -56,6 +56,43 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelCo
                 return backupImage;
             }
         }
+        
+        private static byte[] backupImageDataTag;
+        public static byte[] BackupImageDataTag
+        {
+            get
+            {
+                if (backupImageDataTag == null)
+                {
+                    var dataLoader = IoCManager.Resolve<IDataLoader>();
+                    backupImageDataTag = dataLoader.LoadByteData("noImageTag.jpg");
+                }
+                return backupImageDataTag;
+            }
+        }
 
+        private static Image backupImageTag;
+        public static Image BackupImageTag {
+            get
+            {
+                if (backupImageTag == null)
+                {
+                    var dataAccess = IoCManager.Resolve<IDataAccess>();
+                    backupImageTag = dataAccess.GetItems<Image> ().SingleOrDefault(x => x.IdForRestApi == -2);
+                    if (backupImageTag == null)
+                    {
+                        backupImageTag = DbManager.CreateBusinessObject<Image>();
+
+                        backupImageTag.Title = "No Tag Image";
+                        backupImageTag.Description = "Hier fehlt das Tag-Bild";
+                        backupImageTag.Data = BackupImageDataTag;
+                        backupImageTag.IdForRestApi = -2;
+                    }
+                }
+
+                return backupImageTag;
+            }
+        }
+        
     }
 }

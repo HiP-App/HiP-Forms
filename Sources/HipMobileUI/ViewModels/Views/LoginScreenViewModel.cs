@@ -13,7 +13,6 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Exceptions;
 using Acr.UserDialogs;
-using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 {
