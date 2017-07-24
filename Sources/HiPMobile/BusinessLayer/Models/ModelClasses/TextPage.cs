@@ -40,7 +40,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 		public virtual string Description{ get; set; }
 
 		//Associations
-		public virtual Audio Audio{ get; set; }
 
 		// Contructor
 		public TextPage(){
