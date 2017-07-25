@@ -213,18 +213,27 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
         {
             var exhibits = ExhibitManager.GetExhibits().ToList();
 
-            foreach (var exhibitId in routeDto.Exhibits)
+            if (routeDto.Exhibits.Count > 0)
             {
-                var dbExhibit = exhibits.SingleOrDefault(x => x.IdForRestApi == exhibitId);
-
-                if (dbExhibit != null)
+                foreach (var exhibitId in routeDto.Exhibits)
                 {
-                    var waypoint = DbManager.CreateBusinessObject<Waypoint>();
-                    waypoint.Exhibit = dbExhibit;
-                    waypoint.Location = dbExhibit.Location;
+                    var dbExhibit = exhibits.SingleOrDefault (x => x.IdForRestApi == exhibitId);
 
-                    dbRoute.Waypoints.Add(waypoint);
+                    if (dbExhibit != null)
+                    {
+                        var waypoint = DbManager.CreateBusinessObject<Waypoint> ();
+                        waypoint.Exhibit = dbExhibit;
+                        waypoint.Location = dbExhibit.Location;
+
+                        dbRoute.Waypoints.Add (waypoint);
+                    }
                 }
+                dbRoute.DetailsDataLoaded = false;
+            }
+            else
+            {
+                // Hide downloadbutton since there is nothing to download
+                dbRoute.DetailsDataLoaded = true;
             }
         }
 
