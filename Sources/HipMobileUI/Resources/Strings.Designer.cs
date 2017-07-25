@@ -1296,6 +1296,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Rangliste.
+        /// </summary>
+        public static string MainPageViewModel_Leaderboard {
+            get {
+                return ResourceManager.GetString("MainPageViewModel_Leaderboard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Rechtliche Hinweise.
         /// </summary>
         public static string MainPageViewModel_LegalNotices {
