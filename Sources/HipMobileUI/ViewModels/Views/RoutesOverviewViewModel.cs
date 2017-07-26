@@ -63,7 +63,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 
             var route = selectedRouteItemViewModel.Route;
 
-            if (!route.DetailsDataLoaded)
+            if (!route.DetailsDataLoaded || route.Waypoints.Count == 0)
                 return;
 
             Navigation.PushAsync (new RouteDetailsPageViewModel (route));

@@ -188,7 +188,22 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                     {
                         dbExhibit.Pages.First().AppetizerPage.Image = BackupData.BackupImage;
                     }
+
+                    if (exhibitDto.Pages.Count == 1)
+                    {
+                        // Hide downloadbutton since there is nothing to download
+                        dbExhibit.DetailsDataLoaded = true;
+                    }
+                    else
+                    {
+                        dbExhibit.DetailsDataLoaded = false;
+                    }
                 }
+            }
+            else
+            {
+                // Hide downloadbutton since there is nothing to download
+                dbExhibit.DetailsDataLoaded = true;
             }
         }
 
