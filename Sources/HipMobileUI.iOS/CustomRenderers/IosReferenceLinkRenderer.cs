@@ -17,6 +17,7 @@ using PaderbornUniversity.SILab.Hip.Mobile.Ios.CustomRenderers;
 using PaderbornUniversity.SILab.Hip.Mobile.Ios.Helpers;
 using System;
 using System.ComponentModel;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Views;
 using UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
@@ -71,7 +72,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.CustomRenderers {
             
         }
 
-        private void OnPropertyChanged(PropertyChangedEventArgs args)
+        private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
         {
             if(args.PropertyName == "FontSize")
             {

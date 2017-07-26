@@ -33,7 +33,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Effects
             UISwitch uiSwitch = (UISwitch) Control;
             SwitchColorEffect effect = (SwitchColorEffect)Element.Effects.FirstOrDefault(e => e is SwitchColorEffect);
             oldColor = uiSwitch.OnTintColor;
-            uiSwitch.OnTintColor = effect.Color.ToUIColor ();
+            if (effect != null)
+                uiSwitch.OnTintColor = effect.Color.ToUIColor ();
         }
 
         protected override void OnDetached ()
