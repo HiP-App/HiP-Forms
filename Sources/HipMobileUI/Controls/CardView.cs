@@ -25,10 +25,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Controls
         {
             Padding = 0;
             if (Device.RuntimePlatform == Device.iOS)
-                return;
-            HasShadow = false;
-            OutlineColor = Color.Transparent;
-            BackgroundColor = Color.Transparent;
+            {
+                HasShadow = false;
+                OutlineColor = Color.Transparent;
+                BackgroundColor = Color.Transparent;
+            }
         }
     }
 }

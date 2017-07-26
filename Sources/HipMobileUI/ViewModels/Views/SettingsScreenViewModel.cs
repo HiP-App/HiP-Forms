@@ -16,12 +16,10 @@ using System.Windows.Input;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using Xamarin.Forms;
-using System.ComponentModel;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views {
@@ -30,14 +28,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views {
     /// </summary>
     public class SettingsScreenViewModel : NavigationViewModel
         {
-        private static readonly IDataAccess DataAccess = IoCManager.Resolve<IDataAccess> ();
         private string size;
 
         public SettingsScreenViewModel ()
         {
             RemoveAllDownloads = new Command(RemoveAllDownloadsClicked);
             SelectCharacterCommand = new Command (OnSelectCharacterTapped);
-            size =  IoCManager.Resolve<IStorageSizeProvider> ().GetDatabaseSize ().ToString () + " MB";
+            size =  IoCManager.Resolve<IStorageSizeProvider> ().GetDatabaseSize () + " MB";
         }
 
         public ICommand RemoveAllDownloads { get; }
@@ -58,7 +55,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views {
             {
                 // Delete the whole DB
                 DbManager.DeleteDatabase ();
-                Size = IoCManager.Resolve<IStorageSizeProvider> ().GetDatabaseSize ().ToString () + " MB";
+                Size = IoCManager.Resolve<IStorageSizeProvider> ().GetDatabaseSize () + " MB";
 
                 }
         }
@@ -150,7 +147,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views {
                     OnPropertyChanged ();
                     }
                 }
-            get { return IoCManager.Resolve<IStorageSizeProvider> ().GetDatabaseSize ().ToString()+ " MB"; }
+            get { return IoCManager.Resolve<IStorageSizeProvider> ().GetDatabaseSize () + " MB"; }
         }
 
         public bool WifiOnly

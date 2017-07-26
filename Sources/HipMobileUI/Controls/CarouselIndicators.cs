@@ -127,7 +127,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Controls
                 int count = 0;
                 while (enumerator.MoveNext())
                 {
-                    Image image = null;
+                    Image image;
                     if (position == count)
                         image = BuildImage(State.Selected, count);
                     else
@@ -170,15 +170,18 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Controls
         {
             var carouselIndicators = bindable as CarouselIndicators;
 
-            carouselIndicators.Init(Convert.ToInt32(newValue));
+            carouselIndicators?.Init (Convert.ToInt32 (newValue));
         }
 
         private static void ItemsChanged(object bindable, object oldValue, object newValue)
         {
             var carouselIndicators = bindable as CarouselIndicators;
 
-            carouselIndicators.Clear();
-            carouselIndicators.Init(0);
+            if (carouselIndicators != null)
+            {
+                carouselIndicators.Clear();
+                carouselIndicators.Init(0);
+            }
         }
 
         private enum State

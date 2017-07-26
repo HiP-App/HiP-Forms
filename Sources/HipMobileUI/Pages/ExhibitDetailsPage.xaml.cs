@@ -21,7 +21,7 @@ using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
 using Xamarin.Forms;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages {
-    public partial class ExhibitDetailsPage : OrientationContentPage, IViewFor<ExhibitDetailsViewModel> {
+    public partial class ExhibitDetailsPage : IViewFor<ExhibitDetailsViewModel> {
 
         private ExhibitDetailsViewModel ViewModel => (ExhibitDetailsViewModel) BindingContext;
         private HideableToolbarItem audioToolbarButton;

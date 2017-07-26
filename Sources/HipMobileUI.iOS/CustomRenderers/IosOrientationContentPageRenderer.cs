@@ -16,8 +16,6 @@ using System.ComponentModel;
 using Foundation;
 using PaderbornUniversity.SILab.Hip.Mobile.Ios.CustomRenderers;
 using PaderbornUniversity.SILab.Hip.Mobile.Ios.ViewControllers;
-using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
-using PaderbornUniversity.SILab.Hip.Mobile.UI.Pages;
 using UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
@@ -75,7 +73,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.CustomRenderers
             }
         }
 
-        private void PagePropertyChanged (object sender, PropertyChangedEventArgs propertyChangedEventArgs)
+        private void PagePropertyChanged (PropertyChangedEventArgs propertyChangedEventArgs)
         {
             if (propertyChangedEventArgs.PropertyName.Equals ("OrientationController"))
             {

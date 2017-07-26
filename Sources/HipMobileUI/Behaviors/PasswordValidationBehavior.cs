@@ -74,7 +74,7 @@ public class ComparisonBehavior : Behavior<Entry>
 	{
 		string theBase = CompareToEntry.Text;
 		string confirmation = e.NewTextValue;
-		IsValid = (bool)theBase?.Equals(confirmation);
+		IsValid = theBase.Equals(confirmation);
 
 		((Entry)sender).TextColor = IsValid ? Color.Green : Color.Red;
 	}

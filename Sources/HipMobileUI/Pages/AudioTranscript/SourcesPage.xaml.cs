@@ -19,7 +19,7 @@ using Xamarin.Forms;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages.AudioTranscript
 {
-    public partial class SourcesPage : ContentPage, IViewFor<SourcesViewModel>
+    public partial class SourcesPage : IViewFor<SourcesViewModel>
     {
         public SourcesPage()
         {

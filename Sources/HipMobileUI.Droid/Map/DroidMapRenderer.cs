@@ -13,7 +13,6 @@
 // limitations under the License.using System;
 
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using Android.App;
@@ -182,7 +181,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Map
 
             if ((route != null) && route.Waypoints.Any())
             {
-                var markerInfoWindow = new ViaPointInfoWindow(Resource.Layout.navigation_info_window, mapView, activity);
+                var markerInfoWindow = new ViaPointInfoWindow(Resource.Layout.navigation_info_window, mapView);
                 var mapMarkerIcon = ContextCompat.GetDrawable(activity, Resource.Drawable.marker_blue);
                 var setMarker = new SetMarker(mapView, markerInfoWindow);
 
@@ -203,7 +202,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Map
         /// <param name="location"></param>
         private void DrawDetailsRoute(GeoLocation location)
         {
-            var myPath = new PathOverlay(Resources.GetColor(Resource.Color.colorPrimaryDark), 7, new DefaultResourceProxyImpl(activity));
+            var myPath = new PathOverlay(Resource.Color.colorPrimaryDark, 7, new DefaultResourceProxyImpl(activity));
             if (location != null)
                 myPath.AddPoint(new GeoPoint(location.Latitude, location.Longitude));
 
@@ -231,7 +230,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Map
             //Here all exhibit markers and bubbles are set if the Exhibit is not null
             if (set != null)
             {
-                var markerInfoWindow = new ViaPointInfoWindow(Resource.Layout.navigation_info_window, mapView, activity);
+                var markerInfoWindow = new ViaPointInfoWindow(Resource.Layout.navigation_info_window, mapView);
                 var mapMarkerIcon = ContextCompat.GetDrawable(activity, Resource.Drawable.marker_blue);
                 var setMarker = new SetMarker(mapView, markerInfoWindow);
 
@@ -259,11 +258,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Map
             var id = osmMap.DetailsRoute.Id;
 
             ThreadPool.QueueUserWorkItem(state => {
-                var geoPoints = new List<GeoPoint>();
-
-                if (userPosition != null)
-                    geoPoints.Add(new GeoPoint(userPosition.Latitude, userPosition.Longitude));
-
 
                 Action action;
 
@@ -294,28 +288,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Map
         /// <summary>
         /// Settings how the line should look like
         /// </summary>
-        /// <param name="geoPoints"></param>
-        private void DrawRoute(List<GeoPoint> geoPoints)
-        {
-            if (disposed)
-                return;
-
-            //Cleanup route if drawn before
-            if (currentRouteOverlay != null)
-                mapView.OverlayManager.Remove(currentRouteOverlay);
-
-            currentRouteOverlay = new Polyline(activity)
-            {
-                Title = osmMap.DetailsRoute.Title,
-                Width = 5f,
-                Color = Color.Blue,
-                Points = geoPoints,
-                Geodesic = true
-            };
-            mapView.OverlayManager.Add(currentRouteOverlay);
-            mapView.Invalidate();
-        }
-
         private void DrawRoute(OrderedRoute route, bool userLocationIncluded)
         {
             if (disposed)

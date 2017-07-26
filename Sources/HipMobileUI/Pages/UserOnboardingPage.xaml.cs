@@ -24,7 +24,7 @@ using Xamarin.Forms;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
 {
-    public partial class UserOnboardingPage : ContentPage, IViewFor<UserOnboardingPageViewModel> {
+    public partial class UserOnboardingPage : IViewFor<UserOnboardingPageViewModel> {
 
         private DeviceOrientation orientation;
 

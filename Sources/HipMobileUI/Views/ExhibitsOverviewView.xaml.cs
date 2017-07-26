@@ -19,7 +19,7 @@ using Xamarin.Forms;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
 {
-    public partial class ExhibitsOverviewView : ContentView, IViewFor<ExhibitsOverviewViewModel> {
+    public partial class ExhibitsOverviewView : IViewFor<ExhibitsOverviewViewModel> {
 
         private DeviceOrientation deviceOrientation;
         public ExhibitsOverviewView()

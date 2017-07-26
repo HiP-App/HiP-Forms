@@ -19,7 +19,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Authent
 
         public AuthApiAccess (IContentApiClient clientApiClient)
         {
-        this.clientApiClient = new ContentApiClient ();
+        this.clientApiClient = clientApiClient;
         }
         public async Task<Token> GetToken (string userName, string password)
             {
