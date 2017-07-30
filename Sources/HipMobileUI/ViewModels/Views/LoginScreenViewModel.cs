@@ -91,8 +91,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
                 case UserStatus.UnkownError:
                     UserDialogs.Instance.Alert(Strings.Alert_Unknown_Error_Description, Strings.Alert_Unknown_Error_Title);
                     break;
-                default:
-                    break;
             }
 
             mainPageViewModel.UpdateAccountViews();

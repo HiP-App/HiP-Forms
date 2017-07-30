@@ -19,7 +19,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Authent
 
         public AuthApiAccess (IContentApiClient clientApiClient)
         {
-        this.clientApiClient = new ContentApiClient ();
+        this.clientApiClient = clientApiClient;
         }
         public async Task<Token> GetToken (string userName, string password)
             {
@@ -68,7 +68,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Authent
             {
             FormUrlEncodedContent content = new FormUrlEncodedContent (new[]
             {
-            new KeyValuePair<string, string> (Constants.UserName, userName),
+            new KeyValuePair<string, string> (Constants.UserName, userName)
             });
             var result = await clientApiClient.PostRequestFormBased (ServerEndpoints.ForgotPasswordUrl, content);
             return await result.Content.ReadAsStringAsync ();

@@ -21,7 +21,7 @@ using Xamarin.Forms.Xaml;
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class LoadingPage : ContentPage, IViewFor<LoadingPageViewModel> {
+    public partial class LoadingPage : IViewFor<LoadingPageViewModel> {
 
         private DeviceOrientation deviceOrientation;
 

@@ -8,7 +8,7 @@ using Xamarin.Forms.Xaml;
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ExhibitPreviewView : ContentPage, IViewFor<ExhibitPreviewViewModel>
+    public partial class ExhibitPreviewView : IViewFor<ExhibitPreviewViewModel>
     {
         private double thisWidth, thisHeight;
         private DeviceOrientation deviceOrientation;

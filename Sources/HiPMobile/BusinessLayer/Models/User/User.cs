@@ -1,5 +1,4 @@
-﻿using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.UserManagement;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.AuthApiDto;
+﻿using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.AuthApiDto;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.User
     {
@@ -13,12 +12,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.User
            UserName = userName;
            Password = password;
        }
-        private static UserManager instance = null;
 
         public Token Token { get; internal set; }
 
         public UserStatus CurrentStatus { get; set; }
 
-        private Error Error { get; set; }
         }
     }

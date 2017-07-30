@@ -18,7 +18,7 @@ using Xamarin.Forms;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages.AudioTranscript
 {
-    public partial class SubtitlesPage : ContentPage, IViewFor<SubtitleViewModel>
+    public partial class SubtitlesPage : IViewFor<SubtitleViewModel>
     {
         public SubtitlesPage()
         {

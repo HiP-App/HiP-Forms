@@ -15,7 +15,7 @@ using Xamarin.Forms.Xaml;
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class CharacterSelectionPage : ContentPage, IViewFor<CharacterSelectionPageViewModel>
+    public partial class CharacterSelectionPage : IViewFor<CharacterSelectionPageViewModel>
     {
         private double thisWidth, thisHeight;
         private DeviceOrientation deviceOrientation;

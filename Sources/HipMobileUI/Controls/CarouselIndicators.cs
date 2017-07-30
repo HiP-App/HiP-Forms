@@ -25,15 +25,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Controls
     /// </summary>
     public class CarouselIndicators : Grid
     {
-        private ImageSource unselectedImageSource = null;
-        private ImageSource selectedImageSource = null;
+        private ImageSource unselectedImageSource;
+        private ImageSource selectedImageSource;
         private readonly StackLayout indicators = new StackLayout() { Orientation = StackOrientation.Horizontal, HorizontalOptions = LayoutOptions.CenterAndExpand };
 
         public CarouselIndicators()
         {
-            this.HorizontalOptions = LayoutOptions.CenterAndExpand;
-            this.RowDefinitions.Add(new RowDefinition() { Height = GridLength.Auto });
-            this.Children.Add(indicators);
+            HorizontalOptions = LayoutOptions.CenterAndExpand;
+            RowDefinitions.Add(new RowDefinition() { Height = GridLength.Auto });
+            Children.Add(indicators);
         }
 
         public static readonly BindableProperty PositionProperty = BindableProperty.Create(nameof(Position), typeof(int), typeof(CarouselIndicators), 0, BindingMode.TwoWay, propertyChanging: PositionChanging);
@@ -48,8 +48,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Controls
         /// </summary>
         public string SelectedIndicator
         {
-            get { return (string)this.GetValue(SelectedIndicatorProperty); }
-            set { this.SetValue(SelectedIndicatorProperty, value); }
+            get { return (string)GetValue(SelectedIndicatorProperty); }
+            set { SetValue(SelectedIndicatorProperty, value); }
         }
 
         /// <summary>
@@ -57,8 +57,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Controls
         /// </summary>
         public string UnselectedIndicator
         {
-            get { return (string)this.GetValue(UnselectedIndicatorProperty); }
-            set { this.SetValue(UnselectedIndicatorProperty, value); }
+            get { return (string)GetValue(UnselectedIndicatorProperty); }
+            set { SetValue(UnselectedIndicatorProperty, value); }
         }
 
         /// <summary>
@@ -66,8 +66,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Controls
         /// </summary>
         public double IndicatorWidth
         {
-            get { return (double)this.GetValue(IndicatorWidthProperty); }
-            set { this.SetValue(IndicatorWidthProperty, value); }
+            get { return (double)GetValue(IndicatorWidthProperty); }
+            set { SetValue(IndicatorWidthProperty, value); }
         }
 
         /// <summary>
@@ -75,8 +75,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Controls
         /// </summary>
         public double IndicatorHeight
         {
-            get { return (double)this.GetValue(IndicatorHeightProperty); }
-            set { this.SetValue(IndicatorHeightProperty, value); }
+            get { return (double)GetValue(IndicatorHeightProperty); }
+            set { SetValue(IndicatorHeightProperty, value); }
         }
 
         /// <summary>
@@ -84,8 +84,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Controls
         /// </summary>
         public int Position
         {
-            get { return (int)this.GetValue(PositionProperty); }
-            set { this.SetValue(PositionProperty, value); }
+            get { return (int)GetValue(PositionProperty); }
+            set { SetValue(PositionProperty, value); }
         }
 
         /// <summary>
@@ -93,8 +93,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Controls
         /// </summary>
         public IEnumerable ItemsSource
         {
-            get { return (IEnumerable)this.GetValue(ItemsSourceProperty); }
-            set { this.SetValue(ItemsSourceProperty, (object)value); }
+            get { return (IEnumerable)GetValue(ItemsSourceProperty); }
+            set { SetValue(ItemsSourceProperty, value); }
         }
 
         private void Clear()
@@ -127,7 +127,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Controls
                 int count = 0;
                 while (enumerator.MoveNext())
                 {
-                    Image image = null;
+                    Image image;
                     if (position == count)
                         image = BuildImage(State.Selected, count);
                     else
@@ -170,15 +170,18 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Controls
         {
             var carouselIndicators = bindable as CarouselIndicators;
 
-            carouselIndicators.Init(Convert.ToInt32(newValue));
+            carouselIndicators?.Init (Convert.ToInt32 (newValue));
         }
 
         private static void ItemsChanged(object bindable, object oldValue, object newValue)
         {
             var carouselIndicators = bindable as CarouselIndicators;
 
-            carouselIndicators.Clear();
-            carouselIndicators.Init(0);
+            if (carouselIndicators != null)
+            {
+                carouselIndicators.Clear();
+                carouselIndicators.Init(0);
+            }
         }
 
         private enum State

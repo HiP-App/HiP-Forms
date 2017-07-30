@@ -92,6 +92,5 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.CustomRenderers
 
             base.Dispose (disposing);
         }
-
     }
 }

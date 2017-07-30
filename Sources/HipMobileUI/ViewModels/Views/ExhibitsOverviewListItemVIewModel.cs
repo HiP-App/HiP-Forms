@@ -157,7 +157,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             {
                 return ExhibitName.Equals (otherItem.ExhibitName);
             }
-            return base.Equals (obj);
+            return Equals (obj);
         }
 
     }

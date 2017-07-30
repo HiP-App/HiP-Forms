@@ -86,10 +86,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 		{
 			ErrorMessage = Strings.RegisterScreenView_Error_Invalid_Email;
 		}
-		void ClearErrorMessage()
-		{
-			ErrorMessage = "";
-		}
 
 		void OnRegisterClicked()
 		{

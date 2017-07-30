@@ -32,7 +32,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Effects
             UIProgressView progressBar = (UIProgressView)Control;
             ProgressBarColorEffect effect = (ProgressBarColorEffect)Element.Effects.FirstOrDefault(e => e is ProgressBarColorEffect);
             oldColor = progressBar.ProgressTintColor;
-            progressBar.ProgressTintColor = effect.Color.ToUIColor();
+            if (effect != null)
+                progressBar.ProgressTintColor = effect.Color.ToUIColor ();
         }
 
         protected override void OnDetached ()

@@ -12,7 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.using System;
 
-using Android.Content;
 using Android.Widget;
 using Org.Osmdroid.Bonuspack.Overlays;
 using Org.Osmdroid.Views;
@@ -28,9 +27,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Map {
 
         
 
-        public ViaPointInfoWindow (int layoutResId, MapView mapView, Context context) : base (layoutResId, mapView)
+        public ViaPointInfoWindow (int layoutResId, MapView mapView) : base (layoutResId, mapView)
         {
-            Button infoButton = this.View.FindViewById<Button> (Resource.Id.bubble_info);
+            Button infoButton = View.FindViewById<Button> (Resource.Id.bubble_info);
 
             infoButton.Click += (sender, e) => {
                 if (markerId != null)

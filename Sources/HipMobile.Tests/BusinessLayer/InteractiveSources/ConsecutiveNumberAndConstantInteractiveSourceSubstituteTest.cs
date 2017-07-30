@@ -20,7 +20,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.BusinessLayer.Inte
     [TestFixture]
     public class ConsecutiveNumberAndConstantInteractiveSourceSubstituteTest
     {
-        [Test, NUnit.Framework.Category("UnitTest")]
+        [Test, Category("UnitTest")]
         public void NextSubstitute_CalledOnce()
         {
             var sut = CreateSystemUnderTest();
@@ -30,7 +30,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.BusinessLayer.Inte
             Assert.AreEqual ($"[{Substitute} {Start}]", substitute);
         }
 
-        [Test, NUnit.Framework.Category("UnitTest")]
+        [Test, Category("UnitTest")]
         public void NextSubstitute_CalledMultipleTimes()
         {
             var sut = CreateSystemUnderTest();

@@ -24,7 +24,7 @@ using Xamarin.Forms;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
 {
-    public partial class UserOnboardingPage : ContentPage, IViewFor<UserOnboardingPageViewModel> {
+    public partial class UserOnboardingPage : IViewFor<UserOnboardingPageViewModel> {
 
         private DeviceOrientation orientation;
 
@@ -100,17 +100,17 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
 
             // bottom buttons
             var skipLabel = new Label() { Text = Strings.UserOnboarding_Skip, TextColor = Color.White };
-            skipLabel.SetBinding(Label.IsVisibleProperty, "IsForwardVisible");
+            skipLabel.SetBinding(IsVisibleProperty, "IsForwardVisible");
             var finishTapGestureRecognizer = new TapGestureRecognizer();
             finishTapGestureRecognizer.SetBinding(TapGestureRecognizer.CommandProperty, "FinishCommand");
             skipLabel.GestureRecognizers.Add(finishTapGestureRecognizer);
             var forwardLabel = new Label() { Text = Strings.UserOnboarding_Forward, TextColor = Color.White };
-            forwardLabel.SetBinding(Label.IsVisibleProperty, "IsForwardVisible");
+            forwardLabel.SetBinding(IsVisibleProperty, "IsForwardVisible");
             var forwardGestureRecognizer = new TapGestureRecognizer();
             forwardGestureRecognizer.SetBinding(TapGestureRecognizer.CommandProperty, "ForwardCommand");
             forwardLabel.GestureRecognizers.Add(forwardGestureRecognizer);
             var okLabel = new Label() { Text = Strings.UserOnboarding_Ok, TextColor = Color.White };
-            okLabel.SetBinding(Label.IsVisibleProperty, "IsFinishVisible");
+            okLabel.SetBinding(IsVisibleProperty, "IsFinishVisible");
             okLabel.GestureRecognizers.Add(finishTapGestureRecognizer);
             var indicators = new CarouselIndicators() { IndicatorWidth = 10, IndicatorHeight = 10, UnselectedIndicator = "unselected_circle.png", SelectedIndicator = "selected_circle.png" };
             indicators.SetBinding(CarouselIndicators.PositionProperty, "SelectedPage");
@@ -120,13 +120,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
             // add pieces together
             layout.Children.Add (carousel, widthConstraint: Constraint.RelativeToParent (parent => parent.Width),
                                  heightConstraint: Constraint.RelativeToParent (parent => parent.Height));
-            layout.Children.Add (skipLabel, xConstraint: Constraint.Constant (10), yConstraint: Constraint.RelativeToParent (parent => parent.Height - 30));
-            layout.Children.Add (forwardLabel, xConstraint: Constraint.RelativeToParent (parent => parent.Width - 50),
-                                 yConstraint: Constraint.RelativeToParent (parent => parent.Height - 30));
-            layout.Children.Add(okLabel, xConstraint: Constraint.RelativeToParent(parent => parent.Width - 80),
-                                 yConstraint: Constraint.RelativeToParent(parent => parent.Height - 30));
-            layout.Children.Add (indicators, xConstraint: Constraint.RelativeToParent (parent => parent.Width * 0.5 - 15),
-                                 yConstraint: Constraint.RelativeToParent (parent => parent.Height - 30));
+            layout.Children.Add (skipLabel, Constraint.Constant (10), Constraint.RelativeToParent (parent => parent.Height - 30));
+            layout.Children.Add (forwardLabel, Constraint.RelativeToParent (parent => parent.Width - 50),
+                                 Constraint.RelativeToParent (parent => parent.Height - 30));
+            layout.Children.Add(okLabel, Constraint.RelativeToParent(parent => parent.Width - 80),
+                                 Constraint.RelativeToParent(parent => parent.Height - 30));
+            layout.Children.Add (indicators, Constraint.RelativeToParent (parent => parent.Width * 0.5 - 15),
+                                 Constraint.RelativeToParent (parent => parent.Height - 30));
             layout.Children.Add (separator, yConstraint: Constraint.RelativeToView (skipLabel, (parent, view) => view.Y - 10),
                                  widthConstraint: Constraint.RelativeToParent (parent => parent.Width));
 
@@ -142,7 +142,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
         {
             // main content
             StackLayout outerStack = new StackLayout() { Orientation = StackOrientation.Horizontal, Padding = new Thickness(50, 50) };
-            outerStack.SetBinding(StackLayout.BackgroundColorProperty, "BackgroundColor");
+            outerStack.SetBinding(BackgroundColorProperty, "BackgroundColor");
             CachedImage image = new CachedImage() { VerticalOptions = LayoutOptions.StartAndExpand, Aspect = Aspect.AspectFit, HorizontalOptions = LayoutOptions.StartAndExpand };
             image.SetBinding(CachedImage.SourceProperty, "Image");
             StackLayout innerStack = new StackLayout() { Orientation = StackOrientation.Vertical, HorizontalOptions = LayoutOptions.EndAndExpand, VerticalOptions = LayoutOptions.CenterAndExpand};
@@ -165,7 +165,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
         {
             // main content
             StackLayout layout = new StackLayout() { Orientation = StackOrientation.Vertical, Padding = new Thickness(0, 80) };
-            layout.SetBinding(StackLayout.BackgroundColorProperty, "BackgroundColor");
+            layout.SetBinding(BackgroundColorProperty, "BackgroundColor");
             CachedImage image = new CachedImage() { VerticalOptions = LayoutOptions.CenterAndExpand, Aspect = Aspect.AspectFit, HorizontalOptions = LayoutOptions.FillAndExpand };
             image.SetBinding(CachedImage.SourceProperty, "Image");
             StackLayout innerStack = new StackLayout() { Orientation = StackOrientation.Vertical, HorizontalOptions = LayoutOptions.CenterAndExpand };

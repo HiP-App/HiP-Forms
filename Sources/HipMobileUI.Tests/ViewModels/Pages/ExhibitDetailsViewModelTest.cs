@@ -146,6 +146,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Pages
         {
             var resources = Substitute.For<IBarsColorsChanger> ();
             IoCManager.RegisterInstance(typeof(IBarsColorsChanger), resources);
+            // ReSharper disable once UnusedVariable
+            // It's necessary to create this object once
             var sut = new ExhibitDetailsViewModel(new Exhibit (), new List<Page>(), "Test", true);
 
             resources.Received().ChangeToolbarColor(Color.FromRgb(128, 128, 128), Color.FromRgb(169, 169, 169));
@@ -156,6 +158,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Pages
         {
             var resources = Substitute.For<IBarsColorsChanger>();
             IoCManager.RegisterInstance(typeof(IBarsColorsChanger), resources);
+            // ReSharper disable once UnusedVariable
+            // It's necessary to create this object once
             var sut = new ExhibitDetailsViewModel (new Exhibit (), new List<Page> (), "Test");
 
             resources.Received().ChangeToolbarColor(Color.Pink, Color.Pink);

@@ -62,7 +62,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             {
                 return;
             }
-            //allPages = await pagesApiAccess.GetIds();
+            allPages = await pagesApiAccess.GetIds();
             if (token.IsCancellationRequested)
             {
                 return;
@@ -70,9 +70,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             allMedias = await mediasApiAccess.GetIds();
             if (token.IsCancellationRequested)
             {
-                return;
             }
-            //allTags = await tagsApiAccess.GetIds();
+            allTags = await tagsApiAccess.GetIds();
         }
 
         public void CleaupRemovedData()
@@ -94,7 +93,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             foreach (var route in routes)
             {
                 RemoveWaypoints(route, deletedWaypoints, deletedExhibits);
-                //RemoveRouteTags(route, deletedTags, deletedImages);
+                RemoveRouteTags(route, deletedTags, deletedImages);
                 if (route.Image != null && !allMedias.Contains(route.Image.IdForRestApi))
                 {
                     deletedImages.Add(route.Image);
@@ -108,7 +107,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             }
             foreach (var exhibit in exhibits)
             {
-                //RemovePages(exhibit, deletedPages, deletedImages, deletedAudios);
+                RemovePages(exhibit, deletedPages, deletedImages, deletedAudios);
                 if (exhibit.Image != null && !allMedias.Contains(exhibit.Image.IdForRestApi))
                 {
                     deletedImages.Add(exhibit.Image);
@@ -128,10 +127,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             {
                 DbManager.DeleteBusinessEntity(waypoint);
             }
-            /*foreach (var tag in deletedTags)
+            foreach (var tag in deletedTags)
             {
                 DbManager.DeleteBusinessEntity(tag);
-            }*/
+            }
             foreach (var image in deletedImages)
             {
                 DbManager.DeleteBusinessEntity(image);
@@ -140,10 +139,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             {
                 DbManager.DeleteBusinessEntity(audio);
             }
-            /*foreach (var page in deletedPages)
+            foreach (var page in deletedPages)
             {
                 DbManager.DeleteBusinessEntity(page);
-            }*/
+            }
         }
 
         private void RemoveWaypoints(Route route, List<Waypoint> deletedWaypoints, List<Exhibit> deletedExhibits)

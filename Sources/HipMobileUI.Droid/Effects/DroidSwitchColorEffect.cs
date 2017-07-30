@@ -34,7 +34,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Effects
             SwitchCompat switchCompat = (SwitchCompat) Control;
             SwitchColorEffect effect = (SwitchColorEffect)Element.Effects.FirstOrDefault(e => e is SwitchColorEffect);
             oldColor = switchCompat.HighlightColor;
-            switchCompat.SetHighlightColor (effect.Color.ToAndroid ());
+            if (effect != null)
+                switchCompat.SetHighlightColor (effect.Color.ToAndroid ());
         }
 
         protected override void OnDetached ()

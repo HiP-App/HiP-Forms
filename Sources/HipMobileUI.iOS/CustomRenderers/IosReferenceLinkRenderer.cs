@@ -15,9 +15,9 @@
 using Foundation;
 using PaderbornUniversity.SILab.Hip.Mobile.Ios.CustomRenderers;
 using PaderbornUniversity.SILab.Hip.Mobile.Ios.Helpers;
-using PaderbornUniversity.SILab.Hip.Mobile.UI.Views;
 using System;
 using System.ComponentModel;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Views;
 using UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;

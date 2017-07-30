@@ -18,8 +18,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Behaviors
 
 		void HandleTextChanged(object sender, TextChangedEventArgs e)
 		{
-			bool isValid = false;
-			isValid = (Regex.IsMatch(e.NewTextValue, EmailRegex, RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250)));
+			bool isValid = Regex.IsMatch(e.NewTextValue, EmailRegex, RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250));
 			((Entry)sender).TextColor = isValid ? Color.Green : Color.Red;
 		}
 

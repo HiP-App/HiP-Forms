@@ -23,8 +23,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
     public partial class RouteDetailsView : IViewFor<RouteDetailsPageViewModel>
     {
 
-        private double width1 = 0;
-        private double height1 = 0;
+        private double width1;
+        private double height1;
 
         public RouteDetailsView()
         {

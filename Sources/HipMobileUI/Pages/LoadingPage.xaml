@@ -29,8 +29,9 @@
                     </StackLayout>
                     <controls1:FadeInImage Grid.Row="1" Source="hiphop_transparent">
                         <OnPlatform x:TypeArguments="x:Int32">
-                            <OnPlatform.Android>500</OnPlatform.Android>
-                            <OnPlatform.iOS>0</OnPlatform.iOS>
+                           
+                            <On Platform="Android" Value="500" />
+                            <On Platform="iOS" Value="0" />
                         </OnPlatform>
                     </controls1:FadeInImage>
                     <StackLayout Grid.Row="2" Orientation="Vertical" HorizontalOptions="FillAndExpand">

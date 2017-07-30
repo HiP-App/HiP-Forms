@@ -27,7 +27,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
         {
             var keys = new List<string>();
             var values = new List<string>();
-            Dictionary<string, string> parameters = new Dictionary<string, string>();
             if (timestamp.HasValue)
             {
                 keys.Add("timestamp");

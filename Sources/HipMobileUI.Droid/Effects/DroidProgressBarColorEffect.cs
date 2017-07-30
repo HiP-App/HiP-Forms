@@ -33,7 +33,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Effects
         {
             ProgressBar switchCompat = (ProgressBar)Control;
             ProgressBarColorEffect effect = (ProgressBarColorEffect)Element.Effects.FirstOrDefault(e => e is ProgressBarColorEffect);
-            SetColor (switchCompat, effect.Color.ToAndroid());
+            if (effect != null)
+                SetColor (switchCompat, effect.Color.ToAndroid ());
         }
 
         protected override void OnDetached()
