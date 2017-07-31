@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System;
 using System.Collections.Generic;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.InteractiveSources;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
@@ -38,10 +39,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages.AudioTranscri
 
         private void ChangeFontSize ()
         {
-            if(Settings.AudioTranscriptFontSize == 14)
+            if(Math.Abs (Settings.AudioTranscriptFontSize - 14) < 0.00001)
             {
                 Settings.AudioTranscriptFontSize = 19;
-            } else if (Settings.AudioTranscriptFontSize == 19)
+            } else if (Math.Abs (Settings.AudioTranscriptFontSize - 19) < 0.00001)
             {
                 Settings.AudioTranscriptFontSize = 24;
             }

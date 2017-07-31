@@ -37,7 +37,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
         {
             base.OnSizeAllocated(width, height);
 
-            if (width1 != width || height1 != height)
+            if (Math.Abs(width1 - width) > 0.00001 || Math.Abs(height1 - height) > 0.00001)
             {
                 width1 = width;
                 height1 = height;

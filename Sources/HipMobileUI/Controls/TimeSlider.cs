@@ -292,7 +292,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Controls
             AddSwipeGestureListener(slider);
             slider.ChildAdded += BottomSheetContentViewOnChildAdded;
 
-            absoluteLayout.Children.Add(slider, new Point(width / 2 + 2 - ItemWidth / 2, 0));
+            absoluteLayout.Children.Add(slider, new Point(width / 2 + 2 - (double)ItemWidth / 2, 0));
             absoluteLayout.Children.Add (box, new Rectangle(width/2, 0, 2, height));
             
             SelectedValue = 0;
@@ -308,18 +308,18 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Controls
         {
             double dx = box.X - (box.Width / 2) - SliderX;
 
-            if (dx < fadezoneWidth / 2)
+            if (dx < (double)fadezoneWidth / 2)
             {
                 return 0;
             }
-            else if (dx > slider.Width - ItemWidth / 2)
+            else if (dx > slider.Width - (double)ItemWidth / 2)
             {
                 return Images.Count - 1;
             }
             else
             {
-                double result = Math.Floor((dx - fadezoneWidth / 2) / (fadezoneWidth + safezoneWidth));
-                double mod = (dx - fadezoneWidth / 2) % (fadezoneWidth + safezoneWidth);
+                double result = Math.Floor((dx - (double)fadezoneWidth / 2) / (fadezoneWidth + safezoneWidth));
+                double mod = (dx - (double)fadezoneWidth / 2) % (fadezoneWidth + safezoneWidth);
                 if (mod > safezoneWidth)
                 {
                     result += (mod - safezoneWidth) / fadezoneWidth;
@@ -341,7 +341,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Controls
 
         private void AddSwipeGestureListener(Layout layout)
         {
-            if (Device.RuntimePlatform == Device.iOS)
+            if (Device.RuntimePlatform == Device.Android)
             {
                 // on android recursively add the gesture recognizer to all childs
                 AddGestureRecognizer(layout, swipeGestureRecognizer);
@@ -380,7 +380,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Controls
             }
 
             double dx;
-            if (Device.RuntimePlatform == Device.iOS)
+            if (Device.RuntimePlatform == Device.Android)
             {
                 // calculate the offset when the slider would be moved
                 dx = slider.TranslationX + panUpdatedEventArgs.TotalX;
@@ -393,15 +393,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Controls
             if (slider.X + dx > box.X - box.Width / 2)
             {
                 // indicator at the left side of the slider
-                dx = ItemWidth / 2;
+                dx = (double)ItemWidth / 2;
             }
             else if (slider.X + slider.Width + dx < box.X + box.Width / 2)
             {
                 // indicator at the right side of the slider
-                dx = ItemWidth / 2 - slider.Width;
+                dx = (double)ItemWidth / 2 - slider.Width;
             }
 
-            if (Device.RuntimePlatform == Device.iOS)
+            if (Device.RuntimePlatform == Device.Android)
             {
                 // use an animation for smooth scrolling
                 ViewExtensions.CancelAnimations(slider);
