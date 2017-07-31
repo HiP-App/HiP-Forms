@@ -258,9 +258,8 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Content\noImage2.jpg" />
-    <EmbeddedResource Include="Content\noImage.jpg" />
     <EmbeddedResource Include="Content\noImageTag.jpg" />
+    <EmbeddedResource Include="Content\noImage.png" />
     <Content Include="FodyWeavers.xml">
       <SubType>Designer</SubType>
     </Content>
