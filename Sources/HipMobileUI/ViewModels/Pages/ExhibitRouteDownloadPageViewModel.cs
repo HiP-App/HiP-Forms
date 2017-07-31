@@ -194,6 +194,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             {
                 await Navigation.DisplayAlert(titleToShow, messageToShow, "OK");
                 CloseDownloadPage();
+                return;
             }
 
             if (!cancellationTokenSource.IsCancellationRequested)
