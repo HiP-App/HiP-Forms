@@ -28,7 +28,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelCo
                 if (backupImageData == null)
                 {
                     var dataLoader = IoCManager.Resolve<IDataLoader>();
-                    backupImageData = dataLoader.LoadByteData("noImage.jpg");
+                    backupImageData = dataLoader.LoadByteData("noImage.png");
                 }
                 return backupImageData;
             }
