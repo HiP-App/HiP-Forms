@@ -140,7 +140,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Contracts {
 
         public void Stop ()
         {
-            avAudioPlayer.Stop ();
+			if (IsPlaying)
+			{ 
+				avAudioPlayer.Stop ();
+			}
+            
             IsPlayingChanged?.Invoke (false);
             StopUpdateTimer ();
 
