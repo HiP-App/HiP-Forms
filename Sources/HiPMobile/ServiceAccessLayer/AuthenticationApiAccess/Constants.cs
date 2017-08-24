@@ -21,8 +21,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Authent
         public const string Password = "password";
         public const string ConfirmPassword = "confirmpassword";
 
-
-        //public const string ClientSecret = "cms-secret";
+        public const string DataStoreClientId = "C8BJAtkw3gkkXiPWUrg7v9D3PbZdRCij";
+        public const string DataStoreClientSecret = "q5YjSYsBdedu0stlH3ogY_d_IYg9zatMn74WsRvJ2dBcqBasKCbuYE7vbaYYIyFF";
+        public const string Audience = "https://hip.cs.upb.de/API";
+        public const string DataStoreGrantType = "client_credentials";
         //public const string GrantType = "password";
         //public const string Scope = "openid";
 

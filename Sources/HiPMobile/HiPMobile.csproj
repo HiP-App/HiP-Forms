@@ -94,6 +94,7 @@
     <Compile Include="BusinessLayer\DtoToModelConverters\ExhibitConverter.cs" />
     <Compile Include="Helpers\AssertionHelper.cs" />
     <Compile Include="Helpers\UriQueryBuilder.cs" />
+    <Compile Include="ServiceAccessLayer\AuthApiDto\TokenPayload.cs" />
     <Compile Include="ServiceAccessLayer\AuthenticationApiAccess\AuthApiAccess.cs" />
     <Compile Include="ServiceAccessLayer\AuthApiDto\Error.cs" />
     <Compile Include="ServiceAccessLayer\AuthApiDto\Token.cs" />
