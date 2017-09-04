@@ -227,6 +227,10 @@
     </Compile>
     <Compile Include="Behaviors\PasswordValidationBehavior.cs" />
     <Compile Include="Behaviors\EmailValidationBehavior.cs" />
+    <Compile Include="ViewModels\Pages\AppetizerPageViewModel.cs" />
+    <Compile Include="Pages\AppetizerPage.xaml.cs">
+      <DependentUpon>AppetizerPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="App.xaml">
@@ -234,6 +238,10 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\RegisterScreenView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\AppetizerPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

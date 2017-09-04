@@ -38,7 +38,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
     {
         private ExhibitSubviewViewModel selectedView;
         private AudioToolbarViewModel audioToolbar;
-        
+		private AppetizerPageViewModel AppetizerPage;
         private Exhibit exhibit; 
         private readonly IList<Page> pages;
         private ICommand nextViewCommand;
@@ -56,6 +56,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
         private bool additionalInformationButtonVisible;
         private bool exhibitUnblocked = true;
         private bool additionalInformation;
+
 
         public ExhibitDetailsViewModel(Exhibit exhibit) : this(exhibit, exhibit.Pages, exhibit.Name)
         {
@@ -284,9 +285,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
 
             switch (currentPage.PageType)
             {
-                case PageType.AppetizerPage:
-                    SelectedView = new AppetizerViewModel(Exhibit, Title, currentPage.AppetizerPage);
-                    break;
+    //            case PageType.AppetizerPage:
+				////SelectedView = new AppetizerPageViewModel(Exhibit, Title, currentPage.AppetizerPage);
+				//	AppetizerPage = new AppetizerPageViewModel(Exhibit, Title, currentPage.AppetizerPage);
+				//	Navigation.PushAsync(AppetizerPage);
+				//	break;
                 case PageType.ImagePage:
                     SelectedView = new ImageViewModel(currentPage.ImagePage, ToggleVisibilityOfNavigationButtons);
                     break;
