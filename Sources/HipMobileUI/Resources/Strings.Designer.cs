@@ -377,6 +377,42 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Nein.
+        /// </summary>
+        public static string ExhibitRouteDownloadPageViewModel_Wifi_Only_Cancel {
+            get {
+                return ResourceManager.GetString("ExhibitRouteDownloadPageViewModel_Wifi_Only_Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In den Einstellungen ist festgelegt, dass Daten nur über Wlan heruntergeladen werden sollen. Sollen die Daten dieses Mal trotzdem über die mobile Datenverbindung heruntergladen werden?.
+        /// </summary>
+        public static string ExhibitRouteDownloadPageViewModel_Wifi_Only_Message {
+            get {
+                return ResourceManager.GetString("ExhibitRouteDownloadPageViewModel_Wifi_Only_Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ja.
+        /// </summary>
+        public static string ExhibitRouteDownloadPageViewModel_Wifi_Only_Ok {
+            get {
+                return ResourceManager.GetString("ExhibitRouteDownloadPageViewModel_Wifi_Only_Ok", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wlan deaktiviert.
+        /// </summary>
+        public static string ExhibitRouteDownloadPageViewModel_Wifi_Only_Title {
+            get {
+                return ResourceManager.GetString("ExhibitRouteDownloadPageViewModel_Wifi_Only_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Keine Sehenswürdigkeiten verfügbar. Laden Sie Sehenswürdigkeiten herunter, um loszulegen!.
         /// </summary>
         public static string ExhibitsOverviewView_EmptyList {
