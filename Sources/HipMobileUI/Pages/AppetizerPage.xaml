@@ -34,7 +34,10 @@
                         <Label Text="{Binding Headline}" TextColor="#000000" FontSize="16" FontAttributes="Bold"/>
                         <Label Text="{Binding Text}" TextColor="#87000000" FontSize="14"/>
                     </StackLayout>
-               
+               		    <Button Image="ic_chevron_right" Command="{Binding NextViewCommand}" 
+            IsVisible="{Binding NextVisible}"
+            AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="1,0.5"
+            BackgroundColor="#80D3D3D3" AutomationId="NextButton"/>
             <Button Grid.Row="2" Image="ic_file_download.png" IsVisible="{Binding IsDownloadButtonVisible}" Command="{Binding DownloadCommand}"></Button>
         </Grid>
     </ContentPage.Content>

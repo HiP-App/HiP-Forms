@@ -22,6 +22,7 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelConver
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
 using Page = PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.Page;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views.ExhibitDetails;
@@ -38,6 +39,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 		private readonly IList<Page> pages;
 		private int currentViewIndex;
 		private AppetizerPage page;
+		private bool nextVisible;
+		private bool NextViewAvailable;
+		private ICommand nextViewCommand;
+		private bool exhibitUnblocked = true;
 
 
 		public AppetizerPageViewModel(Exhibit exhibit)
@@ -46,31 +51,77 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 		{
 			//if (page != null)
 			//{
-				Exhibit = exhibit;
-				Headline = exhibit.Name;
-				currentViewIndex = 0;
-				pages = exhibit.Pages; 
-				Page currentPage = pages[currentViewIndex];
-				page = currentPage.AppetizerPage;
-				Text = page.Text;
+			Exhibit = exhibit;
+			Headline = exhibit.Name;
+			currentViewIndex = 0;
+			pages = exhibit.Pages;
+			Page currentPage = pages[currentViewIndex];
+			page = currentPage.AppetizerPage;
+			Text = page.Text;
+			exhibitUnblocked = exhibit.Unlocked;
 
-				// workaround for realm bug
-				var imageData = page.Image.Data;
-				if (imageData != null)
+			if (pages.Count > 1)
+				NextViewAvailable = true;
+			// workaround for realm bug
+			var imageData = page.Image.Data;
+			if (imageData != null)
+			{
+				Image = ImageSource.FromStream(() => new MemoryStream(imageData));
+			}
+			else
+			{
+				Image = ImageSource.FromStream(() => new MemoryStream(BackupData.BackupImageData));
+			}
+
+			IsDownloadButtonVisible = !Exhibit.DetailsDataLoaded;
+			NextViewCommand = new Command(GotoNextView);
+			DownloadCommand = new Command(OpenDownloadDialog);
+			//}
+		}
+		///// <summary>
+		///// Indicator if navigation to next is visible
+		///// </summary>
+		//public bool NextVisible
+		//{
+		//	get { return nextVisible; }
+		//	set { SetProperty(ref nextVisible, value); }
+		//}
+
+		///// <summary>
+		///// Toggles the visibility of the navigation buttons if the next/previous page is available
+		///// Cancels the delayed task for toggling
+		///// </summary>
+		//private void ToggleVisibilityOfNavigationButtons()
+		//{
+		//	if (NextViewAvailable)
+		//	{
+		//		NextVisible = !NextVisible;
+		//	}
+
+		// }
+		/// <summary>
+		/// Go to the next available view.
+		/// </summary>
+		/// <returns></returns>
+		private async void GotoNextView()
+		{
+			if (currentViewIndex < pages.Count - 1)
+			{
+
+				if (exhibitUnblocked)
 				{
-					Image = ImageSource.FromStream(() => new MemoryStream(imageData));
+					currentViewIndex++;
+					NextViewAvailable = currentViewIndex < pages.Count - 1;
+					await Navigation.PushAsync(new ExhibitDetailsViewModel(Exhibit));
+
 				}
 				else
 				{
-					Image = ImageSource.FromStream(() => new MemoryStream(BackupData.BackupImageData));
+					await IoCManager.Resolve<INavigationService>()
+									.DisplayAlert(Strings.ExhibitDetailsPage_Distance_Title, Strings.ExhibitDetailsPage_Distance_Text, Strings.ExhibitDetailsPage_Distance_alert_confirm);
 				}
-
-				IsDownloadButtonVisible = !Exhibit.DetailsDataLoaded;
-
-				DownloadCommand = new Command(OpenDownloadDialog);
-			//}
+			}
 		}
-
 		private async void OpenDownloadDialog()
 		{
 			// Open the download dialog
@@ -142,6 +193,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 		{
 			get { return text; }
 			set { SetProperty(ref text, value); }
+		}
+		/// <summary>
+		/// The command for switching to the next view, if available.
+		/// </summary>
+		public ICommand NextViewCommand
+		{
+			get { return nextViewCommand; }
+			set { SetProperty(ref nextViewCommand, value); }
+
 		}
 
 	}

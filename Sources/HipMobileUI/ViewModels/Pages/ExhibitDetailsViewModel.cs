@@ -262,8 +262,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
         /// <returns></returns>
         private async Task SetCurrentView ()
         {
-            // update UI
-            Page currentPage = pages[currentViewIndex];
+			// update UI
+			if (currentViewIndex == 0)
+			{
+				currentViewIndex = currentViewIndex + 1;
+			}	
+
+			Page currentPage = pages[currentViewIndex];
             AudioAvailable = currentPage.Audio != null;
             if (!AudioAvailable)
             {
@@ -285,8 +290,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
 
             switch (currentPage.PageType)
             {
-    //            case PageType.AppetizerPage:
-				////SelectedView = new AppetizerPageViewModel(Exhibit, Title, currentPage.AppetizerPage);
+                //case PageType.AppetizerPage:
+				//SelectedView = new AppetizerViewModel(Exhibit, Title, currentPage.AppetizerPage);
 				//	AppetizerPage = new AppetizerPageViewModel(Exhibit, Title, currentPage.AppetizerPage);
 				//	Navigation.PushAsync(AppetizerPage);
 				//	break;
