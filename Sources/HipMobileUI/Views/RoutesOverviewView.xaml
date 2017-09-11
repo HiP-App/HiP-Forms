@@ -34,30 +34,34 @@
             </Grid.RowDefinitions>
             <ListView x:Name="List" Grid.Row="0" SeparatorVisibility="None" HasUnevenRows="True" ItemsSource="{Binding Routes}">
                 <ListView.Behaviors>
-                    <behaviors:ListViewTappedItemBehavior Command="{Binding ItemSelectedCommand}" Converter="{StaticResource ItemTappedConverter}" />
+                    <behaviors:ListViewTappedItemBehavior Command="{Binding ItemSelectedCommand}" Converter="{StaticResource ItemTappedConverter}"/>
                 </ListView.Behaviors>
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout Orientation="Horizontal" Padding="5,5,5,10" d:DataContext="{d:DesignInstance views:RoutesOverviewListItemViewModel}">
-                                <Image Source="{Binding Image}" HeightRequest="100" />
                                 <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
-                                    <Label Text="{Binding RouteTitle}" TextColor="Black" FontSize="18" />
-                                    <Label Text="{Binding RouteDescription}" TextColor="Black" />
+                                    <Label Text="{Binding RouteTitle}" TextColor="Black" FontSize="18"/>
+                                    <Label Text="{Binding RouteDescription}" TextColor="Black"/>
                                     <StackLayout Orientation="Horizontal">
-                                        <Image Source="ic_schedule.png"/>
-                                        <Label Text="{Binding Duration}" VerticalOptions="Center"/>
-                                    </StackLayout>
-                                    <StackLayout Orientation="Horizontal">
-                                        <Image Source="ic_directions_walk.png"/>
-                                        <Label Text="{Binding Distance}" VerticalOptions="Center"/>
-                                    </StackLayout>
-                                    <StackLayout Orientation="Horizontal">
-                                        <Label Text="{helpers:Translate RoutesOverviewView_Tags}" VerticalOptions="Center"/>
-                                        <container1:BindableChildrenStackLayout  ChildElements="{Binding Tags, Converter= {StaticResource ImageListConverter}}" Orientation="Horizontal" />
+                                        <Image Source="{Binding Image}" HeightRequest="100"/>
+                                        <StackLayout Orientation="Vertical">
+                                            <StackLayout Orientation="Horizontal">
+                                                <Image Source="ic_schedule.png"/>
+                                                <Label Text="{Binding Duration}" VerticalOptions="Center"/>
+                                            </StackLayout>
+                                            <StackLayout Orientation="Horizontal">
+                                                <Image Source="ic_directions_walk.png"/>
+                                                <Label Text="{Binding Distance}" VerticalOptions="Center"/>
+                                            </StackLayout>
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label Text="{helpers:Translate RoutesOverviewView_Tags}" VerticalOptions="Center"/>
+                                                <container1:BindableChildrenStackLayout  ChildElements="{Binding Tags, Converter= {StaticResource ImageListConverter}}" Orientation="Horizontal"/>
+                                            </StackLayout>
+                                        </StackLayout>
                                     </StackLayout>
                                 </StackLayout>
-                                <Button BorderRadius="2" BorderColor="{StaticResource DarkGrayColor}" BorderWidth="1" BackgroundColor="{StaticResource LightGrayColor}" WidthRequest="40" Image="ic_file_download.png" IsVisible="{Binding IsDownloadPanelVisible}" Command="{Binding DownloadCommand}"></Button>
+                                <Button BorderRadius="2" BackgroundColor="{StaticResource MediumGrayColor}" WidthRequest="40" Image="ic_file_download.png" IsVisible="{Binding IsDownloadPanelVisible}" Command="{Binding DownloadCommand}"/>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
