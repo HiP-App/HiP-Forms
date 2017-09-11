@@ -17,6 +17,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Threading;
 using System.Windows.Input;
+using Acr.UserDialogs;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
@@ -155,6 +156,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         {
             string messageToShow = null;
             string titleToShow = null;
+            bool isDownloadAllowed = true;
             var networkAccessStatus = IoCManager.Resolve<INetworkAccessChecker>().GetNetworkAccessStatus();
             IFullDownloadableDataFetcher fullDownloadableDataFetcher;
 
@@ -165,19 +167,37 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
             if (networkAccessStatus != NetworkAccessStatus.NoAccess)
             {
-                try
+                if (networkAccessStatus == NetworkAccessStatus.MobileAccess && Settings.WifiOnly)
                 {
-                    await fullDownloadableDataFetcher.FetchFullDownloadableDataIntoDatabase(DownloadableId, DownloadableIdForRestApi, cancellationTokenSource.Token, this);
-                }
-                catch (Exception e)
-                {
-                    if (!cancellationTokenSource.IsCancellationRequested)
+                    isDownloadAllowed = await UserDialogs.Instance.ConfirmAsync (new ConfirmConfig ()
                     {
-                        titleToShow = Strings.LoadingPageViewModel_BaseData_DownloadFailed_Title;
-                        messageToShow = Strings.LoadingPageViewModel_BaseData_DownloadFailed_Text;
-                        Debug.WriteLine(e.Message);
-                        Debug.WriteLine(e.StackTrace);
+                        Title = Strings.ExhibitRouteDownloadPageViewModel_Wifi_Only_Title,
+                        Message = Strings.ExhibitRouteDownloadPageViewModel_Wifi_Only_Message,
+                        OkText = Strings.ExhibitRouteDownloadPageViewModel_Wifi_Only_Ok,
+                        CancelText = Strings.ExhibitRouteDownloadPageViewModel_Wifi_Only_Cancel
+                    });
+                }
+
+                if (isDownloadAllowed)
+                {
+                    try
+                    {
+                        await fullDownloadableDataFetcher.FetchFullDownloadableDataIntoDatabase (DownloadableId, DownloadableIdForRestApi, cancellationTokenSource.Token, this);
                     }
+                    catch (Exception e)
+                    {
+                        if (!cancellationTokenSource.IsCancellationRequested)
+                        {
+                            titleToShow = Strings.LoadingPageViewModel_BaseData_DownloadFailed_Title;
+                            messageToShow = Strings.LoadingPageViewModel_BaseData_DownloadFailed_Text;
+                            Debug.WriteLine (e.Message);
+                            Debug.WriteLine (e.StackTrace);
+                        }
+                    }
+                }
+                else
+                {
+                    CloseDownloadPage ();
                 }
             }
             else
@@ -197,7 +217,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                 return;
             }
 
-            if (!cancellationTokenSource.IsCancellationRequested)
+            if (!cancellationTokenSource.IsCancellationRequested && isDownloadAllowed)
             {
                 SetDetailsAvailable();
             }
