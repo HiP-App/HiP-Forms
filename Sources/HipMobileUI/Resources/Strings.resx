@@ -794,7 +794,7 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
     <value>Nein</value>
   </data>
   <data name="ExhibitRouteDownloadPageViewModel_Wifi_Only_Message" xml:space="preserve">
-    <value>In den Einstellungen ist festgelegt, dass Daten nur über Wlan heruntergeladen werden sollen. Sollen die Daten dieses Mal trotzdem über die mobile Datenverbindung heruntergladen werden?</value>
+    <value>In den Einstellungen ist festgelegt, dass Daten nur über Wlan heruntergeladen werden sollen. Sollen die Daten dieses Mal trotzdem über die mobile Datenverbindung heruntergeladen werden?</value>
   </data>
   <data name="ExhibitRouteDownloadPageViewModel_Wifi_Only_Ok" xml:space="preserve">
     <value>Ja</value>
