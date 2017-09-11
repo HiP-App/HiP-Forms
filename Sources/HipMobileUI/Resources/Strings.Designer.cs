@@ -20,7 +20,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Strings {
@@ -373,6 +373,42 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         public static string ExhibitOrRouteNearby_Reject {
             get {
                 return ResourceManager.GetString("ExhibitOrRouteNearby_Reject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nein.
+        /// </summary>
+        public static string ExhibitRouteDownloadPageViewModel_Wifi_Only_Cancel {
+            get {
+                return ResourceManager.GetString("ExhibitRouteDownloadPageViewModel_Wifi_Only_Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In den Einstellungen ist festgelegt, dass Daten nur über Wlan heruntergeladen werden sollen. Sollen die Daten dieses Mal trotzdem über die mobile Datenverbindung heruntergeladen werden?.
+        /// </summary>
+        public static string ExhibitRouteDownloadPageViewModel_Wifi_Only_Message {
+            get {
+                return ResourceManager.GetString("ExhibitRouteDownloadPageViewModel_Wifi_Only_Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ja.
+        /// </summary>
+        public static string ExhibitRouteDownloadPageViewModel_Wifi_Only_Ok {
+            get {
+                return ResourceManager.GetString("ExhibitRouteDownloadPageViewModel_Wifi_Only_Ok", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wlan deaktiviert.
+        /// </summary>
+        public static string ExhibitRouteDownloadPageViewModel_Wifi_Only_Title {
+            get {
+                return ResourceManager.GetString("ExhibitRouteDownloadPageViewModel_Wifi_Only_Title", resourceCulture);
             }
         }
         
