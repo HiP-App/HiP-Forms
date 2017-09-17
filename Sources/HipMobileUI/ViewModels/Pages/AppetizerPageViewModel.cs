@@ -40,7 +40,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 		private int currentViewIndex;
 		private AppetizerPage page;
 		private bool nextVisible;
-		private bool NextViewAvailable;
+		private bool nextViewAvailable;
 		private ICommand nextViewCommand;
 		private bool exhibitUnblocked = true;
 
@@ -61,7 +61,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 			exhibitUnblocked = exhibit.Unlocked;
 
 			if (pages.Count > 1)
-				NextViewAvailable = true;
+				nextViewAvailable = true;
 			// workaround for realm bug
 			var imageData = page.Image.Data;
 			if (imageData != null)
@@ -111,7 +111,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 				if (exhibitUnblocked)
 				{
 					currentViewIndex++;
-					NextViewAvailable = currentViewIndex < pages.Count - 1;
+					nextViewAvailable = currentViewIndex < pages.Count - 1;
 					await Navigation.PushAsync(new ExhibitDetailsViewModel(Exhibit));
 
 				}
