@@ -34,6 +34,7 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Routing;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Map;
+using Realms.Exceptions;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 using Color = Android.Graphics.Color;
@@ -228,12 +229,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Map
             mapView.OverlayManager.Add(compassOverlay);
 
             //Here all exhibit markers and bubbles are set if the Exhibit is not null
-            if (set != null)
+            if (set != null && set.IsValid)
             {
                 var markerInfoWindow = new ViaPointInfoWindow(Resource.Layout.navigation_info_window, mapView);
                 var mapMarkerIcon = ContextCompat.GetDrawable(activity, Resource.Drawable.marker_blue);
                 var setMarker = new SetMarker(mapView, markerInfoWindow);
-
 
                 foreach (var e in set.ActiveSet)
                 {
@@ -242,8 +242,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Map
                     var marker = setMarker.AddMarker(null, e.Name, e.Description, geoPoint, mapMarkerIcon, e.Id);
                     mapView.OverlayManager.Add(marker);
                 }
-            }
 
+
+            }
 
             mapView.Invalidate();
         }
@@ -257,7 +258,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Map
         {
             var id = osmMap.DetailsRoute.Id;
 
-            ThreadPool.QueueUserWorkItem(state => {
+            ThreadPool.QueueUserWorkItem(state =>
+            {
 
                 Action action;
 
@@ -278,7 +280,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Map
                     action = () => { };
                 }
 
-                activity.RunOnUiThread(() => {
+                activity.RunOnUiThread(() =>
+                {
                     var handler = new Handler();
                     handler.PostDelayed(action, 0);
                 });

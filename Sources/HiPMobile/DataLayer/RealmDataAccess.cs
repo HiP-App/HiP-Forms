@@ -16,6 +16,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
@@ -58,7 +59,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataLayer {
         public bool DeleteItem<T> (string id) where T : RealmObject, IIdentifiable
         {
             var item = GetItem<T> (id);
-            Instance.Write (() => Instance.Remove (item));
+            //Instance.Write (() => Instance.Remove (item));
+
+            using (var trans = Instance.BeginWrite())
+            {
+                Instance.Remove(item);
+                trans.Commit();
+            }
 
             if (item != null)
                 return true;
@@ -103,6 +110,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataLayer {
             lock (Locker)
             {
                 Realm.DeleteRealm (Configuration);
+            }
+        }
+
+        public void CompactDatabase ()
+        {
+            lock (Locker)
+            {
+                Realm.Compact (Configuration);
             }
         }
 

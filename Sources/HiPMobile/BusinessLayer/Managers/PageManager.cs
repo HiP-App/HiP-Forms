@@ -12,6 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System.Runtime.InteropServices.ComTypes;
+using NUnit.Framework;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
@@ -64,6 +66,83 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers {
                 return DataAccess.GetItem<TimeSliderPage>(id);
             }
             return null;
+        }
+
+        public static bool DeletePage (Page page)
+        {
+            switch (page.PageType)
+            {
+                case PageType.AppetizerPage:
+                    DeleteAppetizerPage (page.AppetizerPage);
+                    break;
+                case PageType.ImagePage:
+                    DeleteImagePage (page.ImagePage);
+                    break;
+                case PageType.TextPage:
+                    DeleteTextPage (page.TextPage);
+                    break;
+                case PageType.TimeSliderPage:
+                    DeleteTimeSliderPage (page.TimeSliderPage);
+                    break;
+            }
+
+            if (page.Audio != null)
+            {
+                DataAccess.DeleteItem<Audio> (page.Audio.Id);
+            }
+
+            return DataAccess.DeleteItem<Page> (page.Id);
+        }
+
+        public static bool DeleteAppetizerPage (AppetizerPage appetizerPage)
+        {
+            return true;
+        }
+
+        public static bool DeleteImagePage(ImagePage imagePage)
+        {
+            if (imagePage != null)
+            {
+                Image image = imagePage.Image;
+
+                if (image != null)
+                {
+                    DataAccess.DeleteItem<Image> (image.Id);
+                    DataAccess.DeleteItem<ImagePage> (imagePage.Id);
+                }
+            }
+
+            return true;
+        }
+
+        public static bool DeleteTextPage(TextPage textPage)
+        {
+            if (textPage != null)
+            {
+                DataAccess.DeleteItem<TextPage> (textPage.Id);
+            }
+
+            return true;
+        }
+
+        public static bool DeleteTimeSliderPage(TimeSliderPage timeSliderPage)
+        {
+            if (timeSliderPage != null)
+            {
+                var images = timeSliderPage.Images;
+
+                foreach (var image in images)
+                {
+                    if (image != null)
+                    {
+                        DataAccess.DeleteItem<Image> (image.Id);
+                    }
+                }
+
+                DataAccess.DeleteItem<TimeSliderPage> (timeSliderPage.Id);
+            }
+
+            return true;
         }
     }
 }

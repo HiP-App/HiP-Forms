@@ -12,17 +12,22 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System.Diagnostics;
+using System.Linq;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataLayer;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using Realms;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers {
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
+{
     /// <summary>
     /// Access to database methods.
     /// </summary>
-    public static class DbManager {
+    public static class DbManager
+    {
 
         private static readonly IDataAccess DataAccess = IoCManager.Resolve<IDataAccess>();
 
@@ -31,9 +36,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers {
         /// </summary>
         /// <typeparam name="T">The type of the object being created. T needs to be subtype of RealmObject and implement the IIdentifiable interface.</typeparam>
         /// <returns>The instance.</returns>
-        public static T CreateBusinessObject<T> () where T : RealmObject, IIdentifiable, new ()
+        public static T CreateBusinessObject<T>() where T : RealmObject, IIdentifiable, new()
         {
-            return DataAccess.CreateObject<T> ();
+            return DataAccess.CreateObject<T>();
         }
 
         /// <summary>
@@ -42,7 +47,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers {
         /// <typeparam name="T">The type of the object. T needs to be subtype of RealmObject and implement the IIdentifiable interface.</typeparam>
         /// <param name="entitiy">The object to be deleted.</param>
         /// <returns>True if deletion was successful. False otherwise.</returns>
-        public static bool DeleteBusinessEntity<T> (T entitiy) where T : RealmObject, IIdentifiable
+        public static bool DeleteBusinessEntity<T>(T entitiy) where T : RealmObject, IIdentifiable
         {
             if (entitiy != null)
             {
@@ -55,30 +60,46 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers {
         /// Starts a new write transaction. Make sure to close the transaction by either committing it or rolling back.
         /// </summary>
         /// <returns>The transaction object which can perform committing or rolling back.</returns>
-        public static BaseTransaction StartTransaction ()
+        public static BaseTransaction StartTransaction()
         {
-            return DataAccess.StartTransaction ();
+            return DataAccess.StartTransaction();
         }
 
         /// <summary>
         /// Deletes the whole database
         /// </summary>
-        public static void DeleteDatabase ()
+        public static void DeleteDatabase()
         {
-            // delete from "cache" to see the changes instantly
-            var exhibitsSets = ExhibitManager.GetExhibitSets();
-            foreach (var exhibitsSet in exhibitsSets)
+            var exhibits = ExhibitManager.GetExhibits();
+
+            foreach (var exhibit in exhibits)
             {
-                ExhibitManager.DeleteExhibitSet(exhibitsSet);
-            }
-            var routes = RouteManager.GetRoutes();
-            foreach (var route in routes)
-            {
-                RouteManager.DeleteRoute(route);
+                foreach (var page in exhibit.Pages)
+                {
+                    if (!page.IsAppetizerPage())
+                    {
+                        PageManager.DeletePage(page);
+                    }
+                }
+
+                using (StartTransaction())
+                {
+                    exhibit.DetailsDataLoaded = false;
+
+                    for (int i = exhibit.Pages.Count - 1; i >= 0; i--)
+                    {
+                        if (!exhibit.Pages.ElementAt(i).IsAppetizerPage())
+                        {
+                            exhibit.Pages.RemoveAt(i);
+                        }
+                    }
+
+                }
             }
 
-            DataAccess.DeleteDatabase ();
-            IoCManager.Resolve<IDbChangedHandler> ().NotifyAll ();
+            DataAccess.CompactDatabase ();
+       
+            IoCManager.Resolve<IDbChangedHandler>().NotifyAll();
         }
     }
 }

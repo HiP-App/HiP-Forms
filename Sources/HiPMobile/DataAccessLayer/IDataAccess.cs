@@ -72,6 +72,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer {
         void DeleteDatabase ();
 
         /// <summary>
+        /// Frees unused space of the database.
+        /// </summary>
+        void CompactDatabase ();
+
+        /// <summary>
         /// Creates an empty database with the specified version.
         /// </summary>
         /// <param name="version">The version of the new database.</param>
