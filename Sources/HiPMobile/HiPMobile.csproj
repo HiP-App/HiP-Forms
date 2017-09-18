@@ -49,6 +49,9 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="..\..\HiP-Mobile-Internal\Constants.cs">
+      <Link>ServiceAccessLayer\AuthenticationApiAccess\Constants.cs</Link>
+    </Compile>
     <Compile Include="BusinessLayer\ContentApiFetchers\BaseDataFetcher.cs" />
     <Compile Include="BusinessLayer\ContentApiFetchers\Contracts\IFullDownloadableDataFetcher.cs" />
     <Compile Include="BusinessLayer\ContentApiFetchers\Contracts\IFullRouteDataFetcher.cs" />
@@ -94,10 +97,10 @@
     <Compile Include="BusinessLayer\DtoToModelConverters\ExhibitConverter.cs" />
     <Compile Include="Helpers\AssertionHelper.cs" />
     <Compile Include="Helpers\UriQueryBuilder.cs" />
+    <Compile Include="ServiceAccessLayer\AuthApiDto\TokenPayload.cs" />
     <Compile Include="ServiceAccessLayer\AuthenticationApiAccess\AuthApiAccess.cs" />
     <Compile Include="ServiceAccessLayer\AuthApiDto\Error.cs" />
     <Compile Include="ServiceAccessLayer\AuthApiDto\Token.cs" />
-    <Compile Include="ServiceAccessLayer\AuthenticationApiAccess\Constants.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiClient.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiAccesses\Contracts\ITagsApiAccess.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiAccesses\Contracts\IRoutesApiAccess.cs" />

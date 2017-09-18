@@ -24,5 +24,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer {
         /// </summary>
         public const string DatastoreApiPath = "https://docker-hip.cs.uni-paderborn.de/public/datastore/api";
 
+        public const string DataStoreTokenUrl = "https://hip.eu.auth0.com/oauth/token";
+
+
     }
 }
