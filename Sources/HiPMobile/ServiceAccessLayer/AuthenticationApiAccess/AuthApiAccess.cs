@@ -51,21 +51,25 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Authent
             return token;
         }
 
-        public async Task<bool> Register(string username, string password, string confirmPassword)
+        public async Task<bool> Register(string username, string password)
         {
             FormUrlEncodedContent content = new FormUrlEncodedContent(new[]
             {
-            new KeyValuePair<string, string> (Constants.UserName, username),
-            new KeyValuePair<string, string> (Constants.Password, password),
-            new KeyValuePair<string, string> (Constants.ConfirmPassword, confirmPassword)
+                Constants.Connection,
+                Constants.BasicClientId,
+                new KeyValuePair<string, string> ("email", username),
+                new KeyValuePair<string, string> ("password", password) 
             });
-            IContentApiClient client = new ContentApiClient();
-            var result = await client.PostRequestFormBased(ServerEndpoints.LoginUrl, content);
+
+            var result = await clientApiClient.PostRequestFormBased(ServerEndpoints.RegisterUrl, content);
+
+            string jsonPayload = await result.Content.ReadAsStringAsync();
 
             if (result.StatusCode == HttpStatusCode.OK)
             {
                 return true;
             }
+
             return false;
         }
 

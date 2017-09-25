@@ -23,125 +23,120 @@ using Xamarin.Forms;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 {
-	public class RegisterScreenViewModel : NavigationViewModel
-	{
-		private String email;
-		private String password;
-		private String repassword;
-		private String errorMessage;
-		private readonly MainPageViewModel mainPageViewModel;
+    public class RegisterScreenViewModel : NavigationViewModel
+    {
+        private String email;
+        private String password;
+        private String repassword;
+        private String errorMessage;
+        private readonly MainPageViewModel mainPageViewModel;
 
 
-		public RegisterScreenViewModel(MainPageViewModel mainPageVm)
-		{
-			mainPageViewModel = mainPageVm;
-			Register = new Command(OnRegisterClicked);
+        public RegisterScreenViewModel(MainPageViewModel mainPageVm)
+        {
+            mainPageViewModel = mainPageVm;
+            Register = new Command(OnRegisterClicked);
 
-		}
+        }
 
-		public ICommand Register { get; }
+        public ICommand Register { get; }
 
 
-		async void RegisterUser()
-		{
-			
-			User user = new User(Email, password);
-			UserStatus userStatus = await IoCManager.Resolve<IUserManager>().Register(user);
-			if (userStatus == UserStatus.Registered)
-			{
-				mainPageViewModel.SwitchToLoginView();
-				await Application.Current.MainPage.DisplayAlert(Strings.RegisterScreenView_Alert_Registered, Strings.RegisterScreenView_Alert_Description, Strings.RegisterScreenView_Alert_Ok);
-			}
-			else
-				DisplayRegisterFailedErrorMessage();
+        async void RegisterUser()
+        {
+            User user = new User(Email, password);
+            UserStatus userStatus = await IoCManager.Resolve<IUserManager>().Register(user);
+            if (userStatus == UserStatus.Registered)
+            {
+                mainPageViewModel.SwitchToLoginView();
+                await Application.Current.MainPage.DisplayAlert(Strings.RegisterScreenView_Alert_Registered, Strings.RegisterScreenView_Alert_Description, Strings.RegisterScreenView_Alert_Ok);
+            }
+            else
+                DisplayRegisterFailedErrorMessage();
+        }
 
-		}
+        void DisplayEmptyEmailAndPasswordErrorMessage()
+        {
+            ErrorMessage = Strings.RegisterScreenView_Error_Empty_Email_And_Password;
+        }
 
-		void DisplayEmptyEmailAndPasswordErrorMessage()
-		{
-			ErrorMessage = Strings.RegisterScreenView_Error_Empty_Email_And_Password;
-		}
+        void DisplayRegisterFailedErrorMessage()
+        {
+            ErrorMessage = Strings.RegisterScreenView_Error_Register_Fail;
+        }
 
-		void DisplayRegisterFailedErrorMessage()
-		{
-			ErrorMessage = Strings.RegisterScreenView_Error_Register_Fail; 
-		}
+        void DisplayEmptyPasswordErrorMessage()
+        {
+            ErrorMessage = Strings.RegisterScreenView_Error_Empty_Password;
+        }
+        void DisplayPasswordMismatchErrorMessage()
+        {
+            ErrorMessage = Strings.RegisterScreenView_Error_Mismatch_Password;
+        }
+        void DisplayEmptyEmailErrorMessage()
+        {
+            ErrorMessage = Strings.RegisterScreenView_Error_Empty_Email;
+        }
+        void DisplayInvalidEmailErrorMessage()
+        {
+            ErrorMessage = Strings.RegisterScreenView_Error_Invalid_Email;
+        }
 
-		void DisplayEmptyPasswordErrorMessage()
-		{
-			ErrorMessage = Strings.RegisterScreenView_Error_Empty_Password;
-		}
-		void DisplayPasswordMismatchErrorMessage()
-		{
-			ErrorMessage = Strings.RegisterScreenView_Error_Mismatch_Password;
-		}
-		void DisplayEmptyEmailErrorMessage()
-		{
-			ErrorMessage = Strings.RegisterScreenView_Error_Empty_Email;
-		}
-		void DisplayInvalidEmailErrorMessage()
-		{
-			ErrorMessage = Strings.RegisterScreenView_Error_Invalid_Email;
-		}
+        void OnRegisterClicked()
+        {
+            const string emailRegex = @"^(?("")("".+?(?<!\\)""@)|(([0-9a-z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-z])@))" +
+                @"(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-z][-\w]*[0-9a-z]*\.)+[a-z0-9][\-a-z0-9]{0,22}[a-z0-9]))$";
 
-		void OnRegisterClicked()
-		{
-			const string emailRegex = @"^(?("")("".+?(?<!\\)""@)|(([0-9a-z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-z])@))" +
-				@"(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-z][-\w]*[0-9a-z]*\.)+[a-z0-9][\-a-z0-9]{0,22}[a-z0-9]))$";
+            bool isValid = false;
 
-			bool isValid = false;
+            if (Email != null)
+            {
+                isValid = (Regex.IsMatch(Email, emailRegex, RegexOptions.IgnoreCase));
+            }
 
-			if (Email != null)
-			{
-				isValid = (Regex.IsMatch(Email, emailRegex, RegexOptions.IgnoreCase));
-			}
+            if (String.IsNullOrWhiteSpace(Email) && (String.IsNullOrWhiteSpace(Password) || String.IsNullOrWhiteSpace(RepeatPassword)))
 
-			
+                DisplayEmptyEmailAndPasswordErrorMessage();
 
-			
-			if (String.IsNullOrWhiteSpace(Email) && (String.IsNullOrWhiteSpace(Password) || String.IsNullOrWhiteSpace(RepeatPassword)))
+            else if (String.IsNullOrWhiteSpace(Email))
 
-				DisplayEmptyEmailAndPasswordErrorMessage();
+                DisplayEmptyEmailErrorMessage();
 
-			else if (String.IsNullOrWhiteSpace(Email))
+            else if (String.IsNullOrWhiteSpace(Password) || String.IsNullOrWhiteSpace(RepeatPassword))
 
-				DisplayEmptyEmailErrorMessage();
+                DisplayEmptyPasswordErrorMessage();
+            else if (isValid == false)
 
-			else if (String.IsNullOrWhiteSpace(Password) || String.IsNullOrWhiteSpace(RepeatPassword))
+                DisplayInvalidEmailErrorMessage();
 
-				DisplayEmptyPasswordErrorMessage();
-			else if (isValid == false)
+            else if (Password != RepeatPassword)
 
-				DisplayInvalidEmailErrorMessage();
-			
-			else if (Password != RepeatPassword)
+                DisplayPasswordMismatchErrorMessage();
+            else
 
-				DisplayPasswordMismatchErrorMessage();
-			else
+                RegisterUser();
+        }
+        public String ErrorMessage
+        {
+            get { return errorMessage; }
+            set { SetProperty(ref errorMessage, value); }
+        }
 
-				RegisterUser();
-		}
-		public String ErrorMessage
-		{
-			get { return errorMessage; }
-			set { SetProperty(ref errorMessage, value); }
-		}
+        public String Email
+        {
+            get { return email; }
+            set { SetProperty(ref email, value); }
+        }
 
-		public String Email
-		{
-			get { return email; }
-			set { SetProperty(ref email, value); }
-		}
-
-		public String Password
-		{
-			get { return password; }
-			set { SetProperty(ref password, value); }
-		}
-		public String RepeatPassword
-		{
-			get { return repassword; }
-			set { SetProperty(ref repassword, value); }
-		}
-	}
+        public String Password
+        {
+            get { return password; }
+            set { SetProperty(ref password, value); }
+        }
+        public String RepeatPassword
+        {
+            get { return repassword; }
+            set { SetProperty(ref repassword, value); }
+        }
+    }
 }

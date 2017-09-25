@@ -17,7 +17,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer {
         private const string BaseUrl = "https://hip.eu.auth0.com/";
 
         public const string LoginUrl = BaseUrl + "oauth/token";
-        public const string RegistrationUrl = BaseUrl + "Account/Register";
+        public const string RegisterUrl = BaseUrl + "dbconnections/signup";
         public const string ForgotPasswordUrl = BaseUrl + "ForgotUrl";
         /// <summary>
         /// Urlpath for the docker container running the HiP-DataStore instance
