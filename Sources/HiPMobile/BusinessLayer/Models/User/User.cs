@@ -4,18 +4,17 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.User
     {
     public class User
         {
-        public string UserName { get; }
+        public string Username { get; }
         public string Password { get; }
 
-       public User (string userName, string password)
+       public User (string username, string password)
        {
-           UserName = userName;
+           Username = username;
            Password = password;
        }
 
         public Token Token { get; internal set; }
 
         public UserStatus CurrentStatus { get; set; }
-
         }
     }
