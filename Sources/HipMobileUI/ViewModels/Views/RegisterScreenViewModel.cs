@@ -12,7 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 using System;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.User;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
@@ -21,7 +20,6 @@ using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using System.Windows.Input;
 using System.Text.RegularExpressions;
 using Xamarin.Forms;
-using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 {
@@ -48,12 +46,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 		{
 			
 			User user = new User(Email, password);
-			UserStatus userStatus = await IoCManager.Resolve<IUserManager>().RegisterUser(user);
+			UserStatus userStatus = await IoCManager.Resolve<IUserManager>().Register(user);
 			if (userStatus == UserStatus.Registered)
 			{
 				mainPageViewModel.SwitchToLoginView();
 				await Application.Current.MainPage.DisplayAlert(Strings.RegisterScreenView_Alert_Registered, Strings.RegisterScreenView_Alert_Description, Strings.RegisterScreenView_Alert_Ok);
-
 			}
 			else
 				DisplayRegisterFailedErrorMessage();

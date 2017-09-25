@@ -224,7 +224,21 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
             get { return AppSettings.GetValueOrDefault(PasswordKey, PasswordDefault); }
             set { AppSettings.AddOrUpdateValue(PasswordKey, value); }
         }
-        
+
+        /// <summary>
+        /// The access token returned from the auth api after a successful login
+        /// </summary>
+        private const string AccessTokenKey = "access_token_key";
+        private static readonly string AccessTokenDefault = "";
+
+        public static string AccessToken
+        {
+            get { return AppSettings.GetValueOrDefault(AccessTokenKey, AccessTokenDefault); }
+            set { AppSettings.AddOrUpdateValue(AccessTokenKey, value); }
+        }
+
+
+
         /// <summary>
         /// The score of the current user
         /// </summary>
