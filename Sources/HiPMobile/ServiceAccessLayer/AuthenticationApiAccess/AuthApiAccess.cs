@@ -63,8 +63,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Authent
 
             var result = await clientApiClient.PostRequestFormBased(ServerEndpoints.RegisterUrl, content);
 
-            string jsonPayload = await result.Content.ReadAsStringAsync();
-
             if (result.StatusCode == HttpStatusCode.OK)
             {
                 return true;
