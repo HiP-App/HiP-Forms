@@ -69,15 +69,26 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Authent
             return false;
         }
 
-        public async Task<string> ForgotPassword(string username)
+        public async Task<bool> ForgotPassword(string username)
         {
             FormUrlEncodedContent content = new FormUrlEncodedContent(new[]
             {
-            new KeyValuePair<string, string> (Constants.UserName, username)
+                Constants.BasicClientId,
+                Constants.Connection,
+                new KeyValuePair<string, string> ("email", username),
+                
             });
 
             var result = await clientApiClient.PostRequestFormBased(ServerEndpoints.ForgotPasswordUrl, content);
-            return await result.Content.ReadAsStringAsync();
+
+            if (result.IsSuccessStatusCode)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
     }

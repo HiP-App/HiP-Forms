@@ -72,15 +72,27 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.UserManageme
             return true;
         }
 
-        public Task<UserStatus> ForgotPassword(User user)
+        public async Task<UserStatus> ForgotPassword(User user)
         {
             if (!CheckNetworkAccess())
             {
                 user.CurrentStatus = UserStatus.NetworkConnectionFailed;
-                return user.CurrentStatus;
+            }
+            else
+            {
+                bool isResetPasswordEmailSent = await AuthApiAccess.ForgotPassword (user.Username);
+
+                if (isResetPasswordEmailSent)
+                {
+                    user.CurrentStatus = UserStatus.PasswordResetEmailSent;
+                }
+                else
+                {
+                    user.CurrentStatus = UserStatus.UnkownError;
+                }
             }
 
-
+            return user.CurrentStatus;
         }
     }
 }
