@@ -228,6 +228,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                         dbRoute.Waypoints.Add (waypoint);
                     }
                 }
+
+                var removedWaypoints = dbRoute.Waypoints.Where(x => !routeDto.Exhibits.Contains (x.Exhibit.IdForRestApi));
+                foreach (var waypoint in removedWaypoints)
+                {
+                    dbRoute.Waypoints.Remove(waypoint);
+                }
+
                 dbRoute.DetailsDataLoaded = false;
             }
             else

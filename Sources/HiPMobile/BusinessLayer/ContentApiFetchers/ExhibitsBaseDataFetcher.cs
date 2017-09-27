@@ -139,6 +139,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                 //{
                 //    IoCManager.Resolve<INewDataCenter>().AddExhibitToBeUpdated(dbExhibit);
                 //}
+
+                var removedPages = dbExhibit.Pages.Where(x => !exhibitDto.Pages.Contains(x.IdForRestApi));
+                foreach (var page in removedPages)
+                {
+                    dbExhibit.Pages.Remove(page);
+                }
+
                 listener.ProgressOneStep();
             }
         }
