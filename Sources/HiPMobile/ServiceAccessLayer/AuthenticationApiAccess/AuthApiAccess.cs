@@ -75,6 +75,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Authent
             {
             new KeyValuePair<string, string> (Constants.UserName, username)
             });
+
             var result = await clientApiClient.PostRequestFormBased(ServerEndpoints.ForgotPasswordUrl, content);
             return await result.Content.ReadAsStringAsync();
         }

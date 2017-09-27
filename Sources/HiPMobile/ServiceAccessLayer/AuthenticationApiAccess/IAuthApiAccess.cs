@@ -14,6 +14,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Authent
 
         Task<bool> Register(string username, string password, string confirmPassword);
 
-        Task<string> ForgotPassword(string username);
+        Task<bool> ForgotPassword(string username);
     }
 }
