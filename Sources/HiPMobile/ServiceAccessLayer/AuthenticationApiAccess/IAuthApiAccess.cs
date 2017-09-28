@@ -12,7 +12,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Authent
     {
         Task<Token> Login(string username, string password);
 
-        Task<bool> Register(string username, string password, string confirmPassword);
+        Task<bool> Register(string username, string password);
 
         Task<bool> ForgotPassword(string username);
     }
