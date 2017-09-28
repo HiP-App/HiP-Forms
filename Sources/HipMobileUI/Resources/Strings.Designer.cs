@@ -431,6 +431,24 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bitte überprüfen Sie ihre Netzwerkverbindung.
+        /// </summary>
+        public static string ForgotPasswordScreenView_Alert_No_Connection_Description {
+            get {
+                return ResourceManager.GetString("ForgotPasswordScreenView_Alert_No_Connection_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Keine Netzwerkverbindung.
+        /// </summary>
+        public static string ForgotPasswordScreenView_Alert_No_Connection_Title {
+            get {
+                return ResourceManager.GetString("ForgotPasswordScreenView_Alert_No_Connection_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ok.
         /// </summary>
         public static string ForgotPasswordScreenView_Alert_Ok {
@@ -445,6 +463,24 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         public static string ForgotPasswordScreenView_Alert_Password_Resetted {
             get {
                 return ResourceManager.GetString("ForgotPasswordScreenView_Alert_Password_Resetted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Es ist ein unbekannter Fehler aufgetreten. Bitte versuchen Sie es später noch einmal..
+        /// </summary>
+        public static string ForgotPasswordScreenView_Alert_Unknown_Error_Description {
+            get {
+                return ResourceManager.GetString("ForgotPasswordScreenView_Alert_Unknown_Error_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unbekannter Fehler.
+        /// </summary>
+        public static string ForgotPasswordScreenView_Alert_Unknown_Error_Title {
+            get {
+                return ResourceManager.GetString("ForgotPasswordScreenView_Alert_Unknown_Error_Title", resourceCulture);
             }
         }
         
