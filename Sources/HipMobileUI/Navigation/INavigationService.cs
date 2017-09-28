@@ -49,8 +49,17 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation {
         /// <returns>The task.</returns>
         Task PushModalAsync(NavigationViewModel viewModel, bool animate= true);
 
+        /// <summary>
+        /// Removes the view for the viewmodel from the navigation stack
+        /// </summary>
+        /// <param name="viewModel"></param>
         void RemovePage (NavigationViewModel viewModel);
 
+        /// <summary>
+        /// Inserts the page below the other given page on the navigation stack.
+        /// </summary>
+        /// <param name="viewModel">Viewmodel for the view to insert.</param>
+        /// <param name="before">Viewmodel for the view below which the other viewmodel should be inserted.</param>
         void InsertPageBefore (NavigationViewModel viewModel, NavigationViewModel before);
 
         /// <summary>
@@ -100,6 +109,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation {
         /// </summary>
         /// <param name="newRoot">The viewmodel which view is used as the new root.</param>
         void StartNewNavigationStack (NavigationViewModel newRoot);
+
+        /// <summary>
+        /// Removes all modal pages of the modal navigation stack.
+        /// </summary>
+        /// <param name="animate">Animate the pops.</param>
+        /// <returns>The task.</returns>
+        Task ClearModalStack (bool animate = false);
 
     }
 }

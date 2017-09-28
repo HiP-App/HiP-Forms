@@ -1,7 +1,9 @@
 ﻿using System.IO;
 using System.Windows.Input;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Location;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using Xamarin.Forms;
 
@@ -35,7 +37,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 
         void Accept()
         {
-            Deny ();
+            IoCManager.Resolve<INavigationService>().ClearModalStack();
             NearbyRouteManager.OpenRouteDetailsView (RouteId);
         }
 
