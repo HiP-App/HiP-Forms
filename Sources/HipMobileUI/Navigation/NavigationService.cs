@@ -80,6 +80,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation
             currentPageBindingContext?.OnRevealed ();
         }
 
+        public async Task ClearModalStack (bool animate = false)
+        {
+            while (FormsNavigation.ModalStack.Count > 0)
+            {
+                await FormsNavigation.PopModalAsync (animate);
+            }
+        }
+
         public async Task PushAsync (NavigationViewModel viewModel, bool animate=false)
         {
             try
