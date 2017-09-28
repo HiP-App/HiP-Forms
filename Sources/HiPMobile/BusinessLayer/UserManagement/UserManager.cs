@@ -15,8 +15,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.UserManageme
         Task<UserStatus> Login(User user);
         Task<UserStatus> Logout(User user);
         Task<UserStatus> Register(User user);
-
+        Task<UserStatus> ForgotPassword (User user);
     }
+
     public class UserManager : IUserManager
     {
 
@@ -80,9 +81,27 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.UserManageme
             return true;
         }
 
-        public async Task<UserStatus> ForgotPassword(string email)
+        public async Task<UserStatus> ForgotPassword(User user)
         {
-            return UserStatus.PasswordResetEmailSent;
+            if (!CheckNetworkAccess())
+            {
+                user.CurrentStatus = UserStatus.NetworkConnectionFailed;
+            }
+            else
+            {
+                bool isResetPasswordEmailSent = await AuthApiAccess.ForgotPassword (user.Username);
+
+                if (isResetPasswordEmailSent)
+                {
+                    user.CurrentStatus = UserStatus.PasswordResetEmailSent;
+                }
+                else
+                {
+                    user.CurrentStatus = UserStatus.UnkownError;
+                }
+            }
+
+            return user.CurrentStatus;
         }
     }
 }
