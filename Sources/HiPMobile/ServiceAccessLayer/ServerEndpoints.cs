@@ -18,7 +18,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer {
 
         public const string LoginUrl = BaseUrl + "oauth/token";
 
-        public const string RegistrationUrl = BaseUrl + "dbconnections/signup";
+        public const string RegisterUrl = BaseUrl + "dbconnections/signup";
         public const string ForgotPasswordUrl = BaseUrl + "dbconnections/change_password";
 
         /// <summary>
