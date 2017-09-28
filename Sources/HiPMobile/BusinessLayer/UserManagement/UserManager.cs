@@ -60,7 +60,16 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.UserManageme
 
         public async Task<UserStatus> Register(User user)
         {
-            return UserStatus.Registered;
+            bool isRegistered = await AuthApiAccess.Register(user.Username, user.Password);
+
+            if (isRegistered)
+            {
+                return UserStatus.Registered;
+            }
+            else
+            {
+                return UserStatus.UnkownError;
+            }
         }
 
         public bool CheckNetworkAccess()
