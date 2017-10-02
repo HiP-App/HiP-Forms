@@ -18,13 +18,14 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
 using Plugin.CurrentActivity;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Contracts {
+namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Contracts
+{
     public class DroidNetworkAccessChecker : INetworkAccessChecker
     {
-        public NetworkAccessStatus GetNetworkAccessStatus ()
+        public NetworkAccessStatus GetNetworkAccessStatus()
         {
-            var mainActivity = (MainActivity)CrossCurrentActivity.Current.Activity;
-            ConnectivityManager connectivityManager = (ConnectivityManager)mainActivity.GetSystemService(Context.ConnectivityService);
+            var mainActivity = (MainActivity) CrossCurrentActivity.Current.Activity;
+            ConnectivityManager connectivityManager = (ConnectivityManager) mainActivity.GetSystemService(Context.ConnectivityService);
             NetworkInfo networkInfo = connectivityManager.ActiveNetworkInfo;
 
             if (networkInfo == null || !networkInfo.IsConnected)
@@ -42,6 +43,5 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Contracts {
                     return NetworkAccessStatus.NoAccess;
             }
         }
-
     }
 }

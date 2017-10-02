@@ -23,37 +23,37 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Views {
-
+namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Views
+{
     [TestFixture]
     public class RoutesOverviewViewModelTest
     {
         [Test, Category("UnitTest")]
-        public void Creation_PropertiesFilled ()
+        public void Creation_PropertiesFilled()
         {
-            var sut = CreateSystemUnderTest ();
+            var sut = CreateSystemUnderTest();
 
-            var route = sut.Routes.First ();
+            var route = sut.Routes.First();
 
-            Assert.AreEqual ("Test Description", route.RouteDescription);
-            Assert.AreEqual ("10 Kilometer", route.Distance);
-            Assert.AreEqual ("80 Minuten", route.Duration);
-            Assert.AreEqual ("Test Title", route.RouteTitle);
-            Assert.NotNull (route.Image);
+            Assert.AreEqual("Test Description", route.RouteDescription);
+            Assert.AreEqual("10 Kilometer", route.Distance);
+            Assert.AreEqual("80 Minuten", route.Duration);
+            Assert.AreEqual("Test Title", route.RouteTitle);
+            Assert.NotNull(route.Image);
         }
 
         #region HelperMethods
 
-        private RoutesOverviewViewModel CreateSystemUnderTest ()
+        private RoutesOverviewViewModel CreateSystemUnderTest()
         {
-            IoCManager.Clear ();
+            IoCManager.Clear();
             var imageDimensions = Substitute.For<IImageDimension>();
             IoCManager.RegisterInstance(typeof(IImageDimension), imageDimensions);
 
-            var route = Substitute.For<Route> ();
+            var route = Substitute.For<Route>();
 
-            var image = Substitute.For<Image> ();
-            image.Data = new byte[] {1, 2, 3, 4};
+            var image = Substitute.For<Image>();
+            image.Data = new byte[] { 1, 2, 3, 4 };
 
             route.Description = "Test Description";
             route.Distance = 10;
@@ -61,12 +61,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Views
             route.Title = "Test Title";
             route.Image = image;
 
-            var dataAccess = Substitute.For<IDataAccess> ();
-            dataAccess.GetItems<Route> ().Returns (new List<Route> {route});
-            IoCManager.RegisterInstance (typeof (IDataAccess), dataAccess);
-            IoCManager.RegisterInstance (typeof (INavigationService), Substitute.For<INavigationService> ());
+            var dataAccess = Substitute.For<IDataAccess>();
+            dataAccess.GetItems<Route>().Returns(new List<Route> { route });
+            IoCManager.RegisterInstance(typeof(IDataAccess), dataAccess);
+            IoCManager.RegisterInstance(typeof(INavigationService), Substitute.For<INavigationService>());
 
-            return new RoutesOverviewViewModel ();
+            return new RoutesOverviewViewModel();
         }
 
         #endregion

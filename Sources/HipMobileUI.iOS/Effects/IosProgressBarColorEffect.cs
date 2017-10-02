@@ -20,28 +20,27 @@ using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 
 [assembly: ExportEffect(typeof(IosProgressBarColorEffect), "ProgressBarColorEffect")]
+
 namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Effects
 {
     class IosProgressBarColorEffect : PlatformEffect
     {
-
         private UIColor oldColor;
 
-        protected override void OnAttached ()
+        protected override void OnAttached()
         {
-            UIProgressView progressBar = (UIProgressView)Control;
-            ProgressBarColorEffect effect = (ProgressBarColorEffect)Element.Effects.FirstOrDefault(e => e is ProgressBarColorEffect);
+            UIProgressView progressBar = (UIProgressView) Control;
+            ProgressBarColorEffect effect = (ProgressBarColorEffect) Element.Effects.FirstOrDefault(e => e is ProgressBarColorEffect);
             oldColor = progressBar.ProgressTintColor;
             if (effect != null)
-                progressBar.ProgressTintColor = effect.Color.ToUIColor ();
+                progressBar.ProgressTintColor = effect.Color.ToUIColor();
         }
 
-        protected override void OnDetached ()
+        protected override void OnDetached()
         {
             //restore the old color
-            UIProgressView uiSwitch = (UIProgressView)Control;
+            UIProgressView uiSwitch = (UIProgressView) Control;
             uiSwitch.ProgressTintColor = oldColor;
         }
-
     }
 }

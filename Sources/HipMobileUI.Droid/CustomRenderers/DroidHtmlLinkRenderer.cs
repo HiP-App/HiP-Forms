@@ -23,6 +23,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
 [assembly: ExportRenderer(typeof(HtmlLink), typeof(DroidHtmlLinkRenderer))]
+
 namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.CustomRenderers
 {
     class DroidHtmlLinkRenderer : LabelRenderer
@@ -37,7 +38,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.CustomRenderers
 
             if (formslink != null)
             {
-                string html = new HtmlTagHelper ().FormatAdditionalTags (formslink.HtmlText);
+                string html = new HtmlTagHelper().FormatAdditionalTags(formslink.HtmlText);
 
                 if (Build.VERSION.SdkInt >= BuildVersionCodes.N)
                 {
@@ -46,7 +47,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.CustomRenderers
                 else
                 {
 #pragma warning disable 618
-                    Control.TextFormatted = Html.FromHtml (html);
+                    Control.TextFormatted = Html.FromHtml(html);
 #pragma warning restore 618
                 }
 

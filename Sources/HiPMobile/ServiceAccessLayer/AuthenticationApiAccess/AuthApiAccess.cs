@@ -11,7 +11,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Authent
 {
     public class AuthApiAccess : IAuthApiAccess
     {
-
         private readonly IContentApiClient clientApiClient;
 
         public AuthApiAccess(IContentApiClient clientApiClient)
@@ -28,8 +27,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Authent
                 Constants.MobileScope,
                 Constants.MobileClientId,
                 Constants.MobileClientSecret,
-                new KeyValuePair<string, string> ("username", username),
-                new KeyValuePair<string, string> ("password", password)
+                new KeyValuePair<string, string>("username", username),
+                new KeyValuePair<string, string>("password", password)
             });
 
             var result = await clientApiClient.PostRequestFormBased(ServerEndpoints.LoginUrl, content);
@@ -57,8 +56,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Authent
             {
                 Constants.Connection,
                 Constants.BasicClientId,
-                new KeyValuePair<string, string> ("email", username),
-                new KeyValuePair<string, string> ("password", password) 
+                new KeyValuePair<string, string>("email", username),
+                new KeyValuePair<string, string>("password", password)
             });
 
             var result = await clientApiClient.PostRequestFormBased(ServerEndpoints.RegisterUrl, content);
@@ -77,8 +76,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Authent
             {
                 Constants.BasicClientId,
                 Constants.Connection,
-                new KeyValuePair<string, string> ("email", username),
-                
+                new KeyValuePair<string, string>("email", username),
             });
 
             var result = await clientApiClient.PostRequestFormBased(ServerEndpoints.ForgotPasswordUrl, content);
@@ -92,6 +90,5 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Authent
                 return false;
             }
         }
-
     }
 }

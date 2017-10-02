@@ -15,10 +15,11 @@
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelConverters {
-    public class RouteConverter : DtoToModelConverter<Route, RouteDto> {
-
-        public override void Convert (RouteDto dto, Route existingModelObject)
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelConverters
+{
+    public class RouteConverter : DtoToModelConverter<Route, RouteDto>
+    {
+        public override void Convert(RouteDto dto, Route existingModelObject)
         {
             existingModelObject.IdForRestApi = dto.Id;
             existingModelObject.Timestamp = dto.Timestamp;

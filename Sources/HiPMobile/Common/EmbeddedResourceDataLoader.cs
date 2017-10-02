@@ -18,12 +18,13 @@ using System.Linq;
 using System.Reflection;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Common {
-    public class EmbeddedResourceDataLoader : IDataLoader{
-
-        public byte[] LoadByteData (string name)
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Common
+{
+    public class EmbeddedResourceDataLoader : IDataLoader
+    {
+        public byte[] LoadByteData(string name)
         {
-            var stream = GetEmbeddedResourceStream(Assembly.Load (new AssemblyName("HiPMobilePCL")), name);
+            var stream = GetEmbeddedResourceStream(Assembly.Load(new AssemblyName("HiPMobilePCL")), name);
 
             using (var memoryStream = new MemoryStream())
             {
@@ -33,12 +34,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Common {
         }
 
         /// <summary>
-		/// Attempts to find and return the given resource from within the specified assembly.
-		/// </summary>
-		/// <returns>The embedded resource stream.</returns>
-		/// <param name="assembly">Assembly.</param>
-		/// <param name="resourceFileName">Resource file name.</param>
-		private static Stream GetEmbeddedResourceStream(Assembly assembly, string resourceFileName)
+        /// Attempts to find and return the given resource from within the specified assembly.
+        /// </summary>
+        /// <returns>The embedded resource stream.</returns>
+        /// <param name="assembly">Assembly.</param>
+        /// <param name="resourceFileName">Resource file name.</param>
+        private static Stream GetEmbeddedResourceStream(Assembly assembly, string resourceFileName)
         {
             var resourceNames = assembly.GetManifestResourceNames();
 
@@ -58,6 +59,5 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Common {
 
             return assembly.GetManifestResourceStream(resourcePaths.Single());
         }
-
     }
 }

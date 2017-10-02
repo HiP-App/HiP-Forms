@@ -12,6 +12,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
     {
         private double thisWidth, thisHeight;
         private DeviceOrientation deviceOrientation;
+
         public ProfileScreenView()
         {
             InitializeComponent();
@@ -54,8 +55,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
                 Grid.SetColumn(Logout, 0);
 
                 // Achievements
-                
-
 
                 deviceOrientation = DeviceOrientation.Portrait;
             }
@@ -85,8 +84,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
                 Grid.SetRowSpan(Scores, 2);
 
                 // Achievements
-               
-
 
                 deviceOrientation = DeviceOrientation.Landscape;
             }

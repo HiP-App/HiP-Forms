@@ -12,19 +12,18 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.InteractiveSources {
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.InteractiveSources
+{
     /// <summary>
     /// Uses to determine the substitute that replaces the source markdown 
     /// of an InteractiveSource
     /// </summary>
-    public interface IInteractiveSourceSubstitute {
-
+    public interface IInteractiveSourceSubstitute
+    {
         /// <summary>
         /// Returns the next substitute.
         /// </summary>
         /// <returns>Next substitute string.</returns>
-        string NextSubstitute ();
-
+        string NextSubstitute();
     }
 }

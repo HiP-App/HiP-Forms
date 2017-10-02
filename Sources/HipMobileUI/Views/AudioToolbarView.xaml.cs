@@ -22,18 +22,19 @@ using Xamarin.Forms;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
 {
-    public partial class AudioToolbarView : IViewFor<AudioToolbarViewModel> {
-
+    public partial class AudioToolbarView : IViewFor<AudioToolbarViewModel>
+    {
         private bool manualInput;
         private readonly IAudioPlayer audioPlayer;
+
         public AudioToolbarView()
         {
             InitializeComponent();
 
-            AudioSlider.TouchDown+=AudioSliderOnTouchDown;
-            AudioSlider.TouchUp+=AudioSliderOnTouchUp;
+            AudioSlider.TouchDown += AudioSliderOnTouchDown;
+            AudioSlider.TouchUp += AudioSliderOnTouchUp;
 
-            audioPlayer = IoCManager.Resolve<IAudioPlayer> ();
+            audioPlayer = IoCManager.Resolve<IAudioPlayer>();
             audioPlayer.ProgressChanged += AudioPlayerOnProgressChanged;
         }
 
@@ -42,7 +43,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
         /// </summary>
         /// <param name="sender">The sender of the event.</param>
         /// <param name="eventArgs">The event arguments.</param>
-        private void AudioSliderOnTouchDown (object sender, EventArgs eventArgs)
+        private void AudioSliderOnTouchDown(object sender, EventArgs eventArgs)
         {
             manualInput = true;
         }
@@ -52,10 +53,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
         /// </summary>
         /// <param name="sender">The sender of the event.</param>
         /// <param name="eventArgs">The event args containing the new value of the slider.</param>
-        private void AudioSliderOnTouchUp (object sender, EventArgs eventArgs)
+        private void AudioSliderOnTouchUp(object sender, EventArgs eventArgs)
         {
             var args = (ValueEventArgs) eventArgs;
-            audioPlayer.SeekTo (args.Value);
+            audioPlayer.SeekTo(args.Value);
             manualInput = false;
         }
 
@@ -63,13 +64,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
         /// New progress value of the audio player available. Update the slider if no manual input is currently pending.
         /// </summary>
         /// <param name="newProgress">The new audio progress</param>
-        private void AudioPlayerOnProgressChanged (double newProgress)
+        private void AudioPlayerOnProgressChanged(double newProgress)
         {
             if (!manualInput)
             {
-                Device.BeginInvokeOnMainThread(() =>AudioSlider.Value = newProgress);
+                Device.BeginInvokeOnMainThread(() => AudioSlider.Value = newProgress);
             }
         }
-
     }
 }

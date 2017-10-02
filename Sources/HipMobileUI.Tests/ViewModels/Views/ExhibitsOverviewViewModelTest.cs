@@ -27,23 +27,23 @@ using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
 namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Views
 {
     [TestFixture]
-    class ExhibitsOverviewViewModelTest {
-
+    class ExhibitsOverviewViewModelTest
+    {
         private INavigationService navservice;
 
         [TestFixtureSetUp]
         public void Init()
         {
-            IoCManager.Clear ();
-            navservice = Substitute.For<INavigationService> ();
+            IoCManager.Clear();
+            navservice = Substitute.For<INavigationService>();
             IoCManager.RegisterInstance(typeof(INavigationService), navservice);
             IoCManager.RegisterInstance(typeof(IImageDimension), Substitute.For<IImageDimension>());
-            IoCManager.RegisterInstance (typeof (IDataAccess), Substitute.For<IDataAccess> ());
-            IoCManager.RegisterInstance (typeof(IAudioPlayer), Substitute.For<IAudioPlayer> ());
+            IoCManager.RegisterInstance(typeof(IDataAccess), Substitute.For<IDataAccess>());
+            IoCManager.RegisterInstance(typeof(IAudioPlayer), Substitute.For<IAudioPlayer>());
             IoCManager.RegisterInstance(typeof(ILocationManager), Substitute.For<ILocationManager>());
-            IoCManager.RegisterInstance (typeof(INearbyExhibitManager), Substitute.For<INearbyExhibitManager> ());
+            IoCManager.RegisterInstance(typeof(INearbyExhibitManager), Substitute.For<INearbyExhibitManager>());
             IoCManager.RegisterInstance(typeof(INearbyRouteManager), Substitute.For<INearbyRouteManager>());
-            IoCManager.RegisterInstance (typeof(IDbChangedHandler), Substitute.For<IDbChangedHandler>());
+            IoCManager.RegisterInstance(typeof(IDbChangedHandler), Substitute.For<IDbChangedHandler>());
         }
 
         [Test, Category("UnitTest")]
@@ -51,12 +51,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Views
         {
             var sut = CreateSystemUnderTest();
 
-            Assert.AreEqual (sut.ExhibitsList.Count, 3);
-            Assert.AreNotSame (sut.ExhibitsList[0], sut.ExhibitsList[1]);
+            Assert.AreEqual(sut.ExhibitsList.Count, 3);
+            Assert.AreNotSame(sut.ExhibitsList[0], sut.ExhibitsList[1]);
             Assert.AreNotSame(sut.ExhibitsList[0], sut.ExhibitsList[2]);
             Assert.AreNotSame(sut.ExhibitsList[1], sut.ExhibitsList[2]);
-            Assert.NotNull (sut.ItemTappedCommand);
-            Assert.IsFalse (sut.DisplayDistances);
+            Assert.NotNull(sut.ItemTappedCommand);
+            Assert.IsFalse(sut.DisplayDistances);
         }
 
         [TestCase(0), Category("UnitTest")]
@@ -64,11 +64,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Views
         [TestCase(2), Category("UnitTest")]
         public void ItemTapped_Once(int item)
         {
-
             var sut = CreateSystemUnderTest();
 
-            sut.ItemTappedCommand.Execute (sut.ExhibitsList[item]);
-            navservice.ReceivedWithAnyArgs ().PushAsync (null);
+            sut.ItemTappedCommand.Execute(sut.ExhibitsList[item]);
+            navservice.ReceivedWithAnyArgs().PushAsync(null);
         }
 
         #region Helper Methods
@@ -82,13 +81,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Views
             return new ExhibitsOverviewViewModel(set);
         }
 
-        private Exhibit CreateExhibit (string name, double latitude=0, double longitude=0)
+        private Exhibit CreateExhibit(string name, double latitude = 0, double longitude = 0)
         {
-            var exhibit = Substitute.For<Exhibit> ();
+            var exhibit = Substitute.For<Exhibit>();
             exhibit.Name = name;
-            exhibit.Image = CreateImage ();
+            exhibit.Image = CreateImage();
 
-            exhibit.Location = CreateGeoLocation (latitude, longitude);
+            exhibit.Location = CreateGeoLocation(latitude, longitude);
 
             var pages = new List<Page> { CreateAppetizerPage() };
             exhibit.Pages.Returns(pages);
@@ -96,11 +95,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Views
             return exhibit;
         }
 
-        private GeoLocation CreateGeoLocation (double latitude, double longitude)
+        private GeoLocation CreateGeoLocation(double latitude, double longitude)
         {
-            var geolocation = Substitute.For<GeoLocation> ();
-            geolocation.Latitude.Returns (latitude);
-            geolocation.Longitude.Returns (longitude);
+            var geolocation = Substitute.For<GeoLocation>();
+            geolocation.Latitude.Returns(latitude);
+            geolocation.Longitude.Returns(longitude);
             return geolocation;
         }
 
@@ -118,6 +117,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Views
             image.Data = new byte[] { 1, 2, 3, 4 };
             return image;
         }
+
         #endregion
     }
 }

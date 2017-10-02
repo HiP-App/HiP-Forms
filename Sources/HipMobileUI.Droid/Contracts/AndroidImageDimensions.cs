@@ -16,9 +16,10 @@ using Android.Graphics;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Contracts {
-    public class AndroidImageDimensions : IImageDimension{
-
+namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Contracts
+{
+    public class AndroidImageDimensions : IImageDimension
+    {
         /// <summary>
         /// Gets the dimensions for the given image.
         /// </summary>
@@ -29,6 +30,5 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Contracts {
             var bmp = BitmapFactory.DecodeByteArray(img.Data, 0, img.Data.Length);
             return new[] { bmp.Width, bmp.Height };
         }
-
     }
 }

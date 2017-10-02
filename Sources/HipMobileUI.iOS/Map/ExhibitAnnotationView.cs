@@ -18,11 +18,11 @@ using UIKit;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Map
 {
-    sealed class ExhibitAnnotationView : MKAnnotationView {
-
-        public ExhibitAnnotationView (IMKAnnotation annotation, string reuseId) : base (annotation, reuseId)
+    sealed class ExhibitAnnotationView : MKAnnotationView
+    {
+        public ExhibitAnnotationView(IMKAnnotation annotation, string reuseId) : base(annotation, reuseId)
         {
-            Image = UIImage.FromBundle ("ExhibitLocation");
+            Image = UIImage.FromBundle("ExhibitLocation");
 
             CalloutOffset = new CGPoint(0, 0);
             RightCalloutAccessoryView = UIButton.FromType(UIButtonType.DetailDisclosure);
@@ -33,6 +33,5 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Map
                 Lines = 10
             };
         }
-
     }
 }

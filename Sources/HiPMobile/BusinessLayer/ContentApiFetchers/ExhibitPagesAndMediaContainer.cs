@@ -17,9 +17,9 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiD
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers
 {
-    public class ExhibitPagesAndMediaContainer {
-
-        public ExhibitPagesAndMediaContainer (int exhibitRestId, IList<int?> media, IList<PageDto> pages)
+    public class ExhibitPagesAndMediaContainer
+    {
+        public ExhibitPagesAndMediaContainer(int exhibitRestId, IList<int?> media, IList<PageDto> pages)
         {
             ExhibitIdForRestApi = exhibitRestId;
             RequiredMedia = media;
@@ -31,6 +31,5 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
         public IList<int?> RequiredMedia { get; }
 
         public IList<PageDto> PageDtos { get; }
-
     }
 }

@@ -11,12 +11,14 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+
 using System.ComponentModel;
 using Xamarin.UITest;
 
-namespace HipMobileUI.UITests {
-    public class UiTestBase {
-
+namespace HipMobileUI.UITests
+{
+    public class UiTestBase
+    {
         protected IApp App { get; set; }
 
         /// <summary>
@@ -29,13 +31,13 @@ namespace HipMobileUI.UITests {
             {
                 case Platform.Android:
                     App = ConfigureApp.Android
-                                .ApkFile(@"..\..\..\HipMobileUI.Droid\bin\Release\de.upb.hip.mobile.droid.forms.apk")
-                                .StartApp();
+                                      .ApkFile(@"..\..\..\HipMobileUI.Droid\bin\Release\de.upb.hip.mobile.droid.forms.apk")
+                                      .StartApp();
                     break;
                 case Platform.iOS:
                     App = ConfigureApp.iOS
-                                .AppBundle(@"../../../HipMobileUI.iOS/bin/iPhoneSimulator/iOS Release/HipMobileUI.iOS.app")
-                                .StartApp();
+                                      .AppBundle(@"../../../HipMobileUI.iOS/bin/iPhoneSimulator/iOS Release/HipMobileUI.iOS.app")
+                                      .StartApp();
                     break;
             }
         }
@@ -49,9 +51,8 @@ namespace HipMobileUI.UITests {
                 case Platform.iOS:
                     return "Menu";
                 default:
-                    throw new InvalidEnumArgumentException(nameof(platform), (int)platform, typeof(Platform));
+                    throw new InvalidEnumArgumentException(nameof(platform), (int) platform, typeof(Platform));
             }
         }
-
     }
 }

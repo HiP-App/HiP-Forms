@@ -18,23 +18,23 @@ using Plugin.CurrentActivity;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Contracts {
-    public class DroidStatusBarController : IStatusBarController{
-
-        public void HideStatusBar ()
+namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Contracts
+{
+    public class DroidStatusBarController : IStatusBarController
+    {
+        public void HideStatusBar()
         {
             MainActivity main = ((MainActivity) CrossCurrentActivity.Current.Activity);
             main.Window.SetFlags(WindowManagerFlags.Fullscreen, WindowManagerFlags.Fullscreen);
-            main.SetStatusBarColor (Color.Black.ToAndroid());
+            main.SetStatusBarColor(Color.Black.ToAndroid());
         }
 
-        public void ShowStatusBar ()
+        public void ShowStatusBar()
         {
-            Color color = (Color) Application.Current.Resources ["PrimaryDarkColor"];
-            MainActivity main = ((MainActivity)CrossCurrentActivity.Current.Activity);
+            Color color = (Color) Application.Current.Resources["PrimaryDarkColor"];
+            MainActivity main = ((MainActivity) CrossCurrentActivity.Current.Activity);
             main.Window.ClearFlags(WindowManagerFlags.Fullscreen);
             main.SetStatusBarColor(color.ToAndroid());
         }
-
     }
 }

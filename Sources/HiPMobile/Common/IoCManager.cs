@@ -14,17 +14,17 @@
 //  * limitations under the License.
 //  */
 
-
 using System;
 using System.Linq;
 using Microsoft.Practices.Unity;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Common {
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Common
+{
     /// <summary>
     /// This class manages the access to the Inversion of Control container for the application.
     /// </summary>
-    public static class IoCManager {
-
+    public static class IoCManager
+    {
         static IoCManager()
         {
             Instance = new UnityContainer();
@@ -37,9 +37,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Common {
             Instance.RegisterType<TSuper, TSub>();
         }
 
-        public static void RegisterType<T> ()
+        public static void RegisterType<T>()
         {
-            Instance.RegisterType<T> ();
+            Instance.RegisterType<T>();
         }
 
         public static void RegisterInstance(Type interf, object impl)
@@ -52,16 +52,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Common {
             return Instance.Resolve<T>();
         }
 
-        public static void Clear ()
+        public static void Clear()
         {
             foreach (var registration in Instance.Registrations
-                                                 .Where (p => p.RegisteredType == typeof (object)
-                                                              && p.LifetimeManagerType == typeof (ContainerControlledLifetimeManager)))
+                                                 .Where(p => p.RegisteredType == typeof(object)
+                                                             && p.LifetimeManagerType == typeof(ContainerControlledLifetimeManager)))
             {
-                registration.LifetimeManager.RemoveValue ();
+                registration.LifetimeManager.RemoveValue();
             }
         }
-
-
     }
 }

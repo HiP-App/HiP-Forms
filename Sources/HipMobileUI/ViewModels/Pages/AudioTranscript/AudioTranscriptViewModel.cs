@@ -20,9 +20,9 @@ using Xamarin.Forms;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages.AudioTranscript
 {
-    public class AudioTranscriptViewModel : NavigationViewModel{
-
-        public AudioTranscriptViewModel (string subtitles, string exhibitTitle)
+    public class AudioTranscriptViewModel : NavigationViewModel
+    {
+        public AudioTranscriptViewModel(string subtitles, string exhibitTitle)
         {
             Title = exhibitTitle;
             var parser = new InteractiveSourcesParser(new ConsecutiveNumberAndConstantInteractiveSourceSubstitute(1, "Quelle"));
@@ -31,18 +31,19 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages.AudioTranscri
             string formatedText = result.TextWithSubstitutes;
             List<Source> references = result.Sources;
 
-            SourcesTab = new SourcesViewModel (references);
-            SubtitleTab = new SubtitleViewModel (formatedText, references, GetAction);
+            SourcesTab = new SourcesViewModel(references);
+            SubtitleTab = new SubtitleViewModel(formatedText, references, GetAction);
 
-            changeFontSize = new Command (ChangeFontSize);
+            changeFontSize = new Command(ChangeFontSize);
         }
 
-        private void ChangeFontSize ()
+        private void ChangeFontSize()
         {
-            if(Math.Abs (Settings.AudioTranscriptFontSize - 14) < 0.00001)
+            if (Math.Abs(Settings.AudioTranscriptFontSize - 14) < 0.00001)
             {
                 Settings.AudioTranscriptFontSize = 19;
-            } else if (Math.Abs (Settings.AudioTranscriptFontSize - 19) < 0.00001)
+            }
+            else if (Math.Abs(Settings.AudioTranscriptFontSize - 19) < 0.00001)
             {
                 Settings.AudioTranscriptFontSize = 24;
             }
@@ -57,22 +58,27 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages.AudioTranscri
 
         private Command changeFontSize;
 
-        public Command ChangeFontSizeCommand {
+        public Command ChangeFontSizeCommand
+        {
             get { return changeFontSize; }
-            set { SetProperty (ref changeFontSize, value); }
+            set { SetProperty(ref changeFontSize, value); }
         }
 
-
-        public IInteractiveSourceAction GetAction() { return Action; }
+        public IInteractiveSourceAction GetAction()
+        {
+            return Action;
+        }
 
         private SourcesViewModel sourcesTab;
+
         public SourcesViewModel SourcesTab
         {
             get { return sourcesTab; }
-            set { SetProperty (ref sourcesTab, value); }
+            set { SetProperty(ref sourcesTab, value); }
         }
 
         private SubtitleViewModel subtitleTab;
+
         public SubtitleViewModel SubtitleTab
         {
             get { return subtitleTab; }
@@ -80,6 +86,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages.AudioTranscri
         }
 
         private IInteractiveSourceAction action;
+
         public IInteractiveSourceAction Action
         {
             get { return action; }
@@ -87,6 +94,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages.AudioTranscri
         }
 
         private double fontSize;
+
         public double FontSize
         {
             get { return Settings.AudioTranscriptFontSize; }

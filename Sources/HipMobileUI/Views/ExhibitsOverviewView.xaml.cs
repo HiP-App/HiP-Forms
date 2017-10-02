@@ -19,18 +19,19 @@ using Xamarin.Forms;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
 {
-    public partial class ExhibitsOverviewView : IViewFor<ExhibitsOverviewViewModel> {
-
+    public partial class ExhibitsOverviewView : IViewFor<ExhibitsOverviewViewModel>
+    {
         private DeviceOrientation deviceOrientation;
+
         public ExhibitsOverviewView()
         {
             InitializeComponent();
             deviceOrientation = DeviceOrientation.Undefined;
         }
 
-        protected override void OnSizeAllocated (double width, double height)
+        protected override void OnSizeAllocated(double width, double height)
         {
-            base.OnSizeAllocated (width, height);
+            base.OnSizeAllocated(width, height);
 
             if (width <= height)
             {
@@ -99,6 +100,5 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
                 }
             }
         }
-
     }
 }

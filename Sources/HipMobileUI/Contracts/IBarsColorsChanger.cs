@@ -14,10 +14,10 @@
 
 using Xamarin.Forms;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Contracts {
-    public interface IBarsColorsChanger {
-
-        void ChangeToolbarColor (Color statusBarColor, Color actionBarColor);
-
+namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Contracts
+{
+    public interface IBarsColorsChanger
+    {
+        void ChangeToolbarColor(Color statusBarColor, Color actionBarColor);
     }
 }

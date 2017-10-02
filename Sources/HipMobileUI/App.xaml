@@ -1,4 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
+
 <!--
 // Copyright (C) 2017 History in Paderborn App - Universität Paderborn
 //
@@ -36,7 +37,7 @@
             <converters1:ImageListConverter x:Key="ImageListConverter" />
             <converters1:RouteTagViewListConverter x:Key="RouteTagViewListConverter" />
             <converters1:PositionGeoLocationConverter x:Key="PositionGeoLocationConverter" />
-			<converters1:EmptyListConverter x:Key="EmptyListConverter" />
+            <converters1:EmptyListConverter x:Key="EmptyListConverter" />
             <converters1:InverseBooleanConverter x:Key="InverseBooleanConverter" />
         </ResourceDictionary>
     </Application.Resources>

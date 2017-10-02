@@ -11,7 +11,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 {
     class CharacterSelectionPageViewModel : NavigationViewModel
     {
-
         private NavigationViewModel parentViewModel;
 
         public ICommand AdventurerGridTappedCommand { get; }

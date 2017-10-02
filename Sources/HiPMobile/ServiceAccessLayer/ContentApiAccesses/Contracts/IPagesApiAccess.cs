@@ -17,13 +17,13 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses.Contracts {
-
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses.Contracts
+{
     /// <summary>
     /// Providing access to the pages rest api
     /// </summary>
-    public interface IPagesApiAccess {
-
+    public interface IPagesApiAccess
+    {
         /// <summary>
         /// Get all pages
         /// </summary>

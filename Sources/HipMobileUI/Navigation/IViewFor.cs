@@ -12,12 +12,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation {
+namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation
+{
     public interface IViewFor
     {
     }
 
     // ReSharper disable once UnusedTypeParameter
-    public interface IViewFor<T> : IViewFor {
+    public interface IViewFor<T> : IViewFor
+    {
     }
 }

@@ -21,16 +21,16 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Controls
     /// <summary>
     /// Image with a fade in transition when loaded.
     /// </summary>
-    class FadeInImage : CachedImage {
-
-        public FadeInImage ()
+    class FadeInImage : CachedImage
+    {
+        public FadeInImage()
         {
-            PropertyChanged+=OnPropertyChanged;
+            PropertyChanged += OnPropertyChanged;
         }
 
-        private async void OnPropertyChanged (object sender, PropertyChangedEventArgs propertyChangedEventArgs)
+        private async void OnPropertyChanged(object sender, PropertyChangedEventArgs propertyChangedEventArgs)
         {
-            if (propertyChangedEventArgs.PropertyName.Equals ("IsLoading"))
+            if (propertyChangedEventArgs.PropertyName.Equals("IsLoading"))
             {
                 if (IsLoading)
                 {
@@ -38,20 +38,20 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Controls
                 }
                 else
                 {
-                    await this.FadeTo (1, (uint)FadeInTime);
+                    await this.FadeTo(1, (uint) FadeInTime);
                 }
             }
         }
 
         public static readonly BindableProperty FadeInTimeProperty =
-            BindableProperty.Create ("FadeInTime", typeof (int), typeof (FadeInImage), 200);
+            BindableProperty.Create("FadeInTime", typeof(int), typeof(FadeInImage), 200);
 
         /// <summary>
         /// The length of the fade in milliseconds.
         /// </summary>
         public int FadeInTime
         {
-            get { return (int)GetValue(FadeInTimeProperty); }
+            get { return (int) GetValue(FadeInTimeProperty); }
             set { SetValue(FadeInTimeProperty, value); }
         }
     }

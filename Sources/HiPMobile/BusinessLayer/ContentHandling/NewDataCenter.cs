@@ -43,6 +43,5 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentHandl
         {
             //TODO Use fetcher for downloading routes and exhibits details data
         }
-
     }
 }

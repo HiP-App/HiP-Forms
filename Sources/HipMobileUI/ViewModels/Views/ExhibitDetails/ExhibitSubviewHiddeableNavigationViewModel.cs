@@ -21,8 +21,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views.ExhibitDetail
     /// <summary>
     /// Base class for all viewmodels displayed in the exhibitdetailspage.
     /// </summary>
-    public abstract class ExhibitSubviewHiddeableNavigationViewModel : ExhibitSubviewViewModel {
-
+    public abstract class ExhibitSubviewHiddeableNavigationViewModel : ExhibitSubviewViewModel
+    {
         private ICommand toggleButtonVisibilityCommand;
 
         public ExhibitSubviewHiddeableNavigationViewModel(Action toggleButtonVisibility)
@@ -33,7 +33,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views.ExhibitDetail
         public ICommand ToggleButtonVisibility
         {
             get { return toggleButtonVisibilityCommand; }
-            set { SetProperty (ref toggleButtonVisibilityCommand, value); }
+            set { SetProperty(ref toggleButtonVisibilityCommand, value); }
         }
     }
 }

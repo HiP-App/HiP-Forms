@@ -17,24 +17,25 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers {
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
+{
     /// <summary>
     /// ExhibitManager class for getting access to exhibits and exhibitsets.
     /// </summary>
-    public static class ExhibitManager {
-
-        private static readonly IDataAccess DataAccess = IoCManager.Resolve<IDataAccess> ();
+    public static class ExhibitManager
+    {
+        private static readonly IDataAccess DataAccess = IoCManager.Resolve<IDataAccess>();
 
         /// <summary>
         /// Gets an exhibitset with a specific id.
         /// </summary>
         /// <param name="id">The id of the exhibitset to be retrived.</param>
         /// <returns>The exhibitSet with the given id. If it doesn't exist, null is returned.</returns>
-        public static ExhibitSet GetExhibitSet (string id)
+        public static ExhibitSet GetExhibitSet(string id)
         {
-            if (!string.IsNullOrEmpty (id))
+            if (!string.IsNullOrEmpty(id))
             {
-                return DataAccess.GetItem<ExhibitSet> (id);
+                return DataAccess.GetItem<ExhibitSet>(id);
             }
             return null;
         }
@@ -43,9 +44,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers {
         /// Get all available exhibitsets.
         /// </summary>
         /// <returns>The enumerable of all available exibitsets.</returns>
-        public static IEnumerable<ExhibitSet> GetExhibitSets ()
+        public static IEnumerable<ExhibitSet> GetExhibitSets()
         {
-            return DataAccess.GetItems<ExhibitSet> ();           
+            return DataAccess.GetItems<ExhibitSet>();
         }
 
         /// <summary>
@@ -67,11 +68,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers {
         /// </summary>
         /// <param name="id">The id of the exhibit to be retrived.</param>
         /// <returns>The exhibit with the given id. If no exhibit exists, null is returned.</returns>
-        public static Exhibit GetExhibit (string id)
+        public static Exhibit GetExhibit(string id)
         {
-            if (!string.IsNullOrEmpty (id))
+            if (!string.IsNullOrEmpty(id))
             {
-                return DataAccess.GetItem<Exhibit> (id);
+                return DataAccess.GetItem<Exhibit>(id);
             }
             return null;
         }
@@ -80,9 +81,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers {
         /// Gets all available exhibits.
         /// </summary>
         /// <returns>The enumerable of all available exhibits.</returns>
-        public static IEnumerable<Exhibit> GetExhibits ()
+        public static IEnumerable<Exhibit> GetExhibits()
         {
-            return DataAccess.GetItems<Exhibit> ();
+            return DataAccess.GetItems<Exhibit>();
         }
 
         /// <summary>
@@ -98,6 +99,5 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers {
             }
             return true;
         }
-
     }
 }

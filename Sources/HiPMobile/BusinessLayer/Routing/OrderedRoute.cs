@@ -23,10 +23,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Routing
     /// </summary>
     public class OrderedRoute
     {
-
-        public OrderedRoute ()
+        public OrderedRoute()
         {
-            RouteLocations = new List<List<GeoLocation>> ();
+            RouteLocations = new List<List<GeoLocation>>();
         }
 
         /// <summary>
@@ -37,29 +36,30 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Routing
         /// <summary>
         /// The currenlty first section.
         /// </summary>
-        public List<GeoLocation> FirstSection => RouteLocations.First ();
+        public List<GeoLocation> FirstSection => RouteLocations.First();
 
         /// <summary>
         /// The sections which are not the first section.
         /// </summary>
-        public List<GeoLocation> NonFirstSections {
-            get { return RouteLocations.GetRange (1, RouteLocations.Count-1).SelectMany (list => list).ToList(); }
+        public List<GeoLocation> NonFirstSections
+        {
+            get { return RouteLocations.GetRange(1, RouteLocations.Count - 1).SelectMany(list => list).ToList(); }
         }
 
         /// <summary>
         /// All the geolocations of this route.
         /// </summary>
-        public List<GeoLocation> Locations => RouteLocations.SelectMany (list => list).ToList ();
+        public List<GeoLocation> Locations => RouteLocations.SelectMany(list => list).ToList();
 
         /// <summary>
         /// Adds a new section to this route. A section is a list of geolocations representing a subpart of a route.
         /// </summary>
         /// <param name="section">Thew list of geolocations representing a section.</param>
-        public void AddSection (List<GeoLocation> section)
+        public void AddSection(List<GeoLocation> section)
         {
             if (section != null)
             {
-                RouteLocations.Add (section);
+                RouteLocations.Add(section);
             }
         }
 
@@ -68,14 +68,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Routing
         /// </summary>
         /// <param name="section">The geolocations representing the new section.</param>
         /// <param name="position">The index of the sction to be updated.</param>
-        public void UpdateSection (List<GeoLocation> section, int position)
+        public void UpdateSection(List<GeoLocation> section, int position)
         {
             if (section != null && position > 0 && position < RouteLocations.Count)
             {
-                RouteLocations.RemoveAt (position);
+                RouteLocations.RemoveAt(position);
                 RouteLocations.Insert(position, section);
             }
         }
-
     }
 }

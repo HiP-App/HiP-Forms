@@ -30,14 +30,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 {
     class ExhibitsOverviewListItemViewModel : NavigationViewModel, IDownloadableListItemViewModel
     {
-
-        public ExhibitsOverviewListItemViewModel (Exhibit exhibit, double distance = -1)
+        public ExhibitsOverviewListItemViewModel(Exhibit exhibit, double distance = -1)
         {
             Exhibit = exhibit;
             ExhibitName = Exhibit.Name;
             Distance = distance;
             var data = Exhibit.Image.Data;
-            Image = ImageSource.FromStream (() => new MemoryStream (data));
+            Image = ImageSource.FromStream(() => new MemoryStream(data));
 
             IsDownloadButtonVisible = !Exhibit.DetailsDataLoaded;
 
@@ -54,20 +53,23 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         /// <summary>
         /// The name of the exhibit.
         /// </summary>
-        public string ExhibitName {
+        public string ExhibitName
+        {
             get { return exhibitName; }
-            set { SetProperty (ref exhibitName, value); }
+            set { SetProperty(ref exhibitName, value); }
         }
 
         /// <summary>
         /// The distance to the exhibit.
         /// </summary>
-        public double Distance {
+        public double Distance
+        {
             get { return distance; }
-            set {
-                if (SetProperty (ref distance, value))
+            set
+            {
+                if (SetProperty(ref distance, value))
                 {
-                    OnPropertyChanged (nameof (FormatedDistance));
+                    OnPropertyChanged(nameof(FormatedDistance));
                 }
             }
         }
@@ -75,31 +77,35 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         /// <summary>
         /// The appetizer image for teh exhibit.
         /// </summary>
-        public ImageSource Image {
+        public ImageSource Image
+        {
             get { return image; }
-            set { SetProperty (ref image, value); }
+            set { SetProperty(ref image, value); }
         }
 
         /// <summary>
         /// The id of the exhibit.
         /// </summary>
-        public Exhibit Exhibit {
+        public Exhibit Exhibit
+        {
             get { return exhibit; }
-            set { SetProperty (ref exhibit, value); }
+            set { SetProperty(ref exhibit, value); }
         }
 
         /// <summary>
         /// The Formated distance string.
         /// </summary>
-        public string FormatedDistance {
-            get {
+        public string FormatedDistance
+        {
+            get
+            {
                 if (Distance < 1000)
                 {
                     return $"{Distance:F0} m";
                 }
                 else
                 {
-                    return $"{Distance/1000:0.##} km";
+                    return $"{Distance / 1000:0.##} km";
                 }
             }
         }
@@ -114,9 +120,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         /// Update the displayed distance according to the position.
         /// </summary>
         /// <param name="position">The new position from which the distance is measured.</param>
-        public void UpdateDistance (Position position)
+        public void UpdateDistance(Position position)
         {
-            Distance = MathUtil.CalculateDistance (exhibit.Location, new GeoLocation(position.Latitude,position.Longitude));
+            Distance = MathUtil.CalculateDistance(exhibit.Location, new GeoLocation(position.Latitude, position.Longitude));
         }
 
         public void OpenDetailsView(string id)
@@ -150,15 +156,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 
         public ICommand DownloadCommand { get; set; }
 
-        public override bool Equals (object obj)
+        public override bool Equals(object obj)
         {
             var otherItem = obj as ExhibitsOverviewListItemViewModel;
             if (otherItem != null)
             {
-                return ExhibitName.Equals (otherItem.ExhibitName);
+                return ExhibitName.Equals(otherItem.ExhibitName);
             }
-            return Equals (obj);
+            return Equals(obj);
         }
-
     }
 }

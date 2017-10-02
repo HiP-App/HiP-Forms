@@ -12,11 +12,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
     {
         private double thisWidth, thisHeight;
         private DeviceOrientation deviceOrientation;
-        public ExhibitPreviewView ()
+
+        public ExhibitPreviewView()
         {
-            InitializeComponent ();
+            InitializeComponent();
             deviceOrientation = DeviceOrientation.Undefined;
         }
+
         protected override void OnSizeAllocated(double width, double height)
         {
             base.OnSizeAllocated(width, height);
@@ -47,7 +49,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
                 Grid.SetRow(ButtonView, 2);
 
                 Grid.SetColumn(ImageView, 0);
-                Grid.SetColumnSpan (ImageView, 2);
+                Grid.SetColumnSpan(ImageView, 2);
                 Grid.SetColumn(QuestionView, 0);
                 Grid.SetColumnSpan(QuestionView, 2);
                 Grid.SetColumn(ButtonView, 0);

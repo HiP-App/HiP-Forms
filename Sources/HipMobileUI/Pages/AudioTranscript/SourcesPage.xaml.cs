@@ -28,7 +28,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages.AudioTranscript
 
         void OnViewCellTapped(object sender, EventArgs e)
         {
-            ViewCell viewCell = (ViewCell)sender;
+            ViewCell viewCell = (ViewCell) sender;
             viewCell.ForceUpdateSize();
         }
     }

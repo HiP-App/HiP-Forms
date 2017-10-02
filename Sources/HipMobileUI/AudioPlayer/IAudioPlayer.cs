@@ -14,19 +14,19 @@
 
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Properties;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.UI.AudioPlayer {
-
+namespace PaderbornUniversity.SILab.Hip.Mobile.UI.AudioPlayer
+{
     public delegate void ProgressChangedDelegate(double newProgress);
 
-    public delegate void AudioCompletedDelegate ();
+    public delegate void AudioCompletedDelegate();
 
-    public delegate void IsPlayingDelegate (bool newValue);
+    public delegate void IsPlayingDelegate(bool newValue);
 
     /// <summary>
     /// Interface describing an audio player.
     /// </summary>
-    public interface IAudioPlayer {
-
+    public interface IAudioPlayer
+    {
         /// <summary>
         /// Indicating if the audio player is currently playing.
         /// </summary>
@@ -65,28 +65,27 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.AudioPlayer {
         /// <summary>
         /// Start playing audio.
         /// </summary>
-        void Play ();
+        void Play();
 
         /// <summary>
         /// Pauses the audio currently playing. Playback can be resumed with Play().
         /// </summary>
-        void Pause ();
+        void Pause();
 
         /// <summary>
         /// Stops the currently playing audio.
         /// </summary>
-        void Stop ();
+        void Stop();
 
         /// <summary>
         /// Sets the current playback location to 
         /// </summary>
         /// <param name="progress"></param>
-        void SeekTo (double progress);
+        void SeekTo(double progress);
 
         /// <summary>
         /// Title for the audio track used in the audio captions
         /// </summary>
         string AudioTitle { set; }
-
     }
 }

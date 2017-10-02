@@ -18,65 +18,65 @@ using Xamarin.Forms;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Behaviors
 {
-public class ComparisonBehavior : Behavior<Entry>
-{
-	private Entry thisEntry;
+    public class ComparisonBehavior : Behavior<Entry>
+    {
+        private Entry thisEntry;
 
-	static readonly BindablePropertyKey IsValidPropertyKey = BindableProperty.CreateReadOnly("IsValid", typeof(bool), typeof(ComparisonBehavior), false);
-	public static readonly BindableProperty IsValidProperty = IsValidPropertyKey.BindableProperty;
+        static readonly BindablePropertyKey IsValidPropertyKey = BindableProperty.CreateReadOnly("IsValid", typeof(bool), typeof(ComparisonBehavior), false);
+        public static readonly BindableProperty IsValidProperty = IsValidPropertyKey.BindableProperty;
 
-	public static readonly BindableProperty CompareToEntryProperty = BindableProperty.Create("CompareToEntry", typeof(Entry), typeof(ComparisonBehavior), null);
+        public static readonly BindableProperty CompareToEntryProperty = BindableProperty.Create("CompareToEntry", typeof(Entry), typeof(ComparisonBehavior), null);
 
-	public Entry CompareToEntry
-	{
-		get { return (Entry)GetValue(CompareToEntryProperty); }
-		set
-		{
-			SetValue(CompareToEntryProperty, value);
-			if (CompareToEntry != null)
-				CompareToEntry.TextChanged -= baseValue_changed;
-			value.TextChanged += baseValue_changed;
-		}
-	}
+        public Entry CompareToEntry
+        {
+            get { return (Entry) GetValue(CompareToEntryProperty); }
+            set
+            {
+                SetValue(CompareToEntryProperty, value);
+                if (CompareToEntry != null)
+                    CompareToEntry.TextChanged -= baseValue_changed;
+                value.TextChanged += baseValue_changed;
+            }
+        }
 
-	void baseValue_changed(object sender, TextChangedEventArgs e)
-	{
-		IsValid = ((Entry)sender).Text.Equals(thisEntry.Text);
-		thisEntry.TextColor = IsValid ? Color.Green : Color.Red;
-	}
+        void baseValue_changed(object sender, TextChangedEventArgs e)
+        {
+            IsValid = ((Entry) sender).Text.Equals(thisEntry.Text);
+            thisEntry.TextColor = IsValid ? Color.Green : Color.Red;
+        }
 
+        public bool IsValid
+        {
+            get { return (bool) GetValue(IsValidProperty); }
+            private set { SetValue(IsValidPropertyKey, value); }
+        }
 
-	public bool IsValid
-	{
-		get { return (bool)GetValue(IsValidProperty); }
-		private set { SetValue(IsValidPropertyKey, value); }
-	}
-	protected override void OnAttachedTo(Entry bindable)
-	{
-		thisEntry = bindable;
+        protected override void OnAttachedTo(Entry bindable)
+        {
+            thisEntry = bindable;
 
-		if (CompareToEntry != null)
-			CompareToEntry.TextChanged += baseValue_changed;
+            if (CompareToEntry != null)
+                CompareToEntry.TextChanged += baseValue_changed;
 
-		bindable.TextChanged += HandleTextChanged;
-		base.OnAttachedTo(bindable);
-	}
+            bindable.TextChanged += HandleTextChanged;
+            base.OnAttachedTo(bindable);
+        }
 
-	protected override void OnDetachingFrom(Entry bindable)
-	{
-		bindable.TextChanged -= HandleTextChanged;
-		if (CompareToEntry != null)
-			CompareToEntry.TextChanged -= baseValue_changed;
-		base.OnDetachingFrom(bindable);
-	}
+        protected override void OnDetachingFrom(Entry bindable)
+        {
+            bindable.TextChanged -= HandleTextChanged;
+            if (CompareToEntry != null)
+                CompareToEntry.TextChanged -= baseValue_changed;
+            base.OnDetachingFrom(bindable);
+        }
 
-	void HandleTextChanged(object sender, TextChangedEventArgs e)
-	{
-		string theBase = CompareToEntry.Text;
-		string confirmation = e.NewTextValue;
-		IsValid = theBase.Equals(confirmation);
+        void HandleTextChanged(object sender, TextChangedEventArgs e)
+        {
+            string theBase = CompareToEntry.Text;
+            string confirmation = e.NewTextValue;
+            IsValid = theBase.Equals(confirmation);
 
-		((Entry)sender).TextColor = IsValid ? Color.Green : Color.Red;
-	}
-}   
+            ((Entry) sender).TextColor = IsValid ? Color.Green : Color.Red;
+        }
+    }
 }

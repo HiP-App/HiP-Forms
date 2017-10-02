@@ -25,36 +25,35 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Views
 {
     class AudioToolbarViewModelTest
     {
-
-        [TestCase(true), Category ("UnitTest")]
+        [TestCase(true), Category("UnitTest")]
         [TestCase(false), Category("UnitTest")]
-        public void Creation_PropertiesFilled (bool automaticAudioStart)
+        public void Creation_PropertiesFilled(bool automaticAudioStart)
         {
             var sut = CreateSystemUnderTest(automaticAudioStart);
-            var audioPlayer = IoCManager.Resolve<IAudioPlayer> ();
+            var audioPlayer = IoCManager.Resolve<IAudioPlayer>();
 
-            Assert.IsTrue (Math.Abs (sut.MaxAudioProgress - 42) < 0.01);
+            Assert.IsTrue(Math.Abs(sut.MaxAudioProgress - 42) < 0.01);
             Assert.IsFalse(sut.IsAudioPlaying);
-            Assert.NotNull (sut.CaptionCommand);
-            Assert.NotNull (sut.PauseCommand);
-            Assert.NotNull (sut.PlayCommand);
+            Assert.NotNull(sut.CaptionCommand);
+            Assert.NotNull(sut.PauseCommand);
+            Assert.NotNull(sut.PlayCommand);
             if (automaticAudioStart)
             {
-                audioPlayer.ReceivedWithAnyArgs ().Play ();
+                audioPlayer.ReceivedWithAnyArgs().Play();
             }
             else
             {
-                audioPlayer.DidNotReceiveWithAnyArgs ().Play();
+                audioPlayer.DidNotReceiveWithAnyArgs().Play();
             }
         }
 
         [Test, Category("UnitTest")]
-        public void Command_Play ()
+        public void Command_Play()
         {
             var sut = CreateSystemUnderTest();
             var audioPlayer = IoCManager.Resolve<IAudioPlayer>();
 
-            sut.PlayCommand.Execute (null);
+            sut.PlayCommand.Execute(null);
 
             audioPlayer.ReceivedWithAnyArgs().Play();
         }
@@ -78,7 +77,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Views
 
             sut.CaptionCommand.Execute(null);
 
-            navigationService.ReceivedWithAnyArgs ().PushAsync (null);
+            navigationService.ReceivedWithAnyArgs().PushAsync(null);
         }
 
         [Test, Category("UnitTest")]
@@ -88,8 +87,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Views
             var audioPlayer = IoCManager.Resolve<IAudioPlayer>();
 
             Assert.IsFalse(sut.IsAudioPlaying);
-            audioPlayer.IsPlayingChanged+=Raise.Event<IsPlayingDelegate>(true);
-            Assert.IsTrue (sut.IsAudioPlaying);
+            audioPlayer.IsPlayingChanged += Raise.Event<IsPlayingDelegate>(true);
+            Assert.IsTrue(sut.IsAudioPlaying);
             audioPlayer.IsPlayingChanged += Raise.Event<IsPlayingDelegate>(false);
             Assert.IsFalse(sut.IsAudioPlaying);
         }
@@ -112,27 +111,27 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Views
             var sut = CreateSystemUnderTest(true);
             var audioPlayer = IoCManager.Resolve<IAudioPlayer>();
 
-            sut.OnDisappearing ();
-            audioPlayer.ReceivedWithAnyArgs().Stop ();
+            sut.OnDisappearing();
+            audioPlayer.ReceivedWithAnyArgs().Stop();
         }
 
         #region Helper Methods
 
-        private AudioToolbarViewModel CreateSystemUnderTest(bool automaticallyStartAudio=false)
+        private AudioToolbarViewModel CreateSystemUnderTest(bool automaticallyStartAudio = false)
         {
             IoCManager.Clear();
-            var audioPlayer = Substitute.For<IAudioPlayer> ();
+            var audioPlayer = Substitute.For<IAudioPlayer>();
             IoCManager.RegisterInstance(typeof(INavigationService), Substitute.For<INavigationService>());
             IoCManager.RegisterInstance(typeof(IAudioPlayer), audioPlayer);
             audioPlayer.MaximumProgress.Returns(42);
 
-            var audio = Substitute.For<Audio> ();
-            var viewmodel = new AudioToolbarViewModel (automaticallyStartAudio, "Title");
-            viewmodel.SetNewAudioFile (audio);
+            var audio = Substitute.For<Audio>();
+            var viewmodel = new AudioToolbarViewModel(automaticallyStartAudio, "Title");
+            viewmodel.SetNewAudioFile(audio);
 
             return viewmodel;
         }
-        #endregion
 
+        #endregion
     }
 }

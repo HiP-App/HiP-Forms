@@ -23,7 +23,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.ServiceAccessLayer
     [TestFixture]
     public class RoutesApiAccessTest
     {
-
         private IContentApiClient contentApiSubstitute;
 
         [Test, Category("UnitTest")]
@@ -45,7 +44,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.ServiceAccessLayer
                                 "\"status\": \"Test Status\"," +
                                 "\"tags\": [ 2, 4 ]," +
                                 "\"timestamp\": \"2017-05-29T10:10:10.10+00:00\"" +
-                                "}"+
+                                "}" +
                                 "]" +
                                 "}";
             contentApiSubstitute.GetResponseFromUrlAsString(null).ReturnsForAnyArgs(jsonReturn);
@@ -176,6 +175,5 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.ServiceAccessLayer
         }
 
         #endregion
-
     }
 }

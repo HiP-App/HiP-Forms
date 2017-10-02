@@ -15,10 +15,11 @@
 using System;
 using NUnit.Framework;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers {
-    public static class AssertionHelper {
-
-        public static void AreEqual (DateTimeOffset first, DateTimeOffset second)
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
+{
+    public static class AssertionHelper
+    {
+        public static void AreEqual(DateTimeOffset first, DateTimeOffset second)
         {
             var distance = first - second;
             if (Math.Abs(distance.Milliseconds) < 1)
@@ -26,6 +27,5 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers {
                 throw new AssertionException($"Excepted {first} but was {second}");
             }
         }
-
     }
 }

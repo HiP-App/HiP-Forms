@@ -14,7 +14,8 @@
 
 using System;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos {
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos
+{
     public class MediaDto
     {
         public int Id { get; set; }
@@ -30,6 +31,5 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
         public string Status { get; set; }
 
         public bool Used { get; set; }
-
     }
 }

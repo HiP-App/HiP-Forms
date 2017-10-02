@@ -16,17 +16,18 @@ using System.Threading;
 using System.Threading.Tasks;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers.Contracts {
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers.Contracts
+{
     /// <summary>
     /// Fetcher for base routes and exhibits data
     /// </summary>
-    public interface IBaseDataFetcher {
-
+    public interface IBaseDataFetcher
+    {
         /// <summary>
         /// Indicates whether there is new base data on the server
         /// </summary>
         /// <returns></returns>
-        Task<bool> IsDatabaseUpToDate ();
+        Task<bool> IsDatabaseUpToDate();
 
         /// <summary>
         /// Gets the newest base data for routes and exhibits
@@ -34,7 +35,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
         /// <param name="token">Used for cancelling the download</param>
         /// <param name="listener">Used for reporting progress</param>
         /// <returns></returns>
-        Task FetchBaseDataIntoDatabase (CancellationToken token, IProgressListener listener);
-
+        Task FetchBaseDataIntoDatabase(CancellationToken token, IProgressListener listener);
     }
 }

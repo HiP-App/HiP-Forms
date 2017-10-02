@@ -11,10 +11,12 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models {
-    public partial class GeoLocation {
 
-        public GeoLocation (double lat, double lon)
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
+{
+    public partial class GeoLocation
+    {
+        public GeoLocation(double lat, double lon)
         {
             Latitude = lat;
             Longitude = lon;
@@ -24,6 +26,5 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models {
         {
             return $"({Latitude},{Longitude}";
         }
-
     }
 }

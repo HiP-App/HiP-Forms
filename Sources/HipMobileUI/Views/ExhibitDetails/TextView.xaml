@@ -1,4 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
+
 <!--
 // Copyright (C) 2017 History in Paderborn App - Universität Paderborn
 //
@@ -23,18 +24,18 @@
         <views1:BottomSheetView BottomSheetVisible="{Binding BottomSheetVisible}">
             <views1:BottomSheetView.MainContent>
                 <RelativeLayout HorizontalOptions="Fill">
-                    <ScrollView RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.9}"
-                                RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}">
+                    <ScrollView
+                        RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.9}"
+                        RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}">
                         <StackLayout>
                             <StackLayout.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding ToggleButtonVisibility}" />
                             </StackLayout.GestureRecognizers>
-                            <controls1:CustomFontLabel Text="{Binding Text}" 
-                                                  FontFamilyName="{Binding FontFamily}"
-                                                  HorizontalOptions="Center"
-                                                  FontSize="16"
-                                                  Margin="0,0,0,30" >
-                            </controls1:CustomFontLabel>
+                            <controls1:CustomFontLabel Text="{Binding Text}"
+                                                       FontFamilyName="{Binding FontFamily}"
+                                                       HorizontalOptions="Center"
+                                                       FontSize="16"
+                                                       Margin="0,0,0,30" />
                         </StackLayout>
                     </ScrollView>
                 </RelativeLayout>
@@ -53,6 +54,3 @@
         </views1:BottomSheetView>
     </ContentView.Content>
 </ContentView>
-
-
-

@@ -19,18 +19,19 @@ using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
 [assembly: ExportRenderer(typeof(TouchEventSlider), typeof(DroidTouchEventSlider))]
+
 namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.CustomRenderers
 {
-    class DroidTouchEventSlider : SliderRenderer {
-
+    class DroidTouchEventSlider : SliderRenderer
+    {
         private TouchEventSlider formsSlider;
         private bool areListenersAdded;
 
-        protected override void OnElementChanged (ElementChangedEventArgs<Slider> e)
+        protected override void OnElementChanged(ElementChangedEventArgs<Slider> e)
         {
-            base.OnElementChanged (e);
+            base.OnElementChanged(e);
 
-            formsSlider = (TouchEventSlider)e.NewElement;
+            formsSlider = (TouchEventSlider) e.NewElement;
 
             if (Control != null && !areListenersAdded)
             {
@@ -45,10 +46,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.CustomRenderers
         /// </summary>
         /// <param name="sender">The sender of the event.</param>
         /// <param name="stopTrackingTouchEventArgs">The event parameters.</param>
-        private void SeekbarOnStopTrackingTouch (object sender, SeekBar.StopTrackingTouchEventArgs stopTrackingTouchEventArgs)
+        private void SeekbarOnStopTrackingTouch(object sender, SeekBar.StopTrackingTouchEventArgs stopTrackingTouchEventArgs)
         {
-            double newProgress= stopTrackingTouchEventArgs.SeekBar.Progress*formsSlider.Maximum/1000;
-            formsSlider?.TouchUpEvent?.Invoke(sender, new ValueEventArgs (newProgress));
+            double newProgress = stopTrackingTouchEventArgs.SeekBar.Progress * formsSlider.Maximum / 1000;
+            formsSlider?.TouchUpEvent?.Invoke(sender, new ValueEventArgs(newProgress));
         }
 
         /// <summary>
@@ -56,12 +57,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.CustomRenderers
         /// </summary>
         /// <param name="sender">The sender of the event.</param>
         /// <param name="startTrackingTouchEventArgs">The event parameters</param>
-        private void SeekbarOnStartTrackingTouch (object sender, SeekBar.StartTrackingTouchEventArgs startTrackingTouchEventArgs)
+        private void SeekbarOnStartTrackingTouch(object sender, SeekBar.StartTrackingTouchEventArgs startTrackingTouchEventArgs)
         {
-            formsSlider?.TouchDownEvent?.Invoke (sender, null);
+            formsSlider?.TouchDownEvent?.Invoke(sender, null);
         }
 
-        protected override void Dispose (bool disposing)
+        protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
@@ -69,8 +70,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.CustomRenderers
                 Control.StopTrackingTouch -= SeekbarOnStopTrackingTouch;
             }
 
-            base.Dispose (disposing);
+            base.Dispose(disposing);
         }
-
     }
 }

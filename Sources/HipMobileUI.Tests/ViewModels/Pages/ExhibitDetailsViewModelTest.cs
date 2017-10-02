@@ -41,11 +41,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Pages
             IoCManager.RegisterInstance(typeof(IAudioPlayer), Substitute.For<IAudioPlayer>());
             IoCManager.RegisterInstance(typeof(IDbChangedHandler), Substitute.For<IDbChangedHandler>());
             IoCManager.RegisterInstance(typeof(ApplicationResourcesProvider), new ApplicationResourcesProvider(
-                                             new Dictionary<string, object>
-                                             {
-                                                 {"PrimaryDarkColor", Color.Pink},
-                                                 {"PrimaryColor", Color.Pink}
-                                             }));
+                                            new Dictionary<string, object>
+                                            {
+                                                { "PrimaryDarkColor", Color.Pink },
+                                                { "PrimaryColor", Color.Pink }
+                                            }));
         }
 
         [Test, Category("UnitTest")]
@@ -144,11 +144,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Pages
         [Test, Category("UnitTest")]
         public void Creation_AdditionalInformationWithCorrectStatusBarColors()
         {
-            var resources = Substitute.For<IBarsColorsChanger> ();
+            var resources = Substitute.For<IBarsColorsChanger>();
             IoCManager.RegisterInstance(typeof(IBarsColorsChanger), resources);
             // ReSharper disable once UnusedVariable
             // It's necessary to create this object once
-            var sut = new ExhibitDetailsViewModel(new Exhibit (), new List<Page>(), "Test", true);
+            var sut = new ExhibitDetailsViewModel(new Exhibit(), new List<Page>(), "Test", true);
 
             resources.Received().ChangeToolbarColor(Color.FromRgb(128, 128, 128), Color.FromRgb(169, 169, 169));
         }
@@ -160,7 +160,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Pages
             IoCManager.RegisterInstance(typeof(IBarsColorsChanger), resources);
             // ReSharper disable once UnusedVariable
             // It's necessary to create this object once
-            var sut = new ExhibitDetailsViewModel (new Exhibit (), new List<Page> (), "Test");
+            var sut = new ExhibitDetailsViewModel(new Exhibit(), new List<Page>(), "Test");
 
             resources.Received().ChangeToolbarColor(Color.Pink, Color.Pink);
         }
@@ -184,6 +184,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Pages
             page.AppetizerPage.Image = CreateImage();
             return page;
         }
+
         private Page CreateImagePage()
         {
             var page = Substitute.For<Page>();
@@ -205,6 +206,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Pages
             image.Data = new byte[] { 1, 2, 3, 4 };
             return image;
         }
+
         #endregion
     }
 }

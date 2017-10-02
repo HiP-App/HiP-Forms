@@ -30,9 +30,10 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Location
 {
-    public delegate void ExhibitVisitedDelegate (object sender, Exhibit exhibit);
-    public interface INearbyExhibitManager {
+    public delegate void ExhibitVisitedDelegate(object sender, Exhibit exhibit);
 
+    public interface INearbyExhibitManager
+    {
         event ExhibitVisitedDelegate ExhibitVisitedEvent;
 
         /// <summary>
@@ -42,21 +43,19 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Location
         /// <param name="gpsLocation">The gps location of the user</param>
         /// <param name="considerTimeouts">Parameter indicating if timeouts for displaying the exhibit nearby message should be taken into account.</param>
         void CheckNearExhibit(IEnumerable<Exhibit> exhibits, GeoLocation gpsLocation, bool considerTimeouts);
-        void InvokeExhibitVistedEvent (Exhibit exhibit);
 
+        void InvokeExhibitVistedEvent(Exhibit exhibit);
     }
 
     public class NearbyExhibitManager : INearbyExhibitManager
     {
-        private readonly TimeSpan dialogTimeout = TimeSpan.FromMinutes (20);
+        private readonly TimeSpan dialogTimeout = TimeSpan.FromMinutes(20);
         public event ExhibitVisitedDelegate ExhibitVisitedEvent;
 
-        public async void CheckNearExhibit (IEnumerable<Exhibit> exhibits, GeoLocation gpsLocation, bool considerTimeouts)
+        public async void CheckNearExhibit(IEnumerable<Exhibit> exhibits, GeoLocation gpsLocation, bool considerTimeouts)
         {
             foreach (Exhibit e in exhibits)
             {
-
-                
                 var dist = MathUtil.CalculateDistance(e.Location, gpsLocation);
                 if (dist < AppSharedData.ExhibitRadius)
                 {
@@ -66,11 +65,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Location
                     }
                     if (considerTimeouts)
                     {
-
                         DateTimeOffset now = DateTimeOffset.Now;
                         if (e.LastNearbyTime.HasValue)
                         {
-                            if (now.Subtract (e.LastNearbyTime.Value) <= dialogTimeout)
+                            if (now.Subtract(e.LastNearbyTime.Value) <= dialogTimeout)
                             {
                                 // dialog for this exhibit was shown recently, skip it
                                 continue;
@@ -78,25 +76,23 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Location
                         }
 
                         // update the time the dialog was last shown
-                        using (DbManager.StartTransaction ())
+                        using (DbManager.StartTransaction())
                         {
                             e.LastNearbyTime = now;
                         }
                     }
 
-                    NavigationViewModel nv = new ExhibitPreviewViewModel (e,this);
+                    NavigationViewModel nv = new ExhibitPreviewViewModel(e, this);
                     await
-                            IoCManager.Resolve<INavigationService> ()
-                                      .PushModalAsync (nv);
-
+                        IoCManager.Resolve<INavigationService>()
+                                  .PushModalAsync(nv);
                 }
             }
         }
 
-        public void InvokeExhibitVistedEvent (Exhibit exhibit)
-        {           
-            ExhibitVisitedEvent?.Invoke (this, exhibit);
+        public void InvokeExhibitVistedEvent(Exhibit exhibit)
+        {
+            ExhibitVisitedEvent?.Invoke(this, exhibit);
         }
-
     }
 }

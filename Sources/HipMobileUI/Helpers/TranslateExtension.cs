@@ -26,8 +26,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers
     /// on how to extend this class
     /// </summary>
     [ContentProperty("Text")]
-    public class TranslateExtension : IMarkupExtension {
-
+    public class TranslateExtension : IMarkupExtension
+    {
         private const string ResourceFile = "PaderbornUniversity.SILab.Hip.Mobile.UI.Resources.Strings";
 
         public string Text { get; set; }
@@ -38,18 +38,17 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers
         /// </summary>
         /// <param name="serviceProvider"></param>
         /// <returns></returns>
-        public object ProvideValue (IServiceProvider serviceProvider)
+        public object ProvideValue(IServiceProvider serviceProvider)
         {
             if (Text == null)
                 return "";
 
             ResourceManager resmgr = new ResourceManager(ResourceFile
-                                , typeof(TranslateExtension).GetTypeInfo().Assembly);
+                                                         , typeof(TranslateExtension).GetTypeInfo().Assembly);
 
-            var translation = resmgr.GetString (Text) ?? Text; //If the given key does not exist, return the key itself
+            var translation = resmgr.GetString(Text) ?? Text; //If the given key does not exist, return the key itself
 
             return translation;
         }
-
     }
 }

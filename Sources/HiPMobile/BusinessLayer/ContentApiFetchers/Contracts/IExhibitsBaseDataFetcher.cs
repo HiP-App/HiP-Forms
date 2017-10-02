@@ -51,6 +51,5 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
         /// </summary>
         /// <returns></returns>
         Task<bool> AnyExhibitChanged();
-
     }
 }

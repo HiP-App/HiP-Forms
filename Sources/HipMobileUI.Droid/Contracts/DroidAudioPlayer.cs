@@ -33,12 +33,10 @@ using Stream = Android.Media.Stream;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Contracts
 {
-
     [BroadcastReceiver(Enabled = true)]
     [IntentFilter(new[] { PlayPauseAction, StopAction })]
     internal class DroidAudioPlayer : BroadcastReceiver, IAudioPlayer
     {
-
         private readonly MediaPlayer mediaPlayer;
         private Audio currentAudio;
         private Timer progressUpdateTimer;
@@ -87,7 +85,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Contracts
 
         private void ShowNotification(bool setPlayImage)
         {
-            var mainActivity = (MainActivity)CrossCurrentActivity.Current.Activity;
+            var mainActivity = (MainActivity) CrossCurrentActivity.Current.Activity;
 
             NotificationCompat.Builder builder = new NotificationCompat.Builder(mainActivity)
                 .SetOngoing(true)
@@ -106,18 +104,18 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Contracts
 
             if (Build.VERSION.SdkInt >= BuildVersionCodes.Lollipop)
             {
-                builder.SetVisibility((int)NotificationVisibility.Public);
+                builder.SetVisibility((int) NotificationVisibility.Public);
             }
 
             // Finally, publish the notification
-            var notificationManager = (NotificationManager)mainActivity.GetSystemService(Context.NotificationService);
+            var notificationManager = (NotificationManager) mainActivity.GetSystemService(Context.NotificationService);
             //notificationManager.Notify(AudioPlayerNotificationId, notificationBuilder.Build ());
             notificationManager.Notify(AudioPlayerNotificationId, builder.Build());
         }
 
         private PendingIntent GetIntentForAction(string action)
         {
-            var mainActivity = (MainActivity)CrossCurrentActivity.Current.Activity;
+            var mainActivity = (MainActivity) CrossCurrentActivity.Current.Activity;
 
             Intent intent = new Intent(mainActivity, typeof(DroidAudioPlayer));
             intent.SetAction(action);
@@ -126,8 +124,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Contracts
 
         private void DismissNotification()
         {
-            var mainActivity = (MainActivity)CrossCurrentActivity.Current.Activity;
-            var notificationManager = (NotificationManager)mainActivity.GetSystemService(Context.NotificationService);
+            var mainActivity = (MainActivity) CrossCurrentActivity.Current.Activity;
+            var notificationManager = (NotificationManager) mainActivity.GetSystemService(Context.NotificationService);
 
             notificationManager.Cancel(AudioPlayerNotificationId);
         }

@@ -17,8 +17,8 @@ using UIKit;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.ViewControllers
 {
-    public class OrientationViewController : UIViewController {
-
+    public class OrientationViewController : UIViewController
+    {
         private readonly OrientationController controller;
 
         public override bool ShouldAutorotateToInterfaceOrientation(UIInterfaceOrientation toInterfaceOrientation)
@@ -66,7 +66,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.ViewControllers
             }
             else
             {
-                return UIInterfaceOrientation.Unknown;}
+                return UIInterfaceOrientation.Unknown;
+            }
         }
 
         public override bool ShouldAutorotate()
@@ -76,7 +77,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.ViewControllers
 
         public override bool ShouldAutomaticallyForwardRotationMethods
         {
-            get {
+            get
+            {
                 if (controller == OrientationController.Sensor)
                     return true;
                 return false;
@@ -91,7 +93,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.ViewControllers
                 AddChildViewController(uiViewController);
                 View.AddSubview(uiViewController.View);
             }
-           
         }
     }
 }

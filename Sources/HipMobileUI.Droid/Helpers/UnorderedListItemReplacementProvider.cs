@@ -12,12 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Helpers {
-    public class UnorderedListItemReplacementProvider : IListReplacementProvider {
-
-        public string GetReplacement ()
+namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Helpers
+{
+    public class UnorderedListItemReplacementProvider : IListReplacementProvider
+    {
+        public string GetReplacement()
         {
-            return  "\t• ";
+            return "\t• ";
         }
     }
 }

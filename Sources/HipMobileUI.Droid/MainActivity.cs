@@ -38,7 +38,8 @@ using Acr.UserDialogs;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
 {
-    [Activity(Label = "Historisches Paderborn", Icon = "@drawable/ic_launcher", Theme = "@style/splashscreen", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    [Activity(Label = "Historisches Paderborn", Icon = "@drawable/ic_launcher", Theme = "@style/splashscreen", MainLauncher = true,
+        ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         protected override void OnCreate(Bundle bundle)
@@ -65,7 +66,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
             IoCManager.RegisterInstance(typeof(IBarsColorsChanger), new DroidBarsColorsChanger(this));
             IoCManager.RegisterInstance(typeof(IDbChangedHandler), new DbChangedHandler());
             IoCManager.RegisterInstance(typeof(INetworkAccessChecker), new DroidNetworkAccessChecker());
-			IoCManager.RegisterInstance(typeof(IStorageSizeProvider), new DroidStorageSizeProvider ());
+            IoCManager.RegisterInstance(typeof(IStorageSizeProvider), new DroidStorageSizeProvider());
 
             // setup crash reporting
             IKeyProvider keyProvider = IoCManager.Resolve<IKeyProvider>();
@@ -76,7 +77,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
             Forms.Init(this, bundle);
             Xamarin.FormsMaps.Init(this, bundle);
 
-            UserDialogs.Init(() => (Activity)Forms.Context);
+            UserDialogs.Init(() => (Activity) Forms.Context);
 
             LoadApplication(new App());
         }
@@ -105,9 +106,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
 
             // First check to see if we're on a tabbed page, then master detail, finally go to overall fallback
             var nav = tabController?.CurrentPage?.Navigation ??
-                                 (masterController?.Detail as TabbedPage)?.CurrentPage?.Navigation ?? // special consideration for a tabbed page inside master/detail
-                                 masterController?.Detail?.Navigation ??
-                                 Xamarin.Forms.Application.Current.MainPage.Navigation;
+                      (masterController?.Detail as TabbedPage)?.CurrentPage?.Navigation ?? // special consideration for a tabbed page inside master/detail
+                      masterController?.Detail?.Navigation ??
+                      Xamarin.Forms.Application.Current.MainPage.Navigation;
 
             foreach (var page in nav.NavigationStack)
             {
@@ -115,7 +116,5 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
                 navigationViewModel?.OnDisappearing();
             }
         }
-
     }
 }
-

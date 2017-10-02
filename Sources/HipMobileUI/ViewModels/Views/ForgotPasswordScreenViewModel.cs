@@ -35,7 +35,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             if (String.IsNullOrWhiteSpace(Email))
             {
                 DisplayEmptyEmailErrorMessage();
-            } else
+            }
+            else
             {
                 SendResetPasswordEmail();
             }
@@ -43,12 +44,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 
         private async void SendResetPasswordEmail()
         {
-            UserStatus userStatus = await IoCManager.Resolve<IUserManager> ().ForgotPassword (new User (Email, ""));
+            UserStatus userStatus = await IoCManager.Resolve<IUserManager>().ForgotPassword(new User(Email, ""));
 
             if (userStatus == UserStatus.PasswordResetEmailSent)
             {
-                mainPageViewModel.SwitchToLoginView ();
-                UserDialogs.Instance.Alert (Strings.ForgotPasswordScreenView_Alert_Description, Strings.ForgotPasswordScreenView_Alert_Password_Resetted);
+                mainPageViewModel.SwitchToLoginView();
+                UserDialogs.Instance.Alert(Strings.ForgotPasswordScreenView_Alert_Description, Strings.ForgotPasswordScreenView_Alert_Password_Resetted);
             }
             else if (userStatus == UserStatus.NetworkConnectionFailed)
             {
@@ -58,7 +59,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             {
                 UserDialogs.Instance.Alert(Strings.ForgotPasswordScreenView_Alert_Unknown_Error_Description, Strings.ForgotPasswordScreenView_Alert_Unknown_Error_Title);
             }
-            
         }
 
         private void DisplayEmptyEmailErrorMessage()
