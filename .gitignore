@@ -7,3 +7,7 @@ packages/
 **/CodeGeneration.Log.xml
 !Bindings/CircularRevealBinding/CircularRevealBinding/bin/Debug/CircularRevealBinding.dll
 *.bak
+
+# JetBrains Rider
+*.iml
+.idea
