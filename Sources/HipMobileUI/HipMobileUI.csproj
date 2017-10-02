@@ -155,7 +155,6 @@
     <Compile Include="ViewModels\Pages\UserOnboardingItemViewModel.cs" />
     <Compile Include="ViewModels\Pages\UserOnboardingPageViewModel.cs" />
     <Compile Include="ViewModels\Views\AudioToolbarViewModel.cs" />
-    <Compile Include="ViewModels\Views\ExhibitDetails\AppetizerViewModel.cs" />
     <Compile Include="ViewModels\Views\ExhibitDetails\ExhibitSubviewHiddeableNavigationViewModel.cs" />
     <Compile Include="ViewModels\Views\ExhibitDetails\ExhibitSubviewViewModel.cs" />
     <Compile Include="ViewModels\Views\ExhibitDetails\TextViewModel.cs" />
@@ -196,9 +195,6 @@
     <Compile Include="Views\BottomSheetView.cs" />
     <Compile Include="Pages\NavigationPage.xaml.cs">
       <DependentUpon>NavigationPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\ExhibitDetails\AppetizerView.xaml.cs">
-      <DependentUpon>AppetizerView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ExhibitDetails\ImageView.xaml.cs">
       <DependentUpon>ImageView.xaml</DependentUpon>
@@ -384,12 +380,6 @@
   <ItemGroup>
     <EmbeddedResource Include="Pages\NavigationPage.xaml" />
     <EmbeddedResource Include="Pages\ExhibitDetailsPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Views\ExhibitDetails\AppetizerView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

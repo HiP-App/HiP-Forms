@@ -118,7 +118,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Pages
             IoCManager.RegisterInstance(typeof(IBarsColorsChanger), Substitute.For<IBarsColorsChanger>());
             var sut = CreateSystemUnderTest();
 
-            Assert.IsInstanceOf<AppetizerViewModel>(sut.SelectedView);
+            Assert.IsInstanceOf<AppetizerPageViewModel>(sut.SelectedView);
             sut.NextViewCommand.Execute(null);
             Assert.IsInstanceOf<ImageViewModel>(sut.SelectedView);
             sut.NextViewCommand.Execute(null);

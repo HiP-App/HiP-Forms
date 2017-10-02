@@ -13,7 +13,7 @@
 // limitations under the License.
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
-using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views.ExhibitDetails;
+
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
 {

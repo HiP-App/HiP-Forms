@@ -12,22 +12,23 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System.IO;
-using System.Collections.Generic;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
-using Xamarin.Forms;
 using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Windows.Input;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelConverters;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
+using Xamarin.Forms;
 using Page = PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.Page;
-using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views.ExhibitDetails;
+
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
+
 {
 	public class AppetizerPageViewModel : NavigationViewModel, IDownloadableListItemViewModel
 	{
@@ -45,14 +46,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 		private bool exhibitUnblocked = true;
 
 
-		public AppetizerPageViewModel(Exhibit exhibit)
+		public AppetizerPageViewModel(Exhibit exhibit, String exhibitName,AppetizerPage page)
 		//string exhibitName)
 		//AppetizerPage page)
 		{
 			//if (page != null)
 			//{
 			Exhibit = exhibit;
-			Headline = exhibit.Name;
+		    Headline = exhibitName;
+			//Headline = exhibit.Name;
 			currentViewIndex = 0;
 			pages = exhibit.Pages;
 			Page currentPage = pages[currentViewIndex];
@@ -62,7 +64,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
 			if (pages.Count > 1)
 				nextViewAvailable = true;
-			// workaround for realm bug
+			// workaround for realmbug
 			var imageData = page.Image.Data;
 			if (imageData != null)
 			{
@@ -78,32 +80,38 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 			DownloadCommand = new Command(OpenDownloadDialog);
 			//}
 		}
-		///// <summary>
-		///// Indicator if navigation to next is visible
-		///// </summary>
-		//public bool NextVisible
-		//{
-		//	get { return nextVisible; }
-		//	set { SetProperty(ref nextVisible, value); }
-		//}
 
-		///// <summary>
-		///// Toggles the visibility of the navigation buttons if the next/previous page is available
-		///// Cancels the delayed task for toggling
-		///// </summary>
-		//private void ToggleVisibilityOfNavigationButtons()
-		//{
-		//	if (NextViewAvailable)
-		//	{
-		//		NextVisible = !NextVisible;
-		//	}
+	    public AppetizerPageViewModel(Exhibit exhibit)
+	    {
+	        this.exhibit = exhibit;
+	    }
 
-		// }
-		/// <summary>
-		/// Go to the next available view.
-		/// </summary>
-		/// <returns></returns>
-		private async void GotoNextView()
+        ///// <summary>
+        ///// Indicator if navigation to next is visible
+        ///// </summary>
+        //public bool NextVisible
+        //{
+        //	get { return nextVisible; }
+        //	set { SetProperty(ref nextVisible, value); }
+        //}
+
+        ///// <summary>
+        ///// Toggles the visibility of the navigation buttons if the next/previous page is available
+        ///// Cancels the delayed task for toggling
+        ///// </summary>
+        //private void ToggleVisibilityOfNavigationButtons()
+        //{
+        //	if (NextViewAvailable)
+        //	{
+        //		NextVisible = !NextVisible;
+        //	}
+
+        // }
+        /// <summary>
+        /// Go to the next available view.
+        /// </summary>
+        /// <returns></returns>
+        private async void GotoNextView()
 		{
 			if (currentViewIndex < pages.Count - 1)
 			{
