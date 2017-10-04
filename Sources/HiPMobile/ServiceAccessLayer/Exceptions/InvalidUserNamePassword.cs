@@ -5,17 +5,21 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Exceptions
+{
+    public class InvalidUserNamePassword : Exception
     {
-    public class InvalidUserNamePassword:Exception
+        public InvalidUserNamePassword()
         {
-        public InvalidUserNamePassword (){
-            }
+        }
 
-        public InvalidUserNamePassword (string message)
-        : base(message){
-            }
-        public InvalidUserNamePassword (string message, Exception inner)
-        : base(message, inner){
-            }
+        public InvalidUserNamePassword(string message)
+            : base(message)
+        {
+        }
+
+        public InvalidUserNamePassword(string message, Exception inner)
+            : base(message, inner)
+        {
         }
     }
+}

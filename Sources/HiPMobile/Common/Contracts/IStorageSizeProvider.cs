@@ -5,8 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts
+{
+    public interface IStorageSizeProvider
     {
-    public interface IStorageSizeProvider {
-        double GetDatabaseSize ();
+        double GetDatabaseSize();
     }
-    }
+}

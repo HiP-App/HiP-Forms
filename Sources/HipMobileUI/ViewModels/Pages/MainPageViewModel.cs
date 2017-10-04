@@ -22,76 +22,75 @@ using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 {
-	public class MainPageViewModel : NavigationViewModel
-	{
-
-		public MainPageViewModel(ExhibitSet set)
-		{
-		    profileScreenViewModel = new ProfileScreenViewModel (this)
-		    {
-		        Title = Strings.MainPageViewModel_Profile,
-		        Icon = "ic_account_circle.png"
-		    };
-            loginScreenViewModel = new LoginScreenViewModel (this)
-		    {
-		        Title = Strings.MainPageViewModel_Account,
-		        Icon = "ic_account_circle.png"
-		    };
+    public class MainPageViewModel : NavigationViewModel
+    {
+        public MainPageViewModel(ExhibitSet set)
+        {
+            profileScreenViewModel = new ProfileScreenViewModel(this)
+            {
+                Title = Strings.MainPageViewModel_Profile,
+                Icon = "ic_account_circle.png"
+            };
+            loginScreenViewModel = new LoginScreenViewModel(this)
+            {
+                Title = Strings.MainPageViewModel_Account,
+                Icon = "ic_account_circle.png"
+            };
             forgotPasswordScreenViewModel = new ForgotPasswordScreenViewModel(this)
             {
                 Title = Strings.MainPageViewModel_Account,
                 Icon = "ic_account_circle.png"
             };
 
-			 registerScreenViewModel = new RegisterScreenViewModel(this)
-			{
-				Title = Strings.MainPageViewModel_Account,
-			    Icon = "ic_account_circle.png"
-			 };
+            registerScreenViewModel = new RegisterScreenViewModel(this)
+            {
+                Title = Strings.MainPageViewModel_Account,
+                Icon = "ic_account_circle.png"
+            };
 
             MainScreenViewModels = new ObservableCollection<NavigationViewModel>
-			{
-				new ExhibitsOverviewViewModel (set)
-				{
-					Title = Strings.MainPageViewModel_OverviewPage,
-					Icon = "ic_home.png"
-				},
-				new RoutesOverviewViewModel
-				{
-					Title = Strings.MainPageViewModel_Routes,
-					Icon = "ic_directions.png"
-				},
-				new SettingsScreenViewModel
-				{
-					Title = Strings.MainPageViewModel_Settings,
-					Icon = "ic_settings.png"
-				},
-				new LicenseScreenViewModel
-				{
-					Title = Strings.MainPageViewModel_LegalNotices,
-					Icon = "ic_gavel.png"
-				},
+            {
+                new ExhibitsOverviewViewModel(set)
+                {
+                    Title = Strings.MainPageViewModel_OverviewPage,
+                    Icon = "ic_home.png"
+                },
+                new RoutesOverviewViewModel
+                {
+                    Title = Strings.MainPageViewModel_Routes,
+                    Icon = "ic_directions.png"
+                },
+                new SettingsScreenViewModel
+                {
+                    Title = Strings.MainPageViewModel_Settings,
+                    Icon = "ic_settings.png"
+                },
+                new LicenseScreenViewModel
+                {
+                    Title = Strings.MainPageViewModel_LegalNotices,
+                    Icon = "ic_gavel.png"
+                },
                 profileScreenViewModel,
                 new LeaderboardViewModel
                 {
                     Title = Strings.MainPageViewModel_Leaderboard,
                     Icon = "ic_equalizer.png"
                 }
-			};
-		    UpdateAccountViews ();
-		}
-
-        /** Call this method after a change to 'Settings.IsLoggedIn' to display the correct view. */
-	    public void UpdateAccountViews ()
-	    {
-            if (Settings.IsLoggedIn)
-                SwitchToProfileView ();
-            else
-                SwitchToLoginView ();
+            };
+            UpdateAccountViews();
         }
 
-        public void SwitchToLoginView ()
-	    {
+        /** Call this method after a change to 'Settings.IsLoggedIn' to display the correct view. */
+        public void UpdateAccountViews()
+        {
+            if (Settings.IsLoggedIn)
+                SwitchToProfileView();
+            else
+                SwitchToLoginView();
+        }
+
+        public void SwitchToLoginView()
+        {
             mainScreenViewModels.RemoveAt(4);
             mainScreenViewModels.Insert(4, loginScreenViewModel);
             SelectedViewModel = mainScreenViewModels[4];
@@ -104,86 +103,83 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             SelectedViewModel = mainScreenViewModels[4];
         }
 
-	    public void SwitchToProfileView ()
-	    {
+        public void SwitchToProfileView()
+        {
             mainScreenViewModels.RemoveAt(4);
             mainScreenViewModels.Insert(4, profileScreenViewModel);
             SelectedViewModel = mainScreenViewModels[4];
         }
 
-		public void SwitchToRegisterView()
-		{
-			mainScreenViewModels.RemoveAt(4);
-			mainScreenViewModels.Insert(4, registerScreenViewModel);
-			SelectedViewModel = mainScreenViewModels[4];
-		}
+        public void SwitchToRegisterView()
+        {
+            mainScreenViewModels.RemoveAt(4);
+            mainScreenViewModels.Insert(4, registerScreenViewModel);
+            SelectedViewModel = mainScreenViewModels[4];
+        }
 
-	    public void SwitchToSettingsScreenView ()
-	    {
-	        SelectedViewModel = mainScreenViewModels [2];
-	    }
+        public void SwitchToSettingsScreenView()
+        {
+            SelectedViewModel = mainScreenViewModels[2];
+        }
 
-	    public MainPageViewModel () : this (ExhibitManager.GetExhibitSets ().FirstOrDefault ())
-	    {
-	        
-	    }
+        public MainPageViewModel() : this(ExhibitManager.GetExhibitSets().FirstOrDefault())
+        {
+        }
 
-		private ObservableCollection<NavigationViewModel> mainScreenViewModels;
-	    private readonly ProfileScreenViewModel profileScreenViewModel;
-	    private readonly LoginScreenViewModel loginScreenViewModel;
+        private ObservableCollection<NavigationViewModel> mainScreenViewModels;
+        private readonly ProfileScreenViewModel profileScreenViewModel;
+        private readonly LoginScreenViewModel loginScreenViewModel;
         private readonly ForgotPasswordScreenViewModel forgotPasswordScreenViewModel;
-		private readonly RegisterScreenViewModel registerScreenViewModel;
-
+        private readonly RegisterScreenViewModel registerScreenViewModel;
 
         private NavigationViewModel selectedViewModel;
 
-		public ObservableCollection<NavigationViewModel> MainScreenViewModels
-		{
-			get { return mainScreenViewModels; }
-			set { SetProperty(ref mainScreenViewModels, value); }
-		}
+        public ObservableCollection<NavigationViewModel> MainScreenViewModels
+        {
+            get { return mainScreenViewModels; }
+            set { SetProperty(ref mainScreenViewModels, value); }
+        }
 
-		public NavigationViewModel SelectedViewModel
-		{
-			get { return selectedViewModel; }
-			set
-			{
-				var oldViewModel = SelectedViewModel;
-				if (SetProperty(ref (selectedViewModel), value))
-				{
-					oldViewModel?.OnDisappearing();
-					SelectedViewModel?.OnAppearing();
-				}
-			}
-		}
+        public NavigationViewModel SelectedViewModel
+        {
+            get { return selectedViewModel; }
+            set
+            {
+                var oldViewModel = SelectedViewModel;
+                if (SetProperty(ref (selectedViewModel), value))
+                {
+                    oldViewModel?.OnDisappearing();
+                    SelectedViewModel?.OnAppearing();
+                }
+            }
+        }
 
-		public override void OnDisappearing()
-		{
-			base.OnDisappearing();
+        public override void OnDisappearing()
+        {
+            base.OnDisappearing();
 
-			SelectedViewModel.OnDisappearing();
-		}
+            SelectedViewModel.OnDisappearing();
+        }
 
-		public override void OnAppearing()
-		{
-			base.OnAppearing();
+        public override void OnAppearing()
+        {
+            base.OnAppearing();
 
-			SelectedViewModel.OnAppearing();
-		}
+            SelectedViewModel.OnAppearing();
+        }
 
-		public override void OnHidden()
-		{
-			base.OnHidden();
+        public override void OnHidden()
+        {
+            base.OnHidden();
 
-			SelectedViewModel.OnHidden();
-		}
+            SelectedViewModel.OnHidden();
+        }
 
-		public override void OnRevealed()
-		{
-			base.OnRevealed();
+        public override void OnRevealed()
+        {
+            base.OnRevealed();
 
-			SelectedViewModel.OnRevealed();
-		}
-
-	}
+            SelectedViewModel.OnRevealed();
+        }
+    }
 }

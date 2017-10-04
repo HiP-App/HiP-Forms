@@ -14,15 +14,15 @@
 
 using System;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer {
-    public class NotFoundException : Exception {
-
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer
+{
+    public class NotFoundException : Exception
+    {
         public string RequestedUrl { get; private set; }
 
-        public NotFoundException (string requestedUrl)
+        public NotFoundException(string requestedUrl)
         {
             RequestedUrl = requestedUrl;
         }
-
     }
 }

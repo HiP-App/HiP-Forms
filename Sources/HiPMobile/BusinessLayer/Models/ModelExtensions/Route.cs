@@ -20,10 +20,10 @@ using Realms;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 {
-    public partial class Route {
-
+    public partial class Route
+    {
         [Ignored]
-        public IList<Waypoint> ActiveSet => Waypoints.Where (wp => !wp.Visited).ToList ();
+        public IList<Waypoint> ActiveSet => Waypoints.Where(wp => !wp.Visited).ToList();
 
         [Ignored]
         public IList<Waypoint> PassiveSet => Waypoints.Where(wp => wp.Visited).ToList();
@@ -33,13 +33,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
         /// </summary>
         /// <param name="waypoint">The waypoint to move.</param>
         /// <returns>True, if the waypoint could be moved. False otherwise.</returns>
-        public bool MoveToPassiveSet (Waypoint waypoint)
+        public bool MoveToPassiveSet(Waypoint waypoint)
         {
             if (waypoint != null)
             {
-                using (IoCManager.Resolve<IDataAccess>().StartTransaction ())
+                using (IoCManager.Resolve<IDataAccess>().StartTransaction())
                 {
-                    bool exists = ActiveSet.Contains (waypoint);
+                    bool exists = ActiveSet.Contains(waypoint);
                     waypoint.Visited = true;
                     if (exists)
                     {
@@ -53,9 +53,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
         /// <summary>
         /// Moves all waypoints from the passive set to the active set.
         /// </summary>
-        public void ResetRoute ()
+        public void ResetRoute()
         {
-            using (IoCManager.Resolve<IDataAccess> ().StartTransaction ())
+            using (IoCManager.Resolve<IDataAccess>().StartTransaction())
             {
                 foreach (Waypoint waypoint in PassiveSet)
                 {
@@ -68,7 +68,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
         /// Indicates if the route has been started.
         /// </summary>
         /// <returns></returns>
-        public bool IsRouteStarted ()
+        public bool IsRouteStarted()
         {
             return PassiveSet != null && PassiveSet.Count > 0;
         }
@@ -77,10 +77,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
         /// Indicates if the route has been finished.
         /// </summary>
         /// <returns></returns>
-        public bool IsRouteFinished ()
+        public bool IsRouteFinished()
         {
             return ActiveSet == null || ActiveSet.Count == 0;
         }
-
     }
 }

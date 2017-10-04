@@ -33,13 +33,14 @@ using Xamarin.Forms;
 using Page = PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.Page;
 using Settings = PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers.Settings;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
+namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
+{
     public class ExhibitDetailsViewModel : NavigationViewModel, IDbChangedObserver
     {
         private ExhibitSubviewViewModel selectedView;
         private AudioToolbarViewModel audioToolbar;
-        
-        private Exhibit exhibit; 
+
+        private Exhibit exhibit;
         private readonly IList<Page> pages;
         private ICommand nextViewCommand;
         private ICommand previousViewCommand;
@@ -62,64 +63,66 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
             exhibitUnblocked = exhibit.Unlocked;
         }
 
-        public ExhibitDetailsViewModel (string exhibitId) : this(ExhibitManager.GetExhibit(exhibitId), ExhibitManager.GetExhibit(exhibitId).Pages, ExhibitManager.GetExhibit(exhibitId).Name)
+        public ExhibitDetailsViewModel(string exhibitId) : this(ExhibitManager.GetExhibit(exhibitId), ExhibitManager.GetExhibit(exhibitId).Pages,
+                                                                ExhibitManager.GetExhibit(exhibitId).Name)
         {
-            exhibitUnblocked = ExhibitManager.GetExhibit (exhibitId).Unlocked;
+            exhibitUnblocked = ExhibitManager.GetExhibit(exhibitId).Unlocked;
         }
 
-        public ExhibitDetailsViewModel (Exhibit exhibit, IList<Page> pages, string title, bool additionalInformation = false)
+        public ExhibitDetailsViewModel(Exhibit exhibit, IList<Page> pages, string title, bool additionalInformation = false)
         {
             Exhibit = exhibit;
             this.additionalInformation = additionalInformation;
-            AdjustToolbarColor ();
+            AdjustToolbarColor();
 
             // stop audio if necessary
-            IAudioPlayer player = IoCManager.Resolve<IAudioPlayer> ();
+            IAudioPlayer player = IoCManager.Resolve<IAudioPlayer>();
             if (player.IsPlaying)
             {
-                player.Stop ();
+                player.Stop();
             }
 
             // init the audio toolbar
-            AudioToolbar = new AudioToolbarViewModel (title);
+            AudioToolbar = new AudioToolbarViewModel(title);
             AudioToolbar.AudioPlayer.AudioCompleted += AudioPlayerOnAudioCompleted;
 
             // init the current view
             currentViewIndex = 0;
             this.pages = pages;
-            SetCurrentView ().ConfigureAwait (true);
+            SetCurrentView().ConfigureAwait(true);
             Title = title;
 
             if (pages.Count > 1)
                 NextViewAvailable = true;
 
             // init commands
-          //this.ExhibitUnblocked = ExhibitUnblocked;        
-            NextViewCommand = new Command (async () => await GotoNextView ());
-            PreviousViewCommand = new Command (GotoPreviousView);
-            ShowAudioToolbarCommand = new Command (SwitchAudioToolbarVisibleState);
-            ShowAdditionalInformationCommand = new Command (ShowAdditionalInformation);
-            
+            //this.ExhibitUnblocked = ExhibitUnblocked;        
+            NextViewCommand = new Command(async () => await GotoNextView());
+            PreviousViewCommand = new Command(GotoPreviousView);
+            ShowAudioToolbarCommand = new Command(SwitchAudioToolbarVisibleState);
+            ShowAdditionalInformationCommand = new Command(ShowAdditionalInformation);
+
             var dbChangedHandler = IoCManager.Resolve<IDbChangedHandler>();
             dbChangedHandler.AddObserver(this);
         }
 
-        private void AdjustToolbarColor ()
+        private void AdjustToolbarColor()
         {
             if (additionalInformation)
             {
-                IoCManager.Resolve<IBarsColorsChanger>().ChangeToolbarColor(Color.FromRgb(128, 128, 128), Color.FromRgb (169, 169, 169));
+                IoCManager.Resolve<IBarsColorsChanger>().ChangeToolbarColor(Color.FromRgb(128, 128, 128), Color.FromRgb(169, 169, 169));
             }
             else
             {
-                var resources = IoCManager.Resolve<ApplicationResourcesProvider> ();
-                IoCManager.Resolve<IBarsColorsChanger>().ChangeToolbarColor((Color)resources.GetResourceValue("PrimaryDarkColor"), (Color)resources.GetResourceValue("PrimaryColor"));
+                var resources = IoCManager.Resolve<ApplicationResourcesProvider>();
+                IoCManager.Resolve<IBarsColorsChanger>()
+                          .ChangeToolbarColor((Color) resources.GetResourceValue("PrimaryDarkColor"), (Color) resources.GetResourceValue("PrimaryColor"));
             }
         }
 
-        private void ShowAdditionalInformation ()
+        private void ShowAdditionalInformation()
         {
-            var currentPage = pages [currentViewIndex];
+            var currentPage = pages[currentViewIndex];
 
             Navigation.PushAsync(new ExhibitDetailsViewModel(Exhibit, currentPage.AdditionalInformationPages, Strings.ExhibitDetailsPage_AdditionalInformation, true));
         }
@@ -158,7 +161,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
         /// Toggles the visibility of the navigation buttons if the next/previous page is available
         /// Cancels the delayed task for toggling
         /// </summary>
-        private void ToggleVisibilityOfNavigationButtons ()
+        private void ToggleVisibilityOfNavigationButtons()
         {
             if (NextViewAvailable)
             {
@@ -179,22 +182,22 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
         /// <summary>
         /// Audio finished playing.
         /// </summary>
-        private async void AudioPlayerOnAudioCompleted ()
+        private async void AudioPlayerOnAudioCompleted()
         {
             if (Settings.RepeatHintAutoPageSwitch)
             {
                 // ask for preferred setting regarind automatic page switch
                 Settings.RepeatHintAutoPageSwitch = false;
-                var result = await Navigation.DisplayAlert (Strings.ExhibitDetailsPage_Hinweis,
-                                                            Strings.ExhibitDetailsPage_PageSwitch,
-                                                            Strings.ExhibitDetailsPage_AgreeFeature, Strings.ExhibitDetailsPage_DisagreeFeature).ConfigureAwait (true);
+                var result = await Navigation.DisplayAlert(Strings.ExhibitDetailsPage_Hinweis,
+                                                           Strings.ExhibitDetailsPage_PageSwitch,
+                                                           Strings.ExhibitDetailsPage_AgreeFeature, Strings.ExhibitDetailsPage_DisagreeFeature).ConfigureAwait(true);
                 Settings.AutoSwitchPage = result;
             }
 
             // aply automatic page switch if wanted
             if (Settings.AutoSwitchPage && NextViewAvailable)
             {
-                await GotoNextView ();
+                await GotoNextView();
             }
         }
 
@@ -202,7 +205,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
         /// Go to the next available view.
         /// </summary>
         /// <returns></returns>
-        private async Task GotoNextView ()
+        private async Task GotoNextView()
         {
             if (currentViewIndex < pages.Count - 1)
             {
@@ -219,17 +222,17 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
                     NextViewAvailable = currentViewIndex < pages.Count - 1;
                     PreviousViewAvailable = true;
                     await SetCurrentView();
-
                 }
                 else
                 {
                     await IoCManager.Resolve<INavigationService>()
-                                    .DisplayAlert(Strings.ExhibitDetailsPage_Distance_Title, Strings.ExhibitDetailsPage_Distance_Text, Strings.ExhibitDetailsPage_Distance_alert_confirm);
+                                    .DisplayAlert(Strings.ExhibitDetailsPage_Distance_Title, Strings.ExhibitDetailsPage_Distance_Text,
+                                                  Strings.ExhibitDetailsPage_Distance_alert_confirm);
                 }
             }
         }
 
-        private void SwitchAudioToolbarVisibleState ()
+        private void SwitchAudioToolbarVisibleState()
         {
             AudioToolbarVisible = !AudioToolbarVisible;
         }
@@ -237,19 +240,19 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
         /// <summary>
         /// Switch to the previous view.
         /// </summary>
-        private async void GotoPreviousView ()
+        private async void GotoPreviousView()
         {
             if (currentViewIndex > 0)
             {
                 // stop audio
                 if (AudioToolbar.AudioPlayer.IsPlaying)
                 {
-                    AudioToolbar.AudioPlayer.Stop ();
+                    AudioToolbar.AudioPlayer.Stop();
                 }
 
                 // update UI
                 currentViewIndex--;
-                await SetCurrentView ();
+                await SetCurrentView();
                 PreviousViewAvailable = currentViewIndex > 0;
                 NextViewAvailable = true;
             }
@@ -259,7 +262,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
         /// Set the current view.
         /// </summary>
         /// <returns></returns>
-        private async Task SetCurrentView ()
+        private async Task SetCurrentView()
         {
             // update UI
             Page currentPage = pages[currentViewIndex];
@@ -272,7 +275,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
             // It's possible to get no audio data even if it should exist
             try
             {
-                AudioToolbar.SetNewAudioFile (currentPage.Audio);
+                AudioToolbar.SetNewAudioFile(currentPage.Audio);
             }
             catch (Exception e)
             {
@@ -298,7 +301,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
                     break;
             }
 
-            if (currentPage.AdditionalInformationPages != null && currentPage.AdditionalInformationPages.Any ())
+            if (currentPage.AdditionalInformationPages != null && currentPage.AdditionalInformationPages.Any())
             {
                 HasAdditionalInformation = true;
             }
@@ -324,8 +327,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
                 // ask if user wants autoamtic audio playback
                 if (Settings.RepeatHintAudio)
                 {
-                    var result = await Navigation.DisplayAlert (Strings.ExhibitDetailsPage_Hinweis, Strings.ExhibitDetailsPage_AudioPlay,
-                                                                Strings.ExhibitDetailsPage_AgreeFeature, Strings.ExhibitDetailsPage_DisagreeFeature);
+                    var result = await Navigation.DisplayAlert(Strings.ExhibitDetailsPage_Hinweis, Strings.ExhibitDetailsPage_AudioPlay,
+                                                               Strings.ExhibitDetailsPage_AgreeFeature, Strings.ExhibitDetailsPage_DisagreeFeature);
                     Settings.AutoStartAudio = result;
                     Settings.RepeatHintAudio = false;
                 }
@@ -333,7 +336,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
                 //play automatic audio, if wanted
                 if (Settings.AutoStartAudio)
                 {
-                    AudioToolbar.AudioPlayer.Play ();
+                    AudioToolbar.AudioPlayer.Play();
                 }
             }
         }
@@ -344,33 +347,33 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
         public async void DbChanged()
         {
             string exhibitId = Exhibit.Id;
-            Exhibit = ExhibitManager.GetExhibit (exhibitId);
+            Exhibit = ExhibitManager.GetExhibit(exhibitId);
             if (Exhibit.DetailsDataLoaded)
             {
                 NextViewAvailable = currentViewIndex < pages.Count - 1;
                 PreviousViewAvailable = currentViewIndex > 0;
-                await SetCurrentView ();
+                await SetCurrentView();
             }
         }
 
         /// <summary>
         /// Called when the page disappears.
         /// </summary>
-        public override void OnDisappearing ()
+        public override void OnDisappearing()
         {
             WillDisappear = true;
 
-            base.OnDisappearing ();
+            base.OnDisappearing();
 
             AudioToolbar.AudioPlayer.AudioCompleted -= AudioPlayerOnAudioCompleted;
 
             //inform the audio toolbar to clean up
-            AudioToolbar.OnDisappearing ();
+            AudioToolbar.OnDisappearing();
         }
 
-        public override void OnHidden ()
+        public override void OnHidden()
         {
-            base.OnHidden ();
+            base.OnHidden();
 
             AudioToolbar.AudioPlayer.AudioCompleted -= AudioPlayerOnAudioCompleted;
 
@@ -386,11 +389,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
             AudioToolbar.AudioPlayer.AudioCompleted += AudioPlayerOnAudioCompleted;
 
             //Register audio again
-            AudioToolbar.OnRevealed ();
+            AudioToolbar.OnRevealed();
         }
 
         #region properties
-        
+
         public Exhibit Exhibit
         {
             get { return exhibit; }
@@ -400,48 +403,53 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
         /// <summary>
         /// The currently displayed subview.
         /// </summary>
-        public ExhibitSubviewViewModel SelectedView {
+        public ExhibitSubviewViewModel SelectedView
+        {
             get { return selectedView; }
-            set { SetProperty (ref selectedView, value); }
+            set { SetProperty(ref selectedView, value); }
         }
 
         /// <summary>
         /// The command for switching to the next view, if available.
         /// </summary>
-        public ICommand NextViewCommand {
+        public ICommand NextViewCommand
+        {
             get { return nextViewCommand; }
-            set { SetProperty (ref nextViewCommand, value); }
+            set { SetProperty(ref nextViewCommand, value); }
         }
 
         /// <summary>
         /// The command for switching to the previous view, if available.
         /// </summary>
-        public ICommand PreviousViewCommand {
+        public ICommand PreviousViewCommand
+        {
             get { return previousViewCommand; }
-            set { SetProperty (ref previousViewCommand, value); }
+            set { SetProperty(ref previousViewCommand, value); }
         }
 
         /// <summary>
         /// Indicator if a previous view is available.
         /// </summary>
-        public bool PreviousViewAvailable {
+        public bool PreviousViewAvailable
+        {
             get { return previousViewAvailable; }
             set
             {
                 PreviousVisible = value;
-                SetProperty (ref previousViewAvailable, value);
+                SetProperty(ref previousViewAvailable, value);
             }
         }
 
         /// <summary>
         /// Indicator if a next view is available.
         /// </summary>
-        public bool NextViewAvailable {
+        public bool NextViewAvailable
+        {
             get { return nextViewAvailable; }
             set
             {
                 NextVisible = value;
-                SetProperty (ref nextViewAvailable, value);
+                SetProperty(ref nextViewAvailable, value);
             }
         }
 
@@ -466,33 +474,37 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
         /// <summary>
         /// Shows the audio toolbar
         /// </summary>
-        public ICommand ShowAudioToolbarCommand {
+        public ICommand ShowAudioToolbarCommand
+        {
             get { return audioToolbarCommand; }
-            set { SetProperty (ref audioToolbarCommand, value); }
+            set { SetProperty(ref audioToolbarCommand, value); }
         }
 
         /// <summary>
         /// Indicates whether the current page has audio available
         /// </summary>
-        public bool AudioAvailable {
+        public bool AudioAvailable
+        {
             get { return audioAvailabe; }
-            set { SetProperty (ref audioAvailabe, value); }
+            set { SetProperty(ref audioAvailabe, value); }
         }
 
         /// <summary>
         /// Indicates whether the audio toolbar is visible
         /// </summary>
-        public bool AudioToolbarVisible {
+        public bool AudioToolbarVisible
+        {
             get { return audioToolbarVisible; }
-            set { SetProperty (ref audioToolbarVisible, value); }
+            set { SetProperty(ref audioToolbarVisible, value); }
         }
 
         /// <summary>
         /// Viewmodel of audio toolbar which can be shown on the details page
         /// </summary>
-        public AudioToolbarViewModel AudioToolbar {
+        public AudioToolbarViewModel AudioToolbar
+        {
             get { return audioToolbar; }
-            set { SetProperty (ref audioToolbar, value); }
+            set { SetProperty(ref audioToolbar, value); }
         }
 
         /// <summary>
@@ -520,17 +532,19 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
         /// <summary>
         /// Navigates to the additional Information
         /// </summary>
-        public ICommand ShowAdditionalInformationCommand {
+        public ICommand ShowAdditionalInformationCommand
+        {
             get { return additionalInformationCommand; }
-            set { SetProperty (ref additionalInformationCommand, value); }
+            set { SetProperty(ref additionalInformationCommand, value); }
         }
 
         /// <summary>
         /// Value indicating that the view of this viewmodel will disappear.
         /// </summary>
-        public bool WillDisappear {
+        public bool WillDisappear
+        {
             get { return willDisappear; }
-            set { SetProperty (ref willDisappear, value); }
+            set { SetProperty(ref willDisappear, value); }
         }
 
         #endregion

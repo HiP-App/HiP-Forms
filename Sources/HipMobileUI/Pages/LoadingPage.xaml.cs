@@ -21,8 +21,8 @@ using Xamarin.Forms.Xaml;
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class LoadingPage : IViewFor<LoadingPageViewModel> {
-
+    public partial class LoadingPage : IViewFor<LoadingPageViewModel>
+    {
         private DeviceOrientation deviceOrientation;
 
         public LoadingPage()
@@ -31,16 +31,16 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
             deviceOrientation = DeviceOrientation.Undefined;
         }
 
-        protected override void OnAppearing ()
+        protected override void OnAppearing()
         {
-            base.OnAppearing ();
+            base.OnAppearing();
 
-            ((LoadingPageViewModel)BindingContext).StartLoading.Execute (null);
+            ((LoadingPageViewModel) BindingContext).StartLoading.Execute(null);
         }
 
-        protected override void OnSizeAllocated (double width, double height)
+        protected override void OnSizeAllocated(double width, double height)
         {
-            base.OnSizeAllocated (width, height);
+            base.OnSizeAllocated(width, height);
 
             if (width <= height)
             {
@@ -61,6 +61,5 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
                 }
             }
         }
-
     }
 }

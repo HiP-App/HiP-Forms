@@ -19,16 +19,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Effects
     /// <summary>
     /// Effect that lets you set the highlight color of a switch.
     /// </summary>
-    public class SwitchColorEffect : RoutingEffect {
-
+    public class SwitchColorEffect : RoutingEffect
+    {
         /// <summary>
         /// The highlight color of the switch.
         /// </summary>
         public Color Color { get; set; }
 
-        public SwitchColorEffect () : base ("Hip.SwitchColorEffect")
+        public SwitchColorEffect() : base("Hip.SwitchColorEffect")
         {
         }
-
     }
 }

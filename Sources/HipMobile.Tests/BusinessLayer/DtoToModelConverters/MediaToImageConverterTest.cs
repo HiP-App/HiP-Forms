@@ -22,8 +22,8 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.BusinessLayer.DtoToModelConverters {
-
+namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.BusinessLayer.DtoToModelConverters
+{
     [TestFixture]
     public class MediaToImageConverterTest
     {
@@ -33,7 +33,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.BusinessLayer.DtoT
             IoCManager.RegisterInstance(typeof(IImageDimension), Substitute.For<IImageDimension>());
         }
 
-        [Test, Category ("UnitTest")]
+        [Test, Category("UnitTest")]
         public void Convert_MediaToImageTest()
         {
             var sut = CreateSystemUnderTest();
@@ -67,6 +67,5 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.BusinessLayer.DtoT
         }
 
         #endregion
-
     }
 }

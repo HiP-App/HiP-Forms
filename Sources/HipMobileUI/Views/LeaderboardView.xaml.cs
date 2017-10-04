@@ -17,13 +17,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
         public LeaderboardView()
         {
             InitializeComponent();
-            ScrollToOwnRanking ();
+            ScrollToOwnRanking();
         }
 
-        private async void ScrollToOwnRanking ()
+        private async void ScrollToOwnRanking()
         {
-            await Task.Delay (100);
-            LeaderboardListView.ScrollTo (LeaderboardListView.SelectedItem, ScrollToPosition.MakeVisible, false);
+            await Task.Delay(100);
+            LeaderboardListView.ScrollTo(LeaderboardListView.SelectedItem, ScrollToPosition.MakeVisible, false);
         }
     }
 }

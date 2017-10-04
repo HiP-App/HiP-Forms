@@ -14,62 +14,60 @@
 
 using System.Collections.Generic;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Common {
-
-    public interface IDbChangedHandler {
-
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Common
+{
+    public interface IDbChangedHandler
+    {
         /// <summary>
         /// Adds an observer
         /// </summary>
         /// /// <param name="observer">The observer to be added.</param>
-        void AddObserver (IDbChangedObserver observer);
+        void AddObserver(IDbChangedObserver observer);
 
         /// <summary>
         /// Removes an observer
         /// </summary>
         /// /// <param name="observer">The observer to be removed.</param>
-        void RemoveObserver (IDbChangedObserver observer);
+        void RemoveObserver(IDbChangedObserver observer);
 
         /// <summary>
         /// Notifies all observers to handle
         /// </summary>
-        void NotifyAll ();
-
+        void NotifyAll();
     }
 
-    public interface IDbChangedObserver {
+    public interface IDbChangedObserver
+    {
         /// <summary>
         /// Called when the database changed.
         /// </summary>
-        void DbChanged ();
-
+        void DbChanged();
     }
 
     public class DbChangedHandler : IDbChangedHandler
     {
-
         private readonly List<IDbChangedObserver> observers;
 
-        public DbChangedHandler ()
+        public DbChangedHandler()
         {
-            observers = new List<IDbChangedObserver> ();
+            observers = new List<IDbChangedObserver>();
         }
 
-        public void AddObserver (IDbChangedObserver observer)
+        public void AddObserver(IDbChangedObserver observer)
         {
-            observers.Add (observer);
+            observers.Add(observer);
         }
 
-        public void RemoveObserver (IDbChangedObserver observer)
+        public void RemoveObserver(IDbChangedObserver observer)
         {
-            observers.Remove (observer);
+            observers.Remove(observer);
         }
 
         public void NotifyAll()
         {
             foreach (var observer in observers)
             {
-                observer.DbChanged ();
+                observer.DbChanged();
             }
         }
     }

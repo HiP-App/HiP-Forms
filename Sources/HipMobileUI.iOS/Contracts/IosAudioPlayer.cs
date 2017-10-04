@@ -21,18 +21,19 @@ using MediaPlayer;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.AudioPlayer;
 using UIKit;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Contracts {
-    internal class IosAudioPlayer : IAudioPlayer {
-
+namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Contracts
+{
+    internal class IosAudioPlayer : IAudioPlayer
+    {
         private AVAudioPlayer avAudioPlayer;
         private Audio currentAudio;
         private Timer progressUpdateTimer;
 
-        public IosAudioPlayer ()
+        public IosAudioPlayer()
         {
-            var session = AVAudioSession.SharedInstance ();
-            session.SetActive (true);
-            session.SetCategory (AVAudioSessionCategory.Playback);
+            var session = AVAudioSession.SharedInstance();
+            session.SetActive(true);
+            session.SetCategory(AVAudioSessionCategory.Playback);
 
             var sharedCenter = MPRemoteCommandCenter.Shared;
             sharedCenter.PlayCommand.Enabled = true;
@@ -51,7 +52,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Contracts {
         /// <returns></returns>
         private MPRemoteCommandHandlerStatus PlayCommand(MPRemoteCommandEvent commandEvent)
         {
-            Play ();
+            Play();
             return MPRemoteCommandHandlerStatus.Success;
         }
 
@@ -62,24 +63,26 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Contracts {
         /// <returns></returns>
         private MPRemoteCommandHandlerStatus PauseCommand(MPRemoteCommandEvent commandEvent)
         {
-            Pause ();
+            Pause();
             return MPRemoteCommandHandlerStatus.Success;
         }
 
         public bool IsPlaying => avAudioPlayer?.Playing ?? false;
 
-        public double CurrentProgress => avAudioPlayer.CurrentTime*1000;
+        public double CurrentProgress => avAudioPlayer.CurrentTime * 1000;
 
         public double MaximumProgress => avAudioPlayer.Duration * 1000;
 
-        public Audio CurrentAudio {
+        public Audio CurrentAudio
+        {
             get { return currentAudio; }
-            set {
+            set
+            {
                 currentAudio = value;
                 if (value != null)
                 {
                     NSError err;
-                    avAudioPlayer = new AVAudioPlayer (NSData.FromArray (value.Data), "mp3", out err);
+                    avAudioPlayer = new AVAudioPlayer(NSData.FromArray(value.Data), "mp3", out err);
                     avAudioPlayer.FinishedPlaying += OnAvAudioPlayerOnFinishedPlaying;
                     UpdateNowPlayingInfo(0);
                 }
@@ -91,11 +94,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Contracts {
         /// </summary>
         /// <param name="sender">The sender of the event.</param>
         /// <param name="args">The event parameters</param>
-        private void OnAvAudioPlayerOnFinishedPlaying (object sender, AVStatusEventArgs args)
+        private void OnAvAudioPlayerOnFinishedPlaying(object sender, AVStatusEventArgs args)
         {
-            StopUpdateTimer ();
-            AudioCompleted?.Invoke ();
-            IsPlayingChanged?.Invoke (IsPlaying);
+            StopUpdateTimer();
+            AudioCompleted?.Invoke();
+            IsPlayingChanged?.Invoke(IsPlaying);
         }
 
         public event ProgressChangedDelegate ProgressChanged;
@@ -107,7 +110,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Contracts {
         /// Note: Setting the rate is indispensable for properly showing the information
         /// </summary>
         /// <param name="rate"></param>
-        private void UpdateNowPlayingInfo (double rate)
+        private void UpdateNowPlayingInfo(double rate)
         {
             MPNowPlayingInfoCenter.DefaultCenter.NowPlaying = new MPNowPlayingInfo
             {
@@ -120,38 +123,38 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Contracts {
             };
         }
 
-        public void Play ()
+        public void Play()
         {
-            avAudioPlayer.Play ();
-            IsPlayingChanged?.Invoke (true);
-            StartUpdateTimer ();
+            avAudioPlayer.Play();
+            IsPlayingChanged?.Invoke(true);
+            StartUpdateTimer();
 
-            UpdateNowPlayingInfo (avAudioPlayer.Rate);
+            UpdateNowPlayingInfo(avAudioPlayer.Rate);
         }
 
-        public void Pause ()
+        public void Pause()
         {
-            avAudioPlayer.Pause ();
-            IsPlayingChanged?.Invoke (false);
-            StopUpdateTimer ();
+            avAudioPlayer.Pause();
+            IsPlayingChanged?.Invoke(false);
+            StopUpdateTimer();
 
             UpdateNowPlayingInfo(0);
         }
 
-        public void Stop ()
+        public void Stop()
         {
-			if (IsPlaying)
-			{ 
-				avAudioPlayer.Stop ();
-			}
-            
-            IsPlayingChanged?.Invoke (false);
-            StopUpdateTimer ();
+            if (IsPlaying)
+            {
+                avAudioPlayer.Stop();
+            }
+
+            IsPlayingChanged?.Invoke(false);
+            StopUpdateTimer();
 
             MPNowPlayingInfoCenter.DefaultCenter.NowPlaying = null;
         }
 
-        public void SeekTo (double progress)
+        public void SeekTo(double progress)
         {
             avAudioPlayer.CurrentTime = progress / 1000;
         }
@@ -159,29 +162,28 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Contracts {
         /// <summary>
         /// Starts a timer that fires an progress update event at a fixed rate.
         /// </summary>
-        private void StartUpdateTimer ()
+        private void StartUpdateTimer()
         {
-            progressUpdateTimer = new Timer (UpdateProgress, null, 0, 16);
+            progressUpdateTimer = new Timer(UpdateProgress, null, 0, 16);
         }
 
         /// <summary>
         /// Stops the timer sending progress updates.
         /// </summary>
-        private void StopUpdateTimer ()
+        private void StopUpdateTimer()
         {
-            progressUpdateTimer?.Dispose ();
+            progressUpdateTimer?.Dispose();
         }
 
         /// <summary>
         /// Informs all listeners about an updated progress.
         /// </summary>
         /// <param name="state">Ignored.</param>
-        private void UpdateProgress (object state)
+        private void UpdateProgress(object state)
         {
-            ProgressChanged?.Invoke (CurrentProgress);
+            ProgressChanged?.Invoke(CurrentProgress);
         }
 
         public string AudioTitle { private get; set; }
-
     }
 }

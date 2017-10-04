@@ -31,7 +31,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Container
     /// </summary>
     public class BindableChildrenStackLayout : StackLayout
     {
-        public static readonly BindableProperty ChildElementsProperty = BindableProperty.Create(nameof(ChildElements), typeof(ObservableCollection<View>), typeof(BindableChildrenStackLayout), propertyChanged: ChildElementsPropertyChanged);
+        public static readonly BindableProperty ChildElementsProperty =
+            BindableProperty.Create(nameof(ChildElements), typeof(ObservableCollection<View>), typeof(BindableChildrenStackLayout), propertyChanged: ChildElementsPropertyChanged);
 
         /// <summary>
         /// Should be bound to the property of the viewmodel providing the data for the views
@@ -39,7 +40,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Container
         /// </summary>
         public ObservableCollection<View> ChildElements
         {
-            get { return (ObservableCollection<View>)GetValue(ChildElementsProperty); }
+            get { return (ObservableCollection<View>) GetValue(ChildElementsProperty); }
             set { SetValue(ChildElementsProperty, value); }
         }
 
@@ -55,10 +56,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Container
             var newList = newValue as ObservableCollection<View>;
             if (newList != null && layout != null)
             {
-                layout.Children.Clear ();
+                layout.Children.Clear();
                 foreach (var view in newList)
                 {
-                    layout.Children.Add (view);
+                    layout.Children.Add(view);
                 }
             }
         }

@@ -13,7 +13,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 {
     public class LoginScreenViewModel : NavigationViewModel
     {
-
         private readonly MainPageViewModel mainPageViewModel;
         private String email;
         private String password;
@@ -62,7 +61,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             GoToForgotPasswordScreenView();
         }
 
-
         private async void PerformLogin()
         {
             UserDialogs.Instance.ShowLoading(Strings.LoginScreenView_Dialog_Login, MaskType.Black);
@@ -93,8 +91,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 
         private void GoToRegisterScreenView()
         {
-           mainPageViewModel.SwitchToRegisterView();
-
+            mainPageViewModel.SwitchToRegisterView();
         }
 
         private void GoToForgotPasswordScreenView()
@@ -120,7 +117,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         private void DisplayEmptyEmailAndPasswordErrorMessage()
         {
             ErrorMessage = Strings.LoginScreenView_Error_Empty_Email_And_Password;
-		}
+        }
 
         public String ErrorMessage
         {

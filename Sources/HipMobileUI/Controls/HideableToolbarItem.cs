@@ -26,11 +26,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Controls
         /// </summary>
         public bool IsVisible
         {
-            get { return (bool)GetValue(IsVisibleProperty); }
+            get { return (bool) GetValue(IsVisibleProperty); }
             set { SetValue(IsVisibleProperty, value); }
         }
 
-        public static readonly BindableProperty IsVisibleProperty = BindableProperty.Create(nameof(IsVisible), typeof(bool), typeof(HideableToolbarItem), propertyChanged: OnIsVisibleChanged, defaultValue: false);
+        public static readonly BindableProperty IsVisibleProperty =
+            BindableProperty.Create(nameof(IsVisible), typeof(bool), typeof(HideableToolbarItem), propertyChanged: OnIsVisibleChanged, defaultValue: false);
 
         private static void OnIsVisibleChanged(BindableObject bindable, object oldvalue, object newvalue)
         {
@@ -42,7 +43,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Controls
             if (items == null)
                 return;
 
-            var isVisible = (bool)newvalue;
+            var isVisible = (bool) newvalue;
 
             if (isVisible && !items.Contains(item))
             {
@@ -53,6 +54,5 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Controls
                 items.Remove(item);
             }
         }
-
     }
 }

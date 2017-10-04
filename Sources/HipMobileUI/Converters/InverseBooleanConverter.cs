@@ -35,6 +35,5 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Converters
         {
             throw new NotImplementedException();
         }
-
     }
 }

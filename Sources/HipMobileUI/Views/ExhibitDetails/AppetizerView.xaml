@@ -1,4 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
+
 <!--
 // Copyright (C) 2017 History in Paderborn App - Universität Paderborn
 //
@@ -28,16 +29,17 @@
                 <RowDefinition Height="0.3*" />
                 <RowDefinition Height="0.1*" />
             </Grid.RowDefinitions>
-            <Image Source="{Binding Image}" Aspect="AspectFit"/>
+            <Image Source="{Binding Image}" Aspect="AspectFit" />
             <ContentView Grid.Row="1" Padding="10">
                 <controls1:CardView>
                     <StackLayout Margin="10,16">
-                        <Label Text="{Binding Headline}" TextColor="#000000" FontSize="16" FontAttributes="Bold"/>
-                        <Label Text="{Binding Text}" TextColor="#87000000" FontSize="14"/>
+                        <Label Text="{Binding Headline}" TextColor="#000000" FontSize="16" FontAttributes="Bold" />
+                        <Label Text="{Binding Text}" TextColor="#87000000" FontSize="14" />
                     </StackLayout>
                 </controls1:CardView>
             </ContentView>
-            <Button Grid.Row="2" Image="ic_file_download.png" IsVisible="{Binding IsDownloadButtonVisible}" Command="{Binding DownloadCommand}"></Button>
+            <Button Grid.Row="2" Image="ic_file_download.png" IsVisible="{Binding IsDownloadButtonVisible}"
+                    Command="{Binding DownloadCommand}" />
         </Grid>
     </ContentView.Content>
 </ContentView>

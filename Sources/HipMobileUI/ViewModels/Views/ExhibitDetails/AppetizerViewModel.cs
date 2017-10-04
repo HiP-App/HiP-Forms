@@ -27,13 +27,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views.ExhibitDetail
 {
     public class AppetizerViewModel : ExhibitSubviewViewModel, IDownloadableListItemViewModel
     {
-
         private Exhibit exhibit;
         private ImageSource image;
         private string text;
         private string headline;
 
-        public AppetizerViewModel (Exhibit exhibit, string exhibitName, AppetizerPage page)
+        public AppetizerViewModel(Exhibit exhibit, string exhibitName, AppetizerPage page)
         {
             if (page != null)
             {
@@ -45,7 +44,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views.ExhibitDetail
                 var imageData = page.Image.Data;
                 if (imageData != null)
                 {
-                    Image = ImageSource.FromStream (() => new MemoryStream (imageData));
+                    Image = ImageSource.FromStream(() => new MemoryStream(imageData));
                 }
                 else
                 {
@@ -76,6 +75,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views.ExhibitDetail
         }
 
         private Boolean isDownloadButtonVisible;
+
         public Boolean IsDownloadButtonVisible
         {
             get { return isDownloadButtonVisible; }
@@ -107,26 +107,28 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views.ExhibitDetail
         /// <summary>
         /// The appetizer image.
         /// </summary>
-        public ImageSource Image {
+        public ImageSource Image
+        {
             get { return image; }
-            set { SetProperty (ref image, value); }
+            set { SetProperty(ref image, value); }
         }
 
         /// <summary>
         /// The headline of the description.
         /// </summary>
-        public string Headline {
+        public string Headline
+        {
             get { return headline; }
-            set { SetProperty (ref headline, value); }
+            set { SetProperty(ref headline, value); }
         }
 
         /// <summary>
         /// The text of the description.
         /// </summary>
-        public string Text {
+        public string Text
+        {
             get { return text; }
-            set { SetProperty (ref text, value); }
+            set { SetProperty(ref text, value); }
         }
-
     }
 }

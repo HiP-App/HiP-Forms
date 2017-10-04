@@ -25,7 +25,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views.ExhibitDetail
         private string headline;
         private bool bottomSheetVisible;
 
-        public TextViewModel(TextPage page, Action toggleButtonVisibility) : base (toggleButtonVisibility)
+        public TextViewModel(TextPage page, Action toggleButtonVisibility) : base(toggleButtonVisibility)
         {
             Text = page.Text;
             FontFamily = page.FontFamily;
@@ -37,9 +37,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views.ExhibitDetail
         /// <summary>
         /// Text of the page
         /// </summary>
-        public string Text {
+        public string Text
+        {
             get { return text; }
-            set { SetProperty (ref text, value); }
+            set { SetProperty(ref text, value); }
         }
 
         /// <summary>
@@ -57,7 +58,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views.ExhibitDetail
         public string Headline
         {
             get { return headline; }
-            set { SetProperty (ref headline, value); }
+            set { SetProperty(ref headline, value); }
         }
 
         /// <summary>

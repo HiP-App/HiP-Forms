@@ -12,7 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
@@ -45,7 +44,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.InteractiveS
         /// <param name="substitute">Substitute that replaces the source markdown.</param>
         public InteractiveSourcesParser(IInteractiveSourceSubstitute substitute)
         {
-            
             this.substitute = substitute;
         }
 
@@ -57,18 +55,18 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.InteractiveS
         /// <returns>Text where sources are replaced by subtitutes together with a list of the replaced sources</returns>
         public InteractiveSourcesParsingResult Parse(string textToParse)
         {
-            if(textToParse == null)
-                throw new ArgumentNullException (nameof(textToParse));
+            if (textToParse == null)
+                throw new ArgumentNullException(nameof(textToParse));
 
             string textWithSubstitutes = textToParse;
             var sources = new List<Source>();
 
-            var pattern = new Regex (HtmlStartTag + ".+?" + HtmlEndTag);
+            var pattern = new Regex(HtmlStartTag + ".+?" + HtmlEndTag);
             var match = pattern.Match(textWithSubstitutes);
 
             int index = 0;
 
-            while(match.Success)
+            while (match.Success)
             {
                 string oldText = match.Value;
                 string srcText = oldText;
@@ -85,9 +83,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.InteractiveS
                 index++;
             }
 
-            return new InteractiveSourcesParsingResult {Sources = sources, TextWithSubstitutes = textWithSubstitutes};
+            return new InteractiveSourcesParsingResult { Sources = sources, TextWithSubstitutes = textWithSubstitutes };
         }
-
     }
-
 }

@@ -22,16 +22,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
 {
     public partial class RouteDetailsView : IViewFor<RouteDetailsPageViewModel>
     {
-
         private double width1;
         private double height1;
 
         public RouteDetailsView()
         {
             InitializeComponent();
-
         }
-
 
         protected override void OnSizeAllocated(double width, double height)
         {
@@ -49,16 +46,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
                 {
                     OuterLayout.Orientation = StackOrientation.Vertical;
                 }
-
-
             }
-
-
-
-
         }
-
-
     }
 }
-

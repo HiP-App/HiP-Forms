@@ -86,6 +86,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
 
                 deviceOrientation = DeviceOrientation.Landscape;
             }
-		}
+        }
     }
 }

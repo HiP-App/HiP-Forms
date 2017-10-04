@@ -14,15 +14,15 @@
 
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts {
-    public interface IImageDimension {
-
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts
+{
+    public interface IImageDimension
+    {
         /// <summary>
         /// Gets the dimensions of the given image.
         /// </summary>
         /// <param name="img">The image.</param>
         /// <returns>The dimensions formated as an array: [width, height]</returns>
-        int[] GetDimensions (Image img);
-
+        int[] GetDimensions(Image img);
     }
 }

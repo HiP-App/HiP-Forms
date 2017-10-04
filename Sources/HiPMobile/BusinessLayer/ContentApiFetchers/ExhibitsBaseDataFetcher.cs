@@ -32,7 +32,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
 {
     public class ExhibitsBaseDataFetcher : IExhibitsBaseDataFetcher
     {
-
         private readonly IExhibitsApiAccess exhibitsApiAccess;
         private readonly IPagesApiAccess pagesApiAccess;
         private readonly IMediaDataFetcher mediaDataFetcher;
@@ -108,6 +107,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
         }
 
         private FetchedMediaData fetchedMedia;
+
         public void ProcessExhibits(IProgressListener listener)
         {
             fetchedMedia = mediaDataFetcher.CombineMediasAndFiles();

@@ -31,11 +31,12 @@ using UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 
-[assembly: ExportRenderer (typeof (OsmMap), typeof (IosMapRenderer))]
+[assembly: ExportRenderer(typeof(OsmMap), typeof(IosMapRenderer))]
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Map {
-    class IosMapRenderer : ViewRenderer<OsmMap, MKMapView> {
-
+namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Map
+{
+    class IosMapRenderer : ViewRenderer<OsmMap, MKMapView>
+    {
         private OsmMap osmMap;
         private UserAnnotation userAnnotation;
         private RouteCalculator routeCalculator;
@@ -43,23 +44,22 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Map {
         private MKPolyline navigationPolyline;
         MKCoordinateRegion backupRegion;
 
-        protected override void OnElementChanged (ElementChangedEventArgs<OsmMap> e)
+        protected override void OnElementChanged(ElementChangedEventArgs<OsmMap> e)
         {
-            base.OnElementChanged (e);
+            base.OnElementChanged(e);
 
             if (Control == null)
             {
                 // set up the native control
-                var mapView = new MKMapView ();
-                SetNativeControl (mapView);
+                var mapView = new MKMapView();
+                SetNativeControl(mapView);
                 Control.ShowsCompass = true;
-               
 
-                var overlay = new MKTileOverlay ("http://b.sm.mapstack.stamen.com/(watercolor,streets-and-labels)/{z}/{x}/{y}.png") {CanReplaceMapContent = true};
-                mapView.AddOverlay (overlay, MKOverlayLevel.AboveLabels);
+                var overlay = new MKTileOverlay("http://b.sm.mapstack.stamen.com/(watercolor,streets-and-labels)/{z}/{x}/{y}.png") { CanReplaceMapContent = true };
+                mapView.AddOverlay(overlay, MKOverlayLevel.AboveLabels);
 
                 mapView.OverlayRenderer = OverlayRenderer;
-                mapView.RegionChanged+=MapViewOnRegionChanged;
+                mapView.RegionChanged += MapViewOnRegionChanged;
             }
 
             if (routeCalculator == null)
@@ -82,30 +82,30 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Map {
             {
                 // setup connections to the new instance
                 osmMap = e.NewElement;
-                InitAnnotations (e.NewElement.ExhibitSet, e.NewElement.DetailsRoute);
+                InitAnnotations(e.NewElement.ExhibitSet, e.NewElement.DetailsRoute);
                 Control.GetViewForAnnotation = GetViewForAnnotation;
                 Control.CalloutAccessoryControlTapped += OnCalloutAccessoryControlTapped;
                 e.NewElement.GpsLocationChanged += OnGpsLocationChanged;
-                OnGpsLocationChanged (osmMap.GpsLocation);
+                OnGpsLocationChanged(osmMap.GpsLocation);
                 e.NewElement.ExhibitSetChanged += OnExhibitSetChanged;
                 e.NewElement.DetailsRouteChanged += OnDetailsRouteChanged;
-                OnDetailsRouteChanged (osmMap.DetailsRoute);
+                OnDetailsRouteChanged(osmMap.DetailsRoute);
                 e.NewElement.CenterLocationCalled += CenterLocation;
-                InitMapPosition ();
+                InitMapPosition();
                 if (e.NewElement.ShowNavigation)
                 {
-                    UpdateRoute ();
+                    UpdateRoute();
                 }
             }
         }
 
-        private void MapViewOnRegionChanged (object sender, MKMapViewChangeEventArgs mkMapViewChangeEventArgs)
+        private void MapViewOnRegionChanged(object sender, MKMapViewChangeEventArgs mkMapViewChangeEventArgs)
         {
-            Console.WriteLine (GetZoomLevel ());
-            
-            if (GetZoomLevel () > 17.3f)
+            Console.WriteLine(GetZoomLevel());
+
+            if (GetZoomLevel() > 17.3f)
             {
-                Control.SetRegion (backupRegion,true);
+                Control.SetRegion(backupRegion, true);
             }
             else
                 backupRegion = Control.Region;
@@ -115,15 +115,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Map {
         /// Centers the map on a given lcoation if available. Otherwise the center of paderborn is centered.
         /// </summary>
         /// <param name="location">The location to center on.</param>
-        private void CenterLocation (GeoLocation location)
+        private void CenterLocation(GeoLocation location)
         {
             if (location != null)
             {
-                Control.CenterCoordinate = new CLLocationCoordinate2D (location.Latitude, location.Longitude);
+                Control.CenterCoordinate = new CLLocationCoordinate2D(location.Latitude, location.Longitude);
             }
             else
             {
-                Control.CenterCoordinate = new CLLocationCoordinate2D (AppSharedData.PaderbornCenter.Latitude, AppSharedData.PaderbornCenter.Longitude);
+                Control.CenterCoordinate = new CLLocationCoordinate2D(AppSharedData.PaderbornCenter.Latitude, AppSharedData.PaderbornCenter.Longitude);
             }
         }
 
@@ -131,21 +131,21 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Map {
         /// React to changes in the route.
         /// </summary>
         /// <param name="route">The route that changed</param>
-        private void OnDetailsRouteChanged (Route route)
+        private void OnDetailsRouteChanged(Route route)
         {
             if (route != null && osmMap.ShowDetailsRoute)
             {
-                IList<CLLocationCoordinate2D> waypoints = new List<CLLocationCoordinate2D> ();
+                IList<CLLocationCoordinate2D> waypoints = new List<CLLocationCoordinate2D>();
 
                 // add user location and route locations
                 if (osmMap.GpsLocation != null)
                 {
-                    waypoints.Add (new CLLocationCoordinate2D (osmMap.GpsLocation.Latitude, osmMap.GpsLocation.Longitude));
+                    waypoints.Add(new CLLocationCoordinate2D(osmMap.GpsLocation.Latitude, osmMap.GpsLocation.Longitude));
                 }
-                waypoints = waypoints.Concat (route.Waypoints.Select (waypoint => new CLLocationCoordinate2D (waypoint.Location.Latitude, waypoint.Location.Longitude))).ToList ();
+                waypoints = waypoints.Concat(route.Waypoints.Select(waypoint => new CLLocationCoordinate2D(waypoint.Location.Latitude, waypoint.Location.Longitude))).ToList();
 
-                var polyline = MKPolyline.FromCoordinates (waypoints.ToArray ());
-                Control.AddOverlay (polyline);
+                var polyline = MKPolyline.FromCoordinates(waypoints.ToArray());
+                Control.AddOverlay(polyline);
             }
         }
 
@@ -153,30 +153,30 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Map {
         /// React to changes in the exhibitset.
         /// </summary>
         /// <param name="set">The exhibitset that changed.</param>
-        private void OnExhibitSetChanged (ExhibitSet set)
+        private void OnExhibitSetChanged(ExhibitSet set)
         {
-            InitAnnotations (set, osmMap.DetailsRoute);
+            InitAnnotations(set, osmMap.DetailsRoute);
         }
 
         /// <summary>
         /// React to changes of the gps position.
         /// </summary>
         /// <param name="location">The position that changed.</param>
-        private void OnGpsLocationChanged (GeoLocation location)
+        private void OnGpsLocationChanged(GeoLocation location)
         {
             if (location != null)
             {
                 // update user location
                 if (userAnnotation != null)
                 {
-                    Control.RemoveAnnotation (userAnnotation);
+                    Control.RemoveAnnotation(userAnnotation);
                 }
-                userAnnotation = new UserAnnotation (location.Latitude, location.Longitude);
-                Control.AddAnnotation (userAnnotation);
+                userAnnotation = new UserAnnotation(location.Latitude, location.Longitude);
+                Control.AddAnnotation(userAnnotation);
 
                 if (osmMap.ShowNavigation)
                 {
-                    UpdateRoute ();
+                    UpdateRoute();
                 }
             }
         }
@@ -184,83 +184,82 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Map {
         /// <summary>
         /// Update the displayed route. Route calculation is done in the background thread.
         /// </summary>
-        private void UpdateRoute ()
+        private void UpdateRoute()
         {
             var id = osmMap.DetailsRoute.Id;
 
-            ThreadPool.QueueUserWorkItem (state => {
+            ThreadPool.QueueUserWorkItem(state =>
+            {
+                Action action;
 
-                                              Action action;
+                try
+                {
+                    var locations = routeCalculator.CreateOrderedRoute(id, osmMap.GpsLocation);
 
-                                              try
-                                              {
-                                                  var locations = routeCalculator.CreateOrderedRoute (id, osmMap.GpsLocation);
+                    /*foreach (var w in locations)
+                    {
+                        var point = new CLLocationCoordinate2D(w.Latitude, w.Longitude);
+                        geoPoints.Add(point);
+                    }*/
 
-                                                  /*foreach (var w in locations)
-                                                  {
-                                                      var point = new CLLocationCoordinate2D(w.Latitude, w.Longitude);
-                                                      geoPoints.Add(point);
-                                                  }*/
+                    action = () => DrawRoute(locations, osmMap.GpsLocation != null);
+                }
+                catch (Exception)
+                {
+                    action = () => { };
+                }
 
-                                                  action = () => DrawRoute (locations, osmMap.GpsLocation != null);
-                                              }
-                                              catch (Exception)
-                                              {
-                                                  action = () => { };
-                                              }
-
-                                              Device.BeginInvokeOnMainThread (() => { action.Invoke (); });
-                                          });
+                Device.BeginInvokeOnMainThread(() => { action.Invoke(); });
+            });
         }
 
         /// <summary>
         /// Draw a route between the given geopoints.
         /// </summary>
-      
         /// <param name="route"></param>
         /// <param name="userLocationAvailable"></param>
-        private void DrawRoute (OrderedRoute route, bool userLocationAvailable)
+        private void DrawRoute(OrderedRoute route, bool userLocationAvailable)
         {
             if (disposed)
                 return;
 
             if (navigationPolyline != null)
             {
-                Control.RemoveOverlay (navigationPolyline);
+                Control.RemoveOverlay(navigationPolyline);
             }
             if (currentSectionPolyLine != null)
             {
-                Control.RemoveOverlay (currentSectionPolyLine);
+                Control.RemoveOverlay(currentSectionPolyLine);
             }
             if (userLocationAvailable)
             {
-                navigationPolyline = MKPolyline.FromCoordinates (route.NonFirstSections.Select (gl => new CLLocationCoordinate2D (gl.Latitude, gl.Longitude)).ToArray ());
-                Control.AddOverlay (navigationPolyline);
-                currentSectionPolyLine = MKPolyline.FromCoordinates (route.FirstSection.Select (gl => new CLLocationCoordinate2D (gl.Latitude, gl.Longitude)).ToArray ());
-                Control.AddOverlay (currentSectionPolyLine);
+                navigationPolyline = MKPolyline.FromCoordinates(route.NonFirstSections.Select(gl => new CLLocationCoordinate2D(gl.Latitude, gl.Longitude)).ToArray());
+                Control.AddOverlay(navigationPolyline);
+                currentSectionPolyLine = MKPolyline.FromCoordinates(route.FirstSection.Select(gl => new CLLocationCoordinate2D(gl.Latitude, gl.Longitude)).ToArray());
+                Control.AddOverlay(currentSectionPolyLine);
             }
             else
             {
-                navigationPolyline = MKPolyline.FromCoordinates (route.Locations.Select (gl => new CLLocationCoordinate2D (gl.Latitude, gl.Longitude)).ToArray ());
-                Control.AddOverlay (navigationPolyline);
+                navigationPolyline = MKPolyline.FromCoordinates(route.Locations.Select(gl => new CLLocationCoordinate2D(gl.Latitude, gl.Longitude)).ToArray());
+                Control.AddOverlay(navigationPolyline);
             }
         }
 
         /// <summary>
         /// Init the map position by centering on teh user or paderborn center and setting the zoom level.
         /// </summary>
-        private void InitMapPosition ()
+        private void InitMapPosition()
         {
             CLLocationCoordinate2D center;
             if (osmMap.GpsLocation != null)
             {
-                center = new CLLocationCoordinate2D (osmMap.GpsLocation.Latitude, osmMap.GpsLocation.Longitude);
+                center = new CLLocationCoordinate2D(osmMap.GpsLocation.Latitude, osmMap.GpsLocation.Longitude);
             }
             else
             {
-                center = new CLLocationCoordinate2D (AppSharedData.PaderbornCenter.Latitude, AppSharedData.PaderbornCenter.Longitude);
+                center = new CLLocationCoordinate2D(AppSharedData.PaderbornCenter.Latitude, AppSharedData.PaderbornCenter.Longitude);
             }
-            Control.SetRegion (MKCoordinateRegion.FromDistance (center, 1000, 1000), true);
+            Control.SetRegion(MKCoordinateRegion.FromDistance(center, 1000, 1000), true);
         }
 
         /// <summary>
@@ -269,27 +268,27 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Map {
         /// <param name="mapView">The mapview instance.</param>
         /// <param name="annotation">The annotation to get the view for.</param>
         /// <returns>The annotation view.</returns>
-        private MKAnnotationView GetViewForAnnotation (MKMapView mapView, IMKAnnotation annotation)
+        private MKAnnotationView GetViewForAnnotation(MKMapView mapView, IMKAnnotation annotation)
         {
             MKAnnotationView annotationView;
             MKAnnotationView dequedView;
             if (annotation is UserAnnotation) //(annotation is MKUserLocation) doesn't work
             {
                 const string userAnnotationReusableId = "UserAnnotation";
-                dequedView = mapView.DequeueReusableAnnotation (userAnnotationReusableId);
+                dequedView = mapView.DequeueReusableAnnotation(userAnnotationReusableId);
                 if (dequedView != null)
                 {
                     return dequedView;
                 }
                 else
                 {
-                    annotationView = new UserAnnotationView (annotation, userAnnotationReusableId);
+                    annotationView = new UserAnnotationView(annotation, userAnnotationReusableId);
                     return annotationView;
                 }
             }
 
             const string annotationReusableId = "ExhibitAnnotation";
-            dequedView = mapView.DequeueReusableAnnotation (annotationReusableId);
+            dequedView = mapView.DequeueReusableAnnotation(annotationReusableId);
             if (dequedView != null)
             {
                 dequedView.Annotation = annotation;
@@ -297,7 +296,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Map {
             }
             else
             {
-                annotationView = new ExhibitAnnotationView (annotation, annotationReusableId);
+                annotationView = new ExhibitAnnotationView(annotation, annotationReusableId);
             }
             annotationView.CanShowCallout = true;
             return annotationView;
@@ -309,12 +308,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Map {
         /// <param name="mapView">The instance of the mapview.</param>
         /// <param name="overlay">The instance of the overlay.</param>
         /// <returns>The corresponding overlay renderer.</returns>
-        private MKOverlayRenderer OverlayRenderer (MKMapView mapView, IMKOverlay overlay)
+        private MKOverlayRenderer OverlayRenderer(MKMapView mapView, IMKOverlay overlay)
         {
-            var tileOverlay = ObjCRuntime.Runtime.GetNSObject (overlay.Handle) as MKTileOverlay;
+            var tileOverlay = ObjCRuntime.Runtime.GetNSObject(overlay.Handle) as MKTileOverlay;
             if (tileOverlay != null)
             {
-                var renderer = new MKTileOverlayRenderer (tileOverlay);
+                var renderer = new MKTileOverlayRenderer(tileOverlay);
                 return renderer;
             }
 
@@ -323,10 +322,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Map {
                 var resources = IoCManager.Resolve<ApplicationResourcesProvider>();
 
                 MKPolylineRenderer polylineRenderer;
-                if (overlay.Equals (currentSectionPolyLine))
+                if (overlay.Equals(currentSectionPolyLine))
                 {
-                    UIColor color = ((Color)resources.GetResourceValue("AccentColor")).ToUIColor ();
-                    polylineRenderer = new MKPolylineRenderer ((MKPolyline) overlay)
+                    UIColor color = ((Color) resources.GetResourceValue("AccentColor")).ToUIColor();
+                    polylineRenderer = new MKPolylineRenderer((MKPolyline) overlay)
                     {
                         FillColor = color,
                         StrokeColor = color,
@@ -335,8 +334,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Map {
                 }
                 else
                 {
-                    UIColor color = ((Color)resources.GetResourceValue("PrimaryColor")).ToUIColor();
-                    polylineRenderer = new MKPolylineRenderer((MKPolyline)overlay)
+                    UIColor color = ((Color) resources.GetResourceValue("PrimaryColor")).ToUIColor();
+                    polylineRenderer = new MKPolylineRenderer((MKPolyline) overlay)
                     {
                         FillColor = color,
                         StrokeColor = color,
@@ -353,14 +352,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Map {
         /// </summary>
         /// <param name="sender">The sender of the event.</param>
         /// <param name="e">The event parameters.</param>
-        private void OnCalloutAccessoryControlTapped (object sender, MKMapViewAccessoryTappedEventArgs e)
+        private void OnCalloutAccessoryControlTapped(object sender, MKMapViewAccessoryTappedEventArgs e)
         {
             var exhibitAnnotationView = e.View as ExhibitAnnotationView;
             var annotation = exhibitAnnotationView?.Annotation as ExhibitAnnotation;
             if (annotation != null)
             {
                 var exhibitId = annotation.ExhibitId;
-                IoCManager.Resolve<INavigationService> ().PushAsync (new ExhibitDetailsViewModel (exhibitId));
+                IoCManager.Resolve<INavigationService>().PushAsync(new ExhibitDetailsViewModel(exhibitId));
             }
         }
 
@@ -369,15 +368,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Map {
         /// </summary>
         /// <param name="exhibitSet">The set of exhibits.</param>
         /// <param name="route">The route.</param>
-        private void InitAnnotations (ExhibitSet exhibitSet, Route route)
+        private void InitAnnotations(ExhibitSet exhibitSet, Route route)
         {
             if (exhibitSet != null)
             {
                 foreach (var exhibit in exhibitSet)
                 {
-                    var annotation = new ExhibitAnnotation (exhibit.Location.Latitude, exhibit.Location.Longitude, exhibit.Id,
-                                                            exhibit.Name);
-                    Control.AddAnnotation (annotation);
+                    var annotation = new ExhibitAnnotation(exhibit.Location.Latitude, exhibit.Location.Longitude, exhibit.Id,
+                                                           exhibit.Name);
+                    Control.AddAnnotation(annotation);
                 }
             }
 
@@ -385,32 +384,32 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Map {
             {
                 foreach (Waypoint routeWaypoint in route.Waypoints)
                 {
-                    if (exhibitSet == null || !exhibitSet.Contains (routeWaypoint.Exhibit))
+                    if (exhibitSet == null || !exhibitSet.Contains(routeWaypoint.Exhibit))
                     {
-                        var annotation = new ExhibitAnnotation (routeWaypoint.Location.Latitude, routeWaypoint.Location.Longitude, routeWaypoint.Exhibit.Id,
-                                                                routeWaypoint.Exhibit.Name);
-                        Control.AddAnnotation (annotation);
+                        var annotation = new ExhibitAnnotation(routeWaypoint.Location.Latitude, routeWaypoint.Location.Longitude, routeWaypoint.Exhibit.Id,
+                                                               routeWaypoint.Exhibit.Name);
+                        Control.AddAnnotation(annotation);
                     }
                 }
             }
 
             if (osmMap.GpsLocation != null)
             {
-                userAnnotation = new UserAnnotation (osmMap.GpsLocation.Latitude, osmMap.GpsLocation.Longitude);
+                userAnnotation = new UserAnnotation(osmMap.GpsLocation.Latitude, osmMap.GpsLocation.Longitude);
             }
         }
 
-        public double GetZoomLevel ()
+        public double GetZoomLevel()
         {
             double longitudeDelta = Control.Region.Span.LongitudeDelta;
-            float mapWidthInPixels = (float)Control.Bounds.Size.Width;
+            float mapWidthInPixels = (float) Control.Bounds.Size.Width;
             double zoomScale = longitudeDelta * 85445659.44705395 * Math.PI / (180.0 * mapWidthInPixels);
             double zoomer = 20 - Math.Log(zoomScale);
-            if (zoomer < 0) zoomer = 0;
+            if (zoomer < 0)
+                zoomer = 0;
             //  zoomer = round(zoomer);
             return zoomer;
         }
-
 
         private bool disposed;
 
@@ -418,7 +417,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Map {
         /// Disposes this view.
         /// </summary>
         /// <param name="disposing">Indicator if the view is actually disposing.</param>
-        protected override void Dispose (bool disposing)
+        protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
@@ -431,8 +430,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Map {
                 osmMap.CenterLocationCalled -= CenterLocation;
             }
 
-            base.Dispose (disposing);
+            base.Dispose(disposing);
         }
-
     }
 }

@@ -24,8 +24,8 @@ using Xamarin.Forms;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
 {
-    public partial class UserOnboardingPage : IViewFor<UserOnboardingPageViewModel> {
-
+    public partial class UserOnboardingPage : IViewFor<UserOnboardingPageViewModel>
+    {
         private DeviceOrientation orientation;
 
         private UserOnboardingPageViewModel ViewModel => (UserOnboardingPageViewModel) BindingContext;
@@ -36,7 +36,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
             orientation = DeviceOrientation.Undefined;
 
             // hide the status bar for this page
-            IStatusBarController statusBarController = IoCManager.Resolve<IStatusBarController> ();
+            IStatusBarController statusBarController = IoCManager.Resolve<IStatusBarController>();
             statusBarController.HideStatusBar();
         }
 
@@ -45,20 +45,20 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
         /// </summary>
         /// <param name="width">The new width.</param>
         /// <param name="height">The new height.</param>
-        protected override void OnSizeAllocated (double width, double height)
+        protected override void OnSizeAllocated(double width, double height)
         {
-            base.OnSizeAllocated (width, height);
+            base.OnSizeAllocated(width, height);
 
             if (width < height && orientation != DeviceOrientation.Portrait)
             {
                 // inform the viewmodels that layout will change
                 foreach (UserOnboardingItemViewModel userOnboardingItemViewModel in ViewModel.Pages)
                 {
-                    userOnboardingItemViewModel.OrientationChanged (DeviceOrientation.Portrait);
+                    userOnboardingItemViewModel.OrientationChanged(DeviceOrientation.Portrait);
                 }
 
                 // change layout to portrait
-                Content = CreateView (StackOrientation.Vertical);
+                Content = CreateView(StackOrientation.Vertical);
                 orientation = DeviceOrientation.Portrait;
             }
             if (width > height && orientation != DeviceOrientation.Landscape)
@@ -70,10 +70,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
                 }
 
                 // change layout to landscape
-                Content = CreateView (StackOrientation.Horizontal);
+                Content = CreateView(StackOrientation.Horizontal);
                 orientation = DeviceOrientation.Landscape;
             }
-            
         }
 
         /// <summary>
@@ -81,7 +80,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
         /// </summary>
         /// <param name="newOrientation">The desired orientation.</param>
         /// <returns>The created view.</returns>
-        private View CreateView (StackOrientation newOrientation)
+        private View CreateView(StackOrientation newOrientation)
         {
             RelativeLayout layout = new RelativeLayout();
 
@@ -91,7 +90,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
             carousel.SetBinding(ItemsView.ItemsSourceProperty, "Pages");
             if (newOrientation == StackOrientation.Vertical)
             {
-                carousel.ItemTemplate = new DataTemplate (LoadPortraitTemplate);
+                carousel.ItemTemplate = new DataTemplate(LoadPortraitTemplate);
             }
             else
             {
@@ -112,24 +111,29 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
             var okLabel = new Label() { Text = Strings.UserOnboarding_Ok, TextColor = Color.White };
             okLabel.SetBinding(IsVisibleProperty, "IsFinishVisible");
             okLabel.GestureRecognizers.Add(finishTapGestureRecognizer);
-            var indicators = new CarouselIndicators() { IndicatorWidth = 10, IndicatorHeight = 10, UnselectedIndicator = "unselected_circle.png", SelectedIndicator = "selected_circle.png" };
+            var indicators = new CarouselIndicators()
+            {
+                IndicatorWidth = 10,
+                IndicatorHeight = 10,
+                UnselectedIndicator = "unselected_circle.png",
+                SelectedIndicator = "selected_circle.png"
+            };
             indicators.SetBinding(CarouselIndicators.PositionProperty, "SelectedPage");
             indicators.SetBinding(CarouselIndicators.ItemsSourceProperty, "Pages");
             var separator = new BoxView() { Color = Color.Silver, HeightRequest = 1 };
 
             // add pieces together
-            layout.Children.Add (carousel, widthConstraint: Constraint.RelativeToParent (parent => parent.Width),
-                                 heightConstraint: Constraint.RelativeToParent (parent => parent.Height));
-            layout.Children.Add (skipLabel, Constraint.Constant (10), Constraint.RelativeToParent (parent => parent.Height - 30));
-            layout.Children.Add (forwardLabel, Constraint.RelativeToParent (parent => parent.Width - 50),
-                                 Constraint.RelativeToParent (parent => parent.Height - 30));
+            layout.Children.Add(carousel, widthConstraint: Constraint.RelativeToParent(parent => parent.Width),
+                                heightConstraint: Constraint.RelativeToParent(parent => parent.Height));
+            layout.Children.Add(skipLabel, Constraint.Constant(10), Constraint.RelativeToParent(parent => parent.Height - 30));
+            layout.Children.Add(forwardLabel, Constraint.RelativeToParent(parent => parent.Width - 50),
+                                Constraint.RelativeToParent(parent => parent.Height - 30));
             layout.Children.Add(okLabel, Constraint.RelativeToParent(parent => parent.Width - 80),
-                                 Constraint.RelativeToParent(parent => parent.Height - 30));
-            layout.Children.Add (indicators, Constraint.RelativeToParent (parent => parent.Width * 0.5 - 15),
-                                 Constraint.RelativeToParent (parent => parent.Height - 30));
-            layout.Children.Add (separator, yConstraint: Constraint.RelativeToView (skipLabel, (parent, view) => view.Y - 10),
-                                 widthConstraint: Constraint.RelativeToParent (parent => parent.Width));
-
+                                Constraint.RelativeToParent(parent => parent.Height - 30));
+            layout.Children.Add(indicators, Constraint.RelativeToParent(parent => parent.Width * 0.5 - 15),
+                                Constraint.RelativeToParent(parent => parent.Height - 30));
+            layout.Children.Add(separator, yConstraint: Constraint.RelativeToView(skipLabel, (parent, view) => view.Y - 10),
+                                widthConstraint: Constraint.RelativeToParent(parent => parent.Width));
 
             return layout;
         }
@@ -145,7 +149,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
             outerStack.SetBinding(BackgroundColorProperty, "BackgroundColor");
             CachedImage image = new CachedImage() { VerticalOptions = LayoutOptions.StartAndExpand, Aspect = Aspect.AspectFit, HorizontalOptions = LayoutOptions.StartAndExpand };
             image.SetBinding(CachedImage.SourceProperty, "Image");
-            StackLayout innerStack = new StackLayout() { Orientation = StackOrientation.Vertical, HorizontalOptions = LayoutOptions.EndAndExpand, VerticalOptions = LayoutOptions.CenterAndExpand};
+            StackLayout innerStack = new StackLayout()
+            {
+                Orientation = StackOrientation.Vertical,
+                HorizontalOptions = LayoutOptions.EndAndExpand,
+                VerticalOptions = LayoutOptions.CenterAndExpand
+            };
             Label headline = new Label() { TextColor = Color.White, FontSize = 18, FontAttributes = FontAttributes.Bold, HorizontalTextAlignment = TextAlignment.Center };
             headline.SetBinding(Label.TextProperty, "Headline");
             Label text = new Label() { TextColor = Color.White, FontSize = 12, HorizontalTextAlignment = TextAlignment.Center };
@@ -169,7 +178,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
             CachedImage image = new CachedImage() { VerticalOptions = LayoutOptions.CenterAndExpand, Aspect = Aspect.AspectFit, HorizontalOptions = LayoutOptions.FillAndExpand };
             image.SetBinding(CachedImage.SourceProperty, "Image");
             StackLayout innerStack = new StackLayout() { Orientation = StackOrientation.Vertical, HorizontalOptions = LayoutOptions.CenterAndExpand };
-            Label headline = new Label() { TextColor = Color.White, VerticalOptions = LayoutOptions.CenterAndExpand, FontSize = 18, FontAttributes = FontAttributes.Bold, HorizontalTextAlignment = TextAlignment.Center };
+            Label headline = new Label()
+            {
+                TextColor = Color.White,
+                VerticalOptions = LayoutOptions.CenterAndExpand,
+                FontSize = 18,
+                FontAttributes = FontAttributes.Bold,
+                HorizontalTextAlignment = TextAlignment.Center
+            };
             headline.SetBinding(Label.TextProperty, "Headline");
             Label text = new Label() { TextColor = Color.White, VerticalOptions = LayoutOptions.CenterAndExpand, FontSize = 12, HorizontalTextAlignment = TextAlignment.Center };
             text.SetBinding(Label.TextProperty, "Text");
@@ -179,6 +195,5 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
             layout.Children.Add(innerStack);
             return layout;
         }
-
     }
 }

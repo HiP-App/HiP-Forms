@@ -21,7 +21,6 @@ namespace HipMobileUI.UITests
 {
     class ExhibitDetailsPageTest : UiTestBase
     {
-
         [TestCase(Platform.Android, Category = "UITestAndroid")]
         [TestCase(Platform.iOS, Category = "UITestiOS")]
         [Ignore]
@@ -31,29 +30,29 @@ namespace HipMobileUI.UITests
 
             App.ScrollDownTo("Die Pfalz Karls des Großen");
             App.Tap(x => x.Text("Die Pfalz Karls des Großen"));
-            App.Repl ();
-            var result = App.Query (x => x.Marked ("toolbar").Child (0).Text ("Die Pfalz Karls des Großen"));
-            Assert.Greater (result.Length, 0, "ExhibitDetailsPage could not be opened");
+            App.Repl();
+            var result = App.Query(x => x.Marked("toolbar").Child(0).Text("Die Pfalz Karls des Großen"));
+            Assert.Greater(result.Length, 0, "ExhibitDetailsPage could not be opened");
 
-            while (HasNext ())
+            while (HasNext())
             {
-                GotoNext ();
-                if (HasFab ())
+                GotoNext();
+                if (HasFab())
                 {
-                    PressFab ();
-                    Thread.Sleep (1000);
+                    PressFab();
+                    Thread.Sleep(1000);
                 }
             }
 
-            while (HasPrevious ())
+            while (HasPrevious())
             {
-                GotoPrevious ();
+                GotoPrevious();
             }
         }
 
         private bool HasNext()
         {
-            return App.Query (x => x.Marked ("NextButton")).Length > 0;
+            return App.Query(x => x.Marked("NextButton")).Length > 0;
         }
 
         private bool HasPrevious()
@@ -61,14 +60,14 @@ namespace HipMobileUI.UITests
             return App.Query(x => x.Marked("PreviousButton")).Length > 0;
         }
 
-        private bool HasFab ()
+        private bool HasFab()
         {
             return App.Query(x => x.Marked("Fab")).Length > 0;
         }
 
-        private void GotoNext ()
+        private void GotoNext()
         {
-            App.Tap (x => x.Marked ("NextButton"));
+            App.Tap(x => x.Marked("NextButton"));
         }
 
         private void GotoPrevious()
@@ -76,7 +75,7 @@ namespace HipMobileUI.UITests
             App.Tap(x => x.Marked("PreviousButton"));
         }
 
-        private void PressFab ()
+        private void PressFab()
         {
             App.Tap(x => x.Marked("Fab"));
         }

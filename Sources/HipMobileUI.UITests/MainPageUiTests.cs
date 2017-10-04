@@ -34,7 +34,7 @@ namespace HipMobileUI.UITests
             BeforeEachTest(platform);
 
             var titles = new List<string> { "Routen", "Einstellungen", "Feedback", "Rechtliche Hinweise", "Übersicht" };
-            
+
             // intended duplicated for loop (because selecting an already selected element has no effect)
             foreach (var title in titles)
             {
@@ -44,7 +44,6 @@ namespace HipMobileUI.UITests
             {
                 TestEntry(platform, title, true);
             }
-
         }
 
         /// <summary>
@@ -53,7 +52,7 @@ namespace HipMobileUI.UITests
         /// <param name="platform"></param>
         /// <param name="title">The title of the entry to check for.</param>
         /// <param name="drag">Indicates whether the menu should be opened via dragging (true) or via tapping (false).</param>
-        public void TestEntry (Platform platform, string title, bool drag = false)
+        public void TestEntry(Platform platform, string title, bool drag = false)
         {
             if (drag)
                 App.DragCoordinates(5, 500, 500, 500);
@@ -62,8 +61,7 @@ namespace HipMobileUI.UITests
 
             App.WaitForElement(x => x.Text(title), timeout: TimeSpan.FromMinutes(1));
             App.Tap(x => x.Text(title));
-            App.WaitForElement (x => x.Marked (GetPlatformMenuName (platform)), timeout: TimeSpan.FromMinutes(1));
+            App.WaitForElement(x => x.Marked(GetPlatformMenuName(platform)), timeout: TimeSpan.FromMinutes(1));
         }
     }
 }
-

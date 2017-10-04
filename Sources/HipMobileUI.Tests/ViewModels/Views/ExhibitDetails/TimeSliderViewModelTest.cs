@@ -26,7 +26,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Views
 {
     class TimeSliderViewModelTest
     {
-
         [TestFixtureSetUp]
         public void Init()
         {
@@ -42,14 +41,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Views
             Assert.AreEqual(sut.Headline, "A title");
             Assert.AreEqual(sut.Description, "A text");
             Assert.NotNull(sut.Images);
-            Assert.IsTrue(Math.Abs (sut.SelectedValue) < 0.01);
-            Assert.IsTrue (sut.DisplayedText.Equals ("Foo"));
+            Assert.IsTrue(Math.Abs(sut.SelectedValue) < 0.01);
+            Assert.IsTrue(sut.DisplayedText.Equals("Foo"));
         }
 
         [Test, Category("UnitTest")]
-        public void SelectedValue_DisplayedText ()
+        public void SelectedValue_DisplayedText()
         {
-            var sut = CreateSystemUnderTest (() => { });
+            var sut = CreateSystemUnderTest(() => { });
 
             sut.SelectedValue = 1;
             Assert.IsTrue(sut.DisplayedText.Equals("Bar"));
@@ -79,13 +78,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Views
         public TimeSliderViewModel CreateSystemUnderTest(Action action)
         {
             var timesliderPage = Substitute.For<TimeSliderPage>();
-            List<Image> imageList = new List<Image> {CreateImage ("Foo"), CreateImage ("Bar"), CreateImage ("69")};
-            List<LongElement> dates = new List<LongElement> {CreateLongElement (1991), CreateLongElement (7867), CreateLongElement (454)};
-            timesliderPage.Images.Returns (imageList);
-            timesliderPage.Dates.Returns (dates);
+            List<Image> imageList = new List<Image> { CreateImage("Foo"), CreateImage("Bar"), CreateImage("69") };
+            List<LongElement> dates = new List<LongElement> { CreateLongElement(1991), CreateLongElement(7867), CreateLongElement(454) };
+            timesliderPage.Images.Returns(imageList);
+            timesliderPage.Dates.Returns(dates);
             timesliderPage.Title = "A title";
             timesliderPage.Text = "A text";
-            
+
             return new TimeSliderViewModel(timesliderPage, action);
         }
 
@@ -98,12 +97,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Views
             return image;
         }
 
-        private LongElement CreateLongElement (long year)
+        private LongElement CreateLongElement(long year)
         {
-            var longElement = Substitute.For<LongElement> ();
+            var longElement = Substitute.For<LongElement>();
             longElement.Value = year;
             return longElement;
         }
+
         #endregion
     }
 }

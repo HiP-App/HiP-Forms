@@ -32,9 +32,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Views
         }
 
         [Test, Category("UnitTest")]
-        public void Creation_PropertiesFilled ()
+        public void Creation_PropertiesFilled()
         {
-            var sut = CreateSystemUnderTest ();
+            var sut = CreateSystemUnderTest();
 
             Assert.AreEqual(sut.Headline, "ExhibitName");
             Assert.AreEqual(sut.Text, "Foo");
@@ -44,21 +44,21 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Views
 
         public AppetizerViewModel CreateSystemUnderTest()
         {
-            var appetizerPage = Substitute.For<AppetizerPage> ();
+            var appetizerPage = Substitute.For<AppetizerPage>();
             appetizerPage.Text = "Foo";
-            appetizerPage.Image = CreateImage ();
-            var exhibit = Substitute.For<Exhibit> ();
+            appetizerPage.Image = CreateImage();
+            var exhibit = Substitute.For<Exhibit>();
 
-            return new AppetizerViewModel (exhibit, "ExhibitName", appetizerPage);
+            return new AppetizerViewModel(exhibit, "ExhibitName", appetizerPage);
         }
 
-        private Image CreateImage ()
+        private Image CreateImage()
         {
-            var image = Substitute.For<Image> ();
+            var image = Substitute.For<Image>();
             image.Data = new byte[] { 1, 2, 3, 4 };
             return image;
         }
-        #endregion
 
+        #endregion
     }
 }

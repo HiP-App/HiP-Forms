@@ -19,18 +19,18 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Views {
-
+namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Views
+{
     [TestFixture]
-    public class RoutesOverviewListItemViewModelTest {
-
+    public class RoutesOverviewListItemViewModelTest
+    {
         [Test, Category("UnitTest")]
         public void GetRouteDistanceText_FormatedText()
         {
             var sut = CreateSystemUnderTest();
 
-            string distanceText = sut.GetRouteDistanceText (10);
-            Assert.AreEqual ("10 Kilometer", distanceText);
+            string distanceText = sut.GetRouteDistanceText(10);
+            Assert.AreEqual("10 Kilometer", distanceText);
         }
 
         [Test, Category("UnitTest")]
@@ -43,29 +43,28 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Views
         }
 
         [Test, Category("UnitTest")]
-        public void Creation_PropertiesFilled ()
+        public void Creation_PropertiesFilled()
         {
-            var sut = CreateSystemUnderTest ();
+            var sut = CreateSystemUnderTest();
 
-            Assert.AreEqual ("Test Description", sut.RouteDescription);
-            Assert.AreEqual ("10 Kilometer", sut.Distance);
-            Assert.AreEqual ("80 Minuten", sut.Duration);
-            Assert.AreEqual ("Test Title", sut.RouteTitle);
-            Assert.NotNull (sut.Image);
+            Assert.AreEqual("Test Description", sut.RouteDescription);
+            Assert.AreEqual("10 Kilometer", sut.Distance);
+            Assert.AreEqual("80 Minuten", sut.Duration);
+            Assert.AreEqual("Test Title", sut.RouteTitle);
+            Assert.NotNull(sut.Image);
         }
 
         #region HelperMethods
 
-        private RoutesOverviewListItemViewModel CreateSystemUnderTest ()
+        private RoutesOverviewListItemViewModel CreateSystemUnderTest()
         {
             var imageDimensions = Substitute.For<IImageDimension>();
             IoCManager.RegisterInstance(typeof(IImageDimension), imageDimensions);
 
-            var route = Substitute.For<Route> ();
+            var route = Substitute.For<Route>();
 
-            var image = Substitute.For<Image> ();
-            image.Data = new byte[] {1, 2, 3, 4};
-
+            var image = Substitute.For<Image>();
+            image.Data = new byte[] { 1, 2, 3, 4 };
 
             route.Description = "Test Description";
             route.Distance = 10;
@@ -73,7 +72,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Views
             route.Title = "Test Title";
             route.Image = image;
 
-            return new RoutesOverviewListItemViewModel (route);
+            return new RoutesOverviewListItemViewModel(route);
         }
 
         #endregion

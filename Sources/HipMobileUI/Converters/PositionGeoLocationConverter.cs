@@ -22,19 +22,17 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Converters
 {
     class PositionGeoLocationConverter : IValueConverter
     {
-
-        public object Convert (object value, Type targetType, object parameter, CultureInfo culture)
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value == null)
                 return null;
             Position position = (Position) value;
-            return new GeoLocation (position.Latitude, position.Longitude);
+            return new GeoLocation(position.Latitude, position.Longitude);
         }
 
-        public object ConvertBack (object value, Type targetType, object parameter, CultureInfo culture)
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            throw new NotImplementedException ();
+            throw new NotImplementedException();
         }
-
     }
 }

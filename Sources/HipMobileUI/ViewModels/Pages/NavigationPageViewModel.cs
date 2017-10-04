@@ -26,9 +26,10 @@ using Realms;
 using Plugin.Geolocator.Abstractions;
 using Xamarin.Forms;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
-    class NavigationPageViewModel : NavigationViewModel, ILocationListener {
-
+namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
+{
+    class NavigationPageViewModel : NavigationViewModel, ILocationListener
+    {
         private ExhibitSet exhibitSet;
         private GeoLocation gpsLocation;
         private ILocationManager locationManager;
@@ -39,13 +40,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
 
         private ICommand mapFocusCommand;
 
-        public NavigationPageViewModel (Route route)
+        public NavigationPageViewModel(Route route)
         {
             DetailsRoute = route;
             ShowNavigation = true;
             Title = "Navigation";
-            locationManager = IoCManager.Resolve<ILocationManager> ();
-            nearbyExhibitManager = IoCManager.Resolve<INearbyExhibitManager> ();
+            locationManager = IoCManager.Resolve<ILocationManager>();
+            nearbyExhibitManager = IoCManager.Resolve<INearbyExhibitManager>();
             FocusGps = new Command(FocusGpsClicked);
             SkipExhibit = new Command(SkipExhibitClicked);
         }
@@ -53,31 +54,33 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
         /// <summary>
         /// Handles the button click
         /// </summary>
-        void FocusGpsClicked ()
+        void FocusGpsClicked()
         {
-            MapFocusCommand.Execute (GpsLocation);
+            MapFocusCommand.Execute(GpsLocation);
         }
 
-        void SkipExhibitClicked ()
+        void SkipExhibitClicked()
         {
-			var exhibits = detailsRoute.ActiveSet.Select(waypoint => waypoint.Exhibit);
-			SkipExhibitVisited(exhibits);
+            var exhibits = detailsRoute.ActiveSet.Select(waypoint => waypoint.Exhibit);
+            SkipExhibitVisited(exhibits);
         }
 
-
-        public ExhibitSet ExhibitSet {
+        public ExhibitSet ExhibitSet
+        {
             get { return exhibitSet; }
-            set { SetProperty (ref exhibitSet, value); }
+            set { SetProperty(ref exhibitSet, value); }
         }
 
-        public GeoLocation GpsLocation {
+        public GeoLocation GpsLocation
+        {
             get { return gpsLocation; }
-            set { SetProperty (ref gpsLocation, value); }
+            set { SetProperty(ref gpsLocation, value); }
         }
 
-        public Route DetailsRoute {
+        public Route DetailsRoute
+        {
             get { return detailsRoute; }
-            set { SetProperty (ref detailsRoute, value); }
+            set { SetProperty(ref detailsRoute, value); }
         }
 
         public bool ShowNavigation
@@ -90,81 +93,80 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
 
         public ICommand SkipExhibit { get; }
 
-        public ICommand MapFocusCommand {
+        public ICommand MapFocusCommand
+        {
             get { return mapFocusCommand; }
-            set { SetProperty (ref mapFocusCommand, value); }
+            set { SetProperty(ref mapFocusCommand, value); }
         }
 
-        public void LocationChanged (object sender, PositionEventArgs args)
+        public void LocationChanged(object sender, PositionEventArgs args)
         {
             GpsLocation = args.Position.ToGeoLocation();
-            nearbyExhibitManager.CheckNearExhibit (detailsRoute.ActiveSet.Select (waypoint => waypoint.Exhibit), GpsLocation, false);
+            nearbyExhibitManager.CheckNearExhibit(detailsRoute.ActiveSet.Select(waypoint => waypoint.Exhibit), GpsLocation, false);
         }
 
-        public override void OnAppearing ()
+        public override void OnAppearing()
         {
-            base.OnAppearing ();
+            base.OnAppearing();
 
-            locationManager.AddLocationListener (this);
-            nearbyExhibitManager.ExhibitVisitedEvent+=ExhibitVisited;
+            locationManager.AddLocationListener(this);
+            nearbyExhibitManager.ExhibitVisitedEvent += ExhibitVisited;
         }
 
-        private void ExhibitVisited (object sender, Exhibit exhibit)
+        private void ExhibitVisited(object sender, Exhibit exhibit)
         {
-            Waypoint waypoint = DetailsRoute.Waypoints.First (wp => Equals (wp.Exhibit, exhibit));
-            bool moved = DetailsRoute.MoveToPassiveSet (waypoint);
+            Waypoint waypoint = DetailsRoute.Waypoints.First(wp => Equals(wp.Exhibit, exhibit));
+            bool moved = DetailsRoute.MoveToPassiveSet(waypoint);
             if (moved)
             {
-			using (IoCManager.Resolve<IDataAccess>().StartTransaction())
-			     {
-			        exhibit.Unlocked = true;            
-			     }
-				OnPropertyChanged (nameof(DetailsRoute));
+                using (IoCManager.Resolve<IDataAccess>().StartTransaction())
+                {
+                    exhibit.Unlocked = true;
+                }
+                OnPropertyChanged(nameof(DetailsRoute));
             }
         }
-		private async void SkipExhibitVisited(IEnumerable<Exhibit> exhibits)
-		{
-			var e  = exhibits.First();
-				var result =
-					await
-						IoCManager.Resolve<INavigationService>()
-								  .DisplayAlert(Strings.SkipExhibit_Title, Strings.SkipExhibit_Question_Part1 + " \"" + e.Name + "\" " + Strings.SkipExhibit_Question_Part2,
-												Strings.SkipExhibit_Confirm, Strings.SkipExhibit_Reject);
 
-				if (result)
-				{
-               
-                ExhibitVisited(this, e);
-				}
-
-		
-		}
-        public override void OnHidden ()
+        private async void SkipExhibitVisited(IEnumerable<Exhibit> exhibits)
         {
-            base.OnHidden ();
+            var e = exhibits.First();
+            var result =
+                await
+                    IoCManager.Resolve<INavigationService>()
+                              .DisplayAlert(Strings.SkipExhibit_Title, Strings.SkipExhibit_Question_Part1 + " \"" + e.Name + "\" " + Strings.SkipExhibit_Question_Part2,
+                                            Strings.SkipExhibit_Confirm, Strings.SkipExhibit_Reject);
+
+            if (result)
+            {
+                ExhibitVisited(this, e);
+            }
+        }
+
+        public override void OnHidden()
+        {
+            base.OnHidden();
 
             locationManager.RemoveLocationListener(this);
         }
 
-        public override void OnRevealed ()
+        public override void OnRevealed()
         {
-            base.OnRevealed ();
+            base.OnRevealed();
 
             locationManager.AddLocationListener(this);
         }
 
-        public override void OnDisappearing ()
+        public override void OnDisappearing()
         {
-            base.OnDisappearing ();
+            base.OnDisappearing();
 
-            locationManager.RemoveLocationListener (this);
+            locationManager.RemoveLocationListener(this);
 
-            if (DetailsRoute.IsRouteFinished ())
+            if (DetailsRoute.IsRouteFinished())
             {
-                DetailsRoute.ResetRoute ();
+                DetailsRoute.ResetRoute();
             }
             nearbyExhibitManager.ExhibitVisitedEvent -= ExhibitVisited;
         }
-
     }
 }

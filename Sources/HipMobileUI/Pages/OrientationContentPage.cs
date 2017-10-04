@@ -24,7 +24,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
 
         public OrientationController OrientationController
         {
-            get { return (OrientationController)GetValue(OrientationControllerProperty); }
+            get { return (OrientationController) GetValue(OrientationControllerProperty); }
             set { SetValue(OrientationControllerProperty, value); }
         }
     }

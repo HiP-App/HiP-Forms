@@ -23,10 +23,11 @@ using Plugin.Geolocator.Abstractions;
 using Xamarin.Forms;
 using Image = PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.Image;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers {
-    public static class ExtensionMethods {
-
-        public static ImageSource GetImageSource (this Image image)
+namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers
+{
+    public static class ExtensionMethods
+    {
+        public static ImageSource GetImageSource(this Image image)
         {
             var imageData = image.Data;
             if (imageData != null)
@@ -47,22 +48,22 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers {
         /// <param name="collection"></param>
         /// <param name="keySelector"></param>
         /// <param name="comparer"></param>
-        public static void SortCollection<TSource, TKey> (this ObservableCollection<TSource> collection, Func<TSource, TKey> keySelector, IComparer<TKey> comparer = null)
+        public static void SortCollection<TSource, TKey>(this ObservableCollection<TSource> collection, Func<TSource, TKey> keySelector, IComparer<TKey> comparer = null)
         {
             TSource[] sortedList;
             if (comparer == null)
                 sortedList = collection.OrderBy(keySelector).ToArray();
             else
                 sortedList = collection.OrderBy(keySelector, comparer).ToArray();
-            if (!CompareCollectionToArray (collection, sortedList))
+            if (!CompareCollectionToArray(collection, sortedList))
             {
-                collection.Clear ();
+                collection.Clear();
                 foreach (var item in sortedList)
-                    collection.Add (item);
+                    collection.Add(item);
             }
         }
 
-        private static bool CompareCollectionToArray<T> (ObservableCollection<T> collection, T[] array)
+        private static bool CompareCollectionToArray<T>(ObservableCollection<T> collection, T[] array)
         {
             if (collection.Count != array.Length)
             {
@@ -84,7 +85,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers {
         /// </summary>
         /// <param name="position">The position to convert</param>
         /// <returns>The corresponding geolocation.</returns>
-        public static GeoLocation ToGeoLocation (this Position position)
+        public static GeoLocation ToGeoLocation(this Position position)
         {
             if (position != null)
             {
@@ -92,6 +93,5 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers {
             }
             return null;
         }
-
     }
 }

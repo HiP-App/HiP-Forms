@@ -15,8 +15,8 @@
 using NUnit.Framework;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.InteractiveSources;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.BusinessLayer.InteractiveSources {
-
+namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.BusinessLayer.InteractiveSources
+{
     [TestFixture]
     public class ConsecutiveNumberInteractiveSourceSubstituteTest
     {
@@ -25,9 +25,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.BusinessLayer.Inte
         {
             var sut = CreateSystemUnderTest();
 
-            var substitute = sut.NextSubstitute ();
+            var substitute = sut.NextSubstitute();
 
-            Assert.AreEqual ("[" + Start + "]", substitute);
+            Assert.AreEqual("[" + Start + "]", substitute);
         }
 
         [Test, Category("UnitTest")]
@@ -46,12 +46,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.BusinessLayer.Inte
 
         private const int Start = 0;
 
-        private ConsecutiveNumberInteractiveSourceSubstitute CreateSystemUnderTest ()
+        private ConsecutiveNumberInteractiveSourceSubstitute CreateSystemUnderTest()
         {
             return new ConsecutiveNumberInteractiveSourceSubstitute(Start);
         }
 
         #endregion
-
     }
 }

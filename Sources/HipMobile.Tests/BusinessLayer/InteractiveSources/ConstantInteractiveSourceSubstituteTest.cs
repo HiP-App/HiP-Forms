@@ -15,19 +15,19 @@
 using NUnit.Framework;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.InteractiveSources;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.BusinessLayer.InteractiveSources {
-
+namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.BusinessLayer.InteractiveSources
+{
     [TestFixture]
-    public class ConstantInteractiveSourceSubstituteTest {
-
+    public class ConstantInteractiveSourceSubstituteTest
+    {
         [Test, Category("UnitTest")]
         public void NextSubstitute_CalledOnce()
         {
             var sut = CreateSystemUnderTest();
 
-            var substitute = sut.NextSubstitute ();
+            var substitute = sut.NextSubstitute();
 
-            Assert.AreEqual (Substitute, substitute);
+            Assert.AreEqual(Substitute, substitute);
         }
 
         [Test, Category("UnitTest")]
@@ -46,12 +46,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.BusinessLayer.Inte
 
         private const string Substitute = "Test";
 
-        private ConstantInteractiveSourceSubstitute CreateSystemUnderTest ()
+        private ConstantInteractiveSourceSubstitute CreateSystemUnderTest()
         {
-            return new ConstantInteractiveSourceSubstitute (Substitute);
+            return new ConstantInteractiveSourceSubstitute(Substitute);
         }
 
         #endregion
-
     }
 }

@@ -11,21 +11,22 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+
 using System.Windows.Input;
 using NSubstitute;
 using NUnit.Framework;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Behaviors;
 using Xamarin.Forms;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.Behaviors {
-
+namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.Behaviors
+{
     [TestFixture]
-    public class ListViewTappedItemBehaviorTest {
-
-        [Test, Category ("UnitTest")]
-        public void OnListViewItemTapped_CommandExecuted ()
+    public class ListViewTappedItemBehaviorTest
+    {
+        [Test, Category("UnitTest")]
+        public void OnListViewItemTapped_CommandExecuted()
         {
-            var sut = CreateSystemUnderTest ();
+            var sut = CreateSystemUnderTest();
 
             var valueConverter = Substitute.For<IValueConverter>();
             var command = Substitute.For<ICommand>();
@@ -34,24 +35,22 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.Behaviors {
             sut.Command = command;
             sut.Converter = valueConverter;
 
-            var listView = CreateListView ();
-            listView.Behaviors.Add (sut);
-            
-            sut.OnListViewItemTapped (null, new ItemTappedEventArgs (null, null));
+            var listView = CreateListView();
+            listView.Behaviors.Add(sut);
 
-            command.Received(1).Execute (Arg.Any<object> ());
+            sut.OnListViewItemTapped(null, new ItemTappedEventArgs(null, null));
+
+            command.Received(1).Execute(Arg.Any<object>());
         }
 
-
-        private ListView CreateListView ()
+        private ListView CreateListView()
         {
             return new ListView();
         }
 
-        private ListViewTappedItemBehavior CreateSystemUnderTest ()
+        private ListViewTappedItemBehavior CreateSystemUnderTest()
         {
-            return new ListViewTappedItemBehavior ();
+            return new ListViewTappedItemBehavior();
         }
-
     }
 }

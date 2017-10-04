@@ -22,8 +22,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
 {
     public partial class MainPage : IViewFor<MainPageViewModel>
     {
-
-        private MainPageViewModel ViewModel => ((MainPageViewModel)BindingContext);
+        private MainPageViewModel ViewModel => ((MainPageViewModel) BindingContext);
 
         /// <summary>
         /// Accessor to get the navigation page from other classes.
@@ -63,7 +62,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
         {
             // Disable the swipe gesture when a page is pushed
             IsGestureEnabled = false;
-            ((NavigationViewModel)e.Page.BindingContext).OnAppearing();
+            ((NavigationViewModel) e.Page.BindingContext).OnAppearing();
         }
 
         /// <summary>
@@ -81,28 +80,27 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
 
             // inform the viewmodel...
             // ... of popped page that it was popped
-            ((NavigationViewModel)e.Page.BindingContext).OnDisappearing();
+            ((NavigationViewModel) e.Page.BindingContext).OnDisappearing();
             // ... of underlaying page that it is visible again
-            ((NavigationViewModel)NavigationPage.CurrentPage.BindingContext).OnRevealed();
+            ((NavigationViewModel) NavigationPage.CurrentPage.BindingContext).OnRevealed();
         }
 
         protected override bool OnBackButtonPressed()
         {
-			if(ViewModel.SelectedViewModel.GetType() == typeof(ForgotPasswordScreenViewModel))
+            if (ViewModel.SelectedViewModel.GetType() == typeof(ForgotPasswordScreenViewModel))
             {
                 ViewModel.SwitchToLoginView();
                 return true;
             }
-			else if(ViewModel.SelectedViewModel.GetType() == typeof(RegisterScreenViewModel))
-			{
+            else if (ViewModel.SelectedViewModel.GetType() == typeof(RegisterScreenViewModel))
+            {
                 ViewModel.SwitchToLoginView();
                 return true;
-            }	
-			else
+            }
+            else
             {
                 return base.OnBackButtonPressed();
             }
         }
-
     }
 }

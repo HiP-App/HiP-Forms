@@ -21,6 +21,7 @@ using Xamarin.Forms.Xaml;
 using Settings = PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers.Settings;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
+
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI
 {
     public partial class App
@@ -32,32 +33,31 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI
             // Handle when your app starts
 
             // set the first page that is shown
-            INavigationService navigationService = IoCManager.Resolve<INavigationService> ();
+            INavigationService navigationService = IoCManager.Resolve<INavigationService>();
             if (Settings.RepeatIntro)
             {
-                navigationService.StartNewNavigationStack (new UserOnboardingPageViewModel ());
+                navigationService.StartNewNavigationStack(new UserOnboardingPageViewModel());
             }
             else
             {
-                navigationService.StartNewNavigationStack(new LoadingPageViewModel ());
+                navigationService.StartNewNavigationStack(new LoadingPageViewModel());
             }
         }
 
         protected override void OnStart()
         {
-            
         }
 
         protected override void OnSleep()
         {
             // Handle when your app sleeps
-            MessagingCenter.Send (this, AppSharedData.WillSleepMessage);
+            MessagingCenter.Send(this, AppSharedData.WillSleepMessage);
         }
 
         protected override void OnResume()
         {
             // Handle when your app resumes
-            MessagingCenter.Send<App> (this, AppSharedData.WillWakeUpMessage);
+            MessagingCenter.Send<App>(this, AppSharedData.WillWakeUpMessage);
         }
     }
 }

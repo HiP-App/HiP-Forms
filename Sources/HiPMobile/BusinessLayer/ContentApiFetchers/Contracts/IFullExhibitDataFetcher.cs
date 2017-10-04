@@ -17,12 +17,13 @@ using System.Threading;
 using System.Threading.Tasks;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers.Contracts {
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers.Contracts
+{
     /// <summary>
     /// Fetcher for full exhibits data
     /// </summary>
-    public interface IFullExhibitDataFetcher : IFullDownloadableDataFetcher {
-
+    public interface IFullExhibitDataFetcher : IFullDownloadableDataFetcher
+    {
         /// <summary>
         /// Fetch exhibit data with prefetched media
         /// </summary>
@@ -31,14 +32,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
         /// <param name="token">For cancellation</param>
         /// <param name="listener">To update the progressbar of the downloadpage</param>
         /// <returns></returns>
-        Task FetchFullExhibitDataIntoDatabaseWithFetchedPagesAndMedia (string exhibitId, ExhibitPagesAndMediaContainer pagesAndMediaContainer, CancellationToken token, IProgressListener listener);
+        Task FetchFullExhibitDataIntoDatabaseWithFetchedPagesAndMedia(string exhibitId, ExhibitPagesAndMediaContainer pagesAndMediaContainer, CancellationToken token,
+                                                                      IProgressListener listener);
 
         /// <summary>
         /// Load pages for related exhibit and prefetch media of an exhibit for later use in a full route fetcher
         /// </summary>
         /// <param name="idForRestApi">The id for the REST API of the exhibit to be fetched</param>
         /// <returns></returns>
-        Task<ExhibitPagesAndMediaContainer> FetchPagesAndMediaForExhibitFromRouteFetcher (int idForRestApi);
-
+        Task<ExhibitPagesAndMediaContainer> FetchPagesAndMediaForExhibitFromRouteFetcher(int idForRestApi);
     }
 }

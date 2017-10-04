@@ -19,40 +19,41 @@ using PaderbornUniversity.SILab.Hip.Mobile.UI.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Pages {
-    public class UserOnboardingPageViewModelTest {
-
+namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Pages
+{
+    public class UserOnboardingPageViewModelTest
+    {
         [TestFixtureSetUp]
         public void Init()
         {
             IoCManager.RegisterInstance(typeof(INavigationService), Substitute.For<INavigationService>());
-            IoCManager.RegisterInstance (typeof(IStatusBarController), Substitute.For<IStatusBarController> ());
+            IoCManager.RegisterInstance(typeof(IStatusBarController), Substitute.For<IStatusBarController>());
         }
 
-        [Test, Category ("UnitTest")]
-        public void Creation_PropertiesFilled ()
+        [Test, Category("UnitTest")]
+        public void Creation_PropertiesFilled()
         {
-            var sut = CreateSystemUnderTest ();
+            var sut = CreateSystemUnderTest();
 
-            Assert.NotNull (sut.ForwardCommand);
-            Assert.NotNull (sut.ForwardCommand);
-            Assert.IsTrue (sut.Pages.Count == 3);
-            Assert.IsTrue (sut.SelectedPage == 0);
-            Assert.IsFalse (sut.IsFinishVisible);
-            Assert.IsTrue (sut.IsSkipVisible);
-            Assert.IsTrue (sut.IsForwardVisible);
+            Assert.NotNull(sut.ForwardCommand);
+            Assert.NotNull(sut.ForwardCommand);
+            Assert.IsTrue(sut.Pages.Count == 3);
+            Assert.IsTrue(sut.SelectedPage == 0);
+            Assert.IsFalse(sut.IsFinishVisible);
+            Assert.IsTrue(sut.IsSkipVisible);
+            Assert.IsTrue(sut.IsForwardVisible);
         }
 
-        [Test, Category ("UnitTest")]
-        public void SelectedPage_Increased ()
+        [Test, Category("UnitTest")]
+        public void SelectedPage_Increased()
         {
-            var sut = CreateSystemUnderTest ();
+            var sut = CreateSystemUnderTest();
 
-            sut.ForwardCommand.Execute (null);
-            Assert.IsTrue (sut.SelectedPage==1);
-            Assert.IsTrue (sut.IsForwardVisible);
-            Assert.IsTrue (sut.IsSkipVisible);
-            Assert.IsFalse (sut.IsFinishVisible);
+            sut.ForwardCommand.Execute(null);
+            Assert.IsTrue(sut.SelectedPage == 1);
+            Assert.IsTrue(sut.IsForwardVisible);
+            Assert.IsTrue(sut.IsSkipVisible);
+            Assert.IsFalse(sut.IsFinishVisible);
 
             sut.ForwardCommand.Execute(null);
             Assert.IsTrue(sut.SelectedPage == 2);

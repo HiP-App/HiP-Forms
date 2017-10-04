@@ -15,9 +15,10 @@
 using System.Threading.Tasks;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentHandling {
-    public interface INewDataCenter {
-
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentHandling
+{
+    public interface INewDataCenter
+    {
         void AddRouteToBeUpdated(Route route);
 
         void AddExhibitToBeUpdated(Exhibit exhibit);
@@ -25,6 +26,5 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentHandl
         bool IsNewDataAvailabe();
 
         Task UpdateData();
-
     }
 }

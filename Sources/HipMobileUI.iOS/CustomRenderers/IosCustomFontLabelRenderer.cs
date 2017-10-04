@@ -19,6 +19,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 
 [assembly: ExportRenderer(typeof(CustomFontLabel), typeof(IosCustomFontLabelRenderer))]
+
 namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.CustomRenderers
 {
     public class IosCustomFontLabelRenderer : LabelRenderer
@@ -31,7 +32,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.CustomRenderers
 
             if (label?.FontFamilyName != null && label.FontFamilyName != "DEFAULT")
             {
-                Control.Font = UIFont.FromName (label.FontFamilyName, Control.Font.PointSize);
+                Control.Font = UIFont.FromName(label.FontFamilyName, Control.Font.PointSize);
             }
         }
     }

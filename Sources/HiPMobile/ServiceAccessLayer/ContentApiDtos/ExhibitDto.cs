@@ -40,6 +40,5 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
         public string Status { get; set; }
 
         public int? Image { get; set; }
-
     }
 }

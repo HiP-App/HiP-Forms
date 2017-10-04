@@ -12,28 +12,27 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.InteractiveSources {
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.InteractiveSources
+{
     /// <summary>
     /// Implements IInteractiveSourceSubstitute by returning a consecutive number enclosed in brackets.
     /// </summary>
-    public class ConsecutiveNumberInteractiveSourceSubstitute : IInteractiveSourceSubstitute {
-
+    public class ConsecutiveNumberInteractiveSourceSubstitute : IInteractiveSourceSubstitute
+    {
         private int number;
 
         /// <summary>
         /// Sets the starting number.
         /// </summary>
         /// <param name="start">Starting number.</param>
-        public ConsecutiveNumberInteractiveSourceSubstitute (int start)
+        public ConsecutiveNumberInteractiveSourceSubstitute(int start)
         {
             number = start;
         }
 
-        public string NextSubstitute ()
+        public string NextSubstitute()
         {
             return $"[{number++}]";
         }
-
     }
 }

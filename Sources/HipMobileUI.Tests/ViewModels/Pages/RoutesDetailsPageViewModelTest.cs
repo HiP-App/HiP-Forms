@@ -24,34 +24,34 @@ using PaderbornUniversity.SILab.Hip.Mobile.UI.Location;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Pages {
-
+namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Pages
+{
     [TestFixture]
     public class RoutesDetailsPageViewModelTest
     {
         [Test, Category("UnitTest")]
-        public void Creation_PropertiesFilled ()
+        public void Creation_PropertiesFilled()
         {
-            var sut = CreateSystemUnderTest ();
+            var sut = CreateSystemUnderTest();
 
-            Assert.AreEqual ("Test Title", sut.Title);
-            Assert.AreEqual ("10 km", sut.Distance);
-            Assert.AreEqual ("60 min", sut.Duration);
-            Assert.AreEqual (sut.Tabs.Count, 2);
+            Assert.AreEqual("Test Title", sut.Title);
+            Assert.AreEqual("10 km", sut.Distance);
+            Assert.AreEqual("60 min", sut.Duration);
+            Assert.AreEqual(sut.Tabs.Count, 2);
 
-            Assert.NotNull (sut.Image);
-            Assert.NotNull (sut.StartRouteCommand);
-            Assert.NotNull (sut.StartDescriptionPlaybackCommand);
+            Assert.NotNull(sut.Image);
+            Assert.NotNull(sut.StartRouteCommand);
+            Assert.NotNull(sut.StartDescriptionPlaybackCommand);
         }
-        
+
         #region HelperMethods
 
-        private RouteDetailsPageViewModel CreateSystemUnderTest ()
+        private RouteDetailsPageViewModel CreateSystemUnderTest()
         {
             var imageDimensions = Substitute.For<IImageDimension>();
             IoCManager.RegisterInstance(typeof(IImageDimension), imageDimensions);
-            IoCManager.RegisterInstance (typeof(ILocationManager), Substitute.For<ILocationManager>());
-            IoCManager.RegisterInstance (typeof(IAudioPlayer), Substitute.For<IAudioPlayer> ());
+            IoCManager.RegisterInstance(typeof(ILocationManager), Substitute.For<ILocationManager>());
+            IoCManager.RegisterInstance(typeof(IAudioPlayer), Substitute.For<IAudioPlayer>());
 
             var route = Substitute.For<Route>();
 
@@ -63,12 +63,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Pages
             route.Title = "Test Title";
             route.Image = image;
 
-            var dataAccess = Substitute.For<IDataAccess> ();
-            dataAccess.GetItems<Route> ().Returns (new List<Route> {route});
-            IoCManager.RegisterInstance (typeof (IDataAccess), dataAccess);
-            IoCManager.RegisterInstance (typeof (INavigationService), Substitute.For<INavigationService> ());
+            var dataAccess = Substitute.For<IDataAccess>();
+            dataAccess.GetItems<Route>().Returns(new List<Route> { route });
+            IoCManager.RegisterInstance(typeof(IDataAccess), dataAccess);
+            IoCManager.RegisterInstance(typeof(INavigationService), Substitute.For<INavigationService>());
 
-            return new RouteDetailsPageViewModel (route);
+            return new RouteDetailsPageViewModel(route);
         }
 
         #endregion

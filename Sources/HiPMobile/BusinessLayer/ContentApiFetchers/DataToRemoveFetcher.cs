@@ -35,7 +35,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
         private readonly ITagsApiAccess tagsApiAccess;
 
         public DataToRemoveFetcher(IExhibitsApiAccess exhibitsApiAccess, IRoutesApiAccess routesApiAccess, IPagesApiAccess pagesApiAccess, IMediasApiAccess mediasApiAccess,
-                                    ITagsApiAccess tagsApiAccess)
+                                   ITagsApiAccess tagsApiAccess)
         {
             this.exhibitsApiAccess = exhibitsApiAccess;
             this.routesApiAccess = routesApiAccess;
@@ -50,7 +50,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
         private IList<int> allMedias;
         private IList<int> allTags;
 
-        public async Task FetchDataToDelete (CancellationToken token)
+        public async Task FetchDataToDelete(CancellationToken token)
         {
             allExhibits = await exhibitsApiAccess.GetIds();
             if (token.IsCancellationRequested)
@@ -77,7 +77,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
         public void CleaupRemovedData()
         {
             //Backup data fake id
-            allMedias.Add (-1);
+            allMedias.Add(-1);
 
             var routes = RouteManager.GetRoutes().ToList();
             var exhibits = ExhibitManager.GetExhibits().ToList();

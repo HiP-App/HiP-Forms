@@ -16,20 +16,19 @@ using System.Collections.Generic;
 using System.Linq;
 using Xamarin.Forms;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers {
-
+namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers
+{
     /// <summary>
     /// Should be initialized with Application.Current.Resources for the real application
     /// Used for Unit tests to mock Application.Current.Resources
     /// </summary>
-    public class ApplicationResourcesProvider {
-        
-        public ApplicationResourcesProvider (ResourceDictionary resources) : this(resources.ToDictionary(x => x.Key, x => x.Value))
+    public class ApplicationResourcesProvider
+    {
+        public ApplicationResourcesProvider(ResourceDictionary resources) : this(resources.ToDictionary(x => x.Key, x => x.Value))
         {
-
         }
 
-        public ApplicationResourcesProvider (Dictionary<string, object> resources)
+        public ApplicationResourcesProvider(Dictionary<string, object> resources)
         {
             Resources = resources;
         }
@@ -41,10 +40,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers {
         /// </summary>
         /// <param name="resourceName">Resource name</param>
         /// <returns></returns>
-        public object GetResourceValue (string resourceName)
+        public object GetResourceValue(string resourceName)
         {
-            return Resources [resourceName];
+            return Resources[resourceName];
         }
-
     }
 }

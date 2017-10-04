@@ -21,15 +21,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Effects
     /// </summary>
     public class ProgressBarColorEffect : RoutingEffect
     {
-
         /// <summary>
         /// The fill color of the progress bar.
         /// </summary>
         public Color Color { get; set; }
 
-        public ProgressBarColorEffect () : base ("Hip.ProgressBarColorEffect")
+        public ProgressBarColorEffect() : base("Hip.ProgressBarColorEffect")
         {
         }
-
     }
 }

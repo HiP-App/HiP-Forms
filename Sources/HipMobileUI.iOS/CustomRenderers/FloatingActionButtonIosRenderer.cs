@@ -21,16 +21,17 @@ using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 
 [assembly: ExportRenderer(typeof(FloatingActionButton), typeof(FloatingActionButtonIosRenderer))]
+
 namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.CustomRenderers
 {
-    class FloatingActionButtonIosRenderer : ViewRenderer<FloatingActionButton, UIView> {
-
+    class FloatingActionButtonIosRenderer : ViewRenderer<FloatingActionButton, UIView>
+    {
         private MDButton fab;
         private FloatingActionButton formsButton;
 
-        protected override void OnElementChanged (ElementChangedEventArgs<FloatingActionButton> e)
+        protected override void OnElementChanged(ElementChangedEventArgs<FloatingActionButton> e)
         {
-            base.OnElementChanged (e);
+            base.OnElementChanged(e);
 
             if (Control == null)
             {
@@ -51,40 +52,40 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.CustomRenderers
                 // set init values
                 formsButton = e.NewElement;
                 SetNormalColor(formsButton.NormalColor);
-                SetRippleColor (formsButton.RippleColor);
-                SetIcon (formsButton.Icon);
+                SetRippleColor(formsButton.RippleColor);
+                SetIcon(formsButton.Icon);
 
                 // Subscribe
-                formsButton.NormalColorChanged+=SetNormalColor;
-                formsButton.RippleColorChanged+=SetRippleColor;
-                formsButton.IconChanged+=SetIcon;
+                formsButton.NormalColorChanged += SetNormalColor;
+                formsButton.RippleColorChanged += SetRippleColor;
+                formsButton.IconChanged += SetIcon;
             }
         }
 
-        private void SetIcon (string newIcon)
+        private void SetIcon(string newIcon)
         {
             fab.SetImage(UIImage.FromBundle(newIcon), UIControlState.Normal);
         }
 
-        private void SetRippleColor (Color newColor)
+        private void SetRippleColor(Color newColor)
         {
-            fab.RippleColor = newColor.ToUIColor ();
+            fab.RippleColor = newColor.ToUIColor();
         }
 
-        private void SetNormalColor (Color newColor)
+        private void SetNormalColor(Color newColor)
         {
-            fab.BackgroundColor = newColor.ToUIColor ();
+            fab.BackgroundColor = newColor.ToUIColor();
         }
 
-        private void FabPressed (object sender, EventArgs eventArgs)
+        private void FabPressed(object sender, EventArgs eventArgs)
         {
-            if (formsButton != null && formsButton.Command.CanExecute (null))
+            if (formsButton != null && formsButton.Command.CanExecute(null))
             {
-                formsButton.Command.Execute (null);
+                formsButton.Command.Execute(null);
             }
         }
 
-        protected override void Dispose (bool disposing)
+        protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
@@ -94,8 +95,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.CustomRenderers
                 formsButton.IconChanged -= SetIcon;
             }
 
-            base.Dispose (disposing);
+            base.Dispose(disposing);
         }
-
     }
 }

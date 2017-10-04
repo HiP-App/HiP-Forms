@@ -16,12 +16,13 @@ using System.Collections.Generic;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers {
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers
+{
     /// <summary>
     /// Container for results of the <see cref="IMediaDataFetcher"/>
     /// </summary>
-    public class FetchedMediaData {
-
+    public class FetchedMediaData
+    {
         /// <summary>
         /// Fetched image data and files
         /// </summary>
@@ -31,6 +32,5 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
         /// Fetched audio data and files
         /// </summary>
         public IList<Audio> Audios { get; set; }
-
     }
 }

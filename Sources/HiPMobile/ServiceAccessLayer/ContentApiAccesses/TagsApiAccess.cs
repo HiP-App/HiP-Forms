@@ -21,42 +21,42 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses {
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses
+{
     public class TagsApiAccess : ITagsApiAccess
     {
-
         private readonly IContentApiClient contentApiClient;
 
         public TagsApiAccess(IContentApiClient contentApiClient)
         {
             this.contentApiClient = contentApiClient;
         }
-       
-        private async Task<TagsDto> GetTagsDto (DateTimeOffset? timestamp, IList<int> includeOnly)
+
+        private async Task<TagsDto> GetTagsDto(DateTimeOffset? timestamp, IList<int> includeOnly)
         {
             string requestPath = @"/Tags";
-            requestPath += UriQueryBuilder.GetAdditionalParametersQuery (timestamp, includeOnly);
+            requestPath += UriQueryBuilder.GetAdditionalParametersQuery(timestamp, includeOnly);
 
             string json = await contentApiClient.GetResponseFromUrlAsString(requestPath);
             return JsonConvert.DeserializeObject<TagsDto>(json);
         }
 
-        public async Task<TagsDto> GetTags ()
+        public async Task<TagsDto> GetTags()
         {
-            return await GetTagsDto (null, null);
+            return await GetTagsDto(null, null);
         }
 
-        public async Task<TagsDto> GetTags (DateTimeOffset timestamp)
+        public async Task<TagsDto> GetTags(DateTimeOffset timestamp)
         {
             return await GetTagsDto(timestamp, null);
         }
 
-        public async Task<TagsDto> GetTags (IList<int> includeOnly)
+        public async Task<TagsDto> GetTags(IList<int> includeOnly)
         {
             return await GetTagsDto(null, includeOnly);
         }
 
-        public async Task<TagsDto> GetTags (DateTimeOffset timestamp, IList<int> includeOnly)
+        public async Task<TagsDto> GetTags(DateTimeOffset timestamp, IList<int> includeOnly)
         {
             return await GetTagsDto(timestamp, includeOnly);
         }

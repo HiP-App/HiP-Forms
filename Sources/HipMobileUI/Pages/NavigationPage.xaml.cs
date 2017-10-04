@@ -17,12 +17,11 @@ using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
 {
-    public partial class NavigationPage : IViewFor<NavigationPageViewModel> {
-
+    public partial class NavigationPage : IViewFor<NavigationPageViewModel>
+    {
         public NavigationPage()
         {
             InitializeComponent();
         }
-
     }
 }

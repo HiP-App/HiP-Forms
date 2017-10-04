@@ -22,7 +22,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
         {
             get
             {
-                string text = Text.Replace ("\n", "<br>");
+                string text = Text.Replace("\n", "<br>");
                 return text;
             }
         }

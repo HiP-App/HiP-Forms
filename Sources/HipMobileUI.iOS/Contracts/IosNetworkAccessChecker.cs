@@ -58,7 +58,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Contracts
 
             // Do we need a connection to reach it?
             bool noConnectionRequired = (flags & NetworkReachabilityFlags.ConnectionRequired) == 0
-                || (flags & NetworkReachabilityFlags.IsWWAN) != 0;
+                                        || (flags & NetworkReachabilityFlags.IsWWAN) != 0;
 
             return isReachable && noConnectionRequired;
         }

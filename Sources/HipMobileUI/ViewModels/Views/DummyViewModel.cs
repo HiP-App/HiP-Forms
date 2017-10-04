@@ -18,32 +18,35 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
 using Xamarin.Forms;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views {
-    public class DummyViewModel : NavigationViewModel{
-
-        public DummyViewModel ()
+namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
+{
+    public class DummyViewModel : NavigationViewModel
+    {
+        public DummyViewModel()
         {
-            Color= Color.Blue;
+            Color = Color.Blue;
             Title = "Dummy";
-            TestCommand = new Command (() => {
-                                           var exhibits = ExhibitManager.GetExhibits ();
-                                           var ex = exhibits.FirstOrDefault();
-                                           Navigation.PushAsync (new ExhibitDetailsViewModel (ex.Id));
-                                       });
+            TestCommand = new Command(() =>
+            {
+                var exhibits = ExhibitManager.GetExhibits();
+                var ex = exhibits.FirstOrDefault();
+                Navigation.PushAsync(new ExhibitDetailsViewModel(ex.Id));
+            });
         }
 
         private Color color;
         private ICommand testCommand;
 
-        public Color Color {
+        public Color Color
+        {
             get { return color; }
-            set { SetProperty (ref color, value); }
+            set { SetProperty(ref color, value); }
         }
 
-        public ICommand TestCommand {
+        public ICommand TestCommand
+        {
             get { return testCommand; }
-            set { SetProperty (ref testCommand, value); }
+            set { SetProperty(ref testCommand, value); }
         }
-
     }
 }

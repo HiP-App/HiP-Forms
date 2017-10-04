@@ -1,4 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
+
 <!--
 // Copyright (C) 2017 History in Paderborn App - Universität Paderborn
 //
@@ -22,7 +23,10 @@
         <StackLayout>
             <ScrollView>
                 <StackLayout>
-                    <views1:ReferenceLink Text="{Binding FormatedText}" Sources="{Binding SourcesList}" Action="{Binding Action}" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Margin="10,10" FontSize="{Binding FontSize}"/>
+                    <views1:ReferenceLink Text="{Binding FormatedText}" Sources="{Binding SourcesList}"
+                                          Action="{Binding Action}" HorizontalOptions="Center"
+                                          VerticalOptions="CenterAndExpand" Margin="10,10"
+                                          FontSize="{Binding FontSize}" />
                 </StackLayout>
             </ScrollView>
         </StackLayout>

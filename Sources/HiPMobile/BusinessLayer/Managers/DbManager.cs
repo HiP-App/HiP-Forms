@@ -18,12 +18,13 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using Realms;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers {
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
+{
     /// <summary>
     /// Access to database methods.
     /// </summary>
-    public static class DbManager {
-
+    public static class DbManager
+    {
         private static readonly IDataAccess DataAccess = IoCManager.Resolve<IDataAccess>();
 
         /// <summary>
@@ -31,9 +32,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers {
         /// </summary>
         /// <typeparam name="T">The type of the object being created. T needs to be subtype of RealmObject and implement the IIdentifiable interface.</typeparam>
         /// <returns>The instance.</returns>
-        public static T CreateBusinessObject<T> () where T : RealmObject, IIdentifiable, new ()
+        public static T CreateBusinessObject<T>() where T : RealmObject, IIdentifiable, new()
         {
-            return DataAccess.CreateObject<T> ();
+            return DataAccess.CreateObject<T>();
         }
 
         /// <summary>
@@ -42,7 +43,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers {
         /// <typeparam name="T">The type of the object. T needs to be subtype of RealmObject and implement the IIdentifiable interface.</typeparam>
         /// <param name="entitiy">The object to be deleted.</param>
         /// <returns>True if deletion was successful. False otherwise.</returns>
-        public static bool DeleteBusinessEntity<T> (T entitiy) where T : RealmObject, IIdentifiable
+        public static bool DeleteBusinessEntity<T>(T entitiy) where T : RealmObject, IIdentifiable
         {
             if (entitiy != null)
             {
@@ -55,15 +56,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers {
         /// Starts a new write transaction. Make sure to close the transaction by either committing it or rolling back.
         /// </summary>
         /// <returns>The transaction object which can perform committing or rolling back.</returns>
-        public static BaseTransaction StartTransaction ()
+        public static BaseTransaction StartTransaction()
         {
-            return DataAccess.StartTransaction ();
+            return DataAccess.StartTransaction();
         }
 
         /// <summary>
         /// Deletes the whole database
         /// </summary>
-        public static void DeleteDatabase ()
+        public static void DeleteDatabase()
         {
             // delete from "cache" to see the changes instantly
             var exhibitsSets = ExhibitManager.GetExhibitSets();
@@ -77,8 +78,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers {
                 RouteManager.DeleteRoute(route);
             }
 
-            DataAccess.DeleteDatabase ();
-            IoCManager.Resolve<IDbChangedHandler> ().NotifyAll ();
+            DataAccess.DeleteDatabase();
+            IoCManager.Resolve<IDbChangedHandler>().NotifyAll();
         }
     }
 }

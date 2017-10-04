@@ -12,13 +12,13 @@
 // // See the License for the specific language governing permissions and
 // // limitations under the License.
 
-
 using CoreLocation;
 using MapKit;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Map {
-    public class ExhibitAnnotation : MKAnnotation {
-
+namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Map
+{
+    public class ExhibitAnnotation : MKAnnotation
+    {
         public override string Subtitle { get; }
 
         public override string Title => " ";
@@ -26,14 +26,16 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Map {
         public override CLLocationCoordinate2D Coordinate { get; }
         public string ExhibitId { get; }
 
-        public ExhibitAnnotation (CLLocationCoordinate2D coord, string exhibitId, string title)
+        public ExhibitAnnotation(CLLocationCoordinate2D coord, string exhibitId, string title)
         {
             Coordinate = coord;
             Subtitle = title;
             ExhibitId = exhibitId;
         }
 
-        public ExhibitAnnotation(double latitude, double longitude, string exhibitId,  string title) : 
-            this(new CLLocationCoordinate2D(latitude, longitude), exhibitId, title) {}
+        public ExhibitAnnotation(double latitude, double longitude, string exhibitId, string title) :
+            this(new CLLocationCoordinate2D(latitude, longitude), exhibitId, title)
+        {
+        }
     }
 }

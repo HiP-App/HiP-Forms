@@ -20,12 +20,12 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelConver
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.BusinessLayer.DtoToModelConverters {
-
+namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.BusinessLayer.DtoToModelConverters
+{
     [TestFixture]
-    public class MediaToAudioConverterTest {
-
-        [Test, Category ("UnitTest")]
+    public class MediaToAudioConverterTest
+    {
+        [Test, Category("UnitTest")]
         public void Convert_MediaToAudioTest()
         {
             var sut = CreateSystemUnderTest();
@@ -59,6 +59,5 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.BusinessLayer.DtoT
         }
 
         #endregion
-
     }
 }

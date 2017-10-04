@@ -8,7 +8,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -20,7 +19,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
         private double thisWidth, thisHeight;
         private DeviceOrientation deviceOrientation;
 
-        private CharacterSelectionPageViewModel ViewModel => ((CharacterSelectionPageViewModel)BindingContext);
+        private CharacterSelectionPageViewModel ViewModel => ((CharacterSelectionPageViewModel) BindingContext);
 
         public CharacterSelectionPage()
         {
@@ -82,9 +81,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
         protected override bool OnBackButtonPressed()
         {
             //The user cannot go back when he has to select the character on the first app start
-            if (ViewModel.ParentViewModel.GetType () != typeof (UserOnboardingPageViewModel))
+            if (ViewModel.ParentViewModel.GetType() != typeof(UserOnboardingPageViewModel))
             {
-                ViewModel.SwitchToNextPage ();
+                ViewModel.SwitchToNextPage();
             }
             return true;
         }

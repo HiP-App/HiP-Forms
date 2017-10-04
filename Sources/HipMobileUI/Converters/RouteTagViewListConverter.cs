@@ -33,7 +33,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Converters
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             var list = (ObservableCollection<RouteTag>) value;
-            var resultList = new ObservableCollection<View> ();
+            var resultList = new ObservableCollection<View>();
 
             foreach (var tag in list)
             {
@@ -52,6 +52,5 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Converters
         {
             throw new NotImplementedException();
         }
-
     }
 }

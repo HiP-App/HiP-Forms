@@ -30,11 +30,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Converters
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             var list = (ObservableCollection<ImageSource>) value;
-            var resultList = new ObservableCollection<View> ();
+            var resultList = new ObservableCollection<View>();
 
             foreach (var imageSource in list)
             {
-                resultList.Add (new Image {Source = imageSource});
+                resultList.Add(new Image { Source = imageSource });
             }
 
             return resultList;
@@ -44,6 +44,5 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Converters
         {
             throw new NotImplementedException();
         }
-
     }
 }

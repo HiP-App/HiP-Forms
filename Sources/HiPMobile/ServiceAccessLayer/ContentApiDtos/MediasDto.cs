@@ -14,12 +14,12 @@
 
 using System.Collections.Generic;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos {
-    public class MediasDto {
-
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos
+{
+    public class MediasDto
+    {
         public int Total { get; set; }
 
         public IList<MediaDto> Items { get; set; }
-
     }
 }

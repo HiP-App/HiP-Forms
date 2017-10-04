@@ -15,14 +15,15 @@
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelConverters {
-    public class TagConverter : DtoToModelConverter<RouteTag, TagDto> {
-
-        public override void Convert (TagDto dto, RouteTag existingModelObject)
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelConverters
+{
+    public class TagConverter : DtoToModelConverter<RouteTag, TagDto>
+    {
+        public override void Convert(TagDto dto, RouteTag existingModelObject)
         {
             existingModelObject.IdForRestApi = dto.Id;
             existingModelObject.Timestamp = dto.Timestamp;
-            
+
             existingModelObject.Tag = dto.Title;
             existingModelObject.Name = dto.Description;
         }
