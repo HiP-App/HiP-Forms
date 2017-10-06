@@ -38,98 +38,55 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 		private string text;
 		private string headline;
 		private readonly IList<Page> pages;
-		private int currentViewIndex;
-		private AppetizerPage page;
 		private bool nextVisible;
 		private bool nextViewAvailable;
 		private ICommand nextViewCommand;
 		private bool exhibitUnblocked = true;
 
+        public AppetizerPageViewModel(string exhibitId) : this(ExhibitManager.GetExhibit(exhibitId)) {}
 
-		public AppetizerPageViewModel(Exhibit exhibit, String exhibitName,AppetizerPage page)
-		//string exhibitName)
-		//AppetizerPage page)
+		public AppetizerPageViewModel(Exhibit exhibit)
 		{
-			//if (page != null)
-			//{
 			Exhibit = exhibit;
-		    Headline = exhibitName;
-			//Headline = exhibit.Name;
-			currentViewIndex = 0;
+            //exhibitUnblocked = exhibit.Unlocked;      // currently de-commented for testing -> no location check required
+            
 			pages = exhibit.Pages;
-			Page currentPage = pages[currentViewIndex];
-			page = currentPage.AppetizerPage;
-			Text = page.Text;
-			exhibitUnblocked = exhibit.Unlocked;
+		    var appetizerPage = exhibit.AppetizerPage;
 
-			if (pages.Count > 1)
-				nextViewAvailable = true;
+            Headline = exhibit.Name;
+            Text = appetizerPage.Text;
+
+			if (pages.Count > 1 && Exhibit.DetailsDataLoaded)
+				NextViewAvailable = true;
 			// workaround for realmbug
-			var imageData = page.Image.Data;
-			if (imageData != null)
-			{
-				Image = ImageSource.FromStream(() => new MemoryStream(imageData));
-			}
-			else
-			{
-				Image = ImageSource.FromStream(() => new MemoryStream(BackupData.BackupImageData));
-			}
+			var imageData = appetizerPage.Image.Data;
+			Image = imageData != null ? ImageSource.FromStream(() => new MemoryStream(imageData)) : ImageSource.FromStream(() => new MemoryStream(BackupData.BackupImageData));
 
 			IsDownloadButtonVisible = !Exhibit.DetailsDataLoaded;
 			NextViewCommand = new Command(GotoNextView);
 			DownloadCommand = new Command(OpenDownloadDialog);
-			//}
 		}
-
-	    public AppetizerPageViewModel(Exhibit exhibit)
-	    {
-	        this.exhibit = exhibit;
-	    }
-
-        ///// <summary>
-        ///// Indicator if navigation to next is visible
-        ///// </summary>
-        //public bool NextVisible
-        //{
-        //	get { return nextVisible; }
-        //	set { SetProperty(ref nextVisible, value); }
-        //}
-
-        ///// <summary>
-        ///// Toggles the visibility of the navigation buttons if the next/previous page is available
-        ///// Cancels the delayed task for toggling
-        ///// </summary>
-        //private void ToggleVisibilityOfNavigationButtons()
-        //{
-        //	if (NextViewAvailable)
-        //	{
-        //		NextVisible = !NextVisible;
-        //	}
-
-        // }
+        
         /// <summary>
-        /// Go to the next available view.
+        /// If there is more than just an appetizer page show the first details page.
         /// </summary>
         /// <returns></returns>
         private async void GotoNextView()
 		{
-			if (currentViewIndex < pages.Count - 1)
+			if (pages.Count > 1)
 			{
-
 				if (exhibitUnblocked)
 				{
-					currentViewIndex++;
-					nextViewAvailable = currentViewIndex < pages.Count - 1;
 					await Navigation.PushAsync(new ExhibitDetailsViewModel(Exhibit));
 
 				}
 				else
 				{
-					await IoCManager.Resolve<INavigationService>()
-									.DisplayAlert(Strings.ExhibitDetailsPage_Distance_Title, Strings.ExhibitDetailsPage_Distance_Text, Strings.ExhibitDetailsPage_Distance_alert_confirm);
+					await Navigation.DisplayAlert(Strings.ExhibitDetailsPage_Distance_Title, Strings.ExhibitDetailsPage_Distance_Text, Strings.ExhibitDetailsPage_Distance_alert_confirm);
 				}
 			}
 		}
+
 		private async void OpenDownloadDialog()
 		{
 			// Open the download dialog
@@ -139,7 +96,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
 		public void CloseDownloadPage()
 		{
-			IoCManager.Resolve<INavigationService>().PopAsync();
+			Navigation.PopAsync();
 		}
 
 		public void OpenDetailsView(string id)
@@ -164,13 +121,17 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 				Exhibit.DetailsDataLoaded = true;
 			}
 			IsDownloadButtonVisible = !Exhibit.DetailsDataLoaded;
+
+            NextViewAvailable = pages.Count > 1;
 		}
 
 		private ExhibitRouteDownloadPageViewModel downloadPage;
 
 		public ICommand DownloadCommand { get; set; }
 
-		public Exhibit Exhibit
+	    #region Properties
+
+        public Exhibit Exhibit
 		{
 			get { return exhibit; }
 			set { SetProperty(ref exhibit, value); }
@@ -211,6 +172,28 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 			set { SetProperty(ref nextViewCommand, value); }
 
 		}
+        /// <summary>
+        /// Indicator if a next view is available.
+        /// </summary>
+        public bool NextViewAvailable
+        {
+            get { return nextViewAvailable; }
+            set
+            {
+                NextVisible = value;
+                SetProperty(ref nextViewAvailable, value);
+            }
+        }
 
-	}
+        /// <summary>
+        /// Indicator if navigation to next is visible
+        /// </summary>
+        public bool NextVisible
+        {
+            get { return nextVisible; }
+            set { SetProperty(ref nextVisible, value); }
+        }
+    }
+
+    #endregion
 }

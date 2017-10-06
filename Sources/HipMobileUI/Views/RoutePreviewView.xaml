@@ -28,20 +28,24 @@
 
             <StackLayout x:Name="ButtonView" Grid.Row="3" Orientation="Vertical" VerticalOptions="End" Padding="0">
                 <BoxView HeightRequest="1" Color="{StaticResource DarkGrayColor}"/>
-                <StackLayout Orientation="Horizontal" Padding="8" BackgroundColor="{StaticResource LightGrayColor}" VerticalOptions="End">
-                    <Label Text="{helpers:Translate ExhibitOrRouteNearby_Confirm}" FontSize="20" TextColor="{StaticResource AccentColor}"
-                        HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-                        <Label.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding Confirm}" />
-                        </Label.GestureRecognizers>
-                    </Label>
+                <StackLayout Orientation="Horizontal" Padding="12,0,0,0" BackgroundColor="{StaticResource LightGrayColor}" VerticalOptions="End">
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                        <Label Text="{helpers:Translate ExhibitOrRouteNearby_Confirm}" FontSize="20" TextColor="{StaticResource AccentColor}"
+                            HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                        </Label>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Confirm}"/>
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
                     <BoxView WidthRequest="2" Color="{StaticResource DarkGrayColor}"/>
-                    <Label Text="{helpers:Translate ExhibitOrRouteNearby_Reject}" FontSize="20" TextColor="{StaticResource AccentColor}"
-                        HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-                        <Label.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding Decline}" />
-                        </Label.GestureRecognizers>
-                    </Label>
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                        <Label Text="{helpers:Translate ExhibitOrRouteNearby_Reject}" FontSize="20" TextColor="{StaticResource AccentColor}"
+                            HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                        </Label>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Decline}"/>
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
                 </StackLayout>
             </StackLayout>
         </Grid>

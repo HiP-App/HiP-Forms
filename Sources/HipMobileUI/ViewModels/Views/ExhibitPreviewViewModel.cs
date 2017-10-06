@@ -15,22 +15,22 @@ using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
-    {
+{
     class ExhibitPreviewViewModel : NavigationViewModel
+    {
+        public ExhibitPreviewViewModel(Exhibit exhibit, INearbyExhibitManager exManager)
         {
-            public ExhibitPreviewViewModel (Exhibit exhibit, INearbyExhibitManager exManager)
-            {
             this.exhibit = exhibit;
             Question = Strings.ExhibitOrRouteNearby_Question_Part1 + " \"" + this.exhibit.Name + "\" " + Strings.ExhibitOrRouteNearby_Question_Part2;
             var data = exhibit.Image.Data;
-            Image = ImageSource.FromStream (() => new MemoryStream (data));
+            Image = ImageSource.FromStream(() => new MemoryStream(data));
 
-            Confirm = new Command (Accept);
-            Decline = new Command (Deny);
+            Confirm = new Command(Accept);
+            Decline = new Command(Deny);
 
             exhibitManager = exManager;
             ExhibitName = exhibit.Name;
-            }
+        }
 
         private readonly Exhibit exhibit;
 
@@ -41,18 +41,18 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         public ICommand Decline { get; }
 
         public string ExhibitName { get; }
-        void Accept ()
-            {
-            MessagingCenter.Send<NavigationViewModel, bool> (this, "ReturnValue", true);
-            IoCManager.Resolve<INavigationService> ().PopModalAsync ();
-            IoCManager.Resolve<INavigationService> ().PushAsync (new ExhibitDetailsViewModel (exhibit.Id));
-            exhibitManager.InvokeExhibitVistedEvent (exhibit);              
+        void Accept()
+        {
+            MessagingCenter.Send<NavigationViewModel, bool>(this, "ReturnValue", true);
+            Navigation.ClearModalStack();
+            Navigation.PushAsync(new AppetizerPageViewModel(exhibit));
+            exhibitManager.InvokeExhibitVistedEvent(exhibit);
         }
 
-        void Deny ()
-            {
-            IoCManager.Resolve<INavigationService> ().PopModalAsync ();
-            }
-
+        void Deny()
+        {
+            Navigation.PopModalAsync();
         }
+
     }
+}

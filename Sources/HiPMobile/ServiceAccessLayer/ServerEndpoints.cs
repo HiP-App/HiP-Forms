@@ -14,15 +14,18 @@
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer {
     public class ServerEndpoints {
 
-        private const string BaseUrl = "https://docker-hip.cs.uni-paderborn.de/develop/authv2/";
+        private const string BaseUrl = "https://hip.eu.auth0.com/";
 
-        public const string TokenUrl = BaseUrl + "connect/token";
-        public const string RegistrationUrl = BaseUrl + "Account/Register";
-        public const string ForgotPasswordUrl = BaseUrl + "ForgotUrl";
+        public const string LoginUrl = BaseUrl + "oauth/token";
+
+        public const string RegisterUrl = BaseUrl + "dbconnections/signup";
+        public const string ForgotPasswordUrl = BaseUrl + "dbconnections/change_password";
+
         /// <summary>
         /// Urlpath for the docker container running the HiP-DataStore instance
         /// </summary>
         public const string DatastoreApiPath = "https://docker-hip.cs.uni-paderborn.de/public/datastore/api";
 
+        public const string DataStoreTokenUrl = "https://hip.eu.auth0.com/oauth/token";
     }
 }
