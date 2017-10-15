@@ -31,7 +31,7 @@
                     <RowDefinition Height="0.1*" />
                 </Grid.RowDefinitions>
 
-                <Image Source="{Binding Image}" Aspect="AspectFit" />
+                <Image Source="{Binding Image}" Grid.Row="0" Aspect="AspectFill" />
                 <ScrollView Grid.Row="1" VerticalOptions="StartAndExpand">
                     <Grid BackgroundColor="White">
                         <Grid.ColumnDefinitions>
@@ -41,8 +41,8 @@
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
-                        
-                        <ContentView Grid.Column="0" Padding="5" Margin="3">
+
+                        <ContentView Grid.Column="0" AbsoluteLayout.LayoutBounds="15,15,150,150">
                             <controls1:CardView>
                                 <Label Text="{Binding Text}" TextColor="#87000000" FontSize="16"/>
                             </controls1:CardView>
@@ -54,14 +54,14 @@
                         </StackLayout>
                     </Grid>
                 </ScrollView>
-                <StackLayout Grid.Row="2" HorizontalOptions="End" VerticalOptions="End" Padding="10">
-                    <Label Text="1/10" FontAttributes="Bold" FontSize="20" />
-                </StackLayout>
+                
+                    <Label Text="1/10" FontAttributes="Bold" FontSize="20" HorizontalOptions="End" />
+                
             </Grid>
-            <Button AbsoluteLayout.LayoutBounds=".5,1,.5,.1" AbsoluteLayout.LayoutFlags="All"
+            <Button AbsoluteLayout.LayoutBounds=".5,1,.95,.1" AbsoluteLayout.LayoutFlags="All"
                     Image="ic_file_download.png" IsVisible="{Binding IsDownloadButtonVisible}" Command="{Binding DownloadCommand}" />
             <Button AbsoluteLayout.LayoutBounds="1,.5,.2,.1" AbsoluteLayout.LayoutFlags="All"
-                    Text=">>" FontSize="25" IsVisible="{Binding NextVisible}" Command="{Binding NextViewCommand}" />
+                    Image="ic_chevron_right" IsVisible="{Binding NextVisible}" Command="{Binding NextViewCommand}" BackgroundColor="#80D3D3D3" AutomationId="NextButton"/>
         </AbsoluteLayout>
     </ContentPage.Content>
 </ContentPage>
