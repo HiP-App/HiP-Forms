@@ -76,6 +76,7 @@
     <Compile Include="Converters\ImageListConverter.cs" />
     <Compile Include="Converters\ItemTappedConverter.cs" />
     <Compile Include="Converters\ViewModelViewConverter.cs" />
+    <Compile Include="CustomTriggers\DeselectListViewItemAction.cs" />
     <Compile Include="Effects\ProgressBarColorEffect.cs" />
     <Compile Include="Effects\SwitchColorEffect.cs" />
     <Compile Include="Helpers\ApplicationResourcesProvider.cs" />
