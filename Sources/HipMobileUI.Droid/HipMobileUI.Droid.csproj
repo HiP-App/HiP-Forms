@@ -361,8 +361,6 @@
     <AndroidResource Include="Resources\drawable\ic_launcher.png" />
     <AndroidResource Include="Resources\drawable\bonuspack_bubble_new.9.png" />
     <AndroidResource Include="Resources\drawable\btn_info.xml" />
-    <AndroidResource Include="Resources\drawable\info.png" />
-    <AndroidResource Include="Resources\drawable\info_pressed.png" />
     <AndroidResource Include="Resources\drawable-hdpi\ic_my_location.png" />
     <AndroidResource Include="Resources\drawable-hdpi\marker_blue.png" />
     <AndroidResource Include="Resources\values\colors.xml">
@@ -449,6 +447,8 @@
     <AndroidResource Include="Resources\drawable-xhdpi\ic_equalizer.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\ic_equalizer.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\ic_equalizer.png" />
+    <AndroidResource Include="Resources\drawable\ic_info_black.png" />
+    <AndroidResource Include="Resources\drawable\ic_info_outline_black.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-hdpi\ic_keyboard_arrow_up.png" />

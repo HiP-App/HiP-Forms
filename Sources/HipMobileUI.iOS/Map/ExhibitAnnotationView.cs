@@ -26,7 +26,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Map
 
             CalloutOffset = new CGPoint(0, 0);
 
-            var infoButton= UIButton.FromType(UIButtonType.DetailDisclosure);
+            var infoButton = UIButton.FromType(UIButtonType.DetailDisclosure);
             RightCalloutAccessoryView = infoButton;
 
             DetailCalloutAccessoryView = new UILabel
