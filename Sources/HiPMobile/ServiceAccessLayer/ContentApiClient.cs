@@ -32,6 +32,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer
         private const int MaxRetryCount = 5;
         private static Token token;
 
+        private readonly string basePath;
+
+        /// <param name="basePath">e.g. ServerEndpoints.DatastoreApiPath</param>
+        public ContentApiClient(string basePath = ServerEndpoints.DatastoreApiPath)
+        {
+            this.basePath = basePath;
+        }
+
         /// <summary>
         /// Returns json string if get was successful (Status 200)
         /// Returns null if the requested url returns not modified (Status 304)
@@ -80,7 +88,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer
             {
                 token = await GetTokenForDataStore();
             }
-            string fullUrl = ServerEndpoints.DatastoreApiPath + urlPath;
+            string fullUrl = basePath + urlPath;
             Exception innerException = null;
 
             for (int i = 0; i < MaxRetryCount; i++)

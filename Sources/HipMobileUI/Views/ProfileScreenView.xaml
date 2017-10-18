@@ -90,10 +90,10 @@
                                             <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand"
                                                          VerticalOptions="Fill" Spacing="0" Margin="3,0">
                                                 <!-- Use seperate ViewModel with DataContext for binding -->
-                                                <Label Text="Achievement title" FontSize="18"
+                                                <Label Text="{Binding Title}" FontSize="18"
                                                        TextColor="{StaticResource PrimaryColor}" />
-                                                <Label
-                                                    Text="Achievement description - This could explain what has to be done to get this achievement" />
+                                                <Label Text="h9g8hidihsdf  sdhfshfisuhdfisuhfisdhfl" />
+                                                   <!-- <Label Text="{Binding Description}" /> -->
                                             </StackLayout>
                                         </StackLayout>
                                     </ViewCell>

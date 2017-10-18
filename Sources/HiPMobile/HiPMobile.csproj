@@ -101,6 +101,8 @@
     <Compile Include="ServiceAccessLayer\AuthenticationApiAccess\AuthApiAccess.cs" />
     <Compile Include="ServiceAccessLayer\AuthApiDto\Error.cs" />
     <Compile Include="ServiceAccessLayer\AuthApiDto\Token.cs" />
+    <Compile Include="ServiceAccessLayer\ContentApiAccesses\AchievementsApiAccess.cs" />
+    <Compile Include="ServiceAccessLayer\ContentApiAccesses\Contracts\IAchievementsApiAccess.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiClient.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiAccesses\Contracts\ITagsApiAccess.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiAccesses\Contracts\IRoutesApiAccess.cs" />
@@ -114,6 +116,8 @@
     <Compile Include="ServiceAccessLayer\ContentApiAccesses\Contracts\IMediasApiAccess.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiAccesses\Contracts\IPagesApiAccess.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiAccesses\Contracts\IExhibitsApiAccess.cs" />
+    <Compile Include="ServiceAccessLayer\ContentApiDtos\AchievementDto.cs" />
+    <Compile Include="ServiceAccessLayer\ContentApiDtos\AchievementsDto.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiDtos\FileDto.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiDtos\MediaTypeDto.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiDtos\PageImageDto.cs" />

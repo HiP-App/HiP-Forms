@@ -1,7 +1,12 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
 using Xamarin.Forms;
@@ -18,19 +23,21 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 
             Tabs = new ObservableCollection<string> { Strings.MainPageViewModel_OverviewPage, "Erfolge", "Statistik" };
 
-            Achievements = new ObservableCollection<string>
-            {
-                "Achievement 1",
-                "Achievement 2",
-                "Achievement 3",
-                "Achievement 4",
-                "Achievement 5",
-                "Achievement 6",
-                "Achievement 7"
-            };
-
+            Achievements = new ObservableCollection<AchievementDto>(); // TODO Change to VM
+            Task.Run(InitAchievements);
+            
             ChangeAppModeCommand = new Command(OnChangeAppModeTapped);
             Logout = new Command(LogoutDummy);
+        }
+
+        private async Task InitAchievements()
+        {
+            Achievements.Clear();
+            var achievements = await new AchievementsApiAccess(new ContentApiClient(ServerEndpoints.AchievementsApiPath)).GetAchievements();
+            foreach (var achievement in achievements.Achievements)
+            {
+                Achievements.Add(achievement);
+            }
         }
 
         public ICommand Logout { get; }
@@ -39,11 +46,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         //public ImageSource Avatar => ImageSource.FromFile ("ic_account_circle.png");
         public ImageSource Avatar => Settings.AdventurerMode ? ImageSource.FromFile("ic_adventurer.png") : ImageSource.FromFile("ic_professor.png");
 
-        public String Username => Settings.Username;
-        public String EMail => Settings.EMail;
+        public string Username => Settings.Username;
+        public string EMail => Settings.EMail;
         public int Score => Settings.Score;
-        public String AchievementCount => Settings.Achievements + " / 30";
-        public String Completeness => Settings.Completeness + "%";
+        public string AchievementCount => Settings.Achievements + " / 30";
+        public string Completeness => Settings.Completeness + "%";
 
         private void OnChangeAppModeTapped()
         {
@@ -59,9 +66,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             mainPageViewModel.UpdateAccountViews();
         }
 
-        private ObservableCollection<String> achievements;
+        private ObservableCollection<AchievementDto> achievements;
 
-        public ObservableCollection<String> Achievements
+        public ObservableCollection<AchievementDto> Achievements
         {
             get { return achievements; }
             set { SetProperty(ref achievements, value); }
