@@ -21,9 +21,9 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Location;
-using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
 using Plugin.Geolocator.Abstractions;
 using Xamarin.Forms;
 
@@ -76,9 +76,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         public void LocationChanged(object sender, PositionEventArgs args)
         {
             Position = args.Position;
+
+            if (ExhibitsList == null)
+                return;
+
             SetDistances(args.Position);
 
-            nearbyExhibitManager.CheckNearExhibit(displayedExhibitSet, args.Position.ToGeoLocation(), true);
+            nearbyExhibitManager.CheckNearExhibit(displayedExhibitSet, args.Position.ToGeoLocation(), true, locationManager.ListeningInBackground);
             nearbyRouteManager.CheckNearRoute(RouteManager.GetRoutes(), args.Position.ToGeoLocation());
         }
 
@@ -116,20 +120,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             locationManager.AddLocationListener(this);
         }
 
-        public override void OnHidden()
-        {
-            base.OnHidden();
-
-            locationManager.RemoveLocationListener(this);
-        }
-
-        public override void OnRevealed()
-        {
-            base.OnRevealed();
-
-            locationManager.AddLocationListener(this);
-        }
-
         /// <summary>
         /// Open the exhibitdetails page.
         /// </summary>
@@ -138,6 +128,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         {
             if (item != null)
             {
+                // Schedule multiple notification to test abstraction
+
                 Navigation.PushAsync(new ExhibitDetailsViewModel(item.Exhibit));
             }
         }
@@ -211,10 +203,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 
             if (newDataCenter.IsNewDataAvailabe())
             {
-                bool downloadData = false;
+                var downloadData = false;
                 if (!Settings.AlwaysDownloadData)
                 {
-                    string result = await Navigation.DisplayActionSheet(Strings.DownloadData_Title,
+                    var result = await Navigation.DisplayActionSheet(Strings.DownloadData_Title,
                                                                         null, null, Strings.DownloadData_Accept, Strings.DownloadData_Cancel, Strings.DownloadData_Always);
 
                     if (result == Strings.DownloadData_Always)

@@ -1,0 +1,56 @@
+﻿// Copyright (C) 2017 History in Paderborn App - Universität Paderborn
+//  
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//  
+//      http://www.apache.org/licenses/LICENSE-2.0
+//  
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+using Android.App;
+using Android.Content;
+using Android.Graphics;
+using Android.OS;
+using Android.Support.V4.App;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.NotificationPlayer;
+using Plugin.CurrentActivity;
+
+namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Contracts
+{
+    public class DroidNotificationPlayer : INotificationPlayer
+    {
+        private const int NotificationId = 06031993;
+        private const int InfoIcon = Resource.Drawable.btn_info;
+
+        /// <summary>
+        /// Display a simple notification with an optional large image
+        /// </summary>
+        /// <param name="title">Heading for the notification</param>
+        /// <param name="text">The message below the title</param>
+        /// <param name="bmpData">Data for the large image</param>
+        public void DisplaySimpleNotification(string title, string text, byte[] bmpData)
+        {
+            var mainActivity = (MainActivity)CrossCurrentActivity.Current.Activity;
+
+            var builder = new NotificationCompat.Builder(mainActivity)
+                .SetContentTitle(title)
+                .SetContentText(text)
+                .SetSmallIcon(InfoIcon);
+            if (bmpData != null)
+                builder.SetLargeIcon(BitmapFactory.DecodeByteArray(bmpData, 0, bmpData.Length));
+
+            if (Build.VERSION.SdkInt >= BuildVersionCodes.Lollipop)
+            {
+                builder.SetVisibility((int)NotificationVisibility.Public);
+            }
+
+            var notificationManager = (NotificationManager)mainActivity.GetSystemService(Context.NotificationService);
+            notificationManager.Notify(NotificationId, builder.Build());
+        }
+    }
+}

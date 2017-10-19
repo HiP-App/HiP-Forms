@@ -14,19 +14,16 @@
 
 using System;
 using System.Collections.Generic;
-using System.Threading;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
-using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels;
-using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
-using Xamarin.Forms;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.NotificationPlayer;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Location
 {
@@ -42,17 +39,18 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Location
         /// <param name="exhibits">The exhibits to check</param>
         /// <param name="gpsLocation">The gps location of the user</param>
         /// <param name="considerTimeouts">Parameter indicating if timeouts for displaying the exhibit nearby message should be taken into account.</param>
-        void CheckNearExhibit(IEnumerable<Exhibit> exhibits, GeoLocation gpsLocation, bool considerTimeouts);
+        /// <param name="appMinimized">True if the method was called while the app is minimized.</param>
+        void CheckNearExhibit(IEnumerable<Exhibit> exhibits, GeoLocation gpsLocation, bool considerTimeouts, bool appMinimized);
 
         void InvokeExhibitVistedEvent(Exhibit exhibit);
     }
 
     public class NearbyExhibitManager : INearbyExhibitManager
     {
-        private readonly TimeSpan dialogTimeout = TimeSpan.FromMinutes(20);
+        private readonly TimeSpan dialogTimeout = TimeSpan.FromMinutes(1);
         public event ExhibitVisitedDelegate ExhibitVisitedEvent;
 
-        public async void CheckNearExhibit(IEnumerable<Exhibit> exhibits, GeoLocation gpsLocation, bool considerTimeouts)
+        public async void CheckNearExhibit(IEnumerable<Exhibit> exhibits, GeoLocation gpsLocation, bool considerTimeouts, bool appMinimized)
         {
             foreach (Exhibit e in exhibits)
             {
@@ -82,10 +80,19 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Location
                         }
                     }
 
-                    NavigationViewModel nv = new ExhibitPreviewViewModel(e, this);
-                    await
-                        IoCManager.Resolve<INavigationService>()
-                                  .PushModalAsync(nv);
+                    // Display popup page or local notification
+                    if (appMinimized)
+                    {
+                        var notificationPlayer = IoCManager.Resolve<INotificationPlayer>();
+                        notificationPlayer.DisplaySimpleNotification(e.Name, "Es befindet sich eine Sehenswürdigkeit in der Nähe. Geh sie besuchen!", e.Image.Data);
+                    }
+                    else
+                    {
+                        NavigationViewModel nv = new ExhibitPreviewViewModel(e, this);
+                        await
+                            IoCManager.Resolve<INavigationService>()
+                                      .PushModalAsync(nv);
+                    }
                 }
             }
         }
