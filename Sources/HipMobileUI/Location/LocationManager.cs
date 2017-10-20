@@ -117,7 +117,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Location
         }
 
         public bool ListeningInBackground { get; private set; }
-        
+
         /// <summary>
         /// Called when the app will go to the background or the screen is locked.
         /// </summary>

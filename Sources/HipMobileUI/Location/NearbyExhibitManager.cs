@@ -84,7 +84,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Location
                     if (appMinimized)
                     {
                         var notificationPlayer = IoCManager.Resolve<INotificationPlayer>();
-                        notificationPlayer.DisplaySimpleNotification(e.Name, "Es befindet sich eine Sehenswürdigkeit in der Nähe. Geh sie besuchen!", e.Image.Data);
+                        notificationPlayer.DisplayExhibitNearbyNotification(e.Name, "Besuche eine nahe Sehenswürdigkeit!", e.Image.Data);
                     }
                     else
                     {

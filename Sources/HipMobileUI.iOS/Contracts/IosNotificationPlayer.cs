@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System;
 using Foundation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.NotificationPlayer;
 using UIKit;
@@ -21,10 +22,27 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Contracts
 {
     public class IosNotificationPlayer : INotificationPlayer
     {
-        private const string NotificationId = "exhibitnearby";
+        // Use different IDs for different categories of notifications since notifications with the same ID override each other
+        private const string ExhibitNearbyNotificationId = "exhibitNearbyNotification";
+        private const string DefaultNotificationId = "defaultNotification";
 
-        public void DisplaySimpleNotification(string title, string text, byte[] bmpData)
+        public void DisplayExhibitNearbyNotification(string title, string text, byte[] data = null)
         {
+            DisplayDefaultNotification(title, text, ExhibitNearbyNotificationId, data);
+        }
+
+        /// <summary>
+        /// Display a simple notification with an optional large image
+        /// </summary>
+        /// <param name="title">Heading for the notification</param>
+        /// <param name="text">The message below the title</param>
+        /// <param name="id">Unique id for the notification</param>
+        /// <param name="bmpData">Data for the large image</param>
+        public void DisplayDefaultNotification(string title, string text, IComparable id = null, byte[] bmpData = null)
+        {
+            if (id == null)
+                id = DefaultNotificationId;
+
             UNUserNotificationCenter.Current.GetNotificationSettings(settings =>
             {
                 // Make sure alerts are still allowed
@@ -34,7 +52,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Contracts
                 var content = new UNMutableNotificationContent
                 {
                     Title = title,
-                    Subtitle = "",
                     Body = text
                 };
 
@@ -45,7 +62,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Contracts
                 }
 
                 var trigger = UNTimeIntervalNotificationTrigger.CreateTrigger(5, false);
-                var request = UNNotificationRequest.FromIdentifier(NotificationId, content, trigger);
+                var request = UNNotificationRequest.FromIdentifier((string)id, content, trigger);
 
                 UNUserNotificationCenter.Current.AddNotificationRequest(request, error =>
                 {

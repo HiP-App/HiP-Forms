@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System;
 using Android.App;
 using Android.Content;
 using Android.Graphics;
@@ -24,17 +25,29 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Contracts
 {
     public class DroidNotificationPlayer : INotificationPlayer
     {
-        private const int NotificationId = 06031993;
-        private const int InfoIcon = Resource.Drawable.btn_info;
+        // Use different IDs for different categories of notifications since notifications with the same ID override each other
+        private const int ExhibitNearbyNotificationId = 30052010;
+        private const int DefaultNotificationId = 06031993;
+
+        private const int InfoIcon = Resource.Drawable.info;
+
+        public void DisplayExhibitNearbyNotification(string title, string text, byte[] data = null)
+        {
+            DisplayDefaultNotification(title, text, ExhibitNearbyNotificationId, data);
+        }
 
         /// <summary>
         /// Display a simple notification with an optional large image
         /// </summary>
         /// <param name="title">Heading for the notification</param>
         /// <param name="text">The message below the title</param>
+        /// <param name="id">Unique id for the notification</param>
         /// <param name="bmpData">Data for the large image</param>
-        public void DisplaySimpleNotification(string title, string text, byte[] bmpData)
+        public void DisplayDefaultNotification(string title, string text, IComparable id = null, byte[] bmpData = null)
         {
+            if (id==null)
+                id = DefaultNotificationId;
+
             var mainActivity = (MainActivity)CrossCurrentActivity.Current.Activity;
 
             var builder = new NotificationCompat.Builder(mainActivity)
@@ -50,7 +63,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Contracts
             }
 
             var notificationManager = (NotificationManager)mainActivity.GetSystemService(Context.NotificationService);
-            notificationManager.Notify(NotificationId, builder.Build());
+            notificationManager.Notify((int)id, builder.Build());
         }
     }
 }
