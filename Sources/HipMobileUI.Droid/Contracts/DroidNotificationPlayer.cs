@@ -49,7 +49,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Contracts
             if (id == null)
                 id = DefaultNotificationId;
 
-            var mainActivity = (MainActivity)CrossCurrentActivity.Current.Activity;
+            var mainActivity = Application.Context.ApplicationContext;
 
             var builder = new NotificationCompat.Builder(mainActivity)
                 .SetContentIntent(GenerateReturnToAppIntent(mainActivity))

@@ -20,10 +20,10 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
-using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.NotificationPlayer;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Location
 {
@@ -52,7 +52,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Location
 
         public async void CheckNearExhibit(IEnumerable<Exhibit> exhibits, GeoLocation gpsLocation, bool considerTimeouts, bool appMinimized)
         {
-            foreach (Exhibit e in exhibits)
+            foreach (var e in exhibits)
             {
                 var dist = MathUtil.CalculateDistance(e.Location, gpsLocation);
                 if (dist < AppSharedData.ExhibitRadius)
@@ -63,7 +63,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Location
                     }
                     if (considerTimeouts)
                     {
-                        DateTimeOffset now = DateTimeOffset.Now;
+                        var now = DateTimeOffset.Now;
                         if (e.LastNearbyTime.HasValue)
                         {
                             if (now.Subtract(e.LastNearbyTime.Value) <= dialogTimeout)
@@ -84,11 +84,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Location
                     if (appMinimized)
                     {
                         var notificationPlayer = IoCManager.Resolve<INotificationPlayer>();
-                        notificationPlayer.DisplayExhibitNearbyNotification(e.Name, "Besuche eine nahe Sehenswürdigkeit!", e.Image.Data);
+                        notificationPlayer.DisplayExhibitNearbyNotification(e.Name, Strings.ExhibitNearby_VisitRequest, e.Image.Data);
                     }
                     else
                     {
-                        NavigationViewModel nv = new ExhibitPreviewViewModel(e, this);
+                        var nv = new ExhibitPreviewViewModel(e, this);
                         await
                             IoCManager.Resolve<INavigationService>()
                                       .PushModalAsync(nv);

@@ -47,7 +47,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             {
                 DisplayedExhibitSet = set;
                 ExhibitsList = new ObservableCollection<ExhibitsOverviewListItemViewModel>();
-                foreach (Exhibit exhibit in set)
+                foreach (var exhibit in set)
                 {
                     var listItem = new ExhibitsOverviewListItemViewModel(exhibit);
                     ExhibitsList.Add(listItem);
@@ -186,7 +186,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             var set = ExhibitManager.GetExhibitSets().Single();
             DisplayedExhibitSet = set;
             ExhibitsList = new ObservableCollection<ExhibitsOverviewListItemViewModel>();
-            foreach (Exhibit exhibit in set)
+            foreach (var exhibit in set)
             {
                 var listItem = new ExhibitsOverviewListItemViewModel(exhibit);
                 ExhibitsList.Add(listItem);
