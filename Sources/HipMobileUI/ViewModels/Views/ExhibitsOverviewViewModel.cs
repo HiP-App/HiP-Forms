@@ -23,6 +23,7 @@ using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Location;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.NotificationPlayer;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
 using Plugin.Geolocator.Abstractions;
 using Xamarin.Forms;
@@ -128,8 +129,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         {
             if (item != null)
             {
-                // Schedule multiple notification to test abstraction
-
                 Navigation.PushAsync(new ExhibitDetailsViewModel(item.Exhibit));
             }
         }

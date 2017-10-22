@@ -52,16 +52,18 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Contracts
                 var content = new UNMutableNotificationContent
                 {
                     Title = title,
-                    Body = text
+                    Body = text,
+                    Sound = UNNotificationSound.Default
                 };
 
                 if (bmpData != null)
                 {
+                    // Maybe someone can fix this in the future; the image should be displayed along the notification
                     //UIImage image = ConvertDataToImage(bmpData);
                     //content.Attachments = new UNNotificationAttachment[];
                 }
 
-                var trigger = UNTimeIntervalNotificationTrigger.CreateTrigger(5, false);
+                var trigger = UNTimeIntervalNotificationTrigger.CreateTrigger(0, false);
                 var request = UNNotificationRequest.FromIdentifier((string)id, content, trigger);
 
                 UNUserNotificationCenter.Current.AddNotificationRequest(request, error =>

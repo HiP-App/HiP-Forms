@@ -16,6 +16,7 @@ using System;
 using Android.App;
 using Android.Content;
 using Android.Graphics;
+using Android.Media;
 using Android.OS;
 using Android.Support.V4.App;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.NotificationPlayer;
@@ -45,15 +46,18 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Contracts
         /// <param name="bmpData">Data for the large image</param>
         public void DisplayDefaultNotification(string title, string text, IComparable id = null, byte[] bmpData = null)
         {
-            if (id==null)
+            if (id == null)
                 id = DefaultNotificationId;
 
             var mainActivity = (MainActivity)CrossCurrentActivity.Current.Activity;
 
             var builder = new NotificationCompat.Builder(mainActivity)
+                .SetContentIntent(GenerateReturnToAppIntent(mainActivity))
                 .SetContentTitle(title)
                 .SetContentText(text)
-                .SetSmallIcon(InfoIcon);
+                .SetSmallIcon(InfoIcon)
+                .SetAutoCancel(true)
+                .SetSound(RingtoneManager.GetDefaultUri(RingtoneType.Notification));
             if (bmpData != null)
                 builder.SetLargeIcon(BitmapFactory.DecodeByteArray(bmpData, 0, bmpData.Length));
 
@@ -64,6 +68,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Contracts
 
             var notificationManager = (NotificationManager)mainActivity.GetSystemService(Context.NotificationService);
             notificationManager.Notify((int)id, builder.Build());
+        }
+
+        private PendingIntent GenerateReturnToAppIntent(Context mainActivity)
+        {
+            var intent = new Intent(mainActivity, typeof(MainActivity));
+            return PendingIntent.GetActivity(mainActivity, 0, intent, PendingIntentFlags.OneShot);
         }
     }
 }
