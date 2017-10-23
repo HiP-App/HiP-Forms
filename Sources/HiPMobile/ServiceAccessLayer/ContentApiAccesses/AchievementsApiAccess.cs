@@ -43,7 +43,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
                 switch (type)
                 {
                     case "ExhibitsVisited":
-                        return JsonConvert.DeserializeObject<ExhibitVisitedAchievementDto>(achievement.ToString());
+                        return JsonConvert.DeserializeObject<ExhibitsVisitedAchievementDto>(achievement.ToString());
                     case "RouteFinished":
                         return JsonConvert.DeserializeObject<RouteFinishedAchievementDto>(achievement.ToString());
                     default:

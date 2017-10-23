@@ -21,9 +21,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
         [JsonProperty("id")]
         public int Id { get; private set; }
 
-        [JsonProperty("status")]
-        public AchievementStatus Status { get; private set; }
-
         [JsonProperty("title")]
         public string Title { get; private set; }
 
@@ -42,15 +39,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
         
     }
 
-    public class ExhibitVisitedAchievementDto : AchievementDto
+    public class ExhibitsVisitedAchievementDto : AchievementDto
     {
         [JsonProperty("count")]
         public int Count { get; private set; }
     }
 
-    public enum AchievementStatus
-    {
-        Published,
-        Unpublished
-    }
 }

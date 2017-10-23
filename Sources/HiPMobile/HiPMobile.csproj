@@ -71,12 +71,17 @@
     <Compile Include="BusinessLayer\ContentApiFetchers\MediaDataFetcher.cs" />
     <Compile Include="BusinessLayer\ContentHandling\NewDataCenter.cs" />
     <Compile Include="BusinessLayer\ContentApiFetchers\RoutesBaseDataFetcher.cs" />
+    <Compile Include="BusinessLayer\DtoToModelConverters\ExhibitsVisitedAchievementConverter.cs" />
     <Compile Include="BusinessLayer\DtoToModelConverters\BackupData.cs" />
+    <Compile Include="BusinessLayer\DtoToModelConverters\RouteFinishedAchievementConverter.cs" />
     <Compile Include="BusinessLayer\DtoToModelConverters\TagConverter.cs" />
     <Compile Include="BusinessLayer\DtoToModelConverters\RouteConverter.cs" />
     <Compile Include="BusinessLayer\DtoToModelConverters\MediaToAudioConverter.cs" />
     <Compile Include="BusinessLayer\DtoToModelConverters\MediaToImageConverter.cs" />
     <Compile Include="BusinessLayer\DtoToModelConverters\PageConverter.cs" />
+    <Compile Include="BusinessLayer\Models\ModelClasses\ExhibitsVisitedAchievement.cs" />
+    <Compile Include="BusinessLayer\Models\ModelClasses\IAchievement.cs" />
+    <Compile Include="BusinessLayer\Models\ModelClasses\RouteFinishedAchievement.cs" />
     <Compile Include="BusinessLayer\Models\User\User.cs" />
     <Compile Include="BusinessLayer\UserManagement\UserManager.cs" />
     <Compile Include="BusinessLayer\Models\User\UserStatus.cs" />
