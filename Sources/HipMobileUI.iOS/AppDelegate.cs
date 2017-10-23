@@ -26,8 +26,11 @@ using PaderbornUniversity.SILab.Hip.Mobile.UI.AudioPlayer;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Location;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.NotificationPlayer;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels;
 using UIKit;
+using UserNotifications;
+using Xamarin.Forms;
 using App = PaderbornUniversity.SILab.Hip.Mobile.UI.App;
 using MainPage = PaderbornUniversity.SILab.Hip.Mobile.UI.Pages.MainPage;
 
@@ -57,6 +60,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios
 
             // init other inversion of control classes
             IoCManager.RegisterInstance(typeof(IAudioPlayer), new IosAudioPlayer());
+            IoCManager.RegisterInstance(typeof(INotificationPlayer), new IosNotificationPlayer());
             IoCManager.RegisterType<IStatusBarController, IosStatusBarController>();
             IoCManager.RegisterInstance(typeof(ILocationManager), new LocationManager());
             IoCManager.RegisterInstance(typeof(IKeyProvider), new IosKeyProvider());
@@ -83,7 +87,38 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios
             Xamarin.Calabash.Start();
 #endif
 
+            // display dialogue to ask for users permission to display notifications
+            UNUserNotificationCenter.Current.RequestAuthorization(UNAuthorizationOptions.Alert, (approved, err) =>
+            {
+                // You could evaluate approval and error here
+            });
+
             return base.FinishedLaunching(app, options);
+        }
+
+        public override void OnResignActivation(UIApplication uiApplication)
+        {
+            CallOnDisappearingForAllOpenPages();
+
+            base.OnResignActivation(uiApplication);
+        }
+
+        private void CallOnDisappearingForAllOpenPages()
+        {
+            var tabController = Xamarin.Forms.Application.Current.MainPage as TabbedPage;
+            var masterController = Xamarin.Forms.Application.Current.MainPage as MasterDetailPage;
+
+            // First check to see if we're on a tabbed page, then master detail, finally go to overall fallback
+            var nav = tabController?.CurrentPage?.Navigation ??
+                      (masterController?.Detail as TabbedPage)?.CurrentPage?.Navigation ?? // special consideration for a tabbed page inside master/detail
+                      masterController?.Detail?.Navigation ??
+                      Xamarin.Forms.Application.Current.MainPage.Navigation;
+
+            foreach (var page in nav.NavigationStack)
+            {
+                var navigationViewModel = page.BindingContext as NavigationViewModel;
+                navigationViewModel?.OnDisappearing();
+            }
         }
     }
 }

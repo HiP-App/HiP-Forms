@@ -57,7 +57,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI
         protected override void OnResume()
         {
             // Handle when your app resumes
-            MessagingCenter.Send<App>(this, AppSharedData.WillWakeUpMessage);
+            MessagingCenter.Send(this, AppSharedData.WillWakeUpMessage);
         }
     }
 }

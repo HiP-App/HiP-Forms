@@ -87,7 +87,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Contracts
         {
             var mainActivity = (MainActivity) CrossCurrentActivity.Current.Activity;
 
-            NotificationCompat.Builder builder = new NotificationCompat.Builder(mainActivity)
+            var builder = new NotificationCompat.Builder(mainActivity)
                 .SetOngoing(true)
                 .SetSmallIcon(Resource.Drawable.ic_headset_white);
 

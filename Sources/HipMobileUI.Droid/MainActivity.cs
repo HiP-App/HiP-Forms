@@ -35,6 +35,7 @@ using Xamarin.Forms;
 using App = PaderbornUniversity.SILab.Hip.Mobile.UI.App;
 using MainPage = PaderbornUniversity.SILab.Hip.Mobile.UI.Pages.MainPage;
 using Acr.UserDialogs;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.NotificationPlayer;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
 {
@@ -60,6 +61,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
             // init other inversion of control classes
             IoCManager.RegisterInstance(typeof(IFabSizeCalculator), new AndroidFabSizeCalculator());
             IoCManager.RegisterInstance(typeof(IAudioPlayer), new DroidAudioPlayer());
+            IoCManager.RegisterInstance(typeof(INotificationPlayer), new DroidNotificationPlayer());
             IoCManager.RegisterInstance(typeof(IStatusBarController), new DroidStatusBarController());
             IoCManager.RegisterInstance(typeof(ILocationManager), new LocationManager());
             IoCManager.RegisterInstance(typeof(IKeyProvider), new AndroidKeyProvider());
