@@ -49,10 +49,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Contracts
             if (id == null)
                 id = DefaultNotificationId;
 
-            var mainActivity = Application.Context.ApplicationContext;
+            var context = Application.Context.ApplicationContext;
 
-            var builder = new NotificationCompat.Builder(mainActivity)
-                .SetContentIntent(GenerateReturnToAppIntent(mainActivity))
+            var builder = new NotificationCompat.Builder(context)
+                .SetContentIntent(GenerateReturnToAppIntent(context))
                 .SetContentTitle(title)
                 .SetContentText(text)
                 .SetSmallIcon(InfoIcon)
@@ -66,7 +66,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Contracts
                 builder.SetVisibility((int)NotificationVisibility.Public);
             }
 
-            var notificationManager = (NotificationManager)mainActivity.GetSystemService(Context.NotificationService);
+            var notificationManager = (NotificationManager)context.GetSystemService(Context.NotificationService);
             notificationManager.Notify((int)id, builder.Build());
         }
 
