@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.Diagnostics;
+﻿using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
@@ -25,7 +23,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 
             Achievements = new ObservableCollection<AchievementDto>(); // TODO Change to VM
             Task.Run(InitAchievements);
-            
+
             ChangeAppModeCommand = new Command(OnChangeAppModeTapped);
             Logout = new Command(LogoutDummy);
         }
@@ -34,7 +32,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         {
             Achievements.Clear();
             var achievements = await new AchievementsApiAccess(new ContentApiClient(ServerEndpoints.AchievementsApiPath)).GetAchievements();
-            foreach (var achievement in achievements.Achievements)
+            foreach (var achievement in achievements)
             {
                 Achievements.Add(achievement);
             }

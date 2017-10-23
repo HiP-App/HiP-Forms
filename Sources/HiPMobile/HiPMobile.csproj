@@ -117,7 +117,6 @@
     <Compile Include="ServiceAccessLayer\ContentApiAccesses\Contracts\IPagesApiAccess.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiAccesses\Contracts\IExhibitsApiAccess.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiDtos\AchievementDto.cs" />
-    <Compile Include="ServiceAccessLayer\ContentApiDtos\AchievementsDto.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiDtos\FileDto.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiDtos\MediaTypeDto.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiDtos\PageImageDto.cs" />

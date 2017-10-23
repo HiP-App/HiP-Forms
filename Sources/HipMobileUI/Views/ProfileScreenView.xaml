@@ -87,13 +87,12 @@
                                                      Margin="3" HeightRequest="60" Spacing="0">
                                             <Image Source="ic_directions_walk.png" WidthRequest="60" HeightRequest="60"
                                                    Aspect="AspectFit" />
-                                            <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand"
+                                            <StackLayout Orientation="Vertical" HorizontalOptions="StartAndExpand"
                                                          VerticalOptions="Fill" Spacing="0" Margin="3,0">
                                                 <!-- Use seperate ViewModel with DataContext for binding -->
                                                 <Label Text="{Binding Title}" FontSize="18"
                                                        TextColor="{StaticResource PrimaryColor}" />
-                                                <Label Text="h9g8hidihsdf  sdhfshfisuhdfisuhfisdhfl" />
-                                                   <!-- <Label Text="{Binding Description}" /> -->
+                                                <Label Text="{Binding Description}" />
                                             </StackLayout>
                                         </StackLayout>
                                     </ViewCell>

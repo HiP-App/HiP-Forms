@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos;
 
@@ -19,6 +20,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
 {
     public interface IAchievementsApiAccess
     {
-        Task<AchievementsDto> GetAchievements();
+        Task<IEnumerable<AchievementDto>> GetAchievements();
     }
 }

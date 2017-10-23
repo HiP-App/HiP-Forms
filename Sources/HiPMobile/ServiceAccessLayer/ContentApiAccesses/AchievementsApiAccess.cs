@@ -12,10 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.Serialization;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
+using Newtonsoft.Json.Linq;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos;
 
@@ -23,7 +25,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
 {
     public class AchievementsApiAccess : IAchievementsApiAccess
     {
-
         private readonly IContentApiClient contentApiClient;
 
         public AchievementsApiAccess(IContentApiClient contentApiClient)
@@ -31,11 +32,26 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
             this.contentApiClient = contentApiClient;
         }
 
-        public async Task<AchievementsDto> GetAchievements()
+        public async Task<IEnumerable<AchievementDto>> GetAchievements()
         {
             const string requestPath = "/Achievements";
             var json = await contentApiClient.GetResponseFromUrlAsString(requestPath);
-            return JsonConvert.DeserializeObject<AchievementsDto>(json);
+            var achievementJsons = (JArray) JObject.Parse(json)["items"];
+            var achievements = achievementJsons.Select<JToken, AchievementDto>(achievement =>
+            {
+                var type = achievement["type"].ToString();
+                switch (type)
+                {
+                    case "ExhibitsVisited":
+                        return JsonConvert.DeserializeObject<ExhibitVisitedAchievementDto>(achievement.ToString());
+                    case "RouteFinished":
+                        return JsonConvert.DeserializeObject<RouteFinishedAchievementDto>(achievement.ToString());
+                    default:
+                        throw new SerializationException("Unexpected AchievementType!");
+                }
+            }).ToList();
+
+            return achievements;
         }
     }
 }
