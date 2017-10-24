@@ -53,8 +53,8 @@
         android:layout_height="20px" />
     <Button
         android:id="@+id/bubble_info"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_gravity="right"
         android:background="@drawable/btn_info"
         android:gravity="right"
