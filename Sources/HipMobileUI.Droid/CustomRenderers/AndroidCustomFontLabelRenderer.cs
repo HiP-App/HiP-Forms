@@ -28,7 +28,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.CustomRenderers
         {
             base.OnElementChanged(elementChangedEventArgs);
 
-            CustomFontLabel label = elementChangedEventArgs.NewElement as CustomFontLabel;
+            var label = elementChangedEventArgs.NewElement as CustomFontLabel;
 
             if (label?.FontFamilyName != null && label.FontFamilyName != "DEFAULT")
             {
