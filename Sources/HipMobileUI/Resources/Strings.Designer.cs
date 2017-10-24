@@ -341,6 +341,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Besuche eine nahe Sehenswürdigkeit!.
+        /// </summary>
+        public static string ExhibitNearby_VisitRequest {
+            get {
+                return ResourceManager.GetString("ExhibitNearby_VisitRequest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ja.
         /// </summary>
         public static string ExhibitOrRouteNearby_Confirm {
