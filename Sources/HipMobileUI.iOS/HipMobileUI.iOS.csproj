@@ -385,12 +385,8 @@
     <BundleResource Include="Resources\ic_settings.png" />
     <BundleResource Include="Resources\ic_settings%402x.png" />
     <BundleResource Include="Resources\ic_settings%403x.png" />
-    <BundleResource Include="Resources\ic_headset_white.png" />
-    <BundleResource Include="Resources\ic_headset_white%402x.png" />
-    <BundleResource Include="Resources\ic_headset_white%403x.png" />
     <BundleResource Include="Resources\ic_closed_caption_black.png" />
     <BundleResource Include="Resources\ic_closed_caption_black%402x.png" />
-    <BundleResource Include="Resources\ic_closed_caption_black%403x.png" />
     <BundleResource Include="Resources\ic_pause_black.png" />
     <BundleResource Include="Resources\ic_pause_black%402x.png" />
     <BundleResource Include="Resources\ic_pause_black%403x.png" />

@@ -28,8 +28,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages.AudioTranscri
             var parser = new InteractiveSourcesParser(new ConsecutiveNumberAndConstantInteractiveSourceSubstitute(1, "Quelle"));
             var result = parser.Parse(subtitles);
 
-            string formatedText = result.TextWithSubstitutes;
-            List<Source> references = result.Sources;
+            var formatedText = result.TextWithSubstitutes;
+            var references = result.Sources;
 
             SourcesTab = new SourcesViewModel(references);
             SubtitleTab = new SubtitleViewModel(formatedText, references, GetAction);
