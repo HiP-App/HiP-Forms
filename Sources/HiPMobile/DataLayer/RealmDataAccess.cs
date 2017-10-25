@@ -83,7 +83,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataLayer
             return new RealmTransaction(transaction);
         }
 
-        T IDataAccess.CreateObject<T>(string id, bool updateCurrent)
+        public T CreateObject<T>(string id, bool updateCurrent) where T : RealmObject, IIdentifiable, new()
         {
             // create the instance
             var instance = new T { Id = id };
