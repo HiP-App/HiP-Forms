@@ -31,10 +31,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelCo
         /// Converts the given <paramref name="dto"/> to a new model object
         /// </summary>
         /// <param name="dto"></param>
-        /// <param name="updateCurrent">If true, the old model with the same primary key is updated
         /// with the new data.</param>
         /// <returns></returns>
-        public TModelObject Convert(TDtoObject dto, bool updateCurrent = false)
+        public TModelObject Convert(TDtoObject dto)
         {
             var modelObject = DbManager.CreateBusinessObject<TModelObject>();
 
