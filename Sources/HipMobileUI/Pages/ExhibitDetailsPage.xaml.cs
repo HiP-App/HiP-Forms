@@ -13,10 +13,8 @@
 // limitations under the License.
 
 using System.ComponentModel;
-using PaderbornUniversity.SILab.Hip.Mobile.UI.Controls;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
-using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
 using Xamarin.Forms;
 
@@ -25,7 +23,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
     public partial class ExhibitDetailsPage : IViewFor<ExhibitDetailsViewModel>
     {
         private ExhibitDetailsViewModel ViewModel => (ExhibitDetailsViewModel) BindingContext;
-        private HideableToolbarItem audioToolbarButton;
         private OrientationController savedControllerState;
         private bool isOnDisappearingContext;
 
@@ -65,14 +62,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
         {
             base.OnBindingContextChanged();
 
-            audioToolbarButton = new HideableToolbarItem
-            {
-                Icon = "ic_headset_white",
-                Text = Strings.ExhibitDetailsPage_AudioToolbar,
-                Parent = this
-            };
-            audioToolbarButton.SetBinding(MenuItem.CommandProperty, "ShowAudioToolbarCommand");
-            audioToolbarButton.SetBinding(HideableToolbarItem.IsVisibleProperty, "AudioAvailable");
+            ToggleAudioBarVisibility();
 
             ViewModel.PropertyChanged += ViewModelOnPropertyChanged;
         }
@@ -101,14 +91,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
         /// </summary>
         private void ToggleAudioBarVisibility()
         {
-            if (ViewModel.AudioToolbarVisible)
-            {
-                AudioToolbar.TranslateTo(0, 0);
-            }
-            else
-            {
-                AudioToolbar.TranslateTo(0, -100);
-            }
+                AudioToolbar.IsVisible= ViewModel.AudioToolbarVisible;
         }
 
         /// <summary>

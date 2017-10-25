@@ -88,8 +88,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Contracts
             var mainActivity = (MainActivity) CrossCurrentActivity.Current.Activity;
 
             var builder = new NotificationCompat.Builder(mainActivity)
-                .SetOngoing(true)
-                .SetSmallIcon(Resource.Drawable.ic_headset_white);
+                .SetOngoing(true);
 
             var contentView = new RemoteViews(mainActivity.PackageName, Resource.Layout.audioNotificationView);
 
