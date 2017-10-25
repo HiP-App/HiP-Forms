@@ -59,11 +59,21 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataLayer
         public bool DeleteItem<T>(string id) where T : RealmObject, IIdentifiable
         {
             var item = GetItem<T>(id);
-            Instance.Write(() => Instance.Remove(item));
+            if (item == null)
+            {
+                return false;
+            }
+            
+            if (!Instance.IsInTransaction)
+            {
+                Instance.Write(() => Instance.Remove(item));
+            }
+            else
+            {
+                Instance.Remove(item);
+            }
 
-            if (item != null)
-                return true;
-            return false;
+            return true;
         }
 
         public BaseTransaction StartTransaction()
@@ -73,20 +83,33 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataLayer
             return new RealmTransaction(transaction);
         }
 
+        T IDataAccess.CreateObject<T>(string id, bool updateCurrent)
+        {
+            // create the instance
+            var instance = new T { Id = id };
+
+            if (updateCurrent)
+            {
+                DeleteItem<T>(id);
+            }
+            Instance.Add(instance);
+            return instance;
+        }
+
         public T CreateObject<T>() where T : RealmObject, IIdentifiable, new()
         {
             // create the instance
             var instance = new T();
 
-            // generate a unique id
             string id;
+            // generate a unique id
             do
             {
                 id = GenerateId();
             } while (GetItem<T>(id) != null);
 
-            // assign the id and return the instance
             instance.Id = id;
+
             Instance.Add(instance);
             return instance;
         }

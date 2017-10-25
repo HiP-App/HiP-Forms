@@ -1,10 +1,8 @@
 ﻿using System.Collections.ObjectModel;
-using System.Threading.Tasks;
 using System.Windows.Input;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
 using Xamarin.Forms;
@@ -21,20 +19,21 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 
             Tabs = new ObservableCollection<string> { Strings.MainPageViewModel_OverviewPage, "Erfolge", "Statistik" };
 
-            Achievements = new ObservableCollection<AchievementDto>(); // TODO Change to VM
-            Task.Run(InitAchievements);
+            Achievements = new ObservableCollection<AchievementViewModel>();
+            Device.BeginInvokeOnMainThread(InitAchievements);
 
             ChangeAppModeCommand = new Command(OnChangeAppModeTapped);
             Logout = new Command(LogoutDummy);
         }
 
-        private async Task InitAchievements()
+        private async void InitAchievements()
         {
             Achievements.Clear();
-            var achievements = await new AchievementsApiAccess(new ContentApiClient(ServerEndpoints.AchievementsApiPath)).GetAchievements();
+            await new AchievementFetcher().FetchAchievementsIntoDatabase(); // TODO Use return value
+            var achievements = AchievementManager.GetAchievements();
             foreach (var achievement in achievements)
             {
-                Achievements.Add(achievement);
+                Achievements.Add(await AchievementViewModel.CreateFrom(achievement));
             }
         }
 
@@ -64,9 +63,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             mainPageViewModel.UpdateAccountViews();
         }
 
-        private ObservableCollection<AchievementDto> achievements;
+        private ObservableCollection<AchievementViewModel> achievements;
 
-        public ObservableCollection<AchievementDto> Achievements
+        public ObservableCollection<AchievementViewModel> Achievements
         {
             get { return achievements; }
             set { SetProperty(ref achievements, value); }

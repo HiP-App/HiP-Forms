@@ -18,6 +18,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 {
     public class ExhibitsVisitedAchievement : RealmObject, IAchievement
     {
+        [PrimaryKey]
         public string Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }

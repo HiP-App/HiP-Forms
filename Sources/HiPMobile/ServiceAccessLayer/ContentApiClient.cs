@@ -81,7 +81,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer
             }
         }
 
-        private async Task<HttpWebResponse> GetHttpWebResponse(string urlPath)
+        public async Task<HttpWebResponse> GetHttpWebResponse(string urlPath)
         {
             //Get DataStoreToken
             if (token == null)

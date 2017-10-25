@@ -12,17 +12,25 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using Realms;
+using System.IO;
+using System.Threading.Tasks;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 {
-    public class RouteFinishedAchievement: RealmObject, IAchievement
+    public static class AchievementExtensions
     {
-        [PrimaryKey]
-        public string Id { get; set; }
-        public string Title { get; set; }
-        public string Description { get; set; }
-        public string ImageUrl { get; set; }
-        public int NextId { get; set; }
+        public static async Task<Stream> LoadImage(this IAchievement achievement)
+        {
+            try
+            {
+                var response = await new ContentApiClient("").GetHttpWebResponse(achievement.ImageUrl);
+                return response.GetResponseStream();
+            }
+            catch (NotFoundException)
+            {
+                return Stream.Null;
+            }
+        }
     }
 }
