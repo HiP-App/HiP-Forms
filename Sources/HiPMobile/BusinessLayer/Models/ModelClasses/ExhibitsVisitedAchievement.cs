@@ -19,11 +19,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
     public class ExhibitsVisitedAchievement : RealmObject, IAchievement
     {
         [PrimaryKey]
-        public string Id { get; set; }
-        public string Title { get; set; }
-        public string Description { get; set; }
-        public string ImageUrl { get; set; }
-        public int NextId { get; set; }
-        public int Count { get; set; }
-    }
+        public virtual string Id { get; set; }
+        public virtual string Title { get; set; }
+        public virtual string Description { get; set; }
+        public virtual string ImageUrl { get; set; }
+        public virtual string NextId { get; set; }
+        public virtual int Count { get; set; }
+    } 
 }

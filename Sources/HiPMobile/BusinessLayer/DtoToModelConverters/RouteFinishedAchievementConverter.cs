@@ -10,7 +10,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelCo
             existingModelObject.Description = dto.Description;
             existingModelObject.Id = dto.Id.ToString();
             existingModelObject.ImageUrl = dto.ImageUrl;
-            existingModelObject.NextId = dto.NextId;
+            existingModelObject.NextId = dto.NextId.ToString();
             existingModelObject.Title = dto.Title;
         }
     }

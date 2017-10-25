@@ -32,17 +32,44 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
 
         [JsonProperty("nextId")]
         public int NextId { get; private set; }
+
+        public AchievementDto()
+        {
+        }
+
+        public AchievementDto(int id, string title, string description, string imageUrl, int nextId)
+        {
+            Id = id;
+            Title = title;
+            Description = description;
+            ImageUrl = imageUrl;
+            NextId = nextId;
+        }
     }
 
     public class RouteFinishedAchievementDto : AchievementDto
     {
-        
+        public RouteFinishedAchievementDto()
+        {
+        }
+
+        public RouteFinishedAchievementDto(int id, string title, string description, string imageUrl, int nextId) : base(id, title, description, imageUrl, nextId)
+        {
+        }
     }
 
     public class ExhibitsVisitedAchievementDto : AchievementDto
     {
         [JsonProperty("count")]
         public int Count { get; private set; }
-    }
 
+        public ExhibitsVisitedAchievementDto()
+        {
+        }
+
+        public ExhibitsVisitedAchievementDto(int id, string title, string description, string imageUrl, int nextId, int count) : base(id, title, description, imageUrl, nextId)
+        {
+            Count = count;
+        }
+    }
 }
