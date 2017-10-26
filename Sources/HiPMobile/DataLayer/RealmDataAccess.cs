@@ -39,7 +39,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataLayer
             {
                 // Realm has problems when using LINQ expression here
                 var objects = Instance.All<T>();
-                foreach (T realmResult in objects)
+                foreach (var realmResult in objects)
                 {
                     if (!string.IsNullOrEmpty(realmResult.Id) && realmResult.Id.Equals(id))
                         return realmResult;
@@ -146,20 +146,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataLayer
 
         private static RealmConfiguration Configuration
         {
-            get
-            {
-                if (config == null)
-                {
-                    config = new RealmConfiguration { SchemaVersion = Convert.ToUInt64(Settings.DatabaseVersion) };
-                }
-                return config;
-            }
-            set { config = value; }
+            get => config ?? (config = new RealmConfiguration { SchemaVersion = Convert.ToUInt64(Settings.DatabaseVersion) });
+            set => config = value;
         }
 
-        public string DatabasePath
-        {
-            get { return Configuration.DatabasePath; }
-        }
+        public string DatabasePath => Configuration.DatabasePath;
     }
 }
