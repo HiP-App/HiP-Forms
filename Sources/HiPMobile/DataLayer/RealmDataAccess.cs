@@ -151,5 +151,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataLayer
         }
 
         public string DatabasePath => Configuration.DatabasePath;
+        
     }
 }
