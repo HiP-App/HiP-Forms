@@ -22,7 +22,6 @@ using PaderbornUniversity.SILab.Hip.Mobile.UI.Location;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
-using Realms;
 using Plugin.Geolocator.Abstractions;
 using Xamarin.Forms;
 
@@ -32,8 +31,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
     {
         private ExhibitSet exhibitSet;
         private GeoLocation gpsLocation;
-        private ILocationManager locationManager;
-        private INearbyExhibitManager nearbyExhibitManager;
+        private readonly ILocationManager locationManager;
+        private readonly INearbyExhibitManager nearbyExhibitManager;
         private Route detailsRoute;
 
         private bool showNavigation;
@@ -54,12 +53,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         /// <summary>
         /// Handles the button click
         /// </summary>
-        void FocusGpsClicked()
+        private void FocusGpsClicked()
         {
             MapFocusCommand.Execute(GpsLocation);
         }
 
-        void SkipExhibitClicked()
+        private void SkipExhibitClicked()
         {
             var exhibits = detailsRoute.ActiveSet.Select(waypoint => waypoint.Exhibit);
             SkipExhibitVisited(exhibits);
@@ -102,7 +101,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         public void LocationChanged(object sender, PositionEventArgs args)
         {
             GpsLocation = args.Position.ToGeoLocation();
-            nearbyExhibitManager.CheckNearExhibit(detailsRoute.ActiveSet.Select(waypoint => waypoint.Exhibit), GpsLocation, false);
+            nearbyExhibitManager.CheckNearExhibit(detailsRoute.ActiveSet.Select(waypoint => waypoint.Exhibit), GpsLocation, false, locationManager.ListeningInBackground);
         }
 
         public override void OnAppearing()
@@ -115,8 +114,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
         private void ExhibitVisited(object sender, Exhibit exhibit)
         {
-            Waypoint waypoint = DetailsRoute.Waypoints.First(wp => Equals(wp.Exhibit, exhibit));
-            bool moved = DetailsRoute.MoveToPassiveSet(waypoint);
+            var waypoint = DetailsRoute.Waypoints.First(wp => Equals(wp.Exhibit, exhibit));
+            var moved = DetailsRoute.MoveToPassiveSet(waypoint);
             if (moved)
             {
                 using (IoCManager.Resolve<IDataAccess>().StartTransaction())
@@ -140,20 +139,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             {
                 ExhibitVisited(this, e);
             }
-        }
-
-        public override void OnHidden()
-        {
-            base.OnHidden();
-
-            locationManager.RemoveLocationListener(this);
-        }
-
-        public override void OnRevealed()
-        {
-            base.OnRevealed();
-
-            locationManager.AddLocationListener(this);
         }
 
         public override void OnDisappearing()
