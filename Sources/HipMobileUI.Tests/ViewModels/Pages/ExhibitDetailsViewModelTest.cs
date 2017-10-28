@@ -82,7 +82,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Pages
             var sut = CreateSystemUnderTest();
 
             // forwards navigation
-            int navigations = 0;
+            var navigations = 0;
             while (sut.NextViewAvailable)
             {
                 sut.NextViewCommand.Execute(null);
@@ -118,11 +118,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Pages
             IoCManager.RegisterInstance(typeof(IBarsColorsChanger), Substitute.For<IBarsColorsChanger>());
             var sut = CreateSystemUnderTest();
 
-            Assert.IsInstanceOf<AppetizerPageViewModel>(sut.SelectedView);
-            sut.NextViewCommand.Execute(null);
             Assert.IsInstanceOf<ImageViewModel>(sut.SelectedView);
             sut.NextViewCommand.Execute(null);
             Assert.IsInstanceOf<TimeSliderViewModel>(sut.SelectedView);
+            sut.NextViewCommand.Execute(null);
+            Assert.IsInstanceOf<ImageViewModel>(sut.SelectedView);
         }
 
         [Test, Category("UnitTest")]
@@ -144,11 +144,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Pages
         [Test, Category("UnitTest")]
         public void Creation_AdditionalInformationWithCorrectStatusBarColors()
         {
-            var resources = Substitute.For<IBarsColorsChanger> ();
+            var resources = Substitute.For<IBarsColorsChanger>();
             IoCManager.RegisterInstance(typeof(IBarsColorsChanger), resources);
             // ReSharper disable once UnusedVariable
             // It's necessary to create this object once
-            var sut = new ExhibitDetailsViewModel(new Exhibit (), new List<Page>(), "Test", true);
+            var sut = new ExhibitDetailsViewModel(new Exhibit(), new List<Page>(), "Test", true);
 
             resources.Received().ChangeToolbarColor(Color.FromRgb(128, 128, 128), Color.FromRgb(169, 169, 169));
         }
@@ -160,7 +160,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Pages
             IoCManager.RegisterInstance(typeof(IBarsColorsChanger), resources);
             // ReSharper disable once UnusedVariable
             // It's necessary to create this object once
-            var sut = new ExhibitDetailsViewModel (new Exhibit (), new List<Page> (), "Test");
+            var sut = new ExhibitDetailsViewModel(new Exhibit(), new List<Page>(), "Test");
 
             resources.Received().ChangeToolbarColor(Color.Pink, Color.Pink);
         }
@@ -170,7 +170,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Pages
         public ExhibitDetailsViewModel CreateSystemUnderTest()
         {
             var exhibit = Substitute.For<Exhibit>();
-            var pages = new List<Page> { CreateAppetizerPage(), CreateImagePage(), CreateTimeSliderPage() };
+            var pages = new List<Page> { CreateAppetizerPage(), CreateImagePage(), CreateTimeSliderPage(), CreateImagePage() };
             exhibit.Pages.Returns(pages);
 
             exhibit.Unlocked = true;

@@ -37,8 +37,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Pages
         {
             var sut = CreateSystemUnderTest();
 
-            Assert.AreEqual(sut.Headline, "ExhibitName");
-            Assert.AreEqual(sut.Text, "Foo");
+            Assert.AreEqual(sut.Headline, "Foo");
+            Assert.AreEqual(sut.Text, "Bar");
         }
 
         #region Helper Methods
@@ -46,9 +46,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Pages
         public AppetizerPageViewModel CreateSystemUnderTest()
         {
             var appetizerPage = Substitute.For<AppetizerPage>();
-            appetizerPage.Text = "Foo";
+            appetizerPage.Text = "Bar";
             appetizerPage.Image = CreateImage();
+
             var exhibit = Substitute.For<Exhibit>();
+            exhibit.Name = "Foo";
+            exhibit.AppetizerPage.Returns(appetizerPage);
 
             return new AppetizerPageViewModel(exhibit);
         }

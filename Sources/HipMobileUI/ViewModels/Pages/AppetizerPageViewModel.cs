@@ -30,148 +30,147 @@ using Page = PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.Pa
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
 {
-	public class AppetizerPageViewModel : NavigationViewModel, IDownloadableListItemViewModel
-	{
+    public class AppetizerPageViewModel : NavigationViewModel, IDownloadableListItemViewModel
+    {
+        private Exhibit exhibit;
+        private ImageSource image;
+        private string text;
+        private string headline;
+        private readonly IList<Page> pages;
+        private bool nextVisible;
+        private bool nextViewAvailable;
+        private ICommand nextViewCommand;
+        private bool exhibitUnblocked = true;
 
-		private Exhibit exhibit;
-		private ImageSource image;
-		private string text;
-		private string headline;
-		private readonly IList<Page> pages;
-		private bool nextVisible;
-		private bool nextViewAvailable;
-		private ICommand nextViewCommand;
-		private bool exhibitUnblocked = true;
+        public AppetizerPageViewModel(string exhibitId) : this(ExhibitManager.GetExhibit(exhibitId)) { }
 
-        public AppetizerPageViewModel(string exhibitId) : this(ExhibitManager.GetExhibit(exhibitId)) {}
-
-		public AppetizerPageViewModel(Exhibit exhibit)
-		{
-			Exhibit = exhibit;
+        public AppetizerPageViewModel(Exhibit exhibit)
+        {
+            Exhibit = exhibit;
             //exhibitUnblocked = exhibit.Unlocked;      // currently de-commented for testing -> no location check required
-            
-			pages = exhibit.Pages;
-		    var appetizerPage = exhibit.AppetizerPage;
+
+            pages = exhibit.Pages;
+            var appetizerPage = exhibit.AppetizerPage;
 
             Headline = exhibit.Name;
             Text = appetizerPage.Text;
 
-			if (pages.Count > 1 && Exhibit.DetailsDataLoaded)
-				NextViewAvailable = true;
-			// workaround for realmbug
-			var imageData = appetizerPage.Image.Data;
-			Image = imageData != null ? ImageSource.FromStream(() => new MemoryStream(imageData)) : ImageSource.FromStream(() => new MemoryStream(BackupData.BackupImageData));
+            if (pages.Count > 1 && Exhibit.DetailsDataLoaded)
+                NextViewAvailable = true;
+            // workaround for realmbug
+            var imageData = appetizerPage.Image.Data;
+            Image = imageData != null ? ImageSource.FromStream(() => new MemoryStream(imageData)) : ImageSource.FromStream(() => new MemoryStream(BackupData.BackupImageData));
 
-			IsDownloadButtonVisible = !Exhibit.DetailsDataLoaded;
-			NextViewCommand = new Command(GotoNextView);
-			DownloadCommand = new Command(OpenDownloadDialog);
-		}
-        
+            IsDownloadButtonVisible = !Exhibit.DetailsDataLoaded;
+            NextViewCommand = new Command(GotoNextView);
+            DownloadCommand = new Command(OpenDownloadDialog);
+        }
+
         /// <summary>
         /// If there is more than just an appetizer page show the first details page.
         /// </summary>
         /// <returns></returns>
         private async void GotoNextView()
-		{
-			if (pages.Count > 1)
-			{
-				if (exhibitUnblocked)
-				{
-					await Navigation.PushAsync(new ExhibitDetailsViewModel(Exhibit));
+        {
+            if (pages.Count > 1)
+            {
+                if (exhibitUnblocked)
+                {
+                    await Navigation.PushAsync(new ExhibitDetailsViewModel(Exhibit));
 
-				}
-				else
-				{
-					await Navigation.DisplayAlert(Strings.ExhibitDetailsPage_Distance_Title, Strings.ExhibitDetailsPage_Distance_Text, Strings.ExhibitDetailsPage_Distance_alert_confirm);
-				}
-			}
-		}
+                }
+                else
+                {
+                    await Navigation.DisplayAlert(Strings.ExhibitDetailsPage_Distance_Title, Strings.ExhibitDetailsPage_Distance_Text, Strings.ExhibitDetailsPage_Distance_alert_confirm);
+                }
+            }
+        }
 
-		private async void OpenDownloadDialog()
-		{
-			// Open the download dialog
-			downloadPage = new ExhibitRouteDownloadPageViewModel(Exhibit, this);
-			await Navigation.PushAsync(downloadPage);
-		}
+        private async void OpenDownloadDialog()
+        {
+            // Open the download dialog
+            downloadPage = new ExhibitRouteDownloadPageViewModel(Exhibit, this);
+            await Navigation.PushAsync(downloadPage);
+        }
 
-		public void CloseDownloadPage()
-		{
-			Navigation.PopAsync();
-		}
+        public void CloseDownloadPage()
+        {
+            Navigation.PopAsync();
+        }
 
-		public void OpenDetailsView(string id)
-		{
-			//Do nothing. Never called
-		}
+        public void OpenDetailsView(string id)
+        {
+            //Do nothing. Never called
+        }
 
-		private Boolean isDownloadButtonVisible;
-		public Boolean IsDownloadButtonVisible
-		{
-			get { return isDownloadButtonVisible; }
-			set { SetProperty(ref isDownloadButtonVisible, value); }
-		}
+        private Boolean isDownloadButtonVisible;
+        public Boolean IsDownloadButtonVisible
+        {
+            get { return isDownloadButtonVisible; }
+            set { SetProperty(ref isDownloadButtonVisible, value); }
+        }
 
-		public void SetDetailsAvailable(bool available)
-		{
-			if (!available)
-				return;
+        public void SetDetailsAvailable(bool available)
+        {
+            if (!available)
+                return;
 
-			using (DbManager.StartTransaction())
-			{
-				Exhibit.DetailsDataLoaded = true;
-			}
-			IsDownloadButtonVisible = !Exhibit.DetailsDataLoaded;
+            using (DbManager.StartTransaction())
+            {
+                Exhibit.DetailsDataLoaded = true;
+            }
+            IsDownloadButtonVisible = !Exhibit.DetailsDataLoaded;
 
             NextViewAvailable = pages.Count > 1;
-		}
+        }
 
-		private ExhibitRouteDownloadPageViewModel downloadPage;
+        private ExhibitRouteDownloadPageViewModel downloadPage;
 
-		public ICommand DownloadCommand { get; set; }
+        public ICommand DownloadCommand { get; set; }
 
-	    #region Properties
+        #region Properties
 
         public Exhibit Exhibit
-		{
-			get { return exhibit; }
-			set { SetProperty(ref exhibit, value); }
-		}
+        {
+            get { return exhibit; }
+            set { SetProperty(ref exhibit, value); }
+        }
 
-		/// <summary>
-		/// The appetizer image.
-		/// </summary>
-		public ImageSource Image
-		{
-			get { return image; }
-			set { SetProperty(ref image, value); }
-		}
+        /// <summary>
+        /// The appetizer image.
+        /// </summary>
+        public ImageSource Image
+        {
+            get { return image; }
+            set { SetProperty(ref image, value); }
+        }
 
-		/// <summary>
-		/// The headline of the description.
-		/// </summary>
-		public string Headline
-		{
-			get { return headline; }
-			set { SetProperty(ref headline, value); }
-		}
+        /// <summary>
+        /// The headline of the description.
+        /// </summary>
+        public string Headline
+        {
+            get { return headline; }
+            set { SetProperty(ref headline, value); }
+        }
 
-		/// <summary>
-		/// The text of the description.
-		/// </summary>
-		public string Text
-		{
-			get { return text; }
-			set { SetProperty(ref text, value); }
-		}
-		/// <summary>
-		/// The command for switching to the next view, if available.
-		/// </summary>
-		public ICommand NextViewCommand
-		{
-			get { return nextViewCommand; }
-			set { SetProperty(ref nextViewCommand, value); }
+        /// <summary>
+        /// The text of the description.
+        /// </summary>
+        public string Text
+        {
+            get { return text; }
+            set { SetProperty(ref text, value); }
+        }
+        /// <summary>
+        /// The command for switching to the next view, if available.
+        /// </summary>
+        public ICommand NextViewCommand
+        {
+            get { return nextViewCommand; }
+            set { SetProperty(ref nextViewCommand, value); }
 
-		}
+        }
         /// <summary>
         /// Indicator if a next view is available.
         /// </summary>
