@@ -43,28 +43,32 @@
                 <StackLayout Orientation="Horizontal" Padding="8" BackgroundColor="{StaticResource LightGrayColor}">
                     <Label IsVisible="{Binding DownloadFinished}" Text="Übersicht" FontSize="20"
                            TextColor="{StaticResource AccentColor}"
-                           HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                           HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                         <Label.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding GoToOverviewCommand}" />
                         </Label.GestureRecognizers>
                     </Label>
                     <BoxView IsVisible="{Binding DownloadFinished}" WidthRequest="1"
-                             Color="{StaticResource DarkGrayColor}" />
+                             Color="{StaticResource DarkGrayColor}"/>
                     <Label IsVisible="{Binding DownloadFinished}" Text="Details" FontSize="20"
                            TextColor="{StaticResource AccentColor}"
-                           HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                           HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                         <Label.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding GoToDetailsCommand}" />
                         </Label.GestureRecognizers>
                     </Label>
 
-                    <Label IsVisible="{Binding DownloadPending}" Text="Abbrechen" FontSize="20"
+                    <ContentView HorizontalOptions="FillAndExpand"
+                                 VerticalOptions="FillAndExpand">
+                        <Label IsVisible="{Binding DownloadPending}" Text="Abbrechen" FontSize="20"
                            TextColor="{StaticResource AccentColor}"
                            HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-                        <Label.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding CancelCommand}" />
-                        </Label.GestureRecognizers>
-                    </Label>
+                        </Label>
+
+                        <ContentView.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding CancelCommand}"/>
+                        </ContentView.GestureRecognizers>
+                    </ContentView>
                 </StackLayout>
             </StackLayout>
         </Grid>
