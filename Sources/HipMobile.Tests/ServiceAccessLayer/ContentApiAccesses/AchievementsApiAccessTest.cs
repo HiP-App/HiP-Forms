@@ -52,7 +52,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.ServiceAccessLayer
                        "\"userId\":\"auth0|5968ed8cdd1b3733ca94865d\",\"timestamp\":\"2017-10-23T13:27:55.427995+00:00\"}]}";
             contentApiSubstitute.GetResponseFromUrlAsString(null).ReturnsForAnyArgs(json);
             
-            var achievementDtos = (await client.GetAchievements()).ToList();
+            var achievementDtos = (await client.GetUnlockedAchievements()).ToList();
             var routeFinished = achievementDtos[0] as RouteFinishedAchievementDto;
             var exhibitsVisited = achievementDtos[1] as ExhibitsVisitedAchievementDto;
 

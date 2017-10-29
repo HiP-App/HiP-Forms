@@ -32,9 +32,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
             this.contentApiClient = contentApiClient;
         }
 
-        public async Task<IEnumerable<AchievementDto>> GetAchievements()
+        public async Task<IEnumerable<AchievementDto>> GetUnlockedAchievements()
         {
-            const string requestPath = "/Achievements";
+            const string requestPath = "/Achievements/Unlocked";
             var json = await contentApiClient.GetResponseFromUrlAsString(requestPath);
             var achievementJsons = (JArray) JObject.Parse(json)["items"];
             var achievements = achievementJsons.Select<JToken, AchievementDto>(achievement =>

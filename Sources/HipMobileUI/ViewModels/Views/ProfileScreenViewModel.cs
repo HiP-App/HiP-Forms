@@ -29,7 +29,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         private async void InitAchievements()
         {
             Achievements.Clear();
-            await new AchievementFetcher().FetchAchievementsIntoDatabase(); // TODO Use return value
+            await new AchievementFetcher().FetchUnlockedAchievementsIntoDatabase(); // TODO Use return value
             var achievements = AchievementManager.GetAchievements();
             foreach (var achievement in achievements)
             {

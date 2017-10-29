@@ -27,6 +27,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
         /// notifications about new unlocked achievements!
         /// </summary>
         /// <returns>Achievements that have been newly added to the database</returns>
-        Task<IEnumerable<IAchievement>> FetchAchievementsIntoDatabase();
+        Task<IEnumerable<IAchievement>> FetchUnlockedAchievementsIntoDatabase();
     }
 }

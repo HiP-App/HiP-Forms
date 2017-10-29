@@ -20,6 +20,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
 {
     public interface IAchievementsApiAccess
     {
-        Task<IEnumerable<AchievementDto>> GetAchievements();
+        Task<IEnumerable<AchievementDto>> GetUnlockedAchievements();
     }
 }

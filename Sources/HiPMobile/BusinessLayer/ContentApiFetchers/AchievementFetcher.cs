@@ -30,11 +30,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
 
         private readonly IAchievementsApiAccess client = new AchievementsApiAccess(new ContentApiClient(ServerEndpoints.AchievementsApiPath));
 
-        public async Task<IEnumerable<IAchievement>> FetchAchievementsIntoDatabase()
+        public async Task<IEnumerable<IAchievement>> FetchUnlockedAchievementsIntoDatabase()
         {
             var existingAchievementIds = AchievementManager.GetAchievements().Select(it => it.Id);
 
-            var achievementDtos = await client.GetAchievements();
+            var achievementDtos = await client.GetUnlockedAchievements();
             using (DbManager.StartTransaction())
             {
                 var achievements = AchievementConverter.Convert(achievementDtos);
