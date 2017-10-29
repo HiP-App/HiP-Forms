@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Views.AchievementsScreenView"
+             xmlns:container1="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Container;assembly=HipMobileUI"
+             xmlns:helpers="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;assembly=HipMobileUI"
+             xmlns:customTriggers="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.CustomTriggers;assembly=HipMobileUI">
+    <ContentView.Content>
+
+                <StackLayout>
+                <StackLayout Orientation="Vertical" HorizontalOptions="Fill" VerticalOptions="Fill" Spacing="0">
+                    <ScrollView>
+                        <ListView SeparatorVisibility="None" HasUnevenRows="True" ItemsSource="{Binding Achievements}">
+                            <ListView.Triggers>
+                                <EventTrigger Event="ItemSelected">
+                                    <customTriggers:DeselectListViewItemAction />
+                                </EventTrigger>
+                            </ListView.Triggers>
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" Padding="0"
+                                                     Margin="3" HeightRequest="60" Spacing="0">
+										<!-- Bind image source from view model instead -->
+                                            <Image Source="ic_equalizer.png" WidthRequest="60" HeightRequest="60"
+                                                   Aspect="AspectFit" />
+                                            <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand"
+                                                         VerticalOptions="Fill" Spacing="0" Margin="3,0">
+                                                <!-- Use seperate ViewModel with DataContext for binding -->
+                                                <Label Text="Achievement title" FontSize="18"
+                                           LineBreakMode="WordWrap" FontAttributes="Bold"
+                                                       TextColor="{StaticResource PrimaryColor}" />
+                                           
+                                            </StackLayout>
+										<!-- Use optional visibility here to show what has not been visited -->
+										<Image Source="ic_directions_walk.png" BackgroundColor="White" Opacity="1"
+                          
+                                        Aspect="AspectFit" />
+                                        </StackLayout>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </ScrollView>
+                    <BoxView HeightRequest="6" HorizontalOptions="Fill" Margin="0,5"
+                     />
+                    <StackLayout HorizontalOptions="Fill" VerticalOptions="FillAndExpand"
+                                 BackgroundColor="{StaticResource PrimaryColor}" Padding="40">
+					    <Label FontSize="24" Text="Your Score" FontAttributes="Bold"
+                               HorizontalTextAlignment="Center" VerticalOptions="CenterAndExpand"
+                               TextColor="White" />
+                        <Label FontSize="24" Text="{Binding Score}" FontAttributes="Bold"
+                               HorizontalTextAlignment="Center" VerticalOptions="CenterAndExpand"
+                               TextColor="White" />
+                    </StackLayout>
+                </StackLayout>
+			</StackLayout>
+    </ContentView.Content>
+</ContentView>

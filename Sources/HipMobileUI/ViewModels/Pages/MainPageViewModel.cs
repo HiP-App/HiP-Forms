@@ -71,9 +71,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                     Icon = "ic_gavel.png"
                 },
                 profileScreenViewModel,
-                new LeaderboardViewModel
+                //new LeaderboardViewModel
+                //{
+                //    Title = Strings.MainPageViewModel_Leaderboard,
+                //    Icon = "ic_equalizer.png"
+                //},
+				new AchievementsScreenViewModel
                 {
-                    Title = Strings.MainPageViewModel_Leaderboard,
+                    Title = Strings.MainPageViewModel_Achievements,
                     Icon = "ic_equalizer.png"
                 }
             };
