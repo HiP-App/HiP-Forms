@@ -31,7 +31,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelCo
         /// Converts the given <paramref name="dto"/> to a new model object
         /// </summary>
         /// <param name="dto"></param>
-        /// with the new data.</param>
         /// <returns></returns>
         public TModelObject Convert(TDtoObject dto)
         {
@@ -48,7 +47,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelCo
         /// <param name="dto"></param>
         /// <param name="id">The ID to assign to the object.</param>
         /// <param name="updateCurrent">If true, first removes any object of the same type with the id.</param>
-        /// with the new data.</param>
         /// <returns></returns>
         public TModelObject Convert(TDtoObject dto, [NotNull] string id, bool updateCurrent = false)
         {
