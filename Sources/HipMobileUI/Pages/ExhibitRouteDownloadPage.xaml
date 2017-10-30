@@ -43,16 +43,21 @@
                 <StackLayout Orientation="Horizontal" Padding="8" BackgroundColor="{StaticResource LightGrayColor}">
                     <Label IsVisible="{Binding DownloadFinished}" Text="Übersicht" FontSize="20"
                            TextColor="{StaticResource AccentColor}"
-                           HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                           HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
+                           HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                         <Label.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding GoToOverviewCommand}" />
                         </Label.GestureRecognizers>
                     </Label>
-                    <BoxView IsVisible="{Binding DownloadFinished}" WidthRequest="1"
-                             Color="{StaticResource DarkGrayColor}" />
+
+                    <BoxView IsVisible="{Binding DownloadFinished}" WidthRequest="1" 
+                             Color="{StaticResource DarkGrayColor}"/>
+
                     <Label IsVisible="{Binding DownloadFinished}" Text="Details" FontSize="20"
                            TextColor="{StaticResource AccentColor}"
-                           HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                           HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
+                           HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+
                         <Label.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding GoToDetailsCommand}" />
                         </Label.GestureRecognizers>
@@ -60,9 +65,12 @@
 
                     <Label IsVisible="{Binding DownloadPending}" Text="Abbrechen" FontSize="20"
                            TextColor="{StaticResource AccentColor}"
-                           HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                           HorizontalTextAlignment="Center"
+                           HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+
+
                         <Label.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding CancelCommand}" />
+                            <TapGestureRecognizer Command="{Binding CancelCommand}"/>
                         </Label.GestureRecognizers>
                     </Label>
                 </StackLayout>

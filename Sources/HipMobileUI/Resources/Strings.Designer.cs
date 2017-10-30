@@ -1420,5 +1420,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
                 return ResourceManager.GetString("MainPageViewModel_Achievements", resourceCulture);
             }
         }
+        
+        public static string ExhibitNearby_VisitRequest {
+            get {
+                return ResourceManager.GetString("ExhibitNearby_VisitRequest", resourceCulture);
+            }
+        }
     }
 }
