@@ -60,14 +60,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.ServiceAccessLayer
             Assert.AreEqual(routeFinished.Id, 0);
             Assert.AreEqual(routeFinished.Title, "Finish Karls Route");
             Assert.AreEqual(routeFinished.Description, "Visit all exhibits on this route to unlock this achievement");
-            Assert.AreEqual(routeFinished.ImageUrl, "https://docker-hip.cs.upb.de/public/thumbnailservice/api/Thumbnails?Url=achievements/api/image/0/");
+            Assert.AreEqual(routeFinished.ThumbnailUrl, "https://docker-hip.cs.upb.de/public/thumbnailservice/api/Thumbnails?Url=achievements/api/image/0/");
             Assert.AreEqual(routeFinished.NextId, 0);        
             
             Assert.NotNull(exhibitsVisited);
             Assert.AreEqual(exhibitsVisited.Id, 1);
             Assert.AreEqual(exhibitsVisited.Title, "Visit 10 exhibits");
             Assert.AreEqual(exhibitsVisited.Description, "Visit 10 exhibits to unlock this achievement");
-            Assert.AreEqual(exhibitsVisited.ImageUrl, "https://docker-hip.cs.upb.de/public/thumbnailservice/api/Thumbnails?Url=achievements/api/image/1/");
+            Assert.AreEqual(exhibitsVisited.ThumbnailUrl, "https://docker-hip.cs.upb.de/public/thumbnailservice/api/Thumbnails?Url=achievements/api/image/1/");
             Assert.AreEqual(exhibitsVisited.NextId, 0);
             Assert.AreEqual(exhibitsVisited.Count, 10);
         }

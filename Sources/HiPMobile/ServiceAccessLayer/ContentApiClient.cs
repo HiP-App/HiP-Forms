@@ -177,17 +177,23 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer
             }
         }
 
+        /// <summary>
+        /// Post the specified body to finalUrl := basePath + url.
+        /// </summary>
+        /// <param name="url">URL without basePath</param>
+        /// <param name="body"></param>
+        /// <returns></returns>
         public async Task<HttpResponseMessage> PostRequestBody(string url, string body)
         {
             using (var client = new HttpClient())
             {
                 // ReSharper disable once AccessToDisposedClosure
-                var result = await TransientRetry.Do(() => client.PostAsync(url, new StringContent(body)), new TimeSpan(0, 0, 0, 3));
+                var result = await TransientRetry.Do(() => client.PostAsync(basePath + url, new StringContent(body)), new TimeSpan(0, 0, 0, 3));
                 return result;
             }
         }
 
-        public async Task<HttpResponseMessage> PostJsonRequest(string url, string jsonContent)
+        private async Task<HttpResponseMessage> PostJsonRequest(string url, string jsonContent)
         {
             try
             {

@@ -56,6 +56,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
 
         public async Task PostExhibitVisited(ExhibitsVisitedActionDto action)
         {
+            if (true)
+                return;
+            
             const string requestPath = "/Actions/ExhibitVisited";
             var json = JsonConvert.SerializeObject(action);
             await contentApiClient.PostRequestBody(requestPath, json);

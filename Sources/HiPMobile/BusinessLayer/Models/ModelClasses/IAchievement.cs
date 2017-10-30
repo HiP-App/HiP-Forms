@@ -20,7 +20,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 
         string Description { get; }
 
-        string ImageUrl { get; }
+        string ThumbnailUrl { get; }
 
         string NextId { get; }
     }
