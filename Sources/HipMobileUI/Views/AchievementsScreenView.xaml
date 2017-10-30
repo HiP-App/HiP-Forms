@@ -34,7 +34,7 @@
                                            
                                             </StackLayout>
 										<!-- Use optional visibility here to show what has not been visited -->
-										<Image Source="ic_done.png" Opacity="1"
+										<Image Source="ic_done.png" BackgroundColor="White" Opacity="1"
                                         Aspect="AspectFit" />
                                         </StackLayout>
                                     </ViewCell>
