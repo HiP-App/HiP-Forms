@@ -1409,6 +1409,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
             }
         }
         
+        public static string AchievementsScreenView_Score {
+            get {
+                return ResourceManager.GetString("AchievementsScreenView_Score", resourceCulture);
+            }
+        }
+        
         public static string MainPageViewModel_Achievements {
             get {
                 return ResourceManager.GetString("MainPageViewModel_Achievements", resourceCulture);

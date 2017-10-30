@@ -15,6 +15,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 public AchievementsScreenViewModel()
         {
 			//mainPageViewModel = mainPageVm;
+			//need to make changes so that achievements screen asks user to log in when no user logged in
 			//if (Settings.IsLoggedIn == false)
 				
 
@@ -31,29 +32,14 @@ public AchievementsScreenViewModel()
                 "Achievement 7"
             };
 
-            ChangeAppModeCommand = new Command(OnChangeAppModeTapped);
-            //Logout = new Command(LogoutDummy);
+            
         }
 
-        public ICommand Logout { get; }
-        public ICommand ChangeAppModeCommand { get; }
 
-        //public ImageSource Avatar => ImageSource.FromFile ("ic_account_circle.png");
-        public ImageSource Avatar => Settings.AdventurerMode ? ImageSource.FromFile("ic_adventurer.png") : ImageSource.FromFile("ic_professor.png");
-
+        
         public String Username => Settings.Username;
-        public String EMail => Settings.EMail;
         public int Score => Settings.Score;
-        public String AchievementCount => Settings.Achievements + " / 30";
         public String Completeness => Settings.Completeness + "%";
-
-        private void OnChangeAppModeTapped()
-        {
-            Navigation.StartNewNavigationStack(new CharacterSelectionPageViewModel(this));
-        }
-
-
-           
 
 
         private ObservableCollection<String> achievements;
@@ -71,10 +57,6 @@ public AchievementsScreenViewModel()
             get { return tabs; }
             set { SetProperty(ref tabs, value); }
         }
-
-        public string Character
-        {
-            get { return Settings.AdventurerMode ? Strings.ProfileView_Adventurer : Strings.ProfileView_Professor; }
-        }
+ 
     }
 }

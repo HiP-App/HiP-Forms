@@ -34,8 +34,7 @@
                                            
                                             </StackLayout>
 										<!-- Use optional visibility here to show what has not been visited -->
-										<Image Source="ic_directions_walk.png" BackgroundColor="White" Opacity="1"
-                          
+										<Image Source="ic_done.png" BackgroundColor="White" Opacity="1"
                                         Aspect="AspectFit" />
                                         </StackLayout>
                                     </ViewCell>
@@ -47,7 +46,7 @@
                      />
                     <StackLayout HorizontalOptions="Fill" VerticalOptions="FillAndExpand"
                                  BackgroundColor="{StaticResource PrimaryColor}" Padding="40">
-					    <Label FontSize="24" Text="Your Score" FontAttributes="Bold"
+					    <Label FontSize="24" Text="{helpers:Translate AchievementsScreenView_Score}" FontAttributes="Bold"
                                HorizontalTextAlignment="Center" VerticalOptions="CenterAndExpand"
                                TextColor="White" />
                         <Label FontSize="24" Text="{Binding Score}" FontAttributes="Bold"
