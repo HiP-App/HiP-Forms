@@ -25,7 +25,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
     public partial class ExhibitDetailsPage : IViewFor<ExhibitDetailsViewModel>
     {
         private ExhibitDetailsViewModel ViewModel => (ExhibitDetailsViewModel) BindingContext;
-        private HideableToolbarItem audioToolbarButton;
         private OrientationController savedControllerState;
         private bool isOnDisappearingContext;
 
@@ -65,15 +64,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
         {
             base.OnBindingContextChanged();
 
-            audioToolbarButton = new HideableToolbarItem
-            {
-                Icon = "ic_headset_white",
-                Text = Strings.ExhibitDetailsPage_AudioToolbar,
-                Parent = this
-            };
-            audioToolbarButton.SetBinding(MenuItem.CommandProperty, "ShowAudioToolbarCommand");
-            audioToolbarButton.SetBinding(HideableToolbarItem.IsVisibleProperty, "AudioAvailable");
-
+            UpdateAudioBarVisibility();
             ViewModel.PropertyChanged += ViewModelOnPropertyChanged;
         }
 
@@ -87,7 +78,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
         {
             if (propertyChangedEventArgs.PropertyName.Equals(nameof(ViewModel.AudioToolbarVisible)))
             {
-                ToggleAudioBarVisibility();
+                UpdateAudioBarVisibility();
             }
             if (propertyChangedEventArgs.PropertyName.Equals(nameof(ViewModel.WillDisappear)) && ViewModel.WillDisappear)
             {
@@ -99,16 +90,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
         /// Translates the audio toolbar on top of the screen or outside of it dependent on whether the toolbar
         /// should be visible or not
         /// </summary>
-        private void ToggleAudioBarVisibility()
+        private void UpdateAudioBarVisibility()
         {
-            if (ViewModel.AudioToolbarVisible)
-            {
-                AudioToolbar.TranslateTo(0, 0);
-            }
-            else
-            {
-                AudioToolbar.TranslateTo(0, -100);
-            }
+
+                AudioToolbar.IsVisible = ViewModel.AudioToolbarVisible;
+
         }
 
         /// <summary>

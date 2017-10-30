@@ -23,7 +23,7 @@
              xmlns:helpers="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;assembly=HipMobileUI">
     <ContentView.Content>
         <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Spacing="0">
-            <StackLayout Orientation="Vertical" Padding="16">
+            <StackLayout Orientation="Vertical" Padding="0">
                 <StackLayout.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding PlayPauseCommand}" />
                 </StackLayout.GestureRecognizers>
@@ -31,26 +31,25 @@
                        IsVisible="{Binding IsAudioPlaying, Converter={StaticResource InverseBooleanConverter}}"
                        Source="ic_play_arrow_black" HorizontalOptions="Center" VerticalOptions="Center" />
                 <Label IsVisible="{Binding IsAudioPlaying, Converter={StaticResource InverseBooleanConverter}}"
-                       Text="{helpers:Translate AudioToolbarView_Play}" HorizontalOptions="Center" />
+                       HorizontalOptions="Center" />
                 <Image IsVisible="{Binding IsAudioPlaying}" HeightRequest="36" WidthRequest="36"
                        Source="ic_pause_black" HorizontalOptions="Center" VerticalOptions="Center" />
-                <Label IsVisible="{Binding IsAudioPlaying}" Text="{helpers:Translate AudioToolbarView_Pause}"
-                       HorizontalOptions="Center" />
+                <Label IsVisible="{Binding IsAudioPlaying}" HorizontalOptions="Center" />
             </StackLayout>
             <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
-                         Padding="0,16">
+                         Padding="0">
                 <controls:TouchEventSlider x:Name="AudioSlider" Maximum="{Binding MaxAudioProgress}"
                                            VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand" />
-                <Label Text="{helpers:Translate AudioToolbarView_Progress}" HorizontalOptions="Center"
+                <Label HorizontalOptions="Center"
                        VerticalOptions="End" />
             </StackLayout>
-            <StackLayout Orientation="Vertical" Padding="16">
+            <StackLayout Orientation="Vertical" Padding="0">
                 <StackLayout.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding CaptionCommand}" />
                 </StackLayout.GestureRecognizers>
                 <Image Source="ic_closed_caption_black" HeightRequest="36" WidthRequest="36" HorizontalOptions="Center"
                        VerticalOptions="Center" />
-                <Label Text="{helpers:Translate AudioToolbarView_Caption}" HorizontalOptions="Center" />
+                <Label HorizontalOptions="Center" />
             </StackLayout>
         </StackLayout>
     </ContentView.Content>
