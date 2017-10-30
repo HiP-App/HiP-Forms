@@ -22,8 +22,8 @@
              xmlns:controls="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Controls;assembly=HipMobileUI"
              xmlns:helpers="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;assembly=HipMobileUI">
     <ContentView.Content>
-        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Spacing="0">
-            <StackLayout Orientation="Vertical" Padding="0">
+        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" >
+            <StackLayout Orientation="Vertical" >
                 <StackLayout.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding PlayPauseCommand}" />
                 </StackLayout.GestureRecognizers>
@@ -36,14 +36,13 @@
                        Source="ic_pause_black" HorizontalOptions="Center" VerticalOptions="Center" />
                 <Label IsVisible="{Binding IsAudioPlaying}" HorizontalOptions="Center" />
             </StackLayout>
-            <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
-                         Padding="0">
+            <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                 <controls:TouchEventSlider x:Name="AudioSlider" Maximum="{Binding MaxAudioProgress}"
                                            VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand" />
                 <Label HorizontalOptions="Center"
                        VerticalOptions="End" />
             </StackLayout>
-            <StackLayout Orientation="Vertical" Padding="0">
+            <StackLayout Orientation="Vertical" >
                 <StackLayout.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding CaptionCommand}" />
                 </StackLayout.GestureRecognizers>
