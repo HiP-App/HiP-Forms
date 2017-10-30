@@ -17,18 +17,18 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses.Contracts {
-    
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses.Contracts
+{
     /// <summary>
     /// Providing access to the exhibits rest api
     /// </summary>
-    public interface IExhibitsApiAccess {
-
+    public interface IExhibitsApiAccess
+    {
         /// <summary>
         /// Get all exhibits
         /// </summary>
         /// <returns></returns>
-        Task<ExhibitsDto> GetExhibits ();
+        Task<ExhibitsDto> GetExhibits();
 
         /// <summary>
         /// Get all exhibits after the specified timestamp
@@ -56,7 +56,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
         /// Get the ids of all existing exhibits
         /// </summary>
         /// <returns></returns>
-        Task<IList<int>> GetIds ();
-
+        Task<IList<int>> GetIds();
     }
 }

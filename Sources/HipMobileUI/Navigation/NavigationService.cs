@@ -24,21 +24,24 @@ using NavigationPage = Xamarin.Forms.NavigationPage;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation
 {
-    public class NavigationService : INavigationService, IViewCreator {
-
+    public class NavigationService : INavigationService, IViewCreator
+    {
         #region Singleton
 
         private static NavigationService instance;
 
-        public static NavigationService Instance {
-            get {
+        public static NavigationService Instance
+        {
+            get
+            {
                 if (instance == null)
                 {
-                    instance= new NavigationService ();
+                    instance = new NavigationService();
                 }
                 return instance;
             }
         }
+
         #endregion
 
         readonly Dictionary<Type, Type> viewModelViewDictionary = new Dictionary<Type, Type>();
@@ -52,69 +55,52 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation
 
                 // First check to see if we're on a tabbed page, then master detail, finally go to overall fallback
                 return tabController?.CurrentPage?.Navigation ??
-                                     (masterController?.Detail as TabbedPage)?.CurrentPage?.Navigation ?? // special consideration for a tabbed page inside master/detail
-                                     masterController?.Detail?.Navigation ??
-                                     Application.Current.MainPage.Navigation;
+                       (masterController?.Detail as TabbedPage)?.CurrentPage?.Navigation ?? // special consideration for a tabbed page inside master/detail
+                       masterController?.Detail?.Navigation ??
+                       Application.Current.MainPage.Navigation;
             }
         }
 
         private Page FormsPage => Application.Current.MainPage;
 
-        private NavigationPage NavigationPage {
-            get {
+        private NavigationPage NavigationPage
+        {
+            get
+            {
                 var mainPage = FormsPage as MainPage;
                 return mainPage?.Navigationpage;
             }
         }
 
-        public async Task PopAsync (bool animate=false)
+        public async Task PopAsync(bool animate = false)
         {
             await FormsNavigation.PopAsync(animate);
         }
 
-        public async Task PopModalAsync (bool animate=false)
+        public async Task PopModalAsync(bool animate = false)
         {
             await FormsNavigation.PopModalAsync(animate);
 
-            var currentPageBindingContext = (NavigationViewModel)NavigationPage?.CurrentPage.BindingContext;
-            currentPageBindingContext?.OnRevealed ();
+            var currentPageBindingContext = (NavigationViewModel) NavigationPage?.CurrentPage.BindingContext;
+            currentPageBindingContext?.OnRevealed();
         }
 
-        public async Task ClearModalStack (bool animate = false)
+        public async Task ClearModalStack(bool animate = false)
         {
             while (FormsNavigation.ModalStack.Count > 0)
             {
-                await FormsNavigation.PopModalAsync (animate);
+                await FormsNavigation.PopModalAsync(animate);
             }
         }
 
-        public async Task PushAsync (NavigationViewModel viewModel, bool animate=false)
+        public async Task PushAsync(NavigationViewModel viewModel, bool animate = false)
         {
             try
             {
                 var oldViewModel = (NavigationViewModel) NavigationPage?.CurrentPage.BindingContext;
-                var view = InstantiateView (viewModel);
+                var view = InstantiateView(viewModel);
 
-                await FormsNavigation.PushAsync ((Page) view, animate);
-                oldViewModel?.OnHidden ();
-            }
-            catch
-            {
-                // ignored as non critical exceptions don't stop the app from working
-            }
-        }
-
-        public async Task PushModalAsync (NavigationViewModel viewModel, bool animate=false)
-        {
-            try
-            {
-                var oldViewModel = (NavigationViewModel)NavigationPage?.CurrentPage.BindingContext;
-                var view = InstantiateView (viewModel);
-
-                // Most likely we're going to want to put this into a navigation page so we can have a title bar on it
-                var nv = new NavigationPage ((Page) view);
-
-                await FormsNavigation.PushModalAsync (nv, animate);
+                await FormsNavigation.PushAsync((Page) view, animate);
                 oldViewModel?.OnHidden();
             }
             catch
@@ -123,69 +109,87 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation
             }
         }
 
-        public void RemovePage (NavigationViewModel viewModel)
+        public async Task PushModalAsync(NavigationViewModel viewModel, bool animate = false)
         {
-            var page = FormsNavigation.NavigationStack.FirstOrDefault (x => x.BindingContext == viewModel);
-            FormsNavigation.RemovePage (page);
+            try
+            {
+                var oldViewModel = (NavigationViewModel) NavigationPage?.CurrentPage.BindingContext;
+                var view = InstantiateView(viewModel);
+
+                // Most likely we're going to want to put this into a navigation page so we can have a title bar on it
+                var nv = new NavigationPage((Page) view);
+
+                await FormsNavigation.PushModalAsync(nv, animate);
+                oldViewModel?.OnHidden();
+            }
+            catch
+            {
+                // ignored as non critical exceptions don't stop the app from working
+            }
         }
 
-        public void InsertPageBefore (NavigationViewModel viewModel, NavigationViewModel before)
+        public void RemovePage(NavigationViewModel viewModel)
+        {
+            var page = FormsNavigation.NavigationStack.FirstOrDefault(x => x.BindingContext == viewModel);
+            FormsNavigation.RemovePage(page);
+        }
+
+        public void InsertPageBefore(NavigationViewModel viewModel, NavigationViewModel before)
         {
             var pageBefore = FormsNavigation.NavigationStack.FirstOrDefault(x => x.BindingContext == before);
             var view = InstantiateView(viewModel);
 
-            FormsNavigation.InsertPageBefore ((Page)view, pageBefore);
+            FormsNavigation.InsertPageBefore((Page) view, pageBefore);
         }
 
-        public async Task PopToRootAsync (bool animate=false)
+        public async Task PopToRootAsync(bool animate = false)
         {
             await FormsNavigation.PopToRootAsync(animate);
         }
 
-        public async Task DisplayAlert (string title, string message, string buttonMessage)
+        public async Task DisplayAlert(string title, string message, string buttonMessage)
         {
-             await FormsPage.DisplayAlert (title, message, buttonMessage);
+            await FormsPage.DisplayAlert(title, message, buttonMessage);
         }
 
-        public async Task<bool> DisplayAlert (string title, string message, string confirmButtonMessage, string cancelButtonMessage)
+        public async Task<bool> DisplayAlert(string title, string message, string confirmButtonMessage, string cancelButtonMessage)
         {
-            return await FormsPage.DisplayAlert (title, message, confirmButtonMessage, cancelButtonMessage);
+            return await FormsPage.DisplayAlert(title, message, confirmButtonMessage, cancelButtonMessage);
         }
 
-        public async Task<string> DisplayActionSheet (string title, string cancel, string destruction, params string[] buttons)
+        public async Task<string> DisplayActionSheet(string title, string cancel, string destruction, params string[] buttons)
         {
-            return await FormsPage.DisplayActionSheet (title, cancel, destruction, buttons);
+            return await FormsPage.DisplayActionSheet(title, cancel, destruction, buttons);
         }
 
-        public void RegisterViewModels (Assembly asm)
+        public void RegisterViewModels(Assembly asm)
         {
             // Loop through everything in the assembley that implements IViewFor<T>
             foreach (var type in asm.DefinedTypes.Where(dt => !dt.IsAbstract &&
-                dt.ImplementedInterfaces.Any(ii => ii == typeof(IViewFor))))
+                                                              dt.ImplementedInterfaces.Any(ii => ii == typeof(IViewFor))))
             {
-
                 // Get the IViewFor<T> portion of the type that implements it
                 var viewForType = type.ImplementedInterfaces.FirstOrDefault(
                     ii => ii.IsConstructedGenericType &&
-                    ii.GetGenericTypeDefinition() == typeof(IViewFor<>));
+                          ii.GetGenericTypeDefinition() == typeof(IViewFor<>));
 
                 // Register it, using the T as the key and the view as the value
                 Register(viewForType.GenericTypeArguments[0], type.AsType());
             }
         }
 
-        public void StartNewNavigationStack (NavigationViewModel newRoot)
+        public void StartNewNavigationStack(NavigationViewModel newRoot)
         {
             // instatiate the view for the viewmodel and set it as the new root
-            Page rootView = (Page)InstantiateView (newRoot);
+            Page rootView = (Page) InstantiateView(newRoot);
             Application.Current.MainPage = rootView;
         }
 
         public void Register(Type viewModelType, Type viewType)
         {
-            if (!viewModelViewDictionary.ContainsKey (viewModelType))
+            if (!viewModelViewDictionary.ContainsKey(viewModelType))
             {
-                viewModelViewDictionary.Add (viewModelType, viewType);
+                viewModelViewDictionary.Add(viewModelType, viewType);
             }
         }
 
@@ -198,12 +202,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation
             var viewType = viewModelViewDictionary[viewModelType];
 
             // instantiate it
-            var view = (IViewFor)Activator.CreateInstance(viewType);
+            var view = (IViewFor) Activator.CreateInstance(viewType);
 
-            ((BindableObject)view).BindingContext= viewModel;
+            ((BindableObject) view).BindingContext = viewModel;
 
             return view;
         }
-
     }
 }

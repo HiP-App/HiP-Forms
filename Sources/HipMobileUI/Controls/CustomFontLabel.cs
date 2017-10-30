@@ -14,9 +14,10 @@
 
 using Xamarin.Forms;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Controls {
-    public class CustomFontLabel : Label {
-
+namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Controls
+{
+    public class CustomFontLabel : Label
+    {
         public static readonly BindableProperty FontFamilyNameProperty = BindableProperty.Create(nameof(FontFamilyName), typeof(string), typeof(CustomFontLabel));
 
         /// <summary>
@@ -24,9 +25,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Controls {
         /// </summary>
         public string FontFamilyName
         {
-            get { return (string)GetValue(FontFamilyNameProperty); }
+            get { return (string) GetValue(FontFamilyNameProperty); }
             set { SetValue(FontFamilyNameProperty, value); }
         }
-
     }
 }

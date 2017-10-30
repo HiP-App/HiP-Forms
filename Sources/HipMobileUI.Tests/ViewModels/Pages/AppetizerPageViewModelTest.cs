@@ -1,3 +1,4 @@
+
 ﻿// Copyright (C) 2017 History in Paderborn App - Universität Paderborn
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");

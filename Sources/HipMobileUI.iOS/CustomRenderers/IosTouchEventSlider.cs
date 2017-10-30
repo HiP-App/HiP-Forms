@@ -19,6 +19,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 
 [assembly: ExportRenderer(typeof(TouchEventSlider), typeof(IosTouchEventSlider))]
+
 namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.CustomRenderers
 {
     class IosTouchEventSlider : SliderRenderer
@@ -29,12 +30,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.CustomRenderers
         {
             base.OnElementChanged(e);
 
-            formsSlider = (TouchEventSlider)e.NewElement;
+            formsSlider = (TouchEventSlider) e.NewElement;
 
             if (Control != null)
             {
-                Control.TouchDown+=ControlOnTouchDown;
-                Control.TouchUpInside+=ControlOnTouchUp;
+                Control.TouchDown += ControlOnTouchDown;
+                Control.TouchUpInside += ControlOnTouchUp;
                 Control.TouchUpOutside += ControlOnTouchUp;
             }
         }
@@ -44,9 +45,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.CustomRenderers
         /// </summary>
         /// <param name="sender">The sender of the event.</param>
         /// <param name="eventArgs">The event parameters.</param>
-        private void ControlOnTouchUp (object sender, EventArgs eventArgs)
+        private void ControlOnTouchUp(object sender, EventArgs eventArgs)
         {
-            ValueEventArgs args = new ValueEventArgs (Control.Value);
+            ValueEventArgs args = new ValueEventArgs(Control.Value);
             formsSlider?.TouchUpEvent?.Invoke(sender, args);
         }
 
@@ -55,12 +56,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.CustomRenderers
         /// </summary>
         /// <param name="sender">The sender of the event.</param>
         /// <param name="eventArgs">The event parameters.</param>
-        private void ControlOnTouchDown (object sender, EventArgs eventArgs)
+        private void ControlOnTouchDown(object sender, EventArgs eventArgs)
         {
-            formsSlider?.TouchDownEvent?.Invoke (sender, null);
+            formsSlider?.TouchDownEvent?.Invoke(sender, null);
         }
 
-        protected override void Dispose (bool disposing)
+        protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
@@ -69,8 +70,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.CustomRenderers
                 Control.TouchUpOutside -= ControlOnTouchUp;
             }
 
-            base.Dispose (disposing);
+            base.Dispose(disposing);
         }
-
     }
 }

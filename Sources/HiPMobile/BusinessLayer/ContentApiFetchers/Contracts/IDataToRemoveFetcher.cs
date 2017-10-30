@@ -15,12 +15,12 @@
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers.Contracts {
-    public interface IDataToRemoveFetcher {
-
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers.Contracts
+{
+    public interface IDataToRemoveFetcher
+    {
         Task FetchDataToDelete(CancellationToken token);
 
         void CleaupRemovedData();
-
     }
 }

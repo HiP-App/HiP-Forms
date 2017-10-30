@@ -15,21 +15,21 @@
 using System;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers {
-    public class MathUtil {
-
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
+{
+    public class MathUtil
+    {
         /// <summary>
         ///     distance calculations between two lat/lon coordinates in meter
         /// </summary>
-        public static double CalculateDistance(GeoLocation one,GeoLocation two)
+        public static double CalculateDistance(GeoLocation one, GeoLocation two)
         {
             var dlon = ToRadians(two.Longitude - one.Longitude);
             var dlat = ToRadians(two.Latitude - one.Latitude);
             var a = Math.Pow(Math.Sin(dlat / 2), 2) + Math.Cos(ToRadians(one.Latitude)) * Math.Cos(ToRadians(two.Latitude)) * Math.Pow(Math.Sin(dlon / 2), 2);
             var c = 2 * Math.Atan2(Math.Sqrt(a), Math.Sqrt(1 - a));
-            return 6373 * c*1000;
+            return 6373 * c * 1000;
         }
-
 
         /// <summary>
         /// Convert degree to radians.
@@ -40,8 +40,5 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers {
         {
             return deg * (Math.PI / 180);
         }
-
-
-
     }
 }

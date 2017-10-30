@@ -14,19 +14,18 @@
 
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 
-
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models {
-    public partial class Exhibit {
-
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
+{
+    public partial class Exhibit
+    {
         /// <summary>
         /// Calculate the distance between the exhibit and a given point.
         /// </summary>
         /// <param name="location">The location to calculate the distance to.</param>
         /// <returns>The distance.</returns>
-        public double GetDistance (GeoLocation location)
+        public double GetDistance(GeoLocation location)
         {
-            return MathUtil.CalculateDistance (Location, location);
+            return MathUtil.CalculateDistance(Location, location);
         }
-
     }
 }

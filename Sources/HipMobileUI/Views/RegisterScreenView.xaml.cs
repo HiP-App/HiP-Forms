@@ -20,87 +20,83 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class RegisterScreenView : IViewFor<RegisterScreenViewModel>
-	{
-    
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class RegisterScreenView : IViewFor<RegisterScreenViewModel>
+    {
         private double thisWidth, thisHeight;
-		private DeviceOrientation deviceOrientation;
+        private DeviceOrientation deviceOrientation;
 
-		public RegisterScreenView()
-		{
-			InitializeComponent();
-			deviceOrientation = DeviceOrientation.Undefined;
-		}
+        public RegisterScreenView()
+        {
+            InitializeComponent();
+            deviceOrientation = DeviceOrientation.Undefined;
+        }
 
-		protected override void OnSizeAllocated(double width, double height)
-		{
-			base.OnSizeAllocated(width, height);
+        protected override void OnSizeAllocated(double width, double height)
+        {
+            base.OnSizeAllocated(width, height);
 
-			if (!(Math.Abs(width - thisWidth) > 0.4) && !(Math.Abs(height - thisHeight) > 0.4))
-				return;
+            if (!(Math.Abs(width - thisWidth) > 0.4) && !(Math.Abs(height - thisHeight) > 0.4))
+                return;
 
-			thisWidth = width;
-			thisHeight = height;
+            thisWidth = width;
+            thisHeight = height;
 
-			if (width <= height)
-			{
-				// Orientation changes to Portrait
-				if (deviceOrientation == DeviceOrientation.Portrait)
-					return;
+            if (width <= height)
+            {
+                // Orientation changes to Portrait
+                if (deviceOrientation == DeviceOrientation.Portrait)
+                    return;
 
-				Grid.RowDefinitions.Clear();
+                Grid.RowDefinitions.Clear();
 
-				Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.1, GridUnitType.Star) });
-				Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.1, GridUnitType.Star) });
-				Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.1, GridUnitType.Star) });
-				Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.1, GridUnitType.Star) });
-				Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.1, GridUnitType.Star) });
-				Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.1, GridUnitType.Star) });
-				Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.1, GridUnitType.Star) });
-				Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.1, GridUnitType.Star) });
-				Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.1, GridUnitType.Star) });
-				Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.1, GridUnitType.Star) });
+                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.1, GridUnitType.Star) });
+                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.1, GridUnitType.Star) });
+                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.1, GridUnitType.Star) });
+                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.1, GridUnitType.Star) });
+                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.1, GridUnitType.Star) });
+                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.1, GridUnitType.Star) });
+                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.1, GridUnitType.Star) });
+                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.1, GridUnitType.Star) });
+                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.1, GridUnitType.Star) });
+                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.1, GridUnitType.Star) });
 
-				Grid.SetRow(EmailEntry, 2);
-				Grid.SetRow(PasswordEntry, 3);
-				Grid.SetRow(RePasswordEntry, 4);
-				Grid.SetRow(ErrorMsgLabel, 5);
-				Grid.SetRow(ButtonView, 9);
+                Grid.SetRow(EmailEntry, 2);
+                Grid.SetRow(PasswordEntry, 3);
+                Grid.SetRow(RePasswordEntry, 4);
+                Grid.SetRow(ErrorMsgLabel, 5);
+                Grid.SetRow(ButtonView, 9);
 
-				deviceOrientation = DeviceOrientation.Portrait;
-			}
-			else if (width > height)
-			{
-				// Orientation changes to Landscape
-				if (deviceOrientation == DeviceOrientation.Landscape)
-					return;
+                deviceOrientation = DeviceOrientation.Portrait;
+            }
+            else if (width > height)
+            {
+                // Orientation changes to Landscape
+                if (deviceOrientation == DeviceOrientation.Landscape)
+                    return;
 
-				Grid.RowDefinitions.Clear();
+                Grid.RowDefinitions.Clear();
 
-				Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.1, GridUnitType.Star) });
-				Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.1, GridUnitType.Star) });
-				Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.1, GridUnitType.Star) });
-				Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.1, GridUnitType.Star) });
-				Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.1, GridUnitType.Star) });
-				Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.1, GridUnitType.Star) });
+                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.1, GridUnitType.Star) });
+                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.1, GridUnitType.Star) });
+                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.1, GridUnitType.Star) });
+                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.1, GridUnitType.Star) });
+                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.1, GridUnitType.Star) });
+                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.1, GridUnitType.Star) });
 
-				Grid.SetRow(EmailEntry, 1);
-				Grid.SetRow(PasswordEntry, 2);
-				Grid.SetRow(RePasswordEntry, 3);
-				Grid.SetRow(ErrorMsgLabel, 4);
-				Grid.SetRow(ButtonView, 5);
+                Grid.SetRow(EmailEntry, 1);
+                Grid.SetRow(PasswordEntry, 2);
+                Grid.SetRow(RePasswordEntry, 3);
+                Grid.SetRow(ErrorMsgLabel, 4);
+                Grid.SetRow(ButtonView, 5);
 
-				deviceOrientation = DeviceOrientation.Landscape;
-			}
-		}
+                deviceOrientation = DeviceOrientation.Landscape;
+            }
+        }
     }
-
 }

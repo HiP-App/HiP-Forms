@@ -15,13 +15,12 @@
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Contracts;
 using Xamarin.Forms;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Contracts {
-    public class IosBarsColorsChanger : IBarsColorsChanger {
-
+namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Contracts
+{
+    public class IosBarsColorsChanger : IBarsColorsChanger
+    {
         public void ChangeToolbarColor(Color statusBarColor, Color actionBarColor)
         {
-            
         }
-
     }
 }

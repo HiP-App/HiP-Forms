@@ -22,7 +22,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Map
 {
     class SetMarker
     {
-
         private readonly MapView mapView;
         private readonly ViaPointInfoWindow markerInfoWindow;
 
@@ -33,7 +32,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Map
         }
 
         public Marker AddMarker(Marker marker, string title, string description, GeoPoint geoLocation, Drawable icon,
-                                 Object markerId)
+                                Object markerId)
         {
             if (marker == null)
             {
@@ -56,6 +55,5 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Map
             mapView.Invalidate();
             return marker;
         }
-
     }
 }

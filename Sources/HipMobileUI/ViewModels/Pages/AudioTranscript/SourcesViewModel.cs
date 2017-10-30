@@ -33,7 +33,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages.AudioTranscri
         public List<Source> References
         {
             get { return references; }
-            set { SetProperty (ref references, value); }
+            set { SetProperty(ref references, value); }
         }
 
         public double FontSize

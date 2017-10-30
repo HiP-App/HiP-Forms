@@ -8,8 +8,8 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers.Contracts
 {
-    public interface IFullDownloadableDataFetcher {
-
+    public interface IFullDownloadableDataFetcher
+    {
         /// <summary>
         /// Load all data for a downloadable (exhibit/route)
         /// </summary>
@@ -18,7 +18,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
         /// <param name="token">Used for cancelling the download</param>
         /// <param name="listener">Used for reporting progress</param>
         /// <returns></returns>
-        Task FetchFullDownloadableDataIntoDatabase (string downloadableId, int idForRestApi, CancellationToken token, IProgressListener listener);
-
+        Task FetchFullDownloadableDataIntoDatabase(string downloadableId, int idForRestApi, CancellationToken token, IProgressListener listener);
     }
 }

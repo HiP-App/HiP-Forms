@@ -17,20 +17,21 @@ using System.Threading.Tasks;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.InteractiveSources;
 using Xamarin.Forms;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages.AudioTranscript {
-    public class SwitchTabAndScrollToSourceAction : IInteractiveSourceAction {
-
+namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages.AudioTranscript
+{
+    public class SwitchTabAndScrollToSourceAction : IInteractiveSourceAction
+    {
         public TabbedPage TabbedPage { get; set; }
         public Source Source { get; set; }
 
-        public SwitchTabAndScrollToSourceAction (TabbedPage tabbedPage)
+        public SwitchTabAndScrollToSourceAction(TabbedPage tabbedPage)
         {
             TabbedPage = tabbedPage;
         }
 
-        private async void OnCurrentPageChanged (object sender, EventArgs e)
+        private async void OnCurrentPageChanged(object sender, EventArgs e)
         {
-            await Task.Delay (100);
+            await Task.Delay(100);
 
             var sourcesPage = TabbedPage.Children[1] as SourcesPage;
             if (sourcesPage != null)
@@ -40,13 +41,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages.AudioTranscript {
                 if (sourcesListView != null)
                 {
                     // Scroll automatically to the tapped reference
-                    ScrollToWithDelay (sourcesListView, Source, ScrollToPosition.Start);
+                    ScrollToWithDelay(sourcesListView, Source, ScrollToPosition.Start);
                 }
             }
             TabbedPage.CurrentPageChanged -= OnCurrentPageChanged;
         }
 
-        public void Display (Source src)
+        public void Display(Source src)
         {
             var sourcesPage = TabbedPage.Children[1] as SourcesPage;
             if (sourcesPage != null)

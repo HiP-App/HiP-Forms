@@ -59,6 +59,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Views
         private const string Description = "Description Test";
         private const string Text = "This is a test text.";
         private const string Font = "Test Font";
+
         public TextViewModel CreateSystemUnderTest(Action action)
         {
             var textPage = Substitute.For<TextPage>();

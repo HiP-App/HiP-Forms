@@ -20,6 +20,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 
 [assembly: ExportRenderer(typeof(HtmlLink), typeof(IosHtmlLinkRenderer))]
+
 namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.CustomRenderers
 {
     public class IosHtmlLinkRenderer : ViewRenderer
@@ -39,7 +40,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.CustomRenderers
                 if (htmlData != null)
                 {
                     NSError error = new NSError();
-                    attributedString = new NSAttributedString(htmlData, new NSAttributedStringDocumentAttributes { DocumentType = NSDocumentType.HTML, StringEncoding = NSStringEncoding.UTF8 }, ref error);
+                    attributedString =
+                        new NSAttributedString(htmlData, new NSAttributedStringDocumentAttributes { DocumentType = NSDocumentType.HTML, StringEncoding = NSStringEncoding.UTF8 },
+                                               ref error);
                 }
 
                 UITextView licenseTextView = new UITextView

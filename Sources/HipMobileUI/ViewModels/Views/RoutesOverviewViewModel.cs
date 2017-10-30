@@ -27,6 +27,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
     public class RoutesOverviewViewModel : NavigationViewModel, IDbChangedObserver
     {
         private ObservableCollection<RoutesOverviewListItemViewModel> routes;
+
         public ObservableCollection<RoutesOverviewListItemViewModel> Routes
         {
             get { return routes; }
@@ -45,7 +46,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             }
 
             ItemSelectedCommand = new Command(x => NavigateToRoute(x as RoutesOverviewListItemViewModel));
-            
+
             var dbChangedHandler = IoCManager.Resolve<IDbChangedHandler>();
             dbChangedHandler.AddObserver(this);
         }
@@ -66,7 +67,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             if (!route.DetailsDataLoaded || route.Waypoints.Count == 0)
                 return;
 
-            Navigation.PushAsync (new RouteDetailsPageViewModel (route));
+            Navigation.PushAsync(new RouteDetailsPageViewModel(route));
         }
 
         public ICommand ItemSelectedCommand { get; set; }
@@ -74,7 +75,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         /// <summary>
         /// Refreshs the routes depending on the changed database
         /// </summary>
-        public void DbChanged ()
+        public void DbChanged()
         {
             Routes = new ObservableCollection<RoutesOverviewListItemViewModel>();
             foreach (var route in RouteManager.GetRoutes())

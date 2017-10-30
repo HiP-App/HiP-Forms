@@ -1,4 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
+
 <resources>
   <style name="MainTheme" parent="MainTheme.Base">
     <!--If you are using MasterDetailPage you will want to set these, else you can leave them out-->

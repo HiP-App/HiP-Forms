@@ -41,6 +41,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         public ICommand Decline { get; }
 
         public string ExhibitName { get; }
+
         void Accept()
         {
             MessagingCenter.Send<NavigationViewModel, bool>(this, "ReturnValue", true);
@@ -53,6 +54,5 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         {
             Navigation.PopModalAsync();
         }
-
     }
 }

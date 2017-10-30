@@ -18,14 +18,14 @@ using Foundation;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
 using UIKit;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Contracts {
-    public class IosImageDimensions : IImageDimension{
-
+namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Contracts
+{
+    public class IosImageDimensions : IImageDimension
+    {
         public int[] GetDimensions(Image img)
         {
             UIImage image = UIImage.LoadFromData(NSData.FromArray(img.Data));
             return new[] { Convert.ToInt32(image.Size.Width), Convert.ToInt32(image.Size.Height) };
         }
-
     }
 }

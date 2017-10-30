@@ -19,12 +19,13 @@ using PaderbornUniversity.SILab.Hip.Mobile.UI.AudioPlayer;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages.AudioTranscript;
 using Xamarin.Forms;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views {
+namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
+{
     /// <summary>
     /// ViewModel for the audio toolbar which controls playing the audio
     /// </summary>
-    public class AudioToolbarViewModel : NavigationViewModel {
-
+    public class AudioToolbarViewModel : NavigationViewModel
+    {
         private double maxAudioProgress;
         private ICommand playCommand;
         private ICommand pauseCommand;
@@ -43,14 +44,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views {
         /// </summary>
         /// <param name="automaticallyStartNewAudio"></param>
         /// <param name="exhibitTitle"></param>
-        public AudioToolbarViewModel (bool automaticallyStartNewAudio, string exhibitTitle) 
+        public AudioToolbarViewModel(bool automaticallyStartNewAudio, string exhibitTitle)
         {
             ExhibitTitle = exhibitTitle;
             PauseCommand = new Command(PauseAudio);
             PlayCommand = new Command(PlayAudio);
             CaptionCommand = new Command(ShowCaption);
 
-            AudioPlayer = IoCManager.Resolve<IAudioPlayer> ();
+            AudioPlayer = IoCManager.Resolve<IAudioPlayer>();
             AudioPlayer.AudioCompleted += AudioPlayerOnAudioCompleted;
             AudioPlayer.IsPlayingChanged += AudioPlayerOnIsPlayingChanged;
 
@@ -66,36 +67,36 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views {
         {
         }
 
-        private void AudioPlayerOnIsPlayingChanged (bool value)
+        private void AudioPlayerOnIsPlayingChanged(bool value)
         {
             IsAudioPlaying = value;
         }
 
-        private void AudioPlayerOnAudioCompleted ()
+        private void AudioPlayerOnAudioCompleted()
         {
             IsAudioPlaying = false;
         }
 
         private void PlayAudio()
         {
-            AudioPlayer.Play ();
+            AudioPlayer.Play();
         }
 
         private void PauseAudio()
         {
-            AudioPlayer.Pause ();
+            AudioPlayer.Pause();
         }
 
         private void ShowCaption()
         {
-            Navigation.PushAsync (new AudioTranscriptViewModel(AudioPlayer.CurrentAudio.Caption, ExhibitTitle));
+            Navigation.PushAsync(new AudioTranscriptViewModel(AudioPlayer.CurrentAudio.Caption, ExhibitTitle));
         }
 
         /// <summary>
         /// Sets a new audio file ready for play
         /// </summary>
         /// <param name="newAudio"></param>
-        public void SetNewAudioFile (Audio newAudio)
+        public void SetNewAudioFile(Audio newAudio)
         {
             currentAudio = newAudio;
             AudioPlayer.CurrentAudio = newAudio;
@@ -106,18 +107,18 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views {
             if (automaticallyStartNewAudio)
             {
                 //Start audio
-                AudioPlayer.Play ();
+                AudioPlayer.Play();
             }
         }
 
         /// <summary>
         /// Deregister events and stop audio.
         /// </summary>
-        public override void OnDisappearing ()
+        public override void OnDisappearing()
         {
-            base.OnDisappearing ();
+            base.OnDisappearing();
 
-            AudioPlayer.Stop ();
+            AudioPlayer.Stop();
             AudioPlayer.AudioCompleted -= AudioPlayerOnAudioCompleted;
             AudioPlayer.IsPlayingChanged -= AudioPlayerOnIsPlayingChanged;
         }
@@ -160,10 +161,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views {
         /// <summary>
         /// Unified command for audio play/pause
         /// </summary>
-        public ICommand PlayPauseCommand {
+        public ICommand PlayPauseCommand
+        {
             get { return IsAudioPlaying ? PauseCommand : PlayCommand; }
-            set { SetProperty (ref playPauseCommand, value); }
-        } 
+            set { SetProperty(ref playPauseCommand, value); }
+        }
 
         /// <summary>
         /// Command for playing audio
@@ -198,7 +200,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views {
         public bool IsAudioPlaying
         {
             get { return isAudioPlaying; }
-            set {
+            set
+            {
                 SetProperty(ref isAudioPlaying, value);
                 PlayPauseCommand = value ? PauseCommand : PlayCommand;
             }

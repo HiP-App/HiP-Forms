@@ -19,12 +19,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 {
     public class UserOnboardingItemViewModel : NavigationViewModel
     {
-
-        public UserOnboardingItemViewModel (string headline, string text, string portraitImage, Color background, string landscapeImage=null)
+        public UserOnboardingItemViewModel(string headline, string text, string portraitImage, Color background, string landscapeImage = null)
         {
             Headline = headline;
             Text = text;
-            Image = ImageSource.FromFile (portraitImage);
+            Image = ImageSource.FromFile(portraitImage);
             BackgroundColor = background;
             portraitImagePath = portraitImage;
             landscapeImagePath = landscapeImage;
@@ -41,51 +40,54 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         /// <summary>
         /// The headline of the view.
         /// </summary>
-        public string Headline {
+        public string Headline
+        {
             get { return headline; }
-            set { SetProperty (ref headline, value); }
+            set { SetProperty(ref headline, value); }
         }
 
         /// <summary>
         /// The bottom text of the view.
         /// </summary>
-        public string Text {
+        public string Text
+        {
             get { return text; }
-            set { SetProperty (ref text, value); }
+            set { SetProperty(ref text, value); }
         }
 
         /// <summary>
         /// The image of the view.
         /// </summary>
-        public ImageSource Image {
+        public ImageSource Image
+        {
             get { return image; }
-            set { SetProperty (ref image, value); }
+            set { SetProperty(ref image, value); }
         }
 
         /// <summary>
         /// THe background color of the view.
         /// </summary>
-        public Color BackgroundColor {
+        public Color BackgroundColor
+        {
             get { return backgroundColor; }
-            set { SetProperty (ref backgroundColor, value); }
+            set { SetProperty(ref backgroundColor, value); }
         }
 
         /// <summary>
         /// Called when the orientation is changed so this viewmodel can react.
         /// </summary>
         /// <param name="orientation">The new orientation.</param>
-        public void OrientationChanged (DeviceOrientation orientation)
+        public void OrientationChanged(DeviceOrientation orientation)
         {
             // adjust the image to the orientation
             if (orientation == DeviceOrientation.Portrait)
             {
-                Image = ImageSource.FromFile (portraitImagePath);
+                Image = ImageSource.FromFile(portraitImagePath);
             }
-            else if(orientation == DeviceOrientation.Landscape && !string.IsNullOrEmpty (landscapeImagePath))
+            else if (orientation == DeviceOrientation.Landscape && !string.IsNullOrEmpty(landscapeImagePath))
             {
-                Image = ImageSource.FromFile (landscapeImagePath);
+                Image = ImageSource.FromFile(landscapeImagePath);
             }
         }
-
     }
 }

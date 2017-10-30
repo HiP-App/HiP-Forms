@@ -23,7 +23,9 @@ using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 
 [assembly: ExportRenderer(typeof(ReferenceLink), typeof(IosReferenceLinkRenderer))]
-namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.CustomRenderers {
+
+namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.CustomRenderers
+{
     public class IosReferenceLinkRenderer : ViewRenderer
     {
         private ReferenceLink referenceLink;
@@ -35,8 +37,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.CustomRenderers {
 
             if (elementChangedEventArgs.NewElement != null)
             {
-                referenceLink = (ReferenceLink)elementChangedEventArgs.NewElement;
-                
+                referenceLink = (ReferenceLink) elementChangedEventArgs.NewElement;
 
                 if (referenceLink == null)
                 {
@@ -44,16 +45,16 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.CustomRenderers {
                 }
                 referenceLink.PropertyChanged += OnPropertyChanged;
 
-                
                 NSAttributedString attributedString = null;
                 var htmlData = NSData.FromString(referenceLink.HtmlText);
 
                 if (htmlData != null)
                 {
                     NSError error = new NSError();
-                    attributedString = new NSAttributedString(htmlData, new NSAttributedStringDocumentAttributes { DocumentType = NSDocumentType.HTML, StringEncoding = NSStringEncoding.UTF8 }, ref error);
+                    attributedString =
+                        new NSAttributedString(htmlData, new NSAttributedStringDocumentAttributes { DocumentType = NSDocumentType.HTML, StringEncoding = NSStringEncoding.UTF8 },
+                                               ref error);
                 }
-
 
                 var action = referenceLink.Action;
 
@@ -62,24 +63,19 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.CustomRenderers {
                 textView.ApplySubtitlesLinks(action(), referenceLink.Sources, attributedString);
                 textView.Editable = false;
                 textView.ScrollEnabled = false;
-                textView.Font = UIFont.SystemFontOfSize((nfloat)referenceLink.FontSize);
+                textView.Font = UIFont.SystemFontOfSize((nfloat) referenceLink.FontSize);
 
                 // replace old Label with new TextView
                 SetNativeControl(textView);
-                
             }
-
-            
         }
 
         private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
         {
-            if(args.PropertyName == "FontSize")
+            if (args.PropertyName == "FontSize")
             {
-                textView.Font = UIFont.SystemFontOfSize((nfloat)referenceLink.FontSize);
+                textView.Font = UIFont.SystemFontOfSize((nfloat) referenceLink.FontSize);
             }
         }
-
-        
     }
 }

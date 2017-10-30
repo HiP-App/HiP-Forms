@@ -11,6 +11,7 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+
 using System;
 using NSubstitute;
 using NUnit.Framework;
@@ -27,10 +28,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.BusinessLayer.Inte
             var sut = CreateSystemUnderTest();
             var textToParse = "This is a test";
 
-            var parsingResult = sut.Parse (textToParse);
+            var parsingResult = sut.Parse(textToParse);
 
-            Assert.AreEqual (textToParse, parsingResult.TextWithSubstitutes);
-            Assert.AreEqual (0, parsingResult.Sources.Count);
+            Assert.AreEqual(textToParse, parsingResult.TextWithSubstitutes);
+            Assert.AreEqual(0, parsingResult.Sources.Count);
         }
 
         [Test, Category("UnitTest")]
@@ -41,10 +42,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.BusinessLayer.Inte
 
             var parsingResult = sut.Parse(textToParse);
 
-            Assert.AreEqual(textToParse.Replace ("<fn>Source1</fn>", SubstituteText), parsingResult.TextWithSubstitutes);
+            Assert.AreEqual(textToParse.Replace("<fn>Source1</fn>", SubstituteText), parsingResult.TextWithSubstitutes);
             Assert.AreEqual(1, parsingResult.Sources.Count);
 
-            AssertSource (parsingResult.Sources [0], 0, "Source1", 4);
+            AssertSource(parsingResult.Sources[0], 0, "Source1", 4);
         }
 
         [Test, Category("UnitTest")]
@@ -55,8 +56,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.BusinessLayer.Inte
 
             var parsingResult = sut.Parse(textToParse);
 
-            Assert.AreEqual (textToParse.Replace ("<fn>Source1</fn>", SubstituteText)
-                                        .Replace ("<fn>Source2</fn>", SubstituteText), parsingResult.TextWithSubstitutes);
+            Assert.AreEqual(textToParse.Replace("<fn>Source1</fn>", SubstituteText)
+                                       .Replace("<fn>Source2</fn>", SubstituteText), parsingResult.TextWithSubstitutes);
             Assert.AreEqual(2, parsingResult.Sources.Count);
 
             AssertSource(parsingResult.Sources[0], 0, "Source1", 4);
@@ -64,24 +65,25 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.BusinessLayer.Inte
         }
 
         [Test, Category("UnitTest")]
-        public void Parse_Null ()
+        public void Parse_Null()
         {
-            var sut = CreateSystemUnderTest ();
+            var sut = CreateSystemUnderTest();
 
-            Assert.Catch<ArgumentNullException> (() => sut.Parse (null));
+            Assert.Catch<ArgumentNullException>(() => sut.Parse(null));
         }
 
         #region HelperMethods
 
-        private void AssertSource (Source source, int expectedNumberInSubtitles, string expectedText, int expectedStartIndex)
+        private void AssertSource(Source source, int expectedNumberInSubtitles, string expectedText, int expectedStartIndex)
         {
-            Assert.AreEqual (SubstituteText, source.SubstituteText);
-            Assert.AreEqual (expectedNumberInSubtitles, source.NumberInSubtitles);
-            Assert.AreEqual (expectedText, source.Text);
-            Assert.AreEqual (expectedStartIndex, source.StartIndex);
+            Assert.AreEqual(SubstituteText, source.SubstituteText);
+            Assert.AreEqual(expectedNumberInSubtitles, source.NumberInSubtitles);
+            Assert.AreEqual(expectedText, source.Text);
+            Assert.AreEqual(expectedStartIndex, source.StartIndex);
         }
 
         private const string SubstituteText = "[Test]";
+
         private InteractiveSourcesParser CreateSystemUnderTest()
         {
             var substitute = Substitute.For<IInteractiveSourceSubstitute>();
@@ -91,6 +93,5 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.BusinessLayer.Inte
         }
 
         #endregion
-
     }
 }

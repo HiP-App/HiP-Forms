@@ -25,12 +25,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views.ExhibitDetail
 {
     public class TimeSliderViewModel : ExhibitSubviewHiddeableNavigationViewModel
     {
-
-        public TimeSliderViewModel (TimeSliderPage timesliderPage, Action toggleButtonVisibility) : base(toggleButtonVisibility)
+        public TimeSliderViewModel(TimeSliderPage timesliderPage, Action toggleButtonVisibility) : base(toggleButtonVisibility)
         {
-            Images = new ObservableCollection<ImageSource> ();
-            Years = new ObservableCollection<string> ();
-            texts = new List<string> ();
+            Images = new ObservableCollection<ImageSource>();
+            Years = new ObservableCollection<string>();
+            texts = new List<string>();
             Headline = timesliderPage.Title;
             Description = timesliderPage.Text;
 
@@ -48,17 +47,18 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views.ExhibitDetail
                 }
             }
 
-            if(texts.Count>0)DisplayedText = texts [0];
-            PropertyChanged+=OnPropertyChanged;
+            if (texts.Count > 0)
+                DisplayedText = texts[0];
+            PropertyChanged += OnPropertyChanged;
 
             BottomSheetVisible = !(string.IsNullOrEmpty(Headline) && string.IsNullOrEmpty(Description));
         }
 
-        private void OnPropertyChanged (object sender, PropertyChangedEventArgs propertyChangedEventArgs)
+        private void OnPropertyChanged(object sender, PropertyChangedEventArgs propertyChangedEventArgs)
         {
-            if (propertyChangedEventArgs.PropertyName.Equals (nameof (SelectedValue)))
+            if (propertyChangedEventArgs.PropertyName.Equals(nameof(SelectedValue)))
             {
-                DisplayedText = texts [Convert.ToInt32 (Math.Round(SelectedValue))];
+                DisplayedText = texts[Convert.ToInt32(Math.Round(SelectedValue))];
             }
         }
 
@@ -72,34 +72,40 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views.ExhibitDetail
         private string description;
         private bool bottomSheetVisible;
 
-        public ObservableCollection<ImageSource> Images {
+        public ObservableCollection<ImageSource> Images
+        {
             get { return images; }
-            set { SetProperty (ref images, value); }
+            set { SetProperty(ref images, value); }
         }
 
-        public ObservableCollection<string> Years {
+        public ObservableCollection<string> Years
+        {
             get { return years; }
-            set { SetProperty (ref years, value); }
+            set { SetProperty(ref years, value); }
         }
 
-        public double SelectedValue {
+        public double SelectedValue
+        {
             get { return selectedValue; }
-            set { SetProperty (ref selectedValue, value); }
+            set { SetProperty(ref selectedValue, value); }
         }
 
-        public string DisplayedText {
+        public string DisplayedText
+        {
             get { return displayedText; }
-            set { SetProperty (ref displayedText, value); }
+            set { SetProperty(ref displayedText, value); }
         }
 
-        public string Headline {
+        public string Headline
+        {
             get { return headline; }
-            set { SetProperty (ref headline, value); }
+            set { SetProperty(ref headline, value); }
         }
 
-        public string Description {
+        public string Description
+        {
             get { return description; }
-            set { SetProperty (ref description, value); }
+            set { SetProperty(ref description, value); }
         }
 
         /// <summary>

@@ -20,37 +20,35 @@ using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
 using Object = Java.Lang.Object;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Map {
-    class ViaPointInfoWindow : MarkerInfoWindow {
-
+namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Map
+{
+    class ViaPointInfoWindow : MarkerInfoWindow
+    {
         private string markerId;
 
-        
-
-        public ViaPointInfoWindow (int layoutResId, MapView mapView) : base (layoutResId, mapView)
+        public ViaPointInfoWindow(int layoutResId, MapView mapView) : base(layoutResId, mapView)
         {
-            Button infoButton = View.FindViewById<Button> (Resource.Id.bubble_info);
+            Button infoButton = View.FindViewById<Button>(Resource.Id.bubble_info);
 
-            infoButton.Click += (sender, e) => {
+            infoButton.Click += (sender, e) =>
+            {
                 if (markerId != null)
                 {
-                    IoCManager.Resolve<INavigationService> ().PushAsync (new ExhibitDetailsViewModel (markerId));
+                    IoCManager.Resolve<INavigationService>().PushAsync(new ExhibitDetailsViewModel(markerId));
                 }
             };
         }
 
-        public override void OnOpen (Object item)
+        public override void OnOpen(Object item)
         {
             Marker marker = (Marker) item;
             markerId
                 = (
-                string
+                    string
                 )
                 marker.RelatedObject;
 
-            base.
-                OnOpen (item);
+            base.OnOpen(item);
         }
-
     }
 }

@@ -18,27 +18,27 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses {
-    public class FileApiAccess : IFileApiAccess {
-
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses
+{
+    public class FileApiAccess : IFileApiAccess
+    {
         private readonly IContentApiClient contentApiClient;
 
-        public FileApiAccess (IContentApiClient contentApiClient)
+        public FileApiAccess(IContentApiClient contentApiClient)
         {
             this.contentApiClient = contentApiClient;
         }
 
-        public async Task<FileDto> GetFile (int mediaId)
+        public async Task<FileDto> GetFile(int mediaId)
         {
             string requestPath = $@"/Media/{mediaId}/File";
             var response = await contentApiClient.GetResponseFromUrlAsBytes(requestPath);
 
             return new FileDto
-                {
-                    Data = response,
-                    MediaId = mediaId
-                };
+            {
+                Data = response,
+                MediaId = mediaId
+            };
         }
-
     }
 }

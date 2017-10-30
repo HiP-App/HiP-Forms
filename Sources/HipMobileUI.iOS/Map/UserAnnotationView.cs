@@ -15,14 +15,14 @@
 using MapKit;
 using UIKit;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Map {
-    public sealed class UserAnnotationView : MKAnnotationView {
-
-        public  UserAnnotationView(IMKAnnotation annotation, string reuseId) : base(annotation, reuseId)
+namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Map
+{
+    public sealed class UserAnnotationView : MKAnnotationView
+    {
+        public UserAnnotationView(IMKAnnotation annotation, string reuseId) : base(annotation, reuseId)
         {
             Image = UIImage.FromBundle("CurrentLocation");
             CanShowCallout = false;
         }
-
     }
 }

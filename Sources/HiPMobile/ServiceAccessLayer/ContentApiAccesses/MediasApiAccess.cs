@@ -21,34 +21,35 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses {
-    public class MediasApiAccess : IMediasApiAccess {
-
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses
+{
+    public class MediasApiAccess : IMediasApiAccess
+    {
         private readonly IContentApiClient contentApiClient;
 
-        public MediasApiAccess (IContentApiClient contentApiClient)
+        public MediasApiAccess(IContentApiClient contentApiClient)
         {
             this.contentApiClient = contentApiClient;
         }
 
-        public async Task<MediasDto> GetMedias ()
+        public async Task<MediasDto> GetMedias()
         {
             return await GetMediasDto(null, null);
         }
 
-        public async Task<MediasDto> GetMedias (DateTimeOffset timestamp)
+        public async Task<MediasDto> GetMedias(DateTimeOffset timestamp)
         {
             return await GetMediasDto(timestamp, null);
         }
 
-        public async Task<MediasDto> GetMedias (IList<int> includeOnly)
+        public async Task<MediasDto> GetMedias(IList<int> includeOnly)
         {
             return await GetMediasDto(null, includeOnly);
         }
 
-        public async Task<MediasDto> GetMedias (DateTimeOffset timestamp, IList<int> includeOnly)
+        public async Task<MediasDto> GetMedias(DateTimeOffset timestamp, IList<int> includeOnly)
         {
-            return await GetMediasDto (timestamp, includeOnly);
+            return await GetMediasDto(timestamp, includeOnly);
         }
 
         private async Task<MediasDto> GetMediasDto(DateTimeOffset? timestamp, IList<int> includeOnly)
@@ -72,6 +73,5 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
 
             return JsonConvert.DeserializeObject<IList<int>>(json);
         }
-
     }
 }

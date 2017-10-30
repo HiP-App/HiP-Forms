@@ -17,21 +17,25 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
 using Realms;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models {
-    public partial class Image {
-
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
+{
+    public partial class Image
+    {
         private readonly IImageDimension imgDimension = IoCManager.Resolve<IImageDimension>();
 
         private int ImageWidth { get; set; }
+
         [Ignored]
-        public int Width {
-            get {
+        public int Width
+        {
+            get
+            {
                 if (ImageWidth != 0)
                 {
                     return ImageWidth;
                 }
-                var w = imgDimension.GetDimensions (this) [0];
-                using (DbManager.StartTransaction ())
+                var w = imgDimension.GetDimensions(this)[0];
+                using (DbManager.StartTransaction())
                 {
                     ImageWidth = w;
                 }
@@ -40,6 +44,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models {
         }
 
         private int ImageHeight { get; set; }
+
         [Ignored]
         public int Height
         {
@@ -50,13 +55,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models {
                     return ImageHeight;
                 }
                 var h = imgDimension.GetDimensions(this)[1];
-                using (DbManager.StartTransaction ())
+                using (DbManager.StartTransaction())
                 {
                     ImageHeight = h;
                 }
                 return h;
             }
         }
-
     }
 }

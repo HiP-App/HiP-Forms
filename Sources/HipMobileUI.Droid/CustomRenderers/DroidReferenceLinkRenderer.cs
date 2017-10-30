@@ -24,15 +24,16 @@ using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
 [assembly: ExportRenderer(typeof(ReferenceLink), typeof(DroidReferenceLinkRenderer))]
+
 namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.CustomRenderers
 {
     public class DroidReferenceLinkRenderer : LabelRenderer
     {
         private ReferenceLink referenceLink;
 
-        protected override void OnElementPropertyChanged (object sender, PropertyChangedEventArgs e)
+        protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            base.OnElementPropertyChanged (sender, e);
+            base.OnElementPropertyChanged(sender, e);
 
             if (referenceLink != null)
             {
@@ -46,16 +47,16 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.CustomRenderers
 
             if (elementChangedEventArgs.NewElement != null)
             {
-                referenceLink = (ReferenceLink)elementChangedEventArgs.NewElement;
+                referenceLink = (ReferenceLink) elementChangedEventArgs.NewElement;
                 if (referenceLink == null)
                 {
                     return;
                 }
-                UpdateUi ();
+                UpdateUi();
             }
         }
 
-        private void UpdateUi ()
+        private void UpdateUi()
         {
             var srcList = referenceLink.Sources;
             var action = referenceLink.Action;

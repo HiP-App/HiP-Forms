@@ -14,26 +14,26 @@
 
 using System;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer {
-    public abstract class BaseTransaction : IDisposable{
-
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
+{
+    public abstract class BaseTransaction : IDisposable
+    {
         /// <summary>
         /// Commits changes done in the context of this transaction.
         /// </summary>
-        public abstract void Commit ();
+        public abstract void Commit();
 
         /// <summary>
         /// Reverts changes done to database objects made in the context of this transaction.
         /// </summary>
-        public abstract void Rollback ();
+        public abstract void Rollback();
 
         /// <summary>
         /// Commits changes made when being disposed. Subclasses need to take care of disposing their own resources.
         /// </summary>
-        public virtual void Dispose ()
+        public virtual void Dispose()
         {
-            Commit ();
+            Commit();
         }
-
     }
 }

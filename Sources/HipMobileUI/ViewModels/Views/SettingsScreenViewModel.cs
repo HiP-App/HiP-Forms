@@ -22,42 +22,42 @@ using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using Xamarin.Forms;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views {
+namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
+{
     /// <summary>
     /// ViewModel for the SettingsScreenViewModel.
     /// </summary>
     public class SettingsScreenViewModel : NavigationViewModel
-        {
+    {
         private string size;
 
-        public SettingsScreenViewModel ()
+        public SettingsScreenViewModel()
         {
             RemoveAllDownloads = new Command(RemoveAllDownloadsClicked);
-            SelectCharacterCommand = new Command (OnSelectCharacterTapped);
-            size =  IoCManager.Resolve<IStorageSizeProvider> ().GetDatabaseSize () + " MB";
+            SelectCharacterCommand = new Command(OnSelectCharacterTapped);
+            size = IoCManager.Resolve<IStorageSizeProvider>().GetDatabaseSize() + " MB";
         }
 
         public ICommand RemoveAllDownloads { get; }
         public ICommand SelectCharacterCommand { get; }
 
-        private void OnSelectCharacterTapped ()
+        private void OnSelectCharacterTapped()
         {
-            Navigation.StartNewNavigationStack (new CharacterSelectionPageViewModel (this));
+            Navigation.StartNewNavigationStack(new CharacterSelectionPageViewModel(this));
         }
 
         private async void RemoveAllDownloadsClicked()
         {
             var result = await IoCManager.Resolve<INavigationService>()
-                              .DisplayAlert(Strings.SettingsScreenView_RemoveAllDownloadsPrompt_Title, Strings.SettingsScreenView_RemoveAllDownloadsPrompt_Question,
-                                            Strings.SettingsScreenView_RemoveAllDownloadsPrompt_Confirm, Strings.SettingsScreenView_RemoveAllDownloadsPrompt_Reject);
+                                         .DisplayAlert(Strings.SettingsScreenView_RemoveAllDownloadsPrompt_Title, Strings.SettingsScreenView_RemoveAllDownloadsPrompt_Question,
+                                                       Strings.SettingsScreenView_RemoveAllDownloadsPrompt_Confirm, Strings.SettingsScreenView_RemoveAllDownloadsPrompt_Reject);
 
             if (result)
             {
                 // Delete the whole DB
-                DbManager.DeleteDatabase ();
-                Size = IoCManager.Resolve<IStorageSizeProvider> ().GetDatabaseSize () + " MB";
-
-                }
+                DbManager.DeleteDatabase();
+                Size = IoCManager.Resolve<IStorageSizeProvider>().GetDatabaseSize() + " MB";
+            }
         }
 
         /// <summary>
@@ -66,9 +66,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views {
         public bool AutoSwitchPage
         {
             get { return Settings.AutoSwitchPage; }
-            set {
+            set
+            {
                 Settings.AutoSwitchPage = value;
-                OnPropertyChanged ();
+                OnPropertyChanged();
             }
         }
 
@@ -78,7 +79,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views {
         public bool AutoStartAudio
         {
             get { return Settings.AutoStartAudio; }
-            set {
+            set
+            {
                 Settings.AutoStartAudio = value;
                 OnPropertyChanged();
             }
@@ -90,7 +92,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views {
         public bool RepeatHintAudio
         {
             get { return Settings.RepeatHintAudio; }
-            set {
+            set
+            {
                 Settings.RepeatHintAudio = value;
                 OnPropertyChanged();
             }
@@ -102,7 +105,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views {
         public bool RepeatHintAutoPageSwitch
         {
             get { return Settings.RepeatHintAutoPageSwitch; }
-            set {
+            set
+            {
                 Settings.RepeatHintAutoPageSwitch = value;
                 OnPropertyChanged();
             }
@@ -114,9 +118,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views {
         public bool RepeatIntro
         {
             get { return Settings.RepeatIntro; }
-            set {
+            set
+            {
                 Settings.RepeatIntro = value;
-                OnPropertyChanged ();
+                OnPropertyChanged();
             }
         }
 
@@ -133,21 +138,25 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views {
             }
         }
 
-       public string AppModeText {
-            get { return Settings.AdventurerMode ? Strings.SettingsScreenView_CharacterSelection_Text_IsAdventurer : Strings.SettingsScreenView_CharacterSelection_Text_IsProfessor; }
-       }
+        public string AppModeText
+        {
+            get
+            {
+                return Settings.AdventurerMode ? Strings.SettingsScreenView_CharacterSelection_Text_IsAdventurer : Strings.SettingsScreenView_CharacterSelection_Text_IsProfessor;
+            }
+        }
 
         public string Size
         {
             set
+            {
+                if (size != value)
                 {
-                    if (size != value)
-                    {
                     size = value;
-                    OnPropertyChanged ();
-                    }
+                    OnPropertyChanged();
                 }
-            get { return IoCManager.Resolve<IStorageSizeProvider> ().GetDatabaseSize () + " MB"; }
+            }
+            get { return IoCManager.Resolve<IStorageSizeProvider>().GetDatabaseSize() + " MB"; }
         }
 
         public bool WifiOnly
@@ -159,6 +168,5 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views {
                 OnPropertyChanged();
             }
         }
-
     }
 }

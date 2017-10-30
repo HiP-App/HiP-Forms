@@ -21,7 +21,8 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses {
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses
+{
     public class PagesApiAccess : IPagesApiAccess
     {
         private readonly IContentApiClient contentApiClient;
@@ -45,10 +46,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
             return new PagesDto { Items = new List<PageDto>(), Total = 0 };
         }
 
-        private async Task<PagesDto> GetPagesDto (DateTimeOffset? timestamp, IList<int> includeOnly)
+        private async Task<PagesDto> GetPagesDto(DateTimeOffset? timestamp, IList<int> includeOnly)
         {
             string requestPath = @"/Exhibits/Pages";
-            requestPath += UriQueryBuilder.GetAdditionalParametersQuery (timestamp, includeOnly);
+            requestPath += UriQueryBuilder.GetAdditionalParametersQuery(timestamp, includeOnly);
 
             string json = await contentApiClient.GetResponseFromUrlAsString(requestPath);
             if (json != null)
@@ -59,42 +60,42 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
             return new PagesDto { Items = new List<PageDto>(), Total = 0 };
         }
 
-        public async Task<PagesDto> GetPages ()
+        public async Task<PagesDto> GetPages()
         {
-            return await GetPagesDto (null, null);
+            return await GetPagesDto(null, null);
         }
 
-        public async Task<PagesDto> GetPages (DateTimeOffset timestamp)
+        public async Task<PagesDto> GetPages(DateTimeOffset timestamp)
         {
             return await GetPagesDto(timestamp, null);
         }
 
-        public async Task<PagesDto> GetPages (IList<int> includeOnly)
+        public async Task<PagesDto> GetPages(IList<int> includeOnly)
         {
             return await GetPagesDto(null, includeOnly);
         }
 
-        public async Task<PagesDto> GetPages (DateTimeOffset timestamp, IList<int> includeOnly)
+        public async Task<PagesDto> GetPages(DateTimeOffset timestamp, IList<int> includeOnly)
         {
             return await GetPagesDto(timestamp, includeOnly);
         }
 
-        public async Task<PagesDto> GetPages (int exhibitId)
+        public async Task<PagesDto> GetPages(int exhibitId)
         {
             return await GetPagesDtoWithExhibitConstraint(exhibitId, null, null);
         }
 
-        public async Task<PagesDto> GetPages (int exhibitId, DateTimeOffset timestamp)
+        public async Task<PagesDto> GetPages(int exhibitId, DateTimeOffset timestamp)
         {
             return await GetPagesDtoWithExhibitConstraint(exhibitId, timestamp, null);
         }
 
-        public async Task<PagesDto> GetPages (int exhibitId, IList<int> includeOnly)
+        public async Task<PagesDto> GetPages(int exhibitId, IList<int> includeOnly)
         {
             return await GetPagesDtoWithExhibitConstraint(exhibitId, null, includeOnly);
         }
 
-        public async Task<PagesDto> GetPages (int exhibitId, DateTimeOffset timestamp, IList<int> includeOnly)
+        public async Task<PagesDto> GetPages(int exhibitId, DateTimeOffset timestamp, IList<int> includeOnly)
         {
             return await GetPagesDtoWithExhibitConstraint(exhibitId, timestamp, includeOnly);
         }

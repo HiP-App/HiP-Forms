@@ -21,28 +21,28 @@ using Xamarin.Forms.Platform.iOS;
 
 [assembly: ResolutionGroupName("Hip")]
 [assembly: ExportEffect(typeof(IosSwitchColorEffect), "SwitchColorEffect")]
+
 namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Effects
 {
-    class IosSwitchColorEffect : PlatformEffect {
-
+    class IosSwitchColorEffect : PlatformEffect
+    {
         private UIColor oldColor;
 
-        protected override void OnAttached ()
+        protected override void OnAttached()
         {
             //store the old color and set the new one
             UISwitch uiSwitch = (UISwitch) Control;
-            SwitchColorEffect effect = (SwitchColorEffect)Element.Effects.FirstOrDefault(e => e is SwitchColorEffect);
+            SwitchColorEffect effect = (SwitchColorEffect) Element.Effects.FirstOrDefault(e => e is SwitchColorEffect);
             oldColor = uiSwitch.OnTintColor;
             if (effect != null)
-                uiSwitch.OnTintColor = effect.Color.ToUIColor ();
+                uiSwitch.OnTintColor = effect.Color.ToUIColor();
         }
 
-        protected override void OnDetached ()
+        protected override void OnDetached()
         {
             //restore the old color
-            UISwitch uiSwitch = (UISwitch)Control;
+            UISwitch uiSwitch = (UISwitch) Control;
             uiSwitch.OnTintColor = oldColor;
         }
-
     }
 }

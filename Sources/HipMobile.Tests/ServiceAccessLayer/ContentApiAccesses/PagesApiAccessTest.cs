@@ -24,7 +24,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.ServiceAccessLayer
     [TestFixture]
     public class PagesApiAccessTest
     {
-
         private IContentApiClient contentApiSubstitute;
 
         [Test, Category("UnitTest")]
@@ -226,6 +225,5 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.ServiceAccessLayer
         }
 
         #endregion
-
     }
 }

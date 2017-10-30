@@ -42,13 +42,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 {
     class LoadingPageViewModel : NavigationViewModel, IProgressListener
     {
-
         public LoadingPageViewModel()
         {
             Text = Strings.LoadingPage_Text;
             Subtext = Strings.LoadingPage_Subtext;
             StartLoading = new Command(Load);
-            CancelCommand = new Command (CancelLoading);
+            CancelCommand = new Command(CancelLoading);
             cancellationTokenSource = new CancellationTokenSource();
 
             // listen to sleep and wake up messages as the main screen cannot be started when the app is sleeping
@@ -126,55 +125,56 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         }
 
         private IBaseDataFetcher baseDataFetcher;
+
         public void Load()
         {
             Task.Factory.StartNew(async () =>
-            {
-                try
                 {
-                    InitIoCContainer();
-                    baseDataFetcher = IoCManager.Resolve<IBaseDataFetcher>();
-
-                    var networkAccessStatus = IoCManager.Resolve<INetworkAccessChecker>().GetNetworkAccessStatus();
-
-                    if (networkAccessStatus != NetworkAccessStatus.NoAccess)
+                    try
                     {
-                        await CheckForUpdatedDatabase();
-                    }
-                    else
-                    {
-                        errorTitle = Strings.LoadingPageViewModel_BaseData_DownloadFailed_Title;
-                        errorMessage = Strings.LoadingPageViewModel_BaseData_DatabaseUpToDateCheckFailed;
-                    }
+                        InitIoCContainer();
+                        baseDataFetcher = IoCManager.Resolve<IBaseDataFetcher>();
 
-                    if (!isDatabaseUpToDate)
-                    {
-                        if (networkAccessStatus == NetworkAccessStatus.MobileAccess && Settings.WifiOnly)
+                        var networkAccessStatus = IoCManager.Resolve<INetworkAccessChecker>().GetNetworkAccessStatus();
+
+                        if (networkAccessStatus != NetworkAccessStatus.NoAccess)
                         {
-                            actionOnUiThread = AskUserDownloadDataViaMobile;
-                            // if the app is not sleeping ask the user whether to download via mobile otherwise wait for wake up
-                            if (!isSleeping)
-                            {
-                                Device.BeginInvokeOnMainThread(actionOnUiThread);
-                            }
-                            return;
+                            await CheckForUpdatedDatabase();
                         }
                         else
                         {
-                            await UpdateDatabase();
+                            errorTitle = Strings.LoadingPageViewModel_BaseData_DownloadFailed_Title;
+                            errorMessage = Strings.LoadingPageViewModel_BaseData_DatabaseUpToDateCheckFailed;
+                        }
+
+                        if (!isDatabaseUpToDate)
+                        {
+                            if (networkAccessStatus == NetworkAccessStatus.MobileAccess && Settings.WifiOnly)
+                            {
+                                actionOnUiThread = AskUserDownloadDataViaMobile;
+                                // if the app is not sleeping ask the user whether to download via mobile otherwise wait for wake up
+                                if (!isSleeping)
+                                {
+                                    Device.BeginInvokeOnMainThread(actionOnUiThread);
+                                }
+                                return;
+                            }
+                            else
+                            {
+                                await UpdateDatabase();
+                            }
                         }
                     }
-                }
-                catch (Exception e)
-                {
-                    // Catch all exceptions happening on startup cause otherwise the loading page will be shown indefinitely 
-                    // This should only happen during development
-                    errorMessage = e.Message;
-                    errorTitle = "Error";
-                }
+                    catch (Exception e)
+                    {
+                        // Catch all exceptions happening on startup cause otherwise the loading page will be shown indefinitely 
+                        // This should only happen during development
+                        errorMessage = e.Message;
+                        errorTitle = "Error";
+                    }
 
-                LoadCacheAndStart();
-            }
+                    LoadCacheAndStart();
+                }
             );
         }
 
@@ -182,9 +182,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         {
             actionOnUiThread = null;
             bool downloadData = await Navigation.DisplayAlert(Strings.LoadingPageViewModel_BaseData_DataAvailable,
-                                                  Strings.LoadingPageViewModel_BaseData_DownloadViaMobile,
-                                                  Strings.LoadingPageViewModel_BaseData_MobileDownload_Confirm,
-                                                  Strings.LoadingPageViewModel_BaseData_MobileDownload_Cancel);
+                                                              Strings.LoadingPageViewModel_BaseData_DownloadViaMobile,
+                                                              Strings.LoadingPageViewModel_BaseData_MobileDownload_Confirm,
+                                                              Strings.LoadingPageViewModel_BaseData_MobileDownload_Cancel);
             await Task.Factory.StartNew(async () =>
                 {
                     try
@@ -309,18 +309,16 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             IoCManager.RegisterType<IMediaDataFetcher, MediaDataFetcher>();
             IoCManager.RegisterType<IDataToRemoveFetcher, DataToRemoveFetcher>();
             IoCManager.RegisterType<IExhibitsBaseDataFetcher, ExhibitsBaseDataFetcher>();
-			IoCManager.RegisterType<IFullExhibitDataFetcher, FullExhibitDataFetcher> ();
+            IoCManager.RegisterType<IFullExhibitDataFetcher, FullExhibitDataFetcher>();
             IoCManager.RegisterType<IRoutesBaseDataFetcher, RoutesBaseDataFetcher>();
             IoCManager.RegisterType<IBaseDataFetcher, BaseDataFetcher>();
-            IoCManager.RegisterType<IFullRouteDataFetcher, FullRouteDataFetcher> ();
+            IoCManager.RegisterType<IFullRouteDataFetcher, FullRouteDataFetcher>();
 
             IoCManager.RegisterInstance(typeof(INearbyExhibitManager), new NearbyExhibitManager());
             IoCManager.RegisterInstance(typeof(INearbyRouteManager), new NearbyRouteManager());
 
-            IoCManager.RegisterType<IAuthApiAccess, AuthApiAccess> ();
-            IoCManager.RegisterInstance (typeof(IUserManager), new UserManager ());
-
-
+            IoCManager.RegisterType<IAuthApiAccess, AuthApiAccess>();
+            IoCManager.RegisterInstance(typeof(IUserManager), new UserManager());
         }
 
         /// <summary>
@@ -373,6 +371,5 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             base.OnDisappearing();
             cancellationTokenSource.Cancel();
         }
-
     }
 }

@@ -14,10 +14,10 @@
 
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation {
-    public interface IViewCreator {
-
-        IViewFor InstantiateView (NavigationViewModel viewModel);
-
+namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation
+{
+    public interface IViewCreator
+    {
+        IViewFor InstantiateView(NavigationViewModel viewModel);
     }
 }

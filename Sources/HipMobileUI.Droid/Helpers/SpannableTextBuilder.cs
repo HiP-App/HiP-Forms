@@ -19,9 +19,10 @@ using Android.Text.Style;
 using Android.Views;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.InteractiveSources;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Helpers {
-    public class SpannableTextBuilder {
-
+namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Helpers
+{
+    public class SpannableTextBuilder
+    {
         /// <summary>
         /// Returns a SpannableString containing interactive sources for subtitles.
         /// </summary>
@@ -29,7 +30,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Helpers {
         /// <param name="textWithSubstitutes">The parsed text with substitutes</param>
         /// <param name="sources">The parsed sources</param>
         /// <returns>A SpannableString parsed from the textWithSubstitutes for the subtitles. Returns null, if the provided action is null.</returns>
-        public SpannableString CreateSubtitlesText (IInteractiveSourceAction action, ISpanned textWithSubstitutes, List<Source> sources)
+        public SpannableString CreateSubtitlesText(IInteractiveSourceAction action, ISpanned textWithSubstitutes, List<Source> sources)
         {
             if (action == null)
                 return null;
@@ -42,7 +43,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Helpers {
                 if (source == null)
                     continue;
 
-                int startIndex = textWithSubstitutes.ToString ().IndexOf(source.SubstituteText, StringComparison.Ordinal);
+                int startIndex = textWithSubstitutes.ToString().IndexOf(source.SubstituteText, StringComparison.Ordinal);
                 sourcePositions.Add(source, new FinalSourcePosition
                 {
                     Start = startIndex,
@@ -50,15 +51,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Helpers {
                 });
             }
 
-            var str = new SpannableString (textWithSubstitutes);
+            var str = new SpannableString(textWithSubstitutes);
 
             foreach (var src in sourcePositions)
             {
                 if (src.Key == null)
                     continue;
 
-                str.SetSpan (
-                    ConvertSrcToClickableSpan (src.Key, action),
+                str.SetSpan(
+                    ConvertSrcToClickableSpan(src.Key, action),
                     src.Value.Start,
                     src.Value.End,
                     SpanTypes.ExclusiveExclusive);
@@ -73,13 +74,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Helpers {
         /// <param name="src">Source that should be converted to a ClickableSpan.</param>
         /// <param name="action">Action that should be executed when the Click-event of the span is triggered.</param>
         /// <returns>ClickableSpan for the provided Source instance.</returns>
-        private static ClickableSpan ConvertSrcToClickableSpan (Source src, IInteractiveSourceAction action)
+        private static ClickableSpan ConvertSrcToClickableSpan(Source src, IInteractiveSourceAction action)
         {
             if (src == null)
                 return null;
 
-            InteractiveSourceClickableSpan span = new InteractiveSourceClickableSpan ();
-            span.Click += v => action.Display (src);
+            InteractiveSourceClickableSpan span = new InteractiveSourceClickableSpan();
+            span.Click += v => action.Display(src);
 
             return span;
         }
@@ -87,13 +88,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Helpers {
         /// <summary>
         /// Adapted from https://forums.xamarin.com/discussion/15310/how-to-use-clickable-span
         /// </summary>
-        private class InteractiveSourceClickableSpan : ClickableSpan {
-
+        private class InteractiveSourceClickableSpan : ClickableSpan
+        {
             public Action<View> Click;
 
-            public override void OnClick (View widget)
+            public override void OnClick(View widget)
             {
-                Click?.Invoke (widget);
+                Click?.Invoke(widget);
             }
         }
 

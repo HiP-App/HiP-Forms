@@ -24,21 +24,20 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 {
     public class UserOnboardingPageViewModel : NavigationViewModel
     {
-
-        public UserOnboardingPageViewModel ()
+        public UserOnboardingPageViewModel()
         {
             Pages = new ObservableCollection<UserOnboardingItemViewModel>
             {
-                new UserOnboardingItemViewModel (Strings.UserOnboarding_Explore_Title, Strings.UserOnboarding_Explore_Text, "ac_erkunden.jpg", Color.Green),
-                new UserOnboardingItemViewModel (Strings.UserOnboarding_Route_Title, Strings.UserOnboarding_Route_Text, "ac_route.jpg", Color.Orange, "ac_route2.jpg"),
-                new UserOnboardingItemViewModel (Strings.UserOnboarding_Students_Title, Strings.UserOnboarding_Students_Text, "ac_students", Color.Blue)
+                new UserOnboardingItemViewModel(Strings.UserOnboarding_Explore_Title, Strings.UserOnboarding_Explore_Text, "ac_erkunden.jpg", Color.Green),
+                new UserOnboardingItemViewModel(Strings.UserOnboarding_Route_Title, Strings.UserOnboarding_Route_Text, "ac_route.jpg", Color.Orange, "ac_route2.jpg"),
+                new UserOnboardingItemViewModel(Strings.UserOnboarding_Students_Title, Strings.UserOnboarding_Students_Text, "ac_students", Color.Blue)
             };
             ContentOrientation = StackOrientation.Vertical;
-            ForwardCommand = new Command (GotoNextPage);
-            FinishCommand = new Command (ClosePage);
+            ForwardCommand = new Command(GotoNextPage);
+            FinishCommand = new Command(ClosePage);
             SelectedPage = 0;
-            UpdateVisibilityStatus ();
-            PropertyChanged +=OnPropertyChanged;
+            UpdateVisibilityStatus();
+            PropertyChanged += OnPropertyChanged;
         }
 
         /// <summary>
@@ -46,34 +45,34 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         /// </summary>
         /// <param name="sender">The sender of the event.</param>
         /// <param name="propertyChangedEventArgs">The event arguments.</param>
-        private void OnPropertyChanged (object sender, PropertyChangedEventArgs propertyChangedEventArgs)
+        private void OnPropertyChanged(object sender, PropertyChangedEventArgs propertyChangedEventArgs)
         {
-            if (propertyChangedEventArgs.PropertyName.Equals (nameof (SelectedPage)))
+            if (propertyChangedEventArgs.PropertyName.Equals(nameof(SelectedPage)))
             {
-                UpdateVisibilityStatus ();
+                UpdateVisibilityStatus();
             }
         }
 
         /// <summary>
         /// Close the page belonging to this viewmodel.
         /// </summary>
-        private void ClosePage ()
+        private void ClosePage()
         {
             // hide the status bar
-            IStatusBarController statusBarController = IoCManager.Resolve<IStatusBarController> ();
-            statusBarController.ShowStatusBar ();
+            IStatusBarController statusBarController = IoCManager.Resolve<IStatusBarController>();
+            statusBarController.ShowStatusBar();
 
             // update the settings to not show this page next time
             Settings.RepeatIntro = false;
 
             // open the character selection page
-            Navigation.StartNewNavigationStack (new CharacterSelectionPageViewModel (this));
+            Navigation.StartNewNavigationStack(new CharacterSelectionPageViewModel(this));
         }
 
         /// <summary>
         /// Go to the next page.
         /// </summary>
-        private void GotoNextPage ()
+        private void GotoNextPage()
         {
             SelectedPage++;
         }
@@ -90,71 +89,79 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         /// <summary>
         /// The displayed pages.
         /// </summary>
-        public ObservableCollection<UserOnboardingItemViewModel> Pages {
+        public ObservableCollection<UserOnboardingItemViewModel> Pages
+        {
             get { return pages; }
-            set { SetProperty (ref pages, value); }
+            set { SetProperty(ref pages, value); }
         }
 
         /// <summary>
         /// The index of the currently shown page.
         /// </summary>
-        public int SelectedPage {
+        public int SelectedPage
+        {
             get { return selectedPage; }
-            set { SetProperty (ref selectedPage, value); }
+            set { SetProperty(ref selectedPage, value); }
         }
 
         /// <summary>
         /// The command for navigating forward.
         /// </summary>
-        public Command ForwardCommand {
+        public Command ForwardCommand
+        {
             get { return forwardCommand; }
-            set { SetProperty (ref forwardCommand, value); }
+            set { SetProperty(ref forwardCommand, value); }
         }
 
         /// <summary>
         /// The command for finishing the user onboarding.
         /// </summary>
-        public Command FinishCommand {
+        public Command FinishCommand
+        {
             get { return finishCommand; }
-            set { SetProperty (ref finishCommand, value); }
+            set { SetProperty(ref finishCommand, value); }
         }
 
         /// <summary>
         /// Flag indicating if the skip button is visible.
         /// </summary>
-        public bool IsSkipVisible {
+        public bool IsSkipVisible
+        {
             get { return isSkipVisible; }
-            set { SetProperty (ref isSkipVisible, value); }
+            set { SetProperty(ref isSkipVisible, value); }
         }
 
         /// <summary>
         /// Flag indicating if the forward button is visible.
         /// </summary>
-        public bool IsForwardVisible {
+        public bool IsForwardVisible
+        {
             get { return isForwardVisible; }
-            set { SetProperty (ref isForwardVisible, value); }
+            set { SetProperty(ref isForwardVisible, value); }
         }
 
         /// <summary>
         /// Flag indicating if the finish button is visible.
         /// </summary>
-        public bool IsFinishVisible {
+        public bool IsFinishVisible
+        {
             get { return isFinishVisible; }
-            set { SetProperty (ref isFinishVisible, value); }
+            set { SetProperty(ref isFinishVisible, value); }
         }
 
         /// <summary>
         /// The current orientation.
         /// </summary>
-        public StackOrientation ContentOrientation {
+        public StackOrientation ContentOrientation
+        {
             get { return contentOrientation; }
-            set { SetProperty (ref contentOrientation, value); }
+            set { SetProperty(ref contentOrientation, value); }
         }
 
         /// <summary>
         /// Update the visibility status of the buttons accrding to the selected page.
         /// </summary>
-        private void UpdateVisibilityStatus ()
+        private void UpdateVisibilityStatus()
         {
             if (SelectedPage == Pages.Count - 1)
             {

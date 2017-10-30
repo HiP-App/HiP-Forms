@@ -33,6 +33,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
         /// The fraction of how much the bottom sheet is extended relative to the whole view.
         /// </summary>
         private readonly double bottomSheetExtensionFraction = 0.35;
+
         private BottomSheetState bottomSheetState = BottomSheetState.Collapsed;
         private FloatingActionButton Button { get; set; }
         private bool initLayout = true;
@@ -45,8 +46,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
             // Floating Action Button
             Button = new FloatingActionButton
             {
-                NormalColor = (Color)resources.GetResourceValue("AccentColor"),
-                RippleColor = (Color)resources.GetResourceValue("AccentDarkColor"),
+                NormalColor = (Color) resources.GetResourceValue("AccentColor"),
+                RippleColor = (Color) resources.GetResourceValue("AccentDarkColor"),
                 Command = new Command(ButtonOnClicked),
                 Icon = "ic_keyboard_arrow_up",
                 AutomationId = "Fab"
@@ -166,10 +167,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
             await Task.WhenAll(BottomSheetContentView.LayoutTo(bottomSheetRect), Button.LayoutTo(buttonRect), Button.RotateXTo(0));
             bottomSheetState = BottomSheetState.Collapsed;
         }
-       
+
         #endregion
 
         #region properties
+
         private ContentView mainContentView;
 
         public static readonly BindableProperty MainContentProperty =
@@ -177,7 +179,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
 
         private static void MainContentPropertyChanged(BindableObject bindable, object oldValue, object newValue)
         {
-            ((BottomSheetView)bindable).mainContentView.Content = (View)newValue;
+            ((BottomSheetView) bindable).mainContentView.Content = (View) newValue;
         }
 
         /// <summary>
@@ -185,7 +187,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
         /// </summary>
         public View MainContent
         {
-            get { return (View)GetValue(MainContentProperty); }
+            get { return (View) GetValue(MainContentProperty); }
             set { SetValue(MainContentProperty, value); }
         }
 
@@ -196,7 +198,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
 
         private static void BottomSheetPropertyChanged(BindableObject bindable, object oldValue, object newValue)
         {
-            ((BottomSheetView)bindable).BottomSheetContentView.Content = (View)newValue;
+            ((BottomSheetView) bindable).BottomSheetContentView.Content = (View) newValue;
         }
 
         /// <summary>
@@ -204,16 +206,16 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
         /// </summary>
         public View BottomSheet
         {
-            get { return (View)GetValue(MainContentProperty); }
+            get { return (View) GetValue(MainContentProperty); }
             set { SetValue(MainContentProperty, value); }
         }
 
-
-        public static readonly BindableProperty BottomSheetVisibleProperty = BindableProperty.Create(nameof(BottomSheetVisible), typeof(bool), typeof(BottomSheetView), defaultValue: true, propertyChanged: BottomSheetVisiblePropertyChanged);
+        public static readonly BindableProperty BottomSheetVisibleProperty =
+            BindableProperty.Create(nameof(BottomSheetVisible), typeof(bool), typeof(BottomSheetView), defaultValue: true, propertyChanged: BottomSheetVisiblePropertyChanged);
 
         private static void BottomSheetVisiblePropertyChanged(BindableObject bindable, object oldValue, object newValue)
         {
-            ((BottomSheetView)bindable).BottomSheetVisible = (bool)newValue;
+            ((BottomSheetView) bindable).BottomSheetVisible = (bool) newValue;
         }
 
         /// <summary>
@@ -222,10 +224,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
         /// </summary>
         public bool BottomSheetVisible
         {
-            get { return (bool)GetValue(BottomSheetVisibleProperty); }
+            get { return (bool) GetValue(BottomSheetVisibleProperty); }
             set { SetValue(BottomSheetVisibleProperty, value); }
         }
-
 
         #endregion
     }

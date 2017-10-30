@@ -34,9 +34,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Pages
         [Test, Category("UnitTest")]
         public void Creation_IsExtendedViewsVisible()
         {
-            var sut = CreateSystemUnderTest ();
+            var sut = CreateSystemUnderTest();
 
-            Assert.IsFalse (sut.IsExtendedViewsVisible);
+            Assert.IsFalse(sut.IsExtendedViewsVisible);
         }
 
         [Test, Category("UnitTest")]
@@ -52,7 +52,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Pages
         {
             var sut = CreateSystemUnderTest();
 
-            Assert.IsTrue(sut.Text.Equals (Strings.LoadingPage_Text));
+            Assert.IsTrue(sut.Text.Equals(Strings.LoadingPage_Text));
         }
 
         [Test, Category("UnitTest")]
@@ -65,9 +65,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Pages
 
         #region Helper Methods
 
-        public LoadingPageViewModel CreateSystemUnderTest ()
+        public LoadingPageViewModel CreateSystemUnderTest()
         {
-            var sut = new LoadingPageViewModel ();
+            var sut = new LoadingPageViewModel();
             return sut;
         }
 

@@ -23,7 +23,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Behaviors
     /// </summary>
     public class ListViewTappedItemBehavior : Behavior<ListView>
     {
-
         public static readonly BindableProperty CommandProperty = BindableProperty.Create(nameof(Command), typeof(ICommand), typeof(ListViewTappedItemBehavior));
         public static readonly BindableProperty InputConverterProperty = BindableProperty.Create(nameof(Converter), typeof(IValueConverter), typeof(ListViewTappedItemBehavior));
 
@@ -32,7 +31,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Behaviors
         /// </summary>
         public ICommand Command
         {
-            get { return (ICommand)GetValue(CommandProperty); }
+            get { return (ICommand) GetValue(CommandProperty); }
             set { SetValue(CommandProperty, value); }
         }
 
@@ -41,7 +40,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Behaviors
         /// </summary>
         public IValueConverter Converter
         {
-            get { return (IValueConverter)GetValue(InputConverterProperty); }
+            get { return (IValueConverter) GetValue(InputConverterProperty); }
             set { SetValue(InputConverterProperty, value); }
         }
 
@@ -93,6 +92,5 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Behaviors
             base.OnBindingContextChanged();
             BindingContext = AssociatedObject.BindingContext;
         }
-
     }
 }

@@ -22,13 +22,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views.ExhibitDetail
 {
     public class ImageViewModel : ExhibitSubviewHiddeableNavigationViewModel
     {
-
         private ImageSource image;
         private string description;
         private string headline;
         private bool bottomSheetVisible;
 
-        public ImageViewModel (ImagePage page, Action toggleButtonVisibility) : base(toggleButtonVisibility)
+        public ImageViewModel(ImagePage page, Action toggleButtonVisibility) : base(toggleButtonVisibility)
         {
             var imageData = page.Image.Data;
             if (imageData != null)
@@ -41,38 +40,41 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views.ExhibitDetail
             }
             Headline = page.Image.Title;
             Description = page.Image.Description;
-            BottomSheetVisible = Headline != "No Image" && !(string.IsNullOrEmpty (Headline) && string.IsNullOrEmpty (Description));
+            BottomSheetVisible = Headline != "No Image" && !(string.IsNullOrEmpty(Headline) && string.IsNullOrEmpty(Description));
         }
 
         /// <summary>
         /// The displayed image of this view.
         /// </summary>
-        public ImageSource Image {
+        public ImageSource Image
+        {
             get { return image; }
-            set { SetProperty (ref image, value); }
+            set { SetProperty(ref image, value); }
         }
 
         /// <summary>
         /// The headline of the description.
         /// </summary>
-        public string Headline {
+        public string Headline
+        {
             get { return headline; }
-            set { SetProperty (ref headline, value); }
+            set { SetProperty(ref headline, value); }
         }
 
         // The description text.
-        public string Description {
+        public string Description
+        {
             get { return description; }
-            set { SetProperty (ref description, value); }
+            set { SetProperty(ref description, value); }
         }
 
         /// <summary>
         /// Inidicates whether the bottomsheet is visible
         /// </summary>
-        public bool BottomSheetVisible {
+        public bool BottomSheetVisible
+        {
             get { return bottomSheetVisible; }
-            set { SetProperty (ref bottomSheetVisible, value); }
+            set { SetProperty(ref bottomSheetVisible, value); }
         }
-
     }
 }

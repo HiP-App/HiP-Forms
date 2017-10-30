@@ -26,16 +26,15 @@ using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Location
 {
-
-    public interface INearbyRouteManager {
-
+    public interface INearbyRouteManager
+    {
         /// <summary>
         /// Opens a notification if the user is near a route
         /// </summary>
         /// <param name="routes">The routes to check</param>
         /// <param name="gpsLocation">The gps location of the user</param>
         void CheckNearRoute(IEnumerable<Route> routes, GeoLocation gpsLocation);
-        
+
         /// <summary>
         /// Opens the details view of the route with the given id
         /// </summary>
@@ -45,14 +44,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Location
         /// <summary>
         /// Closes the pop-up for the route preview
         /// </summary>
-        void ClosePopUp ();
+        void ClosePopUp();
     }
 
     public class NearbyRouteManager : INearbyRouteManager
     {
         private bool popupActive;
 
-        public async void CheckNearRoute(IEnumerable<Route> routes, GeoLocation gpsLocation)    // Optimize for later: just send non-visited routes
+        public async void CheckNearRoute(IEnumerable<Route> routes, GeoLocation gpsLocation) // Optimize for later: just send non-visited routes
         {
             if (popupActive)
                 return;
@@ -65,28 +64,28 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Location
                 var now = DateTimeOffset.Now;
                 if (r.LastTimeDismissed.HasValue)
                 {
-                    if (now.Subtract (r.LastTimeDismissed.Value) <= TimeSpan.FromMinutes (30))
+                    if (now.Subtract(r.LastTimeDismissed.Value) <= TimeSpan.FromMinutes(30))
                     {
                         continue; // This route was dismissed in the last 30 minutes
                     }
                 }
 
-                await IoCManager.Resolve<INavigationService> ().PushModalAsync (new RoutePreviewViewModel (r, this));
+                await IoCManager.Resolve<INavigationService>().PushModalAsync(new RoutePreviewViewModel(r, this));
                 popupActive = true;
 
-                using (DbManager.StartTransaction ())
+                using (DbManager.StartTransaction())
                 {
                     r.LastTimeDismissed = now;
                 }
             }
         }
 
-        public void OpenRouteDetailsView (string routeId)
+        public void OpenRouteDetailsView(string routeId)
         {
             IoCManager.Resolve<INavigationService>().PushAsync(new RouteDetailsPageViewModel(routeId));
         }
 
-        public void ClosePopUp ()
+        public void ClosePopUp()
         {
             IoCManager.Resolve<INavigationService>().PopModalAsync();
             popupActive = false;

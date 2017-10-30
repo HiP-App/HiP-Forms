@@ -14,9 +14,10 @@
 
 using System;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos {
-    public class TagDto {
-
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos
+{
+    public class TagDto
+    {
         public int Id { get; set; }
 
         public string Title { get; set; }

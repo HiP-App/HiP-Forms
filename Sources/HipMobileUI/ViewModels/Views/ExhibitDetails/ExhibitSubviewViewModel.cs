@@ -19,6 +19,5 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views.ExhibitDetail
     /// </summary>
     public abstract class ExhibitSubviewViewModel : NavigationViewModel
     {
-
     }
 }

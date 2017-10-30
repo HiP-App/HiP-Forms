@@ -24,29 +24,31 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Controls
     {
         // Events for external use (for example XAML)
         public event EventHandler TouchDown;
+
         public event EventHandler TouchUp;
 
         // Events called by renderers
         public readonly EventHandler TouchDownEvent;
+
         public readonly EventHandler TouchUpEvent;
 
         public TouchEventSlider()
         {
-            TouchDownEvent = (sender, args) => TouchDown?.Invoke (this, args);
-            TouchUpEvent = (sender, args) => TouchUp?.Invoke (this, args);
+            TouchDownEvent = (sender, args) => TouchDown?.Invoke(this, args);
+            TouchUpEvent = (sender, args) => TouchUp?.Invoke(this, args);
         }
     }
 
     /// <summary>
     /// Event args carrying a single double value;
     /// </summary>
-    public class ValueEventArgs : EventArgs {
-
-        public ValueEventArgs (double value)
+    public class ValueEventArgs : EventArgs
+    {
+        public ValueEventArgs(double value)
         {
             Value = value;
         }
-        public double Value { get; set; }
 
+        public double Value { get; set; }
     }
 }

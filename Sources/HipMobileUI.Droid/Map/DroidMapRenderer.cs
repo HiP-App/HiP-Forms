@@ -44,7 +44,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Map
 {
     internal class DroidMapRenderer : Xamarin.Forms.Platform.Android.AppCompat.ViewRenderer<OsmMap, MapView>, IMapListener
     {
-
         private Activity activity;
         private Polyline currentRouteOverlay;
         private Polyline currentSectionOverlay;
@@ -90,7 +89,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Map
                 mapView.SetMultiTouchControls(true);
                 mapView.TilesScaledToDpi = true;
 
-                mapController = (MapController)mapView.Controller;
+                mapController = (MapController) mapView.Controller;
                 mapController.SetCenter(new GeoPoint(AppSharedData.PaderbornCenter.Latitude, AppSharedData.PaderbornCenter.Longitude));
                 mapController.SetZoom(AppSharedData.MapZoomLevel);
                 mapView.SetMapListener(this);
@@ -154,7 +153,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Map
                 if (userMarkerPosition != null)
                     mapView.OverlayManager.Remove(userMarkerPosition);
 
-
                 userMarkerPosition = new Marker(mapView);
                 userMarkerPosition.SetIcon(ResourcesCompat.GetDrawable(Resources, Resource.Drawable.ic_my_location, null));
                 userMarkerPosition.Position = userPosition;
@@ -177,7 +175,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Map
         private void NewElementOnDetailsRouteChanged(Route route)
         {
             //The direct polyline is only draw if related bool is true
-
 
             if ((route != null) && route.Waypoints.Any())
             {
@@ -212,7 +209,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Map
                     myPath.AddPoint(new GeoPoint(waypoint.Location.Latitude, waypoint.Location.Longitude));
                 }
 
-
             mapView.OverlayManager.Add(myPath);
             mapView.Invalidate();
         }
@@ -234,7 +230,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Map
                 var mapMarkerIcon = ContextCompat.GetDrawable(activity, Resource.Drawable.marker_blue);
                 var setMarker = new SetMarker(mapView, markerInfoWindow);
 
-
                 foreach (var e in set.ActiveSet)
                 {
                     //One Marker Object
@@ -243,7 +238,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Map
                     mapView.OverlayManager.Add(marker);
                 }
             }
-
 
             mapView.Invalidate();
         }
@@ -257,8 +251,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Map
         {
             var id = osmMap.DetailsRoute.Id;
 
-            ThreadPool.QueueUserWorkItem(state => {
-
+            ThreadPool.QueueUserWorkItem(state =>
+            {
                 Action action;
 
                 try
@@ -278,7 +272,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Map
                     action = () => { };
                 }
 
-                activity.RunOnUiThread(() => {
+                activity.RunOnUiThread(() =>
+                {
                     var handler = new Handler();
                     handler.PostDelayed(action, 0);
                 });
@@ -308,7 +303,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Map
                 {
                     Title = osmMap.DetailsRoute.Title,
                     Width = 5f,
-                    Color = ((Xamarin.Forms.Color)resources.GetResourceValue("AccentColor")).ToAndroid(),
+                    Color = ((Xamarin.Forms.Color) resources.GetResourceValue("AccentColor")).ToAndroid(),
                     //Color = Color.Orange,
                     Points = route.FirstSection.Select(geoLocation => new GeoPoint(geoLocation.Latitude, geoLocation.Longitude)).ToList(),
                     Geodesic = true
@@ -317,7 +312,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Map
                 {
                     Title = osmMap.DetailsRoute.Title,
                     Width = 5f,
-                    Color = ((Xamarin.Forms.Color)resources.GetResourceValue("PrimaryColor")).ToAndroid(),
+                    Color = ((Xamarin.Forms.Color) resources.GetResourceValue("PrimaryColor")).ToAndroid(),
                     //Color = Color.Blue,
                     Points = route.NonFirstSections.Select(geoLocation => new GeoPoint(geoLocation.Latitude, geoLocation.Longitude)).ToList(),
                     Geodesic = true
@@ -330,7 +325,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Map
                     Title = osmMap.DetailsRoute.Title,
                     Width = 5f,
 
-                    Color = ((Xamarin.Forms.Color)resources.GetResourceValue("PrimaryColor")).ToAndroid(),
+                    Color = ((Xamarin.Forms.Color) resources.GetResourceValue("PrimaryColor")).ToAndroid(),
                     Points = route.Locations.Select(geoLocation => new GeoPoint(geoLocation.Latitude, geoLocation.Longitude)).ToList(),
 
                     Geodesic = true
@@ -363,6 +358,5 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Map
             }
             base.Dispose(disposing);
         }
-
     }
 }

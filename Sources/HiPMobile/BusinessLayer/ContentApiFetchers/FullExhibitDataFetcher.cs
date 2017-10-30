@@ -25,9 +25,10 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers {
-    public class FullExhibitDataFetcher : IFullExhibitDataFetcher {
-
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers
+{
+    public class FullExhibitDataFetcher : IFullExhibitDataFetcher
+    {
         private readonly IPagesApiAccess pagesApiAccess;
         private readonly IMediaDataFetcher mediaDataFetcher;
 
@@ -42,8 +43,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
 
         private IList<int?> requiredMedia;
         private IList<PageDto> pageItems;
-        
-        public async Task FetchFullDownloadableDataIntoDatabase (string exhibitId, int idForRestApi, CancellationToken token, IProgressListener listener)
+
+        public async Task FetchFullDownloadableDataIntoDatabase(string exhibitId, int idForRestApi, CancellationToken token, IProgressListener listener)
         {
             double totalSteps = await FetchNeededMediaForFullExhibit(idForRestApi);
 
@@ -51,7 +52,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             {
                 return;
             }
-            listener.SetMaxProgress (totalSteps);
+            listener.SetMaxProgress(totalSteps);
 
             using (var transaction = DbManager.StartTransaction())
             {
@@ -63,26 +64,27 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             }
         }
 
-        public async Task FetchFullExhibitDataIntoDatabaseWithFetchedPagesAndMedia (string exhibitId, ExhibitPagesAndMediaContainer exhibitPagesAndMediaContainer, CancellationToken token, IProgressListener listener)
+        public async Task FetchFullExhibitDataIntoDatabaseWithFetchedPagesAndMedia(string exhibitId, ExhibitPagesAndMediaContainer exhibitPagesAndMediaContainer,
+                                                                                   CancellationToken token, IProgressListener listener)
         {
             requiredMedia = exhibitPagesAndMediaContainer.RequiredMedia;
             pageItems = exhibitPagesAndMediaContainer.PageDtos;
 
-            using (var transaction = DbManager.StartTransaction ())
+            using (var transaction = DbManager.StartTransaction())
             {
-                await ProcessPages (exhibitId, token, listener);
+                await ProcessPages(exhibitId, token, listener);
                 if (token.IsCancellationRequested)
                 {
-                    transaction.Rollback ();
+                    transaction.Rollback();
                 }
             }
         }
 
-        public async Task<ExhibitPagesAndMediaContainer> FetchPagesAndMediaForExhibitFromRouteFetcher (int idForRestApi)
+        public async Task<ExhibitPagesAndMediaContainer> FetchPagesAndMediaForExhibitFromRouteFetcher(int idForRestApi)
         {
-            await FetchNeededMediaForFullExhibit (idForRestApi);
-            return new ExhibitPagesAndMediaContainer (idForRestApi, requiredMedia, pageItems);
-        } 
+            await FetchNeededMediaForFullExhibit(idForRestApi);
+            return new ExhibitPagesAndMediaContainer(idForRestApi, requiredMedia, pageItems);
+        }
 
         public async Task<int> FetchNeededMediaForFullExhibit(int idForRestApi)
         {
@@ -90,7 +92,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             pageItems = (await pagesApiAccess.GetPages(idForRestApi)).Items;
 
             // Since AppetizerPages have been loaded before, do not consider them anymore
-            List<PageDto> appetizerPagesToRemove = new List<PageDto> ();
+            List<PageDto> appetizerPagesToRemove = new List<PageDto>();
             foreach (var page in pageItems)
             {
                 if (page.Type != PageTypeDto.AppetizerPage)
@@ -118,11 +120,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             {
                 pageItems.Remove(appPage);
             }
-            
+
             return requiredMedia.Count;
         }
 
-        private void AddMediaId (int? mediaId)
+        private void AddMediaId(int? mediaId)
         {
             if (mediaId.HasValue)
             {
@@ -143,7 +145,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             {
                 return;
             }
-            
+
             var exhibit = ExhibitManager.GetExhibit(exhibitId);
 
             foreach (var pageDto in pageItems)
@@ -156,7 +158,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             }
 
             // Rearrange additional information pages
-            var pagesToBeRemoved = new List<Page> ();
+            var pagesToBeRemoved = new List<Page>();
             foreach (var pageDto in pageItems)
             {
                 if (pageDto.AdditionalInformationPages.Count > 0)
@@ -172,7 +174,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                                     if (pageToBeAdded.IdForRestApi == pageId)
                                     {
                                         existingPageWithInfo.AdditionalInformationPages.Add(pageToBeAdded);
-                                        pagesToBeRemoved.Add (pageToBeAdded);
+                                        pagesToBeRemoved.Add(pageToBeAdded);
                                         break;
                                     }
                                 }
@@ -183,7 +185,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             }
             foreach (var pageToBeRemoved in pagesToBeRemoved)
             {
-                exhibit.Pages.Remove (pageToBeRemoved);
+                exhibit.Pages.Remove(pageToBeRemoved);
             }
 
             exhibit.DetailsDataLoaded = true;
@@ -198,7 +200,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
         {
             if (content != null && dbPage != null)
             {
-                PageConverter.Convert (content, dbPage);
+                PageConverter.Convert(content, dbPage);
 
                 switch (dbPage.PageType)
                 {

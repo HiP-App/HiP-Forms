@@ -7,10 +7,8 @@ using Newtonsoft.Json;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.AuthApiDto
 {
-
     public class Token
     {
-
         [JsonProperty(PropertyName = "id_token")]
         public string IdToken { get; set; }
 
@@ -19,7 +17,5 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.AuthApi
 
         [JsonProperty(PropertyName = "token_type")]
         public string TokenType { get; set; }
-
     }
-
 }

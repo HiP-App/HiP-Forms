@@ -20,16 +20,18 @@ using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
 [assembly: ExportRenderer(typeof(FloatingActionButton), typeof(FloatingActionButtonAndroidRenderer))]
+
 namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.CustomRenderers
 {
-    public class FloatingActionButtonAndroidRenderer : Xamarin.Forms.Platform.Android.AppCompat.ViewRenderer<FloatingActionButton, Android.Support.Design.Widget.FloatingActionButton> {
-
+    public class FloatingActionButtonAndroidRenderer : Xamarin.Forms.Platform.Android.AppCompat.ViewRenderer<FloatingActionButton,
+        Android.Support.Design.Widget.FloatingActionButton>
+    {
         private Android.Support.Design.Widget.FloatingActionButton fab;
         private FloatingActionButton formsButton;
 
-        protected override void OnElementChanged (ElementChangedEventArgs<FloatingActionButton> e)
+        protected override void OnElementChanged(ElementChangedEventArgs<FloatingActionButton> e)
         {
-            base.OnElementChanged (e);
+            base.OnElementChanged(e);
 
             if (Control == null)
             {
@@ -54,42 +56,41 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.CustomRenderers
                 // set init values
                 formsButton = e.NewElement;
                 SetIcon(formsButton.Icon);
-                SetNormalColor (formsButton.NormalColor);
-                SetRippleColor (formsButton.RippleColor);
+                SetNormalColor(formsButton.NormalColor);
+                SetRippleColor(formsButton.RippleColor);
 
                 // Subscribe
-                formsButton.NormalColorChanged+=SetNormalColor;
-                formsButton.RippleColorChanged+=SetRippleColor;
-                formsButton.IconChanged+=SetIcon;
+                formsButton.NormalColorChanged += SetNormalColor;
+                formsButton.RippleColorChanged += SetRippleColor;
+                formsButton.IconChanged += SetIcon;
             }
         }
 
-        private void SetRippleColor (Color newColor)
+        private void SetRippleColor(Color newColor)
         {
-            fab.RippleColor = newColor.ToAndroid ();
+            fab.RippleColor = newColor.ToAndroid();
         }
 
-        private void SetNormalColor (Color newColor)
+        private void SetNormalColor(Color newColor)
         {
             fab.SetBackgroundColor(newColor.ToAndroid());
         }
 
-
-        private void SetIcon (string newIcon)
+        private void SetIcon(string newIcon)
         {
             int resourceId = Resources.GetIdentifier(newIcon, "drawable", Context.PackageName);
             fab.SetImageResource(resourceId);
         }
 
-        private void FabOnClick (object sender, EventArgs eventArgs)
+        private void FabOnClick(object sender, EventArgs eventArgs)
         {
-            if (formsButton.Command.CanExecute (null))
+            if (formsButton.Command.CanExecute(null))
             {
-                formsButton.Command.Execute (this);
+                formsButton.Command.Execute(this);
             }
         }
 
-        protected override void Dispose (bool disposing)
+        protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
@@ -99,8 +100,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.CustomRenderers
                 formsButton.IconChanged -= SetIcon;
             }
 
-            base.Dispose (disposing);
+            base.Dispose(disposing);
         }
-
     }
 }

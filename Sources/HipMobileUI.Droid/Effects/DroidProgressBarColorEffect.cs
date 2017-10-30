@@ -24,30 +24,29 @@ using Color = Android.Graphics.Color;
 using ProgressBar = Android.Widget.ProgressBar;
 
 [assembly: ExportEffect(typeof(DroidProgressBarColorEffect), "ProgressBarColorEffect")]
+
 namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Effects
 {
     class DroidProgressBarColorEffect : PlatformEffect
     {
-
         protected override void OnAttached()
         {
-            ProgressBar switchCompat = (ProgressBar)Control;
-            ProgressBarColorEffect effect = (ProgressBarColorEffect)Element.Effects.FirstOrDefault(e => e is ProgressBarColorEffect);
+            ProgressBar switchCompat = (ProgressBar) Control;
+            ProgressBarColorEffect effect = (ProgressBarColorEffect) Element.Effects.FirstOrDefault(e => e is ProgressBarColorEffect);
             if (effect != null)
-                SetColor (switchCompat, effect.Color.ToAndroid ());
+                SetColor(switchCompat, effect.Color.ToAndroid());
         }
 
         protected override void OnDetached()
         {
         }
 
-        private void SetColor (ProgressBar bar, Color color)
+        private void SetColor(ProgressBar bar, Color color)
         {
-            LayerDrawable progressDrawable = (LayerDrawable)bar.ProgressDrawable;
+            LayerDrawable progressDrawable = (LayerDrawable) bar.ProgressDrawable;
             Drawable primaryColor = progressDrawable.GetDrawable(2);
-            primaryColor.SetColorFilter (new LightingColorFilter(0, color));
+            primaryColor.SetColorFilter(new LightingColorFilter(0, color));
             progressDrawable.SetDrawableByLayerId(progressDrawable.GetId(2), new ClipDrawable(primaryColor, GravityFlags.Left, ClipDrawableOrientation.Horizontal));
         }
-
     }
 }

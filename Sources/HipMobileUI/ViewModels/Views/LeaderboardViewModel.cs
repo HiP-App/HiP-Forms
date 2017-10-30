@@ -7,25 +7,27 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.User;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 {
-    class LeaderboardViewModel : NavigationViewModel {
-
+    class LeaderboardViewModel : NavigationViewModel
+    {
         private static Ranking[] leaderboard;
 
-        public LeaderboardViewModel ()
+        public LeaderboardViewModel()
         {
-            CreateLeaderboard ();
+            CreateLeaderboard();
         }
 
-        public Ranking[] Leaderboard {
+        public Ranking[] Leaderboard
+        {
             get { return leaderboard; }
             set { SetProperty(ref leaderboard, value); }
         }
 
-        public Ranking OwnRanking {
-            get { return Leaderboard [0]; }
+        public Ranking OwnRanking
+        {
+            get { return Leaderboard[0]; }
         }
 
-        private void CreateLeaderboard ()
+        private void CreateLeaderboard()
         {
             int numberOfUsersInLeaderboard = 10;
 
@@ -33,7 +35,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 
             for (int i = 0; i < numberOfUsersInLeaderboard; i++)
             {
-                Leaderboard[i] = new Ranking (i + 1, 100 - i, "User " + (i + 1));
+                Leaderboard[i] = new Ranking(i + 1, 100 - i, "User " + (i + 1));
             }
         }
     }

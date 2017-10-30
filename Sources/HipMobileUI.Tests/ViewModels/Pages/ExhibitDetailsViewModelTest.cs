@@ -41,11 +41,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Pages
             IoCManager.RegisterInstance(typeof(IAudioPlayer), Substitute.For<IAudioPlayer>());
             IoCManager.RegisterInstance(typeof(IDbChangedHandler), Substitute.For<IDbChangedHandler>());
             IoCManager.RegisterInstance(typeof(ApplicationResourcesProvider), new ApplicationResourcesProvider(
-                                             new Dictionary<string, object>
-                                             {
-                                                 {"PrimaryDarkColor", Color.Pink},
-                                                 {"PrimaryColor", Color.Pink}
-                                             }));
+                                            new Dictionary<string, object>
+                                            {
+                                                { "PrimaryDarkColor", Color.Pink },
+                                                { "PrimaryColor", Color.Pink }
+                                            }));
         }
 
         [Test, Category("UnitTest")]
@@ -184,6 +184,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Pages
             page.AppetizerPage.Image = CreateImage();
             return page;
         }
+
         private Page CreateImagePage()
         {
             var page = Substitute.For<Page>();
@@ -205,6 +206,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Pages
             image.Data = new byte[] { 1, 2, 3, 4 };
             return image;
         }
+
         #endregion
     }
 }

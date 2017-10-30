@@ -21,32 +21,31 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.BusinessLayer.DtoToModelConverters {
-
+namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.BusinessLayer.DtoToModelConverters
+{
     [TestFixture]
     public class RouteConverterTest
     {
-
-        [Test, Category ("UnitTest")]
+        [Test, Category("UnitTest")]
         public void Convert_RouteTest()
         {
-            var sut = CreateSystemUnderTest ();
+            var sut = CreateSystemUnderTest();
 
-            var route = Substitute.For<Route> ();
-            var routeDto = CreateRouteDto ();
+            var route = Substitute.For<Route>();
+            var routeDto = CreateRouteDto();
 
-            sut.Convert (routeDto, route);
-            Assert.AreEqual (1, route.IdForRestApi);
-            Assert.AreEqual (new DateTimeOffset(2017, 5, 29, 10, 10, 10, 10, TimeSpan.Zero), route.Timestamp);
-            Assert.AreEqual ("Test Description", route.Description);
-            Assert.AreEqual ("Test Title", route.Title);
-            Assert.AreEqual (42.2, route.Distance);
-            Assert.AreEqual (100, route.Duration);
+            sut.Convert(routeDto, route);
+            Assert.AreEqual(1, route.IdForRestApi);
+            Assert.AreEqual(new DateTimeOffset(2017, 5, 29, 10, 10, 10, 10, TimeSpan.Zero), route.Timestamp);
+            Assert.AreEqual("Test Description", route.Description);
+            Assert.AreEqual("Test Title", route.Title);
+            Assert.AreEqual(42.2, route.Distance);
+            Assert.AreEqual(100, route.Duration);
         }
 
         #region HelperMethods
 
-        private RouteDto CreateRouteDto ()
+        private RouteDto CreateRouteDto()
         {
             return new RouteDto
             {
@@ -61,11 +60,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.BusinessLayer.DtoT
 
         private RouteConverter CreateSystemUnderTest()
         {
-            return new RouteConverter ();
+            return new RouteConverter();
         }
 
         #endregion
-
-
     }
 }

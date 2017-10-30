@@ -11,14 +11,16 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.InteractiveSources {
-
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.InteractiveSources
+{
     /// <summary>
     /// Represents a source by providing properties storing the source text, the start index and the substitute text.
     /// </summary>
-    public class Source {
+    public class Source
+    {
         public string SubstituteText { get; }
 
         public string Text { get; }
@@ -27,7 +29,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.InteractiveS
 
         public int NumberInSubtitles { get; }
 
-        public double FontSize { get{ return Settings.AudioTranscriptFontSize; } }
+        public double FontSize
+        {
+            get { return Settings.AudioTranscriptFontSize; }
+        }
 
         public Source(string text, int startIndex, string substituteText, int numberInSubtitles)
         {

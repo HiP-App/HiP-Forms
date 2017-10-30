@@ -21,31 +21,31 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.BusinessLayer.DtoToModelConverters {
-
+namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.BusinessLayer.DtoToModelConverters
+{
     [TestFixture]
-    public class ExhibitConverterTest {
-
+    public class ExhibitConverterTest
+    {
         //TODO Realm under Windows first [Test, Category ("UnitTest")]
         public void Convert_ExhibitTest()
         {
-            var sut = CreateSystemUnderTest ();
+            var sut = CreateSystemUnderTest();
 
-            var exhibit = Substitute.For<Exhibit> ();
-            var exhibitDto = CreateExhibitDto ();
+            var exhibit = Substitute.For<Exhibit>();
+            var exhibitDto = CreateExhibitDto();
 
-            sut.Convert (exhibitDto, exhibit);
-            Assert.AreEqual (1, exhibit.IdForRestApi);
-            Assert.AreEqual (new DateTimeOffset(2017, 5, 29, 10, 10, 10, 10, TimeSpan.Zero), exhibit.Timestamp);
-            Assert.AreEqual ("Test Description", exhibit.Description);
-            Assert.AreEqual ("Test Name", exhibit.Name);
-            Assert.AreEqual (42.1, exhibit.Location.Latitude);
-            Assert.AreEqual (42.2, exhibit.Location.Longitude);
+            sut.Convert(exhibitDto, exhibit);
+            Assert.AreEqual(1, exhibit.IdForRestApi);
+            Assert.AreEqual(new DateTimeOffset(2017, 5, 29, 10, 10, 10, 10, TimeSpan.Zero), exhibit.Timestamp);
+            Assert.AreEqual("Test Description", exhibit.Description);
+            Assert.AreEqual("Test Name", exhibit.Name);
+            Assert.AreEqual(42.1, exhibit.Location.Latitude);
+            Assert.AreEqual(42.2, exhibit.Location.Longitude);
         }
 
         #region HelperMethods
 
-        private ExhibitDto CreateExhibitDto ()
+        private ExhibitDto CreateExhibitDto()
         {
             return new ExhibitDto
             {
@@ -60,11 +60,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.BusinessLayer.DtoT
 
         private ExhibitConverter CreateSystemUnderTest()
         {
-            return new ExhibitConverter ();
+            return new ExhibitConverter();
         }
 
         #endregion
-
-
     }
 }

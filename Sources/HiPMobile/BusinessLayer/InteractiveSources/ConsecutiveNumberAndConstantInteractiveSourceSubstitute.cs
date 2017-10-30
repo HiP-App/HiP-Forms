@@ -12,13 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.InteractiveSources {
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.InteractiveSources
+{
     /// <summary>
     /// Implements IInteractiveSourceSubstitute by returning a  constant text followed by a consecutive number combined enclosed in brackets.
     /// </summary>
-    public class ConsecutiveNumberAndConstantInteractiveSourceSubstitute : IInteractiveSourceSubstitute {
-
+    public class ConsecutiveNumberAndConstantInteractiveSourceSubstitute : IInteractiveSourceSubstitute
+    {
         private int number;
 
         private readonly string constantText;
@@ -34,10 +34,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.InteractiveS
             this.constantText = constantText;
         }
 
-        public string NextSubstitute ()
+        public string NextSubstitute()
         {
             return $"[{constantText} {number++}]";
         }
-
     }
 }

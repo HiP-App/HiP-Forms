@@ -14,12 +14,12 @@
 
 using System.Collections.Generic;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.InteractiveSources {
-    public class InteractiveSourcesParsingResult {
-
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.InteractiveSources
+{
+    public class InteractiveSourcesParsingResult
+    {
         public string TextWithSubstitutes { get; set; }
 
         public List<Source> Sources { get; set; }
-
     }
 }
