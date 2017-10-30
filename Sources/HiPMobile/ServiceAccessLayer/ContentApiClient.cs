@@ -177,6 +177,16 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer
             }
         }
 
+        public async Task<HttpResponseMessage> PostRequestBody(string url, string body)
+        {
+            using (var client = new HttpClient())
+            {
+                // ReSharper disable once AccessToDisposedClosure
+                var result = await TransientRetry.Do(() => client.PostAsync(url, new StringContent(body)), new TimeSpan(0, 0, 0, 3));
+                return result;
+            }
+        }
+
         public async Task<HttpResponseMessage> PostJsonRequest(string url, string jsonContent)
         {
             try

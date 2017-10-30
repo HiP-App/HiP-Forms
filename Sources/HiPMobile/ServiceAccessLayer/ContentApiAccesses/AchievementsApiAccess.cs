@@ -53,5 +53,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
 
             return achievements;
         }
+
+        public async Task PostExhibitVisited(ExhibitsVisitedActionDto action)
+        {
+            const string requestPath = "/Actions/ExhibitVisited";
+            var json = JsonConvert.SerializeObject(action);
+            await contentApiClient.PostRequestBody(requestPath, json);
+        }
     }
 }

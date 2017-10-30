@@ -164,6 +164,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                                 await UpdateDatabase();
                             }
                         }
+                        Task.Run(async () => await NearbyExhibitManager.PostVisitedExhibitsToApi());
                     }
                     catch (Exception e)
                     {
@@ -289,6 +290,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
             //init serviceaccesslayer
             IoCManager.RegisterInstance(typeof(IContentApiClient), new ContentApiClient());
+            IoCManager.RegisterType<IAchievementsApiAccess, AchievementsApiAccess>();
             IoCManager.RegisterType<IExhibitsApiAccess, ExhibitsApiAccess>();
             IoCManager.RegisterType<IMediasApiAccess, MediasApiAccess>();
             IoCManager.RegisterType<IFileApiAccess, FileApiAccess>();

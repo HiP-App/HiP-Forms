@@ -13,14 +13,18 @@
 // limitations under the License.
 
 using System.Collections.Generic;
-using System.Threading.Tasks;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos;
+using Newtonsoft.Json;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses.Contracts
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos
 {
-    public interface IAchievementsApiAccess
+    public class ExhibitsVisitedActionDto
     {
-        Task<IEnumerable<AchievementDto>> GetUnlockedAchievements();
-        Task PostExhibitVisited(ExhibitsVisitedActionDto action);
+        [JsonProperty("entityId")]
+        public IList<int> EntityIds { get; private set; }
+
+        public ExhibitsVisitedActionDto(IList<int> entityIds)
+        {
+            EntityIds = entityIds;
+        }
     }
 }
