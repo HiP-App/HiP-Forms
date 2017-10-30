@@ -24,7 +24,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
 {
     public partial class ExhibitDetailsPage : IViewFor<ExhibitDetailsViewModel>
     {
-        private ExhibitDetailsViewModel ViewModel => (ExhibitDetailsViewModel) BindingContext;
+        private ExhibitDetailsViewModel ViewModel => (ExhibitDetailsViewModel)BindingContext;
         private OrientationController savedControllerState;
         private bool isOnDisappearingContext;
 
@@ -92,9 +92,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
         /// </summary>
         private void UpdateAudioBarVisibility()
         {
-
-                AudioToolbar.IsVisible = ViewModel.AudioToolbarVisible;
-
+            AudioToolbar.IsVisible = ViewModel.AudioToolbarVisible;
         }
 
         /// <summary>
