@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Views.AchievementNotificationView">
+    <ContentView.Content>
+        <AbsoluteLayout Padding="0">
+            <StackLayout x:Name="AchievementNotification" AbsoluteLayout.LayoutBounds=".5,0.1,1,.15" AbsoluteLayout.LayoutFlags="All" Orientation="Horizontal"
+                         BackgroundColor="CadetBlue" Margin="10" Padding="0" InputTransparent="false" IsVisible="{Binding IsVisible}" Opacity="{Binding Opacity}">
+                <Image Source="{Binding AchievementImage}" HorizontalOptions="Start" Aspect="AspectFit"/>
+                <Label Text="{Binding AchievementTitle}" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" TextColor="Chartreuse" FontSize="20" FontAttributes="Bold"/>
+                <Label Text="{Binding AchievementDescription}" HorizontalOptions="End" VerticalOptions="CenterAndExpand" TextColor="Crimson" FontSize="10" FontAttributes="Bold"/>
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding DisposeNotificationCommand}"/>
+                </StackLayout.GestureRecognizers>
+            </StackLayout>
+        </AbsoluteLayout>
+    </ContentView.Content>
+</ContentView>

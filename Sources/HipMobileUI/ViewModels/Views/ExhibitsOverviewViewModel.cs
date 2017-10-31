@@ -23,7 +23,6 @@ using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Location;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
-using PaderbornUniversity.SILab.Hip.Mobile.UI.NotificationPlayer;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
 using Plugin.Geolocator.Abstractions;
 using Xamarin.Forms;
@@ -63,6 +62,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             dbChangedHandler.AddObserver(this);
 
             DownloadUpdatedData();
+
+            AchievementNotificationViewModel = new AchievementNotificationViewModel();
         }
 
         public ExhibitsOverviewViewModel(string exhibitSetId) : this(ExhibitManager.GetExhibitSet(exhibitSetId))
@@ -87,6 +88,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             nearbyRouteManager.CheckNearRoute(RouteManager.GetRoutes(), args.Position.ToGeoLocation());
         }
 
+        private AchievementNotificationViewModel achievementNotificationViewModel;
+        public AchievementNotificationViewModel AchievementNotificationViewModel
+        {
+            get { return achievementNotificationViewModel; }
+            set { SetProperty(ref achievementNotificationViewModel, value); }
+        }
+        
         /// <summary>
         /// Update the distances according to the new position.
         /// </summary>
@@ -129,7 +137,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         {
             if (item != null)
             {
-                Navigation.PushAsync(new ExhibitDetailsViewModel(item.Exhibit));
+                var ex = new ExhibitsVisitedAchievement
+                {
+                    Title = "ACHI_Title",
+                    Description = "ACHI_Description"
+                };
+                var collection = new ObservableCollection<IAchievement> { ex };
+                QueueAchievementNotification(AchievementNotificationViewModel, collection);
+                //Navigation.PushAsync(new ExhibitDetailsViewModel(item.Exhibit));
             }
         }
 
