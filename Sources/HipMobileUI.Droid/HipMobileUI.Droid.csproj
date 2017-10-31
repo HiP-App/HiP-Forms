@@ -37,7 +37,7 @@
     <WarningLevel>4</WarningLevel>
     <AndroidUseSharedRuntime>True</AndroidUseSharedRuntime>
     <AndroidLinkMode>None</AndroidLinkMode>
-    <EmbedAssembliesIntoApk>False</EmbedAssembliesIntoApk>
+    <EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
     <Debugger>Xamarin</Debugger>
     <AotAssemblies>True</AotAssemblies>
     <JavaMaximumHeapSize>1G</JavaMaximumHeapSize>
@@ -117,6 +117,10 @@
     </Reference>
     <Reference Include="FormsViewGroup, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Xamarin.Forms.2.3.4.247\lib\MonoAndroid10\FormsViewGroup.dll</HintPath>
+    </Reference>
+    <Reference Include="HipMobileUI, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\HipMobileUI\bin\Debug\HipMobileUI.dll</HintPath>
     </Reference>
     <Reference Include="HockeySDK, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\HockeySDK.Xamarin.4.1.1\lib\MonoAndroid403\HockeySDK.dll</HintPath>
@@ -344,10 +348,6 @@
     <ProjectReference Include="..\HiPMobile\HiPMobile.csproj">
       <Project>{703afe03-8f94-4f5c-a5e8-7d9774d0ced1}</Project>
       <Name>HiPMobile</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\HipMobileUI\HipMobileUI.csproj">
-      <Project>{8A545C1B-B2C8-425F-8303-BD5BD08A978D}</Project>
-      <Name>HipMobileUI</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

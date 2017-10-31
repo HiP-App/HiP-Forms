@@ -244,12 +244,12 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Pages\AppetizerPage.xaml">
-    <EmbeddedResource Include="Views\AchievementsScreenView.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
+  <!--  <EmbeddedResource Include="Pages\AppetizerPage.xaml">-->
+      <EmbeddedResource Include="Views\AchievementsScreenView.xaml">
+        <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+        <SubType>Designer</SubType>
       </EmbeddedResource>
+    <!--   </EmbeddedResource> -->
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
