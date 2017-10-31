@@ -230,6 +230,10 @@
     <Compile Include="Pages\AppetizerPage.xaml.cs">
       <DependentUpon>AppetizerPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\AchievementsScreenView.xaml.cs">
+      <DependentUpon>AchievementsScreenView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\Views\AchievementsScreenViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="App.xaml">
@@ -241,6 +245,7 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\AppetizerPage.xaml">
+    <EmbeddedResource Include="Views\AchievementsScreenView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
