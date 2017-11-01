@@ -71,9 +71,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                     Icon = "ic_gavel.png"
                 },
                 profileScreenViewModel,
-                new LeaderboardViewModel
+                new AchievementsScreenViewModel
                 {
-                    Title = Strings.MainPageViewModel_Leaderboard,
+                    Title = Strings.MainPageViewModel_Achievements,
                     Icon = "ic_equalizer.png"
                 }
             };
@@ -136,13 +136,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
         public ObservableCollection<NavigationViewModel> MainScreenViewModels
         {
-            get { return mainScreenViewModels; }
-            set { SetProperty(ref mainScreenViewModels, value); }
+            get => mainScreenViewModels;
+            set => SetProperty(ref mainScreenViewModels, value);
         }
 
         public NavigationViewModel SelectedViewModel
         {
-            get { return selectedViewModel; }
+            get => selectedViewModel;
             set
             {
                 var oldViewModel = SelectedViewModel;

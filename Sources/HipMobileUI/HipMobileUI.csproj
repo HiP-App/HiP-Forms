@@ -230,6 +230,10 @@
     </Compile>
     <Compile Include="Behaviors\PasswordValidationBehavior.cs" />
     <Compile Include="Behaviors\EmailValidationBehavior.cs" />
+    <Compile Include="Views\AchievementsScreenView.xaml.cs">
+      <DependentUpon>AchievementsScreenView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\Views\AchievementsScreenViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="App.xaml">
@@ -237,6 +241,10 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\RegisterScreenView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\AchievementsScreenView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
