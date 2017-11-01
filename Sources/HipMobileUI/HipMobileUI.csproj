@@ -244,11 +244,11 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-  <!--  <EmbeddedResource Include="Pages\AppetizerPage.xaml">-->
-      <EmbeddedResource Include="Views\AchievementsScreenView.xaml">
-        <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-        <SubType>Designer</SubType>
-      </EmbeddedResource>
+    <!--  <EmbeddedResource Include="Pages\AppetizerPage.xaml">-->
+    <EmbeddedResource Include="Views\AchievementsScreenView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <!--   </EmbeddedResource> -->
   </ItemGroup>
   <ItemGroup>
@@ -514,7 +514,12 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\AppetizerPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
