@@ -19,7 +19,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
 {
     public class ExhibitsVisitedActionDto
     {
-        [JsonProperty("entityId")]
+        [JsonProperty("entityIds")]
         public IList<int> EntityIds { get; private set; }
 
         public ExhibitsVisitedActionDto(IList<int> entityIds)

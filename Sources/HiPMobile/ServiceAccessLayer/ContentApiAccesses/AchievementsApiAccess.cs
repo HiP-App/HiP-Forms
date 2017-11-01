@@ -13,6 +13,7 @@
 // limitations under the License.
 
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
@@ -56,12 +57,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
 
         public async Task PostExhibitVisited(ExhibitsVisitedActionDto action)
         {
-            if (true)
-                return;
-            
-            const string requestPath = "/Actions/ExhibitVisited";
+            const string requestPath = "/Actions/ExhibitVisited/Many";
             var json = JsonConvert.SerializeObject(action);
-            await contentApiClient.PostRequestBody(requestPath, json);
+            var httpResponseMessage = await contentApiClient.PostRequestBody(requestPath, json);
+            var responseString = await httpResponseMessage.Content.ReadAsStringAsync();
+            Debug.WriteLine($"Posted {action.EntityIds.Count} visited exhibits to API with response {responseString}");
         }
     }
 }

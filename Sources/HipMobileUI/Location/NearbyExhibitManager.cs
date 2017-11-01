@@ -24,7 +24,8 @@ using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses.Contracts;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.NotificationPlayer;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
@@ -115,7 +116,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Location
                                      .SelectMany(set => set.ActiveSet);
             var visitedExhibitIds = exhibits.Where(e => e.Unlocked).Select(e => e.IdForRestApi).ToList();
             var action = new ExhibitsVisitedActionDto(visitedExhibitIds);
-            await IoCManager.Resolve<IAchievementsApiAccess>().PostExhibitVisited(action);
+            await new AchievementsApiAccess(new ContentApiClient(ServerEndpoints.AchievementsApiPath)).PostExhibitVisited(action);
         }
 
         public void InvokeExhibitVistedEvent(Exhibit exhibit)

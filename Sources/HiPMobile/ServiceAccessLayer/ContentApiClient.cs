@@ -13,13 +13,11 @@
 // limitations under the License.
 
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.AuthApiDto;
@@ -188,7 +186,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer
             using (var client = new HttpClient())
             {
                 // ReSharper disable once AccessToDisposedClosure
-                var result = await TransientRetry.Do(() => client.PostAsync(basePath + url, new StringContent(body)), new TimeSpan(0, 0, 0, 3));
+                var result = await TransientRetry.Do(() =>
+                {
+                    var content = new StringContent(body, Encoding.UTF8, "application/json");
+                    var message = new HttpRequestMessage(HttpMethod.Post, basePath + url) { Content = content };
+                    message.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token.AccessToken);
+                    message.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                    return client.SendAsync(message);
+                }, new TimeSpan(0, 0, 0, 3));
                 return result;
             }
         }
