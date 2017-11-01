@@ -67,7 +67,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             {
                 return;
             }
-            await dataToRemoveFetcher.FetchDataToDelete(token);
             if (token.IsCancellationRequested)
             {
                 return;
@@ -87,12 +86,16 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                     transaction.Rollback();
                     return;
                 }
-                dataToRemoveFetcher.CleaupRemovedData();
                 if (token.IsCancellationRequested)
                 {
                     transaction.Rollback();
                 }
             }
-        }
+            await dataToRemoveFetcher.FetchDataToDelete (token);
+                using (var transaction = DbManager.StartTransaction ())
+                {
+                dataToRemoveFetcher.CleaupRemovedData ();
+                }
+            }
     }
 }

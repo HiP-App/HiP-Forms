@@ -168,7 +168,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                 {
                     deletedTags.Add(tag);
                 }
-                if (tag.Image != null && !allMedias.Contains(tag.Image.IdForRestApi))
+                if (tag.Image != null && !allMedias.Contains(tag.Image.IdForRestApi) && tag.Image.IdForRestApi != -2)
                 {
                     deletedImages.Add(tag.Image);
                     tag.Image = null;

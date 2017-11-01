@@ -59,7 +59,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataLayer
         public bool DeleteItem<T>(string id) where T : RealmObject, IIdentifiable
         {
             var item = GetItem<T>(id);
-            Instance.Write(() => Instance.Remove(item));
+            Instance.Remove(item);
 
             if (item != null)
                 return true;
