@@ -33,6 +33,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
         private readonly IPagesApiAccess pagesApiAccess;
         private readonly IMediasApiAccess mediasApiAccess;
         private readonly ITagsApiAccess tagsApiAccess;
+        private const int DefaultImageId = -2;
 
         public DataToRemoveFetcher(IExhibitsApiAccess exhibitsApiAccess, IRoutesApiAccess routesApiAccess, IPagesApiAccess pagesApiAccess, IMediasApiAccess mediasApiAccess,
                                    ITagsApiAccess tagsApiAccess)
@@ -168,7 +169,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                 {
                     deletedTags.Add(tag);
                 }
-                if (tag.Image != null && !allMedias.Contains(tag.Image.IdForRestApi) && tag.Image.IdForRestApi != -2)
+                if (tag.Image != null && !allMedias.Contains(tag.Image.IdForRestApi) && tag.Image.IdForRestApi != DefaultImageId)
                 {
                     deletedImages.Add(tag.Image);
                     tag.Image = null;

@@ -92,10 +92,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                 }
             }
             await dataToRemoveFetcher.FetchDataToDelete (token);
-                using (var transaction = DbManager.StartTransaction ())
-                {
+            using (var transaction = DbManager.StartTransaction ())
+            {
                 dataToRemoveFetcher.CleaupRemovedData ();
-                }
             }
+        }
     }
 }
