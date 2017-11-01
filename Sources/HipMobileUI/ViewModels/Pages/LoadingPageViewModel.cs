@@ -292,7 +292,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
             //init serviceaccesslayer
             IoCManager.RegisterInstance(typeof(IContentApiClient), new ContentApiClient());
-            IoCManager.RegisterType<IAchievementsApiAccess, AchievementsApiAccess>();
+            IoCManager.RegisterInstance(typeof(IAchievementsApiAccess), new AchievementsApiAccess(new ContentApiClient(ServerEndpoints.AchievementsApiPath)));
             IoCManager.RegisterType<IExhibitsApiAccess, ExhibitsApiAccess>();
             IoCManager.RegisterType<IMediasApiAccess, MediasApiAccess>();
             IoCManager.RegisterType<IFileApiAccess, FileApiAccess>();
