@@ -38,6 +38,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         void Accept()
         {
             Navigation.ClearModalStack();
+            NearbyRouteManager.OpenRouteDetailsView (RouteId);
             NearbyRouteManager.OpenRouteDetailsView(RouteId);
         }
 

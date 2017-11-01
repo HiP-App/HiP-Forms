@@ -127,7 +127,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 
         public void OpenDetailsView(string id)
         {
-            Navigation.InsertPageBefore(new ExhibitDetailsViewModel(id), downloadPage);
+            Navigation.InsertPageBefore(new AppetizerPageViewModel(id), downloadPage);
             Navigation.PopAsync();
         }
 

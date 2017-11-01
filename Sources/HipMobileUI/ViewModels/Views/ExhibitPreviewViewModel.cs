@@ -45,14 +45,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         void Accept()
         {
             MessagingCenter.Send<NavigationViewModel, bool>(this, "ReturnValue", true);
-            IoCManager.Resolve<INavigationService>().ClearModalStack();
-            IoCManager.Resolve<INavigationService>().PushAsync(new ExhibitDetailsViewModel(exhibit.Id));
+            Navigation.ClearModalStack();
+            Navigation.PushAsync(new AppetizerPageViewModel(exhibit));
             exhibitManager.InvokeExhibitVistedEvent(exhibit);
         }
 
         void Deny()
         {
-            IoCManager.Resolve<INavigationService>().PopModalAsync();
+            Navigation.PopModalAsync();
         }
     }
 }

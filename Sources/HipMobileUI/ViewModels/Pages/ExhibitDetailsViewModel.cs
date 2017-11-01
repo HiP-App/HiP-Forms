@@ -39,35 +39,28 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
     {
         private ExhibitSubviewViewModel selectedView;
         private AudioToolbarViewModel audioToolbar;
-
-        private Exhibit exhibit;
+        private Exhibit exhibit; 
         private readonly IList<Page> pages;
         private ICommand nextViewCommand;
         private ICommand previousViewCommand;
         private ICommand audioToolbarCommand;
         private ICommand additionalInformationCommand;
+        private int currentViewIndex;
         private bool previousViewAvailable;
         private bool nextViewAvailable;
         private bool previousVisible;
         private bool nextVisible;
-        private int currentViewIndex;
         private bool audioAvailabe;
         private bool audioToolbarVisible;
         private bool hasAdditionalInformation;
         private bool additionalInformationButtonVisible;
-        private bool exhibitUnblocked = true;
-        private bool additionalInformation;
+        private readonly bool additionalInformation;
 
-        public ExhibitDetailsViewModel(Exhibit exhibit) : this(exhibit, exhibit.Pages, exhibit.Name)
-        {
-            exhibitUnblocked = exhibit.Unlocked;
-        }
+        public ExhibitDetailsViewModel(string exhibitId) : this(ExhibitManager.GetExhibit(exhibitId)) { }
 
-        public ExhibitDetailsViewModel(string exhibitId) : this(ExhibitManager.GetExhibit(exhibitId), ExhibitManager.GetExhibit(exhibitId).Pages,
-                                                                ExhibitManager.GetExhibit(exhibitId).Name)
-        {
-            exhibitUnblocked = ExhibitManager.GetExhibit(exhibitId).Unlocked;
-        }
+        public ExhibitDetailsViewModel(Exhibit exhibit) : this(exhibit, exhibit.Pages, exhibit.Name) {}
+       
+
 
         public ExhibitDetailsViewModel(Exhibit exhibit, IList<Page> pages, string title, bool additionalInformation = false)
         {
@@ -87,14 +80,20 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             AudioToolbar.AudioPlayer.AudioCompleted += AudioPlayerOnAudioCompleted;
 
             // init the current view
-            currentViewIndex = 0;
+            currentViewIndex = 1;
             this.pages = pages;
             SetCurrentView().ConfigureAwait(true);
             Title = title;
 
-            if (pages.Count > 1)
+            if (pages.Count > 2)
                 NextViewAvailable = true;
 
+            // init commands     
+            NextViewCommand = new Command (async () => await GotoNextView ());
+            PreviousViewCommand = new Command (GotoPreviousView);
+            ShowAudioToolbarCommand = new Command (SwitchAudioToolbarVisibleState);
+            ShowAdditionalInformationCommand = new Command (ShowAdditionalInformation);
+            
             // init commands
             //this.ExhibitUnblocked = ExhibitUnblocked;        
             NextViewCommand = new Command(async () => await GotoNextView());
@@ -215,20 +214,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                     AudioToolbar.AudioPlayer.Stop();
                 }
                 // update the UI
+                currentViewIndex++;
+                NextViewAvailable = currentViewIndex < pages.Count - 1;
+                PreviousViewAvailable = true;
+                await SetCurrentView();
 
-                if (exhibitUnblocked)
-                {
-                    currentViewIndex++;
-                    NextViewAvailable = currentViewIndex < pages.Count - 1;
-                    PreviousViewAvailable = true;
-                    await SetCurrentView();
-                }
-                else
-                {
-                    await IoCManager.Resolve<INavigationService>()
-                                    .DisplayAlert(Strings.ExhibitDetailsPage_Distance_Title, Strings.ExhibitDetailsPage_Distance_Text,
-                                                  Strings.ExhibitDetailsPage_Distance_alert_confirm);
-                }
+              
+
             }
         }
 
@@ -242,7 +234,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         /// </summary>
         private async void GotoPreviousView()
         {
-            if (currentViewIndex > 0)
+            if (currentViewIndex > 1)
             {
                 // stop audio
                 if (AudioToolbar.AudioPlayer.IsPlaying)
@@ -252,9 +244,16 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
                 // update UI
                 currentViewIndex--;
+                await SetCurrentView ();
+                PreviousViewAvailable = currentViewIndex > 1;
                 await SetCurrentView();
                 PreviousViewAvailable = currentViewIndex > 0;
                 NextViewAvailable = true;
+            }
+            // Go back to appetizer page
+            else
+            {
+                await Navigation.PopAsync();
             }
         }
 
@@ -264,8 +263,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         /// <returns></returns>
         private async Task SetCurrentView()
         {
-            // update UI
-            Page currentPage = pages[currentViewIndex];
+			// update UI
+			if (currentViewIndex == 0)
+			{
+				currentViewIndex = currentViewIndex + 1;
+			}
+
+			Page currentPage = pages[currentViewIndex];
             AudioAvailable = currentPage.Audio != null;
             if (!AudioAvailable)
             {
@@ -287,9 +291,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
             switch (currentPage.PageType)
             {
-                case PageType.AppetizerPage:
-                    SelectedView = new AppetizerViewModel(Exhibit, Title, currentPage.AppetizerPage);
-                    break;
                 case PageType.ImagePage:
                     SelectedView = new ImageViewModel(currentPage.ImagePage, ToggleVisibilityOfNavigationButtons);
                     break;
@@ -312,6 +313,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
             //Cancel disabling navigation buttons caused by page selected before
             tokenSource?.Cancel();
+
             //Toggle navigation buttons visibility for specific pages
             switch (currentPage.PageType)
             {
@@ -324,7 +326,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
             if (currentPage.Audio != null)
             {
-                // ask if user wants autoamtic audio playback
+                // ask if user wants automatic audio playback
                 if (Settings.RepeatHintAudio)
                 {
                     var result = await Navigation.DisplayAlert(Strings.ExhibitDetailsPage_Hinweis, Strings.ExhibitDetailsPage_AudioPlay,
@@ -351,8 +353,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             if (Exhibit.DetailsDataLoaded)
             {
                 NextViewAvailable = currentViewIndex < pages.Count - 1;
+                PreviousViewAvailable = currentViewIndex > 1;
+                await SetCurrentView ();
                 PreviousViewAvailable = currentViewIndex > 0;
                 await SetCurrentView();
+
             }
         }
 

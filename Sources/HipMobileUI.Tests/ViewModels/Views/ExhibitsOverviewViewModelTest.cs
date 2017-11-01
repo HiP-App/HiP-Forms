@@ -29,6 +29,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Views
     [TestFixture]
     class ExhibitsOverviewViewModelTest
     {
+
         private INavigationService navservice;
 
         [TestFixtureSetUp]
@@ -89,8 +90,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Views
 
             exhibit.Location = CreateGeoLocation(latitude, longitude);
 
-            var pages = new List<Page> { CreateAppetizerPage() };
+            var pages = new List<Page> { CreateImagePage() };
             exhibit.Pages.Returns(pages);
+
+            var appetizerPage = CreateAppetizerPage();
+            exhibit.AppetizerPage.Returns(appetizerPage);
 
             return exhibit;
         }
@@ -103,11 +107,19 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Views
             return geolocation;
         }
 
-        private Page CreateAppetizerPage()
+        private AppetizerPage CreateAppetizerPage()
+        {
+            var appetizerPage = Substitute.For<AppetizerPage>();
+            appetizerPage.Text = "Foo";
+            appetizerPage.Image = CreateImage();
+            return appetizerPage;
+        }
+
+        private Page CreateImagePage()
         {
             var page = Substitute.For<Page>();
-            page.AppetizerPage = Substitute.For<AppetizerPage>();
-            page.AppetizerPage.Image = CreateImage();
+            page.ImagePage = Substitute.For<ImagePage>();
+            page.ImagePage.Image = CreateImage();
             return page;
         }
 

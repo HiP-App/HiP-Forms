@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+ ﻿
+<!--
+// Copyright (C) 2017 History in Paderborn App - Universität Paderborn
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+-->
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Pages.AppetizerPage"
+             xmlns:controls1="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Controls;assembly=HipMobileUI"
+             Title="{Binding Headline}">
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <Grid AbsoluteLayout.LayoutBounds="1,1,1,1" AbsoluteLayout.LayoutFlags="All" BackgroundColor="White">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.6*" />
+                    <RowDefinition Height="0.3*" />
+                    <RowDefinition Height="0.1*" />
+                </Grid.RowDefinitions>
+
+                <Image Source="{Binding Image}" Grid.Row="0" Aspect="AspectFill" />
+                <ScrollView Grid.Row="1" VerticalOptions="StartAndExpand">
+                    <Grid BackgroundColor="White">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width=".6*" />
+                            <ColumnDefinition Width=".4*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <ContentView Grid.Column="0" AbsoluteLayout.LayoutBounds="15,15,150,150">
+                            <controls1:CardView>
+                                <Label Text="{Binding Text}" TextColor="#87000000" FontSize="16"/>
+                            </controls1:CardView>
+                        </ContentView>
+                        <StackLayout Grid.Column="1">
+                            <Label Text="4.4" FontAttributes="Bold" FontSize="24" VerticalOptions="Center" HorizontalOptions="Center" />
+                            <Label Text="1.222 Bewertungen" FontSize="10" HorizontalOptions="Center" VerticalOptions="Center" />
+                            <Label Text="★★★★☆ " FontSize="10" HorizontalOptions="Center" VerticalOptions="Center" />
+                        </StackLayout>
+                    </Grid>
+                </ScrollView>
+
+                <Label Text="1/10" FontAttributes="Bold" FontSize="20" HorizontalOptions="End" />
+
+            </Grid>
+            <Button AbsoluteLayout.LayoutBounds=".5,1,.95,.1" AbsoluteLayout.LayoutFlags="All"
+                    Image="ic_file_download.png" IsVisible="{Binding IsDownloadButtonVisible}" Command="{Binding DownloadCommand}" />
+            <Button AbsoluteLayout.LayoutBounds="1,.5,.2,.1" AbsoluteLayout.LayoutFlags="All"
+                    Image="ic_chevron_right" IsVisible="{Binding NextVisible}" Command="{Binding NextViewCommand}" BackgroundColor="#80D3D3D3" AutomationId="NextButton"/>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>
