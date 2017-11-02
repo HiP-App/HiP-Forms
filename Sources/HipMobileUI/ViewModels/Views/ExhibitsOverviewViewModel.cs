@@ -94,7 +94,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             get { return achievementNotificationViewModel; }
             set { SetProperty(ref achievementNotificationViewModel, value); }
         }
-        
+
         /// <summary>
         /// Update the distances according to the new position.
         /// </summary>
@@ -110,16 +110,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         }
 
         /// <summary>
-        /// Called when the view was removed from the visual tree.
-        /// </summary>
-        public override void OnDisappearing()
-        {
-            base.OnDisappearing();
-
-            locationManager.RemoveLocationListener(this);
-        }
-
-        /// <summary>
         /// Called when the view was added to the visual tree.
         /// </summary>
         public override void OnAppearing()
@@ -130,22 +120,35 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         }
 
         /// <summary>
+        /// Called when the view was removed from the visual tree.
+        /// </summary>
+        public override void OnDisappearing()
+        {
+            base.OnDisappearing();
+
+            locationManager.RemoveLocationListener(this);
+            AchievementNotificationViewModel.RemoveAllAchievementNotifications();
+        }
+
+        /// <summary>
         /// Open the exhibitdetails page.
         /// </summary>
         /// <param name="item"></param>
         private void NavigateToExhibitDetails(ExhibitsOverviewListItemViewModel item)
         {
-            if (item != null)
-            {
-                var ex = new ExhibitsVisitedAchievement
-                {
-                    Title = "ACHI_Title",
-                    Description = "ACHI_Description"
-                };
-                var collection = new ObservableCollection<IAchievement> { ex };
-                QueueAchievementNotification(AchievementNotificationViewModel, collection);
-                //Navigation.PushAsync(new ExhibitDetailsViewModel(item.Exhibit));
-            }
+            if (item == null)
+                return;
+            var collection = new ObservableCollection<IAchievement> {
+                new ExhibitsVisitedAchievement {
+                    Title = "The exhibit visitor",
+                    Description = "Visit an exhibit for the first time",
+                    ImageUrl = "https://docker-hip.cs.upb.de/public/thumbnailservice/api/Thumbnails?Url=achievements/api/image/0/"},
+                new ExhibitsVisitedAchievement{
+                    Title = "The route completer",
+                    Description = "Complete a route for the first time",
+                    ImageUrl = "https://docker-hip.cs.upb.de/public/thumbnailservice/api/Thumbnails?Url=achievements/api/image/1/"} };
+            QueueAchievementNotification(AchievementNotificationViewModel, collection);
+            //Navigation.PushAsync(new ExhibitDetailsViewModel(item.Exhibit));
         }
 
         /// <summary>

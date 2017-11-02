@@ -47,15 +47,20 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels
         }
 
         /// <summary>
-        /// Method called when the view is visible again, atfer it was hidden.
+        /// Method called when the view is visible again, after it was hidden.
         /// </summary>
         public virtual void OnRevealed()
         {
         }
 
-        protected void QueueAchievementNotification(AchievementNotificationViewModel achievementNotificationViewModel, IEnumerable<IAchievement> achievement)
+        /// <summary>
+        /// Queues a notification for a recently unlocked achievement. Will be displayed on the current page and requires it to have an AchievementNotificationView.
+        /// </summary>
+        /// <param name="achievementNotificationViewModel">The viewmodel responsible for the notifications. Used as BindingContext on the current page.</param>
+        /// <param name="achievements">A collection of achievements to be displayed.</param>
+        protected void QueueAchievementNotification(AchievementNotificationViewModel achievementNotificationViewModel, IEnumerable<IAchievement> achievements)
         {
-            achievementNotificationViewModel.QueueAchievementNotifications(achievement);
+            achievementNotificationViewModel.QueueAchievementNotifications(achievements);
         }
     }
 }

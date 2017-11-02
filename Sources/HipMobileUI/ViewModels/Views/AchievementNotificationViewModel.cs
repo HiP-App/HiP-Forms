@@ -24,13 +24,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             DisposeNotificationCommand = new Command(DisposeAchievementNotification);
         }
 
-        private ICommand disposeNotificationCommand;
-        public ICommand DisposeNotificationCommand
-        {
-            get { return disposeNotificationCommand; }
-            set { SetProperty(ref disposeNotificationCommand, value); }
-        }
-
+        /// <summary>
+        /// Adds newly unlocked achievements to the list of achievements notifications are displayed for.
+        /// </summary>
+        /// <param name="achievements">Collection of recently unlocked achievements.</param>
         public void QueueAchievementNotifications(IEnumerable<IAchievement> achievements)
         {
             foreach (var achievement in achievements)
@@ -44,44 +41,83 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             }
         }
 
+        /// <summary>
+        /// Displays all queued achievements in succession.
+        /// </summary>
         private async void DisplayAchievementNotification()
         {
-            var achievement = recentlyUnlockedAchievements.First();
+            while (true)
+            {
+                var achievement = recentlyUnlockedAchievements.First();
 
-            achievementNotificationDisplayed = true;
-            await UpdateDisplayedData(achievement);
+                achievementNotificationDisplayed = true;
+                await UpdateDisplayedData(achievement);
 
-            IsVisible = true;
-            Opacity = 0;
+                IsVisible = true;
+                Opacity = 0;
 
+                await Animate();
+
+                ResetCancellationToken();
+                IsVisible = false;
+                recentlyUnlockedAchievements.Remove(achievement);
+                achievementNotificationDisplayed = false;
+
+                if (recentlyUnlockedAchievements.Count != 0)
+                    continue;
+                break;
+            }
+        }
+
+        /// <summary>
+        /// Animates the notification.
+        /// </summary>
+        private async Task Animate()
+        {
             await FadeTo(0, 1, 0.1, 25);
             await Task.Delay(3000, cancellationTokenSource.Token).ContinueWith(task => { });
             await FadeTo(1, 0, -0.1, 25);
-
-            ResetCancellationToken();
-            IsVisible = false;
-            recentlyUnlockedAchievements.Remove(achievement);
-            achievementNotificationDisplayed = false;
-
-            if (recentlyUnlockedAchievements.Count != 0)
-                DisplayAchievementNotification();
         }
 
+        /// <summary>
+        /// Updates the data displayed by the notification.
+        /// </summary>
+        /// <param name="achievement">Achievement to be displayed.</param>
+        /// <returns></returns>
+        private async Task UpdateDisplayedData(IAchievement achievement)
+        {
+            AchievementTitle = achievement.Title;
+            AchievementDescription = achievement.Description;
+            var stream = await achievement.LoadImage();
+            AchievementImage = ImageSource.FromStream(() => stream);
+        }
+
+        /// <summary>
+        /// Disposes of the current notification.
+        /// </summary>
         private void DisposeAchievementNotification()
         {
             if (achievementNotificationDisplayed)
                 cancellationTokenSource.Cancel();
         }
 
-        private async Task UpdateDisplayedData(IAchievement achievement)
+        /// <summary>
+        /// Removes all notification from the queue.
+        /// </summary>
+        public void RemoveAllAchievementNotifications()
         {
-            AchievementTitle = achievement.Title;
-            AchievementDescription = achievement.Description;
-            AchievementImage = ImageSource.FromFile("ic_account_circle.png"); // only temp
-            //var stream = await achievement.LoadImage();
-            //AchievementImage = ImageSource.FromStream(() => stream);
+            DisposeAchievementNotification();
+            recentlyUnlockedAchievements.Clear();
         }
 
+        /// <summary>
+        /// Helper method to realize the fade-animation.
+        /// </summary>
+        /// <param name="from">Start-Opacity [0 .. 1]</param>
+        /// <param name="to">Target-Opacity [0 .. 1]</param>
+        /// <param name="increment">Step size of opacity change.</param>
+        /// <param name="delay">Time in ms between the steps.</param>
+        /// <returns></returns>
         private async Task FadeTo(double from, double to, double increment, int delay)
         {
             for (var x = from; Math.Abs(x - to) > Math.Abs(increment); x = x + increment)
@@ -92,10 +128,20 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             Opacity = to;
         }
 
+        /// <summary>
+        /// Resets the cancellationToken so it can be reused.
+        /// </summary>
         private void ResetCancellationToken()
         {
             cancellationTokenSource?.Dispose();
             cancellationTokenSource = new CancellationTokenSource();
+        }
+
+        private ICommand disposeNotificationCommand;
+        public ICommand DisposeNotificationCommand
+        {
+            get { return disposeNotificationCommand; }
+            set { SetProperty(ref disposeNotificationCommand, value); }
         }
 
         private string achievementTitle;
