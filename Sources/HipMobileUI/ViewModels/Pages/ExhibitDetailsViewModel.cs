@@ -253,7 +253,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
 				currentViewIndex = currentViewIndex + 1;
 			}
 
-			Page currentPage = pages[currentViewIndex];
+			var currentPage = pages[currentViewIndex];
             AudioAvailable = currentPage.Audio != null;
             if (!AudioAvailable)
             {
