@@ -93,7 +93,7 @@
                    TextColor="Gray" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="16"
                    Margin="5" />
             </Grid>
-            <views:AchievementNotificationView x:Name="AchievementNotificationView" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" BindingContext="{Binding AchievementNotificationViewModel}"/>
+            <views:AchievementNotificationView x:Name="AchievementNotificationView" AbsoluteLayout.LayoutBounds="0,0,1,0.2" AbsoluteLayout.LayoutFlags="All" BindingContext="{Binding AchievementNotificationViewModel}" InputTransparent="True"/>
         </AbsoluteLayout>
     </ContentView.Content>
 </ContentView>
