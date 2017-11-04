@@ -18,15 +18,17 @@
                             <DataTemplate>
                                 <ViewCell>
                                     <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" Padding="0"
-                                                 Margin="3" HeightRequest="60" Spacing="0">
+                                                 Margin="3" Spacing="0">
                                         <!-- Bind image source from view model instead -->
-                                        <Image Source="ic_equalizer.png" WidthRequest="60" HeightRequest="60"
-                                               Aspect="AspectFit" />
+                                        <Image Source="ic_equalizer.png" WidthRequest="60" HeightRequest="60" 
+                                               VerticalOptions="Center" Aspect="AspectFit" />
                                         <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand"
                                                      VerticalOptions="Fill" Spacing="0" Margin="3,0">
                                             <!-- Use seperate ViewModel with DataContext for binding -->
                                             <Label Text="{Binding Achievement.Title}" FontSize="18" LineBreakMode="WordWrap"
                                                    FontAttributes="Bold" TextColor="{StaticResource PrimaryColor}" />
+                                            <Label Text="{Binding Achievement.Description}" FontSize="16" LineBreakMode="WordWrap"
+                                                   TextColor="{StaticResource DarkGrayColor}" />
                                         </StackLayout>
                                         <!-- Use optional visibility here to show what has not been visited -->
                                         <Image Source="ic_done.png" IsVisible="{Binding Achievement.IsUnlocked}" Opacity="1" Aspect="AspectFit" />
