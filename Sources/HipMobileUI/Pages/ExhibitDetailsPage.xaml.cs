@@ -87,8 +87,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
         }
 
         /// <summary>
-        /// Translates the audio toolbar on top of the screen or outside of it dependent on whether the toolbar
-        /// should be visible or not
+        /// Check if AudioBar should be visible on the page
+        /// 
         /// </summary>
         private void UpdateAudioBarVisibility()
         {
