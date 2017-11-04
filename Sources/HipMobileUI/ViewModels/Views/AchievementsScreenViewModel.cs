@@ -29,7 +29,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
                 {
                     score += achievement.Points;
                 }
-                Achievements.Add(await AchievementViewModel.CreateFrom(achievement));
+                Achievements.Add(AchievementViewModel.CreateFrom(achievement));
             }
             Score = $"{Strings.AchievementsScreenView_Score} {score}";
         }
