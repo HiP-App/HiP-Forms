@@ -14,16 +14,13 @@
 
 using System.IO;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
-using MvvmHelpers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
-using PaderbornUniversity.SILab.Hip.Mobile.UI.Location;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
 using Plugin.Geolocator.Abstractions;
 using Xamarin.Forms;
-using System;
 using System.Windows.Input;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
@@ -47,7 +44,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         private string exhibitName;
         private double distance;
         private ImageSource image;
-        private Boolean isDownloadButtonVisible;
+        private bool isDownloadButtonVisible;
         private ExhibitRouteDownloadPageViewModel downloadPage;
 
         /// <summary>
@@ -103,14 +100,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
                 {
                     return $"{Distance:F0} m";
                 }
-                else
-                {
-                    return $"{Distance / 1000:0.##} km";
-                }
+                return $"{Distance / 1000:0.##} km";
             }
         }
 
-        public Boolean IsDownloadButtonVisible
+        public bool IsDownloadButtonVisible
         {
             get { return isDownloadButtonVisible; }
             set { SetProperty(ref isDownloadButtonVisible, value); }
@@ -127,7 +121,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 
         public void OpenDetailsView(string id)
         {
-            Navigation.InsertPageBefore(new ExhibitDetailsViewModel(id), downloadPage);
+            Navigation.InsertPageBefore(new AppetizerPageViewModel(id), downloadPage);
             Navigation.PopAsync();
         }
 

@@ -82,7 +82,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Pages
             var sut = CreateSystemUnderTest();
 
             // forwards navigation
-            int navigations = 0;
+            var navigations = 0;
             while (sut.NextViewAvailable)
             {
                 sut.NextViewCommand.Execute(null);
@@ -118,11 +118,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Pages
             IoCManager.RegisterInstance(typeof(IBarsColorsChanger), Substitute.For<IBarsColorsChanger>());
             var sut = CreateSystemUnderTest();
 
-            Assert.IsInstanceOf<AppetizerViewModel>(sut.SelectedView);
-            sut.NextViewCommand.Execute(null);
             Assert.IsInstanceOf<ImageViewModel>(sut.SelectedView);
             sut.NextViewCommand.Execute(null);
             Assert.IsInstanceOf<TimeSliderViewModel>(sut.SelectedView);
+            sut.NextViewCommand.Execute(null);
+            Assert.IsInstanceOf<ImageViewModel>(sut.SelectedView);
         }
 
         [Test, Category("UnitTest")]
@@ -170,7 +170,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Pages
         public ExhibitDetailsViewModel CreateSystemUnderTest()
         {
             var exhibit = Substitute.For<Exhibit>();
-            var pages = new List<Page> { CreateAppetizerPage(), CreateImagePage(), CreateTimeSliderPage() };
+            var pages = new List<Page> { CreateAppetizerPage(), CreateImagePage(), CreateTimeSliderPage(), CreateImagePage() };
             exhibit.Pages.Returns(pages);
 
             exhibit.Unlocked = true;
