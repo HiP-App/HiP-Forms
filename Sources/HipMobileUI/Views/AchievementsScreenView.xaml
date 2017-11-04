@@ -18,12 +18,10 @@
                             <ViewCell>
                                 <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" Padding="0"
                                              Margin="3" Spacing="0">
-                                    <!-- Bind image source from view model instead -->
-                                    <Image Source="ic_equalizer.png" WidthRequest="60" HeightRequest="60"
+                                    <Image Source="{Binding Image}" WidthRequest="60" HeightRequest="60"
                                            VerticalOptions="Center" Aspect="AspectFit" />
                                     <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand"
                                                  VerticalOptions="Fill" Spacing="0" Margin="3,0">
-                                        <!-- Use seperate ViewModel with DataContext for binding -->
                                         <Label Text="{Binding Achievement.Title}" FontSize="18"
                                                LineBreakMode="WordWrap"
                                                FontAttributes="Bold" TextColor="{StaticResource PrimaryColor}" />
@@ -40,13 +38,12 @@
                     </ListView.ItemTemplate>
                 </ListView>
             </ScrollView>
-            <BoxView HeightRequest="6" HorizontalOptions="Fill" Margin="0,5" />
-            <StackLayout HorizontalOptions="Fill" VerticalOptions="FillAndExpand"
-                         BackgroundColor="{StaticResource PrimaryColor}" Padding="40">
-                <Label FontSize="24" Text="{helpers:Translate AchievementsScreenView_Score}" FontAttributes="Bold"
-                       HorizontalTextAlignment="Center" VerticalOptions="CenterAndExpand" TextColor="White" />
-                <Label FontSize="24" Text="{Binding Score}" FontAttributes="Bold" HorizontalTextAlignment="Center"
-                       VerticalOptions="CenterAndExpand" TextColor="White" />
+            <ContentView HorizontalOptions="Fill" VerticalOptions="FillAndExpand" />
+            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="End" Orientation="Horizontal"
+                         BackgroundColor="{StaticResource PrimaryColor}" Padding="20">
+                <Label FontSize="24" Text="{Binding Score}" FontAttributes="Bold"
+                       HorizontalTextAlignment="Center" VerticalOptions="Center"
+                       HorizontalOptions="CenterAndExpand" TextColor="White" />
             </StackLayout>
         </StackLayout>
     </ContentView.Content>

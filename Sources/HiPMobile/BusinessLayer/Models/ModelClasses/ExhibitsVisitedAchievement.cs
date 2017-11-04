@@ -26,5 +26,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
         public virtual string NextId { get; set; }
         public virtual int Count { get; set; }
         public virtual bool IsUnlocked { get; set; }
+        public virtual int Points { get; set; }
     } 
 }

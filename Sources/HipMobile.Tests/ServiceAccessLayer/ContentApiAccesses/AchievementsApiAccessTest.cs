@@ -62,6 +62,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.ServiceAccessLayer
             Assert.AreEqual(routeFinished.Description, "Visit all exhibits on this route to unlock this achievement");
             Assert.AreEqual(routeFinished.ThumbnailUrl, "achievements/api/image/0/");
             Assert.AreEqual(routeFinished.NextId, 0);        
+            Assert.AreEqual(routeFinished.Points, 1);        
             
             Assert.NotNull(exhibitsVisited);
             Assert.AreEqual(exhibitsVisited.Id, 1);
@@ -70,6 +71,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.ServiceAccessLayer
             Assert.AreEqual(exhibitsVisited.ThumbnailUrl, "achievements/api/image/0/");
             Assert.AreEqual(exhibitsVisited.NextId, 0);
             Assert.AreEqual(exhibitsVisited.Count, 10);
+            Assert.AreEqual(exhibitsVisited.Points, 1);
         }
     }
 }
