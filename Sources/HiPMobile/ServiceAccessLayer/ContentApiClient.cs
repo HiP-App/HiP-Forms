@@ -13,13 +13,11 @@
 // limitations under the License.
 
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.AuthApiDto;
@@ -177,7 +175,30 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer
             }
         }
 
-        public async Task<HttpResponseMessage> PostJsonRequest(string url, string jsonContent)
+        /// <summary>
+        /// Post the specified body to finalUrl := basePath + url.
+        /// </summary>
+        /// <param name="url">URL without basePath</param>
+        /// <param name="body"></param>
+        /// <returns></returns>
+        public async Task<HttpResponseMessage> PostRequestBody(string url, string body)
+        {
+            using (var client = new HttpClient())
+            {
+                // ReSharper disable once AccessToDisposedClosure
+                var result = await TransientRetry.Do(() =>
+                {
+                    var content = new StringContent(body, Encoding.UTF8, "application/json");
+                    var message = new HttpRequestMessage(HttpMethod.Post, basePath + url) { Content = content };
+                    message.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token.AccessToken);
+                    message.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                    return client.SendAsync(message);
+                }, new TimeSpan(0, 0, 0, 3));
+                return result;
+            }
+        }
+
+        private async Task<HttpResponseMessage> PostJsonRequest(string url, string jsonContent)
         {
             try
             {

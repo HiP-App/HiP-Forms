@@ -46,7 +46,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.BusinessLayer.DtoT
             Assert.NotNull(routeFinishedAchievement);
             Assert.AreEqual(routeFinishedAchievementDto.Id.ToString(), routeFinishedAchievement.Id);
             Assert.AreEqual(routeFinishedAchievementDto.Description, routeFinishedAchievement.Description);
-            Assert.AreEqual(routeFinishedAchievementDto.ImageUrl, routeFinishedAchievement.ImageUrl);
+            Assert.AreEqual(routeFinishedAchievementDto.ThumbnailUrl, routeFinishedAchievement.ThumbnailUrl);
             Assert.AreEqual(routeFinishedAchievementDto.Title, routeFinishedAchievement.Title);
             Assert.AreEqual(routeFinishedAchievementDto.NextId.ToString(), routeFinishedAchievement.NextId);
         }
@@ -62,7 +62,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.BusinessLayer.DtoT
             Assert.NotNull(exhibitsVisitedAchievement);
             Assert.AreEqual(exhibitsVisitedAchievementDto.Id.ToString(), exhibitsVisitedAchievement.Id);
             Assert.AreEqual(exhibitsVisitedAchievementDto.Description, exhibitsVisitedAchievement.Description);
-            Assert.AreEqual(exhibitsVisitedAchievementDto.ImageUrl, exhibitsVisitedAchievement.ImageUrl);
+            Assert.AreEqual(exhibitsVisitedAchievementDto.ThumbnailUrl, exhibitsVisitedAchievement.ThumbnailUrl);
             Assert.AreEqual(exhibitsVisitedAchievementDto.Title, exhibitsVisitedAchievement.Title);
             Assert.AreEqual(exhibitsVisitedAchievementDto.Count, exhibitsVisitedAchievement.Count);
             Assert.AreEqual(exhibitsVisitedAchievementDto.NextId.ToString(), exhibitsVisitedAchievement.NextId);

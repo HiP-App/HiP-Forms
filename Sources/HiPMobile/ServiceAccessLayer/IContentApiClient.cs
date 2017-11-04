@@ -37,5 +37,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer
         Task<byte[]> GetResponseFromUrlAsBytes(string urlPath);
 
         Task<HttpResponseMessage> PostRequestFormBased(string url, FormUrlEncodedContent content);
+
+        Task<HttpResponseMessage> PostRequestBody(string url, string body);
     }
 }
