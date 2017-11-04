@@ -12,16 +12,19 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
+using System.Collections.Generic;
+using Newtonsoft.Json;
+
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos
 {
-    public interface IAchievement: IIdentifiable
+    public class ExhibitsVisitedActionDto
     {
-        string Title { get; }
+        [JsonProperty("entityIds")]
+        public IList<int> EntityIds { get; private set; }
 
-        string Description { get; }
-
-        string ThumbnailUrl { get; }
-
-        string NextId { get; }
+        public ExhibitsVisitedActionDto(IList<int> entityIds)
+        {
+            EntityIds = entityIds;
+        }
     }
 }
