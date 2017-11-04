@@ -22,54 +22,55 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 {
-	using Realms;
-	using System;
-	using System.Collections.Generic;
-	using System.Linq;
-	using System.Text;
+    using Realms;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
 
-	public partial class Exhibit : RealmObject, IIdentifiable, IDownloadable
-	{
-		//Attributes
-		[PrimaryKey]
-		public string Id{ get; set; }
+    public partial class Exhibit : RealmObject, IIdentifiable, IDownloadable
+    {
+        //Attributes
+        [PrimaryKey]
+        public string Id { get; set; }
 
-		public virtual string Name{ get; set; }
+        public virtual string Name { get; set; }
 
-		public virtual string Description{ get; set; }
+        public virtual string Description { get; set; }
 
-		public virtual GeoLocation Location{ get; set; }
+        public virtual GeoLocation Location { get; set; }
 
-		public virtual IList<StringElement> Categories{ get; }
+        public virtual IList<StringElement> Categories { get; }
 
-		public virtual IList<StringElement> Tags{ get; }
+        public virtual IList<StringElement> Tags { get; }
 
-		public virtual MapMarker Marker{ get; set; }
+        public virtual MapMarker Marker { get; set; }
 
-		public virtual int Radius{ get; set; }
+        public virtual int Radius { get; set; }
 
-		//Associations
-		public virtual IList<Page> Pages{ get; }
+        //Associations
+        public virtual IList<Page> Pages { get; }
 
-        public virtual AppetizerPage AppetizerPage { get { return Pages [0].AppetizerPage; } }
+        public virtual AppetizerPage AppetizerPage { get { return Pages[0].AppetizerPage; } }
 
-		public virtual Image Image{ get; set; }
+        public virtual Image Image { get; set; }
 
         public DateTimeOffset? LastNearbyTime { get; set; }
 
         public virtual Boolean DetailsDataLoaded { get; set; }
-        
-        public DownloadableType Type { get { return DownloadableType.Exhibit; }}
-        
+
+        public DownloadableType Type { get { return DownloadableType.Exhibit; } }
+
         public virtual bool Unlocked { get; set; }
 
         // Constructor
-        public Exhibit(){
-		}
+        public Exhibit()
+        {
+        }
 
         public virtual int IdForRestApi { get; set; }
         public virtual DateTimeOffset Timestamp { get; set; }
 
-	}
+    }
 }
 

@@ -12,20 +12,16 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Windows.Input;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelConverters;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
-using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
 using Xamarin.Forms;
 using Page = PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.Page;
-
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
@@ -40,14 +36,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         private bool nextVisible;
         private bool nextViewAvailable;
         private ICommand nextViewCommand;
-        private bool exhibitUnblocked = true;
+        private bool exhibitUnblocked = true;   // see comment below: remove 'true' if you use the commented out line again
 
         public AppetizerPageViewModel(string exhibitId) : this(ExhibitManager.GetExhibit(exhibitId)) { }
 
         public AppetizerPageViewModel(Exhibit exhibit)
         {
             Exhibit = exhibit;
-            //exhibitUnblocked = exhibit.Unlocked;      // currently de-commented for testing -> no location check required
+            //exhibitUnblocked = exhibit.Unlocked;      // currently commented out for testing -> no location check required to access exhibit details
 
             pages = exhibit.Pages;
             var appetizerPage = exhibit.AppetizerPage;
@@ -103,8 +99,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             //Do nothing. Never called
         }
 
-        private Boolean isDownloadButtonVisible;
-        public Boolean IsDownloadButtonVisible
+        private bool isDownloadButtonVisible;
+        public bool IsDownloadButtonVisible
         {
             get { return isDownloadButtonVisible; }
             set { SetProperty(ref isDownloadButtonVisible, value); }

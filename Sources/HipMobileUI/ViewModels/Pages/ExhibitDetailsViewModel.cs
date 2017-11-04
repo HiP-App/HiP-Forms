@@ -25,7 +25,6 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.AudioPlayer;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
-using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views.ExhibitDetails;
@@ -58,7 +57,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
         public ExhibitDetailsViewModel(string exhibitId) : this(ExhibitManager.GetExhibit(exhibitId)) { }
 
-        public ExhibitDetailsViewModel(Exhibit exhibit) : this(exhibit, exhibit.Pages, exhibit.Name) {}
+        public ExhibitDetailsViewModel(Exhibit exhibit) : this(exhibit, exhibit.Pages, exhibit.Name) { }
 
         public ExhibitDetailsViewModel(Exhibit exhibit, IList<Page> pages, string title, bool additionalInformation = false)
         {
@@ -87,11 +86,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                 NextViewAvailable = true;
 
             // init commands     
-            NextViewCommand = new Command (async () => await GotoNextView ());
-            PreviousViewCommand = new Command (GotoPreviousView);
-            ShowAudioToolbarCommand = new Command (SwitchAudioToolbarVisibleState);
-            ShowAdditionalInformationCommand = new Command (ShowAdditionalInformation);
-            
+            NextViewCommand = new Command(async () => await GotoNextView());
+            PreviousViewCommand = new Command(GotoPreviousView);
+            ShowAudioToolbarCommand = new Command(SwitchAudioToolbarVisibleState);
+            ShowAdditionalInformationCommand = new Command(ShowAdditionalInformation);
+
             var dbChangedHandler = IoCManager.Resolve<IDbChangedHandler>();
             dbChangedHandler.AddObserver(this);
         }
@@ -106,7 +105,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             {
                 var resources = IoCManager.Resolve<ApplicationResourcesProvider>();
                 IoCManager.Resolve<IBarsColorsChanger>()
-                          .ChangeToolbarColor((Color) resources.GetResourceValue("PrimaryDarkColor"), (Color) resources.GetResourceValue("PrimaryColor"));
+                          .ChangeToolbarColor((Color)resources.GetResourceValue("PrimaryDarkColor"), (Color)resources.GetResourceValue("PrimaryColor"));
             }
         }
 
@@ -232,7 +231,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
                 // update UI
                 currentViewIndex--;
-                await SetCurrentView ();
+                await SetCurrentView();
                 PreviousViewAvailable = currentViewIndex > 1;
                 NextViewAvailable = true;
             }
@@ -249,13 +248,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         /// <returns></returns>
         private async Task SetCurrentView()
         {
-			// update UI
-			if (currentViewIndex == 0)
-			{
-				currentViewIndex = currentViewIndex + 1;
-			}
+            // update UI
+            if (currentViewIndex == 0)
+            {
+                currentViewIndex = currentViewIndex + 1;
+            }
 
-			var currentPage = pages[currentViewIndex];
+            var currentPage = pages[currentViewIndex];
             AudioAvailable = currentPage.Audio != null;
             if (!AudioAvailable)
             {
@@ -334,14 +333,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         /// </summary>
         public async void DbChanged()
         {
-            string exhibitId = Exhibit.Id;
+            var exhibitId = Exhibit.Id;
             Exhibit = ExhibitManager.GetExhibit(exhibitId);
-            if (Exhibit.DetailsDataLoaded)
-            {
-                NextViewAvailable = currentViewIndex < pages.Count - 1;
-                PreviousViewAvailable = currentViewIndex > 1;
-                await SetCurrentView ();
-            }
+            if (!Exhibit.DetailsDataLoaded)
+                return;
+            NextViewAvailable = currentViewIndex < pages.Count - 1;
+            PreviousViewAvailable = currentViewIndex > 1;
+            await SetCurrentView();
         }
 
         /// <summary>

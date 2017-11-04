@@ -23,7 +23,6 @@ using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Location;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
-using PaderbornUniversity.SILab.Hip.Mobile.UI.NotificationPlayer;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
 using Plugin.Geolocator.Abstractions;
 using Xamarin.Forms;
@@ -200,34 +199,34 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         {
             var newDataCenter = IoCManager.Resolve<INewDataCenter>();
 
-            if (newDataCenter.IsNewDataAvailabe())
-            {
-                var downloadData = false;
-                if (!Settings.AlwaysDownloadData)
-                {
-                    var result = await Navigation.DisplayActionSheet(Strings.DownloadData_Title,
-                                                                        null, null, Strings.DownloadData_Accept, Strings.DownloadData_Cancel, Strings.DownloadData_Always);
+            if (!newDataCenter.IsNewDataAvailabe())
+                return;
 
-                    if (result == Strings.DownloadData_Always)
-                    {
-                        Settings.AlwaysDownloadData = true;
-                        downloadData = true;
-                    }
-                    else if (result == Strings.DownloadData_Accept)
-                    {
-                        downloadData = true;
-                    }
+            var downloadData = false;
+            if (!Settings.AlwaysDownloadData)
+            {
+                var result = await Navigation.DisplayActionSheet(Strings.DownloadData_Title,
+                                                                 null, null, Strings.DownloadData_Accept, Strings.DownloadData_Cancel, Strings.DownloadData_Always);
+
+                if (result == Strings.DownloadData_Always)
+                {
+                    Settings.AlwaysDownloadData = true;
+                    downloadData = true;
                 }
-                else
+                else if (result == Strings.DownloadData_Accept)
                 {
                     downloadData = true;
                 }
+            }
+            else
+            {
+                downloadData = true;
+            }
 
-                if (downloadData)
-                {
-                    //TODO Not defined until now what screen should be displayed while new data is downloaded
-                    await newDataCenter.UpdateData();
-                }
+            if (downloadData)
+            {
+                //TODO Not defined until now what screen should be displayed while new data is downloaded
+                await newDataCenter.UpdateData();
             }
         }
     }
