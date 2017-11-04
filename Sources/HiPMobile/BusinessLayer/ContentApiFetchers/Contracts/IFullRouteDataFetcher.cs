@@ -16,11 +16,12 @@ using System.Threading;
 using System.Threading.Tasks;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers.Contracts {
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers.Contracts
+{
     /// <summary>
     /// Fetcher for full route data
     /// </summary>
-    public interface IFullRouteDataFetcher : IFullDownloadableDataFetcher {
-        
+    public interface IFullRouteDataFetcher : IFullDownloadableDataFetcher
+    {
     }
 }

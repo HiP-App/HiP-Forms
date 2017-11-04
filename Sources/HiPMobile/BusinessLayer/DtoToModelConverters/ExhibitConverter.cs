@@ -16,10 +16,11 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelConverters {
-    public class ExhibitConverter : DtoToModelConverter<Exhibit, ExhibitDto> {
-
-        public override void Convert (ExhibitDto dto, Exhibit existingModelObject)
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelConverters
+{
+    public class ExhibitConverter : DtoToModelConverter<Exhibit, ExhibitDto>
+    {
+        public override void Convert(ExhibitDto dto, Exhibit existingModelObject)
         {
             existingModelObject.IdForRestApi = dto.Id;
             existingModelObject.Timestamp = dto.Timestamp;
@@ -34,6 +35,5 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelCo
             existingModelObject.Location.Latitude = dto.Latitude;
             existingModelObject.Location.Longitude = dto.Longitude;
         }
-
     }
 }

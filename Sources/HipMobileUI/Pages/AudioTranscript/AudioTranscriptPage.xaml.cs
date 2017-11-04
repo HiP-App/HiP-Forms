@@ -21,6 +21,7 @@ using Xamarin.Forms;
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages.AudioTranscript
 {
     public delegate void CurrentPageChangedEventHandler();
+
     public partial class AudioTranscriptPage : IViewFor<AudioTranscriptViewModel>
     {
         public new event CurrentPageChangedEventHandler CurrentPageChanged;
@@ -38,7 +39,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages.AudioTranscript
 
         public AudioTranscriptPage()
         {
-            InitializeComponent ();
+            InitializeComponent();
             PropertyChanged += OnPropertyChanged;
 
             BarBackgroundColor = NavigationPage.BarBackgroundColor;
@@ -59,15 +60,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages.AudioTranscript
         }
 
         public static readonly BindableProperty ActionProperty =
-            BindableProperty.Create("Action", typeof(IInteractiveSourceAction), typeof(AudioTranscriptPage), defaultValue:null);
+            BindableProperty.Create("Action", typeof(IInteractiveSourceAction), typeof(AudioTranscriptPage), defaultValue: null);
 
         public IInteractiveSourceAction Action
         {
-            get { return (IInteractiveSourceAction)GetValue(ActionProperty); }
+            get { return (IInteractiveSourceAction) GetValue(ActionProperty); }
             set { SetValue(ActionProperty, value); }
         }
 
-        protected override void OnBindingContextChanged ()
+        protected override void OnBindingContextChanged()
         {
             base.OnBindingContextChanged();
             this.SetBinding(ActionProperty, "Action", BindingMode.TwoWay);

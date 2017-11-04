@@ -49,7 +49,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
 
         public async Task FetchMedias(IList<int?> mediaIds, CancellationToken token, IProgressListener progressListener)
         {
-            var requiredImages = mediaIds.Where (x => x.HasValue).Select (y => y.Value).Distinct().ToList ();
+            var requiredImages = mediaIds.Where(x => x.HasValue).Select(y => y.Value).Distinct().ToList();
 
             if (requiredImages.Any())
             {
@@ -124,7 +124,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                 }
                 catch (NotFoundException)
                 {
-                    file = new FileDto {Data = BackupData.BackupImageData, MediaId = mediaId};
+                    file = new FileDto { Data = BackupData.BackupImageData, MediaId = mediaId };
                 }
                 files.Add(file);
                 progressListener.ProgressOneStep();

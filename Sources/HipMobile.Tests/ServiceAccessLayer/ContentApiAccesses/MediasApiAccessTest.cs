@@ -23,7 +23,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.ServiceAccessLayer
     [TestFixture]
     public class MediasApiAccessTest
     {
-
         private IContentApiClient contentApiSubstitute;
 
         [Test, Category("UnitTest")]

@@ -21,8 +21,8 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiA
 namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.ServiceAccessLayer.ContentApiAccesses
 {
     [TestFixture]
-    public class ExhibitsApiAccessTest {
-
+    public class ExhibitsApiAccessTest
+    {
         private IContentApiClient contentApiSubstitute;
 
         [Test, Category("UnitTest")]
@@ -166,6 +166,5 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.ServiceAccessLayer
         }
 
         #endregion
-
     }
 }

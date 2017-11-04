@@ -24,16 +24,15 @@ namespace HipMobileUI.UITests
     [TestFixture]
     public class AppLaunchesTests : UiTestBase
     {
-        [TestCase(Platform.Android, Category= "UITestAndroid")]
+        [TestCase(Platform.Android, Category = "UITestAndroid")]
         [TestCase(Platform.iOS, Category = "UITestiOS")]
         [Ignore]
         public void AppLaunches_MainScreenHasTextBlue(Platform platform)
         {
             BeforeEachTest(platform);
 
-            var result = App.Query(x => x.Marked(GetPlatformMenuName (platform)));
+            var result = App.Query(x => x.Marked(GetPlatformMenuName(platform)));
             Assert.Greater(result.Length, 0);
         }
     }
 }
-

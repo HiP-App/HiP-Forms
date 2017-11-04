@@ -22,28 +22,28 @@ using Color = Android.Graphics.Color;
 
 [assembly: ResolutionGroupName("Hip")]
 [assembly: ExportEffect(typeof(DroidSwitchColorEffect), "SwitchColorEffect")]
+
 namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Effects
 {
-    class DroidSwitchColorEffect : PlatformEffect {
-
+    class DroidSwitchColorEffect : PlatformEffect
+    {
         private Color oldColor;
 
-        protected override void OnAttached ()
+        protected override void OnAttached()
         {
             //Store the old color and set the new one
             SwitchCompat switchCompat = (SwitchCompat) Control;
-            SwitchColorEffect effect = (SwitchColorEffect)Element.Effects.FirstOrDefault(e => e is SwitchColorEffect);
+            SwitchColorEffect effect = (SwitchColorEffect) Element.Effects.FirstOrDefault(e => e is SwitchColorEffect);
             oldColor = switchCompat.HighlightColor;
             if (effect != null)
-                switchCompat.SetHighlightColor (effect.Color.ToAndroid ());
+                switchCompat.SetHighlightColor(effect.Color.ToAndroid());
         }
 
-        protected override void OnDetached ()
+        protected override void OnDetached()
         {
             //restore the old color
-            SwitchCompat switchCompat = (SwitchCompat)Control;
+            SwitchCompat switchCompat = (SwitchCompat) Control;
             switchCompat.SetHighlightColor(oldColor);
         }
-
     }
 }

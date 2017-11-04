@@ -15,13 +15,14 @@
 using System;
 using System.Text.RegularExpressions;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Helpers {
-    public class HtmlTagHelper {
-
-        public string FormatAdditionalTags (string html)
+namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Helpers
+{
+    public class HtmlTagHelper
+    {
+        public string FormatAdditionalTags(string html)
         {
             html = FormatUnorderedLists(html);
-            html = FormatOrderedLists (html);
+            html = FormatOrderedLists(html);
 
             return html;
         }
@@ -43,10 +44,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Helpers {
             return RemoveTags(listTag, html);
         }
 
-        private string FormatUnorderedLists (string html)
+        private string FormatUnorderedLists(string html)
         {
             string listTag = "ul";
-            MatchCollection ulMatches = GetMatchesForTag (listTag, html);
+            MatchCollection ulMatches = GetMatchesForTag(listTag, html);
 
             foreach (Match ulMatch in ulMatches)
             {
@@ -54,46 +55,45 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Helpers {
 
                 string ulValue = ulMatch.Value;
 
-                ulValue = ReplaceLiTags (ulValue, provider);
-                html = html.Replace (ulMatch.Value, ulValue);
+                ulValue = ReplaceLiTags(ulValue, provider);
+                html = html.Replace(ulMatch.Value, ulValue);
             }
 
-            return RemoveTags (listTag, html);
+            return RemoveTags(listTag, html);
         }
 
-        private string ReplaceLiTags (string html, IListReplacementProvider replacementProvider)
+        private string ReplaceLiTags(string html, IListReplacementProvider replacementProvider)
         {
-            while (html.Contains ("<li>"))
+            while (html.Contains("<li>"))
             {
-                html = ReplaceFirst (html, "<li>", replacementProvider.GetReplacement ());
+                html = ReplaceFirst(html, "<li>", replacementProvider.GetReplacement());
             }
 
-            html = html.Replace ("</li>", "<br>");
+            html = html.Replace("</li>", "<br>");
 
             return html;
         }
 
-        private string ReplaceFirst (string text, string search, string replace)
+        private string ReplaceFirst(string text, string search, string replace)
         {
-            int pos = text.IndexOf (search, StringComparison.Ordinal);
+            int pos = text.IndexOf(search, StringComparison.Ordinal);
             if (pos < 0)
             {
                 return text;
             }
-            return text.Substring (0, pos) + replace + text.Substring (pos + search.Length);
+            return text.Substring(0, pos) + replace + text.Substring(pos + search.Length);
         }
 
-        private string RemoveTags (string tag, string html)
+        private string RemoveTags(string tag, string html)
         {
-            string result = html.Replace ($"<{tag}>", string.Empty);
-            return result.Replace ($"</{tag}>", string.Empty);
+            string result = html.Replace($"<{tag}>", string.Empty);
+            return result.Replace($"</{tag}>", string.Empty);
         }
 
-        private MatchCollection GetMatchesForTag (string tag, string html)
+        private MatchCollection GetMatchesForTag(string tag, string html)
         {
-            var pattern = new Regex ($"<{tag}>.+?</{tag}>");
-            return pattern.Matches (html);
+            var pattern = new Regex($"<{tag}>.+?</{tag}>");
+            return pattern.Matches(html);
         }
-
     }
 }

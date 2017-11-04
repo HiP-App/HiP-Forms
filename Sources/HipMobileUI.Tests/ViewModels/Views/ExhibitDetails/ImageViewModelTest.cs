@@ -44,21 +44,20 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Views
         [Test, Category("UnitTest")]
         public void ToggleButtonVisibility_ActionCalled()
         {
-            var actionSub = Substitute.For<Action> ();
+            var actionSub = Substitute.For<Action>();
             var sut = CreateSystemUnderTest(actionSub);
 
-            sut.ToggleButtonVisibility.Execute (null);
+            sut.ToggleButtonVisibility.Execute(null);
 
-            actionSub.ReceivedWithAnyArgs().Invoke ();
+            actionSub.ReceivedWithAnyArgs().Invoke();
         }
 
         #region Helper Methods
 
-
         public ImageViewModel CreateSystemUnderTest(Action toggleAction)
         {
             var imagePage = Substitute.For<ImagePage>();
-            imagePage.Image = CreateImage ();
+            imagePage.Image = CreateImage();
 
             return new ImageViewModel(imagePage, toggleAction);
         }
@@ -71,6 +70,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Views
             image.Description = "Bar";
             return image;
         }
+
         #endregion
     }
 }

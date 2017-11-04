@@ -33,8 +33,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 {
     class ExhibitRouteDownloadPageViewModel : NavigationViewModel, IProgressListener
     {
-
         private IDownloadable downloadable;
+
         public ExhibitRouteDownloadPageViewModel(IDownloadable downloadable, IDownloadableListItemViewModel downloadableListItemViewModel)
         {
             this.downloadable = downloadable;
@@ -56,7 +56,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             cancellationTokenSource = new CancellationTokenSource();
 
             DownloadPending = true;
-            DownloadFinished = !DownloadPending;   // Since false is the default value this is just a reminder in case the database wants to set this to true when generating this item
+            DownloadFinished =
+                !DownloadPending; // Since false is the default value this is just a reminder in case the database wants to set this to true when generating this item
         }
 
         private readonly CancellationTokenSource cancellationTokenSource;
@@ -64,6 +65,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         private IDownloadableListItemViewModel DownloadableListItemViewModel { get; set; }
 
         private string downloadableName;
+
         public string DownloadableName
         {
             get { return downloadableName; }
@@ -71,6 +73,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         }
 
         private string downloadableId;
+
         public string DownloadableId
         {
             get { return downloadableId; }
@@ -78,6 +81,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         }
 
         private int downloadableIdForRestApi;
+
         public int DownloadableIdForRestApi
         {
             get { return downloadableIdForRestApi; }
@@ -85,6 +89,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         }
 
         private string downloadableDescription;
+
         public string DownloadableDescription
         {
             get { return downloadableDescription; }
@@ -92,6 +97,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         }
 
         private string message;
+
         public string Message
         {
             get { return message; }
@@ -99,6 +105,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         }
 
         private ImageSource image;
+
         public ImageSource Image
         {
             get { return image; }
@@ -106,6 +113,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         }
 
         private double loadingProgress;
+
         public double LoadingProgress
         {
             get { return loadingProgress; }
@@ -113,6 +121,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         }
 
         private bool downloadFinished;
+
         public bool DownloadFinished
         {
             get { return downloadFinished; }
@@ -120,6 +129,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         }
 
         private bool downloadPending;
+
         public bool DownloadPending
         {
             get { return downloadPending; }
@@ -127,19 +137,21 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         }
 
         private ICommand startDownload;
+
         public ICommand StartDownload
         {
             get { return startDownload; }
             set { SetProperty(ref startDownload, value); }
         }
+
         public ICommand CancelCommand { get; }
         public ICommand GoToOverviewCommand { get; }
         public ICommand GoToDetailsCommand { get; }
 
-        void CancelDownload ()
+        void CancelDownload()
         {
             cancellationTokenSource?.Cancel();
-            CloseDownloadPage ();
+            CloseDownloadPage();
         }
 
         void CloseDownloadPage()
@@ -169,7 +181,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             {
                 if (networkAccessStatus == NetworkAccessStatus.MobileAccess && Settings.WifiOnly)
                 {
-                    isDownloadAllowed = await UserDialogs.Instance.ConfirmAsync (new ConfirmConfig ()
+                    isDownloadAllowed = await UserDialogs.Instance.ConfirmAsync(new ConfirmConfig()
                     {
                         Title = Strings.ExhibitRouteDownloadPageViewModel_Wifi_Only_Title,
                         Message = Strings.ExhibitRouteDownloadPageViewModel_Wifi_Only_Message,
@@ -182,7 +194,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                 {
                     try
                     {
-                        await fullDownloadableDataFetcher.FetchFullDownloadableDataIntoDatabase (DownloadableId, DownloadableIdForRestApi, cancellationTokenSource.Token, this);
+                        await fullDownloadableDataFetcher.FetchFullDownloadableDataIntoDatabase(DownloadableId, DownloadableIdForRestApi, cancellationTokenSource.Token, this);
                     }
                     catch (Exception e)
                     {
@@ -190,14 +202,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                         {
                             titleToShow = Strings.LoadingPageViewModel_BaseData_DownloadFailed_Title;
                             messageToShow = Strings.LoadingPageViewModel_BaseData_DownloadFailed_Text;
-                            Debug.WriteLine (e.Message);
-                            Debug.WriteLine (e.StackTrace);
+                            Debug.WriteLine(e.Message);
+                            Debug.WriteLine(e.StackTrace);
                         }
                     }
                 }
                 else
                 {
-                    CloseDownloadPage ();
+                    CloseDownloadPage();
                 }
             }
             else
@@ -228,7 +240,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         {
             DownloadPending = false;
             DownloadFinished = !DownloadPending;
-            DownloadableListItemViewModel.SetDetailsAvailable (DownloadFinished);
+            DownloadableListItemViewModel.SetDetailsAvailable(DownloadFinished);
 
             //Close DownloadPage directly if download was started from the AppetizerView
             if(DownloadFinished && (DownloadableListItemViewModel.GetType() == typeof(AppetizerPageViewModel)))
@@ -245,7 +257,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
         public override void OnDisappearing()
         {
-            base.OnDisappearing ();
+            base.OnDisappearing();
             cancellationTokenSource?.Cancel();
         }
 

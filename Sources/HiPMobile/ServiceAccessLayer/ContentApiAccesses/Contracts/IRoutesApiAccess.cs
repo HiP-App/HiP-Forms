@@ -17,7 +17,8 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses.Contracts {
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses.Contracts
+{
     /// <summary>
     /// Providing access to the routes rest api
     /// </summary>
@@ -27,7 +28,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
         /// Get all routes
         /// </summary>
         /// <returns></returns>
-        Task<RoutesDto> GetRoutes ();
+        Task<RoutesDto> GetRoutes();
 
         /// <summary>
         /// Get all routes after the specified timestamp

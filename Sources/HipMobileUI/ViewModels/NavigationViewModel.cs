@@ -18,37 +18,36 @@ using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels
 {
-    public abstract class NavigationViewModel : BaseViewModel {
-
-        protected INavigationService Navigation = IoCManager.Resolve<INavigationService> ();
+    public abstract class NavigationViewModel : BaseViewModel
+    {
+        protected INavigationService Navigation = IoCManager.Resolve<INavigationService>();
 
         /// <summary>
         /// Method called when the view disappears. Note that this method is not called automatically for every view.
         /// </summary>
-        public virtual void OnDisappearing ()
+        public virtual void OnDisappearing()
         {
         }
 
         /// <summary>
         /// Method called when the view appears for the first time. Note that this method is not called automatically for every view.
         /// </summary>
-        public virtual void OnAppearing ()
+        public virtual void OnAppearing()
         {
         }
 
         /// <summary>
         /// Method called when the view is hidden, for example another page is pushed on top of the view.
         /// </summary>
-        public virtual void OnHidden ()
+        public virtual void OnHidden()
         {
         }
 
         /// <summary>
         /// Method called when the view is visible again, atfer it was hidden.
         /// </summary>
-        public virtual void OnRevealed ()
+        public virtual void OnRevealed()
         {
         }
-
     }
 }

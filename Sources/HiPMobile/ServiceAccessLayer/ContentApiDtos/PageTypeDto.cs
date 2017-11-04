@@ -14,16 +14,13 @@
 
 using System.Runtime.Serialization;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos {
-    public enum PageTypeDto {
-		
-        [EnumMember(Value = "Appetizer_Page")]
-        AppetizerPage,
-        [EnumMember(Value = "Image_Page")]
-        ImagePage,
-        [EnumMember(Value = "Slider_Page")]
-        SliderPage,
-        [EnumMember(Value = "Text_Page")]
-        TextPage
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos
+{
+    public enum PageTypeDto
+    {
+        [EnumMember(Value = "Appetizer_Page")] AppetizerPage,
+        [EnumMember(Value = "Image_Page")] ImagePage,
+        [EnumMember(Value = "Slider_Page")] SliderPage,
+        [EnumMember(Value = "Text_Page")] TextPage
     }
 }

@@ -22,7 +22,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
 {
     public class UriQueryBuilder
     {
-
         public static string GetAdditionalParametersQuery(DateTimeOffset? timestamp, IList<int> includeOnly)
         {
             var keys = new List<string>();
@@ -60,6 +59,5 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
 
             return "?" + string.Join("&", segments);
         }
-
     }
 }

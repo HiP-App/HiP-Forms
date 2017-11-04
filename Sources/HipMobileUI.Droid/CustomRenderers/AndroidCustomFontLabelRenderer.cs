@@ -19,6 +19,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
 [assembly: ExportRenderer(typeof(CustomFontLabel), typeof(AndroidCustomFontLabelRenderer))]
+
 namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.CustomRenderers
 {
     public class AndroidCustomFontLabelRenderer : LabelRenderer
@@ -27,11 +28,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.CustomRenderers
         {
             base.OnElementChanged(elementChangedEventArgs);
 
-            CustomFontLabel label = elementChangedEventArgs.NewElement as CustomFontLabel;
+            var label = elementChangedEventArgs.NewElement as CustomFontLabel;
 
             if (label?.FontFamilyName != null && label.FontFamilyName != "DEFAULT")
             {
-                Control.Typeface = Typeface.CreateFromAsset (Context.Assets, $"fonts/{label.FontFamilyName}.ttf");
+                Control.Typeface = Typeface.CreateFromAsset(Context.Assets, $"fonts/{label.FontFamilyName}.ttf");
             }
         }
     }

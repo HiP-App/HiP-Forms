@@ -25,7 +25,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Pages
 {
     class UserOnboardingItemViewModelTest
     {
-
         [TestFixtureSetUp]
         public void Init()
         {
@@ -33,35 +32,34 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Pages
             IoCManager.RegisterInstance(typeof(IStatusBarController), Substitute.For<IStatusBarController>());
         }
 
-        [Test, Category ("UnitTest")]
+        [Test, Category("UnitTest")]
         public void Creation_PropertiesFilled()
         {
-            var sut = CreateSystemUnderTest ();
+            var sut = CreateSystemUnderTest();
 
-            Assert.IsTrue (sut.Headline.Equals ("Foo"));
+            Assert.IsTrue(sut.Headline.Equals("Foo"));
             Assert.IsTrue(sut.Text.Equals("bar"));
-            Assert.NotNull (sut.Image);
+            Assert.NotNull(sut.Image);
         }
 
         [Test, Category("UnitTest")]
-        public void Rotation_Image ()
+        public void Rotation_Image()
         {
-            var sut = CreateSystemUnderTest ();
+            var sut = CreateSystemUnderTest();
 
-            sut.OrientationChanged (DeviceOrientation.Landscape);
-            Assert.NotNull (sut.Image);
+            sut.OrientationChanged(DeviceOrientation.Landscape);
+            Assert.NotNull(sut.Image);
         }
 
         #region Helper methods
 
-        public UserOnboardingItemViewModel CreateSystemUnderTest ()
+        public UserOnboardingItemViewModel CreateSystemUnderTest()
         {
-            var sut = new UserOnboardingItemViewModel ("Foo", "bar", "image", Color.Blue, "landscape");
+            var sut = new UserOnboardingItemViewModel("Foo", "bar", "image", Color.Blue, "landscape");
 
             return sut;
         }
 
         #endregion
-
     }
 }

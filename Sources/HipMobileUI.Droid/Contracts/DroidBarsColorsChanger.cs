@@ -18,10 +18,11 @@ using Xamarin.Forms.Platform.Android;
 using MainPage = PaderbornUniversity.SILab.Hip.Mobile.UI.Pages.MainPage;
 using NavigationPage = Xamarin.Forms.NavigationPage;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Contracts {
-    public class DroidBarsColorsChanger : IBarsColorsChanger {
-
-        public DroidBarsColorsChanger (MainActivity activity)
+namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Contracts
+{
+    public class DroidBarsColorsChanger : IBarsColorsChanger
+    {
+        public DroidBarsColorsChanger(MainActivity activity)
         {
             this.activity = activity;
         }
@@ -44,6 +45,5 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Contracts {
             NavigationPage.BarBackgroundColor = actionBarColor;
             activity.SetStatusBarColor(statusBarColor.ToAndroid());
         }
-
     }
 }

@@ -21,76 +21,100 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using Realms;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataLayer {
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataLayer
+{
     /// <summary>
     ///     Class encapsulating the access to the Realm Database
     /// </summary>
-    public class RealmDataAccess : IDataAccess {
-
+    public class RealmDataAccess : IDataAccess
+    {
         /// <summary>
         ///     Object used for mutual exclusion.
         /// </summary>
-        private static readonly object Locker = new object ();
+        private static readonly object Locker = new object();
 
-        public T GetItem<T> (string id) where T : RealmObject, IIdentifiable
+        public T GetItem<T>(string id) where T : RealmObject, IIdentifiable
         {
             lock (Locker)
             {
                 // Realm has problems when using LINQ expression here
-                var objects = Instance.All<T> ();
-                foreach (T realmResult in objects)
+                var objects = Instance.All<T>();
+                foreach (var realmResult in objects)
                 {
-                    if (!string.IsNullOrEmpty(realmResult.Id) && realmResult.Id.Equals (id))
+                    if (!string.IsNullOrEmpty(realmResult.Id) && realmResult.Id.Equals(id))
                         return realmResult;
                 }
                 return null;
             }
         }
 
-        public IEnumerable<T> GetItems<T> () where T : RealmObject, IIdentifiable
+        public IEnumerable<T> GetItems<T>() where T : RealmObject, IIdentifiable
         {
             lock (Locker)
             {
-                return Instance.All<T> ();
+                return Instance.All<T>();
             }
         }
 
-        public bool DeleteItem<T> (string id) where T : RealmObject, IIdentifiable
+        public bool DeleteItem<T>(string id) where T : RealmObject, IIdentifiable
         {
-            var item = GetItem<T> (id);
-            Instance.Write (() => Instance.Remove (item));
+            var item = GetItem<T>(id);
+            if (item == null)
+            {
+                return false;
+            }
+            
+            if (!Instance.IsInTransaction)
+            {
+                Instance.Write(() => Instance.Remove(item));
+            }
+            else
+            {
+                Instance.Remove(item);
+            }
 
-            if (item != null)
-                return true;
-            return false;
+            return true;
         }
 
-        public BaseTransaction StartTransaction ()
+        public BaseTransaction StartTransaction()
         {
             var transactionInstance = Instance;
-            var transaction = transactionInstance.BeginWrite ();
-            return  new RealmTransaction (transaction);
+            var transaction = transactionInstance.BeginWrite();
+            return new RealmTransaction(transaction);
         }
 
-        public T CreateObject<T> () where T : RealmObject, IIdentifiable, new ()
+        public T CreateObject<T>(string id, bool updateCurrent) where T : RealmObject, IIdentifiable, new()
+        {
+            // create the instance
+            var instance = new T { Id = id };
+
+            if (updateCurrent)
+            {
+                DeleteItem<T>(id);
+            }
+            Instance.Add(instance);
+            return instance;
+        }
+
+        public T CreateObject<T>() where T : RealmObject, IIdentifiable, new()
         {
             // create the instance
             var instance = new T();
 
-            // generate a unique id
             string id;
+            // generate a unique id
             do
             {
                 id = GenerateId();
             } while (GetItem<T>(id) != null);
 
-            // assign the id and return the instance
             instance.Id = id;
+
             Instance.Add(instance);
             return instance;
         }
 
-        public int GetVersion ()
+        public int GetVersion()
         {
             lock (Locker)
             {
@@ -98,17 +122,17 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataLayer {
             }
         }
 
-        public void DeleteDatabase ()
+        public void DeleteDatabase()
         {
             lock (Locker)
             {
-                Realm.DeleteRealm (Configuration);
+                Realm.DeleteRealm(Configuration);
             }
         }
 
-        public void CreateDatabase (int version)
+        public void CreateDatabase(int version)
         {
-            Configuration = new RealmConfiguration {SchemaVersion = Convert.ToUInt64(version)};
+            Configuration = new RealmConfiguration { SchemaVersion = Convert.ToUInt64(version) };
         }
 
         private static string GenerateId()
@@ -120,21 +144,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataLayer {
 
         private static RealmConfiguration config;
 
-        private static RealmConfiguration Configuration {
-            get {
-                if (config == null)
-                {
-                    config = new RealmConfiguration {SchemaVersion = Convert.ToUInt64(Settings.DatabaseVersion)};
-                }
-                return config;
-            }
-            set { config = value; }
-
+        private static RealmConfiguration Configuration
+        {
+            get => config ?? (config = new RealmConfiguration { SchemaVersion = Convert.ToUInt64(Settings.DatabaseVersion) });
+            set => config = value;
         }
 
-        public string DatabasePath {
-            get { return Configuration.DatabasePath; }
-        }
-
+        public string DatabasePath => Configuration.DatabasePath;
     }
 }

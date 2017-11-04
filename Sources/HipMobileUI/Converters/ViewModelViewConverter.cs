@@ -19,26 +19,27 @@ using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels;
 using Xamarin.Forms;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Converters {
-    public class ViewModelViewConverter : IValueConverter {
+namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Converters
+{
+    public class ViewModelViewConverter : IValueConverter
+    {
+        private readonly IViewCreator navigation = IoCManager.Resolve<IViewCreator>();
 
-        private readonly IViewCreator navigation = IoCManager.Resolve<IViewCreator> ();
-
-        public object Convert (object value, Type targetType, object parameter, CultureInfo culture)
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value != null)
             {
                 if (value is NavigationViewModel)
                 {
                     var vm = (NavigationViewModel) value;
-                    return navigation.InstantiateView (vm);
+                    return navigation.InstantiateView(vm);
                 }
-                throw new Exception ("Cannot convert non NavigationPageViewModel!");
+                throw new Exception("Cannot convert non NavigationPageViewModel!");
             }
             return null;
         }
 
-        public object ConvertBack (object value, Type targetType, object parameter, CultureInfo culture)
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value != null)
             {
@@ -47,10 +48,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Converters {
                     var view = (View) value;
                     return view;
                 }
-                throw new Exception ("Cannot convert non View!");
+                throw new Exception("Cannot convert non View!");
             }
             return null;
         }
-
     }
 }

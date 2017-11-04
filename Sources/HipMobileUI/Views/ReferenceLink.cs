@@ -21,18 +21,21 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
 {
     public class ReferenceLink : Label
     {
-        public static readonly BindableProperty SourcesProperty = BindableProperty.Create(nameof(Sources), typeof(List<Source>), typeof(ReferenceLink), defaultValue: new List<Source>());
-        public static readonly BindableProperty ActionProperty = BindableProperty.Create(nameof(Action), typeof(Func<IInteractiveSourceAction>), typeof(ReferenceLink), defaultValue: null);
+        public static readonly BindableProperty SourcesProperty =
+            BindableProperty.Create(nameof(Sources), typeof(List<Source>), typeof(ReferenceLink), defaultValue: new List<Source>());
+
+        public static readonly BindableProperty ActionProperty =
+            BindableProperty.Create(nameof(Action), typeof(Func<IInteractiveSourceAction>), typeof(ReferenceLink), defaultValue: null);
 
         public List<Source> Sources
         {
-            get { return (List<Source>)GetValue(SourcesProperty); }
+            get { return (List<Source>) GetValue(SourcesProperty); }
             set { SetValue(SourcesProperty, value); }
         }
 
         public Func<IInteractiveSourceAction> Action
         {
-            get { return (Func<IInteractiveSourceAction>)GetValue(ActionProperty); }
+            get { return (Func<IInteractiveSourceAction>) GetValue(ActionProperty); }
             set { SetValue(ActionProperty, value); }
         }
 

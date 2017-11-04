@@ -15,32 +15,32 @@
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
 using Realms;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataLayer {
-    public class RealmTransaction : BaseTransaction {
-
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataLayer
+{
+    public class RealmTransaction : BaseTransaction
+    {
         public Transaction Transaction { get; set; }
 
-        public RealmTransaction (Transaction transaction)
+        public RealmTransaction(Transaction transaction)
         {
             Transaction = transaction;
         }
 
-        public override void Commit ()
+        public override void Commit()
         {
-            Transaction.Commit ();
+            Transaction.Commit();
         }
 
-        public override void Rollback ()
+        public override void Rollback()
         {
-            Transaction.Rollback ();
+            Transaction.Rollback();
         }
 
-        public override void Dispose ()
+        public override void Dispose()
         {
-            base.Dispose ();
+            base.Dispose();
 
-            Transaction.Dispose ();
+            Transaction.Dispose();
         }
-
     }
 }

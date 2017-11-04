@@ -5,31 +5,31 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer
-    {
+{
     class TransientRetry
-        {
-        public static T Do<T> (
+    {
+        public static T Do<T>(
             Func<T> action,
             TimeSpan retryInterval,
             int retryCount = 3)
-            {
-            var exceptions = new List<Exception> ();
+        {
+            var exceptions = new List<Exception>();
 
             for (int retry = 0; retry < retryCount; retry++)
-                {
+            {
                 try
-                    {
+                {
                     if (retry > 0)
-                        Task.Delay (retryInterval);
-                    return action ();
-                    }
-                catch (Exception ex)
-                    {
-                    exceptions.Add (ex);
-                    }
+                        Task.Delay(retryInterval);
+                    return action();
                 }
-
-            throw new AggregateException (exceptions);
+                catch (Exception ex)
+                {
+                    exceptions.Add(ex);
+                }
             }
+
+            throw new AggregateException(exceptions);
         }
     }
+}

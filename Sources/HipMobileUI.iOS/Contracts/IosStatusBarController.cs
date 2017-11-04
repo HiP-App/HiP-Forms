@@ -15,18 +15,18 @@
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Contracts;
 using UIKit;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Contracts {
-    public class IosStatusBarController : IStatusBarController{
-
-        public void HideStatusBar ()
+namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Contracts
+{
+    public class IosStatusBarController : IStatusBarController
+    {
+        public void HideStatusBar()
         {
             UIApplication.SharedApplication.StatusBarHidden = true;
         }
 
-        public void ShowStatusBar ()
+        public void ShowStatusBar()
         {
             UIApplication.SharedApplication.StatusBarHidden = false;
         }
-
     }
 }

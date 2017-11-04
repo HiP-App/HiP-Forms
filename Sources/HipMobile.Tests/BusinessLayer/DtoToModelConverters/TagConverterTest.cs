@@ -21,30 +21,29 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.BusinessLayer.DtoToModelConverters {
-
+namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.BusinessLayer.DtoToModelConverters
+{
     [TestFixture]
     public class TagConverterTest
     {
-
-        [Test, Category ("UnitTest")]
+        [Test, Category("UnitTest")]
         public void Convert_TagTest()
         {
-            var sut = CreateSystemUnderTest ();
+            var sut = CreateSystemUnderTest();
 
-            var route = Substitute.For<RouteTag> ();
-            var routeDto = CreateRouteDto ();
+            var route = Substitute.For<RouteTag>();
+            var routeDto = CreateRouteDto();
 
-            sut.Convert (routeDto, route);
-            Assert.AreEqual (1, route.IdForRestApi);
-            Assert.AreEqual (new DateTimeOffset(2017, 5, 29, 10, 10, 10, 10, TimeSpan.Zero), route.Timestamp);
-            Assert.AreEqual ("Test Description", route.Name);
-            Assert.AreEqual ("Test Title", route.Tag);
+            sut.Convert(routeDto, route);
+            Assert.AreEqual(1, route.IdForRestApi);
+            Assert.AreEqual(new DateTimeOffset(2017, 5, 29, 10, 10, 10, 10, TimeSpan.Zero), route.Timestamp);
+            Assert.AreEqual("Test Description", route.Name);
+            Assert.AreEqual("Test Title", route.Tag);
         }
 
         #region HelperMethods
 
-        private TagDto CreateRouteDto ()
+        private TagDto CreateRouteDto()
         {
             return new TagDto
             {
@@ -61,7 +60,5 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.BusinessLayer.DtoT
         }
 
         #endregion
-
-
     }
 }

@@ -24,26 +24,26 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Container
     /// <summary>
     /// View for displaying a collection of tabs. The tabs are shown at the top and can be clicked to switch the content below.
     /// </summary>
-    public class TabContainerView : ContentView {
-
+    public class TabContainerView : ContentView
+    {
         private readonly Grid header;
         private readonly ContentView contentContainer;
 
         public TabContainerView()
         {
-            var layout = new StackLayout () {Orientation = StackOrientation.Vertical, Padding = new Thickness(0,0)};
+            var layout = new StackLayout() { Orientation = StackOrientation.Vertical, Padding = new Thickness(0, 0) };
 
-            header = new Grid ();
+            header = new Grid();
             header.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
-            
-            contentContainer = new ContentView () {HorizontalOptions = LayoutOptions.FillAndExpand, VerticalOptions = LayoutOptions.FillAndExpand};
 
-            layout.Children.Add (header);
-            layout.Children.Add (contentContainer);
+            contentContainer = new ContentView() { HorizontalOptions = LayoutOptions.FillAndExpand, VerticalOptions = LayoutOptions.FillAndExpand };
+
+            layout.Children.Add(header);
+            layout.Children.Add(contentContainer);
 
             Content = layout;
 
-            TabViews = new ObservableCollection<View> ();
+            TabViews = new ObservableCollection<View>();
         }
 
         public static readonly BindableProperty TabsProperty = BindableProperty.Create(
@@ -58,7 +58,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Container
         /// </summary>
         public ObservableCollection<string> Tabs
         {
-            get { return (ObservableCollection<string>)GetValue(TabsProperty); }
+            get { return (ObservableCollection<string>) GetValue(TabsProperty); }
             set { SetValue(TabsProperty, value); }
         }
 
@@ -90,7 +90,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Container
                 tabBar.Children.Add(CreateDivider(), 2 * i + 1, 0);
             }
 
-            tabBar.Children.RemoveAt(tabBar.Children.Count - 1);   // remove last divider
+            tabBar.Children.RemoveAt(tabBar.Children.Count - 1); // remove last divider
 
             // reset current tab to first
             tabView.CurrentTab = "0";
@@ -108,7 +108,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Container
         /// </summary>
         public string CurrentTab
         {
-            get { return (string)GetValue(CurrentTabProperty); }
+            get { return (string) GetValue(CurrentTabProperty); }
             set { SetValue(CurrentTabProperty, value); }
         }
 
@@ -128,7 +128,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Container
             // reset previous index
             if (oldvalue != null)
             {
-                var previousTabIndex = int.Parse((string)oldvalue);
+                var previousTabIndex = int.Parse((string) oldvalue);
                 var tab = tabBar.Children.ElementAt(TranslateTabIndexToLabelIndex(previousTabIndex));
                 UnhighlightTabLabel(tab as Label);
             }
@@ -136,19 +136,18 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Container
             // set new index
             if (newvalue != null)
             {
-                var currentTabIndex = int.Parse((string)newvalue);
+                var currentTabIndex = int.Parse((string) newvalue);
                 HighlightTabLabel(tabBar.Children.ElementAt(TranslateTabIndexToLabelIndex(currentTabIndex)) as Label);
 
-                SetDisplayedView (tabView, TranslateTabIndexToChildIndex(currentTabIndex));
+                SetDisplayedView(tabView, TranslateTabIndexToChildIndex(currentTabIndex));
             }
-
         }
 
         public static readonly BindableProperty TabViewsProperty = BindableProperty.Create(
             nameof(TabViews),
             typeof(ObservableCollection<View>),
             typeof(TabContainerView),
-            new ObservableCollection<View> ()
+            new ObservableCollection<View>()
         );
 
         /// <summary>
@@ -156,7 +155,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Container
         /// </summary>
         public ObservableCollection<View> TabViews
         {
-            get { return (ObservableCollection<View>)GetValue(TabViewsProperty); }
+            get { return (ObservableCollection<View>) GetValue(TabViewsProperty); }
             set { SetValue(TabViewsProperty, value); }
         }
 
@@ -183,10 +182,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Container
 
             // change tab on click
             var gestureRecognizer = new TapGestureRecognizer();
-            gestureRecognizer.Tapped += (s, e) =>
-            {
-                tabView.CurrentTab = $"{index}";
-            };
+            gestureRecognizer.Tapped += (s, e) => { tabView.CurrentTab = $"{index}"; };
             lbl.GestureRecognizers.Add(gestureRecognizer);
 
             return lbl;
@@ -199,7 +195,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Container
         private static void HighlightTabLabel(Label tab)
         {
             var resources = IoCManager.Resolve<ApplicationResourcesProvider>();
-            tab.TextColor = (Color) resources.GetResourceValue ("AccentColor");
+            tab.TextColor = (Color) resources.GetResourceValue("AccentColor");
         }
 
         /// <summary>
@@ -253,13 +249,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Container
         /// </summary>
         /// <param name="control">The instance of the <see cref="TabContainerView"/>.</param>
         /// <param name="index">The index to set.</param>
-        private static void SetDisplayedView (TabContainerView control, int index)
+        private static void SetDisplayedView(TabContainerView control, int index)
         {
             if (control == null || index < 0 || index >= control.TabViews.Count)
             {
-                throw new ArgumentException ("Illegal arguments passed.");
+                throw new ArgumentException("Illegal arguments passed.");
             }
-            control.contentContainer.Content = control.TabViews [index];
+            control.contentContainer.Content = control.TabViews[index];
         }
     }
 }

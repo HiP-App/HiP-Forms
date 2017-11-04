@@ -19,13 +19,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Map
 {
     class UserAnnotation : MKAnnotation
     {
-
-        public UserAnnotation (double latitude, double longitude)
+        public UserAnnotation(double latitude, double longitude)
         {
             Coordinate = new CLLocationCoordinate2D(latitude, longitude);
         }
 
         public override CLLocationCoordinate2D Coordinate { get; }
-
     }
 }

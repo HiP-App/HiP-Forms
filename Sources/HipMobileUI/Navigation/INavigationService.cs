@@ -16,22 +16,23 @@ using System.Reflection;
 using System.Threading.Tasks;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation {
-    public interface INavigationService {
-
+namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation
+{
+    public interface INavigationService
+    {
         /// <summary>
         /// Asynchronously removes the most recent Page from the navigation stack, with optional animation.
         /// </summary>
         /// <param name="animate">Anmiate the removal.</param>
         /// <returns>The task.</returns>
-        Task PopAsync(bool animate=true);
+        Task PopAsync(bool animate = true);
 
         /// <summary>
         /// Asynchronously dismisses the most recent modally presented Page, with optional animation.
         /// </summary>
         /// <param name="animate">Anmiate the removal.</param>
         /// <returns>The task.</returns>
-        Task PopModalAsync(bool animate= true);
+        Task PopModalAsync(bool animate = true);
 
         /// <summary>
         /// Asynchronously adds a viewmodel to the top of the navigation stack, with optional animation.
@@ -39,7 +40,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation {
         /// <param name="viewModel">The viewmodel to be added.</param>
         /// <param name="animate">Animate the push.</param>
         /// <returns>The task.</returns>
-        Task PushAsync(NavigationViewModel viewModel, bool animate= true);
+        Task PushAsync(NavigationViewModel viewModel, bool animate = true);
 
         /// <summary>
         /// Presents a viewmodel modally, with optional animation.
@@ -47,27 +48,27 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation {
         /// <param name="viewModel">The viewmodel to be presented.</param>
         /// <param name="animate">Animate the push.</param>
         /// <returns>The task.</returns>
-        Task PushModalAsync(NavigationViewModel viewModel, bool animate= true);
+        Task PushModalAsync(NavigationViewModel viewModel, bool animate = true);
 
         /// <summary>
         /// Removes the view for the viewmodel from the navigation stack
         /// </summary>
         /// <param name="viewModel"></param>
-        void RemovePage (NavigationViewModel viewModel);
+        void RemovePage(NavigationViewModel viewModel);
 
         /// <summary>
         /// Inserts the page below the other given page on the navigation stack.
         /// </summary>
         /// <param name="viewModel">Viewmodel for the view to insert.</param>
         /// <param name="before">Viewmodel for the view below which the other viewmodel should be inserted.</param>
-        void InsertPageBefore (NavigationViewModel viewModel, NavigationViewModel before);
+        void InsertPageBefore(NavigationViewModel viewModel, NavigationViewModel before);
 
         /// <summary>
         /// Pops all but the root viewmodel off the navigation stack, with optional animation.
         /// </summary>
         /// <param name="animate">Animate the pop.</param>
         /// <returns>The task.</returns>
-        Task PopToRootAsync(bool animate= true);
+        Task PopToRootAsync(bool animate = true);
 
         /// <summary>
         /// Presents an alert dialog to the application user with a single cancel button.
@@ -76,7 +77,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation {
         /// <param name="message">The body text of the alert dialog.</param>
         /// <param name="buttonMessage">Text to be displayed on the 'Cancel' button.</param>
         /// <returns>The task.</returns>
-        Task DisplayAlert (string title, string message, string buttonMessage);
+        Task DisplayAlert(string title, string message, string buttonMessage);
 
         /// <summary>
         /// Presents an alert dialog to the application user with an accept and a cancel button.
@@ -96,26 +97,25 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation {
         /// <param name="destruction">Text to be displayed in the 'Destruct' button. Can be null to hide the destructive option.</param>
         /// <param name="buttons">Text labels for additional buttons. Must not be null.</param>
         /// <returns>The task.</returns>
-        Task<string> DisplayActionSheet (string title, string cancel, string destruction, params string[] buttons);
+        Task<string> DisplayActionSheet(string title, string cancel, string destruction, params string[] buttons);
 
         /// <summary>
         /// Registers all viewmodels in the assembly to this navigation service.
         /// </summary>
         /// <param name="asm">The assembly, to be parsed.</param>
-        void RegisterViewModels (Assembly asm);
+        void RegisterViewModels(Assembly asm);
 
         /// <summary>
         /// Resets the current navigation stack and pushes the parameter as the new root.
         /// </summary>
         /// <param name="newRoot">The viewmodel which view is used as the new root.</param>
-        void StartNewNavigationStack (NavigationViewModel newRoot);
+        void StartNewNavigationStack(NavigationViewModel newRoot);
 
         /// <summary>
         /// Removes all modal pages of the modal navigation stack.
         /// </summary>
         /// <param name="animate">Animate the pops.</param>
         /// <returns>The task.</returns>
-        Task ClearModalStack (bool animate = false);
-
+        Task ClearModalStack(bool animate = false);
     }
 }

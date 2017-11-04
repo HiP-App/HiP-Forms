@@ -23,14 +23,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Views
 {
     class ExhibitsOverviewListItemViewModelTest
     {
-
         [Test, Category("UnitTest")]
         public void Creation_PropertiesFilled()
         {
             var sut = CreateSystemUnderTest();
 
-            Assert.AreEqual ("Exhibit", sut.ExhibitName);
-            Assert.AreEqual (42, sut.Distance);
+            Assert.AreEqual("Exhibit", sut.ExhibitName);
+            Assert.AreEqual(42, sut.Distance);
             Assert.NotNull(sut.Image);
         }
 

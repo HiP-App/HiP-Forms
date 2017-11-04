@@ -21,8 +21,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             Image = ImageSource.FromStream(() => new MemoryStream(data));
             NearbyRouteManager = nearbyRouteManager;
 
-            Confirm = new Command (Accept);
-            Decline = new Command (Deny);
+            Confirm = new Command(Accept);
+            Decline = new Command(Deny);
         }
 
         private INearbyRouteManager NearbyRouteManager { get; set; }
@@ -38,13 +38,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         void Accept()
         {
             Navigation.ClearModalStack();
-            NearbyRouteManager.OpenRouteDetailsView (RouteId);
+            NearbyRouteManager.OpenRouteDetailsView(RouteId);
         }
 
         void Deny()
         {
             NearbyRouteManager.ClosePopUp();
         }
-
     }
 }

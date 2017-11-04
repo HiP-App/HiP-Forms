@@ -15,13 +15,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.UserManageme
         Task<UserStatus> Login(User user);
         Task<UserStatus> Logout(User user);
         Task<UserStatus> Register(User user);
-        Task<UserStatus> ForgotPassword (User user);
+        Task<UserStatus> ForgotPassword(User user);
     }
 
     public class UserManager : IUserManager
     {
-
         private readonly static IAuthApiAccess AuthApiAccess = IoCManager.Resolve<IAuthApiAccess>();
+
         public async Task<UserStatus> Login(User user)
         {
             try
@@ -89,7 +89,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.UserManageme
             }
             else
             {
-                bool isResetPasswordEmailSent = await AuthApiAccess.ForgotPassword (user.Username);
+                bool isResetPasswordEmailSent = await AuthApiAccess.ForgotPassword(user.Username);
 
                 if (isResetPasswordEmailSent)
                 {
@@ -105,4 +105,3 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.UserManageme
         }
     }
 }
-

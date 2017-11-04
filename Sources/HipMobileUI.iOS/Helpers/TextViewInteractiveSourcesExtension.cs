@@ -23,10 +23,10 @@ using UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Helpers {
+namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Helpers
+{
     public static class TextViewInteractiveSourcesExtension
     {
-
         /// <summary>
         /// Applies handling for subtitles to textview
         /// </summary>
@@ -39,7 +39,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Helpers {
             if (action == null)
                 return;
 
-            Dictionary<Source, FinalSourcePosition> sourcePositions = new Dictionary<Source, FinalSourcePosition> ();
+            Dictionary<Source, FinalSourcePosition> sourcePositions = new Dictionary<Source, FinalSourcePosition>();
             var formattedTextWithSubstitutes = new NSMutableAttributedString(text);
 
             // get the textpositions of each source and mark them
@@ -48,24 +48,26 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Helpers {
                 if (source == null)
                     continue;
 
-                int startIndex = text.Value.IndexOf (source.SubstituteText, StringComparison.Ordinal);
+                int startIndex = text.Value.IndexOf(source.SubstituteText, StringComparison.Ordinal);
                 var finalPostion = new FinalSourcePosition
                 {
                     Start = startIndex,
                     End = startIndex + source.SubstituteText.Length - 1
                 };
-                sourcePositions.Add (source, finalPostion);
+                sourcePositions.Add(source, finalPostion);
 
                 var resources = IoCManager.Resolve<ApplicationResourcesProvider>();
-                formattedTextWithSubstitutes.AddAttribute(UIStringAttributeKey.ForegroundColor, ((Color)resources.GetResourceValue("AccentColor")).ToUIColor(), new NSRange(finalPostion.Start, source.SubstituteText.Length));
+                formattedTextWithSubstitutes.AddAttribute(UIStringAttributeKey.ForegroundColor, ((Color) resources.GetResourceValue("AccentColor")).ToUIColor(),
+                                                          new NSRange(finalPostion.Start, source.SubstituteText.Length));
             }
             textView.AttributedText = formattedTextWithSubstitutes;
 
             // make the source links clickable
-            textView.AddGestureRecognizer (new UITapGestureRecognizer(x => HandleTap(x, textView, sourcePositions, action)));
+            textView.AddGestureRecognizer(new UITapGestureRecognizer(x => HandleTap(x, textView, sourcePositions, action)));
         }
 
-        private static void HandleTap(UITapGestureRecognizer gestureRecognizer, UITextView textView, Dictionary<Source, FinalSourcePosition> sourcePositions, IInteractiveSourceAction action)
+        private static void HandleTap(UITapGestureRecognizer gestureRecognizer, UITextView textView, Dictionary<Source, FinalSourcePosition> sourcePositions,
+                                      IInteractiveSourceAction action)
         {
             var point = gestureRecognizer.LocationInView(textView);
             point.Y += textView.ContentOffset.Y;
@@ -74,8 +76,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Helpers {
 
             // if a source link has been tapped: show the reference
             nint clickedPos = textView.GetOffsetFromPosition(textView.BeginningOfDocument, tapPos);
-            int pos = Convert.ToInt32 (clickedPos);
-            var clickedSource = sourcePositions.SingleOrDefault (x => x.Value.Start <= pos && pos <= x.Value.End).Key;
+            int pos = Convert.ToInt32(clickedPos);
+            var clickedSource = sourcePositions.SingleOrDefault(x => x.Value.Start <= pos && pos <= x.Value.End).Key;
             if (clickedSource != null)
             {
                 action.Display(clickedSource);

@@ -36,19 +36,30 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Controls
             Children.Add(indicators);
         }
 
-        public static readonly BindableProperty PositionProperty = BindableProperty.Create(nameof(Position), typeof(int), typeof(CarouselIndicators), 0, BindingMode.TwoWay, propertyChanging: PositionChanging);
-        public static readonly BindableProperty ItemsSourceProperty = BindableProperty.Create(nameof(ItemsSource), typeof(IEnumerable), typeof(CarouselIndicators), Enumerable.Empty<object>(), BindingMode.OneWay, propertyChanged: ItemsChanged);
-        public static readonly BindableProperty SelectedIndicatorProperty = BindableProperty.Create(nameof(SelectedIndicator), typeof(string), typeof(CarouselIndicators), "", BindingMode.OneWay);
-        public static readonly BindableProperty UnselectedIndicatorProperty = BindableProperty.Create(nameof(UnselectedIndicator), typeof(string), typeof(CarouselIndicators), "", BindingMode.OneWay);
-        public static readonly BindableProperty IndicatorWidthProperty = BindableProperty.Create(nameof(IndicatorWidth), typeof(double), typeof(CarouselIndicators), 0.0, BindingMode.OneWay);
-        public static readonly BindableProperty IndicatorHeightProperty = BindableProperty.Create(nameof(IndicatorHeight), typeof(double), typeof(CarouselIndicators), 0.0, BindingMode.OneWay);
+        public static readonly BindableProperty PositionProperty =
+            BindableProperty.Create(nameof(Position), typeof(int), typeof(CarouselIndicators), 0, BindingMode.TwoWay, propertyChanging: PositionChanging);
+
+        public static readonly BindableProperty ItemsSourceProperty = BindableProperty.Create(nameof(ItemsSource), typeof(IEnumerable), typeof(CarouselIndicators),
+                                                                                              Enumerable.Empty<object>(), BindingMode.OneWay, propertyChanged: ItemsChanged);
+
+        public static readonly BindableProperty SelectedIndicatorProperty =
+            BindableProperty.Create(nameof(SelectedIndicator), typeof(string), typeof(CarouselIndicators), "", BindingMode.OneWay);
+
+        public static readonly BindableProperty UnselectedIndicatorProperty =
+            BindableProperty.Create(nameof(UnselectedIndicator), typeof(string), typeof(CarouselIndicators), "", BindingMode.OneWay);
+
+        public static readonly BindableProperty IndicatorWidthProperty =
+            BindableProperty.Create(nameof(IndicatorWidth), typeof(double), typeof(CarouselIndicators), 0.0, BindingMode.OneWay);
+
+        public static readonly BindableProperty IndicatorHeightProperty =
+            BindableProperty.Create(nameof(IndicatorHeight), typeof(double), typeof(CarouselIndicators), 0.0, BindingMode.OneWay);
 
         /// <summary>
         /// The path to the image used for the selected state.
         /// </summary>
         public string SelectedIndicator
         {
-            get { return (string)GetValue(SelectedIndicatorProperty); }
+            get { return (string) GetValue(SelectedIndicatorProperty); }
             set { SetValue(SelectedIndicatorProperty, value); }
         }
 
@@ -57,7 +68,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Controls
         /// </summary>
         public string UnselectedIndicator
         {
-            get { return (string)GetValue(UnselectedIndicatorProperty); }
+            get { return (string) GetValue(UnselectedIndicatorProperty); }
             set { SetValue(UnselectedIndicatorProperty, value); }
         }
 
@@ -66,7 +77,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Controls
         /// </summary>
         public double IndicatorWidth
         {
-            get { return (double)GetValue(IndicatorWidthProperty); }
+            get { return (double) GetValue(IndicatorWidthProperty); }
             set { SetValue(IndicatorWidthProperty, value); }
         }
 
@@ -75,7 +86,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Controls
         /// </summary>
         public double IndicatorHeight
         {
-            get { return (double)GetValue(IndicatorHeightProperty); }
+            get { return (double) GetValue(IndicatorHeightProperty); }
             set { SetValue(IndicatorHeightProperty, value); }
         }
 
@@ -84,7 +95,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Controls
         /// </summary>
         public int Position
         {
-            get { return (int)GetValue(PositionProperty); }
+            get { return (int) GetValue(PositionProperty); }
             set { SetValue(PositionProperty, value); }
         }
 
@@ -93,7 +104,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Controls
         /// </summary>
         public IEnumerable ItemsSource
         {
-            get { return (IEnumerable)GetValue(ItemsSourceProperty); }
+            get { return (IEnumerable) GetValue(ItemsSourceProperty); }
             set { SetValue(ItemsSourceProperty, value); }
         }
 
@@ -104,7 +115,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Controls
 
         private void Init(int position)
         {
-
             if (unselectedImageSource == null)
                 unselectedImageSource = ImageSource.FromFile(UnselectedIndicator);
 
@@ -115,9 +125,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Controls
             {
                 for (int i = 0; i < indicators.Children.Count; i++)
                 {
-                    if (((Image)indicators.Children[i]).ClassId == nameof(State.Selected) && i != position)
+                    if (((Image) indicators.Children[i]).ClassId == nameof(State.Selected) && i != position)
                         indicators.Children[i] = BuildImage(State.Unselected, i);
-                    else if (((Image)indicators.Children[i]).ClassId == nameof(State.Unselected) && i == position)
+                    else if (((Image) indicators.Children[i]).ClassId == nameof(State.Unselected) && i == position)
                         indicators.Children[i] = BuildImage(State.Selected, i);
                 }
             }
@@ -170,7 +180,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Controls
         {
             var carouselIndicators = bindable as CarouselIndicators;
 
-            carouselIndicators?.Init (Convert.ToInt32 (newValue));
+            carouselIndicators?.Init(Convert.ToInt32(newValue));
         }
 
         private static void ItemsChanged(object bindable, object oldValue, object newValue)

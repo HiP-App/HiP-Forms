@@ -19,9 +19,10 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.InteractiveSourc
 using Xamarin.Forms;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages.AudioTranscript {
-    public class SubtitleViewModel : BaseViewModel {
-
+namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages.AudioTranscript
+{
+    public class SubtitleViewModel : BaseViewModel
+    {
         private string formatedText;
         private List<Source> sourcesList;
         private Func<IInteractiveSourceAction> action;
@@ -34,7 +35,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages.AudioTranscri
             Action = actionToInit;
         }
 
-        public string FormatedText {
+        public string FormatedText
+        {
             get { return formatedText; }
             set { SetProperty(ref formatedText, value); }
         }
@@ -42,13 +44,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages.AudioTranscri
         public List<Source> SourcesList
         {
             get { return sourcesList; }
-            set { SetProperty (ref sourcesList, value); }
+            set { SetProperty(ref sourcesList, value); }
         }
 
         public double FontSize
         {
             get { return Settings.AudioTranscriptFontSize; }
-            set { SetProperty(ref fontSize, value);  }
+            set { SetProperty(ref fontSize, value); }
         }
 
         public Func<IInteractiveSourceAction> Action

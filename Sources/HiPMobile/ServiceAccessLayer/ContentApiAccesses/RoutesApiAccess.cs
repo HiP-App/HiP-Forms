@@ -21,42 +21,42 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses {
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses
+{
     public class RoutesApiAccess : IRoutesApiAccess
     {
-
         private readonly IContentApiClient contentApiClient;
 
         public RoutesApiAccess(IContentApiClient contentApiClient)
         {
             this.contentApiClient = contentApiClient;
         }
-       
-        private async Task<RoutesDto> GetRoutesDto (DateTimeOffset? timestamp, IList<int> includeOnly)
+
+        private async Task<RoutesDto> GetRoutesDto(DateTimeOffset? timestamp, IList<int> includeOnly)
         {
             string requestPath = @"/Routes";
-            requestPath += UriQueryBuilder.GetAdditionalParametersQuery (timestamp, includeOnly);
+            requestPath += UriQueryBuilder.GetAdditionalParametersQuery(timestamp, includeOnly);
 
             string json = await contentApiClient.GetResponseFromUrlAsString(requestPath);
             return JsonConvert.DeserializeObject<RoutesDto>(json);
         }
 
-        public async Task<RoutesDto> GetRoutes ()
+        public async Task<RoutesDto> GetRoutes()
         {
-            return await GetRoutesDto (null, null);
+            return await GetRoutesDto(null, null);
         }
 
-        public async Task<RoutesDto> GetRoutes (DateTimeOffset timestamp)
+        public async Task<RoutesDto> GetRoutes(DateTimeOffset timestamp)
         {
             return await GetRoutesDto(timestamp, null);
         }
 
-        public async Task<RoutesDto> GetRoutes (IList<int> includeOnly)
+        public async Task<RoutesDto> GetRoutes(IList<int> includeOnly)
         {
             return await GetRoutesDto(null, includeOnly);
         }
 
-        public async Task<RoutesDto> GetRoutes (DateTimeOffset timestamp, IList<int> includeOnly)
+        public async Task<RoutesDto> GetRoutes(DateTimeOffset timestamp, IList<int> includeOnly)
         {
             return await GetRoutesDto(timestamp, includeOnly);
         }

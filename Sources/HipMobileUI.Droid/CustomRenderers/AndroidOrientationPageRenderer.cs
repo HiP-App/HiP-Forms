@@ -21,15 +21,16 @@ using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
 [assembly: ExportRenderer(typeof(OrientationContentPage), typeof(AndroidOrientationPageRenderer))]
+
 namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.CustomRenderers
 {
-    class AndroidOrientationPageRenderer : PageRenderer {
-
+    class AndroidOrientationPageRenderer : PageRenderer
+    {
         private OrientationContentPage formsOrientationPage;
 
-        protected override void OnElementChanged (ElementChangedEventArgs<Page> e)
+        protected override void OnElementChanged(ElementChangedEventArgs<Page> e)
         {
-            base.OnElementChanged (e);
+            base.OnElementChanged(e);
 
             if (e.OldElement != null)
             {
@@ -39,25 +40,24 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.CustomRenderers
             if (e.NewElement != null)
             {
                 formsOrientationPage = (OrientationContentPage) e.NewElement;
-                formsOrientationPage.PropertyChanged+=PagePropertyChanged;
+                formsOrientationPage.PropertyChanged += PagePropertyChanged;
 
-                SetOrientationController (formsOrientationPage.OrientationController);
+                SetOrientationController(formsOrientationPage.OrientationController);
             }
         }
 
-        private void PagePropertyChanged (object sender, PropertyChangedEventArgs propertyChangedEventArgs)
+        private void PagePropertyChanged(object sender, PropertyChangedEventArgs propertyChangedEventArgs)
         {
-            if (propertyChangedEventArgs.PropertyName.Equals ("OrientationController"))
+            if (propertyChangedEventArgs.PropertyName.Equals("OrientationController"))
             {
-                SetOrientationController (formsOrientationPage.OrientationController);
+                SetOrientationController(formsOrientationPage.OrientationController);
             }
         }
 
-        private void SetOrientationController (OrientationController controller)
+        private void SetOrientationController(OrientationController controller)
         {
             if (controller == OrientationController.LandscapeConstant)
             {
-
                 ((MainActivity) Context).RequestedOrientation = ScreenOrientation.Landscape;
             }
             else if (controller == OrientationController.PortraitConstant)
@@ -70,16 +70,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.CustomRenderers
             }
         }
 
-        protected override void Dispose (bool disposing)
+        protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
                 formsOrientationPage.PropertyChanged -= PagePropertyChanged;
             }
 
-            base.Dispose (disposing);
+            base.Dispose(disposing);
         }
-
     }
-
 }

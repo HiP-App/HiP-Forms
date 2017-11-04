@@ -23,17 +23,17 @@ using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 
 [assembly: ExportRenderer(typeof(OrientationContentPage), typeof(IosOrientationContentPageRenderer))]
+
 namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.CustomRenderers
 {
     class IosOrientationContentPageRenderer : PageRenderer
     {
-
         private OrientationContentPage formsOrientationPage;
         private UIViewController normalController;
 
-        protected override void OnElementChanged (VisualElementChangedEventArgs e)
+        protected override void OnElementChanged(VisualElementChangedEventArgs e)
         {
-            base.OnElementChanged (e);
+            base.OnElementChanged(e);
 
             if (e.OldElement != null)
             {
@@ -42,23 +42,23 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.CustomRenderers
 
             if (e.NewElement != null)
             {
-                formsOrientationPage = (OrientationContentPage)e.NewElement;   
-                formsOrientationPage.PropertyChanged+=PagePropertyChanged;
+                formsOrientationPage = (OrientationContentPage) e.NewElement;
+                formsOrientationPage.PropertyChanged += PagePropertyChanged;
 
                 normalController = UIApplication.SharedApplication.KeyWindow.RootViewController;
-                SetController (formsOrientationPage.OrientationController);
+                SetController(formsOrientationPage.OrientationController);
             }
         }
 
-        private void SetController (OrientationController controller)
+        private void SetController(OrientationController controller)
         {
             if (controller == OrientationController.Sensor)
             {
                 // restore the normal controler whioch supports rotation
                 foreach (UIViewController viewController in UIApplication.SharedApplication.KeyWindow.RootViewController.ChildViewControllers)
                 {
-                    normalController.AddChildViewController (viewController);
-                    normalController.View.Add (viewController.View);
+                    normalController.AddChildViewController(viewController);
+                    normalController.View.Add(viewController.View);
                 }
                 UIApplication.SharedApplication.KeyWindow.RootViewController = normalController;
             }
@@ -66,31 +66,31 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.CustomRenderers
             {
                 if (controller == OrientationController.PortraitConstant)
                 {
-                    UIDevice.CurrentDevice.SetValueForKey(new NSNumber((int)UIInterfaceOrientation.Portrait), new NSString("orientation"));
+                    UIDevice.CurrentDevice.SetValueForKey(new NSNumber((int) UIInterfaceOrientation.Portrait), new NSString("orientation"));
                 }
                 // disable rotation
-                UIApplication.SharedApplication.KeyWindow.RootViewController = new OrientationViewController (controller,
-                                                                                                              UIApplication.SharedApplication.KeyWindow.RootViewController
-                                                                                                                           .ChildViewControllers);
+                UIApplication.SharedApplication.KeyWindow.RootViewController = new OrientationViewController(controller,
+                                                                                                             UIApplication.SharedApplication.KeyWindow.RootViewController
+                                                                                                                          .ChildViewControllers);
             }
         }
 
-        private void PagePropertyChanged (object sender, PropertyChangedEventArgs propertyChangedEventArgs)
+        private void PagePropertyChanged(object sender, PropertyChangedEventArgs propertyChangedEventArgs)
         {
-            if (propertyChangedEventArgs.PropertyName.Equals ("OrientationController"))
+            if (propertyChangedEventArgs.PropertyName.Equals("OrientationController"))
             {
                 SetController(formsOrientationPage.OrientationController);
             }
         }
 
-        protected override void Dispose (bool disposing)
+        protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
                 formsOrientationPage.PropertyChanged -= PagePropertyChanged;
             }
 
-            base.Dispose (disposing);
+            base.Dispose(disposing);
         }
     }
 }

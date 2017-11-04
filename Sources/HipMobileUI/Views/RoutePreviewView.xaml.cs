@@ -12,6 +12,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
     {
         private double thisWidth, thisHeight;
         private DeviceOrientation deviceOrientation;
+
         public RoutePreviewView()
         {
             InitializeComponent();
@@ -22,7 +23,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
         {
             base.OnSizeAllocated(width, height);
 
-            if (!(Math.Abs (width - thisWidth) > 0.4) && !(Math.Abs (height - thisHeight) > 0.4))
+            if (!(Math.Abs(width - thisWidth) > 0.4) && !(Math.Abs(height - thisHeight) > 0.4))
                 return;
 
             thisWidth = width;
@@ -58,7 +59,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
                 Grid.SetColumn(ButtonView, 0);
                 Grid.SetColumnSpan(ButtonView, 2);
 
-                QuestionView.Padding = new Thickness(10,0,10,0);
+                QuestionView.Padding = new Thickness(10, 0, 10, 0);
                 ImageView.Aspect = Aspect.AspectFill;
                 ImageView.Margin = new Thickness(0);
 
@@ -74,7 +75,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
 
                 PageGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(0.5, GridUnitType.Star) });
                 PageGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(0.5, GridUnitType.Star) });
-                
+
                 PageGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.6, GridUnitType.Star) });
                 PageGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.2, GridUnitType.Star) });
                 PageGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.2, GridUnitType.Star) });
@@ -93,13 +94,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
                 Grid.SetRow(QuestionView, 1);
                 Grid.SetRow(ButtonView, 2);
 
-                QuestionView.Padding = new Thickness(10,0);
+                QuestionView.Padding = new Thickness(10, 0);
                 ImageView.Aspect = Aspect.AspectFit;
                 ImageView.Margin = new Thickness(2);
 
                 deviceOrientation = DeviceOrientation.Landscape;
             }
         }
-
     }
 }

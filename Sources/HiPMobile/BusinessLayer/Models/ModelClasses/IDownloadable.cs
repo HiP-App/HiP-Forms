@@ -12,9 +12,7 @@
 
     public enum DownloadableType
     {
-
         Exhibit,
         Route
-
     }
 }

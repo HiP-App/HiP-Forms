@@ -29,7 +29,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Views
     [TestFixture]
     class ExhibitsOverviewViewModelTest
     {
-
         private INavigationService navservice;
 
         [TestFixtureSetUp]
@@ -65,7 +64,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Views
         [TestCase(2), Category("UnitTest")]
         public void ItemTapped_Once(int item)
         {
-
             var sut = CreateSystemUnderTest();
 
             sut.ItemTappedCommand.Execute(sut.ExhibitsList[item]);
@@ -130,6 +128,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Views
             image.Data = new byte[] { 1, 2, 3, 4 };
             return image;
         }
+
         #endregion
     }
 }

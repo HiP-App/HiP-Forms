@@ -32,7 +32,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
 {
     public class RoutesBaseDataFetcher : IRoutesBaseDataFetcher
     {
-
         [Dependency]
         public TagConverter TagConverter { private get; set; }
 
@@ -109,6 +108,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
         }
 
         private FetchedMediaData fetchedMedia;
+
         public void ProcessRoutes(IProgressListener listener)
         {
             fetchedMedia = mediaDataFetcher.CombineMediasAndFiles();
@@ -217,19 +217,19 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             {
                 foreach (var exhibitId in routeDto.Exhibits)
                 {
-                    var dbExhibit = exhibits.SingleOrDefault (x => x.IdForRestApi == exhibitId);
+                    var dbExhibit = exhibits.SingleOrDefault(x => x.IdForRestApi == exhibitId);
 
                     if (dbExhibit != null)
                     {
-                        var waypoint = DbManager.CreateBusinessObject<Waypoint> ();
+                        var waypoint = DbManager.CreateBusinessObject<Waypoint>();
                         waypoint.Exhibit = dbExhibit;
                         waypoint.Location = dbExhibit.Location;
 
-                        dbRoute.Waypoints.Add (waypoint);
+                        dbRoute.Waypoints.Add(waypoint);
                     }
                 }
 
-                var removedWaypoints = dbRoute.Waypoints.Where(x => !routeDto.Exhibits.Contains (x.Exhibit.IdForRestApi));
+                var removedWaypoints = dbRoute.Waypoints.Where(x => !routeDto.Exhibits.Contains(x.Exhibit.IdForRestApi));
                 foreach (var waypoint in removedWaypoints)
                 {
                     dbRoute.Waypoints.Remove(waypoint);
@@ -262,6 +262,5 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             fetchedChangedRoutes = changedRoutes.Items;
             return fetchedChangedRoutes.Any();
         }
-
     }
 }

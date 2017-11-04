@@ -1,4 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
+
 <!--
 // Copyright (C) 2017 History in Paderborn App - Universität Paderborn
 //
@@ -27,6 +28,8 @@
                      Command="{Binding ChangeFontSizeCommand}"
                      Icon="ic_format_size.png" />
     </TabbedPage.ToolbarItems>
-    <audioTranscript1:SubtitlesPage x:Name="SubtitlesPage" BindingContext="{Binding SubtitleTab}" Title="{helpers:Translate AudioTranscriptView_Subtitles_Title}"/>
-    <audioTranscript1:SourcesPage x:Name="SourcesPage" BindingContext="{Binding SourcesTab}" Title="{helpers:Translate AudioTranscriptView_Sources_Title}"/>
+    <audioTranscript1:SubtitlesPage x:Name="SubtitlesPage" BindingContext="{Binding SubtitleTab}"
+                                    Title="{helpers:Translate AudioTranscriptView_Subtitles_Title}" />
+    <audioTranscript1:SourcesPage x:Name="SourcesPage" BindingContext="{Binding SourcesTab}"
+                                  Title="{helpers:Translate AudioTranscriptView_Sources_Title}" />
 </TabbedPage>

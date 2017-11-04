@@ -16,10 +16,10 @@ using System.Text.RegularExpressions;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelConverters {
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelConverters
+{
     public class MediaToImageConverter : DtoToModelConverter<Image, MediaDto>
     {
-
         public override void Convert(MediaDto dto, Image existingModelObject)
         {
             existingModelObject.IdForRestApi = dto.Id;
@@ -29,14 +29,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelCo
             // Necessary for iOS
             if (dto.Description != null)
             {
-                existingModelObject.Description = Regex.Unescape (dto.Description);
+                existingModelObject.Description = Regex.Unescape(dto.Description);
             }
             else
             {
                 existingModelObject.Description = dto.Description;
             }
-            
         }
-
     }
 }

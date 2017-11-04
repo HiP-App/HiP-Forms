@@ -12,29 +12,47 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using JetBrains.Annotations;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using Realms;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelConverters {
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelConverters
+{
     /// <summary>
     /// Provides functionality for converting a dto of type <typeparamref name="TDtoObject"/> to 
     /// a model class of type <typeparamref name="TModelObject"/>
     /// </summary>
     /// <typeparam name="TModelObject"></typeparam>
     /// <typeparam name="TDtoObject"></typeparam>
-    public abstract class DtoToModelConverter<TModelObject, TDtoObject> where TModelObject : RealmObject, IIdentifiable, new ()
+    public abstract class DtoToModelConverter<TModelObject, TDtoObject> where TModelObject : RealmObject, IIdentifiable, new()
     {
         /// <summary>
         /// Converts the given <paramref name="dto"/> to a new model object
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
-        public TModelObject Convert (TDtoObject dto)
+        public TModelObject Convert(TDtoObject dto)
         {
-            var modelObject = DbManager.CreateBusinessObject<TModelObject> ();
+            var modelObject = DbManager.CreateBusinessObject<TModelObject>();
 
-            Convert (dto, modelObject);
+            Convert(dto, modelObject);
+
+            return modelObject;
+        }
+
+        /// <summary>
+        /// Converts the given <paramref name="dto"/> to a new model object
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <param name="id">The ID to assign to the object.</param>
+        /// <param name="updateCurrent">If true, first removes any object of the same type with the id.</param>
+        /// <returns></returns>
+        public TModelObject Convert(TDtoObject dto, [NotNull] string id, bool updateCurrent = false)
+        {
+            var modelObject = DbManager.CreateBusinessObject<TModelObject>(id, updateCurrent);
+
+            Convert(dto, modelObject);
 
             return modelObject;
         }
@@ -44,7 +62,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelCo
         /// </summary>
         /// <param name="dto"></param>
         /// <param name="existingModelObject"></param>
-        public abstract void Convert (TDtoObject dto, TModelObject existingModelObject);
-
+        public abstract void Convert(TDtoObject dto, TModelObject existingModelObject);
     }
 }

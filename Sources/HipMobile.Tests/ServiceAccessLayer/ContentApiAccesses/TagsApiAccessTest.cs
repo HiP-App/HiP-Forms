@@ -121,6 +121,5 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.ServiceAccessLayer
         }
 
         #endregion
-
     }
 }

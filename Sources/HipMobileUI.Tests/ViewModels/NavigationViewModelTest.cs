@@ -19,52 +19,53 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels {
+namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels
+{
     [TestFixture]
-    public class NavigationViewModelTest {
-
+    public class NavigationViewModelTest
+    {
         [TestFixtureSetUp]
-        public void Init ()
+        public void Init()
         {
-            IoCManager.RegisterInstance (typeof(INavigationService), Substitute.For<INavigationService> ());
+            IoCManager.RegisterInstance(typeof(INavigationService), Substitute.For<INavigationService>());
         }
 
         [Test, NUnit.Framework.Category("UnitTest")]
-        public void Title_SetGet ()
+        public void Title_SetGet()
         {
-            var sut = CreateSystemUnderTest ();
+            var sut = CreateSystemUnderTest();
 
             var title = "Foo";
             sut.Title = title;
 
-            Assert.AreEqual (sut.Title, title);
+            Assert.AreEqual(sut.Title, title);
         }
 
         [Test, NUnit.Framework.Category("UnitTest")]
-        public void IsBusy_SetGet ()
+        public void IsBusy_SetGet()
         {
             var sut = CreateSystemUnderTest();
 
             sut.IsBusy = true;
 
-            Assert.AreEqual (sut.IsBusy, true);
-            Assert.AreEqual (sut.IsNotBusy, false);
+            Assert.AreEqual(sut.IsBusy, true);
+            Assert.AreEqual(sut.IsNotBusy, false);
 
             sut.IsBusy = false;
 
-            Assert.AreEqual (sut.IsBusy, false);
-            Assert.AreEqual (sut.IsNotBusy, true);
+            Assert.AreEqual(sut.IsBusy, false);
+            Assert.AreEqual(sut.IsNotBusy, true);
         }
 
         [Test, NUnit.Framework.Category("UnitTest")]
-        public void PropertyChanged_Invoked ()
+        public void PropertyChanged_Invoked()
         {
             var sut = CreateSystemUnderTest();
-            var handler = Substitute.For<PropertyChangedEventHandler> ();
+            var handler = Substitute.For<PropertyChangedEventHandler>();
             sut.PropertyChanged += handler;
 
             sut.Title = "Foo";
-            handler.ReceivedWithAnyArgs(1).Invoke (null, null);
+            handler.ReceivedWithAnyArgs(1).Invoke(null, null);
         }
 
         [Test, NUnit.Framework.Category("UnitTest")]
@@ -82,11 +83,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels {
 
         #region Helper Methods
 
-        public NavigationViewModel CreateSystemUnderTest ()
+        public NavigationViewModel CreateSystemUnderTest()
         {
-            return Substitute.For<NavigationViewModel> ();
+            return Substitute.For<NavigationViewModel>();
         }
-        #endregion
 
+        #endregion
     }
 }

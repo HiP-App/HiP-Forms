@@ -17,8 +17,8 @@ using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
 {
-    public partial class RoutesOverviewView : IViewFor<RoutesOverviewViewModel> {
-        
+    public partial class RoutesOverviewView : IViewFor<RoutesOverviewViewModel>
+    {
         public RoutesOverviewView()
         {
             InitializeComponent();

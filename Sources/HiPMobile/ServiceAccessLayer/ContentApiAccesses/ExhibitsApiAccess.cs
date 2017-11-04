@@ -25,7 +25,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
 {
     public class ExhibitsApiAccess : IExhibitsApiAccess
     {
-
         private readonly IContentApiClient contentApiClient;
 
         public ExhibitsApiAccess(IContentApiClient contentApiClient)
@@ -67,13 +66,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
             return new ExhibitsDto { Items = new List<ExhibitDto>(), Total = 0 };
         }
 
-        public async Task<IList<int>> GetIds ()
+        public async Task<IList<int>> GetIds()
         {
             string requestPath = @"/Exhibits/ids";
             string json = await contentApiClient.GetResponseFromUrlAsString(requestPath);
 
-            return JsonConvert.DeserializeObject<IList<int>> (json);
+            return JsonConvert.DeserializeObject<IList<int>>(json);
         }
-
     }
 }

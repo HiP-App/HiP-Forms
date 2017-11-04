@@ -11,9 +11,11 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer {
-    public class ServerEndpoints {
 
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer
+{
+    public class ServerEndpoints
+    {
         private const string BaseUrl = "https://hip.eu.auth0.com/";
 
         public const string LoginUrl = BaseUrl + "oauth/token";
@@ -25,6 +27,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer {
         /// Urlpath for the docker container running the HiP-DataStore instance
         /// </summary>
         public const string DatastoreApiPath = "https://docker-hip.cs.uni-paderborn.de/public/datastore/api";
+        
+        public const string AchievementsApiPath = "https://docker-hip.cs.uni-paderborn.de/public/achievements/api";
 
         public const string DataStoreTokenUrl = "https://hip.eu.auth0.com/oauth/token";
     }

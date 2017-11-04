@@ -17,6 +17,5 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts
     public interface INetworkAccessChecker
     {
         NetworkAccessStatus GetNetworkAccessStatus();
-
     }
 }

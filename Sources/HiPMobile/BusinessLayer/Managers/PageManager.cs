@@ -16,12 +16,13 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers {
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
+{
     /// <summary>
     /// Pagemanager class for getting access to pages.
     /// </summary>
-    public static class PageManager {
-
+    public static class PageManager
+    {
         private static readonly IDataAccess DataAccess = IoCManager.Resolve<IDataAccess>();
 
         /// <summary>
@@ -29,7 +30,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers {
         /// </summary>
         /// <param name="id">The id of the imagepage to be retrived.</param>
         /// <returns>The imagepage with the given id. If it doesn't exist, null is returned.</returns>
-        public static ImagePage GetImagePage (string id)
+        public static ImagePage GetImagePage(string id)
         {
             if (!string.IsNullOrEmpty(id))
             {

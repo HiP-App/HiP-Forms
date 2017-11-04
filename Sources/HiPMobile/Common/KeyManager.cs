@@ -15,18 +15,22 @@
 using System.Collections.Generic;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Common {
-    public class KeyManager {
-
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Common
+{
+    public class KeyManager
+    {
         private static KeyManager instance;
+
         /// <summary>
         /// The singleton instance.
         /// </summary>
-        public static KeyManager Instance {
-            get {
+        public static KeyManager Instance
+        {
+            get
+            {
                 if (instance == null)
                 {
-                    instance= new KeyManager ();
+                    instance = new KeyManager();
                 }
                 return instance;
             }
@@ -34,20 +38,20 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Common {
 
         private readonly List<IKeyProvider> keyProvider;
 
-        private KeyManager ()
+        private KeyManager()
         {
-            keyProvider= new List<IKeyProvider> ();
+            keyProvider = new List<IKeyProvider>();
         }
 
         /// <summary>
         /// Register a key provider which can be querried for keys.
         /// </summary>
         /// <param name="provider">The provider to register.</param>
-        public void RegisterProvider (IKeyProvider provider)
+        public void RegisterProvider(IKeyProvider provider)
         {
             if (provider != null)
             {
-                keyProvider.Add (provider);
+                keyProvider.Add(provider);
             }
         }
 
@@ -55,11 +59,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Common {
         /// Unregister a key provider so it is not querried for keys anymore.
         /// </summary>
         /// <param name="provider">The provider to unregister.</param>
-        public void UnregisterProvider (IKeyProvider provider)
+        public void UnregisterProvider(IKeyProvider provider)
         {
             if (provider != null)
             {
-                keyProvider.Remove (provider);
+                keyProvider.Remove(provider);
             }
         }
 
@@ -68,18 +72,17 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Common {
         /// </summary>
         /// <param name="name">The name of the key.</param>
         /// <returns>They key if it exists, an empty string otherwise.</returns>
-        public string GetKey (string name)
+        public string GetKey(string name)
         {
             foreach (var provider in keyProvider)
             {
-                string key = provider.GetKeyByName (name);
-                if (!string.IsNullOrEmpty (key))
+                string key = provider.GetKeyByName(name);
+                if (!string.IsNullOrEmpty(key))
                 {
                     return key;
                 }
             }
             return string.Empty;
         }
-
     }
 }

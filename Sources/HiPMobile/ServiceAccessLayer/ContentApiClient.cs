@@ -27,10 +27,18 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Authenticat
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer
 {
-    public class ContentApiClient : IContentApiClient {
-
+    public class ContentApiClient : IContentApiClient
+    {
         private const int MaxRetryCount = 5;
         private static Token token;
+
+        private readonly string basePath;
+
+        /// <param name="basePath">e.g. ServerEndpoints.DatastoreApiPath</param>
+        public ContentApiClient(string basePath = ServerEndpoints.DatastoreApiPath)
+        {
+            this.basePath = basePath;
+        }
 
         /// <summary>
         /// Returns json string if get was successful (Status 200)
@@ -41,15 +49,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer
         /// </summary>
         /// <param name="urlPath">Http request url path</param>
         /// <returns>Json result of the requested url</returns>
-        public async Task<string> GetResponseFromUrlAsString (string urlPath)
+        public async Task<string> GetResponseFromUrlAsString(string urlPath)
+        {
+            var response = await GetHttpWebResponse(urlPath);
+            using (Stream responseStream = response.GetResponseStream())
             {
-            var response = await GetHttpWebResponse (urlPath);
-            using (Stream responseStream = response.GetResponseStream ())
-                {
-                StreamReader reader = new StreamReader (responseStream, Encoding.UTF8);
-                return reader.ReadToEnd ();
-                }
+                StreamReader reader = new StreamReader(responseStream, Encoding.UTF8);
+                return reader.ReadToEnd();
             }
+        }
 
         /// <summary>
         /// Returns response as byte array if get was successful (Status 200)
@@ -60,136 +68,133 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer
         /// </summary>
         /// <param name="urlPath">Http request url path</param>
         /// <returns>Byte array result of the requested url</returns>
-        public async Task<byte[]> GetResponseFromUrlAsBytes (string urlPath)
+        public async Task<byte[]> GetResponseFromUrlAsBytes(string urlPath)
+        {
+            var response = await GetHttpWebResponse(urlPath);
+            using (Stream responseStream = response.GetResponseStream())
             {
-            var response = await GetHttpWebResponse (urlPath);
-            using (Stream responseStream = response.GetResponseStream ())
+                using (MemoryStream ms = new MemoryStream())
                 {
-                using (MemoryStream ms = new MemoryStream ())
-                    {
-                    responseStream.CopyTo (ms);
-                    return ms.ToArray ();
-                    }
+                    responseStream.CopyTo(ms);
+                    return ms.ToArray();
                 }
             }
+        }
 
-        private async Task<HttpWebResponse> GetHttpWebResponse (string urlPath)
-            {
+        public async Task<HttpWebResponse> GetHttpWebResponse(string urlPath)
+        {
             //Get DataStoreToken
             if (token == null)
-                {
-                token = await GetTokenForDataStore ();
-                }
-            string fullUrl = ServerEndpoints.DatastoreApiPath + urlPath;
+            {
+                token = await GetTokenForDataStore();
+            }
+            string fullUrl = basePath + urlPath;
             Exception innerException = null;
 
             for (int i = 0; i < MaxRetryCount; i++)
-                {
+            {
                 if (i != 0)
-                    {
-                    await Task.Delay (300);
-                    }
+                {
+                    await Task.Delay(300);
+                }
 
                 try
-                    {
-                    var request = WebRequest.Create (fullUrl) as HttpWebRequest;
-                    request.Headers ["Authorization"] = "Bearer " + token.AccessToken;
+                {
+                    var request = WebRequest.Create(fullUrl) as HttpWebRequest;
+                    request.Headers["Authorization"] = "Bearer " + token.AccessToken;
                     request.Accept = "application/json";
-                    var response = (HttpWebResponse) await request.GetResponseAsync ();
+                    var response = (HttpWebResponse) await request.GetResponseAsync();
 
                     switch (response.StatusCode)
-                        {
+                    {
                         case HttpStatusCode.OK:
                             return response;
                         case HttpStatusCode.NotModified:
                             return null;
                         default:
-                            throw new WebException ($"Unexpected response status: {response.StatusCode}");
-                        }
-                    }
-                catch (Exception ex)
-                    {
-                    innerException = ex;
+                            throw new WebException($"Unexpected response status: {response.StatusCode}");
                     }
                 }
+                catch (Exception ex)
+                {
+                    innerException = ex;
+                }
+            }
 
             WebException webException = innerException as WebException;
             if (webException != null)
-                {
+            {
                 WebResponse errorResponse = webException.Response;
                 var httpResponse = errorResponse as HttpWebResponse;
                 if (httpResponse != null && httpResponse.StatusCode == HttpStatusCode.NotFound)
-                    {
-                    throw new NotFoundException (fullUrl);
-                    }
-
-                using (Stream responseStream = errorResponse.GetResponseStream ())
-                    {
-                    StreamReader reader = new StreamReader (responseStream, Encoding.UTF8);
-                    string exceptionMessage = reader.ReadToEnd ();
-                    throw new NetworkAccessFailedException (exceptionMessage, webException);
-                    }
-                }
-            throw new ArgumentException ("Unexpected error during fetching data");
-            }
-
-        public async Task<Token> GetTokenForDataStore ()
-            {
-            var tokenPayload = new TokenPayload
                 {
+                    throw new NotFoundException(fullUrl);
+                }
+
+                using (Stream responseStream = errorResponse.GetResponseStream())
+                {
+                    StreamReader reader = new StreamReader(responseStream, Encoding.UTF8);
+                    string exceptionMessage = reader.ReadToEnd();
+                    throw new NetworkAccessFailedException(exceptionMessage, webException);
+                }
+            }
+            throw new ArgumentException("Unexpected error during fetching data");
+        }
+
+        public async Task<Token> GetTokenForDataStore()
+        {
+            var tokenPayload = new TokenPayload
+            {
                 ClientId = Constants.DataStoreClientId,
                 ClientSecret = Constants.DataStoreClientSecret,
                 Audience = Constants.Audience,
                 GrantType = Constants.DataStoreGrantType
-                };
+            };
 
-            var content = JsonConvert.SerializeObject (tokenPayload);
-            var result = await PostJsonRequest (ServerEndpoints.DataStoreTokenUrl, content);
-            var jsonPayload = await result.Content.ReadAsStringAsync ();
-            var token = JsonConvert.DeserializeObject<Token> (jsonPayload);
+            var content = JsonConvert.SerializeObject(tokenPayload);
+            var result = await PostJsonRequest(ServerEndpoints.DataStoreTokenUrl, content);
+            var jsonPayload = await result.Content.ReadAsStringAsync();
+            var token = JsonConvert.DeserializeObject<Token>(jsonPayload);
             return token;
-            }
-
-        public async Task<HttpResponseMessage> PostRequestFormBased (string url, FormUrlEncodedContent content)
-            {
-            try
-                {
-                using (HttpClient client = new HttpClient ())
-                    {
-                    // Lambda expression executed
-                    // ReSharper disable AccessToDisposedClosure
-                    var result = await TransientRetry.Do (() => client.PostAsync (url, content), new TimeSpan (0, 0, 0, 3));
-                    // ReSharper restore AccessToDisposedClosure
-                    return result;
-                    }
-                }
-            catch (Exception ex)
-                {
-                throw new Exception (ex.Message);
-                }
-
-            }
-
-        public async Task<HttpResponseMessage> PostJsonRequest (string url, string jsonContent)
-            {
-            try
-                {
-                using (HttpClient client = new HttpClient ())
-                    {
-                    var content = new StringContent (jsonContent.ToString (), Encoding.UTF8, "application/json");
-                    // Lambda expression executed
-                    // ReSharper disable AccessToDisposedClosure
-                    var result = await TransientRetry.Do (() => client.PostAsync (url, content), new TimeSpan (0, 0, 0, 3));
-                    // ReSharper restore AccessToDisposedClosure
-                    return result;
-                    }
-                }
-            catch (Exception ex)
-                {
-                throw new Exception (ex.Message);
-                }
-            }
-
         }
 
+        public async Task<HttpResponseMessage> PostRequestFormBased(string url, FormUrlEncodedContent content)
+        {
+            try
+            {
+                using (HttpClient client = new HttpClient())
+                {
+                    // Lambda expression executed
+                    // ReSharper disable AccessToDisposedClosure
+                    var result = await TransientRetry.Do(() => client.PostAsync(url, content), new TimeSpan(0, 0, 0, 3));
+                    // ReSharper restore AccessToDisposedClosure
+                    return result;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public async Task<HttpResponseMessage> PostJsonRequest(string url, string jsonContent)
+        {
+            try
+            {
+                using (HttpClient client = new HttpClient())
+                {
+                    var content = new StringContent(jsonContent.ToString(), Encoding.UTF8, "application/json");
+                    // Lambda expression executed
+                    // ReSharper disable AccessToDisposedClosure
+                    var result = await TransientRetry.Do(() => client.PostAsync(url, content), new TimeSpan(0, 0, 0, 3));
+                    // ReSharper restore AccessToDisposedClosure
+                    return result;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
+}

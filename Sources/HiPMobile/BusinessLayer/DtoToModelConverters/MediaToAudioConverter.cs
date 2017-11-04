@@ -16,11 +16,11 @@ using System.Text.RegularExpressions;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelConverters {
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelConverters
+{
     public class MediaToAudioConverter : DtoToModelConverter<Audio, MediaDto>
     {
-
-        public override void Convert (MediaDto dto, Audio existingModelObject)
+        public override void Convert(MediaDto dto, Audio existingModelObject)
         {
             existingModelObject.IdForRestApi = dto.Id;
             existingModelObject.Timestamp = dto.Timestamp;
@@ -29,14 +29,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelCo
             // Necessary for iOS
             if (dto.Description != null)
             {
-                existingModelObject.Caption = Regex.Unescape (dto.Description);
+                existingModelObject.Caption = Regex.Unescape(dto.Description);
             }
             else
             {
                 existingModelObject.Caption = dto.Description;
             }
-                
         }
-
     }
 }
