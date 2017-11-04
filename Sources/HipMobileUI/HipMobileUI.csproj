@@ -158,7 +158,6 @@
     <Compile Include="ViewModels\Pages\UserOnboardingItemViewModel.cs" />
     <Compile Include="ViewModels\Pages\UserOnboardingPageViewModel.cs" />
     <Compile Include="ViewModels\Views\AudioToolbarViewModel.cs" />
-    <Compile Include="ViewModels\Views\ExhibitDetails\AppetizerViewModel.cs" />
     <Compile Include="ViewModels\Views\ExhibitDetails\ExhibitSubviewHiddeableNavigationViewModel.cs" />
     <Compile Include="ViewModels\Views\ExhibitDetails\ExhibitSubviewViewModel.cs" />
     <Compile Include="ViewModels\Views\ExhibitDetails\TextViewModel.cs" />
@@ -200,9 +199,6 @@
     <Compile Include="Pages\NavigationPage.xaml.cs">
       <DependentUpon>NavigationPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ExhibitDetails\AppetizerView.xaml.cs">
-      <DependentUpon>AppetizerView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\ExhibitDetails\ImageView.xaml.cs">
       <DependentUpon>ImageView.xaml</DependentUpon>
     </Compile>
@@ -230,6 +226,10 @@
     </Compile>
     <Compile Include="Behaviors\PasswordValidationBehavior.cs" />
     <Compile Include="Behaviors\EmailValidationBehavior.cs" />
+    <Compile Include="ViewModels\Pages\AppetizerPageViewModel.cs" />
+    <Compile Include="Pages\AppetizerPage.xaml.cs">
+      <DependentUpon>AppetizerPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\AchievementsScreenView.xaml.cs">
       <DependentUpon>AchievementsScreenView.xaml</DependentUpon>
     </Compile>
@@ -241,6 +241,10 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\RegisterScreenView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\AppetizerPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -390,12 +394,6 @@
   <ItemGroup>
     <EmbeddedResource Include="Pages\NavigationPage.xaml" />
     <EmbeddedResource Include="Pages\ExhibitDetailsPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Views\ExhibitDetails\AppetizerView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
