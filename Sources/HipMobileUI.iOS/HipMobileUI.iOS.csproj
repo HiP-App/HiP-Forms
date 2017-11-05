@@ -32,8 +32,6 @@
     <MtouchUseLlvm>False</MtouchUseLlvm>
     <MtouchUseThumb>False</MtouchUseThumb>
     <MtouchEnableBitcode>False</MtouchEnableBitcode>
-    <MtouchUseSGen>False</MtouchUseSGen>
-    <MtouchUseRefCounting>False</MtouchUseRefCounting>
     <OptimizePNGs>True</OptimizePNGs>
     <MtouchTlsProvider>Default</MtouchTlsProvider>
     <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
@@ -68,8 +66,6 @@
     <MtouchUseLlvm>False</MtouchUseLlvm>
     <MtouchUseThumb>False</MtouchUseThumb>
     <MtouchEnableBitcode>False</MtouchEnableBitcode>
-    <MtouchUseSGen>False</MtouchUseSGen>
-    <MtouchUseRefCounting>False</MtouchUseRefCounting>
     <OptimizePNGs>True</OptimizePNGs>
     <MtouchFloat32>False</MtouchFloat32>
     <DeviceSpecificBuild>False</DeviceSpecificBuild>
@@ -158,6 +154,7 @@
     <Compile Include="Contracts\IosBarsColorsChanger.cs" />
     <Compile Include="Contracts\IosImageDimensions.cs" />
     <Compile Include="Contracts\IosNetworkAccessChecker.cs" />
+    <Compile Include="Contracts\IosNotificationPlayer.cs" />
     <Compile Include="Contracts\IosStatusBarController.cs" />
     <Compile Include="Contracts\IosStorageSizeProvider.cs" />
     <Compile Include="CustomRenderers\FloatingActionButtonIosRenderer.cs" />
@@ -188,6 +185,9 @@
     <BundleResource Include="Resources\fonts\AlteSchwabacher.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </BundleResource>
+    <BundleResource Include="Resources\ic_done.png" />
+    <BundleResource Include="Resources\ic_done_2x.png" />
+    <BundleResource Include="Resources\ic_done_3x.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Default-568h%402x.png" />
@@ -248,6 +248,9 @@
     </Reference>
     <Reference Include="HockeySDK.iOSBindings, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\HockeySDK.Xamarin.4.1.1\lib\Xamarin.iOS10\HockeySDK.iOSBindings.dll</HintPath>
+    </Reference>
+    <Reference Include="JetBrains.Annotations, Version=11.0.0.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JetBrains.Annotations.11.0.0\lib\netstandard1.0\JetBrains.Annotations.dll</HintPath>
     </Reference>
     <Reference Include="MaterialControls, Version=1.2.6136.26345, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\MaterialControls.1.2.2\lib\Xamarin.iOS10\MaterialControls.dll</HintPath>
@@ -340,7 +343,7 @@
       <Name>HiPMobile</Name>
     </ProjectReference>
     <ProjectReference Include="..\HipMobileUI\HipMobileUI.csproj">
-      <Project>{98c9f078-689a-4e64-acc5-6eb716b7edd2}</Project>
+      <Project>{8A545C1B-B2C8-425F-8303-BD5BD08A978D}</Project>
       <Name>HipMobileUI</Name>
     </ProjectReference>
   </ItemGroup>

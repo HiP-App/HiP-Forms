@@ -12,16 +12,19 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
-using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views.ExhibitDetails;
+using Xamarin.Forms;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views.ExhibitDetails
+namespace PaderbornUniversity.SILab.Hip.Mobile.UI.CustomTriggers
 {
-    public partial class AppetizerView : IViewFor<AppetizerViewModel>
+    /// <summary>
+    /// Useful for making the ugly selection highlight color disappear.
+    /// See also https://stackoverflow.com/a/42572336/1502352.
+    /// </summary>
+    public class DeselectListViewItemAction : TriggerAction<ListView>
     {
-        public AppetizerView()
+        protected override void Invoke(ListView sender)
         {
-            InitializeComponent();
+            sender.SelectedItem = null;
         }
     }
 }

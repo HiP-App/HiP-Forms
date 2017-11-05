@@ -52,7 +52,9 @@
     <Compile Include="..\..\HiP-Mobile-Internal\Constants.cs">
       <Link>ServiceAccessLayer\AuthenticationApiAccess\Constants.cs</Link>
     </Compile>
+    <Compile Include="BusinessLayer\ContentApiFetchers\AchievementFetcher.cs" />
     <Compile Include="BusinessLayer\ContentApiFetchers\BaseDataFetcher.cs" />
+    <Compile Include="BusinessLayer\ContentApiFetchers\Contracts\IAchievementFetcher.cs" />
     <Compile Include="BusinessLayer\ContentApiFetchers\Contracts\IFullDownloadableDataFetcher.cs" />
     <Compile Include="BusinessLayer\ContentApiFetchers\Contracts\IFullRouteDataFetcher.cs" />
     <Compile Include="BusinessLayer\ContentApiFetchers\ExhibitPagesAndMediaContainer.cs" />
@@ -71,12 +73,20 @@
     <Compile Include="BusinessLayer\ContentApiFetchers\MediaDataFetcher.cs" />
     <Compile Include="BusinessLayer\ContentHandling\NewDataCenter.cs" />
     <Compile Include="BusinessLayer\ContentApiFetchers\RoutesBaseDataFetcher.cs" />
+    <Compile Include="BusinessLayer\DtoToModelConverters\AchievementConverter.cs" />
+    <Compile Include="BusinessLayer\DtoToModelConverters\ExhibitsVisitedAchievementConverter.cs" />
     <Compile Include="BusinessLayer\DtoToModelConverters\BackupData.cs" />
+    <Compile Include="BusinessLayer\DtoToModelConverters\RouteFinishedAchievementConverter.cs" />
     <Compile Include="BusinessLayer\DtoToModelConverters\TagConverter.cs" />
     <Compile Include="BusinessLayer\DtoToModelConverters\RouteConverter.cs" />
     <Compile Include="BusinessLayer\DtoToModelConverters\MediaToAudioConverter.cs" />
     <Compile Include="BusinessLayer\DtoToModelConverters\MediaToImageConverter.cs" />
     <Compile Include="BusinessLayer\DtoToModelConverters\PageConverter.cs" />
+    <Compile Include="BusinessLayer\Managers\AchievementManager.cs" />
+    <Compile Include="BusinessLayer\Models\ModelClasses\ExhibitsVisitedAchievement.cs" />
+    <Compile Include="BusinessLayer\Models\ModelClasses\IAchievement.cs" />
+    <Compile Include="BusinessLayer\Models\ModelClasses\RouteFinishedAchievement.cs" />
+    <Compile Include="BusinessLayer\Models\ModelExtensions\IAchievement.cs" />
     <Compile Include="BusinessLayer\Models\User\User.cs" />
     <Compile Include="BusinessLayer\UserManagement\UserManager.cs" />
     <Compile Include="BusinessLayer\Models\User\UserStatus.cs" />
@@ -101,6 +111,8 @@
     <Compile Include="ServiceAccessLayer\AuthenticationApiAccess\AuthApiAccess.cs" />
     <Compile Include="ServiceAccessLayer\AuthApiDto\Error.cs" />
     <Compile Include="ServiceAccessLayer\AuthApiDto\Token.cs" />
+    <Compile Include="ServiceAccessLayer\ContentApiAccesses\AchievementsApiAccess.cs" />
+    <Compile Include="ServiceAccessLayer\ContentApiAccesses\Contracts\IAchievementsApiAccess.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiClient.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiAccesses\Contracts\ITagsApiAccess.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiAccesses\Contracts\IRoutesApiAccess.cs" />
@@ -114,6 +126,8 @@
     <Compile Include="ServiceAccessLayer\ContentApiAccesses\Contracts\IMediasApiAccess.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiAccesses\Contracts\IPagesApiAccess.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiAccesses\Contracts\IExhibitsApiAccess.cs" />
+    <Compile Include="ServiceAccessLayer\ContentApiDtos\AchievementDto.cs" />
+    <Compile Include="ServiceAccessLayer\ContentApiDtos\ExhibitsVisitedActionDto.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiDtos\FileDto.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiDtos\MediaTypeDto.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiDtos\PageImageDto.cs" />
@@ -197,6 +211,9 @@
     <Reference Include="Itinero.IO.Osm, Version=0.31.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Itinero.IO.Osm.0.31.2-rc1\lib\portable-net40+sl4+win8+wp7\Itinero.IO.Osm.dll</HintPath>
       <Private>True</Private>
+    </Reference>
+    <Reference Include="JetBrains.Annotations, Version=11.0.0.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JetBrains.Annotations.11.0.0\lib\portable-net4+sl50+win8+wpa81+wp8\JetBrains.Annotations.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>

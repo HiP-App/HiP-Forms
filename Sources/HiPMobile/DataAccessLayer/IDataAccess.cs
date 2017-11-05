@@ -15,6 +15,7 @@
 //  */
 
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using Realms;
 
@@ -59,6 +60,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
         /// <typeparam name="T">The type of the object being created. T needs to be subtype of RealmObject and implement the IIdentifiable interface.</typeparam>
         /// <returns>The instance.</returns>
         T CreateObject<T>() where T : RealmObject, IIdentifiable, new();
+        
+        /// <summary>
+        /// Creates an object of type T that is synced to the database.
+        /// </summary>
+        /// <param name="id">The ID to assign to the object.</param>
+        /// <param name="updateCurrent">If true, first removes any object of the same type with the id.</param>
+        /// <typeparam name="T">The type of the object being created. T needs to be subtype of RealmObject and implement the IIdentifiable interface.</typeparam>
+        /// <returns>The instance.</returns>
+        T CreateObject<T>([NotNull] string id, bool updateCurrent = false) where T : RealmObject, IIdentifiable, new();
 
         /// <summary>
         /// Gets the version number for the currently saved data.

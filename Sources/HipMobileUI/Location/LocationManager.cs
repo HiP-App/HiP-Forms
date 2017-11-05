@@ -13,12 +13,7 @@
 // limitations under the License.
 
 using System.Collections.Generic;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
-using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
-using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
 using Plugin.Geolocator;
 using Plugin.Geolocator.Abstractions;
 using Xamarin.Forms;
@@ -63,14 +58,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Location
         bool IsLocationAvailable();
 
         /// <summary>
-        /// Pauses location updates manually.
+        /// Indicates whether the manager listens to position changes in the background (app minimized)
         /// </summary>
-        void PauseListening();
-
-        /// <summary>
-        /// Starts location updates manually.
-        /// </summary>
-        void StartListening();
+        /// <returns>True if app in background, false otherwise.</returns>
+        bool ListeningInBackground { get; }
     }
 
     public class LocationManager : ILocationManager
@@ -84,7 +75,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Location
             locator = CrossGeolocator.Current;
             locator.PositionChanged += (sender, args) => { LastKnownLocation = args.Position; };
 
-            // subscribe to events when the app sleeps/wakes up to enable7disable location updates
+            // subscribe to events when the app sleeps/wakes up to enable/disable location updates
             MessagingCenter.Subscribe<App>(this, AppSharedData.WillSleepMessage, WillSleep);
             MessagingCenter.Subscribe<App>(this, AppSharedData.WillWakeUpMessage, WillWakeUp);
         }
@@ -94,7 +85,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Location
             if (listener != null)
             {
                 // remember the listener and start location updates if necessary
-                bool needToStartLocator = !locator.IsListening && registeredListeners.Count == 0;
+                var needToStartLocator = !locator.IsListening && registeredListeners.Count == 0;
                 registeredListeners.Add(listener);
                 locator.PositionChanged += listener.LocationChanged;
                 if (needToStartLocator)
@@ -125,21 +116,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Location
             return locator.IsGeolocationAvailable;
         }
 
-        public void PauseListening()
-        {
-            if (locator.IsListening)
-            {
-                locator.StopListeningAsync();
-            }
-        }
-
-        public void StartListening()
-        {
-            if (!locator.IsListening)
-            {
-                locator.StartListeningAsync(AppSharedData.MinTimeBwUpdates, AppSharedData.MinDistanceChangeForUpdates);
-            }
-        }
+        public bool ListeningInBackground { get; private set; }
 
         /// <summary>
         /// Called when the app will go to the background or the screen is locked.
@@ -147,7 +124,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Location
         /// <param name="obj">The caller.</param>
         private void WillSleep(App obj)
         {
-            PauseListening();
+            ListeningInBackground = true;
         }
 
         /// <summary>
@@ -156,7 +133,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Location
         /// <param name="obj">The sender of the event.</param>
         private void WillWakeUp(App obj)
         {
-            StartListening();
+            ListeningInBackground = false;
         }
     }
 }
