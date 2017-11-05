@@ -15,6 +15,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Practices.Unity;
@@ -164,53 +165,109 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                 listener.ProgressOneStep();
             }
         }
+    private void PopulateAppetizerPage (int id, ref Page page, Exhibit dbExhibit)
+        {
+        page.IdForRestApi = id;
+
+        if (page.AppetizerPage == null)
+            {
+            page.AppetizerPage = DbManager.CreateBusinessObject<AppetizerPage> ();
+            }
+        // Necessary for iOS
+        if (dbExhibit.Name != null)
+            {
+            page.AppetizerPage.Text = Regex.Unescape (dbExhibit.Name);
+            }
+
+
+        if (dbExhibit.Image != null)
+            {
+            page.AppetizerPage.Image = dbExhibit.Image;
+            }
+
+        else
+            {
+            page.AppetizerPage.Image = BackupData.BackupImage;
+            }
+        }
 
         private void AddAppetizerPageToExhibit(ExhibitDto exhibitDto, Exhibit dbExhibit, FetchedMediaData fetchedMediaData)
         {
             if (exhibitDto.Pages != null && exhibitDto.Pages.Any())
             {
-                var page = appetizerPages.SingleOrDefault(x => x.Id == exhibitDto.Pages.First());
+                var page1 = appetizerPages.SingleOrDefault(x => x.Id == exhibitDto.Pages.First());
+                var page = new PageDto ();
+                page.Text = exhibitDto.Name;
+                page.Description = exhibitDto.Description;
+                page.Status = "PUBLISHED";
+                page.Image = null;
+                page.Id = page1.Id;
 
-                if (page != null)
+            if (dbExhibit.Pages.Any ())
                 {
-                    if (dbExhibit.Pages.Any())
-                    {
-                        PageConverter.Convert(page, dbExhibit.Pages.First());
-                    }
-                    else
-                    {
-                        dbExhibit.Pages.Add(PageConverter.Convert(page));
-                    }
+                var appetizerPage = dbExhibit.Pages.First ();
 
-                    if (page.Image.HasValue)
-                    {
-                        var image = fetchedMediaData.Images.SingleOrDefault(x => x.IdForRestApi == page.Image);
+                if (appetizerPage.AppetizerPage == null)
+                    appetizerPage.AppetizerPage = DbManager.CreateBusinessObject<AppetizerPage> ();
 
-                        if (image != null)
-                        {
-                            dbExhibit.Pages.First().AppetizerPage.Image = image;
-                        }
-                    }
-                    else
-                    {
-                        dbExhibit.Pages.First().AppetizerPage.Image = BackupData.BackupImage;
-                    }
+                appetizerPage.AppetizerPage.Id = exhibitDto.Id.ToString();
+                appetizerPage.AppetizerPage.Text = exhibitDto.Name;
+                if (dbExhibit.Image!=null)
+                    appetizerPage.AppetizerPage.Image = dbExhibit.Image;
 
-                    if (exhibitDto.Pages.Count == 1)
-                    {
-                        // Hide downloadbutton since there is nothing to download
-                        dbExhibit.DetailsDataLoaded = true;
-                    }
-                    else
-                    {
-                        dbExhibit.DetailsDataLoaded = false;
-                    }
+                    PageConverter.Convert (page, dbExhibit.Pages.First ());
                 }
-            }
             else
-            {
-                // Hide downloadbutton since there is nothing to download
-                dbExhibit.DetailsDataLoaded = true;
+                {
+                var firstPage = DbManager.CreateBusinessObject<Page> ();
+                PopulateAppetizerPage (page.Id, ref firstPage, dbExhibit);
+                dbExhibit.Pages.Add (firstPage);
+                }
+
+            dbExhibit.Pages.First ().AppetizerPage.Image = dbExhibit.Image;
+
+            //    //var page = new Page ();
+            //    //page.
+            //    if (page != null)
+            //    {
+            //        if (dbExhibit.Pages.Any())
+            //        {
+            //            PageConverter.Convert(page, dbExhibit.Pages.First());
+            //        }
+            //        else
+            //        {
+            //            dbExhibit.Pages.Add(PageConverter.Convert(page));
+            //        }
+
+            //        if (page.Image.HasValue)
+            //        {
+            //            var image = fetchedMediaData.Images.SingleOrDefault(x => x.IdForRestApi == page.Image);
+
+            //            if (image != null)
+            //            {
+            //                dbExhibit.Pages.First().AppetizerPage.Image = image;
+            //            }
+            //        }
+            //        else
+            //        {
+            //            dbExhibit.Pages.First().AppetizerPage.Image = dbExhibit.Image;
+            //        }
+
+            //        if (exhibitDto.Pages.Count == 1)
+            //        {
+            //            // Hide downloadbutton since there is nothing to download
+            //            dbExhibit.DetailsDataLoaded = true;
+            //        }
+            //        else
+            //        {
+            //            dbExhibit.DetailsDataLoaded = false;
+            //        }
+            //    }
+            //}
+            //else
+            //{
+            //    // Hide downloadbutton since there is nothing to download
+            //    dbExhibit.DetailsDataLoaded = true;
             }
         }
 
