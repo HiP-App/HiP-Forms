@@ -21,9 +21,9 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Location;
-using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
 using Plugin.Geolocator.Abstractions;
 using Xamarin.Forms;
 
@@ -46,7 +46,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             {
                 DisplayedExhibitSet = set;
                 ExhibitsList = new ObservableCollection<ExhibitsOverviewListItemViewModel>();
-                foreach (Exhibit exhibit in set)
+                foreach (var exhibit in set)
                 {
                     var listItem = new ExhibitsOverviewListItemViewModel(exhibit);
                     ExhibitsList.Add(listItem);
@@ -76,9 +76,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         public void LocationChanged(object sender, PositionEventArgs args)
         {
             Position = args.Position;
+
+            if (ExhibitsList == null)
+                return;
+
             SetDistances(args.Position);
 
-            nearbyExhibitManager.CheckNearExhibit(displayedExhibitSet, args.Position.ToGeoLocation(), true);
+            nearbyExhibitManager.CheckNearExhibit(displayedExhibitSet, args.Position.ToGeoLocation(), true, locationManager.ListeningInBackground);
             nearbyRouteManager.CheckNearRoute(RouteManager.GetRoutes(), args.Position.ToGeoLocation());
         }
 
@@ -116,20 +120,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             locationManager.AddLocationListener(this);
         }
 
-        public override void OnHidden()
-        {
-            base.OnHidden();
-
-            locationManager.RemoveLocationListener(this);
-        }
-
-        public override void OnRevealed()
-        {
-            base.OnRevealed();
-
-            locationManager.AddLocationListener(this);
-        }
-
         /// <summary>
         /// Open the exhibitdetails page.
         /// </summary>
@@ -138,7 +128,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         {
             if (item != null)
             {
-                Navigation.PushAsync(new ExhibitDetailsViewModel(item.Exhibit));
+                Navigation.PushAsync(new AppetizerPageViewModel(item.Exhibit));
             }
         }
 
@@ -195,7 +185,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             var set = ExhibitManager.GetExhibitSets().Single();
             DisplayedExhibitSet = set;
             ExhibitsList = new ObservableCollection<ExhibitsOverviewListItemViewModel>();
-            foreach (Exhibit exhibit in set)
+            foreach (var exhibit in set)
             {
                 var listItem = new ExhibitsOverviewListItemViewModel(exhibit);
                 ExhibitsList.Add(listItem);
@@ -209,34 +199,34 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         {
             var newDataCenter = IoCManager.Resolve<INewDataCenter>();
 
-            if (newDataCenter.IsNewDataAvailabe())
-            {
-                bool downloadData = false;
-                if (!Settings.AlwaysDownloadData)
-                {
-                    string result = await Navigation.DisplayActionSheet(Strings.DownloadData_Title,
-                                                                        null, null, Strings.DownloadData_Accept, Strings.DownloadData_Cancel, Strings.DownloadData_Always);
+            if (!newDataCenter.IsNewDataAvailabe())
+                return;
 
-                    if (result == Strings.DownloadData_Always)
-                    {
-                        Settings.AlwaysDownloadData = true;
-                        downloadData = true;
-                    }
-                    else if (result == Strings.DownloadData_Accept)
-                    {
-                        downloadData = true;
-                    }
+            var downloadData = false;
+            if (!Settings.AlwaysDownloadData)
+            {
+                var result = await Navigation.DisplayActionSheet(Strings.DownloadData_Title,
+                                                                 null, null, Strings.DownloadData_Accept, Strings.DownloadData_Cancel, Strings.DownloadData_Always);
+
+                if (result == Strings.DownloadData_Always)
+                {
+                    Settings.AlwaysDownloadData = true;
+                    downloadData = true;
                 }
-                else
+                else if (result == Strings.DownloadData_Accept)
                 {
                     downloadData = true;
                 }
+            }
+            else
+            {
+                downloadData = true;
+            }
 
-                if (downloadData)
-                {
-                    //TODO Not defined until now what screen should be displayed while new data is downloaded
-                    await newDataCenter.UpdateData();
-                }
+            if (downloadData)
+            {
+                //TODO Not defined until now what screen should be displayed while new data is downloaded
+                await newDataCenter.UpdateData();
             }
         }
     }

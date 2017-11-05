@@ -4,7 +4,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Views.ProfileScreenView"
              xmlns:container1="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Container;assembly=HipMobileUI"
-             xmlns:helpers="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;assembly=HipMobileUI">
+             xmlns:helpers="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;assembly=HipMobileUI"
+             xmlns:customTriggers="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.CustomTriggers;assembly=HipMobileUI">
     <ContentView.Content>
         <container1:TabContainerView Tabs="{Binding Tabs}" HorizontalOptions="FillAndExpand"
                                      VerticalOptions="FillAndExpand" BackgroundColor="White">
@@ -74,25 +75,25 @@
                 <StackLayout Orientation="Vertical" HorizontalOptions="Fill" VerticalOptions="Fill" Spacing="0">
                     <ScrollView>
                         <ListView SeparatorVisibility="None" HasUnevenRows="True" ItemsSource="{Binding Achievements}">
+                            <ListView.Triggers>
+                                <EventTrigger Event="ItemSelected">
+                                    <customTriggers:DeselectListViewItemAction />
+                                </EventTrigger>
+                            </ListView.Triggers>
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <ViewCell>
                                         <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" Padding="0"
                                                      Margin="3" HeightRequest="60" Spacing="0">
-                                            <Image Source="ic_directions_walk.png" WidthRequest="60" HeightRequest="60"
-                                                   BackgroundColor="{StaticResource MediumGrayColor}"
+                                            <Image Source="{Binding Image}" WidthRequest="60" HeightRequest="60"
                                                    Aspect="AspectFit" />
-                                            <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand"
-                                                         VerticalOptions="Fill" Spacing="0" Margin="3,0"
-                                                         BackgroundColor="{StaticResource LightGrayColor}">
+                                            <StackLayout Orientation="Vertical" HorizontalOptions="StartAndExpand"
+                                                         VerticalOptions="Fill" Spacing="0" Margin="3,0">
                                                 <!-- Use seperate ViewModel with DataContext for binding -->
-                                                <Label Text="Achievement title" FontSize="16"
-                                                       TextColor="{StaticResource PrimaryColor}"
-                                                       BackgroundColor="{StaticResource MediumGrayColor}" />
-                                                <Label
-                                                    Text="Achievement description - This could explain what has to be done to get this achievement" />
+                                                <Label Text="{Binding Achievement.Title}" FontSize="18"
+                                                       TextColor="{StaticResource PrimaryColor}" />
+                                                <Label Text="{Binding Achievement.Description}" />
                                             </StackLayout>
-                                            <Label BackgroundColor="Red" WidthRequest="40" />
                                         </StackLayout>
                                     </ViewCell>
                                 </DataTemplate>
