@@ -224,6 +224,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                 {
                     dbExhibit.Image = image;
                 }
+                else
+                {
+                    dbExhibit.Image = BackupData.BackupImage;
+                }
             }
             else
             {
