@@ -11,17 +11,17 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
+
+namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
 {
-    public interface IAchievement: IIdentifiable
+    public partial class AppetizerPage : IViewFor<AppetizerPageViewModel>
     {
-        string Title { get; }
-
-        string Description { get; }
-
-        string ThumbnailUrl { get; }
-
-        string NextId { get; }
+        public AppetizerPage()
+        {
+            InitializeComponent();
+        }
     }
 }

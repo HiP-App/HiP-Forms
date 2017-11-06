@@ -72,7 +72,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataLayer
             {
                 Instance.Remove(item);
             }
-
             return true;
         }
 

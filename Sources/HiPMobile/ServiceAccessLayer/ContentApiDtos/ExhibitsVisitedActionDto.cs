@@ -12,16 +12,19 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
-using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views.ExhibitDetails;
+using System.Collections.Generic;
+using Newtonsoft.Json;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views.ExhibitDetails
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos
 {
-    public partial class AppetizerView : IViewFor<AppetizerViewModel>
+    public class ExhibitsVisitedActionDto
     {
-        public AppetizerView()
+        [JsonProperty("entityIds")]
+        public IList<int> EntityIds { get; private set; }
+
+        public ExhibitsVisitedActionDto(IList<int> entityIds)
         {
-            InitializeComponent();
+            EntityIds = entityIds;
         }
     }
 }
