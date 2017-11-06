@@ -256,11 +256,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
             var currentPage = pages[currentViewIndex];
             AudioAvailable = currentPage.Audio != null;
-
-
             AudioToolbarVisible = AudioAvailable;
             
-
             // It's possible to get no audio data even if it should exist
             try
             {

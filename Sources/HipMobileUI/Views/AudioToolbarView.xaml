@@ -30,17 +30,12 @@
                 <Image HeightRequest="36" WidthRequest="36"
                        IsVisible="{Binding IsAudioPlaying, Converter={StaticResource InverseBooleanConverter}}"
                        Source="ic_play_arrow_black" HorizontalOptions="Center" VerticalOptions="Center" />
-                <Label IsVisible="{Binding IsAudioPlaying, Converter={StaticResource InverseBooleanConverter}}"
-                       HorizontalOptions="Center" />
                 <Image IsVisible="{Binding IsAudioPlaying}" HeightRequest="36" WidthRequest="36"
                        Source="ic_pause_black" HorizontalOptions="Center" VerticalOptions="Center" />
-                <Label IsVisible="{Binding IsAudioPlaying}" HorizontalOptions="Center" />
             </StackLayout>
             <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                 <controls:TouchEventSlider x:Name="AudioSlider" Maximum="{Binding MaxAudioProgress}"
                                            VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand" />
-                <Label HorizontalOptions="Center"
-                       VerticalOptions="End" />
             </StackLayout>
             <StackLayout Orientation="Vertical" >
                 <StackLayout.GestureRecognizers>
@@ -48,7 +43,6 @@
                 </StackLayout.GestureRecognizers>
                 <Image Source="ic_closed_caption_black" HeightRequest="36" WidthRequest="36" HorizontalOptions="Center"
                        VerticalOptions="Center" />
-                <Label HorizontalOptions="Center" />
             </StackLayout>
         </StackLayout>
     </ContentView.Content>
