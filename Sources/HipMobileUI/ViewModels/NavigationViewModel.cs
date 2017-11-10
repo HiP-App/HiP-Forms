@@ -12,12 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System.Collections.Generic;
 using MvvmHelpers;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
-using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels
 {
@@ -51,16 +48,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels
         /// </summary>
         public virtual void OnRevealed()
         {
-        }
-
-        /// <summary>
-        /// Queues a notification for a recently unlocked achievement. Will be displayed on the current page and requires it to have an AchievementNotificationView.
-        /// </summary>
-        /// <param name="achievementNotificationViewModel">The viewmodel responsible for the notifications. Used as BindingContext on the current page.</param>
-        /// <param name="achievements">A collection of achievements to be displayed.</param>
-        protected void QueueAchievementNotification(AchievementNotificationViewModel achievementNotificationViewModel, IEnumerable<IAchievement> achievements)
-        {
-            achievementNotificationViewModel.QueueAchievementNotifications(achievements);
         }
     }
 }

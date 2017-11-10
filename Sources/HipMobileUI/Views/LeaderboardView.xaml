@@ -2,35 +2,40 @@
 
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:views="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Views;assembly=HipMobileUI"
              x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Views.LeaderboardView">
     <ContentView.Content>
-        <ListView x:Name="LeaderboardListView" ItemsSource="{Binding Leaderboard}"
+        <views:NotificationExtensionView AchievementNotificationViewModel="{Binding AchievementNotificationViewModel}">
+            <views:NotificationExtensionView.ContentTemplate>
+                <ListView x:Name="LeaderboardListView" ItemsSource="{Binding Leaderboard}"
                   SelectedItem="{Binding OwnRanking, Mode=TwoWay}" RowHeight="50">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <Grid Margin="5">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="*" />
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="0.15*" />
-                                <ColumnDefinition Width="0.15*" />
-                                <ColumnDefinition Width="0.2*" />
-                                <ColumnDefinition Width="0.5*" />
-                            </Grid.ColumnDefinitions>
-                            <Label Text="{Binding Position}" FontSize="Large" FontAttributes="Bold"
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid Margin="5">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="0.15*" />
+                                        <ColumnDefinition Width="0.15*" />
+                                        <ColumnDefinition Width="0.2*" />
+                                        <ColumnDefinition Width="0.5*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label Text="{Binding Position}" FontSize="Large" FontAttributes="Bold"
                                    VerticalOptions="Center" Grid.Row="0" Grid.Column="0" />
-                            <Label Text="{Binding Points}" FontSize="Medium" Opacity="0.5" VerticalOptions="Center"
+                                    <Label Text="{Binding Points}" FontSize="Medium" Opacity="0.5" VerticalOptions="Center"
                                    Grid.Row="0" Grid.Column="1" />
-                            <Image Source="hiphop_transparent.png" Aspect="AspectFit" VerticalOptions="Center"
+                                    <Image Source="hiphop_transparent.png" Aspect="AspectFit" VerticalOptions="Center"
                                    Grid.Row="0" Grid.Column="2" />
-                            <Label Text="{Binding Username}" FontSize="Large" VerticalOptions="Center" Grid.Row="0"
+                                    <Label Text="{Binding Username}" FontSize="Large" VerticalOptions="Center" Grid.Row="0"
                                    Grid.Column="3" />
-                        </Grid>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </views:NotificationExtensionView.ContentTemplate>
+        </views:NotificationExtensionView>
     </ContentView.Content>
 </ContentView>

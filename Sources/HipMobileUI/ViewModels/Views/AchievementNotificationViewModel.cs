@@ -1,27 +1,60 @@
-﻿using System;
+﻿// Copyright (C) 2017 History in Paderborn App - Universität Paderborn
+//  
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//  
+//      http://www.apache.org/licenses/LICENSE-2.0
+//  
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using MvvmHelpers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using Xamarin.Forms;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 {
-    public class AchievementNotificationViewModel : NavigationViewModel
+    public class AchievementNotificationViewModel : BaseViewModel
     {
-        private readonly IList<IAchievement> recentlyUnlockedAchievements;
+        private static IList<IAchievement> recentlyUnlockedAchievements;
         private CancellationTokenSource cancellationTokenSource;
         private bool achievementNotificationDisplayed;
+        private bool notificationsActive;
 
         public AchievementNotificationViewModel()
         {
-            IsVisible = true;
+            IsVisible = false;
             achievementNotificationDisplayed = false;
+            notificationsActive = true;
             ResetCancellationToken();
             recentlyUnlockedAchievements = new List<IAchievement>();
             DisposeNotificationCommand = new Command(DisposeAchievementNotification);
+        }
+
+        // Temporary method for testing
+        public void CreateAndDisplayDummyNotifications()
+        {
+            var collection = new ObservableCollection<IAchievement> {
+                new ExhibitsVisitedAchievement {
+                    Title = "The exhibit visitor",
+                    Description = "Visit an exhibit for the first time",
+                    ImageUrl = "https://docker-hip.cs.upb.de/public/thumbnailservice/api/Thumbnails?Url=achievements/api/image/0/"},
+                new ExhibitsVisitedAchievement{
+                    Title = "The route completer",
+                    Description = "Complete a route for the first time",
+                    ImageUrl = "https://docker-hip.cs.upb.de/public/thumbnailservice/api/Thumbnails?Url=achievements/api/image/1/"} };
+            QueueAchievementNotifications(collection);
         }
 
         /// <summary>
@@ -46,7 +79,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         /// </summary>
         private async void DisplayAchievementNotification()
         {
-            while (true)
+            if (recentlyUnlockedAchievements.Count == 0)
+                return;
+
+            while (notificationsActive)
             {
                 var achievement = recentlyUnlockedAchievements.First();
 
@@ -108,6 +144,18 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         {
             DisposeAchievementNotification();
             recentlyUnlockedAchievements.Clear();
+        }
+
+        public void DisableNotifications()
+        {
+            DisposeAchievementNotification();
+            notificationsActive = false;
+        }
+
+        public void EnableNotifications()
+        {
+            notificationsActive = true;
+            DisplayAchievementNotification();
         }
 
         /// <summary>

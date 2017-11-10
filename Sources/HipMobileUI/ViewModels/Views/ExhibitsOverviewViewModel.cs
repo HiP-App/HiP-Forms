@@ -29,7 +29,7 @@ using Xamarin.Forms;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 {
-    class ExhibitsOverviewViewModel : NavigationViewModel, ILocationListener, IDbChangedObserver
+    class ExhibitsOverviewViewModel : ExtendedNavigationViewModel, ILocationListener, IDbChangedObserver
     {
         private ObservableCollection<ExhibitsOverviewListItemViewModel> exhibitsList;
         private ICommand itemTappedCommand;
@@ -62,8 +62,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             dbChangedHandler.AddObserver(this);
 
             DownloadUpdatedData();
-
-            AchievementNotificationViewModel = new AchievementNotificationViewModel();
         }
 
         public ExhibitsOverviewViewModel(string exhibitSetId) : this(ExhibitManager.GetExhibitSet(exhibitSetId))
@@ -86,13 +84,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 
             nearbyExhibitManager.CheckNearExhibit(displayedExhibitSet, args.Position.ToGeoLocation(), true, locationManager.ListeningInBackground);
             nearbyRouteManager.CheckNearRoute(RouteManager.GetRoutes(), args.Position.ToGeoLocation());
-        }
-
-        private AchievementNotificationViewModel achievementNotificationViewModel;
-        public AchievementNotificationViewModel AchievementNotificationViewModel
-        {
-            get { return achievementNotificationViewModel; }
-            set { SetProperty(ref achievementNotificationViewModel, value); }
         }
 
         /// <summary>
@@ -127,7 +118,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             base.OnDisappearing();
 
             locationManager.RemoveLocationListener(this);
-            AchievementNotificationViewModel.RemoveAllAchievementNotifications();
         }
 
         /// <summary>
@@ -138,16 +128,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         {
             if (item == null)
                 return;
-            var collection = new ObservableCollection<IAchievement> {
-                new ExhibitsVisitedAchievement {
-                    Title = "The exhibit visitor",
-                    Description = "Visit an exhibit for the first time",
-                    ImageUrl = "https://docker-hip.cs.upb.de/public/thumbnailservice/api/Thumbnails?Url=achievements/api/image/0/"},
-                new ExhibitsVisitedAchievement{
-                    Title = "The route completer",
-                    Description = "Complete a route for the first time",
-                    ImageUrl = "https://docker-hip.cs.upb.de/public/thumbnailservice/api/Thumbnails?Url=achievements/api/image/1/"} };
-            QueueAchievementNotification(AchievementNotificationViewModel, collection);
+            AchievementNotificationViewModel.CreateAndDisplayDummyNotifications();
             //Navigation.PushAsync(new ExhibitDetailsViewModel(item.Exhibit));
         }
 

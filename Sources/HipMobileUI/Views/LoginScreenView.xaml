@@ -3,29 +3,34 @@
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:helpers="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;assembly=HipMobileUI"
+             xmlns:views="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Views;assembly=HipMobileUI"
              x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Views.LoginScreenView">
     <ContentView.Content>
-        <Grid x:Name="Grid" Padding="10" HorizontalOptions="Fill">
-            <Entry x:Name="EmailEntry" Keyboard="Email" Placeholder="{helpers:Translate LoginScreenView_Email}"
+        <views:NotificationExtensionView AchievementNotificationViewModel="{Binding AchievementNotificationViewModel}">
+            <views:NotificationExtensionView.ContentTemplate>
+                <Grid x:Name="Grid" Padding="10" HorizontalOptions="Fill">
+                    <Entry x:Name="EmailEntry" Keyboard="Email" Placeholder="{helpers:Translate LoginScreenView_Email}"
                    Text="{Binding Email}" TextChanged="Entry_TextChanged" />
-            <Entry x:Name="PasswordEntry" IsPassword="True" Placeholder="{helpers:Translate LoginScreenView_Password}"
+                    <Entry x:Name="PasswordEntry" IsPassword="True" Placeholder="{helpers:Translate LoginScreenView_Password}"
                    Text="{Binding Password}" TextChanged="Entry_TextChanged" />
-            <Label x:Name="ErrorMessageLabel" FontSize="Small" HorizontalOptions="Center" TextColor="Red"
+                    <Label x:Name="ErrorMessageLabel" FontSize="Small" HorizontalOptions="Center" TextColor="Red"
                    Text="{Binding ErrorMessage, Mode=TwoWay}" />
-            <Label x:Name="RegisterLabel" FontSize="Small" HorizontalOptions="Center" TextColor="Blue"
+                    <Label x:Name="RegisterLabel" FontSize="Small" HorizontalOptions="Center" TextColor="Blue"
                    Text="{helpers:Translate LoginScreenView_Register}">
-                <Label.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding RegisterCommand}" />
-                </Label.GestureRecognizers>
-            </Label>
-            <Label x:Name="ForgotPasswordLabel" FontSize="Small" HorizontalOptions="Center" TextColor="Blue"
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding RegisterCommand}" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label x:Name="ForgotPasswordLabel" FontSize="Small" HorizontalOptions="Center" TextColor="Blue"
                    Text="{helpers:Translate LoginScreenView_Forgot_Password}">
-                <Label.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding ForgotPasswordCommand}" />
-                </Label.GestureRecognizers>
-            </Label>
-            <Button x:Name="LoginButton" Text="{helpers:Translate LoginScreenView_Login}"
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ForgotPasswordCommand}" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Button x:Name="LoginButton" Text="{helpers:Translate LoginScreenView_Login}"
                     Command="{Binding LoginCommand}" />
-        </Grid>
+                </Grid>
+            </views:NotificationExtensionView.ContentTemplate>
+        </views:NotificationExtensionView>
     </ContentView.Content>
 </ContentView>

@@ -9,7 +9,7 @@ using Xamarin.Forms;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 {
-    public class ProfileScreenViewModel : NavigationViewModel
+    public class ProfileScreenViewModel : ExtendedNavigationViewModel
     {
         private readonly MainPageViewModel mainPageViewModel;
 
@@ -30,8 +30,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         {
             Achievements.Clear();
             await new AchievementFetcher().FetchUnlockedAchievementsIntoDatabase(); // TODO Use return value
-            var achievements = AchievementManager.GetAchievements();
-            foreach (var achievement in achievements)
+            var localAchievements = AchievementManager.GetAchievements();
+            foreach (var achievement in localAchievements)
             {
                 Achievements.Add(await AchievementViewModel.CreateFrom(achievement));
             }

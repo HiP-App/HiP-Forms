@@ -3,7 +3,6 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using Xamarin.Forms;
-using System;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.User;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.UserManagement;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
@@ -11,12 +10,12 @@ using Acr.UserDialogs;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 {
-    public class LoginScreenViewModel : NavigationViewModel
+    public class LoginScreenViewModel : ExtendedNavigationViewModel
     {
         private readonly MainPageViewModel mainPageViewModel;
-        private String email;
-        private String password;
-        private String errorMessage;
+        private string email;
+        private string password;
+        private string errorMessage;
 
         public LoginScreenViewModel(MainPageViewModel mainPageVm)
         {
@@ -33,15 +32,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 
         private void OnLoginClicked()
         {
-            if (String.IsNullOrWhiteSpace(Email) && String.IsNullOrWhiteSpace(Password))
+            if (string.IsNullOrWhiteSpace(Email) && string.IsNullOrWhiteSpace(Password))
             {
                 DisplayEmptyEmailAndPasswordErrorMessage();
             }
-            else if (String.IsNullOrWhiteSpace(Email))
+            else if (string.IsNullOrWhiteSpace(Email))
             {
                 DisplayEmptyEmailErrorMessage();
             }
-            else if (String.IsNullOrWhiteSpace(Password))
+            else if (string.IsNullOrWhiteSpace(Password))
             {
                 DisplayEmptyPasswordErrorMessage();
             }
@@ -119,19 +118,19 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             ErrorMessage = Strings.LoginScreenView_Error_Empty_Email_And_Password;
         }
 
-        public String ErrorMessage
+        public string ErrorMessage
         {
             get { return errorMessage; }
             set { SetProperty(ref errorMessage, value); }
         }
 
-        public String Email
+        public string Email
         {
             get { return email; }
             set { SetProperty(ref email, value); }
         }
 
-        public String Password
+        public string Password
         {
             get { return password; }
             set { SetProperty(ref password, value); }

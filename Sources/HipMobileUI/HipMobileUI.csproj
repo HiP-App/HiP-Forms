@@ -87,6 +87,7 @@
     <Compile Include="Helpers\DeviceOrientation.cs" />
     <Compile Include="Helpers\OrientationController.cs" />
     <Compile Include="Contracts\IBarsColorsChanger.cs" />
+    <Compile Include="ViewModels\Pages\ExtendedNavigationViewModel.cs" />
     <Compile Include="ViewModels\Views\AchievementNotificationViewModel.cs" />
     <Compile Include="ViewModels\Views\AchievementViewModel.cs" />
     <Compile Include="ViewModels\Views\ForgotPasswordScreenViewModel.cs" />
@@ -94,6 +95,7 @@
     <Compile Include="Views\AchievementNotificationView.xaml.cs">
       <DependentUpon>AchievementNotificationView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\NotificationExtensionView.cs" />
     <Compile Include="Views\ForgotPasswordScreenView.xaml.cs">
       <DependentUpon>ForgotPasswordScreenView.xaml</DependentUpon>
     </Compile>

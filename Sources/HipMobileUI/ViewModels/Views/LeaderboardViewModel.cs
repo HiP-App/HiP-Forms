@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.User;
+﻿using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 {
-    class LeaderboardViewModel : NavigationViewModel
+    class LeaderboardViewModel : ExtendedNavigationViewModel
     {
         private static Ranking[] leaderboard;
 
@@ -22,18 +17,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             set { SetProperty(ref leaderboard, value); }
         }
 
-        public Ranking OwnRanking
-        {
-            get { return Leaderboard[0]; }
-        }
+        public Ranking OwnRanking => Leaderboard[0];
 
         private void CreateLeaderboard()
         {
-            int numberOfUsersInLeaderboard = 10;
+            const int numberOfUsersInLeaderboard = 10;
 
             Leaderboard = new Ranking[numberOfUsersInLeaderboard];
 
-            for (int i = 0; i < numberOfUsersInLeaderboard; i++)
+            for (var i = 0; i < numberOfUsersInLeaderboard; i++)
             {
                 Leaderboard[i] = new Ranking(i + 1, 100 - i, "User " + (i + 1));
             }

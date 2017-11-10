@@ -27,7 +27,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
     /// <summary>
     /// ViewModel for the SettingsScreenViewModel.
     /// </summary>
-    public class SettingsScreenViewModel : NavigationViewModel
+    public class SettingsScreenViewModel : ExtendedNavigationViewModel
     {
         private string size;
 

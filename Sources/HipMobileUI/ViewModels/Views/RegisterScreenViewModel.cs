@@ -11,7 +11,7 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-using System;
+
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.User;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
@@ -23,12 +23,12 @@ using Xamarin.Forms;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 {
-    public class RegisterScreenViewModel : NavigationViewModel
+    public class RegisterScreenViewModel : ExtendedNavigationViewModel
     {
-        private String email;
-        private String password;
-        private String repassword;
-        private String errorMessage;
+        private string email;
+        private string password;
+        private string repassword;
+        private string errorMessage;
         private readonly MainPageViewModel mainPageViewModel;
 
 
@@ -44,15 +44,17 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 
         async void RegisterUser()
         {
-            User user = new User(Email, password);
-            UserStatus userStatus = await IoCManager.Resolve<IUserManager>().Register(user);
+            var user = new User(Email, password);
+            var userStatus = await IoCManager.Resolve<IUserManager>().Register(user);
             if (userStatus == UserStatus.Registered)
             {
                 mainPageViewModel.SwitchToLoginView();
                 await Application.Current.MainPage.DisplayAlert(Strings.RegisterScreenView_Alert_Registered, Strings.RegisterScreenView_Alert_Description, Strings.RegisterScreenView_Alert_Ok);
             }
             else
+            {
                 DisplayRegisterFailedErrorMessage();
+            }
         }
 
         void DisplayEmptyEmailAndPasswordErrorMessage()
@@ -87,22 +89,22 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             const string emailRegex = @"^(?("")("".+?(?<!\\)""@)|(([0-9a-z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-z])@))" +
                 @"(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-z][-\w]*[0-9a-z]*\.)+[a-z0-9][\-a-z0-9]{0,22}[a-z0-9]))$";
 
-            bool isValid = false;
+            var isValid = false;
 
             if (Email != null)
             {
                 isValid = (Regex.IsMatch(Email, emailRegex, RegexOptions.IgnoreCase));
             }
 
-            if (String.IsNullOrWhiteSpace(Email) && (String.IsNullOrWhiteSpace(Password) || String.IsNullOrWhiteSpace(RepeatPassword)))
+            if (string.IsNullOrWhiteSpace(Email) && (string.IsNullOrWhiteSpace(Password) || string.IsNullOrWhiteSpace(RepeatPassword)))
 
                 DisplayEmptyEmailAndPasswordErrorMessage();
 
-            else if (String.IsNullOrWhiteSpace(Email))
+            else if (string.IsNullOrWhiteSpace(Email))
 
                 DisplayEmptyEmailErrorMessage();
 
-            else if (String.IsNullOrWhiteSpace(Password) || String.IsNullOrWhiteSpace(RepeatPassword))
+            else if (string.IsNullOrWhiteSpace(Password) || string.IsNullOrWhiteSpace(RepeatPassword))
 
                 DisplayEmptyPasswordErrorMessage();
             else if (isValid == false)
@@ -116,24 +118,24 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 
                 RegisterUser();
         }
-        public String ErrorMessage
+        public string ErrorMessage
         {
             get { return errorMessage; }
             set { SetProperty(ref errorMessage, value); }
         }
 
-        public String Email
+        public string Email
         {
             get { return email; }
             set { SetProperty(ref email, value); }
         }
 
-        public String Password
+        public string Password
         {
             get { return password; }
             set { SetProperty(ref password, value); }
         }
-        public String RepeatPassword
+        public string RepeatPassword
         {
             get { return repassword; }
             set { SetProperty(ref repassword, value); }

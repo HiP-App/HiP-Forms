@@ -12,15 +12,15 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System;
 using System.Windows.Input;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
 using Xamarin.Forms;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 {
-    public class LicenseScreenViewModel : NavigationViewModel
+    public class LicenseScreenViewModel : ExtendedNavigationViewModel
     {
         public LicenseScreenViewModel()
         {

@@ -24,6 +24,18 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 {
     public class MainPageViewModel : NavigationViewModel
     {
+        private ObservableCollection<ExtendedNavigationViewModel> mainScreenViewModels;
+        private readonly ProfileScreenViewModel profileScreenViewModel;
+        private readonly LoginScreenViewModel loginScreenViewModel;
+        private readonly ForgotPasswordScreenViewModel forgotPasswordScreenViewModel;
+        private readonly RegisterScreenViewModel registerScreenViewModel;
+
+        private ExtendedNavigationViewModel selectedViewModel;
+
+        public MainPageViewModel() : this(ExhibitManager.GetExhibitSets().FirstOrDefault())
+        {
+        }
+
         public MainPageViewModel(ExhibitSet set)
         {
             profileScreenViewModel = new ProfileScreenViewModel(this)
@@ -48,7 +60,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                 Icon = "ic_account_circle.png"
             };
 
-            MainScreenViewModels = new ObservableCollection<NavigationViewModel>
+            MainScreenViewModels = new ObservableCollection<ExtendedNavigationViewModel>
             {
                 new ExhibitsOverviewViewModel(set)
                 {
@@ -80,7 +92,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             UpdateAccountViews();
         }
 
-        /** Call this method after a change to 'Settings.IsLoggedIn' to display the correct view. */
+        /// <summary>
+        /// Call this method after a change to 'Settings.IsLoggedIn' to display the correct view.
+        /// </summary>
         public void UpdateAccountViews()
         {
             if (Settings.IsLoggedIn)
@@ -91,29 +105,28 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
         public void SwitchToLoginView()
         {
-            mainScreenViewModels.RemoveAt(4);
-            mainScreenViewModels.Insert(4, loginScreenViewModel);
-            SelectedViewModel = mainScreenViewModels[4];
+            ChangeAccountRelatedView(loginScreenViewModel);
         }
 
         public void SwitchToForgotPasswordView()
         {
-            mainScreenViewModels.RemoveAt(4);
-            mainScreenViewModels.Insert(4, forgotPasswordScreenViewModel);
-            SelectedViewModel = mainScreenViewModels[4];
+            ChangeAccountRelatedView(forgotPasswordScreenViewModel);
         }
 
         public void SwitchToProfileView()
         {
-            mainScreenViewModels.RemoveAt(4);
-            mainScreenViewModels.Insert(4, profileScreenViewModel);
-            SelectedViewModel = mainScreenViewModels[4];
+            ChangeAccountRelatedView(profileScreenViewModel);
         }
 
         public void SwitchToRegisterView()
         {
+            ChangeAccountRelatedView(registerScreenViewModel);
+        }
+
+        private void ChangeAccountRelatedView(ExtendedNavigationViewModel accountRelatedView)
+        {
             mainScreenViewModels.RemoveAt(4);
-            mainScreenViewModels.Insert(4, registerScreenViewModel);
+            mainScreenViewModels.Insert(4, accountRelatedView);
             SelectedViewModel = mainScreenViewModels[4];
         }
 
@@ -122,25 +135,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             SelectedViewModel = mainScreenViewModels[2];
         }
 
-        public MainPageViewModel() : this(ExhibitManager.GetExhibitSets().FirstOrDefault())
-        {
-        }
-
-        private ObservableCollection<NavigationViewModel> mainScreenViewModels;
-        private readonly ProfileScreenViewModel profileScreenViewModel;
-        private readonly LoginScreenViewModel loginScreenViewModel;
-        private readonly ForgotPasswordScreenViewModel forgotPasswordScreenViewModel;
-        private readonly RegisterScreenViewModel registerScreenViewModel;
-
-        private NavigationViewModel selectedViewModel;
-
-        public ObservableCollection<NavigationViewModel> MainScreenViewModels
+        public ObservableCollection<ExtendedNavigationViewModel> MainScreenViewModels
         {
             get { return mainScreenViewModels; }
             set { SetProperty(ref mainScreenViewModels, value); }
         }
 
-        public NavigationViewModel SelectedViewModel
+        public ExtendedNavigationViewModel SelectedViewModel
         {
             get { return selectedViewModel; }
             set

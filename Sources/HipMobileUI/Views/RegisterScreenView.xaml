@@ -4,26 +4,31 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Views.RegisterScreenView"
              xmlns:local="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Behaviors"
-             xmlns:helpers="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;assembly=HipMobileUI">
+             xmlns:helpers="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;assembly=HipMobileUI"
+             xmlns:views="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Views;assembly=HipMobileUI">
     <ContentView.Content>
-        <Grid x:Name="Grid" Padding="10" HorizontalOptions="Fill">
-            <Entry x:Name="EmailEntry" Keyboard="Email" Placeholder="{helpers:Translate RegisterScreenView_Email}"
+        <views:NotificationExtensionView AchievementNotificationViewModel="{Binding AchievementNotificationViewModel}">
+            <views:NotificationExtensionView.ContentTemplate>
+                <Grid x:Name="Grid" Padding="10" HorizontalOptions="Fill">
+                    <Entry x:Name="EmailEntry" Keyboard="Email" Placeholder="{helpers:Translate RegisterScreenView_Email}"
                    Text="{Binding Email, Mode=OneWayToSource}">
-                <Entry.Behaviors>
-                    <local:EmailValidationBehavior x:Name="ValidEmailBehavior" />
-                </Entry.Behaviors>
-            </Entry>
-            <Entry x:Name="PasswordEntry" IsPassword="True"
+                        <Entry.Behaviors>
+                            <local:EmailValidationBehavior x:Name="ValidEmailBehavior" />
+                        </Entry.Behaviors>
+                    </Entry>
+                    <Entry x:Name="PasswordEntry" IsPassword="True"
                    Placeholder="{helpers:Translate RegisterScreenView_Password}"
                    Text="{Binding Password, Mode=OneWayToSource}" />
-            <Entry x:Name="RePasswordEntry" IsPassword="True"
+                    <Entry x:Name="RePasswordEntry" IsPassword="True"
                    Placeholder="{helpers:Translate RegisterScreenView_RepeatPassword}"
                    Text="{Binding RepeatPassword, Mode=OneWayToSource}" />
-            <Label x:Name="ErrorMsgLabel" FontSize="Small" HorizontalOptions="Center" TextColor="Red"
+                    <Label x:Name="ErrorMsgLabel" FontSize="Small" HorizontalOptions="Center" TextColor="Red"
                    Text="{Binding ErrorMessage, Mode=TwoWay}" />
 
-            <Button x:Name="ButtonView" Text="{helpers:Translate RegisterScreenView_Register}"
+                    <Button x:Name="ButtonView" Text="{helpers:Translate RegisterScreenView_Register}"
                     Command="{Binding Register}" />
-        </Grid>
+                </Grid>
+            </views:NotificationExtensionView.ContentTemplate>
+        </views:NotificationExtensionView>
     </ContentView.Content>
 </ContentView>

@@ -24,7 +24,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
     /// <summary>
     /// View model for the overview screen of all routes
     /// </summary>
-    public class RoutesOverviewViewModel : NavigationViewModel, IDbChangedObserver
+    public class RoutesOverviewViewModel : ExtendedNavigationViewModel, IDbChangedObserver
     {
         private ObservableCollection<RoutesOverviewListItemViewModel> routes;
 
@@ -57,6 +57,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         /// <param name="selectedRouteItemViewModel"></param>
         private void NavigateToRoute(RoutesOverviewListItemViewModel selectedRouteItemViewModel)
         {
+            AchievementNotificationViewModel.CreateAndDisplayDummyNotifications();
+            return;
             if (selectedRouteItemViewModel == null)
             {
                 return;
