@@ -12,7 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System.Threading.Tasks;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using Xamarin.Forms;
 
@@ -23,16 +22,19 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         public IAchievement Achievement { get; }
         public ImageSource Image { get; }
 
-        public AchievementViewModel(IAchievement achievement, ImageSource image)
+        private AchievementViewModel(IAchievement achievement, ImageSource image)
         {
             Achievement = achievement;
             Image = image;
         }
 
-        public static async Task<AchievementViewModel> CreateFrom(IAchievement achievement)
+        public static AchievementViewModel CreateFrom(IAchievement achievement)
         {
-            var stream = await achievement.LoadImage();
-            return new AchievementViewModel(achievement, ImageSource.FromStream(() => stream));
+            var src = new StreamImageSource
+            {
+                Stream = token => achievement.LoadImage()
+            };
+            return new AchievementViewModel(achievement, src);
         }
     }
 }

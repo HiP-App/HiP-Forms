@@ -1,5 +1,10 @@
 ﻿using System.Collections.ObjectModel;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
+using System.Threading.Tasks;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers.Contracts;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
+using Xamarin.Forms;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 {
@@ -7,37 +12,42 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
     {
         public AchievementsScreenViewModel()
         {
-            //need to make changes so that achievements screen asks user to log in when no user logged in
-            Achievements = new ObservableCollection<string>
-            {
-                "Achievement 1",
-                "Achievement 2",
-                "Achievement 3",
-                "Achievement 4",
-                "Achievement 5",
-                "Achievement 6",
-                "Achievement 7"
-            };
+            // TODO need to make changes so that achievements screen asks user to log in when no user logged in
+            Achievements = new ObservableCollection<AchievementViewModel>();
+            Device.BeginInvokeOnMainThread(async () => await InitAchievements());
         }
 
-        public string Username => Settings.Username;
-        public int Score => Settings.Score;
-        public string Completeness => Settings.Completeness + "%";
+        private async Task InitAchievements()
+        {
+            Achievements.Clear();
+            var score = 0;
 
-        private ObservableCollection<string> achievements;
+            await IoCManager.Resolve<IAchievementFetcher>().UpdateAchievements(); // TODO Use return value
+            foreach (var achievement in AchievementManager.GetAchievements())
+            {
+                if (achievement.IsUnlocked)
+                {
+                    score += achievement.Points;
+                }
+                Achievements.Add(AchievementViewModel.CreateFrom(achievement));
+            }
+            Score = $"{Strings.AchievementsScreenView_Score} {score}";
+        }
 
-        public ObservableCollection<string> Achievements
+        private ObservableCollection<AchievementViewModel> achievements;
+
+        public ObservableCollection<AchievementViewModel> Achievements
         {
             get => achievements;
             set => SetProperty(ref achievements, value);
         }
 
-        private ObservableCollection<string> tabs;
+        private string score;
 
-        public ObservableCollection<string> Tabs
+        public string Score
         {
-            get => tabs;
-            set => SetProperty(ref tabs, value);
+            get => score;
+            set => SetProperty(ref score, value);
         }
     }
 }
