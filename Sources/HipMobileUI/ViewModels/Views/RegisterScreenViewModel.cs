@@ -31,7 +31,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         private string errorMessage;
         private readonly MainPageViewModel mainPageViewModel;
 
-
         public RegisterScreenViewModel(MainPageViewModel mainPageVm)
         {
             mainPageViewModel = mainPageVm;
@@ -40,7 +39,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         }
 
         public ICommand Register { get; }
-
 
         async void RegisterUser()
         {
@@ -57,34 +55,34 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             }
         }
 
-        void DisplayEmptyEmailAndPasswordErrorMessage()
+        private void DisplayEmptyEmailAndPasswordErrorMessage()
         {
             ErrorMessage = Strings.RegisterScreenView_Error_Empty_Email_And_Password;
         }
 
-        void DisplayRegisterFailedErrorMessage()
+        private void DisplayRegisterFailedErrorMessage()
         {
             ErrorMessage = Strings.RegisterScreenView_Error_Register_Fail;
         }
 
-        void DisplayEmptyPasswordErrorMessage()
+        private void DisplayEmptyPasswordErrorMessage()
         {
             ErrorMessage = Strings.RegisterScreenView_Error_Empty_Password;
         }
-        void DisplayPasswordMismatchErrorMessage()
+        private void DisplayPasswordMismatchErrorMessage()
         {
             ErrorMessage = Strings.RegisterScreenView_Error_Mismatch_Password;
         }
-        void DisplayEmptyEmailErrorMessage()
+        private void DisplayEmptyEmailErrorMessage()
         {
             ErrorMessage = Strings.RegisterScreenView_Error_Empty_Email;
         }
-        void DisplayInvalidEmailErrorMessage()
+        private void DisplayInvalidEmailErrorMessage()
         {
             ErrorMessage = Strings.RegisterScreenView_Error_Invalid_Email;
         }
 
-        void OnRegisterClicked()
+        private void OnRegisterClicked()
         {
             const string emailRegex = @"^(?("")("".+?(?<!\\)""@)|(([0-9a-z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-z])@))" +
                 @"(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-z][-\w]*[0-9a-z]*\.)+[a-z0-9][\-a-z0-9]{0,22}[a-z0-9]))$";

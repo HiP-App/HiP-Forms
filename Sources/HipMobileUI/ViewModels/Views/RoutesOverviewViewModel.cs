@@ -57,7 +57,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         /// <param name="selectedRouteItemViewModel"></param>
         private void NavigateToRoute(RoutesOverviewListItemViewModel selectedRouteItemViewModel)
         {
-            AchievementNotificationViewModel.CreateAndDisplayDummyNotifications();
+            AchievementNotificationViewModel.CreateAndDisplayDummyNotifications();      // TODO: Remove before merge with master
             return;
             if (selectedRouteItemViewModel == null)
             {

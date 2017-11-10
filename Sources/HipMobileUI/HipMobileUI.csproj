@@ -87,7 +87,7 @@
     <Compile Include="Helpers\DeviceOrientation.cs" />
     <Compile Include="Helpers\OrientationController.cs" />
     <Compile Include="Contracts\IBarsColorsChanger.cs" />
-    <Compile Include="ViewModels\Pages\ExtendedNavigationViewModel.cs" />
+    <Compile Include="ViewModels\ExtendedNavigationViewModel.cs" />
     <Compile Include="ViewModels\Views\AchievementNotificationViewModel.cs" />
     <Compile Include="ViewModels\Views\AchievementViewModel.cs" />
     <Compile Include="ViewModels\Views\ForgotPasswordScreenViewModel.cs" />

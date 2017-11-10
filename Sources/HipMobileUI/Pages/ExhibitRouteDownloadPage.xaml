@@ -19,6 +19,7 @@
 
             <Image x:Name="ImageView" Grid.Row="0" Source="{Binding Image}" Aspect="AspectFill" BackgroundColor="White"
                    VerticalOptions="CenterAndExpand" />
+
             <Frame x:Name="DescriptionView" Grid.Row="1" BackgroundColor="{StaticResource LightGrayColor}" Padding="0"
                    Margin="2" HasShadow="False">
                 <Label Text="{Binding DownloadableDescription}" FontSize="Medium" FontAttributes="Bold"
@@ -49,26 +50,20 @@
                             <TapGestureRecognizer Command="{Binding GoToOverviewCommand}" />
                         </Label.GestureRecognizers>
                     </Label>
-
                     <BoxView IsVisible="{Binding DownloadFinished}" WidthRequest="1" 
                              Color="{StaticResource DarkGrayColor}"/>
-
                     <Label IsVisible="{Binding DownloadFinished}" Text="Details" FontSize="20"
                            TextColor="{StaticResource AccentColor}"
                            HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
                            HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-
                         <Label.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding GoToDetailsCommand}" />
                         </Label.GestureRecognizers>
                     </Label>
-
                     <Label IsVisible="{Binding DownloadPending}" Text="Abbrechen" FontSize="20"
                            TextColor="{StaticResource AccentColor}"
                            HorizontalTextAlignment="Center"
                            HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-
-
                         <Label.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding CancelCommand}"/>
                         </Label.GestureRecognizers>

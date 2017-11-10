@@ -128,8 +128,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         {
             if (item == null)
                 return;
-            AchievementNotificationViewModel.CreateAndDisplayDummyNotifications();
-            //Navigation.PushAsync(new ExhibitDetailsViewModel(item.Exhibit));
+            //AchievementNotificationViewModel.CreateAndDisplayDummyNotifications();   // TODO: Remove before merge with master
+            Navigation.PushAsync(new ExhibitDetailsViewModel(item.Exhibit));
         }
 
         /// <summary>

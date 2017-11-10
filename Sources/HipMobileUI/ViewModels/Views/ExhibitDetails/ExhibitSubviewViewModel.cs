@@ -17,7 +17,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views.ExhibitDetail
     /// <summary>
     /// Base class for all viewmodels displayed in the exhibitdetailspage.
     /// </summary>
-    public abstract class ExhibitSubviewViewModel : NavigationViewModel
+    public abstract class ExhibitSubviewViewModel : ExtendedNavigationViewModel
     {
     }
 }

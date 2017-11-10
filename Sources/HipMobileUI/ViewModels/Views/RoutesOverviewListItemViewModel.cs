@@ -12,15 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Windows.Input;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
-using MvvmHelpers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
-using PaderbornUniversity.SILab.Hip.Mobile.UI.Location;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
@@ -80,7 +77,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 
         internal string GetRouteDurationText(int routeDuration)
         {
-            int durationInMinutes = routeDuration / 60;
+            var durationInMinutes = routeDuration / 60;
             return string.Format(Strings.RoutesOverviewListItemViewModel_Duration, durationInMinutes);
         }
 
@@ -110,6 +107,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             {
                 Route.DetailsDataLoaded = true;
             }
+
             IsDownloadPanelVisible = !Route.DetailsDataLoaded;
         }
 
@@ -161,9 +159,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             set { SetProperty(ref tags, value); }
         }
 
-        private Boolean isDownloadPanelVisible;
+        private bool isDownloadPanelVisible;
 
-        public Boolean IsDownloadPanelVisible
+        public bool IsDownloadPanelVisible
         {
             get { return isDownloadPanelVisible; }
             set { SetProperty(ref isDownloadPanelVisible, value); }
