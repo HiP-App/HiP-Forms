@@ -29,9 +29,12 @@
                                                LineBreakMode="WordWrap"
                                                TextColor="{StaticResource DarkGrayColor}" />
                                     </StackLayout>
-                                    <!-- Use optional visibility here to show what has not been visited -->
                                     <Image Source="ic_done.png" IsVisible="{Binding Achievement.IsUnlocked}"
                                            Opacity="1" Aspect="AspectFit" />
+                                    <Label Text="{Binding IsLoggedIn}" IsVisible="{Binding IsLoggedIn}"
+                                           Opacity="0.5" />
+                                    <Label Text="sdposdjfpdsjf" IsVisible="{Binding IsLoggedIn}"
+                                           Opacity="0.5" />
                                 </StackLayout>
                             </ViewCell>
                         </DataTemplate>
