@@ -14,7 +14,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
     {
         public AchievementsScreenViewModel()
         {
-            // TODO need to make changes so that achievements screen asks user to log in when no user logged in
             IsLoggedIn = Settings.IsLoggedIn;
             Achievements = new ObservableCollection<AchievementViewModel>();
             Settings.ChangeEvents.PropertyChanged += LoginChangedHandler;

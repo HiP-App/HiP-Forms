@@ -6,8 +6,21 @@
              xmlns:customTriggers="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.CustomTriggers;assembly=HipMobileUI">
     <ContentView.Content>
         <StackLayout Orientation="Vertical" HorizontalOptions="Fill" VerticalOptions="Fill" Spacing="0">
-            <ScrollView>
-                <ListView SeparatorVisibility="None" HasUnevenRows="True" ItemsSource="{Binding Achievements}">
+            <Label Text="{helpers:Translate AchievementsScreenView_PleaseLogin}"
+                   HorizontalOptions="FillAndExpand"
+                   VerticalOptions="FillAndExpand"
+                   Margin="25"
+                   HorizontalTextAlignment="Center"
+                   VerticalTextAlignment="Center"
+                   IsVisible="{Binding Path=IsLoggedIn, Converter={StaticResource InverseBooleanConverter}}"
+                   LineBreakMode="WordWrap"
+                   FontAttributes="Bold"
+                   FontSize="20"
+                   TextColor="{StaticResource PrimaryColor}" />
+            <StackLayout IsVisible="{Binding IsLoggedIn}" Orientation="Vertical" HorizontalOptions="Fill"
+                         VerticalOptions="Fill" Spacing="0">
+                <ListView SeparatorVisibility="None" HasUnevenRows="True"
+                          ItemsSource="{Binding Achievements}">
                     <ListView.Triggers>
                         <EventTrigger Event="ItemSelected">
                             <customTriggers:DeselectListViewItemAction />
@@ -31,16 +44,12 @@
                                     </StackLayout>
                                     <Image Source="ic_done.png" IsVisible="{Binding Achievement.IsUnlocked}"
                                            Opacity="1" Aspect="AspectFit" />
-                                    <Label Text="{Binding IsLoggedIn}" IsVisible="{Binding IsLoggedIn}"
-                                           Opacity="0.5" />
-                                    <Label Text="sdposdjfpdsjf" IsVisible="{Binding IsLoggedIn}"
-                                           Opacity="0.5" />
                                 </StackLayout>
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-            </ScrollView>
+            </StackLayout>
             <ContentView HorizontalOptions="Fill" VerticalOptions="FillAndExpand" />
             <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="End" Orientation="Horizontal"
                          BackgroundColor="{StaticResource PrimaryColor}" Padding="20">

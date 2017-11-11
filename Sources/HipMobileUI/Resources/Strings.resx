@@ -815,7 +815,10 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
     <value>Unbekannter Fehler</value>
   </data>
   <data name="AchievementsScreenView_Score" xml:space="preserve">
-    <value>Your Score: </value>
+    <value>Dein Punktestand: </value>
+  </data>	  
+  <data name="AchievementsScreenView_PleaseLogin" xml:space="preserve">
+    <value>Um Achievements zu nutzen, musst du dich zunächst einloggen.</value>
   </data>	
   <data name="MainPageViewModel_Achievements" xml:space="preserve">
     <value>Achievements</value>
