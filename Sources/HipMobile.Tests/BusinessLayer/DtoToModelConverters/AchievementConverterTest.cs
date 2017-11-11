@@ -38,7 +38,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.BusinessLayer.DtoT
         [Test, Category("UnitTest")]
         public void Test_RouteFinishedAchievementConversion()
         {
-            var routeFinishedAchievementDto = new RouteFinishedAchievementDto(123, "title", "description", "imageUrl", 124);
+            var routeFinishedAchievementDto = new RouteFinishedAchievementDto(123, "title", "description", "imageUrl", 124, 25);
             var routeFinishedAchievement = AchievementConverter.Convert(new List<AchievementDto>
             {
                 routeFinishedAchievementDto
@@ -55,7 +55,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.BusinessLayer.DtoT
         [Test, Category("UnitTest")]
         public void Test_ExhibitsVisitedAchievementConversion()
         {
-            var exhibitsVisitedAchievementDto = new ExhibitsVisitedAchievementDto(234, "title", "description", "imageUrl", 235, 10);
+            var exhibitsVisitedAchievementDto = new ExhibitsVisitedAchievementDto(234, "title", "description", "imageUrl", 235, 10, 25);
             var exhibitsVisitedAchievement = AchievementConverter.Convert(new List<AchievementDto>
             {
                 exhibitsVisitedAchievementDto
