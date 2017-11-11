@@ -17,7 +17,7 @@ using Xamarin.Forms;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers
 {
-    public class InverseBooleanConverter: IValueConverter
+    public class InverseBooleanConverter : IValueConverter
     {
         #region IValueConverter Members
 
@@ -27,7 +27,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers
             if (targetType != typeof(bool))
                 throw new InvalidOperationException("The target must be a boolean");
 
-            return !(bool)value;
+            return !(bool) value;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter,
