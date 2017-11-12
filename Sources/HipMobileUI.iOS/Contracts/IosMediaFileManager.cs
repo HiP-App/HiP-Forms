@@ -44,7 +44,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Contracts
             }
 
             var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-            var filePath = Path.Combine(Path.Combine(documentsPath, MediaFolder), md5Hash);
+            var mediaFolderPath = Path.Combine(documentsPath, MediaFolder);
+            Directory.CreateDirectory(mediaFolderPath);
+            var filePath = Path.Combine(mediaFolderPath, md5Hash);
             using (var fs = new FileStream(filePath, FileMode.Create))
             {
                 await fs.WriteAsync(bytes, 0, bytes.Length);
