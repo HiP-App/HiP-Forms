@@ -29,7 +29,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers
     {
         public static ImageSource GetImageSource(this Image image)
         {
-            var imageData = image.Data;
+            var imageData = image.GetDataBlocking();
             if (imageData != null)
             {
                 return ImageSource.FromStream(() => new MemoryStream(imageData));

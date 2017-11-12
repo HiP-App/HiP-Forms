@@ -24,7 +24,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Contracts
     {
         public int[] GetDimensions(Image img)
         {
-            UIImage image = UIImage.LoadFromData(NSData.FromArray(img.Data));
+            UIImage image = UIImage.LoadFromData(NSData.FromArray(img.GetDataAsync));
             return new[] { Convert.ToInt32(image.Size.Width), Convert.ToInt32(image.Size.Height) };
         }
     }

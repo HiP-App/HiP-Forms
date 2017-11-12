@@ -25,7 +25,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 	using System.Linq;
 	using System.Text;
 
-	public class Audio : RealmObject, IIdentifiable
+	public partial class Audio : RealmObject, IIdentifiable
 	{
 		//Attributes
 		[PrimaryKey]

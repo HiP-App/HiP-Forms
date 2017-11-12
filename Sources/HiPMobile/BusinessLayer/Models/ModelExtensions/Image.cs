@@ -12,6 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System;
+using System.Threading.Tasks;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
@@ -22,6 +24,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
     public partial class Image
     {
         private readonly IImageDimension imgDimension = IoCManager.Resolve<IImageDimension>();
+        private readonly IMediaFileManager fileManager = IoCManager.Resolve<IMediaFileManager>();
+
+        public async Task<byte[]> GetDataAsync() => await MediaCache.GetBytesFor(
+            DataMd5,
+            async () => await fileManager.ReadFromDiskAsync(DataPath)
+        );
+
+        [Obsolete("Only use GetDataBlocking in legacy code!")]
+        public byte[] GetDataBlocking() => Task.Run(GetDataAsync).Result;
 
         private int ImageWidth { get; set; }
 

@@ -52,5 +52,21 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Contracts
 
             return (md5Hash, filePath);
         }
+        
+        public async Task<byte[]> ReadFromDiskAsync(string filePath)
+        {
+            using (var fs = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.Read, 
+                                           bufferSize: 4096, useAsync: true))
+            {
+                var bytes = new byte[fs.Length];
+                var totalRead = 0;
+                int read;
+                while ((read = await fs.ReadAsync(bytes, totalRead, 4096)) != 0)
+                {
+                    totalRead += read;
+                }
+                return bytes;
+            }
+        }
     }
 }

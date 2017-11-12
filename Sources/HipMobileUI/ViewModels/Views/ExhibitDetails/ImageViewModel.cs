@@ -29,7 +29,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views.ExhibitDetail
 
         public ImageViewModel(ImagePage page, Action toggleButtonVisibility) : base(toggleButtonVisibility)
         {
-            var imageData = page.Image.Data;
+            var imageData = page.Image.GetDataBlocking();
             if (imageData != null)
             {
                 Image = ImageSource.FromStream(() => new MemoryStream(imageData));

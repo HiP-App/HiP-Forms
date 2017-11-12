@@ -86,6 +86,8 @@
     <Compile Include="BusinessLayer\Models\ModelClasses\ExhibitsVisitedAchievement.cs" />
     <Compile Include="BusinessLayer\Models\ModelClasses\IAchievement.cs" />
     <Compile Include="BusinessLayer\Models\ModelClasses\RouteFinishedAchievement.cs" />
+    <Compile Include="BusinessLayer\Models\ModelExtensions\Audio.cs" />
+    <Compile Include="BusinessLayer\Models\ModelExtensions\Caching.cs" />
     <Compile Include="BusinessLayer\Models\ModelExtensions\IAchievement.cs" />
     <Compile Include="BusinessLayer\Models\User\User.cs" />
     <Compile Include="BusinessLayer\UserManagement\UserManager.cs" />
