@@ -18,9 +18,28 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts
 {
     public interface IMediaFileManager
     {
+        /// <summary>
+        /// Delete a media file returned by <see cref="WriteMediaToDiskAsync"/>.
+        /// </summary>
         void DeleteFile(string filePath);
+        
+        /// <summary>
+        /// Writes the bytes to a file on disk.
+        /// </summary>
+        /// <param name="bytes"></param>
+        /// <returns>MD5 sum of the data and the (generated) path the file has been written to.</returns>
         Task<(string md5, string filePath)> WriteMediaToDiskAsync(byte[] bytes);
+        
+        /// <summary>
+        /// Read a media file returned by <see cref="WriteMediaToDiskAsync"/> from disk
+        /// into a byte array.
+        /// </summary>
         Task<byte[]> ReadFromDiskAsync(string filePath);
+        
+        /// <summary>
+        /// Read a media file returned by <see cref="WriteMediaToDiskAsync"/> from disk
+        /// into a byte array.
+        /// </summary>
         byte[] ReadFromDisk(string filePath);
     }
 }

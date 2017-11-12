@@ -26,12 +26,38 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
         private static readonly WeightConstrainedLruCache<string, byte[]> Cache =
             new WeightConstrainedLruCache<string, byte[]>((md5, bytes) => bytes.Length, MaxWeightBytes);
 
-        public static async Task<byte[]> GetBytesAsync(string md5, Func<Task<byte[]>> computer) => await Cache.GetAsync(md5, async md5Key => await computer());
-        public static byte[] GetBytes(string md5, Func<byte[]> computer) => Cache.GetSync(md5, md5Key => computer());
+        /// <summary>
+        /// Get the bytes of a media file that hash to the specified MD5 value.
+        /// </summary>
+        /// <param name="md5"></param>
+        /// <param name="computer">If the value is not present in the LRU cache, this function is called to insert them.</param>
+        /// <returns></returns>
+        public static async Task<byte[]> GetBytesAsync(string md5, Func<Task<byte[]>> computer) =>
+            await Cache.GetAsync(md5, async md5Key => await computer());
+
+        /// <summary>
+        /// Get the bytes of a media file that hash to the specified MD5 value.
+        /// </summary>
+        /// <param name="md5"></param>
+        /// <param name="computer">If the value is not present in the LRU cache, this function is called to insert them.</param>
+        /// <returns></returns>
+        public static byte[] GetBytes(string md5, Func<byte[]> computer) =>
+            Cache.GetSync(md5, md5Key => computer());
     }
 
+    /// <summary>
+    /// Thread-safe LRU cache.
+    /// </summary>
+    /// <typeparam name="TK"></typeparam>
+    /// <typeparam name="TV"></typeparam>
     class WeightConstrainedLruCache<TK, TV>
     {
+        /// <summary>
+        /// Called to compute the weight (e.g. bytes) of the key-value pair.
+        /// This function must always return the same value for the same key-value pair.
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
         public delegate double WeightOfDelegate(TK key, TV value);
 
         private readonly SemaphoreSlim sema = new SemaphoreSlim(1);
@@ -43,6 +69,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
         private readonly double maxWeight;
         private double totalWeight;
 
+        /// <summary>
+        /// </summary>
+        /// <param name="weightOf">See <see cref="WeightOfDelegate"/></param>
+        /// <param name="maxWeight">If the cache's total weight exceeds this weight, least-recently used objects will be evicted until there is enough room.</param>
         public WeightConstrainedLruCache(WeightOfDelegate weightOf, double maxWeight)
         {
             this.weightOf = weightOf;
@@ -81,6 +111,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
             totalWeight += weight;
         }
 
+        /// <summary>
+        /// Get the value associated with the key from the cache. If it has not been inserted
+        /// yet or evicted, the supplied function is called to compute it.
+        /// </summary>
         public TV GetSync(TK key, Func<TK, TV> computer)
         {
             sema.Wait();
@@ -101,6 +135,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
             }
         }
 
+        /// <summary>
+        /// Get the value associated with the key from the cache. If it has not been inserted
+        /// yet or evicted, the supplied function is called to compute it.
+        /// </summary>
         public async Task<TV> GetAsync(TK key, Func<TK, Task<TV>> computer)
         {
             await sema.WaitAsync();
