@@ -67,10 +67,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             {
                 return;
             }
-            if (token.IsCancellationRequested)
-            {
-                return;
-            }
 
             using (var transaction = DbManager.StartTransaction())
             {

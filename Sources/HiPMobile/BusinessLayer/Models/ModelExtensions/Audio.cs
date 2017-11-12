@@ -23,12 +23,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
     {
         private readonly IMediaFileManager fileManager = IoCManager.Resolve<IMediaFileManager>();
 
-        public async Task<byte[]> GetDataAsync() => await MediaCache.GetBytesFor(
+        public async Task<byte[]> GetDataAsync() => await MediaCache.GetBytesAsync(
             DataMd5,
             async () => await fileManager.ReadFromDiskAsync(DataPath)
         );
         
         [Obsolete("Only use GetDataBlocking in legacy code!")]
-        public byte[] GetDataBlocking() => Task.Run(GetDataAsync).Result;
+        public byte[] GetDataBlocking() => MediaCache.GetBytes(
+            DataMd5,
+            () => fileManager.ReadFromDisk(DataPath)
+        );
     }
 }

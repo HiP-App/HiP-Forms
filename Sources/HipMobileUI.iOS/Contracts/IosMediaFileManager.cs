@@ -55,6 +55,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Contracts
             return (md5Hash, filePath);
         }
         
+        public byte[] ReadFromDisk(string filePath) => File.ReadAllBytes(filePath);
+        
         public async Task<byte[]> ReadFromDiskAsync(string filePath)
         {
             using (var fs = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.Read, 

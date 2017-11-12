@@ -21,5 +21,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts
         void DeleteFile(string filePath);
         Task<(string md5, string filePath)> WriteMediaToDiskAsync(byte[] bytes);
         Task<byte[]> ReadFromDiskAsync(string filePath);
+        byte[] ReadFromDisk(string filePath);
     }
 }
