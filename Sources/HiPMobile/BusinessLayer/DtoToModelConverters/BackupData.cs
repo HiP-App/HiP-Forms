@@ -37,10 +37,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelCo
             backupImage = dataAccess.GetItems<Image>().SingleOrDefault(x => x.IdForRestApi == BackupImageIdForRestApi);
             if (backupImage == null)
             {
-                backupImage = DbManager.CreateBusinessObject<Image>();
-
                 using (DbManager.StartTransaction())
                 {
+                    backupImage = DbManager.CreateBusinessObject<Image>();
+                    
                     backupImage.Title = "No Image";
                     backupImage.Description = "Hier fehlt das Bild";
                     backupImage.IdForRestApi = BackupImageIdForRestApi;
@@ -55,10 +55,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelCo
             backupImageTag = dataAccess.GetItems<Image>().SingleOrDefault(x => x.IdForRestApi == BackupImageTagIdForRestApi);
             if (backupImageTag == null)
             {
-                backupImageTag = DbManager.CreateBusinessObject<Image>();
-
                 using (DbManager.StartTransaction())
                 {
+                    backupImageTag = DbManager.CreateBusinessObject<Image>();
+                    
                     backupImageTag.Title = "No Tag Image";
                     backupImageTag.Description = "Hier fehlt das Tag-Bild";
                     backupImageTag.IdForRestApi = BackupImageTagIdForRestApi;
