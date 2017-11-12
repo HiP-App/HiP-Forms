@@ -1,44 +1,63 @@
 // Helpers/Settings.cs
 
+using System;
+using System.ComponentModel;
 using Plugin.Settings;
 using Plugin.Settings.Abstractions;
+using System.Runtime.CompilerServices;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
 {
-  /// <summary>
-  /// This is the Settings static class that can be used in your Core solution or in any
-  /// of your client applications. All settings are laid out the same exact way with getters
-  /// and setters. 
-  /// </summary>
+    /// <summary>
+    /// This is the Settings static class that can be used in your Core solution or in any
+    /// of your client applications. All settings are laid out the same exact way with getters
+    /// and setters. 
+    /// </summary>
     public static class Settings
     {
         private static ISettings AppSettings
         {
             get
             {
-            return CrossSettings.Current;
+                return CrossSettings.Current;
             }
         }
+        
+        public sealed class Events : INotifyPropertyChanged
+        {
+            public void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
+            {
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            }
+
+            public event PropertyChangedEventHandler PropertyChanged;
+        }
+        
+        /// <summary>
+        /// Some properties in this class notify this instance
+        /// about changes to them.
+        /// </summary>
+        public static Events ChangeEvents = new Events();
 
         #region Setting Constants
 
-    private const string SettingsKey = "settings_key";
-    private static readonly string SettingsDefault = string.Empty;
+        private const string SettingsKey = "settings_key";
+        private static readonly string SettingsDefault = string.Empty;
 
-    #endregion
+        #endregion
 
 
-    public static string GeneralSettings
-    {
-        get
+        public static string GeneralSettings
         {
-            return AppSettings.GetValueOrDefault<string>(SettingsKey, SettingsDefault);
+            get
+            {
+                return AppSettings.GetValueOrDefault<string>(SettingsKey, SettingsDefault);
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue<string>(SettingsKey, value);
+            }
         }
-        set
-        {
-            AppSettings.AddOrUpdateValue<string>(SettingsKey, value);
-        }
-    }
 
         /// <summary>
         /// Sedtting for the database version.
@@ -119,21 +138,21 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
             set { AppSettings.AddOrUpdateValue<bool>(RepeatIntroKey, value); }
         }
 
-		    /// <summary>
-		    /// Always download new data if available
-		    /// </summary>
-		    private const string DownloadDataKey = "download_data_key";
-		    private static readonly bool DownloadDataDefault = true;
+        /// <summary>
+        /// Always download new data if available
+        /// </summary>
+        private const string DownloadDataKey = "download_data_key";
+        private static readonly bool DownloadDataDefault = true;
 
-		    public static bool AlwaysDownloadData
-		    {
-			    get { return AppSettings.GetValueOrDefault<bool>(DownloadDataKey, DownloadDataDefault); }
-			    set { AppSettings.AddOrUpdateValue<bool>(DownloadDataKey, value); }
-		    }
+        public static bool AlwaysDownloadData
+        {
+            get { return AppSettings.GetValueOrDefault<bool>(DownloadDataKey, DownloadDataDefault); }
+            set { AppSettings.AddOrUpdateValue<bool>(DownloadDataKey, value); }
+        }
 
         /// <summary>
-		    /// Font size used for the audio transcripts
-		    /// </summary>
+        /// Font size used for the audio transcripts
+        /// </summary>
         private const string AudioTranscriptFontSizeKey = "audio_transcript_font_size_key";
         private static readonly double AudioTranscriptFontSizeDefault = 19;
 
@@ -155,7 +174,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
             set { AppSettings.AddOrUpdateValue<bool>(WifiOnlyKey, value); }
         }
 
-        
+
         private const string AdventurerModeKey = "adventurer_mode_key";
         private static readonly bool AdventurerModeDefault = true;
 
@@ -176,7 +195,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
         /// User data
         /// </summary>
         #region UserData
-        
+
         /// <summary>
         /// Indicator flag if a user is logged in
         /// </summary>
@@ -185,8 +204,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
 
         public static bool IsLoggedIn
         {
-            get { return AppSettings.GetValueOrDefault (IsLoggedInKey, IsLoggedInDefault); }
-            set { AppSettings.AddOrUpdateValue (IsLoggedInKey, value); }
+            get { return AppSettings.GetValueOrDefault(IsLoggedInKey, IsLoggedInDefault); }
+            set
+            {
+                AppSettings.AddOrUpdateValue(IsLoggedInKey, value);
+                ChangeEvents.NotifyPropertyChanged(nameof(IsLoggedIn));
+            }
         }
 
         /// <summary>
@@ -250,7 +273,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
             get { return AppSettings.GetValueOrDefault(ScoreKey, ScoreDefault); }
             set { AppSettings.AddOrUpdateValue(ScoreKey, value); }
         }
-        
+
         /// <summary>
         /// The number of gained achievements of the current user
         /// </summary>
@@ -262,7 +285,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
             get { return AppSettings.GetValueOrDefault(AchievementsKey, AchievementsDefault); }
             set { AppSettings.AddOrUpdateValue(AchievementsKey, value); }
         }
-        
+
         /// <summary>
         /// The part of everything you can do with the app as a percentage
         /// </summary>
