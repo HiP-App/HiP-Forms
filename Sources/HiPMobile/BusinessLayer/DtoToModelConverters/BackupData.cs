@@ -25,54 +25,59 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelCo
 {
     public static class BackupData
     {
-
         private const int BackupImageIdForRestApi = -1;
         private const int BackupImageTagIdForRestApi = -2;
-        
+
         public static async Task Init()
         {
             var dataAccess = IoCManager.Resolve<IDataAccess>();
             var dataLoader = IoCManager.Resolve<IDataLoader>();
             var fileManager = IoCManager.Resolve<IMediaFileManager>();
-            
+
             backupImage = dataAccess.GetItems<Image>().SingleOrDefault(x => x.IdForRestApi == BackupImageIdForRestApi);
             if (backupImage == null)
             {
                 backupImage = DbManager.CreateBusinessObject<Image>();
 
-                backupImage.Title = "No Image";
-                backupImage.Description = "Hier fehlt das Bild";
-                backupImage.IdForRestApi = BackupImageIdForRestApi;
-                
-                backupImageData = dataLoader.LoadByteData("noImage.png");
-                var (md5, path) = await fileManager.WriteMediaToDiskAsync(backupImageData);
-                backupImage.DataMd5 = md5;
-                backupImage.DataPath = path;
+                using (DbManager.StartTransaction())
+                {
+                    backupImage.Title = "No Image";
+                    backupImage.Description = "Hier fehlt das Bild";
+                    backupImage.IdForRestApi = BackupImageIdForRestApi;
+
+                    backupImageData = dataLoader.LoadByteData("noImage.png");
+                    var (md5, path) = await fileManager.WriteMediaToDiskAsync(backupImageData);
+                    backupImage.DataMd5 = md5;
+                    backupImage.DataPath = path;
+                }
             }
-            
+
             backupImageTag = dataAccess.GetItems<Image>().SingleOrDefault(x => x.IdForRestApi == BackupImageTagIdForRestApi);
             if (backupImageTag == null)
             {
                 backupImageTag = DbManager.CreateBusinessObject<Image>();
 
-                backupImageTag.Title = "No Tag Image";
-                backupImageTag.Description = "Hier fehlt das Tag-Bild";
-                backupImageTag.IdForRestApi = BackupImageTagIdForRestApi;
-                
-                var backupImageDataTag = dataLoader.LoadByteData("noImageTag.jpg");
-                var (md5, path) = await fileManager.WriteMediaToDiskAsync(backupImageDataTag);
-                backupImageTag.DataMd5 = md5;
-                backupImageTag.DataPath = path;
+                using (DbManager.StartTransaction())
+                {
+                    backupImageTag.Title = "No Tag Image";
+                    backupImageTag.Description = "Hier fehlt das Tag-Bild";
+                    backupImageTag.IdForRestApi = BackupImageTagIdForRestApi;
+
+                    var backupImageDataTag = dataLoader.LoadByteData("noImageTag.jpg");
+                    var (md5, path) = await fileManager.WriteMediaToDiskAsync(backupImageDataTag);
+                    backupImageTag.DataMd5 = md5;
+                    backupImageTag.DataPath = path;
+                }
             }
         }
-        
+
         private static byte[] backupImageData;
 
         public static byte[] BackupImageData => backupImageData ?? throw new NullReferenceException("BackupData.Init() not called yet!");
 
         private static Image backupImage;
 
-        public static Image BackupImage => backupImage?? throw new NullReferenceException("BackupData.Init() not called yet!");
+        public static Image BackupImage => backupImage ?? throw new NullReferenceException("BackupData.Init() not called yet!");
 
         private static Image backupImageTag;
 
