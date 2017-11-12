@@ -31,7 +31,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Contracts
             File.Delete(filePath);
         }
 
-        public async Task<(string md5, string filePath)> WriteMediaToDiskAsync(byte[] bytes)
+        public async Task<string> WriteMediaToDiskAsync(byte[] bytes)
         {
             string md5Hash;
             using (var md5 = MD5.Create())
@@ -52,7 +52,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Contracts
                 await fs.WriteAsync(bytes, 0, bytes.Length);
             }
 
-            return (md5Hash, filePath);
+            return filePath;
         }
         
         public byte[] ReadFromDisk(string filePath) => File.ReadAllBytes(filePath);

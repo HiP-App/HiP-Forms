@@ -86,8 +86,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
 
                         if (audioFile != null)
                         {
-                            var (md5, path) = await fileManager.WriteMediaToDiskAsync(audioFile.Data);
-                            audio.DataMd5 = md5;
+                            var path = await fileManager.WriteMediaToDiskAsync(audioFile.Data);
                             audio.DataPath = path;
                         }
                         fetchedData.Audios.Add(audio);
@@ -98,8 +97,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
 
                         if (imageFile != null)
                         {
-                            var (md5, path) = await fileManager.WriteMediaToDiskAsync(imageFile.Data);
-                            image.DataMd5 = md5;
+                            var path = await fileManager.WriteMediaToDiskAsync(imageFile.Data);
                             image.DataPath = path;
                         }
                         fetchedData.Images.Add(image);

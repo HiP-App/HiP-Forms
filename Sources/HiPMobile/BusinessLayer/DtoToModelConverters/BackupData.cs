@@ -40,14 +40,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelCo
                 using (DbManager.StartTransaction())
                 {
                     backupImage = DbManager.CreateBusinessObject<Image>();
-                    
+
                     backupImage.Title = "No Image";
                     backupImage.Description = "Hier fehlt das Bild";
                     backupImage.IdForRestApi = BackupImageIdForRestApi;
 
                     backupImageData = dataLoader.LoadByteData("noImage.png");
-                    var (md5, path) = await fileManager.WriteMediaToDiskAsync(backupImageData);
-                    backupImage.DataMd5 = md5;
+                    var path = await fileManager.WriteMediaToDiskAsync(backupImageData);
                     backupImage.DataPath = path;
                 }
             }
@@ -58,14 +57,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelCo
                 using (DbManager.StartTransaction())
                 {
                     backupImageTag = DbManager.CreateBusinessObject<Image>();
-                    
+
                     backupImageTag.Title = "No Tag Image";
                     backupImageTag.Description = "Hier fehlt das Tag-Bild";
                     backupImageTag.IdForRestApi = BackupImageTagIdForRestApi;
 
                     var backupImageDataTag = dataLoader.LoadByteData("noImageTag.jpg");
-                    var (md5, path) = await fileManager.WriteMediaToDiskAsync(backupImageDataTag);
-                    backupImageTag.DataMd5 = md5;
+                    var path = await fileManager.WriteMediaToDiskAsync(backupImageDataTag);
                     backupImageTag.DataPath = path;
                 }
             }

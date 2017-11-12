@@ -31,8 +31,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 		[PrimaryKey]
 		public string Id { get; set; }
 
-		public virtual string DataMd5 { get; set; }
-		
 		public virtual string DataPath { get; set; }
 
 		public virtual string Title { get; set; }
