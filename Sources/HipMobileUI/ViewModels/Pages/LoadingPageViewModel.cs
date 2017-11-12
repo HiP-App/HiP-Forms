@@ -133,6 +133,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                     try
                     {
                         InitIoCContainer();
+                        await BackupData.Init();
                         baseDataFetcher = IoCManager.Resolve<IBaseDataFetcher>();
 
                         var networkAccessStatus = IoCManager.Resolve<INetworkAccessChecker>().GetNetworkAccessStatus();
