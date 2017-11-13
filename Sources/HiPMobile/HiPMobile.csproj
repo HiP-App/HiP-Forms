@@ -57,6 +57,7 @@
     <Compile Include="BusinessLayer\ContentApiFetchers\Contracts\IAchievementFetcher.cs" />
     <Compile Include="BusinessLayer\ContentApiFetchers\Contracts\IFullDownloadableDataFetcher.cs" />
     <Compile Include="BusinessLayer\ContentApiFetchers\Contracts\IFullRouteDataFetcher.cs" />
+    <Compile Include="BusinessLayer\ContentApiFetchers\Contracts\IUserRatingFetcher.cs" />
     <Compile Include="BusinessLayer\ContentApiFetchers\ExhibitPagesAndMediaContainer.cs" />
     <Compile Include="BusinessLayer\ContentApiFetchers\FullRouteDataFetcher.cs" />
     <Compile Include="BusinessLayer\ContentApiFetchers\Contracts\IBaseDataFetcher.cs" />
@@ -69,6 +70,7 @@
     <Compile Include="BusinessLayer\ContentApiFetchers\ExhibitsBaseDataFetcher.cs" />
     <Compile Include="BusinessLayer\ContentApiFetchers\FetchedMediaData.cs" />
     <Compile Include="BusinessLayer\ContentApiFetchers\FullExhibitDataFetcher.cs" />
+    <Compile Include="BusinessLayer\ContentApiFetchers\UserRatingFetcher.cs" />
     <Compile Include="BusinessLayer\ContentHandling\INewDataCenter.cs" />
     <Compile Include="BusinessLayer\ContentApiFetchers\MediaDataFetcher.cs" />
     <Compile Include="BusinessLayer\ContentHandling\NewDataCenter.cs" />
@@ -86,6 +88,7 @@
     <Compile Include="BusinessLayer\Models\ModelClasses\ExhibitsVisitedAchievement.cs" />
     <Compile Include="BusinessLayer\Models\ModelClasses\IAchievement.cs" />
     <Compile Include="BusinessLayer\Models\ModelClasses\RouteFinishedAchievement.cs" />
+    <Compile Include="BusinessLayer\Models\ModelClasses\UserRating.cs" />
     <Compile Include="BusinessLayer\Models\ModelExtensions\IAchievement.cs" />
     <Compile Include="BusinessLayer\Models\User\User.cs" />
     <Compile Include="BusinessLayer\UserManagement\UserManager.cs" />
@@ -113,6 +116,8 @@
     <Compile Include="ServiceAccessLayer\AuthApiDto\Token.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiAccesses\AchievementsApiAccess.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiAccesses\Contracts\IAchievementsApiAccess.cs" />
+    <Compile Include="ServiceAccessLayer\ContentApiAccesses\Contracts\IUserRatingApiAccess.cs" />
+    <Compile Include="ServiceAccessLayer\ContentApiAccesses\UserRatingApiAccess.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiClient.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiAccesses\Contracts\ITagsApiAccess.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiAccesses\Contracts\IRoutesApiAccess.cs" />
@@ -133,6 +138,7 @@
     <Compile Include="ServiceAccessLayer\ContentApiDtos\PageImageDto.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiDtos\PageTypeDto.cs" />
     <Compile Include="ServiceAccessLayer\AuthenticationApiAccess\IAuthApiAccess.cs" />
+    <Compile Include="ServiceAccessLayer\ContentApiDtos\UserRatingDto.cs" />
     <Compile Include="ServiceAccessLayer\Exceptions\InvalidUserNamePassword.cs" />
     <Compile Include="ServiceAccessLayer\IContentApiClient.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiDtos\ExhibitDto.cs" />
@@ -268,6 +274,15 @@
     <Reference Include="System.Net.Http.Primitives, Version=4.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.Net.Http.2.2.29\lib\portable-net45+win8\System.Net.Http.Primitives.dll</HintPath>
     </Reference>
+    <Reference Include="Xamarin.Forms.Core, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xamarin.Forms.2.4.0.280\lib\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Platform, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xamarin.Forms.2.4.0.280\lib\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.Platform.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Xaml, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xamarin.Forms.2.4.0.280\lib\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.Xaml.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="BusinessLayer\Routing\Route_Network_Paderborn.pbf" />
@@ -293,9 +308,11 @@
     <Error Condition="!Exists('..\..\packages\Realm.1.5.0\build\Realm.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Realm.1.5.0\build\Realm.targets'))" />
     <Error Condition="!Exists('..\..\packages\Fody.2.1.0\build\portable-net+sl+win+wpa+wp\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Fody.2.1.0\build\portable-net+sl+win+wpa+wp\Fody.targets'))" />
     <Error Condition="!Exists('..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets'))" />
+    <Error Condition="!Exists('..\..\packages\Xamarin.Forms.2.4.0.280\build\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Xamarin.Forms.2.4.0.280\build\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.targets'))" />
   </Target>
   <Import Project="..\..\packages\Realm.Database.1.5.0\build\Realm.Database.targets" Condition="Exists('..\..\packages\Realm.Database.1.5.0\build\Realm.Database.targets')" />
   <Import Project="..\..\packages\Realm.1.5.0\build\Realm.targets" Condition="Exists('..\..\packages\Realm.1.5.0\build\Realm.targets')" />
   <Import Project="..\..\packages\Fody.2.1.0\build\portable-net+sl+win+wpa+wp\Fody.targets" Condition="Exists('..\..\packages\Fody.2.1.0\build\portable-net+sl+win+wpa+wp\Fody.targets')" />
   <Import Project="..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
+  <Import Project="..\..\packages\Xamarin.Forms.2.4.0.280\build\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.targets" Condition="Exists('..\..\packages\Xamarin.Forms.2.4.0.280\build\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.targets')" />
 </Project>
