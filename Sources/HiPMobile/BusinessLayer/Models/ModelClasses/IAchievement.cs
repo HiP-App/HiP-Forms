@@ -23,5 +23,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
         string ThumbnailUrl { get; }
 
         string NextId { get; }
+        
+        bool IsUnlocked { get; set; }
+        
+        int Points { get; }
     }
 }

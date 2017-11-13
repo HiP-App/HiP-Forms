@@ -38,7 +38,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.BusinessLayer.DtoT
         [Test, Category("UnitTest")]
         public void Test_RouteFinishedAchievementConversion()
         {
-            var routeFinishedAchievementDto = new RouteFinishedAchievementDto(123, "title", "description", "imageUrl", 124);
+            var routeFinishedAchievementDto = new RouteFinishedAchievementDto(123, "title", "description", "imageUrl", 124, 25);
             var routeFinishedAchievement = AchievementConverter.Convert(new List<AchievementDto>
             {
                 routeFinishedAchievementDto
@@ -49,12 +49,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.BusinessLayer.DtoT
             Assert.AreEqual(routeFinishedAchievementDto.ThumbnailUrl, routeFinishedAchievement.ThumbnailUrl);
             Assert.AreEqual(routeFinishedAchievementDto.Title, routeFinishedAchievement.Title);
             Assert.AreEqual(routeFinishedAchievementDto.NextId.ToString(), routeFinishedAchievement.NextId);
+            Assert.AreEqual(routeFinishedAchievementDto.Points, routeFinishedAchievement.Points);
         }
 
         [Test, Category("UnitTest")]
         public void Test_ExhibitsVisitedAchievementConversion()
         {
-            var exhibitsVisitedAchievementDto = new ExhibitsVisitedAchievementDto(234, "title", "description", "imageUrl", 235, 10);
+            var exhibitsVisitedAchievementDto = new ExhibitsVisitedAchievementDto(234, "title", "description", "imageUrl", 235, 10, 25);
             var exhibitsVisitedAchievement = AchievementConverter.Convert(new List<AchievementDto>
             {
                 exhibitsVisitedAchievementDto
@@ -66,6 +67,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.BusinessLayer.DtoT
             Assert.AreEqual(exhibitsVisitedAchievementDto.Title, exhibitsVisitedAchievement.Title);
             Assert.AreEqual(exhibitsVisitedAchievementDto.Count, exhibitsVisitedAchievement.Count);
             Assert.AreEqual(exhibitsVisitedAchievementDto.NextId.ToString(), exhibitsVisitedAchievement.NextId);
+            Assert.AreEqual(exhibitsVisitedAchievementDto.Points, exhibitsVisitedAchievement.Points);
         }
     }
 }

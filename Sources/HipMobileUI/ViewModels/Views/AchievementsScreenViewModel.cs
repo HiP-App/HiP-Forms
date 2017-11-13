@@ -1,5 +1,12 @@
 ﻿using System.Collections.ObjectModel;
+using System.Threading.Tasks;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers.Contracts;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
+using Xamarin.Forms;
+using System.ComponentModel;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 {
@@ -7,37 +14,64 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
     {
         public AchievementsScreenViewModel()
         {
-            //need to make changes so that achievements screen asks user to log in when no user logged in
-            Achievements = new ObservableCollection<string>
-            {
-                "Achievement 1",
-                "Achievement 2",
-                "Achievement 3",
-                "Achievement 4",
-                "Achievement 5",
-                "Achievement 6",
-                "Achievement 7"
-            };
+            IsLoggedIn = Settings.IsLoggedIn;
+            Achievements = new ObservableCollection<AchievementViewModel>();
+            Settings.ChangeEvents.PropertyChanged += LoginChangedHandler;
+            Device.BeginInvokeOnMainThread(async () => await UpdateAchievements());
         }
 
-        public string Username => Settings.Username;
-        public int Score => Settings.Score;
-        public string Completeness => Settings.Completeness + "%";
+        private async void LoginChangedHandler(object o, PropertyChangedEventArgs args)
+        {
+            IsLoggedIn = Settings.IsLoggedIn;
+            await UpdateAchievements();
+        }
 
-        private ObservableCollection<string> achievements;
+        private async Task UpdateAchievements()
+        {
+            Achievements.Clear();
+            var score = 0;
 
-        public ObservableCollection<string> Achievements
+            await IoCManager.Resolve<IAchievementFetcher>().UpdateAchievements(); // TODO Use return value
+            foreach (var achievement in AchievementManager.GetAchievements())
+            {
+                if (achievement.IsUnlocked)
+                {
+                    score += achievement.Points;
+                }
+                Achievements.Add(AchievementViewModel.CreateFrom(achievement));
+            }
+            Score = $"{Strings.AchievementsScreenView_Score} {score}";
+        }
+
+        public override async void OnAppearing()
+        {
+            base.OnAppearing();
+            await UpdateAchievements();
+
+        }
+
+        private ObservableCollection<AchievementViewModel> achievements;
+
+        public ObservableCollection<AchievementViewModel> Achievements
         {
             get => achievements;
             set => SetProperty(ref achievements, value);
         }
 
-        private ObservableCollection<string> tabs;
+        private string score;
 
-        public ObservableCollection<string> Tabs
+        public string Score
         {
-            get => tabs;
-            set => SetProperty(ref tabs, value);
+            get => score;
+            set => SetProperty(ref score, value);
+        }
+
+        private bool isLoggedIn;
+
+        public bool IsLoggedIn
+        {
+            get => isLoggedIn;
+            set => SetProperty(ref isLoggedIn, value);
         }
     }
 }

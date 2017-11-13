@@ -37,8 +37,20 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
         {
             const string requestPath = "/Achievements/Unlocked";
             var json = await contentApiClient.GetResponseFromUrlAsString(requestPath);
+            return ParseAchievementsJson(json);
+        }
+
+        public async Task<IEnumerable<AchievementDto>> GetAchievements()
+        {
+            const string requestPath = "/Achievements";
+            var json = await contentApiClient.GetResponseFromUrlAsString(requestPath);
+            return ParseAchievementsJson(json);
+        }
+
+        private static IEnumerable<AchievementDto> ParseAchievementsJson(string json)
+        {
             var achievementJsons = (JArray) JObject.Parse(json)["items"];
-            var achievements = achievementJsons.Select<JToken, AchievementDto>(achievement =>
+            return achievementJsons.Select<JToken, AchievementDto>(achievement =>
             {
                 var type = achievement["type"].ToString();
                 switch (type)
@@ -50,9 +62,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
                     default:
                         throw new SerializationException("Unexpected AchievementType!");
                 }
-            }).ToList();
-
-            return achievements;
+            });
         }
 
         public async Task PostExhibitVisited(ExhibitsVisitedActionDto action)

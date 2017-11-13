@@ -21,12 +21,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
     public interface IAchievementFetcher
     {
         /// <summary>
-        /// Fetches the achievements from the API and stores
-        /// them in the database.
+        /// Fetches the all achievements from the API and stores
+        /// them in the database, including locked ones.
         /// WARNING: If you call this method, use the return value to show
         /// notifications about new unlocked achievements!
         /// </summary>
-        /// <returns>Achievements that have been newly added to the database</returns>
-        Task<IEnumerable<IAchievement>> FetchUnlockedAchievementsIntoDatabase();
+        /// <returns>Achievements that have been newly added to the database and are unlocked.</returns>
+        Task<IEnumerable<IAchievement>> UpdateAchievements();
     }
 }
