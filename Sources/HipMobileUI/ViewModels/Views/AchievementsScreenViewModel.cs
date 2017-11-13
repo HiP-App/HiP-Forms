@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
@@ -10,68 +11,74 @@ using System.ComponentModel;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 {
-    public class AchievementsScreenViewModel : NavigationViewModel
-    {
-        public AchievementsScreenViewModel()
-        {
-            IsLoggedIn = Settings.IsLoggedIn;
-            Achievements = new ObservableCollection<AchievementViewModel>();
-            Settings.ChangeEvents.PropertyChanged += LoginChangedHandler;
-            Device.BeginInvokeOnMainThread(async () => await UpdateAchievements());
-        }
+	public class AchievementsScreenViewModel : NavigationViewModel
+	{
+		private ICommand itemTappedCommand;
 
-        private async void LoginChangedHandler(object o, PropertyChangedEventArgs args)
-        {
-            IsLoggedIn = Settings.IsLoggedIn;
-            await UpdateAchievements();
-        }
+		public AchievementsScreenViewModel()
+		{
+			IsLoggedIn = Settings.IsLoggedIn;
+			Achievements = new ObservableCollection<AchievementViewModel>();
+			Settings.ChangeEvents.PropertyChanged += LoginChangedHandler;
+			Device.BeginInvokeOnMainThread(async () => await UpdateAchievements());
 
-        private async Task UpdateAchievements()
-        {
-            Achievements.Clear();
-            var score = 0;
+		}
 
-            await IoCManager.Resolve<IAchievementFetcher>().UpdateAchievements(); // TODO Use return value
-            foreach (var achievement in AchievementManager.GetAchievements())
-            {
-                if (achievement.IsUnlocked)
-                {
-                    score += achievement.Points;
-                }
-                Achievements.Add(AchievementViewModel.CreateFrom(achievement));
-            }
-            Score = $"{Strings.AchievementsScreenView_Score} {score}";
-        }
+		private async void LoginChangedHandler(object o, PropertyChangedEventArgs args)
+		{
+			IsLoggedIn = Settings.IsLoggedIn;
+			await UpdateAchievements();
+		}
 
-        public override async void OnAppearing()
-        {
-            base.OnAppearing();
-            await UpdateAchievements();
+		private async Task UpdateAchievements()
+		{
+			Achievements.Clear();
+			var score = 0;
 
-        }
+			await IoCManager.Resolve<IAchievementFetcher>().UpdateAchievements(); // TODO Use return value
+			foreach (var achievement in AchievementManager.GetAchievements())
+			{
+				if (achievement.IsUnlocked)
+				{
+					score += achievement.Points;
+				}
+				Achievements.Add(AchievementViewModel.CreateFrom(achievement));
+			}
+			Score = $"{Strings.AchievementsScreenView_Score} {score}";
 
-        private ObservableCollection<AchievementViewModel> achievements;
+		}
 
-        public ObservableCollection<AchievementViewModel> Achievements
-        {
-            get => achievements;
-            set => SetProperty(ref achievements, value);
-        }
+		public override async void OnAppearing()
+		{
+			base.OnAppearing();
+			await UpdateAchievements();
 
-        private string score;
+		}
 
-        public string Score
-        {
-            get => score;
-            set => SetProperty(ref score, value);
-        }
+		private ObservableCollection<AchievementViewModel> achievements;
 
-        private bool isLoggedIn;
+		public ObservableCollection<AchievementViewModel> Achievements
+		{
+			get => achievements;
+			set => SetProperty(ref achievements, value);
+			}
 
-        public bool IsLoggedIn
-        {
-            get => isLoggedIn;
-            set => SetProperty(ref isLoggedIn, value);
-        }
-    }
-}
+
+		private string score;
+
+		public string Score
+		{
+			get => score;
+			set => SetProperty(ref score, value);
+			}
+
+
+		private bool isLoggedIn;
+
+		public bool IsLoggedIn
+		{
+			get => isLoggedIn;
+			set => SetProperty(ref isLoggedIn, value);
+			}
+		}
+	}
