@@ -456,7 +456,7 @@
     <ImageAsset Include="Resources\MapAnnotations.xcassets\ExhibitLocation.imageset\Contents.json">
       <InProject>false</InProject>
     </ImageAsset>
-    <ImageAsset Include="Resources\MapAnnotations.xcassets\ExhibitLocation.imageset\marker_blue.png">
+    <ImageAsset Include="Resources\MapAnnotations.xcassets\ExhibitLocation.imageset\map-marker.png">
       <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MapAnnotations.xcassets\LaunchImages.launchimage\Contents.json">
