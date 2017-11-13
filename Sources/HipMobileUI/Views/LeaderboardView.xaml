@@ -5,7 +5,7 @@
              xmlns:views="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Views;assembly=HipMobileUI"
              x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Views.LeaderboardView">
     <ContentView.Content>
-        <views:NotificationExtensionView AchievementNotificationViewModel="{Binding AchievementNotificationViewModel}">
+        <views:NotificationExtensionView>
             <views:NotificationExtensionView.ContentTemplate>
                 <ListView x:Name="LeaderboardListView" ItemsSource="{Binding Leaderboard}"
                   SelectedItem="{Binding OwnRanking, Mode=TwoWay}" RowHeight="50">

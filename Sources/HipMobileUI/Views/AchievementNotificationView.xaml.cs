@@ -12,17 +12,45 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AchievementNotificationView : IViewFor<AchievementNotificationView>
     {
+        private DeviceOrientation deviceOrientation;
         public AchievementNotificationView()
         {
             InitializeComponent();
+            deviceOrientation = DeviceOrientation.Undefined;
+        }
+        protected override void OnSizeAllocated(double width, double height)
+        {
+            base.OnSizeAllocated(width, height);
+
+            if (width <= height)
+            {
+                if (deviceOrientation != DeviceOrientation.Portrait)
+                {
+                    // portrait mode
+                    AbsoluteLayout.SetLayoutBounds(AchievementNotification, new Rectangle(0.5,0,1,0.2));
+
+                    deviceOrientation = DeviceOrientation.Portrait;
+                }
+            }
+            else if (width > height)
+            {
+                if (deviceOrientation != DeviceOrientation.Landscape)
+                {
+                    // landscape mode
+                    AbsoluteLayout.SetLayoutBounds(AchievementNotification, new Rectangle(0.5,0,1,0.5));
+                    
+                    deviceOrientation = DeviceOrientation.Landscape;
+                }
+            }
         }
     }
 }

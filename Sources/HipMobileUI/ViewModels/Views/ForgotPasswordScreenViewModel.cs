@@ -23,7 +23,7 @@ using Xamarin.Forms;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 {
-    class ForgotPasswordScreenViewModel : ExtendedNavigationViewModel
+    class ForgotPasswordScreenViewModel : NavigationViewModel
     {
         private readonly MainPageViewModel mainPageViewModel;
         private string email;

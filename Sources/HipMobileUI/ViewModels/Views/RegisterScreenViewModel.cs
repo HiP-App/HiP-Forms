@@ -23,7 +23,7 @@ using Xamarin.Forms;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 {
-    public class RegisterScreenViewModel : ExtendedNavigationViewModel
+    public class RegisterScreenViewModel : NavigationViewModel
     {
         private string email;
         private string password;

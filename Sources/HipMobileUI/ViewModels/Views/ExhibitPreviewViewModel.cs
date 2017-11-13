@@ -24,7 +24,7 @@ using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 {
-    public class ExhibitPreviewViewModel : ExtendedNavigationViewModel
+    public class ExhibitPreviewViewModel : NavigationViewModel
     {
         public ExhibitPreviewViewModel(Exhibit exhibit, INearbyExhibitManager exManager)
         {

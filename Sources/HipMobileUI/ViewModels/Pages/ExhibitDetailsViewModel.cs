@@ -346,7 +346,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         /// </summary>
         public async void DbChanged()
         {
-            string exhibitId = Exhibit.Id;
+            var exhibitId = Exhibit.Id;
             Exhibit = ExhibitManager.GetExhibit(exhibitId);
             if (Exhibit.DetailsDataLoaded)
             {

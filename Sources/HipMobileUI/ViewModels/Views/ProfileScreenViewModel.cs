@@ -23,7 +23,7 @@ using Xamarin.Forms;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 {
-    public class ProfileScreenViewModel : ExtendedNavigationViewModel
+    public class ProfileScreenViewModel : NavigationViewModel
     {
         private readonly MainPageViewModel mainPageViewModel;
 

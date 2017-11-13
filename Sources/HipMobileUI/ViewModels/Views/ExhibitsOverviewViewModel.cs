@@ -29,7 +29,7 @@ using Xamarin.Forms;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 {
-    class ExhibitsOverviewViewModel : ExtendedNavigationViewModel, ILocationListener, IDbChangedObserver
+    class ExhibitsOverviewViewModel : NavigationViewModel, ILocationListener, IDbChangedObserver
     {
         private ObservableCollection<ExhibitsOverviewListItemViewModel> exhibitsList;
         private ICommand itemTappedCommand;

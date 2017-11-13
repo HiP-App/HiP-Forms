@@ -48,7 +48,7 @@
         </ResourceDictionary>
     </ContentView.Resources>
     <ContentView.Content>
-        <views:NotificationExtensionView AchievementNotificationViewModel="{Binding AchievementNotificationViewModel}">
+        <views:NotificationExtensionView>
             <views:NotificationExtensionView.ContentTemplate>
                 <ScrollView>
                     <Grid HorizontalOptions="FillAndExpand" Padding="10">

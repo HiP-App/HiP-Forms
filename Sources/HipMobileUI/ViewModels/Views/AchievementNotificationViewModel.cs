@@ -21,25 +21,30 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using MvvmHelpers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 using Xamarin.Forms;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 {
     public class AchievementNotificationViewModel : BaseViewModel
     {
-        private static IList<IAchievement> recentlyUnlockedAchievements;
+        private readonly IList<IAchievement> recentlyUnlockedAchievements;
         private CancellationTokenSource cancellationTokenSource;
         private bool achievementNotificationDisplayed;
         private bool notificationsActive;
+        private bool keepNotificationQueued;
 
         public AchievementNotificationViewModel()
         {
-            IsVisible = false;
-            achievementNotificationDisplayed = false;
+            IsVisible = achievementNotificationDisplayed = keepNotificationQueued = false;
             notificationsActive = true;
             ResetCancellationToken();
+
             recentlyUnlockedAchievements = new List<IAchievement>();
-            DisposeNotificationCommand = new Command(DisposeAchievementNotification);
+            DisposeNotificationCommand = new Command(DismissAchievementNotification);
+
+            MessagingCenter.Subscribe<App>(this, AppSharedData.WillSleepMessage, SetAppMinimized);
+            MessagingCenter.Subscribe<App>(this, AppSharedData.WillWakeUpMessage, SetAppMaximized);
         }
 
         // Temporary method for testing
@@ -67,7 +72,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             {
                 recentlyUnlockedAchievements.Add(achievement);
             }
-
             if (!achievementNotificationDisplayed)
             {
                 DisplayAchievementNotification();
@@ -79,7 +83,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         /// </summary>
         private async void DisplayAchievementNotification()
         {
-            if (recentlyUnlockedAchievements.Count == 0)
+            if (recentlyUnlockedAchievements == null || recentlyUnlockedAchievements.Count == 0 || achievementNotificationDisplayed)
                 return;
 
             while (notificationsActive)
@@ -87,17 +91,16 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
                 var achievement = recentlyUnlockedAchievements.First();
 
                 achievementNotificationDisplayed = true;
-                await UpdateDisplayedData(achievement);
-
-                IsVisible = true;
-                Opacity = 0;
+                keepNotificationQueued = false;
+                UpdateDisplayedData(achievement);
 
                 await Animate();
 
-                ResetCancellationToken();
-                IsVisible = false;
-                recentlyUnlockedAchievements.Remove(achievement);
+                if (!keepNotificationQueued)
+                    recentlyUnlockedAchievements.Remove(achievement);
+
                 achievementNotificationDisplayed = false;
+                ResetCancellationToken();
 
                 if (recentlyUnlockedAchievements.Count != 0)
                     continue;
@@ -110,9 +113,39 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         /// </summary>
         private async Task Animate()
         {
-            await FadeTo(0, 1, 0.1, 25);
+            await FadeIn();
             await Task.Delay(3000, cancellationTokenSource.Token).ContinueWith(task => { });
-            await FadeTo(1, 0, -0.1, 25);
+            await FadeOut();
+        }
+
+        /// <summary>
+        /// Display the notification with a fade-in animation.
+        /// </summary>
+        private async Task FadeIn()
+        {
+            IsVisible = true;
+            await FadeTo(0, 1, 0.1, 25);
+        }
+
+        /// <summary>
+        /// Hide the notification with a fade-out animation.
+        /// </summary>
+        private async Task FadeOut()
+        {
+            if (!cancellationTokenSource.IsCancellationRequested)
+                await FadeTo(1, 0, -0.1, 25);
+            // Make sure the notification view is hidden even after the notification was dismissed
+            Opacity = 0;
+            IsVisible = false;
+        }
+
+        /// <summary>
+        /// Perform an update on the data of the currently displayed achievement to prevent a missing image.
+        /// </summary>
+        public void ReloadDisplayedData()
+        {
+            if (recentlyUnlockedAchievements != null && recentlyUnlockedAchievements.Count != 0)
+                UpdateDisplayedData(recentlyUnlockedAchievements.First());
         }
 
         /// <summary>
@@ -120,18 +153,21 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         /// </summary>
         /// <param name="achievement">Achievement to be displayed.</param>
         /// <returns></returns>
-        private async Task UpdateDisplayedData(IAchievement achievement)
+        private void UpdateDisplayedData(IAchievement achievement)
         {
             AchievementTitle = achievement.Title;
             AchievementDescription = achievement.Description;
-            var stream = await achievement.LoadImage();
-            AchievementImage = ImageSource.FromStream(() => stream);
+            var source = new StreamImageSource
+            {
+                Stream = token => achievement.LoadImage()
+            };
+            AchievementImage = source;
         }
 
         /// <summary>
         /// Disposes of the current notification.
         /// </summary>
-        private void DisposeAchievementNotification()
+        private void DismissAchievementNotification()
         {
             if (achievementNotificationDisplayed)
                 cancellationTokenSource.Cancel();
@@ -139,21 +175,30 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 
         /// <summary>
         /// Removes all notification from the queue.
+        /// <remarks>Currently not used.</remarks>
         /// </summary>
         public void RemoveAllAchievementNotifications()
         {
-            DisposeAchievementNotification();
             recentlyUnlockedAchievements.Clear();
+            DismissAchievementNotification();
         }
 
+        /// <summary>
+        /// Disable notifications and keep current notification in list.
+        /// </summary>
         public void DisableNotifications()
         {
-            DisposeAchievementNotification();
+            keepNotificationQueued = true;
             notificationsActive = false;
+            DismissAchievementNotification();
         }
 
+        /// <summary>
+        /// Enable notifications and resume displaying of queued notifications.
+        /// </summary>
         public void EnableNotifications()
         {
+            keepNotificationQueued = false;
             notificationsActive = true;
             DisplayAchievementNotification();
         }
@@ -183,6 +228,24 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         {
             cancellationTokenSource?.Dispose();
             cancellationTokenSource = new CancellationTokenSource();
+        }
+
+        /// <summary>
+        /// Called when the app is being minimized.
+        /// </summary>
+        /// <param name="obj">The application object</param>
+        private void SetAppMinimized(App obj)
+        {
+            DisableNotifications();
+        }
+
+        /// <summary>
+        /// Called when the app is maximized again.
+        /// </summary>
+        /// <param name="obj">The application object</param>
+        private void SetAppMaximized(App obj)
+        {
+            EnableNotifications();
         }
 
         private ICommand disposeNotificationCommand;

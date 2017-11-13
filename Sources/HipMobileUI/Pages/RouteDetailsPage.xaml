@@ -25,7 +25,7 @@
              xmlns:helpers="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;assembly=HipMobileUI"
              xmlns:views="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Views;assembly=HipMobileUI">
     <ContentPage.Content>
-        <views:NotificationExtensionView AchievementNotificationViewModel="{Binding AchievementNotificationViewModel}">
+        <views:NotificationExtensionView>
             <views:NotificationExtensionView.ContentTemplate>
                 <StackLayout Spacing="10" Padding="5" x:Name="OuterLayout" Orientation="Vertical">
                     <container1:TabContainerView Tabs="{Binding Tabs} "

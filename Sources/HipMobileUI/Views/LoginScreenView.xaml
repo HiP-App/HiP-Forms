@@ -6,7 +6,7 @@
              xmlns:views="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Views;assembly=HipMobileUI"
              x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Views.LoginScreenView">
     <ContentView.Content>
-        <views:NotificationExtensionView AchievementNotificationViewModel="{Binding AchievementNotificationViewModel}">
+        <views:NotificationExtensionView>
             <views:NotificationExtensionView.ContentTemplate>
                 <Grid x:Name="Grid" Padding="10" HorizontalOptions="Fill">
                     <Entry x:Name="EmailEntry" Keyboard="Email" Placeholder="{helpers:Translate LoginScreenView_Email}"

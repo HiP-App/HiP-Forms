@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
 using Xamarin.Forms;
 
@@ -27,13 +28,18 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
             layout = new AbsoluteLayout();
             achievementNotificationView = new AchievementNotificationView
             {
-                BindingContext = AchievementNotificationViewModel
+                BindingContext = IoCManager.Resolve<AchievementNotificationViewModel>()
             };
 
             layout.Children.Add(ContentTemplate, new Rectangle(0, 0, 1, 1), AbsoluteLayoutFlags.All);
-            layout.Children.Add(achievementNotificationView, new Rectangle(0, 0, 1, 0.2), AbsoluteLayoutFlags.All);
+            layout.Children.Add(achievementNotificationView, new Rectangle(0, 0, 1, 1), AbsoluteLayoutFlags.All);
 
             Content = layout;
+        }
+
+        protected override void OnSizeAllocated(double width, double height)
+        {
+            base.OnSizeAllocated(width, height);
         }
 
         protected override void OnPropertyChanged(string propertyName = null)
@@ -41,7 +47,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
             base.OnPropertyChanged(propertyName);
 
             // Make sure everything is initialized and create the content
-            if (ContentTemplate != null && AchievementNotificationViewModel != null && propertyName == "AchievementNotificationViewModel")
+            if (ContentTemplate != null && propertyName == "ContentTemplate")
                 CreateContent();
         }
 
@@ -51,14 +57,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
         {
             get { return (View)GetValue(ContentTemplateProperty); }
             set { SetValue(ContentTemplateProperty, value); }
-        }
-
-        public static readonly BindableProperty AchievementNotificationViewModelProperty =
-            BindableProperty.Create("AchievementNotificationViewModel", typeof(AchievementNotificationViewModel), typeof(AchievementNotificationViewModel));
-        public AchievementNotificationViewModel AchievementNotificationViewModel
-        {
-            get { return (AchievementNotificationViewModel)GetValue(AchievementNotificationViewModelProperty); }
-            set { SetValue(AchievementNotificationViewModelProperty, value); }
         }
     }
 }

@@ -26,7 +26,7 @@
              xmlns:helpers="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;assembly=HipMobileUI"
              xmlns:views1="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Views;assembly=HipMobileUI">
     <ContentView.Content>
-        <views1:NotificationExtensionView AchievementNotificationViewModel="{Binding AchievementNotificationViewModel}">
+        <views1:NotificationExtensionView>
             <views1:NotificationExtensionView.ContentTemplate>
                 <Grid x:Name="Grid">
                     <Grid.ColumnDefinitions>

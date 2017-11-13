@@ -15,12 +15,11 @@
 using System.Windows.Input;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
-using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
 using Xamarin.Forms;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 {
-    public class LicenseScreenViewModel : ExtendedNavigationViewModel
+    public class LicenseScreenViewModel : NavigationViewModel
     {
         public LicenseScreenViewModel()
         {

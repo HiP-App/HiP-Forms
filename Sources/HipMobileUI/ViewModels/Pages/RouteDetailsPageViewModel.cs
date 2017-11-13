@@ -29,7 +29,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
     /// <summary>
     /// ViewModel for the RouteDetailsPage.
     /// </summary>
-    public class RouteDetailsPageViewModel : ExtendedNavigationViewModel
+    public class RouteDetailsPageViewModel : NavigationViewModel
     {
         private GeoLocation gpsLocation;
         private Route detailsRoute;

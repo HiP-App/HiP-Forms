@@ -17,12 +17,11 @@ using System.Windows.Input;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Location;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
-using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
 using Xamarin.Forms;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 {
-    public class RoutePreviewViewModel : ExtendedNavigationViewModel
+    public class RoutePreviewViewModel : NavigationViewModel
     {
         public RoutePreviewViewModel(Route route, INearbyRouteManager nearbyRouteManager)
         {

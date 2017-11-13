@@ -23,7 +23,7 @@
              x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Pages.NavigationPage"
              Title="{Binding Title}">
     <ContentPage.Content>
-        <views:NotificationExtensionView AchievementNotificationViewModel="{Binding AchievementNotificationViewModel}">
+        <views:NotificationExtensionView>
             <views:NotificationExtensionView.ContentTemplate>
                 <AbsoluteLayout>
                     <map:OsmMap x:Name="Map" GpsLocation="{Binding GpsLocation}" DetailsRoute="{Binding DetailsRoute}"

@@ -24,7 +24,7 @@ using Acr.UserDialogs;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 {
-    public class LoginScreenViewModel : ExtendedNavigationViewModel
+    public class LoginScreenViewModel : NavigationViewModel
     {
         private readonly MainPageViewModel mainPageViewModel;
         private string email;

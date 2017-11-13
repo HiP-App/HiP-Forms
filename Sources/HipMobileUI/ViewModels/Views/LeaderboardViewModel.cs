@@ -16,7 +16,7 @@ using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 {
-    class LeaderboardViewModel : ExtendedNavigationViewModel
+    class LeaderboardViewModel : NavigationViewModel
     {
         private static Ranking[] leaderboard;
 
