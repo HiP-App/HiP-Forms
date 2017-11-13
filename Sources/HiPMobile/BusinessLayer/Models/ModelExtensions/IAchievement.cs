@@ -22,9 +22,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
     {
         public static async Task<Stream> LoadImage(this IAchievement achievement)
         {
+            var url = $"{ServerEndpoints.ThumbnailApiPath}?Url={achievement.ThumbnailUrl}";
             try
             {
-                var response = await new ContentApiClient("").GetHttpWebResponse(achievement.ImageUrl);
+                var response = await new ContentApiClient("").GetHttpWebResponse(url);
                 return response.GetResponseStream();
             }
             catch (NotFoundException)

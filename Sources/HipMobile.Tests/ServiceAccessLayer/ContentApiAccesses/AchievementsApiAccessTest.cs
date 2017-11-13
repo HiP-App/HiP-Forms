@@ -41,13 +41,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.ServiceAccessLayer
                        "{\"routeId\":0,\"id\":0,\"type\":\"RouteFinished\",\"status\":\"PUBLISHED\"," +
                        "\"title\":\"Finish Karls Route\",\"description\":" +
                        "\"Visit all exhibits on this route to unlock this achievement\"," +
-                       "\"imageUrl\":\"https://docker-hip.cs.upb.de/public/thumbnailservice/api/Thumbnails?Url=achievements/api/image/0/\"," +
+                       "\"thumbnailUrl\": \"achievements/api/image/0/\"," +
                        "\"nextId\":0,\"points\":1," +
                        "\"userId\":\"auth0|5968ed8cdd1b3733ca94865d\",\"timestamp\":\"2017-10-23T13:28:43.6293372+00:00\"}," +
                        "{\"count\":10,\"id\":1,\"type\":\"ExhibitsVisited\",\"status\":\"PUBLISHED\"," +
                        "\"title\":\"Visit 10 exhibits\",\"description\":" +
                        "\"Visit 10 exhibits to unlock this achievement\"," +
-                       "\"imageUrl\":\"https://docker-hip.cs.upb.de/public/thumbnailservice/api/Thumbnails?Url=achievements/api/image/1/\"," +
+                       "\"thumbnailUrl\": \"achievements/api/image/0/\"," +
                        "\"nextId\":0,\"points\":1," +
                        "\"userId\":\"auth0|5968ed8cdd1b3733ca94865d\",\"timestamp\":\"2017-10-23T13:27:55.427995+00:00\"}]}";
             contentApiSubstitute.GetResponseFromUrlAsString(null).ReturnsForAnyArgs(json);
@@ -60,14 +60,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.ServiceAccessLayer
             Assert.AreEqual(routeFinished.Id, 0);
             Assert.AreEqual(routeFinished.Title, "Finish Karls Route");
             Assert.AreEqual(routeFinished.Description, "Visit all exhibits on this route to unlock this achievement");
-            Assert.AreEqual(routeFinished.ImageUrl, "https://docker-hip.cs.upb.de/public/thumbnailservice/api/Thumbnails?Url=achievements/api/image/0/");
+            Assert.AreEqual(routeFinished.ThumbnailUrl, "achievements/api/image/0/");
             Assert.AreEqual(routeFinished.NextId, 0);        
             
             Assert.NotNull(exhibitsVisited);
             Assert.AreEqual(exhibitsVisited.Id, 1);
             Assert.AreEqual(exhibitsVisited.Title, "Visit 10 exhibits");
             Assert.AreEqual(exhibitsVisited.Description, "Visit 10 exhibits to unlock this achievement");
-            Assert.AreEqual(exhibitsVisited.ImageUrl, "https://docker-hip.cs.upb.de/public/thumbnailservice/api/Thumbnails?Url=achievements/api/image/1/");
+            Assert.AreEqual(exhibitsVisited.ThumbnailUrl, "achievements/api/image/0/");
             Assert.AreEqual(exhibitsVisited.NextId, 0);
             Assert.AreEqual(exhibitsVisited.Count, 10);
         }

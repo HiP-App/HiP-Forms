@@ -22,7 +22,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
         public virtual string Id { get; set; }
         public virtual string Title { get; set; }
         public virtual string Description { get; set; }
-        public virtual string ImageUrl { get; set; }
+        public virtual string ThumbnailUrl { get; set; }
         public virtual string NextId { get; set; }
     }
 }

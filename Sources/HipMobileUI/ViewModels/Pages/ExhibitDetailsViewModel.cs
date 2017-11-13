@@ -25,7 +25,6 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.AudioPlayer;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
-using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views.ExhibitDetails;
@@ -39,35 +38,26 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
     {
         private ExhibitSubviewViewModel selectedView;
         private AudioToolbarViewModel audioToolbar;
-
         private Exhibit exhibit;
         private readonly IList<Page> pages;
         private ICommand nextViewCommand;
         private ICommand previousViewCommand;
         private ICommand audioToolbarCommand;
         private ICommand additionalInformationCommand;
+        private int currentViewIndex;
         private bool previousViewAvailable;
         private bool nextViewAvailable;
         private bool previousVisible;
         private bool nextVisible;
-        private int currentViewIndex;
         private bool audioAvailabe;
         private bool audioToolbarVisible;
         private bool hasAdditionalInformation;
         private bool additionalInformationButtonVisible;
-        private bool exhibitUnblocked = true;
-        private bool additionalInformation;
+        private readonly bool additionalInformation;
 
-        public ExhibitDetailsViewModel(Exhibit exhibit) : this(exhibit, exhibit.Pages, exhibit.Name)
-        {
-            exhibitUnblocked = exhibit.Unlocked;
-        }
+        public ExhibitDetailsViewModel(string exhibitId) : this(ExhibitManager.GetExhibit(exhibitId)) { }
 
-        public ExhibitDetailsViewModel(string exhibitId) : this(ExhibitManager.GetExhibit(exhibitId), ExhibitManager.GetExhibit(exhibitId).Pages,
-                                                                ExhibitManager.GetExhibit(exhibitId).Name)
-        {
-            exhibitUnblocked = ExhibitManager.GetExhibit(exhibitId).Unlocked;
-        }
+        public ExhibitDetailsViewModel(Exhibit exhibit) : this(exhibit, exhibit.Pages, exhibit.Name) { }
 
         public ExhibitDetailsViewModel(Exhibit exhibit, IList<Page> pages, string title, bool additionalInformation = false)
         {
@@ -87,16 +77,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             AudioToolbar.AudioPlayer.AudioCompleted += AudioPlayerOnAudioCompleted;
 
             // init the current view
-            currentViewIndex = 0;
+            currentViewIndex = 1;
             this.pages = pages;
             SetCurrentView().ConfigureAwait(true);
             Title = title;
 
-            if (pages.Count > 1)
+            if (pages.Count > 2)
                 NextViewAvailable = true;
 
-            // init commands
-            //this.ExhibitUnblocked = ExhibitUnblocked;        
+            // init commands     
             NextViewCommand = new Command(async () => await GotoNextView());
             PreviousViewCommand = new Command(GotoPreviousView);
             ShowAudioToolbarCommand = new Command(SwitchAudioToolbarVisibleState);
@@ -116,7 +105,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             {
                 var resources = IoCManager.Resolve<ApplicationResourcesProvider>();
                 IoCManager.Resolve<IBarsColorsChanger>()
-                          .ChangeToolbarColor((Color) resources.GetResourceValue("PrimaryDarkColor"), (Color) resources.GetResourceValue("PrimaryColor"));
+                          .ChangeToolbarColor((Color)resources.GetResourceValue("PrimaryDarkColor"), (Color)resources.GetResourceValue("PrimaryColor"));
             }
         }
 
@@ -215,20 +204,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                     AudioToolbar.AudioPlayer.Stop();
                 }
                 // update the UI
-
-                if (exhibitUnblocked)
-                {
-                    currentViewIndex++;
-                    NextViewAvailable = currentViewIndex < pages.Count - 1;
-                    PreviousViewAvailable = true;
-                    await SetCurrentView();
-                }
-                else
-                {
-                    await IoCManager.Resolve<INavigationService>()
-                                    .DisplayAlert(Strings.ExhibitDetailsPage_Distance_Title, Strings.ExhibitDetailsPage_Distance_Text,
-                                                  Strings.ExhibitDetailsPage_Distance_alert_confirm);
-                }
+                currentViewIndex++;
+                NextViewAvailable = currentViewIndex < pages.Count - 1;
+                PreviousViewAvailable = true;
+                await SetCurrentView();
             }
         }
 
@@ -242,7 +221,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         /// </summary>
         private async void GotoPreviousView()
         {
-            if (currentViewIndex > 0)
+            if (currentViewIndex > 1)
             {
                 // stop audio
                 if (AudioToolbar.AudioPlayer.IsPlaying)
@@ -253,8 +232,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                 // update UI
                 currentViewIndex--;
                 await SetCurrentView();
-                PreviousViewAvailable = currentViewIndex > 0;
+                PreviousViewAvailable = currentViewIndex > 1;
                 NextViewAvailable = true;
+            }
+            // Go back to appetizer page
+            else
+            {
+                await Navigation.PopAsync();
             }
         }
 
@@ -265,13 +249,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         private async Task SetCurrentView()
         {
             // update UI
-            Page currentPage = pages[currentViewIndex];
-            AudioAvailable = currentPage.Audio != null;
-            if (!AudioAvailable)
+            if (currentViewIndex == 0)
             {
-                AudioToolbarVisible = false;
+                currentViewIndex = currentViewIndex + 1;
             }
 
+            var currentPage = pages[currentViewIndex];
+            AudioAvailable = currentPage.Audio != null;
+            AudioToolbarVisible = AudioAvailable;
+            
             // It's possible to get no audio data even if it should exist
             try
             {
@@ -287,9 +273,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
             switch (currentPage.PageType)
             {
-                case PageType.AppetizerPage:
-                    SelectedView = new AppetizerViewModel(Exhibit, Title, currentPage.AppetizerPage);
-                    break;
                 case PageType.ImagePage:
                     SelectedView = new ImageViewModel(currentPage.ImagePage, ToggleVisibilityOfNavigationButtons);
                     break;
@@ -312,6 +295,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
             //Cancel disabling navigation buttons caused by page selected before
             tokenSource?.Cancel();
+
             //Toggle navigation buttons visibility for specific pages
             switch (currentPage.PageType)
             {
@@ -324,7 +308,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
             if (currentPage.Audio != null)
             {
-                // ask if user wants autoamtic audio playback
+                // ask if user wants automatic audio playback
                 if (Settings.RepeatHintAudio)
                 {
                     var result = await Navigation.DisplayAlert(Strings.ExhibitDetailsPage_Hinweis, Strings.ExhibitDetailsPage_AudioPlay,
@@ -346,14 +330,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         /// </summary>
         public async void DbChanged()
         {
-            string exhibitId = Exhibit.Id;
+            var exhibitId = Exhibit.Id;
             Exhibit = ExhibitManager.GetExhibit(exhibitId);
-            if (Exhibit.DetailsDataLoaded)
-            {
-                NextViewAvailable = currentViewIndex < pages.Count - 1;
-                PreviousViewAvailable = currentViewIndex > 0;
-                await SetCurrentView();
-            }
+            if (!Exhibit.DetailsDataLoaded)
+                return;
+            NextViewAvailable = currentViewIndex < pages.Count - 1;
+            PreviousViewAvailable = currentViewIndex > 1;
+            await SetCurrentView();
         }
 
         /// <summary>
