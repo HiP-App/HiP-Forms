@@ -33,17 +33,21 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
         [JsonProperty("nextId")]
         public int NextId { get; private set; }
 
+        [JsonProperty("points")]
+        public int Points { get; private set; }
+
         public AchievementDto()
         {
         }
 
-        public AchievementDto(int id, string title, string description, string thumbnailUrl, int nextId)
+        public AchievementDto(int id, string title, string description, string thumbnailUrl, int nextId, int points)
         {
             Id = id;
             Title = title;
             Description = description;
             ThumbnailUrl = thumbnailUrl;
             NextId = nextId;
+            Points = points;
         }
     }
 
@@ -53,7 +57,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
         {
         }
 
-        public RouteFinishedAchievementDto(int id, string title, string description, string thumbnailUrl, int nextId) : base(id, title, description, thumbnailUrl, nextId)
+        public RouteFinishedAchievementDto(int id, string title, string description, string thumbnailUrl, int nextId, int points) :
+            base(id, title, description, thumbnailUrl, nextId, points)
         {
         }
     }
@@ -67,7 +72,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
         {
         }
 
-        public ExhibitsVisitedAchievementDto(int id, string title, string description, string thumbnailUrl, int nextId, int count) : base(id, title, description, thumbnailUrl, nextId)
+        public ExhibitsVisitedAchievementDto(int id, string title, string description, string thumbnailUrl, int nextId, int count, int points) : 
+            base(id, title, description, thumbnailUrl, nextId, points)
         {
             Count = count;
         }
