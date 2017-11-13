@@ -26,13 +26,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
         private readonly IImageDimension imgDimension = IoCManager.Resolve<IImageDimension>();
         private readonly IMediaFileManager fileManager = IoCManager.Resolve<IMediaFileManager>();
 
-        public async Task<byte[]> GetDataAsync() => await MediaCache.GetBytesAsync(
+        public virtual async Task<byte[]> GetDataAsync() => await MediaCache.GetBytesAsync(
             DataPath,
             async () => await fileManager.ReadFromDiskAsync(DataPath)
         );
 
         [Obsolete("Only use GetDataBlocking in legacy code!")]
-        public byte[] GetDataBlocking() => MediaCache.GetBytes(
+        public virtual byte[] GetDataBlocking() => MediaCache.GetBytes(
             DataPath,
             () => fileManager.ReadFromDisk(DataPath)
         );
