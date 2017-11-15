@@ -47,7 +47,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             MessagingCenter.Subscribe<App>(this, AppSharedData.WillWakeUpMessage, SetAppMaximized);
         }
 
-        // Temporary method for testing
+        // TODO: Temporary method for testing; remove before master merge
         public void CreateAndDisplayDummyNotifications()
         {
             var collection = new ObservableCollection<IAchievement> {
@@ -57,7 +57,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
                     ThumbnailUrl = "achievements/api/image/0/"},
                 new ExhibitsVisitedAchievement{
                     Title = "The route completer",
-                    Description = "Complete a route for the first time",
+                    Description = "Complete a route for the first time. This is a great success",
                     ThumbnailUrl = "achievements/api/image/1/"} };
             QueueAchievementNotifications(collection);
         }

@@ -21,17 +21,21 @@
              x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Views.AchievementNotificationView">
     <ContentView.Content>
         <AbsoluteLayout>
-            <StackLayout x:Name="AchievementNotification" AbsoluteLayout.LayoutBounds="0.5,0,1,0.2" AbsoluteLayout.LayoutFlags="All" Orientation="Horizontal"
-                         BackgroundColor="{StaticResource PrimaryColor}" Margin="10" Padding="5" InputTransparent="false" IsVisible="{Binding IsVisible}" Opacity="{Binding Opacity}">
-                <Image Source="{Binding AchievementImage}" HorizontalOptions="Start" Aspect="AspectFit"/>
-                <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource SolidLightGrayColor}" Padding="3" InputTransparent="true">
-                    <Label Text="{Binding AchievementTitle}" HorizontalOptions="StartAndExpand" VerticalOptions="Start" TextColor="{StaticResource PrimaryDarkColor}" FontSize="15" FontAttributes="Bold"/>
-                    <Label Text="{Binding AchievementDescription}" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand"/>
-                </StackLayout>
-                <StackLayout.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding DisposeNotificationCommand}"/>
-                </StackLayout.GestureRecognizers>
-            </StackLayout>
+            <Frame CornerRadius="15" Padding="5" Margin="10" x:Name="AchievementNotification" AbsoluteLayout.LayoutBounds="0.5,0,1,0.2" AbsoluteLayout.LayoutFlags="All"
+                   InputTransparent="false" IsVisible="{Binding IsVisible}" Opacity="{Binding Opacity}" BackgroundColor="{StaticResource PrimaryColor}">
+                <Frame CornerRadius="10" Padding="5" BackgroundColor="{StaticResource SolidLightGrayColor}">
+                    <StackLayout Orientation="Horizontal" BackgroundColor="{StaticResource SolidLightGrayColor}" Padding="3" >
+                        <Image Source="{Binding AchievementImage}" HorizontalOptions="Start" Aspect="AspectFit"/>
+                        <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource SolidLightGrayColor}" InputTransparent="true">
+                            <Label Text="{Binding AchievementTitle}" HorizontalOptions="StartAndExpand" VerticalOptions="Start" TextColor="{StaticResource PrimaryDarkColor}" FontSize="15" FontAttributes="Bold"/>
+                            <Label Text="{Binding AchievementDescription}" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand"/>
+                        </StackLayout>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding DisposeNotificationCommand}"/>
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                </Frame>
+            </Frame>
         </AbsoluteLayout>
     </ContentView.Content>
 </ContentView>

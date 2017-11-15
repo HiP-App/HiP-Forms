@@ -36,12 +36,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
 
             Content = layout;
         }
-
-        protected override void OnSizeAllocated(double width, double height)
-        {
-            base.OnSizeAllocated(width, height);
-        }
-
+        
         protected override void OnPropertyChanged(string propertyName = null)
         {
             base.OnPropertyChanged(propertyName);

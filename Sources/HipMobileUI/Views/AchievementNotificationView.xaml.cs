@@ -36,7 +36,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
                 if (deviceOrientation != DeviceOrientation.Portrait)
                 {
                     // portrait mode
-                    AbsoluteLayout.SetLayoutBounds(AchievementNotification, new Rectangle(0.5,0,1,0.2));
+                    AbsoluteLayout.SetLayoutBounds(AchievementNotification, new Rectangle(0.5, 0, 1, 0.2));
 
                     deviceOrientation = DeviceOrientation.Portrait;
                 }
@@ -46,8 +46,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
                 if (deviceOrientation != DeviceOrientation.Landscape)
                 {
                     // landscape mode
-                    AbsoluteLayout.SetLayoutBounds(AchievementNotification, new Rectangle(0.5,0,1,0.5));
-                    
+                    AbsoluteLayout.SetLayoutBounds(AchievementNotification, new Rectangle(0.5, 0, 0.8, 0.4));
+
                     deviceOrientation = DeviceOrientation.Landscape;
                 }
             }
