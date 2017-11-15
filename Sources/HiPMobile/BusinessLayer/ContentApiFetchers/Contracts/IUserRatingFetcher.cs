@@ -15,9 +15,10 @@
 using System.Threading.Tasks;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.ModelClasses;
 using System.Collections.Generic;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers.Contracts {
     public interface IUserRatingFetcher {
-        Task<IEnumerable<UserRating>> FetchUserRating();
+        Task<UserRating> FetchUserRating(Exhibit exhibit);
     }
 }

@@ -47,10 +47,13 @@
                                 <Label Text="{Binding Text}" TextColor="#87000000" FontSize="16"/>
                             </controls1:CardView>
                         </ContentView>
-                        <StackLayout Grid.Column="1">
-                            <Label Text="4.4" FontAttributes="Bold" FontSize="24" VerticalOptions="Center" HorizontalOptions="Center" />
-                            <Button Text="1.222 Bewertungen" FontSize="10" HorizontalOptions="Center" VerticalOptions="Center" Command="{Binding UserRatingCommand}" />
-                            <Label Text="★★★★☆ " FontSize="10" HorizontalOptions="Center" VerticalOptions="Center" />
+                        <StackLayout Grid.Column="1" Spacing="0">
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding UserRatingCommand}" NumberOfTapsRequired="1" />
+                            </StackLayout.GestureRecognizers>
+                            <Label Text="{Binding RatingAverage}" FontAttributes="Bold" FontSize="24" VerticalOptions="Center" HorizontalOptions="Center" />
+                            <Label Text="{Binding RatingStars}" TextColor="{StaticResource DarkYellowColor}" FontSize="20" HorizontalOptions="Center" VerticalOptions="Center" />
+                            <Label Text="{Binding RatingCount}" FontSize="12" HorizontalOptions="Center" VerticalOptions="Center" />
                         </StackLayout>
                     </Grid>
                 </ScrollView>

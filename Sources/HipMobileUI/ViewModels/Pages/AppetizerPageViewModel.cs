@@ -22,6 +22,8 @@ using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
 using Xamarin.Forms;
 using Page = PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.Page;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.ModelClasses;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
     public class AppetizerPageViewModel : NavigationViewModel, IDownloadableListItemViewModel {
@@ -36,10 +38,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
         private bool exhibitUnblocked = true;   // see comment below: remove 'true' if you use the commented out line again
 
         private ICommand userRatingCommand;
-        public ICommand UserRatingCommand {
-            get { return userRatingCommand; }
-            set { SetProperty(ref userRatingCommand, value); }
-        }
+        private string ratingAverage;
+        private string ratingStars;
+        private string ratingCount;
 
         public AppetizerPageViewModel(string exhibitId) : this(ExhibitManager.GetExhibit(exhibitId)) { }
 
@@ -63,6 +64,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
             NextViewCommand = new Command(GotoNextView);
             DownloadCommand = new Command(OpenDownloadDialog);
             UserRatingCommand = new Command(GoToUserRatingPage);
+            SetUserRating();
         }
 
         /// <summary>
@@ -84,6 +86,20 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
             // Open the download dialog
             downloadPage = new ExhibitRouteDownloadPageViewModel(Exhibit, this);
             await Navigation.PushAsync(downloadPage);
+        }
+
+        private async void SetUserRating() {
+            UserRating userRating = await new UserRatingFetcher().FetchUserRating(exhibit);
+            string stars = "";
+            for (int i = 1; i <= 5; i++) {
+                if (userRating.Average >= i)
+                    stars += '\u2605';
+                else
+                    stars += "☆";
+            }
+            RatingAverage = userRating.Average.ToString("0.#");
+            RatingStars = stars;
+            RatingCount = userRating.Count.ToString() + " Bewertungen"; //TODO Replace wtih Resource string
         }
 
         private async void GoToUserRatingPage() {
@@ -175,6 +191,38 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
         public bool NextVisible {
             get { return nextVisible; }
             set { SetProperty(ref nextVisible, value); }
+        }
+
+        /// <summary>
+        /// The command for switch to the user rating
+        /// </summary>
+        public ICommand UserRatingCommand {
+            get { return userRatingCommand; }
+            set { SetProperty(ref userRatingCommand, value); }
+        }
+
+        /// <summary>
+        /// The average user rating text
+        /// </summary>
+        public string RatingAverage {
+            get { return ratingAverage; }
+            set { SetProperty(ref ratingAverage, value); }
+        }
+
+        /// <summary>
+        /// The text which cotains the stars of the user rating
+        /// </summary>
+        public string RatingStars {
+            get { return ratingStars; }
+            set { SetProperty(ref ratingStars, value); }
+        }
+
+        /// <summary>
+        /// The user rating count text
+        /// </summary>
+        public string RatingCount {
+            get { return ratingCount; }
+            set { SetProperty(ref ratingCount, value); }
         }
     }
 

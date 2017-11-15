@@ -21,24 +21,23 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses {
     public class UserRatingApiAccess : IUserRatingApiAccess {
 
         private readonly IContentApiClient contentApiClient;
 
-        private const string requestPath = "/Exhibits/Rating";
+        private const string requestPath = "/Exhibits/Rating/";
 
         public UserRatingApiAccess(IContentApiClient contentApiClient) {
             this.contentApiClient = contentApiClient;
         }
 
-        public async Task<IEnumerable<UserRatingDto>> GetUserRatings() {
-            var json = await contentApiClient.GetResponseFromUrlAsString(requestPath);
-            int x = 4;
-            List<UserRatingDto> dto = new List<UserRatingDto>();
-            dto.Add(new UserRatingDto(0, 0, 0));
-            return dto;
+        public async Task<UserRatingDto> GetUserRating(Exhibit exhibit) {
+            var json = await contentApiClient.GetResponseFromUrlAsString(requestPath+"0");
+            return JsonConvert.DeserializeObject<UserRatingDto>(json);
         }
 
     }
