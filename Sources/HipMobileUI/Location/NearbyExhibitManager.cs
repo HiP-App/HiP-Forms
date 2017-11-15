@@ -88,7 +88,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Location
                     if (appMinimized)
                     {
                         var notificationPlayer = IoCManager.Resolve<INotificationPlayer>();
-                        notificationPlayer.DisplayExhibitNearbyNotification(e.Name, Strings.ExhibitNearby_VisitRequest, e.Image.Data);
+                        notificationPlayer.DisplayExhibitNearbyNotification(e.Name, Strings.ExhibitNearby_VisitRequest, await e.Image.GetDataAsync());
                     }
                     else
                     {

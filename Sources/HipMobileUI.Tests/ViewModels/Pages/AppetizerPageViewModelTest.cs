@@ -12,9 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System.Threading.Tasks;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using NSubstitute;
 using NUnit.Framework;
+using PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.Common.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
@@ -44,6 +46,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Pages
 
         public AppetizerPageViewModel CreateSystemUnderTest()
         {
+            IoCManager.RegisterInstance(typeof(IMediaFileManager), new DummyMediaFileManager());
             var appetizerPage = Substitute.For<AppetizerPage>();
             appetizerPage.Text = "Bar";
             appetizerPage.Image = CreateImage();
@@ -58,7 +61,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Pages
         private Image CreateImage()
         {
             var image = Substitute.For<Image>();
-            image.Data = new byte[] { 1, 2, 3, 4 };
+            image.GetDataAsync().ReturnsForAnyArgs(Task.FromResult(new byte[] { 1, 2, 3, 4 }));
+            image.GetDataBlocking().ReturnsForAnyArgs(new byte[] { 1, 2, 3, 4 });
             return image;
         }
         #endregion

@@ -36,7 +36,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views.ExhibitDetail
             for (int i = 0; i < timesliderPage.Images.Count; i++)
             {
                 Image timesliderPageImage = timesliderPage.Images[i];
-                if (timesliderPageImage.Data.Length > 0)
+                if (timesliderPageImage.GetDataBlocking().Length > 0)
                 {
                     Images.Add(timesliderPageImage.GetImageSource());
                     texts.Add(timesliderPageImage.Description);

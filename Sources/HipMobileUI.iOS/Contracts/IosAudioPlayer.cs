@@ -82,7 +82,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Contracts
                 if (value != null)
                 {
                     NSError err;
-                    avAudioPlayer = new AVAudioPlayer(NSData.FromArray(value.Data), "mp3", out err);
+                    avAudioPlayer = new AVAudioPlayer(NSData.FromArray(value.GetDataBlocking()), "mp3", out err);
                     avAudioPlayer.FinishedPlaying += OnAvAudioPlayerOnFinishedPlaying;
                     UpdateNowPlayingInfo(0);
                 }

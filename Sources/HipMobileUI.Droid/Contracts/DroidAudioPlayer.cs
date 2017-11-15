@@ -1,4 +1,4 @@
-// Copyright (C) 2017 History in Paderborn App - Universität Paderborn
+// Copyright (C) 2017 History in Paderborn App - Universitï¿½t Paderborn
 //  
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -205,7 +205,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Contracts
                 var tempMp3 = File.CreateTempFile(tempFileName, ".mp3", new File(Path.GetTempPath()));
                 tempMp3.DeleteOnExit();
                 var fos = new FileOutputStream(tempMp3);
-                fos.Write(audio.Data);
+                fos.Write(audio.GetDataBlocking());
                 fos.Close();
                 filepath = tempMp3.AbsolutePath;
             }

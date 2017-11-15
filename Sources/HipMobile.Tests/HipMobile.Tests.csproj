@@ -95,6 +95,7 @@
     <Compile Include="BusinessLayer\InteractiveSources\ConsecutiveNumberAndConstantInteractiveSourceSubstituteTest.cs" />
     <Compile Include="BusinessLayer\InteractiveSources\ConstantInteractiveSourceSubstituteTest.cs" />
     <Compile Include="BusinessLayer\InteractiveSources\InteractiveSourcesParserTest.cs" />
+    <Compile Include="Common\Contracts\DummyMediaFileManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiAccesses\AchievementsApiAccessTest.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiAccesses\PagesApiAccessTest.cs" />
