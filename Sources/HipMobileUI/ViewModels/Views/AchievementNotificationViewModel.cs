@@ -54,11 +54,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
                 new ExhibitsVisitedAchievement {
                     Title = "The exhibit visitor",
                     Description = "Visit an exhibit for the first time",
-                    ImageUrl = "https://docker-hip.cs.upb.de/public/thumbnailservice/api/Thumbnails?Url=achievements/api/image/0/"},
+                    ThumbnailUrl = "achievements/api/image/0/"},
                 new ExhibitsVisitedAchievement{
                     Title = "The route completer",
                     Description = "Complete a route for the first time",
-                    ImageUrl = "https://docker-hip.cs.upb.de/public/thumbnailservice/api/Thumbnails?Url=achievements/api/image/1/"} };
+                    ThumbnailUrl = "achievements/api/image/1/"} };
             QueueAchievementNotifications(collection);
         }
 

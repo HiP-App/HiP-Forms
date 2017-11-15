@@ -14,8 +14,6 @@
 
 using System.Collections.ObjectModel;
 using System.Windows.Input;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
@@ -31,24 +29,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         {
             mainPageViewModel = mainPageVm;
 
-            Tabs = new ObservableCollection<string> { Strings.MainPageViewModel_OverviewPage, "Erfolge", "Statistik" };
-
-            Achievements = new ObservableCollection<AchievementViewModel>();
-            Device.BeginInvokeOnMainThread(InitAchievements);
+            Tabs = new ObservableCollection<string> { Strings.MainPageViewModel_OverviewPage, "Statistik" };
 
             ChangeAppModeCommand = new Command(OnChangeAppModeTapped);
             Logout = new Command(LogoutDummy);
-        }
-
-        private async void InitAchievements()
-        {
-            Achievements.Clear();
-            await new AchievementFetcher().FetchUnlockedAchievementsIntoDatabase(); // TODO Use return value
-            var localAchievements = AchievementManager.GetAchievements();
-            foreach (var achievement in localAchievements)
-            {
-                Achievements.Add(await AchievementViewModel.CreateFrom(achievement));
-            }
         }
 
         public ICommand Logout { get; }
@@ -75,14 +59,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
                 return;
             Settings.IsLoggedIn = false;
             mainPageViewModel.UpdateAccountViews();
-        }
-
-        private ObservableCollection<AchievementViewModel> achievements;
-
-        public ObservableCollection<AchievementViewModel> Achievements
-        {
-            get { return achievements; }
-            set { SetProperty(ref achievements, value); }
         }
 
         private ObservableCollection<string> tabs;

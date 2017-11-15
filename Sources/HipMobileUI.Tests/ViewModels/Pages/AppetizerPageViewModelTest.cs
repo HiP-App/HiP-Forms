@@ -18,9 +18,9 @@ using NUnit.Framework;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
-using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views.ExhibitDetails;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Views.ExhibitDetails
+namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Pages
 {
     class AppetizerViewModelTest
     {
@@ -36,20 +36,23 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Views
         {
             var sut = CreateSystemUnderTest();
 
-            Assert.AreEqual(sut.Headline, "ExhibitName");
-            Assert.AreEqual(sut.Text, "Foo");
+            Assert.AreEqual(sut.Headline, "Foo");
+            Assert.AreEqual(sut.Text, "Bar");
         }
 
         #region Helper Methods
 
-        public AppetizerViewModel CreateSystemUnderTest()
+        public AppetizerPageViewModel CreateSystemUnderTest()
         {
             var appetizerPage = Substitute.For<AppetizerPage>();
-            appetizerPage.Text = "Foo";
+            appetizerPage.Text = "Bar";
             appetizerPage.Image = CreateImage();
-            var exhibit = Substitute.For<Exhibit>();
 
-            return new AppetizerViewModel(exhibit, "ExhibitName", appetizerPage);
+            var exhibit = Substitute.For<Exhibit>();
+            exhibit.Name = "Foo";
+            exhibit.AppetizerPage.Returns(appetizerPage);
+
+            return new AppetizerPageViewModel(exhibit);
         }
 
         private Image CreateImage()
@@ -58,7 +61,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Views
             image.Data = new byte[] { 1, 2, 3, 4 };
             return image;
         }
-
         #endregion
+
     }
 }

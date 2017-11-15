@@ -13,6 +13,7 @@
 // limitations under the License.
 
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
@@ -36,8 +37,20 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
         {
             const string requestPath = "/Achievements/Unlocked";
             var json = await contentApiClient.GetResponseFromUrlAsString(requestPath);
+            return ParseAchievementsJson(json);
+        }
+
+        public async Task<IEnumerable<AchievementDto>> GetAchievements()
+        {
+            const string requestPath = "/Achievements";
+            var json = await contentApiClient.GetResponseFromUrlAsString(requestPath);
+            return ParseAchievementsJson(json);
+        }
+
+        private static IEnumerable<AchievementDto> ParseAchievementsJson(string json)
+        {
             var achievementJsons = (JArray) JObject.Parse(json)["items"];
-            var achievements = achievementJsons.Select<JToken, AchievementDto>(achievement =>
+            return achievementJsons.Select<JToken, AchievementDto>(achievement =>
             {
                 var type = achievement["type"].ToString();
                 switch (type)
@@ -49,9 +62,16 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
                     default:
                         throw new SerializationException("Unexpected AchievementType!");
                 }
-            }).ToList();
+            });
+        }
 
-            return achievements;
+        public async Task PostExhibitVisited(ExhibitsVisitedActionDto action)
+        {
+            const string requestPath = "/Actions/ExhibitVisited/Many";
+            var json = JsonConvert.SerializeObject(action);
+            var httpResponseMessage = await contentApiClient.PostRequestBody(requestPath, json);
+            var responseString = await httpResponseMessage.Content.ReadAsStringAsync();
+            Debug.WriteLine($"Posted {action.EntityIds.Count} visited exhibits to API with response {responseString}");
         }
     }
 }

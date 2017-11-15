@@ -37,7 +37,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataLayer
         {
             lock (Locker)
             {
-                // Realm has problems when using LINQ expression here
+                // Realm has problems when using LINQ expression here.
                 var objects = Instance.All<T>();
                 foreach (var realmResult in objects)
                 {
@@ -72,7 +72,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataLayer
             {
                 Instance.Remove(item);
             }
-
             return true;
         }
 

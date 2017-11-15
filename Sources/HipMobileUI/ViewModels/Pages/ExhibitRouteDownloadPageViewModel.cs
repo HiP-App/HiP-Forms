@@ -26,7 +26,6 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
 using Xamarin.Forms;
-using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views.ExhibitDetails;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 {
@@ -242,7 +241,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             DownloadableListItemViewModel.SetDetailsAvailable(DownloadFinished);
 
             //Close DownloadPage directly if download was started from the AppetizerView
-            if (DownloadFinished && (DownloadableListItemViewModel.GetType() == typeof(AppetizerViewModel)))
+            if (DownloadFinished && (DownloadableListItemViewModel.GetType() == typeof(AppetizerPageViewModel)))
             {
                 CloseDownloadPage();
             }

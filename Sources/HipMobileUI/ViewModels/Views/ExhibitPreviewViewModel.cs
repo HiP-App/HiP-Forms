@@ -18,7 +18,6 @@ using Xamarin.Forms;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Location;
-using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
 
@@ -53,14 +52,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         private void Accept()
         {
             MessagingCenter.Send<NavigationViewModel, bool>(this, "ReturnValue", true);
-            IoCManager.Resolve<INavigationService>().ClearModalStack();
-            IoCManager.Resolve<INavigationService>().PushAsync(new ExhibitDetailsViewModel(exhibit.Id));
+            Navigation.ClearModalStack();
+            Navigation.PushAsync(new AppetizerPageViewModel(exhibit));
             exhibitManager.InvokeExhibitVistedEvent(exhibit);
         }
 
         private void Deny()
         {
-            IoCManager.Resolve<INavigationService>().PopModalAsync();
+            Navigation.PopModalAsync();
         }
     }
 }

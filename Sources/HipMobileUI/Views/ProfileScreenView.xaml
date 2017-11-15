@@ -13,7 +13,6 @@
                 <container1:TabContainerView Tabs="{Binding Tabs}" HorizontalOptions="FillAndExpand"
                                      VerticalOptions="FillAndExpand" BackgroundColor="White">
                     <container1:TabContainerView.TabViews>
-
                         <Grid x:Name="OverviewGrid">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="1*" />
@@ -75,44 +74,6 @@
                             </StackLayout>
                         </Grid>
 
-                        <StackLayout Orientation="Vertical" HorizontalOptions="Fill" VerticalOptions="Fill" Spacing="0">
-                            <ScrollView>
-                                <ListView SeparatorVisibility="None" HasUnevenRows="True" ItemsSource="{Binding Achievements}">
-                                    <ListView.Triggers>
-                                        <EventTrigger Event="ItemSelected">
-                                            <customTriggers:DeselectListViewItemAction />
-                                        </EventTrigger>
-                                    </ListView.Triggers>
-                                    <ListView.ItemTemplate>
-                                        <DataTemplate>
-                                            <ViewCell>
-                                                <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" Padding="0"
-                                                     Margin="3" HeightRequest="60" Spacing="0">
-                                                    <Image Source="{Binding Image}" WidthRequest="60" HeightRequest="60"
-                                                   Aspect="AspectFit" />
-                                                    <StackLayout Orientation="Vertical" HorizontalOptions="StartAndExpand"
-                                                         VerticalOptions="Fill" Spacing="0" Margin="3,0">
-                                                        <!-- Use seperate ViewModel with DataContext for binding -->
-                                                        <Label Text="{Binding Achievement.Title}" FontSize="18"
-                                                       TextColor="{StaticResource PrimaryColor}" />
-                                                        <Label Text="{Binding Achievement.Description}" />
-                                                    </StackLayout>
-                                                </StackLayout>
-                                            </ViewCell>
-                                        </DataTemplate>
-                                    </ListView.ItemTemplate>
-                                </ListView>
-                            </ScrollView>
-                            <BoxView HeightRequest="2" HorizontalOptions="Fill" Margin="0,5"
-                             Color="{StaticResource DarkGrayColor}" />
-                            <StackLayout HorizontalOptions="Fill" VerticalOptions="FillAndExpand"
-                                 BackgroundColor="{StaticResource LightGrayColor}" Padding="5">
-                                <Label FontSize="28" Text="{Binding AchievementCount}" FontAttributes="Bold"
-                               HorizontalTextAlignment="Center" VerticalOptions="CenterAndExpand"
-                               TextColor="{StaticResource AccentColor}" />
-                            </StackLayout>
-                        </StackLayout>
-
                         <ScrollView>
                             <StackLayout HorizontalOptions="Fill" VerticalOptions="StartAndExpand" Spacing="0" Padding="3">
                                 <!-- This could also be changed to use DataTemplates -->
@@ -158,7 +119,6 @@
                                BackgroundColor="{StaticResource LightGrayColor}" />
                             </StackLayout>
                         </ScrollView>
-
                     </container1:TabContainerView.TabViews>
                 </container1:TabContainerView>
             </views:NotificationExtensionView.ContentTemplate>

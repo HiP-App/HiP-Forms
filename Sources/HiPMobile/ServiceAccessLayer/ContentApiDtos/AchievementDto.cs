@@ -27,23 +27,27 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
         [JsonProperty("description")]
         public string Description { get; private set; }
 
-        [JsonProperty("imageUrl")]
-        public string ImageUrl { get; private set; }
+        [JsonProperty("thumbnailUrl")]
+        public string ThumbnailUrl { get; private set; }
 
         [JsonProperty("nextId")]
         public int NextId { get; private set; }
+
+        [JsonProperty("points")]
+        public int Points { get; private set; }
 
         public AchievementDto()
         {
         }
 
-        public AchievementDto(int id, string title, string description, string imageUrl, int nextId)
+        public AchievementDto(int id, string title, string description, string thumbnailUrl, int nextId, int points)
         {
             Id = id;
             Title = title;
             Description = description;
-            ImageUrl = imageUrl;
+            ThumbnailUrl = thumbnailUrl;
             NextId = nextId;
+            Points = points;
         }
     }
 
@@ -53,7 +57,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
         {
         }
 
-        public RouteFinishedAchievementDto(int id, string title, string description, string imageUrl, int nextId) : base(id, title, description, imageUrl, nextId)
+        public RouteFinishedAchievementDto(int id, string title, string description, string thumbnailUrl, int nextId, int points) :
+            base(id, title, description, thumbnailUrl, nextId, points)
         {
         }
     }
@@ -67,7 +72,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
         {
         }
 
-        public ExhibitsVisitedAchievementDto(int id, string title, string description, string imageUrl, int nextId, int count) : base(id, title, description, imageUrl, nextId)
+        public ExhibitsVisitedAchievementDto(int id, string title, string description, string thumbnailUrl, int nextId, int count, int points) : 
+            base(id, title, description, thumbnailUrl, nextId, points)
         {
             Count = count;
         }

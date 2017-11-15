@@ -23,7 +23,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
-    <LangVersion>7</LangVersion>
+    <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>full</DebugType>
@@ -128,6 +128,7 @@
     <Compile Include="ServiceAccessLayer\ContentApiAccesses\Contracts\IPagesApiAccess.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiAccesses\Contracts\IExhibitsApiAccess.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiDtos\AchievementDto.cs" />
+    <Compile Include="ServiceAccessLayer\ContentApiDtos\ExhibitsVisitedActionDto.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiDtos\FileDto.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiDtos\MediaTypeDto.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiDtos\PageImageDto.cs" />

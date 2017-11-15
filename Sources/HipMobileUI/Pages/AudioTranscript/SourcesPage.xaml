@@ -17,22 +17,27 @@
 -->
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:views="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Views;assembly=HipMobileUI"
              x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Pages.AudioTranscript.SourcesPage">
     <ContentPage.Content>
-        <ListView ItemsSource="{Binding References}" HasUnevenRows="true">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell Tapped="OnViewCellTapped">
-                        <StackLayout Padding="15,0" HorizontalOptions="StartAndExpand" Orientation="Vertical">
-                            <Label x:Name="referenceTitle" Text="{Binding SubstituteText}"
+        <views:NotificationExtensionView>
+            <views:NotificationExtensionView.ContentTemplate>
+                <ListView ItemsSource="{Binding References}" HasUnevenRows="true">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell Tapped="OnViewCellTapped">
+                                <StackLayout Padding="15,0" HorizontalOptions="StartAndExpand" Orientation="Vertical">
+                                    <Label x:Name="referenceTitle" Text="{Binding SubstituteText}"
                                    TextColor="{StaticResource AccentColor}"
                                    FontSize="{Binding BindingContext.FontSize, Source={x:Reference SourcesPage}}" />
-                            <Label Text="{Binding Text}" VerticalTextAlignment="Center"
+                                    <Label Text="{Binding Text}" VerticalTextAlignment="Center"
                                    FontSize="{Binding BindingContext.FontSize, Source={x:Reference SourcesPage}}" />
-                        </StackLayout>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </views:NotificationExtensionView.ContentTemplate>
+        </views:NotificationExtensionView>
     </ContentPage.Content>
 </ContentPage>

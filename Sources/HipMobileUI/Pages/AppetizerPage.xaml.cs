@@ -11,21 +11,17 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
 
-using Realms;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
+namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
 {
-    public class ExhibitsVisitedAchievement : RealmObject, IAchievement
+    public partial class AppetizerPage : IViewFor<AppetizerPageViewModel>
     {
-        [PrimaryKey]
-        public virtual string Id { get; set; }
-        public virtual string Title { get; set; }
-        public virtual string Description { get; set; }
-        public virtual string ThumbnailUrl { get; set; }
-        public virtual string NextId { get; set; }
-        public virtual int Count { get; set; }
-        public virtual bool IsUnlocked { get; set; }
-        public virtual int Points { get; set; }
-    } 
+        public AppetizerPage()
+        {
+            InitializeComponent();
+        }
+    }
 }

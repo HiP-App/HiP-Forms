@@ -32,8 +32,6 @@
     <MtouchUseLlvm>False</MtouchUseLlvm>
     <MtouchUseThumb>False</MtouchUseThumb>
     <MtouchEnableBitcode>False</MtouchEnableBitcode>
-    <MtouchUseSGen>False</MtouchUseSGen>
-    <MtouchUseRefCounting>False</MtouchUseRefCounting>
     <OptimizePNGs>True</OptimizePNGs>
     <MtouchTlsProvider>Default</MtouchTlsProvider>
     <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
@@ -68,8 +66,6 @@
     <MtouchUseLlvm>False</MtouchUseLlvm>
     <MtouchUseThumb>False</MtouchUseThumb>
     <MtouchEnableBitcode>False</MtouchEnableBitcode>
-    <MtouchUseSGen>False</MtouchUseSGen>
-    <MtouchUseRefCounting>False</MtouchUseRefCounting>
     <OptimizePNGs>True</OptimizePNGs>
     <MtouchFloat32>False</MtouchFloat32>
     <DeviceSpecificBuild>False</DeviceSpecificBuild>
@@ -189,6 +185,9 @@
     <BundleResource Include="Resources\fonts\AlteSchwabacher.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </BundleResource>
+    <BundleResource Include="Resources\ic_done.png" />
+    <BundleResource Include="Resources\ic_done_2x.png" />
+    <BundleResource Include="Resources\ic_done_3x.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Default-568h%402x.png" />
@@ -344,7 +343,7 @@
       <Name>HiPMobile</Name>
     </ProjectReference>
     <ProjectReference Include="..\HipMobileUI\HipMobileUI.csproj">
-      <Project>{98c9f078-689a-4e64-acc5-6eb716b7edd2}</Project>
+      <Project>{8A545C1B-B2C8-425F-8303-BD5BD08A978D}</Project>
       <Name>HipMobileUI</Name>
     </ProjectReference>
   </ItemGroup>
@@ -457,7 +456,7 @@
     <ImageAsset Include="Resources\MapAnnotations.xcassets\ExhibitLocation.imageset\Contents.json">
       <InProject>false</InProject>
     </ImageAsset>
-    <ImageAsset Include="Resources\MapAnnotations.xcassets\ExhibitLocation.imageset\marker_blue.png">
+    <ImageAsset Include="Resources\MapAnnotations.xcassets\ExhibitLocation.imageset\map-marker.png">
       <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MapAnnotations.xcassets\LaunchImages.launchimage\Contents.json">
