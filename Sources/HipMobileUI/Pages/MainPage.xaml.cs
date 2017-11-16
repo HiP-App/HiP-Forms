@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
@@ -32,6 +33,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
         public MainPage()
         {
             InitializeComponent();
+            var mainResources = Application.Current.Resources;
+            Resources = new ResourceDictionary();
+            Resources["BoxViewColor"] = Settings.AdventurerMode ? mainResources["BoxViewColorAdventurerMode"] : mainResources["BoxViewColorProfessorMode"];
         }
 
         protected override void OnBindingContextChanged()

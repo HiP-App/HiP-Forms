@@ -23,35 +23,37 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Appearance
     public interface IThemeManager
     {
         void ChangeToAdventurerTheme();
-        void ChangeToExplorerTheme();
+        void ChangeToProfessorTheme();
         void AdjustThemeToCurrentCharacter();
     }
 
     public class ThemeManager : IThemeManager
     {
-        private readonly ApplicationResourcesProvider ressourceProvider = IoCManager.Resolve<ApplicationResourcesProvider>();
+        private readonly ApplicationResourcesProvider resourceProvider = IoCManager.Resolve<ApplicationResourcesProvider>();
 
         public void AdjustThemeToCurrentCharacter()
         {
             if (Settings.AdventurerMode)
                 ChangeToAdventurerTheme();
             else
-                ChangeToExplorerTheme();
+                ChangeToProfessorTheme();
         }
 
         public void ChangeToAdventurerTheme()
         {
-            IoCManager.Resolve<IBarsColorsChanger>().ChangeToolbarColor(GetRessourceColor("AccentDarkColor"), GetRessourceColor("AccentColor"));
+            IoCManager.Resolve<IBarsColorsChanger>().ChangeToolbarColor(GetResourceColor("AccentDarkColor"), GetResourceColor("AccentColor"));
+            resourceProvider.SetResourceValue("BoxViewColor", "BoxViewColorAdventurerMode");
         }
 
-        public void ChangeToExplorerTheme()
+        public void ChangeToProfessorTheme()
         {
-            IoCManager.Resolve<IBarsColorsChanger>().ChangeToolbarColor(GetRessourceColor("PrimaryDarkColor"), GetRessourceColor("PrimaryColor"));
+            IoCManager.Resolve<IBarsColorsChanger>().ChangeToolbarColor(GetResourceColor("PrimaryDarkColor"), GetResourceColor("PrimaryColor"));
+            resourceProvider.SetResourceValue("BoxViewColor", "BoxViewColorProfessorMode");
         }
 
-        private Color GetRessourceColor(string color)
+        private Color GetResourceColor(string color)
         {
-            return (Color)ressourceProvider.GetResourceValue(color);
+            return (Color)resourceProvider.GetResourceValue(color);
         }
     }
 }

@@ -32,6 +32,17 @@
                 <Setter Property="FontSize" Value="12" />
                 <Setter Property="TextColor" Value="Black" />
             </Style>
+            
+            <!-- Define styles for the two exploration modes -->
+            <Style x:Key="BoxViewColor" TargetType="BoxView"/>
+            <Style x:Key="BoxViewColorAdventurerMode" TargetType="BoxView">
+                <Setter Property="Color" Value="{StaticResource AccentColor}"/>
+            </Style>
+            <Style x:Key="BoxViewColorProfessorMode" TargetType="BoxView">
+                <Setter Property="Color" Value="{StaticResource PrimaryColor}"/>
+            </Style>
+
+
             <converters1:ViewModelViewConverter x:Key="ViewModelViewConverter" />
             <converters1:ItemTappedConverter x:Key="ItemTappedConverter" />
             <converters1:ImageListConverter x:Key="ImageListConverter" />
