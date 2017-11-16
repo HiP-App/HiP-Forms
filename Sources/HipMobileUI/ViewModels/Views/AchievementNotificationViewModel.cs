@@ -14,7 +14,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -45,21 +44,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 
             MessagingCenter.Subscribe<App>(this, AppSharedData.WillSleepMessage, SetAppMinimized);
             MessagingCenter.Subscribe<App>(this, AppSharedData.WillWakeUpMessage, SetAppMaximized);
-        }
-
-        // TODO: Temporary method for testing; remove before master merge
-        public void CreateAndDisplayDummyNotifications()
-        {
-            var collection = new ObservableCollection<IAchievement> {
-                new ExhibitsVisitedAchievement {
-                    Title = "The exhibit visitor",
-                    Description = "Visit an exhibit for the first time",
-                    ThumbnailUrl = "achievements/api/image/0/"},
-                new ExhibitsVisitedAchievement{
-                    Title = "The route completer",
-                    Description = "Complete a route for the first time. This is a great success",
-                    ThumbnailUrl = "achievements/api/image/1/"} };
-            QueueAchievementNotifications(collection);
         }
 
         /// <summary>
@@ -186,7 +170,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         /// <summary>
         /// Disable notifications and keep current notification in list.
         /// </summary>
-        public void DisableNotifications()
+        private void DisableNotifications()
         {
             keepNotificationQueued = true;
             notificationsActive = false;
@@ -196,7 +180,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         /// <summary>
         /// Enable notifications and resume displaying of queued notifications.
         /// </summary>
-        public void EnableNotifications()
+        private void EnableNotifications()
         {
             keepNotificationQueued = false;
             notificationsActive = true;

@@ -28,7 +28,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
             layout = new AbsoluteLayout();
             achievementNotificationView = new AchievementNotificationView
             {
-                BindingContext = IoCManager.Resolve<AchievementNotificationViewModel>()
+                BindingContext = IoCManager.Resolve<AchievementNotificationViewModel>(),
+                InputTransparent = true
             };
 
             layout.Children.Add(ContentTemplate, new Rectangle(0, 0, 1, 1), AbsoluteLayoutFlags.All);

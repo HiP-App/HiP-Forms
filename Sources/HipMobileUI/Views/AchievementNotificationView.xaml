@@ -22,7 +22,7 @@
     <ContentView.Content>
         <AbsoluteLayout>
             <Frame CornerRadius="15" Padding="5" Margin="10" x:Name="AchievementNotification" AbsoluteLayout.LayoutBounds="0.5,0,1,0.2" AbsoluteLayout.LayoutFlags="All"
-                   InputTransparent="false" IsVisible="{Binding IsVisible}" Opacity="{Binding Opacity}" BackgroundColor="{StaticResource PrimaryColor}">
+                   InputTransparent="false" IsVisible="{Binding IsVisible}" Opacity="{Binding Opacity}" BackgroundColor="{StaticResource PrimaryColor}" HasShadow="False">
                 <Frame CornerRadius="10" Padding="5" BackgroundColor="{StaticResource SolidLightGrayColor}">
                     <StackLayout Orientation="Horizontal" BackgroundColor="{StaticResource SolidLightGrayColor}" Padding="3" >
                         <Image Source="{Binding AchievementImage}" HorizontalOptions="Start" Aspect="AspectFit"/>
