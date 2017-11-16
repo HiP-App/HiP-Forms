@@ -42,7 +42,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             DownloadableDescription = downloadable.Description;
 
             Message = Strings.DownloadDetails_Text_Part1 + DownloadableName + Strings.DownloadDetails_Text_Part2;
-            var data = downloadable.Image.Data;
+            var data = downloadable.Image.GetDataBlocking();
             Image = ImageSource.FromStream(() => new MemoryStream(data));
             DownloadableListItemViewModel = downloadableListItemViewModel;
 

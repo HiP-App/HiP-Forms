@@ -59,7 +59,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             Duration = string.Format(Strings.RouteDetailsPageViewModel_Duration, route.Duration / 60);
             ReadOutCaption = Strings.RouteDetailsPage_PlayAudio;
             Tags = new ObservableCollection<RouteTag>(route.RouteTags);
-            var data = route.Image.Data;
+            var data = route.Image.GetDataBlocking();
             Image = ImageSource.FromStream(() => new MemoryStream(data));
             StartRouteCommand = new Command(StartRoute);
             StartDescriptionPlaybackCommand = new Command(StartDescriptionPlayback);

@@ -29,7 +29,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             RouteId = route.Id;
             Question = Strings.ExhibitOrRouteNearby_Question_Part1 + " \"" + RouteTitle + "\" " + Strings.ExhibitOrRouteNearby_Question_Part2;
             RouteDescription = route.Description;
-            var data = route.Image.Data;
+            var data = route.Image.GetDataBlocking();
             Image = ImageSource.FromStream(() => new MemoryStream(data));
             NearbyRouteManager = nearbyRouteManager;
 

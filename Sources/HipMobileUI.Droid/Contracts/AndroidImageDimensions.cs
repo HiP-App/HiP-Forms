@@ -27,7 +27,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Contracts
         /// <returns>The dimension of the image.</returns>
         public int[] GetDimensions(Image img)
         {
-            var bmp = BitmapFactory.DecodeByteArray(img.Data, 0, img.Data.Length);
+            var data = img.GetDataBlocking();
+            var bmp = BitmapFactory.DecodeByteArray(data, 0, data.Length);
             return new[] { bmp.Width, bmp.Height };
         }
     }
