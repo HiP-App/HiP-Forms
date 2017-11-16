@@ -160,7 +160,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                 var dbExhibit = ExhibitConverter.Convert(exhibitDto);
 
                 AddImageToExhibit(dbExhibit, exhibitDto.Image, fetchedMedia);
-                AddAppetizerPageToExhibit(exhibitDto, dbExhibit, fetchedMedia);
                 exhibitSet.ActiveSet.Add(dbExhibit);
                 listener.ProgressOneStep();
             }
@@ -190,87 +189,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             page.AppetizerPage.Image = BackupData.BackupImage;
             }
         }
-
-        private void AddAppetizerPageToExhibit(ExhibitDto exhibitDto, Exhibit dbExhibit, FetchedMediaData fetchedMediaData)
-        {
-            if (exhibitDto.Pages != null && exhibitDto.Pages.Any())
-            {
-                var page1 = appetizerPages.SingleOrDefault(x => x.Id == exhibitDto.Pages.First());
-                var page = new PageDto ();
-                page.Text = exhibitDto.Name;
-                page.Description = exhibitDto.Description;
-                page.Status = "PUBLISHED";
-                page.Image = null;
-                page.Id = page1.Id;
-
-            if (dbExhibit.Pages.Any ())
-                {
-                var appetizerPage = dbExhibit.Pages.First ();
-
-                if (appetizerPage.AppetizerPage == null)
-                    appetizerPage.AppetizerPage = DbManager.CreateBusinessObject<AppetizerPage> ();
-
-                appetizerPage.AppetizerPage.Id = exhibitDto.Id.ToString();
-                appetizerPage.AppetizerPage.Text = exhibitDto.Name;
-                if (dbExhibit.Image!=null)
-                    appetizerPage.AppetizerPage.Image = dbExhibit.Image;
-
-                    PageConverter.Convert (page, dbExhibit.Pages.First ());
-                }
-            else
-                {
-                var firstPage = DbManager.CreateBusinessObject<Page> ();
-                PopulateAppetizerPage (page.Id, ref firstPage, dbExhibit);
-                dbExhibit.Pages.Add (firstPage);
-                }
-
-            dbExhibit.Pages.First ().AppetizerPage.Image = dbExhibit.Image;
-
-            //    //var page = new Page ();
-            //    //page.
-            //    if (page != null)
-            //    {
-            //        if (dbExhibit.Pages.Any())
-            //        {
-            //            PageConverter.Convert(page, dbExhibit.Pages.First());
-            //        }
-            //        else
-            //        {
-            //            dbExhibit.Pages.Add(PageConverter.Convert(page));
-            //        }
-
-            //        if (page.Image.HasValue)
-            //        {
-            //            var image = fetchedMediaData.Images.SingleOrDefault(x => x.IdForRestApi == page.Image);
-
-            //            if (image != null)
-            //            {
-            //                dbExhibit.Pages.First().AppetizerPage.Image = image;
-            //            }
-            //        }
-            //        else
-            //        {
-            //            dbExhibit.Pages.First().AppetizerPage.Image = dbExhibit.Image;
-            //        }
-
-            //        if (exhibitDto.Pages.Count == 1)
-            //        {
-            //            // Hide downloadbutton since there is nothing to download
-            //            dbExhibit.DetailsDataLoaded = true;
-            //        }
-            //        else
-            //        {
-            //            dbExhibit.DetailsDataLoaded = false;
-            //        }
-            //    }
-            //}
-            //else
-            //{
-            //    // Hide downloadbutton since there is nothing to download
-            //    dbExhibit.DetailsDataLoaded = true;
-            }
-        }
-
         private void AddImageToExhibit(Exhibit dbExhibit, int? mediaId, FetchedMediaData fetchedMediaData)
         {
             if (mediaId.HasValue)
