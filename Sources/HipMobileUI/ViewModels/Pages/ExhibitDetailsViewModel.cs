@@ -61,7 +61,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         public ExhibitDetailsViewModel(Exhibit exhibit) : this(exhibit, exhibit.Pages, exhibit.Name)
         {
             exhibitUnblocked = exhibit.Unlocked;
-        }
+            }
 
         public ExhibitDetailsViewModel(string exhibitId) : this(ExhibitManager.GetExhibit(exhibitId), ExhibitManager.GetExhibit(exhibitId).Pages,
                                                                 ExhibitManager.GetExhibit(exhibitId).Name)
@@ -71,6 +71,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
         public ExhibitDetailsViewModel(Exhibit exhibit, IList<Page> pages, string title, bool additionalInformation = false)
         {
+    
             Exhibit = exhibit;
             this.additionalInformation = additionalInformation;
             AdjustToolbarColor();
@@ -194,7 +195,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                 Settings.AutoSwitchPage = result;
             }
 
-            // aply automatic page switch if wanted
+            // apply automatic page switch if wanted
             if (Settings.AutoSwitchPage && NextViewAvailable)
             {
                 await GotoNextView();
@@ -258,87 +259,106 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             }
         }
 
+        private Page GenrateAppetizerPageFromExhibit ()
+        {
+            Page appetizer = new Page
+                {
+                AppetizerPage = new AppetizerPage
+                    {
+                    Image = exhibit.Image,
+                    Id = exhibit.Id,
+                    Text = exhibit.Name
+                    }
+                };
+            return appetizer;
+        }
         /// <summary>
         /// Set the current view.
         /// </summary>
         /// <returns></returns>
         private async Task SetCurrentView()
         {
-            // update UI
-            Page currentPage = pages[currentViewIndex];
-            AudioAvailable = currentPage.Audio != null;
-            if (!AudioAvailable)
-            {
-                AudioToolbarVisible = false;
-            }
-
-            // It's possible to get no audio data even if it should exist
-            try
-            {
-                AudioToolbar.SetNewAudioFile(currentPage.Audio);
-            }
-            catch (Exception e)
-            {
-                Debug.WriteLine(e.Message);
-                Debug.WriteLine(e.StackTrace);
-                AudioToolbar.SetNewAudioFile(null);
-                AudioToolbarVisible = false;
-            }
-
-            switch (currentPage.PageType)
-            {
-                case PageType.AppetizerPage:
-                    SelectedView = new AppetizerViewModel(Exhibit);
-                    break;
-                case PageType.ImagePage:
-                    SelectedView = new ImageViewModel(currentPage.ImagePage, ToggleVisibilityOfNavigationButtons);
-                    break;
-                case PageType.TextPage:
-                    SelectedView = new TextViewModel(currentPage.TextPage, ToggleVisibilityOfNavigationButtons);
-                    break;
-                case PageType.TimeSliderPage:
-                    SelectedView = new TimeSliderViewModel(currentPage.TimeSliderPage, ToggleVisibilityOfNavigationButtons);
-                    break;
-            }
-
-            if (currentPage.AdditionalInformationPages != null && currentPage.AdditionalInformationPages.Any())
-            {
-                HasAdditionalInformation = true;
-            }
+            Page currentPage = null;
+            if (currentViewIndex == 0)
+                {
+                currentPage = GenrateAppetizerPageFromExhibit();
+                }
             else
-            {
-                HasAdditionalInformation = false;
-            }
+                currentPage = pages[currentViewIndex - 1];
 
-            //Cancel disabling navigation buttons caused by page selected before
-            tokenSource?.Cancel();
-            //Toggle navigation buttons visibility for specific pages
-            switch (currentPage.PageType)
-            {
-                case PageType.ImagePage:
-                case PageType.TextPage:
-                case PageType.TimeSliderPage:
-                    StartDelayedToggling();
-                    break;
-            }
-
-            if (currentPage.Audio != null)
-            {
-                // ask if user wants autoamtic audio playback
-                if (Settings.RepeatHintAudio)
+            AudioAvailable = currentPage.Audio != null;
+                if (!AudioAvailable)
                 {
-                    var result = await Navigation.DisplayAlert(Strings.ExhibitDetailsPage_Hinweis, Strings.ExhibitDetailsPage_AudioPlay,
-                                                               Strings.ExhibitDetailsPage_AgreeFeature, Strings.ExhibitDetailsPage_DisagreeFeature);
-                    Settings.AutoStartAudio = result;
-                    Settings.RepeatHintAudio = false;
+                    AudioToolbarVisible = false;
                 }
 
-                //play automatic audio, if wanted
-                if (Settings.AutoStartAudio)
+                // It's possible to get no audio data even if it should exist
+                try
                 {
-                    AudioToolbar.AudioPlayer.Play();
+                    AudioToolbar.SetNewAudioFile(currentPage.Audio);
                 }
-            }
+                catch (Exception e)
+                {
+                    Debug.WriteLine(e.Message);
+                    Debug.WriteLine(e.StackTrace);
+                    AudioToolbar.SetNewAudioFile(null);
+                    AudioToolbarVisible = false;
+                }
+
+                switch (currentPage.PageType)
+                {
+                    case PageType.AppetizerPage:
+                        SelectedView = new AppetizerViewModel(Exhibit);
+                        break;
+                    case PageType.ImagePage:
+                        SelectedView = new ImageViewModel(currentPage.ImagePage, ToggleVisibilityOfNavigationButtons);
+                        break;
+                    case PageType.TextPage:
+                        SelectedView = new TextViewModel(currentPage.TextPage, ToggleVisibilityOfNavigationButtons);
+                        break;
+                    case PageType.TimeSliderPage:
+                        SelectedView = new TimeSliderViewModel(currentPage.TimeSliderPage, ToggleVisibilityOfNavigationButtons);
+                        break;
+                }
+
+                if (currentPage.AdditionalInformationPages != null && currentPage.AdditionalInformationPages.Any())
+                {
+                    HasAdditionalInformation = true;
+                }
+                else
+                {
+                    HasAdditionalInformation = false;
+                }
+
+                //Cancel disabling navigation buttons caused by page selected before
+                tokenSource?.Cancel();
+                //Toggle navigation buttons visibility for specific pages
+                switch (currentPage.PageType)
+                {
+                    case PageType.ImagePage:
+                    case PageType.TextPage:
+                    case PageType.TimeSliderPage:
+                        StartDelayedToggling();
+                        break;
+                }
+
+                if (currentPage.Audio != null)
+                {
+                    // ask if user wants autoamtic audio playback
+                    if (Settings.RepeatHintAudio)
+                    {
+                        var result = await Navigation.DisplayAlert(Strings.ExhibitDetailsPage_Hinweis, Strings.ExhibitDetailsPage_AudioPlay,
+                                                                   Strings.ExhibitDetailsPage_AgreeFeature, Strings.ExhibitDetailsPage_DisagreeFeature);
+                        Settings.AutoStartAudio = result;
+                        Settings.RepeatHintAudio = false;
+                    }
+
+                    //play automatic audio, if wanted
+                    if (Settings.AutoStartAudio)
+                    {
+                        AudioToolbar.AudioPlayer.Play();
+                    }
+                }
         }
 
         /// <summary>
