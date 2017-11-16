@@ -71,7 +71,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
         public ExhibitDetailsViewModel(Exhibit exhibit, IList<Page> pages, string title, bool additionalInformation = false)
         {
-    
             Exhibit = exhibit;
             this.additionalInformation = additionalInformation;
             AdjustToolbarColor();
@@ -284,7 +283,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                 currentPage = GenrateAppetizerPageFromExhibit();
                 }
             else
+                {
+                // By having -1, will return correct page index from pages list.
                 currentPage = pages[currentViewIndex - 1];
+                }
 
             AudioAvailable = currentPage.Audio != null;
                 if (!AudioAvailable)

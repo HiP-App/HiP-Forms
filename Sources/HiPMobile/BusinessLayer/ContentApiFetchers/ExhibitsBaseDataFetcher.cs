@@ -54,7 +54,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
         private IList<int?> requiredExhibitImages;
         private IList<ExhibitDto> newExhibits;
         private IList<ExhibitDto> updatedExhibits;
-        private IList<PageDto> appetizerPages;
 
         public async Task<int> FetchNeededDataForExhibits(Dictionary<int, DateTimeOffset> existingExhibitsIdTimestampMapping)
         {
@@ -82,6 +81,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
 
                 if (!dbExhibitData.HasValue || Math.Abs((exhibit.Timestamp - dbExhibitData.Value).Seconds) > 1)
                 {
+                    // Later we can remove this now API has exhibit pages in payload.
                     if (exhibit.Pages != null && exhibit.Pages.Any())
                     {
                         requiredAppetizerPages.Add(exhibit.Pages.First());
@@ -89,16 +89,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                     requiredExhibitImages.Add(exhibit.Image);
                 }
             }
-
-            if (requiredAppetizerPages.Any())
-            {
-                appetizerPages = (await pagesApiAccess.GetPages(requiredAppetizerPages)).Items;
-                foreach (var page in appetizerPages)
-                {
-                    requiredExhibitImages.Add(page.Image);
-                }
-            }
-
             return requiredExhibitImages.Count + fetchedChangedExhibits.Count;
         }
 
@@ -162,31 +152,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                 AddImageToExhibit(dbExhibit, exhibitDto.Image, fetchedMedia);
                 exhibitSet.ActiveSet.Add(dbExhibit);
                 listener.ProgressOneStep();
-            }
-        }
-    private void PopulateAppetizerPage (int id, ref Page page, Exhibit dbExhibit)
-        {
-        page.IdForRestApi = id;
-
-        if (page.AppetizerPage == null)
-            {
-            page.AppetizerPage = DbManager.CreateBusinessObject<AppetizerPage> ();
-            }
-        // Necessary for iOS
-        if (dbExhibit.Name != null)
-            {
-            page.AppetizerPage.Text = Regex.Unescape (dbExhibit.Name);
-            }
-
-
-        if (dbExhibit.Image != null)
-            {
-            page.AppetizerPage.Image = dbExhibit.Image;
-            }
-
-        else
-            {
-            page.AppetizerPage.Image = BackupData.BackupImage;
             }
         }
         private void AddImageToExhibit(Exhibit dbExhibit, int? mediaId, FetchedMediaData fetchedMediaData)
