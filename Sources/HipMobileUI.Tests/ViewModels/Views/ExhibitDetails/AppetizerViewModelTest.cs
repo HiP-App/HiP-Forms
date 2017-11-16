@@ -49,7 +49,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Views
             appetizerPage.Image = CreateImage();
             var exhibit = Substitute.For<Exhibit>();
 
-            return new AppetizerViewModel(exhibit, "ExhibitName", appetizerPage);
+            return new AppetizerViewModel(exhibit);
         }
 
         private Image CreateImage()

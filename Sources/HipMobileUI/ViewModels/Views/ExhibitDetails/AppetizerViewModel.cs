@@ -32,29 +32,26 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views.ExhibitDetail
         private string text;
         private string headline;
 
-        public AppetizerViewModel(Exhibit exhibit, string exhibitName, AppetizerPage page)
+        public AppetizerViewModel (Exhibit exhibit)
         {
-            if (page != null)
-            {
-                Exhibit = exhibit;
-                Headline = exhibitName;
-                Text = page.Text;
+            Exhibit = exhibit;
+            Headline = exhibit.Name;
+            Text = exhibit.Name;
 
-                // workaround for realm bug
-                var imageData = page.Image.Data;
-                if (imageData != null)
+            // workaround for realm bug
+            var imageData = exhibit.Image.Data;
+            if (imageData != null)
                 {
-                    Image = ImageSource.FromStream(() => new MemoryStream(imageData));
+                Image = ImageSource.FromStream (() => new MemoryStream (imageData));
                 }
-                else
+            else
                 {
-                    Image = ImageSource.FromStream(() => new MemoryStream(BackupData.BackupImageData));
+                Image = ImageSource.FromStream (() => new MemoryStream (BackupData.BackupImageData));
                 }
 
-                IsDownloadButtonVisible = !Exhibit.DetailsDataLoaded;
+            IsDownloadButtonVisible = !Exhibit.DetailsDataLoaded;
 
-                DownloadCommand = new Command(OpenDownloadDialog);
-            }
+            DownloadCommand = new Command (OpenDownloadDialog);
         }
 
         private async void OpenDownloadDialog()

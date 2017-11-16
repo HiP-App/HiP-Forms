@@ -288,7 +288,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             switch (currentPage.PageType)
             {
                 case PageType.AppetizerPage:
-                    SelectedView = new AppetizerViewModel(Exhibit, Title, currentPage.AppetizerPage);
+                    SelectedView = new AppetizerViewModel(Exhibit);
                     break;
                 case PageType.ImagePage:
                     SelectedView = new ImageViewModel(currentPage.ImagePage, ToggleVisibilityOfNavigationButtons);
