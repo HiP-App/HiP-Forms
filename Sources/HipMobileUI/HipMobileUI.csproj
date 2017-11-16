@@ -88,6 +88,7 @@
     <Compile Include="Helpers\DeviceOrientation.cs" />
     <Compile Include="Helpers\OrientationController.cs" />
     <Compile Include="Contracts\IBarsColorsChanger.cs" />
+    <Compile Include="Appearance\ThemeManager.cs" />
     <Compile Include="ViewModels\Views\AchievementViewModel.cs" />
     <Compile Include="ViewModels\Views\ForgotPasswordScreenViewModel.cs" />
     <Compile Include="ViewModels\Views\LeaderboardViewModel.cs" />

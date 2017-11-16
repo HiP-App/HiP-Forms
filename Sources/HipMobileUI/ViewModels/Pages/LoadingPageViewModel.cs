@@ -14,7 +14,6 @@
 
 using System;
 using System.Diagnostics;
-using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -33,6 +32,7 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.AuthenticationApiAccess;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses.Contracts;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Appearance;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Location;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
@@ -159,10 +159,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                                 }
                                 return;
                             }
-                            else
-                            {
-                                await UpdateDatabase();
-                            }
+                            await UpdateDatabase();
                         }
 #pragma warning disable 4014
                         Task.Run(NearbyExhibitManager.PostVisitedExhibitsToApi);
@@ -184,7 +181,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         private async void AskUserDownloadDataViaMobile()
         {
             actionOnUiThread = null;
-            bool downloadData = await Navigation.DisplayAlert(Strings.LoadingPageViewModel_BaseData_DataAvailable,
+            var downloadData = await Navigation.DisplayAlert(Strings.LoadingPageViewModel_BaseData_DataAvailable,
                                                               Strings.LoadingPageViewModel_BaseData_DownloadViaMobile,
                                                               Strings.LoadingPageViewModel_BaseData_MobileDownload_Confirm,
                                                               Strings.LoadingPageViewModel_BaseData_MobileDownload_Cancel);
@@ -275,6 +272,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
         private async void StartMainApplication()
         {
+            Settings.InitialThemeSelected = true;
+
             var vm = new MainPageViewModel();
             LoadingProgress = 1;
             await Task.Delay(100);
@@ -318,12 +317,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             IoCManager.RegisterType<IBaseDataFetcher, BaseDataFetcher>();
             IoCManager.RegisterType<IFullRouteDataFetcher, FullRouteDataFetcher>();
             IoCManager.RegisterType<IAchievementFetcher, AchievementFetcher>();
-            
+
             IoCManager.RegisterInstance(typeof(INearbyExhibitManager), new NearbyExhibitManager());
             IoCManager.RegisterInstance(typeof(INearbyRouteManager), new NearbyRouteManager());
 
             IoCManager.RegisterType<IAuthApiAccess, AuthApiAccess>();
             IoCManager.RegisterInstance(typeof(IUserManager), new UserManager());
+
+            IoCManager.RegisterInstance(typeof(IThemeManager), new ThemeManager());
         }
 
         /// <summary>

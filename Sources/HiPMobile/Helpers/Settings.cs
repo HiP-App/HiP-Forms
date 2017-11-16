@@ -189,6 +189,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
             set { AppSettings.AddOrUpdateValue<bool>(AdventurerModeKey, value); }
         }
 
+        private const string InitialThemeSelectedKey = "initial_theme_selected_key";
+        private static readonly bool InitialThemeSelectedDefault = false;
+
+        public static bool InitialThemeSelected
+        {
+            get { return AppSettings.GetValueOrDefault(InitialThemeSelectedKey, InitialThemeSelectedDefault); }
+            set { AppSettings.AddOrUpdateValue(InitialThemeSelectedKey, value); }
+        }
         #endregion
 
         /// <summary>

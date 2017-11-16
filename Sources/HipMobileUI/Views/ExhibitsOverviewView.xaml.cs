@@ -12,6 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Appearance;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
@@ -27,6 +30,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
         {
             InitializeComponent();
             deviceOrientation = DeviceOrientation.Undefined;
+        }
+
+        protected override void OnParentSet()
+        {
+            base.OnParentSet();
+
+            IoCManager.Resolve<IThemeManager>().AdjustThemeToCurrentCharacter();
         }
 
         protected override void OnSizeAllocated(double width, double height)
