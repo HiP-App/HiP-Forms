@@ -3,7 +3,6 @@
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Views.AchievementsScreenView"
              xmlns:helpers="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;assembly=HipMobileUI"
-			 xmlns:behaviors="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Behaviors;assembly=HipMobileUI"
              xmlns:customTriggers="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.CustomTriggers;assembly=HipMobileUI">
     <ContentView.Content>
         <StackLayout Orientation="Vertical" HorizontalOptions="Fill" VerticalOptions="Fill" Spacing="0">
@@ -21,7 +20,7 @@
             <StackLayout IsVisible="{Binding IsLoggedIn}" Orientation="Vertical" HorizontalOptions="Fill"
                          VerticalOptions="Fill" Spacing="0">
                 <ListView SeparatorVisibility="None" HasUnevenRows="True"
-                          ItemsSource="{Binding Achievements}">	
+                          ItemsSource="{Binding Achievements}">
                     <ListView.Triggers>
                         <EventTrigger Event="ItemSelected">
                             <customTriggers:DeselectListViewItemAction />

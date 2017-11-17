@@ -59,13 +59,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             foreach (var tag in Route.RouteTags)
             {
                 // Required to reference first due to threading problems in Realm
-                byte[] currentTagImageData = tag.Image.Data;
+                byte[] currentTagImageData = tag.Image.GetDataBlocking();
 
                 Tags.Add(ImageSource.FromStream(() => new MemoryStream(currentTagImageData)));
             }
 
             // Required to reference first due to threading problems in Realm
-            var imageData = Route.Image.Data;
+            var imageData = Route.Image.GetDataBlocking();
             Image = ImageSource.FromStream(() => new MemoryStream(imageData));
 
             DownloadCommand = new Command(OpenDownloadDialog);

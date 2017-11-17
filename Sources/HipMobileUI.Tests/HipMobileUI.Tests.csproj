@@ -134,6 +134,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\HipMobile.Tests\HipMobile.Tests.csproj">
+      <Project>{8EDF4429-251A-416D-BB68-93F227191BCF}</Project>
+      <Name>HipMobile.Tests</Name>
+    </ProjectReference>
     <ProjectReference Include="..\HipMobileUI\HipMobileUI.csproj">
       <Project>{8a545c1b-b2c8-425f-8303-bd5bd08a978d}</Project>
       <Name>HipMobileUI</Name>

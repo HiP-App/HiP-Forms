@@ -2,6 +2,31 @@
   "images": [
     {
       "scale": "2x",
+      "size": "20x20",
+      "idiom": "iphone"
+    },
+    {
+      "scale": "3x",
+      "size": "20x20",
+      "idiom": "iphone"
+    },
+    {
+      "scale": "1x",
+      "size": "20x20",
+      "idiom": "ipad"
+    },
+    {
+      "scale": "2x",
+      "size": "20x20",
+      "idiom": "ipad"
+    },
+    {
+      "scale": "1x",
+      "size": "1024x1024",
+      "idiom": "ios-marketing"
+    },
+    {
+      "scale": "2x",
       "size": "29x29",
       "idiom": "iphone"
     },

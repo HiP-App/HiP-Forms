@@ -25,25 +25,24 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 	using System.Linq;
 	using System.Text;
 
-	public class Audio : RealmObject, IIdentifiable
+	public partial class Audio : RealmObject, IIdentifiable
 	{
 		//Attributes
 		[PrimaryKey]
-		public string Id{ get; set; }
+		public string Id { get; set; }
 
-		public virtual byte[] Data{ get; set; }
+		public virtual string DataPath { get; set; }
 
-		public virtual string Title{ get; set; }
+		public virtual string Title { get; set; }
 
-		public virtual string Caption{ get; set; }
+		public virtual string Caption { get; set; }
 
-		//Associations
-		// Contructor
-		public Audio(){
+		public virtual int IdForRestApi { get; set; }
+
+		public virtual DateTimeOffset Timestamp { get; set; }
+
+		public Audio() {
 		}
-
-        public virtual int IdForRestApi { get; set; }
-        public virtual DateTimeOffset Timestamp { get; set; }
-    }
+	}
 }
 

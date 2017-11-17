@@ -44,7 +44,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
         /// </summary>
         /// <param name="listener"></param>
         /// <returns></returns>
-        void ProcessRoutes(IProgressListener listener);
+        Task ProcessRoutes(IProgressListener listener);
 
         /// <summary>
         /// Indicates whether any route was changed
