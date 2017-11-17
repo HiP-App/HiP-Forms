@@ -21,11 +21,7 @@
             <StackLayout IsVisible="{Binding IsLoggedIn}" Orientation="Vertical" HorizontalOptions="Fill"
                          VerticalOptions="Fill" Spacing="0">
                 <ListView SeparatorVisibility="None" HasUnevenRows="True"
-                          ItemsSource="{Binding Achievements}">
-				<ListView.Behaviors>
-                    <behaviors:ListViewTappedItemBehavior Command="{Binding ItemTappedCommand}"
-                     Converter="{StaticResource ItemTappedConverter}" />
-                </ListView.Behaviors>	
+                          ItemsSource="{Binding Achievements}">	
                     <ListView.Triggers>
                         <EventTrigger Event="ItemSelected">
                             <customTriggers:DeselectListViewItemAction />

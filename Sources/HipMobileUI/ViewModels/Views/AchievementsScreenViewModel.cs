@@ -13,7 +13,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 {
 	public class AchievementsScreenViewModel : NavigationViewModel
 	{
-		private ICommand itemTappedCommand;
 
 		public AchievementsScreenViewModel()
 		{

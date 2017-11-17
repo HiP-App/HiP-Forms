@@ -32,9 +32,10 @@
                                                  VerticalOptions="Fill" Spacing="0" Margin="3,0">
                                         <Label Text="Exhibit Title" FontSize="18"
                                                LineBreakMode="WordWrap"
-                                               FontAttributes="Bold" TextColor="{StaticResource PrimaryColor}" />                                  
+                                               FontAttributes="Bold" />                                  
                                     </StackLayout>
-                                    <Image Source="ic_done.png"
+									<!--Use exhibit.unlocked to make this image visible!-->
+                                    <Image Source="ic_done.png" WidthRequest="20" HeightRequest="20"
                                            Opacity="1" Aspect="AspectFit" />
                                 </StackLayout>
                             </ViewCell>
@@ -45,7 +46,13 @@
             <ContentView HorizontalOptions="Fill" VerticalOptions="FillAndExpand" />
             <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="End" Orientation="Horizontal"
                          BackgroundColor="{StaticResource PrimaryColor}" Padding="20">
-                <Label FontSize="24" Text="{Binding Score}" FontAttributes="Bold"
+                <Label FontSize="20" Text="You've visited 1 out of 3 exhibits" FontAttributes="Bold"
+                       HorizontalTextAlignment="Center" VerticalOptions="Center"
+                       HorizontalOptions="CenterAndExpand" TextColor="White" />
+			</StackLayout>	
+			<StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="End" Orientation="Horizontal"
+                         BackgroundColor="{StaticResource PrimaryColor}" Padding="20">	
+				<Label FontSize="24" Text="{Binding Score}" FontAttributes="Bold"
                        HorizontalTextAlignment="Center" VerticalOptions="Center"
                        HorizontalOptions="CenterAndExpand" TextColor="White" />
             </StackLayout>
