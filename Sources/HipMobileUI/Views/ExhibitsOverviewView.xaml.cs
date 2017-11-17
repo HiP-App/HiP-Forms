@@ -36,7 +36,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
         {
             base.OnParentSet();
 
-            IoCManager.Resolve<IThemeManager>().AdjustThemeToCurrentCharacter();
+            IoCManager.Resolve<IThemeManager>().AdjustTopBarTheme();
         }
 
         protected override void OnSizeAllocated(double width, double height)

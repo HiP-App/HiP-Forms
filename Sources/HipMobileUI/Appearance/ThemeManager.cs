@@ -22,16 +22,16 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Appearance
 {
     public interface IThemeManager
     {
-        void ChangeToAdventurerTheme();
-        void ChangeToProfessorTheme();
-        void AdjustThemeToCurrentCharacter();
+        void AdjustTopBarTheme();
+        object GetThemedPropertyFor(string propertyName);
     }
 
     public class ThemeManager : IThemeManager
     {
         private readonly ApplicationResourcesProvider resourceProvider = IoCManager.Resolve<ApplicationResourcesProvider>();
+        private string modeSuffix;
 
-        public void AdjustThemeToCurrentCharacter()
+        public void AdjustTopBarTheme()
         {
             if (Settings.AdventurerMode)
                 ChangeToAdventurerTheme();
@@ -39,16 +39,20 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Appearance
                 ChangeToProfessorTheme();
         }
 
-        public void ChangeToAdventurerTheme()
+        public object GetThemedPropertyFor(string propertyName)
         {
-            IoCManager.Resolve<IBarsColorsChanger>().ChangeToolbarColor(GetResourceColor("AccentDarkColor"), GetResourceColor("AccentColor"));
-            resourceProvider.SetResourceValue("BoxViewColor", "BoxViewColorAdventurerMode");
+            modeSuffix = Settings.AdventurerMode ? "AdventurerMode" : "ProfessorMode";
+            return resourceProvider.GetResourceValue(propertyName + modeSuffix);
         }
 
-        public void ChangeToProfessorTheme()
+        private void ChangeToAdventurerTheme()
+        {
+            IoCManager.Resolve<IBarsColorsChanger>().ChangeToolbarColor(GetResourceColor("AccentDarkColor"), GetResourceColor("AccentColor"));
+        }
+
+        private void ChangeToProfessorTheme()
         {
             IoCManager.Resolve<IBarsColorsChanger>().ChangeToolbarColor(GetResourceColor("PrimaryDarkColor"), GetResourceColor("PrimaryColor"));
-            resourceProvider.SetResourceValue("BoxViewColor", "BoxViewColorProfessorMode");
         }
 
         private Color GetResourceColor(string color)

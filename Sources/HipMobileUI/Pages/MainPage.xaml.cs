@@ -12,7 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Appearance;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
@@ -23,7 +24,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
 {
     public partial class MainPage : IViewFor<MainPageViewModel>
     {
-        private MainPageViewModel ViewModel => ((MainPageViewModel) BindingContext);
+        private MainPageViewModel ViewModel => ((MainPageViewModel)BindingContext);
 
         /// <summary>
         /// Accessor to get the navigation page from other classes.
@@ -33,9 +34,23 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
         public MainPage()
         {
             InitializeComponent();
-            var mainResources = Application.Current.Resources;
-            Resources = new ResourceDictionary();
-            Resources["BoxViewColor"] = Settings.AdventurerMode ? mainResources["BoxViewColorAdventurerMode"] : mainResources["BoxViewColorProfessorMode"];
+            UpdateTheme();
+        }
+
+        private void UpdateTheme()
+        {
+            var themeManager = IoCManager.Resolve<IThemeManager>();
+            if (Resources == null)
+            {
+                Resources = new ResourceDictionary
+                {
+                    ["BoxViewColor"] = themeManager.GetThemedPropertyFor("BoxViewColor")
+                };
+            }
+            else
+            {
+                Resources.Add("BoxViewColor", themeManager.GetThemedPropertyFor("BoxViewColor"));
+            }
         }
 
         protected override void OnBindingContextChanged()
@@ -66,7 +81,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
         {
             // Disable the swipe gesture when a page is pushed
             IsGestureEnabled = false;
-            ((NavigationViewModel) e.Page.BindingContext).OnAppearing();
+            ((NavigationViewModel)e.Page.BindingContext).OnAppearing();
         }
 
         /// <summary>
@@ -84,9 +99,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
 
             // inform the viewmodel...
             // ... of popped page that it was popped
-            ((NavigationViewModel) e.Page.BindingContext).OnDisappearing();
+            ((NavigationViewModel)e.Page.BindingContext).OnDisappearing();
             // ... of underlaying page that it is visible again
-            ((NavigationViewModel) NavigationPage.CurrentPage.BindingContext).OnRevealed();
+            ((NavigationViewModel)NavigationPage.CurrentPage.BindingContext).OnRevealed();
         }
 
         protected override bool OnBackButtonPressed()

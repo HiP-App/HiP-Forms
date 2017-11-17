@@ -44,10 +44,5 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers
         {
             return Resources[resourceName];
         }
-
-        public void SetResourceValue(string resourceProperty, string resourceValue)
-        {
-            Resources[resourceProperty] = Resources[resourceValue];
-        }
     }
 }

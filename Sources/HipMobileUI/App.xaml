@@ -34,12 +34,24 @@
             </Style>
             
             <!-- Define styles for the two exploration modes -->
-            <Style x:Key="BoxViewColor" TargetType="BoxView"/>
             <Style x:Key="BoxViewColorAdventurerMode" TargetType="BoxView">
                 <Setter Property="Color" Value="{StaticResource AccentColor}"/>
             </Style>
             <Style x:Key="BoxViewColorProfessorMode" TargetType="BoxView">
                 <Setter Property="Color" Value="{StaticResource PrimaryColor}"/>
+            </Style>
+
+            <Style x:Key="TitleStyleAdventurerMode" TargetType="Label">
+                <Setter Property="FontSize" Value="Small" />
+                <Setter Property="TextColor" Value="{StaticResource PrimaryColor}" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="Grid.ColumnSpan" Value="2" />
+            </Style>
+            <Style x:Key="TitleStyleProfessorMode" TargetType="Label">
+                <Setter Property="FontSize" Value="Small" />
+                <Setter Property="TextColor" Value="{StaticResource AccentColor}" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="Grid.ColumnSpan" Value="2" />
             </Style>
 
 

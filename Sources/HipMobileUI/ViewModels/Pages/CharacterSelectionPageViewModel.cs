@@ -55,7 +55,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
             // Make sure all related components are already initialized before adjusting theme
             if (Settings.InitialThemeSelected)
-                IoCManager.Resolve<IThemeManager>().AdjustThemeToCurrentCharacter();
+                IoCManager.Resolve<IThemeManager>().AdjustTopBarTheme();
         }
 
         /// <summary>

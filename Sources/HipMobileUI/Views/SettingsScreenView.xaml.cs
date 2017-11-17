@@ -12,8 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Appearance;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
+using Xamarin.Forms;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
 {
@@ -22,6 +25,23 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
         public SettingsScreenView()
         {
             InitializeComponent();
+            UpdateTheme();
+        }
+
+        private void UpdateTheme()
+        {
+            var themeManager = IoCManager.Resolve<IThemeManager>();
+            if (Resources == null)
+            {
+                Resources = new ResourceDictionary
+                {
+                    ["TitleStyle"] = themeManager.GetThemedPropertyFor("TitleStyle")
+                };
+            }
+            else
+            {
+                Resources.Add("TitleStyle", themeManager.GetThemedPropertyFor("TitleStyle"));
+            }
         }
     }
 }
