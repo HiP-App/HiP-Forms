@@ -40,5 +40,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
             return JsonConvert.DeserializeObject<UserRatingDto>(json);
         }
 
+        public async Task<bool> SendUserRating(Exhibit exhibit, int rating) {
+            return true;
+        }
+
     }
 }

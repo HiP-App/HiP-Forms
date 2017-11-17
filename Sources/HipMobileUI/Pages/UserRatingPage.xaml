@@ -21,17 +21,17 @@
              xmlns:behaviors="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Behaviors;assembly=HipMobileUI"
              Title="{Binding Headline}">
     <ContentPage.Content>
-        <AbsoluteLayout>
-            <Grid AbsoluteLayout.LayoutBounds="1,1,1,1" AbsoluteLayout.LayoutFlags="All" BackgroundColor="White">
+        <AbsoluteLayout >
+            <Grid AbsoluteLayout.LayoutBounds="1,1,1,1" AbsoluteLayout.LayoutFlags="All">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="0.9*" />
-                    <RowDefinition Height="0.1*" />
+                    <RowDefinition Height="0.87*" />
+                    <RowDefinition Height="0.13*" />
                 </Grid.RowDefinitions>
 
-                <ListView RefreshCommand="{Binding RefreshCommand}" IsRefreshing="{Binding IsRefreshing}"
+                <ListView RefreshCommand="{Binding RefreshCommand}" IsRefreshing="{Binding IsRefreshing}" 
                           ItemsSource="{Binding RatingsList}" IsPullToRefreshEnabled="True" HasUnevenRows="True" x:Name="List">
                     <ListView.Behaviors>
                         <behaviors:ListViewTappedItemBehavior Command="{Binding ItemSelectedCommand}"
@@ -62,7 +62,7 @@
                 </ListView>
 
             </Grid>
-            <Button  AbsoluteLayout.LayoutBounds=".5,1,.95,.1" AbsoluteLayout.LayoutFlags="All"
+            <Button  AbsoluteLayout.LayoutBounds=".5,1,1,.13" Margin="7" BackgroundColor="LightGray" AbsoluteLayout.LayoutFlags="All" 
                     Text="Bewerten" FontSize="13"  Command="{Binding CreateRatingCommand}" />
         </AbsoluteLayout>
     </ContentPage.Content>

@@ -816,11 +816,14 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   </data>
   <data name="AchievementsScreenView_Score" xml:space="preserve">
     <value>Your Score </value>
-  </data>	
+  </data>
   <data name="MainPageViewModel_Achievements" xml:space="preserve">
     <value>Achievements</value>
-  </data>	
+  </data>
   <data name="ExhibitNearby_VisitRequest" xml:space="preserve">
     <value>Besuche eine nahe Sehenswürdigkeit!</value>
+  </data>
+  <data name="UserRating_Rate_Count" xml:space="preserve">
+    <value>Bewertungen</value>
   </data>
 </root>

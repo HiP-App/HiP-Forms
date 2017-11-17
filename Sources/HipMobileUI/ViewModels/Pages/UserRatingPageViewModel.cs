@@ -13,7 +13,6 @@
 // limitations under the License.
 
 
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
 using System.Collections.ObjectModel;
@@ -24,52 +23,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
     public class UserRatingPageViewModel : NavigationViewModel {
 
         private Exhibit exhibit;
-        public Exhibit Exhibit {
-            get { return exhibit; }
-            set { SetProperty(ref exhibit, value); }
-        }
-
-        /// <summary>
-        /// The headline of the description.
-        /// </summary>
         private string headline;
-        public string Headline {
-            get { return headline; }
-            set { SetProperty(ref headline, value); }
-        }
-
         private ObservableCollection<UserRatingListItemViewModel> ratingsList;
-        public ObservableCollection<UserRatingListItemViewModel> RatingsList {
-            get { return ratingsList; }
-            set { SetProperty(ref ratingsList, value); }
-        }
-
         private ICommand refreshCommand;
-        public ICommand RefreshCommand {
-            get { return refreshCommand; }
-            set { SetProperty(ref refreshCommand, value); }
-        }
-
         private bool isRefreshing;
-        public bool IsRefreshing {
-            get { return isRefreshing; }
-            set { SetProperty(ref isRefreshing, value); }
-        }
-
         private ICommand itemSelectedCommand;
-        public ICommand ItemSelectedCommand {
-            get { return itemSelectedCommand; }
-            set { SetProperty(ref itemSelectedCommand, value); }
-        }
-
         private ICommand createRatingCommand;
-        public ICommand CreateRatingCommand {
-            get { return createRatingCommand; }
-            set { SetProperty(ref createRatingCommand, value); }
-        }
-
-        public UserRatingPageViewModel(string exhibitId) : this(ExhibitManager.GetExhibit(exhibitId)) { }
-
 
         public UserRatingPageViewModel(Exhibit exhibit) {
             Exhibit = exhibit;
@@ -87,15 +46,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
         }
 
         private async void OpenCreateRatingPage() {
-            await Navigation.PushAsync(new CreateUserRatingPageViewModel());
-            // Open the download dialog
-            //downloadPage = new ExhibitRouteDownloadPageViewModel(Exhibit, this);
-            //await Navigation.PushAsync(downloadPage);
+            await Navigation.PushAsync(new CreateUserRatingPageViewModel(exhibit));
 
-        }
-
-        public void CloseDownloadPage() {
-            //Navigation.PopAsync();
         }
 
         private void RefreshUserRatingList() {
@@ -103,7 +55,47 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
         }
 
         private void OnItemSelected() {
-
+            //Do nothing
         }
+
+
+        public Exhibit Exhibit {
+            get { return exhibit; }
+            set { SetProperty(ref exhibit, value); }
+        }
+
+        /// <summary>
+        /// The headline of the description.
+        /// </summary>
+        public string Headline {
+            get { return headline; }
+            set { SetProperty(ref headline, value); }
+        }
+
+        public ObservableCollection<UserRatingListItemViewModel> RatingsList {
+            get { return ratingsList; }
+            set { SetProperty(ref ratingsList, value); }
+        }
+
+        public ICommand RefreshCommand {
+            get { return refreshCommand; }
+            set { SetProperty(ref refreshCommand, value); }
+        }
+
+        public bool IsRefreshing {
+            get { return isRefreshing; }
+            set { SetProperty(ref isRefreshing, value); }
+        }
+
+        public ICommand ItemSelectedCommand {
+            get { return itemSelectedCommand; }
+            set { SetProperty(ref itemSelectedCommand, value); }
+        }
+
+        public ICommand CreateRatingCommand {
+            get { return createRatingCommand; }
+            set { SetProperty(ref createRatingCommand, value); }
+        }
+
     }
 }

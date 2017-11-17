@@ -22,16 +22,50 @@
              Title="{Binding Headline}">
     <ContentPage.Content>
 
-        <Grid AbsoluteLayout.LayoutBounds="1,1,1,1" AbsoluteLayout.LayoutFlags="All" BackgroundColor="White">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="0.9*" />
-                <RowDefinition Height="0.1*" />
-            </Grid.RowDefinitions>
-            <Button  Grid.Row="0" Grid.Column="0" Text="Bewerten" FontSize="13"  Command="{Binding CreateRatingCommand}" />
-        </Grid>
-
+        <AbsoluteLayout>
+            <StackLayout Orientation="Vertical" AbsoluteLayout.LayoutBounds="1,1,1,1" AbsoluteLayout.LayoutFlags="All" Spacing="0">
+                <StackLayout Orientation="Vertical" Spacing="0" Margin="10,5,10,10">
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Spacing="8">
+                        <Label Text="{Binding Star1}" TextColor="{StaticResource DarkYellowColor}" FontSize="35" VerticalOptions="End">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Command="{Binding SelectStarCommand}" NumberOfTapsRequired="1"  CommandParameter="1"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                        <Label Text="{Binding Star2}" TextColor="{StaticResource DarkYellowColor}" FontSize="35" VerticalOptions="End">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Command="{Binding SelectStarCommand}" NumberOfTapsRequired="1" CommandParameter="2"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                        <Label Text="{Binding Star3}" TextColor="{StaticResource DarkYellowColor}" FontSize="35" VerticalOptions="End">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Command="{Binding SelectStarCommand}" NumberOfTapsRequired="1" CommandParameter="3"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                        <Label Text="{Binding Star4}" TextColor="{StaticResource DarkYellowColor}" FontSize="35" VerticalOptions="End">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Command="{Binding SelectStarCommand}" NumberOfTapsRequired="1" CommandParameter="4"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                        <Label Text="{Binding Star5}" TextColor="{StaticResource DarkYellowColor}" FontSize="35" VerticalOptions="End">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Command="{Binding SelectStarCommand}" NumberOfTapsRequired="1" CommandParameter="5"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </StackLayout>
+                    <Label Text="Berühre einen Stern zum Bewerten" HorizontalOptions="CenterAndExpand" TextColor="Gray" FontSize="14" VerticalOptions="Start"/>
+                </StackLayout>
+                <BoxView HorizontalOptions="CenterAndExpand" BackgroundColor="Gray" HeightRequest="1" WidthRequest="2000" VerticalOptions="Center" Margin="10,0,10,0"/>
+                <Label HorizontalOptions="Fill" VerticalOptions="Center" Text="Title" TextColor="Gray" FontSize="18"  Margin="10,10,10,10"/>
+                <BoxView HorizontalOptions="CenterAndExpand" BackgroundColor="Gray" HeightRequest="1" WidthRequest="2000" VerticalOptions="Center" Margin="10,0,10,0" />
+                <Label HorizontalOptions="Fill" VerticalOptions="Center" Text="Review (Optional)" TextColor="Gray" FontSize="16" Margin="10,10,10,10" />
+            </StackLayout>
+            <Button  AbsoluteLayout.LayoutBounds=".5,1,1,.13" Margin="7" BackgroundColor="LightGray" AbsoluteLayout.LayoutFlags="All" 
+                     Text="Absenden" FontSize="13"  Command="{Binding SendRatingCommand}" />
+        </AbsoluteLayout>
     </ContentPage.Content>
 </ContentPage>
