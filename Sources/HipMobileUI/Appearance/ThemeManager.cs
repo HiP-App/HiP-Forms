@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System.Collections.Generic;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Contracts;
@@ -23,6 +24,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Appearance
     public interface IThemeManager
     {
         void AdjustTopBarTheme();
+        void UpdateViewStyle(ResourceDictionary resourceDictionary, IEnumerable<string> styleProperties);
         object GetThemedPropertyFor(string propertyName);
     }
 
@@ -37,6 +39,22 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Appearance
                 ChangeToAdventurerTheme();
             else
                 ChangeToProfessorTheme();
+        }
+
+        /// <summary>
+        /// Updates the style of the view this method was called from to fit the selected mode.
+        /// </summary>
+        /// <param name="resourceDictionary">The resourceDictionary of the view.</param>
+        /// <param name="styleProperties">Collection of properties of the view influenced by a mode change.</param>
+        public void UpdateViewStyle(ResourceDictionary resourceDictionary, IEnumerable<string> styleProperties)
+        {
+            if (resourceDictionary == null)
+                return;
+
+            foreach (var styleProperty in styleProperties)
+            {
+                resourceDictionary.Add(styleProperty, GetThemedPropertyFor(styleProperty));
+            }
         }
 
         public object GetThemedPropertyFor(string propertyName)

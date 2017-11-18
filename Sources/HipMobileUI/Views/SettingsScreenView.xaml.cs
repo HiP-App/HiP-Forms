@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System.Collections.Generic;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Appearance;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
@@ -30,18 +31,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
 
         private void UpdateTheme()
         {
-            var themeManager = IoCManager.Resolve<IThemeManager>();
             if (Resources == null)
-            {
-                Resources = new ResourceDictionary
-                {
-                    ["TitleStyle"] = themeManager.GetThemedPropertyFor("TitleStyle")
-                };
-            }
-            else
-            {
-                Resources.Add("TitleStyle", themeManager.GetThemedPropertyFor("TitleStyle"));
-            }
+                Resources = new ResourceDictionary();
+
+            // Collect all styleable properties from the .xaml-file
+            var styleProperties = new List<string> { "Label", "Button" };
+
+            var themeManager = IoCManager.Resolve<IThemeManager>();
+            themeManager.UpdateViewStyle(Resources, styleProperties);
         }
     }
 }

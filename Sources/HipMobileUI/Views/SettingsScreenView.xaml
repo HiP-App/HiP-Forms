@@ -22,7 +22,6 @@
     <ContentView.Resources>
         <ResourceDictionary>
             <!-- Defined Styles for Labels -->
-            
             <Style x:Key="Title2Style" TargetType="Label">
                 <Setter Property="FontSize" Value="Medium" />
                 <Setter Property="TextColor" Value="Black" />
@@ -75,8 +74,9 @@
                 </Grid.ColumnDefinitions>
 
                 <!-- Points of Interests -->
-                <Label Style="{DynamicResource TitleStyle}" Text="{helpers:Translate SettingsScreenView_POI_Title}"
-                       Grid.Row="0" Grid.Column="0" Margin="0,0,0,10" />
+                <Label Style="{DynamicResource Label}" Text="{helpers:Translate SettingsScreenView_POI_Title}"
+                       Grid.Row="0" Grid.Column="0" Margin="0,0,0,10"
+                       FontSize="Small" FontAttributes="Bold" Grid.ColumnSpan="2"/>
                 <Label Style="{StaticResource Title2Style}"
                        Text="{helpers:Translate SettingsScreenView_AutoSwitchPage_Title}" Grid.Row="1" Grid.Column="0" />
                 <Label Text="{helpers:Translate SettingsScreenView_AutoSwitchPage_Text}" Grid.Row="2" Grid.Column="0" />
@@ -99,8 +99,9 @@
                 </Switch>
 
                 <!-- App Introduction -->
-                <Label Style="{DynamicResource TitleStyle}" Text="{helpers:Translate SettingsScreenView_AppIntro_Title}"
-                       Grid.Row="6" Grid.Column="0" Margin="0,20,0,10" />
+                <Label Style="{DynamicResource Label}" Text="{helpers:Translate SettingsScreenView_AppIntro_Title}"
+                       Grid.Row="6" Grid.Column="0" Margin="0,20,0,10"
+                       FontSize="Small" FontAttributes="Bold" Grid.ColumnSpan="2"/>
                 <Label Text="{helpers:Translate SettingsScreenView_RepeatHintAudio_Text}"
                        HorizontalOptions="StartAndExpand" Grid.Row="7" Grid.Column="0" />
                 <Switch IsToggled="{Binding RepeatHintAudio, Mode=TwoWay}" HorizontalOptions="End"
@@ -129,8 +130,9 @@
                 </Switch>
 
                 <!-- Data -->
-                <Label Style="{DynamicResource TitleStyle}" Text="{helpers:Translate SettingsScreenView_Data_Title}"
-                       Grid.Row="12" Grid.Column="0" Margin="0,20,0,10" />
+                <Label Style="{DynamicResource Label}" Text="{helpers:Translate SettingsScreenView_Data_Title}"
+                       Grid.Row="12" Grid.Column="0" Margin="0,20,0,10"
+                       FontSize="Small" FontAttributes="Bold" Grid.ColumnSpan="2"/>
                 <Label Text="{helpers:Translate SettingsScreenView_WifiOnly_Text}" HorizontalOptions="StartAndExpand"
                        Grid.Row="13" Grid.Column="0" />
                 <Switch IsToggled="{Binding WifiOnly, Mode=TwoWay}" HorizontalOptions="End" VerticalOptions="Center"
@@ -150,13 +152,14 @@
                 </Switch>
 
                 <!-- Further Settings -->
-                <Label Style="{DynamicResource TitleStyle}"
+                <Label Style="{DynamicResource Label}"
                        Text="{helpers:Translate SettingsScreenView_FurtherSettings_Title}" Grid.Row="16"
-                       Grid.Column="0" Margin="0,20,0,10" />
+                       Grid.Column="0" Margin="0,20,0,10"
+                       FontSize="Small" FontAttributes="Bold" Grid.ColumnSpan="2"/>
                 <Label Grid.Row="17" Grid.Column="0" Text="{Binding AppModeText}" />
                 <Button Grid.Row="17" Grid.Column="1" Command="{Binding SelectCharacterCommand}"
                         Text="{helpers:Translate SettingsScreenView_CharacterSelection_Button_Text}"
-                        BackgroundColor="{StaticResource AccentColor}" TextColor="Black" />
+                        Style="{DynamicResource Button}" TextColor="Black"/>
                 <BoxView Grid.Row="18" Grid.Column="0" />
                 <Label Text="{helpers:Translate StorageTitle}" Grid.Row="19" Grid.Column="0" />
                 <Label Text="{Binding Size, Mode=OneWay}" Grid.Row="19" Grid.Column="1" HorizontalOptions="End"
@@ -165,7 +168,7 @@
                 <Label Text="{helpers:Translate SettingsScreenView_RemoveAllDownloads_Text}"
                        HorizontalOptions="StartAndExpand" Grid.Row="21" Grid.Column="0" />
                 <Button Text="{helpers:Translate SettingsScreenView_RemoveAllDownloadsButton_Text}"
-                        BackgroundColor="{StaticResource AccentColor}" TextColor="Black"
+                        Style="{DynamicResource Button}" TextColor="Black"
                         Command="{Binding RemoveAllDownloads}" HorizontalOptions="End" VerticalOptions="Center"
                         Grid.Row="21" Grid.Column="1" />
             </Grid>

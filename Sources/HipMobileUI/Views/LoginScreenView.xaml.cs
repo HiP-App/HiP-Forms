@@ -2,6 +2,9 @@ using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
 using System;
+using System.Collections.Generic;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Appearance;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -16,7 +19,20 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
         public LoginScreenView()
         {
             InitializeComponent();
+            UpdateTheme();
             deviceOrientation = DeviceOrientation.Undefined;
+        }
+
+        private void UpdateTheme()
+        {
+            if (Resources == null)
+                Resources = new ResourceDictionary();
+
+            // Collect all styleable properties from the .xaml-file
+            var styleProperties = new List<string> { "Label" };
+
+            var themeManager = IoCManager.Resolve<IThemeManager>();
+            themeManager.UpdateViewStyle(Resources, styleProperties);
         }
 
         private void Entry_TextChanged(object sender, TextChangedEventArgs e)

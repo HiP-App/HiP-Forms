@@ -34,26 +34,33 @@
             </Style>
             
             <!-- Define styles for the two exploration modes -->
-            <Style x:Key="BoxViewColorAdventurerMode" TargetType="BoxView">
+            <Style x:Key="BoxViewAdventurerMode" TargetType="BoxView">
                 <Setter Property="Color" Value="{StaticResource AccentColor}"/>
             </Style>
-            <Style x:Key="BoxViewColorProfessorMode" TargetType="BoxView">
+            <Style x:Key="BoxViewProfessorMode" TargetType="BoxView">
                 <Setter Property="Color" Value="{StaticResource PrimaryColor}"/>
             </Style>
-
-            <Style x:Key="TitleStyleAdventurerMode" TargetType="Label">
-                <Setter Property="FontSize" Value="Small" />
-                <Setter Property="TextColor" Value="{StaticResource PrimaryColor}" />
-                <Setter Property="FontAttributes" Value="Bold" />
-                <Setter Property="Grid.ColumnSpan" Value="2" />
+            
+            <Style x:Key="LabelAdventurerMode" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource PrimaryColor}"/>
             </Style>
-            <Style x:Key="TitleStyleProfessorMode" TargetType="Label">
-                <Setter Property="FontSize" Value="Small" />
-                <Setter Property="TextColor" Value="{StaticResource AccentColor}" />
-                <Setter Property="FontAttributes" Value="Bold" />
-                <Setter Property="Grid.ColumnSpan" Value="2" />
+            <Style x:Key="LabelProfessorMode" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource AccentColor}"/>
             </Style>
 
+            <Style x:Key="ButtonAdventurerMode" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{StaticResource PrimaryColor}"/>
+            </Style>
+            <Style x:Key="ButtonProfessorMode" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{StaticResource AccentColor}"/>
+            </Style>
+            
+            <Style x:Key="HtmlLinkAdventurerMode" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource PrimaryColor}"/>
+            </Style>
+            <Style x:Key="HtmlLinkProfessorMode" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource AccentColor}"/>
+            </Style>
 
             <converters1:ViewModelViewConverter x:Key="ViewModelViewConverter" />
             <converters1:ItemTappedConverter x:Key="ItemTappedConverter" />

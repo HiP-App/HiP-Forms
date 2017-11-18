@@ -12,13 +12,13 @@
                    Text="{Binding Password}" TextChanged="Entry_TextChanged" />
             <Label x:Name="ErrorMessageLabel" FontSize="Small" HorizontalOptions="Center" TextColor="Red"
                    Text="{Binding ErrorMessage, Mode=TwoWay}" />
-            <Label x:Name="RegisterLabel" FontSize="Small" HorizontalOptions="Center" TextColor="Blue"
+            <Label x:Name="RegisterLabel" FontSize="Small" HorizontalOptions="Center" Style="{DynamicResource Label}"
                    Text="{helpers:Translate LoginScreenView_Register}">
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding RegisterCommand}" />
                 </Label.GestureRecognizers>
             </Label>
-            <Label x:Name="ForgotPasswordLabel" FontSize="Small" HorizontalOptions="Center" TextColor="Blue"
+            <Label x:Name="ForgotPasswordLabel" FontSize="Small" HorizontalOptions="Center" Style="{DynamicResource Label}"
                    Text="{helpers:Translate LoginScreenView_Forgot_Password}">
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding ForgotPasswordCommand}" />

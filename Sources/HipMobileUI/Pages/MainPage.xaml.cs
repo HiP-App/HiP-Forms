@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System.Collections.Generic;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Appearance;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
@@ -39,18 +40,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
 
         private void UpdateTheme()
         {
-            var themeManager = IoCManager.Resolve<IThemeManager>();
             if (Resources == null)
-            {
-                Resources = new ResourceDictionary
-                {
-                    ["BoxViewColor"] = themeManager.GetThemedPropertyFor("BoxViewColor")
-                };
-            }
-            else
-            {
-                Resources.Add("BoxViewColor", themeManager.GetThemedPropertyFor("BoxViewColor"));
-            }
+                Resources = new ResourceDictionary();
+
+            // Collect all styleable properties from the .xaml-file
+            var styleProperties = new List<string> { "BoxView" };
+
+            var themeManager = IoCManager.Resolve<IThemeManager>();
+            themeManager.UpdateViewStyle(Resources, styleProperties);
         }
 
         protected override void OnBindingContextChanged()
