@@ -12,29 +12,30 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
+using System;
 using Xamarin.Forms;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
+namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers
 {
-    public class AchievementViewModel
+    public class InverseBooleanConverter : IValueConverter
     {
-        public IAchievement Achievement { get; }
-        public ImageSource Image { get; }
+        #region IValueConverter Members
 
-        private AchievementViewModel(IAchievement achievement, ImageSource image)
+        public object Convert(object value, Type targetType, object parameter,
+                              System.Globalization.CultureInfo culture)
         {
-            Achievement = achievement;
-            Image = image;
+            if (targetType != typeof(bool))
+                throw new InvalidOperationException("The target must be a boolean");
+
+            return !(bool) value;
         }
 
-        public static AchievementViewModel CreateFrom(IAchievement achievement)
+        public object ConvertBack(object value, Type targetType, object parameter,
+                                  System.Globalization.CultureInfo culture)
         {
-            var src = new StreamImageSource
-            {
-                Stream = token => achievement.LoadImage()
-            };
-            return new AchievementViewModel(achievement, src);
+            throw new NotSupportedException();
         }
+
+        #endregion
     }
 }

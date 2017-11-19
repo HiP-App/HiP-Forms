@@ -32,7 +32,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             Exhibit = exhibit;
             ExhibitName = Exhibit.Name;
             Distance = distance;
-            var data = Exhibit.Image.Data;
+            var data = Exhibit.Image.GetDataBlocking();
             Image = ImageSource.FromStream(() => new MemoryStream(data));
 
             IsDownloadButtonVisible = !Exhibit.DetailsDataLoaded;

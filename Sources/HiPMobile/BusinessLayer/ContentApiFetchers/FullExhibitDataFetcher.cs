@@ -139,7 +139,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
         private async Task ProcessPages(string exhibitId, CancellationToken token, IProgressListener listener)
         {
             await FetchMediaData(token, listener);
-            var fetchedMedia = mediaDataFetcher.CombineMediasAndFiles();
+            var fetchedMedia = await mediaDataFetcher.CombineMediasAndFiles();
 
             if (token.IsCancellationRequested)
             {

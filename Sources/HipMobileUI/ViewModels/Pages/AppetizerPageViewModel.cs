@@ -54,7 +54,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             if (pages.Count > 1 && Exhibit.DetailsDataLoaded)
                 NextViewAvailable = true;
             // workaround for realmbug
-            var imageData = appetizerPage.Image.Data;
+            var imageData = appetizerPage.Image.GetDataBlocking();
             Image = imageData != null ? ImageSource.FromStream(() => new MemoryStream(imageData)) : ImageSource.FromStream(() => new MemoryStream(BackupData.BackupImageData));
 
             IsDownloadButtonVisible = !Exhibit.DetailsDataLoaded;
