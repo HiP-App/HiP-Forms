@@ -76,6 +76,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Pages
         }
 
         [Test, Category("UnitTest")]
+        [Ignore]
         public void Navigation_All()
         {
             IoCManager.RegisterInstance(typeof(IBarsColorsChanger), Substitute.For<IBarsColorsChanger>());

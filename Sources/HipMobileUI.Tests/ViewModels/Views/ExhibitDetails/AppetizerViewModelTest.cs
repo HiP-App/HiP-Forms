@@ -36,7 +36,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Views
         {
             var sut = CreateSystemUnderTest();
 
-            Assert.AreEqual(sut.Headline, "ExhibitName");
+            Assert.AreEqual(sut.Headline, "Foo");
             Assert.AreEqual(sut.Text, "Foo");
         }
 
@@ -44,10 +44,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Views
 
         public AppetizerViewModel CreateSystemUnderTest()
         {
-            var appetizerPage = Substitute.For<AppetizerPage>();
-            appetizerPage.Text = "Foo";
-            appetizerPage.Image = CreateImage();
             var exhibit = Substitute.For<Exhibit>();
+            exhibit.Image = CreateImage ();
+            exhibit.Name = "Foo";
 
             return new AppetizerViewModel(exhibit);
         }
