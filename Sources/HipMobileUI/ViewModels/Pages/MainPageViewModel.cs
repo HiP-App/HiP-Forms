@@ -144,7 +144,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         {
             get => selectedViewModel;
             set
-
             {
                 var oldViewModel = SelectedViewModel;
                 if (SetProperty(ref (selectedViewModel), value))
