@@ -301,6 +301,7 @@
     <Compile Include="CustomRenderers\DroidTouchEventSlider.cs" />
     <Compile Include="CustomRenderers\FloatingActionButtonAndroidRenderer.cs" />
     <Compile Include="CustomRenderers\DroidReferenceLinkRenderer.cs" />
+    <Compile Include="CustomRenderers\ZeroPaddingRenderer.cs" />
     <Compile Include="Effects\DroidProgressBarColorEffect.cs" />
     <Compile Include="CustomRenderers\AndroidCustomFontLabelRenderer.cs" />
     <Compile Include="Effects\DroidSwitchColorEffect.cs" />
