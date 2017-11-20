@@ -235,6 +235,14 @@
       <DependentUpon>AchievementsScreenView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\Views\AchievementsScreenViewModel.cs" />
+    <Compile Include="Views\AchievementsDetailsRouteView.xaml.cs">
+      <DependentUpon>AchievementsDetailsRouteView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\Views\AchievementsDetailsRouteViewModel.cs" />
+    <Compile Include="Views\AchievementsDetailsExhibitView.xaml.cs">
+      <DependentUpon>AchievementsDetailsExhibitView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\Views\AchievementsDetailsExhibitViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="App.xaml">
@@ -250,6 +258,14 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\AchievementsScreenView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\AchievementsDetailsRouteView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\AchievementsDetailsExhibitView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
