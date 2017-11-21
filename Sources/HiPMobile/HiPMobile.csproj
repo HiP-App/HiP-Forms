@@ -85,6 +85,7 @@
     <Compile Include="BusinessLayer\DtoToModelConverters\MediaToImageConverter.cs" />
     <Compile Include="BusinessLayer\DtoToModelConverters\PageConverter.cs" />
     <Compile Include="BusinessLayer\Managers\AchievementManager.cs" />
+    <Compile Include="BusinessLayer\Managers\UserRatingManager.cs" />
     <Compile Include="BusinessLayer\Models\ModelClasses\ExhibitsVisitedAchievement.cs" />
     <Compile Include="BusinessLayer\Models\ModelClasses\IAchievement.cs" />
     <Compile Include="BusinessLayer\Models\ModelClasses\RouteFinishedAchievement.cs" />

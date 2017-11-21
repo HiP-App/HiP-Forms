@@ -23,6 +23,8 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiA
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
+using System.Net.Http;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.AuthenticationApiAccess;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses {
     public class UserRatingApiAccess : IUserRatingApiAccess {
@@ -40,7 +42,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
             return JsonConvert.DeserializeObject<UserRatingDto>(json);
         }
 
-        public async Task<bool> SendUserRating(Exhibit exhibit, int rating) {
+        public async Task<bool> SendUserRating() { //Exhibit exhibit, int rating, IContentApiClient clientApiClient) {
+            string url = "/Exhibits/Rating/0?Rating=5";
+
+        
+
+            var result = await contentApiClient.PostRequestBody(url, "");
+
+            string jsonPayload = await result.Content.ReadAsStringAsync();
+
             return true;
         }
 

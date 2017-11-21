@@ -89,7 +89,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
         }
 
         private async void SetUserRating() {
-            UserRating userRating = await new UserRatingFetcher().FetchUserRating(exhibit);
+            UserRating userRating = await UserRatingManager.GetInstance().GetUserRating(exhibit);
             string stars = "";
             for (int i = 1; i <= 5; i++) {
                 if (userRating.Average >= i)

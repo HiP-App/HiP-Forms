@@ -13,6 +13,7 @@
 // limitations under the License.
 
 
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using System;
 using System.Diagnostics;
@@ -85,7 +86,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
 
         private void SendRating() {
             if (rating != 0) {
-
+                UserRatingManager.GetInstance().SetUserRating();
             } else {
 
             }
