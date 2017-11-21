@@ -31,6 +31,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Appearance
     public class ThemeManager : IThemeManager
     {
         private readonly ApplicationResourcesProvider resourceProvider = IoCManager.Resolve<ApplicationResourcesProvider>();
+        private readonly IBarsColorsChanger barsColorsChanger = IoCManager.Resolve<IBarsColorsChanger>();
         private string modeSuffix;
 
         public void AdjustTopBarTheme()
@@ -65,12 +66,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Appearance
 
         private void ChangeToAdventurerTheme()
         {
-            IoCManager.Resolve<IBarsColorsChanger>().ChangeToolbarColor(GetResourceColor("AccentDarkColor"), GetResourceColor("AccentColor"));
+            barsColorsChanger.ChangeToolbarColor(GetResourceColor("AccentDarkColor"), GetResourceColor("AccentColor"));
         }
 
         private void ChangeToProfessorTheme()
         {
-            IoCManager.Resolve<IBarsColorsChanger>().ChangeToolbarColor(GetResourceColor("PrimaryDarkColor"), GetResourceColor("PrimaryColor"));
+            barsColorsChanger.ChangeToolbarColor(GetResourceColor("PrimaryDarkColor"), GetResourceColor("PrimaryColor"));
         }
 
         private Color GetResourceColor(string color)
