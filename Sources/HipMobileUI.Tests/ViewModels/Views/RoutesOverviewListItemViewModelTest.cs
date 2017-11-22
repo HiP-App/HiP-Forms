@@ -18,6 +18,7 @@ using NSubstitute;
 using NUnit.Framework;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Views
@@ -25,6 +26,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Views
     [TestFixture]
     public class RoutesOverviewListItemViewModelTest
     {
+        [TestFixtureSetUp]
+        public void Init ()
+        {
+            IoCManager.RegisterInstance (typeof (IMediaFileManager), Substitute.For<IMediaFileManager> ());
+            IoCManager.RegisterInstance (typeof (INavigationService), Substitute.For<INavigationService> ());
+        }
+
         [Test, Category("UnitTest")]
         public void GetRouteDistanceText_FormatedText()
         {
