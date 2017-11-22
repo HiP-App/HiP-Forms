@@ -32,11 +32,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Views
         [TestFixtureSetUp]
         public void Init ()
         {
-            IoCManager.Clear ();
-            IoCManager.RegisterInstance (typeof (IMediaFileManager), Substitute.For<IMediaFileManager> ());
-            IoCManager.RegisterInstance (typeof (INavigationService), Substitute.For<INavigationService> ());
-            IoCManager.RegisterInstance (typeof (IDbChangedHandler), Substitute.For<IDbChangedHandler> ());
-        }
+            IoCManager.Clear();
+            IoCManager.RegisterInstance(typeof(IMediaFileManager), Substitute.For<IMediaFileManager>());
+            IoCManager.RegisterInstance(typeof(INavigationService), Substitute.For<INavigationService>());
+            IoCManager.RegisterInstance(typeof(IDbChangedHandler), Substitute.For<IDbChangedHandler>());
+            }
 
         [Test, Category("UnitTest")]
         public void Creation_PropertiesFilled()

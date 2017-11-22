@@ -29,10 +29,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Views
         [TestFixtureSetUp]
         public void Init ()
         {
-            IoCManager.Clear ();
-            IoCManager.RegisterInstance (typeof (IMediaFileManager), Substitute.For<IMediaFileManager> ());
-            IoCManager.RegisterInstance (typeof (INavigationService), Substitute.For<INavigationService> ());
-        }
+            IoCManager.Clear();
+            IoCManager.RegisterInstance(typeof(IMediaFileManager), Substitute.For<IMediaFileManager>());
+            IoCManager.RegisterInstance(typeof(INavigationService), Substitute.For<INavigationService>());
+            }
 
         [Test, Category("UnitTest")]
         public void GetRouteDistanceText_FormatedText()
