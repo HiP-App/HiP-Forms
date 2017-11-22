@@ -29,10 +29,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.BusinessLayer.DtoT
     {
         [TestFixtureSetUp]
         public void Init ()
-            {
+        {
+            IoCManager.Clear ();
             IoCManager.RegisterInstance (typeof (IImageDimension), Substitute.For<IImageDimension> ());
             IoCManager.RegisterInstance (typeof (IMediaFileManager), Substitute.For<IMediaFileManager> ());
-            }
+        }
 
         [Test, Category("UnitTest")]
         public void Convert_MediaToImageTest()
