@@ -67,31 +67,30 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             {
                 return;
             }
-            await dataToRemoveFetcher.FetchDataToDelete(token);
-            if (token.IsCancellationRequested)
-            {
-                return;
-            }
 
             using (var transaction = DbManager.StartTransaction())
             {
-                exhibitsBaseDataFetcher.ProcessExhibits(listener);
+                await exhibitsBaseDataFetcher.ProcessExhibits(listener);
                 if (token.IsCancellationRequested)
                 {
                     transaction.Rollback();
                     return;
                 }
-                routesBaseDataFetcher.ProcessRoutes(listener);
+                await routesBaseDataFetcher.ProcessRoutes(listener);
                 if (token.IsCancellationRequested)
                 {
                     transaction.Rollback();
                     return;
                 }
+                if (token.IsCancellationRequested)
+                {
+                    transaction.Rollback();
+                }
+            }
+            await dataToRemoveFetcher.FetchDataToDelete(token);
+            using (DbManager.StartTransaction())
+            {
                 dataToRemoveFetcher.CleaupRemovedData();
-                if (token.IsCancellationRequested)
-                {
-                    transaction.Rollback();
-                }
             }
         }
     }

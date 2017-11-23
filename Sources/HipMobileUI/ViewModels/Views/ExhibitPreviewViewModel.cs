@@ -1,16 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
+﻿// Copyright (C) 2017 History in Paderborn App - Universität Paderborn
+//  
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//  
+//      http://www.apache.org/licenses/LICENSE-2.0
+//  
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Location;
-using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
 
@@ -22,7 +28,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         {
             this.exhibit = exhibit;
             Question = Strings.ExhibitOrRouteNearby_Question_Part1 + " \"" + this.exhibit.Name + "\" " + Strings.ExhibitOrRouteNearby_Question_Part2;
-            var data = exhibit.Image.Data;
+            var data = exhibit.Image.GetDataBlocking();
             Image = ImageSource.FromStream(() => new MemoryStream(data));
 
             Confirm = new Command(Accept);
@@ -45,14 +51,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         void Accept()
         {
             MessagingCenter.Send<NavigationViewModel, bool>(this, "ReturnValue", true);
-            IoCManager.Resolve<INavigationService>().ClearModalStack();
-            IoCManager.Resolve<INavigationService>().PushAsync(new ExhibitDetailsViewModel(exhibit.Id));
+            Navigation.ClearModalStack();
+            Navigation.PushAsync(new AppetizerPageViewModel(exhibit));
             exhibitManager.InvokeExhibitVistedEvent(exhibit);
         }
 
         void Deny()
         {
-            IoCManager.Resolve<INavigationService>().PopModalAsync();
+            Navigation.PopModalAsync();
         }
     }
 }

@@ -16,13 +16,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.Practices.ObjectBuilder2;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses.Contracts;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos;
-using Realms;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers
 {
@@ -33,6 +32,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
         private readonly IPagesApiAccess pagesApiAccess;
         private readonly IMediasApiAccess mediasApiAccess;
         private readonly ITagsApiAccess tagsApiAccess;
+        private const int DefaultImageId = -2;
 
         public DataToRemoveFetcher(IExhibitsApiAccess exhibitsApiAccess, IRoutesApiAccess routesApiAccess, IPagesApiAccess pagesApiAccess, IMediasApiAccess mediasApiAccess,
                                    ITagsApiAccess tagsApiAccess)
@@ -131,13 +131,16 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             {
                 DbManager.DeleteBusinessEntity(tag);
             }
+            var fileManager = IoCManager.Resolve<IMediaFileManager>();
             foreach (var image in deletedImages)
             {
                 DbManager.DeleteBusinessEntity(image);
+                fileManager.DeleteFile(image.DataPath);
             }
             foreach (var audio in deletedAudios)
             {
                 DbManager.DeleteBusinessEntity(audio);
+                fileManager.DeleteFile(audio.DataPath);
             }
             foreach (var page in deletedPages)
             {
@@ -168,7 +171,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                 {
                     deletedTags.Add(tag);
                 }
-                if (tag.Image != null && !allMedias.Contains(tag.Image.IdForRestApi))
+                if (tag.Image != null && !allMedias.Contains(tag.Image.IdForRestApi) && tag.Image.IdForRestApi != DefaultImageId)
                 {
                     deletedImages.Add(tag.Image);
                     tag.Image = null;

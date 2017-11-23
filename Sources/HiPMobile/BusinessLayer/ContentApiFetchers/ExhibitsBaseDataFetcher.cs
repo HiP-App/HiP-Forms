@@ -99,9 +99,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
 
         private FetchedMediaData fetchedMedia;
 
-        public void ProcessExhibits(IProgressListener listener)
+        public async Task ProcessExhibits(IProgressListener listener)
         {
-            fetchedMedia = mediaDataFetcher.CombineMediasAndFiles();
+            fetchedMedia = await mediaDataFetcher.CombineMediasAndFiles();
 
             ProcessUpdatedExhibits(listener);
             ProcessNewExhibits(listener);
@@ -163,6 +163,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                 if (image != null)
                 {
                     dbExhibit.Image = image;
+                }
+                else
+                {
+                    dbExhibit.Image = BackupData.BackupImage;
                 }
             }
             else

@@ -13,6 +13,7 @@
 // limitations under the License.
 
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using NSubstitute;
 using NUnit.Framework;
@@ -89,8 +90,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Views
 
             exhibit.Location = CreateGeoLocation(latitude, longitude);
 
-            var pages = new List<Page> { CreateAppetizerPage() };
+            var pages = new List<Page> { CreateImagePage() };
             exhibit.Pages.Returns(pages);
+
+            var appetizerPage = CreateAppetizerPage();
+            exhibit.AppetizerPage.Returns(appetizerPage);
 
             return exhibit;
         }
@@ -103,18 +107,27 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Views
             return geolocation;
         }
 
-        private Page CreateAppetizerPage()
+        private AppetizerPage CreateAppetizerPage()
+        {
+            var appetizerPage = Substitute.For<AppetizerPage>();
+            appetizerPage.Text = "Foo";
+            appetizerPage.Image = CreateImage();
+            return appetizerPage;
+        }
+
+        private Page CreateImagePage()
         {
             var page = Substitute.For<Page>();
-            page.AppetizerPage = Substitute.For<AppetizerPage>();
-            page.AppetizerPage.Image = CreateImage();
+            page.ImagePage = Substitute.For<ImagePage>();
+            page.ImagePage.Image = CreateImage();
             return page;
         }
 
         private Image CreateImage()
         {
             var image = Substitute.For<Image>();
-            image.Data = new byte[] { 1, 2, 3, 4 };
+            image.GetDataAsync().ReturnsForAnyArgs(Task.FromResult(new byte[] { 1, 2, 3, 4 }));
+            image.GetDataBlocking().ReturnsForAnyArgs(new byte[] { 1, 2, 3, 4 });
             return image;
         }
 

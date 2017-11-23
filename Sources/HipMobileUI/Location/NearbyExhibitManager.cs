@@ -14,6 +14,8 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
@@ -22,6 +24,8 @@ using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses.Contracts;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.NotificationPlayer;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 
@@ -84,7 +88,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Location
                     if (appMinimized)
                     {
                         var notificationPlayer = IoCManager.Resolve<INotificationPlayer>();
-                        notificationPlayer.DisplayExhibitNearbyNotification(e.Name, Strings.ExhibitNearby_VisitRequest, e.Image.Data);
+                        notificationPlayer.DisplayExhibitNearbyNotification(e.Name, Strings.ExhibitNearby_VisitRequest, await e.Image.GetDataAsync());
                     }
                     else
                     {
@@ -95,6 +99,23 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Location
                     }
                 }
             }
+            
+            await PostVisitedExhibitsToApi();
+        }
+
+        /// <summary>
+        /// Check which exhibits are unlocked and mark them as visited
+        /// in the API.
+        /// </summary>
+        /// <returns></returns>
+        public static async Task PostVisitedExhibitsToApi()
+        {
+            var exhibits = IoCManager.Resolve<IDataAccess>()
+                                     .GetItems<ExhibitSet>()
+                                     .SelectMany(set => set.ActiveSet);
+            var visitedExhibitIds = exhibits.Where(e => e.Unlocked).Select(e => e.IdForRestApi).ToList();
+            var action = new ExhibitsVisitedActionDto(visitedExhibitIds);
+            await IoCManager.Resolve<IAchievementsApiAccess>().PostExhibitVisited(action);
         }
 
         public void InvokeExhibitVistedEvent(Exhibit exhibit)

@@ -86,10 +86,13 @@
     <Compile Include="BusinessLayer\Models\ModelClasses\ExhibitsVisitedAchievement.cs" />
     <Compile Include="BusinessLayer\Models\ModelClasses\IAchievement.cs" />
     <Compile Include="BusinessLayer\Models\ModelClasses\RouteFinishedAchievement.cs" />
+    <Compile Include="BusinessLayer\Models\ModelExtensions\Audio.cs" />
+    <Compile Include="BusinessLayer\Models\ModelExtensions\Caching.cs" />
     <Compile Include="BusinessLayer\Models\ModelExtensions\IAchievement.cs" />
     <Compile Include="BusinessLayer\Models\User\User.cs" />
     <Compile Include="BusinessLayer\UserManagement\UserManager.cs" />
     <Compile Include="BusinessLayer\Models\User\UserStatus.cs" />
+    <Compile Include="Common\Contracts\IMediaFileManager.cs" />
     <Compile Include="Common\Contracts\IStorageSizeProvider.cs" />
     <Compile Include="BusinessLayer\InteractiveSources\ConsecutiveNumberAndConstantInteractiveSourceSubstitute.cs" />
     <Compile Include="BusinessLayer\InteractiveSources\ConsecutiveNumberInteractiveSourceSubstitute.cs" />
@@ -127,6 +130,7 @@
     <Compile Include="ServiceAccessLayer\ContentApiAccesses\Contracts\IPagesApiAccess.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiAccesses\Contracts\IExhibitsApiAccess.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiDtos\AchievementDto.cs" />
+    <Compile Include="ServiceAccessLayer\ContentApiDtos\ExhibitsVisitedActionDto.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiDtos\FileDto.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiDtos\MediaTypeDto.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiDtos\PageImageDto.cs" />

@@ -14,6 +14,7 @@
 
 using System.Collections.Generic;
 using System.Threading;
+using System.Threading.Tasks;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using NSubstitute;
 using NUnit.Framework;
@@ -76,14 +77,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Pages
         }
 
         [Test, Category("UnitTest")]
-        [Ignore]
         public void Navigation_All()
         {
             IoCManager.RegisterInstance(typeof(IBarsColorsChanger), Substitute.For<IBarsColorsChanger>());
             var sut = CreateSystemUnderTest();
 
             // forwards navigation
-            int navigations = 0;
+            var navigations = 0;
             while (sut.NextViewAvailable)
             {
                 sut.NextViewCommand.Execute(null);
@@ -119,11 +119,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Pages
             IoCManager.RegisterInstance(typeof(IBarsColorsChanger), Substitute.For<IBarsColorsChanger>());
             var sut = CreateSystemUnderTest();
 
-            Assert.IsInstanceOf<AppetizerViewModel>(sut.SelectedView);
-            sut.NextViewCommand.Execute(null);
             Assert.IsInstanceOf<ImageViewModel>(sut.SelectedView);
             sut.NextViewCommand.Execute(null);
             Assert.IsInstanceOf<TimeSliderViewModel>(sut.SelectedView);
+            sut.NextViewCommand.Execute(null);
+            Assert.IsInstanceOf<ImageViewModel>(sut.SelectedView);
         }
 
         [Test, Category("UnitTest")]
@@ -171,7 +171,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Pages
         public ExhibitDetailsViewModel CreateSystemUnderTest()
         {
             var exhibit = Substitute.For<Exhibit>();
-            var pages = new List<Page> { CreateImagePage(), CreateTimeSliderPage() };
+            var pages = new List<Page> { CreateAppetizerPage(), CreateImagePage(), CreateTimeSliderPage(), CreateImagePage() };
             exhibit.Pages.Returns(pages);
 
             exhibit.Unlocked = true;
@@ -204,7 +204,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Pages
         private Image CreateImage()
         {
             var image = Substitute.For<Image>();
-            image.Data = new byte[] { 1, 2, 3, 4 };
+            image.GetDataAsync().ReturnsForAnyArgs(Task.FromResult(new byte[] { 1, 2, 3, 4 }));
+            image.GetDataBlocking().ReturnsForAnyArgs(new byte[] { 1, 2, 3, 4 });
             return image;
         }
 

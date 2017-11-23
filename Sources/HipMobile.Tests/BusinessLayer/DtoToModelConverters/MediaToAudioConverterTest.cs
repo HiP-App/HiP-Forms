@@ -16,8 +16,11 @@ using System;
 using NSubstitute;
 using NUnit.Core;
 using NUnit.Framework;
+using PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.Common.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelConverters;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.BusinessLayer.DtoToModelConverters
@@ -55,6 +58,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.BusinessLayer.DtoT
 
         private MediaToAudioConverter CreateSystemUnderTest()
         {
+            IoCManager.RegisterInstance(typeof(IMediaFileManager), new DummyMediaFileManager());
             return new MediaToAudioConverter();
         }
 

@@ -30,6 +30,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer
         
         public const string AchievementsApiPath = "https://docker-hip.cs.uni-paderborn.de/public/achievements/api";
 
+        public const string ThumbnailApiPath = "https://docker-hip.cs.upb.de/public/thumbnailservice/api/Thumbnails";
+        
         public const string DataStoreTokenUrl = "https://hip.eu.auth0.com/oauth/token";
     }
 }

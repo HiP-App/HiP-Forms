@@ -126,56 +126,59 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
         private IBaseDataFetcher baseDataFetcher;
 
-        public void Load()
+        public async void Load()
         {
-            Task.Factory.StartNew(async () =>
+            try
+            {
+                InitIoCContainer();
+                await BackupData.Init();
+
+                baseDataFetcher = IoCManager.Resolve<IBaseDataFetcher>();
+
+                var networkAccessStatus = IoCManager.Resolve<INetworkAccessChecker>().GetNetworkAccessStatus();
+
+                if (networkAccessStatus != NetworkAccessStatus.NoAccess)
                 {
-                    try
-                    {
-                        InitIoCContainer();
-                        baseDataFetcher = IoCManager.Resolve<IBaseDataFetcher>();
-
-                        var networkAccessStatus = IoCManager.Resolve<INetworkAccessChecker>().GetNetworkAccessStatus();
-
-                        if (networkAccessStatus != NetworkAccessStatus.NoAccess)
-                        {
-                            await CheckForUpdatedDatabase();
-                        }
-                        else
-                        {
-                            errorTitle = Strings.LoadingPageViewModel_BaseData_DownloadFailed_Title;
-                            errorMessage = Strings.LoadingPageViewModel_BaseData_DatabaseUpToDateCheckFailed;
-                        }
-
-                        if (!isDatabaseUpToDate)
-                        {
-                            if (networkAccessStatus == NetworkAccessStatus.MobileAccess && Settings.WifiOnly)
-                            {
-                                actionOnUiThread = AskUserDownloadDataViaMobile;
-                                // if the app is not sleeping ask the user whether to download via mobile otherwise wait for wake up
-                                if (!isSleeping)
-                                {
-                                    Device.BeginInvokeOnMainThread(actionOnUiThread);
-                                }
-                                return;
-                            }
-                            else
-                            {
-                                await UpdateDatabase();
-                            }
-                        }
-                    }
-                    catch (Exception e)
-                    {
-                        // Catch all exceptions happening on startup cause otherwise the loading page will be shown indefinitely 
-                        // This should only happen during development
-                        errorMessage = e.Message;
-                        errorTitle = "Error";
-                    }
-
-                    LoadCacheAndStart();
+                    await CheckForUpdatedDatabase();
                 }
-            );
+                else
+                {
+                    errorTitle = Strings.LoadingPageViewModel_BaseData_DownloadFailed_Title;
+                    errorMessage = Strings.LoadingPageViewModel_BaseData_DatabaseUpToDateCheckFailed;
+                }
+
+                if (!isDatabaseUpToDate)
+                {
+                    if (networkAccessStatus == NetworkAccessStatus.MobileAccess && Settings.WifiOnly)
+                    {
+                        actionOnUiThread = AskUserDownloadDataViaMobile;
+                        // if the app is not sleeping ask the user whether to download via mobile otherwise wait for wake up
+                        if (!isSleeping)
+                        {
+                            Device.BeginInvokeOnMainThread(actionOnUiThread);
+                        }
+                        return;
+                    }
+                    else
+                    {
+                        await UpdateDatabase();
+                    }
+                }
+#pragma warning disable 4014
+                Task.Run(NearbyExhibitManager.PostVisitedExhibitsToApi);
+#pragma warning restore 4014
+            }
+            catch (Exception e)
+            {
+                // Catch all exceptions happening on startup cause otherwise the loading page will be shown indefinitely 
+                // This should only happen during development
+                errorMessage = e.Message;
+                errorTitle = "Error";
+                Debug.WriteLine(e.Message);
+                Debug.WriteLine(e.StackTrace);
+            }
+
+            LoadCacheAndStart();
         }
 
         private async void AskUserDownloadDataViaMobile()
@@ -289,6 +292,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
             //init serviceaccesslayer
             IoCManager.RegisterInstance(typeof(IContentApiClient), new ContentApiClient());
+            IoCManager.RegisterInstance(typeof(IAchievementsApiAccess), new AchievementsApiAccess(new ContentApiClient(ServerEndpoints.AchievementsApiPath)));
             IoCManager.RegisterType<IExhibitsApiAccess, ExhibitsApiAccess>();
             IoCManager.RegisterType<IMediasApiAccess, MediasApiAccess>();
             IoCManager.RegisterType<IFileApiAccess, FileApiAccess>();
@@ -313,7 +317,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             IoCManager.RegisterType<IRoutesBaseDataFetcher, RoutesBaseDataFetcher>();
             IoCManager.RegisterType<IBaseDataFetcher, BaseDataFetcher>();
             IoCManager.RegisterType<IFullRouteDataFetcher, FullRouteDataFetcher>();
-
+            IoCManager.RegisterType<IAchievementFetcher, AchievementFetcher>();
+            
             IoCManager.RegisterInstance(typeof(INearbyExhibitManager), new NearbyExhibitManager());
             IoCManager.RegisterInstance(typeof(INearbyRouteManager), new NearbyRouteManager());
 
