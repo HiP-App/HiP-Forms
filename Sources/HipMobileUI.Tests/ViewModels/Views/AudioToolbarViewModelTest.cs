@@ -16,7 +16,9 @@ using System;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using NSubstitute;
 using NUnit.Framework;
+using PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.Common.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.AudioPlayer;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
@@ -123,6 +125,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Views
             var audioPlayer = Substitute.For<IAudioPlayer>();
             IoCManager.RegisterInstance(typeof(INavigationService), Substitute.For<INavigationService>());
             IoCManager.RegisterInstance(typeof(IAudioPlayer), audioPlayer);
+            IoCManager.RegisterInstance(typeof(IMediaFileManager), new DummyMediaFileManager());
             audioPlayer.MaximumProgress.Returns(42);
 
             var audio = Substitute.For<Audio>();

@@ -46,6 +46,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
         protected override void OnCreate(Bundle bundle)
         {
             IoCManager.RegisterType<IImageDimension, AndroidImageDimensions>();
+            IoCManager.RegisterType<IMediaFileManager, AndroidMediaFileManager>();
 
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
