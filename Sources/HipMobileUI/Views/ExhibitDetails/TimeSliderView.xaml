@@ -36,8 +36,8 @@
                                 <RowDefinition Height="0.1*" />
                             </Grid.RowDefinitions>
                             <controls1:FadeoverImageView Images="{Binding Images}"
-                                                 SelectedValue="{Binding Source={x:Reference Slider}, Path=SelectedValue}"
-                                                 VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                                                         SelectedValue="{Binding Source={x:Reference Slider}, Path=SelectedValue}"
+                                                         VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
                                 <controls1:FadeoverImageView.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding ToggleButtonVisibility}" />
                                 </controls1:FadeoverImageView.GestureRecognizers>
@@ -50,10 +50,10 @@
                                 </Label>
                             </ScrollView>
                             <controls1:TimeSlider x:Name="Slider" Grid.Row="2" HorizontalOptions="FillAndExpand"
-                                          VerticalOptions="Center" HeightRequest="80" Images="{Binding Images}"
-                                          Texts="{Binding Years}" ItemWidth="100" SafezoneFraction="0.3"
-                                          FadezoneFraction="0.7" SeparatorColor="{StaticResource AccentColor}"
-                                          SelectedValue="{Binding SelectedValue, Mode=OneWayToSource}" />
+                                                  VerticalOptions="Center" HeightRequest="80" Images="{Binding Images}"
+                                                  Texts="{Binding Years}" ItemWidth="100" SafezoneFraction="0.3"
+                                                  FadezoneFraction="0.7" SeparatorColor="{StaticResource AccentColor}"
+                                                  SelectedValue="{Binding SelectedValue, Mode=OneWayToSource}" />
                         </Grid>
                     </views1:BottomSheetView.MainContent>
                     <views1:BottomSheetView.BottomSheet>

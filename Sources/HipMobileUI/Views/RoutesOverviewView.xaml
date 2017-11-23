@@ -15,6 +15,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 -->
+
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Views.RoutesOverviewView"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -37,16 +38,16 @@
                         <RowDefinition Height="0*" />
                     </Grid.RowDefinitions>
                     <ListView x:Name="List" Grid.Row="0" SeparatorVisibility="None" HasUnevenRows="True"
-                      ItemsSource="{Binding Routes}">
+                              ItemsSource="{Binding Routes}">
                         <ListView.Behaviors>
                             <behaviors:ListViewTappedItemBehavior Command="{Binding ItemSelectedCommand}"
-                                                          Converter="{StaticResource ItemTappedConverter}" />
+                                                                  Converter="{StaticResource ItemTappedConverter}" />
                         </ListView.Behaviors>
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
                                     <StackLayout Orientation="Horizontal" Padding="5,5,5,10"
-                                         d:DataContext="{d:DesignInstance views:RoutesOverviewListItemViewModel}">
+                                                 d:DataContext="{d:DesignInstance views:RoutesOverviewListItemViewModel}">
                                         <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
                                             <Label Text="{Binding RouteTitle}" TextColor="Black" FontSize="18" />
                                             <Label Text="{Binding RouteDescription}" TextColor="Black" />
@@ -63,27 +64,27 @@
                                                     </StackLayout>
                                                     <StackLayout Orientation="Horizontal">
                                                         <Label Text="{helpers:Translate RoutesOverviewView_Tags}"
-                                                       VerticalOptions="Center" />
+                                                               VerticalOptions="Center" />
                                                         <container1:BindableChildrenStackLayout
-                                                    ChildElements="{Binding Tags, Converter= {StaticResource ImageListConverter}}"
-                                                    Orientation="Horizontal" />
+                                                            ChildElements="{Binding Tags, Converter= {StaticResource ImageListConverter}}"
+                                                            Orientation="Horizontal" />
                                                     </StackLayout>
                                                 </StackLayout>
                                             </StackLayout>
                                         </StackLayout>
                                         <Button BorderRadius="2" BackgroundColor="{StaticResource MediumGrayColor}"
-                                        WidthRequest="40" Image="ic_file_download.png"
-                                        IsVisible="{Binding IsDownloadPanelVisible}"
-                                        Command="{Binding DownloadCommand}" />
+                                                WidthRequest="40" Image="ic_file_download.png"
+                                                IsVisible="{Binding IsDownloadPanelVisible}"
+                                                Command="{Binding DownloadCommand}" />
                                     </StackLayout>
                                 </ViewCell>
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
                     <Label x:Name="Label" Grid.Row="1" Text="{helpers:Translate RoutesOverviewView_EmptyList}"
-                   IsVisible="{Binding Routes, Converter={StaticResource EmptyListConverter}}"
-                   TextColor="Gray" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="16"
-                   Margin="5" />
+                           IsVisible="{Binding Routes, Converter={StaticResource EmptyListConverter}}"
+                           TextColor="Gray" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="16"
+                           Margin="5" />
                 </Grid>
             </views1:NotificationExtensionView.ContentTemplate>
         </views1:NotificationExtensionView>

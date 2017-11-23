@@ -26,18 +26,17 @@
                 <views1:BottomSheetView BottomSheetVisible="{Binding BottomSheetVisible}">
                     <views1:BottomSheetView.MainContent >
                         <RelativeLayout HorizontalOptions="Fill" BackgroundColor="White" >
-                            <ScrollView
-                        RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.9}"
-                        RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}">
+                            <ScrollView RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.9}"
+                                        RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}">
                                 <StackLayout>
                                     <StackLayout.GestureRecognizers>
                                         <TapGestureRecognizer Command="{Binding ToggleButtonVisibility}" />
                                     </StackLayout.GestureRecognizers>
                                     <controls1:CustomFontLabel Text="{Binding Text}"
-                                                       FontFamilyName="{Binding FontFamily}"
-                                                       HorizontalOptions="Center"
-                                                       FontSize="16"
-                                                       Margin="0,0,0,30" />
+                                                               FontFamilyName="{Binding FontFamily}"
+                                                               HorizontalOptions="Center"
+                                                               FontSize="16"
+                                                               Margin="0,0,0,30" />
                                 </StackLayout>
                             </ScrollView>
                         </RelativeLayout>

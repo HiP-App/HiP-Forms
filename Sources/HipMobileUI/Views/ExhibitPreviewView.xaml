@@ -36,22 +36,22 @@
                     </Grid.RowDefinitions>
 
                     <Image x:Name="ImageView" Grid.Row="0" Source="{Binding Image}" Aspect="AspectFill"
-                   BackgroundColor="{StaticResource LightGrayColor}" Margin="0" VerticalOptions="Fill"
-                   HorizontalOptions="Fill" />
+                           BackgroundColor="{StaticResource LightGrayColor}" Margin="0"
+                           VerticalOptions="Fill" HorizontalOptions="Fill" />
 
-                    <StackLayout x:Name="QuestionView" Grid.Row="2" Padding="10,0" HorizontalOptions="CenterAndExpand"
-                         VerticalOptions="CenterAndExpand">
+                    <StackLayout x:Name="QuestionView" Grid.Row="2" Padding="10,0"
+                                 HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
                         <Label Text="{Binding Question}" FontSize="Medium" HorizontalTextAlignment="Start" />
                     </StackLayout>
 
                     <StackLayout x:Name="ButtonView" Grid.Row="2" Orientation="Vertical" VerticalOptions="End" Padding="0">
                         <BoxView HeightRequest="1" Color="{StaticResource DarkGrayColor}" />
                         <StackLayout Orientation="Horizontal" Padding="12,0,0,0"
-                             BackgroundColor="{StaticResource LightGrayColor}" VerticalOptions="End">
+                                     BackgroundColor="{StaticResource LightGrayColor}" VerticalOptions="End">
                             <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
                                 <Label Text="{helpers:Translate ExhibitOrRouteNearby_Confirm}" FontSize="20"
-                               TextColor="{StaticResource AccentColor}"
-                               HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
+                                       TextColor="{StaticResource AccentColor}"
+                                       HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
                                 <StackLayout.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding Confirm}" />
                                 </StackLayout.GestureRecognizers>
@@ -59,8 +59,8 @@
                             <BoxView WidthRequest="2" Color="{StaticResource DarkGrayColor}" />
                             <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
                                 <Label Text="{helpers:Translate ExhibitOrRouteNearby_Reject}" FontSize="20"
-                               TextColor="{StaticResource AccentColor}"
-                               HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
+                                       TextColor="{StaticResource AccentColor}"
+                                       HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
                                 <StackLayout.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding Decline}" />
                                 </StackLayout.GestureRecognizers>

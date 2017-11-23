@@ -1,5 +1,21 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 
+<!--
+// Copyright (C) 2017 History in Paderborn App - Universität Paderborn
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+-->
+
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:views="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Views;assembly=HipMobileUI"
@@ -8,7 +24,7 @@
         <views:NotificationExtensionView>
             <views:NotificationExtensionView.ContentTemplate>
                 <ListView x:Name="LeaderboardListView" ItemsSource="{Binding Leaderboard}"
-                  SelectedItem="{Binding OwnRanking, Mode=TwoWay}" RowHeight="50">
+                          SelectedItem="{Binding OwnRanking, Mode=TwoWay}" RowHeight="50">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
@@ -23,13 +39,13 @@
                                         <ColumnDefinition Width="0.5*" />
                                     </Grid.ColumnDefinitions>
                                     <Label Text="{Binding Position}" FontSize="Large" FontAttributes="Bold"
-                                   VerticalOptions="Center" Grid.Row="0" Grid.Column="0" />
+                                           VerticalOptions="Center" Grid.Row="0" Grid.Column="0" />
                                     <Label Text="{Binding Points}" FontSize="Medium" Opacity="0.5" VerticalOptions="Center"
-                                   Grid.Row="0" Grid.Column="1" />
+                                           Grid.Row="0" Grid.Column="1" />
                                     <Image Source="hiphop_transparent.png" Aspect="AspectFit" VerticalOptions="Center"
-                                   Grid.Row="0" Grid.Column="2" />
+                                           Grid.Row="0" Grid.Column="2" />
                                     <Label Text="{Binding Username}" FontSize="Large" VerticalOptions="Center" Grid.Row="0"
-                                   Grid.Column="3" />
+                                           Grid.Column="3" />
                                 </Grid>
                             </ViewCell>
                         </DataTemplate>

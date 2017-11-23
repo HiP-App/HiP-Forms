@@ -1,11 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
+<!--
+// Copyright (C) 2017 History in Paderborn App - Universität Paderborn
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+-->
+
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Views.RoutePreviewView"
-             Title="{Binding RouteTitle}"
              xmlns:helpers="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;assembly=HipMobileUI"
-             xmlns:views="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Views;assembly=HipMobileUI">
+             xmlns:views="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Views;assembly=HipMobileUI"
+             Title="{Binding RouteTitle}">
     <ContentPage.Content>
         <views:NotificationExtensionView>
             <views:NotificationExtensionView.ContentTemplate>
@@ -21,29 +37,29 @@
                     </Grid.RowDefinitions>
 
                     <Image x:Name="ImageView" Grid.Row="0" Source="{Binding Image}" Aspect="AspectFill"
-                   BackgroundColor="{StaticResource LightGrayColor}" Margin="0" VerticalOptions="Fill"
-                   HorizontalOptions="Fill" />
+                           BackgroundColor="{StaticResource LightGrayColor}" Margin="0"
+                           VerticalOptions="Fill" HorizontalOptions="Fill" />
 
                     <Frame x:Name="DescriptionView" Grid.Row="1" Padding="5" Margin="2"
-                   BackgroundColor="{StaticResource LightGrayColor}" HasShadow="False">
+                           BackgroundColor="{StaticResource LightGrayColor}" HasShadow="False">
                         <Label Text="{Binding RouteDescription}" FontSize="Large" FontAttributes="Bold"
-                       HorizontalTextAlignment="Center" TextColor="{StaticResource AccentDarkColor}"
-                       VerticalOptions="CenterAndExpand" />
+                               HorizontalTextAlignment="Center" TextColor="{StaticResource AccentDarkColor}"
+                               VerticalOptions="CenterAndExpand" />
                     </Frame>
 
                     <StackLayout x:Name="QuestionView" Grid.Row="2" Padding="10,0" HorizontalOptions="CenterAndExpand"
-                         VerticalOptions="CenterAndExpand">
+                                 VerticalOptions="CenterAndExpand">
                         <Label Text="{Binding Question}" FontSize="Medium" HorizontalTextAlignment="Start" />
                     </StackLayout>
 
                     <StackLayout x:Name="ButtonView" Grid.Row="3" Orientation="Vertical" VerticalOptions="End" Padding="0">
                         <BoxView HeightRequest="1" Color="{StaticResource DarkGrayColor}" />
                         <StackLayout Orientation="Horizontal" Padding="12,0,0,0"
-                             BackgroundColor="{StaticResource LightGrayColor}" VerticalOptions="End">
+                                     BackgroundColor="{StaticResource LightGrayColor}" VerticalOptions="End">
                             <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
                                 <Label Text="{helpers:Translate ExhibitOrRouteNearby_Confirm}" FontSize="20"
-                               TextColor="{StaticResource AccentColor}"
-                               HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
+                                       TextColor="{StaticResource AccentColor}"
+                                       HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
                                 <StackLayout.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding Confirm}" />
                                 </StackLayout.GestureRecognizers>
@@ -51,8 +67,8 @@
                             <BoxView WidthRequest="2" Color="{StaticResource DarkGrayColor}" />
                             <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
                                 <Label Text="{helpers:Translate ExhibitOrRouteNearby_Reject}" FontSize="20"
-                               TextColor="{StaticResource AccentColor}"
-                               HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
+                                       TextColor="{StaticResource AccentColor}"
+                                       HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
                                 <StackLayout.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding Decline}" />
                                 </StackLayout.GestureRecognizers>

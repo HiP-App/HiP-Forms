@@ -26,8 +26,10 @@
                 <Frame CornerRadius="10" Padding="5" BackgroundColor="{StaticResource SolidLightGrayColor}">
                     <StackLayout Orientation="Horizontal" BackgroundColor="{StaticResource SolidLightGrayColor}" Padding="3" >
                         <Image Source="{Binding AchievementImage}" HorizontalOptions="Start" Aspect="AspectFit"/>
-                        <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource SolidLightGrayColor}" InputTransparent="true">
-                            <Label Text="{Binding AchievementTitle}" HorizontalOptions="StartAndExpand" VerticalOptions="Start" TextColor="{StaticResource PrimaryDarkColor}" FontSize="15" FontAttributes="Bold"/>
+                        <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
+                                     BackgroundColor="{StaticResource SolidLightGrayColor}" InputTransparent="true">
+                            <Label Text="{Binding AchievementTitle}" HorizontalOptions="StartAndExpand" VerticalOptions="Start"
+                                   TextColor="{StaticResource PrimaryDarkColor}" FontSize="15" FontAttributes="Bold"/>
                             <Label Text="{Binding AchievementDescription}" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand"/>
                         </StackLayout>
                         <StackLayout.GestureRecognizers>

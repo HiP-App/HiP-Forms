@@ -15,6 +15,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 -->
+
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:views1="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Views;assembly=HipMobileUI"
@@ -26,9 +27,9 @@
                     <ScrollView>
                         <StackLayout>
                             <views1:ReferenceLink Text="{Binding FormatedText}" Sources="{Binding SourcesList}"
-                                          Action="{Binding Action}" HorizontalOptions="Center"
-                                          VerticalOptions="CenterAndExpand" Margin="10,10"
-                                          FontSize="{Binding FontSize}" />
+                                                  Action="{Binding Action}" HorizontalOptions="Center"
+                                                  VerticalOptions="CenterAndExpand" Margin="10,10"
+                                                  FontSize="{Binding FontSize}" />
                         </StackLayout>
                     </ScrollView>
                 </StackLayout>
