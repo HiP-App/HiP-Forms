@@ -185,25 +185,22 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                                                               Strings.LoadingPageViewModel_BaseData_DownloadViaMobile,
                                                               Strings.LoadingPageViewModel_BaseData_MobileDownload_Confirm,
                                                               Strings.LoadingPageViewModel_BaseData_MobileDownload_Cancel);
-            await Task.Factory.StartNew(async () =>
+
+            try
+            {
+                if (downloadData)
                 {
-                    try
-                    {
-                        if (downloadData)
-                        {
-                            await UpdateDatabase();
-                        }
-                        LoadCacheAndStart();
-                    }
-                    catch (Exception e)
-                    {
-                        // Catch all exceptions happening on startup cause otherwise the loading page will be shown indefinitely 
-                        // This should only happen during development
-                        errorMessage = e.Message;
-                        errorTitle = "Error";
-                    }
+                    await UpdateDatabase();
                 }
-            );
+                LoadCacheAndStart();
+            }
+            catch (Exception e)
+            {
+                // Catch all exceptions happening on startup cause otherwise the loading page will be shown indefinitely 
+                // This should only happen during development
+                errorMessage = e.Message;
+                errorTitle = "Error";
+            }
         }
 
         private async Task CheckForUpdatedDatabase()
@@ -315,7 +312,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             IoCManager.RegisterType<IBaseDataFetcher, BaseDataFetcher>();
             IoCManager.RegisterType<IFullRouteDataFetcher, FullRouteDataFetcher>();
             IoCManager.RegisterType<IAchievementFetcher, AchievementFetcher>();
-            
+
             IoCManager.RegisterInstance(typeof(INearbyExhibitManager), new NearbyExhibitManager());
             IoCManager.RegisterInstance(typeof(INearbyRouteManager), new NearbyRouteManager());
 
