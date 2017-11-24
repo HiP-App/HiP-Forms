@@ -46,7 +46,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             //exhibitUnblocked = exhibit.Unlocked;      // currently commented out for testing -> no location check required to access exhibit details
 
             pages = exhibit.Pages;
-            var appetizerPage = exhibit.AppetizerPage;
+            var appetizerPage = new AppetizerPage
+                {
+                Image = exhibit.Image,
+                Id = exhibit.Id,
+                Text = exhibit.Name
+                };
+
 
             Headline = exhibit.Name;
             Text = appetizerPage.Text;
