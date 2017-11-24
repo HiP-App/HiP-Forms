@@ -54,6 +54,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         private bool hasAdditionalInformation;
         private bool additionalInformationButtonVisible;
         private readonly bool additionalInformation;
+        private string pagenumber;
+
 
         public ExhibitDetailsViewModel(string exhibitId) : this(ExhibitManager.GetExhibit(exhibitId)) { }
 
@@ -81,7 +83,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             this.pages = pages;
             SetCurrentView().ConfigureAwait(true);
             Title = title;
-
+            pagenumber = currentViewIndex + " / " + (pages.Count - 1);
             if (pages.Count > 2)
                 NextViewAvailable = true;
 
@@ -251,12 +253,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             // update UI
             if (currentViewIndex == 0)
             {
-                currentViewIndex = currentViewIndex + 1;
+                currentViewIndex++;
             }
 
             var currentPage = pages[currentViewIndex];
             AudioAvailable = currentPage.Audio != null;
             AudioToolbarVisible = AudioAvailable;
+            Pagenumber = currentViewIndex + " / " + (pages.Count-1);
             
             // It's possible to get no audio data even if it should exist
             try
@@ -488,6 +491,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         {
             get { return audioToolbar; }
             set { SetProperty(ref audioToolbar, value); }
+        }
+
+        /// <summary>
+        /// sets the pagenumber
+        /// </summary>
+        public string Pagenumber
+        {
+            get { return pagenumber; }
+            set { SetProperty(ref pagenumber, value); }
         }
 
         /// <summary>
