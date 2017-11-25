@@ -26,7 +26,7 @@ using Page = PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.Pa
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
 {
-    public class AppetizerPageViewModel : NavigationViewModel, IDownloadableListItemViewModel
+    public class AppetizerViewModel : NavigationViewModel, IDownloadableListItemViewModel
     {
         private Exhibit exhibit;
         private ImageSource image;
@@ -38,9 +38,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         private ICommand nextViewCommand;
         private bool exhibitUnblocked = true;   // see comment below: remove 'true' if you use the commented out line again
 
-        public AppetizerPageViewModel(string exhibitId) : this(ExhibitManager.GetExhibit(exhibitId)) { }
+        public AppetizerViewModel(string exhibitId) : this(ExhibitManager.GetExhibit(exhibitId)) { }
 
-        public AppetizerPageViewModel(Exhibit exhibit)
+        public AppetizerViewModel(Exhibit exhibit)
         {
             Exhibit = exhibit;
             //exhibitUnblocked = exhibit.Unlocked;      // currently commented out for testing -> no location check required to access exhibit details

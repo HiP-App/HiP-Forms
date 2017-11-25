@@ -13,16 +13,15 @@
 // limitations under the License.
 
 using System.Threading.Tasks;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using NSubstitute;
 using NUnit.Framework;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
-using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views.ExhibitDetails;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Views.ExhibitDetails
+namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Pages
 {
     class AppetizerViewModelTest
     {
@@ -44,13 +43,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Views
 
         #region Helper Methods
 
-        public AppetizerPageViewModel CreateSystemUnderTest()
+        public AppetizerViewModel CreateSystemUnderTest()
         {
             var exhibit = Substitute.For<Exhibit>();
             exhibit.Image = CreateImage ();
             exhibit.Name = "Foo";
 
-            return new AppetizerPageViewModel(exhibit);
+            return new AppetizerViewModel(exhibit);
         }
 
         private Image CreateImage()

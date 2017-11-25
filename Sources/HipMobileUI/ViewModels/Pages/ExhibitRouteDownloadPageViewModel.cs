@@ -241,7 +241,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             DownloadableListItemViewModel.SetDetailsAvailable(DownloadFinished);
 
             //Close DownloadPage directly if download was started from the AppetizerView
-            if (DownloadFinished && (DownloadableListItemViewModel.GetType() == typeof(AppetizerPageViewModel)))
+            if (DownloadFinished && (DownloadableListItemViewModel.GetType() == typeof(AppetizerViewModel)))
             {
                 CloseDownloadPage();
             }
