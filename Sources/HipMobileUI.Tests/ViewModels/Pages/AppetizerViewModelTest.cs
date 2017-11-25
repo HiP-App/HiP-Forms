@@ -28,8 +28,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Pages
         [TestFixtureSetUp]
         public void Init()
         {
+            IoCManager.Clear ();
             IoCManager.RegisterInstance(typeof(INavigationService), Substitute.For<INavigationService>());
             IoCManager.RegisterInstance(typeof(IImageDimension), Substitute.For<IImageDimension>());
+            IoCManager.RegisterInstance(typeof(IMediaFileManager), Substitute.For<IMediaFileManager>());
         }
 
         [Test, Category("UnitTest")]
