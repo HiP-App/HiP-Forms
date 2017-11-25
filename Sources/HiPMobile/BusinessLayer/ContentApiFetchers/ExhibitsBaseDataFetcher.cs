@@ -124,7 +124,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                 ExhibitConverter.Convert(exhibitDto, dbExhibit);
 
                 AddImageToExhibit(dbExhibit, exhibitDto.Image, fetchedMedia);
-                //AddAppetizerPageToExhibit(exhibitDto, dbExhibit, fetchedMedia);
                 //TODO: Check if exhibit was already downloaded
                 //if(dbExhibit.DetailsDataLoaded)
                 //{

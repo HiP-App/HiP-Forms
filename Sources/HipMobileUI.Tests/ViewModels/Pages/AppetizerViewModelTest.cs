@@ -40,7 +40,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Pages
             var sut = CreateSystemUnderTest();
 
             Assert.AreEqual(sut.Headline, "Foo");
-            Assert.AreEqual(sut.Text, "Foo");
+            Assert.AreEqual(sut.Text, "Bar");
         }
 
         #region Helper Methods
