@@ -81,7 +81,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
 
                 if (!dbExhibitData.HasValue || Math.Abs((exhibit.Timestamp - dbExhibitData.Value).Seconds) > 1)
                 {
-                    // Later we can remove this now API has exhibit pages in payload.
+                    // Keeping it as safety check don't want appetizer page ids to be treated as normal pages
+                    // Currently in the exhibit response body first page number belongs to appetizer page.
+                    // Once DataStore remove appetizer page from their side then we can remove this from our side as well.
                     if (exhibit.Pages != null && exhibit.Pages.Any())
                     {
                         requiredAppetizerPages.Add(exhibit.Pages.First());

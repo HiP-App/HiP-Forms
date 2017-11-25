@@ -170,7 +170,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Pages
         public ExhibitDetailsViewModel CreateSystemUnderTest()
         {
             var exhibit = Substitute.For<Exhibit>();
-            var pages = new List<Page> {CreateImagePage(), CreateTimeSliderPage(), CreateImagePage() };
+            var pages = new List<Page> { CreateImagePage(), CreateTimeSliderPage(), CreateImagePage() };
             exhibit.Pages.Returns(pages);
 
             exhibit.Unlocked = true;
