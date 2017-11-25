@@ -26,7 +26,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Views
     class ExhibitsOverviewListItemViewModelTest
     {
         [TestFixtureSetUp]
-        public void Init ()
+        public void Init()
         {
             IoCManager.Clear();
             IoCManager.RegisterInstance(typeof(IMediaFileManager), Substitute.For<IMediaFileManager>());
