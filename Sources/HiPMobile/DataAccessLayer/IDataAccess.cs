@@ -77,7 +77,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
         int GetVersion();
 
         /// <summary>
-        /// Deletes the whole database.
+        /// Deletes the whole database and restarts the app.
         /// </summary>
         void DeleteDatabase();
 

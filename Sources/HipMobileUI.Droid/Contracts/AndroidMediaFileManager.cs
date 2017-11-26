@@ -41,7 +41,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Contracts
 
         public void DeleteFile(string filePath)
         {
-            File.Delete(Path.Combine(filePath, RestApiTimestampPathSuffix));
+            File.Delete(filePath + RestApiTimestampPathSuffix);
             File.Delete(filePath);
         }
 
@@ -88,8 +88,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Contracts
                 if (!restApiIdsToKeep.Contains(apiId))
                 {
                     Debug.WriteLine($"Deleting {mediaFile}");
-                    DeleteFile(mediaFile);
-                    DeleteFile(Path.Combine(mediaFile, RestApiTimestampPathSuffix));
+                    File.Delete(mediaFile);
+                    File.Delete(mediaFile + RestApiTimestampPathSuffix);
                 }
             }
             return Task.CompletedTask;
