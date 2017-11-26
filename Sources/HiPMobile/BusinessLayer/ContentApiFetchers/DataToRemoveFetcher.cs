@@ -148,6 +148,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                 DbManager.DeleteBusinessEntity(page);
             }
 
+            await PruneMediaFilesAsync();
+        }
+
+        public static async Task PruneMediaFilesAsync()
+        {
+            var fileManager = IoCManager.Resolve<IMediaFileManager>();
             var data = IoCManager.Resolve<IDataAccess>();
             var restApiIdsToKeep = data.GetItems<Audio>()
                                        .Select(it => it.IdForRestApi)
