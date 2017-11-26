@@ -41,7 +41,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Contracts
 
         public void DeleteFile(string filePath)
         {
-            File.Delete(Path.Combine(filePath, RestApiTimestampPathSuffix));
+            File.Delete(filePath + RestApiTimestampPathSuffix);
             File.Delete(filePath);
         }
 
@@ -88,8 +88,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Contracts
                 if (!restApiIdsToKeep.Contains(apiId))
                 {
                     Debug.WriteLine($"Deleting {mediaFile}");
-                    DeleteFile(mediaFile);
-                    DeleteFile(Path.Combine(mediaFile, RestApiTimestampPathSuffix));
+                    File.Delete(mediaFile);
+                    File.Delete(mediaFile + RestApiTimestampPathSuffix);
                 }
             }
             return Task.CompletedTask;
@@ -97,7 +97,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Contracts
 
         public async Task<bool> ContainsMedia(int restApiId, DateTimeOffset timestamp)
         {
-            var timestampFile = Path.Combine(PathForRestApiId(restApiId), RestApiTimestampPathSuffix);
+            var timestampFile = PathForRestApiId(restApiId) + RestApiTimestampPathSuffix;
             if (File.Exists(timestampFile))
             {
                 var stringTimestamp = Encoding.UTF8.GetString(await ReadFromDiskAsync(timestampFile));
@@ -111,7 +111,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Contracts
             }
             return false;
         }
-        
+
         public string PathForRestApiId(int restApiId) => Path.Combine(MediaFolderPath, restApiId.ToString());
     }
 }
