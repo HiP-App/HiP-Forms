@@ -97,7 +97,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Contracts
 
         public async Task<bool> ContainsMedia(int restApiId, DateTimeOffset timestamp)
         {
-            var timestampFile = Path.Combine(PathForRestApiId(restApiId)), RestApiTimestampPathSuffix);
+            var timestampFile = Path.Combine(PathForRestApiId(restApiId), RestApiTimestampPathSuffix);
             if (File.Exists(timestampFile))
             {
                 var stringTimestamp = Encoding.UTF8.GetString(await ReadFromDiskAsync(timestampFile));
