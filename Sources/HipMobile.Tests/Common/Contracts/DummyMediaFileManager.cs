@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
 
@@ -28,11 +28,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.Common.Contracts
             memCache.Remove(filePath);
         }
 
-        public Task<string> WriteMediaToDiskAsync(byte[] bytes)
+        public Task<string> WriteMediaToDiskAsync(byte[] bytes, int restApiId, DateTimeOffset timestamp)
         {
-            var filePath = HashArray(bytes).ToString();
-            memCache[filePath] = bytes;
-            return Task.FromResult(filePath);
+            memCache[restApiId.ToString()] = bytes;
+            return Task.FromResult(restApiId.ToString());
         }
 
         public Task<byte[]> ReadFromDiskAsync(string filePath)
@@ -45,6 +44,19 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.Common.Contracts
             return memCache.TryGetValue(filePath, out var value) ? value : new byte[] { 1, 2, 3, 4 };
         }
 
-        private static int HashArray(byte[] bytes) => bytes.Aggregate(17, (current, element) => current * 31 + element);
+        public Task PruneAsync(IList<int> restApiIdsToKeep)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> ContainsMedia(int restApiId, DateTimeOffset timestamp)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string PathForRestApiId(int restApiId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

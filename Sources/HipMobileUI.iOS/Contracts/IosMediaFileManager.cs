@@ -13,64 +13,105 @@
 // limitations under the License.
 
 using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Contracts
 {
-    public class IosMediaFileManager: IMediaFileManager
+    public class IosMediaFileManager : IMediaFileManager
     {
-        private const string MediaFolder = "Media";
+        private static string MediaFolderPath
+        {
+            get
+            {
+                var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+                var mediaFolderPath = Path.Combine(documentsPath, "Media");
+                Directory.CreateDirectory(mediaFolderPath);
+                return mediaFolderPath;
+            }
+        }
+
+        private const string RestApiTimestampPathSuffix = ".timestamp";
 
         public void DeleteFile(string filePath)
         {
+            File.Delete(Path.Combine(filePath, RestApiTimestampPathSuffix));
             File.Delete(filePath);
         }
 
-        public async Task<string> WriteMediaToDiskAsync(byte[] bytes)
+        public async Task<string> WriteMediaToDiskAsync(byte[] bytes, int restApiId, DateTimeOffset timestamp)
         {
-            string md5Hash;
-            using (var md5 = MD5.Create())
-            {
-                md5Hash = md5
-                    .ComputeHash(bytes)
-                    .Select(b => b.ToString("x2"))
-                    .Aggregate(new StringBuilder(), (cur, next) => cur.Append(next))
-                    .ToString();
-            }
-
-            var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-            var mediaFolderPath = Path.Combine(documentsPath, MediaFolder);
-            Directory.CreateDirectory(mediaFolderPath);
-            var filePath = Path.Combine(mediaFolderPath, md5Hash);
+            Debug.WriteLine($"Writing file with id {restApiId}");
+            var filePath = Path.Combine(MediaFolderPath, restApiId.ToString());
+            var restIdPath = filePath + RestApiTimestampPathSuffix;
             using (var fs = new FileStream(filePath, FileMode.Create))
             {
                 await fs.WriteAsync(bytes, 0, bytes.Length);
             }
+            using (var fs = new FileStream(restIdPath, FileMode.Create))
+            {
+                var buffer = Encoding.UTF8.GetBytes(timestamp.ToString("o", CultureInfo.InvariantCulture)); // ISO 8601
+                await fs.WriteAsync(buffer, 0, buffer.Length);
+            }
 
             return filePath;
         }
-        
+
         public byte[] ReadFromDisk(string filePath) => File.ReadAllBytes(filePath);
-        
+
         public async Task<byte[]> ReadFromDiskAsync(string filePath)
         {
-            using (var fs = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.Read, 
+            using (var fs = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.Read,
                                            bufferSize: 4096, useAsync: true))
             {
-                var bytes = new byte[fs.Length];
-                var totalRead = 0;
-                int read;
-                while ((read = await fs.ReadAsync(bytes, totalRead, 4096)) != 0)
+                using (var ms = new MemoryStream())
                 {
-                    totalRead += read;
+                    await fs.CopyToAsync(ms);
+                    return ms.ToArray();
                 }
-                return bytes;
             }
         }
+
+        public Task PruneAsync(IList<int> restApiIdsToKeep)
+        {
+            var mediaFiles = Directory.EnumerateFiles(MediaFolderPath)
+                                      .Where(file => !file.EndsWith(RestApiTimestampPathSuffix, StringComparison.Ordinal));
+            foreach (var mediaFile in mediaFiles)
+            {
+                var apiId = int.Parse(Path.GetFileName(mediaFile) ?? throw new Exception("File name is null!"));
+                if (!restApiIdsToKeep.Contains(apiId))
+                {
+                    Debug.WriteLine($"Deleting {mediaFile}");
+                    DeleteFile(mediaFile);
+                    DeleteFile(Path.Combine(mediaFile, RestApiTimestampPathSuffix));
+                }
+            }
+            return Task.CompletedTask;
+        }
+
+        public async Task<bool> ContainsMedia(int restApiId, DateTimeOffset timestamp)
+        {
+            var timestampFile = Path.Combine(PathForRestApiId(restApiId)), RestApiTimestampPathSuffix);
+            if (File.Exists(timestampFile))
+            {
+                var stringTimestamp = Encoding.UTF8.GetString(await ReadFromDiskAsync(timestampFile));
+                if (DateTimeOffset.TryParseExact(stringTimestamp, "o", CultureInfo.InvariantCulture,
+                                                 DateTimeStyles.None, out var savedFileTimestamp))
+                {
+                    return timestamp == savedFileTimestamp;
+                }
+
+                Debug.WriteLine($"Warning: Found invalid media file timestamp '{stringTimestamp}'");
+            }
+            return false;
+        }
+        
+        public string PathForRestApiId(int restApiId) => Path.Combine(MediaFolderPath, restApiId.ToString());
     }
 }
