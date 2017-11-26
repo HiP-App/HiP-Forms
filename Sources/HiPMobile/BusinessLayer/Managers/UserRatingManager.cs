@@ -26,24 +26,27 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers {
 
         private static UserRatingManager instance;
 
-        private UserRatingFetcher userRatingFetcher;
+        private readonly IUserRatingApiAccess client = new UserRatingApiAccess(new ContentApiClient(ServerEndpoints.DevelopApiPath));
 
         private UserRatingManager() { }
 
         public static UserRatingManager GetInstance() {
             if (instance == null) {
                 instance = new UserRatingManager();
-                instance.userRatingFetcher = new UserRatingFetcher();
             }
             return instance;
         }
 
         public async Task<UserRating> GetUserRating(Exhibit exhibit) {
-            return await userRatingFetcher.FetchUserRating(exhibit);
+            var userRatingDto = await client.GetUserRating(exhibit);
+            UserRating userRating = new UserRating();
+            userRating.Id = userRatingDto.Id;
+            userRating.Average = userRatingDto.Average;
+            userRating.Count = userRatingDto.Count;
+            return userRating;
         }
 
         public async void SetUserRating() {
-            UserRatingApiAccess client = new UserRatingApiAccess(new ContentApiClient(ServerEndpoints.DevelopApiPath));
             var result = await client.SendUserRating();
         }
     }

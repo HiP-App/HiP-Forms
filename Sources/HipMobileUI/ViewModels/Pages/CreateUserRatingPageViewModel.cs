@@ -15,7 +15,11 @@
 
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.User;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.UserManagement;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -44,6 +48,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
             sendRatingCommand = new Command(SendRating);
         }
 
+
         private void SetStars() {
             Star1 = "☆";
             Star2 = "☆";
@@ -51,30 +56,20 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
             Star4 = "☆";
             Star5 = "☆";
             switch (rating) {
+                case 5:
+                    Star5 = "★";
+                    goto case 4;
+                case 4:
+                    Star4 = "★";
+                    goto case 3;
+                case 3:
+                    Star3 = "★";
+                    goto case 2;
+                case 2:
+                    Star2 = "★";
+                    goto case 1;
                 case 1:
                     Star1 = "★";
-                    break;
-                case 2:
-                    Star1 = "★";
-                    Star2 = "★";
-                    break;
-                case 3:
-                    Star1 = "★";
-                    Star2 = "★";
-                    Star3 = "★";
-                    break;
-                case 4:
-                    Star1 = "★";
-                    Star2 = "★";
-                    Star3 = "★";
-                    Star4 = "★";
-                    break;
-                case 5:
-                    Star1 = "★";
-                    Star2 = "★";
-                    Star3 = "★";
-                    Star4 = "★";
-                    Star5 = "★";
                     break;
             }
         }
@@ -90,7 +85,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
             } else {
 
             }
-
         }
 
         public string Headline {

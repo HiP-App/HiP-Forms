@@ -57,7 +57,6 @@
     <Compile Include="BusinessLayer\ContentApiFetchers\Contracts\IAchievementFetcher.cs" />
     <Compile Include="BusinessLayer\ContentApiFetchers\Contracts\IFullDownloadableDataFetcher.cs" />
     <Compile Include="BusinessLayer\ContentApiFetchers\Contracts\IFullRouteDataFetcher.cs" />
-    <Compile Include="BusinessLayer\ContentApiFetchers\Contracts\IUserRatingFetcher.cs" />
     <Compile Include="BusinessLayer\ContentApiFetchers\ExhibitPagesAndMediaContainer.cs" />
     <Compile Include="BusinessLayer\ContentApiFetchers\FullRouteDataFetcher.cs" />
     <Compile Include="BusinessLayer\ContentApiFetchers\Contracts\IBaseDataFetcher.cs" />
@@ -70,7 +69,6 @@
     <Compile Include="BusinessLayer\ContentApiFetchers\ExhibitsBaseDataFetcher.cs" />
     <Compile Include="BusinessLayer\ContentApiFetchers\FetchedMediaData.cs" />
     <Compile Include="BusinessLayer\ContentApiFetchers\FullExhibitDataFetcher.cs" />
-    <Compile Include="BusinessLayer\ContentApiFetchers\UserRatingFetcher.cs" />
     <Compile Include="BusinessLayer\ContentHandling\INewDataCenter.cs" />
     <Compile Include="BusinessLayer\ContentApiFetchers\MediaDataFetcher.cs" />
     <Compile Include="BusinessLayer\ContentHandling\NewDataCenter.cs" />

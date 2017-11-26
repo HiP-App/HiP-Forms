@@ -45,8 +45,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
         public async Task<bool> SendUserRating() { //Exhibit exhibit, int rating, IContentApiClient clientApiClient) {
             string url = "/Exhibits/Rating/0?Rating=5";
 
-        
-
             var result = await contentApiClient.PostRequestBody(url, "");
 
             string jsonPayload = await result.Content.ReadAsStringAsync();
