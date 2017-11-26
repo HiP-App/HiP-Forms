@@ -21,6 +21,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
     {
         Task FetchDataToDelete(CancellationToken token);
 
-        void CleaupRemovedData();
+        Task CleanupRemovedData();
     }
 }
