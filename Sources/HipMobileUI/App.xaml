@@ -15,6 +15,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 -->
+
 <Application xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.App"
@@ -28,6 +29,7 @@
             <Color x:Key="LightGrayColor">#05000000</Color>
             <Color x:Key="MediumGrayColor">#15000000</Color>
             <Color x:Key="DarkGrayColor">#66000000</Color>
+            <Color x:Key="SolidLightGrayColor">#FFEEEEEE</Color>
             <Style TargetType="Label">
                 <Setter Property="FontSize" Value="12" />
                 <Setter Property="TextColor" Value="Black" />

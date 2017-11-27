@@ -29,7 +29,7 @@ using Xamarin.Forms;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 {
-    class ExhibitRouteDownloadPageViewModel : NavigationViewModel, IProgressListener
+    public class ExhibitRouteDownloadPageViewModel : NavigationViewModel, IProgressListener
     {
         private readonly IDownloadable downloadable;
 
@@ -146,23 +146,23 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         public ICommand GoToOverviewCommand { get; }
         public ICommand GoToDetailsCommand { get; }
 
-        void CancelDownload()
+        private void CancelDownload()
         {
             cancellationTokenSource?.Cancel();
             CloseDownloadPage();
         }
 
-        void CloseDownloadPage()
+        private void CloseDownloadPage()
         {
             DownloadableListItemViewModel.CloseDownloadPage();
         }
 
-        void GoToDetails()
+        private void GoToDetails()
         {
             DownloadableListItemViewModel.OpenDetailsView(DownloadableId);
         }
 
-        async void DownloadData()
+        private async void DownloadData()
         {
             string messageToShow = null;
             string titleToShow = null;
@@ -234,7 +234,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             IoCManager.Resolve<IDbChangedHandler>().NotifyAll();
         }
 
-        void SetDetailsAvailable()
+        private void SetDetailsAvailable()
         {
             DownloadPending = false;
             DownloadFinished = !DownloadPending;

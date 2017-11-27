@@ -68,7 +68,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             AdjustToolbarColor();
 
             // stop audio if necessary
-            IAudioPlayer player = IoCManager.Resolve<IAudioPlayer>();
+            var player = IoCManager.Resolve<IAudioPlayer>();
             if (player.IsPlaying)
             {
                 player.Stop();

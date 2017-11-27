@@ -101,16 +101,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         }
 
         /// <summary>
-        /// Called when the view was removed from the visual tree.
-        /// </summary>
-        public override void OnDisappearing()
-        {
-            base.OnDisappearing();
-
-            locationManager.RemoveLocationListener(this);
-        }
-
-        /// <summary>
         /// Called when the view was added to the visual tree.
         /// </summary>
         public override void OnAppearing()
@@ -118,6 +108,16 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             base.OnAppearing();
 
             locationManager.AddLocationListener(this);
+        }
+
+        /// <summary>
+        /// Called when the view was removed from the visual tree.
+        /// </summary>
+        public override void OnDisappearing()
+        {
+            base.OnDisappearing();
+
+            locationManager.RemoveLocationListener(this);
         }
 
         /// <summary>

@@ -14,7 +14,6 @@
 
 using System;
 using System.Diagnostics;
-using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -36,6 +35,7 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiA
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Location;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
 using Xamarin.Forms;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
@@ -159,10 +159,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                         }
                         return;
                     }
-                    else
-                    {
-                        await UpdateDatabase();
-                    }
+                    await UpdateDatabase();
                 }
 #pragma warning disable 4014
                 Task.Run(NearbyExhibitManager.PostVisitedExhibitsToApi);
@@ -184,7 +181,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         private async void AskUserDownloadDataViaMobile()
         {
             actionOnUiThread = null;
-            bool downloadData = await Navigation.DisplayAlert(Strings.LoadingPageViewModel_BaseData_DataAvailable,
+            var downloadData = await Navigation.DisplayAlert(Strings.LoadingPageViewModel_BaseData_DataAvailable,
                                                               Strings.LoadingPageViewModel_BaseData_DownloadViaMobile,
                                                               Strings.LoadingPageViewModel_BaseData_MobileDownload_Confirm,
                                                               Strings.LoadingPageViewModel_BaseData_MobileDownload_Cancel);
@@ -320,6 +317,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
             IoCManager.RegisterType<IAuthApiAccess, AuthApiAccess>();
             IoCManager.RegisterInstance(typeof(IUserManager), new UserManager());
+
+            IoCManager.RegisterInstance(typeof(AchievementNotificationViewModel), new AchievementNotificationViewModel());
         }
 
         /// <summary>
