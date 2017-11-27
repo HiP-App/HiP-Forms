@@ -15,12 +15,14 @@
 using MvvmHelpers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels
 {
     public abstract class NavigationViewModel : BaseViewModel
     {
-        protected INavigationService Navigation = IoCManager.Resolve<INavigationService>();
+        protected readonly INavigationService Navigation = IoCManager.Resolve<INavigationService>();
+        protected readonly AchievementNotificationViewModel AchievementNotification = IoCManager.Resolve<AchievementNotificationViewModel>();
 
         /// <summary>
         /// Method called when the view disappears. Note that this method is not called automatically for every view.
@@ -34,6 +36,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels
         /// </summary>
         public virtual void OnAppearing()
         {
+            AchievementNotification.ReloadDisplayedData();
         }
 
         /// <summary>
@@ -44,10 +47,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels
         }
 
         /// <summary>
-        /// Method called when the view is visible again, atfer it was hidden.
+        /// Method called when the view is visible again, after it was hidden.
         /// </summary>
         public virtual void OnRevealed()
         {
+            AchievementNotification.ReloadDisplayedData();
         }
     }
 }

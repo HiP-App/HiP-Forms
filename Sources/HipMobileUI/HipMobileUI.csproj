@@ -89,9 +89,14 @@
     <Compile Include="Helpers\DeviceOrientation.cs" />
     <Compile Include="Helpers\OrientationController.cs" />
     <Compile Include="Contracts\IBarsColorsChanger.cs" />
+    <Compile Include="ViewModels\Views\AchievementNotificationViewModel.cs" />
     <Compile Include="ViewModels\Views\AchievementViewModel.cs" />
     <Compile Include="ViewModels\Views\ForgotPasswordScreenViewModel.cs" />
     <Compile Include="ViewModels\Views\LeaderboardViewModel.cs" />
+    <Compile Include="Views\AchievementNotificationView.xaml.cs">
+      <DependentUpon>AchievementNotificationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NotificationExtensionView.cs" />
     <Compile Include="Views\ForgotPasswordScreenView.xaml.cs">
       <DependentUpon>ForgotPasswordScreenView.xaml</DependentUpon>
     </Compile>
@@ -534,7 +539,12 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Views\AchievementNotificationView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

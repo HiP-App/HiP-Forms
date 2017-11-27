@@ -15,6 +15,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 -->
+
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Views.RoutesOverviewView"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -23,64 +24,69 @@
              xmlns:behaviors="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Behaviors;assembly=HipMobileUI"
              xmlns:container1="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Container;assembly=HipMobileUI"
              xmlns:views="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;assembly=HipMobileUI"
-             xmlns:helpers="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;assembly=HipMobileUI">
+             xmlns:helpers="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;assembly=HipMobileUI"
+             xmlns:views1="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Views;assembly=HipMobileUI">
     <ContentView.Content>
-        <Grid x:Name="Grid">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="0*" />
-            </Grid.RowDefinitions>
-            <ListView x:Name="List" Grid.Row="0" SeparatorVisibility="None" HasUnevenRows="True"
-                      ItemsSource="{Binding Routes}">
-                <ListView.Behaviors>
-                    <behaviors:ListViewTappedItemBehavior Command="{Binding ItemSelectedCommand}"
-                                                          Converter="{StaticResource ItemTappedConverter}" />
-                </ListView.Behaviors>
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <StackLayout Orientation="Horizontal" Padding="5,5,5,10"
-                                         d:DataContext="{d:DesignInstance views:RoutesOverviewListItemViewModel}">
-                                <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
-                                    <Label Text="{Binding RouteTitle}" TextColor="Black" FontSize="18" />
-                                    <Label Text="{Binding RouteDescription}" TextColor="Black" />
-                                    <StackLayout Orientation="Horizontal">
-                                        <Image Source="{Binding Image}" HeightRequest="100" />
-                                        <StackLayout Orientation="Vertical">
+        <views1:NotificationExtensionView>
+            <views1:NotificationExtensionView.ContentTemplate>
+                <Grid x:Name="Grid">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="0*" />
+                    </Grid.RowDefinitions>
+                    <ListView x:Name="List" Grid.Row="0" SeparatorVisibility="None" HasUnevenRows="True"
+                              ItemsSource="{Binding Routes}">
+                        <ListView.Behaviors>
+                            <behaviors:ListViewTappedItemBehavior Command="{Binding ItemSelectedCommand}"
+                                                                  Converter="{StaticResource ItemTappedConverter}" />
+                        </ListView.Behaviors>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <StackLayout Orientation="Horizontal" Padding="5,5,5,10"
+                                                 d:DataContext="{d:DesignInstance views:RoutesOverviewListItemViewModel}">
+                                        <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                                            <Label Text="{Binding RouteTitle}" TextColor="Black" FontSize="18" />
+                                            <Label Text="{Binding RouteDescription}" TextColor="Black" />
                                             <StackLayout Orientation="Horizontal">
-                                                <Image Source="ic_schedule.png" />
-                                                <Label Text="{Binding Duration}" VerticalOptions="Center" />
-                                            </StackLayout>
-                                            <StackLayout Orientation="Horizontal">
-                                                <Image Source="ic_directions_walk.png" />
-                                                <Label Text="{Binding Distance}" VerticalOptions="Center" />
-                                            </StackLayout>
-                                            <StackLayout Orientation="Horizontal">
-                                                <Label Text="{helpers:Translate RoutesOverviewView_Tags}"
-                                                       VerticalOptions="Center" />
-                                                <container1:BindableChildrenStackLayout
-                                                    ChildElements="{Binding Tags, Converter= {StaticResource ImageListConverter}}"
-                                                    Orientation="Horizontal" />
+                                                <Image Source="{Binding Image}" HeightRequest="100" />
+                                                <StackLayout Orientation="Vertical">
+                                                    <StackLayout Orientation="Horizontal">
+                                                        <Image Source="ic_schedule.png" />
+                                                        <Label Text="{Binding Duration}" VerticalOptions="Center" />
+                                                    </StackLayout>
+                                                    <StackLayout Orientation="Horizontal">
+                                                        <Image Source="ic_directions_walk.png" />
+                                                        <Label Text="{Binding Distance}" VerticalOptions="Center" />
+                                                    </StackLayout>
+                                                    <StackLayout Orientation="Horizontal">
+                                                        <Label Text="{helpers:Translate RoutesOverviewView_Tags}"
+                                                               VerticalOptions="Center" />
+                                                        <container1:BindableChildrenStackLayout
+                                                            ChildElements="{Binding Tags, Converter= {StaticResource ImageListConverter}}"
+                                                            Orientation="Horizontal" />
+                                                    </StackLayout>
+                                                </StackLayout>
                                             </StackLayout>
                                         </StackLayout>
+                                        <Button BorderRadius="2" BackgroundColor="{StaticResource MediumGrayColor}"
+                                                WidthRequest="40" Image="ic_file_download.png"
+                                                IsVisible="{Binding IsDownloadPanelVisible}"
+                                                Command="{Binding DownloadCommand}" />
                                     </StackLayout>
-                                </StackLayout>
-                                <Button BorderRadius="2" BackgroundColor="{StaticResource MediumGrayColor}"
-                                        WidthRequest="40" Image="ic_file_download.png"
-                                        IsVisible="{Binding IsDownloadPanelVisible}"
-                                        Command="{Binding DownloadCommand}" />
-                            </StackLayout>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-            <Label x:Name="Label" Grid.Row="1" Text="{helpers:Translate RoutesOverviewView_EmptyList}"
-                   IsVisible="{Binding Routes, Converter={StaticResource EmptyListConverter}}"
-                   TextColor="Gray" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="16"
-                   Margin="5" />
-        </Grid>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <Label x:Name="Label" Grid.Row="1" Text="{helpers:Translate RoutesOverviewView_EmptyList}"
+                           IsVisible="{Binding Routes, Converter={StaticResource EmptyListConverter}}"
+                           TextColor="Gray" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="16"
+                           Margin="5" />
+                </Grid>
+            </views1:NotificationExtensionView.ContentTemplate>
+        </views1:NotificationExtensionView>
     </ContentView.Content>
 </ContentView>
