@@ -15,20 +15,25 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 -->
+
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:views1="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Views;assembly=HipMobileUI"
              x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Pages.AudioTranscript.SubtitlesPage">
     <ContentPage.Content>
-        <StackLayout>
-            <ScrollView>
+        <views1:NotificationExtensionView>
+            <views1:NotificationExtensionView.ContentTemplate>
                 <StackLayout>
-                    <views1:ReferenceLink Text="{Binding FormatedText}" Sources="{Binding SourcesList}"
-                                          Action="{Binding Action}" HorizontalOptions="Center"
-                                          VerticalOptions="CenterAndExpand" Margin="10,10"
-                                          FontSize="{Binding FontSize}" />
+                    <ScrollView>
+                        <StackLayout>
+                            <views1:ReferenceLink Text="{Binding FormatedText}" Sources="{Binding SourcesList}"
+                                                  Action="{Binding Action}" HorizontalOptions="Center"
+                                                  VerticalOptions="CenterAndExpand" Margin="10,10"
+                                                  FontSize="{Binding FontSize}" />
+                        </StackLayout>
+                    </ScrollView>
                 </StackLayout>
-            </ScrollView>
-        </StackLayout>
+            </views1:NotificationExtensionView.ContentTemplate>
+        </views1:NotificationExtensionView>
     </ContentPage.Content>
 </ContentPage>

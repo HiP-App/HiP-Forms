@@ -34,7 +34,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         private GeoLocation gpsLocation;
         private Route detailsRoute;
         private bool showDetailsRoute;
-        private IAudioPlayer audioPlayer;
+        private readonly IAudioPlayer audioPlayer;
 
         /// <summary>
         /// Creates a new ViewModel for the route with the specified ID.
@@ -121,7 +121,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         {
             if (DetailsRoute.IsRouteStarted())
             {
-                string result =
+                var result =
                     await
                         Navigation.DisplayActionSheet(
                             Strings.RouteDetailspageViewModel_RouteStarted,
