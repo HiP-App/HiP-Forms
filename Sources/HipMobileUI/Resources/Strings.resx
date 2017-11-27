@@ -826,4 +826,7 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   <data name="ExhibitNearby_VisitRequest" xml:space="preserve">
     <value>Besuche eine nahe Sehenswürdigkeit!</value>
   </data>
+  <data name="AchievementsDetailsExhibitView_VisitedMOfNExhibits">
+    <value>Du hast {0} von {1} Sehenswürdigkeiten besucht</value>
+  </data>
 </root>

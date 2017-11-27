@@ -17,6 +17,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelConverters;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using Plugin.Geolocator.Abstractions;
@@ -27,18 +29,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers
 {
     public static class ExtensionMethods
     {
-        public static ImageSource GetImageSource(this Image image)
+        public static ImageSource GetImageSource(this Image image) => new StreamImageSource
         {
-            var imageData = image.GetDataBlocking();
-            if (imageData != null)
-            {
-                return ImageSource.FromStream(() => new MemoryStream(imageData));
-            }
-            else
-            {
-                return ImageSource.FromStream(() => new MemoryStream(BackupData.BackupImageData));
-            }
-        }
+            Stream = async token => new MemoryStream(await image.GetDataAsync() ?? BackupData.BackupImageData)
+        };
 
         /// <summary>
         /// Sort the observable collection accroding to the given function or comparer.
