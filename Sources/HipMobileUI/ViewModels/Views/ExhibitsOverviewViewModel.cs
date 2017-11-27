@@ -124,11 +124,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         /// Open the exhibitdetails page.
         /// </summary>
         /// <param name="item"></param>
-        private void NavigateToExhibitDetails(ExhibitsOverviewListItemViewModel item)
+        private async void NavigateToExhibitDetails(ExhibitsOverviewListItemViewModel item)
         {
             if (item != null)
             {
-                Navigation.PushAsync(new AppetizerViewModel(item.Exhibit));
+                await Navigation.PushAsync(new AppetizerViewModel(item.Exhibit));
             }
         }
 

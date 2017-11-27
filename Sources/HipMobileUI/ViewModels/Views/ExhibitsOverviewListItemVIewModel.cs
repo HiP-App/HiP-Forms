@@ -119,10 +119,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             Distance = MathUtil.CalculateDistance(exhibit.Location, new GeoLocation(position.Latitude, position.Longitude));
         }
 
-        public void OpenDetailsView(string id)
+        public async void OpenDetailsView(string id)
         {
             Navigation.InsertPageBefore(new AppetizerViewModel(id), downloadPage);
-            Navigation.PopAsync();
+            await Navigation.PopAsync();
         }
 
         public void SetDetailsAvailable(bool available)
