@@ -3,18 +3,15 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Views.AchievementsDetailsRouteView"
              xmlns:helpers="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;assembly=HipMobileUI"
+             Title="{Binding Title}"
              xmlns:customTriggers="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.CustomTriggers;assembly=HipMobileUI">
     <ContentPage.Content>
 
+        <!-- TODO Move to Pages -->
+
         <StackLayout Orientation="Vertical" HorizontalOptions="Fill" VerticalOptions="Fill" Spacing="0">
-        <StackLayout>
-			<StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="Fill" Orientation="Horizontal"
-                         BackgroundColor="{StaticResource PrimaryColor}" Padding="20">
-                <Label FontSize="20" Text="Achievement Description" FontAttributes="Bold"
-                       HorizontalTextAlignment="Center" VerticalOptions="Center"
-                       HorizontalOptions="CenterAndExpand" TextColor="White" />
-            </StackLayout>	
-			<ListView SeparatorVisibility="None" HasUnevenRows="True"
+            <StackLayout>
+                <ListView SeparatorVisibility="None" HasUnevenRows="True"
                           ItemsSource="{Binding Exhibits}">
                     <ListView.Triggers>
                         <EventTrigger Event="ItemSelected">
@@ -26,17 +23,14 @@
                             <ViewCell>
                                 <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" Padding="0"
                                              Margin="3" Spacing="0">
-                                    <Image Source="ic_equalizer.png" WidthRequest="60" HeightRequest="60"
+                                    <!-- TODO Circle transform -->
+                                    <Image Source="{Binding Image}" WidthRequest="60" HeightRequest="60"
                                            VerticalOptions="Center" Aspect="AspectFit" />
-                                    <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand"
-                                                 VerticalOptions="Fill" Spacing="0" Margin="3,0">
-                                        <Label Text="Exhibit Title" FontSize="18"
-                                               LineBreakMode="WordWrap"
-                                               FontAttributes="Bold" />                                  
-                                    </StackLayout>
-									<!--Use exhibit.unlocked to make this image visible!-->
+                                    <Label Text="{Binding Name}" HorizontalOptions="FillAndExpand"
+                                           VerticalOptions="Fill" VerticalTextAlignment="Center" Margin="5,0"
+                                           FontSize="18" LineBreakMode="WordWrap" />
                                     <Image Source="ic_done.png" WidthRequest="20" HeightRequest="20"
-                                           Opacity="1" Aspect="AspectFit" />
+                                           Opacity="1" VerticalOptions="Center" IsVisible="{Binding Unlocked}" />
                                 </StackLayout>
                             </ViewCell>
                         </DataTemplate>
@@ -46,16 +40,16 @@
             <ContentView HorizontalOptions="Fill" VerticalOptions="FillAndExpand" />
             <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="End" Orientation="Horizontal"
                          BackgroundColor="{StaticResource PrimaryColor}" Padding="20">
-                <Label FontSize="20" Text="You've visited 2 out of 3 exhibits" FontAttributes="Bold"
-                       HorizontalTextAlignment="Center" VerticalOptions="Center"
-                       HorizontalOptions="CenterAndExpand" TextColor="White" />
-			</StackLayout>	
-			<StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="End" Orientation="Horizontal"
-                         BackgroundColor="{StaticResource PrimaryColor}" Padding="20">	
-				<Label FontSize="24" Text="{Binding Score}" FontAttributes="Bold"
+                <Label FontSize="20" Text="{Binding VisitedText}" FontAttributes="Bold"
                        HorizontalTextAlignment="Center" VerticalOptions="Center"
                        HorizontalOptions="CenterAndExpand" TextColor="White" />
             </StackLayout>
-			</StackLayout>
+            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="End" Orientation="Horizontal"
+                         BackgroundColor="{StaticResource PrimaryColor}" Padding="20">
+                <Label FontSize="24" Text="{Binding Score}" FontAttributes="Bold"
+                       HorizontalTextAlignment="Center" VerticalOptions="Center"
+                       HorizontalOptions="CenterAndExpand" TextColor="White" />
+            </StackLayout>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

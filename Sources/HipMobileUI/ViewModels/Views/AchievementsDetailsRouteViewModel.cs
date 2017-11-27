@@ -1,37 +1,59 @@
 ﻿using System.Collections.ObjectModel;
-using System.Threading.Tasks;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers.Contracts;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using Xamarin.Forms;
-using System.ComponentModel;
+using System.Linq;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 {
     public class AchievementsDetailsRouteViewModel : NavigationViewModel
     {
-        public AchievementsDetailsRouteViewModel(RouteFinishedAchievement routeFinishedAchievement)
+        public class ExhibitViewModel
         {
-            //TODO add details Change this to exhibit overview and 
-            //then depending on the achievement type, have different details. 
-            Exhibits = new ObservableCollection<string>
-            {
-                "Exhibit 1",
-                "Exhibit 2",
-                "Exhibit 3"
-            };
-            Score = $"{Strings.AchievementsScreenView_Score} {Settings.Score}";
+            public string Name { get; set; }
+            public ImageSource Image { get; set; }
+            public bool Unlocked { get; set; }
         }
 
-        private ObservableCollection<string> exhibits;
+        public AchievementsDetailsRouteViewModel(RouteFinishedAchievement routeFinishedAchievement)
+        {
+            var dataAccess = IoCManager.Resolve<IDataAccess>();
+            var exhibits = dataAccess.GetItems<Route>()
+                                     .First(it => it.IdForRestApi == routeFinishedAchievement.RouteId)
+                                     .Waypoints
+                                     .Select(it => it.Exhibit)
+                                     .ToList();
+            var visited = exhibits.Count(it => it.Unlocked);
+            var total = exhibits.Count;
 
-        public ObservableCollection<string> Exhibits
+            Exhibits = new ObservableCollection<ExhibitViewModel>(exhibits.Select(it => new ExhibitViewModel
+            {
+                Name = it.Name,
+                Image = it.Image.GetImageSource(),
+                Unlocked = it.Unlocked
+            }));
+            Title = routeFinishedAchievement.Title;
+            Score = $"{Strings.AchievementsScreenView_Score} {AppSharedData.CurrentAchievementsScore()}";
+            VisitedText = string.Format(Strings.AchievementsDetailsExhibitView_VisitedMOfNExhibits, visited, total);
+        }
+
+        private ObservableCollection<ExhibitViewModel> exhibits;
+
+        public ObservableCollection<ExhibitViewModel> Exhibits
         {
             get => exhibits;
             set => SetProperty(ref exhibits, value);
+        }
+
+        private string visitedText;
+
+        public string VisitedText
+        {
+            get => visitedText;
+            set => SetProperty(ref visitedText, value);
         }
 
         private string score;

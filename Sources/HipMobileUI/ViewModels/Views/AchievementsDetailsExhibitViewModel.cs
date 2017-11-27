@@ -20,8 +20,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 
         public AchievementsDetailsExhibitViewModel(ExhibitsVisitedAchievement exhibitsVisitedAchievement)
         {
-            //TODO add details Change this to exhibit overview and 
-            //then depending on the achievement type, have different details. 
             var dataAccess = IoCManager.Resolve<IDataAccess>();
             var exhibits = dataAccess.GetItems<Exhibit>().ToList();
             var visited = exhibits.Count(it => it.Unlocked);

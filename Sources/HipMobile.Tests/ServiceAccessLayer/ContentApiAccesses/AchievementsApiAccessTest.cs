@@ -63,6 +63,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.ServiceAccessLayer
             Assert.AreEqual(routeFinished.ThumbnailUrl, "achievements/api/image/0/");
             Assert.AreEqual(routeFinished.NextId, 0);        
             Assert.AreEqual(routeFinished.Points, 1);        
+            Assert.AreEqual(routeFinished.RouteId, 0);        
             
             Assert.NotNull(exhibitsVisited);
             Assert.AreEqual(exhibitsVisited.Id, 1);
