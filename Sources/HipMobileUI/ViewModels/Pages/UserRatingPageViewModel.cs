@@ -23,12 +23,16 @@ using Xamarin.Forms;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.ModelClasses;
+using System.IO;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelConverters;
+using SixLabors.ImageSharp;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
     public class UserRatingPageViewModel : NavigationViewModel {
 
         #region Variabels
-
+        private ImageSource image;
         private Exhibit exhibit;
         private string headline;
         private ICommand sendRatingCommand;
@@ -52,27 +56,39 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
         private string star4BarCount;
         private string star5BarCount;
 
-        private int rating;
+        private string ratingAverage;
+        private string ratingStars;
+        private string ratingCount;
+
+        private UserRatingManager userRatingManager;
+
+        private int rating = 0;
 
         private int testUserRatingCount = 0;
         private int[] testUserRatings = new int[] { 47, 7, 7, 1, 1 };
         #endregion
 
+
         public UserRatingPageViewModel(Exhibit exhibit) {
             Exhibit = exhibit;
             Headline = exhibit.Name;
+            userRatingManager = UserRatingManager.GetInstance();
 
             foreach (int i in testUserRatings)
                 testUserRatingCount += i;
+
+            var imageData = exhibit.AppetizerPage.Image.Data;
+            Image = imageData != null ? ImageSource.FromStream(() => new MemoryStream(imageData)) : ImageSource.FromStream(() => new MemoryStream(BackupData.BackupImageData));
+
+            SetUserRating();
             SetRatingBarsAndCount();
-            rating = 0;
-            SetStars();
+            SetRatingStars();
             SendRatingCommand = new Command(SendUserRating);
             SelectStarCommand = new Command(SelectStar);
 
         }
 
-        private async void SendUserRating() {
+        private void SendUserRating() {
             if (IoCManager.Resolve<INetworkAccessChecker>().GetNetworkAccessStatus() == NetworkAccessStatus.NoAccess) {
                 UserDialogs.Instance.Alert(new AlertConfig() {
                     Title = "Titel",
@@ -122,7 +138,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
             return new GridLength(prop, GridUnitType.Star);
         }
 
-        private void SetStars() {
+        private void SetRatingStars() {
             Star1 = "☆";
             Star2 = "☆";
             Star3 = "☆";
@@ -149,11 +165,30 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
 
         private void SelectStar(object s) {
             rating = Convert.ToInt32(s);
-            SetStars();
+            SetRatingStars();
+        }
+
+        private async void SetUserRating() {
+            UserRating userRating = await userRatingManager.GetUserRating(exhibit);
+            string stars = "";
+            for (int i = 1; i <= 5; i++) {
+                if (userRating.Average >= i)
+                    stars += "★";
+                else
+                    stars += "☆";
+            }
+            RatingAverage = userRating.Average.ToString("0.#");
+            RatingStars = stars;
+            RatingCount = userRating.Count.ToString() + " " + Strings.UserRating_Rate_Count;
         }
 
 
         #region Properties
+
+        public ImageSource Image {
+            get { return image; }
+            set { SetProperty(ref image, value); }
+        }
 
         public Exhibit Exhibit {
             get { return exhibit; }
@@ -251,6 +286,30 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
         public string Star5 {
             get { return star5; }
             set { SetProperty(ref star5, value); }
+        }
+
+        /// <summary>
+        /// The average user rating text
+        /// </summary>
+        public string RatingAverage {
+            get { return ratingAverage; }
+            set { SetProperty(ref ratingAverage, value); }
+        }
+
+        /// <summary>
+        /// The text which cotains the stars of the user rating
+        /// </summary>
+        public string RatingStars {
+            get { return ratingStars; }
+            set { SetProperty(ref ratingStars, value); }
+        }
+
+        /// <summary>
+        /// The user rating count text
+        /// </summary>
+        public string RatingCount {
+            get { return ratingCount; }
+            set { SetProperty(ref ratingCount, value); }
         }
         #endregion
     }

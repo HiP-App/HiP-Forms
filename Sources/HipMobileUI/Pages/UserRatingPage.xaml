@@ -22,25 +22,26 @@
              Title="{Binding Headline}">
     <ContentPage.Content>
         <AbsoluteLayout >
+            <Image Source="{Binding Image}" AbsoluteLayout.LayoutBounds="0,0,1,0.6" AbsoluteLayout.LayoutFlags="All" Aspect="AspectFill" Opacity="0.10"/>
             <Grid AbsoluteLayout.LayoutBounds="1,1,1,1" AbsoluteLayout.LayoutFlags="All" RowSpacing="0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="1*" />
-                    <RowDefinition Height="2" />
-                    <RowDefinition Height="1*" />
-                    <RowDefinition Height="2" />
-                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="0.3*" />
+                    <RowDefinition Height="0.3*" />
+                    <RowDefinition Height="0.3*" />
+                    <RowDefinition Height="0.1*" />
                 </Grid.RowDefinitions>
-                <StackLayout Grid.Row="0" Orientation="Vertical" Spacing="0" Margin="15,15,15,15">
-                    <Label Text="Durchschnittliche Bewertungen" FontAttributes="Bold" FontSize="15" VerticalOptions="Center" HorizontalOptions="Center" />
-                    <Label Text="4.4" FontAttributes="Bold" FontSize="24" VerticalOptions="Center" HorizontalOptions="Center" />
-                    <Label Text="★★★★☆" TextColor="{StaticResource DarkYellowColor}" FontSize="24" HorizontalOptions="Center" VerticalOptions="Center" />
-                    <Label Text="4123" FontSize="12" HorizontalOptions="Center" VerticalOptions="Center" />
+
+                <StackLayout Grid.Row="0" Orientation="Vertical" Spacing="-5" VerticalOptions="Center">
+                    <Label Text="Durchschnittliche Bewertungen" FontAttributes="Bold" FontSize="20" VerticalOptions="Center" HorizontalOptions="Center" Margin="0,0,0,15" />
+                    <Label Text="{Binding RatingAverage}" FontAttributes="Bold" FontSize="26" VerticalOptions="Center" HorizontalOptions="Center" />
+                    <Label Text="{Binding RatingStars}" TextColor="{StaticResource DarkYellowColor}" FontSize="30" HorizontalOptions="Center" VerticalOptions="Center" />
+                    <Label Text="{Binding RatingCount}" FontSize="15" HorizontalOptions="Center" VerticalOptions="Center" />
                 </StackLayout>
-                <BoxView HorizontalOptions="FillAndExpand" BackgroundColor="Gray" Grid.Row="1"/>
-                <StackLayout Grid.Row="2" Orientation="Vertical" Margin="15,15,15,15" Spacing="8">
+
+                <StackLayout Grid.Row="1" Orientation="Vertical" Spacing="13" VerticalOptions="Center" Margin="20,0,20,0">
                     <Grid ColumnSpacing="0" HorizontalOptions="Start">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*" />
@@ -127,37 +128,36 @@
                         <View Grid.Column="4" />
                     </Grid>
                 </StackLayout>
-                
-                
-                <BoxView HorizontalOptions="FillAndExpand" BackgroundColor="Gray" Grid.Row="3"/>
-                <StackLayout Grid.Row="4" Orientation="Vertical" Spacing="0" Margin="15,15,15,15">
+
+
+                <StackLayout Grid.Row="2" Orientation="Vertical" Spacing="0" VerticalOptions="Center">
                     <Label Text="Berühre einen Stern zum Bewerten" HorizontalOptions="CenterAndExpand" TextColor="Gray" FontSize="15" VerticalOptions="Start"/>
                     <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Spacing="8">
-                        <Label Text="{Binding Star1}" TextColor="{StaticResource DarkYellowColor}" FontSize="35" VerticalOptions="End">
+                        <Label Text="{Binding Star1}" TextColor="{StaticResource DarkYellowColor}" FontSize="40" VerticalOptions="End">
                             <Label.GestureRecognizers>
                                 <TapGestureRecognizer
                                     Command="{Binding SelectStarCommand}" NumberOfTapsRequired="1"  CommandParameter="1"/>
                             </Label.GestureRecognizers>
                         </Label>
-                        <Label Text="{Binding Star2}" TextColor="{StaticResource DarkYellowColor}" FontSize="35" VerticalOptions="End">
+                        <Label Text="{Binding Star2}" TextColor="{StaticResource DarkYellowColor}" FontSize="40" VerticalOptions="End">
                             <Label.GestureRecognizers>
                                 <TapGestureRecognizer
                                     Command="{Binding SelectStarCommand}" NumberOfTapsRequired="1" CommandParameter="2"/>
                             </Label.GestureRecognizers>
                         </Label>
-                        <Label Text="{Binding Star3}" TextColor="{StaticResource DarkYellowColor}" FontSize="35" VerticalOptions="End">
+                        <Label Text="{Binding Star3}" TextColor="{StaticResource DarkYellowColor}" FontSize="40" VerticalOptions="End">
                             <Label.GestureRecognizers>
                                 <TapGestureRecognizer
                                     Command="{Binding SelectStarCommand}" NumberOfTapsRequired="1" CommandParameter="3"/>
                             </Label.GestureRecognizers>
                         </Label>
-                        <Label Text="{Binding Star4}" TextColor="{StaticResource DarkYellowColor}" FontSize="35" VerticalOptions="End">
+                        <Label Text="{Binding Star4}" TextColor="{StaticResource DarkYellowColor}" FontSize="40" VerticalOptions="End">
                             <Label.GestureRecognizers>
                                 <TapGestureRecognizer
                                     Command="{Binding SelectStarCommand}" NumberOfTapsRequired="1" CommandParameter="4"/>
                             </Label.GestureRecognizers>
                         </Label>
-                        <Label Text="{Binding Star5}" TextColor="{StaticResource DarkYellowColor}" FontSize="35" VerticalOptions="End">
+                        <Label Text="{Binding Star5}" TextColor="{StaticResource DarkYellowColor}" FontSize="40" VerticalOptions="End">
                             <Label.GestureRecognizers>
                                 <TapGestureRecognizer
                                     Command="{Binding SelectStarCommand}" NumberOfTapsRequired="1" CommandParameter="5"/>
