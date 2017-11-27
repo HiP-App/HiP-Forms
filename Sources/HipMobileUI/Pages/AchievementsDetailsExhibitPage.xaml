@@ -1,4 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
+
 <!--
 // Copyright (C) 2017 History in Paderborn App - Universität Paderborn
 //
@@ -18,7 +19,10 @@
              x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Pages.AchievementsDetailsExhibitPage"
              xmlns:helpers="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;assembly=HipMobileUI"
              Title="{Binding Title}"
-             xmlns:customTriggers="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.CustomTriggers;assembly=HipMobileUI">
+             xmlns:customTriggers="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.CustomTriggers;assembly=HipMobileUI"
+             xmlns:controls="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Controls;assembly=HipMobileUI"
+             xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations">
     <ContentPage.Content>
 
         <StackLayout Orientation="Vertical" HorizontalOptions="Fill" VerticalOptions="Fill" Spacing="0">
@@ -35,9 +39,12 @@
                             <ViewCell>
                                 <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" Padding="0"
                                              Margin="5,0" Spacing="0">
-                                    <!-- TODO Circle transform -->
-                                    <Image Source="{Binding Image}" WidthRequest="60" HeightRequest="60"
-                                           VerticalOptions="Center" Aspect="AspectFit" />
+                                    <controls:FadeInImage Source="{Binding Image}" WidthRequest="70" HeightRequest="70"
+                                                          VerticalOptions="Center" Margin="5" Aspect="AspectFit">
+                                        <forms:CachedImage.Transformations>
+                                            <transformations:CircleTransformation />
+                                        </forms:CachedImage.Transformations>
+                                    </controls:FadeInImage>
                                     <Label Text="{Binding Name}" HorizontalOptions="FillAndExpand"
                                            VerticalOptions="Fill" VerticalTextAlignment="Center" Margin="5,0"
                                            FontSize="18" LineBreakMode="WordWrap" />

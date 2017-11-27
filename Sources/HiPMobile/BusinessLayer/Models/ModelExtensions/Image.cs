@@ -23,9 +23,33 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 {
     public partial class Image
     {
+        public sealed class PreparedImageLoad
+        {
+            private readonly string dataPath;
+            private readonly IMediaFileManager fileManager = IoCManager.Resolve<IMediaFileManager>();
+
+            internal PreparedImageLoad(string dataPath)
+            {
+                this.dataPath = dataPath;
+            }
+            
+            public async Task<byte[]> GetDataAsync() => await MediaCache.GetBytesAsync(
+                dataPath,
+                async () => await fileManager.ReadFromDiskAsync(dataPath)
+            );
+        }
+
         private readonly IImageDimension imgDimension = IoCManager.Resolve<IImageDimension>();
         private readonly IMediaFileManager fileManager = IoCManager.Resolve<IMediaFileManager>();
 
+        /// <summary>
+        /// Get the image bytes asynchronously. Must be called from the main thread,
+        /// as the <see cref="DataPath"/> is accessed and Realm can only be used from the main
+        /// thread. If you need to access the data from another thread, call
+        /// <see cref="PrepareImageLoad"/> on the main thread and then call 
+        /// <see cref="PreparedImageLoad.GetDataAsync"/> on it.
+        /// </summary>
+        /// <returns></returns>
         public virtual async Task<byte[]> GetDataAsync() => await MediaCache.GetBytesAsync(
             DataPath,
             async () => await fileManager.ReadFromDiskAsync(DataPath)
@@ -37,6 +61,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
             () => fileManager.ReadFromDisk(DataPath)
         );
 
+        /// <summary>
+        /// Call this method on the main thread to avoid an Exception as described in
+        /// <see cref="GetDataAsync"/>.
+        /// </summary>
+        /// <returns></returns>
+        public virtual PreparedImageLoad PrepareImageLoad() => new PreparedImageLoad(DataPath);
+        
         private int ImageWidth { get; set; }
 
         [Ignored]
