@@ -38,7 +38,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
         /// <summary>
         /// Get the bytes of a media file with the specified REST ID.
         /// </summary>
-        /// <param name="md5"></param>
+        /// <param name="mediaId"></param>
         /// <param name="computer">If the value is not present in the LRU cache, this function is called to insert them.</param>
         /// <returns></returns>
         public static byte[] GetBytes(int mediaId, Func<byte[]> computer) =>
