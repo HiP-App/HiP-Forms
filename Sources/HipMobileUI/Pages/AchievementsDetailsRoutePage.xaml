@@ -34,7 +34,7 @@
                         <DataTemplate>
                             <ViewCell>
                                 <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" Padding="0"
-                                             Margin="3" Spacing="0">
+                                             Margin="5,0" Spacing="0">
                                     <!-- TODO Circle transform -->
                                     <Image Source="{Binding Image}" WidthRequest="60" HeightRequest="60"
                                            VerticalOptions="Center" Aspect="AspectFit" />
