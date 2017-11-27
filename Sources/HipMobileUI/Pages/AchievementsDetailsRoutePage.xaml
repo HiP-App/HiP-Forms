@@ -1,13 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Views.AchievementsDetailsRouteView"
+             x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Pages.AchievementsDetailsRoutePage"
              xmlns:helpers="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;assembly=HipMobileUI"
              Title="{Binding Title}"
              xmlns:customTriggers="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.CustomTriggers;assembly=HipMobileUI">
     <ContentPage.Content>
-
-        <!-- TODO Move to Pages -->
 
         <StackLayout Orientation="Vertical" HorizontalOptions="Fill" VerticalOptions="Fill" Spacing="0">
             <StackLayout>

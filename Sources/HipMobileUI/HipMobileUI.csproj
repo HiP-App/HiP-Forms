@@ -236,12 +236,12 @@
       <DependentUpon>AchievementsScreenView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\Views\AchievementsScreenViewModel.cs" />
-    <Compile Include="Views\AchievementsDetailsRouteView.xaml.cs">
-      <DependentUpon>AchievementsDetailsRouteView.xaml</DependentUpon>
+    <Compile Include="Pages\AchievementsDetailsRoutePage.xaml.cs">
+      <DependentUpon>AchievementsDetailsRoutePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\Views\AchievementsDetailsRouteViewModel.cs" />
-    <Compile Include="Views\AchievementsDetailsExhibitView.xaml.cs">
-      <DependentUpon>AchievementsDetailsExhibitView.xaml</DependentUpon>
+    <Compile Include="Pages\AchievementsDetailsExhibitPage.xaml.cs">
+      <DependentUpon>AchievementsDetailsExhibitPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\Views\AchievementsDetailsExhibitViewModel.cs" />
   </ItemGroup>
@@ -262,11 +262,11 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\AchievementsDetailsRouteView.xaml">
+    <EmbeddedResource Include="Pages\AchievementsDetailsRoutePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\AchievementsDetailsExhibitView.xaml">
+    <EmbeddedResource Include="Pages\AchievementsDetailsExhibitPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
