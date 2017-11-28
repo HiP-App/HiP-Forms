@@ -161,9 +161,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                     }
                     await UpdateDatabase();
                 }
-#pragma warning disable 4014
-                Task.Run(NearbyExhibitManager.PostVisitedExhibitsToApi);
-#pragma warning restore 4014
+                await AchievementManager.UpdateServerAndLocalState();
             }
             catch (Exception e)
             {
