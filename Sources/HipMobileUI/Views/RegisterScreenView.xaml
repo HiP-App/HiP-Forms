@@ -1,29 +1,49 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
+<!--
+// Copyright (C) 2017 History in Paderborn App - Universität Paderborn
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+-->
+
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Views.RegisterScreenView"
              xmlns:local="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Behaviors"
-             xmlns:helpers="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;assembly=HipMobileUI">
+             xmlns:helpers="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;assembly=HipMobileUI"
+             xmlns:views="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Views;assembly=HipMobileUI">
     <ContentView.Content>
-        <Grid x:Name="Grid" Padding="10" HorizontalOptions="Fill">
-            <Entry x:Name="EmailEntry" Keyboard="Email" Placeholder="{helpers:Translate RegisterScreenView_Email}"
-                   Text="{Binding Email, Mode=OneWayToSource}">
-                <Entry.Behaviors>
-                    <local:EmailValidationBehavior x:Name="ValidEmailBehavior" />
-                </Entry.Behaviors>
-            </Entry>
-            <Entry x:Name="PasswordEntry" IsPassword="True"
-                   Placeholder="{helpers:Translate RegisterScreenView_Password}"
-                   Text="{Binding Password, Mode=OneWayToSource}" />
-            <Entry x:Name="RePasswordEntry" IsPassword="True"
-                   Placeholder="{helpers:Translate RegisterScreenView_RepeatPassword}"
-                   Text="{Binding RepeatPassword, Mode=OneWayToSource}" />
-            <Label x:Name="ErrorMsgLabel" FontSize="Small" HorizontalOptions="Center" TextColor="Red"
-                   Text="{Binding ErrorMessage, Mode=TwoWay}" />
-
-            <Button x:Name="ButtonView" Text="{helpers:Translate RegisterScreenView_Register}"
-                    Command="{Binding Register}" />
-        </Grid>
+        <views:NotificationExtensionView>
+            <views:NotificationExtensionView.ContentTemplate>
+                <Grid x:Name="Grid" Padding="10" HorizontalOptions="Fill">
+                    <Entry x:Name="EmailEntry" Keyboard="Email" Placeholder="{helpers:Translate RegisterScreenView_Email}"
+                           Text="{Binding Email, Mode=OneWayToSource}">
+                        <Entry.Behaviors>
+                            <local:EmailValidationBehavior x:Name="ValidEmailBehavior" />
+                        </Entry.Behaviors>
+                    </Entry>
+                    <Entry x:Name="PasswordEntry" IsPassword="True"
+                           Placeholder="{helpers:Translate RegisterScreenView_Password}"
+                           Text="{Binding Password, Mode=OneWayToSource}" />
+                    <Entry x:Name="RePasswordEntry" IsPassword="True"
+                           Placeholder="{helpers:Translate RegisterScreenView_RepeatPassword}"
+                           Text="{Binding RepeatPassword, Mode=OneWayToSource}" />
+                    <Label x:Name="ErrorMsgLabel" FontSize="Small" HorizontalOptions="Center" TextColor="Red"
+                           Text="{Binding ErrorMessage, Mode=TwoWay}" />
+                    <Button x:Name="ButtonView" Text="{helpers:Translate RegisterScreenView_Register}"
+                            Command="{Binding Register}" />
+                </Grid>
+            </views:NotificationExtensionView.ContentTemplate>
+        </views:NotificationExtensionView>
     </ContentView.Content>
 </ContentView>

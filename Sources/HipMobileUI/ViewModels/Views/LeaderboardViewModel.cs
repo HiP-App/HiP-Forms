@@ -1,9 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.User;
+﻿// Copyright (C) 2017 History in Paderborn App - Universität Paderborn
+//  
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//  
+//      http://www.apache.org/licenses/LICENSE-2.0
+//  
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 {
@@ -22,18 +31,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             set { SetProperty(ref leaderboard, value); }
         }
 
-        public Ranking OwnRanking
-        {
-            get { return Leaderboard[0]; }
-        }
+        public Ranking OwnRanking => Leaderboard[0];
 
         private void CreateLeaderboard()
         {
-            int numberOfUsersInLeaderboard = 10;
+            const int numberOfUsersInLeaderboard = 10;
 
             Leaderboard = new Ranking[numberOfUsersInLeaderboard];
 
-            for (int i = 0; i < numberOfUsersInLeaderboard; i++)
+            for (var i = 0; i < numberOfUsersInLeaderboard; i++)
             {
                 Leaderboard[i] = new Ranking(i + 1, 100 - i, "User " + (i + 1));
             }

@@ -15,6 +15,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 -->
+
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:views1="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Views;assembly=HipMobileUI"
              xmlns:helpers="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;assembly=HipMobileUI"
@@ -43,103 +44,107 @@
         </ResourceDictionary>
     </ContentView.Resources>
     <ContentView.Content>
-        <ScrollView>
-            <StackLayout Padding="10">
-                <!-- Labels for licensing -->
-                <Label Style="{StaticResource TitleStyle}" Text="{helpers:Translate LicenseScreenView_License_Title}" />
-                <BoxView />
-                <Label Style="{StaticResource Title2Style}"
-                       Text="{helpers:Translate LicenseScreenView_MaterialIcons_Title}" />
-                <views1:HtmlLink Text="{helpers:Translate LicenseScreenView_MaterialIcons_Text}" />
-                <Label Style="{StaticResource Title2Style}" Text="{helpers:Translate LicenseScreenView_Osmdroid_Title}" />
-                <views1:HtmlLink Text="{helpers:Translate LicenseScreenView_Osmdroid_Text}" />
-                <Label Style="{StaticResource Title2Style}"
-                       Text="{helpers:Translate LicenseScreenView_OSMBonusPack_Title}" />
-                <views1:HtmlLink Text="{helpers:Translate LicenseScreenView_OSMBonusPack_Text}" />
-                <Label Style="{StaticResource Title2Style}" Text="{helpers:Translate LicenseScreenView_Realm_Title}" />
-                <views1:HtmlLink Text="{helpers:Translate LicenseScreenView_Realm_Text}" />
-                <Label Style="{StaticResource Title2Style}" Text="{helpers:Translate LicenseScreenView_MapIcons_Title}" />
-                <views1:HtmlLink Text="{helpers:Translate LicenseScreenView_MapIcons_Text}" />
-                <Label Style="{StaticResource Title2Style}" Text="{helpers:Translate LicenseScreenView_Unity_Title}" />
-                <views1:HtmlLink Text="{helpers:Translate LicenseScreenView_Unity_Text}" />
-                <Label Style="{StaticResource Title2Style}"
-                       Text="{helpers:Translate LicenseScreenView_SettingsPlugin_Title}" />
-                <views1:HtmlLink Text="{helpers:Translate LicenseScreenView_SettingsPlugin_Text}" />
-                <Label Style="{StaticResource Title2Style}"
-                       Text="{helpers:Translate LicenseScreenView_HockeyApp_Title}" />
-                <views1:HtmlLink Text="{helpers:Translate LicenseScreenView_HockeyApp_Text}" />
-                <Label Style="{StaticResource Title2Style}" Text="{helpers:Translate LicenseScreenView_XSL_Title}" />
-                <views1:HtmlLink Text="{helpers:Translate LicenseScreenView_XSL_Text}" />
-                <Label Style="{StaticResource Title2Style}" Text="{helpers:Translate LicenseScreenView_CSL_Title}" />
-                <views1:HtmlLink Text="{helpers:Translate LicenseScreenView_CSL_Text}" />
-                <Label Style="{StaticResource Title2Style}" Text="{helpers:Translate LicenseScreenView_Fody_Title}" />
-                <views1:HtmlLink Text="{helpers:Translate LicenseScreenView_Fody_Text}" />
-                <Label Style="{StaticResource Title2Style}" Text="{helpers:Translate LicenseScreenView_Itinero_Title}" />
-                <views1:HtmlLink Text="{helpers:Translate LicenseScreenView_Itinero_Text}" />
-                <Label Style="{StaticResource Title2Style}" Text="{helpers:Translate LicenseScreenView_OsmSharp_Title}" />
-                <views1:HtmlLink Text="{helpers:Translate LicenseScreenView_OsmSharp_Text}" />
-                <Label Style="{StaticResource Title2Style}"
-                       Text="{helpers:Translate LicenseScreenView_Reminiscence_Title}" />
-                <views1:HtmlLink Text="{helpers:Translate LicenseScreenView_Reminiscence_Text}" />
+        <views1:NotificationExtensionView>
+            <views1:NotificationExtensionView.ContentTemplate>
+                <ScrollView>
+                    <StackLayout Padding="10">
+                        <!-- Labels for licensing -->
+                        <Label Style="{StaticResource TitleStyle}" Text="{helpers:Translate LicenseScreenView_License_Title}" />
+                        <BoxView />
+                        <Label Style="{StaticResource Title2Style}"
+                               Text="{helpers:Translate LicenseScreenView_MaterialIcons_Title}" />
+                        <views1:HtmlLink Text="{helpers:Translate LicenseScreenView_MaterialIcons_Text}" />
+                        <Label Style="{StaticResource Title2Style}" Text="{helpers:Translate LicenseScreenView_Osmdroid_Title}" />
+                        <views1:HtmlLink Text="{helpers:Translate LicenseScreenView_Osmdroid_Text}" />
+                        <Label Style="{StaticResource Title2Style}"
+                               Text="{helpers:Translate LicenseScreenView_OSMBonusPack_Title}" />
+                        <views1:HtmlLink Text="{helpers:Translate LicenseScreenView_OSMBonusPack_Text}" />
+                        <Label Style="{StaticResource Title2Style}" Text="{helpers:Translate LicenseScreenView_Realm_Title}" />
+                        <views1:HtmlLink Text="{helpers:Translate LicenseScreenView_Realm_Text}" />
+                        <Label Style="{StaticResource Title2Style}" Text="{helpers:Translate LicenseScreenView_MapIcons_Title}" />
+                        <views1:HtmlLink Text="{helpers:Translate LicenseScreenView_MapIcons_Text}" />
+                        <Label Style="{StaticResource Title2Style}" Text="{helpers:Translate LicenseScreenView_Unity_Title}" />
+                        <views1:HtmlLink Text="{helpers:Translate LicenseScreenView_Unity_Text}" />
+                        <Label Style="{StaticResource Title2Style}"
+                               Text="{helpers:Translate LicenseScreenView_SettingsPlugin_Title}" />
+                        <views1:HtmlLink Text="{helpers:Translate LicenseScreenView_SettingsPlugin_Text}" />
+                        <Label Style="{StaticResource Title2Style}"
+                               Text="{helpers:Translate LicenseScreenView_HockeyApp_Title}" />
+                        <views1:HtmlLink Text="{helpers:Translate LicenseScreenView_HockeyApp_Text}" />
+                        <Label Style="{StaticResource Title2Style}" Text="{helpers:Translate LicenseScreenView_XSL_Title}" />
+                        <views1:HtmlLink Text="{helpers:Translate LicenseScreenView_XSL_Text}" />
+                        <Label Style="{StaticResource Title2Style}" Text="{helpers:Translate LicenseScreenView_CSL_Title}" />
+                        <views1:HtmlLink Text="{helpers:Translate LicenseScreenView_CSL_Text}" />
+                        <Label Style="{StaticResource Title2Style}" Text="{helpers:Translate LicenseScreenView_Fody_Title}" />
+                        <views1:HtmlLink Text="{helpers:Translate LicenseScreenView_Fody_Text}" />
+                        <Label Style="{StaticResource Title2Style}" Text="{helpers:Translate LicenseScreenView_Itinero_Title}" />
+                        <views1:HtmlLink Text="{helpers:Translate LicenseScreenView_Itinero_Text}" />
+                        <Label Style="{StaticResource Title2Style}" Text="{helpers:Translate LicenseScreenView_OsmSharp_Title}" />
+                        <views1:HtmlLink Text="{helpers:Translate LicenseScreenView_OsmSharp_Text}" />
+                        <Label Style="{StaticResource Title2Style}"
+                               Text="{helpers:Translate LicenseScreenView_Reminiscence_Title}" />
+                        <views1:HtmlLink Text="{helpers:Translate LicenseScreenView_Reminiscence_Text}" />
 
-                <!-- Labels for contribution -->
-                <Label Style="{StaticResource TitleStyle}"
-                       Text="{helpers:Translate LicenseScreenView_Contribution_Title}" />
-                <BoxView />
-                <Label Style="{StaticResource Title2Style}"
-                       Text="{helpers:Translate LicenseScreenView_CreditsImagesAutocarousel_Title}" />
-                <views1:HtmlLink Text="{helpers:Translate LicenseScreenView_CreditsImagesAutocarousel_Text}" />
+                        <!-- Labels for contribution -->
+                        <Label Style="{StaticResource TitleStyle}"
+                               Text="{helpers:Translate LicenseScreenView_Contribution_Title}" />
+                        <BoxView />
+                        <Label Style="{StaticResource Title2Style}"
+                               Text="{helpers:Translate LicenseScreenView_CreditsImagesAutocarousel_Title}" />
+                        <views1:HtmlLink Text="{helpers:Translate LicenseScreenView_CreditsImagesAutocarousel_Text}" />
 
-                <Label Style="{StaticResource Title2Style}"
-                       Text="{helpers:Translate LicenseScreenView_CreditsImagesCharacterSelection_Title}" />
-                <views1:HtmlLink Text="{helpers:Translate LicenseScreenView_CreditsImagesCharacterSelection_Text}" />
+                        <Label Style="{StaticResource Title2Style}"
+                               Text="{helpers:Translate LicenseScreenView_CreditsImagesCharacterSelection_Title}" />
+                        <views1:HtmlLink Text="{helpers:Translate LicenseScreenView_CreditsImagesCharacterSelection_Text}" />
 
-                <!-- Labels for Terms of Use -->
-                <Label Style="{StaticResource TitleStyle}" Text="{helpers:Translate LicenseScreenView_ToU_Title}" />
-                <BoxView />
-                <Label Text="{helpers:Translate LicenseScreenView_ToU_Text}" />
-                <Label Style="{StaticResource Title2Style}"
-                       Text="{helpers:Translate LicenseScreenView_Copyright_Title}" />
-                <Label Text="{helpers:Translate LicenseScreenView_Copyright_Text}" />
-                <Label Style="{StaticResource Title2Style}"
-                       Text="{helpers:Translate LicenseScreenView_Liability_Title}" />
-                <Label Text="{helpers:Translate LicenseScreenView_Liability_Text}" />
+                        <!-- Labels for Terms of Use -->
+                        <Label Style="{StaticResource TitleStyle}" Text="{helpers:Translate LicenseScreenView_ToU_Title}" />
+                        <BoxView />
+                        <Label Text="{helpers:Translate LicenseScreenView_ToU_Text}" />
+                        <Label Style="{StaticResource Title2Style}"
+                               Text="{helpers:Translate LicenseScreenView_Copyright_Title}" />
+                        <Label Text="{helpers:Translate LicenseScreenView_Copyright_Text}" />
+                        <Label Style="{StaticResource Title2Style}"
+                               Text="{helpers:Translate LicenseScreenView_Liability_Title}" />
+                        <Label Text="{helpers:Translate LicenseScreenView_Liability_Text}" />
 
-                <!-- Labels for Privacy Policy -->
-                <Label Style="{StaticResource TitleStyle}"
-                       Text="{helpers:Translate LicenseScreenView_PrivacyPolicy_Title}" />
-                <BoxView />
-                <Label Text="{helpers:Translate LicenseScreenView_PrivacyPolicy_Text}" />
-                <Label Style="{StaticResource Title2Style}"
-                       Text="{helpers:Translate LicenseScreenView_UsagePersonalData_Title}" />
-                <Label Text="{helpers:Translate LicenseScreenView_UsagePersonalData_Text}" />
-                <Label Style="{StaticResource Title2Style}"
-                       Text="{helpers:Translate LicenseScreenView_Transparancy_Title}" />
-                <Label Text="{helpers:Translate LicenseScreenView_Transparancy_Text}" />
-                <Label Style="{StaticResource Title2Style}"
-                       Text="{helpers:Translate LicenseScreenView_FeedbackData_Title}" />
-                <Label Text="{helpers:Translate LicenseScreenView_FeedbackData_Text}" />
-                <Label Style="{StaticResource Title2Style}"
-                       Text="{helpers:Translate LicenseScreenView_DatabaseData_Title}" />
-                <Label Text="{helpers:Translate LicenseScreenView_DatabaseData_Text}" />
-                <Label Style="{StaticResource Title2Style}"
-                       Text="{helpers:Translate LicenseScreenView_Agreement_Title}" />
-                <Label Text="{helpers:Translate LicenseScreenView_Agreement_Text}" />
-                <Label Style="{StaticResource Title2Style}"
-                       Text="{helpers:Translate LicenseScreenView_RightOfPP_Title}" />
-                <Label Text="{helpers:Translate LicenseScreenView_RightOfPP_Text}" />
-                <Label Style="{StaticResource Title2Style}"
-                       Text="{helpers:Translate LicenseScreenView_FurtherInfo_Title}" />
-                <Label Text="{helpers:Translate LicenseScreenView_FurtherInfo_Text}" />
+                        <!-- Labels for Privacy Policy -->
+                        <Label Style="{StaticResource TitleStyle}"
+                               Text="{helpers:Translate LicenseScreenView_PrivacyPolicy_Title}" />
+                        <BoxView />
+                        <Label Text="{helpers:Translate LicenseScreenView_PrivacyPolicy_Text}" />
+                        <Label Style="{StaticResource Title2Style}"
+                               Text="{helpers:Translate LicenseScreenView_UsagePersonalData_Title}" />
+                        <Label Text="{helpers:Translate LicenseScreenView_UsagePersonalData_Text}" />
+                        <Label Style="{StaticResource Title2Style}"
+                               Text="{helpers:Translate LicenseScreenView_Transparancy_Title}" />
+                        <Label Text="{helpers:Translate LicenseScreenView_Transparancy_Text}" />
+                        <Label Style="{StaticResource Title2Style}"
+                               Text="{helpers:Translate LicenseScreenView_FeedbackData_Title}" />
+                        <Label Text="{helpers:Translate LicenseScreenView_FeedbackData_Text}" />
+                        <Label Style="{StaticResource Title2Style}"
+                               Text="{helpers:Translate LicenseScreenView_DatabaseData_Title}" />
+                        <Label Text="{helpers:Translate LicenseScreenView_DatabaseData_Text}" />
+                        <Label Style="{StaticResource Title2Style}"
+                               Text="{helpers:Translate LicenseScreenView_Agreement_Title}" />
+                        <Label Text="{helpers:Translate LicenseScreenView_Agreement_Text}" />
+                        <Label Style="{StaticResource Title2Style}"
+                               Text="{helpers:Translate LicenseScreenView_RightOfPP_Title}" />
+                        <Label Text="{helpers:Translate LicenseScreenView_RightOfPP_Text}" />
+                        <Label Style="{StaticResource Title2Style}"
+                               Text="{helpers:Translate LicenseScreenView_FurtherInfo_Title}" />
+                        <Label Text="{helpers:Translate LicenseScreenView_FurtherInfo_Text}" />
 
-                <!-- Labels for Impressum -->
-                <Label Style="{StaticResource TitleStyle}" Text="{helpers:Translate LicenseScreenView_Impressum_Title}">
-                    <Label.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding UnlockExhibits}" />
-                    </Label.GestureRecognizers>
-                </Label>
-                <views1:HtmlLink Text="{helpers:Translate LicenseScreenView_Impressum_Text}" />
-            </StackLayout>
-        </ScrollView>
+                        <!-- Labels for Impressum -->
+                        <Label Style="{StaticResource TitleStyle}" Text="{helpers:Translate LicenseScreenView_Impressum_Title}">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding UnlockExhibits}" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                        <views1:HtmlLink Text="{helpers:Translate LicenseScreenView_Impressum_Text}" />
+                    </StackLayout>
+                </ScrollView>
+            </views1:NotificationExtensionView.ContentTemplate>
+        </views1:NotificationExtensionView>
     </ContentView.Content>
 </ContentView>
