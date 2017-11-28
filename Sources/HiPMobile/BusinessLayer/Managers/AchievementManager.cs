@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -75,7 +76,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
                             {
                                 continue;
                             }
-                            
+
                             var pendingE = data.CreateObject<ExhibitsVisitedAchievementPendingAchievement>();
                             pendingE.Achievement = e;
                             pendingE.Id = e.Id;
@@ -85,11 +86,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
                             {
                                 continue;
                             }
-                            
+
                             var pendingR = data.CreateObject<RouteFinishedAchievementPendingNotification>();
                             pendingR.Achievement = r;
                             pendingR.Id = r.Id;
                             break;
+                        default:
+                            throw new ArgumentOutOfRangeException("Unknown achievement type!");
                     }
                 }
             }
