@@ -16,13 +16,14 @@ using System.IO;
 using System.Windows.Input;
 using Xamarin.Forms;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Location;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 {
-    class ExhibitPreviewViewModel : NavigationViewModel
+    public class ExhibitPreviewViewModel : NavigationViewModel
     {
         public ExhibitPreviewViewModel(Exhibit exhibit, INearbyExhibitManager exManager)
         {

@@ -1,9 +1,22 @@
-﻿using System.Windows.Input;
+﻿// Copyright (C) 2017 History in Paderborn App - Universität Paderborn
+//  
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//  
+//      http://www.apache.org/licenses/LICENSE-2.0
+//  
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+using System.Windows.Input;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using Xamarin.Forms;
-using System;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.User;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.UserManagement;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
@@ -14,9 +27,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
     public class LoginScreenViewModel : NavigationViewModel
     {
         private readonly MainPageViewModel mainPageViewModel;
-        private String email;
-        private String password;
-        private String errorMessage;
+        private string email;
+        private string password;
+        private string errorMessage;
 
         public LoginScreenViewModel(MainPageViewModel mainPageVm)
         {
@@ -33,15 +46,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 
         private void OnLoginClicked()
         {
-            if (String.IsNullOrWhiteSpace(Email) && String.IsNullOrWhiteSpace(Password))
+            if (string.IsNullOrWhiteSpace(Email) && string.IsNullOrWhiteSpace(Password))
             {
                 DisplayEmptyEmailAndPasswordErrorMessage();
             }
-            else if (String.IsNullOrWhiteSpace(Email))
+            else if (string.IsNullOrWhiteSpace(Email))
             {
                 DisplayEmptyEmailErrorMessage();
             }
-            else if (String.IsNullOrWhiteSpace(Password))
+            else if (string.IsNullOrWhiteSpace(Password))
             {
                 DisplayEmptyPasswordErrorMessage();
             }
@@ -119,19 +132,19 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             ErrorMessage = Strings.LoginScreenView_Error_Empty_Email_And_Password;
         }
 
-        public String ErrorMessage
+        public string ErrorMessage
         {
             get { return errorMessage; }
             set { SetProperty(ref errorMessage, value); }
         }
 
-        public String Email
+        public string Email
         {
             get { return email; }
             set { SetProperty(ref email, value); }
         }
 
-        public String Password
+        public string Password
         {
             get { return password; }
             set { SetProperty(ref password, value); }
