@@ -128,7 +128,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         {
             if (item != null)
             {
-                await Navigation.PushAsync(new AppetizerViewModel(item.Exhibit));
+                await Navigation.PushAsync(new AppetizerPageViewModel(item.Exhibit));
             }
         }
 

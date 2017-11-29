@@ -233,7 +233,7 @@
     </Compile>
     <Compile Include="Behaviors\PasswordValidationBehavior.cs" />
     <Compile Include="Behaviors\EmailValidationBehavior.cs" />
-    <Compile Include="ViewModels\Pages\AppetizerViewModel.cs" />
+    <Compile Include="ViewModels\Pages\AppetizerPageViewModel.cs" />
     <Compile Include="Pages\AppetizerPage.xaml.cs">
       <DependentUpon>AppetizerPage.xaml</DependentUpon>
     </Compile>

@@ -23,12 +23,12 @@ using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Pages
 {
-    class AppetizerViewModelTest
+    class AppetizerPageViewModelTest
     {
         [TestFixtureSetUp]
         public void Init()
         {
-            IoCManager.Clear ();
+            IoCManager.Clear();
             IoCManager.RegisterInstance(typeof(INavigationService), Substitute.For<INavigationService>());
             IoCManager.RegisterInstance(typeof(IImageDimension), Substitute.For<IImageDimension>());
             IoCManager.RegisterInstance(typeof(IMediaFileManager), Substitute.For<IMediaFileManager>());
@@ -45,13 +45,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Pages
 
         #region Helper Methods
 
-        public AppetizerViewModel CreateSystemUnderTest()
+        public AppetizerPageViewModel CreateSystemUnderTest()
         {
             var exhibit = Substitute.For<Exhibit>();
-            exhibit.Image = CreateImage ();
+            exhibit.Image = CreateImage();
             exhibit.Name = "Foo";
 
-            return new AppetizerViewModel(exhibit);
+            return new AppetizerPageViewModel(exhibit);
         }
 
         private Image CreateImage()

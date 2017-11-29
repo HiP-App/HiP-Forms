@@ -49,15 +49,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 
         public string ExhibitName { get; }
 
-        async void Accept()
+        private async void Accept()
         {
             MessagingCenter.Send<NavigationViewModel, bool>(this, "ReturnValue", true);
             await Navigation.ClearModalStack();
-            await Navigation.PushAsync(new AppetizerViewModel(exhibit));
+            await Navigation.PushAsync(new AppetizerPageViewModel(exhibit));
             exhibitManager.InvokeExhibitVistedEvent(exhibit);
         }
 
-        async void Deny()
+        private async void Deny()
         {
             await Navigation.PopModalAsync();
         }

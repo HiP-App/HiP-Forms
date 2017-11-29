@@ -17,7 +17,7 @@ using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
 {
-    public partial class AppetizerPage : IViewFor<AppetizerViewModel>
+    public partial class AppetizerPage : IViewFor<AppetizerPageViewModel>
     {
         public AppetizerPage()
         {
