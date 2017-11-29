@@ -31,6 +31,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Views
         {
             IoCManager.RegisterInstance(typeof(INavigationService), Substitute.For<INavigationService>());
             IoCManager.RegisterInstance(typeof(IImageDimension), Substitute.For<IImageDimension>());
+            IoCManager.RegisterInstance(typeof(IMediaFileManager), Substitute.For<IMediaFileManager>());
         }
 
         [Test, Category("UnitTest")]
