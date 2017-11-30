@@ -91,7 +91,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Pages
                 sut.NextViewCommand.Execute(null);
                 navigations++;
             }
-            Assert.AreEqual(navigations, 2);
+            Assert.AreEqual(navigations, 1);
 
             // backward navigation
             while (sut.PreviousViewAvailable)
@@ -121,8 +121,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Pages
             IoCManager.RegisterInstance(typeof(IBarsColorsChanger), Substitute.For<IBarsColorsChanger>());
             var sut = CreateSystemUnderTest();
 
-            Assert.IsInstanceOf<ImageViewModel>(sut.SelectedView);
-            sut.NextViewCommand.Execute(null);
             Assert.IsInstanceOf<TimeSliderViewModel>(sut.SelectedView);
             sut.NextViewCommand.Execute(null);
             Assert.IsInstanceOf<ImageViewModel>(sut.SelectedView);
@@ -135,7 +133,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Pages
             var sut = CreateSystemUnderTest();
             sut.NextViewCommand.Execute(null);
 
-            Assert.AreEqual(true, sut.NextVisible);
+            Assert.AreEqual(false, sut.NextVisible);
             Assert.AreEqual(true, sut.PreviousVisible);
 
             Thread.Sleep(3000);
@@ -173,7 +171,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Pages
         public ExhibitDetailsViewModel CreateSystemUnderTest()
         {
             var exhibit = Substitute.For<Exhibit>();
-            var pages = new List<Page> { CreateAppetizerPage(), CreateImagePage(), CreateTimeSliderPage(), CreateImagePage() };
+            var pages = new List<Page> { CreateImagePage(), CreateTimeSliderPage(), CreateImagePage() };
             exhibit.Pages.Returns(pages);
 
             exhibit.Unlocked = true;
