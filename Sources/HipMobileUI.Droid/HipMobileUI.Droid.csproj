@@ -288,6 +288,7 @@
     <Compile Include="..\..\HiP-Mobile-Internal\Keys\AndroidKeyProvider.cs">
       <Link>Contracts\AndroidKeyProvider.cs</Link>
     </Compile>
+    <Compile Include="Contracts\AndroidAppCloser.cs" />
     <Compile Include="Contracts\AndroidFabSizeCalculator.cs" />
     <Compile Include="Contracts\AndroidImageDimensions.cs" />
     <Compile Include="Contracts\AndroidMediaFileManager.cs" />

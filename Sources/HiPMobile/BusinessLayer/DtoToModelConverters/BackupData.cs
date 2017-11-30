@@ -27,6 +27,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelCo
     {
         private const int BackupImageIdForRestApi = -1;
         private const int BackupImageTagIdForRestApi = -2;
+        private static readonly DateTimeOffset BackupTimestamp = DateTimeOffset.MinValue;
 
         public static async Task Init()
         {
@@ -46,7 +47,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelCo
                     backupImage.IdForRestApi = BackupImageIdForRestApi;
 
                     backupImageData = dataLoader.LoadByteData("noImage.png");
-                    var path = await fileManager.WriteMediaToDiskAsync(backupImageData);
+                    var path = await fileManager.WriteMediaToDiskAsync(backupImageData, BackupImageIdForRestApi, BackupTimestamp);
                     backupImage.DataPath = path;
                 }
             }
@@ -63,7 +64,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelCo
                     backupImageTag.IdForRestApi = BackupImageTagIdForRestApi;
 
                     var backupImageDataTag = dataLoader.LoadByteData("noImageTag.jpg");
-                    var path = await fileManager.WriteMediaToDiskAsync(backupImageDataTag);
+                    var path = await fileManager.WriteMediaToDiskAsync(backupImageDataTag, BackupImageTagIdForRestApi, BackupTimestamp);
                     backupImageTag.DataPath = path;
                 }
             }

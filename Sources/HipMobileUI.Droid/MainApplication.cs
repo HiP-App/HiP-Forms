@@ -1,4 +1,4 @@
-// Copyright (C) 2017 History in Paderborn App - Universität Paderborn
+// Copyright (C) 2017 History in Paderborn App - Universitï¿½t Paderborn
 //  
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,6 +16,7 @@ using Android.App;
 using Android.OS;
 using Android.Runtime;
 using Plugin.CurrentActivity;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
 {
@@ -31,6 +32,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
         public override void OnCreate()
         {
             base.OnCreate();
+            EarlyIoC.Register();
             RegisterActivityLifecycleCallbacks(this);
             //A great place to initialize Xamarin.Insights and Dependency Services!
         }

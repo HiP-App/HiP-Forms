@@ -515,7 +515,7 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
     <value>Entfernen</value>
   </data>
   <data name="SettingsScreenView_RemoveAllDownloadsPrompt_Question" xml:space="preserve">
-    <value>Möchten Sie wirklich alle Downloads entfernen?</value>
+    <value>Möchten Sie wirklich alle Downloads entfernen? Die App muss dafür neu gestartet werden.</value>
   </data>
   <data name="SettingsScreenView_RemoveAllDownloadsPrompt_Reject" xml:space="preserve">
     <value>Abbrechen</value>
