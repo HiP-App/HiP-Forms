@@ -17,6 +17,8 @@
 using System;
 using System.Collections.Generic;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using Realms;
@@ -63,7 +65,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataLayer
             {
                 return false;
             }
-            
+
             if (!Instance.IsInTransaction)
             {
                 Instance.Write(() => Instance.Remove(item));
@@ -123,10 +125,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataLayer
 
         public void DeleteDatabase()
         {
-            lock (Locker)
-            {
-                Realm.DeleteRealm(Configuration);
-            }
+            Settings.ShouldDeleteDbOnLaunch = true;
+            IoCManager.Resolve<IAppCloser>().RestartOrClose();
         }
 
         public void CreateDatabase(int version)

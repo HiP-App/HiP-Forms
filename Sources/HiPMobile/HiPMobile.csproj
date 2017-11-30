@@ -93,6 +93,7 @@
     <Compile Include="BusinessLayer\Models\User\User.cs" />
     <Compile Include="BusinessLayer\UserManagement\UserManager.cs" />
     <Compile Include="BusinessLayer\Models\User\UserStatus.cs" />
+    <Compile Include="Common\Contracts\IAppCloser.cs" />
     <Compile Include="Common\Contracts\IMediaFileManager.cs" />
     <Compile Include="Common\Contracts\IStorageSizeProvider.cs" />
     <Compile Include="BusinessLayer\InteractiveSources\ConsecutiveNumberAndConstantInteractiveSourceSubstitute.cs" />
@@ -110,6 +111,7 @@
     <Compile Include="BusinessLayer\DtoToModelConverters\DtoToModelConverter.cs" />
     <Compile Include="BusinessLayer\DtoToModelConverters\ExhibitConverter.cs" />
     <Compile Include="Helpers\AssertionHelper.cs" />
+    <Compile Include="Helpers\EarlyIoC.cs" />
     <Compile Include="Helpers\UriQueryBuilder.cs" />
     <Compile Include="ServiceAccessLayer\AuthApiDto\TokenPayload.cs" />
     <Compile Include="ServiceAccessLayer\AuthenticationApiAccess\AuthApiAccess.cs" />

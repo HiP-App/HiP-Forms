@@ -299,5 +299,17 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
         }
 
         #endregion
+        
+        private const string ShouldDeleteDbOnLaunchKey = "should_delete_db_on_launch_key";
+        private static readonly string ShouldDeleteDbOnLaunchDefault = false.ToString();
+         
+        /// <summary>
+        /// Iff set to true, the IDataAccess database is deleted on next app launch.
+        /// </summary>
+        public static bool ShouldDeleteDbOnLaunch
+        {
+            get => bool.Parse(AppSettings.GetValueOrDefault(ShouldDeleteDbOnLaunchKey, ShouldDeleteDbOnLaunchDefault));
+            set => AppSettings.AddOrUpdateValue(ShouldDeleteDbOnLaunchKey, value.ToString());
+        }
     }
 }

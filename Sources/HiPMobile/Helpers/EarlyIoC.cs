@@ -12,15 +12,17 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System.Threading;
-using System.Threading.Tasks;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataLayer;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers.Contracts
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
 {
-    public interface IDataToRemoveFetcher
+    public static class EarlyIoC
     {
-        Task FetchDataToDelete(CancellationToken token);
-
-        Task CleanupRemovedData();
+        public static void Register()
+        {
+            IoCManager.RegisterType<IDataAccess, RealmDataAccess>();
+        }
     }
 }

@@ -90,7 +90,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             await dataToRemoveFetcher.FetchDataToDelete(token);
             using (DbManager.StartTransaction())
             {
-                dataToRemoveFetcher.CleaupRemovedData();
+                await dataToRemoveFetcher.CleanupRemovedData();
             }
         }
     }
