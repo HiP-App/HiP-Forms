@@ -36,25 +36,27 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         private bool nextVisible;
         private bool nextViewAvailable;
         private ICommand nextViewCommand;
-        private bool exhibitUnblocked = true;   // see comment below: remove 'true' if you use the commented out line again
+        private bool exhibitUnblocked;
 
         public AppetizerPageViewModel(string exhibitId) : this(ExhibitManager.GetExhibit(exhibitId)) { }
 
         public AppetizerPageViewModel(Exhibit exhibit)
         {
             Exhibit = exhibit;
-            //exhibitUnblocked = exhibit.Unlocked;      // currently commented out for testing -> no location check required to access exhibit details
-
+#if (DEBUG)
+            exhibitUnblocked = true;
+#else
+            exhibitUnblocked = exhibit.Unlocked;
+#endif
             pages = exhibit.Pages;
-            var appetizerPage = exhibit.AppetizerPage;
 
             Headline = exhibit.Name;
-            Text = appetizerPage.Text;
+            Text = exhibit.Name;
 
             if (pages.Count > 1 && Exhibit.DetailsDataLoaded)
                 NextViewAvailable = true;
-            // workaround for realmbug
-            var imageData = appetizerPage.Image.GetDataBlocking();
+            // workaround for realm bug
+            var imageData = exhibit.Image.GetDataBlocking();
             Image = imageData != null ? ImageSource.FromStream(() => new MemoryStream(imageData)) : ImageSource.FromStream(() => new MemoryStream(BackupData.BackupImageData));
 
             IsDownloadButtonVisible = !Exhibit.DetailsDataLoaded;

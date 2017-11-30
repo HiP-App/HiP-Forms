@@ -51,8 +51,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
         //Associations
         public virtual IList<Page> Pages { get; }
 
-        public virtual AppetizerPage AppetizerPage { get { return Pages[0].AppetizerPage; } }
-
         public virtual Image Image { get; set; }
 
         public DateTimeOffset? LastNearbyTime { get; set; }
