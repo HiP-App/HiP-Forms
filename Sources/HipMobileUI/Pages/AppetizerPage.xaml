@@ -55,7 +55,6 @@
                                 </StackLayout>
                             </Grid>
                         </ScrollView>
-                        <Label Grid.Row="2" Text="1/10" FontAttributes="Bold" FontSize="20" HorizontalOptions="End" />
                     </Grid>
                     <Button AbsoluteLayout.LayoutBounds=".5,1,.95,.1" AbsoluteLayout.LayoutFlags="All"
                             Image="ic_file_download.png" IsVisible="{Binding IsDownloadButtonVisible}" Command="{Binding DownloadCommand}" />
