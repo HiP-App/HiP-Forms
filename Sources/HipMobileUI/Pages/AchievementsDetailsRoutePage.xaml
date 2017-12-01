@@ -56,14 +56,11 @@
                 </ListView>
             </StackLayout>
             <ContentView HorizontalOptions="Fill" VerticalOptions="FillAndExpand" />
-            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="End" Orientation="Horizontal"
-                         BackgroundColor="{StaticResource PrimaryColor}" Padding="20">
+            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="End" Orientation="Vertical"
+                         BackgroundColor="{StaticResource PrimaryColor}" Padding="20" Spacing="20">
                 <Label FontSize="20" Text="{Binding VisitedText}" FontAttributes="Bold"
                        HorizontalTextAlignment="Center" VerticalOptions="Center"
                        HorizontalOptions="CenterAndExpand" TextColor="White" />
-            </StackLayout>
-            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="End" Orientation="Horizontal"
-                         BackgroundColor="{StaticResource PrimaryColor}" Padding="20">
                 <Label FontSize="24" Text="{Binding Score}" FontAttributes="Bold"
                        HorizontalTextAlignment="Center" VerticalOptions="Center"
                        HorizontalOptions="CenterAndExpand" TextColor="White" />
