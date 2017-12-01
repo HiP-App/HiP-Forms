@@ -90,7 +90,6 @@
     <Compile Include="Pages\UserRatingPage.xaml.cs">
       <DependentUpon>UserRatingPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\Pages\CreateUserRatingPageViewModel.cs" />
     <Compile Include="ViewModels\Pages\UserRatingPageViewModel.cs" />
     <Compile Include="ViewModels\Views\AchievementViewModel.cs" />
     <Compile Include="ViewModels\Views\ForgotPasswordScreenViewModel.cs" />
@@ -240,9 +239,6 @@
       <DependentUpon>AchievementsScreenView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\Views\AchievementsScreenViewModel.cs" />
-    <Compile Include="Pages\CreateUserRatingPage.xaml.cs">
-      <DependentUpon>CreateUserRatingPage.xaml</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="App.xaml">
@@ -557,12 +553,6 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Pages\UserRatingPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Pages\CreateUserRatingPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

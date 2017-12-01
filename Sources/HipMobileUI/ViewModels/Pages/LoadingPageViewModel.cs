@@ -323,6 +323,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
             IoCManager.RegisterType<IAuthApiAccess, AuthApiAccess>();
             IoCManager.RegisterInstance(typeof(IUserManager), new UserManager());
+            IoCManager.RegisterInstance(typeof(IUserRatingManager), new UserRatingManager());
         }
 
         /// <summary>

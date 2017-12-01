@@ -17,9 +17,11 @@ using System.Threading.Tasks;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses.Contracts {
-    public interface IUserRatingApiAccess {
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses.Contracts
+{
+    public interface IUserRatingApiAccess
+    {
         Task<UserRatingDto> GetUserRating(Exhibit exhibit);
-        Task<bool> SendUserRating();
+        Task<bool> SendUserRating(Exhibit exhibit, int rating);
     }
 }

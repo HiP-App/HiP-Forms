@@ -13,10 +13,12 @@
 // limitations under the License.
 
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
-
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos {
-    public class UserRatingDto  {
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos
+{
+    public class UserRatingDto
+    {
         [JsonProperty("id")]
         public int Id { get; private set; }
 
@@ -26,10 +28,25 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
         [JsonProperty("count")]
         public int Count { get; private set; }
 
-        public UserRatingDto(int id, double average, int count) {
+        [JsonProperty("ratingTable")]
+        public Dictionary<int, int> RatingTable { get; private set; }
+
+        public UserRatingDto()
+        {
+            Id = -1;
+            Average = 0;
+            Count = 0;
+            RatingTable = new Dictionary<int, int>();
+            for (int i = 1; i <= 5; i++)
+                RatingTable.Add(i, 0);
+        }
+
+        public UserRatingDto(int id, double average, int count, Dictionary<int, int> ratingTable)
+        {
             Id = id;
             Average = average;
             Count = count;
+            RatingTable = ratingTable;
         }
     }
 }

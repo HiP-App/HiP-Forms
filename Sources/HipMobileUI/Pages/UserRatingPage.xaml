@@ -19,10 +19,11 @@
              x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Pages.UserRatingPage"
              xmlns:controls1="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Controls;assembly=HipMobileUI"
              xmlns:behaviors="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Behaviors;assembly=HipMobileUI"
+             xmlns:helpers="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;assembly=HipMobileUI"
              Title="{Binding Headline}">
     <ContentPage.Content>
         <AbsoluteLayout >
-            <Image Source="{Binding Image}" AbsoluteLayout.LayoutBounds="0,0,1,0.6" AbsoluteLayout.LayoutFlags="All" Aspect="AspectFill" Opacity="0.10"/>
+            <Image Source="{Binding Image}" AbsoluteLayout.LayoutBounds="0,0,1,0.6" AbsoluteLayout.LayoutFlags="All" Aspect="AspectFill" Opacity="0.08"/>
             <Grid AbsoluteLayout.LayoutBounds="1,1,1,1" AbsoluteLayout.LayoutFlags="All" RowSpacing="0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
@@ -35,10 +36,10 @@
                 </Grid.RowDefinitions>
 
                 <StackLayout Grid.Row="0" Orientation="Vertical" Spacing="-5" VerticalOptions="Center">
-                    <Label Text="Durchschnittliche Bewertungen" FontAttributes="Bold" FontSize="20" VerticalOptions="Center" HorizontalOptions="Center" Margin="0,0,0,15" />
-                    <Label Text="{Binding RatingAverage}" FontAttributes="Bold" FontSize="26" VerticalOptions="Center" HorizontalOptions="Center" />
+                    <Label Text="{helpers:Translate UserRating_Average_Rating}" FontAttributes="Bold" FontSize="17" VerticalOptions="Center" HorizontalOptions="Center" Margin="0,0,0,15" />
+                    <Label Text="{Binding RatingAverage}" FontAttributes="Bold" FontSize="24" VerticalOptions="Center" HorizontalOptions="Center" />
                     <Label Text="{Binding RatingStars}" TextColor="{StaticResource DarkYellowColor}" FontSize="30" HorizontalOptions="Center" VerticalOptions="Center" />
-                    <Label Text="{Binding RatingCount}" FontSize="15" HorizontalOptions="Center" VerticalOptions="Center" />
+                    <Label Text="{Binding RatingCount}" FontSize="14" HorizontalOptions="Center" VerticalOptions="Center" />
                 </StackLayout>
 
                 <StackLayout Grid.Row="1" Orientation="Vertical" Spacing="13" VerticalOptions="Center" Margin="20,0,20,0">
@@ -128,10 +129,8 @@
                         <View Grid.Column="4" />
                     </Grid>
                 </StackLayout>
-
-
                 <StackLayout Grid.Row="2" Orientation="Vertical" Spacing="0" VerticalOptions="Center">
-                    <Label Text="Berühre einen Stern zum Bewerten" HorizontalOptions="CenterAndExpand" TextColor="Gray" FontSize="15" VerticalOptions="Start"/>
+                    <Label Text="{helpers:Translate UserRating_Tap_Star_To_Rate}" HorizontalOptions="CenterAndExpand" TextColor="Gray" FontSize="15" VerticalOptions="Start"/>
                     <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Spacing="8">
                         <Label Text="{Binding Star1}" TextColor="{StaticResource DarkYellowColor}" FontSize="40" VerticalOptions="End">
                             <Label.GestureRecognizers>
@@ -168,7 +167,7 @@
 
             </Grid>
             <Button  AbsoluteLayout.LayoutBounds=".5,1,1,.13" Margin="7" BackgroundColor="LightGray" AbsoluteLayout.LayoutFlags="All" 
-                    Text="Bewerten" FontSize="13"  Command="{Binding SendRatingCommand}" />
+                    Text="{helpers:Translate UserRating_Rate}" FontSize="13"  Command="{Binding SendRatingCommand}" />
         </AbsoluteLayout>
     </ContentPage.Content>
 </ContentPage>

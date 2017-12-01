@@ -22,11 +22,14 @@ using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
 using Xamarin.Forms;
 using Page = PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.Page;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.ModelClasses;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
-    public class AppetizerPageViewModel : NavigationViewModel, IDownloadableListItemViewModel {
+namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
+{
+    public class AppetizerPageViewModel : NavigationViewModel, IDownloadableListItemViewModel
+    {
         private Exhibit exhibit;
         private ImageSource image;
         private string text;
@@ -44,7 +47,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
 
         public AppetizerPageViewModel(string exhibitId) : this(ExhibitManager.GetExhibit(exhibitId)) { }
 
-        public AppetizerPageViewModel(Exhibit exhibit) {
+        public AppetizerPageViewModel(Exhibit exhibit)
+        {
             Exhibit = exhibit;
             //exhibitUnblocked = exhibit.Unlocked;      // currently commented out for testing -> no location check required to access exhibit details
 
@@ -71,60 +75,93 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
         /// If there is more than just an appetizer page show the first details page.
         /// </summary>
         /// <returns></returns>
-        private async void GotoNextView() {
-            if (pages.Count > 1) {
-                if (exhibitUnblocked) {
+        private async void GotoNextView()
+        {
+            if (pages.Count > 1)
+            {
+                if (exhibitUnblocked)
+                {
                     await Navigation.PushAsync(new ExhibitDetailsViewModel(Exhibit));
 
-                } else {
+                }
+                else
+                {
                     await Navigation.DisplayAlert(Strings.ExhibitDetailsPage_Distance_Title, Strings.ExhibitDetailsPage_Distance_Text, Strings.ExhibitDetailsPage_Distance_alert_confirm);
                 }
             }
         }
 
-        private async void OpenDownloadDialog() {
+        private async void OpenDownloadDialog()
+        {
             // Open the download dialog
             downloadPage = new ExhibitRouteDownloadPageViewModel(Exhibit, this);
             await Navigation.PushAsync(downloadPage);
         }
 
-        private async void SetUserRating() {
-            UserRating userRating = await UserRatingManager.GetInstance().GetUserRating(exhibit);
-            string stars = "";
-            for (int i = 1; i <= 5; i++) {
-                if (userRating.Average >= i)
-                    stars += "★";
-                else
-                    stars += "☆";
+        /// <summary>
+        /// Sets the average user rating, the count and the stars if the user is connected to the internet.
+        /// </summary>
+        /// <returns></returns>
+        private async void SetUserRating()
+        {
+            if (IoCManager.Resolve<INetworkAccessChecker>().GetNetworkAccessStatus() == NetworkAccessStatus.NoAccess)
+            {
+                RatingAverage = "-";
+                RatingStars = "?????";
+                RatingCount = "- " + Strings.UserRating_Rate_Count;
             }
-            RatingAverage = userRating.Average.ToString("0.#");
-            RatingStars = stars;
-            RatingCount = userRating.Count.ToString() + " " + Strings.UserRating_Rate_Count;
+            else
+            {
+                UserRating userRating = await IoCManager.Resolve<IUserRatingManager>().GetUserRating(exhibit);
+                string stars = "";
+                for (int i = 1; i <= 5; i++)
+                {
+                    if (userRating.Average >= i)
+                        stars += "★";
+                    else
+                        stars += "☆";
+                }
+                if (userRating.Count > 0)
+                    RatingAverage = userRating.Average.ToString("0.#");
+                else
+                    RatingAverage = "-";
+                RatingStars = stars;
+                RatingCount = userRating.Count.ToString() + " " + Strings.UserRating_Rate_Count;
+            }
         }
 
-        private async void GoToUserRatingPage() {
-            await Navigation.PushAsync(new UserRatingPageViewModel(Exhibit));
+        private async void GoToUserRatingPage()
+        {
+            if (IoCManager.Resolve<INetworkAccessChecker>().GetNetworkAccessStatus() != NetworkAccessStatus.NoAccess)
+            {
+                await Navigation.PushAsync(new UserRatingPageViewModel(Exhibit));
+            }
         }
 
-        public void CloseDownloadPage() {
+        public void CloseDownloadPage()
+        {
             Navigation.PopAsync();
         }
 
-        public void OpenDetailsView(string id) {
+        public void OpenDetailsView(string id)
+        {
             //Do nothing. Never called
         }
 
         private bool isDownloadButtonVisible;
-        public bool IsDownloadButtonVisible {
+        public bool IsDownloadButtonVisible
+        {
             get { return isDownloadButtonVisible; }
             set { SetProperty(ref isDownloadButtonVisible, value); }
         }
 
-        public void SetDetailsAvailable(bool available) {
+        public void SetDetailsAvailable(bool available)
+        {
             if (!available)
                 return;
 
-            using (DbManager.StartTransaction()) {
+            using (DbManager.StartTransaction())
+            {
                 Exhibit.DetailsDataLoaded = true;
             }
             IsDownloadButtonVisible = !Exhibit.DetailsDataLoaded;
@@ -138,7 +175,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
 
         #region Properties
 
-        public Exhibit Exhibit {
+        public Exhibit Exhibit
+        {
             get { return exhibit; }
             set { SetProperty(ref exhibit, value); }
         }
@@ -146,7 +184,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
         /// <summary>
         /// The appetizer image.
         /// </summary>
-        public ImageSource Image {
+        public ImageSource Image
+        {
             get { return image; }
             set { SetProperty(ref image, value); }
         }
@@ -154,7 +193,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
         /// <summary>
         /// The headline of the description.
         /// </summary>
-        public string Headline {
+        public string Headline
+        {
             get { return headline; }
             set { SetProperty(ref headline, value); }
         }
@@ -162,14 +202,16 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
         /// <summary>
         /// The text of the description.
         /// </summary>
-        public string Text {
+        public string Text
+        {
             get { return text; }
             set { SetProperty(ref text, value); }
         }
         /// <summary>
         /// The command for switching to the next view, if available.
         /// </summary>
-        public ICommand NextViewCommand {
+        public ICommand NextViewCommand
+        {
             get { return nextViewCommand; }
             set { SetProperty(ref nextViewCommand, value); }
 
@@ -177,9 +219,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
         /// <summary>
         /// Indicator if a next view is available.
         /// </summary>
-        public bool NextViewAvailable {
+        public bool NextViewAvailable
+        {
             get { return nextViewAvailable; }
-            set {
+            set
+            {
                 NextVisible = value;
                 SetProperty(ref nextViewAvailable, value);
             }
@@ -188,7 +232,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
         /// <summary>
         /// Indicator if navigation to next is visible
         /// </summary>
-        public bool NextVisible {
+        public bool NextVisible
+        {
             get { return nextVisible; }
             set { SetProperty(ref nextVisible, value); }
         }
@@ -196,7 +241,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
         /// <summary>
         /// The command for switch to the user rating
         /// </summary>
-        public ICommand UserRatingCommand {
+        public ICommand UserRatingCommand
+        {
             get { return userRatingCommand; }
             set { SetProperty(ref userRatingCommand, value); }
         }
@@ -204,7 +250,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
         /// <summary>
         /// The average user rating text
         /// </summary>
-        public string RatingAverage {
+        public string RatingAverage
+        {
             get { return ratingAverage; }
             set { SetProperty(ref ratingAverage, value); }
         }
@@ -212,7 +259,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
         /// <summary>
         /// The text which cotains the stars of the user rating
         /// </summary>
-        public string RatingStars {
+        public string RatingStars
+        {
             get { return ratingStars; }
             set { SetProperty(ref ratingStars, value); }
         }
@@ -220,7 +268,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
         /// <summary>
         /// The user rating count text
         /// </summary>
-        public string RatingCount {
+        public string RatingCount
+        {
             get { return ratingCount; }
             set { SetProperty(ref ratingCount, value); }
         }

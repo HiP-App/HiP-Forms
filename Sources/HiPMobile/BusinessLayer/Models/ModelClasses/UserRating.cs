@@ -19,16 +19,29 @@
   limitations under the License.*/
 
 
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos;
 using Realms;
+using System.Collections.Generic;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.ModelClasses {
-    public class UserRating : RealmObject {
-        //Attributes
-        [PrimaryKey]
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.ModelClasses
+{
+    public class UserRating
+    {
+
+        public UserRating(UserRatingDto userRatingDto)
+        {
+            Id = userRatingDto.Id;
+            Average = userRatingDto.Average;
+            Count = userRatingDto.Count;
+            RatingTable = userRatingDto.RatingTable;
+        }
+
         public int Id { get; set; }
 
         public double Average { get; set; }
 
         public int Count { get; set; }
+
+        public Dictionary<int, int> RatingTable { get; set; }
     }
 }

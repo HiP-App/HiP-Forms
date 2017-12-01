@@ -826,4 +826,46 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   <data name="UserRating_Rate_Count" xml:space="preserve">
     <value>Bewertungen</value>
   </data>
+  <data name="UserRating_Average_Rating" xml:space="preserve">
+    <value>Durchschnittliche Bewertungen</value>
+  </data>
+  <data name="UserRating_Dialog_Message_Not_Logged_In" xml:space="preserve">
+    <value>Sie müssen sich erst anmelden oder registrieren, bevor eine Bewertung abgegeben werden kann.</value>
+  </data>
+  <data name="UserRating_Dialog_Message_No_Internet" xml:space="preserve">
+    <value>Es kann keine Verbindung zum Internet aufgebaut werden.</value>
+  </data>
+  <data name="UserRating_Dialog_Message_No_Rating" xml:space="preserve">
+    <value>Es wurde keiner der Sterne zum Bewerten markiert.</value>
+  </data>
+  <data name="UserRating_Dialog_Title_Not_Logged_In" xml:space="preserve">
+    <value>Nicht Angemeldet</value>
+  </data>
+  <data name="UserRating_Dialog_Title_No_Internet" xml:space="preserve">
+    <value>Keine Internetverbindung</value>
+  </data>
+  <data name="UserRating_Dialog_Title_No_Rating" xml:space="preserve">
+    <value>Keine Bewertung</value>
+  </data>
+  <data name="UserRating_Ok" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+  <data name="UserRating_Rate" xml:space="preserve">
+    <value>Bewerten</value>
+  </data>
+  <data name="UserRating_Tap_Star_To_Rate" xml:space="preserve">
+    <value>Berühre einen Stern zum Bewerten</value>
+  </data>
+  <data name="UserRating_Dialog_Message_Thx" xml:space="preserve">
+    <value>Vielen Dank für Ihre Bewertung.</value>
+  </data>
+  <data name="UserRating_Dialog_Message_Unkown_Error" xml:space="preserve">
+    <value>Es ist ein unbekannter Fehler aufgetreten. Bitte versuchen Sie es zu einem späteren Zeitpunkt erneut.</value>
+  </data>
+  <data name="UserRating_Dialog_Title_Thx" xml:space="preserve">
+    <value>Dankeschön</value>
+  </data>
+  <data name="UserRating_Dialog_Title_Unkown_Error" xml:space="preserve">
+    <value>Unbekannter Fehler</value>
+  </data>
 </root>

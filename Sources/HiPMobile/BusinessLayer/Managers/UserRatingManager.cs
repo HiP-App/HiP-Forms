@@ -12,42 +12,37 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.ModelClasses;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses.Contracts;
 using System.Threading.Tasks;
-using Xamarin.Forms;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers {
-    public class UserRatingManager {
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
+{
 
-        private static UserRatingManager instance;
+    public interface IUserRatingManager
+    {
+        Task<UserRating> GetUserRating(Exhibit exhibit);
+        Task<bool> SendUserRating(Exhibit exhibit, int rating);
+    }
 
-        private readonly IUserRatingApiAccess client = new UserRatingApiAccess(new ContentApiClient(ServerEndpoints.DevelopApiPath));
 
-        private UserRatingManager() { }
+    public class UserRatingManager : IUserRatingManager
+    {
 
-        public static UserRatingManager GetInstance() {
-            if (instance == null) {
-                instance = new UserRatingManager();
-            }
-            return instance;
-        }
+        private readonly IUserRatingApiAccess client = new UserRatingApiAccess(new ContentApiClient());
 
-        public async Task<UserRating> GetUserRating(Exhibit exhibit) {
+        public async Task<UserRating> GetUserRating(Exhibit exhibit)
+        {
             var userRatingDto = await client.GetUserRating(exhibit);
-            UserRating userRating = new UserRating();
-            userRating.Id = userRatingDto.Id;
-            userRating.Average = userRatingDto.Average;
-            userRating.Count = userRatingDto.Count;
-            return userRating;
+            return new UserRating(userRatingDto);
         }
 
-        public async void SetUserRating() {
-            var result = await client.SendUserRating();
+        public async Task<bool> SendUserRating(Exhibit exhibit, int rating)
+        {
+            return await client.SendUserRating(exhibit, rating);
         }
     }
 }

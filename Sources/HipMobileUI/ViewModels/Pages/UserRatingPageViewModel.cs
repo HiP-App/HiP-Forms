@@ -26,10 +26,12 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.ModelClasses;
 using System.IO;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelConverters;
-using SixLabors.ImageSharp;
+using System.Collections.Generic;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
-    public class UserRatingPageViewModel : NavigationViewModel {
+namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
+{
+    public class UserRatingPageViewModel : NavigationViewModel
+    {
 
         #region Variabels
         private ImageSource image;
@@ -60,76 +62,66 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
         private string ratingStars;
         private string ratingCount;
 
-        private UserRatingManager userRatingManager;
-
         private int rating = 0;
-
-        private int testUserRatingCount = 0;
-        private int[] testUserRatings = new int[] { 47, 7, 7, 1, 1 };
         #endregion
 
 
-        public UserRatingPageViewModel(Exhibit exhibit) {
+        public UserRatingPageViewModel(Exhibit exhibit)
+        {
             Exhibit = exhibit;
             Headline = exhibit.Name;
-            userRatingManager = UserRatingManager.GetInstance();
-
-            foreach (int i in testUserRatings)
-                testUserRatingCount += i;
 
             var imageData = exhibit.AppetizerPage.Image.Data;
             Image = imageData != null ? ImageSource.FromStream(() => new MemoryStream(imageData)) : ImageSource.FromStream(() => new MemoryStream(BackupData.BackupImageData));
 
-            SetUserRating();
-            SetRatingBarsAndCount();
-            SetRatingStars();
+            SetUserRatingUI();
             SendRatingCommand = new Command(SendUserRating);
-            SelectStarCommand = new Command(SelectStar);
+            SelectStarCommand = new Command(OnSelectStar);
 
         }
-
-        private void SendUserRating() {
-            if (IoCManager.Resolve<INetworkAccessChecker>().GetNetworkAccessStatus() == NetworkAccessStatus.NoAccess) {
-                UserDialogs.Instance.Alert(new AlertConfig() {
-                    Title = "Titel",
-                    Message = "Die Nachricht",
-                    OkText = "Jo"
-                });
-                return;
-            }
-            if (!Settings.IsLoggedIn) {
-                UserDialogs.Instance.Alert(new AlertConfig() {
-                    Title = "Titel",
-                    Message = "Die Nachricht",
-                    OkText = "Jo"
-                });
-                return;
-            }
-            if (rating == 0) {
-                UserDialogs.Instance.Alert(new AlertConfig() {
-                    Title = "Titel",
-                    Message = "Die Nachricht",
-                    OkText = "Jo"
-                });
-                return;
-            }
-            UserRatingManager.GetInstance().SetUserRating();
+        private async void SetUserRatingUI()
+        {
+            UserRating userRating = await IoCManager.Resolve<IUserRatingManager>().GetUserRating(exhibit);
+            SetRatingAverageAndCount(userRating.Average, userRating.Count);
+            SetRatingBars(userRating.RatingTable, userRating.Count);
+            SetRatingStars();
         }
 
-        private void SetRatingBarsAndCount() {
-            Star5BarCount = testUserRatings[0].ToString();
-            Star4BarCount = testUserRatings[1].ToString();
-            Star3BarCount = testUserRatings[2].ToString();
-            Star2BarCount = testUserRatings[3].ToString();
-            Star1BarCount = testUserRatings[4].ToString();
-            Star5Bar = CalculateBarProportion(testUserRatings[0], testUserRatingCount);
-            Star4Bar = CalculateBarProportion(testUserRatings[1], testUserRatingCount);
-            Star3Bar = CalculateBarProportion(testUserRatings[2], testUserRatingCount);
-            Star2Bar = CalculateBarProportion(testUserRatings[3], testUserRatingCount);
-            Star1Bar = CalculateBarProportion(testUserRatings[4], testUserRatingCount);
+        private void SetRatingAverageAndCount(double average, int count)
+        {
+            string stars = "";
+            for (int i = 1; i <= 5; i++)
+            {
+                if (average >= i)
+                    stars += "★";
+                else
+                    stars += "☆";
+            }
+            if (count > 0)
+                RatingAverage = average.ToString("0.#");
+            else
+                RatingAverage = "-";
+            RatingStars = stars;
+            RatingCount = count.ToString() + " " + Strings.UserRating_Rate_Count;
         }
 
-        private GridLength CalculateBarProportion(double value, double totalCount) {
+
+        private void SetRatingBars(Dictionary<int, int> ratingTable, int count)
+        {
+            Star5BarCount = ratingTable[5].ToString();
+            Star4BarCount = ratingTable[4].ToString();
+            Star3BarCount = ratingTable[3].ToString();
+            Star2BarCount = ratingTable[2].ToString();
+            Star1BarCount = ratingTable[1].ToString();
+            Star5Bar = CalculateBarProportion(ratingTable[5], count);
+            Star4Bar = CalculateBarProportion(ratingTable[4], count);
+            Star3Bar = CalculateBarProportion(ratingTable[3], count);
+            Star2Bar = CalculateBarProportion(ratingTable[2], count);
+            Star1Bar = CalculateBarProportion(ratingTable[1], count);
+        }
+
+        private GridLength CalculateBarProportion(double value, double totalCount)
+        {
             if (value == 0)
                 return new GridLength(0, GridUnitType.Absolute);
             if (value == totalCount)
@@ -138,13 +130,28 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
             return new GridLength(prop, GridUnitType.Star);
         }
 
-        private void SetRatingStars() {
+
+        /// <summary>
+        /// This method is executed when a star is tapped. 
+        /// The rating comes from the command parameter defined in the xaml file.
+        /// </summary>
+        /// <returns></returns>
+        private void OnSelectStar(object s)
+        {
+            rating = Convert.ToInt32(s);
+            SetRatingStars();
+        }
+
+
+        private void SetRatingStars()
+        {
             Star1 = "☆";
             Star2 = "☆";
             Star3 = "☆";
             Star4 = "☆";
             Star5 = "☆";
-            switch (rating) {
+            switch (rating)
+            {
                 case 5:
                     Star5 = "★";
                     goto case 4;
@@ -163,34 +170,59 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
             }
         }
 
-        private void SelectStar(object s) {
-            rating = Convert.ToInt32(s);
-            SetRatingStars();
+        /// <summary>
+        /// Sends the user rating to the server if the following conditions are given:
+        /// 1. The user is connected to the internet
+        /// 2. The user is logged in
+        /// 3. The user haas selected a star 
+        /// </summary>
+        /// <returns></returns>
+        private async void SendUserRating()
+        {
+            if (IoCManager.Resolve<INetworkAccessChecker>().GetNetworkAccessStatus() == NetworkAccessStatus.NoAccess)
+            {
+                ShowDialog(Strings.UserRating_Dialog_Title_No_Internet, Strings.UserRating_Dialog_Message_No_Internet);
+            }
+            else if (!Settings.IsLoggedIn)
+            {
+                ShowDialog(Strings.UserRating_Dialog_Title_Not_Logged_In, Strings.UserRating_Dialog_Message_Not_Logged_In);
+            }
+            else if (rating == 0)
+            {
+                ShowDialog(Strings.UserRating_Dialog_Title_No_Rating, Strings.UserRating_Dialog_Message_No_Rating);
+            }
+            else if (await IoCManager.Resolve<IUserRatingManager>().SendUserRating(exhibit, rating))
+            {
+                SetUserRatingUI();
+                ShowDialog(Strings.UserRating_Dialog_Title_Thx, Strings.UserRating_Dialog_Message_Thx);
+            }
+            else
+            {
+                ShowDialog(Strings.UserRating_Dialog_Title_Unkown_Error, Strings.UserRating_Dialog_Message_Unkown_Error);
+            }
         }
 
-        private async void SetUserRating() {
-            UserRating userRating = await userRatingManager.GetUserRating(exhibit);
-            string stars = "";
-            for (int i = 1; i <= 5; i++) {
-                if (userRating.Average >= i)
-                    stars += "★";
-                else
-                    stars += "☆";
-            }
-            RatingAverage = userRating.Average.ToString("0.#");
-            RatingStars = stars;
-            RatingCount = userRating.Count.ToString() + " " + Strings.UserRating_Rate_Count;
+        private void ShowDialog(string title, string message)
+        {
+            UserDialogs.Instance.Alert(new AlertConfig()
+            {
+                Title = title,
+                Message = message,
+                OkText = Strings.UserRating_Ok
+            });
         }
 
 
         #region Properties
 
-        public ImageSource Image {
+        public ImageSource Image
+        {
             get { return image; }
             set { SetProperty(ref image, value); }
         }
 
-        public Exhibit Exhibit {
+        public Exhibit Exhibit
+        {
             get { return exhibit; }
             set { SetProperty(ref exhibit, value); }
         }
@@ -198,92 +230,110 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
         /// <summary>
         /// The headline of the description.
         /// </summary>
-        public string Headline {
+        public string Headline
+        {
             get { return headline; }
             set { SetProperty(ref headline, value); }
         }
 
-        public ICommand SendRatingCommand {
+        public ICommand SendRatingCommand
+        {
             get { return sendRatingCommand; }
             set { SetProperty(ref sendRatingCommand, value); }
         }
 
-        public ICommand SelectStarCommand {
+        public ICommand SelectStarCommand
+        {
             get { return selectStarCommand; }
             set { SetProperty(ref selectStarCommand, value); }
         }
 
-        public GridLength Star1Bar {
+        public GridLength Star1Bar
+        {
             get { return star1Bar; }
             set { SetProperty(ref star1Bar, value); }
         }
 
-        public GridLength Star2Bar {
+        public GridLength Star2Bar
+        {
             get { return star2Bar; }
             set { SetProperty(ref star2Bar, value); }
         }
 
-        public GridLength Star3Bar {
+        public GridLength Star3Bar
+        {
             get { return star3Bar; }
             set { SetProperty(ref star3Bar, value); }
         }
 
-        public GridLength Star4Bar {
+        public GridLength Star4Bar
+        {
             get { return star4Bar; }
             set { SetProperty(ref star4Bar, value); }
         }
 
-        public GridLength Star5Bar {
+        public GridLength Star5Bar
+        {
             get { return star5Bar; }
             set { SetProperty(ref star5Bar, value); }
         }
 
-        public string Star1BarCount {
+        public string Star1BarCount
+        {
             get { return star1BarCount; }
             set { SetProperty(ref star1BarCount, value); }
         }
 
-        public string Star2BarCount {
+        public string Star2BarCount
+        {
             get { return star2BarCount; }
             set { SetProperty(ref star2BarCount, value); }
         }
 
-        public string Star3BarCount {
+        public string Star3BarCount
+        {
             get { return star3BarCount; }
             set { SetProperty(ref star3BarCount, value); }
         }
 
-        public string Star4BarCount {
+        public string Star4BarCount
+        {
             get { return star4BarCount; }
             set { SetProperty(ref star4BarCount, value); }
         }
 
-        public string Star5BarCount {
+        public string Star5BarCount
+        {
             get { return star5BarCount; }
             set { SetProperty(ref star5BarCount, value); }
         }
 
-        public string Star1 {
+        public string Star1
+        {
             get { return star1; }
             set { SetProperty(ref star1, value); }
         }
 
-        public string Star2 {
+        public string Star2
+        {
             get { return star2; }
             set { SetProperty(ref star2, value); }
         }
 
-        public string Star3 {
+        public string Star3
+        {
             get { return star3; }
             set { SetProperty(ref star3, value); }
         }
 
-        public string Star4 {
+        public string Star4
+        {
             get { return star4; }
             set { SetProperty(ref star4, value); }
         }
 
-        public string Star5 {
+        public string Star5
+        {
             get { return star5; }
             set { SetProperty(ref star5, value); }
         }
@@ -291,7 +341,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
         /// <summary>
         /// The average user rating text
         /// </summary>
-        public string RatingAverage {
+        public string RatingAverage
+        {
             get { return ratingAverage; }
             set { SetProperty(ref ratingAverage, value); }
         }
@@ -299,7 +350,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
         /// <summary>
         /// The text which cotains the stars of the user rating
         /// </summary>
-        public string RatingStars {
+        public string RatingStars
+        {
             get { return ratingStars; }
             set { SetProperty(ref ratingStars, value); }
         }
@@ -307,7 +359,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages {
         /// <summary>
         /// The user rating count text
         /// </summary>
-        public string RatingCount {
+        public string RatingCount
+        {
             get { return ratingCount; }
             set { SetProperty(ref ratingCount, value); }
         }

@@ -12,44 +12,55 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Runtime.Serialization;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
-using System.Net.Http;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.AuthenticationApiAccess;
+using System;
+using System.Net;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses {
-    public class UserRatingApiAccess : IUserRatingApiAccess {
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses
+{
+    public class UserRatingApiAccess : IUserRatingApiAccess
+    {
 
         private readonly IContentApiClient contentApiClient;
 
         private const string requestPath = "/Exhibits/Rating/";
 
-        public UserRatingApiAccess(IContentApiClient contentApiClient) {
+        public UserRatingApiAccess(IContentApiClient contentApiClient)
+        {
             this.contentApiClient = contentApiClient;
         }
 
-        public async Task<UserRatingDto> GetUserRating(Exhibit exhibit) {
-            var json = await contentApiClient.GetResponseFromUrlAsString(requestPath+"0");
-            return JsonConvert.DeserializeObject<UserRatingDto>(json);
+        public async Task<UserRatingDto> GetUserRating(Exhibit exhibit)
+        {
+            try
+            {
+                string url = requestPath + exhibit.IdForRestApi;
+                var json = await contentApiClient.GetResponseFromUrlAsString(url);
+                return JsonConvert.DeserializeObject<UserRatingDto>(json);
+            }
+            catch (NotFoundException)
+            {
+                return new UserRatingDto();
+            }
         }
 
-        public async Task<bool> SendUserRating() { //Exhibit exhibit, int rating, IContentApiClient clientApiClient) {
-            string url = "/Exhibits/Rating/0?Rating=5";
-
-            var result = await contentApiClient.PostRequestBody(url, "");
-
-            string jsonPayload = await result.Content.ReadAsStringAsync();
-
-            return true;
+        public async Task<bool> SendUserRating(Exhibit exhibit, int rating)
+        {
+            string url = requestPath + exhibit.IdForRestApi + "?Rating=" + rating;
+            var result = await contentApiClient.PostRequestBody(url, String.Empty);
+            if (result.StatusCode == HttpStatusCode.Created)
+            {
+                string jsonPayload = await result.Content.ReadAsStringAsync();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
     }
