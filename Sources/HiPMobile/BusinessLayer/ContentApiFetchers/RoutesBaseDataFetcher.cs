@@ -109,9 +109,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
 
         private FetchedMediaData fetchedMedia;
 
-        public void ProcessRoutes(IProgressListener listener)
+        public async Task ProcessRoutes(IProgressListener listener)
         {
-            fetchedMedia = mediaDataFetcher.CombineMediasAndFiles();
+            fetchedMedia = await mediaDataFetcher.CombineMediasAndFiles();
 
             ProcessUpdatedRoutes(listener);
             ProcessNewRoutes(listener);

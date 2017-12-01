@@ -27,7 +27,7 @@ using Xamarin.Forms;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 {
-    class NavigationPageViewModel : NavigationViewModel, ILocationListener
+    public class NavigationPageViewModel : NavigationViewModel, ILocationListener
     {
         private ExhibitSet exhibitSet;
         private GeoLocation gpsLocation;

@@ -1,50 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+<!--
+// Copyright (C) 2017 History in Paderborn App - Universität Paderborn
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+-->
+
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Views.AchievementsScreenView"
              xmlns:helpers="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;assembly=HipMobileUI"
-             xmlns:customTriggers="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.CustomTriggers;assembly=HipMobileUI">
+             xmlns:customTriggers="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.CustomTriggers;assembly=HipMobileUI"
+             xmlns:views="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Views;assembly=HipMobileUI">
     <ContentView.Content>
-        <StackLayout>
-            <StackLayout Orientation="Vertical" HorizontalOptions="Fill" VerticalOptions="Fill" Spacing="0">
-                <ScrollView>
-                    <ListView SeparatorVisibility="None" HasUnevenRows="True" ItemsSource="{Binding Achievements}">
-                        <ListView.Triggers>
-                            <EventTrigger Event="ItemSelected">
-                                <customTriggers:DeselectListViewItemAction />
-                            </EventTrigger>
-                        </ListView.Triggers>
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <ViewCell>
-                                    <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" Padding="0"
-                                                 Margin="3" HeightRequest="60" Spacing="0">
-                                        <!-- Bind image source from view model instead -->
-                                        <Image Source="ic_equalizer.png" WidthRequest="60" HeightRequest="60"
-                                               Aspect="AspectFit" />
-                                        <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand"
-                                                     VerticalOptions="Fill" Spacing="0" Margin="3,0">
-                                            <!-- Use seperate ViewModel with DataContext for binding -->
-                                            <Label Text="Achievement title" FontSize="18" LineBreakMode="WordWrap"
-                                                   FontAttributes="Bold" TextColor="{StaticResource PrimaryColor}" />
+        <views:NotificationExtensionView>
+            <views:NotificationExtensionView.ContentTemplate>
+                <StackLayout Orientation="Vertical" HorizontalOptions="Fill" VerticalOptions="Fill" Spacing="0">
+                    <Label Text="{helpers:Translate AchievementsScreenView_PleaseLogin}"
+                           HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
+                           Margin="25"
+                           HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
+                           IsVisible="{Binding Path=IsLoggedIn, Converter={StaticResource InverseBooleanConverter}}"
+                           LineBreakMode="WordWrap"
+                           FontAttributes="Bold"
+                           FontSize="20"
+                           TextColor="{StaticResource PrimaryColor}" />
+                    <StackLayout IsVisible="{Binding IsLoggedIn}" Orientation="Vertical" HorizontalOptions="Fill"
+                                 VerticalOptions="Fill" Spacing="0">
+                        <ListView SeparatorVisibility="None" HasUnevenRows="True"
+                                  ItemsSource="{Binding Achievements}">
+                            <ListView.Triggers>
+                                <EventTrigger Event="ItemSelected">
+                                    <customTriggers:DeselectListViewItemAction />
+                                </EventTrigger>
+                            </ListView.Triggers>
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" Padding="0"
+                                                     Margin="3" Spacing="0">
+                                            <Image Source="{Binding Image}" WidthRequest="60" HeightRequest="60"
+                                                   VerticalOptions="Center" Aspect="AspectFit" />
+                                            <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand"
+                                                         VerticalOptions="Fill" Spacing="0" Margin="3,0">
+                                                <Label Text="{Binding Achievement.Title}" FontSize="18"
+                                                       LineBreakMode="WordWrap"
+                                                       FontAttributes="Bold" TextColor="{StaticResource PrimaryColor}" />
+                                                <Label Text="{Binding Achievement.Description}" FontSize="16"
+                                                       LineBreakMode="WordWrap"
+                                                       TextColor="{StaticResource DarkGrayColor}" />
+                                            </StackLayout>
+                                            <Image Source="ic_done.png" IsVisible="{Binding Achievement.IsUnlocked}"
+                                                   Opacity="1" Aspect="AspectFit" />
                                         </StackLayout>
-                                        <!-- Use optional visibility here to show what has not been visited -->
-                                        <Image Source="ic_done.png" Opacity="1" Aspect="AspectFit" />
-                                    </StackLayout>
-                                </ViewCell>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-                </ScrollView>
-                <BoxView HeightRequest="6" HorizontalOptions="Fill" Margin="0,5" />
-                <StackLayout HorizontalOptions="Fill" VerticalOptions="FillAndExpand"
-                             BackgroundColor="{StaticResource PrimaryColor}" Padding="40">
-                    <Label FontSize="24" Text="{helpers:Translate AchievementsScreenView_Score}" FontAttributes="Bold"
-                           HorizontalTextAlignment="Center" VerticalOptions="CenterAndExpand" TextColor="White" />
-                    <Label FontSize="24" Text="{Binding Score}" FontAttributes="Bold" HorizontalTextAlignment="Center"
-                           VerticalOptions="CenterAndExpand" TextColor="White" />
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackLayout>
+                    <ContentView HorizontalOptions="Fill" VerticalOptions="FillAndExpand" />
+                    <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="End" Orientation="Horizontal"
+                                 BackgroundColor="{StaticResource PrimaryColor}" Padding="20">
+                        <Label FontSize="24" Text="{Binding Score}" FontAttributes="Bold"
+                               HorizontalTextAlignment="Center" VerticalOptions="Center"
+                               HorizontalOptions="CenterAndExpand" TextColor="White" />
+                    </StackLayout>
                 </StackLayout>
-            </StackLayout>
-        </StackLayout>
+            </views:NotificationExtensionView.ContentTemplate>
+        </views:NotificationExtensionView>
     </ContentView.Content>
 </ContentView>

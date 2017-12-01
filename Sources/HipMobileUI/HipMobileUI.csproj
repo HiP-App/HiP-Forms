@@ -59,6 +59,8 @@
     <Compile Include="AudioPlayer\IAudioPlayer.cs" />
     <Compile Include="Container\TabContainerView.cs" />
     <Compile Include="Contracts\IStatusBarController.cs" />
+    <Compile Include="Controls\ZeroPaddingButton.cs" />
+    <Compile Include="Helpers\InverseBooleanConverter.cs" />
     <Compile Include="NotificationPlayer\INotificationPlayer.cs" />
     <Compile Include="Controls\CardView.cs" />
     <Compile Include="Controls\CarouselIndicators.cs" />
@@ -87,14 +89,18 @@
     <Compile Include="Helpers\DeviceOrientation.cs" />
     <Compile Include="Helpers\OrientationController.cs" />
     <Compile Include="Contracts\IBarsColorsChanger.cs" />
-    <Compile Include="Pages\UserRatingPage.xaml.cs">
+	<Compile Include="Pages\UserRatingPage.xaml.cs">
       <DependentUpon>UserRatingPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\Pages\UserRatingPageViewModel.cs" />
+	<Compile Include="ViewModels\Pages\UserRatingPageViewModel.cs" />
+    <Compile Include="ViewModels\Views\AchievementNotificationViewModel.cs" />
     <Compile Include="ViewModels\Views\AchievementViewModel.cs" />
     <Compile Include="ViewModels\Views\ForgotPasswordScreenViewModel.cs" />
     <Compile Include="ViewModels\Views\LeaderboardViewModel.cs" />
-    <Compile Include="ViewModels\Views\UserRatingListItemViewModel.cs" />
+    <Compile Include="Views\AchievementNotificationView.xaml.cs">
+      <DependentUpon>AchievementNotificationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NotificationExtensionView.cs" />
     <Compile Include="Views\ForgotPasswordScreenView.xaml.cs">
       <DependentUpon>ForgotPasswordScreenView.xaml</DependentUpon>
     </Compile>
@@ -553,6 +559,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Pages\UserRatingPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\AchievementNotificationView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

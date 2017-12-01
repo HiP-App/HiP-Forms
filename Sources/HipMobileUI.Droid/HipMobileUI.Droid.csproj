@@ -289,8 +289,10 @@
     <Compile Include="..\..\HiP-Mobile-Internal\Keys\AndroidKeyProvider.cs">
       <Link>Contracts\AndroidKeyProvider.cs</Link>
     </Compile>
+    <Compile Include="Contracts\AndroidAppCloser.cs" />
     <Compile Include="Contracts\AndroidFabSizeCalculator.cs" />
     <Compile Include="Contracts\AndroidImageDimensions.cs" />
+    <Compile Include="Contracts\AndroidMediaFileManager.cs" />
     <Compile Include="Contracts\DroidAudioPlayer.cs" />
     <Compile Include="Contracts\DroidNetworkAccessChecker.cs" />
     <Compile Include="Contracts\DroidNotificationPlayer.cs" />
@@ -301,6 +303,7 @@
     <Compile Include="CustomRenderers\DroidTouchEventSlider.cs" />
     <Compile Include="CustomRenderers\FloatingActionButtonAndroidRenderer.cs" />
     <Compile Include="CustomRenderers\DroidReferenceLinkRenderer.cs" />
+    <Compile Include="CustomRenderers\ZeroPaddingRenderer.cs" />
     <Compile Include="Effects\DroidProgressBarColorEffect.cs" />
     <Compile Include="CustomRenderers\AndroidCustomFontLabelRenderer.cs" />
     <Compile Include="Effects\DroidSwitchColorEffect.cs" />
@@ -558,5 +561,5 @@
   <Import Project="..\..\packages\Realm.Database.1.5.0\build\Realm.Database.targets" Condition="Exists('..\..\packages\Realm.Database.1.5.0\build\Realm.Database.targets')" />
   <Import Project="..\..\packages\Realm.1.5.0\build\Realm.targets" Condition="Exists('..\..\packages\Realm.1.5.0\build\Realm.targets')" />
   <Import Project="..\..\packages\Fody.2.1.0\build\netstandard1.0\Fody.targets" Condition="Exists('..\..\packages\Fody.2.1.0\build\netstandard1.0\Fody.targets')" />
-  <Import Project="..\..\packages\Xamarin.Forms.2.4.0.280\build\netstandard1.0\Xamarin.Forms.targets" Condition="Exists('..\..\packages\Xamarin.Forms.2.4.0.280\build\netstandard1.0\Xamarin.Forms.targets')" />
+  <Import Project="..\..\packages\Xamarin.Forms.2.3.4.247\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets" Condition="Exists('..\..\packages\Xamarin.Forms.2.3.4.247\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" />
 </Project>

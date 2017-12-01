@@ -71,7 +71,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             Exhibit = exhibit;
             Headline = exhibit.Name;
 
-            var imageData = exhibit.AppetizerPage.Image.Data;
+            var imageData = exhibit.Image.GetDataBlocking();
             Image = imageData != null ? ImageSource.FromStream(() => new MemoryStream(imageData)) : ImageSource.FromStream(() => new MemoryStream(BackupData.BackupImageData));
 
             SetUserRatingUI();

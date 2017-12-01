@@ -59,7 +59,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         private void ClosePage()
         {
             // hide the status bar
-            IStatusBarController statusBarController = IoCManager.Resolve<IStatusBarController>();
+            var statusBarController = IoCManager.Resolve<IStatusBarController>();
             statusBarController.ShowStatusBar();
 
             // update the settings to not show this page next time
@@ -177,14 +177,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                 IsForwardVisible = true;
 
                 // show skip only if more than two pages are available, otherwise finish button will be shown which makes skip redundant
-                if (Pages.Count > 1)
-                {
-                    IsSkipVisible = true;
-                }
-                else
-                {
-                    IsSkipVisible = false;
-                }
+                IsSkipVisible = Pages.Count > 1;
             }
         }
     }

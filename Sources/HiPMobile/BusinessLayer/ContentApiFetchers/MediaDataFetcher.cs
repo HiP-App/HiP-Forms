@@ -12,7 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -20,6 +22,8 @@ using Microsoft.Practices.Unity;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelConverters;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses.Contracts;
@@ -54,11 +58,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             if (requiredImages.Any())
             {
                 fetchedMedias = await FetchMediaDtos(requiredImages);
-                fetchedFiles = await FetchFileDtos(requiredImages, token, progressListener);
+                fetchedFiles = await FetchFileDtos(fetchedMedias, token, progressListener);
             }
         }
 
-        public FetchedMediaData CombineMediasAndFiles()
+        public async Task<FetchedMediaData> CombineMediasAndFiles()
         {
             var fetchedData = new FetchedMediaData
             {
@@ -71,6 +75,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                 return fetchedData;
             }
 
+            var fileManager = IoCManager.Resolve<IMediaFileManager>();
+
             foreach (var media in fetchedMedias)
             {
                 switch (media.Type)
@@ -81,7 +87,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
 
                         if (audioFile != null)
                         {
-                            audio.Data = audioFile.Data;
+                            var path = await fileManager.WriteMediaToDiskAsync(audioFile.Data, audio.IdForRestApi, audio.Timestamp);
+                            audio.DataPath = path;
+                        }
+                        else /* Download was skipped because file is already downloaded */
+                        {
+                            audio.DataPath = fileManager.PathForRestApiId(audio.IdForRestApi);
                         }
                         fetchedData.Audios.Add(audio);
                         break;
@@ -91,10 +102,17 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
 
                         if (imageFile != null)
                         {
-                            image.Data = imageFile.Data;
+                            var path = await fileManager.WriteMediaToDiskAsync(imageFile.Data, image.IdForRestApi, image.Timestamp);
+                            image.DataPath = path;
+                        }
+                        else /* Download was skipped because file is already downloaded */
+                        {
+                            image.DataPath = fileManager.PathForRestApiId(image.IdForRestApi);
                         }
                         fetchedData.Images.Add(image);
                         break;
+                    default:
+                        throw new ArgumentOutOfRangeException("Unsupported MediaTypeDto!");
                 }
             }
 
@@ -107,14 +125,23 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             return medias.Items;
         }
 
-        private async Task<IList<FileDto>> FetchFileDtos(IList<int> requiredImages, CancellationToken token, IProgressListener progressListener)
+        private async Task<IList<FileDto>> FetchFileDtos(IList<MediaDto> mediaDtos, CancellationToken token, IProgressListener progressListener)
         {
+            var fileManager = IoCManager.Resolve<IMediaFileManager>();
             var files = new List<FileDto>();
-            foreach (int mediaId in requiredImages)
+            foreach (var mediaDto in mediaDtos)
             {
                 if (token.IsCancellationRequested)
                 {
                     break;
+                }
+
+                var mediaId = mediaDto.Id;
+                var mediaTimestamp = mediaDto.Timestamp;
+                if (await fileManager.ContainsMedia(mediaId, mediaTimestamp))
+                {
+                    Debug.WriteLine($"Skipped download of already present file with id {mediaId}");
+                    continue;
                 }
 
                 FileDto file;

@@ -12,15 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Windows.Input;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
-using MvvmHelpers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
-using PaderbornUniversity.SILab.Hip.Mobile.UI.Location;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
@@ -59,13 +56,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             foreach (var tag in Route.RouteTags)
             {
                 // Required to reference first due to threading problems in Realm
-                byte[] currentTagImageData = tag.Image.Data;
+                byte[] currentTagImageData = tag.Image.GetDataBlocking();
 
                 Tags.Add(ImageSource.FromStream(() => new MemoryStream(currentTagImageData)));
             }
 
             // Required to reference first due to threading problems in Realm
-            var imageData = Route.Image.Data;
+            var imageData = Route.Image.GetDataBlocking();
             Image = ImageSource.FromStream(() => new MemoryStream(imageData));
 
             DownloadCommand = new Command(OpenDownloadDialog);
@@ -80,7 +77,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 
         internal string GetRouteDurationText(int routeDuration)
         {
-            int durationInMinutes = routeDuration / 60;
+            var durationInMinutes = routeDuration / 60;
             return string.Format(Strings.RoutesOverviewListItemViewModel_Duration, durationInMinutes);
         }
 
@@ -95,10 +92,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             IoCManager.Resolve<INavigationService>().PopAsync();
         }
 
-        public void OpenDetailsView(string id)
+        public async void OpenDetailsView(string id)
         {
             Navigation.InsertPageBefore(new RouteDetailsPageViewModel(id), downloadPage);
-            Navigation.PopAsync();
+            await Navigation.PopAsync();
         }
 
         public void SetDetailsAvailable(bool available)
@@ -110,6 +107,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             {
                 Route.DetailsDataLoaded = true;
             }
+
             IsDownloadPanelVisible = !Route.DetailsDataLoaded;
         }
 
@@ -161,9 +159,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             set { SetProperty(ref tags, value); }
         }
 
-        private Boolean isDownloadPanelVisible;
+        private bool isDownloadPanelVisible;
 
-        public Boolean IsDownloadPanelVisible
+        public bool IsDownloadPanelVisible
         {
             get { return isDownloadPanelVisible; }
             set { SetProperty(ref isDownloadPanelVisible, value); }

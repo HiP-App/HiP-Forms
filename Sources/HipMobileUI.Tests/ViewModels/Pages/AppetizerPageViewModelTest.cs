@@ -12,9 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
+using System.Threading.Tasks;
 using NSubstitute;
 using NUnit.Framework;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
@@ -22,13 +23,15 @@ using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Pages
 {
-    class AppetizerViewModelTest
+    class AppetizerPageViewModelTest
     {
         [TestFixtureSetUp]
         public void Init()
         {
+            IoCManager.Clear();
             IoCManager.RegisterInstance(typeof(INavigationService), Substitute.For<INavigationService>());
             IoCManager.RegisterInstance(typeof(IImageDimension), Substitute.For<IImageDimension>());
+            IoCManager.RegisterInstance(typeof(IMediaFileManager), Substitute.For<IMediaFileManager>());
         }
 
         [Test, Category("UnitTest")]
@@ -44,13 +47,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Pages
 
         public AppetizerPageViewModel CreateSystemUnderTest()
         {
-            var appetizerPage = Substitute.For<AppetizerPage>();
-            appetizerPage.Text = "Bar";
-            appetizerPage.Image = CreateImage();
-
             var exhibit = Substitute.For<Exhibit>();
+            exhibit.Image = CreateImage();
             exhibit.Name = "Foo";
-            exhibit.AppetizerPage.Returns(appetizerPage);
 
             return new AppetizerPageViewModel(exhibit);
         }
@@ -58,10 +57,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Pages
         private Image CreateImage()
         {
             var image = Substitute.For<Image>();
-            image.Data = new byte[] { 1, 2, 3, 4 };
+            image.GetDataAsync().ReturnsForAnyArgs(Task.FromResult(new byte[] { 1, 2, 3, 4 }));
+            image.GetDataBlocking().ReturnsForAnyArgs(new byte[] { 1, 2, 3, 4 });
             return image;
         }
-        #endregion
 
+        #endregion
     }
 }
