@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 
 <!--
 // Copyright (C) 2017 History in Paderborn App - Universität Paderborn
@@ -23,7 +23,8 @@
                                OrientationController="PortraitConstant"
                                xmlns:controls1="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Controls;assembly=HipMobileUI"
                                xmlns:pages1="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Pages;assembly=HipMobileUI"
-                               xmlns:views1="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Views;assembly=HipMobileUI">
+                               xmlns:views1="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Views;assembly=HipMobileUI"
+						       >
   <StackLayout BackgroundColor="White">
     <AbsoluteLayout VerticalOptions="FillAndExpand">
       <ContentView Content="{Binding SelectedView, Converter={StaticResource ViewModelViewConverter}}"
@@ -36,6 +37,7 @@
               IsVisible="{Binding NextVisible}"
               AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="1,0.5"
               BackgroundColor="#80D3D3D3" AutomationId="NextButton" />
+		<Button Image="ic_equalizer.png" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="1,0"/>	
       <controls1:FloatingActionButton Icon="ic_more"
                                       NormalColor="{StaticResource AccentColor}"
                                       RippleColor="{StaticResource AccentDarkColor}"
