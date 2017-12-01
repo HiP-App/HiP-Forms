@@ -12,7 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System;
+using System.Windows.Input;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using Xamarin.Forms;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
@@ -21,11 +25,30 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
     {
         public IAchievement Achievement { get; }
         public ImageSource Image { get; }
+        public ICommand ItemTappedCommand { get; }
 
         private AchievementViewModel(IAchievement achievement, ImageSource image)
         {
+            ItemTappedCommand = new Command(x => NavigateToAchievementDetails());
             Achievement = achievement;
             Image = image;
+        }
+
+        private async void NavigateToAchievementDetails()
+        {
+            NavigationViewModel viewModel;
+            switch (Achievement)
+            {
+                case ExhibitsVisitedAchievement e:
+                    viewModel = new AchievementsDetailsExhibitViewModel(e);
+                    break;
+                case RouteFinishedAchievement r:
+                    viewModel = new AchievementsDetailsRouteViewModel(r);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException("Unknown achievement type.");
+            }
+            await IoCManager.Resolve<INavigationService>().PushAsync(viewModel);
         }
 
         public static AchievementViewModel CreateFrom(IAchievement achievement)

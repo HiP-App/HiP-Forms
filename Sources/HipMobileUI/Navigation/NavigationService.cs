@@ -14,6 +14,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
@@ -103,9 +104,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation
                 await FormsNavigation.PushAsync((Page) view, animate);
                 oldViewModel?.OnHidden();
             }
-            catch
+            catch (Exception e)
             {
                 // ignored as non critical exceptions don't stop the app from working
+                Debug.WriteLine(e);
             }
         }
 
@@ -122,9 +124,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation
                 await FormsNavigation.PushModalAsync(nv, animate);
                 oldViewModel?.OnHidden();
             }
-            catch
+            catch (Exception e)
             {
                 // ignored as non critical exceptions don't stop the app from working
+                Debug.WriteLine(e);
             }
         }
 
