@@ -331,6 +331,7 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\drawable-hdpi\ic_done.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_more_vert.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />
