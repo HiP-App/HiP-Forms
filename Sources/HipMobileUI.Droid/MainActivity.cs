@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System.IO;
 using Android.App;
 using Android.Content.PM;
 using Android.OS;
@@ -35,6 +36,8 @@ using Xamarin.Forms;
 using App = PaderbornUniversity.SILab.Hip.Mobile.UI.App;
 using MainPage = PaderbornUniversity.SILab.Hip.Mobile.UI.Pages.MainPage;
 using Acr.UserDialogs;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.NotificationPlayer;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
@@ -45,8 +48,16 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
     {
         protected override void OnCreate(Bundle bundle)
         {
+            var dataAccess = IoCManager.Resolve<IDataAccess>();
+            if (Settings.ShouldDeleteDbOnLaunch)
+            {
+                File.Delete(dataAccess.DatabasePath);
+                Settings.ShouldDeleteDbOnLaunch = false;
+            }
+
             IoCManager.RegisterType<IImageDimension, AndroidImageDimensions>();
             IoCManager.RegisterType<IMediaFileManager, AndroidMediaFileManager>();
+            IoCManager.RegisterType<IAppCloser, AndroidAppCloser>();
 
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;

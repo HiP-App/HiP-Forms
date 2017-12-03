@@ -12,15 +12,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers.Contracts
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts
 {
-    public interface IDataToRemoveFetcher
+    public interface IAppCloser
     {
-        Task FetchDataToDelete(CancellationToken token);
-
-        Task CleanupRemovedData();
+        /// <summary>
+        /// If possible, restart the app, otherwise warn the user
+        /// and close the app.
+        /// </summary>
+        void RestartOrClose();
     }
 }

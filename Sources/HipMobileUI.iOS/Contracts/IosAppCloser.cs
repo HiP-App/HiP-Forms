@@ -13,14 +13,16 @@
 // limitations under the License.
 
 using System.Threading;
-using System.Threading.Tasks;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
+using Xamarin.Forms;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers.Contracts
+namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Contracts
 {
-    public interface IDataToRemoveFetcher
+    public class IosAppCloser : IAppCloser
     {
-        Task FetchDataToDelete(CancellationToken token);
-
-        Task CleanupRemovedData();
+        public void RestartOrClose()
+        {
+            Device.BeginInvokeOnMainThread(Thread.CurrentThread.Abort);
+        }
     }
 }

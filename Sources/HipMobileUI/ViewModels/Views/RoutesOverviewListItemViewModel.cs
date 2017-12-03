@@ -92,10 +92,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             IoCManager.Resolve<INavigationService>().PopAsync();
         }
 
-        public void OpenDetailsView(string id)
+        public async void OpenDetailsView(string id)
         {
             Navigation.InsertPageBefore(new RouteDetailsPageViewModel(id), downloadPage);
-            Navigation.PopAsync();
+            await Navigation.PopAsync();
         }
 
         public void SetDetailsAvailable(bool available)
