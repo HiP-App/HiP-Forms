@@ -62,7 +62,25 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your Score .
+        ///   Looks up a localized string similar to Du hast {0} von {1} Sehenswürdigkeiten besucht.
+        /// </summary>
+        public static string AchievementsDetailsExhibitView_VisitedMOfNExhibits {
+            get {
+                return ResourceManager.GetString("AchievementsDetailsExhibitView_VisitedMOfNExhibits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Um Achievements zu nutzen, musst du dich zunächst einloggen..
+        /// </summary>
+        public static string AchievementsScreenView_PleaseLogin {
+            get {
+                return ResourceManager.GetString("AchievementsScreenView_PleaseLogin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dein Punktestand: .
         /// </summary>
         public static string AchievementsScreenView_Score {
             get {
@@ -1935,7 +1953,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Möchten Sie wirklich alle Downloads entfernen?.
+        ///   Looks up a localized string similar to Möchten Sie wirklich alle Downloads entfernen? Die App muss dafür neu gestartet werden..
         /// </summary>
         public static string SettingsScreenView_RemoveAllDownloadsPrompt_Question {
             get {

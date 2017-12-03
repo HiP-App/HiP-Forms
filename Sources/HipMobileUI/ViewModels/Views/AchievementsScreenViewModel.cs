@@ -7,6 +7,7 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using Xamarin.Forms;
 using System.ComponentModel;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 {
@@ -29,25 +30,19 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         private async Task UpdateAchievements()
         {
             Achievements.Clear();
-            var score = 0;
 
             await IoCManager.Resolve<IAchievementFetcher>().UpdateAchievements(); // TODO Use return value
             foreach (var achievement in AchievementManager.GetAchievements())
             {
-                if (achievement.IsUnlocked)
-                {
-                    score += achievement.Points;
-                }
                 Achievements.Add(AchievementViewModel.CreateFrom(achievement));
             }
-            Score = $"{Strings.AchievementsScreenView_Score} {score}";
+            Score = $"{Strings.AchievementsScreenView_Score} {AppSharedData.CurrentAchievementsScore()}";
         }
 
         public override async void OnAppearing()
         {
             base.OnAppearing();
             await UpdateAchievements();
-
         }
 
         private ObservableCollection<AchievementViewModel> achievements;

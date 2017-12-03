@@ -871,4 +871,7 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   <data name="UserRating_Dialog_Title_Unkown_Error" xml:space="preserve">
     <value>Unbekannter Fehler</value>
   </data>
+  <data name="AchievementsDetailsExhibitView_VisitedMOfNExhibits">
+    <value>Du hast {0} von {1} Sehenswürdigkeiten besucht</value>
+  </data>
 </root>
