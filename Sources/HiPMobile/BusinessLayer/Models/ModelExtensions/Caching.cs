@@ -23,26 +23,26 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
     {
         private const double MaxWeightBytes = 64 * 1024 * 1024;
 
-        private static readonly WeightConstrainedLruCache<string, byte[]> Cache =
-            new WeightConstrainedLruCache<string, byte[]>((md5, bytes) => bytes.Length, MaxWeightBytes);
+        private static readonly WeightConstrainedLruCache<int, byte[]> Cache =
+            new WeightConstrainedLruCache<int, byte[]>((mediaId, bytes) => bytes.Length, MaxWeightBytes);
 
         /// <summary>
-        /// Get the bytes of a media file that hash to the specified MD5 value.
+        /// Get the bytes of a media file with the specified REST ID.
         /// </summary>
-        /// <param name="md5"></param>
+        /// <param name="mediaId"></param>
         /// <param name="computer">If the value is not present in the LRU cache, this function is called to insert them.</param>
         /// <returns></returns>
-        public static async Task<byte[]> GetBytesAsync(string md5, Func<Task<byte[]>> computer) =>
-            await Cache.GetAsync(md5, async md5Key => await computer());
+        public static async Task<byte[]> GetBytesAsync(int mediaId, Func<Task<byte[]>> computer) =>
+            await Cache.GetAsync(mediaId, async mediaIdKey => await computer());
 
         /// <summary>
-        /// Get the bytes of a media file that hash to the specified MD5 value.
+        /// Get the bytes of a media file with the specified REST ID.
         /// </summary>
-        /// <param name="md5"></param>
+        /// <param name="mediaId"></param>
         /// <param name="computer">If the value is not present in the LRU cache, this function is called to insert them.</param>
         /// <returns></returns>
-        public static byte[] GetBytes(string md5, Func<byte[]> computer) =>
-            Cache.GetSync(md5, md5Key => computer());
+        public static byte[] GetBytes(int mediaId, Func<byte[]> computer) =>
+            Cache.GetSync(mediaId, mediaIdKey => computer());
     }
 
     /// <summary>

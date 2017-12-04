@@ -12,6 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.using System;
 
+using System.Linq;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using Xamarin.Forms.Maps;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers
@@ -31,5 +33,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers
         public static readonly string WillSleepMessage = "WillSleep";
 
         public static readonly string WillWakeUpMessage = "WillWakeUp";
+
+        public static int CurrentAchievementsScore() =>
+            AchievementManager.GetAchievements()
+                              .Where(achievement => achievement.IsUnlocked)
+                              .Sum(achievement => achievement.Points);
     }
 }

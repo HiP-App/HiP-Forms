@@ -13,6 +13,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelCo
             existingModelObject.NextId = dto.NextId.ToString();
             existingModelObject.Title = dto.Title;
             existingModelObject.Points = dto.Points;
+            existingModelObject.RouteId = dto.RouteId;
         }
     }
 }

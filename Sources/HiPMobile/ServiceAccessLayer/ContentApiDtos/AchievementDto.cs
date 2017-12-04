@@ -53,13 +53,18 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
 
     public class RouteFinishedAchievementDto : AchievementDto
     {
+        
+        [JsonProperty("routeId")]
+        public int RouteId { get; private set; }
+        
         public RouteFinishedAchievementDto()
         {
         }
 
-        public RouteFinishedAchievementDto(int id, string title, string description, string thumbnailUrl, int nextId, int points) :
+        public RouteFinishedAchievementDto(int id, string title, string description, string thumbnailUrl, int nextId, int points, int routeId) :
             base(id, title, description, thumbnailUrl, nextId, points)
         {
+            RouteId = routeId;
         }
     }
 
@@ -72,7 +77,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
         {
         }
 
-        public ExhibitsVisitedAchievementDto(int id, string title, string description, string thumbnailUrl, int nextId, int count, int points) : 
+        public ExhibitsVisitedAchievementDto(int id, string title, string description, string thumbnailUrl, int nextId, int count, int points) :
             base(id, title, description, thumbnailUrl, nextId, points)
         {
             Count = count;

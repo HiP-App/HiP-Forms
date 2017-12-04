@@ -29,15 +29,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers
     {
         public static ImageSource GetImageSource(this Image image)
         {
-            var imageData = image.GetDataBlocking();
-            if (imageData != null)
+            var prepared = image.PrepareImageLoad();
+            return new StreamImageSource
             {
-                return ImageSource.FromStream(() => new MemoryStream(imageData));
-            }
-            else
-            {
-                return ImageSource.FromStream(() => new MemoryStream(BackupData.BackupImageData));
-            }
+                Stream = async token => new MemoryStream(await prepared.GetDataAsync() ?? BackupData.BackupImageData)
+            };
         }
 
         /// <summary>
