@@ -28,7 +28,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
         Task<bool> SendUserRating(Exhibit exhibit, int rating);
     }
 
-
     public class UserRatingManager : IUserRatingManager
     {
 
