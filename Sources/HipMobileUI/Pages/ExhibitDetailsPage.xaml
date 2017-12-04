@@ -27,8 +27,7 @@
 						       >	
 	<pages1:OrientationContentPage.ToolbarItems>
 	<ToolbarItem Text="format_size"
-                     Order="Primary"
-			
+                     Order="Primary"					 
 					 Command="{Binding ShowAdditionalInformationCommand}"
                      Icon="ic_more_vert.png" />
   </pages1:OrientationContentPage.ToolbarItems>		
@@ -45,16 +44,7 @@
               IsVisible="{Binding NextVisible}"
               AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="1,0.5"
               BackgroundColor="#80D3D3D3" AutomationId="NextButton" />
-		
-      <controls1:FloatingActionButton Icon="ic_more"
-                                      NormalColor="{StaticResource AccentColor}"
-                                      RippleColor="{StaticResource AccentDarkColor}"
-                                      IsVisible="{Binding AdditionalInformationButtonVisible}"
-                                      Command="{Binding ShowAdditionalInformationCommand}"
-                                      AbsoluteLayout.LayoutFlags="XProportional" AbsoluteLayout.LayoutBounds="1,100"
-                                      Margin="5" />
-                               
-
+	
 		</AbsoluteLayout>
   <StackLayout VerticalOptions="End" HeightRequest="50" BackgroundColor="White">
       <BoxView HeightRequest="1" Color="Black" VerticalOptions="Start" />

@@ -290,6 +290,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             if (currentPage.AdditionalInformationPages != null && currentPage.AdditionalInformationPages.Any())
             {
                 HasAdditionalInformation = true;
+				((Command)ShowAdditionalInformationCommand).ChangeCanExecute();
             }
             else
             {
