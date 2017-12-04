@@ -74,12 +74,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             var imageData = exhibit.Image.GetDataBlocking();
             Image = imageData != null ? ImageSource.FromStream(() => new MemoryStream(imageData)) : ImageSource.FromStream(() => new MemoryStream(BackupData.BackupImageData));
 
-            SetUserRatingUI();
+            SetUserRatingUi();
             SendRatingCommand = new Command(SendUserRating);
             SelectStarCommand = new Command(OnSelectStar);
 
         }
-        private async void SetUserRatingUI()
+        private async void SetUserRatingUi()
         {
             UserRating userRating = await IoCManager.Resolve<IUserRatingManager>().GetUserRating(exhibit);
             SetRatingAverageAndCount(userRating.Average, userRating.Count);
@@ -193,7 +193,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             }
             else if (await IoCManager.Resolve<IUserRatingManager>().SendUserRating(exhibit, rating))
             {
-                SetUserRatingUI();
+                SetUserRatingUi();
                 ShowDialog(Strings.UserRating_Dialog_Title_Thx, Strings.UserRating_Dialog_Message_Thx);
             }
             else
