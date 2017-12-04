@@ -28,7 +28,8 @@
 	<pages1:OrientationContentPage.ToolbarItems>
 	<ToolbarItem Text="format_size"
                      Order="Primary"
-					 Command="{Binding NextVisible}"
+			
+					 Command="{Binding ShowAdditionalInformationCommand}"
                      Icon="ic_more_vert.png" />
   </pages1:OrientationContentPage.ToolbarItems>		
 <StackLayout BackgroundColor="White">	
