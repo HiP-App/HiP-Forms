@@ -73,8 +73,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Map
             if (Control == null)
             {
                 mapView = new MapView(Forms.Context, 11);
-                mapController = new MapController(mapView);
-                mapController.SetZoom(18);
                 activity = Context as Activity;
                 routeCalculator = RouteCalculator.Instance;
                 SetNativeControl(mapView);
