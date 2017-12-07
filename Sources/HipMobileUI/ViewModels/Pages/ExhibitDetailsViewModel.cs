@@ -31,6 +31,7 @@ using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views.ExhibitDetails;
 using Xamarin.Forms;
 using Page = PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.Page;
 using Settings = PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers.Settings;
+using System.Collections.ObjectModel;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 {
@@ -81,6 +82,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             // init the current view
             currentViewIndex = 1;
             this.pages = pages;
+
+            InitViewModels();
+
             SetCurrentView().ConfigureAwait(true);
             Title = title;
             pagenumber = currentViewIndex + " / " + (pages.Count - 1);
@@ -95,6 +99,34 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
             var dbChangedHandler = IoCManager.Resolve<IDbChangedHandler>();
             dbChangedHandler.AddObserver(this);
+        }
+
+        public void InitViewModels()
+        {
+            PagesViewModels = new ObservableCollection<ExhibitSubviewViewModel>();
+
+            foreach (Page tpage in pages)
+            {
+                if (tpage.IsImagePage())
+                {
+                    PagesViewModels.Add(new ImageViewModel(tpage.ImagePage, ToggleVisibilityOfNavigationButtons));
+                }
+                else if (tpage.IsTextPage())
+                {
+                    PagesViewModels.Add(new TextViewModel(tpage.TextPage, ToggleVisibilityOfNavigationButtons));
+                }
+                else if (tpage.IsTimeSliderPage())
+                {
+                    PagesViewModels.Add(new TimeSliderViewModel(tpage.TimeSliderPage, ToggleVisibilityOfNavigationButtons));
+                }
+            }
+        }
+
+        private ObservableCollection<ExhibitSubviewViewModel> pagesViewModels;
+        public ObservableCollection<ExhibitSubviewViewModel> PagesViewModels
+        {
+            get { return pagesViewModels; }
+            set { SetProperty(ref pagesViewModels, value); }
         }
 
         private void AdjustToolbarColor()

@@ -16,14 +16,15 @@
 // limitations under the License.
 -->
 
-<pages1:OrientationContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<container:BindableChildrenCarouselPage xmlns="http://xamarin.com/schemas/2014/forms"
                                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                                x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Pages.ExhibitDetailsPage"
                                Title="{Binding Title}"
-                               OrientationController="PortraitConstant"
+                               xmlns:container="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Container;assembly=HipMobileUI"
                                xmlns:controls1="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Controls;assembly=HipMobileUI"
                                xmlns:pages1="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Pages;assembly=HipMobileUI"
-                               xmlns:views1="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Views;assembly=HipMobileUI">
+                               xmlns:views1="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Views;assembly=HipMobileUI"
+                               ChildElements="{Binding PagesViewModels, Converter= {StaticResource ViewModelListViewListConverter}}">
   <StackLayout BackgroundColor="White">
     <AbsoluteLayout VerticalOptions="FillAndExpand">
       <ContentView Content="{Binding SelectedView, Converter={StaticResource ViewModelViewConverter}}"
@@ -56,4 +57,4 @@
     </StackLayout>
 
   </StackLayout>
-</pages1:OrientationContentPage>
+  </container:BindableChildrenCarouselPage>

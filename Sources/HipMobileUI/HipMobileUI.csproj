@@ -57,9 +57,11 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="AudioPlayer\IAudioPlayer.cs" />
+    <Compile Include="Container\BindableChildrenCarouselPage.cs" />
     <Compile Include="Container\TabContainerView.cs" />
     <Compile Include="Contracts\IStatusBarController.cs" />
     <Compile Include="Controls\ZeroPaddingButton.cs" />
+    <Compile Include="Converters\ViewModelListViewListConverter.cs" />
     <Compile Include="Helpers\InverseBooleanConverter.cs" />
     <Compile Include="NotificationPlayer\INotificationPlayer.cs" />
     <Compile Include="Controls\CardView.cs" />
