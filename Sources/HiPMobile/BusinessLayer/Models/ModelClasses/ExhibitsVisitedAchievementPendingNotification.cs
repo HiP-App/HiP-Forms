@@ -16,7 +16,7 @@ using Realms;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 {
-    public class ExhibitsVisitedAchievementPendingAchievement : RealmObject, IIdentifiable
+    public class ExhibitsVisitedAchievementPendingNotification : RealmObject, IIdentifiable
     {
         public virtual ExhibitsVisitedAchievement Achievement { get; set; }
         public virtual string Id { get; set; }

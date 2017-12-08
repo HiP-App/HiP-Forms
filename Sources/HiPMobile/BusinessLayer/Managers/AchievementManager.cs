@@ -35,11 +35,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
             using (DataAccess.StartTransaction())
             {
                 var rAchievementsPending = DataAccess.GetItems<RouteFinishedAchievementPendingNotification>().ToList();
-                var eAchievementsPending = DataAccess.GetItems<ExhibitsVisitedAchievementPendingAchievement>().ToList();
+                var eAchievementsPending = DataAccess.GetItems<ExhibitsVisitedAchievementPendingNotification>().ToList();
                 var rAchievements = rAchievementsPending.Select(it => it.Achievement).ToList();
                 var eAchievements = eAchievementsPending.Select(it => it.Achievement).ToList();
                 rAchievementsPending.ForEach(it => DataAccess.DeleteItem<RouteFinishedAchievementPendingNotification>(it.Id));
-                eAchievementsPending.ForEach(it => DataAccess.DeleteItem<ExhibitsVisitedAchievementPendingAchievement>(it.Id));
+                eAchievementsPending.ForEach(it => DataAccess.DeleteItem<ExhibitsVisitedAchievementPendingNotification>(it.Id));
                 return rAchievements.Union<IAchievement>(eAchievements);
             }
         }
@@ -72,12 +72,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
                     switch (achievement)
                     {
                         case ExhibitsVisitedAchievement e:
-                            if (data.GetItem<ExhibitsVisitedAchievementPendingAchievement>(achievement.Id) != null)
+                            if (data.GetItem<ExhibitsVisitedAchievementPendingNotification>(achievement.Id) != null)
                             {
                                 continue;
                             }
 
-                            var pendingE = data.CreateObject<ExhibitsVisitedAchievementPendingAchievement>();
+                            var pendingE = data.CreateObject<ExhibitsVisitedAchievementPendingNotification>();
                             pendingE.Achievement = e;
                             pendingE.Id = e.Id;
                             break;
