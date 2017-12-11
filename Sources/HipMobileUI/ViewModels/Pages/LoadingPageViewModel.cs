@@ -32,6 +32,8 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.AuthenticationApiAccess;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses.Contracts;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.FeatureToggleApiAccess;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.FeatureToggleApiDto;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Location;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
@@ -147,6 +149,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                     errorMessage = Strings.LoadingPageViewModel_BaseData_DatabaseUpToDateCheckFailed;
                 }
 
+             //   var featureDtos = await IoCManager.Resolve<IFeatureToggleApiAccess>().GetEnabledFeaturesAsync();
+//Debug.WriteLine(featureDtos);
+
                 if (!isDatabaseUpToDate)
                 {
                     if (networkAccessStatus == NetworkAccessStatus.MobileAccess && Settings.WifiOnly)
@@ -171,8 +176,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                 // This should only happen during development
                 errorMessage = e.Message;
                 errorTitle = "Error";
-                Debug.WriteLine(e.Message);
-                Debug.WriteLine(e.StackTrace);
+                Debug.WriteLine(e);
             }
 
             LoadCacheAndStart();
@@ -200,6 +204,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                 // This should only happen during development
                 errorMessage = e.Message;
                 errorTitle = "Error";
+                Debug.WriteLine(e);
             }
         }
 
@@ -211,8 +216,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             }
             catch (Exception e)
             {
-                Debug.WriteLine(e.Message);
-                Debug.WriteLine(e.StackTrace);
+                Debug.WriteLine(e);
 
                 errorTitle = Strings.LoadingPageViewModel_BaseData_DownloadFailed_Title;
                 errorMessage = Strings.LoadingPageViewModel_BaseData_DatabaseUpToDateCheckFailed;
@@ -230,8 +234,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             {
                 errorTitle = Strings.LoadingPageViewModel_BaseData_DownloadFailed_Title;
                 errorMessage = Strings.LoadingPageViewModel_BaseData_DownloadFailed_Text;
-                Debug.WriteLine(e.Message);
-                Debug.WriteLine(e.StackTrace);
+                Debug.WriteLine(e);
             }
         }
 
@@ -250,6 +253,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                 // This should only happen during development
                 errorMessage = e.Message;
                 errorTitle = "Error";
+                Debug.WriteLine(e);
             }
 
             actionOnUiThread = async () =>
@@ -286,6 +290,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             //init serviceaccesslayer
             IoCManager.RegisterInstance(typeof(IContentApiClient), new ContentApiClient());
             IoCManager.RegisterInstance(typeof(IAchievementsApiAccess), new AchievementsApiAccess(new ContentApiClient(ServerEndpoints.AchievementsApiPath)));
+            IoCManager.RegisterInstance(typeof(IFeatureToggleApiAccess), new FeatureToggleApiAccess(new ContentApiClient(ServerEndpoints.FeatureTogglesApiPath)));
             IoCManager.RegisterType<IExhibitsApiAccess, ExhibitsApiAccess>();
             IoCManager.RegisterType<IMediasApiAccess, MediasApiAccess>();
             IoCManager.RegisterType<IFileApiAccess, FileApiAccess>();

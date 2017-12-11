@@ -14,6 +14,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -182,7 +183,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             var exhibitSet = ExhibitManager.GetExhibitSets().SingleOrDefault();
             if (exhibitSet != null)
             {
-                exhibits = await exhibitsApiAccess.GetExhibits(exhibitSet.Timestamp);
+                try
+                {
+                    exhibits = await exhibitsApiAccess.GetExhibits(exhibitSet.Timestamp);
+                }
+                catch (Exception e)
+                {
+                    Debug.WriteLine(e);
+                    throw;
+                }
             }
             else
             {
