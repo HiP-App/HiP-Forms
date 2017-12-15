@@ -34,11 +34,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
             this.contentApiClient = contentApiClient;
         }
 
-        public async Task<UserRatingDto> GetUserRating(Exhibit exhibit)
+        public async Task<UserRatingDto> GetUserRatingAsync(Exhibit exhibit)
         {
             try
             {
-                string url = RequestPath + exhibit.IdForRestApi;
+                var url = RequestPath + exhibit.IdForRestApi;
                 var json = await contentApiClient.GetResponseFromUrlAsString(url);
                 return JsonConvert.DeserializeObject<UserRatingDto>(json);
             }
@@ -48,13 +48,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
             }
         }
 
-        public async Task<bool> SendUserRating(Exhibit exhibit, int rating)
+        public async Task<bool> SendUserRatingAsync(Exhibit exhibit, int rating)
         {
-            string url = RequestPath + exhibit.IdForRestApi + "?Rating=" + rating;
+            var url = RequestPath + exhibit.IdForRestApi + "?Rating=" + rating;
             var result = await contentApiClient.PostRequestBody(url, String.Empty);
             if (result.StatusCode == HttpStatusCode.Created)
             {
-                string jsonPayload = await result.Content.ReadAsStringAsync();
+                var jsonPayload = await result.Content.ReadAsStringAsync();
                 return true;
             }
             else

@@ -22,7 +22,7 @@
              xmlns:helpers="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;assembly=HipMobileUI"
              Title="{Binding Headline}">
     <ContentPage.Content>
-        <AbsoluteLayout >
+        <AbsoluteLayout>
             <Image Source="{Binding Image}" AbsoluteLayout.LayoutBounds="0,0,1,0.6" AbsoluteLayout.LayoutFlags="All" Aspect="AspectFill" Opacity="0.08"/>
             <Grid AbsoluteLayout.LayoutBounds="1,1,1,1" AbsoluteLayout.LayoutFlags="All" RowSpacing="0">
                 <Grid.ColumnDefinitions>

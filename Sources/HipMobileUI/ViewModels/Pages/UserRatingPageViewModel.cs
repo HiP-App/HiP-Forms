@@ -33,7 +33,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
     public class UserRatingPageViewModel : NavigationViewModel
     {
 
-        #region Variabels
+        #region Variables
         private ImageSource image;
         private Exhibit exhibit;
         private string headline;
@@ -65,7 +65,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         private int rating = 0;
         #endregion
 
-
         public UserRatingPageViewModel(Exhibit exhibit)
         {
             Exhibit = exhibit;
@@ -79,9 +78,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             SelectStarCommand = new Command(OnSelectStar);
 
         }
+
         private async void SetUserRatingUi()
         {
-            UserRating userRating = await IoCManager.Resolve<IUserRatingManager>().GetUserRating(exhibit);
+            UserRating userRating = await IoCManager.Resolve<IUserRatingManager>().GetUserRatingAsync(exhibit);
             SetRatingAverageAndCount(userRating.Average, userRating.Count);
             SetRatingBars(userRating.RatingTable, userRating.Count);
             SetRatingStars();
@@ -89,7 +89,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
         private void SetRatingAverageAndCount(double average, int count)
         {
-            string stars = "";
+            var stars = "";
             for (int i = 1; i <= 5; i++)
             {
                 if (average >= i)
@@ -104,7 +104,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             RatingStars = stars;
             RatingCount = count.ToString() + " " + Strings.UserRating_Rate_Count;
         }
-
 
         private void SetRatingBars(Dictionary<int, int> ratingTable, int count)
         {
@@ -130,7 +129,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             return new GridLength(prop, GridUnitType.Star);
         }
 
-
         /// <summary>
         /// This method is executed when a star is tapped. 
         /// The rating comes from the command parameter defined in the xaml file.
@@ -141,7 +139,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             rating = Convert.ToInt32(s);
             SetRatingStars();
         }
-
 
         private void SetRatingStars()
         {
@@ -174,7 +171,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         /// Sends the user rating to the server if the following conditions are given:
         /// 1. The user is connected to the internet
         /// 2. The user is logged in
-        /// 3. The user haas selected a star 
+        /// 3. The user has selected a star 
         /// </summary>
         /// <returns></returns>
         private async void SendUserRating()
@@ -191,7 +188,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             {
                 ShowDialog(Strings.UserRating_Dialog_Title_No_Rating, Strings.UserRating_Dialog_Message_No_Rating);
             }
-            else if (await IoCManager.Resolve<IUserRatingManager>().SendUserRating(exhibit, rating))
+            else if (await IoCManager.Resolve<IUserRatingManager>().SendUserRatingAsync(exhibit, rating))
             {
                 SetUserRatingUi();
                 ShowDialog(Strings.UserRating_Dialog_Title_Thx, Strings.UserRating_Dialog_Message_Thx);
@@ -211,7 +208,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                 OkText = Strings.UserRating_Ok
             });
         }
-
 
         #region Properties
 

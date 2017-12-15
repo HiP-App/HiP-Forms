@@ -2232,7 +2232,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Nicht Angemeldet.
+        ///   Looks up a localized string similar to Nicht angemeldet.
         /// </summary>
         public static string UserRating_Dialog_Title_Not_Logged_In {
             get {

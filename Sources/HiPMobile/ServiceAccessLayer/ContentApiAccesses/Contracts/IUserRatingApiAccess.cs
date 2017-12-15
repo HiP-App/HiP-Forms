@@ -21,7 +21,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
 {
     public interface IUserRatingApiAccess
     {
-        Task<UserRatingDto> GetUserRating(Exhibit exhibit);
-        Task<bool> SendUserRating(Exhibit exhibit, int rating);
+        Task<UserRatingDto> GetUserRatingAsync(Exhibit exhibit);
+        Task<bool> SendUserRatingAsync(Exhibit exhibit, int rating);
     }
 }

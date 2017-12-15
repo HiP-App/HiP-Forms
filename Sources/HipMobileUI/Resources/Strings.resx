@@ -816,10 +816,10 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   </data>
   <data name="AchievementsScreenView_Score" xml:space="preserve">
     <value>Dein Punktestand: </value>
-  </data>	  
+  </data>
   <data name="AchievementsScreenView_PleaseLogin" xml:space="preserve">
     <value>Um Achievements zu nutzen, musst du dich zunächst einloggen.</value>
-  </data>	
+  </data>
   <data name="MainPageViewModel_Achievements" xml:space="preserve">
     <value>Achievements</value>
   </data>
@@ -842,7 +842,7 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
     <value>Es wurde keiner der Sterne zum Bewerten markiert.</value>
   </data>
   <data name="UserRating_Dialog_Title_Not_Logged_In" xml:space="preserve">
-    <value>Nicht Angemeldet</value>
+    <value>Nicht angemeldet</value>
   </data>
   <data name="UserRating_Dialog_Title_No_Internet" xml:space="preserve">
     <value>Keine Internetverbindung</value>
@@ -871,7 +871,7 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   <data name="UserRating_Dialog_Title_Unkown_Error" xml:space="preserve">
     <value>Unbekannter Fehler</value>
   </data>
-  <data name="AchievementsDetailsExhibitView_VisitedMOfNExhibits">
+  <data name="AchievementsDetailsExhibitView_VisitedMOfNExhibits" xml:space="preserve">
     <value>Du hast {0} von {1} Sehenswürdigkeiten besucht</value>
   </data>
 </root>

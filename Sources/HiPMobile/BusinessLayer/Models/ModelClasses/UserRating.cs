@@ -36,12 +36,16 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.Model
             RatingTable = userRatingDto.RatingTable;
         }
 
-        public int Id { get; set; }
+        public int Id { get; }
 
-        public double Average { get; set; }
+        public double Average { get; }
 
-        public int Count { get; set; }
+        public int Count { get; }
 
-        public Dictionary<int, int> RatingTable { get; set; }
+        /// <summary>
+        /// A dictionary which contains the different star counts for the 
+        /// different ratings
+        /// </summary>
+        public Dictionary<int, int> RatingTable { get; }
     }
 }

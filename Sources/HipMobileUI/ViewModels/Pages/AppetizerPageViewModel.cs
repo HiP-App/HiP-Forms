@@ -114,8 +114,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             }
             else
             {
-                UserRating userRating = await IoCManager.Resolve<IUserRatingManager>().GetUserRating(exhibit);
-                string stars = "";
+                var userRating = await IoCManager.Resolve<IUserRatingManager>().GetUserRatingAsync(exhibit);
+                var stars = "";
                 for (int i = 1; i <= 5; i++)
                 {
                     if (userRating.Average >= i)
