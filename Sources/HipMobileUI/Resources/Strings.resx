@@ -816,17 +816,20 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   </data>
   <data name="AchievementsScreenView_Score" xml:space="preserve">
     <value>Dein Punktestand: </value>
-  </data>	  
+  </data>
   <data name="AchievementsScreenView_PleaseLogin" xml:space="preserve">
     <value>Um Achievements zu nutzen, musst du dich zunächst einloggen.</value>
-  </data>	
+  </data>
   <data name="MainPageViewModel_Achievements" xml:space="preserve">
     <value>Achievements</value>
-  </data>	
+  </data>
   <data name="ExhibitNearby_VisitRequest" xml:space="preserve">
     <value>Besuche eine nahe Sehenswürdigkeit!</value>
   </data>
-  <data name="AchievementsDetailsExhibitView_VisitedMOfNExhibits">
+  <data name="AchievementsDetailsExhibitView_VisitedMOfNExhibits" xml:space="preserve">
     <value>Du hast {0} von {1} Sehenswürdigkeiten besucht</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Abbrechen</value>
   </data>
 </root>

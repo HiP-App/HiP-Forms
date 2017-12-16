@@ -34,11 +34,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         public RegisterScreenViewModel(MainPageViewModel mainPageVm)
         {
             mainPageViewModel = mainPageVm;
-            Register = new Command(OnRegisterClicked);
 
+            Register = new Command(OnRegisterClicked);
+            ReturnCommand = new Command(ReturnToLogin);
         }
 
         public ICommand Register { get; }
+        public ICommand ReturnCommand { get; }
 
         async void RegisterUser()
         {
@@ -95,27 +97,24 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             }
 
             if (string.IsNullOrWhiteSpace(Email) && (string.IsNullOrWhiteSpace(Password) || string.IsNullOrWhiteSpace(RepeatPassword)))
-
                 DisplayEmptyEmailAndPasswordErrorMessage();
-
             else if (string.IsNullOrWhiteSpace(Email))
-
                 DisplayEmptyEmailErrorMessage();
-
             else if (string.IsNullOrWhiteSpace(Password) || string.IsNullOrWhiteSpace(RepeatPassword))
-
                 DisplayEmptyPasswordErrorMessage();
             else if (isValid == false)
-
                 DisplayInvalidEmailErrorMessage();
-
             else if (Password != RepeatPassword)
-
                 DisplayPasswordMismatchErrorMessage();
             else
-
                 RegisterUser();
         }
+
+        private void ReturnToLogin()
+        {
+            mainPageViewModel.SwitchToLoginView();
+        }
+
         public string ErrorMessage
         {
             get { return errorMessage; }
@@ -137,6 +136,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         {
             get { return repassword; }
             set { SetProperty(ref repassword, value); }
+        }
+
+        public override void OnAppearing()
+        {
+            base.OnAppearing();
+            ErrorMessage = "";
         }
     }
 }

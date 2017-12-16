@@ -50,7 +50,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         {
             var result = await IoCManager.Resolve<INavigationService>()
                                          .DisplayAlert(Strings.SettingsScreenView_RemoveAllDownloadsPrompt_Title, Strings.SettingsScreenView_RemoveAllDownloadsPrompt_Question,
-                                                       Strings.SettingsScreenView_RemoveAllDownloadsPrompt_Confirm, Strings.SettingsScreenView_RemoveAllDownloadsPrompt_Reject);
+                                                       Strings.SettingsScreenView_RemoveAllDownloadsPrompt_Confirm, Strings.Cancel);
 
             if (result)
             {
