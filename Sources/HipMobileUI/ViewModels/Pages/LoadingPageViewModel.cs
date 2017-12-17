@@ -149,16 +149,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                     errorMessage = Strings.LoadingPageViewModel_BaseData_DatabaseUpToDateCheckFailed;
                 }
 
-                try
-                {
-                    var featureDtos = await IoCManager.Resolve<IFeatureToggleApiAccess>().GetEnabledFeaturesAsync();
-                    Debug.WriteLine(featureDtos);
-                }
-                catch (Exception e)
-                {
-                    Debug.WriteLine(e);
-                    throw;
-                }
+                var featureDtos = await IoCManager.Resolve<IFeatureToggleApiAccess>().GetEnabledFeaturesAsync();
+                Debug.WriteLine(featureDtos);
 
                 if (!isDatabaseUpToDate)
                 {
