@@ -149,8 +149,16 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                     errorMessage = Strings.LoadingPageViewModel_BaseData_DatabaseUpToDateCheckFailed;
                 }
 
-             //   var featureDtos = await IoCManager.Resolve<IFeatureToggleApiAccess>().GetEnabledFeaturesAsync();
-//Debug.WriteLine(featureDtos);
+                try
+                {
+                    var featureDtos = await IoCManager.Resolve<IFeatureToggleApiAccess>().GetEnabledFeaturesAsync();
+                    Debug.WriteLine(featureDtos);
+                }
+                catch (Exception e)
+                {
+                    Debug.WriteLine(e);
+                    throw;
+                }
 
                 if (!isDatabaseUpToDate)
                 {
@@ -186,9 +194,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         {
             actionOnUiThread = null;
             var downloadData = await Navigation.DisplayAlert(Strings.LoadingPageViewModel_BaseData_DataAvailable,
-                                                              Strings.LoadingPageViewModel_BaseData_DownloadViaMobile,
-                                                              Strings.LoadingPageViewModel_BaseData_MobileDownload_Confirm,
-                                                              Strings.LoadingPageViewModel_BaseData_MobileDownload_Cancel);
+                                                             Strings.LoadingPageViewModel_BaseData_DownloadViaMobile,
+                                                             Strings.LoadingPageViewModel_BaseData_MobileDownload_Confirm,
+                                                             Strings.LoadingPageViewModel_BaseData_MobileDownload_Cancel);
 
             try
             {

@@ -26,7 +26,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Feature
         public string Name { get; private set; }
 
         [JsonProperty("parent")]
-        public int ParentFeatureId { get; private set; }
+        public int? ParentFeatureId { get; private set; }
 
         [JsonProperty("children")]
         public IList<int> ChildrenFeatureIds { get; private set; }

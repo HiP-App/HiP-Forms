@@ -156,6 +156,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                 listener.ProgressOneStep();
             }
         }
+
         private void AddImageToExhibit(Exhibit dbExhibit, int? mediaId, FetchedMediaData fetchedMediaData)
         {
             if (mediaId.HasValue)
@@ -183,15 +184,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             var exhibitSet = ExhibitManager.GetExhibitSets().SingleOrDefault();
             if (exhibitSet != null)
             {
-                try
-                {
-                    exhibits = await exhibitsApiAccess.GetExhibits(exhibitSet.Timestamp);
-                }
-                catch (Exception e)
-                {
-                    Debug.WriteLine(e);
-                    throw;
-                }
+                exhibits = await exhibitsApiAccess.GetExhibits(exhibitSet.Timestamp);
             }
             else
             {
