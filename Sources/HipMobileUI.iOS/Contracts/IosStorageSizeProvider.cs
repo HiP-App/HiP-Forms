@@ -1,19 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using Foundation;
+﻿using System.IO;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
-using UIKit;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Contracts
 {
     class IosStorageSizeProvider : IStorageSizeProvider
     {
-        public double GetDatabaseSize()
+        public double GetDatabaseSizeMb()
         {
             string path = IoCManager.Resolve<IDataAccess>().DatabasePath;
             FileInfo fileInfo = new FileInfo(path);
