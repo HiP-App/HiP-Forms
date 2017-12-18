@@ -54,7 +54,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             MessagingCenter.Send<NavigationViewModel, bool>(this, "ReturnValue", true);
             await Navigation.ClearModalStack();
             await Navigation.PushAsync(new AppetizerPageViewModel(exhibit));
-            exhibitManager.InvokeExhibitVistedEvent(exhibit);
+            exhibitManager.InvokeExhibitVisitedEvent(exhibit);
         }
 
         private async void Deny()
