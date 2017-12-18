@@ -22,13 +22,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers
     {
         public static readonly Position PaderbornMainStation = new Position(51.71352, 8.74021);
 
-        public static readonly Position PaderbornCenter = new Position(51.7189205, 8.7575093);
+        public static readonly Position PaderbornCenter = new Position(51.7189205, 8.7545093);
 
         public static readonly int MinTimeBwUpdates = 10000; //(10 seconds)
         public static readonly int MinDistanceChangeForUpdates = 10; // 10 meters
         public static readonly double ExhibitRadius = 20; // 20m
         public static readonly double RouteRadius = 50; // 50m
-        public static int MapZoomLevel = 14;
+        public static int MapZoomLevel = 15;
 
         public static readonly string WillSleepMessage = "WillSleep";
 
