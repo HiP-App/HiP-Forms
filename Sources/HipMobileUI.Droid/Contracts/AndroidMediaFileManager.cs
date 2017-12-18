@@ -39,6 +39,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Contracts
 
         private const string RestApiTimestampPathSuffix = ".timestamp";
 
+        public long TotalSizeBytes => Directory.EnumerateFiles(MediaFolderPath).Sum(it => new FileInfo(it).Length);
+
         public void DeleteFile(string filePath)
         {
             File.Delete(filePath + RestApiTimestampPathSuffix);
