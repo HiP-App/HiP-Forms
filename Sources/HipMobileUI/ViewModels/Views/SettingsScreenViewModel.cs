@@ -35,7 +35,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         {
             RemoveAllDownloads = new Command(RemoveAllDownloadsClicked);
             SelectCharacterCommand = new Command(OnSelectCharacterTapped);
-            size = IoCManager.Resolve<IStorageSizeProvider>().GetDatabaseSize() + " MB";
+            Size = BuildSizeDescription();
         }
 
         public ICommand RemoveAllDownloads { get; }
@@ -56,8 +56,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             {
                 // Delete the whole DB
                 DbManager.DeleteDatabase();
-                Size = IoCManager.Resolve<IStorageSizeProvider>().GetDatabaseSize() + " MB";
+                Size = BuildSizeDescription();
             }
+        }
+
+        private static string BuildSizeDescription()
+        {
+            var dbSizeMb = IoCManager.Resolve<IStorageSizeProvider>().GetDatabaseSizeMb();
+            var mediaSizeMb = IoCManager.Resolve<IMediaFileManager>().TotalSizeBytes / (1024 * 1024);
+            return $"{dbSizeMb + mediaSizeMb} MB";
         }
 
         /// <summary>
@@ -146,6 +153,18 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             }
         }
 
+        public override void OnAppearing()
+        {
+            base.OnAppearing();
+            Size = BuildSizeDescription();
+        }
+
+        public override void OnRevealed()
+        {
+            base.OnRevealed();
+            Size = BuildSizeDescription();
+        }
+
         public string Size
         {
             set
@@ -156,7 +175,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
                     OnPropertyChanged();
                 }
             }
-            get { return IoCManager.Resolve<IStorageSizeProvider>().GetDatabaseSize() + " MB"; }
+            get => size;
         }
 
         public bool WifiOnly
