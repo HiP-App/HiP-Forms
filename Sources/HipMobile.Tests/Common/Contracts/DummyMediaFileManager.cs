@@ -23,6 +23,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.Common.Contracts
     {
         private readonly IDictionary<string, byte[]> memCache = new Dictionary<string, byte[]>();
 
+        public long TotalSizeBytes => 0;
+
         public void DeleteFile(string filePath)
         {
             memCache.Remove(filePath);
