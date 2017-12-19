@@ -40,6 +40,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
 
         private void UpdateTheme()
         {
+            // Make sure a local ResourcedDictionary exists that can be modified
             if (Resources == null)
                 Resources = new ResourceDictionary();
 
@@ -108,15 +109,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
                 ViewModel.SwitchToLoginView();
                 return true;
             }
-            else if (ViewModel.SelectedViewModel.GetType() == typeof(RegisterScreenViewModel))
+            if (ViewModel.SelectedViewModel.GetType() == typeof(RegisterScreenViewModel))
             {
                 ViewModel.SwitchToLoginView();
                 return true;
             }
-            else
-            {
-                return base.OnBackButtonPressed();
-            }
+            return base.OnBackButtonPressed();
         }
     }
 }

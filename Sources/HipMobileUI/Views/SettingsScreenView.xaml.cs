@@ -12,12 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System.Collections.Generic;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
-using PaderbornUniversity.SILab.Hip.Mobile.UI.Appearance;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
-using Xamarin.Forms;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
 {
@@ -26,19 +22,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
         public SettingsScreenView()
         {
             InitializeComponent();
-            UpdateTheme();
-        }
-
-        private void UpdateTheme()
-        {
-            if (Resources == null)
-                Resources = new ResourceDictionary();
-
-            // Collect all styleable properties from the .xaml-file
-            var styleProperties = new List<string> { "Label", "Button" };
-
-            var themeManager = IoCManager.Resolve<IThemeManager>();
-            themeManager.UpdateViewStyle(Resources, styleProperties);
         }
     }
 }

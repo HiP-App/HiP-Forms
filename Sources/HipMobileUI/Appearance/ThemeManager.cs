@@ -23,9 +23,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Appearance
 {
     public interface IThemeManager
     {
-        void AdjustTopBarTheme();
         void UpdateViewStyle(ResourceDictionary resourceDictionary, IEnumerable<string> styleProperties);
-        object GetThemedPropertyFor(string propertyName);
+        void AdjustTopBarTheme();
     }
 
     public class ThemeManager : IThemeManager
@@ -33,14 +32,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Appearance
         private readonly ApplicationResourcesProvider resourceProvider = IoCManager.Resolve<ApplicationResourcesProvider>();
         private readonly IBarsColorsChanger barsColorsChanger = IoCManager.Resolve<IBarsColorsChanger>();
         private string modeSuffix;
-
-        public void AdjustTopBarTheme()
-        {
-            if (Settings.AdventurerMode)
-                ChangeToAdventurerTheme();
-            else
-                ChangeToProfessorTheme();
-        }
 
         /// <summary>
         /// Updates the style of the view this method was called from to fit the selected mode.
@@ -58,10 +49,18 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Appearance
             }
         }
 
-        public object GetThemedPropertyFor(string propertyName)
+        private object GetThemedPropertyFor(string propertyName)
         {
             modeSuffix = Settings.AdventurerMode ? "AdventurerMode" : "ProfessorMode";
             return resourceProvider.GetResourceValue(propertyName + modeSuffix);
+        }
+
+        public void AdjustTopBarTheme()
+        {
+            if (Settings.AdventurerMode)
+                ChangeToAdventurerTheme();
+            else
+                ChangeToProfessorTheme();
         }
 
         private void ChangeToAdventurerTheme()
