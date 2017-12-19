@@ -85,8 +85,10 @@
     <Compile Include="BusinessLayer\DtoToModelConverters\PageConverter.cs" />
     <Compile Include="BusinessLayer\Managers\AchievementManager.cs" />
     <Compile Include="BusinessLayer\Models\ModelClasses\ExhibitsVisitedAchievement.cs" />
+    <Compile Include="BusinessLayer\Models\ModelClasses\ExhibitsVisitedAchievementPendingNotification.cs" />
     <Compile Include="BusinessLayer\Models\ModelClasses\IAchievement.cs" />
     <Compile Include="BusinessLayer\Models\ModelClasses\RouteFinishedAchievement.cs" />
+    <Compile Include="BusinessLayer\Models\ModelClasses\RouteFinishedAchievementPendingNotification.cs" />
     <Compile Include="BusinessLayer\Models\ModelExtensions\Audio.cs" />
     <Compile Include="BusinessLayer\Models\ModelExtensions\Caching.cs" />
     <Compile Include="BusinessLayer\Models\ModelExtensions\IAchievement.cs" />
