@@ -17,6 +17,7 @@ using System.Threading.Tasks;
 using MvvmHelpers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
 using Xamarin.Forms;
@@ -73,8 +74,18 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels
 
             async Task DequeueAndRepeat()
             {
-                var pending = AchievementManager.DequeuePendingAchievementNotifications();
-                AchievementNotification.QueueAchievementNotifications(pending);
+                try
+                {
+                    var pending = AchievementManager.DequeuePendingAchievementNotifications();
+                    AchievementNotification.QueueAchievementNotifications(pending);
+                }
+                catch (InvalidTransactionException)
+                {
+                    // Safe to ignore in this case, just retry later.
+                    // This can happen because the auto-refresh can interleave
+                    // with other transactions that execute asynchronous code
+                    // inside them.
+                }
                 await Task.Delay(5000);
                 if (isAutoChecking == 1)
                 {
