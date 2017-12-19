@@ -13,13 +13,16 @@
 // limitations under the License.
 
 using System;
-using Realms.Exceptions;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
 {
-    public class InvalidTransactionException: Exception
+    /// <summary>
+    /// Can happen e.g. when initiating a transaction while 
+    /// another one is already running.
+    /// </summary>
+    public class InvalidTransactionException : Exception
     {
-        public InvalidTransactionException(string message, Exception cause): base(message, cause)
+        public InvalidTransactionException(string message, Exception cause) : base(message, cause)
         {
         }
     }
