@@ -46,7 +46,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Location
         /// <param name="appMinimized">True if the method was called while the app is minimized.</param>
         void CheckNearExhibit(IEnumerable<Exhibit> exhibits, GeoLocation gpsLocation, bool considerTimeouts, bool appMinimized);
 
-        void InvokeExhibitVistedEvent(Exhibit exhibit);
+        void InvokeExhibitVisitedEvent(Exhibit exhibit);
     }
 
     public class NearbyExhibitManager : INearbyExhibitManager
@@ -88,7 +88,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Location
                     if (appMinimized)
                     {
                         var notificationPlayer = IoCManager.Resolve<INotificationPlayer>();
-                        notificationPlayer.DisplayExhibitNearbyNotification(e.Name, Strings.ExhibitNearby_VisitRequest, e.Image.Data);
+                        notificationPlayer.DisplayExhibitNearbyNotification(e.Name, Strings.ExhibitNearby_VisitRequest, await e.Image.GetDataAsync());
                     }
                     else
                     {
@@ -99,26 +99,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Location
                     }
                 }
             }
-            
-            await PostVisitedExhibitsToApi();
+
+            await AchievementManager.UpdateServerAndLocalState();
         }
 
-        /// <summary>
-        /// Check which exhibits are unlocked and mark them as visited
-        /// in the API.
-        /// </summary>
-        /// <returns></returns>
-        public static async Task PostVisitedExhibitsToApi()
-        {
-            var exhibits = IoCManager.Resolve<IDataAccess>()
-                                     .GetItems<ExhibitSet>()
-                                     .SelectMany(set => set.ActiveSet);
-            var visitedExhibitIds = exhibits.Where(e => e.Unlocked).Select(e => e.IdForRestApi).ToList();
-            var action = new ExhibitsVisitedActionDto(visitedExhibitIds);
-            await IoCManager.Resolve<IAchievementsApiAccess>().PostExhibitVisited(action);
-        }
-
-        public void InvokeExhibitVistedEvent(Exhibit exhibit)
+        public void InvokeExhibitVisitedEvent(Exhibit exhibit)
         {
             ExhibitVisitedEvent?.Invoke(this, exhibit);
         }

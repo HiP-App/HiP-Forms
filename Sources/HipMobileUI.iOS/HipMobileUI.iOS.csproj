@@ -150,9 +150,11 @@
     <Compile Include="..\..\HiP-Mobile-Internal\Keys\IosKeyProvider.cs">
       <Link>Contracts\IosKeyProvider.cs</Link>
     </Compile>
+    <Compile Include="Contracts\IosAppCloser.cs" />
     <Compile Include="Contracts\IosAudioPlayer.cs" />
     <Compile Include="Contracts\IosBarsColorsChanger.cs" />
     <Compile Include="Contracts\IosImageDimensions.cs" />
+    <Compile Include="Contracts\IosMediaFileManager.cs" />
     <Compile Include="Contracts\IosNetworkAccessChecker.cs" />
     <Compile Include="Contracts\IosNotificationPlayer.cs" />
     <Compile Include="Contracts\IosStatusBarController.cs" />

@@ -1,12 +1,20 @@
-﻿using Acr.UserDialogs;
+﻿// Copyright (C) 2017 History in Paderborn App - Universität Paderborn
+//  
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//  
+//      http://www.apache.org/licenses/LICENSE-2.0
+//  
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+using Acr.UserDialogs;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.User;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.UserManagement;
@@ -18,8 +26,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
     class ForgotPasswordScreenViewModel : NavigationViewModel
     {
         private readonly MainPageViewModel mainPageViewModel;
-        private String email;
-        private String errorMessage;
+        private string email;
+        private string errorMessage;
 
         public ICommand ResetPasswordCommand { get; }
 
@@ -32,7 +40,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 
         private void OnResetPasswordClicked()
         {
-            if (String.IsNullOrWhiteSpace(Email))
+            if (string.IsNullOrWhiteSpace(Email))
             {
                 DisplayEmptyEmailErrorMessage();
             }
@@ -44,7 +52,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 
         private async void SendResetPasswordEmail()
         {
-            UserStatus userStatus = await IoCManager.Resolve<IUserManager>().ForgotPassword(new User(Email, ""));
+            var userStatus = await IoCManager.Resolve<IUserManager>().ForgotPassword(new User(Email, ""));
 
             if (userStatus == UserStatus.PasswordResetEmailSent)
             {
@@ -66,13 +74,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             ErrorMessage = Strings.ForgotPasswordScreenView_Error_Empty_Email;
         }
 
-        public String Email
+        public string Email
         {
             get { return email; }
             set { SetProperty(ref email, value); }
         }
 
-        public String ErrorMessage
+        public string ErrorMessage
         {
             get { return errorMessage; }
             set { SetProperty(ref errorMessage, value); }

@@ -1,4 +1,4 @@
-﻿// Copyright (C) 2017 History in Paderborn App - Universität Paderborn
+// Copyright (C) 2017 History in Paderborn App - Universität Paderborn
 //  
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -36,6 +36,7 @@ using PaderbornUniversity.SILab.Hip.Mobile.UI.Appearance;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Location;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
 using Xamarin.Forms;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
@@ -126,56 +127,54 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
         private IBaseDataFetcher baseDataFetcher;
 
-        public void Load()
+        public async void Load()
         {
-            Task.Factory.StartNew(async () =>
+            try
+            {
+                InitIoCContainer();
+                await BackupData.Init();
+
+                baseDataFetcher = IoCManager.Resolve<IBaseDataFetcher>();
+
+                var networkAccessStatus = IoCManager.Resolve<INetworkAccessChecker>().GetNetworkAccessStatus();
+
+                if (networkAccessStatus != NetworkAccessStatus.NoAccess)
                 {
-                    try
-                    {
-                        InitIoCContainer();
-                        baseDataFetcher = IoCManager.Resolve<IBaseDataFetcher>();
-
-                        var networkAccessStatus = IoCManager.Resolve<INetworkAccessChecker>().GetNetworkAccessStatus();
-
-                        if (networkAccessStatus != NetworkAccessStatus.NoAccess)
-                        {
-                            await CheckForUpdatedDatabase();
-                        }
-                        else
-                        {
-                            errorTitle = Strings.LoadingPageViewModel_BaseData_DownloadFailed_Title;
-                            errorMessage = Strings.LoadingPageViewModel_BaseData_DatabaseUpToDateCheckFailed;
-                        }
-
-                        if (!isDatabaseUpToDate)
-                        {
-                            if (networkAccessStatus == NetworkAccessStatus.MobileAccess && Settings.WifiOnly)
-                            {
-                                actionOnUiThread = AskUserDownloadDataViaMobile;
-                                // if the app is not sleeping ask the user whether to download via mobile otherwise wait for wake up
-                                if (!isSleeping)
-                                {
-                                    Device.BeginInvokeOnMainThread(actionOnUiThread);
-                                }
-                                return;
-                            }
-                            await UpdateDatabase();
-                        }
-#pragma warning disable 4014
-                        Task.Run(NearbyExhibitManager.PostVisitedExhibitsToApi);
-#pragma warning restore 4014
-                    }
-                    catch (Exception e)
-                    {
-                        // Catch all exceptions happening on startup cause otherwise the loading page will be shown indefinitely 
-                        // This should only happen during development
-                        errorMessage = e.Message;
-                        errorTitle = "Error";
-                    }
-
-                    LoadCacheAndStart();
+                    await CheckForUpdatedDatabase();
                 }
-            );
+                else
+                {
+                    errorTitle = Strings.LoadingPageViewModel_BaseData_DownloadFailed_Title;
+                    errorMessage = Strings.LoadingPageViewModel_BaseData_DatabaseUpToDateCheckFailed;
+                }
+
+                if (!isDatabaseUpToDate)
+                {
+                    if (networkAccessStatus == NetworkAccessStatus.MobileAccess && Settings.WifiOnly)
+                    {
+                        actionOnUiThread = AskUserDownloadDataViaMobile;
+                        // if the app is not sleeping ask the user whether to download via mobile otherwise wait for wake up
+                        if (!isSleeping)
+                        {
+                            Device.BeginInvokeOnMainThread(actionOnUiThread);
+                        }
+                        return;
+                    }
+                    await UpdateDatabase();
+                }
+                await AchievementManager.UpdateServerAndLocalState();
+            }
+            catch (Exception e)
+            {
+                // Catch all exceptions happening on startup cause otherwise the loading page will be shown indefinitely 
+                // This should only happen during development
+                errorMessage = e.Message;
+                errorTitle = "Error";
+                Debug.WriteLine(e.Message);
+                Debug.WriteLine(e.StackTrace);
+            }
+
+            LoadCacheAndStart();
         }
 
         private async void AskUserDownloadDataViaMobile()
@@ -185,25 +184,22 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                                                               Strings.LoadingPageViewModel_BaseData_DownloadViaMobile,
                                                               Strings.LoadingPageViewModel_BaseData_MobileDownload_Confirm,
                                                               Strings.LoadingPageViewModel_BaseData_MobileDownload_Cancel);
-            await Task.Factory.StartNew(async () =>
+
+            try
+            {
+                if (downloadData)
                 {
-                    try
-                    {
-                        if (downloadData)
-                        {
-                            await UpdateDatabase();
-                        }
-                        LoadCacheAndStart();
-                    }
-                    catch (Exception e)
-                    {
-                        // Catch all exceptions happening on startup cause otherwise the loading page will be shown indefinitely 
-                        // This should only happen during development
-                        errorMessage = e.Message;
-                        errorTitle = "Error";
-                    }
+                    await UpdateDatabase();
                 }
-            );
+                LoadCacheAndStart();
+            }
+            catch (Exception e)
+            {
+                // Catch all exceptions happening on startup cause otherwise the loading page will be shown indefinitely 
+                // This should only happen during development
+                errorMessage = e.Message;
+                errorTitle = "Error";
+            }
         }
 
         private async Task CheckForUpdatedDatabase()
@@ -285,7 +281,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
         private void InitIoCContainer()
         {
-            IoCManager.RegisterType<IDataAccess, RealmDataAccess>();
             IoCManager.RegisterType<IDataLoader, EmbeddedResourceDataLoader>();
             IoCManager.RegisterInstance(typeof(ApplicationResourcesProvider), new ApplicationResourcesProvider(Application.Current.Resources));
 
@@ -325,6 +320,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             IoCManager.RegisterInstance(typeof(IUserManager), new UserManager());
 
             IoCManager.RegisterInstance(typeof(IThemeManager), new ThemeManager());
+            IoCManager.RegisterInstance(typeof(AchievementNotificationViewModel), new AchievementNotificationViewModel());
         }
 
         /// <summary>

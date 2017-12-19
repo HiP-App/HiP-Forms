@@ -12,17 +12,40 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System.Threading.Tasks;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using NSubstitute;
 using NUnit.Framework;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentHandling;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.AudioPlayer;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Location;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Views
 {
     class ExhibitsOverviewListItemViewModelTest
     {
+        [TestFixtureSetUp]
+        public void Init()
+        {
+            IoCManager.Clear();
+            IoCManager.RegisterInstance(typeof(INavigationService), Substitute.For<INavigationService>());
+            IoCManager.RegisterInstance(typeof(IImageDimension), Substitute.For<IImageDimension>());
+            IoCManager.RegisterInstance(typeof(IDataAccess), Substitute.For<IDataAccess>());
+            IoCManager.RegisterInstance(typeof(IAudioPlayer), Substitute.For<IAudioPlayer>());
+            IoCManager.RegisterInstance(typeof(ILocationManager), Substitute.For<ILocationManager>());
+            IoCManager.RegisterInstance(typeof(INearbyExhibitManager), Substitute.For<INearbyExhibitManager>());
+            IoCManager.RegisterInstance(typeof(INearbyRouteManager), Substitute.For<INearbyRouteManager>());
+            IoCManager.RegisterInstance(typeof(IDbChangedHandler), Substitute.For<IDbChangedHandler>());
+            IoCManager.RegisterInstance(typeof(IMediaFileManager), Substitute.For<IMediaFileManager>());
+            IoCManager.RegisterInstance(typeof(INewDataCenter), Substitute.For<INewDataCenter>());
+        }
+
+
         [Test, Category("UnitTest")]
         public void Creation_PropertiesFilled()
         {
@@ -53,7 +76,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Views
             var exhibit = Substitute.For<Exhibit>();
 
             var image = Substitute.For<Image>();
-            image.Data = new byte[] { 1, 2, 3, 4 };
+            image.GetDataAsync().ReturnsForAnyArgs(Task.FromResult(new byte[] { 1, 2, 3, 4 }));
+            image.GetDataBlocking().ReturnsForAnyArgs(new byte[] { 1, 2, 3, 4 });
 
             exhibit.Name = "Exhibit";
             exhibit.Image = image;

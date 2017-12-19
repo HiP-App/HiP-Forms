@@ -16,13 +16,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.Practices.ObjectBuilder2;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses.Contracts;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos;
-using Realms;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers
 {
@@ -75,7 +75,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             allTags = await tagsApiAccess.GetIds();
         }
 
-        public void CleaupRemovedData()
+        public async Task CleanupRemovedData()
         {
             //Backup data fake id
             allMedias.Add(-1);
@@ -132,18 +132,33 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             {
                 DbManager.DeleteBusinessEntity(tag);
             }
+            var fileManager = IoCManager.Resolve<IMediaFileManager>();
             foreach (var image in deletedImages)
             {
                 DbManager.DeleteBusinessEntity(image);
+                fileManager.DeleteFile(image.DataPath);
             }
             foreach (var audio in deletedAudios)
             {
                 DbManager.DeleteBusinessEntity(audio);
+                fileManager.DeleteFile(audio.DataPath);
             }
             foreach (var page in deletedPages)
             {
                 DbManager.DeleteBusinessEntity(page);
             }
+
+            await PruneMediaFilesAsync();
+        }
+
+        public static async Task PruneMediaFilesAsync()
+        {
+            var fileManager = IoCManager.Resolve<IMediaFileManager>();
+            var data = IoCManager.Resolve<IDataAccess>();
+            var restApiIdsToKeep = data.GetItems<Audio>()
+                                       .Select(it => it.IdForRestApi)
+                                       .Union(data.GetItems<Image>().Select(it => it.IdForRestApi));
+            await fileManager.PruneAsync(restApiIdsToKeep.ToList());
         }
 
         private void RemoveWaypoints(Route route, List<Waypoint> deletedWaypoints, List<Exhibit> deletedExhibits)

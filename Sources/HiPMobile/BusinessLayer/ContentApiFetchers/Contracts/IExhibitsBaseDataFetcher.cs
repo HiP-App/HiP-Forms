@@ -44,7 +44,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
         /// </summary>
         /// <param name="listener"></param>
         /// <returns></returns>
-        void ProcessExhibits(IProgressListener listener);
+        Task ProcessExhibits(IProgressListener listener);
 
         /// <summary>
         /// Indicates whether any exhibit was changed

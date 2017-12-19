@@ -16,19 +16,20 @@ using System.IO;
 using System.Windows.Input;
 using Xamarin.Forms;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Location;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 {
-    class ExhibitPreviewViewModel : NavigationViewModel
+    public class ExhibitPreviewViewModel : NavigationViewModel
     {
         public ExhibitPreviewViewModel(Exhibit exhibit, INearbyExhibitManager exManager)
         {
             this.exhibit = exhibit;
             Question = Strings.ExhibitOrRouteNearby_Question_Part1 + " \"" + this.exhibit.Name + "\" " + Strings.ExhibitOrRouteNearby_Question_Part2;
-            var data = exhibit.Image.Data;
+            var data = exhibit.Image.GetDataBlocking();
             Image = ImageSource.FromStream(() => new MemoryStream(data));
 
             Confirm = new Command(Accept);
@@ -48,17 +49,17 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 
         public string ExhibitName { get; }
 
-        void Accept()
+        private async void Accept()
         {
             MessagingCenter.Send<NavigationViewModel, bool>(this, "ReturnValue", true);
-            Navigation.ClearModalStack();
-            Navigation.PushAsync(new AppetizerPageViewModel(exhibit));
-            exhibitManager.InvokeExhibitVistedEvent(exhibit);
+            await Navigation.ClearModalStack();
+            await Navigation.PushAsync(new AppetizerPageViewModel(exhibit));
+            exhibitManager.InvokeExhibitVisitedEvent(exhibit);
         }
 
-        void Deny()
+        private async void Deny()
         {
-            Navigation.PopModalAsync();
+            await Navigation.PopModalAsync();
         }
     }
 }

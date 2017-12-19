@@ -101,16 +101,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         }
 
         /// <summary>
-        /// Called when the view was removed from the visual tree.
-        /// </summary>
-        public override void OnDisappearing()
-        {
-            base.OnDisappearing();
-
-            locationManager.RemoveLocationListener(this);
-        }
-
-        /// <summary>
         /// Called when the view was added to the visual tree.
         /// </summary>
         public override void OnAppearing()
@@ -121,14 +111,24 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         }
 
         /// <summary>
+        /// Called when the view was removed from the visual tree.
+        /// </summary>
+        public override void OnDisappearing()
+        {
+            base.OnDisappearing();
+
+            locationManager.RemoveLocationListener(this);
+        }
+
+        /// <summary>
         /// Open the exhibitdetails page.
         /// </summary>
         /// <param name="item"></param>
-        private void NavigateToExhibitDetails(ExhibitsOverviewListItemViewModel item)
+        private async void NavigateToExhibitDetails(ExhibitsOverviewListItemViewModel item)
         {
             if (item != null)
             {
-                Navigation.PushAsync(new AppetizerPageViewModel(item.Exhibit));
+                await Navigation.PushAsync(new AppetizerPageViewModel(item.Exhibit));
             }
         }
 

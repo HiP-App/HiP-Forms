@@ -29,21 +29,22 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 	{
 		//Attributes
 		[PrimaryKey]
-		public string Id{ get; set; }
+		public string Id { get; set; }
 
-		public virtual string Description{ get; set; }
+		public virtual string Description { get; set; }
 
-		public virtual string Title{ get; set; }
+		public virtual string Title { get; set; }
 
-		public virtual byte[] Data{ get; set; }
+		public virtual string DataPath { get; set; }
 
-		//Associations
-		// Contructor
-		public Image(){
+		public virtual int IdForRestApi { get; set; }
+
+		public virtual DateTimeOffset Timestamp { get; set; }
+
+		public Image() {
 		}
+	}
 
-        public virtual int IdForRestApi { get; set; }
-        public virtual DateTimeOffset Timestamp { get; set; }
-    }
+	
 }
 

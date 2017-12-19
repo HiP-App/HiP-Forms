@@ -32,7 +32,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             Exhibit = exhibit;
             ExhibitName = Exhibit.Name;
             Distance = distance;
-            var data = Exhibit.Image.Data;
+            var data = Exhibit.Image.GetDataBlocking();
             Image = ImageSource.FromStream(() => new MemoryStream(data));
 
             IsDownloadButtonVisible = !Exhibit.DetailsDataLoaded;
@@ -119,10 +119,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             Distance = MathUtil.CalculateDistance(exhibit.Location, new GeoLocation(position.Latitude, position.Longitude));
         }
 
-        public void OpenDetailsView(string id)
+        public async void OpenDetailsView(string id)
         {
             Navigation.InsertPageBefore(new AppetizerPageViewModel(id), downloadPage);
-            Navigation.PopAsync();
+            await Navigation.PopAsync();
         }
 
         public void SetDetailsAvailable(bool available)

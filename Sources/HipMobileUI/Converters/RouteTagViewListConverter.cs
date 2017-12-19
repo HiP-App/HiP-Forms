@@ -38,7 +38,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Converters
             foreach (var tag in list)
             {
                 var tagLayout = new StackLayout { Orientation = StackOrientation.Horizontal };
-                var imgData = tag.Image.Data;
+                var imgData = tag.Image.GetDataBlocking();
                 var imgSrc = ImageSource.FromStream(() => new MemoryStream(imgData));
                 tagLayout.Children.Add(new Image { Source = imgSrc });
                 tagLayout.Children.Add(new Label { Text = tag.Name });

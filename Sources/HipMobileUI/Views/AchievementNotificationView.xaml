@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+// Copyright (C) 2017 History in Paderborn App - Universität Paderborn
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+-->
+
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Views.AchievementNotificationView">
+    <ContentView.Content>
+        <AbsoluteLayout>
+            <Frame CornerRadius="15" Padding="5" Margin="10" x:Name="AchievementNotification" AbsoluteLayout.LayoutBounds="0.5,0,1,0.2" AbsoluteLayout.LayoutFlags="All"
+                   InputTransparent="false" IsVisible="{Binding IsVisible}" Opacity="{Binding Opacity}" BackgroundColor="{StaticResource PrimaryColor}" HasShadow="False">
+                <Frame CornerRadius="10" Padding="5" BackgroundColor="{StaticResource SolidLightGrayColor}">
+                    <StackLayout Orientation="Horizontal" BackgroundColor="{StaticResource SolidLightGrayColor}" Padding="3" >
+                        <Image Source="{Binding AchievementImage}" HorizontalOptions="Start" Aspect="AspectFit"/>
+                        <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
+                                     BackgroundColor="{StaticResource SolidLightGrayColor}" InputTransparent="true">
+                            <Label Text="{Binding AchievementTitle}" HorizontalOptions="StartAndExpand" VerticalOptions="Start"
+                                   TextColor="{StaticResource PrimaryDarkColor}" FontSize="15" FontAttributes="Bold"/>
+                            <Label Text="{Binding AchievementDescription}" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand"/>
+                        </StackLayout>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding DisposeNotificationCommand}"/>
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                </Frame>
+            </Frame>
+        </AbsoluteLayout>
+    </ContentView.Content>
+</ContentView>

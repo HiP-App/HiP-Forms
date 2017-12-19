@@ -15,6 +15,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Practices.Unity;
@@ -53,7 +54,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
         private IList<int?> requiredExhibitImages;
         private IList<ExhibitDto> newExhibits;
         private IList<ExhibitDto> updatedExhibits;
-        private IList<PageDto> appetizerPages;
 
         public async Task<int> FetchNeededDataForExhibits(Dictionary<int, DateTimeOffset> existingExhibitsIdTimestampMapping)
         {
@@ -81,6 +81,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
 
                 if (!dbExhibitData.HasValue || Math.Abs((exhibit.Timestamp - dbExhibitData.Value).Seconds) > 1)
                 {
+                    // Keeping it as safety check don't want appetizer page ids to be treated as normal pages
+                    // Currently in the exhibit response body first page number belongs to appetizer page.
+                    // Once DataStore remove appetizer page from their side then we can remove this from our side as well.
                     if (exhibit.Pages != null && exhibit.Pages.Any())
                     {
                         requiredAppetizerPages.Add(exhibit.Pages.First());
@@ -88,16 +91,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                     requiredExhibitImages.Add(exhibit.Image);
                 }
             }
-
-            if (requiredAppetizerPages.Any())
-            {
-                appetizerPages = (await pagesApiAccess.GetPages(requiredAppetizerPages)).Items;
-                foreach (var page in appetizerPages)
-                {
-                    requiredExhibitImages.Add(page.Image);
-                }
-            }
-
             return requiredExhibitImages.Count + fetchedChangedExhibits.Count;
         }
 
@@ -108,9 +101,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
 
         private FetchedMediaData fetchedMedia;
 
-        public void ProcessExhibits(IProgressListener listener)
+        public async Task ProcessExhibits(IProgressListener listener)
         {
-            fetchedMedia = mediaDataFetcher.CombineMediasAndFiles();
+            fetchedMedia = await mediaDataFetcher.CombineMediasAndFiles();
 
             ProcessUpdatedExhibits(listener);
             ProcessNewExhibits(listener);
@@ -133,7 +126,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                 ExhibitConverter.Convert(exhibitDto, dbExhibit);
 
                 AddImageToExhibit(dbExhibit, exhibitDto.Image, fetchedMedia);
-                AddAppetizerPageToExhibit(exhibitDto, dbExhibit, fetchedMedia);
                 //TODO: Check if exhibit was already downloaded
                 //if(dbExhibit.DetailsDataLoaded)
                 //{
@@ -159,61 +151,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                 var dbExhibit = ExhibitConverter.Convert(exhibitDto);
 
                 AddImageToExhibit(dbExhibit, exhibitDto.Image, fetchedMedia);
-                AddAppetizerPageToExhibit(exhibitDto, dbExhibit, fetchedMedia);
                 exhibitSet.ActiveSet.Add(dbExhibit);
                 listener.ProgressOneStep();
             }
         }
-
-        private void AddAppetizerPageToExhibit(ExhibitDto exhibitDto, Exhibit dbExhibit, FetchedMediaData fetchedMediaData)
-        {
-            if (exhibitDto.Pages != null && exhibitDto.Pages.Any())
-            {
-                var page = appetizerPages.SingleOrDefault(x => x.Id == exhibitDto.Pages.First());
-
-                if (page != null)
-                {
-                    if (dbExhibit.Pages.Any())
-                    {
-                        PageConverter.Convert(page, dbExhibit.Pages.First());
-                    }
-                    else
-                    {
-                        dbExhibit.Pages.Add(PageConverter.Convert(page));
-                    }
-
-                    if (page.Image.HasValue)
-                    {
-                        var image = fetchedMediaData.Images.SingleOrDefault(x => x.IdForRestApi == page.Image);
-
-                        if (image != null)
-                        {
-                            dbExhibit.Pages.First().AppetizerPage.Image = image;
-                        }
-                    }
-                    else
-                    {
-                        dbExhibit.Pages.First().AppetizerPage.Image = BackupData.BackupImage;
-                    }
-
-                    if (exhibitDto.Pages.Count == 1)
-                    {
-                        // Hide downloadbutton since there is nothing to download
-                        dbExhibit.DetailsDataLoaded = true;
-                    }
-                    else
-                    {
-                        dbExhibit.DetailsDataLoaded = false;
-                    }
-                }
-            }
-            else
-            {
-                // Hide downloadbutton since there is nothing to download
-                dbExhibit.DetailsDataLoaded = true;
-            }
-        }
-
         private void AddImageToExhibit(Exhibit dbExhibit, int? mediaId, FetchedMediaData fetchedMediaData)
         {
             if (mediaId.HasValue)

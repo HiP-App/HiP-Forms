@@ -13,9 +13,11 @@
 // limitations under the License.
 
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using NSubstitute;
 using NUnit.Framework;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentHandling;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
@@ -44,6 +46,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Views
             IoCManager.RegisterInstance(typeof(INearbyExhibitManager), Substitute.For<INearbyExhibitManager>());
             IoCManager.RegisterInstance(typeof(INearbyRouteManager), Substitute.For<INearbyRouteManager>());
             IoCManager.RegisterInstance(typeof(IDbChangedHandler), Substitute.For<IDbChangedHandler>());
+            IoCManager.RegisterInstance(typeof(IMediaFileManager), Substitute.For<IMediaFileManager>());
+            IoCManager.RegisterInstance(typeof(INewDataCenter), Substitute.For<INewDataCenter>());
         }
 
         [Test, Category("UnitTest")]
@@ -92,9 +96,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Views
             var pages = new List<Page> { CreateImagePage() };
             exhibit.Pages.Returns(pages);
 
-            var appetizerPage = CreateAppetizerPage();
-            exhibit.AppetizerPage.Returns(appetizerPage);
-
             return exhibit;
         }
 
@@ -125,7 +126,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Views
         private Image CreateImage()
         {
             var image = Substitute.For<Image>();
-            image.Data = new byte[] { 1, 2, 3, 4 };
+            image.GetDataAsync().ReturnsForAnyArgs(Task.FromResult(new byte[] { 1, 2, 3, 4 }));
+            image.GetDataBlocking().ReturnsForAnyArgs(new byte[] { 1, 2, 3, 4 });
             return image;
         }
 

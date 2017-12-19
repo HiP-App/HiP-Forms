@@ -74,7 +74,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
         }
 
         /// <summary>
-        /// Deletes the whole database
+        /// Deletes the whole database and restarts the app
         /// </summary>
         public static void DeleteDatabase()
         {
