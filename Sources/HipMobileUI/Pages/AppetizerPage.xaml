@@ -33,7 +33,7 @@
                             <RowDefinition Height="0.3*" />
                             <RowDefinition Height="0.1*" />
                         </Grid.RowDefinitions>
-                        <Image Source="{Binding Image}" Grid.Row="0" Aspect="AspectFill" />
+                        <Image Source="{Binding Image}" Grid.Row="0" Margin="5" Aspect="AspectFill" />
                         <ScrollView Grid.Row="1" VerticalOptions="StartAndExpand">
                             <Grid BackgroundColor="White">
                                 <Grid.ColumnDefinitions>
@@ -44,8 +44,8 @@
                                     <RowDefinition Height="*" />
                                 </Grid.RowDefinitions>
                                 <ContentView Grid.Column="0" AbsoluteLayout.LayoutBounds="15,15,150,150">
-                                    <controls1:CardView>
-                                        <Label Text="{Binding Text}" TextColor="#87000000" FontSize="16"/>
+                                    <controls1:CardView HasShadow="False">
+                                        <Label Text="{Binding Text}"  Margin="10" TextColor="#87000000" FontSize="16"/>
                                     </controls1:CardView>
                                 </ContentView>
                                 <StackLayout Grid.Column="1">
