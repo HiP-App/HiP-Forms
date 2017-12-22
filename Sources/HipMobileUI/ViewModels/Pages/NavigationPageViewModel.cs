@@ -58,10 +58,19 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             MapFocusCommand.Execute(GpsLocation);
         }
 
-        private void SkipExhibitClicked()
+        private async void SkipExhibitClicked()
         {
             var exhibits = detailsRoute.ActiveSet.Select(waypoint => waypoint.Exhibit);
-            SkipExhibitVisited(exhibits);
+
+            if (!detailsRoute.ActiveSet.Any())
+            {
+                await Navigation.DisplayAlert(Strings.ExhibitSkip_Title, Strings.ExhibitSkip_Message, Strings.SkipExhibit_OK);
+            }
+
+            else
+            {
+                SkipExhibitVisited(exhibits);
+            }
         }
 
         public ExhibitSet ExhibitSet
