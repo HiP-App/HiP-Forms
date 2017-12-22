@@ -64,7 +64,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
             if (!detailsRoute.ActiveSet.Any())
             {
-                await Navigation.DisplayAlert(Strings.ExhibitSkip_Title, Strings.ExhibitSkip_Message, Strings.SkipExhibit_OK);
+                await Navigation.DisplayAlert(Strings.SkipExhibit_Title, Strings.SkipExhibit_Message, Strings.SkipExhibit_OK);
             }
 
             else

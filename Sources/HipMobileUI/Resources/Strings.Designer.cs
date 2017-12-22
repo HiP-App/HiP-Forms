@@ -449,24 +449,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Alle Sehenswürdigkeiten wurden bereits besucht. Es kann keine weitere Alle Sehenswürdigkeiten wurden bereits besucht. Es kann keine weitere übersprungen werden..
-        /// </summary>
-        public static string ExhibitSkip_Message {
-            get {
-                return ResourceManager.GetString("ExhibitSkip_Message", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Sehenswürdigkeit überspringen.
-        /// </summary>
-        public static string ExhibitSkip_Title {
-            get {
-                return ResourceManager.GetString("ExhibitSkip_Title", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Keine Sehenswürdigkeiten verfügbar. Laden Sie Sehenswürdigkeiten herunter, um loszulegen!.
         /// </summary>
         public static string ExhibitsOverviewView_EmptyList {
@@ -2048,6 +2030,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         public static string SkipExhibit_Confirm {
             get {
                 return ResourceManager.GetString("SkipExhibit_Confirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Alle Sehenswürdigkeiten wurden bereits besucht. Es kann keine weitere Alle Sehenswürdigkeiten wurden bereits besucht. Es kann keine weitere übersprungen werden..
+        /// </summary>
+        public static string SkipExhibit_Message {
+            get {
+                return ResourceManager.GetString("SkipExhibit_Message", resourceCulture);
             }
         }
         
