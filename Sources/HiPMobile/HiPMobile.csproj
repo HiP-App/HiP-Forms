@@ -112,6 +112,7 @@
     <Compile Include="BusinessLayer\Managers\RouteManager.cs" />
     <Compile Include="BusinessLayer\DtoToModelConverters\DtoToModelConverter.cs" />
     <Compile Include="BusinessLayer\DtoToModelConverters\ExhibitConverter.cs" />
+    <Compile Include="DataAccessLayer\InvalidTransactionException.cs" />
     <Compile Include="Helpers\AssertionHelper.cs" />
     <Compile Include="Helpers\EarlyIoC.cs" />
     <Compile Include="Helpers\UriQueryBuilder.cs" />
