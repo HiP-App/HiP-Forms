@@ -26,7 +26,7 @@
                                xmlns:views1="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Views;assembly=HipMobileUI"
 						       >	
 	<pages1:OrientationContentPage.ToolbarItems>
-	<ToolbarItem Text="format_size"
+	<ToolbarItem Text="addn_info"
                      Order="Primary"					 
 					 Command="{Binding ShowAdditionalInformationCommand}"
                      Icon="ic_more_vert.png" />
