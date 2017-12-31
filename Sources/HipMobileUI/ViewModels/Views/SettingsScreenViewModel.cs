@@ -128,6 +128,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             set
             {
                 Settings.RepeatIntro = value;
+                Settings.InitialThemeSelected = !value;
                 OnPropertyChanged();
             }
         }
