@@ -37,10 +37,10 @@
                     </Grid.RowDefinitions>
 
                     <Image x:Name="ImageView" Grid.Row="0" Source="{Binding Image}" Aspect="AspectFill"
-                           BackgroundColor="White" VerticalOptions="CenterAndExpand" />
+                           BackgroundColor="White" Margin="5" VerticalOptions="FillAndExpand" />
 
-                    <Frame x:Name="DescriptionView" Grid.Row="1" BackgroundColor="{StaticResource LightGrayColor}"
-                           Padding="0" Margin="2" HasShadow="False">
+                    <Frame x:Name="DescriptionView" Grid.Row="1" BackgroundColor="White"
+                           Padding="0" Margin="5" HasShadow="False">
                         <Label Text="{Binding DownloadableDescription}" FontSize="Medium" FontAttributes="Bold"
                                TextColor="{StaticResource AccentDarkColor}" HorizontalTextAlignment="Center"
                                VerticalOptions="Center" />
@@ -64,6 +64,7 @@
                             <Label IsVisible="{Binding DownloadFinished}" Text="Übersicht" FontSize="20"
                                    TextColor="{StaticResource AccentColor}"
                                    HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
+                                   Margin="5"
                                    HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                                 <Label.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding GoToOverviewCommand}" />
