@@ -83,6 +83,10 @@
     <Compile Include="BusinessLayer\DtoToModelConverters\MediaToAudioConverter.cs" />
     <Compile Include="BusinessLayer\DtoToModelConverters\MediaToImageConverter.cs" />
     <Compile Include="BusinessLayer\DtoToModelConverters\PageConverter.cs" />
+    <Compile Include="BusinessLayer\FeatureToggling\FeatureConfiguration.cs" />
+    <Compile Include="BusinessLayer\FeatureToggling\FeatureId.cs" />
+    <Compile Include="BusinessLayer\FeatureToggling\FeatureToggleRouter.cs" />
+    <Compile Include="BusinessLayer\FeatureToggling\IFeatureToggleRouter.cs" />
     <Compile Include="BusinessLayer\Managers\AchievementManager.cs" />
     <Compile Include="BusinessLayer\Models\ModelClasses\ExhibitsVisitedAchievement.cs" />
     <Compile Include="BusinessLayer\Models\ModelClasses\ExhibitsVisitedAchievementPendingNotification.cs" />
@@ -115,6 +119,7 @@
     <Compile Include="DataAccessLayer\InvalidTransactionException.cs" />
     <Compile Include="Helpers\AssertionHelper.cs" />
     <Compile Include="Helpers\EarlyIoC.cs" />
+    <Compile Include="Helpers\Observable.cs" />
     <Compile Include="Helpers\UriQueryBuilder.cs" />
     <Compile Include="ServiceAccessLayer\AuthApiDto\TokenPayload.cs" />
     <Compile Include="ServiceAccessLayer\AuthenticationApiAccess\AuthApiAccess.cs" />
