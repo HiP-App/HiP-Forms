@@ -31,7 +31,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         {
             Achievements.Clear();
 
-            await IoCManager.Resolve<IAchievementFetcher>().UpdateAchievements(); // TODO Use return value
+            var newlyUnlocked = await IoCManager.Resolve<IAchievementFetcher>().UpdateAchievements();
+            AchievementNotification.QueueAchievementNotifications(newlyUnlocked);
             foreach (var achievement in AchievementManager.GetAchievements())
             {
                 Achievements.Add(AchievementViewModel.CreateFrom(achievement));

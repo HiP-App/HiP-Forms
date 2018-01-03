@@ -85,8 +85,10 @@
     <Compile Include="BusinessLayer\DtoToModelConverters\PageConverter.cs" />
     <Compile Include="BusinessLayer\Managers\AchievementManager.cs" />
     <Compile Include="BusinessLayer\Models\ModelClasses\ExhibitsVisitedAchievement.cs" />
+    <Compile Include="BusinessLayer\Models\ModelClasses\ExhibitsVisitedAchievementPendingNotification.cs" />
     <Compile Include="BusinessLayer\Models\ModelClasses\IAchievement.cs" />
     <Compile Include="BusinessLayer\Models\ModelClasses\RouteFinishedAchievement.cs" />
+    <Compile Include="BusinessLayer\Models\ModelClasses\RouteFinishedAchievementPendingNotification.cs" />
     <Compile Include="BusinessLayer\Models\ModelExtensions\Audio.cs" />
     <Compile Include="BusinessLayer\Models\ModelExtensions\Caching.cs" />
     <Compile Include="BusinessLayer\Models\ModelExtensions\IAchievement.cs" />
@@ -110,6 +112,7 @@
     <Compile Include="BusinessLayer\Managers\RouteManager.cs" />
     <Compile Include="BusinessLayer\DtoToModelConverters\DtoToModelConverter.cs" />
     <Compile Include="BusinessLayer\DtoToModelConverters\ExhibitConverter.cs" />
+    <Compile Include="DataAccessLayer\InvalidTransactionException.cs" />
     <Compile Include="Helpers\AssertionHelper.cs" />
     <Compile Include="Helpers\EarlyIoC.cs" />
     <Compile Include="Helpers\UriQueryBuilder.cs" />

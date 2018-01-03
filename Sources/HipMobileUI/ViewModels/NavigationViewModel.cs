@@ -12,10 +12,15 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System.Threading;
+using System.Threading.Tasks;
 using MvvmHelpers;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
+using Xamarin.Forms;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels
 {
@@ -29,6 +34,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels
         /// </summary>
         public virtual void OnDisappearing()
         {
+            StopAutoCheckForAchievements();
         }
 
         /// <summary>
@@ -37,6 +43,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels
         public virtual void OnAppearing()
         {
             AchievementNotification.ReloadDisplayedData();
+            StartAutoCheckForAchievements();
         }
 
         /// <summary>
@@ -44,6 +51,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels
         /// </summary>
         public virtual void OnHidden()
         {
+            StopAutoCheckForAchievements();
         }
 
         /// <summary>
@@ -52,6 +60,44 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels
         public virtual void OnRevealed()
         {
             AchievementNotification.ReloadDisplayedData();
+            StartAutoCheckForAchievements();
+        }
+
+        private int isAutoChecking = 0;
+        
+        private void StartAutoCheckForAchievements()
+        {
+            if (Interlocked.Exchange(ref isAutoChecking, 1) == 1)
+            {
+                return;
+            }
+
+            async Task DequeueAndRepeat()
+            {
+                try
+                {
+                    var pending = AchievementManager.DequeuePendingAchievementNotifications();
+                    AchievementNotification.QueueAchievementNotifications(pending);
+                }
+                catch (InvalidTransactionException)
+                {
+                    // Safe to ignore in this case, just retry later.
+                    // This can happen because the auto-refresh can interleave
+                    // with other transactions that execute asynchronous code
+                    // inside them.
+                }
+                await Task.Delay(5000);
+                if (isAutoChecking == 1)
+                {
+                    Device.BeginInvokeOnMainThread(async () => await DequeueAndRepeat());
+                }
+            }
+            Device.BeginInvokeOnMainThread(async () => await DequeueAndRepeat());
+        }
+
+        private void StopAutoCheckForAchievements()
+        {
+            Interlocked.Exchange(ref isAutoChecking, 0);
         }
     }
 }
