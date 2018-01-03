@@ -132,7 +132,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         {
             try
             {
-                InitIoCContainer();
+                await InitIoCContainer();
                 await BackupData.Init();
 
                 baseDataFetcher = IoCManager.Resolve<IBaseDataFetcher>();
@@ -148,9 +148,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                     errorTitle = Strings.LoadingPageViewModel_BaseData_DownloadFailed_Title;
                     errorMessage = Strings.LoadingPageViewModel_BaseData_DatabaseUpToDateCheckFailed;
                 }
-
-                var featureToggleRouter = await FeatureToggleRouter.Create();
-                IoCManager.RegisterInstance(typeof(IFeatureToggleRouter), featureToggleRouter);
 
                 if (!isDatabaseUpToDate)
                 {
@@ -287,7 +284,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             Navigation.StartNewNavigationStack(vm);
         }
 
-        private void InitIoCContainer()
+        private async Task InitIoCContainer()
         {
             IoCManager.RegisterType<IDataLoader, EmbeddedResourceDataLoader>();
             IoCManager.RegisterInstance(typeof(ApplicationResourcesProvider), new ApplicationResourcesProvider(Application.Current.Resources));
@@ -330,6 +327,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
             IoCManager.RegisterInstance(typeof(IThemeManager), new ThemeManager());
             IoCManager.RegisterInstance(typeof(AchievementNotificationViewModel), new AchievementNotificationViewModel());
+            
+            var featureToggleRouter = await FeatureToggleRouter.Create();
+            IoCManager.RegisterInstance(typeof(IFeatureToggleRouter), featureToggleRouter);
         }
 
         /// <summary>
