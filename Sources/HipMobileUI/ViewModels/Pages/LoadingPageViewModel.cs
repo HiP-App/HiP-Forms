@@ -161,10 +161,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                         {
                             Device.BeginInvokeOnMainThread(actionOnUiThread);
                         }
+
                         return;
                     }
+
                     await UpdateDatabase();
                 }
+
                 await AchievementManager.UpdateServerAndLocalState();
             }
             catch (Exception e)
@@ -193,6 +196,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                 {
                     await UpdateDatabase();
                 }
+
                 LoadCacheAndStart();
             }
             catch (Exception e)
@@ -259,6 +263,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                 {
                     await Navigation.DisplayAlert(errorTitle, errorMessage, Strings.LoadingPageViewModel_LoadingError_Confirm);
                 }
+
                 StartMainApplication();
             };
             // if the app is not sleeping open the main menu, otherwise wait for it to wake up
