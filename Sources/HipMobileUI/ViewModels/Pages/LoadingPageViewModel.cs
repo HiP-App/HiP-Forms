@@ -25,13 +25,14 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.UserManagement;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataLayer;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.AuthenticationApiAccess;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses.Contracts;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.FeatureToggleApiAccess;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.FeatureToggleApiDto;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Appearance;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Location;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
@@ -182,6 +183,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         {
             actionOnUiThread = null;
             var downloadData = await Navigation.DisplayAlert(Strings.LoadingPageViewModel_BaseData_DataAvailable,
+                                                             Strings.LoadingPageViewModel_BaseData_DownloadViaMobile,
+                                                             Strings.LoadingPageViewModel_BaseData_MobileDownload_Confirm,
+                                                             Strings.LoadingPageViewModel_BaseData_MobileDownload_Cancel);
 
             try
             {
