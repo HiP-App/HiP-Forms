@@ -1,4 +1,4 @@
-﻿// Copyright (C) 2017 History in Paderborn App - Universität Paderborn
+// Copyright (C) 2017 History in Paderborn App - Universität Paderborn
 //  
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -32,6 +32,7 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.AuthenticationApiAccess;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses.Contracts;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Appearance;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Location;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
@@ -161,9 +162,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                     }
                     await UpdateDatabase();
                 }
-#pragma warning disable 4014
-                Task.Run(NearbyExhibitManager.PostVisitedExhibitsToApi);
-#pragma warning restore 4014
+                await AchievementManager.UpdateServerAndLocalState();
             }
             catch (Exception e)
             {
@@ -269,6 +268,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
         private async void StartMainApplication()
         {
+            Settings.InitialThemeSelected = true;
+
             var vm = new MainPageViewModel();
             LoadingProgress = 1;
             await Task.Delay(100);
@@ -318,6 +319,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             IoCManager.RegisterType<IAuthApiAccess, AuthApiAccess>();
             IoCManager.RegisterInstance(typeof(IUserManager), new UserManager());
             IoCManager.RegisterInstance(typeof(IUserRatingManager), new UserRatingManager());
+            IoCManager.RegisterInstance(typeof(IThemeManager), new ThemeManager());
             IoCManager.RegisterInstance(typeof(AchievementNotificationViewModel), new AchievementNotificationViewModel());
         }
 

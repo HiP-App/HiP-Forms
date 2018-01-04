@@ -12,19 +12,18 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using Xamarin.Forms;
+using System;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
 {
-    public class HtmlLink : Label
+    /// <summary>
+    /// Can happen e.g. when initiating a transaction while 
+    /// another one is already running.
+    /// </summary>
+    public class InvalidTransactionException : Exception
     {
-        public string HtmlText
+        public InvalidTransactionException(string message, Exception cause) : base(message, cause)
         {
-            get
-            {
-                var text = Text.Replace("\n", "<br>");
-                return text;
-            }
         }
     }
 }

@@ -43,6 +43,34 @@
                 <Setter Property="FontSize" Value="12" />
                 <Setter Property="TextColor" Value="Black" />
             </Style>
+
+            <!--#region ThemedBoxView -->
+            <Style x:Key="BoxViewAdventurerMode" TargetType="BoxView">
+                <Setter Property="Color" Value="{StaticResource AccentColor}"/>
+            </Style>
+            <Style x:Key="BoxViewProfessorMode" TargetType="BoxView">
+                <Setter Property="Color" Value="{StaticResource PrimaryColor}"/>
+            </Style>
+            <!--#endregion-->
+
+            <!--#region ThemedLabel-->
+            <Style x:Key="LabelAdventurerMode" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource PrimaryColor}"/>
+            </Style>
+            <Style x:Key="LabelProfessorMode" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource AccentColor}"/>
+            </Style>
+            <!--#endregion-->
+
+            <!--#region ThemedButton-->
+            <Style x:Key="ButtonAdventurerMode" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{StaticResource PrimaryColor}"/>
+            </Style>
+            <Style x:Key="ButtonProfessorMode" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{StaticResource AccentColor}"/>
+            </Style>
+            <!--#endregion-->
+
             <converters1:ViewModelViewConverter x:Key="ViewModelViewConverter" />
             <converters1:ItemTappedConverter x:Key="ItemTappedConverter" />
             <converters1:ImageListConverter x:Key="ImageListConverter" />
@@ -50,6 +78,7 @@
             <converters1:PositionGeoLocationConverter x:Key="PositionGeoLocationConverter" />
             <converters1:EmptyListConverter x:Key="EmptyListConverter" />
             <converters1:InverseBooleanConverter x:Key="InverseBooleanConverter" />
+            <converters1:ViewModelListViewListConverter x:Key="ViewModelListViewListConverter" />
         </ResourceDictionary>
     </Application.Resources>
 </Application>

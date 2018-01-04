@@ -22,6 +22,7 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using Realms;
+using Realms.Exceptions;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataLayer
 {
@@ -79,9 +80,16 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataLayer
 
         public BaseTransaction StartTransaction()
         {
-            var transactionInstance = Instance;
-            var transaction = transactionInstance.BeginWrite();
-            return new RealmTransaction(transaction);
+            try
+            {
+                var transactionInstance = Instance;
+                var transaction = transactionInstance.BeginWrite();
+                return new RealmTransaction(transaction);
+            }
+            catch (RealmInvalidTransactionException e)
+            {
+                throw new InvalidTransactionException("Invalid transaction!", e);
+            }
         }
 
         public T CreateObject<T>(string id, bool updateCurrent) where T : RealmObject, IIdentifiable, new()
