@@ -78,7 +78,6 @@
             <converters1:PositionGeoLocationConverter x:Key="PositionGeoLocationConverter" />
             <converters1:EmptyListConverter x:Key="EmptyListConverter" />
             <converters1:InverseBooleanConverter x:Key="InverseBooleanConverter" />
-            <converters1:ViewModelListViewListConverter x:Key="ViewModelListViewListConverter" />
         </ResourceDictionary>
     </Application.Resources>
 </Application>
