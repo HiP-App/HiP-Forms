@@ -56,6 +56,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Appearance\ThemeManager.cs" />
     <Compile Include="AudioPlayer\IAudioPlayer.cs" />
     <Compile Include="Container\BindableChildrenCarouselPage.cs" />
     <Compile Include="Container\TabContainerView.cs" />

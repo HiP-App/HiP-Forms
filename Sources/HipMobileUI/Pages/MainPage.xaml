@@ -30,7 +30,7 @@
                     <RowDefinition Height="0.3*" />
                     <RowDefinition Height="0.7*" />
                 </Grid.RowDefinitions>
-                <BoxView Grid.Row="0" Color="{StaticResource PrimaryColor}" />
+                <BoxView Grid.Row="0" Style="{DynamicResource BoxView}"/>
                 <Label Grid.Row="0" Text="{helpers:Translate MainPage_MenuTitle}"
                        TextColor="White" FontSize="Small" FontAttributes="Bold"
                        Margin="16,0,0,32" VerticalOptions="End" />

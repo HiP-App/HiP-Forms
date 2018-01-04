@@ -13,6 +13,7 @@
 // limitations under the License.using System;
 
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using Android.App;
@@ -76,20 +77,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Map
                 routeCalculator = RouteCalculator.Instance;
                 SetNativeControl(mapView);
 
-                //Watercolorstyle map with labels layer
-                mapView.SetTileSource(new XYTileSource("OSM", null, 0, 18, 256, ".png",
-                                                       new[] { "http://c.tile.stamen.com/watercolor/" }));
-                MapTileProviderBasic tileProvider = new MapTileProviderBasic(activity);
-                ITileSource tileSource = new XYTileSource("MyCustomTiles", null, 1, 16, 256, ".png",
-                                                          new[] { "http://b.sm.mapstack.stamen.com/(watercolor,streets-and-labels)/" });
-                tileProvider.TileSource = (tileSource);
-                TilesOverlay tilesOverlay = new TilesOverlay(tileProvider, activity.BaseContext);
-                tilesOverlay.LoadingBackgroundColor = Color.Transparent;
-                mapView.OverlayManager.Add(tilesOverlay);
                 mapView.SetMultiTouchControls(true);
                 mapView.TilesScaledToDpi = true;
 
-                mapController = (MapController) mapView.Controller;
+                mapController = (MapController)mapView.Controller;
                 mapController.SetCenter(new GeoPoint(AppSharedData.PaderbornCenter.Latitude, AppSharedData.PaderbornCenter.Longitude));
                 mapController.SetZoom(AppSharedData.MapZoomLevel);
                 mapView.SetMapListener(this);
@@ -97,7 +88,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Map
 
             if (e.OldElement != null)
             {
-                // Unsubscribe
+                // Un-subscribe
                 e.OldElement.ExhibitSetChanged -= NewElementOnExhibitSetChanged;
                 e.OldElement.GpsLocationChanged -= NewElementOnGpsLocationChanged;
                 e.OldElement.DetailsRouteChanged -= NewElementOnDetailsRouteChanged;
@@ -303,7 +294,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Map
                 {
                     Title = osmMap.DetailsRoute.Title,
                     Width = 5f,
-                    Color = ((Xamarin.Forms.Color) resources.GetResourceValue("AccentColor")).ToAndroid(),
+                    Color = ((Xamarin.Forms.Color)resources.GetResourceValue("AccentColor")).ToAndroid(),
                     //Color = Color.Orange,
                     Points = route.FirstSection.Select(geoLocation => new GeoPoint(geoLocation.Latitude, geoLocation.Longitude)).ToList(),
                     Geodesic = true
@@ -312,7 +303,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Map
                 {
                     Title = osmMap.DetailsRoute.Title,
                     Width = 5f,
-                    Color = ((Xamarin.Forms.Color) resources.GetResourceValue("PrimaryColor")).ToAndroid(),
+                    Color = ((Xamarin.Forms.Color)resources.GetResourceValue("PrimaryColor")).ToAndroid(),
                     //Color = Color.Blue,
                     Points = route.NonFirstSections.Select(geoLocation => new GeoPoint(geoLocation.Latitude, geoLocation.Longitude)).ToList(),
                     Geodesic = true
@@ -325,7 +316,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Map
                     Title = osmMap.DetailsRoute.Title,
                     Width = 5f,
 
-                    Color = ((Xamarin.Forms.Color) resources.GetResourceValue("PrimaryColor")).ToAndroid(),
+                    Color = ((Xamarin.Forms.Color)resources.GetResourceValue("PrimaryColor")).ToAndroid(),
                     Points = route.Locations.Select(geoLocation => new GeoPoint(geoLocation.Latitude, geoLocation.Longitude)).ToList(),
 
                     Geodesic = true
