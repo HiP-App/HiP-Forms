@@ -70,18 +70,22 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             Exhibit = exhibit;
             Headline = exhibit.Name;
 
-            var imageData = exhibit.Image.GetDataBlocking();
-            Image = imageData != null ? ImageSource.FromStream(() => new MemoryStream(imageData)) : ImageSource.FromStream(() => new MemoryStream(BackupData.BackupImageData));
-
+            SetExhibitImage();
             SetUserRatingUi();
             SendRatingCommand = new Command(SendUserRating);
             SelectStarCommand = new Command(OnSelectStar);
 
         }
 
+        private async void SetExhibitImage()
+        {
+            var imageData = await exhibit.Image.GetDataAsync();
+            Image = imageData != null ? ImageSource.FromStream(() => new MemoryStream(imageData)) : ImageSource.FromStream(() => new MemoryStream(BackupData.BackupImageData));
+        }
+
         private async void SetUserRatingUi()
         {
-            UserRating userRating = await IoCManager.Resolve<IUserRatingManager>().GetUserRatingAsync(exhibit);
+            UserRating userRating = await IoCManager.Resolve<IUserRatingManager>().GetUserRatingAsync(exhibit.IdForRestApi);
             SetRatingAverageAndCount(userRating.Average, userRating.Count);
             SetRatingBars(userRating.RatingTable, userRating.Count);
             SetRatingStars();
@@ -188,7 +192,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             {
                 ShowDialog(Strings.UserRating_Dialog_Title_No_Rating, Strings.UserRating_Dialog_Message_No_Rating);
             }
-            else if (await IoCManager.Resolve<IUserRatingManager>().SendUserRatingAsync(exhibit, rating))
+            else if (await IoCManager.Resolve<IUserRatingManager>().SendUserRatingAsync(exhibit.IdForRestApi, rating))
             {
                 SetUserRatingUi();
                 ShowDialog(Strings.UserRating_Dialog_Title_Thx, Strings.UserRating_Dialog_Message_Thx);

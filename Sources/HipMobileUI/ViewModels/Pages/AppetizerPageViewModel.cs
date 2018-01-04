@@ -25,6 +25,7 @@ using Page = PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.Pa
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.ModelClasses;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
+using Acr.UserDialogs;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 {
@@ -62,15 +63,19 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
             if (pages.Count > 1 && Exhibit.DetailsDataLoaded)
                 NextViewAvailable = true;
-            // workaround for realm bug
-            var imageData = exhibit.Image.GetDataBlocking();
-            Image = imageData != null ? ImageSource.FromStream(() => new MemoryStream(imageData)) : ImageSource.FromStream(() => new MemoryStream(BackupData.BackupImageData));
 
+            SetExhibitImage();
             IsDownloadButtonVisible = !Exhibit.DetailsDataLoaded;
             NextViewCommand = new Command(GotoNextView);
             DownloadCommand = new Command(OpenDownloadDialog);
             UserRatingCommand = new Command(GoToUserRatingPage);
-            SetUserRating();
+            RefreshUserRating();
+        }
+
+        private async void SetExhibitImage()
+        {
+            var imageData = await exhibit.Image.GetDataAsync();
+            Image = imageData != null ? ImageSource.FromStream(() => new MemoryStream(imageData)) : ImageSource.FromStream(() => new MemoryStream(BackupData.BackupImageData));
         }
 
         /// <summary>
@@ -104,17 +109,23 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         /// Sets the average user rating, the count and the stars if the user is connected to the internet.
         /// </summary>
         /// <returns></returns>
-        private async void SetUserRating()
+        private async void RefreshUserRating()
         {
             if (IoCManager.Resolve<INetworkAccessChecker>().GetNetworkAccessStatus() == NetworkAccessStatus.NoAccess)
             {
                 RatingAverage = "-";
                 RatingStars = "?????";
                 RatingCount = "- " + Strings.UserRating_Rate_Count;
+                UserDialogs.Instance.Alert(new AlertConfig()
+                {
+                    Title = Strings.UserRating_Dialog_Title_No_Internet,
+                    Message = Strings.UserRating_Dialog_Message_No_Internet,
+                    OkText = Strings.UserRating_Ok
+                });
             }
             else
             {
-                var userRating = await IoCManager.Resolve<IUserRatingManager>().GetUserRatingAsync(exhibit);
+                var userRating = await IoCManager.Resolve<IUserRatingManager>().GetUserRatingAsync(exhibit.IdForRestApi);
                 var stars = "";
                 for (int i = 1; i <= 5; i++)
                 {

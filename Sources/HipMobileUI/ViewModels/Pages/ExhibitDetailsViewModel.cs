@@ -32,6 +32,7 @@ using Xamarin.Forms;
 using Page = PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.Page;
 using Settings = PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers.Settings;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
+using Acr.UserDialogs;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 {
@@ -225,6 +226,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                     PreviousViewAvailable = true;
                     await Navigation.PushAsync(new UserRatingPageViewModel(Exhibit));
                 }
+                else
+                {
+                    UserDialogs.Instance.Alert(new AlertConfig()
+                    {
+                        Title = Strings.UserRating_Dialog_Title_No_Internet,
+                        Message = Strings.UserRating_Dialog_Message_No_Internet,
+                        OkText = Strings.UserRating_Ok
+                    });
+                }
             }
         }
 
@@ -274,8 +284,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             var currentPage = pages[currentViewIndex];
             AudioAvailable = currentPage.Audio != null;
             AudioToolbarVisible = AudioAvailable;
-            Pagenumber = currentViewIndex + " / " + (pages.Count-1);
-            
+            Pagenumber = currentViewIndex + " / " + (pages.Count - 1);
+
             // It's possible to get no audio data even if it should exist
             try
             {

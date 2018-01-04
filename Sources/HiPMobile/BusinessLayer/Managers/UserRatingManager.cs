@@ -24,8 +24,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
 
     public interface IUserRatingManager
     {
-        Task<UserRating> GetUserRatingAsync(Exhibit exhibit);
-        Task<bool> SendUserRatingAsync(Exhibit exhibit, int rating);
+        Task<UserRating> GetUserRatingAsync(int idForRestApi);
+        Task<bool> SendUserRatingAsync(int idForRestApi, int rating);
     }
 
     public class UserRatingManager : IUserRatingManager
@@ -33,15 +33,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
 
         private readonly IUserRatingApiAccess client = new UserRatingApiAccess(new ContentApiClient());
 
-        public async Task<UserRating> GetUserRatingAsync(Exhibit exhibit)
+        public async Task<UserRating> GetUserRatingAsync(int idForRestApi)
         {
-            var userRatingDto = await client.GetUserRatingAsync(exhibit);
-            return new UserRating(userRatingDto);
+                var userRatingDto = await client.GetUserRatingAsync(idForRestApi);
+                return new UserRating(userRatingDto);
         }
 
-        public async Task<bool> SendUserRatingAsync(Exhibit exhibit, int rating)
+        public async Task<bool> SendUserRatingAsync(int idForRestApi, int rating)
         {
-            return await client.SendUserRatingAsync(exhibit, rating);
+            return await client.SendUserRatingAsync(idForRestApi, rating);
         }
     }
 }
