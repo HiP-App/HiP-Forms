@@ -1,4 +1,5 @@
-﻿// Copyright (C) 2017 History in Paderborn App - Universität Paderborn
+
+// Copyright (C) 2017 History in Paderborn App - Universität Paderborn
 //  
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,6 +17,7 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Contracts;
 using System.Windows.Input;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Appearance;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
 using Xamarin.Forms;
 
@@ -23,10 +25,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 {
     public class CharacterSelectionPageViewModel : NavigationViewModel
     {
-        private NavigationViewModel parentViewModel;
-
-        public ICommand AdventurerGridTappedCommand { get; }
-        public ICommand ProfessorGridTappedCommand { get; }
+        private readonly NavigationViewModel parentViewModel;
 
         public CharacterSelectionPageViewModel(NavigationViewModel parentViewModel)
         {
@@ -36,16 +35,28 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             ProfessorGridTappedCommand = new Command(OnProfessorGridTapped);
         }
 
+        public ICommand AdventurerGridTappedCommand { get; }
+        public ICommand ProfessorGridTappedCommand { get; }
+
         private void OnAdventurerGridTapped()
         {
             Settings.AdventurerMode = true;
-            SwitchToNextPage();
+            AdjustThemeAndContinue();
         }
 
         private void OnProfessorGridTapped()
         {
             Settings.AdventurerMode = false;
+            AdjustThemeAndContinue();
+        }
+
+        private void AdjustThemeAndContinue()
+        {
             SwitchToNextPage();
+
+            // Make sure all related components are already initialized before adjusting theme
+            if (Settings.InitialThemeSelected)
+                IoCManager.Resolve<IThemeManager>().AdjustTopBarTheme();
         }
 
         /// <summary>

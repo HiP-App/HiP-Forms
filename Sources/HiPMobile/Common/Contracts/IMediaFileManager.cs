@@ -20,6 +20,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts
 {
     public interface IMediaFileManager
     {
+        long TotalSizeBytes { get; }
+
         /// <summary>
         /// Delete a media file returned by <see cref="WriteMediaToDiskAsync"/>.
         /// </summary>
