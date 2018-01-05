@@ -19,9 +19,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.FeatureToggl
 {
     public static class FeatureConfiguration
     {
-        public static readonly List<int> DefaultEnabledFeatureIds = new[]
+        public static readonly List<FeatureId> DefaultEnabledFeatureIds = new List<FeatureId>
         {
             FeatureId.Achievements
-        }.Select(it => (int) it).ToList();
+        };
     }
 }

@@ -17,6 +17,7 @@ using Newtonsoft.Json;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.FeatureToggleApiDto
 {
+    // TODO Test
     public class FeatureDto
     {
         [JsonProperty("id")]
@@ -37,5 +38,18 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Feature
         public override string ToString() => 
             $"{nameof(Id)}: {Id}, {nameof(Name)}: {Name}, {nameof(ParentFeatureId)}: {ParentFeatureId}, " +
             $"{nameof(ChildrenFeatureIds)}: {ChildrenFeatureIds}, {nameof(GroupIdsWhereEnabled)}: {GroupIdsWhereEnabled}";
+
+        public FeatureDto(int id, string name, int? parentFeatureId, IList<int> childrenFeatureIds, IList<int> groupIdsWhereEnabled)
+        {
+            Id = id;
+            Name = name;
+            ParentFeatureId = parentFeatureId;
+            ChildrenFeatureIds = childrenFeatureIds;
+            GroupIdsWhereEnabled = groupIdsWhereEnabled;
+        }
+
+        public FeatureDto()
+        {
+        }
     }
 }

@@ -91,6 +91,7 @@
     <Compile Include="BusinessLayer\DtoToModelConverters\ExhibitConverterTest.cs" />
     <Compile Include="BusinessLayer\DtoToModelConverters\MediaToImageConverterTest.cs" />
     <Compile Include="BusinessLayer\DtoToModelConverters\MediaToAudioConverterTest.cs" />
+    <Compile Include="BusinessLayer\FeatureToggling\FeatureToggleRouterTest.cs" />
     <Compile Include="BusinessLayer\InteractiveSources\ConsecutiveNumberInteractiveSourceSubstituteTest.cs" />
     <Compile Include="BusinessLayer\InteractiveSources\ConsecutiveNumberAndConstantInteractiveSourceSubstituteTest.cs" />
     <Compile Include="BusinessLayer\InteractiveSources\ConstantInteractiveSourceSubstituteTest.cs" />

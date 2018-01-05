@@ -58,7 +58,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.FeatureToggl
             catch (Exception e)
             {
                 Debug.WriteLine(e);
-                enabledFeatureIds = FeatureConfiguration.DefaultEnabledFeatureIds;
+                enabledFeatureIds = FeatureConfiguration.DefaultEnabledFeatureIds.Select(it => (int) it).ToList();
             }
 
             return enabledFeatureIds;
