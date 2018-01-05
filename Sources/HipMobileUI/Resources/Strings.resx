@@ -709,6 +709,9 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   <data name="Alert_No_Internet_Description" xml:space="preserve">
     <value>Wir konnten keine Verbindung mit dem Internet herstellen. Bitte überprüfe deine Netzwerkverbindung.</value>
   </data>
+  <data name="Alert_Confirm" xml:space="preserve">
+    <value>Bestätigen</value>
+  </data>
   <data name="Alert_No_Internet_Title" xml:space="preserve">
     <value>Keine Netzwerkverbindung</value>
   </data>
