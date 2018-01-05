@@ -16,6 +16,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.FeatureToggl
 {
     public enum FeatureId
     {
-        Achievements = 0 // TODO Real ID
+        Achievements = 4 // TODO Real ID
     }
 }
