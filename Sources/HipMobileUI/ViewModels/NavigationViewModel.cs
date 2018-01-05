@@ -15,9 +15,11 @@
 using System.Threading;
 using System.Threading.Tasks;
 using MvvmHelpers;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.FeatureToggling;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
 using Xamarin.Forms;
@@ -64,7 +66,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels
         }
 
         private int isAutoChecking = 0;
-        
+
         private void StartAutoCheckForAchievements()
         {
             if (Interlocked.Exchange(ref isAutoChecking, 1) == 1)
@@ -72,12 +74,18 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels
                 return;
             }
 
+            var featureObserver = new CachingObserver<bool>();
+            IoCManager.Resolve<IFeatureToggleRouter>().IsFeatureEnabled(FeatureId.Achievements).Subscribe(featureObserver);
+
             async Task DequeueAndRepeat()
             {
                 try
                 {
-                    var pending = AchievementManager.DequeuePendingAchievementNotifications();
-                    AchievementNotification.QueueAchievementNotifications(pending);
+                    if (featureObserver.Last /* feature is enabled */)
+                    {
+                        var pending = AchievementManager.DequeuePendingAchievementNotifications();
+                        AchievementNotification.QueueAchievementNotifications(pending);
+                    }
                 }
                 catch (InvalidTransactionException)
                 {
@@ -86,12 +94,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels
                     // with other transactions that execute asynchronous code
                     // inside them.
                 }
+
                 await Task.Delay(5000);
                 if (isAutoChecking == 1)
                 {
                     Device.BeginInvokeOnMainThread(async () => await DequeueAndRepeat());
                 }
             }
+
             Device.BeginInvokeOnMainThread(async () => await DequeueAndRepeat());
         }
 

@@ -15,7 +15,6 @@
 using System;
 using System.Linq;
 using NUnit.Framework;
-using PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.TestHelpers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.Helpers

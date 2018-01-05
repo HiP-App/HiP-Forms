@@ -118,6 +118,7 @@
     <Compile Include="BusinessLayer\DtoToModelConverters\ExhibitConverter.cs" />
     <Compile Include="DataAccessLayer\InvalidTransactionException.cs" />
     <Compile Include="Helpers\AssertionHelper.cs" />
+    <Compile Include="Helpers\CachingObserver.cs" />
     <Compile Include="Helpers\EarlyIoC.cs" />
     <Compile Include="Helpers\Observable.cs" />
     <Compile Include="Helpers\UriQueryBuilder.cs" />
