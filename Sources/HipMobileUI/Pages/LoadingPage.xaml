@@ -49,7 +49,7 @@
                         <Label Text="{Binding LoadingProgress, StringFormat='{0:p0}'}" HorizontalTextAlignment="Center"
                                FontSize="16" />
                     </StackLayout>
-                    <controls1:FadeInImage Grid.Row="1" Source="hiphop_transparent">
+                    <controls1:FadeInImage Grid.Row="1" Source="icon350">
                         <OnPlatform x:TypeArguments="x:Int32">
                             <On Platform="Android" Value="500" />
                             <On Platform="iOS" Value="0" />

@@ -35,9 +35,9 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <AndroidUseSharedRuntime>True</AndroidUseSharedRuntime>
+    <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
     <AndroidLinkMode>None</AndroidLinkMode>
-    <EmbedAssembliesIntoApk>False</EmbedAssembliesIntoApk>
+    <EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
     <Debugger>Xamarin</Debugger>
     <AotAssemblies>True</AotAssemblies>
     <JavaMaximumHeapSize>1G</JavaMaximumHeapSize>
@@ -447,6 +447,8 @@
     <AndroidResource Include="Resources\drawable-xxxhdpi\ic_equalizer.png" />
     <AndroidResource Include="Resources\drawable\ic_info_black.png" />
     <AndroidResource Include="Resources\drawable\ic_info_outline_black.png" />
+    <AndroidResource Include="Resources\drawable\ICON_ci.png" />
+    <AndroidResource Include="Resources\drawable\icon350.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-hdpi\ic_keyboard_arrow_up.png" />
