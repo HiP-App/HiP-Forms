@@ -19,6 +19,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.FeatureToggl
 {
     public static class FeatureConfiguration
     {
+        /// <summary>
+        /// Fallback enabled features if the network is down.
+        /// </summary>
         public static readonly IReadOnlyList<FeatureId> DefaultEnabledFeatureIds = new List<FeatureId>
         {
             FeatureId.Achievements

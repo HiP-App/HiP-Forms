@@ -39,9 +39,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.FeatureToggl
             return new FeatureToggleRouter(enabledFeatureIds);
         }
 
-        private static async Task<List<int>> FetchEnabledFeatureIds()
+        private static async Task<IList<int>> FetchEnabledFeatureIds(IList<int> fallbackEnabledFeatureIds = null)
         {
-            List<int> enabledFeatureIds;
+            IList<int> enabledFeatureIds;
             try
             {
                 var featureDtosTask = IoCManager.Resolve<IFeatureToggleApiAccess>().GetEnabledFeaturesAsync();
@@ -57,28 +57,29 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.FeatureToggl
             catch (Exception e)
             {
                 Debug.WriteLine(e);
-                enabledFeatureIds = FeatureConfiguration.DefaultEnabledFeatureIds.Select(it => (int) it).ToList();
+                enabledFeatureIds = fallbackEnabledFeatureIds ??
+                                    FeatureConfiguration.DefaultEnabledFeatureIds.Select(it => (int) it).ToList();
             }
 
             return enabledFeatureIds;
         }
 
-        private List<int> enabledFeatureIds;
+        private IList<int> enabledFeatureIds;
         private readonly Dictionary<int, Observable<bool>> enabledFeatureObservables = new Dictionary<int, Observable<bool>>();
 
-        private FeatureToggleRouter(List<int> enabledFeatureIds)
+        private FeatureToggleRouter(IList<int> enabledFeatureIds)
         {
             this.enabledFeatureIds = enabledFeatureIds;
         }
 
         public async Task RefreshEnabledFeaturesAsync()
         {
-            var newEnabledFeatureIds = await FetchEnabledFeatureIds();
+            var newEnabledFeatureIds = await FetchEnabledFeatureIds(fallbackEnabledFeatureIds: enabledFeatureIds);
 
             lock (this)
             {
                 var oldEnabledFeatureIds = enabledFeatureIds;
-                
+
                 foreach (var disabled in oldEnabledFeatureIds.Except(newEnabledFeatureIds))
                 {
                     if (enabledFeatureObservables.TryGetValue(disabled, out var observable))

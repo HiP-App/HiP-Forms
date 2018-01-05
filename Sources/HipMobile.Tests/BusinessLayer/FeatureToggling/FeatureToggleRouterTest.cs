@@ -101,7 +101,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.BusinessLayer.Feat
         }
 
         [Test, Category("UnitTest")]
-        public async Task TestValueChanging()
+        public async Task TestSuccessfulUpdate()
         {
             var dummyApiAccess = new DummyFeatureToggleApiAccess
             {
@@ -129,6 +129,38 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.BusinessLayer.Feat
             await router.RefreshEnabledFeaturesAsync();
             Assert.IsFalse(feature0Observer.Last);
             Assert.IsTrue(feature1Observer.Last);
+        }
+
+        [Test, Category("UnitTest")]
+        public async Task TestFailingUpdate()
+        {
+            var random = new Random();
+            var nonDefaultEnabledFeatureId = random.Next();
+            while (FeatureConfiguration.DefaultEnabledFeatureIds.Contains((FeatureId) nonDefaultEnabledFeatureId))
+            {
+                nonDefaultEnabledFeatureId = random.Next();
+            }
+
+            var dummyApiAccess = new DummyFeatureToggleApiAccess
+            {
+                ReturnValue = new List<FeatureDto>
+                {
+                    new FeatureDto(nonDefaultEnabledFeatureId, "Test", null, new List<int>(), new List<int>())
+                }
+            };
+            IoCManager.RegisterInstance(typeof(IFeatureToggleApiAccess), dummyApiAccess);
+
+            IFeatureToggleRouter router = await FeatureToggleRouter.Create();
+
+            var feature0Observer = new CachingObserver<bool>();
+            router.IsFeatureEnabled((FeatureId) nonDefaultEnabledFeatureId).Subscribe(feature0Observer);
+            Assert.IsTrue(feature0Observer.Last);
+
+            // Make network fail, make sure no change is made and value doesn't revert to default
+            // state (disabled)
+            IoCManager.RegisterInstance(typeof(IFeatureToggleApiAccess), new ThrowingFeatureToggleApiAccess());
+            await router.RefreshEnabledFeaturesAsync();
+            Assert.IsTrue(feature0Observer.Last);
         }
     }
 }
