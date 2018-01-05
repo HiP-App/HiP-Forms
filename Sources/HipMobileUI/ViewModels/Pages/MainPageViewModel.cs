@@ -12,10 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.FeatureToggling;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
@@ -60,6 +63,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                 Icon = "ic_account_circle.png"
             };
 
+            var achievementsScreenViewModel = new AchievementsScreenViewModel
+            {
+                Title = Strings.MainPageViewModel_Achievements,
+                Icon = "ic_equalizer.png"
+            };
             MainScreenViewModels = new ObservableCollection<NavigationViewModel>
             {
                 new ExhibitsOverviewViewModel(set)
@@ -83,13 +91,43 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                     Icon = "ic_gavel.png"
                 },
                 profileScreenViewModel,
-                new AchievementsScreenViewModel
-                {
-                    Title = Strings.MainPageViewModel_Achievements,
-                    Icon = "ic_equalizer.png"
-                }
+                achievementsScreenViewModel
             };
+            IoCManager.Resolve<IFeatureToggleRouter>()
+                      .IsFeatureEnabled(FeatureId.Achievements)
+                      .Subscribe(new AchievementsVmHider(achievementsScreenViewModel, mainScreenViewModels));
             UpdateAccountViews();
+        }
+
+        private class AchievementsVmHider: IObserver<bool>
+        {
+            private readonly AchievementsScreenViewModel vm;
+            private readonly ObservableCollection<NavigationViewModel> vms;
+
+            public AchievementsVmHider(AchievementsScreenViewModel vm, ObservableCollection<NavigationViewModel> vms)
+            {
+                this.vm = vm;
+                this.vms = vms;
+            }
+
+            public void OnCompleted()
+            {
+            }
+
+            public void OnError(Exception error)
+            {
+            }
+
+            public void OnNext(bool enabled)
+            {
+                if (enabled && !vms.Contains(vm))
+                {
+                    vms.Add(vm);
+                } else if (!enabled)
+                {
+                    vms.Remove(vm);
+                }
+            }
         }
 
         /// <summary>

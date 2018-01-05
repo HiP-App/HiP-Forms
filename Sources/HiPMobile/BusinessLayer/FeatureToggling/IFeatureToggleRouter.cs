@@ -5,7 +5,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.FeatureToggl
 {
     public interface IFeatureToggleRouter
     {
-        IObservable<bool> IsFeatureEnabled(int featureId);
+        IObservable<bool> IsFeatureEnabled(FeatureId featureId);
         Task RefreshEnabledFeaturesAsync();
     }
 }

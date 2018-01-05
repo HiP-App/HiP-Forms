@@ -108,17 +108,17 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.FeatureToggl
             }
         }
 
-        public IObservable<bool> IsFeatureEnabled(int featureId)
+        public IObservable<bool> IsFeatureEnabled(FeatureId featureId)
         {
             lock (this)
             {
-                if (enabledFeatureObservables.TryGetValue(featureId, out var observable))
+                if (enabledFeatureObservables.TryGetValue((int) featureId, out var observable))
                 {
                     return observable;
                 }
 
-                var defaultFeatureObservable = new Observable<bool>(enabledFeatureIds.Contains(featureId));
-                enabledFeatureObservables[featureId] = defaultFeatureObservable;
+                var defaultFeatureObservable = new Observable<bool>(enabledFeatureIds.Contains((int) featureId));
+                enabledFeatureObservables[(int) featureId] = defaultFeatureObservable;
                 return defaultFeatureObservable;
             }
         }
