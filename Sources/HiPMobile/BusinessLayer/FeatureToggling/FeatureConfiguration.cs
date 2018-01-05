@@ -19,7 +19,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.FeatureToggl
 {
     public static class FeatureConfiguration
     {
-        public static readonly List<FeatureId> DefaultEnabledFeatureIds = new List<FeatureId>
+        public static readonly IReadOnlyList<FeatureId> DefaultEnabledFeatureIds = new List<FeatureId>
         {
             FeatureId.Achievements
         };

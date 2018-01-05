@@ -4,8 +4,7 @@ using Microsoft.Practices.ObjectBuilder2;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
 {
-    // TODO Test this
-    internal class Observable<T> : IObservable<T>
+    public class Observable<T> : IObservable<T>
     {
         private class DisposeAction : IDisposable
         {

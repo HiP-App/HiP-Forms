@@ -15,8 +15,10 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using NUnit.Framework;
+using PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.TestHelpers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.FeatureToggling;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.FeatureToggleApiAccess;
@@ -39,24 +41,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.BusinessLayer.Feat
             public Task<IList<FeatureDto>> GetEnabledFeaturesAsync()
             {
                 throw new IOException();
-            }
-        }
-
-        private class CachingObserver<T> : IObserver<T>
-        {
-            public T Last { get; private set; }
-
-            public void OnCompleted()
-            {
-            }
-
-            public void OnError(Exception error)
-            {
-            }
-
-            public void OnNext(T value)
-            {
-                Last = value;
             }
         }
 

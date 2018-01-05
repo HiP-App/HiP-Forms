@@ -97,6 +97,7 @@
     <Compile Include="BusinessLayer\InteractiveSources\ConstantInteractiveSourceSubstituteTest.cs" />
     <Compile Include="BusinessLayer\InteractiveSources\InteractiveSourcesParserTest.cs" />
     <Compile Include="Common\Contracts\DummyMediaFileManager.cs" />
+    <Compile Include="Helpers\ObservableTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiAccesses\AchievementsApiAccessTest.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiAccesses\PagesApiAccessTest.cs" />
@@ -105,6 +106,7 @@
     <Compile Include="ServiceAccessLayer\ContentApiAccesses\ExhibitsApiAccessTest.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiAccesses\FileApiAccessTest.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiAccesses\MediasApiAccessTest.cs" />
+    <Compile Include="TestHelpers\CachingObserver.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
