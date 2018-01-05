@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.FeatureToggling;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.User;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
@@ -37,6 +38,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.UserManageme
                 Settings.Username = user.Username;
                 Settings.Password = user.Password;
                 Settings.AccessToken = user.Token.AccessToken;
+                await IoCManager.Resolve<IFeatureToggleRouter>().RefreshEnabledFeaturesAsync();
             }
 
             catch (Exception ex)
@@ -56,6 +58,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.UserManageme
         public async Task<UserStatus> Logout(User user)
         {
             user.Token = null;
+            await IoCManager.Resolve<IFeatureToggleRouter>().RefreshEnabledFeaturesAsync();
             return UserStatus.LoggedOut;
         }
 

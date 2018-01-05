@@ -72,7 +72,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.FeatureToggl
             this.enabledFeatureIds = enabledFeatureIds;
         }
 
-        public async Task RefreshEnabledFeatures() // TODO Call this on login
+        public async Task RefreshEnabledFeaturesAsync()
         {
             var newEnabledFeatureIds = await FetchEnabledFeatureIds();
 
