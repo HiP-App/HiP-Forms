@@ -45,7 +45,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.BusinessLayer.Feat
         private class CachingObserver<T> : IObserver<T>
         {
             public T Last { get; private set; }
-            
+
             public void OnCompleted()
             {
             }
@@ -78,7 +78,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.BusinessLayer.Feat
             var feature1Observer = new CachingObserver<bool>();
             router.IsFeatureEnabled(0).Subscribe(feature0Observer);
             router.IsFeatureEnabled((FeatureId) 1).Subscribe(feature1Observer);
-            
+
             Assert.IsTrue(feature0Observer.Last);
             Assert.IsFalse(feature1Observer.Last);
         }
@@ -90,7 +90,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.BusinessLayer.Feat
             IoCManager.RegisterInstance(typeof(IFeatureToggleApiAccess), throwingApiAccess);
 
             IFeatureToggleRouter router = await FeatureToggleRouter.Create();
-            
+
             foreach (var defaultEnabledFeatureId in FeatureConfiguration.DefaultEnabledFeatureIds)
             {
                 var observer = new CachingObserver<bool>();
@@ -108,14 +108,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.BusinessLayer.Feat
                 {
                     continue;
                 }
-                
+
                 var observer = new CachingObserver<bool>();
                 router.IsFeatureEnabled((FeatureId) featureId).Subscribe(observer);
                 Assert.IsFalse(observer.Last);
                 i++;
             }
         }
-        
+
         [Test, Category("UnitTest")]
         public async Task TestValueChanging()
         {
@@ -130,14 +130,21 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.BusinessLayer.Feat
 
             IFeatureToggleRouter router = await FeatureToggleRouter.Create();
 
-            var observer = new CachingObserver<bool>();
-            router.IsFeatureEnabled(0).Subscribe(observer);
-            Assert.IsTrue(observer.Last);
+            var feature0Observer = new CachingObserver<bool>();
+            var feature1Observer = new CachingObserver<bool>();
+            router.IsFeatureEnabled(0).Subscribe(feature0Observer);
+            router.IsFeatureEnabled((FeatureId) 1).Subscribe(feature1Observer);
+            Assert.IsTrue(feature0Observer.Last);
+            Assert.IsFalse(feature1Observer.Last);
 
-            // Disable feature
-            dummyApiAccess.ReturnValue = new List<FeatureDto>();
+            // Swap feature states
+            dummyApiAccess.ReturnValue = new List<FeatureDto>
+            {
+                new FeatureDto(1, "Test", null, new List<int>(), new List<int>())
+            };
             await router.RefreshEnabledFeaturesAsync();
-            Assert.IsFalse(observer.Last);
+            Assert.IsFalse(feature0Observer.Last);
+            Assert.IsTrue(feature1Observer.Last);
         }
     }
 }

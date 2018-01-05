@@ -23,7 +23,6 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.FeatureTogg
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.FeatureToggling
 {
-    // TODO Test this
     public class FeatureToggleRouter : IFeatureToggleRouter
     {
         /// <summary>
