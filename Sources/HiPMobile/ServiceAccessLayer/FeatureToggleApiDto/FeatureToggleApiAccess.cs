@@ -19,7 +19,6 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.FeatureTogg
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.FeatureToggleApiDto
 {
-    // TODO Test this
     public class FeatureToggleApiAccess : IFeatureToggleApiAccess
     {
         private readonly IContentApiClient contentApiClient;

@@ -100,6 +100,7 @@
     <Compile Include="Helpers\ObservableTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiAccesses\AchievementsApiAccessTest.cs" />
+    <Compile Include="ServiceAccessLayer\ContentApiAccesses\FeatureToggleApiAccessTest.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiAccesses\PagesApiAccessTest.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiAccesses\TagsApiAccessTest.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiAccesses\RoutesApiAccessTest.cs" />
