@@ -34,6 +34,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         private readonly RegisterScreenViewModel registerScreenViewModel;
 
         private NavigationViewModel selectedViewModel;
+        private IDisposable achievementsFeatureSubscription;
 
         public MainPageViewModel() : this(ExhibitManager.GetExhibitSets().FirstOrDefault())
         {
@@ -93,12 +94,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                 profileScreenViewModel,
                 achievementsScreenViewModel
             };
-            IoCManager.Resolve<IFeatureToggleRouter>()
+            achievementsFeatureSubscription = IoCManager.Resolve<IFeatureToggleRouter>()
                       .IsFeatureEnabled(FeatureId.Achievements)
                       .Subscribe(new AchievementsVmHider(achievementsScreenViewModel, mainScreenViewModels));
             UpdateAccountViews();
         }
-
+        
         private class AchievementsVmHider: IObserver<bool>
         {
             private readonly AchievementsScreenViewModel vm;
@@ -198,6 +199,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             base.OnDisappearing();
 
             SelectedViewModel.OnDisappearing();
+            achievementsFeatureSubscription?.Dispose();
+            achievementsFeatureSubscription = null;
         }
 
         public override void OnAppearing()

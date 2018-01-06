@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 using MvvmHelpers;
@@ -66,6 +67,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels
         }
 
         private int isAutoChecking = 0;
+        private IDisposable achievementFeatureSubscription;
 
         private void StartAutoCheckForAchievements()
         {
@@ -75,7 +77,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels
             }
 
             var featureObserver = new CachingObserver<bool>();
-            IoCManager.Resolve<IFeatureToggleRouter>().IsFeatureEnabled(FeatureId.Achievements).Subscribe(featureObserver);
+            achievementFeatureSubscription = IoCManager.Resolve<IFeatureToggleRouter>()
+                                                       .IsFeatureEnabled(FeatureId.Achievements)
+                                                       .Subscribe(featureObserver);
 
             async Task DequeueAndRepeat()
             {
@@ -107,7 +111,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels
 
         private void StopAutoCheckForAchievements()
         {
-            Interlocked.Exchange(ref isAutoChecking, 0);
+            if (Interlocked.Exchange(ref isAutoChecking, 0) == 0)
+            {
+                return;
+            }
+
+            achievementFeatureSubscription?.Dispose();
+            achievementFeatureSubscription = null;
         }
     }
 }
