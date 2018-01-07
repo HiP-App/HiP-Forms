@@ -33,13 +33,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.FeatureToggl
         /// Waits 5 seconds at maximum for the download to complete.
         /// </summary>
         /// <returns></returns>
-        public static async Task<FeatureToggleRouter> Create()
+        public static async Task<FeatureToggleRouter> CreateAsync()
         {
-            var enabledFeatureIds = await FetchEnabledFeatureIds();
+            var enabledFeatureIds = await FetchEnabledFeatureIdsAsync();
             return new FeatureToggleRouter(enabledFeatureIds);
         }
 
-        private static async Task<IList<int>> FetchEnabledFeatureIds(IList<int> fallbackEnabledFeatureIds = null)
+        private static async Task<IList<int>> FetchEnabledFeatureIdsAsync(IList<int> fallbackEnabledFeatureIds = null)
         {
             IList<int> enabledFeatureIds;
             try
@@ -74,7 +74,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.FeatureToggl
 
         public async Task RefreshEnabledFeaturesAsync()
         {
-            var newEnabledFeatureIds = await FetchEnabledFeatureIds(fallbackEnabledFeatureIds: enabledFeatureIds);
+            var newEnabledFeatureIds = await FetchEnabledFeatureIdsAsync(fallbackEnabledFeatureIds: enabledFeatureIds);
 
             lock (this)
             {

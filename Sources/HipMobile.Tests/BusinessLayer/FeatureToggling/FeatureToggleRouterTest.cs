@@ -56,7 +56,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.BusinessLayer.Feat
             };
             IoCManager.RegisterInstance(typeof(IFeatureToggleApiAccess), dummyApiAccess);
 
-            IFeatureToggleRouter router = await FeatureToggleRouter.Create();
+            IFeatureToggleRouter router = await FeatureToggleRouter.CreateAsync();
 
             var feature0Observer = new CachingObserver<bool>();
             var feature1Observer = new CachingObserver<bool>();
@@ -73,7 +73,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.BusinessLayer.Feat
             var throwingApiAccess = new ThrowingFeatureToggleApiAccess();
             IoCManager.RegisterInstance(typeof(IFeatureToggleApiAccess), throwingApiAccess);
 
-            IFeatureToggleRouter router = await FeatureToggleRouter.Create();
+            IFeatureToggleRouter router = await FeatureToggleRouter.CreateAsync();
 
             foreach (var defaultEnabledFeatureId in FeatureConfiguration.DefaultEnabledFeatureIds)
             {
@@ -112,7 +112,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.BusinessLayer.Feat
             };
             IoCManager.RegisterInstance(typeof(IFeatureToggleApiAccess), dummyApiAccess);
 
-            IFeatureToggleRouter router = await FeatureToggleRouter.Create();
+            IFeatureToggleRouter router = await FeatureToggleRouter.CreateAsync();
 
             var feature0Observer = new CachingObserver<bool>();
             var feature1Observer = new CachingObserver<bool>();
@@ -150,7 +150,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.BusinessLayer.Feat
             };
             IoCManager.RegisterInstance(typeof(IFeatureToggleApiAccess), dummyApiAccess);
 
-            IFeatureToggleRouter router = await FeatureToggleRouter.Create();
+            IFeatureToggleRouter router = await FeatureToggleRouter.CreateAsync();
 
             var feature0Observer = new CachingObserver<bool>();
             router.IsFeatureEnabled((FeatureId) nonDefaultEnabledFeatureId).Subscribe(feature0Observer);
