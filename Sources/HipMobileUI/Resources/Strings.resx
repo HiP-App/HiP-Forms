@@ -838,4 +838,10 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   <data name="SkipExhibit_OK" xml:space="preserve">
     <value>OK</value>
   </data>
+  <data name="ForgotPasswordScreenView_Cancel" xml:space="preserve">
+    <value>Abbrechen</value>
+  </data>
+  <data name="RegisterScreenView_Cancel" xml:space="preserve">
+    <value>Abbrechen</value>
+  </data>
 </root>
