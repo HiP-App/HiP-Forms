@@ -445,25 +445,34 @@
     <BundleResource Include="Resources\ic_equalizer%403x.png" />
     <BundleResource Include="Resources\ic_equalizer.png" />
     <BundleResource Include="Resources\ic_equalizer%402x.png" />
+    <BundleResource Include="Resources\star_half_filled.png" />
+    <BundleResource Include="Resources\star_empty.png" />
+    <BundleResource Include="Resources\star_filled.png" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Resources\MapAnnotations.xcassets\AppIcons.appiconset\Contents.json">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MapAnnotations.xcassets\CurrentLocation.imageset\Contents.json">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MapAnnotations.xcassets\CurrentLocation.imageset\ic_my_location.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MapAnnotations.xcassets\ExhibitLocation.imageset\Contents.json">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MapAnnotations.xcassets\ExhibitLocation.imageset\map-marker.png">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MapAnnotations.xcassets\LaunchImages.launchimage\Contents.json">
       <Visible>false</Visible>
+      <InProject>false</InProject>
     </ImageAsset>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />

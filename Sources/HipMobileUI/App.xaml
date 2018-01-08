@@ -29,9 +29,8 @@
             <Color x:Key="LightGrayColor">#05000000</Color>
             <Color x:Key="MediumGrayColor">#15000000</Color>
             <Color x:Key="DarkGrayColor">#66000000</Color>
-			<Color x:Key="SolidLightGrayColor">#FFEEEEEE</Color>
-            <Color x:Key="DarkYellowColor">#FFC841</Color>
-            
+            <Color x:Key="SolidLightGrayColor">#FFEEEEEE</Color>
+
             <!--Colors for the user rating bars -->
             <Color x:Key="GreenBarColor">#9CC25C</Color>
             <Color x:Key="LightGreenBarColor">#A9D839</Color>

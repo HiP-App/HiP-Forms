@@ -43,8 +43,16 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
         private ICommand userRatingCommand;
         private string ratingAverage;
-        private string ratingStars;
+        private ImageSource star1;
+        private ImageSource star2;
+        private ImageSource star3;
+        private ImageSource star4;
+        private ImageSource star5;
         private string ratingCount;
+
+        private const string imgStarEmpty = "star_empty.png";
+        private const string imgStarHalfFilled = "star_half_filled.png";
+        private const string imgStarFilled = "star_filled.png";
 
         public AppetizerPageViewModel(string exhibitId) : this(ExhibitManager.GetExhibit(exhibitId)) { }
 
@@ -114,7 +122,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             if (IoCManager.Resolve<INetworkAccessChecker>().GetNetworkAccessStatus() == NetworkAccessStatus.NoAccess)
             {
                 RatingAverage = "-";
-                RatingStars = "?????";
+                SetStarImages(0);
                 RatingCount = "- " + Strings.UserRating_Rate_Count;
                 UserDialogs.Instance.Alert(new AlertConfig()
                 {
@@ -126,21 +134,45 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             else
             {
                 var userRating = await IoCManager.Resolve<IUserRatingManager>().GetUserRatingAsync(exhibit.IdForRestApi);
-                var stars = "";
-                for (int i = 1; i <= 5; i++)
-                {
-                    if (userRating.Average >= i)
-                        stars += "★";
-                    else
-                        stars += "☆";
-                }
                 if (userRating.Count > 0)
                     RatingAverage = userRating.Average.ToString("0.#");
                 else
                     RatingAverage = "-";
-                RatingStars = stars;
+                SetStarImages(userRating.Average);
                 RatingCount = userRating.Count.ToString() + " " + Strings.UserRating_Rate_Count;
             }
+        }
+
+        private void SetStarImages(double average)
+        {
+            if (average < 1)
+                Star1 = imgStarEmpty;
+            else
+                Star1 = imgStarFilled;
+            if (average < 1.25)
+                Star2 = imgStarEmpty;
+            else if ((average >= 1.25 && average < 1.75))
+                Star2 = imgStarHalfFilled;
+            else
+                Star2 = imgStarFilled;
+            if (average < 2.25)
+                Star3 = imgStarEmpty;
+            else if ((average >= 2.25 && average < 2.75))
+                Star3 = imgStarHalfFilled;
+            else
+                Star3 = imgStarFilled;
+            if (average < 3.25)
+                Star4 = imgStarEmpty;
+            else if ((average >= 3.25 && average < 3.75))
+                Star4 = imgStarHalfFilled;
+            else
+                Star4 = imgStarFilled;
+            if (average < 4.25)
+                Star5 = imgStarEmpty;
+            else if ((average >= 4.25 && average < 4.75))
+                Star5 = imgStarHalfFilled;
+            else
+                Star5 = imgStarFilled;
         }
 
         private async void GoToUserRatingPage()
@@ -148,6 +180,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             if (IoCManager.Resolve<INetworkAccessChecker>().GetNetworkAccessStatus() != NetworkAccessStatus.NoAccess)
             {
                 await Navigation.PushAsync(new UserRatingPageViewModel(Exhibit));
+            } else
+            {
+                UserDialogs.Instance.Alert(new AlertConfig()
+                {
+                    Title = Strings.UserRating_Dialog_Title_No_Internet,
+                    Message = Strings.UserRating_Dialog_Message_No_Internet,
+                    OkText = Strings.UserRating_Ok
+                });
             }
         }
 
@@ -270,15 +310,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         }
 
         /// <summary>
-        /// The text which cotains the stars of the user rating
-        /// </summary>
-        public string RatingStars
-        {
-            get { return ratingStars; }
-            set { SetProperty(ref ratingStars, value); }
-        }
-
-        /// <summary>
         /// The user rating count text
         /// </summary>
         public string RatingCount
@@ -286,7 +317,36 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             get { return ratingCount; }
             set { SetProperty(ref ratingCount, value); }
         }
-    }
 
+        public ImageSource Star1
+        {
+            get { return star1; }
+            set { SetProperty(ref star1, value); }
+        }
+
+        public ImageSource Star2
+        {
+            get { return star2; }
+            set { SetProperty(ref star2, value); }
+        }
+
+        public ImageSource Star3
+        {
+            get { return star3; }
+            set { SetProperty(ref star3, value); }
+        }
+
+        public ImageSource Star4
+        {
+            get { return star4; }
+            set { SetProperty(ref star4, value); }
+        }
+
+        public ImageSource Star5
+        {
+            get { return star5; }
+            set { SetProperty(ref star5, value); }
+        }
+    }
     #endregion
 }

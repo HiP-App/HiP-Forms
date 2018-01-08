@@ -40,11 +40,17 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         private ICommand sendRatingCommand;
         private ICommand selectStarCommand;
 
-        private string star1;
-        private string star2;
-        private string star3;
-        private string star4;
-        private string star5;
+        private ImageSource star1;
+        private ImageSource star2;
+        private ImageSource star3;
+        private ImageSource star4;
+        private ImageSource star5;
+
+        private ImageSource ratingStar1;
+        private ImageSource ratingStar2;
+        private ImageSource ratingStar3;
+        private ImageSource ratingStar4;
+        private ImageSource ratingStar5;
 
         private GridLength star1Bar;
         private GridLength star2Bar;
@@ -59,10 +65,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         private string star5BarCount;
 
         private string ratingAverage;
-        private string ratingStars;
         private string ratingCount;
 
-        private int rating = 0;
+        private int lastRating = 0;
+
+        private const string imgStarEmpty = "star_empty.png";
+        private const string imgStarHalfFilled = "star_half_filled.png";
+        private const string imgStarFilled = "star_filled.png";
         #endregion
 
         public UserRatingPageViewModel(Exhibit exhibit)
@@ -86,27 +95,55 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         private async void SetUserRatingUi()
         {
             UserRating userRating = await IoCManager.Resolve<IUserRatingManager>().GetUserRatingAsync(exhibit.IdForRestApi);
-            SetRatingAverageAndCount(userRating.Average, userRating.Count);
+            SetAverageAndCountRating(userRating.Average, userRating.Count);
+            SetStarImages(userRating.Average);
             SetRatingBars(userRating.RatingTable, userRating.Count);
-            SetRatingStars();
+            RatingStar1 = imgStarEmpty;
+            RatingStar2 = imgStarEmpty;
+            RatingStar3 = imgStarEmpty;
+            RatingStar4 = imgStarEmpty;
+            RatingStar5 = imgStarEmpty;
         }
 
-        private void SetRatingAverageAndCount(double average, int count)
+        private void SetAverageAndCountRating(double average, int count)
         {
-            var stars = "";
-            for (int i = 1; i <= 5; i++)
-            {
-                if (average >= i)
-                    stars += "★";
-                else
-                    stars += "☆";
-            }
             if (count > 0)
                 RatingAverage = average.ToString("0.#");
             else
                 RatingAverage = "-";
-            RatingStars = stars;
             RatingCount = count.ToString() + " " + Strings.UserRating_Rate_Count;
+        }
+
+        private void SetStarImages(double average)
+        {
+            if (average < 1)
+                Star1 = imgStarEmpty;
+            else
+                Star1 = imgStarFilled;
+            if (average < 1.25)
+                Star2 = imgStarEmpty;
+            else if ((average >= 1.25 && average < 1.75))
+                Star2 = imgStarHalfFilled;
+            else
+                Star2 = imgStarFilled;
+            if (average < 2.25)
+                Star3 = imgStarEmpty;
+            else if ((average >= 2.25 && average < 2.75))
+                Star3 = imgStarHalfFilled;
+            else
+                Star3 = imgStarFilled;
+            if (average < 3.25)
+                Star4 = imgStarEmpty;
+            else if ((average >= 3.25 && average < 3.75))
+                Star4 = imgStarHalfFilled;
+            else
+                Star4 = imgStarFilled;
+            if (average < 4.25)
+                Star5 = imgStarEmpty;
+            else if ((average >= 4.25 && average < 4.75))
+                Star5 = imgStarHalfFilled;
+            else
+                Star5 = imgStarFilled;
         }
 
         private void SetRatingBars(Dictionary<int, int> ratingTable, int count)
@@ -140,35 +177,38 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         /// <returns></returns>
         private void OnSelectStar(object s)
         {
-            rating = Convert.ToInt32(s);
-            SetRatingStars();
+            SetRatingStars(Convert.ToInt32(s));
         }
 
-        private void SetRatingStars()
+        private void SetRatingStars(int rating)
         {
-            Star1 = "☆";
-            Star2 = "☆";
-            Star3 = "☆";
-            Star4 = "☆";
-            Star5 = "☆";
-            switch (rating)
+            if (rating > lastRating)
             {
-                case 5:
-                    Star5 = "★";
-                    goto case 4;
-                case 4:
-                    Star4 = "★";
-                    goto case 3;
-                case 3:
-                    Star3 = "★";
-                    goto case 2;
-                case 2:
-                    Star2 = "★";
-                    goto case 1;
-                case 1:
-                    Star1 = "★";
-                    break;
+                String img = imgStarFilled;
+                if (lastRating == 0 && rating >= 1)
+                    RatingStar1 = img;
+                if (lastRating <= 1 && rating >= 2)
+                    RatingStar2 = img;
+                if (lastRating <= 2 && rating >= 3)
+                    RatingStar3 = img;
+                if (lastRating <= 3 && rating >= 4)
+                    RatingStar4 = img;
+                if (lastRating <= 4 && rating == 5)
+                    RatingStar5 = img;
             }
+            else
+            {
+                String img = imgStarEmpty;
+                if (lastRating == 5 && rating <= 4)
+                    RatingStar5 = img;
+                if (lastRating >= 4 && rating <= 3)
+                    RatingStar4 = img;
+                if (lastRating >= 3 && rating <= 2)
+                    RatingStar3 = img;
+                if (lastRating >= 2 && rating <= 1)
+                    RatingStar2 = img;
+            }
+            lastRating = rating;
         }
 
         /// <summary>
@@ -188,11 +228,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             {
                 ShowDialog(Strings.UserRating_Dialog_Title_Not_Logged_In, Strings.UserRating_Dialog_Message_Not_Logged_In);
             }
-            else if (rating == 0)
+            else if (lastRating == 0)
             {
                 ShowDialog(Strings.UserRating_Dialog_Title_No_Rating, Strings.UserRating_Dialog_Message_No_Rating);
             }
-            else if (await IoCManager.Resolve<IUserRatingManager>().SendUserRatingAsync(exhibit.IdForRestApi, rating))
+            else if (await IoCManager.Resolve<IUserRatingManager>().SendUserRatingAsync(exhibit.IdForRestApi, lastRating))
             {
                 SetUserRatingUi();
                 ShowDialog(Strings.UserRating_Dialog_Title_Thx, Strings.UserRating_Dialog_Message_Thx);
@@ -308,34 +348,63 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             set { SetProperty(ref star5BarCount, value); }
         }
 
-        public string Star1
+        public ImageSource Star1
         {
             get { return star1; }
             set { SetProperty(ref star1, value); }
         }
 
-        public string Star2
+        public ImageSource Star2
         {
             get { return star2; }
             set { SetProperty(ref star2, value); }
         }
 
-        public string Star3
+        public ImageSource Star3
         {
             get { return star3; }
             set { SetProperty(ref star3, value); }
         }
 
-        public string Star4
+        public ImageSource Star4
         {
             get { return star4; }
             set { SetProperty(ref star4, value); }
         }
 
-        public string Star5
+        public ImageSource Star5
         {
             get { return star5; }
             set { SetProperty(ref star5, value); }
+        }
+
+        public ImageSource RatingStar1
+        {
+            get { return ratingStar1; }
+            set { SetProperty(ref ratingStar1, value); }
+        }
+        public ImageSource RatingStar2
+        {
+            get { return ratingStar2; }
+            set { SetProperty(ref ratingStar2, value); }
+        }
+
+        public ImageSource RatingStar3
+        {
+            get { return ratingStar3; }
+            set { SetProperty(ref ratingStar3, value); }
+        }
+
+        public ImageSource RatingStar4
+        {
+            get { return ratingStar4; }
+            set { SetProperty(ref ratingStar4, value); }
+        }
+
+        public ImageSource RatingStar5
+        {
+            get { return ratingStar5; }
+            set { SetProperty(ref ratingStar5, value); }
         }
 
         /// <summary>
@@ -345,15 +414,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         {
             get { return ratingAverage; }
             set { SetProperty(ref ratingAverage, value); }
-        }
-
-        /// <summary>
-        /// The text which cotains the stars of the user rating
-        /// </summary>
-        public string RatingStars
-        {
-            get { return ratingStars; }
-            set { SetProperty(ref ratingStars, value); }
         }
 
         /// <summary>

@@ -54,7 +54,13 @@
                                         <TapGestureRecognizer Command="{Binding UserRatingCommand}" NumberOfTapsRequired="1" />
                                     </StackLayout.GestureRecognizers>
                                     <Label Text="{Binding RatingAverage}" FontAttributes="Bold" FontSize="24" VerticalOptions="Center" HorizontalOptions="Center" />
-                                    <Label Text="{Binding RatingStars}" TextColor="{StaticResource DarkYellowColor}" FontSize="20" HorizontalOptions="Center" VerticalOptions="Center" />
+                                    <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center" Spacing="5">
+                                        <Image WidthRequest="16" HeightRequest="16" Source="{Binding Star1}" VerticalOptions="Center"/>
+                                        <Image WidthRequest="16" HeightRequest="16" Source="{Binding Star2}" VerticalOptions="Center"/>
+                                        <Image WidthRequest="16" HeightRequest="16" Source="{Binding Star3}" VerticalOptions="Center"/>
+                                        <Image WidthRequest="16" HeightRequest="16" Source="{Binding Star4}" VerticalOptions="Center"/>
+                                        <Image WidthRequest="16" HeightRequest="16" Source="{Binding Star5}" VerticalOptions="Center"/>
+                                    </StackLayout>
                                     <Label Text="{Binding RatingCount}" FontSize="12" HorizontalOptions="Center" VerticalOptions="Center" />
                                 </StackLayout>
                             </Grid>
