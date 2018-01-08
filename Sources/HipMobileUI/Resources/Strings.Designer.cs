@@ -89,6 +89,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bestätigen.
+        /// </summary>
+        public static string Alert_Confirm {
+            get {
+                return ResourceManager.GetString("Alert_Confirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Wir konnten keine Verbindung mit dem Internet herstellen. Bitte überprüfe deine Netzwerkverbindung..
         /// </summary>
         public static string Alert_No_Internet_Description {
