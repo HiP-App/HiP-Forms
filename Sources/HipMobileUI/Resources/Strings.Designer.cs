@@ -2034,7 +2034,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Alle Sehenswürdigkeiten wurden bereits besucht. Es kann keine weitere Alle Sehenswürdigkeiten wurden bereits besucht. Es kann keine weitere übersprungen werden..
+        ///   Looks up a localized string similar to Alle Sehenswürdigkeiten wurden bereits besucht. Es kann keine weitere übersprungen werden..
         /// </summary>
         public static string SkipExhibit_Message {
             get {

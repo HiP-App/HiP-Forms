@@ -830,7 +830,7 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
     <value>Du hast {0} von {1} Sehenswürdigkeiten besucht</value>
   </data>
   <data name="SkipExhibit_Message" xml:space="preserve">
-    <value>Alle Sehenswürdigkeiten wurden bereits besucht. Es kann keine weitere Alle Sehenswürdigkeiten wurden bereits besucht. Es kann keine weitere übersprungen werden.</value>
+    <value>Alle Sehenswürdigkeiten wurden bereits besucht. Es kann keine weitere übersprungen werden.</value>
   </data>
   <data name="SkipExhibit_OK" xml:space="preserve">
     <value>OK</value>
