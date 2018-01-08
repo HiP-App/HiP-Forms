@@ -64,7 +64,7 @@
                         <BoxView Grid.Column="1" VerticalOptions="Center" BackgroundColor="Black"  HeightRequest="20" />
                         <BoxView Grid.Column="2" VerticalOptions="Center" BackgroundColor="{StaticResource GreenBarColor}"  HeightRequest="20" />
                         <Label Grid.Column="3" HorizontalOptions="Center" VerticalOptions="Center" Text="{Binding Star5BarCount}" FontSize="15" LineBreakMode="NoWrap"/>
-                        <View Grid.Column="4" />
+                        <Label Grid.Column="4"/>
                     </Grid>
                     <Grid ColumnSpacing="0" HorizontalOptions="Start">
                         <Grid.RowDefinitions>
@@ -81,7 +81,7 @@
                         <BoxView Grid.Column="1" VerticalOptions="Center" BackgroundColor="Black"  HeightRequest="20" />
                         <BoxView Grid.Column="2" VerticalOptions="Center" BackgroundColor="{StaticResource LightGreenBarColor}" HeightRequest="20" />
                         <Label Grid.Column="3" HorizontalOptions="Center" VerticalOptions="Center" Text="{Binding Star4BarCount}" FontSize="15" LineBreakMode="NoWrap"/>
-                        <View Grid.Column="4" />
+                        <Label Grid.Column="4" />
                     </Grid>
                     <Grid ColumnSpacing="0" HorizontalOptions="Start">
                         <Grid.RowDefinitions>
@@ -98,7 +98,7 @@
                         <BoxView Grid.Column="1" VerticalOptions="Center" BackgroundColor="Black"  HeightRequest="20" />
                         <BoxView Grid.Column="2" VerticalOptions="Center" BackgroundColor="{StaticResource YellowBarColor}"  HeightRequest="20" />
                         <Label Grid.Column="3" HorizontalOptions="Center" VerticalOptions="Center" Text="{Binding Star3BarCount}" FontSize="15" LineBreakMode="NoWrap"/>
-                        <View Grid.Column="4" />
+                        <Label Grid.Column="4" />
                     </Grid>
                     <Grid ColumnSpacing="0" HorizontalOptions="Start">
                         <Grid.RowDefinitions>
@@ -115,7 +115,7 @@
                         <BoxView Grid.Column="1" VerticalOptions="Center" BackgroundColor="Black"  HeightRequest="20" />
                         <BoxView Grid.Column="2" VerticalOptions="Center" BackgroundColor="{StaticResource OrangeBarColor}"  HeightRequest="20" />
                         <Label Grid.Column="3" HorizontalOptions="Center" VerticalOptions="Center" Text="{Binding Star2BarCount}" FontSize="15" LineBreakMode="NoWrap"/>
-                        <View Grid.Column="4" />
+                        <Label Grid.Column="4" />
                     </Grid>
                     <Grid ColumnSpacing="0" HorizontalOptions="Start">
                         <Grid.RowDefinitions>
@@ -132,7 +132,7 @@
                         <BoxView Grid.Column="1" VerticalOptions="Center" BackgroundColor="Black"  HeightRequest="20" />
                         <BoxView Grid.Column="2" VerticalOptions="Center" BackgroundColor="{StaticResource RedBarColor}"  HeightRequest="20" />
                         <Label Grid.Column="3" HorizontalOptions="Center" VerticalOptions="Center" Text="{Binding Star1BarCount}" FontSize="15" LineBreakMode="NoWrap"/>
-                        <View Grid.Column="4" />
+                        <Label Grid.Column="4" />
                     </Grid>
                 </StackLayout>
                 <StackLayout Grid.Row="2" Orientation="Vertical" Spacing="3" VerticalOptions="Center">
