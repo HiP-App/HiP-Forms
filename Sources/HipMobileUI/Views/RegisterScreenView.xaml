@@ -51,7 +51,7 @@
                             Command="{Binding Register}" />
                     <Label x:Name="CancelLabel"
                            HorizontalOptions="Center" VerticalOptions="Center"
-                           Text="{helpers:Translate Cancel}" FontSize="Small" TextColor="Blue">
+                           Text="{helpers:Translate RegisterScreenView_Cancel}" FontSize="Small" TextColor="Blue">
                         <Label.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding ReturnCommand}"/>
                         </Label.GestureRecognizers>

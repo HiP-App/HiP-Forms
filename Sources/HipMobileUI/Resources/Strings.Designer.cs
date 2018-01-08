@@ -206,15 +206,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Abbrechen.
-        /// </summary>
-        public static string Cancel {
-            get {
-                return ResourceManager.GetString("Cancel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Entdecke Paderborn auf eigene Faust! Mache neue Erfahrungen!.
         /// </summary>
         public static string CharacterSelectionPage_Adventurer_Text {
@@ -535,6 +526,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         public static string ForgotPasswordScreenView_Alert_Unknown_Error_Title {
             get {
                 return ResourceManager.GetString("ForgotPasswordScreenView_Alert_Unknown_Error_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Abbrechen.
+        /// </summary>
+        public static string ForgotPasswordScreenView_Cancel {
+            get {
+                return ResourceManager.GetString("ForgotPasswordScreenView_Cancel", resourceCulture);
             }
         }
         
@@ -1589,6 +1589,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         public static string RegisterScreenView_Alert_Registered {
             get {
                 return ResourceManager.GetString("RegisterScreenView_Alert_Registered", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Abbrechen.
+        /// </summary>
+        public static string RegisterScreenView_Cancel {
+            get {
+                return ResourceManager.GetString("RegisterScreenView_Cancel", resourceCulture);
             }
         }
         

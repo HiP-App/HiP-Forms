@@ -50,7 +50,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         {
             var result = await IoCManager.Resolve<INavigationService>()
                                          .DisplayAlert(Strings.SettingsScreenView_RemoveAllDownloadsPrompt_Title, Strings.SettingsScreenView_RemoveAllDownloadsPrompt_Question,
-                                                       Strings.SettingsScreenView_RemoveAllDownloadsPrompt_Confirm, Strings.Cancel);
+                                                       Strings.SettingsScreenView_RemoveAllDownloadsPrompt_Confirm, Strings.SettingsScreenView_RemoveAllDownloadsPrompt_Reject);
 
             if (result)
             {
@@ -72,7 +72,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         /// </summary>
         public bool AutoSwitchPage
         {
-            get { return Settings.AutoSwitchPage; }
+            get => Settings.AutoSwitchPage;
             set
             {
                 Settings.AutoSwitchPage = value;
@@ -85,7 +85,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         /// </summary>
         public bool AutoStartAudio
         {
-            get { return Settings.AutoStartAudio; }
+            get => Settings.AutoStartAudio;
             set
             {
                 Settings.AutoStartAudio = value;
@@ -98,7 +98,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         /// </summary>
         public bool RepeatHintAudio
         {
-            get { return Settings.RepeatHintAudio; }
+            get => Settings.RepeatHintAudio;
             set
             {
                 Settings.RepeatHintAudio = value;
@@ -111,7 +111,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         /// </summary>
         public bool RepeatHintAutoPageSwitch
         {
-            get { return Settings.RepeatHintAutoPageSwitch; }
+            get => Settings.RepeatHintAutoPageSwitch;
             set
             {
                 Settings.RepeatHintAutoPageSwitch = value;
@@ -124,7 +124,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         /// </summary>
         public bool RepeatIntro
         {
-            get { return Settings.RepeatIntro; }
+            get => Settings.RepeatIntro;
             set
             {
                 Settings.RepeatIntro = value;
@@ -138,7 +138,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         /// </summary>
         public bool AlwaysDownloadData
         {
-            get { return Settings.AlwaysDownloadData; }
+            get => Settings.AlwaysDownloadData;
             set
             {
                 Settings.AlwaysDownloadData = value;
@@ -146,13 +146,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             }
         }
 
-        public string AppModeText
-        {
-            get
-            {
-                return Settings.AdventurerMode ? Strings.SettingsScreenView_CharacterSelection_Text_IsAdventurer : Strings.SettingsScreenView_CharacterSelection_Text_IsProfessor;
-            }
-        }
+        public string AppModeText => Settings.AdventurerMode ? Strings.SettingsScreenView_CharacterSelection_Text_IsAdventurer : Strings.SettingsScreenView_CharacterSelection_Text_IsProfessor;
 
         public override void OnAppearing()
         {
@@ -181,7 +175,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 
         public bool WifiOnly
         {
-            get { return Settings.WifiOnly; }
+            get => Settings.WifiOnly;
             set
             {
                 Settings.WifiOnly = value;
