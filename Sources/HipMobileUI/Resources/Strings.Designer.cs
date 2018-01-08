@@ -2061,6 +2061,24 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Alle Sehenswürdigkeiten wurden bereits besucht. Es kann keine weitere übersprungen werden..
+        /// </summary>
+        public static string SkipExhibit_Message {
+            get {
+                return ResourceManager.GetString("SkipExhibit_Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        public static string SkipExhibit_OK {
+            get {
+                return ResourceManager.GetString("SkipExhibit_OK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Möchten Sie wirklich.
         /// </summary>
         public static string SkipExhibit_Question_Part1 {
