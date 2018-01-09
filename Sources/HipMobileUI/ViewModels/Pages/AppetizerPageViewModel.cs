@@ -50,9 +50,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         private ImageSource star5;
         private string ratingCount;
 
-        private const string imgStarEmpty = "star_empty.png";
-        private const string imgStarHalfFilled = "star_half_filled.png";
-        private const string imgStarFilled = "star_filled.png";
+        private const string ImgStarEmpty = "star_empty.png";
+        private const string ImgStarHalfFilled = "star_half_filled.png";
+        private const string ImgStarFilled = "star_filled.png";
 
         public AppetizerPageViewModel(string exhibitId) : this(ExhibitManager.GetExhibit(exhibitId)) { }
 
@@ -146,33 +146,33 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         private void SetStarImages(double average)
         {
             if (average < 1)
-                Star1 = imgStarEmpty;
+                Star1 = ImgStarEmpty;
             else
-                Star1 = imgStarFilled;
+                Star1 = ImgStarFilled;
             if (average < 1.25)
-                Star2 = imgStarEmpty;
+                Star2 = ImgStarEmpty;
             else if ((average >= 1.25 && average < 1.75))
-                Star2 = imgStarHalfFilled;
+                Star2 = ImgStarHalfFilled;
             else
-                Star2 = imgStarFilled;
+                Star2 = ImgStarFilled;
             if (average < 2.25)
-                Star3 = imgStarEmpty;
+                Star3 = ImgStarEmpty;
             else if ((average >= 2.25 && average < 2.75))
-                Star3 = imgStarHalfFilled;
+                Star3 = ImgStarHalfFilled;
             else
-                Star3 = imgStarFilled;
+                Star3 = ImgStarFilled;
             if (average < 3.25)
-                Star4 = imgStarEmpty;
+                Star4 = ImgStarEmpty;
             else if ((average >= 3.25 && average < 3.75))
-                Star4 = imgStarHalfFilled;
+                Star4 = ImgStarHalfFilled;
             else
-                Star4 = imgStarFilled;
+                Star4 = ImgStarFilled;
             if (average < 4.25)
-                Star5 = imgStarEmpty;
+                Star5 = ImgStarEmpty;
             else if ((average >= 4.25 && average < 4.75))
-                Star5 = imgStarHalfFilled;
+                Star5 = ImgStarHalfFilled;
             else
-                Star5 = imgStarFilled;
+                Star5 = ImgStarFilled;
         }
 
         private async void GoToUserRatingPage()

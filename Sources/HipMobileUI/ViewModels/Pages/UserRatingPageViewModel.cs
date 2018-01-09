@@ -69,9 +69,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
         private int lastRating = 0;
 
-        private const string imgStarEmpty = "star_empty.png";
-        private const string imgStarHalfFilled = "star_half_filled.png";
-        private const string imgStarFilled = "star_filled.png";
+        private const string ImgStarEmpty = "star_empty.png";
+        private const string ImgStarHalfFilled = "star_half_filled.png";
+        private const string ImgStarFilled = "star_filled.png";
         #endregion
 
         public UserRatingPageViewModel(Exhibit exhibit)
@@ -83,7 +83,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             SetUserRatingUi();
             SendRatingCommand = new Command(SendUserRating);
             SelectStarCommand = new Command(OnSelectStar);
-
         }
 
         private async void SetExhibitImage()
@@ -98,11 +97,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             SetAverageAndCountRating(userRating.Average, userRating.Count);
             SetStarImages(userRating.Average);
             SetRatingBars(userRating.RatingTable, userRating.Count);
-            RatingStar1 = imgStarEmpty;
-            RatingStar2 = imgStarEmpty;
-            RatingStar3 = imgStarEmpty;
-            RatingStar4 = imgStarEmpty;
-            RatingStar5 = imgStarEmpty;
+            RatingStar1 = ImgStarEmpty;
+            RatingStar2 = ImgStarEmpty;
+            RatingStar3 = ImgStarEmpty;
+            RatingStar4 = ImgStarEmpty;
+            RatingStar5 = ImgStarEmpty;
         }
 
         private void SetAverageAndCountRating(double average, int count)
@@ -117,33 +116,33 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         private void SetStarImages(double average)
         {
             if (average < 1)
-                Star1 = imgStarEmpty;
+                Star1 = ImgStarEmpty;
             else
-                Star1 = imgStarFilled;
+                Star1 = ImgStarFilled;
             if (average < 1.25)
-                Star2 = imgStarEmpty;
+                Star2 = ImgStarEmpty;
             else if ((average >= 1.25 && average < 1.75))
-                Star2 = imgStarHalfFilled;
+                Star2 = ImgStarHalfFilled;
             else
-                Star2 = imgStarFilled;
+                Star2 = ImgStarFilled;
             if (average < 2.25)
-                Star3 = imgStarEmpty;
+                Star3 = ImgStarEmpty;
             else if ((average >= 2.25 && average < 2.75))
-                Star3 = imgStarHalfFilled;
+                Star3 = ImgStarHalfFilled;
             else
-                Star3 = imgStarFilled;
+                Star3 = ImgStarFilled;
             if (average < 3.25)
-                Star4 = imgStarEmpty;
+                Star4 = ImgStarEmpty;
             else if ((average >= 3.25 && average < 3.75))
-                Star4 = imgStarHalfFilled;
+                Star4 = ImgStarHalfFilled;
             else
-                Star4 = imgStarFilled;
+                Star4 = ImgStarFilled;
             if (average < 4.25)
-                Star5 = imgStarEmpty;
+                Star5 = ImgStarEmpty;
             else if ((average >= 4.25 && average < 4.75))
-                Star5 = imgStarHalfFilled;
+                Star5 = ImgStarHalfFilled;
             else
-                Star5 = imgStarFilled;
+                Star5 = ImgStarFilled;
         }
 
         private void SetRatingBars(Dictionary<int, int> ratingTable, int count)
@@ -184,7 +183,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         {
             if (rating > lastRating)
             {
-                String img = imgStarFilled;
+                String img = ImgStarFilled;
                 if (lastRating == 0 && rating >= 1)
                     RatingStar1 = img;
                 if (lastRating <= 1 && rating >= 2)
@@ -198,7 +197,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             }
             else
             {
-                String img = imgStarEmpty;
+                String img = ImgStarEmpty;
                 if (lastRating == 5 && rating <= 4)
                     RatingStar5 = img;
                 if (lastRating >= 4 && rating <= 3)
