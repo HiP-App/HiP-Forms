@@ -14,6 +14,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Practices.ObjectBuilder2;
@@ -62,8 +63,19 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
         /// <returns></returns>
         public static async Task UpdateServerAndLocalState()
         {
-            await PostVisitedExhibitsToApi();
-            var newlyUnlocked = await IoCManager.Resolve<IAchievementFetcher>().UpdateAchievements();
+            IEnumerable<IAchievement> newlyUnlocked;
+            try
+            {
+                await PostVisitedExhibitsToApi();
+                newlyUnlocked = await IoCManager.Resolve<IAchievementFetcher>().UpdateAchievements();
+            }
+            catch (Exception e)
+            {
+                // If this fails, we can just log, ignore and try again later
+                Debug.WriteLine(e);
+                return;
+            }
+
             var data = IoCManager.Resolve<IDataAccess>();
             using (data.StartTransaction())
             {

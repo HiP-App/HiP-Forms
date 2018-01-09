@@ -89,6 +89,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bestätigen.
+        /// </summary>
+        public static string Alert_Confirm {
+            get {
+                return ResourceManager.GetString("Alert_Confirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Wir konnten keine Verbindung mit dem Internet herstellen. Bitte überprüfe deine Netzwerkverbindung..
         /// </summary>
         public static string Alert_No_Internet_Description {
@@ -517,6 +526,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         public static string ForgotPasswordScreenView_Alert_Unknown_Error_Title {
             get {
                 return ResourceManager.GetString("ForgotPasswordScreenView_Alert_Unknown_Error_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Abbrechen.
+        /// </summary>
+        public static string ForgotPasswordScreenView_Cancel {
+            get {
+                return ResourceManager.GetString("ForgotPasswordScreenView_Cancel", resourceCulture);
             }
         }
         
@@ -1575,6 +1593,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Abbrechen.
+        /// </summary>
+        public static string RegisterScreenView_Cancel {
+            get {
+                return ResourceManager.GetString("RegisterScreenView_Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to E-Mail.
         /// </summary>
         public static string RegisterScreenView_Email {
@@ -2030,6 +2057,24 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         public static string SkipExhibit_Confirm {
             get {
                 return ResourceManager.GetString("SkipExhibit_Confirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Alle Sehenswürdigkeiten wurden bereits besucht. Es kann keine weitere übersprungen werden..
+        /// </summary>
+        public static string SkipExhibit_Message {
+            get {
+                return ResourceManager.GetString("SkipExhibit_Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        public static string SkipExhibit_OK {
+            get {
+                return ResourceManager.GetString("SkipExhibit_OK", resourceCulture);
             }
         }
         
