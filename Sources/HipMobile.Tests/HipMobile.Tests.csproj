@@ -104,6 +104,7 @@
     <Compile Include="ServiceAccessLayer\ContentApiAccesses\ExhibitsApiAccessTest.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiAccesses\FileApiAccessTest.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiAccesses\MediasApiAccessTest.cs" />
+    <Compile Include="ServiceAccessLayer\ContentApiAccesses\UserRatingApiAccessTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

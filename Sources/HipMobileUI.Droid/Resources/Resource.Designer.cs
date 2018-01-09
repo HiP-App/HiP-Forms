@@ -2451,10 +2451,21 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
 			
 			// aapt resource value: 0x7f020143
 			public const int avd_hide_password_3 = 2130837827;
+
+			// aapt resource value: 0x7f02016c
+			public const int avd_hide_password_1 = 2130837868;
+			
+			// aapt resource value: 0x7f02016d
+			public const int avd_hide_password_2 = 2130837869;
+			
+			// aapt resource value: 0x7f02016e
+			public const int avd_hide_password_3 = 2130837870;
+
 			
 			// aapt resource value: 0x7f020058
 			public const int avd_show_password = 2130837592;
 			
+
 			// aapt resource value: 0x7f020144
 			public const int avd_show_password_1 = 2130837828;
 			
@@ -2463,6 +2474,16 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
 			
 			// aapt resource value: 0x7f020146
 			public const int avd_show_password_3 = 2130837830;
+
+			// aapt resource value: 0x7f02016f
+			public const int avd_show_password_1 = 2130837871;
+			
+			// aapt resource value: 0x7f020170
+			public const int avd_show_password_2 = 2130837872;
+			
+			// aapt resource value: 0x7f020171
+			public const int avd_show_password_3 = 2130837873;
+
 			
 			// aapt resource value: 0x7f020059
 			public const int bonuspack_bubble_new = 2130837593;
@@ -3268,6 +3289,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
 			
 			// aapt resource value: 0x7f0800bd
 			public const int bubble_image = 2131230909;
+
+			// aapt resource value: 0x7f02016a
+			public const int notification_template_icon_bg = 2130837866;
+			
+			// aapt resource value: 0x7f02016b
+			public const int notification_template_icon_low_bg = 2130837867;
+
 			
 			// aapt resource value: 0x7f0800c1
 			public const int bubble_info = 2131230913;
@@ -3287,11 +3315,28 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
 			// aapt resource value: 0x7f08008b
 			public const int button_attachment = 2131230859;
 			
+
 			// aapt resource value: 0x7f080095
 			public const int button_login = 2131230869;
 			
 			// aapt resource value: 0x7f080091
 			public const int button_refresh = 2131230865;
+
+			// aapt resource value: 0x7f020165
+			public const int star_empty = 2130837861;
+			
+			// aapt resource value: 0x7f020166
+			public const int star_filled = 2130837862;
+			
+			// aapt resource value: 0x7f020167
+			public const int star_half_filled = 2130837863;
+			
+			// aapt resource value: 0x7f020168
+			public const int timeslider_background = 2130837864;
+			
+			// aapt resource value: 0x7f020169
+			public const int unselected_circle = 2130837865;
+
 			
 			// aapt resource value: 0x7f08008c
 			public const int button_send = 2131230860;

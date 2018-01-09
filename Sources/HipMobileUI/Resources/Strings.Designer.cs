@@ -530,6 +530,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Abbrechen.
+        /// </summary>
+        public static string ForgotPasswordScreenView_Cancel {
+            get {
+                return ResourceManager.GetString("ForgotPasswordScreenView_Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to E-Mail.
         /// </summary>
         public static string ForgotPasswordScreenView_Email {
@@ -1584,6 +1593,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Abbrechen.
+        /// </summary>
+        public static string RegisterScreenView_Cancel {
+            get {
+                return ResourceManager.GetString("RegisterScreenView_Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to E-Mail.
         /// </summary>
         public static string RegisterScreenView_Email {
@@ -2043,6 +2061,24 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Alle Sehenswürdigkeiten wurden bereits besucht. Es kann keine weitere übersprungen werden..
+        /// </summary>
+        public static string SkipExhibit_Message {
+            get {
+                return ResourceManager.GetString("SkipExhibit_Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        public static string SkipExhibit_OK {
+            get {
+                return ResourceManager.GetString("SkipExhibit_OK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Möchten Sie wirklich.
         /// </summary>
         public static string SkipExhibit_Question_Part1 {
@@ -2165,6 +2201,141 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         public static string UserOnboarding_Students_Title {
             get {
                 return ResourceManager.GetString("UserOnboarding_Students_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Durchschnittliche Bewertungen.
+        /// </summary>
+        public static string UserRating_Average_Rating {
+            get {
+                return ResourceManager.GetString("UserRating_Average_Rating", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Es kann keine Verbindung zum Internet aufgebaut werden..
+        /// </summary>
+        public static string UserRating_Dialog_Message_No_Internet {
+            get {
+                return ResourceManager.GetString("UserRating_Dialog_Message_No_Internet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Es wurde keiner der Sterne zum Bewerten markiert..
+        /// </summary>
+        public static string UserRating_Dialog_Message_No_Rating {
+            get {
+                return ResourceManager.GetString("UserRating_Dialog_Message_No_Rating", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sie müssen sich erst anmelden oder registrieren, bevor eine Bewertung abgegeben werden kann..
+        /// </summary>
+        public static string UserRating_Dialog_Message_Not_Logged_In {
+            get {
+                return ResourceManager.GetString("UserRating_Dialog_Message_Not_Logged_In", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vielen Dank für Ihre Bewertung..
+        /// </summary>
+        public static string UserRating_Dialog_Message_Thx {
+            get {
+                return ResourceManager.GetString("UserRating_Dialog_Message_Thx", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Es ist ein unbekannter Fehler aufgetreten. Bitte versuchen Sie es zu einem späteren Zeitpunkt erneut..
+        /// </summary>
+        public static string UserRating_Dialog_Message_Unkown_Error {
+            get {
+                return ResourceManager.GetString("UserRating_Dialog_Message_Unkown_Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Keine Internetverbindung.
+        /// </summary>
+        public static string UserRating_Dialog_Title_No_Internet {
+            get {
+                return ResourceManager.GetString("UserRating_Dialog_Title_No_Internet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Keine Bewertung.
+        /// </summary>
+        public static string UserRating_Dialog_Title_No_Rating {
+            get {
+                return ResourceManager.GetString("UserRating_Dialog_Title_No_Rating", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nicht angemeldet.
+        /// </summary>
+        public static string UserRating_Dialog_Title_Not_Logged_In {
+            get {
+                return ResourceManager.GetString("UserRating_Dialog_Title_Not_Logged_In", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dankeschön.
+        /// </summary>
+        public static string UserRating_Dialog_Title_Thx {
+            get {
+                return ResourceManager.GetString("UserRating_Dialog_Title_Thx", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unbekannter Fehler.
+        /// </summary>
+        public static string UserRating_Dialog_Title_Unkown_Error {
+            get {
+                return ResourceManager.GetString("UserRating_Dialog_Title_Unkown_Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ok.
+        /// </summary>
+        public static string UserRating_Ok {
+            get {
+                return ResourceManager.GetString("UserRating_Ok", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bewerten.
+        /// </summary>
+        public static string UserRating_Rate {
+            get {
+                return ResourceManager.GetString("UserRating_Rate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bewertungen.
+        /// </summary>
+        public static string UserRating_Rate_Count {
+            get {
+                return ResourceManager.GetString("UserRating_Rate_Count", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Berühre einen Stern zum Bewerten.
+        /// </summary>
+        public static string UserRating_Tap_Star_To_Rate {
+            get {
+                return ResourceManager.GetString("UserRating_Tap_Star_To_Rate", resourceCulture);
             }
         }
     }

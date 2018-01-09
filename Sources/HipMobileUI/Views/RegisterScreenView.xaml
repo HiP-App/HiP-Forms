@@ -26,22 +26,36 @@
         <views:NotificationExtensionView>
             <views:NotificationExtensionView.ContentTemplate>
                 <Grid x:Name="Grid" Padding="10" HorizontalOptions="Fill">
-                    <Entry x:Name="EmailEntry" Keyboard="Email" Placeholder="{helpers:Translate RegisterScreenView_Email}"
-                           Text="{Binding Email, Mode=OneWayToSource}">
+                    <Entry x:Name="EmailEntry"
+                           Keyboard="Email"
+                           VerticalOptions="End"
+                           Placeholder="{helpers:Translate RegisterScreenView_Email}" Text="{Binding Email, Mode=OneWayToSource}">
                         <Entry.Behaviors>
                             <local:EmailValidationBehavior x:Name="ValidEmailBehavior" />
                         </Entry.Behaviors>
                     </Entry>
-                    <Entry x:Name="PasswordEntry" IsPassword="True"
-                           Placeholder="{helpers:Translate RegisterScreenView_Password}"
-                           Text="{Binding Password, Mode=OneWayToSource}" />
-                    <Entry x:Name="RePasswordEntry" IsPassword="True"
-                           Placeholder="{helpers:Translate RegisterScreenView_RepeatPassword}"
-                           Text="{Binding RepeatPassword, Mode=OneWayToSource}" />
-                    <Label x:Name="ErrorMsgLabel" FontSize="Small" HorizontalOptions="Center" TextColor="Red"
-                           Text="{Binding ErrorMessage, Mode=TwoWay}" />
-                    <Button x:Name="ButtonView" Text="{helpers:Translate RegisterScreenView_Register}"
+                    <Entry x:Name="PasswordEntry"
+                           IsPassword="True"
+                           VerticalOptions="Center"
+                           Placeholder="{helpers:Translate RegisterScreenView_Password}" Text="{Binding Password, Mode=OneWayToSource}" />
+                    <Entry x:Name="RePasswordEntry"
+                           IsPassword="True"
+                           VerticalOptions="Start"
+                           Placeholder="{helpers:Translate RegisterScreenView_RepeatPassword}" Text="{Binding RepeatPassword, Mode=OneWayToSource}" />
+                    <Label x:Name="ErrorMsgLabel"
+                           HorizontalOptions="Center" VerticalOptions="Start"
+                           FontSize="Small" TextColor="Red" Text="{Binding ErrorMessage, Mode=TwoWay}" />
+                    <Button x:Name="ButtonView"
+                            VerticalOptions="End"
+                            Text="{helpers:Translate RegisterScreenView_Register}"
                             Command="{Binding Register}" />
+                    <Label x:Name="CancelLabel"
+                           HorizontalOptions="Center" VerticalOptions="Center"
+                           Text="{helpers:Translate RegisterScreenView_Cancel}" FontSize="Small" TextColor="Blue">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ReturnCommand}"/>
+                        </Label.GestureRecognizers>
+                    </Label>
                 </Grid>
             </views:NotificationExtensionView.ContentTemplate>
         </views:NotificationExtensionView>
