@@ -33,7 +33,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
             InitializeComponent();
 
             // Workaround because OnDisappearing is called when the app starts sleeping(on Android) and the OrientationController is reset. Therefore, we need to safe the controller and reapply it after the app wakes up.
-            savedControllerState = OrientationController;
+            //savedControllerState = OrientationController;
             PropertyChanged += OnPropertyChanged;
             MessagingCenter.Subscribe<App>(this, AppSharedData.WillWakeUpMessage, WillWakeUp);
         }
@@ -43,7 +43,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
             if (propertyChangedEventArgs.PropertyName.Equals(nameof(OrientationController)) && !isOnDisappearingContext)
             {
                 //save the new controller
-                savedControllerState = OrientationController;
+                //savedControllerState = OrientationController;
             }
         }
 
@@ -54,7 +54,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
         private void WillWakeUp(App app)
         {
             //restore the old controller as it was changed by OnDisappearing(cannot distinguish between sleep and page popped on Android)
-            OrientationController = savedControllerState;
+            //OrientationController = savedControllerState;
         }
 
         /// <summary>
@@ -105,7 +105,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
             // reset the controller, cannot be called in OnDisappearing of viewmodel as it is too late
             // in case it was called on app sleep, the state will be restored, when the app wakes up
             isOnDisappearingContext = true;
-            OrientationController = OrientationController.Sensor;
+            //OrientationController = OrientationController.Sensor;
             isOnDisappearingContext = false;
         }
     }
