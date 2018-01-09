@@ -709,6 +709,9 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   <data name="Alert_No_Internet_Description" xml:space="preserve">
     <value>Wir konnten keine Verbindung mit dem Internet herstellen. Bitte überprüfe deine Netzwerkverbindung.</value>
   </data>
+  <data name="Alert_Confirm" xml:space="preserve">
+    <value>Bestätigen</value>
+  </data>
   <data name="Alert_No_Internet_Title" xml:space="preserve">
     <value>Keine Netzwerkverbindung</value>
   </data>
@@ -816,17 +819,29 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   </data>
   <data name="AchievementsScreenView_Score" xml:space="preserve">
     <value>Dein Punktestand: </value>
-  </data>	  
+  </data>
   <data name="AchievementsScreenView_PleaseLogin" xml:space="preserve">
     <value>Um Achievements zu nutzen, musst du dich zunächst einloggen.</value>
-  </data>	
+  </data>
   <data name="MainPageViewModel_Achievements" xml:space="preserve">
     <value>Achievements</value>
-  </data>	
+  </data>
   <data name="ExhibitNearby_VisitRequest" xml:space="preserve">
     <value>Besuche eine nahe Sehenswürdigkeit!</value>
   </data>
-  <data name="AchievementsDetailsExhibitView_VisitedMOfNExhibits">
+  <data name="AchievementsDetailsExhibitView_VisitedMOfNExhibits" xml:space="preserve">
     <value>Du hast {0} von {1} Sehenswürdigkeiten besucht</value>
+  </data>
+  <data name="SkipExhibit_Message" xml:space="preserve">
+    <value>Alle Sehenswürdigkeiten wurden bereits besucht. Es kann keine weitere übersprungen werden.</value>
+  </data>
+  <data name="SkipExhibit_OK" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="ForgotPasswordScreenView_Cancel" xml:space="preserve">
+    <value>Abbrechen</value>
+  </data>
+  <data name="RegisterScreenView_Cancel" xml:space="preserve">
+    <value>Abbrechen</value>
   </data>
 </root>
