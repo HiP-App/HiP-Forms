@@ -30,6 +30,14 @@
             <Color x:Key="MediumGrayColor">#15000000</Color>
             <Color x:Key="DarkGrayColor">#66000000</Color>
             <Color x:Key="SolidLightGrayColor">#FFEEEEEE</Color>
+
+            <!--Colors for the user rating bars -->
+            <Color x:Key="GreenBarColor">#9CC25C</Color>
+            <Color x:Key="LightGreenBarColor">#A9D839</Color>
+            <Color x:Key="YellowBarColor">#FDDB37</Color>
+            <Color x:Key="OrangeBarColor">#FEB533</Color>
+            <Color x:Key="RedBarColor">#FF8E59</Color>       
+
             <Style TargetType="Label">
                 <Setter Property="FontSize" Value="12" />
                 <Setter Property="TextColor" Value="Black" />
