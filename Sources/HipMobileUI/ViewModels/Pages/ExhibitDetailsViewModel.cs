@@ -31,6 +31,8 @@ using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views.ExhibitDetails;
 using Xamarin.Forms;
 using Page = PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.Page;
 using Settings = PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers.Settings;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
+using Acr.UserDialogs;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 {
@@ -185,8 +187,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                 Settings.AutoSwitchPage = result;
             }
 
-            // aply automatic page switch if wanted
-            if (Settings.AutoSwitchPage && NextViewAvailable)
+            // aply automatic page switch if wanted and if the next page isn't the rating page
+            if (Settings.AutoSwitchPage && NextViewAvailable && currentViewIndex < pages.Count - 1)
             {
                 await GotoNextView();
             }
@@ -207,9 +209,32 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                 }
                 // update the UI
                 currentViewIndex++;
-                NextViewAvailable = currentViewIndex < pages.Count - 1;
+                NextViewAvailable = currentViewIndex < pages.Count;
                 PreviousViewAvailable = true;
                 await SetCurrentView();
+            }
+            else if (currentViewIndex == pages.Count - 1)
+            {
+                // stop audio
+                if (IoCManager.Resolve<INetworkAccessChecker>().GetNetworkAccessStatus() != NetworkAccessStatus.NoAccess)
+                {
+                    if (AudioToolbar.AudioPlayer.IsPlaying)
+                    {
+                        AudioToolbar.AudioPlayer.Stop();
+                    }
+                    NextViewAvailable = true;
+                    PreviousViewAvailable = true;
+                    await Navigation.PushAsync(new UserRatingPageViewModel(Exhibit));
+                }
+                else
+                {
+                    UserDialogs.Instance.Alert(new AlertConfig()
+                    {
+                        Title = Strings.UserRating_Dialog_Title_No_Internet,
+                        Message = Strings.UserRating_Dialog_Message_No_Internet,
+                        OkText = Strings.UserRating_Ok
+                    });
+                }
             }
         }
 
@@ -259,8 +284,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             var currentPage = pages[currentViewIndex];
             AudioAvailable = currentPage.Audio != null;
             AudioToolbarVisible = AudioAvailable;
-            Pagenumber = currentViewIndex + " / " + (pages.Count-1);
-            
+            Pagenumber = currentViewIndex + " / " + (pages.Count - 1);
+
             // It's possible to get no audio data even if it should exist
             try
             {

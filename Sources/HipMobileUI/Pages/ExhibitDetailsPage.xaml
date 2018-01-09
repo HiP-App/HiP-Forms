@@ -54,6 +54,5 @@
         <Label HorizontalOptions="End" VerticalOptions="End" BackgroundColor="White" Text="{Binding Pagenumber}" />
       </StackLayout>
     </StackLayout>
-
   </StackLayout>
 </pages1:OrientationContentPage>

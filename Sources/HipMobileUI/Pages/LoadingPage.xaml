@@ -49,11 +49,13 @@
                         <Label Text="{Binding LoadingProgress, StringFormat='{0:p0}'}" HorizontalTextAlignment="Center"
                                FontSize="16" />
                     </StackLayout>
+
                     <controls1:FadeInImage Grid.Row="1" Source="icon350">
                         <OnPlatform x:TypeArguments="x:Int32">
                             <On Platform="Android" Value="500" />
                             <On Platform="iOS" Value="0" />
                         </OnPlatform>
+
                     </controls1:FadeInImage>
                     <StackLayout Grid.Row="2" Orientation="Vertical" HorizontalOptions="FillAndExpand">
                         <BoxView HeightRequest="1" Color="{StaticResource DarkGrayColor}" />

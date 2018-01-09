@@ -2443,6 +2443,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
 			// aapt resource value: 0x7f020057
 			public const int avd_hide_password = 2130837591;
 			
+
 			// aapt resource value: 0x7f020141
 			public const int avd_hide_password_1 = 2130837825;
 			
@@ -2451,6 +2452,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
 			
 			// aapt resource value: 0x7f020143
 			public const int avd_hide_password_3 = 2130837827;
+
 			
 			// aapt resource value: 0x7f020058
 			public const int avd_show_password = 2130837592;
@@ -2463,6 +2465,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
 			
 			// aapt resource value: 0x7f020146
 			public const int avd_show_password_3 = 2130837830;
+
 			
 			// aapt resource value: 0x7f020059
 			public const int bonuspack_bubble_new = 2130837593;
@@ -3263,11 +3266,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
 			// aapt resource value: 0x7f080076
 			public const int btnStop = 2131230838;
 			
+
 			// aapt resource value: 0x7f0800bf
 			public const int bubble_description = 2131230911;
 			
 			// aapt resource value: 0x7f0800bd
 			public const int bubble_image = 2131230909;
+
 			
 			// aapt resource value: 0x7f0800c1
 			public const int bubble_info = 2131230913;
@@ -3287,11 +3292,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
 			// aapt resource value: 0x7f08008b
 			public const int button_attachment = 2131230859;
 			
+
 			// aapt resource value: 0x7f080095
 			public const int button_login = 2131230869;
 			
 			// aapt resource value: 0x7f080091
 			public const int button_refresh = 2131230865;
+
 			
 			// aapt resource value: 0x7f08008c
 			public const int button_send = 2131230860;
