@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="X5k-f2-b5h">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="X5k-f2-b5h">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -14,22 +14,22 @@
                         <viewControllerLayoutGuide type="bottom" id="9ZL-r4-8FZ"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="yd7-JS-zBw">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="hiphop_transparent.png" translatesAutoresizingMaskIntoConstraints="NO" id="23">
-                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="icon350.png" translatesAutoresizingMaskIntoConstraints="NO" id="23" misplaced="YES" adjustsImageSizeForAccessibilityContentSizeCategory="YES">
+                                <rect key="frame" x="-20" y="32" width="414" height="716"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
-                                <color key="backgroundColor" colorSpace="calibratedWhite" white="1" alpha="1"/>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" customColorSpace="sRGB" colorSpace="calibratedWhite" white="1" alpha="1"/>
-                        <color key="tintColor" colorSpace="calibratedWhite" white="1" alpha="1"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint id="60" firstItem="23" firstAttribute="top" secondItem="Y8P-hJ-Z43" secondAttribute="bottom"/>
-                            <constraint id="61" firstItem="yd7-JS-zBw" firstAttribute="trailing" secondItem="23" secondAttribute="trailing"/>
-                            <constraint id="62" firstItem="9ZL-r4-8FZ" firstAttribute="top" secondItem="23" secondAttribute="bottom"/>
-                            <constraint id="63" firstItem="23" firstAttribute="leading" secondItem="yd7-JS-zBw" secondAttribute="leading"/>
+                            <constraint firstItem="23" firstAttribute="top" secondItem="Y8P-hJ-Z43" secondAttribute="bottom" id="60"/>
+                            <constraint firstAttribute="trailing" secondItem="23" secondAttribute="trailing" id="61"/>
+                            <constraint firstItem="9ZL-r4-8FZ" firstAttribute="top" secondItem="23" secondAttribute="bottom" id="62"/>
+                            <constraint firstItem="23" firstAttribute="leading" secondItem="yd7-JS-zBw" secondAttribute="leading" id="63"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -39,39 +39,61 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Icon-60.png" width="60" height="60"/>
-        <image name="Default-568h.png" width="320" height="568"/>
-        <image name="Default-Portrait.png" width="768" height="1004"/>
-        <image name="Default.png" width="320" height="480"/>
-        <image name="ic_arrow_forward.png" width="24" height="24"/>
-        <image name="ic_chevron_left.png" width="48" height="48"/>
-        <image name="ic_chevron_right.png" width="48" height="48"/>
-        <image name="ic_directions_walk.png" width="24" height="24"/>
-        <image name="ic_keyboard_arrow_up.png" width="36" height="36"/>
-        <image name="ic_schedule.png" width="24" height="24"/>
-        <image name="ic_volume_up.png" width="24" height="24"/>
-        <image name="Icon-76.png" width="76" height="76"/>
-        <image name="Icon-Small-40.png" width="40" height="40"/>
-        <image name="Icon-Small.png" width="29" height="29"/>
+        <image name="hiphop_transparent.png" width="500" height="500"/>
         <image name="ac_erkunden.jpg" width="720" height="560"/>
         <image name="ac_route.jpg" width="720" height="701"/>
         <image name="ac_route2.jpg" width="720" height="560"/>
         <image name="ac_students.png" width="719" height="539"/>
-        <image name="ic_closed_caption.png" width="24" height="24"/>
+        <image name="Default-568h.png" width="320" height="568"/>
+        <image name="Default-Portrait.png" width="768" height="1004"/>
+        <image name="Default.png" width="320" height="480"/>
+        <image name="ic_account_circle.png" width="24" height="24"/>
+        <image name="ic_adventurer.png" width="512" height="512"/>
+        <image name="ic_arrow_forward.png" width="24" height="24"/>
+        <image name="ic_chevron_left.png" width="48" height="48"/>
+        <image name="ic_chevron_right.png" width="48" height="48"/>
+        <image name="ic_closed_caption_black.png" width="24" height="24"/>
         <image name="ic_directions.png" width="24" height="24"/>
+        <image name="ic_directions_walk.png" width="24" height="24"/>
+        <image name="ic_done.png" width="24" height="24"/>
+        <image name="ic_done_2x.png" width="48" height="48"/>
+        <image name="ic_done_3x.png" width="72" height="72"/>
+        <image name="ic_equalizer.png" width="24" height="24"/>
         <image name="ic_feedback.png" width="24" height="24"/>
+        <image name="ic_file_download.png" width="24" height="24"/>
+        <image name="ic_format_size.png" width="18" height="18"/>
         <image name="ic_gavel.png" width="24" height="24"/>
         <image name="ic_headset_white.png" width="24" height="24"/>
         <image name="ic_home.png" width="24" height="24"/>
+        <image name="ic_keyboard_arrow_up.png" width="36" height="36"/>
+        <image name="ic_more.png" width="24" height="24"/>
+        <image name="ic_my_location_white.png" width="24" height="24"/>
+        <image name="ic_pause.png" width="24" height="24"/>
         <image name="ic_pause_black.png" width="24" height="24"/>
+        <image name="ic_play_arrow.png" width="24" height="24"/>
         <image name="ic_play_arrow_black.png" width="24" height="24"/>
+        <image name="ic_professor.png" width="512" height="512"/>
+        <image name="ic_schedule.png" width="24" height="24"/>
         <image name="ic_settings.png" width="24" height="24"/>
+        <image name="ic_stop.png" width="24" height="24"/>
+        <image name="ic_volume_up.png" width="24" height="24"/>
+        <image name="Icon-60.png" width="60" height="60"/>
+        <image name="Icon-72.png" width="72" height="72"/>
+        <image name="Icon-76.png" width="76" height="76"/>
+        <image name="Icon-Small-40.png" width="40" height="40"/>
+        <image name="Icon-Small-50.png" width="50" height="50"/>
+        <image name="Icon-Small.png" width="29" height="29"/>
+        <image name="Icon.png" width="57" height="57"/>
+        <image name="icon350.png" width="350" height="351"/>
+        <image name="New-icon-Small-40.png" width="40" height="40"/>
+        <image name="New-icon-Small-50.png" width="50" height="50"/>
+        <image name="New-icon-Small.png" width="29" height="29"/>
+        <image name="New-icon.png" width="57" height="57"/>
+        <image name="New-icon72.png" width="72" height="72"/>
+        <image name="New-icon76.png" width="76" height="76"/>
         <image name="selected_circle.png" width="16" height="16"/>
         <image name="timeslider_background.png" width="600" height="100"/>
         <image name="unselected_circle.png" width="16" height="16"/>
-        <image name="CurrentLocation" width="30" height="30"/>
-        <image name="ExhibitLocation" width="27" height="50"/>
-        <image name="hiphop_transparent.png" width="500" height="500"/>
     </resources>
-    <color key="tintColor" colorSpace="calibratedWhite" white="0" alpha="0"/>
+    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
 </document>

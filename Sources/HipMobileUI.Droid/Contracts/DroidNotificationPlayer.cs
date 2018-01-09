@@ -30,7 +30,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Contracts
         private const int ExhibitNearbyNotificationId = 30052010;
         private const int DefaultNotificationId = 06031993;
 
-        private const int InfoIcon = Resource.Drawable.ic_launcher;
+        private const int InfoIcon = Resource.Drawable.ICON_ci;
 
         public void DisplayExhibitNearbyNotification(string title, string text, byte[] data = null)
         {

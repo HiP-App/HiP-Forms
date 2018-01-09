@@ -42,7 +42,7 @@ using PaderbornUniversity.SILab.Hip.Mobile.UI.NotificationPlayer;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
 {
-    [Activity(Label = "Historisches Paderborn", Icon = "@drawable/ic_launcher", Theme = "@style/splashscreen", MainLauncher = true,
+    [Activity(Label = "Historisches Paderborn", Icon = "@drawable/ICON_ci", Theme = "@style/splashscreen", MainLauncher = true,
         LaunchMode = LaunchMode.SingleTop, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
