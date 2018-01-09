@@ -203,7 +203,7 @@
     <BundleResource Include="Resources\Icon-76.png" />
     <BundleResource Include="Resources\Icon-Small%402x.png" />
     <BundleResource Include="Resources\Icon-Small-40%402x.png" />
-    <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
+    <ITunesArtwork Include="Resources\LaunchScreen.storyboard" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Acr.Support.iOS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -445,11 +445,66 @@
     <BundleResource Include="Resources\ic_equalizer%403x.png" />
     <BundleResource Include="Resources\ic_equalizer.png" />
     <BundleResource Include="Resources\ic_equalizer%402x.png" />
+    <BundleResource Include="Resources\New-icon.png" />
+    <BundleResource Include="Resources\New-icon%402x.png" />
+    <BundleResource Include="Resources\New-icon-Small%402x.png" />
+    <BundleResource Include="Resources\New-icon-Small.png" />
+    <BundleResource Include="Resources\New-icon-Small-50%402x.png" />
+    <BundleResource Include="Resources\New-icon-Small-50.png" />
+    <BundleResource Include="Resources\New-icon-Small-40%402x.png" />
+    <BundleResource Include="Resources\New-icon-Small-40.png" />
+    <BundleResource Include="Resources\New-icon76.png" />
+    <BundleResource Include="Resources\New-icon76%402x.png" />
+    <BundleResource Include="Resources\New-icon72%402x.png" />
+    <BundleResource Include="Resources\New-icon72.png" />
+    <BundleResource Include="Resources\icon350.png" />
     <BundleResource Include="Resources\star_half_filled.png" />
     <BundleResource Include="Resources\star_empty.png" />
     <BundleResource Include="Resources\star_filled.png" />
   </ItemGroup>
   <ItemGroup>
+    <ImageAsset Include="Resources\MapAnnotations.xcassets\AppIcons.appiconset\120x120.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\MapAnnotations.xcassets\AppIcons.appiconset\152x152.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\MapAnnotations.xcassets\AppIcons.appiconset\167x167.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\MapAnnotations.xcassets\AppIcons.appiconset\180x180.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\MapAnnotations.xcassets\AppIcons.appiconset\29x29.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\MapAnnotations.xcassets\AppIcons.appiconset\40x40.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\MapAnnotations.xcassets\AppIcons.appiconset\58x58.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\MapAnnotations.xcassets\AppIcons.appiconset\60x60.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\MapAnnotations.xcassets\AppIcons.appiconset\76x76.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\MapAnnotations.xcassets\AppIcons.appiconset\80x80.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\MapAnnotations.xcassets\AppIcons.appiconset\87.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\MapAnnotations.xcassets\AppIcons.appiconset\App_icon.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\MapAnnotations.xcassets\AppIcons.appiconset\Asset 21.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\MapAnnotations.xcassets\AppIcons.appiconset\Asset 8.png">
+      <Visible>false</Visible>
+    </ImageAsset>
     <ImageAsset Include="Resources\MapAnnotations.xcassets\AppIcons.appiconset\Contents.json">
       <Visible>false</Visible>
       <InProject>false</InProject>
