@@ -14,13 +14,14 @@
 
 using Android.Content.Res;
 using Android.OS;
+using Android.Util;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Contracts
 {
     class AndroidFabSizeCalculator : IFabSizeCalculator
     {
-        private readonly float scale = Resources.System.DisplayMetrics.Density;
+        private readonly float density = Resources.System.DisplayMetrics.Density;
 
         public int CalculateFabSize()
         {
@@ -30,7 +31,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Contracts
                 return 56;
             }
             // compat libraries use pixel, therefore convert dp to pixel
-            return (int) (56 * scale + 0.5);
+            return (int) (56 * density * 0.5);
         }
     }
 }
