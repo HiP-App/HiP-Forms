@@ -22,9 +22,12 @@ using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
 using Xamarin.Forms;
 using Page = PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.Page;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.ModelClasses;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
+using Acr.UserDialogs;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
-
 {
     public class AppetizerPageViewModel : NavigationViewModel, IDownloadableListItemViewModel
     {
@@ -37,6 +40,19 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         private bool nextViewAvailable;
         private ICommand nextViewCommand;
         private bool exhibitUnblocked;
+
+        private ICommand userRatingCommand;
+        private string ratingAverage;
+        private ImageSource star1;
+        private ImageSource star2;
+        private ImageSource star3;
+        private ImageSource star4;
+        private ImageSource star5;
+        private string ratingCount;
+
+        private const string ImgStarEmpty = "star_empty.png";
+        private const string ImgStarHalfFilled = "star_half_filled.png";
+        private const string ImgStarFilled = "star_filled.png";
 
         public AppetizerPageViewModel(string exhibitId) : this(ExhibitManager.GetExhibit(exhibitId)) { }
 
@@ -55,13 +71,19 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
             if (pages.Count > 1 && Exhibit.DetailsDataLoaded)
                 NextViewAvailable = true;
-            // workaround for realm bug
-            var imageData = exhibit.Image.GetDataBlocking();
-            Image = imageData != null ? ImageSource.FromStream(() => new MemoryStream(imageData)) : ImageSource.FromStream(() => new MemoryStream(BackupData.BackupImageData));
 
+            SetExhibitImage();
             IsDownloadButtonVisible = !Exhibit.DetailsDataLoaded;
             NextViewCommand = new Command(GotoNextView);
             DownloadCommand = new Command(OpenDownloadDialog);
+            UserRatingCommand = new Command(GoToUserRatingPage);
+            RefreshUserRating();
+        }
+
+        private async void SetExhibitImage()
+        {
+            var imageData = await exhibit.Image.GetDataAsync();
+            Image = imageData != null ? ImageSource.FromStream(() => new MemoryStream(imageData)) : ImageSource.FromStream(() => new MemoryStream(BackupData.BackupImageData));
         }
 
         /// <summary>
@@ -89,6 +111,84 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             // Open the download dialog
             downloadPage = new ExhibitRouteDownloadPageViewModel(Exhibit, this);
             await Navigation.PushAsync(downloadPage);
+        }
+
+        /// <summary>
+        /// Sets the average user rating, the count and the stars if the user is connected to the internet.
+        /// </summary>
+        /// <returns></returns>
+        private async void RefreshUserRating()
+        {
+            if (IoCManager.Resolve<INetworkAccessChecker>().GetNetworkAccessStatus() == NetworkAccessStatus.NoAccess)
+            {
+                RatingAverage = "-";
+                SetStarImages(0);
+                RatingCount = "- " + Strings.UserRating_Rate_Count;
+                UserDialogs.Instance.Alert(new AlertConfig()
+                {
+                    Title = Strings.UserRating_Dialog_Title_No_Internet,
+                    Message = Strings.UserRating_Dialog_Message_No_Internet,
+                    OkText = Strings.UserRating_Ok
+                });
+            }
+            else
+            {
+                var userRating = await IoCManager.Resolve<IUserRatingManager>().GetUserRatingAsync(exhibit.IdForRestApi);
+                if (userRating.Count > 0)
+                    RatingAverage = userRating.Average.ToString("0.#");
+                else
+                    RatingAverage = "-";
+                SetStarImages(userRating.Average);
+                RatingCount = userRating.Count.ToString() + " " + Strings.UserRating_Rate_Count;
+            }
+        }
+
+        private void SetStarImages(double average)
+        {
+            if (average < 1)
+                Star1 = ImgStarEmpty;
+            else
+                Star1 = ImgStarFilled;
+            if (average < 1.25)
+                Star2 = ImgStarEmpty;
+            else if ((average >= 1.25 && average < 1.75))
+                Star2 = ImgStarHalfFilled;
+            else
+                Star2 = ImgStarFilled;
+            if (average < 2.25)
+                Star3 = ImgStarEmpty;
+            else if ((average >= 2.25 && average < 2.75))
+                Star3 = ImgStarHalfFilled;
+            else
+                Star3 = ImgStarFilled;
+            if (average < 3.25)
+                Star4 = ImgStarEmpty;
+            else if ((average >= 3.25 && average < 3.75))
+                Star4 = ImgStarHalfFilled;
+            else
+                Star4 = ImgStarFilled;
+            if (average < 4.25)
+                Star5 = ImgStarEmpty;
+            else if ((average >= 4.25 && average < 4.75))
+                Star5 = ImgStarHalfFilled;
+            else
+                Star5 = ImgStarFilled;
+        }
+
+        private async void GoToUserRatingPage()
+        {
+            if (IoCManager.Resolve<INetworkAccessChecker>().GetNetworkAccessStatus() != NetworkAccessStatus.NoAccess)
+            {
+                await Navigation.PushAsync(new UserRatingPageViewModel(Exhibit));
+            } else
+            {
+                UserDialogs.Instance.Alert(new AlertConfig()
+                {
+                    Title = Strings.UserRating_Dialog_Title_No_Internet,
+                    Message = Strings.UserRating_Dialog_Message_No_Internet,
+                    OkText = Strings.UserRating_Ok
+                });
+            }
         }
 
         public void CloseDownloadPage()
@@ -190,7 +290,63 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             get { return nextVisible; }
             set { SetProperty(ref nextVisible, value); }
         }
-    }
 
+        /// <summary>
+        /// The command for switch to the user rating
+        /// </summary>
+        public ICommand UserRatingCommand
+        {
+            get { return userRatingCommand; }
+            set { SetProperty(ref userRatingCommand, value); }
+        }
+
+        /// <summary>
+        /// The average user rating text
+        /// </summary>
+        public string RatingAverage
+        {
+            get { return ratingAverage; }
+            set { SetProperty(ref ratingAverage, value); }
+        }
+
+        /// <summary>
+        /// The user rating count text
+        /// </summary>
+        public string RatingCount
+        {
+            get { return ratingCount; }
+            set { SetProperty(ref ratingCount, value); }
+        }
+
+        public ImageSource Star1
+        {
+            get { return star1; }
+            set { SetProperty(ref star1, value); }
+        }
+
+        public ImageSource Star2
+        {
+            get { return star2; }
+            set { SetProperty(ref star2, value); }
+        }
+
+        public ImageSource Star3
+        {
+            get { return star3; }
+            set { SetProperty(ref star3, value); }
+        }
+
+        public ImageSource Star4
+        {
+            get { return star4; }
+            set { SetProperty(ref star4, value); }
+        }
+
+        public ImageSource Star5
+        {
+            get { return star5; }
+            set { SetProperty(ref star5, value); }
+        }
+    }
     #endregion
 }
