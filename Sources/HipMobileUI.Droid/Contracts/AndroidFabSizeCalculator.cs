@@ -16,6 +16,7 @@ using Android.Content.Res;
 using Android.OS;
 using Android.Util;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
+using System;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Contracts
 {
@@ -31,7 +32,23 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Contracts
                 return 56;
             }
             // compat libraries use pixel, therefore convert dp to pixel
-            return (int) (56 * density * 0.5);
+            return (int) (56 * density);
+        }
+
+        /// <summary>
+        /// Returns the os version number of the device. E.g. 4 for KitKat.
+        /// </summary>
+        public int GetOSVersionNumber()
+        {
+            try
+            {
+                return int.Parse(Build.VERSION.Release.Substring(0, 1));
+            }
+            catch (FormatException e)
+            {
+                Log.Error("AndroidFabSizeCalculator", "Cannot convert the android version " + Build.VERSION.Release + " to a int");
+                return -1;
+            }
         }
     }
 }

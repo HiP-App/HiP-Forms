@@ -33,6 +33,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
         /// </summary>
         private readonly double bottomSheetExtensionFraction = 0.35;
 
+        /// <summary>
+        /// The size of the unextended bottom sheet
+        /// </summary>
+        private readonly double bottomSheetdSize = 64;
+
         private BottomSheetState bottomSheetState = BottomSheetState.Collapsed;
         private FloatingActionButton Button { get; set; }
         private bool initLayout = true;
@@ -59,7 +64,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
             {
                 AbsoluteLayout absoluteLayout = new AbsoluteLayout();
                 absoluteLayout.Children.Add(mainContentView, new Rectangle(0, 0, width, height));
-                absoluteLayout.Children.Add(BottomSheetContentView, new Rectangle(0, height - 64, width, 64));
+                absoluteLayout.Children.Add(BottomSheetContentView, new Rectangle(0, height - bottomSheetdSize, width, bottomSheetdSize));
 
                 double fabSize;
                 if (Device.RuntimePlatform == Device.iOS)
@@ -69,9 +74,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
                 else
                 {
                     fabSize = IoCManager.Resolve<IFabSizeCalculator>().CalculateFabSize();
+                    if (IoCManager.Resolve<IFabSizeCalculator>().GetOSVersionNumber() < 5) //Lollipop
+                    {
+                        SetButtonPosition(width);
+                    }
                 }
-                absoluteLayout.Children.Add(Button, new Point(width * 0.9 - fabSize, height - 64 - fabSize / 2));
 
+                absoluteLayout.Children.Add(Button, new Point(width * 0.9 - fabSize, height - bottomSheetdSize - fabSize / 2));
                 Content = absoluteLayout;
 
                 // restore the state when the layout changes
@@ -79,6 +88,25 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
                 initLayout = false;
             }
             base.OnSizeAllocated(width, height);
+        }
+
+        /// <summary>
+        /// Sets the position of the button afterwards for all android versions below Lollipop, where the calculated fabSize is not correct.
+        /// This repositioning cannot be done in the OnSizeAllocated method because the button have to be 
+        /// added first to get the right button width and height.
+        /// </summary>
+        private void SetButtonPosition(double width)
+        {
+            Button.SizeChanged += (sender, e) =>
+            {
+                Rectangle buttonRect = new Rectangle
+                {
+                    Top = Height - bottomSheetdSize - Button.Height / 2,
+                    Size = new Size(Button.Width, Button.Height),
+                    X = width * 0.9 - Button.Width
+                };
+                Button.LayoutTo(buttonRect, 0);
+            };
         }
 
         protected override void OnBindingContextChanged()
@@ -154,8 +182,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
             Rectangle bottomSheetRect = new Rectangle
             {
                 Left = 0,
-                Top = Height - 64,
-                Size = new Size(Width, 64)
+                Top = Height - bottomSheetdSize,
+                Size = new Size(Width, bottomSheetdSize)
             };
             Rectangle buttonRect = new Rectangle
             {
