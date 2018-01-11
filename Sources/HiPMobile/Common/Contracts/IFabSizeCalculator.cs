@@ -17,6 +17,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts
     public interface IFabSizeCalculator
     {
         int CalculateFabSize();
-        int GetOSVersionNumber();
+        int GetOsVersionNumber();
     }
 }

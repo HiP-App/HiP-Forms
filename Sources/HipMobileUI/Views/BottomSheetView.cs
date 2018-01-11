@@ -74,7 +74,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
                 else
                 {
                     fabSize = IoCManager.Resolve<IFabSizeCalculator>().CalculateFabSize();
-                    if (IoCManager.Resolve<IFabSizeCalculator>().GetOSVersionNumber() < 5) //Lollipop
+                    if (IoCManager.Resolve<IFabSizeCalculator>().GetOsVersionNumber() < 5) //Lollipop
                     {
                         SetButtonPosition(width);
                     }

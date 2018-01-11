@@ -38,7 +38,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Contracts
         /// <summary>
         /// Returns the os version number of the device. E.g. 4 for KitKat.
         /// </summary>
-        public int GetOSVersionNumber()
+        public int GetOsVersionNumber()
         {
             try
             {
