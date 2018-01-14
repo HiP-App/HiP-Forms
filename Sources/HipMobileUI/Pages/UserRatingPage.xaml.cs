@@ -12,10 +12,16 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.FeatureToggling
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
+
+namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
 {
-    public enum FeatureId
+    public partial class UserRatingPage : IViewFor<UserRatingPageViewModel>
     {
-        Achievements = 1
+        public UserRatingPage()
+        {
+            InitializeComponent();
+        }
     }
 }

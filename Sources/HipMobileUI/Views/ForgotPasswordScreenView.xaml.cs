@@ -47,21 +47,18 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
                 Grid.RowDefinitions.Clear();
 
                 Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.1, GridUnitType.Star) });
-                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.1, GridUnitType.Star) });
-                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.1, GridUnitType.Star) });
-                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.1, GridUnitType.Star) });
-                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.1, GridUnitType.Star) });
-                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.1, GridUnitType.Star) });
-                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.1, GridUnitType.Star) });
-                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.1, GridUnitType.Star) });
-                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.1, GridUnitType.Star) });
+                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.2, GridUnitType.Star) });
+                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.15, GridUnitType.Star) });
+                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.2, GridUnitType.Star) });
+                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.25, GridUnitType.Star) });
                 Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.1, GridUnitType.Star) });
 
                 Grid.SetRow(TitleLabel, 0);
                 Grid.SetRow(InfoLabel, 1);
                 Grid.SetRow(EmailEntry, 2);
                 Grid.SetRow(ErrorMessageLabel, 3);
-                Grid.SetRow(ResetPasswordButton, 9);
+                Grid.SetRow(ResetPasswordButton, 4);
+                Grid.SetRow(CancelLabel, 5);
 
                 deviceOrientation = DeviceOrientation.Portrait;
             }
@@ -73,18 +70,19 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
 
                 Grid.RowDefinitions.Clear();
 
-                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.1, GridUnitType.Star) });
-                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.1, GridUnitType.Star) });
-                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.1, GridUnitType.Star) });
-                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.1, GridUnitType.Star) });
-                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.1, GridUnitType.Star) });
+                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.15, GridUnitType.Star) });
+                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.15, GridUnitType.Star) });
+                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.2, GridUnitType.Star) });
+                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.15, GridUnitType.Star) });
+                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.25, GridUnitType.Star) });
                 Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.1, GridUnitType.Star) });
 
                 Grid.SetRow(TitleLabel, 0);
                 Grid.SetRow(InfoLabel, 1);
                 Grid.SetRow(EmailEntry, 2);
                 Grid.SetRow(ErrorMessageLabel, 3);
-                Grid.SetRow(ResetPasswordButton, 5);
+                Grid.SetRow(ResetPasswordButton, 4);
+                Grid.SetRow(CancelLabel, 5);
 
                 deviceOrientation = DeviceOrientation.Landscape;
             }

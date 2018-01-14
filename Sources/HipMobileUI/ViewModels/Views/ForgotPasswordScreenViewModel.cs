@@ -23,20 +23,22 @@ using Xamarin.Forms;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 {
-    class ForgotPasswordScreenViewModel : NavigationViewModel
+    public class ForgotPasswordScreenViewModel : NavigationViewModel
     {
         private readonly MainPageViewModel mainPageViewModel;
         private string email;
         private string errorMessage;
-
-        public ICommand ResetPasswordCommand { get; }
 
         public ForgotPasswordScreenViewModel(MainPageViewModel mainPageVm)
         {
             mainPageViewModel = mainPageVm;
 
             ResetPasswordCommand = new Command(OnResetPasswordClicked);
+            ReturnCommand = new Command(ReturnToLogin);
         }
+
+        public ICommand ResetPasswordCommand { get; }
+        public ICommand ReturnCommand { get; }
 
         private void OnResetPasswordClicked()
         {
@@ -74,6 +76,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             ErrorMessage = Strings.ForgotPasswordScreenView_Error_Empty_Email;
         }
 
+        private void ReturnToLogin()
+        {
+            mainPageViewModel.SwitchToLoginView();
+        }
+
         public string Email
         {
             get { return email; }
@@ -84,6 +91,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         {
             get { return errorMessage; }
             set { SetProperty(ref errorMessage, value); }
+        }
+
+        public override void OnAppearing()
+        {
+            base.OnAppearing();
+            ErrorMessage = "";
         }
     }
 }

@@ -27,11 +27,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer
         /// Urlpath for the docker container running the HiP-DataStore instance
         /// </summary>
         public const string DatastoreApiPath = "https://docker-hip.cs.uni-paderborn.de/public/datastore/api";
-        
+
         public const string AchievementsApiPath = "https://docker-hip.cs.uni-paderborn.de/public/achievements/api";
         
-        // TODO !!! DO NOT MERGE with develop API !!!
-        public const string FeatureTogglesApiPath = "https://docker-hip.cs.uni-paderborn.de/develop/feature-toggle/api";
+        public const string FeatureTogglesApiPath = "https://docker-hip.cs.uni-paderborn.de/public/feature-toggle/api";
 
         public const string ThumbnailApiPath = "https://docker-hip.cs.upb.de/public/thumbnailservice/api/Thumbnails";
         

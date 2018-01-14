@@ -149,5 +149,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             get { return password; }
             set { SetProperty(ref password, value); }
         }
+
+        public override void OnAppearing()
+        {
+            base.OnAppearing();
+            ErrorMessage = "";
+        }
     }
 }

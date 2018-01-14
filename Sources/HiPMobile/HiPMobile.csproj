@@ -88,10 +88,12 @@
     <Compile Include="BusinessLayer\FeatureToggling\FeatureToggleRouter.cs" />
     <Compile Include="BusinessLayer\FeatureToggling\IFeatureToggleRouter.cs" />
     <Compile Include="BusinessLayer\Managers\AchievementManager.cs" />
+    <Compile Include="BusinessLayer\Managers\UserRatingManager.cs" />
     <Compile Include="BusinessLayer\Models\ModelClasses\ExhibitsVisitedAchievement.cs" />
     <Compile Include="BusinessLayer\Models\ModelClasses\ExhibitsVisitedAchievementPendingNotification.cs" />
     <Compile Include="BusinessLayer\Models\ModelClasses\IAchievement.cs" />
     <Compile Include="BusinessLayer\Models\ModelClasses\RouteFinishedAchievement.cs" />
+    <Compile Include="BusinessLayer\Models\ModelClasses\UserRating.cs" />
     <Compile Include="BusinessLayer\Models\ModelClasses\RouteFinishedAchievementPendingNotification.cs" />
     <Compile Include="BusinessLayer\Models\ModelExtensions\Audio.cs" />
     <Compile Include="BusinessLayer\Models\ModelExtensions\Caching.cs" />
@@ -128,6 +130,8 @@
     <Compile Include="ServiceAccessLayer\AuthApiDto\Token.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiAccesses\AchievementsApiAccess.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiAccesses\Contracts\IAchievementsApiAccess.cs" />
+    <Compile Include="ServiceAccessLayer\ContentApiAccesses\Contracts\IUserRatingApiAccess.cs" />
+    <Compile Include="ServiceAccessLayer\ContentApiAccesses\UserRatingApiAccess.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiClient.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiAccesses\Contracts\ITagsApiAccess.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiAccesses\Contracts\IRoutesApiAccess.cs" />
@@ -148,6 +152,7 @@
     <Compile Include="ServiceAccessLayer\ContentApiDtos\PageImageDto.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiDtos\PageTypeDto.cs" />
     <Compile Include="ServiceAccessLayer\AuthenticationApiAccess\IAuthApiAccess.cs" />
+    <Compile Include="ServiceAccessLayer\ContentApiDtos\UserRatingDto.cs" />
     <Compile Include="ServiceAccessLayer\Exceptions\InvalidUserNamePassword.cs" />
     <Compile Include="ServiceAccessLayer\FeatureToggleApiAccess\FeatureToggleApiAccess.cs" />
     <Compile Include="ServiceAccessLayer\FeatureToggleApiAccess\IFeatureToggleApiAccess.cs" />

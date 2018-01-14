@@ -81,7 +81,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels
                                                        .IsFeatureEnabled(FeatureId.Achievements)
                                                        .Subscribe(featureObserver);
 
-            async Task DequeueAndRepeat()
+            async Task DequeueAndRepeatAsync()
             {
                 try
                 {
@@ -102,11 +102,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels
                 await Task.Delay(5000);
                 if (isAutoChecking == 1)
                 {
-                    Device.BeginInvokeOnMainThread(async () => await DequeueAndRepeat());
+                    Device.BeginInvokeOnMainThread(async () => await DequeueAndRepeatAsync());
                 }
             }
 
-            Device.BeginInvokeOnMainThread(async () => await DequeueAndRepeat());
+            Device.BeginInvokeOnMainThread(async () => await DequeueAndRepeatAsync());
         }
 
         private void StopAutoCheckForAchievements()

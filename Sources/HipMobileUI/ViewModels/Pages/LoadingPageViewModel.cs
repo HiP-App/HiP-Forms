@@ -132,7 +132,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         {
             try
             {
-                await InitIoCContainer();
+                await InitIoCContainerAsync();
                 await BackupData.Init();
 
                 baseDataFetcher = IoCManager.Resolve<IBaseDataFetcher>();
@@ -284,7 +284,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             Navigation.StartNewNavigationStack(vm);
         }
 
-        private async Task InitIoCContainer()
+        private async Task InitIoCContainerAsync()
         {
             IoCManager.RegisterType<IDataLoader, EmbeddedResourceDataLoader>();
             IoCManager.RegisterInstance(typeof(ApplicationResourcesProvider), new ApplicationResourcesProvider(Application.Current.Resources));
@@ -323,12 +323,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             IoCManager.RegisterInstance(typeof(INearbyRouteManager), new NearbyRouteManager());
 
             IoCManager.RegisterType<IAuthApiAccess, AuthApiAccess>();
+            IoCManager.RegisterInstance(typeof(IUserRatingApiAccess), new UserRatingApiAccess(new ContentApiClient()));
             IoCManager.RegisterInstance(typeof(IUserManager), new UserManager());
-
+            IoCManager.RegisterInstance(typeof(IUserRatingManager), new UserRatingManager());
             IoCManager.RegisterInstance(typeof(IThemeManager), new ThemeManager());
             IoCManager.RegisterInstance(typeof(AchievementNotificationViewModel), new AchievementNotificationViewModel());
             
-            var featureToggleRouter = await FeatureToggleRouter.Create();
+            var featureToggleRouter = await FeatureToggleRouter.CreateAsync();
             IoCManager.RegisterInstance(typeof(IFeatureToggleRouter), featureToggleRouter);
         }
 
