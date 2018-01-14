@@ -17,6 +17,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts
     public interface IFabSizeCalculator
     {
         int CalculateFabSize();
+
+        /// <summary>
+        /// Returns the os version number of the device. E.g. 4 for KitKat.
+        /// </summary>
         int GetOsVersionNumber();
     }
 }

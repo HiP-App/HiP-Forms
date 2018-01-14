@@ -36,7 +36,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
         /// <summary>
         /// The size of the unextended bottom sheet
         /// </summary>
-        private readonly double bottomSheetdSize = 64;
+        private readonly double bottomSheetSize = 64;
 
         private BottomSheetState bottomSheetState = BottomSheetState.Collapsed;
         private FloatingActionButton Button { get; set; }
@@ -64,7 +64,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
             {
                 AbsoluteLayout absoluteLayout = new AbsoluteLayout();
                 absoluteLayout.Children.Add(mainContentView, new Rectangle(0, 0, width, height));
-                absoluteLayout.Children.Add(BottomSheetContentView, new Rectangle(0, height - bottomSheetdSize, width, bottomSheetdSize));
+                absoluteLayout.Children.Add(BottomSheetContentView, new Rectangle(0, height - bottomSheetSize, width, bottomSheetSize));
 
                 double fabSize;
                 if (Device.RuntimePlatform == Device.iOS)
@@ -80,7 +80,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
                     }
                 }
 
-                absoluteLayout.Children.Add(Button, new Point(width * 0.9 - fabSize, height - bottomSheetdSize - fabSize / 2));
+                absoluteLayout.Children.Add(Button, new Point(width * 0.9 - fabSize, height - bottomSheetSize - fabSize / 2));
                 Content = absoluteLayout;
 
                 // restore the state when the layout changes
@@ -99,9 +99,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
         {
             Button.SizeChanged += (sender, e) =>
             {
-                Rectangle buttonRect = new Rectangle
+                var buttonRect = new Rectangle
                 {
-                    Top = Height - bottomSheetdSize - Button.Height / 2,
+                    Top = Height - bottomSheetSize - Button.Height / 2,
                     Size = new Size(Button.Width, Button.Height),
                     X = width * 0.9 - Button.Width
                 };
@@ -182,8 +182,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
             Rectangle bottomSheetRect = new Rectangle
             {
                 Left = 0,
-                Top = Height - bottomSheetdSize,
-                Size = new Size(Width, bottomSheetdSize)
+                Top = Height - bottomSheetSize,
+                Size = new Size(Width, bottomSheetSize)
             };
             Rectangle buttonRect = new Rectangle
             {
