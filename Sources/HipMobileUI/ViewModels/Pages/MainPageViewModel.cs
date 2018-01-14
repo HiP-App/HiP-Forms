@@ -200,7 +200,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
             SelectedViewModel.OnDisappearing();
             achievementsFeatureSubscription?.Dispose();
-            achievementsFeatureSubscription = null;
         }
 
         public override void OnAppearing()

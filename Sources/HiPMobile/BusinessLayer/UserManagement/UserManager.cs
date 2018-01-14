@@ -21,7 +21,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.UserManageme
 
     public class UserManager : IUserManager
     {
-        private readonly static IAuthApiAccess AuthApiAccess = IoCManager.Resolve<IAuthApiAccess>();
+        private static readonly IAuthApiAccess AuthApiAccess = IoCManager.Resolve<IAuthApiAccess>();
 
         public async Task<UserStatus> Login(User user)
         {
@@ -44,14 +44,20 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.UserManageme
             catch (Exception ex)
             {
                 if (ex is NetworkAccessFailedException)
+                {
                     user.CurrentStatus = UserStatus.NetworkConnectionFailed;
+                }
 
                 if (ex is InvalidUserNamePassword)
-                    user.CurrentStatus = UserStatus.InCorrectUserNameandPassword;
-
+                {
+                    user.CurrentStatus = UserStatus.IncorrectUserNameAndPassword;
+                }
                 else
-                    user.CurrentStatus = UserStatus.UnkownError;
+                {
+                    user.CurrentStatus = UserStatus.UnknownError;
+                }
             }
+
             return user.CurrentStatus;
         }
 
@@ -64,7 +70,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.UserManageme
 
         public async Task<UserStatus> Register(User user)
         {
-            bool isRegistered = await AuthApiAccess.Register(user.Username, user.Password);
+            var isRegistered = await AuthApiAccess.Register(user.Username, user.Password);
 
             if (isRegistered)
             {
@@ -72,16 +78,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.UserManageme
             }
             else
             {
-                return UserStatus.UnkownError;
+                return UserStatus.UnknownError;
             }
         }
 
         public bool CheckNetworkAccess()
         {
             var networkAccessStatus = IoCManager.Resolve<INetworkAccessChecker>().GetNetworkAccessStatus();
-            if (networkAccessStatus == NetworkAccessStatus.NoAccess)
-                return false;
-            return true;
+            return networkAccessStatus != NetworkAccessStatus.NoAccess;
         }
 
         public async Task<UserStatus> ForgotPassword(User user)
@@ -92,7 +96,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.UserManageme
             }
             else
             {
-                bool isResetPasswordEmailSent = await AuthApiAccess.ForgotPassword(user.Username);
+                var isResetPasswordEmailSent = await AuthApiAccess.ForgotPassword(user.Username);
 
                 if (isResetPasswordEmailSent)
                 {
@@ -100,7 +104,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.UserManageme
                 }
                 else
                 {
-                    user.CurrentStatus = UserStatus.UnkownError;
+                    user.CurrentStatus = UserStatus.UnknownError;
                 }
             }
 

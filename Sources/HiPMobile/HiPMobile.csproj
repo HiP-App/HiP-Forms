@@ -149,9 +149,9 @@
     <Compile Include="ServiceAccessLayer\ContentApiDtos\PageTypeDto.cs" />
     <Compile Include="ServiceAccessLayer\AuthenticationApiAccess\IAuthApiAccess.cs" />
     <Compile Include="ServiceAccessLayer\Exceptions\InvalidUserNamePassword.cs" />
+    <Compile Include="ServiceAccessLayer\FeatureToggleApiAccess\FeatureToggleApiAccess.cs" />
     <Compile Include="ServiceAccessLayer\FeatureToggleApiAccess\IFeatureToggleApiAccess.cs" />
     <Compile Include="ServiceAccessLayer\FeatureToggleApiDto\FeatureDto.cs" />
-    <Compile Include="ServiceAccessLayer\FeatureToggleApiDto\FeatureToggleApiAccess.cs" />
     <Compile Include="ServiceAccessLayer\IContentApiClient.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiDtos\ExhibitDto.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiDtos\ExhibitsDto.cs" />

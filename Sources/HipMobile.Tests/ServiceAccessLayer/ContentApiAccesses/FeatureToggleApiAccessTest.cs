@@ -18,6 +18,7 @@ using System.Threading.Tasks;
 using NSubstitute;
 using NUnit.Framework;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.FeatureToggleApiAccess;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.FeatureToggleApiDto;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.ServiceAccessLayer.ContentApiAccesses
@@ -38,28 +39,28 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.ServiceAccessLayer
         public async Task GetEnabledFeaturesTest()
         {
             var json = @"
-[
-    {
-        ""id"": 4,
-        ""name"": ""Mein neues Feature"",
-        ""parent"": null,
-        ""children"": [],
-        ""groupsWhereEnabled"": [
-            1,
-            2
-        ]
-    },
-    {
-        ""id"": 6,
-        ""name"": ""Feature Beta"",
-        ""parent"": null,
-        ""children"": [],
-        ""groupsWhereEnabled"": [
-            1,
-            2
-        ]
-    }
-]";
+                [
+                    {
+                        ""id"": 4,
+                        ""name"": ""Mein neues Feature"",
+                        ""parent"": null,
+                        ""children"": [],
+                        ""groupsWhereEnabled"": [
+                            1,
+                            2
+                        ]
+                    },
+                    {
+                        ""id"": 6,
+                        ""name"": ""Feature Beta"",
+                        ""parent"": null,
+                        ""children"": [],
+                        ""groupsWhereEnabled"": [
+                            1,
+                            2
+                        ]
+                    }
+                ]";
             contentApiSubstitute.GetResponseFromUrlAsString(null).ReturnsForAnyArgs(json);
             var fetchedDtos = (await client.GetEnabledFeaturesAsync()).ToList();
             var checkDtos = new List<FeatureDto>
@@ -72,7 +73,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.ServiceAccessLayer
             {
                 var checkDto = checkDtos[i];
                 var fetchedDto = fetchedDtos[i];
-                
+
                 Assert.AreEqual(checkDto.Id, fetchedDto.Id);
                 Assert.AreEqual(checkDto.Name, fetchedDto.Name);
                 Assert.AreEqual(checkDto.ChildrenFeatureIds, fetchedDto.ChildrenFeatureIds);

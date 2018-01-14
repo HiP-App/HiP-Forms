@@ -74,7 +74,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.FeatureToggl
 
         public async Task RefreshEnabledFeaturesAsync()
         {
-            var newEnabledFeatureIds = await FetchEnabledFeatureIds(fallbackEnabledFeatureIds: enabledFeatureIds);
+            var newEnabledFeatureIds = await FetchEnabledFeatureIds(enabledFeatureIds);
 
             lock (this)
             {
