@@ -23,7 +23,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
 {
     public class UserRatingApiAccess : IUserRatingApiAccess
     {
-
         private readonly IContentApiClient contentApiClient;
 
         private const string RequestPath = "/Exhibits/Rating/";
@@ -35,9 +34,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
 
         public async Task<UserRatingDto> GetUserRatingAsync(int idForRestApi)
         {
-                var url = RequestPath + idForRestApi;
-                var json = await contentApiClient.GetResponseFromUrlAsString(url);
-                return JsonConvert.DeserializeObject<UserRatingDto>(json);
+            var url = RequestPath + idForRestApi;
+            var json = await contentApiClient.GetResponseFromUrlAsString(url);
+            return JsonConvert.DeserializeObject<UserRatingDto>(json);
         }
 
         public async Task<bool> SendUserRatingAsync(int idForRestApi, int rating)
@@ -46,6 +45,5 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
             var result = await contentApiClient.PostRequestBody(url, string.Empty, Settings.AccessToken);
             return result.StatusCode == HttpStatusCode.Created;
         }
-
     }
 }
