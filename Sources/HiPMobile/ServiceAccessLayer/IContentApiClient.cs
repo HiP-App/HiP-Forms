@@ -38,6 +38,21 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer
 
         Task<HttpResponseMessage> PostRequestFormBased(string url, FormUrlEncodedContent content);
 
+        /// <summary>
+        /// Post the specified body to finalUrl := basePath + url with the standard token from https://hip.eu.auth0.com/oauth/token.
+        /// </summary>
+        /// <param name="url">URL without basePath</param>
+        /// <param name="body"></param>
+        /// <returns></returns>
         Task<HttpResponseMessage> PostRequestBody(string url, string body);
+
+        /// <summary>
+        /// Post the specified body to finalUrl := basePath + url with the given access token as authentication.
+        /// </summary>
+        /// <param name="url">URL without basePath</param>
+        /// <param name="body"></param>
+        /// <param name="accessToken"></param>
+        /// <returns></returns>
+        Task<HttpResponseMessage> PostRequestBody(string url, string body, string accessToken);
     }
 }

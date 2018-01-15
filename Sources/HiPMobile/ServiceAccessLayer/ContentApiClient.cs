@@ -158,30 +158,22 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer
 
         public async Task<HttpResponseMessage> PostRequestFormBased(string url, FormUrlEncodedContent content)
         {
-            try
+            using (HttpClient client = new HttpClient())
             {
-                using (HttpClient client = new HttpClient())
-                {
-                    // Lambda expression executed
-                    // ReSharper disable AccessToDisposedClosure
-                    var result = await TransientRetry.Do(() => client.PostAsync(url, content), new TimeSpan(0, 0, 0, 3));
-                    // ReSharper restore AccessToDisposedClosure
-                    return result;
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
+                // Lambda expression executed
+                // ReSharper disable AccessToDisposedClosure
+                var result = await TransientRetry.Do(() => client.PostAsync(url, content), new TimeSpan(0, 0, 0, 3));
+                // ReSharper restore AccessToDisposedClosure
+                return result;
             }
         }
 
-        /// <summary>
-        /// Post the specified body to finalUrl := basePath + url.
-        /// </summary>
-        /// <param name="url">URL without basePath</param>
-        /// <param name="body"></param>
-        /// <returns></returns>
         public async Task<HttpResponseMessage> PostRequestBody(string url, string body)
+        {
+            return await PostRequestBody(url, body, token.AccessToken);
+        }
+
+        public async Task<HttpResponseMessage> PostRequestBody(string url, string body, string accessToken)
         {
             using (var client = new HttpClient())
             {
@@ -190,7 +182,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer
                 {
                     var content = new StringContent(body, Encoding.UTF8, "application/json");
                     var message = new HttpRequestMessage(HttpMethod.Post, basePath + url) { Content = content };
-                    message.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token.AccessToken);
+                    message.Headers.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
                     message.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                     return client.SendAsync(message);
                 }, new TimeSpan(0, 0, 0, 3));

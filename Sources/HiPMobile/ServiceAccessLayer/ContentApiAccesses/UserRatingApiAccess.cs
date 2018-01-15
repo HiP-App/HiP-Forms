@@ -16,9 +16,8 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
-using System;
 using System.Net;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses
 {
@@ -44,16 +43,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
         public async Task<bool> SendUserRatingAsync(int idForRestApi, int rating)
         {
             var url = RequestPath + idForRestApi + "?Rating=" + rating;
-            var result = await contentApiClient.PostRequestBody(url, String.Empty);
-            if (result.StatusCode == HttpStatusCode.Created)
-            {
-                var jsonPayload = await result.Content.ReadAsStringAsync();
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            var result = await contentApiClient.PostRequestBody(url, string.Empty, Settings.AccessToken);
+            return result.StatusCode == HttpStatusCode.Created;
         }
 
     }
