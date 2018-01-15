@@ -37,15 +37,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Contracts
 
         public int GetOsVersionNumber()
         {
-            try
-            {
-                return int.Parse(Build.VERSION.Release.Substring(0, 1));
-            }
-            catch (FormatException e)
-            {
-                Log.Error("AndroidFabSizeCalculator", "Cannot convert the android version " + Build.VERSION.Release + " to a int");
-                return -1;
-            }
+            return (int) Build.VERSION.SdkInt;
         }
     }
 }
