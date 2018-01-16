@@ -29,24 +29,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
         public int Count { get; private set; }
 
         [JsonProperty("ratingTable")]
-        public Dictionary<int, int> RatingTable { get; private set; }
-
-        public UserRatingDto()
-        {
-            Id = -1;
-            Average = 0;
-            Count = 0;
-            RatingTable = new Dictionary<int, int>();
-            for (int i = 1; i <= 5; i++)
-                RatingTable.Add(i, 0);
-        }
-
-        public UserRatingDto(int id, double average, int count, Dictionary<int, int> ratingTable)
-        {
-            Id = id;
-            Average = average;
-            Count = count;
-            RatingTable = ratingTable;
-        }
+        public Dictionary<int, int> RatingTable { get; set; }
     }
 }
