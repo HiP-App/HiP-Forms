@@ -19,7 +19,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts
         int CalculateFabSize();
 
         /// <summary>
-        /// Returns the os version number of the device. E.g. 4 for KitKat.
+        /// Returns the os version number of the device, e.g. Build.VERSION.SdkInt for Android.
         /// </summary>
         int GetOsVersionNumber();
     }
