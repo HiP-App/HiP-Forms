@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
 using Xamarin.Forms;
@@ -23,9 +24,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
         private double width;
         private double height;
 
+        private DeviceOrientation orientation;
+
         public UserRatingPage()
         {
             InitializeComponent();
+            orientation = DeviceOrientation.Undefined;
         }
 
         /// <summary>
@@ -42,6 +46,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
                 this.height = height;
                 if (width > height)
                 {
+                    orientation = DeviceOrientation.Landscape;
                     OuterAbsoluteLayout.Children.Remove(Image);
                     OuterAbsoluteLayout.Children.Add(Image, new Rectangle(0, 0, 0.5, 1), AbsoluteLayoutFlags.All);
                     OuterGrid.RowDefinitions.Clear();
@@ -56,8 +61,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
                 }
                 else
                 {
+                    orientation = DeviceOrientation.Portrait;
                     OuterAbsoluteLayout.Children.Remove(Image);
-                    OuterAbsoluteLayout.Children.Add(Image,new Rectangle(0, 0, 1, 0.6),AbsoluteLayoutFlags.All);
+                    OuterAbsoluteLayout.Children.Add(Image, new Rectangle(0, 0, 1, 0.6), AbsoluteLayoutFlags.All);
                     OuterGrid.ColumnDefinitions.Clear();
                     OuterGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
                     OuterGrid.RowDefinitions.Clear();
