@@ -22,31 +22,34 @@ using Object = Java.Lang.Object;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Map
 {
-    class ViaPointInfoWindow : MarkerInfoWindow
+    internal class ViaPointInfoWindow : MarkerInfoWindow
     {
         private string markerId;
 
         public ViaPointInfoWindow(int layoutResId, MapView mapView) : base(layoutResId, mapView)
         {
-            Button infoButton = View.FindViewById<Button>(Resource.Id.bubble_info);
+            // Handles closing of marker info window
+            var closeMarkerInfoWindow = View.FindViewById<Button>(Resource.Id.close_marker_info_window);
+            closeMarkerInfoWindow.Click += (sender, e) =>
+            {
+                Close();
+            };
 
-            infoButton.Click += (sender, e) =>
+            // Opens the AppetizerPage of the selected exhibit
+            var openAppetizerPageView = View.FindViewById<Android.Gestures.GestureOverlayView>(Resource.Id.open_appetizer_page);
+            openAppetizerPageView.GestureEnded += (sender, e) =>
             {
                 if (markerId != null)
                 {
-                    IoCManager.Resolve<INavigationService>().PushAsync(new ExhibitDetailsViewModel(markerId));
+                    IoCManager.Resolve<INavigationService>().PushAsync(new AppetizerPageViewModel(markerId));
                 }
             };
         }
 
         public override void OnOpen(Object item)
         {
-            Marker marker = (Marker) item;
-            markerId
-                = (
-                    string
-                )
-                marker.RelatedObject;
+            var marker = (Marker)item;
+            markerId = (string)marker.RelatedObject;
 
             base.OnOpen(item);
         }

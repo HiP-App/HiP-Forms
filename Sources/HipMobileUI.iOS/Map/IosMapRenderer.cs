@@ -16,7 +16,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
-using CoreGraphics;
 using CoreLocation;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using MapKit;
@@ -105,7 +104,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Map
                 Control.SetRegion(backupRegion, true);
             }
             else
+            {
                 backupRegion = Control.Region;
+            }
         }
 
         /// <summary>
@@ -114,14 +115,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Map
         /// <param name="location">The location to center on.</param>
         private void CenterLocation(GeoLocation location)
         {
-            if (location != null)
-            {
-                Control.CenterCoordinate = new CLLocationCoordinate2D(location.Latitude, location.Longitude);
-            }
-            else
-            {
-                Control.CenterCoordinate = new CLLocationCoordinate2D(AppSharedData.PaderbornCenter.Latitude, AppSharedData.PaderbornCenter.Longitude);
-            }
+            Control.CenterCoordinate = location != null
+                ? new CLLocationCoordinate2D(location.Latitude, location.Longitude)
+                : new CLLocationCoordinate2D(AppSharedData.PaderbornCenter.Latitude, AppSharedData.PaderbornCenter.Longitude);
         }
 
         /// <summary>
@@ -277,11 +273,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Map
                 {
                     return dequedView;
                 }
-                else
-                {
-                    annotationView = new UserAnnotationView(annotation, userAnnotationReusableId);
-                    return annotationView;
-                }
+
+                annotationView = new UserAnnotationView(annotation, userAnnotationReusableId);
+                return annotationView;
             }
 
             const string annotationReusableId = "ExhibitAnnotation";
@@ -398,10 +392,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Map
 
         public double GetZoomLevel()
         {
-            double longitudeDelta = Control.Region.Span.LongitudeDelta;
-            float mapWidthInPixels = (float)Control.Bounds.Size.Width;
-            double zoomScale = longitudeDelta * 85445659.44705395 * Math.PI / (180.0 * mapWidthInPixels);
-            double zoomer = 20 - Math.Log(zoomScale);
+            var longitudeDelta = Control.Region.Span.LongitudeDelta;
+            var mapWidthInPixels = (float)Control.Bounds.Size.Width;
+            var zoomScale = longitudeDelta * 85445659.44705395 * Math.PI / (180.0 * mapWidthInPixels);
+            var zoomer = 20 - Math.Log(zoomScale);
             if (zoomer < 0)
                 zoomer = 0;
             //  zoomer = round(zoomer);
