@@ -82,7 +82,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 
             switch (userStatus)
             {
-                case UserStatus.InCorrectUserNameandPassword:
+                case UserStatus.IncorrectUserNameAndPassword:
                     DisplayWrongCredentialsErrorMessage();
                     break;
                 case UserStatus.LoggedIn:
@@ -94,7 +94,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
                 case UserStatus.ServerError:
                     UserDialogs.Instance.Alert(Strings.Alert_Server_Error_Description, Strings.Alert_Server_Error_Title);
                     break;
-                case UserStatus.UnkownError:
+                case UserStatus.UnknownError:
                     UserDialogs.Instance.Alert(Strings.Alert_Unknown_Error_Description, Strings.Alert_Unknown_Error_Title);
                     break;
             }
