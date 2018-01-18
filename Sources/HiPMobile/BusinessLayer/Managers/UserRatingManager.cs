@@ -12,12 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.ModelClasses;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses.Contracts;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
@@ -50,12 +48,21 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
         public async Task<UserRating> GetUserRatingAsync(int idForRestApi)
         {
             var userRatingDto = await client.GetUserRatingAsync(idForRestApi);
+            userRatingDto.RatingTable = userRatingDto.RatingTable == null ? InitializeEmptyRatingTable() : userRatingDto.RatingTable;
             return new UserRating(userRatingDto);
         }
 
         public async Task<bool> SendUserRatingAsync(int idForRestApi, int rating)
         {
             return await client.SendUserRatingAsync(idForRestApi, rating);
+        }
+
+        private Dictionary<int, int> InitializeEmptyRatingTable()
+        {
+            var ratingTable = new Dictionary<int, int>();
+            for (int i = 1; i <= 5; i++)
+                ratingTable.Add(i, 0);
+            return ratingTable;
         }
     }
 }

@@ -12,23 +12,23 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using Newtonsoft.Json;
-using System.Collections.Generic;
+using NUnit.Framework;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos
+namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.Helpers
 {
-    public class UserRatingDto
+    [TestFixture]
+    public class CachingObserverTest
     {
-        [JsonProperty("id")]
-        public int Id { get; private set; }
-
-        [JsonProperty("average")]
-        public double Average { get; private set; }
-
-        [JsonProperty("count")]
-        public int Count { get; private set; }
-
-        [JsonProperty("ratingTable")]
-        public Dictionary<int, int> RatingTable { get; set; }
+        [Test, Category("UnitTest")]
+        public void Test()
+        {
+            var observable = new Observable<bool>(false);
+            var caching = new CachingObserver<bool>();
+            observable.Subscribe(caching);
+            Assert.IsFalse(caching.Last);
+            observable.Current = true;
+            Assert.IsTrue(caching.Last);
+        }
     }
 }

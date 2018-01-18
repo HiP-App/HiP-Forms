@@ -12,23 +12,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.FeatureToggleApiDto;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.FeatureToggleApiAccess
 {
-    public class UserRatingDto
+    public interface IFeatureToggleApiAccess
     {
-        [JsonProperty("id")]
-        public int Id { get; private set; }
-
-        [JsonProperty("average")]
-        public double Average { get; private set; }
-
-        [JsonProperty("count")]
-        public int Count { get; private set; }
-
-        [JsonProperty("ratingTable")]
-        public Dictionary<int, int> RatingTable { get; set; }
+        Task<IList<FeatureDto>> GetEnabledFeaturesAsync();
     }
 }

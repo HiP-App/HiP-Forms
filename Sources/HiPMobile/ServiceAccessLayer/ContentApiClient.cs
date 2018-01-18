@@ -50,9 +50,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer
         public async Task<string> GetResponseFromUrlAsString(string urlPath)
         {
             var response = await GetHttpWebResponse(urlPath);
-            using (Stream responseStream = response.GetResponseStream())
+            using (var responseStream = response.GetResponseStream())
             {
-                StreamReader reader = new StreamReader(responseStream, Encoding.UTF8);
+                var reader = new StreamReader(responseStream, Encoding.UTF8);
                 return reader.ReadToEnd();
             }
         }
@@ -69,9 +69,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer
         public async Task<byte[]> GetResponseFromUrlAsBytes(string urlPath)
         {
             var response = await GetHttpWebResponse(urlPath);
-            using (Stream responseStream = response.GetResponseStream())
+            using (var responseStream = response.GetResponseStream())
             {
-                using (MemoryStream ms = new MemoryStream())
+                using (var ms = new MemoryStream())
                 {
                     responseStream.CopyTo(ms);
                     return ms.ToArray();
@@ -86,10 +86,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer
             {
                 token = await GetTokenForDataStore();
             }
-            string fullUrl = basePath + urlPath;
+            var fullUrl = basePath + urlPath;
             Exception innerException = null;
 
-            for (int i = 0; i < MaxRetryCount; i++)
+            for (var i = 0; i < MaxRetryCount; i++)
             {
                 if (i != 0)
                 {
@@ -119,27 +119,27 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer
                 }
             }
 
-            WebException webException = innerException as WebException;
+            var webException = innerException as WebException;
             if (webException != null)
             {
-                WebResponse errorResponse = webException.Response;
+                var errorResponse = webException.Response;
                 var httpResponse = errorResponse as HttpWebResponse;
                 if (httpResponse != null && httpResponse.StatusCode == HttpStatusCode.NotFound)
                 {
                     throw new NotFoundException(fullUrl);
                 }
 
-                using (Stream responseStream = errorResponse.GetResponseStream())
+                using (var responseStream = errorResponse.GetResponseStream())
                 {
-                    StreamReader reader = new StreamReader(responseStream, Encoding.UTF8);
-                    string exceptionMessage = reader.ReadToEnd();
+                    var reader = new StreamReader(responseStream, Encoding.UTF8);
+                    var exceptionMessage = reader.ReadToEnd();
                     throw new NetworkAccessFailedException(exceptionMessage, webException);
                 }
             }
             throw new ArgumentException("Unexpected error during fetching data");
         }
 
-        public async Task<Token> GetTokenForDataStore()
+        private async Task<Token> GetTokenForDataStore()
         {
             var tokenPayload = new TokenPayload
             {
@@ -158,30 +158,22 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer
 
         public async Task<HttpResponseMessage> PostRequestFormBased(string url, FormUrlEncodedContent content)
         {
-            try
+            using (var client = new HttpClient())
             {
-                using (HttpClient client = new HttpClient())
-                {
-                    // Lambda expression executed
-                    // ReSharper disable AccessToDisposedClosure
-                    var result = await TransientRetry.Do(() => client.PostAsync(url, content), new TimeSpan(0, 0, 0, 3));
-                    // ReSharper restore AccessToDisposedClosure
-                    return result;
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
+                // Lambda expression executed
+                // ReSharper disable AccessToDisposedClosure
+                var result = await TransientRetry.Do(() => client.PostAsync(url, content), new TimeSpan(0, 0, 0, 3));
+                // ReSharper restore AccessToDisposedClosure
+                return result;
             }
         }
 
-        /// <summary>
-        /// Post the specified body to finalUrl := basePath + url.
-        /// </summary>
-        /// <param name="url">URL without basePath</param>
-        /// <param name="body"></param>
-        /// <returns></returns>
         public async Task<HttpResponseMessage> PostRequestBody(string url, string body)
+        {
+            return await PostRequestBody(url, body, token.AccessToken);
+        }
+
+        public async Task<HttpResponseMessage> PostRequestBody(string url, string body, string accessToken)
         {
             using (var client = new HttpClient())
             {
@@ -190,7 +182,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer
                 {
                     var content = new StringContent(body, Encoding.UTF8, "application/json");
                     var message = new HttpRequestMessage(HttpMethod.Post, basePath + url) { Content = content };
-                    message.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token.AccessToken);
+                    message.Headers.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
                     message.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                     return client.SendAsync(message);
                 }, new TimeSpan(0, 0, 0, 3));
@@ -202,7 +194,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer
         {
             try
             {
-                using (HttpClient client = new HttpClient())
+                using (var client = new HttpClient())
                 {
                     var content = new StringContent(jsonContent.ToString(), Encoding.UTF8, "application/json");
                     // Lambda expression executed

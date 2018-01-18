@@ -14,7 +14,7 @@
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer
 {
-    public class ServerEndpoints
+    public static class ServerEndpoints
     {
         private const string BaseUrl = "https://hip.eu.auth0.com/";
 
@@ -29,6 +29,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer
         public const string DatastoreApiPath = "https://docker-hip.cs.uni-paderborn.de/public/datastore/api";
 
         public const string AchievementsApiPath = "https://docker-hip.cs.uni-paderborn.de/public/achievements/api";
+        
+        public const string FeatureTogglesApiPath = "https://docker-hip.cs.uni-paderborn.de/public/feature-toggle/api";
 
         public const string ThumbnailApiPath = "https://docker-hip.cs.upb.de/public/thumbnailservice/api/Thumbnails";
         

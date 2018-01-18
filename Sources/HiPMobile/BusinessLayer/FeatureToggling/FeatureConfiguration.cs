@@ -12,23 +12,19 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.Linq;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.FeatureToggling
 {
-    public class UserRatingDto
+    public static class FeatureConfiguration
     {
-        [JsonProperty("id")]
-        public int Id { get; private set; }
-
-        [JsonProperty("average")]
-        public double Average { get; private set; }
-
-        [JsonProperty("count")]
-        public int Count { get; private set; }
-
-        [JsonProperty("ratingTable")]
-        public Dictionary<int, int> RatingTable { get; set; }
+        /// <summary>
+        /// Fallback enabled features if the network is down.
+        /// </summary>
+        public static readonly IReadOnlyList<FeatureId> DefaultEnabledFeatureIds = new List<FeatureId>
+        {
+            FeatureId.Achievements
+        };
     }
 }
