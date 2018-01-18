@@ -21,9 +21,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
 {
     public partial class UserRatingPage : IViewFor<UserRatingPageViewModel>
     {
-        private double width;
-        private double height;
-
         private DeviceOrientation orientation;
 
         public UserRatingPage()
@@ -40,40 +37,35 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
         protected override void OnSizeAllocated(double width, double height)
         {
             base.OnSizeAllocated(width, height);
-            if (width != this.width || height != this.height)
+            if (width > height && orientation != DeviceOrientation.Landscape)
             {
-                this.width = width;
-                this.height = height;
-                if (width > height)
-                {
-                    orientation = DeviceOrientation.Landscape;
-                    OuterAbsoluteLayout.Children.Remove(Image);
-                    OuterAbsoluteLayout.Children.Add(Image, new Rectangle(0, 0, 0.5, 1), AbsoluteLayoutFlags.All);
-                    OuterGrid.RowDefinitions.Clear();
-                    OuterGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
-                    OuterGrid.ColumnDefinitions.Clear();
-                    OuterGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(0.5, GridUnitType.Star) });
-                    OuterGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(0.5, GridUnitType.Star) });
-                    OuterGrid.Children.Remove(InnerGrid1);
-                    OuterGrid.Children.Add(InnerGrid1, 0, 0);
-                    OuterGrid.Children.Remove(InnerGrid2);
-                    OuterGrid.Children.Add(InnerGrid2, 1, 0);
-                }
-                else
-                {
-                    orientation = DeviceOrientation.Portrait;
-                    OuterAbsoluteLayout.Children.Remove(Image);
-                    OuterAbsoluteLayout.Children.Add(Image, new Rectangle(0, 0, 1, 0.6), AbsoluteLayoutFlags.All);
-                    OuterGrid.ColumnDefinitions.Clear();
-                    OuterGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
-                    OuterGrid.RowDefinitions.Clear();
-                    OuterGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.6, GridUnitType.Star) });
-                    OuterGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.4, GridUnitType.Star) });
-                    OuterGrid.Children.Remove(InnerGrid1);
-                    OuterGrid.Children.Add(InnerGrid1, 0, 0);
-                    OuterGrid.Children.Remove(InnerGrid2);
-                    OuterGrid.Children.Add(InnerGrid2, 0, 1);
-                }
+                orientation = DeviceOrientation.Landscape;
+                OuterAbsoluteLayout.Children.Remove(Image);
+                OuterAbsoluteLayout.Children.Add(Image, new Rectangle(0, 0, 0.5, 1), AbsoluteLayoutFlags.All);
+                OuterGrid.RowDefinitions.Clear();
+                OuterGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
+                OuterGrid.ColumnDefinitions.Clear();
+                OuterGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(0.5, GridUnitType.Star) });
+                OuterGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(0.5, GridUnitType.Star) });
+                OuterGrid.Children.Remove(InnerGrid1);
+                OuterGrid.Children.Add(InnerGrid1, 0, 0);
+                OuterGrid.Children.Remove(InnerGrid2);
+                OuterGrid.Children.Add(InnerGrid2, 1, 0);
+            }
+            else if (width < height && orientation != DeviceOrientation.Portrait)
+            {
+                orientation = DeviceOrientation.Portrait;
+                OuterAbsoluteLayout.Children.Remove(Image);
+                OuterAbsoluteLayout.Children.Add(Image, new Rectangle(0, 0, 1, 0.6), AbsoluteLayoutFlags.All);
+                OuterGrid.ColumnDefinitions.Clear();
+                OuterGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+                OuterGrid.RowDefinitions.Clear();
+                OuterGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.6, GridUnitType.Star) });
+                OuterGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.4, GridUnitType.Star) });
+                OuterGrid.Children.Remove(InnerGrid1);
+                OuterGrid.Children.Add(InnerGrid1, 0, 0);
+                OuterGrid.Children.Remove(InnerGrid2);
+                OuterGrid.Children.Add(InnerGrid2, 0, 1);
             }
         }
     }
