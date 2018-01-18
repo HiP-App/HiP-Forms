@@ -55,9 +55,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Map
                 SetNativeControl(mapView);
                 Control.ShowsCompass = true;
 
-                var overlay = new MKTileOverlay("http://b.sm.mapstack.stamen.com/(watercolor,streets-and-labels)/{z}/{x}/{y}.png") { CanReplaceMapContent = true };
-                mapView.AddOverlay(overlay, MKOverlayLevel.AboveLabels);
-
                 mapView.OverlayRenderer = OverlayRenderer;
                 mapView.RegionChanged += MapViewOnRegionChanged;
             }
@@ -324,8 +321,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Map
                 MKPolylineRenderer polylineRenderer;
                 if (overlay.Equals(currentSectionPolyLine))
                 {
-                    UIColor color = ((Color) resources.GetResourceValue("AccentColor")).ToUIColor();
-                    polylineRenderer = new MKPolylineRenderer((MKPolyline) overlay)
+                    UIColor color = ((Color)resources.GetResourceValue("AccentColor")).ToUIColor();
+                    polylineRenderer = new MKPolylineRenderer((MKPolyline)overlay)
                     {
                         FillColor = color,
                         StrokeColor = color,
@@ -334,8 +331,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Map
                 }
                 else
                 {
-                    UIColor color = ((Color) resources.GetResourceValue("PrimaryColor")).ToUIColor();
-                    polylineRenderer = new MKPolylineRenderer((MKPolyline) overlay)
+                    UIColor color = ((Color)resources.GetResourceValue("PrimaryColor")).ToUIColor();
+                    polylineRenderer = new MKPolylineRenderer((MKPolyline)overlay)
                     {
                         FillColor = color,
                         StrokeColor = color,
@@ -402,7 +399,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Map
         public double GetZoomLevel()
         {
             double longitudeDelta = Control.Region.Span.LongitudeDelta;
-            float mapWidthInPixels = (float) Control.Bounds.Size.Width;
+            float mapWidthInPixels = (float)Control.Bounds.Size.Width;
             double zoomScale = longitudeDelta * 85445659.44705395 * Math.PI / (180.0 * mapWidthInPixels);
             double zoomer = 20 - Math.Log(zoomScale);
             if (zoomer < 0)

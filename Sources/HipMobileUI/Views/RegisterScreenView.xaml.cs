@@ -16,10 +16,6 @@ using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -54,23 +50,19 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
                     return;
 
                 Grid.RowDefinitions.Clear();
-
+                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.3, GridUnitType.Star) });
+                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.15, GridUnitType.Star) });
+                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.15, GridUnitType.Star) });
                 Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.1, GridUnitType.Star) });
-                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.1, GridUnitType.Star) });
-                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.1, GridUnitType.Star) });
-                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.1, GridUnitType.Star) });
-                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.1, GridUnitType.Star) });
-                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.1, GridUnitType.Star) });
-                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.1, GridUnitType.Star) });
-                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.1, GridUnitType.Star) });
-                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.1, GridUnitType.Star) });
+                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.2, GridUnitType.Star) });
                 Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.1, GridUnitType.Star) });
 
-                Grid.SetRow(EmailEntry, 2);
-                Grid.SetRow(PasswordEntry, 3);
-                Grid.SetRow(RePasswordEntry, 4);
-                Grid.SetRow(ErrorMsgLabel, 5);
-                Grid.SetRow(ButtonView, 9);
+                Grid.SetRow(EmailEntry, 0);
+                Grid.SetRow(PasswordEntry, 1);
+                Grid.SetRow(RePasswordEntry, 2);
+                Grid.SetRow(ErrorMsgLabel, 3);
+                Grid.SetRow(ButtonView, 4);
+                Grid.SetRow(CancelLabel, 5);
 
                 deviceOrientation = DeviceOrientation.Portrait;
             }
@@ -81,19 +73,19 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
                     return;
 
                 Grid.RowDefinitions.Clear();
+                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.2, GridUnitType.Star) });
+                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.2, GridUnitType.Star) });
+                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.2, GridUnitType.Star) });
+                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.1, GridUnitType.Star) });
+                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.2, GridUnitType.Star) });
+                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.1, GridUnitType.Star) });
 
-                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.1, GridUnitType.Star) });
-                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.1, GridUnitType.Star) });
-                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.1, GridUnitType.Star) });
-                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.1, GridUnitType.Star) });
-                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.1, GridUnitType.Star) });
-                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.1, GridUnitType.Star) });
-
-                Grid.SetRow(EmailEntry, 1);
-                Grid.SetRow(PasswordEntry, 2);
-                Grid.SetRow(RePasswordEntry, 3);
-                Grid.SetRow(ErrorMsgLabel, 4);
-                Grid.SetRow(ButtonView, 5);
+                Grid.SetRow(EmailEntry, 0);
+                Grid.SetRow(PasswordEntry, 1);
+                Grid.SetRow(RePasswordEntry, 2);
+                Grid.SetRow(ErrorMsgLabel, 3);
+                Grid.SetRow(ButtonView, 4);
+                Grid.SetRow(CancelLabel, 5);
 
                 deviceOrientation = DeviceOrientation.Landscape;
             }

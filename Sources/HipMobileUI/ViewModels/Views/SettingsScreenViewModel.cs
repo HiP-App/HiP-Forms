@@ -35,7 +35,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         {
             RemoveAllDownloads = new Command(RemoveAllDownloadsClicked);
             SelectCharacterCommand = new Command(OnSelectCharacterTapped);
-            size = IoCManager.Resolve<IStorageSizeProvider>().GetDatabaseSize() + " MB";
+            Size = BuildSizeDescription();
         }
 
         public ICommand RemoveAllDownloads { get; }
@@ -56,8 +56,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             {
                 // Delete the whole DB
                 DbManager.DeleteDatabase();
-                Size = IoCManager.Resolve<IStorageSizeProvider>().GetDatabaseSize() + " MB";
+                Size = BuildSizeDescription();
             }
+        }
+
+        private static string BuildSizeDescription()
+        {
+            var dbSizeMb = IoCManager.Resolve<IStorageSizeProvider>().GetDatabaseSizeMb();
+            var mediaSizeMb = IoCManager.Resolve<IMediaFileManager>().TotalSizeBytes / (1024 * 1024);
+            return $"{dbSizeMb + mediaSizeMb} MB";
         }
 
         /// <summary>
@@ -65,7 +72,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         /// </summary>
         public bool AutoSwitchPage
         {
-            get { return Settings.AutoSwitchPage; }
+            get => Settings.AutoSwitchPage;
             set
             {
                 Settings.AutoSwitchPage = value;
@@ -78,7 +85,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         /// </summary>
         public bool AutoStartAudio
         {
-            get { return Settings.AutoStartAudio; }
+            get => Settings.AutoStartAudio;
             set
             {
                 Settings.AutoStartAudio = value;
@@ -91,7 +98,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         /// </summary>
         public bool RepeatHintAudio
         {
-            get { return Settings.RepeatHintAudio; }
+            get => Settings.RepeatHintAudio;
             set
             {
                 Settings.RepeatHintAudio = value;
@@ -104,7 +111,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         /// </summary>
         public bool RepeatHintAutoPageSwitch
         {
-            get { return Settings.RepeatHintAutoPageSwitch; }
+            get => Settings.RepeatHintAutoPageSwitch;
             set
             {
                 Settings.RepeatHintAutoPageSwitch = value;
@@ -117,10 +124,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         /// </summary>
         public bool RepeatIntro
         {
-            get { return Settings.RepeatIntro; }
+            get => Settings.RepeatIntro;
             set
             {
                 Settings.RepeatIntro = value;
+                Settings.InitialThemeSelected = !value;
                 OnPropertyChanged();
             }
         }
@@ -130,7 +138,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         /// </summary>
         public bool AlwaysDownloadData
         {
-            get { return Settings.AlwaysDownloadData; }
+            get => Settings.AlwaysDownloadData;
             set
             {
                 Settings.AlwaysDownloadData = value;
@@ -138,12 +146,18 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             }
         }
 
-        public string AppModeText
+        public string AppModeText => Settings.AdventurerMode ? Strings.SettingsScreenView_CharacterSelection_Text_IsAdventurer : Strings.SettingsScreenView_CharacterSelection_Text_IsProfessor;
+
+        public override void OnAppearing()
         {
-            get
-            {
-                return Settings.AdventurerMode ? Strings.SettingsScreenView_CharacterSelection_Text_IsAdventurer : Strings.SettingsScreenView_CharacterSelection_Text_IsProfessor;
-            }
+            base.OnAppearing();
+            Size = BuildSizeDescription();
+        }
+
+        public override void OnRevealed()
+        {
+            base.OnRevealed();
+            Size = BuildSizeDescription();
         }
 
         public string Size
@@ -156,12 +170,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
                     OnPropertyChanged();
                 }
             }
-            get { return IoCManager.Resolve<IStorageSizeProvider>().GetDatabaseSize() + " MB"; }
+            get => size;
         }
 
         public bool WifiOnly
         {
-            get { return Settings.WifiOnly; }
+            get => Settings.WifiOnly;
             set
             {
                 Settings.WifiOnly = value;

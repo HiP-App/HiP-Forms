@@ -33,7 +33,7 @@
                             <RowDefinition Height="0.3*" />
                             <RowDefinition Height="0.1*" />
                         </Grid.RowDefinitions>
-                        <Image Source="{Binding Image}" Grid.Row="0" Aspect="AspectFill" />
+                        <Image Source="{Binding Image}" Grid.Row="0" Margin="5" Aspect="AspectFill" />
                         <ScrollView Grid.Row="1" VerticalOptions="StartAndExpand">
                             <Grid BackgroundColor="White">
                                 <Grid.ColumnDefinitions>
@@ -43,23 +43,34 @@
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="*" />
                                 </Grid.RowDefinitions>
+
                                 <ContentView Grid.Column="0" AbsoluteLayout.LayoutBounds="15,15,150,150">
-                                    <controls1:CardView>
-                                        <Label Text="{Binding Text}" TextColor="#87000000" FontSize="16"/>
+                                    <controls1:CardView HasShadow="False">
+                                        <Label Text="{Binding Text}"  Margin="10" TextColor="#87000000" FontSize="16"/>
                                     </controls1:CardView>
                                 </ContentView>
-                                <StackLayout Grid.Column="1">
-                                    <Label Text="4.4" FontAttributes="Bold" FontSize="24" VerticalOptions="Center" HorizontalOptions="Center" />
-                                    <Label Text="1.222 Bewertungen" FontSize="10" HorizontalOptions="Center" VerticalOptions="Center" />
-                                    <Label Text="★★★★☆ " FontSize="10" HorizontalOptions="Center" VerticalOptions="Center" />
+                                <StackLayout Grid.Column="1" Spacing="0">
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding UserRatingCommand}" NumberOfTapsRequired="1" />
+                                    </StackLayout.GestureRecognizers>
+                                    <Label Text="{Binding RatingAverage}" FontAttributes="Bold" FontSize="24" VerticalOptions="Center" HorizontalOptions="Center" />
+                                    <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center" Spacing="5">
+                                        <Image WidthRequest="16" HeightRequest="16" Source="{Binding Star1}" VerticalOptions="Center"/>
+                                        <Image WidthRequest="16" HeightRequest="16" Source="{Binding Star2}" VerticalOptions="Center"/>
+                                        <Image WidthRequest="16" HeightRequest="16" Source="{Binding Star3}" VerticalOptions="Center"/>
+                                        <Image WidthRequest="16" HeightRequest="16" Source="{Binding Star4}" VerticalOptions="Center"/>
+                                        <Image WidthRequest="16" HeightRequest="16" Source="{Binding Star5}" VerticalOptions="Center"/>
+                                    </StackLayout>
+                                    <Label Text="{Binding RatingCount}" FontSize="12" HorizontalOptions="Center" VerticalOptions="Center" />
                                 </StackLayout>
                             </Grid>
                         </ScrollView>
+
                     </Grid>
-                    <Button AbsoluteLayout.LayoutBounds=".5,1,.95,.1" AbsoluteLayout.LayoutFlags="All"
-                            Image="ic_file_download.png" IsVisible="{Binding IsDownloadButtonVisible}" Command="{Binding DownloadCommand}" />
+                    <Button AbsoluteLayout.LayoutBounds=".5,1,1,.13" Margin="7" BackgroundColor="LightGray"  AbsoluteLayout.LayoutFlags="All"
+                    Image="ic_file_download.png" IsVisible="{Binding IsDownloadButtonVisible}" Command="{Binding DownloadCommand}" />
                     <Button AbsoluteLayout.LayoutBounds="1,.5,.2,.1" AbsoluteLayout.LayoutFlags="All"
-                            Image="ic_chevron_right" IsVisible="{Binding NextVisible}" Command="{Binding NextViewCommand}" BackgroundColor="#80D3D3D3" AutomationId="NextButton"/>
+                    Image="ic_chevron_right" IsVisible="{Binding NextVisible}" Command="{Binding NextViewCommand}" BackgroundColor="#80D3D3D3" AutomationId="NextButton"/>
                 </AbsoluteLayout>
             </views:NotificationExtensionView.ContentTemplate>
         </views:NotificationExtensionView>

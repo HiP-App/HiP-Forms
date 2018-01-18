@@ -33,7 +33,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI
             // Handle when your app starts
 
             // set the first page that is shown
-            INavigationService navigationService = IoCManager.Resolve<INavigationService>();
+            var navigationService = IoCManager.Resolve<INavigationService>();
             if (Settings.RepeatIntro)
             {
                 navigationService.StartNewNavigationStack(new UserOnboardingPageViewModel());

@@ -30,10 +30,46 @@
             <Color x:Key="MediumGrayColor">#15000000</Color>
             <Color x:Key="DarkGrayColor">#66000000</Color>
             <Color x:Key="SolidLightGrayColor">#FFEEEEEE</Color>
+
+            <!--Colors for the user rating bars -->
+            <Color x:Key="GreenBarColor">#9CC25C</Color>
+            <Color x:Key="LightGreenBarColor">#A9D839</Color>
+            <Color x:Key="YellowBarColor">#FDDB37</Color>
+            <Color x:Key="OrangeBarColor">#FEB533</Color>
+            <Color x:Key="RedBarColor">#FF8E59</Color>       
+
             <Style TargetType="Label">
                 <Setter Property="FontSize" Value="12" />
                 <Setter Property="TextColor" Value="Black" />
             </Style>
+
+            <!--#region ThemedBoxView -->
+            <Style x:Key="BoxViewAdventurerMode" TargetType="BoxView">
+                <Setter Property="Color" Value="{StaticResource AccentColor}"/>
+            </Style>
+            <Style x:Key="BoxViewProfessorMode" TargetType="BoxView">
+                <Setter Property="Color" Value="{StaticResource PrimaryColor}"/>
+            </Style>
+            <!--#endregion-->
+
+            <!--#region ThemedLabel-->
+            <Style x:Key="LabelAdventurerMode" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource PrimaryColor}"/>
+            </Style>
+            <Style x:Key="LabelProfessorMode" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource AccentColor}"/>
+            </Style>
+            <!--#endregion-->
+
+            <!--#region ThemedButton-->
+            <Style x:Key="ButtonAdventurerMode" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{StaticResource PrimaryColor}"/>
+            </Style>
+            <Style x:Key="ButtonProfessorMode" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{StaticResource AccentColor}"/>
+            </Style>
+            <!--#endregion-->
+
             <converters1:ViewModelViewConverter x:Key="ViewModelViewConverter" />
             <converters1:ItemTappedConverter x:Key="ItemTappedConverter" />
             <converters1:ImageListConverter x:Key="ImageListConverter" />

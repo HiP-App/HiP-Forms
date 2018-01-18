@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
@@ -7,7 +8,9 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using Xamarin.Forms;
 using System.ComponentModel;
+using System.Diagnostics;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 {
@@ -31,12 +34,25 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         {
             Achievements.Clear();
 
-            await IoCManager.Resolve<IAchievementFetcher>().UpdateAchievements(); // TODO Use return value
-            foreach (var achievement in AchievementManager.GetAchievements())
+            try
             {
-                Achievements.Add(AchievementViewModel.CreateFrom(achievement));
+                var newlyUnlocked = await IoCManager.Resolve<IAchievementFetcher>().UpdateAchievements();
+                AchievementNotification.QueueAchievementNotifications(newlyUnlocked);
+                foreach (var achievement in AchievementManager.GetAchievements())
+                {
+                    Achievements.Add(AchievementViewModel.CreateFrom(achievement));
+                }
+
+                Score = $"{Strings.AchievementsScreenView_Score} {AppSharedData.CurrentAchievementsScore()}";
             }
-            Score = $"{Strings.AchievementsScreenView_Score} {AppSharedData.CurrentAchievementsScore()}";
+            catch (Exception e)
+            {
+                Debug.WriteLine(e);
+                await IoCManager.Resolve<INavigationService>()
+                                .DisplayAlert(Strings.Alert_No_Internet_Title, 
+                                              Strings.Alert_No_Internet_Description, 
+                                              Strings.Alert_Confirm);
+            }
         }
 
         public override async void OnAppearing()
