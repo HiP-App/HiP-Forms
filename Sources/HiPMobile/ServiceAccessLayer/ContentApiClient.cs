@@ -50,11 +50,27 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer
         /// <returns>Json result of the requested url</returns>
         public async Task<string> GetResponseFromUrlAsString(string urlPath)
         {
-            var response = await GetHttpWebResponse(urlPath);
-            using (Stream responseStream = response.GetResponseStream())
+            try
             {
-                StreamReader reader = new StreamReader(responseStream, Encoding.UTF8);
-                return reader.ReadToEnd();
+                var response = await GetHttpWebResponse(urlPath);
+                using (Stream responseStream = response.GetResponseStream())
+                {
+                    StreamReader reader = new StreamReader(responseStream, Encoding.UTF8);
+                    return reader.ReadToEnd();
+                }
+            }
+            catch (NetworkAccessFailedException e)
+            {
+                if ((((WebException)e.InnerException).Response as HttpWebResponse)?.StatusCode == HttpStatusCode.Unauthorized)
+                {
+                    // The token is expired, get a new one and retry
+                    Settings.GenericToken = (await GetTokenForDataStore()).AccessToken;
+                    return await GetResponseFromUrlAsString(urlPath);
+                }
+                else
+                {
+                    throw e;
+                }
             }
         }
 
@@ -81,9 +97,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer
                     }
                 }
             }
-            catch (WebException e)
+            catch (NetworkAccessFailedException e)
             {
-                if ((e.Response as HttpWebResponse)?.StatusCode == HttpStatusCode.Unauthorized)
+                if ((((WebException)e.InnerException).Response as HttpWebResponse)?.StatusCode == HttpStatusCode.Unauthorized)
                 {
                     // The token is expired, get a new one and retry
                     Settings.GenericToken = (await GetTokenForDataStore()).AccessToken;
