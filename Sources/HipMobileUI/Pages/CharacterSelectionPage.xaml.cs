@@ -68,18 +68,27 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
 		{
 			int surfaceWidth = e.Info.Width;
 			int surfaceHeight = e.Info.Height;
+
 			SKCanvas canvas = e.Surface.Canvas;
-			float side = Math.Min(surfaceHeight, surfaceWidth) * 0.5f;
+
 
 			using (SKPaint paint = new SKPaint())
 			{
-				canvas.Clear(Color.Black.ToSKColor()); //paint it black
-				SKRect r1 = new SKRect(10f, 20f, side, side);
-				paint.Color = Color.Blue.ToSKColor();
-				canvas.DrawRect(r1, paint);
+				canvas.Clear(Color.Blue.ToSKColor()); //paint it blue
 
-				paint.Color = Color.Red.ToSKColor();
-				canvas.DrawOval(r1, paint);
+				var pathStroke = new SKPaint
+				{
+					IsAntialias = true,
+					Style = SKPaintStyle.Stroke,
+					Color = SKColors.Black,
+					StrokeWidth = 10
+				};
+				var path = new SKPath();
+				path.MoveTo(0, 0);
+				path.LineTo(surfaceWidth, surfaceHeight);
+				canvas.DrawPath(path, pathStroke);
+
+
 			}
 		}
 		protected override bool OnBackButtonPressed()
