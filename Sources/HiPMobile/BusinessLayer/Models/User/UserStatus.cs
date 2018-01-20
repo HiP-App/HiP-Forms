@@ -4,11 +4,11 @@
     {
         LoggedIn,
         LoggedOut,
-        InCorrectUserNameandPassword,
+        IncorrectUserNameAndPassword,
         ServerError,
         NetworkConnectionFailed,
         Registered,
-        UnkownError,
+        UnknownError,
         PasswordResetEmailSent
     }
 }
