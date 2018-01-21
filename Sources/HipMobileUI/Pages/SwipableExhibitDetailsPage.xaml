@@ -1,15 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<pages:OrientationContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:forms="clr-namespace:Xamarin.Forms;assembly=Xamarin.Forms.CarouselView"
+             xmlns:pages="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Pages;assembly=HipMobileUI"
              x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Pages.SwipableExhibitDetailsPage">
     <ContentPage.Content>
-        <forms:CarouselView>
+        <forms:CarouselView ItemsSource="{Binding Pages}">
             <forms:CarouselView.ItemTemplate>
                 <DataTemplate>
-                    
+                    <pages:ExhibitDetailsPage/>
                 </DataTemplate>
             </forms:CarouselView.ItemTemplate>
         </forms:CarouselView>
     </ContentPage.Content>
-</ContentPage>
+</pages:OrientationContentPage>

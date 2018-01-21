@@ -100,6 +100,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Strings.resx</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\Pages\SwipableExhibitDetailsPageViewModel.cs" />
     <Compile Include="ViewModels\Pages\UserRatingPageViewModel.cs" />
     <Compile Include="ViewModels\Views\AchievementNotificationViewModel.cs" />
     <Compile Include="ViewModels\Views\AchievementViewModel.cs" />

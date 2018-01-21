@@ -95,18 +95,5 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
             AudioToolbar.IsVisible = ViewModel.AudioToolbarVisible;
         }
 
-        /// <summary>
-        /// Called when the page is popped from the navigation stack(Android& iOS) or the app is about to start sleeping(display turned off, app went to background9(only Android)
-        /// </summary>
-        protected override void OnDisappearing()
-        {
-            base.OnDisappearing();
-
-            // reset the controller, cannot be called in OnDisappearing of viewmodel as it is too late
-            // in case it was called on app sleep, the state will be restored, when the app wakes up
-            isOnDisappearingContext = true;
-            //OrientationController = OrientationController.Sensor;
-            isOnDisappearingContext = false;
-        }
     }
 }
