@@ -76,18 +76,22 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
 			{
 				canvas.Clear(Color.Blue.ToSKColor()); //paint it blue
 
-				var pathStroke = new SKPaint
+
+				var pathStroke2 = new SKPaint
 				{
 					IsAntialias = true,
-					Style = SKPaintStyle.Stroke,
-					Color = SKColors.Black,
-					StrokeWidth = 10
+					Style = SKPaintStyle.StrokeAndFill,
+					Color = new SKColor(255, 165, 0),
+					StrokeWidth = 5
 				};
-				var path = new SKPath();
-				path.MoveTo(0, 0);
-				path.LineTo(surfaceWidth, surfaceHeight);
-				canvas.DrawPath(path, pathStroke);
 
+				var path2 = new SKPath { FillType = SKPathFillType.EvenOdd };
+				path2.MoveTo(0, 0);
+				path2.LineTo(0, surfaceHeight);
+				path2.LineTo(surfaceWidth, surfaceHeight);
+				path2.LineTo(0, 0);
+				path2.Close();
+				canvas.DrawPath(path2, pathStroke2);
 
 			}
 		}
