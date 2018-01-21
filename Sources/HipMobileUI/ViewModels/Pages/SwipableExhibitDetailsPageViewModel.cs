@@ -1,4 +1,4 @@
-﻿// Copyright (C) 2017 History in Paderborn App - Universität Paderborn
+﻿﻿// Copyright (C) 2017 History in Paderborn App - Universität Paderborn
 //  
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,16 +12,18 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 {
-    public class SwipableExhibitDetailsPageViewModel: NavigationViewModel
+    public class SwipableExhibitDetailsPageViewModel : NavigationViewModel
     {
-        private ObservableCollection<Page> pages;
-        
-        public ObservableCollection<Page> Pages
+        private ObservableCollection<ExhibitDetailsViewModel> pages;
+
+        public ObservableCollection<ExhibitDetailsViewModel> Pages
         {
             get => pages;
             set => SetProperty(ref pages, value);
@@ -29,7 +31,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
         public SwipableExhibitDetailsPageViewModel(Exhibit exhibit)
         {
-            pages = new ObservableCollection<Page>(exhibit.Pages);
+            pages = new ObservableCollection<ExhibitDetailsViewModel>(
+                exhibit.Pages.Select(page => new ExhibitDetailsViewModel(exhibit, new List<Page> { page }, "title", additionalInformation: false)));
         }
     }
 }
