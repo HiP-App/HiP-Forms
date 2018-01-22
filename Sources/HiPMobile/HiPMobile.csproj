@@ -83,6 +83,10 @@
     <Compile Include="BusinessLayer\DtoToModelConverters\MediaToAudioConverter.cs" />
     <Compile Include="BusinessLayer\DtoToModelConverters\MediaToImageConverter.cs" />
     <Compile Include="BusinessLayer\DtoToModelConverters\PageConverter.cs" />
+    <Compile Include="BusinessLayer\FeatureToggling\FeatureConfiguration.cs" />
+    <Compile Include="BusinessLayer\FeatureToggling\FeatureId.cs" />
+    <Compile Include="BusinessLayer\FeatureToggling\FeatureToggleRouter.cs" />
+    <Compile Include="BusinessLayer\FeatureToggling\IFeatureToggleRouter.cs" />
     <Compile Include="BusinessLayer\Managers\AchievementManager.cs" />
     <Compile Include="BusinessLayer\Managers\UserRatingManager.cs" />
     <Compile Include="BusinessLayer\Models\ModelClasses\ExhibitsVisitedAchievement.cs" />
@@ -116,7 +120,9 @@
     <Compile Include="BusinessLayer\DtoToModelConverters\ExhibitConverter.cs" />
     <Compile Include="DataAccessLayer\InvalidTransactionException.cs" />
     <Compile Include="Helpers\AssertionHelper.cs" />
+    <Compile Include="Helpers\CachingObserver.cs" />
     <Compile Include="Helpers\EarlyIoC.cs" />
+    <Compile Include="Helpers\Observable.cs" />
     <Compile Include="Helpers\UriQueryBuilder.cs" />
     <Compile Include="ServiceAccessLayer\AuthApiDto\TokenPayload.cs" />
     <Compile Include="ServiceAccessLayer\AuthenticationApiAccess\AuthApiAccess.cs" />
@@ -148,6 +154,9 @@
     <Compile Include="ServiceAccessLayer\AuthenticationApiAccess\IAuthApiAccess.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiDtos\UserRatingDto.cs" />
     <Compile Include="ServiceAccessLayer\Exceptions\InvalidUserNamePassword.cs" />
+    <Compile Include="ServiceAccessLayer\FeatureToggleApiAccess\FeatureToggleApiAccess.cs" />
+    <Compile Include="ServiceAccessLayer\FeatureToggleApiAccess\IFeatureToggleApiAccess.cs" />
+    <Compile Include="ServiceAccessLayer\FeatureToggleApiDto\FeatureDto.cs" />
     <Compile Include="ServiceAccessLayer\IContentApiClient.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiDtos\ExhibitDto.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiDtos\ExhibitsDto.cs" />

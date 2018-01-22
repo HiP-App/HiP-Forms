@@ -411,7 +411,9 @@
     <AndroidResource Include="Resources\drawable-xhdpi\ic_my_location_white.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\ic_my_location_white.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\ic_my_location_white.png" />
-    <AndroidResource Include="Resources\drawable\Splashscreen.xml" />
+    <AndroidResource Include="Resources\drawable\Splashscreen.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
     <AndroidResource Include="Resources\drawable\hiphop_transparent.png" />
     <AndroidResource Include="Resources\drawable-hdpi\ic_more.png" />
     <AndroidResource Include="Resources\drawable-mdpi\ic_more.png" />

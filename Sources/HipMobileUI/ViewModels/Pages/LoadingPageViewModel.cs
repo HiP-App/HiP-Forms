@@ -1,4 +1,4 @@
-// Copyright (C) 2017 History in Paderborn App - Universität Paderborn
+﻿// Copyright (C) 2017 History in Paderborn App - Universität Paderborn
 //  
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -21,17 +21,18 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetche
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentHandling;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelConverters;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.FeatureToggling;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.UserManagement;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataLayer;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.AuthenticationApiAccess;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses.Contracts;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.FeatureToggleApiAccess;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.FeatureToggleApiDto;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Appearance;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Location;
@@ -131,7 +132,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         {
             try
             {
-                InitIoCContainer();
+                await InitIoCContainerAsync();
                 await BackupData.Init();
 
                 baseDataFetcher = IoCManager.Resolve<IBaseDataFetcher>();
@@ -158,10 +159,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                         {
                             Device.BeginInvokeOnMainThread(actionOnUiThread);
                         }
+
                         return;
                     }
+
                     await UpdateDatabase();
                 }
+
                 await AchievementManager.UpdateServerAndLocalState();
             }
             catch (Exception e)
@@ -170,8 +174,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                 // This should only happen during development
                 errorMessage = e.Message;
                 errorTitle = "Error";
-                Debug.WriteLine(e.Message);
-                Debug.WriteLine(e.StackTrace);
+                Debug.WriteLine(e);
             }
 
             LoadCacheAndStart();
@@ -181,9 +184,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         {
             actionOnUiThread = null;
             var downloadData = await Navigation.DisplayAlert(Strings.LoadingPageViewModel_BaseData_DataAvailable,
-                                                              Strings.LoadingPageViewModel_BaseData_DownloadViaMobile,
-                                                              Strings.LoadingPageViewModel_BaseData_MobileDownload_Confirm,
-                                                              Strings.LoadingPageViewModel_BaseData_MobileDownload_Cancel);
+                                                             Strings.LoadingPageViewModel_BaseData_DownloadViaMobile,
+                                                             Strings.LoadingPageViewModel_BaseData_MobileDownload_Confirm,
+                                                             Strings.LoadingPageViewModel_BaseData_MobileDownload_Cancel);
 
             try
             {
@@ -191,6 +194,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                 {
                     await UpdateDatabase();
                 }
+
                 LoadCacheAndStart();
             }
             catch (Exception e)
@@ -199,6 +203,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                 // This should only happen during development
                 errorMessage = e.Message;
                 errorTitle = "Error";
+                Debug.WriteLine(e);
             }
         }
 
@@ -210,8 +215,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             }
             catch (Exception e)
             {
-                Debug.WriteLine(e.Message);
-                Debug.WriteLine(e.StackTrace);
+                Debug.WriteLine(e);
 
                 errorTitle = Strings.LoadingPageViewModel_BaseData_DownloadFailed_Title;
                 errorMessage = Strings.LoadingPageViewModel_BaseData_DatabaseUpToDateCheckFailed;
@@ -229,8 +233,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             {
                 errorTitle = Strings.LoadingPageViewModel_BaseData_DownloadFailed_Title;
                 errorMessage = Strings.LoadingPageViewModel_BaseData_DownloadFailed_Text;
-                Debug.WriteLine(e.Message);
-                Debug.WriteLine(e.StackTrace);
+                Debug.WriteLine(e);
             }
         }
 
@@ -249,6 +252,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                 // This should only happen during development
                 errorMessage = e.Message;
                 errorTitle = "Error";
+                Debug.WriteLine(e);
             }
 
             actionOnUiThread = async () =>
@@ -257,6 +261,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                 {
                     await Navigation.DisplayAlert(errorTitle, errorMessage, Strings.LoadingPageViewModel_LoadingError_Confirm);
                 }
+
                 StartMainApplication();
             };
             // if the app is not sleeping open the main menu, otherwise wait for it to wake up
@@ -279,7 +284,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             Navigation.StartNewNavigationStack(vm);
         }
 
-        private void InitIoCContainer()
+        private async Task InitIoCContainerAsync()
         {
             IoCManager.RegisterType<IDataLoader, EmbeddedResourceDataLoader>();
             IoCManager.RegisterInstance(typeof(ApplicationResourcesProvider), new ApplicationResourcesProvider(Application.Current.Resources));
@@ -287,6 +292,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             //init serviceaccesslayer
             IoCManager.RegisterInstance(typeof(IContentApiClient), new ContentApiClient());
             IoCManager.RegisterInstance(typeof(IAchievementsApiAccess), new AchievementsApiAccess(new ContentApiClient(ServerEndpoints.AchievementsApiPath)));
+            IoCManager.RegisterInstance(typeof(IFeatureToggleApiAccess), new FeatureToggleApiAccess(new ContentApiClient(ServerEndpoints.FeatureTogglesApiPath)));
             IoCManager.RegisterType<IExhibitsApiAccess, ExhibitsApiAccess>();
             IoCManager.RegisterType<IMediasApiAccess, MediasApiAccess>();
             IoCManager.RegisterType<IFileApiAccess, FileApiAccess>();
@@ -322,6 +328,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             IoCManager.RegisterInstance(typeof(IUserRatingManager), new UserRatingManager());
             IoCManager.RegisterInstance(typeof(IThemeManager), new ThemeManager());
             IoCManager.RegisterInstance(typeof(AchievementNotificationViewModel), new AchievementNotificationViewModel());
+            
+            var featureToggleRouter = await FeatureToggleRouter.CreateAsync();
+            IoCManager.RegisterInstance(typeof(IFeatureToggleRouter), featureToggleRouter);
         }
 
         /// <summary>

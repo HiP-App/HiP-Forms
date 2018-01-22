@@ -268,6 +268,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
             set { AppSettings.AddOrUpdateValue(AccessTokenKey, value); }
         }
 
+        private const string GenericTokenKey = "generic_token_key";
+        private const string GenericTokenDefault = "";
+
+        public static string GenericToken
+        {
+            get { return AppSettings.GetValueOrDefault(GenericTokenKey, GenericTokenDefault); }
+            set { AppSettings.AddOrUpdateValue(GenericTokenKey, value); }
+        }
+
 
 
         /// <summary>

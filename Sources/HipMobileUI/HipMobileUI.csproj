@@ -61,7 +61,6 @@
     <Compile Include="Container\TabContainerView.cs" />
     <Compile Include="Contracts\IStatusBarController.cs" />
     <Compile Include="Controls\ZeroPaddingButton.cs" />
-    <Compile Include="Helpers\InverseBooleanConverter.cs" />
     <Compile Include="NotificationPlayer\INotificationPlayer.cs" />
     <Compile Include="Controls\CardView.cs" />
     <Compile Include="Controls\CarouselIndicators.cs" />
