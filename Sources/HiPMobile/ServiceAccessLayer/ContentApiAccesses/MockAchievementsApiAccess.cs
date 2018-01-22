@@ -23,7 +23,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
     {
         private readonly IEnumerable<AchievementDto> achievements = new List<AchievementDto>
         {
-            new AchievementDto(0, "Achievement title", "Description", "TODO thumburl", -1, 10)
+            new RouteFinishedAchievementDto(0, "Route finished achievement", "Description", "TODO thumburl", -1, 10, 0),
+            new ExhibitsVisitedAchievementDto(1, "Exhibits visited achievement", "Description", "TODO thumburl", -1, 10, 5)
         };
 
         public Task<IEnumerable<AchievementDto>> GetUnlockedAchievements() => Task.FromResult(achievements);
