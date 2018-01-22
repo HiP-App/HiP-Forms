@@ -92,15 +92,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
         private async void SetUserRatingUi()
         {
-            var userRating = await IoCManager.Resolve<IUserRatingManager>().GetUserRatingAsync(exhibit.IdForRestApi);
+            var userRatingManager = IoCManager.Resolve<IUserRatingManager>();
+            var userRating = await userRatingManager.GetUserRatingAsync(exhibit.IdForRestApi);
             SetAverageAndCountRating(userRating.Average, userRating.Count);
             SetStarImages(userRating.Average);
             SetRatingBars(userRating.RatingTable, userRating.Count);
-            RatingStar1 = ImgStarEmpty;
-            RatingStar2 = ImgStarEmpty;
-            RatingStar3 = ImgStarEmpty;
-            RatingStar4 = ImgStarEmpty;
-            RatingStar5 = ImgStarEmpty;
+            var prevRating = userRating.Count == 0 ? 0 : await userRatingManager.GetPreviousUserRatingAsync(exhibit.IdForRestApi);
+            SetRatingStars(prevRating);
         }
 
         private void SetAverageAndCountRating(double average, int count)
@@ -114,19 +112,19 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             Star1 = average < 1 ? ImgStarEmpty : ImgStarFilled;
             if (average < 1.25)
                 Star2 = ImgStarEmpty;
-            else if ((average >= 1.25 && average < 1.75))
+            else
                 Star2 = (average >= 1.25 && average < 1.75) ? ImgStarHalfFilled : ImgStarFilled;
             if (average < 2.25)
                 Star3 = ImgStarEmpty;
-            else if ((average >= 2.25 && average < 2.75))
+            else
                 Star3 = (average >= 2.25 && average < 2.75) ? ImgStarHalfFilled : ImgStarFilled;
             if (average < 3.25)
                 Star4 = ImgStarEmpty;
-            else if ((average >= 3.25 && average < 3.75))
+            else
                 Star4 = (average >= 3.25 && average < 3.75) ? ImgStarHalfFilled : ImgStarFilled;
             if (average < 4.25)
                 Star5 = ImgStarEmpty;
-            else if ((average >= 4.25 && average < 4.75))
+            else
                 Star5 = (average >= 4.25 && average < 4.75) ? ImgStarHalfFilled : ImgStarFilled;
         }
 
@@ -166,30 +164,19 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
         private void SetRatingStars(int rating)
         {
-            if (rating > lastRating)
-            {
-                if (lastRating == 0 && rating >= 1)
-                    RatingStar1 = ImgStarFilled;
-                if (lastRating <= 1 && rating >= 2)
-                    RatingStar2 = ImgStarFilled;
-                if (lastRating <= 2 && rating >= 3)
-                    RatingStar3 = ImgStarFilled;
-                if (lastRating <= 3 && rating >= 4)
-                    RatingStar4 = ImgStarFilled;
-                if (lastRating <= 4 && rating == 5)
-                    RatingStar5 = ImgStarFilled;
-            }
-            else
-            {
-                if (lastRating == 5 && rating <= 4)
-                    RatingStar5 = ImgStarEmpty;
-                if (lastRating >= 4 && rating <= 3)
-                    RatingStar4 = ImgStarEmpty;
-                if (lastRating >= 3 && rating <= 2)
-                    RatingStar3 = ImgStarEmpty;
-                if (lastRating >= 2 && rating <= 1)
-                    RatingStar2 = ImgStarEmpty;
-            }
+            var img = rating <= lastRating ? ImgStarEmpty : ImgStarFilled;
+
+            if (Math.Min(rating, lastRating) == 0 && Math.Max(rating, lastRating) >= 1 || rating == 0)
+                RatingStar1 = img;
+            if (Math.Min(rating, lastRating) <= 1 && Math.Max(rating, lastRating) >= 2 || rating == 0)
+                RatingStar2 = img;
+            if (Math.Min(rating, lastRating) <= 2 && Math.Max(rating, lastRating) >= 3 || rating == 0)
+                RatingStar3 = img;
+            if (Math.Min(rating, lastRating) <= 3 && Math.Max(rating, lastRating) >= 4 || rating == 0)
+                RatingStar4 = img;
+            if (Math.Min(rating, lastRating) <= 4 && Math.Max(rating, lastRating) >= 5 || rating == 0)
+                RatingStar5 = img;
+
             lastRating = rating;
         }
 
