@@ -23,7 +23,7 @@
              x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Pages.CharacterSelectionPage">
     <ContentPage.Content>
 		<Grid>
-		<views:SKCanvasView x:Name="canvas" PaintSurface="OnPaintSample">
+		<views:SKCanvasView x:Name="Canvas" PaintSurface="OnPaintSample">
 		</views:SKCanvasView>
 		</Grid>
     </ContentPage.Content>
