@@ -23,7 +23,6 @@ using Xamarin.Forms;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.ModelClasses;
 using System.IO;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelConverters;
 using System.Collections.Generic;
@@ -67,7 +66,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         private string ratingAverage;
         private string ratingCount;
 
-        private int lastRating = 0;
+        private int lastRating;
 
         private const string ImgStarEmpty = "star_empty.png";
         private const string ImgStarHalfFilled = "star_half_filled.png";
@@ -93,7 +92,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
         private async void SetUserRatingUi()
         {
-            UserRating userRating = await IoCManager.Resolve<IUserRatingManager>().GetUserRatingAsync(exhibit.IdForRestApi);
+            var userRating = await IoCManager.Resolve<IUserRatingManager>().GetUserRatingAsync(exhibit.IdForRestApi);
             SetAverageAndCountRating(userRating.Average, userRating.Count);
             SetStarImages(userRating.Average);
             SetRatingBars(userRating.RatingTable, userRating.Count);
@@ -106,46 +105,32 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
         private void SetAverageAndCountRating(double average, int count)
         {
-            if (count > 0)
-                RatingAverage = average.ToString("0.#");
-            else
-                RatingAverage = "-";
-            RatingCount = count.ToString() + " " + Strings.UserRating_Rate_Count;
+            RatingAverage = count > 0 ? average.ToString("0.#") : "-";
+            RatingCount = count + " " + Strings.UserRating_Rate_Count;
         }
 
         private void SetStarImages(double average)
         {
-            if (average < 1)
-                Star1 = ImgStarEmpty;
-            else
-                Star1 = ImgStarFilled;
+            Star1 = average < 1 ? ImgStarEmpty : ImgStarFilled;
             if (average < 1.25)
                 Star2 = ImgStarEmpty;
             else if ((average >= 1.25 && average < 1.75))
-                Star2 = ImgStarHalfFilled;
-            else
-                Star2 = ImgStarFilled;
+                Star2 = (average >= 1.25 && average < 1.75) ? ImgStarHalfFilled : ImgStarFilled;
             if (average < 2.25)
                 Star3 = ImgStarEmpty;
             else if ((average >= 2.25 && average < 2.75))
-                Star3 = ImgStarHalfFilled;
-            else
-                Star3 = ImgStarFilled;
+                Star3 = (average >= 2.25 && average < 2.75) ? ImgStarHalfFilled : ImgStarFilled;
             if (average < 3.25)
                 Star4 = ImgStarEmpty;
             else if ((average >= 3.25 && average < 3.75))
-                Star4 = ImgStarHalfFilled;
-            else
-                Star4 = ImgStarFilled;
+                Star4 = (average >= 3.25 && average < 3.75) ? ImgStarHalfFilled : ImgStarFilled;
             if (average < 4.25)
                 Star5 = ImgStarEmpty;
             else if ((average >= 4.25 && average < 4.75))
-                Star5 = ImgStarHalfFilled;
-            else
-                Star5 = ImgStarFilled;
+                Star5 = (average >= 4.25 && average < 4.75) ? ImgStarHalfFilled : ImgStarFilled;
         }
 
-        private void SetRatingBars(Dictionary<int, int> ratingTable, int count)
+        private void SetRatingBars(IReadOnlyDictionary<int, int> ratingTable, int count)
         {
             Star5BarCount = ratingTable[5].ToString();
             Star4BarCount = ratingTable[4].ToString();
@@ -161,11 +146,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
         private GridLength CalculateBarProportion(double value, double totalCount)
         {
-            if (value == 0)
+            if (Math.Abs(value) <= 0)
                 return new GridLength(0, GridUnitType.Absolute);
-            if (value == totalCount)
+            if (Math.Abs(value - totalCount) <= 0)
                 return new GridLength(short.MaxValue, GridUnitType.Star);
-            double prop = (1 / (1 - value / totalCount) - 1);
+            var prop = (1 / (1 - value / totalCount) - 1);
             return new GridLength(prop, GridUnitType.Star);
         }
 
@@ -183,29 +168,27 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         {
             if (rating > lastRating)
             {
-                String img = ImgStarFilled;
                 if (lastRating == 0 && rating >= 1)
-                    RatingStar1 = img;
+                    RatingStar1 = ImgStarFilled;
                 if (lastRating <= 1 && rating >= 2)
-                    RatingStar2 = img;
+                    RatingStar2 = ImgStarFilled;
                 if (lastRating <= 2 && rating >= 3)
-                    RatingStar3 = img;
+                    RatingStar3 = ImgStarFilled;
                 if (lastRating <= 3 && rating >= 4)
-                    RatingStar4 = img;
+                    RatingStar4 = ImgStarFilled;
                 if (lastRating <= 4 && rating == 5)
-                    RatingStar5 = img;
+                    RatingStar5 = ImgStarFilled;
             }
             else
             {
-                String img = ImgStarEmpty;
                 if (lastRating == 5 && rating <= 4)
-                    RatingStar5 = img;
+                    RatingStar5 = ImgStarEmpty;
                 if (lastRating >= 4 && rating <= 3)
-                    RatingStar4 = img;
+                    RatingStar4 = ImgStarEmpty;
                 if (lastRating >= 3 && rating <= 2)
-                    RatingStar3 = img;
+                    RatingStar3 = ImgStarEmpty;
                 if (lastRating >= 2 && rating <= 1)
-                    RatingStar2 = img;
+                    RatingStar2 = ImgStarEmpty;
             }
             lastRating = rating;
         }

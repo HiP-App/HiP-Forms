@@ -38,6 +38,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
         /// <param name="rating">The rating for an exhibit. The rating should be between 1 and 5.</param>
         /// <returns>A boolean which tells if the rating was successfully sent to the server.</returns>
         Task<bool> SendUserRatingAsync(int idForRestApi, int rating);
+
+        /// <summary>
+        /// Fetch the rating the current user has given the exhibit.
+        /// </summary>
+        /// <param name="idForRestApi">The id of the exhibit for which the user rating should be returned.</param>
+        /// <returns>The last rating given from the logged in user.</returns>
+        Task<int> GetPreviousUserRatingAsync(int idForRestApi);
     }
 
     public class UserRatingManager : IUserRatingManager
@@ -48,8 +55,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
         public async Task<UserRating> GetUserRatingAsync(int idForRestApi)
         {
             var userRatingDto = await client.GetUserRatingAsync(idForRestApi);
-            userRatingDto.RatingTable = userRatingDto.RatingTable == null ? InitializeEmptyRatingTable() : userRatingDto.RatingTable;
+            userRatingDto.RatingTable = userRatingDto.RatingTable ?? InitializeEmptyRatingTable();
             return new UserRating(userRatingDto);
+        }
+
+        public async Task<int> GetPreviousUserRatingAsync(int idForRestApi)
+        {
+            return await client.GetPreviousUserRatingAsync(idForRestApi);
         }
 
         public async Task<bool> SendUserRatingAsync(int idForRestApi, int rating)
@@ -60,7 +72,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
         private Dictionary<int, int> InitializeEmptyRatingTable()
         {
             var ratingTable = new Dictionary<int, int>();
-            for (int i = 1; i <= 5; i++)
+            for (var i = 1; i <= 5; i++)
                 ratingTable.Add(i, 0);
             return ratingTable;
         }
