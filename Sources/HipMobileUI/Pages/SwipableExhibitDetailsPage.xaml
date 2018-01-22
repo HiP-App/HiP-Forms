@@ -4,15 +4,15 @@
                               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                               xmlns:forms="clr-namespace:Xamarin.Forms;assembly=Xamarin.Forms.CarouselView"
                               xmlns:pages="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Pages;assembly=HipMobileUI"
+                              xmlns:abstractions="clr-namespace:CarouselView.FormsPlugin.Abstractions;assembly=CarouselView.FormsPlugin.Abstractions"
                               x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Pages.SwipableExhibitDetailsPage">
-    <ContentPage.Content>
-        <forms:CarouselView ItemsSource="{Binding Pages}">
-            <forms:CarouselView.ItemTemplate>
-                <DataTemplate>
-                     <pages:ExhibitDetailsPage  /> 
-<!--                  <Label WidthRequest="100" HeightRequest="100" Text="{Binding Pagenumber}" BackgroundColor="Red"></Label>-->
-                </DataTemplate>
-            </forms:CarouselView.ItemTemplate>
-        </forms:CarouselView>
-    </ContentPage.Content>
+  <ContentPage.Content>
+    <abstractions:CarouselViewControl ItemsSource="{Binding Pages}">
+      <abstractions:CarouselViewControl.ItemTemplate>
+        <DataTemplate>
+          <pages:ExhibitDetailsPage  />
+        </DataTemplate>
+      </abstractions:CarouselViewControl.ItemTemplate>
+    </abstractions:CarouselViewControl>>
+  </ContentPage.Content>
 </pages:OrientationContentPage>

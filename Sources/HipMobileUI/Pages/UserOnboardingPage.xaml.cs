@@ -85,8 +85,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
             RelativeLayout layout = new RelativeLayout();
 
             // create the carousel
-            CarouselView carousel = new CarouselView();
-            carousel.SetBinding(CarouselView.PositionProperty, "SelectedPage");
+            Xamarin.Forms.CarouselView carousel = new Xamarin.Forms.CarouselView();
+            carousel.SetBinding(Xamarin.Forms.CarouselView.PositionProperty, "SelectedPage");
             carousel.SetBinding(ItemsView.ItemsSourceProperty, "Pages");
             if (newOrientation == StackOrientation.Vertical)
             {
