@@ -31,7 +31,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
                 Description = "Description",
                 Id = 0,
                 Image = 0,
-                Status = null, // TODO,
+                Status = "PUBLISHED",
                 Timestamp = DateTimeOffset.Now,
                 Title = "Title",
                 Used = true

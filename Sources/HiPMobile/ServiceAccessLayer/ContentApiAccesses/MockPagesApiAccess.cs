@@ -31,12 +31,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
                 Audio = null, // TODO
                 Description = "Description",
                 ExhibitId = 0,
-                FontFamily = null, // TODO
+                FontFamily = "DEFAULT",
                 HideYearNumbers = false,
                 Id = 0,
                 Image = 0,
                 Images = null, // TODO
-                Status = null, // TODO
+                Status = "PUBLISHED",
                 Text = "Pagetext",
                 Timestamp = DateTimeOffset.Now,
                 Title = "Title",

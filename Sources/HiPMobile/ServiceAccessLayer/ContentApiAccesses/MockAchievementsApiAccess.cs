@@ -21,10 +21,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
 {
     public class MockAchievementsApiAccess : IAchievementsApiAccess
     {
+        private const string ThumbUrl = "https://hip.cs.upb.de/wp-content/uploads/2016/07/cropped-Banner_Webseite-3.png";
         private readonly IEnumerable<AchievementDto> achievements = new List<AchievementDto>
         {
-            new RouteFinishedAchievementDto(0, "Route finished achievement", "Description", "TODO thumburl", -1, 10, 0),
-            new ExhibitsVisitedAchievementDto(1, "Exhibits visited achievement", "Description", "TODO thumburl", -1, 10, 5)
+            new RouteFinishedAchievementDto(0, "Route finished achievement", "Description", ThumbUrl, -1, 10, 0),
+            new ExhibitsVisitedAchievementDto(1, "Exhibits visited achievement", "Description", ThumbUrl, -1, 10, 5)
         };
 
         public Task<IEnumerable<AchievementDto>> GetUnlockedAchievements() => Task.FromResult(achievements);

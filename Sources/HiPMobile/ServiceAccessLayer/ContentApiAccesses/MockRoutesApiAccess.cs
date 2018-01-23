@@ -34,7 +34,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
                 Exhibits = new List<int> { 0 },
                 Id = 0,
                 Image = 0,
-                Status = null, // TODO,
+                Status = "PUBLISHED",
                 Tags = new List<int> { 0 },
                 Timestamp = DateTimeOffset.Now,
                 Title = "Title"

@@ -29,7 +29,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
             {
                 Description = "Description",
                 Id = 0,
-                Status = null, // TODO
+                Status = "PUBLISHED",
                 Timestamp = DateTimeOffset.Now,
                 Title = "Title",
                 Type = MediaTypeDto.Audio,
@@ -39,7 +39,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
             {
                 Description = "Description",
                 Id = 1,
-                Status = null, // TODO
+                Status = "PUBLISHED",
                 Timestamp = DateTimeOffset.Now,
                 Title = "Title",
                 Type = MediaTypeDto.Image,

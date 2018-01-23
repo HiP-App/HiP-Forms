@@ -29,12 +29,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
             {
                 Description = "Description",
                 Id = 0,
-                Image = null, // TODO
-                Latitude = 0.0, // TODO,
-                Longitude = 0.0, // TODO
+                Image = 1,
+                Latitude = 51.71905,
+                Longitude = 8.75439,
                 Name = "Exhibit A",
                 Pages = null, // TODO
-                Status = null, // TODO
+                Status = "PUBLISHED",
                 Tags = new List<int>
                 {
                     0
