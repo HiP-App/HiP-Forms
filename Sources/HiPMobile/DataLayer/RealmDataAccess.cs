@@ -16,6 +16,8 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
@@ -47,6 +49,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataLayer
                     if (!string.IsNullOrEmpty(realmResult.Id) && realmResult.Id.Equals(id))
                         return realmResult;
                 }
+
                 return null;
             }
         }
@@ -75,6 +78,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataLayer
             {
                 Instance.Remove(item);
             }
+
             return true;
         }
 
@@ -96,11 +100,20 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataLayer
         {
             // create the instance
             var instance = new T { Id = id };
+            var cur = GetItem<T>(id);
 
-            if (updateCurrent)
+            if (updateCurrent && cur != null)
             {
-                DeleteItem<T>(id);
+                var props = typeof(T).GetRuntimeProperties()
+                                     .Where(prop => prop.GetMethod?.IsPublic == true && prop.SetMethod?.IsPublic == true);
+                foreach (var prop in props)
+                {
+                    prop.SetMethod.Invoke(cur, new[] { prop.GetMethod.Invoke(instance, new object[0]) });
+                }
+
+                return cur;
             }
+
             Instance.Add(instance);
             return instance;
         }
