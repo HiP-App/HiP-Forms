@@ -147,7 +147,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataLayer
             return Guid.NewGuid().ToString();
         }
 
-        private Realm Instance => Realm.GetInstance(Configuration);
+        private static readonly Realm Instance = Realm.GetInstance(Configuration);
 
         private static RealmConfiguration config;
 
