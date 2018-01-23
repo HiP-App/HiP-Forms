@@ -92,12 +92,21 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
         private async void SetUserRatingUi()
         {
-            var userRatingManager = IoCManager.Resolve<IUserRatingManager>();
-            var userRating = await userRatingManager.GetUserRatingAsync(exhibit.IdForRestApi);
+            var userRating = await IoCManager.Resolve<IUserRatingManager>().GetUserRatingAsync(exhibit.IdForRestApi);
             SetAverageAndCountRating(userRating.Average, userRating.Count);
             SetStarImages(userRating.Average);
             SetRatingBars(userRating.RatingTable, userRating.Count);
-            var prevRating = userRating.Count == 0 ? 0 : await userRatingManager.GetPreviousUserRatingAsync(exhibit.IdForRestApi);
+            SetPreviousUserRating(userRating.Count);
+        }
+
+        private async void SetPreviousUserRating(int count)
+        {
+            var prevRating = 0;
+            if (Settings.IsLoggedIn && count > 0)
+            {
+                prevRating = await IoCManager.Resolve<IUserRatingManager>().GetPreviousUserRatingAsync(exhibit.IdForRestApi);
+                SetRatingStars(5);
+            }
             SetRatingStars(prevRating);
         }
 
