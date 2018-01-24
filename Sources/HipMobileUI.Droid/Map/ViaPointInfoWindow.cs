@@ -22,7 +22,7 @@ using Object = Java.Lang.Object;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Map
 {
-    internal class ViaPointInfoWindow : MarkerInfoWindow
+    internal sealed class ViaPointInfoWindow : MarkerInfoWindow
     {
         private string markerId;
 

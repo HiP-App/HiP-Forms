@@ -265,6 +265,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Map
         {
             MKAnnotationView annotationView;
             MKAnnotationView dequedView;
+
             if (annotation is UserAnnotation) //(annotation is MKUserLocation) doesn't work
             {
                 const string userAnnotationReusableId = "UserAnnotation";
@@ -301,22 +302,21 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Map
         /// <returns>The corresponding overlay renderer.</returns>
         private MKOverlayRenderer OverlayRenderer(MKMapView mapView, IMKOverlay overlay)
         {
-            var tileOverlay = ObjCRuntime.Runtime.GetNSObject(overlay.Handle) as MKTileOverlay;
-            if (tileOverlay != null)
+            if (ObjCRuntime.Runtime.GetNSObject(overlay.Handle) is MKTileOverlay tileOverlay)
             {
                 var renderer = new MKTileOverlayRenderer(tileOverlay);
                 return renderer;
             }
 
-            if (overlay is MKPolyline)
+            if (overlay is MKPolyline polyline)
             {
                 var resources = IoCManager.Resolve<ApplicationResourcesProvider>();
 
                 MKPolylineRenderer polylineRenderer;
-                if (overlay.Equals(currentSectionPolyLine))
+                if (polyline.Equals(currentSectionPolyLine))
                 {
-                    UIColor color = ((Color)resources.GetResourceValue("AccentColor")).ToUIColor();
-                    polylineRenderer = new MKPolylineRenderer((MKPolyline)overlay)
+                    var color = ((Color)resources.GetResourceValue("AccentColor")).ToUIColor();
+                    polylineRenderer = new MKPolylineRenderer(polyline)
                     {
                         FillColor = color,
                         StrokeColor = color,
@@ -325,8 +325,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Map
                 }
                 else
                 {
-                    UIColor color = ((Color)resources.GetResourceValue("PrimaryColor")).ToUIColor();
-                    polylineRenderer = new MKPolylineRenderer((MKPolyline)overlay)
+                    var color = ((Color)resources.GetResourceValue("PrimaryColor")).ToUIColor();
+                    polylineRenderer = new MKPolylineRenderer(polyline)
                     {
                         FillColor = color,
                         StrokeColor = color,
@@ -346,11 +346,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Map
         private void OnCalloutAccessoryControlTapped(object sender, MKMapViewAccessoryTappedEventArgs e)
         {
             var exhibitAnnotationView = e.View as ExhibitAnnotationView;
-            var annotation = exhibitAnnotationView?.Annotation as ExhibitAnnotation;
-            if (annotation != null)
+            if (exhibitAnnotationView?.Annotation is ExhibitAnnotation annotation)
             {
                 var exhibitId = annotation.ExhibitId;
-                IoCManager.Resolve<INavigationService>().PushAsync(new ExhibitDetailsViewModel(exhibitId));
+                IoCManager.Resolve<INavigationService>().PushAsync(new AppetizerPageViewModel(exhibitId));
             }
         }
 
@@ -365,8 +364,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Map
             {
                 foreach (var exhibit in exhibitSet)
                 {
-                    var annotation = new ExhibitAnnotation(exhibit.Location.Latitude, exhibit.Location.Longitude, exhibit.Id,
-                                                           exhibit.Name);
+                    var annotation = new ExhibitAnnotation(
+                        exhibit.Location.Latitude, exhibit.Location.Longitude, exhibit);
                     Control.AddAnnotation(annotation);
                 }
             }
@@ -377,8 +376,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Map
                 {
                     if (exhibitSet == null || !exhibitSet.Contains(routeWaypoint.Exhibit))
                     {
-                        var annotation = new ExhibitAnnotation(routeWaypoint.Location.Latitude, routeWaypoint.Location.Longitude, routeWaypoint.Exhibit.Id,
-                                                               routeWaypoint.Exhibit.Name);
+                        var annotation = new ExhibitAnnotation(
+                            routeWaypoint.Location.Latitude, routeWaypoint.Location.Longitude, routeWaypoint.Exhibit);
                         Control.AddAnnotation(annotation);
                     }
                 }

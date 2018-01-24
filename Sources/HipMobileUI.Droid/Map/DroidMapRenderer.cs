@@ -346,6 +346,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Map
                 osmMap.GpsLocationChanged -= NewElementOnGpsLocationChanged;
                 osmMap.DetailsRouteChanged -= NewElementOnDetailsRouteChanged;
             }
+
             base.Dispose(disposing);
         }
     }
