@@ -86,23 +86,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 
         private void OnRegisterClicked()
         {
-            const string emailRegex = @"^(?("")("".+?(?<!\\)""@)|(([0-9a-z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-z])@))" +
-                @"(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-z][-\w]*[0-9a-z]*\.)+[a-z0-9][\-a-z0-9]{0,22}[a-z0-9]))$";
-
-            var isValid = false;
-
-            if (Email != null)
-            {
-                isValid = (Regex.IsMatch(Email, emailRegex, RegexOptions.IgnoreCase));
-            }
-
             if (string.IsNullOrWhiteSpace(Email) && (string.IsNullOrWhiteSpace(Password) || string.IsNullOrWhiteSpace(RepeatPassword)))
                 DisplayEmptyEmailAndPasswordErrorMessage();
             else if (string.IsNullOrWhiteSpace(Email))
                 DisplayEmptyEmailErrorMessage();
             else if (string.IsNullOrWhiteSpace(Password) || string.IsNullOrWhiteSpace(RepeatPassword))
                 DisplayEmptyPasswordErrorMessage();
-            else if (isValid == false)
+            else if (!Email.Contains("@"))
                 DisplayInvalidEmailErrorMessage();
             else if (Password != RepeatPassword)
                 DisplayPasswordMismatchErrorMessage();

@@ -46,7 +46,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             {
                 DisplayEmptyEmailErrorMessage();
             }
-            else if (!(Email.Contains("@") && Email.Contains(".")))
+            else if (!Email.Contains("@"))
             {
                 DisplayInvalidEmailMessage();
             }
