@@ -46,6 +46,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             {
                 DisplayEmptyEmailErrorMessage();
             }
+            else if (!Email.Contains("@"))
+            {
+                DisplayInvalidEmailMessage();
+            }
             else
             {
                 SendResetPasswordEmail();
@@ -74,6 +78,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         private void DisplayEmptyEmailErrorMessage()
         {
             ErrorMessage = Strings.ForgotPasswordScreenView_Error_Empty_Email;
+        }
+
+        private void DisplayInvalidEmailMessage()
+        {
+            ErrorMessage = Strings.ForgotPasswordScreenView_Error_Invalid_Email;
         }
 
         private void ReturnToLogin()
