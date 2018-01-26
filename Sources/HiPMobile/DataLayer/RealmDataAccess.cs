@@ -96,27 +96,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataLayer
             }
         }
 
-        public T CreateObject<T>(string id, bool updateCurrent) where T : RealmObject, IIdentifiable, new()
-        {
-            // create the instance
-            var instance = new T { Id = id };
-            var cur = GetItem<T>(id);
-
-            if (updateCurrent && cur != null)
-            {
-                var props = typeof(T).GetRuntimeProperties()
-                                     .Where(prop => prop.GetMethod?.IsPublic == true && prop.SetMethod?.IsPublic == true);
-                foreach (var prop in props)
-                {
-                    prop.SetMethod.Invoke(cur, new[] { prop.GetMethod.Invoke(instance, new object[0]) });
-                }
-
-                return cur;
-            }
-
-            Instance.Add(instance);
-            return instance;
-        }
+        public T CreateObject<T>(string id, bool updateCurrent) where T : RealmObject, IIdentifiable, new() =>
+            Instance.Add(new T { Id = id }, updateCurrent);
 
         public T CreateObject<T>() where T : RealmObject, IIdentifiable, new()
         {

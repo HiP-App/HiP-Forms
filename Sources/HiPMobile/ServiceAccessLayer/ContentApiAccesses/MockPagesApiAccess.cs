@@ -34,7 +34,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
                 FontFamily = "DEFAULT",
                 HideYearNumbers = false,
                 Id = 0,
-                Image = 0,
+                Image = 1,
                 Images = null, // TODO
                 Status = "PUBLISHED",
                 Text = "Pagetext",

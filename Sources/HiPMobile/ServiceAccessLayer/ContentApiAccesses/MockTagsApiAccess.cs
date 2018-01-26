@@ -30,7 +30,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
             {
                 Description = "Description",
                 Id = 0,
-                Image = 0,
+                Image = 1,
                 Status = "PUBLISHED",
                 Timestamp = DateTimeOffset.Now,
                 Title = "Title",

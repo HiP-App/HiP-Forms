@@ -33,7 +33,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
                 Duration = 10,
                 Exhibits = new List<int> { 0 },
                 Id = 0,
-                Image = 0,
+                Image = 1,
                 Status = "PUBLISHED",
                 Tags = new List<int> { 0 },
                 Timestamp = DateTimeOffset.Now,
