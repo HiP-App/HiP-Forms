@@ -31,11 +31,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
                 Description = "Description",
                 Distance = 10,
                 Duration = 10,
-                Exhibits = new List<int> { 0 },
+                Exhibits = new List<int> { 0, 1 },
                 Id = 0,
                 Image = 1,
                 Status = "PUBLISHED",
-                Tags = new List<int> { 0 },
+                Tags = new List<int>(),
                 Timestamp = DateTimeOffset.Now,
                 Title = "Title"
             }

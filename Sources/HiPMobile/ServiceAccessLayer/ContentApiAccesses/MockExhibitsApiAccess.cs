@@ -41,6 +41,23 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
                 },
                 Timestamp = DateTimeOffset.Now,
                 Used = true
+            },
+            new ExhibitDto
+            {
+                Description = "Description B",
+                Id = 1,
+                Image = 1,
+                Latitude = 51.71904,
+                Longitude = 8.75438,
+                Name = "Exhibit B",
+                Pages = new List<int> { 0, 1, 2, 3 },
+                Status = "PUBLISHED",
+                Tags = new List<int>
+                {
+                    1
+                },
+                Timestamp = DateTimeOffset.Now,
+                Used = true
             }
         };
 
@@ -59,6 +76,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
         public Task<ExhibitsDto> GetExhibits(DateTimeOffset timestamp, IList<int> includeOnly) =>
             Task.FromResult(new ExhibitsDto { Items = new List<ExhibitDto>(), Total = 0 });
 
-        public Task<IList<int>> GetIds() => Task.FromResult((IList<int>) new List<int> { 0 });
+        public Task<IList<int>> GetIds() => Task.FromResult((IList<int>)dtos.Select(it => it.Id).ToList());
     }
 }

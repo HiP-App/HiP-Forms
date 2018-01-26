@@ -35,6 +35,16 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
                 Timestamp = DateTimeOffset.Now,
                 Title = "Title",
                 Used = true
+            },
+            new TagDto
+            {
+                Description = "Description B",
+                Id = 1,
+                Image = 1,
+                Status = "PUBLISHED",
+                Timestamp = DateTimeOffset.Now,
+                Title = "Title B",
+                Used = true
             }
         };
 
