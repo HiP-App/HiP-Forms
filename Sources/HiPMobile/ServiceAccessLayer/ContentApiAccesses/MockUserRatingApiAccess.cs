@@ -22,9 +22,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
     public class MockUserRatingApiAccess : IUserRatingApiAccess
     {
         public Task<UserRatingDto> GetUserRatingAsync(int idForRestApi) => Task.FromResult(
-            new UserRatingDto(0, 5, 1, new Dictionary<int, int>
+            new UserRatingDto(idForRestApi, 5, 1, new Dictionary<int, int>
                 {
-                    { 5, 1 }
+                    { 5, 1 },
+                    { 4, 0 },
+                    { 3, 0 },
+                    { 2, 0 },
+                    { 1, 0 }
                 }
             )
         );

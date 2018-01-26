@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System;
 using System.Threading.Tasks;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelConverters;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses.Contracts;
@@ -21,10 +22,26 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
 {
     public class MockFileApiAccess : IFileApiAccess
     {
-        public Task<FileDto> GetFile(int mediaId) => Task.FromResult(new FileDto
+        public Task<FileDto> GetFile(int mediaId)
         {
-            Data = BackupData.BackupImageData, // TODO If type is audio, return audio data
-            MediaId = mediaId
-        });
+            byte[] data;
+            switch (mediaId)
+            {
+                case 0:
+                    data = BackupData.MockAudioData;
+                    break;
+                case 1:
+                    data = BackupData.BackupImageData;
+                    break;
+                default:
+                    throw new ArgumentException("Unknown mediaId");
+            }
+
+            return Task.FromResult(new FileDto
+            {
+                Data = data,
+                MediaId = mediaId
+            });
+        }
     }
 }

@@ -33,7 +33,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
                 Latitude = 51.71905,
                 Longitude = 8.75439,
                 Name = "Exhibit A",
-                Pages = null, // TODO
+                Pages = new List<int> { 0, 1, 2, 3 },
                 Status = "PUBLISHED",
                 Tags = new List<int>
                 {

@@ -312,6 +312,7 @@
   <ItemGroup>
     <EmbeddedResource Include="Content\noImageTag.jpg" />
     <EmbeddedResource Include="Content\noImage.png" />
+    <EmbeddedResource Include="Content\mockaudio.mp3" />
     <Content Include="FodyWeavers.xml">
       <SubType>Designer</SubType>
     </Content>

@@ -27,20 +27,83 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
         {
             new PageDto
             {
-                AdditionalInformationPages = new List<int> { 1 }, // TODO Create that page,
-                Audio = null, // TODO
+                AdditionalInformationPages = new List<int> { 1 },
+                Audio = 0,
                 Description = "Description",
                 ExhibitId = 0,
                 FontFamily = "DEFAULT",
                 HideYearNumbers = false,
                 Id = 0,
                 Image = 1,
-                Images = null, // TODO
+                Images = null,
                 Status = "PUBLISHED",
                 Text = "Pagetext",
                 Timestamp = DateTimeOffset.Now,
                 Title = "Title",
-                Type = PageTypeDto.TextPage // TODO Other types
+                Type = PageTypeDto.TextPage
+            },
+            new PageDto
+            {
+                AdditionalInformationPages = new List<int>(),
+                Audio = 0,
+                Description = "Description",
+                ExhibitId = 0,
+                FontFamily = "DEFAULT",
+                HideYearNumbers = false,
+                Id = 1,
+                Image = 1,
+                Images = null,
+                Status = "PUBLISHED",
+                Text = "Pagetext",
+                Timestamp = DateTimeOffset.Now,
+                Title = "Title",
+                Type = PageTypeDto.AppetizerPage
+            },
+            new PageDto
+            {
+                AdditionalInformationPages = new List<int>(),
+                Audio = 0,
+                Description = "Description",
+                ExhibitId = 0,
+                FontFamily = "DEFAULT",
+                HideYearNumbers = false,
+                Id = 2,
+                Image = 1,
+                Images = new List<PageImageDto>
+                {
+                    new PageImageDto
+                    {
+                        Date = 0,
+                        Image = 1
+                    },
+                    new PageImageDto
+                    {
+                        Date = 1,
+                        Image = 1
+                    }
+                },
+                Status = "PUBLISHED",
+                Text = "Pagetext",
+                Timestamp = DateTimeOffset.Now,
+                Title = "Title",
+                Type = PageTypeDto.SliderPage
+            },
+            new PageDto
+            {
+                AdditionalInformationPages = new List<int>(),
+                Audio = 0,
+                Description = "Description",
+                ExhibitId = 0,
+                FontFamily = "DEFAULT",
+                HideYearNumbers = false,
+                Id = 3,
+                Image = 1,
+                Images = null,
+                Status = "PUBLISHED",
+                Text = "Pagetext",
+                Timestamp = DateTimeOffset.Now,
+                Title = "Title",
+                Type = PageTypeDto.TextPage
             }
         };
 

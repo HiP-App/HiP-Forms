@@ -27,7 +27,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
         {
             new RouteDto
             {
-                Audio = null, // TODO,
+                Audio = 0,
                 Description = "Description",
                 Distance = 10,
                 Duration = 10,
