@@ -22,7 +22,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Map
     {
         public OsmMap()
         {
-            CenterCommand = new Command(() => { CenterLocationCalled?.Invoke((GeoLocation) CenterCommandParameter); });
+            CenterCommand = new Command(() => { CenterLocationCalled?.Invoke((GeoLocation)CenterCommandParameter); });
         }
 
         public static readonly BindableProperty ExhibitSetProperty =
@@ -48,45 +48,45 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Map
 
         public ICommand CenterCommand
         {
-            get { return (ICommand) GetValue(CenterCommandProperty); }
-            set { SetValue(CenterCommandProperty, value); }
+            get => (ICommand)GetValue(CenterCommandProperty);
+            set => SetValue(CenterCommandProperty, value);
         }
 
         public object CenterCommandParameter
         {
-            get { return GetValue(CenterCommandParameterProperty); }
-            set { SetValue(CenterCommandParameterProperty, value); }
+            get => GetValue(CenterCommandParameterProperty);
+            set => SetValue(CenterCommandParameterProperty, value);
         }
 
         // Property accessor
         public ExhibitSet ExhibitSet
         {
-            get { return (ExhibitSet) GetValue(ExhibitSetProperty); }
-            set { SetValue(ExhibitSetProperty, value); }
+            get => (ExhibitSet)GetValue(ExhibitSetProperty);
+            set => SetValue(ExhibitSetProperty, value);
         }
 
         public GeoLocation GpsLocation
         {
-            get { return (GeoLocation) GetValue(GpsLocationProperty); }
-            set { SetValue(GpsLocationProperty, value); }
+            get => (GeoLocation)GetValue(GpsLocationProperty);
+            set => SetValue(GpsLocationProperty, value);
         }
 
         public Route DetailsRoute
         {
-            get { return (Route) GetValue(DetailsRouteProperty); }
-            set { SetValue(DetailsRouteProperty, value); }
+            get => (Route)GetValue(DetailsRouteProperty);
+            set => SetValue(DetailsRouteProperty, value);
         }
 
         public bool ShowDetailsRoute
         {
-            get { return (bool) GetValue(ShowDetailsRouteProperty); }
-            set { SetValue(ShowDetailsRouteProperty, value); }
+            get => (bool)GetValue(ShowDetailsRouteProperty);
+            set => SetValue(ShowDetailsRouteProperty, value);
         }
 
         public bool ShowNavigation
         {
-            get { return (bool) GetValue(ShowNavigationProperty); }
-            set { SetValue(ShowNavigationProperty, value); }
+            get => (bool)GetValue(ShowNavigationProperty);
+            set => SetValue(ShowNavigationProperty, value);
         }
 
         // method listening for changes of the property
@@ -96,7 +96,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Map
             if (oldValue == null || !oldValue.Equals(newValue))
             {
                 // inform all listeners that the ExhibitSet changed
-                var map = (OsmMap) bindable;
+                var map = (OsmMap)bindable;
                 map.ExhibitSetChanged?.Invoke(map.ExhibitSet);
             }
         }
@@ -105,7 +105,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Map
         {
             if (oldValue == null || !oldValue.Equals(newValue))
             {
-                var map = (OsmMap) bindable;
+                var map = (OsmMap)bindable;
                 map.GpsLocationChanged?.Invoke(map.GpsLocation);
             }
         }
@@ -114,7 +114,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Map
         {
             if (oldValue == null || !oldValue.Equals(newValue))
             {
-                var map = (OsmMap) bindable;
+                var map = (OsmMap)bindable;
                 map.DetailsRouteChanged?.Invoke(map.DetailsRoute);
             }
         }

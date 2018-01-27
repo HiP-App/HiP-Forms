@@ -28,12 +28,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Map
 
             var infoButton = UIButton.FromType(UIButtonType.DetailDisclosure);
             RightCalloutAccessoryView = infoButton;
-
-            DetailCalloutAccessoryView = new UILabel
-            {
-                Text = annotation.GetSubtitle(),
-                Lines = 10
-            };
         }
     }
 }
