@@ -889,4 +889,7 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   <data name="RegisterScreenView_Cancel" xml:space="preserve">
     <value>Abbrechen</value>
   </data>
+  <data name="ForgotPasswordScreenView_Error_Invalid_Email" xml:space="preserve">
+    <value>Ihre E-Mail-Adresse ist ungültig</value>
+  </data>
 </root>

@@ -2582,7 +2582,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
 			public const int bonuspack_bubble_new = 2130837593;
 			
 			// aapt resource value: 0x7f02005a
-			public const int btn_info = 2130837594;
+			public const int btn_close = 2130837594;
 			
 			// aapt resource value: 0x7f02005b
 			public const int common_full_open_on_phone = 2130837595;
@@ -2753,154 +2753,154 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
 			public const int ic_audiotrack_light = 2130837650;
 			
 			// aapt resource value: 0x7f020093
-			public const int ic_chevron_left = 2130837651;
+			public const int ic_cancel = 2130837651;
 			
 			// aapt resource value: 0x7f020094
-			public const int ic_chevron_right = 2130837652;
+			public const int ic_cancel_highlight = 2130837652;
 			
 			// aapt resource value: 0x7f020095
-			public const int ic_closed_caption_black = 2130837653;
+			public const int ic_chevron_left = 2130837653;
 			
 			// aapt resource value: 0x7f020096
-			public const int ic_dialog_close_dark = 2130837654;
+			public const int ic_chevron_right = 2130837654;
 			
 			// aapt resource value: 0x7f020097
-			public const int ic_dialog_close_light = 2130837655;
+			public const int ic_closed_caption_black = 2130837655;
 			
 			// aapt resource value: 0x7f020098
-			public const int ic_directions = 2130837656;
+			public const int ic_dialog_close_dark = 2130837656;
 			
 			// aapt resource value: 0x7f020099
-			public const int ic_directions_walk = 2130837657;
+			public const int ic_dialog_close_light = 2130837657;
 			
 			// aapt resource value: 0x7f02009a
-			public const int ic_done = 2130837658;
+			public const int ic_directions = 2130837658;
 			
 			// aapt resource value: 0x7f02009b
-			public const int ic_equalizer = 2130837659;
+			public const int ic_directions_walk = 2130837659;
 			
 			// aapt resource value: 0x7f02009c
-			public const int ic_errorstatus = 2130837660;
+			public const int ic_done = 2130837660;
 			
 			// aapt resource value: 0x7f02009d
-			public const int ic_feedback = 2130837661;
+			public const int ic_equalizer = 2130837661;
 			
 			// aapt resource value: 0x7f02009e
-			public const int ic_file_download = 2130837662;
+			public const int ic_errorstatus = 2130837662;
 			
 			// aapt resource value: 0x7f02009f
-			public const int ic_format_size = 2130837663;
+			public const int ic_feedback = 2130837663;
 			
 			// aapt resource value: 0x7f0200a0
-			public const int ic_gavel = 2130837664;
+			public const int ic_file_download = 2130837664;
 			
 			// aapt resource value: 0x7f0200a1
-			public const int ic_group_collapse_00 = 2130837665;
+			public const int ic_format_size = 2130837665;
 			
 			// aapt resource value: 0x7f0200a2
-			public const int ic_group_collapse_01 = 2130837666;
+			public const int ic_gavel = 2130837666;
 			
 			// aapt resource value: 0x7f0200a3
-			public const int ic_group_collapse_02 = 2130837667;
+			public const int ic_group_collapse_00 = 2130837667;
 			
 			// aapt resource value: 0x7f0200a4
-			public const int ic_group_collapse_03 = 2130837668;
+			public const int ic_group_collapse_01 = 2130837668;
 			
 			// aapt resource value: 0x7f0200a5
-			public const int ic_group_collapse_04 = 2130837669;
+			public const int ic_group_collapse_02 = 2130837669;
 			
 			// aapt resource value: 0x7f0200a6
-			public const int ic_group_collapse_05 = 2130837670;
+			public const int ic_group_collapse_03 = 2130837670;
 			
 			// aapt resource value: 0x7f0200a7
-			public const int ic_group_collapse_06 = 2130837671;
+			public const int ic_group_collapse_04 = 2130837671;
 			
 			// aapt resource value: 0x7f0200a8
-			public const int ic_group_collapse_07 = 2130837672;
+			public const int ic_group_collapse_05 = 2130837672;
 			
 			// aapt resource value: 0x7f0200a9
-			public const int ic_group_collapse_08 = 2130837673;
+			public const int ic_group_collapse_06 = 2130837673;
 			
 			// aapt resource value: 0x7f0200aa
-			public const int ic_group_collapse_09 = 2130837674;
+			public const int ic_group_collapse_07 = 2130837674;
 			
 			// aapt resource value: 0x7f0200ab
-			public const int ic_group_collapse_10 = 2130837675;
+			public const int ic_group_collapse_08 = 2130837675;
 			
 			// aapt resource value: 0x7f0200ac
-			public const int ic_group_collapse_11 = 2130837676;
+			public const int ic_group_collapse_09 = 2130837676;
 			
 			// aapt resource value: 0x7f0200ad
-			public const int ic_group_collapse_12 = 2130837677;
+			public const int ic_group_collapse_10 = 2130837677;
 			
 			// aapt resource value: 0x7f0200ae
-			public const int ic_group_collapse_13 = 2130837678;
+			public const int ic_group_collapse_11 = 2130837678;
 			
 			// aapt resource value: 0x7f0200af
-			public const int ic_group_collapse_14 = 2130837679;
+			public const int ic_group_collapse_12 = 2130837679;
 			
 			// aapt resource value: 0x7f0200b0
-			public const int ic_group_collapse_15 = 2130837680;
+			public const int ic_group_collapse_13 = 2130837680;
 			
 			// aapt resource value: 0x7f0200b1
-			public const int ic_group_expand_00 = 2130837681;
+			public const int ic_group_collapse_14 = 2130837681;
 			
 			// aapt resource value: 0x7f0200b2
-			public const int ic_group_expand_01 = 2130837682;
+			public const int ic_group_collapse_15 = 2130837682;
 			
 			// aapt resource value: 0x7f0200b3
-			public const int ic_group_expand_02 = 2130837683;
+			public const int ic_group_expand_00 = 2130837683;
 			
 			// aapt resource value: 0x7f0200b4
-			public const int ic_group_expand_03 = 2130837684;
+			public const int ic_group_expand_01 = 2130837684;
 			
 			// aapt resource value: 0x7f0200b5
-			public const int ic_group_expand_04 = 2130837685;
+			public const int ic_group_expand_02 = 2130837685;
 			
 			// aapt resource value: 0x7f0200b6
-			public const int ic_group_expand_05 = 2130837686;
+			public const int ic_group_expand_03 = 2130837686;
 			
 			// aapt resource value: 0x7f0200b7
-			public const int ic_group_expand_06 = 2130837687;
+			public const int ic_group_expand_04 = 2130837687;
 			
 			// aapt resource value: 0x7f0200b8
-			public const int ic_group_expand_07 = 2130837688;
+			public const int ic_group_expand_05 = 2130837688;
 			
 			// aapt resource value: 0x7f0200b9
-			public const int ic_group_expand_08 = 2130837689;
+			public const int ic_group_expand_06 = 2130837689;
 			
 			// aapt resource value: 0x7f0200ba
-			public const int ic_group_expand_09 = 2130837690;
+			public const int ic_group_expand_07 = 2130837690;
 			
 			// aapt resource value: 0x7f0200bb
-			public const int ic_group_expand_10 = 2130837691;
+			public const int ic_group_expand_08 = 2130837691;
 			
 			// aapt resource value: 0x7f0200bc
-			public const int ic_group_expand_11 = 2130837692;
+			public const int ic_group_expand_09 = 2130837692;
 			
 			// aapt resource value: 0x7f0200bd
-			public const int ic_group_expand_12 = 2130837693;
+			public const int ic_group_expand_10 = 2130837693;
 			
 			// aapt resource value: 0x7f0200be
-			public const int ic_group_expand_13 = 2130837694;
+			public const int ic_group_expand_11 = 2130837694;
 			
 			// aapt resource value: 0x7f0200bf
-			public const int ic_group_expand_14 = 2130837695;
+			public const int ic_group_expand_12 = 2130837695;
 			
 			// aapt resource value: 0x7f0200c0
-			public const int ic_group_expand_15 = 2130837696;
+			public const int ic_group_expand_13 = 2130837696;
 			
 			// aapt resource value: 0x7f0200c1
-			public const int ic_headset_white = 2130837697;
+			public const int ic_group_expand_14 = 2130837697;
 			
 			// aapt resource value: 0x7f0200c2
-			public const int ic_home = 2130837698;
+			public const int ic_group_expand_15 = 2130837698;
 			
 			// aapt resource value: 0x7f0200c3
-			public const int ic_info_black = 2130837699;
+			public const int ic_headset_white = 2130837699;
 			
 			// aapt resource value: 0x7f0200c4
-			public const int ic_info_outline_black = 2130837700;
+			public const int ic_home = 2130837700;
 			
 			// aapt resource value: 0x7f0200c5
 			public const int ic_keyboard_arrow_up = 2130837701;
@@ -3419,8 +3419,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f0b00cf
-			public const int action0 = 2131427535;
+			// aapt resource value: 0x7f0b00d0
+			public const int action0 = 2131427536;
 			
 			// aapt resource value: 0x7f0b006e
 			public const int action_bar = 2131427438;
@@ -3443,17 +3443,17 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
 			// aapt resource value: 0x7f0b004b
 			public const int action_bar_title = 2131427403;
 			
-			// aapt resource value: 0x7f0b00cc
-			public const int action_container = 2131427532;
+			// aapt resource value: 0x7f0b00cd
+			public const int action_container = 2131427533;
 			
 			// aapt resource value: 0x7f0b006f
 			public const int action_context_bar = 2131427439;
 			
-			// aapt resource value: 0x7f0b00d3
-			public const int action_divider = 2131427539;
+			// aapt resource value: 0x7f0b00d4
+			public const int action_divider = 2131427540;
 			
-			// aapt resource value: 0x7f0b00cd
-			public const int action_image = 2131427533;
+			// aapt resource value: 0x7f0b00ce
+			public const int action_image = 2131427534;
 			
 			// aapt resource value: 0x7f0b0003
 			public const int action_menu_divider = 2131427331;
@@ -3470,11 +3470,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
 			// aapt resource value: 0x7f0b004d
 			public const int action_mode_close_button = 2131427405;
 			
-			// aapt resource value: 0x7f0b00ce
-			public const int action_text = 2131427534;
+			// aapt resource value: 0x7f0b00cf
+			public const int action_text = 2131427535;
 			
-			// aapt resource value: 0x7f0b00dc
-			public const int actions = 2131427548;
+			// aapt resource value: 0x7f0b00dd
+			public const int actions = 2131427549;
 			
 			// aapt resource value: 0x7f0b004e
 			public const int activity_chooser_view_content = 2131427406;
@@ -3515,20 +3515,17 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
 			// aapt resource value: 0x7f0b0080
 			public const int btnStop = 2131427456;
 			
-			// aapt resource value: 0x7f0b00c9
-			public const int bubble_description = 2131427529;
-			
-			// aapt resource value: 0x7f0b00c7
-			public const int bubble_image = 2131427527;
-			
-			// aapt resource value: 0x7f0b00cb
-			public const int bubble_info = 2131427531;
-			
 			// aapt resource value: 0x7f0b00ca
-			public const int bubble_subdescription = 2131427530;
+			public const int bubble_description = 2131427530;
 			
 			// aapt resource value: 0x7f0b00c8
-			public const int bubble_title = 2131427528;
+			public const int bubble_image = 2131427528;
+			
+			// aapt resource value: 0x7f0b00cb
+			public const int bubble_subdescription = 2131427531;
+			
+			// aapt resource value: 0x7f0b00c9
+			public const int bubble_title = 2131427529;
 			
 			// aapt resource value: 0x7f0b0055
 			public const int buttonPanel = 2131427413;
@@ -3551,8 +3548,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
 			// aapt resource value: 0x7f0b00a3
 			public const int button_update = 2131427491;
 			
-			// aapt resource value: 0x7f0b00d0
-			public const int cancel_action = 2131427536;
+			// aapt resource value: 0x7f0b00d1
+			public const int cancel_action = 2131427537;
 			
 			// aapt resource value: 0x7f0b003a
 			public const int center = 2131427386;
@@ -3566,14 +3563,17 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
 			// aapt resource value: 0x7f0b0065
 			public const int checkbox = 2131427429;
 			
-			// aapt resource value: 0x7f0b00d8
-			public const int chronometer = 2131427544;
+			// aapt resource value: 0x7f0b00d9
+			public const int chronometer = 2131427545;
 			
 			// aapt resource value: 0x7f0b0043
 			public const int clip_horizontal = 2131427395;
 			
 			// aapt resource value: 0x7f0b0044
 			public const int clip_vertical = 2131427396;
+			
+			// aapt resource value: 0x7f0b00cc
+			public const int close_marker_info_window = 2131427532;
 			
 			// aapt resource value: 0x7f0b002f
 			public const int collapseActionView = 2131427375;
@@ -3620,8 +3620,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
 			// aapt resource value: 0x7f0b002c
 			public const int end = 2131427372;
 			
-			// aapt resource value: 0x7f0b00e2
-			public const int end_padder = 2131427554;
+			// aapt resource value: 0x7f0b00e3
+			public const int end_padder = 2131427555;
 			
 			// aapt resource value: 0x7f0b0035
 			public const int enterAlways = 2131427381;
@@ -3662,8 +3662,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
 			// aapt resource value: 0x7f0b0053
 			public const int icon = 2131427411;
 			
-			// aapt resource value: 0x7f0b00dd
-			public const int icon_group = 2131427549;
+			// aapt resource value: 0x7f0b00de
+			public const int icon_group = 2131427550;
 			
 			// aapt resource value: 0x7f0b0016
 			public const int icon_only = 2131427350;
@@ -3674,8 +3674,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
 			// aapt resource value: 0x7f0b0050
 			public const int image = 2131427408;
 			
-			// aapt resource value: 0x7f0b00d9
-			public const int info = 2131427545;
+			// aapt resource value: 0x7f0b00da
+			public const int info = 2131427546;
 			
 			// aapt resource value: 0x7f0b0091
 			public const int input_email = 2131427473;
@@ -3725,11 +3725,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
 			// aapt resource value: 0x7f0b001b
 			public const int light = 2131427355;
 			
-			// aapt resource value: 0x7f0b00de
-			public const int line1 = 2131427550;
+			// aapt resource value: 0x7f0b00df
+			public const int line1 = 2131427551;
 			
-			// aapt resource value: 0x7f0b00e0
-			public const int line3 = 2131427552;
+			// aapt resource value: 0x7f0b00e1
+			public const int line3 = 2131427553;
 			
 			// aapt resource value: 0x7f0b001c
 			public const int listMode = 2131427356;
@@ -3752,11 +3752,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
 			// aapt resource value: 0x7f0b00ac
 			public const int loadingProgressWheel = 2131427500;
 			
-			// aapt resource value: 0x7f0b00e6
-			public const int masked = 2131427558;
+			// aapt resource value: 0x7f0b00e7
+			public const int masked = 2131427559;
 			
-			// aapt resource value: 0x7f0b00d2
-			public const int media_actions = 2131427538;
+			// aapt resource value: 0x7f0b00d3
+			public const int media_actions = 2131427539;
 			
 			// aapt resource value: 0x7f0b002d
 			public const int middle = 2131427373;
@@ -3854,14 +3854,17 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
 			// aapt resource value: 0x7f0b0011
 			public const int normal = 2131427345;
 			
-			// aapt resource value: 0x7f0b00db
-			public const int notification_background = 2131427547;
+			// aapt resource value: 0x7f0b00dc
+			public const int notification_background = 2131427548;
+			
+			// aapt resource value: 0x7f0b00d6
+			public const int notification_main_column = 2131427542;
 			
 			// aapt resource value: 0x7f0b00d5
-			public const int notification_main_column = 2131427541;
+			public const int notification_main_column_container = 2131427541;
 			
-			// aapt resource value: 0x7f0b00d4
-			public const int notification_main_column_container = 2131427540;
+			// aapt resource value: 0x7f0b00c7
+			public const int open_appetizer_page = 2131427527;
 			
 			// aapt resource value: 0x7f0b0041
 			public const int parallax = 2131427393;
@@ -3884,11 +3887,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
 			// aapt resource value: 0x7f0b003f
 			public const int right = 2131427391;
 			
-			// aapt resource value: 0x7f0b00da
-			public const int right_icon = 2131427546;
+			// aapt resource value: 0x7f0b00db
+			public const int right_icon = 2131427547;
 			
-			// aapt resource value: 0x7f0b00d6
-			public const int right_side = 2131427542;
+			// aapt resource value: 0x7f0b00d7
+			public const int right_side = 2131427543;
 			
 			// aapt resource value: 0x7f0b0012
 			public const int satellite = 2131427346;
@@ -3956,8 +3959,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
 			// aapt resource value: 0x7f0b0022
 			public const int showTitle = 2131427362;
 			
-			// aapt resource value: 0x7f0b00e3
-			public const int sliding_tabs = 2131427555;
+			// aapt resource value: 0x7f0b00e4
+			public const int sliding_tabs = 2131427556;
 			
 			// aapt resource value: 0x7f0b0081
 			public const int smallLabel = 2131427457;
@@ -3992,8 +3995,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
 			// aapt resource value: 0x7f0b0040
 			public const int start = 2131427392;
 			
-			// aapt resource value: 0x7f0b00d1
-			public const int status_bar_latest_event_content = 2131427537;
+			// aapt resource value: 0x7f0b00d2
+			public const int status_bar_latest_event_content = 2131427538;
 			
 			// aapt resource value: 0x7f0b0068
 			public const int submenuarrow = 2131427432;
@@ -4007,11 +4010,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
 			// aapt resource value: 0x7f0b0013
 			public const int terrain = 2131427347;
 			
-			// aapt resource value: 0x7f0b00e1
-			public const int text = 2131427553;
+			// aapt resource value: 0x7f0b00e2
+			public const int text = 2131427554;
 			
-			// aapt resource value: 0x7f0b00df
-			public const int text2 = 2131427551;
+			// aapt resource value: 0x7f0b00e0
+			public const int text2 = 2131427552;
 			
 			// aapt resource value: 0x7f0b005c
 			public const int textSpacerNoButtons = 2131427420;
@@ -4037,8 +4040,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
 			// aapt resource value: 0x7f0b000d
 			public const int textinput_error = 2131427341;
 			
-			// aapt resource value: 0x7f0b00d7
-			public const int time = 2131427543;
+			// aapt resource value: 0x7f0b00d8
+			public const int time = 2131427544;
 			
 			// aapt resource value: 0x7f0b0054
 			public const int title = 2131427412;
@@ -4049,8 +4052,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
 			// aapt resource value: 0x7f0b0061
 			public const int title_template = 2131427425;
 			
-			// aapt resource value: 0x7f0b00e4
-			public const int toolbar = 2131427556;
+			// aapt resource value: 0x7f0b00e5
+			public const int toolbar = 2131427557;
 			
 			// aapt resource value: 0x7f0b0034
 			public const int top = 2131427380;
@@ -4079,8 +4082,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
 			// aapt resource value: 0x7f0b000e
 			public const int view_offset_helper = 2131427342;
 			
-			// aapt resource value: 0x7f0b00e5
-			public const int visible = 2131427557;
+			// aapt resource value: 0x7f0b00e6
+			public const int visible = 2131427558;
 			
 			// aapt resource value: 0x7f0b00bf
 			public const int volume_item_container = 2131427519;

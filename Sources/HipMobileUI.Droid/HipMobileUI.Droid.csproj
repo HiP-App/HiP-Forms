@@ -360,7 +360,7 @@
     <AndroidResource Include="Resources\values-v21\style.xml" />
     <AndroidResource Include="Resources\drawable\ic_launcher.png" />
     <AndroidResource Include="Resources\drawable\bonuspack_bubble_new.9.png" />
-    <AndroidResource Include="Resources\drawable\btn_info.xml" />
+    <AndroidResource Include="Resources\drawable\btn_close.xml" />
     <AndroidResource Include="Resources\drawable-hdpi\ic_my_location.png" />
     <AndroidResource Include="Resources\drawable-hdpi\marker_blue.png" />
     <AndroidResource Include="Resources\values\colors.xml">
@@ -403,7 +403,9 @@
     <AndroidResource Include="Resources\drawable-xhdpi\ic_my_location_white.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\ic_my_location_white.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\ic_my_location_white.png" />
-    <AndroidResource Include="Resources\drawable\Splashscreen.xml" />
+    <AndroidResource Include="Resources\drawable\Splashscreen.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
     <AndroidResource Include="Resources\drawable\hiphop_transparent.png" />
     <AndroidResource Include="Resources\drawable-hdpi\ic_more.png" />
     <AndroidResource Include="Resources\drawable-mdpi\ic_more.png" />
@@ -447,11 +449,11 @@
     <AndroidResource Include="Resources\drawable-xhdpi\ic_equalizer.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\ic_equalizer.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\ic_equalizer.png" />
-    <AndroidResource Include="Resources\drawable\ic_info_black.png" />
-    <AndroidResource Include="Resources\drawable\ic_info_outline_black.png" />
     <AndroidResource Include="Resources\drawable\star_filled.png" />
     <AndroidResource Include="Resources\drawable\star_half_filled.png" />
     <AndroidResource Include="Resources\drawable\star_empty.png" />
+    <AndroidResource Include="Resources\drawable\ic_cancel_highlight.png" />
+    <AndroidResource Include="Resources\drawable\ic_cancel.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-hdpi\ic_keyboard_arrow_up.png" />

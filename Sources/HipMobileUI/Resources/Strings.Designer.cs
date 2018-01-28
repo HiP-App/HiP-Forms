@@ -557,6 +557,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ihre E-Mail-Adresse ist ungültig.
+        /// </summary>
+        public static string ForgotPasswordScreenView_Error_Invalid_Email {
+            get {
+                return ResourceManager.GetString("ForgotPasswordScreenView_Error_Invalid_Email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Passwort vergessen?.
         /// </summary>
         public static string ForgotPasswordScreenView_Forgot_Password {

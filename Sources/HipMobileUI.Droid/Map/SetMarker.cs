@@ -20,7 +20,7 @@ using Object = Java.Lang.Object;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Map
 {
-    class SetMarker
+    internal class SetMarker
     {
         private readonly MapView mapView;
         private readonly ViaPointInfoWindow markerInfoWindow;
