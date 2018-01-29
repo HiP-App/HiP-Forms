@@ -24,7 +24,6 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.AudioPlayer;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Contracts;
-using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views.ExhibitDetails;
@@ -33,6 +32,7 @@ using Page = PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.Pa
 using Settings = PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers.Settings;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
 using Acr.UserDialogs;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Appearance;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 {
@@ -107,9 +107,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             }
             else
             {
-                var resources = IoCManager.Resolve<ApplicationResourcesProvider>();
-                IoCManager.Resolve<IBarsColorsChanger>()
-                          .ChangeToolbarColor((Color)resources.GetResourceValue("PrimaryDarkColor"), (Color)resources.GetResourceValue("PrimaryColor"));
+                IoCManager.Resolve<IThemeManager>().AdjustTopBarTheme();
             }
         }
 
