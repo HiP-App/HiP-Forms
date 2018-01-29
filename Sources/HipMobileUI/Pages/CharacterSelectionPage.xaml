@@ -23,9 +23,22 @@
              x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Pages.CharacterSelectionPage">
     <ContentPage.Content>
 		<AbsoluteLayout>
-		<views:SKCanvasView x:Name="Canvas" PaintSurface="OnPaintSample" AbsoluteLayout.LayoutBounds="0,0,150,150">
+		<views:SKCanvasView x:Name="Canvas" PaintSurface="OnPaintSample" AbsoluteLayout.LayoutBounds="0,0,411,682.5">
 		</views:SKCanvasView>
-		<Image Source="ic_file_download.png" AbsoluteLayout.LayoutBounds="10,10,20,20" Command="{Binding AdventurerGridTappedCommand}"></Image>	
+		<Label x:Name="ProfessorText"
+        Text="{helpers:Translate CharacterSelectionPage_Professor_Text}" TextColor="White"
+        FontSize="Medium" AbsoluteLayout.LayoutBounds="230,350,170,170" />
+		<Image Source="ic_professor.png" AbsoluteLayout.LayoutBounds="220,450,150,150">
+			<Image.GestureRecognizers>
+				<TapGestureRecognizer Command="{Binding ProfessorGridTappedCommand}" />
+			</Image.GestureRecognizers>
+		</Image>
+		<Image Source="ic_adventurer.png" AbsoluteLayout.LayoutBounds="80,150,150,150">
+			<Image.GestureRecognizers>
+				<TapGestureRecognizer Command="{Binding AdventurerGridTappedCommand}" />
+			</Image.GestureRecognizers>
+		</Image>
+			
 		</AbsoluteLayout>
     </ContentPage.Content>
 </ContentPage>

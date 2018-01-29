@@ -86,10 +86,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
 				};
 
 				var path = new SKPath { FillType = SKPathFillType.EvenOdd };
-				path.MoveTo(0, 0);
-				path.LineTo(0, surfaceHeight);
-				path.LineTo(surfaceWidth, surfaceHeight);
+				path.MoveTo(surfaceWidth, 0);
 				path.LineTo(0, 0);
+				path.LineTo(0, surfaceHeight);
+				path.LineTo(surfaceWidth, 0);
 				path.Close();
 				canvas.DrawPath(path, pathStroke);
 
