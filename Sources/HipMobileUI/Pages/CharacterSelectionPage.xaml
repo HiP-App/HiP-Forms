@@ -22,9 +22,10 @@
 			 xmlns:views="clr-namespace:SkiaSharp.Views.Forms;assembly=SkiaSharp.Views.Forms"
              x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Pages.CharacterSelectionPage">
     <ContentPage.Content>
-		<Grid>
-		<views:SKCanvasView x:Name="Canvas" PaintSurface="OnPaintSample">
+		<AbsoluteLayout>
+		<views:SKCanvasView x:Name="Canvas" PaintSurface="OnPaintSample" AbsoluteLayout.LayoutBounds="0,0,150,150">
 		</views:SKCanvasView>
-		</Grid>
+		<Image Source="ic_file_download.png" AbsoluteLayout.LayoutBounds="10,10,20,20" Command="{Binding AdventurerGridTappedCommand}"></Image>	
+		</AbsoluteLayout>
     </ContentPage.Content>
 </ContentPage>
