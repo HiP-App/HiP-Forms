@@ -23,20 +23,20 @@
              x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Pages.CharacterSelectionPage">
     <ContentPage.Content>
 		<AbsoluteLayout>
-		<views:SKCanvasView x:Name="Canvas" PaintSurface="OnPaintSample" AbsoluteLayout.LayoutBounds="0,0,411,682.5">
+		<views:SKCanvasView x:Name="Canvas" PaintSurface="OnPaintSample" AbsoluteLayout.LayoutBounds=".5,.5,2.0,2.0 " AbsoluteLayout.LayoutFlags="All">
 		</views:SKCanvasView>
 		<Label x:Name="ProfessorText"
         Text="{helpers:Translate CharacterSelectionPage_Professor_Text}" TextColor="White"
-        FontSize="Medium" AbsoluteLayout.LayoutBounds="230,350,170,170" />
-		<Image Source="ic_professor.png" AbsoluteLayout.LayoutBounds="220,450,150,150">
+        FontSize="Medium" AbsoluteLayout.LayoutBounds=".8,.9,.4,.4" AbsoluteLayout.LayoutFlags="All"/>
+		<Image Source="ic_professor.png" AbsoluteLayout.LayoutBounds=".8,1.0,.4,.4" AbsoluteLayout.LayoutFlags="All">
 			<Image.GestureRecognizers>
 				<TapGestureRecognizer Command="{Binding ProfessorGridTappedCommand}" />
 			</Image.GestureRecognizers>
 		</Image>
         <Label x:Name="AdventurerLabel" Grid.Row="1"
         Text="{helpers:Translate CharacterSelectionPage_Adventurer_Text}" TextColor="White"
-        FontSize="Medium" AbsoluteLayout.LayoutBounds="70,200,170,170"/>
-		<Image Source="ic_adventurer.png" AbsoluteLayout.LayoutBounds="70,50,150,150">
+        FontSize="Medium" AbsoluteLayout.LayoutBounds=".2,.6,.4,.4" AbsoluteLayout.LayoutFlags="All"/>
+		<Image Source="ic_adventurer.png" AbsoluteLayout.LayoutBounds=".2,.05,.35,.35" AbsoluteLayout.LayoutFlags="All">
 			<Image.GestureRecognizers>
 				<TapGestureRecognizer Command="{Binding AdventurerGridTappedCommand}" />
 			</Image.GestureRecognizers>
