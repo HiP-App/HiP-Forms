@@ -16,6 +16,8 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
@@ -47,6 +49,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataLayer
                     if (!string.IsNullOrEmpty(realmResult.Id) && realmResult.Id.Equals(id))
                         return realmResult;
                 }
+
                 return null;
             }
         }
@@ -75,6 +78,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataLayer
             {
                 Instance.Remove(item);
             }
+
             return true;
         }
 
@@ -92,18 +96,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataLayer
             }
         }
 
-        public T CreateObject<T>(string id, bool updateCurrent) where T : RealmObject, IIdentifiable, new()
-        {
-            // create the instance
-            var instance = new T { Id = id };
-
-            if (updateCurrent)
-            {
-                DeleteItem<T>(id);
-            }
-            Instance.Add(instance);
-            return instance;
-        }
+        public T CreateObject<T>(string id, bool updateCurrent) where T : RealmObject, IIdentifiable, new() =>
+            Instance.Add(new T { Id = id }, updateCurrent);
 
         public T CreateObject<T>() where T : RealmObject, IIdentifiable, new()
         {
@@ -147,7 +141,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataLayer
             return Guid.NewGuid().ToString();
         }
 
-        private Realm Instance => Realm.GetInstance(Configuration);
+        private static readonly Realm Instance = Realm.GetInstance(Configuration);
 
         private static RealmConfiguration config;
 
