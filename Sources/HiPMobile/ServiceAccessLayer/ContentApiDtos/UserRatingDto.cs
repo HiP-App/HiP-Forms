@@ -30,5 +30,20 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
 
         [JsonProperty("ratingTable")]
         public Dictionary<int, int> RatingTable { get; set; }
+
+        /// <summary>
+        /// For serialization only.
+        /// </summary>
+        internal UserRatingDto()
+        {
+        }
+
+        internal UserRatingDto(int id, double average, int count, Dictionary<int, int> ratingTable)
+        {
+            Id = id;
+            Average = average;
+            Count = count;
+            RatingTable = ratingTable;
+        }
     }
 }
