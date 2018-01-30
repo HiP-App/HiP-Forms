@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Microsoft.Practices.ObjectBuilder2;
+using Xamarin.Forms.Internals;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
 {
