@@ -155,7 +155,6 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MaterialControls" Version="1.2.2" />
-    <PackageReference Include="Xamarin.Forms" Version="2.5.0.122203" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\ac_erkunden.jpg" />

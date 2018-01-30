@@ -13,6 +13,7 @@
     <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.3.4" />
     <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.3.4" />
     <PackageReference Include="Xamarin.Forms" Version="2.5.0.122203" />
+    <PackageReference Include="Xamarin.Forms.CarouselView" Version="2.3.0-pre2" />
     <PackageReference Include="Xamarin.Forms.Maps" Version="2.5.0.122203" />
   </ItemGroup>
 
