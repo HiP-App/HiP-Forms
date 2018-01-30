@@ -14,7 +14,6 @@
 
 using System;
 using NSubstitute;
-using NUnit.Core;
 using NUnit.Framework;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelConverters;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
@@ -27,7 +26,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.BusinessLayer.DtoT
     [TestFixture]
     public class MediaToImageConverterTest
     {
-        [TestFixtureSetUp]
+        [OneTimeSetUp]
         public void Init()
         {
             IoCManager.Clear();
