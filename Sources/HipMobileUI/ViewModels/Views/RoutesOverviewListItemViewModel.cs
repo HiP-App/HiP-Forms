@@ -70,12 +70,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 
         public ICommand DownloadCommand { get; set; }
 
-        internal string GetRouteDistanceText(double routeDistance)
+        public string GetRouteDistanceText(double routeDistance)
         {
             return string.Format(Strings.RoutesOverviewListItemViewModel_Distance, routeDistance);
         }
 
-        internal string GetRouteDurationText(int routeDuration)
+        public string GetRouteDurationText(int routeDuration)
         {
             var durationInMinutes = routeDuration / 60;
             return string.Format(Strings.RoutesOverviewListItemViewModel_Duration, durationInMinutes);

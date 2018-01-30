@@ -38,19 +38,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataLayer
         /// </summary>
         private static readonly object Locker = new object();
 
+        private readonly Dictionary<string, object> _objects = new Dictionary<string, object>();
+
         public T GetItem<T>(string id) where T : RealmObject, IIdentifiable
         {
             lock (Locker)
             {
-                // Realm has problems when using LINQ expression here.
-                var objects = Instance.All<T>();
-                foreach (var realmResult in objects)
-                {
-                    if (!string.IsNullOrEmpty(realmResult.Id) && realmResult.Id.Equals(id))
-                        return realmResult;
-                }
-
-                return null;
+                return _objects.TryGetValue(id, out var o) && o is T t ? t : null;
             }
         }
 
@@ -58,37 +52,23 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataLayer
         {
             lock (Locker)
             {
-                return Instance.All<T>();
+                return _objects.Values.OfType<T>();
             }
         }
 
         public bool DeleteItem<T>(string id) where T : RealmObject, IIdentifiable
         {
-            var item = GetItem<T>(id);
-            if (item == null)
-            {
-                return false;
-            }
-
-            if (!Instance.IsInTransaction)
-            {
-                Instance.Write(() => Instance.Remove(item));
-            }
-            else
-            {
-                Instance.Remove(item);
-            }
-
-            return true;
+            return _objects.Remove(id);
         }
 
         public BaseTransaction StartTransaction()
         {
             try
             {
-                var transactionInstance = Instance;
-                var transaction = transactionInstance.BeginWrite();
-                return new RealmTransaction(transaction);
+                //var transactionInstance = Instance;
+                //var transaction = transactionInstance.BeginWrite();
+                //return new RealmTransaction(transaction);
+                return new FakeTransaction();
             }
             catch (RealmInvalidTransactionException e)
             {
@@ -96,8 +76,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataLayer
             }
         }
 
-        public T CreateObject<T>(string id, bool updateCurrent) where T : RealmObject, IIdentifiable, new() =>
-            Instance.Add(new T { Id = id }, updateCurrent);
+        public T CreateObject<T>(string id, bool updateCurrent) where T : RealmObject, IIdentifiable, new()
+        {
+            var instance = new T { Id = id };
+            _objects[id] = instance;
+            return instance;
+        }
 
         public T CreateObject<T>() where T : RealmObject, IIdentifiable, new()
         {
@@ -113,7 +97,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataLayer
 
             instance.Id = id;
 
-            Instance.Add(instance);
+            _objects.Add(id, instance);
             return instance;
         }
 
@@ -121,7 +105,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataLayer
         {
             lock (Locker)
             {
-                return Convert.ToInt32(Configuration.SchemaVersion);
+                //return Convert.ToInt32(Configuration.SchemaVersion);
+                return 1;
             }
         }
 
@@ -133,7 +118,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataLayer
 
         public void CreateDatabase(int version)
         {
-            Configuration = new RealmConfiguration { SchemaVersion = Convert.ToUInt64(version) };
+            //Configuration = new RealmConfiguration { SchemaVersion = Convert.ToUInt64(version) };
         }
 
         private static string GenerateId()
@@ -141,16 +126,21 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataLayer
             return Guid.NewGuid().ToString();
         }
 
-        private static readonly Realm Instance = Realm.GetInstance(Configuration);
+        //private static RealmConfiguration config;
 
-        private static RealmConfiguration config;
+        //private static RealmConfiguration Configuration
+        //{
+        //    get => config ?? (config = new RealmConfiguration { SchemaVersion = Convert.ToUInt64(Settings.DatabaseVersion) });
+        //    set => config = value;
+        //}
 
-        private static RealmConfiguration Configuration
-        {
-            get => config ?? (config = new RealmConfiguration { SchemaVersion = Convert.ToUInt64(Settings.DatabaseVersion) });
-            set => config = value;
-        }
+        public string DatabasePath => "FakeDB.db"; // Configuration.DatabasePath;
+    }
 
-        public string DatabasePath => Configuration.DatabasePath;
+    public class FakeTransaction : BaseTransaction
+    {
+        public override void Commit() { }
+
+        public override void Rollback() { }
     }
 }

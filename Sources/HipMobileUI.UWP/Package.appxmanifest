@@ -7,15 +7,15 @@
   IgnorableNamespaces="uap mp">
 
   <Identity
-    Name="177e2957-978b-4b11-8aa6-84defbae245c"
-    Publisher="CN=mkuen"
+    Name="ec0cc741-fd3e-485c-81be-68815c480690"
+    Publisher="CN=Pierce Boggan"
     Version="1.0.0.0" />
 
-  <mp:PhoneIdentity PhoneProductId="177e2957-978b-4b11-8aa6-84defbae245c" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="ec0cc741-fd3e-485c-81be-68815c480690" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>HipMobileUI.UWP</DisplayName>
-    <PublisherDisplayName>mkuen</PublisherDisplayName>
+    <PublisherDisplayName>Pierce Boggan</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 

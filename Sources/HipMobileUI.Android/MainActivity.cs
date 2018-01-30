@@ -87,11 +87,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
             CrashManager.Register(this, keyProvider.GetKeyByName("hockeyapp.android"));
 
             // init forms and third party libraries
-            CachedImageRenderer.Init();
+            CachedImageRenderer.Init(enableFastRenderer: true);
             Forms.Init(this, bundle);
             Xamarin.FormsMaps.Init(this, bundle);
 
-            UserDialogs.Init(() => (Activity) Forms.Context);
+            UserDialogs.Init(() => (Activity)Forms.Context);
 
             LoadApplication(new App());
         }

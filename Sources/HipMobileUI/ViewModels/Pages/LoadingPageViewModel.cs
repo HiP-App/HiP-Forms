@@ -41,7 +41,7 @@ using Xamarin.Forms;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 {
-    class LoadingPageViewModel : NavigationViewModel, IProgressListener
+    public class LoadingPageViewModel : NavigationViewModel, IProgressListener
     {
         public LoadingPageViewModel()
         {

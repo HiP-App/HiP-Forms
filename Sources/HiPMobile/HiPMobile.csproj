@@ -2,10 +2,13 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <RootNamespace>PaderbornUniversity.SILab.Hip.Mobile</RootNamespace>
+    <RootNamespace>PaderbornUniversity.SILab.Hip.Mobile.Shared</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="BusinessLayer\Routing\osmfile.routerdb" />
+    <None Remove="BusinessLayer\Routing\Route_Network_Paderborn.pbf" />
+    <None Remove="Content\mockaudio.mp3" />
     <None Remove="Content\noImage.png" />
     <None Remove="Content\noImageTag.jpg" />
   </ItemGroup>
@@ -15,13 +18,16 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="BusinessLayer\Routing\osmfile.routerdb" />
+    <EmbeddedResource Include="BusinessLayer\Routing\Route_Network_Paderborn.pbf" />
+    <EmbeddedResource Include="Content\mockaudio.mp3" />
     <EmbeddedResource Include="Content\noImage.png" />
     <EmbeddedResource Include="Content\noImageTag.jpg" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="CommonServiceLocator" Version="2.0.2" />
-    <PackageReference Include="Itinero.IO.Osm" Version="1.3.2" />
+    <PackageReference Include="Itinero.IO.Osm" Version="1.4.0" />
     <PackageReference Include="JetBrains.Annotations" Version="11.1.0" />
     <PackageReference Include="NUnit" Version="3.9.0" />
     <PackageReference Include="OsmSharp" Version="6.0.0" />
