@@ -33,7 +33,10 @@
 				<TapGestureRecognizer Command="{Binding ProfessorGridTappedCommand}" />
 			</Image.GestureRecognizers>
 		</Image>
-		<Image Source="ic_adventurer.png" AbsoluteLayout.LayoutBounds="80,150,150,150">
+        <Label x:Name="AdventurerLabel" Grid.Row="1"
+        Text="{helpers:Translate CharacterSelectionPage_Adventurer_Text}" TextColor="White"
+        FontSize="Medium" AbsoluteLayout.LayoutBounds="70,200,170,170"/>
+		<Image Source="ic_adventurer.png" AbsoluteLayout.LayoutBounds="70,50,150,150">
 			<Image.GestureRecognizers>
 				<TapGestureRecognizer Command="{Binding AdventurerGridTappedCommand}" />
 			</Image.GestureRecognizers>
