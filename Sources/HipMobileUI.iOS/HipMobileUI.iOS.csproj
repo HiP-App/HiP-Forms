@@ -155,6 +155,9 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MaterialControls" Version="1.2.2" />
+	<PackageReference Include="System.Reflection.Emit" Version="4.3.0">
+		<ExcludeAssets>all</ExcludeAssets>
+	</PackageReference>
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\ac_erkunden.jpg" />
