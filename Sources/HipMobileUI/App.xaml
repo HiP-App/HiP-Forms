@@ -26,6 +26,8 @@
             <Color x:Key="PrimaryDarkColor">#0149D1</Color>
             <Color x:Key="AccentColor">#FFE57F</Color>
             <Color x:Key="AccentDarkColor">#FFCC00</Color>
+            <Color x:Key="TertiaryColor">#F22F0C</Color>
+            <Color x:Key="TertiaryDarkColor">#FF937F</Color>
             <Color x:Key="LightGrayColor">#05000000</Color>
             <Color x:Key="MediumGrayColor">#15000000</Color>
             <Color x:Key="DarkGrayColor">#66000000</Color>
@@ -47,8 +49,8 @@
                 <Setter Property="FontFamily">
                     <Setter.Value>
                         <OnPlatform x:TypeArguments="x:String">
-                            <OnPlatform.Android>SourceSansPro-Black.ttf#SourceSansPro-Black</OnPlatform.Android>
-                            <OnPlatform.iOS>SourceSansPro-Black</OnPlatform.iOS>
+                            <On Platform="Android" >SourceSansPro-Black.ttf#SourceSansPro-Black</On>
+                            <On Platform ="iOS">SourceSansPro-Black</On>
                         </OnPlatform>
                     </Setter.Value>
                 </Setter>
@@ -57,8 +59,8 @@
                 <Setter Property="FontFamily">
                     <Setter.Value>
                         <OnPlatform x:TypeArguments="x:String">
-                            <OnPlatform.Android>SourceSansPro-BlackItalic.ttf#SourceSansPro-BlackItalic</OnPlatform.Android>
-                            <OnPlatform.iOS>SourceSansPro-BlackItalic</OnPlatform.iOS>
+                            <On Platform="Android" >SourceSansPro-BlackItalic.ttf#SourceSansPro-BlackItalic</On>
+                            <On Platform ="iOS">SourceSansPro-BlackItalic</On>
                         </OnPlatform>
                     </Setter.Value>
                     </Setter>
@@ -68,8 +70,8 @@
                 <Setter Property="FontFamily">
                     <Setter.Value>
                         <OnPlatform x:TypeArguments="x:String">
-                            <OnPlatform.Android>SourceSansPro-Bold.ttf#SourceSansPro-Bold</OnPlatform.Android>
-                            <OnPlatform.iOS>SourceSansPro-Bold</OnPlatform.iOS>
+                            <On Platform="Android" >SourceSansPro-Bold.ttf#SourceSansPro-Bold</On>
+                            <On Platform ="iOS">SourceSansPro-Bold</On>
                         </OnPlatform>
                     </Setter.Value>
                 </Setter>
@@ -78,8 +80,8 @@
                 <Setter Property="FontFamily">
                     <Setter.Value>
                         <OnPlatform x:TypeArguments="x:String">
-                            <OnPlatform.Android>SourceSansPro-BoldItalic.ttf#SourceSansPro-BoldItalic</OnPlatform.Android>
-                            <OnPlatform.iOS>SourceSansPro-BoldItalic</OnPlatform.iOS>
+                            <On Platform="Android" >SourceSansPro-BoldItalic.ttf#SourceSansPro-BoldItalic</On>
+                            <On Platform ="iOS">SourceSansPro-BoldItalic</On>
                         </OnPlatform>
                     </Setter.Value>
                 </Setter>
@@ -88,8 +90,8 @@
                 <Setter Property="FontFamily">
                     <Setter.Value>
                         <OnPlatform x:TypeArguments="x:String">
-                            <OnPlatform.Android>SourceSansPro-ExtraLight.ttf#SourceSansPro-ExtraLight</OnPlatform.Android>
-                            <OnPlatform.iOS>SourceSansPro-ExtraLight</OnPlatform.iOS>
+                            <On Platform="Android" >SourceSansPro-ExtraLight.ttf#SourceSansPro-ExtraLight</On>
+                            <On Platform ="iOS">SourceSansPro-ExtraLight</On>
                         </OnPlatform>
                     </Setter.Value>
                 </Setter>
@@ -98,8 +100,8 @@
                 <Setter Property="FontFamily">
                     <Setter.Value>
                         <OnPlatform x:TypeArguments="x:String">
-                            <OnPlatform.Android>SourceSansPro-ExtraLightItalic.ttf#SourceSansPro-ExtraLightItalic</OnPlatform.Android>
-                            <OnPlatform.iOS>SourceSansPro-ExtraLightItalic</OnPlatform.iOS>
+                            <On Platform="Android" >SourceSansPro-ExtraLightItalic.ttf#SourceSansPro-ExtraLightItalic</On>
+                            <On Platform ="iOS">SourceSansPro-ExtraLightItalic</On>
                         </OnPlatform>
                     </Setter.Value>
                 </Setter>
@@ -108,8 +110,8 @@
                 <Setter Property="FontFamily">
                     <Setter.Value>
                         <OnPlatform x:TypeArguments="x:String">
-                            <OnPlatform.Android>SourceSansPro-Italic.ttf#SourceSansPro-Italic</OnPlatform.Android>
-                            <OnPlatform.iOS>SourceSansPro-Italic</OnPlatform.iOS>
+                            <On Platform="Android" >SourceSansPro-Italic.ttf#SourceSansPro-Italic</On>
+                            <On Platform ="iOS">SourceSansPro-Italic</On>
                         </OnPlatform>
                     </Setter.Value>
                 </Setter>
@@ -118,8 +120,8 @@
                 <Setter Property="FontFamily">
                     <Setter.Value>
                         <OnPlatform x:TypeArguments="x:String">
-                            <OnPlatform.Android>SourceSansPro-Light.ttf#SourceSansPro-Light</OnPlatform.Android>
-                            <OnPlatform.iOS>SourceSansPro-Light</OnPlatform.iOS>
+                            <On Platform="Android" >SourceSansPro-Light.ttf#SourceSansPro-Light</On>
+                            <On Platform ="iOS">SourceSansPro-Light</On>
                         </OnPlatform>
                     </Setter.Value>
                 </Setter>
@@ -128,8 +130,8 @@
                 <Setter Property="FontFamily">
                     <Setter.Value>
                         <OnPlatform x:TypeArguments="x:String">
-                            <OnPlatform.Android>SourceSansPro-LightItalic.ttf#SourceSansPro-LightItalic</OnPlatform.Android>
-                            <OnPlatform.iOS>SourceSansPro-LightItalic</OnPlatform.iOS>
+                            <On Platform="Android" >SourceSansPro-LightItalic.ttf#SourceSansPro-LightItalic</On>
+                            <On Platform ="iOS">SourceSansPro-LightItalic</On>
                         </OnPlatform>
                     </Setter.Value>
                 </Setter>
@@ -138,8 +140,8 @@
                 <Setter Property="FontFamily">
                     <Setter.Value>
                         <OnPlatform x:TypeArguments="x:String">
-                            <OnPlatform.Android>SourceSansPro-Regular.ttf#SourceSansPro-Regular</OnPlatform.Android>
-                            <OnPlatform.iOS>SourceSansPro-Regular</OnPlatform.iOS>
+                            <On Platform="Android">SourceSansPro-Regular.ttf#SourceSansPro-Regular</On>
+                            <On Platform ="iOS">SourceSansPro-Regular</On>
                         </OnPlatform>
                     </Setter.Value>
                 </Setter>
@@ -148,8 +150,8 @@
                 <Setter Property="FontFamily">
                     <Setter.Value>
                         <OnPlatform x:TypeArguments="x:String">
-                            <OnPlatform.Android>SourceSansPro-SemiBold.ttf#SourceSansPro-SemiBold</OnPlatform.Android>
-                            <OnPlatform.iOS>SourceSansPro-SemiBold</OnPlatform.iOS>
+                            <On Platform="Android">SourceSansPro-SemiBold.ttf#SourceSansPro-SemiBold</On>
+                            <On Platform ="iOS">SourceSansPro-SemiBold</On>
                         </OnPlatform>
                     </Setter.Value>
                 </Setter>
@@ -158,8 +160,8 @@
                 <Setter Property="FontFamily">
                     <Setter.Value>
                         <OnPlatform x:TypeArguments="x:String">
-                            <OnPlatform.Android>SourceSansPro-SemiBoldItalic.ttf#SourceSansPro-SemiBoldItalic</OnPlatform.Android>
-                            <OnPlatform.iOS>SourceSansPro-SemiBoldItalic</OnPlatform.iOS>
+                            <On Platform="Android">SourceSansPro-SemiBoldItalic.ttf#SourceSansPro-SemiBoldItalic</On>
+                            <On Platform ="iOS">SourceSansPro-SemiBoldItalic</On>
                         </OnPlatform>
                     </Setter.Value>
                 </Setter>
