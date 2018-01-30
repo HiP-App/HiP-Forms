@@ -33,7 +33,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Views
     {
         private INavigationService navservice;
 
-        [TestFixtureSetUp]
+        [OneTimeSetUp]
         public void Init()
         {
             IoCManager.Clear();

@@ -23,7 +23,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Pages
 {
     public class UserOnboardingPageViewModelTest
     {
-        [TestFixtureSetUp]
+        [OneTimeSetUp]
         public void Init()
         {
             IoCManager.RegisterInstance(typeof(INavigationService), Substitute.For<INavigationService>());
