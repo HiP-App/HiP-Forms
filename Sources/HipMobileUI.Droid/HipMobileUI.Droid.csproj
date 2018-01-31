@@ -309,6 +309,7 @@
     <Compile Include="Effects\DroidSwitchColorEffect.cs" />
     <Compile Include="Helpers\HtmlTagHelper.cs" />
     <Compile Include="Helpers\IListReplacementProvider.cs" />
+    <Compile Include="Helpers\Localize.cs" />
     <Compile Include="Helpers\OrderedListItemReplacementProvider.cs" />
     <Compile Include="CustomRenderers\DroidHtmlLinkRenderer.cs" />
     <Compile Include="Helpers\SpannableTextBuilder.cs" />

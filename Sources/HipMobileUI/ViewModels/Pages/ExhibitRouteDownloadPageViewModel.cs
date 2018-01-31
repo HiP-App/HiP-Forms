@@ -222,7 +222,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
             if (messageToShow != null)
             {
-                await Navigation.DisplayAlert(titleToShow, messageToShow, "OK");
+                await Navigation.DisplayAlert(titleToShow, messageToShow, Strings.ExhibitRouteDownloadPageViewModel_OK);
                 CloseDownloadPage();
                 return;
             }

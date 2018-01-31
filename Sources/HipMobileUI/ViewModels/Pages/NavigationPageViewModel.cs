@@ -43,7 +43,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         {
             DetailsRoute = route;
             ShowNavigation = true;
-            Title = "Navigation";
+            Title = Strings.NavigationPageViewModel_Title;
             locationManager = IoCManager.Resolve<ILocationManager>();
             nearbyExhibitManager = IoCManager.Resolve<INearbyExhibitManager>();
             FocusGps = new Command(FocusGpsClicked);

@@ -21,6 +21,7 @@
              x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Pages.ExhibitRouteDownloadPage"
              Title="{Binding DownloadableName}"
              xmlns:effects="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Effects;assembly=HipMobileUI"
+             xmlns:helpers="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;assembly=HipMobileUI"
              xmlns:views="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Views;assembly=HipMobileUI">
     <ContentPage.Content>
         <views:NotificationExtensionView>
@@ -61,7 +62,7 @@
                     <StackLayout x:Name="ButtonView" Grid.Row="3" Orientation="Vertical" VerticalOptions="End" Padding="0">
                         <BoxView HeightRequest="1" Color="{StaticResource DarkGrayColor}" />
                         <StackLayout Orientation="Horizontal" Padding="8" BackgroundColor="{StaticResource LightGrayColor}">
-                            <Label IsVisible="{Binding DownloadFinished}" Text="Übersicht" FontSize="20"
+                            <Label IsVisible="{Binding DownloadFinished}" Text="{helpers:Translate ExhibitRouteDownloadPage_Overview}" FontSize="20"
                                    TextColor="{StaticResource AccentColor}"
                                    HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
                                    Margin="5"
@@ -72,7 +73,7 @@
                             </Label>
                             <BoxView IsVisible="{Binding DownloadFinished}" WidthRequest="1"
                                      Color="{StaticResource DarkGrayColor}"/>
-                            <Label IsVisible="{Binding DownloadFinished}" Text="Details" FontSize="20"
+                            <Label IsVisible="{Binding DownloadFinished}" Text="{helpers:Translate ExhibitRouteDownloadPage_Details}" FontSize="20"
                                    TextColor="{StaticResource AccentColor}"
                                    HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
                                    HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
@@ -80,7 +81,7 @@
                                     <TapGestureRecognizer Command="{Binding GoToDetailsCommand}" />
                                 </Label.GestureRecognizers>
                             </Label>
-                            <Label IsVisible="{Binding DownloadPending}" Text="Abbrechen" FontSize="20"
+                            <Label IsVisible="{Binding DownloadPending}" Text="{helpers:Translate ExhibitRouteDownloadPage_Cancel}"  FontSize="20"
                                    TextColor="{StaticResource AccentColor}"
                                    HorizontalTextAlignment="Center"
                                    HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
