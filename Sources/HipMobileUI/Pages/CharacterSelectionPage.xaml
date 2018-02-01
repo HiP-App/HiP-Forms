@@ -25,7 +25,7 @@
         <views:NotificationExtensionView>
             <views:NotificationExtensionView.ContentTemplate>
                 <Grid x:Name="MainGrid" RowSpacing="0" ColumnSpacing="0">
-                    <Grid x:Name="AdventurerGrid" BackgroundColor="Orange">
+                    <Grid x:Name="AdventurerGrid" BackgroundColor="#FFE57F">
                         <Grid.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding AdventurerGridTappedCommand}" />
                         </Grid.GestureRecognizers>
@@ -38,7 +38,7 @@
                                Text="{helpers:Translate CharacterSelectionPage_Adventurer_Text}" TextColor="White"
                                FontSize="Medium" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
                     </Grid>
-                    <Grid x:Name="ProfessorGrid" BackgroundColor="Blue">
+                    <Grid x:Name="ProfessorGrid" BackgroundColor="#7FACFF">
                         <Grid.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding ProfessorGridTappedCommand}" />
                         </Grid.GestureRecognizers>

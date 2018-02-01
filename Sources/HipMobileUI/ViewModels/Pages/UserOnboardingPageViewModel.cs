@@ -28,9 +28,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         {
             Pages = new ObservableCollection<UserOnboardingItemViewModel>
             {
-                new UserOnboardingItemViewModel(Strings.UserOnboarding_Explore_Title, Strings.UserOnboarding_Explore_Text, "ac_erkunden.jpg", Color.Green),
-                new UserOnboardingItemViewModel(Strings.UserOnboarding_Route_Title, Strings.UserOnboarding_Route_Text, "ac_route.jpg", Color.Orange, "ac_route2.jpg"),
-                new UserOnboardingItemViewModel(Strings.UserOnboarding_Students_Title, Strings.UserOnboarding_Students_Text, "ac_students", Color.Blue)
+                new UserOnboardingItemViewModel(Strings.UserOnboarding_Explore_Title, Strings.UserOnboarding_Explore_Text, "ac_erkunden.jpg", Color.FromRgb(255,147,127)),
+                new UserOnboardingItemViewModel(Strings.UserOnboarding_Route_Title, Strings.UserOnboarding_Route_Text, "ac_route.jpg", Color.FromRgb(255,229,127), "ac_route2.jpg"),
+                new UserOnboardingItemViewModel(Strings.UserOnboarding_Students_Title, Strings.UserOnboarding_Students_Text, "ac_students", Color.FromRgb(127,172,255))
             };
             ContentOrientation = StackOrientation.Vertical;
             ForwardCommand = new Command(GotoNextPage);

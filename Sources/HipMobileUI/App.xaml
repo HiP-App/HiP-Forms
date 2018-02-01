@@ -50,7 +50,7 @@
                     <Setter.Value>
                         <OnPlatform x:TypeArguments="x:String">
                             <On Platform="Android" >SourceSansPro-Black.ttf#SourceSansPro-Black</On>
-                            <On Platform ="iOS">SourceSansPro-Black</On>
+                            <On Platform ="iOS">fonts/SourceSansPro-Black</On>
                         </OnPlatform>
                     </Setter.Value>
                 </Setter>
@@ -60,7 +60,7 @@
                     <Setter.Value>
                         <OnPlatform x:TypeArguments="x:String">
                             <On Platform="Android" >SourceSansPro-BlackItalic.ttf#SourceSansPro-BlackItalic</On>
-                            <On Platform ="iOS">SourceSansPro-BlackItalic</On>
+                            <On Platform ="iOS">fonts/SourceSansPro-BlackItalic</On>
                         </OnPlatform>
                     </Setter.Value>
                     </Setter>
@@ -71,7 +71,7 @@
                     <Setter.Value>
                         <OnPlatform x:TypeArguments="x:String">
                             <On Platform="Android" >SourceSansPro-Bold.ttf#SourceSansPro-Bold</On>
-                            <On Platform ="iOS">SourceSansPro-Bold</On>
+                            <On Platform ="iOS">fonts/SourceSansPro-Bold</On>
                         </OnPlatform>
                     </Setter.Value>
                 </Setter>
@@ -81,7 +81,7 @@
                     <Setter.Value>
                         <OnPlatform x:TypeArguments="x:String">
                             <On Platform="Android" >SourceSansPro-BoldItalic.ttf#SourceSansPro-BoldItalic</On>
-                            <On Platform ="iOS">SourceSansPro-BoldItalic</On>
+                            <On Platform ="iOS">fonts/SourceSansPro-BoldItalic</On>
                         </OnPlatform>
                     </Setter.Value>
                 </Setter>
@@ -91,7 +91,7 @@
                     <Setter.Value>
                         <OnPlatform x:TypeArguments="x:String">
                             <On Platform="Android" >SourceSansPro-ExtraLight.ttf#SourceSansPro-ExtraLight</On>
-                            <On Platform ="iOS">SourceSansPro-ExtraLight</On>
+                            <On Platform ="iOS">fonts/SourceSansPro-ExtraLight</On>
                         </OnPlatform>
                     </Setter.Value>
                 </Setter>
@@ -101,7 +101,7 @@
                     <Setter.Value>
                         <OnPlatform x:TypeArguments="x:String">
                             <On Platform="Android" >SourceSansPro-ExtraLightItalic.ttf#SourceSansPro-ExtraLightItalic</On>
-                            <On Platform ="iOS">SourceSansPro-ExtraLightItalic</On>
+                            <On Platform ="iOS">fonts/SourceSansPro-ExtraLightItalic</On>
                         </OnPlatform>
                     </Setter.Value>
                 </Setter>
@@ -111,7 +111,7 @@
                     <Setter.Value>
                         <OnPlatform x:TypeArguments="x:String">
                             <On Platform="Android" >SourceSansPro-Italic.ttf#SourceSansPro-Italic</On>
-                            <On Platform ="iOS">SourceSansPro-Italic</On>
+                            <On Platform ="iOS">fonts/SourceSansPro-Italic</On>
                         </OnPlatform>
                     </Setter.Value>
                 </Setter>
@@ -121,7 +121,7 @@
                     <Setter.Value>
                         <OnPlatform x:TypeArguments="x:String">
                             <On Platform="Android" >SourceSansPro-Light.ttf#SourceSansPro-Light</On>
-                            <On Platform ="iOS">SourceSansPro-Light</On>
+                            <On Platform ="iOS">fonts/SourceSansPro-Light</On>
                         </OnPlatform>
                     </Setter.Value>
                 </Setter>
@@ -131,7 +131,7 @@
                     <Setter.Value>
                         <OnPlatform x:TypeArguments="x:String">
                             <On Platform="Android" >SourceSansPro-LightItalic.ttf#SourceSansPro-LightItalic</On>
-                            <On Platform ="iOS">SourceSansPro-LightItalic</On>
+                            <On Platform ="iOS">fonts/SourceSansPro-LightItalic</On>
                         </OnPlatform>
                     </Setter.Value>
                 </Setter>
@@ -141,7 +141,7 @@
                     <Setter.Value>
                         <OnPlatform x:TypeArguments="x:String">
                             <On Platform="Android">SourceSansPro-Regular.ttf#SourceSansPro-Regular</On>
-                            <On Platform ="iOS">SourceSansPro-Regular</On>
+                            <On Platform ="iOS">fonts/SourceSansPro-Regular</On>
                         </OnPlatform>
                     </Setter.Value>
                 </Setter>
@@ -151,7 +151,7 @@
                     <Setter.Value>
                         <OnPlatform x:TypeArguments="x:String">
                             <On Platform="Android">SourceSansPro-SemiBold.ttf#SourceSansPro-SemiBold</On>
-                            <On Platform ="iOS">SourceSansPro-SemiBold</On>
+                            <On Platform ="iOS">fonts/SourceSansPro-SemiBold</On>
                         </OnPlatform>
                     </Setter.Value>
                 </Setter>
@@ -161,7 +161,7 @@
                     <Setter.Value>
                         <OnPlatform x:TypeArguments="x:String">
                             <On Platform="Android">SourceSansPro-SemiBoldItalic.ttf#SourceSansPro-SemiBoldItalic</On>
-                            <On Platform ="iOS">SourceSansPro-SemiBoldItalic</On>
+                            <On Platform ="iOS">fonts/SourceSansPro-SemiBoldItalic</On>
                         </OnPlatform>
                     </Setter.Value>
                 </Setter>

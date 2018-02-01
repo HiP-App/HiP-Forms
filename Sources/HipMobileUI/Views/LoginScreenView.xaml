@@ -34,17 +34,17 @@
                            Text="{Binding Password}" TextChanged="Entry_TextChanged" />
                     <Label x:Name="ErrorMessageLabel"
                            HorizontalOptions="Center" VerticalOptions="Start"
-                           FontSize="Small" TextColor="Red" Text="{Binding ErrorMessage, Mode=TwoWay}" />
+                           FontSize="Small" TextColor="{StaticResource RedBarColor}" Text="{Binding ErrorMessage, Mode=TwoWay}" />
                     <Label x:Name="RegisterLabel"
                            HorizontalOptions="Center"
-                           FontSize="Small" TextColor="Blue" Text="{helpers:Translate LoginScreenView_Register}">
+                           FontSize="Small" TextColor="{StaticResource PrimaryDarkColor}" Text="{helpers:Translate LoginScreenView_Register}">
                         <Label.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding RegisterCommand}" />
                         </Label.GestureRecognizers>
                     </Label>
                     <Label x:Name="ForgotPasswordLabel"
                            HorizontalOptions="Center"
-                           FontSize="Small" TextColor="Blue" Text="{helpers:Translate LoginScreenView_Forgot_Password}">
+                           FontSize="Small" TextColor="{StaticResource PrimaryDarkColor}" Text="{helpers:Translate LoginScreenView_Forgot_Password}">
                         <Label.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding ForgotPasswordCommand}" />
                         </Label.GestureRecognizers>
