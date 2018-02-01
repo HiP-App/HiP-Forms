@@ -8,84 +8,101 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SkiaSharp;
+using SkiaSharp.Views.Forms;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class CharacterSelectionPage : IViewFor<CharacterSelectionPageViewModel>
-    {
-        private double thisWidth, thisHeight;
-        private DeviceOrientation deviceOrientation;
+	[XamlCompilation(XamlCompilationOptions.Compile)]
+	public partial class CharacterSelectionPage : IViewFor<CharacterSelectionPageViewModel>
+	{
+		private double thisWidth, thisHeight;
+		private DeviceOrientation deviceOrientation;
 
-        private CharacterSelectionPageViewModel ViewModel => ((CharacterSelectionPageViewModel) BindingContext);
+		private CharacterSelectionPageViewModel ViewModel => ((CharacterSelectionPageViewModel)BindingContext);
 
-        public CharacterSelectionPage()
-        {
-            InitializeComponent();
+		public CharacterSelectionPage()
+		{
+			InitializeComponent();
 
-            deviceOrientation = DeviceOrientation.Undefined;
+			deviceOrientation = DeviceOrientation.Undefined;
 
-            // hide the status bar for this page
-            IStatusBarController statusBarController = IoCManager.Resolve<IStatusBarController>();
-            statusBarController.HideStatusBar();
-        }
+			// hide the status bar for this page
+			IStatusBarController statusBarController = IoCManager.Resolve<IStatusBarController>();
+			statusBarController.HideStatusBar();
+		}
 
-        protected override void OnSizeAllocated(double width, double height)
-        {
-            base.OnSizeAllocated(width, height);
+		protected override void OnSizeAllocated(double width, double height)
+		{
+			base.OnSizeAllocated(width, height);
 
-            if (!(Math.Abs(width - thisWidth) > 0.4) && !(Math.Abs(height - thisHeight) > 0.4))
-                return;
+			if (!(Math.Abs(width - thisWidth) > 0.4) && !(Math.Abs(height - thisHeight) > 0.4))
+				return;
 
-            thisWidth = width;
-            thisHeight = height;
+			thisWidth = width;
+			thisHeight = height;
 
-            if (width <= height)
-            {
-                //Portrait
-                if (deviceOrientation == DeviceOrientation.Portrait)
-                    return;
+			if (width <= height)
+			{
+				//Portrait
+				if (deviceOrientation == DeviceOrientation.Portrait)
+					return;
 
-                MainGrid.RowDefinitions.Clear();
-                MainGrid.ColumnDefinitions.Clear();
 
-                MainGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
-                MainGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
 
-                MainGrid.Children.Add(AdventurerGrid, 0, 0);
-                MainGrid.Children.Add(ProfessorGrid, 0, 1);
+				deviceOrientation = DeviceOrientation.Portrait;
+			}
+			else if (width > height)
+			{
+				//Landscape
+				if (deviceOrientation == DeviceOrientation.Landscape)
+					return;
 
-                deviceOrientation = DeviceOrientation.Portrait;
-            }
-            else if (width > height)
-            {
-                //Landscape
-                if (deviceOrientation == DeviceOrientation.Landscape)
-                    return;
 
-                MainGrid.RowDefinitions.Clear();
-                MainGrid.ColumnDefinitions.Clear();
+				deviceOrientation = DeviceOrientation.Landscape;
+			}
+		}
+		private void OnPaintSample(object sender, SKPaintSurfaceEventArgs e)
+		{
+			int surfaceWidth = e.Info.Width;
+			int surfaceHeight = e.Info.Height;
 
-                MainGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
-                MainGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+			SKCanvas canvas = e.Surface.Canvas;
 
-                MainGrid.Children.Add(AdventurerGrid, 0, 0);
-                MainGrid.Children.Add(ProfessorGrid, 1, 0);
 
-                deviceOrientation = DeviceOrientation.Landscape;
-            }
-        }
+			using (SKPaint paint = new SKPaint())
+			{
+				canvas.Clear(Color.Blue.ToSKColor()); //paint it blue
 
-        protected override bool OnBackButtonPressed()
-        {
-            //The user cannot go back when he has to select the character on the first app start
-            if (ViewModel.ParentViewModel.GetType() != typeof(UserOnboardingPageViewModel))
-            {
-                ViewModel.SwitchToNextPage();
-            }
-            return true;
-        }
-    }
+
+				var pathStroke = new SKPaint
+				{
+					IsAntialias = true,
+					Style = SKPaintStyle.StrokeAndFill,
+					Color = new SKColor(255, 165, 0),
+					StrokeWidth = 5
+				};
+
+				var path = new SKPath { FillType = SKPathFillType.EvenOdd };
+				path.MoveTo(surfaceWidth, 0);
+				path.LineTo(0, 0);
+				path.LineTo(0, surfaceHeight);
+				path.LineTo(surfaceWidth, 0);
+				path.Close();
+				canvas.DrawPath(path, pathStroke);
+
+			}
+		}
+		protected override bool OnBackButtonPressed()
+		{
+			//The user cannot go back when he has to select the character on the first app start
+			if (ViewModel.ParentViewModel.GetType() != typeof(UserOnboardingPageViewModel))
+			{
+				ViewModel.SwitchToNextPage();
+			}
+			return true;
+		}
+	}
 }
