@@ -186,21 +186,16 @@
     <ITunesArtwork Include="iTunesArtwork" />
     <ITunesArtwork Include="iTunesArtwork@2x" />
     <None Include="packages.config" />
+    <BundleResource Include="Resources\fonts\AlteSchwabacher.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </BundleResource>
     <BundleResource Include="Resources\ic_done.png" />
     <BundleResource Include="Resources\ic_done_2x.png" />
     <BundleResource Include="Resources\ic_done_3x.png" />
-    <BundleResource Include="Resources\fonts\SourceSansPro-Regular.ttf" />
-    <BundleResource Include="Resources\fonts\SourceSansPro-SemiBold.ttf" />
-    <BundleResource Include="Resources\fonts\SourceSansPro-SemiBoldItalic.ttf" />
-    <BundleResource Include="Resources\fonts\SourceSansPro-Black.ttf" />
-    <BundleResource Include="Resources\fonts\SourceSansPro-BlackItalic.ttf" />
-    <BundleResource Include="Resources\fonts\SourceSansPro-Bold.ttf" />
-    <BundleResource Include="Resources\fonts\SourceSansPro-BoldItalic.ttf" />
-    <BundleResource Include="Resources\fonts\SourceSansPro-ExtraLight.ttf" />
-    <BundleResource Include="Resources\fonts\SourceSansPro-ExtraLightItalic.ttf" />
-    <BundleResource Include="Resources\fonts\SourceSansPro-Italic.ttf" />
-    <BundleResource Include="Resources\fonts\SourceSansPro-Light.ttf" />
-    <BundleResource Include="Resources\fonts\SourceSansPro-LightItalic.ttf" />
+    <BundleResource Include="Resources\Contents.json" />
+    <BundleResource Include="Resources\ic_more_vert.png" />
+    <BundleResource Include="Resources\ic_more_vert_2x.png" />
+    <BundleResource Include="Resources\ic_more_vert_3x.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Default-568h%402x.png" />
