@@ -30,7 +30,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers
     [ContentProperty("Text")]
     public class TranslateExtension : IMarkupExtension
     {
-        readonly CultureInfo ci = null;
+        private readonly CultureInfo ci;
         private const string ResourceId = "PaderbornUniversity.SILab.Hip.Mobile.UI.Resources.Strings";
 
         public string Text { get; set; }

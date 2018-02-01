@@ -93,10 +93,10 @@
     <Compile Include="Pages\UserRatingPage.xaml.cs">
       <DependentUpon>UserRatingPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Resources\Strings.en.Designer.cs">
+    <Compile Include="Resources\Strings.de.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Strings.en.resx</DependentUpon>
+      <DependentUpon>Strings.de.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\Strings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -265,9 +265,9 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\Strings.en.resx">
+    <EmbeddedResource Include="Resources\Strings.de.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Strings.en.Designer.cs</LastGenOutput>
+      <LastGenOutput>Strings.de.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\RegisterScreenView.xaml">
