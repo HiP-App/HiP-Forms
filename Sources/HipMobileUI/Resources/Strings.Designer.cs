@@ -170,7 +170,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Play.
+        ///   Looks up a localized string similar to Abspielen.
         /// </summary>
         internal static string AudioToolbarView_Play {
             get {
@@ -593,7 +593,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Copyright.
+        ///   Looks up a localized string similar to Urheberrechte.
         /// </summary>
         internal static string LicenseScreenView_Copyright_Title {
             get {
@@ -1323,7 +1323,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Account.
+        ///   Looks up a localized string similar to Konto.
         /// </summary>
         internal static string MainPageViewModel_Account {
             get {
@@ -1332,7 +1332,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Achievements.
+        ///   Looks up a localized string similar to Erfolge.
         /// </summary>
         internal static string MainPageViewModel_Achievements {
             get {

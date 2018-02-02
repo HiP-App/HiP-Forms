@@ -130,7 +130,7 @@
     <value>Die Software Historisches Paderborn unterliegt dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung bedürfen der schriftlichen Zustimmung der Universität Paderborn. Die Nutzung der Software ist nur für den privaten, nicht kommerziellen Gebrauch gestattet.</value>
   </data>
   <data name="LicenseScreenView_Copyright_Title" xml:space="preserve">
-    <value>Copyright</value>
+    <value>Urheberrechte</value>
   </data>
   <data name="LicenseScreenView_CreditsImagesAutocarousel_Text" xml:space="preserve">
     <value>Bilder erstellt von &lt;a href="http://www.flaticon.com/authors/madebyoliver/"&gt;Madebyoliver&lt;/a&gt; from &lt;a href="http://www.flaticon.com/"&gt;www.flaticon.com&lt;/a&gt;.</value>
@@ -359,7 +359,7 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
     <value>Pause</value>
   </data>
   <data name="AudioToolbarView_Play" xml:space="preserve">
-    <value>Play</value>
+    <value>Abspielen</value>
   </data>
   <data name="AudioToolbarView_Progress" xml:space="preserve">
     <value>Fortschritt</value>
@@ -548,7 +548,7 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
     <value> herunter</value>
   </data>
   <data name="MainPageViewModel_Account" xml:space="preserve">
-    <value>Account</value>
+    <value>Konto</value>
   </data>
   <data name="MainPageViewModel_Profile" xml:space="preserve">
     <value>Profil</value>
@@ -776,7 +776,7 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
     <value>Um Achievements zu nutzen, musst du dich zunächst einloggen.</value>
   </data>
   <data name="MainPageViewModel_Achievements" xml:space="preserve">
-    <value>Achievements</value>
+    <value>Erfolge</value>
   </data>
   <data name="ExhibitNearby_VisitRequest" xml:space="preserve">
     <value>Besuche eine nahe Sehenswürdigkeit!</value>
@@ -859,5 +859,4 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   <data name="Cancel" xml:space="preserve">
     <value>Abbrechen</value>
   </data>
-
 </root>
