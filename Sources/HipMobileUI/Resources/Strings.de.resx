@@ -117,34 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="MainPageViewModel_Feedback" xml:space="preserve">
-    <value>Feedback</value>
-  </data>
-  <data name="MainPageViewModel_LegalNotices" xml:space="preserve">
-    <value>Legal Notice</value>
-  </data>
-  <data name="MainPageViewModel_OverviewPage" xml:space="preserve">
-    <value>Overview</value>
-  </data>
-  <data name="MainPageViewModel_Routes" xml:space="preserve">
-    <value>Routes</value>
-  </data>
-  <data name="MainPageViewModel_Settings" xml:space="preserve">
-    <value>Settings</value>
-  </data>
-  <data name="MainPage_MenuTitle" xml:space="preserve">
-    <value>Historisches Paderborn</value>
-  </data>
-  <data name="MainPageViewModel_Account" xml:space="preserve">
-    <value>Account</value>
-  </data>
-  <data name="MainPageViewModel_Profile" xml:space="preserve">
-    <value>Profile</value>
-  </data>
-  <data name="MainPageViewModel_Leaderboard" xml:space="preserve">
-    <value>Ranking</value>
-  </data>
-  <data name="MainPageViewModel_Achievements" xml:space="preserve">
-    <value>Achievements</value>
-  </data>
 </root>
