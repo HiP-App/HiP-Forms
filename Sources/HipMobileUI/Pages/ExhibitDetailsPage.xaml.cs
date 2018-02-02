@@ -12,12 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System.ComponentModel;
-using PaderbornUniversity.SILab.Hip.Mobile.UI.Controls;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.DesignTime;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
-using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
+using System.ComponentModel;
 using Xamarin.Forms;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
@@ -31,6 +30,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
         public ExhibitDetailsPage()
         {
             InitializeComponent();
+            DesignMode.Initialize(this);
 
             // Workaround because OnDisappearing is called when the app starts sleeping(on Android) and the OrientationController is reset. Therefore, we need to safe the controller and reapply it after the app wakes up.
             //savedControllerState = OrientationController;

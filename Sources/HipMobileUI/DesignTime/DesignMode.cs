@@ -49,8 +49,36 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.DesignTime
         public static bool IsEnabled { get; set; } = true;
 
         /// <summary>
-        /// If the app is running in design mode, registers sample view models and OS-independent
-        /// (mock-)services that are required to preview XAML pages.
+        /// To be called in <see cref="Xamarin.Forms.Page"/>-constructors.
+        /// Assigns a sample view model to the view's BindingContext, if the app is executed in design mode.
+        /// If (1) no sample view model is available, (2) the view does not implement <see cref="IViewFor{T}"/>,
+        /// or (3) the app is running for real (on a device or in an emulator), this method has no effect.
+        /// </summary>
+        /// <remarks>
+        /// This method should be called in the constructor of each page, right after the
+        /// "InitializeComponent()"-call.
+        /// </remarks>
+        /// <param name="view">View to set up for previewing</param>
+        public static void Initialize<TView>(TView view) where TView : BindableObject, IViewFor
+        {
+            if (view == null)
+                throw new ArgumentNullException(nameof(view));
+
+            var viewForType = view.GetType().GetTypeInfo().ImplementedInterfaces.FirstOrDefault(ii =>
+                ii.IsConstructedGenericType &&
+                ii.GetGenericTypeDefinition() == typeof(IViewFor<>));
+
+            if (viewForType != null)
+            {
+                var viewModelType = viewForType.GenericTypeArguments[0];
+                view.BindingContext = _viewModels.TryGetValue(viewModelType, out var vm) ? vm : null;
+            }
+        }
+
+        /// <summary>
+        /// To be called in the <see cref="App"/>-constructor. If the app is running in design mode,
+        /// this registers sample view models and OS-independent (mock-)services that are required to
+        /// preview XAML pages.
         /// </summary>
         /// <remarks>
         /// This method should be called in the <see cref="App"/> constructor, right before
@@ -97,32 +125,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.DesignTime
             }));
 
             void Add<T>(T viewModel) => _viewModels[typeof(T)] = viewModel;
-        }
-
-        /// <summary>
-        /// Assigns a sample view model to the view's BindingContext, if the app is executed in design mode.
-        /// If (1) no sample view model is available, (2) the view does not implement <see cref="IViewFor{T}"/>,
-        /// or (3) the app is running for real (on a device or in an emulator), this method has no effect.
-        /// </summary>
-        /// <remarks>
-        /// This method should be called in the constructor of each page and view,
-        /// right after the "InitializeComponent()"-call.
-        /// </remarks>
-        /// <param name="view">View to set up for previewing</param>
-        public static void Initialize<TView>(TView view) where TView : BindableObject, IViewFor
-        {
-            if (view == null)
-                throw new ArgumentNullException(nameof(view));
-
-            var viewForType = view.GetType().GetTypeInfo().ImplementedInterfaces.FirstOrDefault(ii =>
-                ii.IsConstructedGenericType &&
-                ii.GetGenericTypeDefinition() == typeof(IViewFor<>));
-
-            if (viewForType != null)
-            {
-                var viewModelType = viewForType.GenericTypeArguments[0];
-                view.BindingContext = _viewModels.TryGetValue(viewModelType, out var vm) ? vm : null;
-            }
         }
     }
 }
