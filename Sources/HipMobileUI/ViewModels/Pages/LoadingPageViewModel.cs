@@ -299,14 +299,35 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
             //init serviceaccesslayer
             IoCManager.RegisterInstance(typeof(IContentApiClient), new ContentApiClient());
-            IoCManager.RegisterInstance(typeof(IAchievementsApiAccess), new AchievementsApiAccess(new ContentApiClient(ServerEndpoints.AchievementsApiPath)));
-            IoCManager.RegisterInstance(typeof(IFeatureToggleApiAccess), new FeatureToggleApiAccess(new ContentApiClient(ServerEndpoints.FeatureTogglesApiPath)));
-            IoCManager.RegisterType<IExhibitsApiAccess, ExhibitsApiAccess>();
-            IoCManager.RegisterType<IMediasApiAccess, MediasApiAccess>();
-            IoCManager.RegisterType<IFileApiAccess, FileApiAccess>();
-            IoCManager.RegisterType<IPagesApiAccess, PagesApiAccess>();
-            IoCManager.RegisterType<IRoutesApiAccess, RoutesApiAccess>();
-            IoCManager.RegisterType<ITagsApiAccess, TagsApiAccess>();
+            if (Constants.UseMockData)
+            {
+                // We can use this since everything goes through the FeatureToggleRouter anyway,
+                // which provides fallback in case the network is down
+                IoCManager.RegisterInstance(typeof(IFeatureToggleApiAccess), new FeatureToggleApiAccess(new ContentApiClient(ServerEndpoints.FeatureTogglesApiPath)));
+                
+                IoCManager.RegisterType<IAchievementsApiAccess, MockAchievementsApiAccess>();
+                IoCManager.RegisterType<IExhibitsApiAccess, MockExhibitsApiAccess>();
+                IoCManager.RegisterType<IMediasApiAccess, MockMediaApiAccess>();
+                IoCManager.RegisterType<IFileApiAccess, MockFileApiAccess>();
+                IoCManager.RegisterType<IPagesApiAccess, MockPagesApiAccess>();
+                IoCManager.RegisterType<IRoutesApiAccess, MockRoutesApiAccess>();
+                IoCManager.RegisterType<ITagsApiAccess, MockTagsApiAccess>();
+                IoCManager.RegisterType<IAuthApiAccess, MockAuthApiAccess>();
+                IoCManager.RegisterType<IUserRatingApiAccess, MockUserRatingApiAccess>();
+            }
+            else
+            {
+                IoCManager.RegisterInstance(typeof(IAchievementsApiAccess), new AchievementsApiAccess(new ContentApiClient(ServerEndpoints.AchievementsApiPath)));
+                IoCManager.RegisterInstance(typeof(IFeatureToggleApiAccess), new FeatureToggleApiAccess(new ContentApiClient(ServerEndpoints.FeatureTogglesApiPath)));
+                IoCManager.RegisterType<IExhibitsApiAccess, ExhibitsApiAccess>();
+                IoCManager.RegisterType<IMediasApiAccess, MediasApiAccess>();
+                IoCManager.RegisterType<IFileApiAccess, FileApiAccess>();
+                IoCManager.RegisterType<IPagesApiAccess, PagesApiAccess>();
+                IoCManager.RegisterType<IRoutesApiAccess, RoutesApiAccess>();
+                IoCManager.RegisterType<ITagsApiAccess, TagsApiAccess>();
+                IoCManager.RegisterType<IAuthApiAccess, AuthApiAccess>();
+                IoCManager.RegisterInstance(typeof(IUserRatingApiAccess), new UserRatingApiAccess(new ContentApiClient()));
+            }
 
             //init converters
             IoCManager.RegisterType<ExhibitConverter>();
@@ -330,13 +351,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             IoCManager.RegisterInstance(typeof(INearbyExhibitManager), new NearbyExhibitManager());
             IoCManager.RegisterInstance(typeof(INearbyRouteManager), new NearbyRouteManager());
 
-            IoCManager.RegisterType<IAuthApiAccess, AuthApiAccess>();
-            IoCManager.RegisterInstance(typeof(IUserRatingApiAccess), new UserRatingApiAccess(new ContentApiClient()));
             IoCManager.RegisterInstance(typeof(IUserManager), new UserManager());
             IoCManager.RegisterInstance(typeof(IUserRatingManager), new UserRatingManager());
             IoCManager.RegisterInstance(typeof(IThemeManager), new ThemeManager());
             IoCManager.RegisterInstance(typeof(AchievementNotificationViewModel), new AchievementNotificationViewModel());
-            
+
             var featureToggleRouter = await FeatureToggleRouter.CreateAsync();
             IoCManager.RegisterInstance(typeof(IFeatureToggleRouter), featureToggleRouter);
         }
