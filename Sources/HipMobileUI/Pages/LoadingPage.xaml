@@ -18,8 +18,8 @@
 
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:controls1="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Controls;assembly=HipMobileUI"
-             xmlns:effects1="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Effects;assembly=HipMobileUI"
+             xmlns:controls="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Controls;assembly=HipMobileUI"
+             xmlns:effects="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Effects;assembly=HipMobileUI"
              x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Pages.LoadingPage"
              BackgroundColor="White">
     <ContentPage.Content>
@@ -43,20 +43,20 @@
                         <Label Text="{Binding Subtext}" HorizontalTextAlignment="Center" FontSize="16" />
                         <ProgressBar Progress="{Binding LoadingProgress}" Margin="20,0">
                             <ProgressBar.Effects>
-                                <effects1:ProgressBarColorEffect Color="{StaticResource AccentColor}" />
+                                <effects:ProgressBarColorEffect Color="{StaticResource AccentColor}" />
                             </ProgressBar.Effects>
                         </ProgressBar>
                         <Label Text="{Binding LoadingProgress, StringFormat='{0:p0}'}" HorizontalTextAlignment="Center"
                                FontSize="16" />
                     </StackLayout>
-                    <controls1:FadeInImage Grid.Row="1" Source="hiphop_transparent">
-                        <controls1:FadeInImage.FadeInTime >
+                    <controls:FadeInImage Grid.Row="1" Source="hiphop_transparent">
+                        <controls:FadeInImage.FadeInTime >
                             <OnPlatform x:TypeArguments="x:Int32">
                                 <On Platform="Android" Value="500" />
                                 <On Platform="iOS" Value="0" />
                             </OnPlatform>
-                        </controls1:FadeInImage.FadeInTime>
-                    </controls1:FadeInImage>
+                        </controls:FadeInImage.FadeInTime>
+                    </controls:FadeInImage>
                     <StackLayout Grid.Row="2" Orientation="Vertical" HorizontalOptions="FillAndExpand">
                         <BoxView HeightRequest="1" Color="{StaticResource DarkGrayColor}" />
                         <Label Text="Abbrechen" FontSize="Large" TextColor="{StaticResource AccentColor}"

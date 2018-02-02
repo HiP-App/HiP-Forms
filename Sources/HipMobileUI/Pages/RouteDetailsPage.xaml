@@ -20,7 +20,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Pages.RouteDetailsView"
              Title="{Binding Title}"
-             xmlns:container1="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Container;assembly=HipMobileUI"
+             xmlns:container="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Container;assembly=HipMobileUI"
              xmlns:map="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Map;assembly=HipMobileUI"
              xmlns:helpers="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;assembly=HipMobileUI"
              xmlns:views="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Views;assembly=HipMobileUI">
@@ -28,11 +28,11 @@
         <views:NotificationExtensionView>
             <views:NotificationExtensionView.ContentTemplate>
                 <StackLayout Spacing="10" Padding="5" x:Name="OuterLayout" Orientation="Vertical">
-                    <container1:TabContainerView Tabs="{Binding Tabs} "
+                    <container:TabContainerView Tabs="{Binding Tabs} "
                                          HorizontalOptions="FillAndExpand"
                                          VerticalOptions="FillAndExpand"
                                          BackgroundColor="White">
-                        <container1:TabContainerView.TabViews>
+                        <container:TabContainerView.TabViews>
                             <ScrollView>
                                 <StackLayout Padding="16,6,16,0" Orientation="Vertical">
                                     <StackLayout Orientation="Horizontal" Margin="0,0,0,8">
@@ -45,7 +45,7 @@
                                     </StackLayout>
                                     <Label Text="{Binding Description}" FontSize="Small" />
                                     <Label Text="{helpers:Translate RouteDetailsPage_Tags}" FontSize="19" Margin="0,24,0,0" />
-                                    <container1:BindableChildrenStackLayout
+                                    <container:BindableChildrenStackLayout
                                         Orientation="Vertical" Margin="8,4,0,16"
                                         ChildElements="{Binding Tags, Converter= {StaticResource RouteTagViewListConverter}}" />
                                 </StackLayout>
@@ -54,8 +54,8 @@
                                         DetailsRoute="{Binding DetailsRoute}" ShowDetailsRoute="{Binding ShowDetailsRoute}"
                                         HorizontalOptions="FillAndExpand"
                                         VerticalOptions="FillAndExpand" BackgroundColor="Transparent" />
-                        </container1:TabContainerView.TabViews>
-                    </container1:TabContainerView>
+                        </container:TabContainerView.TabViews>
+                    </container:TabContainerView>
                     
                     <StackLayout Orientation="Vertical" VerticalOptions="End">
                         <Image Source="{Binding Image}" Aspect="AspectFill" HeightRequest="200" />

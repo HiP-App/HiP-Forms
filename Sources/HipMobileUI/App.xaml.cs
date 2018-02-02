@@ -29,8 +29,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI
     {
         public App()
         {
-            DesignMode.Initialize();
-            InitializeComponent();
+            DesignMode.Initialize(InitializeComponent);
 
             if (DesignMode.IsEnabled)
                 return;

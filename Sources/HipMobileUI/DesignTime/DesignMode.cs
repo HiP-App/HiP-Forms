@@ -14,11 +14,15 @@
 
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Appearance;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.AudioPlayer;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.DesignTime.Data;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.DesignTime.Services;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Location;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Pages;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
@@ -78,29 +82,46 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.DesignTime
         /// <summary>
         /// To be called in the <see cref="App"/>-constructor. If the app is running in design mode,
         /// this registers sample view models and OS-independent (mock-)services that are required to
-        /// preview XAML pages.
+        /// preview XAML pages. In any case, <paramref name="initializeComponent"/> is executed.
         /// </summary>
+        /// <param name="initializeComponent">
+        /// The method <see cref="App.InitializeComponent"/>.
+        /// </param>
         /// <remarks>
-        /// This method should be called in the <see cref="App"/> constructor, right before
-        /// <see cref="App.InitializeComponent"/>.
+        /// This method should be called in the <see cref="App"/> constructor, as a replacement for
+        /// the call to <see cref="App.InitializeComponent"/>.
         /// </remarks>
-        public static void Initialize()
+        public static void Initialize(Action initializeComponent)
         {
             if (!IsEnabled)
+            {
+                initializeComponent?.Invoke();
                 return;
+            }
 
             ConfigureServices();
+            initializeComponent?.Invoke();
+            ConfigureServicesLate();
             ConfigureViewModels();
         }
 
         private static void ConfigureServices()
         {
             NavigationService.Instance.RegisterViewModels(typeof(MainPage).GetTypeInfo().Assembly);
+            IoCManager.RegisterType<IDataLoader, EmbeddedResourceDataLoader>();
             IoCManager.RegisterInstance(typeof(INavigationService), NavigationService.Instance);
             IoCManager.RegisterInstance(typeof(IViewCreator), NavigationService.Instance);
             IoCManager.RegisterType<IStatusBarController, DesignTimeStatusBarController>();
             IoCManager.RegisterType<IDataAccess, DesignModeDataAccess>();
             IoCManager.RegisterType<IThemeManager, DesignModeThemeManager>();
+            IoCManager.RegisterType<ILocationManager, DesignModeLocationManager>();
+            IoCManager.RegisterType<IAudioPlayer, DesignModeAudioPlayer>();
+        }
+
+        private static void ConfigureServicesLate()
+        {
+            // These services can only be registered after App.InitializerComponent()
+            IoCManager.RegisterInstance(typeof(ApplicationResourcesProvider), new ApplicationResourcesProvider(Application.Current.Resources));
         }
 
         private static void ConfigureViewModels()
@@ -109,7 +130,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.DesignTime
                 DesignModeDownloadable.SampleInstance,
                 new DesignModeDownloadableListItemViewModel()));
 
-            Add(new LoadingPageViewModel { Title = "Sample Title", Text = "Sample Text" });
+            Add(new LoadingPageViewModel
+            {
+                Title = "Sample Title",
+                Text = "Sample Text"
+            });
 
             Add(new AchievementsDetailsExhibitViewModel(new ExhibitsVisitedAchievement
             {
@@ -122,6 +147,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.DesignTime
             {
                 Name = "Sample Exhibit",
                 Description = "A sample exhibit in the sample city of Sampleborn",
+            }));
+
+            Add(new RouteDetailsPageViewModel(new Route
+            {
+                Name = "The Route of Samples",
+                Description = "A sample route showing you all the highlights of Sampleborn",
+                Distance = 12.5,
+                Duration = 17
             }));
 
             void Add<T>(T viewModel) => _viewModels[typeof(T)] = viewModel;

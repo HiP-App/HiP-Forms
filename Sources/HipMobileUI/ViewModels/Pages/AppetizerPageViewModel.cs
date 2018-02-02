@@ -69,7 +69,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             Headline = exhibit.Name;
             Text = exhibit.Name;
 
-            if (pages.Count > 1 && Exhibit.DetailsDataLoaded)
+            if (pages != null && pages.Count > 1 && Exhibit.DetailsDataLoaded)
                 NextViewAvailable = true;
 
             SetExhibitImage();
@@ -82,8 +82,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
         private async void SetExhibitImage()
         {
-            var imageData = await exhibit.Image.GetDataAsync();
-            Image = imageData != null ? ImageSource.FromStream(() => new MemoryStream(imageData)) : ImageSource.FromStream(() => new MemoryStream(BackupData.BackupImageData));
+            var imageData = (exhibit.Image != null) ? await exhibit.Image.GetDataAsync() : null;
+            Image = imageData != null
+                ? ImageSource.FromStream(() => new MemoryStream(imageData))
+                : ImageSource.FromStream(() => new MemoryStream(BackupData.BackupImageData));
         }
 
         /// <summary>
@@ -180,7 +182,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             if (IoCManager.Resolve<INetworkAccessChecker>().GetNetworkAccessStatus() != NetworkAccessStatus.NoAccess)
             {
                 await Navigation.PushAsync(new UserRatingPageViewModel(Exhibit));
-            } else
+            }
+            else
             {
                 UserDialogs.Instance.Alert(new AlertConfig()
                 {
