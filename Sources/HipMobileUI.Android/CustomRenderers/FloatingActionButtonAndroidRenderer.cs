@@ -13,6 +13,7 @@
 // limitations under the License.
 
 using System;
+using Android.Content;
 using Android.OS;
 using PaderbornUniversity.SILab.Hip.Mobile.Droid.CustomRenderers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Controls;
@@ -28,6 +29,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.CustomRenderers
     {
         private Android.Support.Design.Widget.FloatingActionButton fab;
         private FloatingActionButton formsButton;
+
+        public FloatingActionButtonAndroidRenderer(Context context) : base(context)
+        {
+        }
 
         protected override void OnElementChanged(ElementChangedEventArgs<FloatingActionButton> e)
         {

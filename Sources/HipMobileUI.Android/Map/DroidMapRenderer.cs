@@ -34,6 +34,7 @@ using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Map;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
+using Android.Content;
 
 [assembly: ExportRenderer(typeof(OsmMap), typeof(DroidMapRenderer))]
 
@@ -50,6 +51,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Map
         private OsmMap osmMap;
         private RouteCalculator routeCalculator;
         private Marker userMarkerPosition;
+
+        public DroidMapRenderer(Context context) : base(context)
+        {
+        }
 
         public bool OnScroll(ScrollEvent p0)
         {
@@ -68,7 +73,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Map
 
             if (Control == null)
             {
-                mapView = new MapView(Forms.Context, 11);
+                mapView = new MapView(Context, 11);
                 activity = Context as Activity;
                 routeCalculator = RouteCalculator.Instance;
                 SetNativeControl(mapView);

@@ -13,6 +13,7 @@
 // limitations under the License.
 
 using System.ComponentModel;
+using Android.Content;
 using Android.Content.PM;
 using PaderbornUniversity.SILab.Hip.Mobile.Droid.CustomRenderers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
@@ -27,6 +28,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.CustomRenderers
     class AndroidOrientationPageRenderer : PageRenderer
     {
         private OrientationContentPage formsOrientationPage;
+
+        public AndroidOrientationPageRenderer(Context context) : base(context)
+        {
+        }
 
         protected override void OnElementChanged(ElementChangedEventArgs<Page> e)
         {

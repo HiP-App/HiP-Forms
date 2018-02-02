@@ -13,6 +13,7 @@
 // limitations under the License.
 
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.DesignTime;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
@@ -28,7 +29,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI
     {
         public App()
         {
+            DesignMode.Initialize();
             InitializeComponent();
+
+            if (DesignMode.IsEnabled)
+                return;
 
             // Handle when your app starts
 

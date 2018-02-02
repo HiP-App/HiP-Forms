@@ -44,7 +44,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Contracts
         public DroidAudioPlayer()
         {
             mediaPlayer = new MediaPlayer();
-            mediaPlayer.SetAudioStreamType(Stream.Music);
+            mediaPlayer.SetAudioAttributes(new AudioAttributes.Builder().SetLegacyStreamType(Stream.Music).Build());
             mediaPlayer.Completion += MediaPlayerOnCompletion;
         }
 

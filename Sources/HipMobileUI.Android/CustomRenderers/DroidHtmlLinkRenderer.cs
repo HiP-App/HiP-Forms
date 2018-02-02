@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using Android.Content;
 using Android.OS;
 using Android.Text;
 using Android.Text.Method;
@@ -29,6 +30,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.CustomRenderers
     class DroidHtmlLinkRenderer : LabelRenderer
     {
         private HtmlLink formslink;
+
+        public DroidHtmlLinkRenderer(Context context) : base(context)
+        {
+        }
 
         protected override void OnElementChanged(ElementChangedEventArgs<Label> elementChangedEventArgs)
         {
