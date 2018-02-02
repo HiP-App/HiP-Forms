@@ -1,4 +1,4 @@
-// Copyright (C) 2016 History in Paderborn App - Universit‰t Paderborn
+// Copyright (C) 2016 History in Paderborn App - Universit√§t Paderborn
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -13,7 +13,6 @@
 // limitations under the License.using System;
 
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using Android.App;
@@ -24,8 +23,6 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using Org.Osmdroid;
 using Org.Osmdroid.Bonuspack.Overlays;
 using Org.Osmdroid.Events;
-using Org.Osmdroid.Tileprovider;
-using Org.Osmdroid.Tileprovider.Tilesource;
 using Org.Osmdroid.Util;
 using Org.Osmdroid.Views;
 using Org.Osmdroid.Views.Overlay;
@@ -37,7 +34,6 @@ using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Map;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
-using Color = Android.Graphics.Color;
 
 [assembly: ExportRenderer(typeof(OsmMap), typeof(DroidMapRenderer))]
 
@@ -114,12 +110,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Map
         /// <param name="location"></param>
         private void CenterMap(GeoLocation location)
         {
-            if (location != null)
-                mapController.SetCenter(new GeoPoint(location.Latitude, location.Longitude));
-            else
-            {
-                mapController.SetCenter(new GeoPoint(AppSharedData.PaderbornCenter.Latitude, AppSharedData.PaderbornCenter.Longitude));
-            }
+            mapController.SetCenter(location != null
+                ? new GeoPoint(location.Latitude, location.Longitude)
+                : new GeoPoint(AppSharedData.PaderbornCenter.Latitude, AppSharedData.PaderbornCenter.Longitude));
         }
 
         /// <summary>
@@ -154,9 +147,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Map
 
             //if navigation is enabled the route will be drawn and updated
             if (osmMap.ShowNavigation)
+            {
                 CalculateRoute(gpsLocation);
+            }
             else if (osmMap.ShowDetailsRoute)
+            {
                 DrawDetailsRoute(gpsLocation);
+            }
         }
 
         /// <summary>
@@ -165,9 +162,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Map
         /// <param name="route">Route to process</param>
         private void NewElementOnDetailsRouteChanged(Route route)
         {
-            //The direct polyline is only draw if related bool is true
+            //The direct polyline is only drawn if related bool is true
 
-            if ((route != null) && route.Waypoints.Any())
+            if (route != null && route.Waypoints.Any())
             {
                 var markerInfoWindow = new ViaPointInfoWindow(Resource.Layout.navigation_info_window, mapView);
                 var mapMarkerIcon = ContextCompat.GetDrawable(activity, Resource.Drawable.marker_blue);
@@ -194,17 +191,19 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Map
             if (location != null)
                 myPath.AddPoint(new GeoPoint(location.Latitude, location.Longitude));
 
-            if ((osmMap.DetailsRoute != null) && osmMap.DetailsRoute.Waypoints.Any())
+            if (osmMap.DetailsRoute != null && osmMap.DetailsRoute.Waypoints.Any())
+            {
                 foreach (var waypoint in osmMap.DetailsRoute.Waypoints)
                 {
                     myPath.AddPoint(new GeoPoint(waypoint.Location.Latitude, waypoint.Location.Longitude));
                 }
+            }
 
             mapView.OverlayManager.Add(myPath);
             mapView.Invalidate();
         }
 
-        //here all Markers for the Exhibits in the Main Map are set
+        //Here all Markers for the Exhibits in the Main Map are set
         //and some general stuff
         private void SetMainScreenMarkers(ExhibitSet set)
         {
@@ -248,7 +247,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Map
 
                 try
                 {
-                    OrderedRoute locations = routeCalculator.CreateOrderedRoute(id, userPosition);
+                    var locations = routeCalculator.CreateOrderedRoute(id, userPosition);
 
                     /*foreach (var w in locations)
                     {
@@ -294,7 +293,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Map
                 {
                     Title = osmMap.DetailsRoute.Title,
                     Width = 5f,
-                    Color = ((Xamarin.Forms.Color)resources.GetResourceValue("AccentColor")).ToAndroid(),
+                    Color = ((Color)resources.GetResourceValue("AccentColor")).ToAndroid(),
                     //Color = Color.Orange,
                     Points = route.FirstSection.Select(geoLocation => new GeoPoint(geoLocation.Latitude, geoLocation.Longitude)).ToList(),
                     Geodesic = true
@@ -303,7 +302,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Map
                 {
                     Title = osmMap.DetailsRoute.Title,
                     Width = 5f,
-                    Color = ((Xamarin.Forms.Color)resources.GetResourceValue("PrimaryColor")).ToAndroid(),
+                    Color = ((Color)resources.GetResourceValue("PrimaryColor")).ToAndroid(),
                     //Color = Color.Blue,
                     Points = route.NonFirstSections.Select(geoLocation => new GeoPoint(geoLocation.Latitude, geoLocation.Longitude)).ToList(),
                     Geodesic = true
@@ -316,13 +315,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Map
                     Title = osmMap.DetailsRoute.Title,
                     Width = 5f,
 
-                    Color = ((Xamarin.Forms.Color)resources.GetResourceValue("PrimaryColor")).ToAndroid(),
+                    Color = ((Color)resources.GetResourceValue("PrimaryColor")).ToAndroid(),
                     Points = route.Locations.Select(geoLocation => new GeoPoint(geoLocation.Latitude, geoLocation.Longitude)).ToList(),
 
                     Geodesic = true
                 };
             }
-            int index = mapView.OverlayManager.IndexOf(locationOverlay);
+            var index = mapView.OverlayManager.IndexOf(locationOverlay);
             if (userLocationIncluded)
             {
                 mapView.OverlayManager.Add(index, currentSectionOverlay);
@@ -347,6 +346,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Map
                 osmMap.GpsLocationChanged -= NewElementOnGpsLocationChanged;
                 osmMap.DetailsRouteChanged -= NewElementOnDetailsRouteChanged;
             }
+
             base.Dispose(disposing);
         }
     }

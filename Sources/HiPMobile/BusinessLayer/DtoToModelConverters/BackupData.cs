@@ -68,6 +68,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelCo
                     backupImageTag.DataPath = path;
                 }
             }
+
+            mockAudioData = dataLoader.LoadByteData("mockaudio.mp3");
         }
 
         private static byte[] backupImageData;
@@ -81,5 +83,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelCo
         private static Image backupImageTag;
 
         public static Image BackupImageTag => backupImageTag ?? throw new NullReferenceException("BackupData.Init() not called yet!");
+
+        private static byte[] mockAudioData;
+        
+        public static byte[] MockAudioData => mockAudioData ?? throw new NullReferenceException("BackupData.Init() not called yet!");
     }
 }

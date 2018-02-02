@@ -12,22 +12,22 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using CoreGraphics;
-using MapKit;
-using UIKit;
+using System.Threading.Tasks;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.AuthApiDto;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Map
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.AuthenticationApiAccess
 {
-    sealed class ExhibitAnnotationView : MKAnnotationView
+    public class MockAuthApiAccess: IAuthApiAccess
     {
-        public ExhibitAnnotationView(IMKAnnotation annotation, string reuseId) : base(annotation, reuseId)
+        public Task<Token> Login(string username, string password) => Task.FromResult(new Token
         {
-            Image = UIImage.FromBundle("ExhibitLocation");
+            AccessToken = "",
+            IdToken = "",
+            TokenType = ""
+        });
 
-            CalloutOffset = new CGPoint(0, 0);
+        public Task<bool> Register(string username, string password) => Task.FromResult(true);
 
-            var infoButton = UIButton.FromType(UIButtonType.DetailDisclosure);
-            RightCalloutAccessoryView = infoButton;
-        }
+        public Task<bool> ForgotPassword(string username) => Task.FromResult(true);
     }
 }

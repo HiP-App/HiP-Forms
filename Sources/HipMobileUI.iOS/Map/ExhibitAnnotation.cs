@@ -14,27 +14,31 @@
 
 using CoreLocation;
 using MapKit;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Map
 {
     public class ExhibitAnnotation : MKAnnotation
     {
+        public override CLLocationCoordinate2D Coordinate { get; }
+
+        public override string Title { get; }
+
         public override string Subtitle { get; }
 
-        public override string Title => " ";
-
-        public override CLLocationCoordinate2D Coordinate { get; }
         public string ExhibitId { get; }
 
-        public ExhibitAnnotation(CLLocationCoordinate2D coord, string exhibitId, string title)
+        public ExhibitAnnotation(CLLocationCoordinate2D coord, Exhibit exhibit)
         {
             Coordinate = coord;
-            Subtitle = title;
-            ExhibitId = exhibitId;
+            Title = exhibit.Name;
+            // Prevent exception due to null-description
+            Subtitle = exhibit.Description ?? "";
+            ExhibitId = exhibit.Id;
         }
 
-        public ExhibitAnnotation(double latitude, double longitude, string exhibitId, string title) :
-            this(new CLLocationCoordinate2D(latitude, longitude), exhibitId, title)
+        public ExhibitAnnotation(double latitude, double longitude, Exhibit exhibit) :
+            this(new CLLocationCoordinate2D(latitude, longitude), exhibit)
         {
         }
     }
