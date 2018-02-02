@@ -71,7 +71,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Um Achievements zu nutzen, musst du dich zunächst einloggen..
+        ///   Looks up a localized string similar to Um Erfolge zu nutzen, musst du dich zunächst einloggen..
         /// </summary>
         internal static string AchievementsScreenView_PleaseLogin {
             get {
