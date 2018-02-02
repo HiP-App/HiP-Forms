@@ -81,7 +81,7 @@
                                     <TapGestureRecognizer Command="{Binding GoToDetailsCommand}" />
                                 </Label.GestureRecognizers>
                             </Label>
-                            <Label IsVisible="{Binding DownloadPending}" Text="{helpers:Translate ExhibitRouteDownloadPage_Cancel}"  FontSize="20"
+                            <Label IsVisible="{Binding DownloadPending}" Text="{helpers:Translate Cancel}"  FontSize="20"
                                    TextColor="{StaticResource AccentColor}"
                                    HorizontalTextAlignment="Center"
                                    HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">

@@ -183,8 +183,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                     {
                         Title = Strings.ExhibitRouteDownloadPageViewModel_Wifi_Only_Title,
                         Message = Strings.ExhibitRouteDownloadPageViewModel_Wifi_Only_Message,
-                        OkText = Strings.ExhibitRouteDownloadPageViewModel_Wifi_Only_Ok,
-                        CancelText = Strings.ExhibitRouteDownloadPageViewModel_Wifi_Only_Cancel
+                        OkText = Strings.Yes,
+                        CancelText = Strings.No
                     });
                 }
 
@@ -222,7 +222,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
             if (messageToShow != null)
             {
-                await Navigation.DisplayAlert(titleToShow, messageToShow, Strings.ExhibitRouteDownloadPageViewModel_OK);
+                await Navigation.DisplayAlert(titleToShow, messageToShow, Strings.Ok);
                 CloseDownloadPage();
                 return;
             }
