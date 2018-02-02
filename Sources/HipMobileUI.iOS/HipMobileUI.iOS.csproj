@@ -165,6 +165,7 @@
     <Compile Include="CustomRenderers\IosTouchEventSlider.cs" />
     <Compile Include="CustomRenderers\IosReferenceLinkRenderer.cs" />
     <Compile Include="Effects\IosSwitchColorEffect.cs" />
+    <Compile Include="Helpers\Localize.cs" />
     <Compile Include="Helpers\TextViewInteractiveSourcesExtension.cs" />
     <Compile Include="Effects\IosProgressBarColorEffect.cs" />
     <Compile Include="CustomRenderers\IosCustomFontLabelRenderer.cs" />

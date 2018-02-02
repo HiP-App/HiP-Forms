@@ -36,6 +36,7 @@ using Acr.UserDialogs;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 {
+
 	public class ExhibitDetailsViewModel : NavigationViewModel, IDbChangedObserver
 	{
 		private ExhibitSubviewViewModel selectedView;
@@ -232,7 +233,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 					{
 						Title = Strings.UserRating_Dialog_Title_No_Internet,
 						Message = Strings.UserRating_Dialog_Message_No_Internet,
-						OkText = Strings.UserRating_Ok
+						OkText = Strings.Ok
 					});
 				}
 			}

@@ -45,6 +45,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
     {
         public LoadingPageViewModel()
         {
+            // This lookup NOT required for Windows platforms - the Culture will be automatically set
+            if (Device.RuntimePlatform == Device.iOS || Device.RuntimePlatform == Device.Android)
+            {
+                // determine the correct, supported .NET culture
+                var ci = DependencyService.Get<ILocalize>().GetCurrentCultureInfo();
+                Strings.Culture = ci; // set the RESX for resource localization
+                DependencyService.Get<ILocalize>().SetLocale(ci); // set the Thread for locale-aware methods
+            }
+
             Text = Strings.LoadingPage_Text;
             Subtext = Strings.LoadingPage_Subtext;
             StartLoading = new Command(Load);
@@ -171,8 +180,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             {
                 // Catch all exceptions happening on startup cause otherwise the loading page will be shown indefinitely 
                 // This should only happen during development
-                errorMessage = e.Message;
-                errorTitle = "Error";
+                errorMessage = null;
+                errorTitle = null;
                 Debug.WriteLine(e);
             }
 
@@ -184,8 +193,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             actionOnUiThread = null;
             var downloadData = await Navigation.DisplayAlert(Strings.LoadingPageViewModel_BaseData_DataAvailable,
                                                              Strings.LoadingPageViewModel_BaseData_DownloadViaMobile,
-                                                             Strings.LoadingPageViewModel_BaseData_MobileDownload_Confirm,
-                                                             Strings.LoadingPageViewModel_BaseData_MobileDownload_Cancel);
+                                                             Strings.Yes,
+                                                             Strings.No);
 
             try
             {
@@ -200,8 +209,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             {
                 // Catch all exceptions happening on startup cause otherwise the loading page will be shown indefinitely 
                 // This should only happen during development
-                errorMessage = e.Message;
-                errorTitle = "Error";
+                errorMessage = null;
+                errorTitle = null;
                 Debug.WriteLine(e);
             }
         }
@@ -249,16 +258,16 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             {
                 // Catch all exceptions happening on startup cause otherwise the loading page will be shown indefinitely 
                 // This should only happen during development
-                errorMessage = e.Message;
-                errorTitle = "Error";
+                errorMessage = null;
+                errorTitle = null;
                 Debug.WriteLine(e);
             }
 
             actionOnUiThread = async () =>
             {
-                if (errorMessage != null)
+                if (errorMessage != null && errorTitle != null)
                 {
-                    await Navigation.DisplayAlert(errorTitle, errorMessage, Strings.LoadingPageViewModel_LoadingError_Confirm);
+                    await Navigation.DisplayAlert(errorTitle, errorMessage, Strings.Ok);
                 }
 
                 StartMainApplication();

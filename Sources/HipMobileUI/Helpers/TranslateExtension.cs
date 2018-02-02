@@ -12,7 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Location;
 using System;
+using System.Globalization;
 using System.Reflection;
 using System.Resources;
 using Xamarin.Forms;
@@ -28,9 +30,18 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers
     [ContentProperty("Text")]
     public class TranslateExtension : IMarkupExtension
     {
-        private const string ResourceFile = "PaderbornUniversity.SILab.Hip.Mobile.UI.Resources.Strings";
+        private readonly CultureInfo ci;
+        private const string ResourceId = "PaderbornUniversity.SILab.Hip.Mobile.UI.Resources.Strings";
 
         public string Text { get; set; }
+
+        public TranslateExtension()
+        {
+            if (Device.RuntimePlatform == Device.iOS || Device.RuntimePlatform == Device.Android)
+            {
+                ci = DependencyService.Get<ILocalize>().GetCurrentCultureInfo();
+            }
+        }
 
         /// <summary>
         /// Returns the string value for the given Key in the Text property
@@ -43,12 +54,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers
             if (Text == null)
                 return "";
 
-            ResourceManager resmgr = new ResourceManager(ResourceFile
-                                                         , typeof(TranslateExtension).GetTypeInfo().Assembly);
-
-            var translation = resmgr.GetString(Text) ?? Text; //If the given key does not exist, return the key itself
-
-            return translation;
+            var resourceManager = new ResourceManager(ResourceId, typeof(TranslateExtension).GetTypeInfo().Assembly);
+            return resourceManager.GetString(Text, ci) ?? Text;
         }
     }
 }
