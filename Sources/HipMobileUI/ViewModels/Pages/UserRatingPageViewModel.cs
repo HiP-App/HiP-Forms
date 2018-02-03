@@ -171,6 +171,19 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             SetRatingStars(Convert.ToInt32(s));
         }
 
+        /// <summary>
+        /// This method changes the star images depending on the current and the last rating. 
+        /// Only the star images where the images needed to be changed are set to reduce unnecessary image changing.
+        /// If the rating is 0, all star images are set to an empty star, independent of the last rating.
+        /// If the last rating is bigger than the current rating, all stars below or equal to the last rating and bigger 
+        /// than the current rating are set to an empty star image.
+        /// If the current rating is bigger than the last rating, all stars below or equal to the current rating and bigger 
+        /// than the last rating are set to an filled star image.
+        /// To set the rating to the last rating the user has given this exhibit, call the method twice. 
+        /// The first time with a rating of 5 and the next time with the actual rating which should be shown.
+        /// </summary>
+        /// <param name="rating"></param>
+        /// <returns></returns>
         private void SetRatingStars(int rating)
         {
             var img = rating <= lastRating ? ImgStarEmpty : ImgStarFilled;
