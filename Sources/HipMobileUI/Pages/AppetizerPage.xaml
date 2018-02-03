@@ -51,7 +51,7 @@
                                         <RowDefinition Height="*" />
                                     </Grid.RowDefinitions>
                                     <controls1:CardView Grid.Column="0" HasShadow="False">
-                                        <Label Text="{Binding Text}"  TextColor="#87000000" FontSize="16"/>
+                                        <Label Text="{Binding Text}"  TextColor="#87000000" FontSize="16" Style="{DynamicResource Ssp-Italic}"/>
                                     </controls1:CardView>
                                     <StackLayout Grid.Column="1" Spacing="0">
                                         <StackLayout.GestureRecognizers>

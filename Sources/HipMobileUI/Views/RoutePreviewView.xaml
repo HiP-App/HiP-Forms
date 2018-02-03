@@ -68,7 +68,7 @@
                             <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
                                 <Label Text="{helpers:Translate ExhibitOrRouteNearby_Reject}" FontSize="20"
                                        TextColor="{StaticResource AccentColor}"
-                                       HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
+                                       HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Style="{DynamicResource Ssp-Bold}"/>
                                 <StackLayout.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding Decline}" />
                                 </StackLayout.GestureRecognizers>

@@ -41,7 +41,7 @@
 
                     <StackLayout x:Name="QuestionView" Grid.Row="2" Padding="10,0"
                                  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-                        <Label Text="{Binding Question}" FontSize="Medium" HorizontalTextAlignment="Start" />
+                        <Label Text="{Binding Question}" FontSize="Medium" HorizontalTextAlignment="Start" Style="{DynamicResource Ssp-Regular}"/>
                     </StackLayout>
 
                     <StackLayout x:Name="ButtonView" Grid.Row="2" Orientation="Vertical" VerticalOptions="End" Padding="0">
@@ -50,7 +50,7 @@
                                      BackgroundColor="{StaticResource LightGrayColor}" VerticalOptions="End">
                             <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
                                 <Label Text="{helpers:Translate ExhibitOrRouteNearby_Confirm}" FontSize="20"
-                                       TextColor="{StaticResource AccentColor}"
+                                       TextColor="{StaticResource AccentColor}" Style="{DynamicResource Ssp-Bold}"
                                        HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
                                 <StackLayout.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding Confirm}" />
@@ -60,7 +60,7 @@
                             <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
                                 <Label Text="{helpers:Translate ExhibitOrRouteNearby_Reject}" FontSize="20"
                                        TextColor="{StaticResource AccentColor}"
-                                       HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
+                                       HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Style="{DynamicResource Ssp-Bold}"/>
                                 <StackLayout.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding Decline}" />
                                 </StackLayout.GestureRecognizers>

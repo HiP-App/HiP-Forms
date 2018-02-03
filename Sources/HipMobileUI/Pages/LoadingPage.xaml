@@ -39,15 +39,15 @@
                     <StackLayout Grid.Row="0" Orientation="Vertical" Spacing="20" HorizontalOptions="CenterAndExpand"
                                  VerticalOptions="CenterAndExpand">
                         <Label Text="{Binding Text}" HorizontalTextAlignment="Center" FontSize="20"
-                               FontAttributes="Bold" />
-                        <Label Text="{Binding Subtext}" HorizontalTextAlignment="Center" FontSize="16" />
+                               FontAttributes="Bold" Style="{DynamicResource Ssp-Bold}" />
+                        <Label Text="{Binding Subtext}" HorizontalTextAlignment="Center" FontSize="16" Style="{DynamicResource Ssp-Regular}"/>
                         <ProgressBar Progress="{Binding LoadingProgress}" Margin="20,0">
                             <ProgressBar.Effects>
                                 <effects1:ProgressBarColorEffect Color="{StaticResource AccentColor}" />
                             </ProgressBar.Effects>
                         </ProgressBar>
                         <Label Text="{Binding LoadingProgress, StringFormat='{0:p0}'}" HorizontalTextAlignment="Center"
-                               FontSize="16" />
+                               FontSize="16" Style="{DynamicResource Ssp-Regular}" />
                     </StackLayout>
                     <controls1:FadeInImage Grid.Row="1" Source="hiphop_transparent">
                         <controls1:FadeInImage.FadeInTime >

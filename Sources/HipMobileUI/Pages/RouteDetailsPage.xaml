@@ -41,10 +41,10 @@
                                         </StackLayout.GestureRecognizers>
                                         <Image Source="ic_volume_up.png" />
                                         <Label VerticalTextAlignment="Center" Text="{Binding ReadOutCaption}"
-                                       TextColor="{StaticResource AccentColor}" FontSize="Medium" />
+                                       TextColor="{StaticResource AccentColor}" FontSize="Medium" Style="{DynamicResource Ssp-Regular}" />
                                     </StackLayout>
-                                    <Label Text="{Binding Description}" FontSize="Small" />
-                                    <Label Text="{helpers:Translate RouteDetailsPage_Tags}" FontSize="19" Margin="0,24,0,0" />
+                                    <Label Text="{Binding Description}" FontSize="Small" Style="{DynamicResource Ssp-Light}"/>
+                                    <Label Text="{helpers:Translate RouteDetailsPage_Tags}" FontSize="19" Margin="0,24,0,0" Style="{DynamicResource Ssp-Italic}"/>
                                     <container1:BindableChildrenStackLayout
                                         Orientation="Vertical" Margin="8,4,0,16"
                                         ChildElements="{Binding Tags, Converter= {StaticResource RouteTagViewListConverter}}" />
@@ -69,11 +69,11 @@
                             <BoxView Color="#66000000" WidthRequest="1" Margin="10,0,10,0" />
                             <StackLayout Orientation="Vertical">
                                 <Image Source="ic_directions_walk.png" />
-                                <Label Text="{Binding Distance}" FontSize="Small" />
+                                <Label Text="{Binding Distance}" FontSize="Small" Style="{DynamicResource Ssp-Italic}"/>
                             </StackLayout>
                             <BoxView Color="#66000000" WidthRequest="1" Margin="10,0,10,0" />
                             <Label Text="{helpers:Translate RouteDetailsPage_StartRoute}" FontSize="Large"
-                                   TextColor="{StaticResource AccentColor}"
+                                   TextColor="{StaticResource AccentColor}" Style="{DynamicResource Ssp-Italic}"
                                    HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
                                    HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                                 <Label.GestureRecognizers>

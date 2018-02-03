@@ -36,7 +36,8 @@
                         <Image x:Name="AdventurerImage" Grid.Row="0" Source="ic_adventurer" Aspect="AspectFit" Margin="10" />
                         <Label x:Name="AdventurerLabel" Grid.Row="1"
                                Text="{helpers:Translate CharacterSelectionPage_Adventurer_Text}" TextColor="White"
-                               FontSize="Medium" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                               FontSize="Medium" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" 
+                                 Style="{DynamicResource Ssp-Italic}"/>
                     </Grid>
                     <Grid x:Name="ProfessorGrid" BackgroundColor="#7FACFF">
                         <Grid.GestureRecognizers>
@@ -49,7 +50,8 @@
                         <Image x:Name="ProfessorImage" Grid.Row="0" Source="ic_professor" Aspect="AspectFit" Margin="10" />
                         <Label x:Name="ProfessorText" Grid.Row="1"
                                Text="{helpers:Translate CharacterSelectionPage_Professor_Text}" TextColor="White"
-                               FontSize="Medium" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                               FontSize="Medium" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
+                               Style="{DynamicResource Ssp-Italic}"/>
                     </Grid>
                 </Grid>
             </views:NotificationExtensionView.ContentTemplate>

@@ -28,9 +28,9 @@
                         <Image Source="{Binding AchievementImage}" HorizontalOptions="Start" Aspect="AspectFit"/>
                         <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
                                      BackgroundColor="{StaticResource SolidLightGrayColor}" InputTransparent="true">
-                            <Label Text="{Binding AchievementTitle}" HorizontalOptions="StartAndExpand" VerticalOptions="Start"
+                            <Label Text="{Binding AchievementTitle}" HorizontalOptions="StartAndExpand" VerticalOptions="Start" Style="{DynamicResource Ssp-Light}"
                                    TextColor="{StaticResource PrimaryDarkColor}" FontSize="15" FontAttributes="Bold"/>
-                            <Label Text="{Binding AchievementDescription}" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand"/>
+                            <Label Text="{Binding AchievementDescription}" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand" Style="{DynamicResource Ssp-Light}"/>
                         </StackLayout>
                         <StackLayout.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding DisposeNotificationCommand}"/>
