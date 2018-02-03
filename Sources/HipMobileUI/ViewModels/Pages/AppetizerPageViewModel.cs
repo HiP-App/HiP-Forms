@@ -139,7 +139,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                 else
                     RatingAverage = "-";
                 SetStarImages(userRating.Average);
-                RatingCount = userRating.Count.ToString() + " " + Strings.UserRating_Rate_Count;
+                RatingCount = userRating.Count + " " + Strings.UserRating_Rate_Count;
             }
         }
 

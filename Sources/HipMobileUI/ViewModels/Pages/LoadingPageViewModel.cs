@@ -32,6 +32,7 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Authenticat
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.FeatureToggleApiAccess;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.FeatureToggleApiDto;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Appearance;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Location;
@@ -45,6 +46,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
     {
         public LoadingPageViewModel()
         {
+            // This lookup NOT required for Windows platforms - the Culture will be automatically set
+            if (Device.RuntimePlatform == Device.iOS || Device.RuntimePlatform == Device.Android)
+            {
+                // determine the correct, supported .NET culture
+                var ci = DependencyService.Get<ILocalize>().GetCurrentCultureInfo();
+                Strings.Culture = ci; // set the RESX for resource localization
+                DependencyService.Get<ILocalize>().SetLocale(ci); // set the Thread for locale-aware methods
+            }
+
             Text = Strings.LoadingPage_Text;
             Subtext = Strings.LoadingPage_Subtext;
             StartLoading = new Command(Load);
@@ -171,8 +181,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             {
                 // Catch all exceptions happening on startup cause otherwise the loading page will be shown indefinitely 
                 // This should only happen during development
-                errorMessage = e.Message;
-                errorTitle = "Error";
+                errorMessage = null;
+                errorTitle = null;
                 Debug.WriteLine(e);
             }
 
@@ -200,8 +210,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             {
                 // Catch all exceptions happening on startup cause otherwise the loading page will be shown indefinitely 
                 // This should only happen during development
-                errorMessage = e.Message;
-                errorTitle = "Error";
+                errorMessage = null;
+                errorTitle = null;
                 Debug.WriteLine(e);
             }
         }
@@ -249,14 +259,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             {
                 // Catch all exceptions happening on startup cause otherwise the loading page will be shown indefinitely 
                 // This should only happen during development
-                errorMessage = e.Message;
-                errorTitle = "Error";
+                errorMessage = null;
+                errorTitle = null;
                 Debug.WriteLine(e);
             }
 
             actionOnUiThread = async () =>
             {
-                if (errorMessage != null)
+                if (errorMessage != null && errorTitle != null)
                 {
                     await Navigation.DisplayAlert(errorTitle, errorMessage, Strings.LoadingPageViewModel_LoadingError_Confirm);
                 }
@@ -290,35 +300,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
             //init serviceaccesslayer
             IoCManager.RegisterInstance(typeof(IContentApiClient), new ContentApiClient());
-            if (Constants.UseMockData)
-            {
-                // We can use this since everything goes through the FeatureToggleRouter anyway,
-                // which provides fallback in case the network is down
-                IoCManager.RegisterInstance(typeof(IFeatureToggleApiAccess), new FeatureToggleApiAccess(new ContentApiClient(ServerEndpoints.FeatureTogglesApiPath)));
-                
-                IoCManager.RegisterType<IAchievementsApiAccess, MockAchievementsApiAccess>();
-                IoCManager.RegisterType<IExhibitsApiAccess, MockExhibitsApiAccess>();
-                IoCManager.RegisterType<IMediasApiAccess, MockMediaApiAccess>();
-                IoCManager.RegisterType<IFileApiAccess, MockFileApiAccess>();
-                IoCManager.RegisterType<IPagesApiAccess, MockPagesApiAccess>();
-                IoCManager.RegisterType<IRoutesApiAccess, MockRoutesApiAccess>();
-                IoCManager.RegisterType<ITagsApiAccess, MockTagsApiAccess>();
-                IoCManager.RegisterType<IAuthApiAccess, MockAuthApiAccess>();
-                IoCManager.RegisterType<IUserRatingApiAccess, MockUserRatingApiAccess>();
-            }
-            else
-            {
-                IoCManager.RegisterInstance(typeof(IAchievementsApiAccess), new AchievementsApiAccess(new ContentApiClient(ServerEndpoints.AchievementsApiPath)));
-                IoCManager.RegisterInstance(typeof(IFeatureToggleApiAccess), new FeatureToggleApiAccess(new ContentApiClient(ServerEndpoints.FeatureTogglesApiPath)));
-                IoCManager.RegisterType<IExhibitsApiAccess, ExhibitsApiAccess>();
-                IoCManager.RegisterType<IMediasApiAccess, MediasApiAccess>();
-                IoCManager.RegisterType<IFileApiAccess, FileApiAccess>();
-                IoCManager.RegisterType<IPagesApiAccess, PagesApiAccess>();
-                IoCManager.RegisterType<IRoutesApiAccess, RoutesApiAccess>();
-                IoCManager.RegisterType<ITagsApiAccess, TagsApiAccess>();
-                IoCManager.RegisterType<IAuthApiAccess, AuthApiAccess>();
-                IoCManager.RegisterInstance(typeof(IUserRatingApiAccess), new UserRatingApiAccess(new ContentApiClient()));
-            }
+            IoCManager.RegisterInstance(typeof(IAchievementsApiAccess), new AchievementsApiAccess(new ContentApiClient(ServerEndpoints.AchievementsApiPath)));
+            IoCManager.RegisterInstance(typeof(IFeatureToggleApiAccess), new FeatureToggleApiAccess(new ContentApiClient(ServerEndpoints.FeatureTogglesApiPath)));
+            IoCManager.RegisterType<IExhibitsApiAccess, ExhibitsApiAccess>();
+            IoCManager.RegisterType<IMediasApiAccess, MediasApiAccess>();
+            IoCManager.RegisterType<IFileApiAccess, FileApiAccess>();
+            IoCManager.RegisterType<IPagesApiAccess, PagesApiAccess>();
+            IoCManager.RegisterType<IRoutesApiAccess, RoutesApiAccess>();
+            IoCManager.RegisterType<ITagsApiAccess, TagsApiAccess>();
 
             //init converters
             IoCManager.RegisterType<ExhibitConverter>();
@@ -342,11 +331,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             IoCManager.RegisterInstance(typeof(INearbyExhibitManager), new NearbyExhibitManager());
             IoCManager.RegisterInstance(typeof(INearbyRouteManager), new NearbyRouteManager());
 
+            IoCManager.RegisterType<IAuthApiAccess, AuthApiAccess>();
+            IoCManager.RegisterInstance(typeof(IUserRatingApiAccess), new UserRatingApiAccess(new ContentApiClient()));
             IoCManager.RegisterInstance(typeof(IUserManager), new UserManager());
             IoCManager.RegisterInstance(typeof(IUserRatingManager), new UserRatingManager());
             IoCManager.RegisterInstance(typeof(IThemeManager), new ThemeManager());
             IoCManager.RegisterInstance(typeof(AchievementNotificationViewModel), new AchievementNotificationViewModel());
-
+            
             var featureToggleRouter = await FeatureToggleRouter.CreateAsync();
             IoCManager.RegisterInstance(typeof(IFeatureToggleRouter), featureToggleRouter);
         }

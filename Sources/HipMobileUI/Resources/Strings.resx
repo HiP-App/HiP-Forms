@@ -892,4 +892,34 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   <data name="ForgotPasswordScreenView_Error_Invalid_Email" xml:space="preserve">
     <value>Ihre E-Mail-Adresse ist ungültig</value>
   </data>
+  <data name="ExhibitRouteDownloadPageViewModel_OK" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="ExhibitRouteDownloadPage_Cancel" xml:space="preserve">
+    <value>Abbrechen</value>
+  </data>
+  <data name="ExhibitRouteDownloadPage_Details" xml:space="preserve">
+    <value>Details</value>
+  </data>
+  <data name="ExhibitRouteDownloadPage_Overview" xml:space="preserve">
+    <value>Übersicht</value>
+  </data>
+  <data name="LoadingPage_Cancel" xml:space="preserve">
+    <value>Abbrechen</value>
+  </data>
+  <data name="NavigationPageViewModel_Title" xml:space="preserve">
+    <value>Navigation</value>
+  </data>
+  <data name="ProfileScreenViewModel_Dialog_Logout_Message" xml:space="preserve">
+    <value>Wollen Sie sich wirklich abmelden?</value>
+  </data>
+  <data name="ProfileScreenViewModel_Dialog_Logout_Title" xml:space="preserve">
+    <value>Abmeldung</value>
+  </data>
+  <data name="ProfileScreenViewModel_No" xml:space="preserve">
+    <value>Nein</value>
+  </data>
+  <data name="ProfileScreenViewModel_Yes" xml:space="preserve">
+    <value>Ja</value>
+  </data>
 </root>
