@@ -1,4 +1,4 @@
-﻿// Copyright (C) 2017 History in Paderborn App - Universität Paderborn
+// Copyright (C) 2017 History in Paderborn App - Universität Paderborn
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -57,7 +57,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         private bool additionalInformationButtonVisible;
         private readonly bool additionalInformation;
         private string pagenumber;
-
 
         public ExhibitDetailsViewModel(string exhibitId) : this(ExhibitManager.GetExhibit(exhibitId)) { }
 
@@ -403,6 +402,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
         #region properties
 
+        /// <summary>
+        /// The exhibit for the details page.
+        /// </summary>
         public Exhibit Exhibit
         {
             get { return exhibit; }
