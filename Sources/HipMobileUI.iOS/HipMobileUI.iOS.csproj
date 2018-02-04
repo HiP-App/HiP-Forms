@@ -8,7 +8,7 @@
     <ProjectGuid>{E8C12869-9E79-4F57-976E-59B03DFEAA09}</ProjectGuid>
     <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Exe</OutputType>
-    <RootNamespace>HipMobileUI.iOS</RootNamespace>
+    <RootNamespace>PaderbornUniversity.SILab.Hip.Mobile.Ios</RootNamespace>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
     <AssemblyName>HipMobileUI.iOS</AssemblyName>
     <NuGetPackageImportStamp>
@@ -155,9 +155,9 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MaterialControls" Version="1.2.2" />
-	<PackageReference Include="System.Reflection.Emit" Version="4.3.0">
-		<ExcludeAssets>all</ExcludeAssets>
-	</PackageReference>
+    <PackageReference Include="System.Reflection.Emit" Version="4.3.0">
+      <ExcludeAssets>all</ExcludeAssets>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\ac_erkunden.jpg" />
