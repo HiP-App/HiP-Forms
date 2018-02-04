@@ -19,6 +19,7 @@ using System.Threading;
 using System.Windows.Input;
 using Acr.UserDialogs;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers.Contracts;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelConverters;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
@@ -42,20 +43,19 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             DownloadableDescription = downloadable.Description;
 
             Message = Strings.DownloadDetails_Text_Part1 + DownloadableName + Strings.DownloadDetails_Text_Part2;
-            var data = downloadable.Image.GetDataBlocking();
-            Image = ImageSource.FromStream(() => new MemoryStream(data));
+            SetImage();
             DownloadableListItemViewModel = downloadableListItemViewModel;
 
             CancelCommand = new Command(CancelDownload);
-            GoToDetailsCommand = new Command(GoToDetails);
-            GoToOverviewCommand = new Command(CloseDownloadPage);
             StartDownload = new Command(DownloadData);
 
             cancellationTokenSource = new CancellationTokenSource();
+        }
 
-            DownloadPending = true;
-            DownloadFinished =
-                !DownloadPending; // Since false is the default value this is just a reminder in case the database wants to set this to true when generating this item
+        private async void SetImage()
+        {
+            var imageData = await downloadable.Image.GetDataAsync();
+            Image = imageData != null ? ImageSource.FromStream(() => new MemoryStream(imageData)) : ImageSource.FromStream(() => new MemoryStream(BackupData.BackupImageData));
         }
 
         private readonly CancellationTokenSource cancellationTokenSource;
@@ -118,22 +118,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             set { SetProperty(ref loadingProgress, value); }
         }
 
-        private bool downloadFinished;
-
-        public bool DownloadFinished
-        {
-            get { return downloadFinished; }
-            set { SetProperty(ref downloadFinished, value); }
-        }
-
-        private bool downloadPending;
-
-        public bool DownloadPending
-        {
-            get { return downloadPending; }
-            set { SetProperty(ref downloadPending, value); }
-        }
-
         private ICommand startDownload;
 
         public ICommand StartDownload
@@ -143,8 +127,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         }
 
         public ICommand CancelCommand { get; }
-        public ICommand GoToOverviewCommand { get; }
-        public ICommand GoToDetailsCommand { get; }
 
         private void CancelDownload()
         {
@@ -155,11 +137,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         private void CloseDownloadPage()
         {
             DownloadableListItemViewModel.CloseDownloadPage();
-        }
-
-        private void GoToDetails()
-        {
-            DownloadableListItemViewModel.OpenDetailsView(DownloadableId);
         }
 
         private async void DownloadData()
@@ -229,22 +206,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
             if (!cancellationTokenSource.IsCancellationRequested && isDownloadAllowed)
             {
-                SetDetailsAvailable();
-            }
-            IoCManager.Resolve<IDbChangedHandler>().NotifyAll();
-        }
-
-        private void SetDetailsAvailable()
-        {
-            DownloadPending = false;
-            DownloadFinished = !DownloadPending;
-            DownloadableListItemViewModel.SetDetailsAvailable(DownloadFinished);
-
-            //Close DownloadPage directly if download was started from the AppetizerView
-            if (DownloadFinished && (DownloadableListItemViewModel.GetType() == typeof(AppetizerPageViewModel)))
-            {
+                DownloadableListItemViewModel.SetDetailsAvailable(true);
                 CloseDownloadPage();
             }
+            IoCManager.Resolve<IDbChangedHandler>().NotifyAll();
         }
 
         public override void OnAppearing()
