@@ -105,7 +105,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             if (Settings.IsLoggedIn && count > 0)
             {
                 prevRating = await IoCManager.Resolve<IUserRatingManager>().GetPreviousUserRatingAsync(exhibit.IdForRestApi);
-                SetRatingStars(5);
             }
             SetRatingStars(prevRating);
         }
@@ -172,33 +171,28 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         }
 
         /// <summary>
-        /// This method changes the star images depending on the current and the last rating. 
+        /// This method changes the star images. 
         /// Only the star images where the images needed to be changed are set to reduce unnecessary image changing.
-        /// If the rating is 0, all star images are set to an empty star, independent of the last rating.
-        /// If the last rating is bigger than the current rating, all stars below or equal to the last rating and bigger 
-        /// than the current rating are set to an empty star image.
-        /// If the current rating is bigger than the last rating, all stars below or equal to the current rating and bigger 
-        /// than the last rating are set to an filled star image.
-        /// To set the rating to the last rating the user has given this exhibit, call the method twice. 
-        /// The first time with a rating of 5 and the next time with the actual rating which should be shown.
         /// </summary>
         /// <param name="rating"></param>
         /// <returns></returns>
         private void SetRatingStars(int rating)
         {
-            var img = rating <= lastRating ? ImgStarEmpty : ImgStarFilled;
-
-            if (Math.Min(rating, lastRating) == 0 && Math.Max(rating, lastRating) >= 1 || rating == 0)
-                RatingStar1 = img;
-            if (Math.Min(rating, lastRating) <= 1 && Math.Max(rating, lastRating) >= 2 || rating == 0)
-                RatingStar2 = img;
-            if (Math.Min(rating, lastRating) <= 2 && Math.Max(rating, lastRating) >= 3 || rating == 0)
-                RatingStar3 = img;
-            if (Math.Min(rating, lastRating) <= 3 && Math.Max(rating, lastRating) >= 4 || rating == 0)
-                RatingStar4 = img;
-            if (Math.Min(rating, lastRating) <= 4 && Math.Max(rating, lastRating) >= 5 || rating == 0)
-                RatingStar5 = img;
-
+            var ratingStar1Img = rating >= 1 ? ImgStarFilled : ImgStarEmpty;
+            if (RatingStar1 == null || !((FileImageSource) RatingStar1).File.Equals(ratingStar1Img))
+                RatingStar1 = ratingStar1Img;
+            var ratingStar2Img = rating >= 2 ? ImgStarFilled : ImgStarEmpty;
+            if (RatingStar2 == null || !((FileImageSource) RatingStar2).File.Equals(ratingStar2Img))
+                RatingStar2 = ratingStar2Img;
+            var ratingStar3Img = rating >= 3 ? ImgStarFilled : ImgStarEmpty;
+            if (RatingStar3 == null || !((FileImageSource) RatingStar3).File.Equals(ratingStar3Img))
+                RatingStar3 = ratingStar3Img;
+            var ratingStar4Img = rating >= 4 ? ImgStarFilled : ImgStarEmpty;
+            if (RatingStar4 == null || !((FileImageSource) RatingStar4).File.Equals(ratingStar4Img))
+                RatingStar4 = ratingStar4Img;
+            var ratingStar5Img = rating >= 5 ? ImgStarFilled : ImgStarEmpty;
+            if (RatingStar5 == null || !((FileImageSource) RatingStar5).File.Equals(ratingStar5Img))
+                RatingStar5 = ratingStar5Img;
             lastRating = rating;
         }
 
