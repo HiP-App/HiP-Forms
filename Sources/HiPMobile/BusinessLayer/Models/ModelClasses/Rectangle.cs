@@ -19,29 +19,28 @@
   limitations under the License.*/
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 {
-	using Realms;
+	
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;
 	using System.Text;
 
-	public class Rectangle : RealmObject, IIdentifiable
+	public class Rectangle : IIdentifiable
 	{
 		//Attributes
-		[PrimaryKey]
-		public string Id{ get; set; }
+		public string Id { get; set; }
 
-		public virtual int Top{ get; set; }
+		public virtual int Top { get; set; }
 
-		public virtual int Bottom{ get; set; }
+		public virtual int Bottom { get; set; }
 
-		public virtual int Left{ get; set; }
+		public virtual int Left { get; set; }
 
-		public virtual int Right{ get; set; }
+		public virtual int Right { get; set; }
 
 		//Associations
 		// Contructor
-		public Rectangle(){
+		public Rectangle() {
 		}
 	}
 }

@@ -12,17 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataLayer;
-
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
 {
     public static class EarlyIoC
     {
         public static void Register()
         {
-            IoCManager.RegisterType<IDataAccess, RealmDataAccess>();
+            // TODO IoCManager.RegisterType<IDataAccess, DapperDataAccess>();
         }
     }
 }

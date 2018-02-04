@@ -19,16 +19,15 @@
   limitations under the License.*/
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 {
-	using Realms;
+	
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;
 	using System.Text;
 
-	public partial class ExhibitSet : RealmObject, IIdentifiable
+	public partial class ExhibitSet : IIdentifiable
 	{
 		//Attributes
-		[PrimaryKey]
 		public string Id{ get; set; }
 
 		public virtual IList<StringElement> Categories{ get; }

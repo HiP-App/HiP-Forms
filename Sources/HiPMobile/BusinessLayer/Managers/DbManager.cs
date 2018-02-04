@@ -16,7 +16,6 @@ using JetBrains.Annotations;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
-using Realms;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
 {
@@ -32,11 +31,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
         /// </summary>
         /// <typeparam name="T">The type of the object being created. T needs to be subtype of RealmObject and implement the IIdentifiable interface.</typeparam>
         /// <returns>The instance.</returns>
-        public static T CreateBusinessObject<T>() where T : RealmObject, IIdentifiable, new()
+        public static T CreateBusinessObject<T>() where T : IIdentifiable, new()
         {
             return DataAccess.CreateObject<T>();
         }
-        
+
         /// <summary>
         /// Creates an object of type T that is synced to the database.
         /// </summary>
@@ -44,7 +43,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
         /// <param name="updateCurrent">If true, first removes any object of the same type with the id.</param>
         /// <typeparam name="T">The type of the object being created. T needs to be subtype of RealmObject and implement the IIdentifiable interface.</typeparam>
         /// <returns>The instance.</returns>
-        public static T CreateBusinessObject<T>([NotNull] string id, bool updateCurrent = false) where T : RealmObject, IIdentifiable, new()
+        public static T CreateBusinessObject<T>([NotNull] string id, bool updateCurrent = false) where T : IIdentifiable, new()
         {
             return DataAccess.CreateObject<T>(id, updateCurrent);
         }
@@ -55,12 +54,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
         /// <typeparam name="T">The type of the object. T needs to be subtype of RealmObject and implement the IIdentifiable interface.</typeparam>
         /// <param name="entitiy">The object to be deleted.</param>
         /// <returns>True if deletion was successful. False otherwise.</returns>
-        public static bool DeleteBusinessEntity<T>(T entitiy) where T : RealmObject, IIdentifiable
+        public static bool DeleteBusinessEntity<T>(T entitiy) where T : IIdentifiable
         {
             if (entitiy != null)
             {
                 return DataAccess.DeleteItem<T>(entitiy.Id);
             }
+
             return true;
         }
 
@@ -84,6 +84,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
             {
                 ExhibitManager.DeleteExhibitSet(exhibitsSet);
             }
+
             var routes = RouteManager.GetRoutes();
             foreach (var route in routes)
             {

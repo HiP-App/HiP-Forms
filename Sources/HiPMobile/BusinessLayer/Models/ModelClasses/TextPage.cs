@@ -19,30 +19,29 @@
   limitations under the License.*/
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 {
-	using Realms;
+	
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;
 	using System.Text;
 
-	public class TextPage : RealmObject, IIdentifiable
+	public class TextPage : IIdentifiable
 	{
 		//Attributes
-		[PrimaryKey]
-		public string Id{ get; set; }
+		public string Id { get; set; }
 
-		public virtual string Text{ get; set; }
+		public virtual string Text { get; set; }
 
-		public virtual string FontFamily{ get; set; }
+		public virtual string FontFamily { get; set; }
 
-		public virtual string Title{ get; set; }
+		public virtual string Title { get; set; }
 
-		public virtual string Description{ get; set; }
+		public virtual string Description { get; set; }
 
 		//Associations
 
 		// Contructor
-		public TextPage(){
+		public TextPage() {
 		}
 	}
 }

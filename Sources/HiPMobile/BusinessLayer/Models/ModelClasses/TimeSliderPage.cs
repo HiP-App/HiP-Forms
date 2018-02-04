@@ -19,31 +19,30 @@
   limitations under the License.*/
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 {
-	using Realms;
+	
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;
 	using System.Text;
 
-	public class TimeSliderPage : RealmObject, IIdentifiable
+	public class TimeSliderPage : IIdentifiable
 	{
 		//Attributes
-		[PrimaryKey]
-		public string Id{ get; set; }
+		public string Id { get; set; }
 
-		public virtual string Title{ get; set; }
+		public virtual string Title { get; set; }
 
-		public virtual string Text{ get; set; }
+		public virtual string Text { get; set; }
 
-		public virtual IList<LongElement> Dates{ get; }
+		public virtual IList<LongElement> Dates { get; }
 
-		public virtual bool? HideYearNumbers{ get; set; }
+		public virtual bool? HideYearNumbers { get; set; }
 
 		//Associations
-		public virtual IList<Image> Images{ get; }
+		public virtual IList<Image> Images { get; }
 
 		// Contructor
-		public TimeSliderPage(){
+		public TimeSliderPage() {
 		}
 	}
 }

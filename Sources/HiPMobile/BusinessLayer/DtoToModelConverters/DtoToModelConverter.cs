@@ -15,7 +15,7 @@
 using JetBrains.Annotations;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
-using Realms;
+
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelConverters
 {
@@ -25,7 +25,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelCo
     /// </summary>
     /// <typeparam name="TModelObject"></typeparam>
     /// <typeparam name="TDtoObject"></typeparam>
-    public abstract class DtoToModelConverter<TModelObject, TDtoObject> where TModelObject : RealmObject, IIdentifiable, new()
+    public abstract class DtoToModelConverter<TModelObject, TDtoObject> where TModelObject : IIdentifiable, new()
     {
         /// <summary>
         /// Converts the given <paramref name="dto"/> to a new model object

@@ -22,16 +22,15 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 {
-    using Realms;
+    
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
 
-    public partial class Exhibit : RealmObject, IIdentifiable, IDownloadable
+    public partial class Exhibit : IIdentifiable, IDownloadable
     {
         //Attributes
-        [PrimaryKey]
         public string Id { get; set; }
 
         public virtual string Name { get; set; }

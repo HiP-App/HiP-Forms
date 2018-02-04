@@ -22,33 +22,32 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 {
-	using Realms;
+	
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;
 	using System.Text;
 
-	public partial class Page : RealmObject, IIdentifiable
+	public partial class Page : IIdentifiable
 	{
 		//Attributes
-		[PrimaryKey]
-		public string Id{ get; set; }
+		public string Id { get; set; }
 
-		public virtual Audio Audio{ get; set; }
+		public virtual Audio Audio { get; set; }
 
 		//Associations
-		public virtual AppetizerPage AppetizerPage{ get; set; }
+		public virtual AppetizerPage AppetizerPage { get; set; }
 
-		public virtual ImagePage ImagePage{ get; set; }
+		public virtual ImagePage ImagePage { get; set; }
 
-		public virtual TextPage TextPage{ get; set; }
+		public virtual TextPage TextPage { get; set; }
 
-		public virtual TimeSliderPage TimeSliderPage{ get; set; }
+		public virtual TimeSliderPage TimeSliderPage { get; set; }
 
 	    public virtual IList<Page> AdditionalInformationPages { get; }
 
 	    // Contructor
-        public Page(){
+        public Page() {
 		}
 
         public virtual int IdForRestApi { get; set; }

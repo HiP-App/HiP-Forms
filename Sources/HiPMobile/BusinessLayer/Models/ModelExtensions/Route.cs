@@ -16,16 +16,14 @@ using System.Collections.Generic;
 using System.Linq;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
-using Realms;
+
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 {
     public partial class Route
     {
-        [Ignored]
         public IList<Waypoint> ActiveSet => Waypoints.Where(wp => !wp.Visited).ToList();
 
-        [Ignored]
         public IList<Waypoint> PassiveSet => Waypoints.Where(wp => wp.Visited).ToList();
 
         /// <summary>

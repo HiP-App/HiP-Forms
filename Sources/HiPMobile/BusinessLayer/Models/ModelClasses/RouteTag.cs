@@ -22,27 +22,26 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 {
-	using Realms;
+	
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;
 	using System.Text;
 
-	public class RouteTag : RealmObject, IIdentifiable
+	public class RouteTag : IIdentifiable
 	{
 		//Attributes
-		[PrimaryKey]
-		public string Id{ get; set; }
+		public string Id { get; set; }
 
-		public virtual string Tag{ get; set; }
+		public virtual string Tag { get; set; }
 
-		public virtual string Name{ get; set; }
+		public virtual string Name { get; set; }
 
 		//Associations
-		public virtual Image Image{ get; set; }
+		public virtual Image Image { get; set; }
 
 		// Contructor
-		public RouteTag(){
+		public RouteTag() {
 		}
 
         public virtual int IdForRestApi { get; set; }

@@ -19,27 +19,26 @@
   limitations under the License.*/
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 {
-	using Realms;
+	
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;
 	using System.Text;
 
-	public class Waypoint : RealmObject, IIdentifiable
+	public class Waypoint : IIdentifiable
 	{
 		//Attributes
-		[PrimaryKey]
-		public string Id{ get; set; }
+		public string Id { get; set; }
 
-		public virtual GeoLocation Location{ get; set; }
+		public virtual GeoLocation Location { get; set; }
 
-		public virtual bool Visited{ get; set; }
+		public virtual bool Visited { get; set; }
 
 		//Associations
-		public virtual Exhibit Exhibit{ get; set; }
+		public virtual Exhibit Exhibit { get; set; }
 
 		// Contructor
-		public Waypoint(){
+		public Waypoint() {
 		}
 	}
 }

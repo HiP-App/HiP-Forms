@@ -19,25 +19,24 @@
   limitations under the License.*/
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 {
-	using Realms;
+	
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;
 	using System.Text;
 
-	public partial class GeoLocation : RealmObject, IIdentifiable
+	public partial class GeoLocation : IIdentifiable
 	{
 		//Attributes
-		[PrimaryKey]
-		public string Id{ get; set; }
+		public string Id { get; set; }
 
-		public virtual double Latitude{ get; set; }
+		public virtual double Latitude { get; set; }
 
-		public virtual double Longitude{ get; set; }
+		public virtual double Longitude { get; set; }
 
 		//Associations
 		// Contructor
-		public GeoLocation(){
+		public GeoLocation() {
 		}
 	}
 }

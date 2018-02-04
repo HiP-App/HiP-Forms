@@ -12,11 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using Realms;
+
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 {
-    public class RouteFinishedAchievementPendingNotification : RealmObject, IIdentifiable
+    public class RouteFinishedAchievementPendingNotification : IIdentifiable
     {
         public virtual RouteFinishedAchievement Achievement { get; set; }
         public virtual string Id { get; set; }

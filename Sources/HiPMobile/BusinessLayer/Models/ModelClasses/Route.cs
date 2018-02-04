@@ -22,49 +22,47 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 {
-	using Realms;
+	
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;
 	using System.Text;
 
-	public partial class Route : RealmObject, IIdentifiable, IDownloadable
+	public partial class Route : IIdentifiable, IDownloadable
 	{
 		//Attributes
-		[PrimaryKey]
-		public string Id{ get; set; }
+		 public string Id { get; set; }
 
-		public virtual string Title{ get; set; }
+		public virtual string Title { get; set; }
 
         public string Name {
             get { return Title; }
             set { Title = value; }
         }
 
-	    public virtual string Description{ get; set; }
+	    public virtual string Description { get; set; }
 
-		public virtual int Duration{ get; set; }
+		public virtual int Duration { get; set; }
 
-		public virtual double Distance{ get; set; }
+		public virtual double Distance { get; set; }
 
-	    public virtual DateTimeOffset? LastTimeDismissed{ get; set; }
+	    public virtual DateTimeOffset? LastTimeDismissed { get; set; }
 
         public virtual Boolean DetailsDataLoaded { get; set; }
         //Associations
-        public virtual IList<RouteTag> RouteTags{ get; }
+        public virtual IList<RouteTag> RouteTags { get; }
 
-		public virtual Image Image{ get; set; }
+		public virtual Image Image { get; set; }
 
-		public virtual IList<Waypoint> Waypoints{ get; }
+		public virtual IList<Waypoint> Waypoints { get; }
 
-		public virtual Audio Audio{ get; set; }
+		public virtual Audio Audio { get; set; }
 
         public DownloadableType Type { get { return DownloadableType.Route; } }
 
         // Constructor
         public Route ()
 	    {
-	        
 	    }
 
 	    public virtual int IdForRestApi { get; set; }

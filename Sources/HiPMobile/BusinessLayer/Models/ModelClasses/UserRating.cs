@@ -20,7 +20,7 @@
 
 
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos;
-using Realms;
+
 using System.Collections.Generic;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.ModelClasses
