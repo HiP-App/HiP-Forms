@@ -24,163 +24,172 @@ using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 {
-    /// <summary>
-    /// ViewModel for the SettingsScreenViewModel.
-    /// </summary>
-    public class SettingsScreenViewModel : NavigationViewModel
-    {
-        private string size;
+	/// <summary>
+	/// ViewModel for the SettingsScreenViewModel.
+	/// </summary>
+	public class SettingsScreenViewModel : NavigationViewModel
+	{
+		private string size;
 
-        public SettingsScreenViewModel()
-        {
-            RemoveAllDownloads = new Command(RemoveAllDownloadsClicked);
-            SelectCharacterCommand = new Command(OnSelectCharacterTapped);
-            Size = BuildSizeDescription();
-        }
+		public SettingsScreenViewModel()
+		{
+			RemoveAllDownloads = new Command(RemoveAllDownloadsClicked);
+			SelectCharacterCommand = new Command(OnSelectCharacterTapped);
+			Size = BuildSizeDescription();
+		}
 
-        public ICommand RemoveAllDownloads { get; }
-        public ICommand SelectCharacterCommand { get; }
+		public ICommand RemoveAllDownloads { get; }
+		public ICommand SelectCharacterCommand { get; }
 
-        private void OnSelectCharacterTapped()
-        {
-            Navigation.StartNewNavigationStack(new CharacterSelectionPageViewModel(this));
-        }
+		private void OnSelectCharacterTapped()
+		{
+			Navigation.StartNewNavigationStack(new CharacterSelectionPageViewModel(this));
+		}
 
-        private async void RemoveAllDownloadsClicked()
-        {
-            var result = await IoCManager.Resolve<INavigationService>()
-                                         .DisplayAlert(Strings.SettingsScreenView_RemoveAllDownloadsPrompt_Title, Strings.SettingsScreenView_RemoveAllDownloadsPrompt_Question,
-                                                       Strings.SettingsScreenView_RemoveAllDownloadsPrompt_Confirm, Strings.SettingsScreenView_RemoveAllDownloadsPrompt_Reject);
+		private async void RemoveAllDownloadsClicked()
+		{
+			var result = await IoCManager.Resolve<INavigationService>()
+										 .DisplayAlert(Strings.SettingsScreenView_RemoveAllDownloadsPrompt_Title, Strings.SettingsScreenView_RemoveAllDownloadsPrompt_Question,
+													   Strings.SettingsScreenView_RemoveAllDownloadsPrompt_Confirm, Strings.SettingsScreenView_RemoveAllDownloadsPrompt_Reject);
 
-            if (result)
-            {
-                // Delete the whole DB
-                DbManager.DeleteDatabase();
-                Size = BuildSizeDescription();
-            }
-        }
+			if (result)
+			{
+				// Delete the whole DB
+				DbManager.DeleteDatabase();
+				Size = BuildSizeDescription();
+			}
+		}
 
-        private static string BuildSizeDescription()
-        {
-            var dbSizeMb = IoCManager.Resolve<IStorageSizeProvider>().GetDatabaseSizeMb();
-            var mediaSizeMb = IoCManager.Resolve<IMediaFileManager>().TotalSizeBytes / (1024 * 1024);
-            return $"{dbSizeMb + mediaSizeMb} MB";
-        }
+		private static string BuildSizeDescription()
+		{
+			var dbSizeMb = IoCManager.Resolve<IStorageSizeProvider>().GetDatabaseSizeMb();
+			var mediaSizeMb = IoCManager.Resolve<IMediaFileManager>().TotalSizeBytes / (1024 * 1024);
+			return $"{dbSizeMb + mediaSizeMb} MB";
+		}
 
-        /// <summary>
-        /// After end of audio playback, switch automatically to next page
-        /// </summary>
-        public bool AutoSwitchPage
-        {
-            get => Settings.AutoSwitchPage;
-            set
-            {
-                Settings.AutoSwitchPage = value;
-                OnPropertyChanged();
-            }
-        }
+		/// <summary>
+		/// After end of audio playback, switch automatically to next page
+		/// </summary>
+		public bool AutoSwitchPage
+		{
+			get => Settings.AutoSwitchPage;
+			set
 
-        /// <summary>
-        /// Automatically start audio playback for current page
-        /// </summary>
-        public bool AutoStartAudio
-        {
-            get => Settings.AutoStartAudio;
-            set
-            {
-                Settings.AutoStartAudio = value;
-                OnPropertyChanged();
-            }
-        }
+			{
+				Settings.AutoSwitchPage = value;
+				OnPropertyChanged();
+			}
+			}
 
-        /// <summary>
-        /// Show hint for audio playback again
-        /// </summary>
-        public bool RepeatHintAudio
-        {
-            get => Settings.RepeatHintAudio;
-            set
-            {
-                Settings.RepeatHintAudio = value;
-                OnPropertyChanged();
-            }
-        }
+		/// <summary>
+		/// Automatically start audio playback for current page
+		/// </summary>
+		public bool AutoStartAudio
+		{
+			get => Settings.AutoStartAudio;
+			set
 
-        /// <summary>
-        /// Show hint for automatically switching to next page again
-        /// </summary>
-        public bool RepeatHintAutoPageSwitch
-        {
-            get => Settings.RepeatHintAutoPageSwitch;
-            set
-            {
-                Settings.RepeatHintAutoPageSwitch = value;
-                OnPropertyChanged();
-            }
-        }
+			{
+				Settings.AutoStartAudio = value;
+				OnPropertyChanged();
+			}
+			}
 
-        /// <summary>
-        /// Show app introduction by restarting the app again
-        /// </summary>
-        public bool RepeatIntro
-        {
-            get => Settings.RepeatIntro;
-            set
-            {
-                Settings.RepeatIntro = value;
-                Settings.InitialThemeSelected = !value;
-                OnPropertyChanged();
-            }
-        }
+		/// <summary>
+		/// Show hint for audio playback again
+		/// </summary>
+		public bool RepeatHintAudio
+		{
+			get => Settings.RepeatHintAudio;
+			set
 
-        /// <summary>
-        /// Allow user to enable prompt for data download when data updated
-        /// </summary>
-        public bool AlwaysDownloadData
-        {
-            get => Settings.AlwaysDownloadData;
-            set
-            {
-                Settings.AlwaysDownloadData = value;
-                OnPropertyChanged();
-            }
-        }
+			{
+				Settings.RepeatHintAudio = value;
+				OnPropertyChanged();
+			}
+			}
 
-        public string AppModeText => Settings.AdventurerMode ? Strings.SettingsScreenView_CharacterSelection_Text_IsAdventurer : Strings.SettingsScreenView_CharacterSelection_Text_IsProfessor;
+		/// <summary>
+		/// Show hint for automatically switching to next page again
+		/// </summary>
+		public bool RepeatHintAutoPageSwitch
+		{
+			get => Settings.RepeatHintAutoPageSwitch;
+			set
 
-        public override void OnAppearing()
-        {
-            base.OnAppearing();
-            Size = BuildSizeDescription();
-        }
+			{
+				Settings.RepeatHintAutoPageSwitch = value;
+				OnPropertyChanged();
+			}
+			}
 
-        public override void OnRevealed()
-        {
-            base.OnRevealed();
-            Size = BuildSizeDescription();
-        }
+		/// <summary>
+		/// Show app introduction by restarting the app again
+		/// </summary>
+		public bool RepeatIntro
+		{
+			get => Settings.RepeatIntro;
+			set
 
-        public string Size
-        {
-            set
-            {
-                if (size != value)
-                {
-                    size = value;
-                    OnPropertyChanged();
-                }
-            }
-            get => size;
-        }
+			{
+				Settings.RepeatIntro = value;
+				Settings.InitialThemeSelected = !value;
+				OnPropertyChanged();
+			}
+			}
 
-        public bool WifiOnly
-        {
-            get => Settings.WifiOnly;
-            set
-            {
-                Settings.WifiOnly = value;
-                OnPropertyChanged();
-            }
-        }
-    }
-}
+		/// <summary>
+		/// Allow user to enable prompt for data download when data updated
+		/// </summary>
+		public bool AlwaysDownloadData
+		{
+			get => Settings.AlwaysDownloadData;
+			set
+
+			{
+				Settings.AlwaysDownloadData = value;
+				OnPropertyChanged();
+			}
+			}
+
+
+		public string AppModeText => Settings.AdventurerMode ? Strings.SettingsScreenView_CharacterSelection_Text_IsAdventurer : Strings.SettingsScreenView_CharacterSelection_Text_IsProfessor;
+
+		public override void OnAppearing()
+		{
+			base.OnAppearing();
+			Size = BuildSizeDescription();
+		}
+
+		public override void OnRevealed()
+		{
+			base.OnRevealed();
+			Size = BuildSizeDescription();
+		}
+
+		public string Size
+		{
+			set
+			{
+				if (size != value)
+				{
+					size = value;
+					OnPropertyChanged();
+				}
+			}
+			get => size;
+			}
+
+
+		public bool WifiOnly
+		{
+			get => Settings.WifiOnly;
+			set
+
+			{
+				Settings.WifiOnly = value;
+				OnPropertyChanged();
+			}
+			}
+		}
+	}

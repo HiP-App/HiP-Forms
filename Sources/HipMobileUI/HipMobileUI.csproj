@@ -253,6 +253,10 @@
       <DependentUpon>AchievementsDetailsExhibitPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\Views\AchievementsDetailsExhibitViewModel.cs" />
+    <Compile Include="Pages\AdventurerDetailsView.xaml.cs">
+      <DependentUpon>AdventurerDetailsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\Pages\AdventurerDetailsViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="App.xaml">
@@ -276,6 +280,10 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\AchievementsDetailsExhibitPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\AdventurerDetailsView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
