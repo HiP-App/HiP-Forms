@@ -130,7 +130,7 @@
     <value>Die Software Historisches Paderborn unterliegt dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung bedürfen der schriftlichen Zustimmung der Universität Paderborn. Die Nutzung der Software ist nur für den privaten, nicht kommerziellen Gebrauch gestattet.</value>
   </data>
   <data name="LicenseScreenView_Copyright_Title" xml:space="preserve">
-    <value>Copyright</value>
+    <value>Urheberrechte</value>
   </data>
   <data name="LicenseScreenView_CreditsImagesAutocarousel_Text" xml:space="preserve">
     <value>Bilder erstellt von &lt;a href="http://www.flaticon.com/authors/madebyoliver/"&gt;Madebyoliver&lt;/a&gt; from &lt;a href="http://www.flaticon.com/"&gt;www.flaticon.com&lt;/a&gt;.</value>
@@ -359,7 +359,7 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
     <value>Pause</value>
   </data>
   <data name="AudioToolbarView_Play" xml:space="preserve">
-    <value>Play</value>
+    <value>Abspielen</value>
   </data>
   <data name="AudioToolbarView_Progress" xml:space="preserve">
     <value>Fortschritt</value>
@@ -472,9 +472,6 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   <data name="ExhibitDetailsPage_AdditionalInformation" xml:space="preserve">
     <value>Zusätzliche Informationen</value>
   </data>
-  <data name="ExhibitOrRouteNearby_Confirm" xml:space="preserve">
-    <value>Ja</value>
-  </data>
   <data name="ExhibitNearby_ExhibitNearby" xml:space="preserve">
     <value>Sehenwürdigkeit in der Nähe</value>
   </data>
@@ -484,23 +481,14 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   <data name="ExhibitOrRouteNearby_Question_Part2" xml:space="preserve">
     <value>genauer ansehen?</value>
   </data>
-  <data name="ExhibitOrRouteNearby_Reject" xml:space="preserve">
-    <value>Nein</value>
-  </data>
   <data name="RouteNearby" xml:space="preserve">
     <value>Route in der Nähe</value>
-  </data>
-  <data name="SkipExhibit_Confirm" xml:space="preserve">
-    <value>Ja</value>
   </data>
   <data name="SkipExhibit_Question_Part1" xml:space="preserve">
     <value>Möchten Sie wirklich</value>
   </data>
   <data name="SkipExhibit_Question_Part2" xml:space="preserve">
     <value>überspringen?</value>
-  </data>
-  <data name="SkipExhibit_Reject" xml:space="preserve">
-    <value>Nein</value>
   </data>
   <data name="SkipExhibit_Title" xml:space="preserve">
     <value>Sehenswürdigkeit überspringen</value>
@@ -517,9 +505,6 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   <data name="SettingsScreenView_RemoveAllDownloadsPrompt_Question" xml:space="preserve">
     <value>Möchten Sie wirklich alle Downloads entfernen? Die App muss dafür neu gestartet werden.</value>
   </data>
-  <data name="SettingsScreenView_RemoveAllDownloadsPrompt_Reject" xml:space="preserve">
-    <value>Abbrechen</value>
-  </data>
   <data name="SettingsScreenView_RemoveAllDownloadsPrompt_Title" xml:space="preserve">
     <value>Alle Downloads entfernen</value>
   </data>
@@ -534,12 +519,6 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   </data>
   <data name="DownloadData_Title" xml:space="preserve">
     <value>Neue Daten herunterladen?</value>
-  </data>
-  <data name="DownloadData_Cancel" xml:space="preserve">
-    <value>Nein</value>
-  </data>
-  <data name="DownloadData_Accept" xml:space="preserve">
-    <value>Ja</value>
   </data>
   <data name="DownloadData_Always" xml:space="preserve">
     <value>Immer</value>
@@ -559,15 +538,6 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   <data name="LoadingPageViewModel_BaseData_DownloadViaMobile" xml:space="preserve">
     <value>Es wird empfohlen die Basis Daten immer aktuell zu halten. In den Einstellungen ist festgelegt, dass Daten nicht über Mobile Datenverbindungen heruntergeladen werden sollen. Möchten Sie diese Basis Daten jetzt trotzdem herunterladen?</value>
   </data>
-  <data name="LoadingPageViewModel_BaseData_MobileDownload_Cancel" xml:space="preserve">
-    <value>Nein</value>
-  </data>
-  <data name="LoadingPageViewModel_BaseData_MobileDownload_Confirm" xml:space="preserve">
-    <value>Ja</value>
-  </data>
-  <data name="LoadingPageViewModel_LoadingError_Confirm" xml:space="preserve">
-    <value>OK</value>
-  </data>
   <data name="StorageTitle" xml:space="preserve">
     <value>Belegter Speicherplatz für Daten</value>
   </data>
@@ -578,7 +548,7 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
     <value> herunter</value>
   </data>
   <data name="MainPageViewModel_Account" xml:space="preserve">
-    <value>Account</value>
+    <value>Konto</value>
   </data>
   <data name="MainPageViewModel_Profile" xml:space="preserve">
     <value>Profil</value>
@@ -670,9 +640,6 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   <data name="RegisterScreenView_Alert_Description" xml:space="preserve">
     <value>Eine E-Mail wurde Ihnen gesendet. Bitte bestätigen Sie diese E-Mail, um sich einloggen zu können.</value>
   </data>
-  <data name="RegisterScreenView_Alert_Ok" xml:space="preserve">
-    <value>Ok</value>
-  </data>
   <data name="RegisterScreenView_Alert_Registered" xml:space="preserve">
     <value>Benutzer Registrierung</value>
   </data>
@@ -684,9 +651,6 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   </data>
   <data name="ForgotPasswordScreenView_Alert_Description" xml:space="preserve">
     <value>Wir haben dir eine E-Mail mit Anweisungen zum Zurücksetzen deines Passworts geschickt</value>
-  </data>
-  <data name="ForgotPasswordScreenView_Alert_Ok" xml:space="preserve">
-    <value>Ok</value>
   </data>
   <data name="ForgotPasswordScreenView_Alert_Password_Resetted" xml:space="preserve">
     <value>Passwort zurückgesetzt</value>
@@ -727,9 +691,6 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   <data name="Alert_Unknown_Error_Title" xml:space="preserve">
     <value>Unbekannter Fehler</value>
   </data>
-  <data name="LicenseScreenViewModel_UnlockExhibits_Confirm" xml:space="preserve">
-    <value>OK</value>
-  </data>
   <data name="LicenseScreenView_User_Dialogs_Text" xml:space="preserve">
     <value>Von &lt;a href="https://github.com/aritchie/userdialogs"&gt;Allan Ritchie&lt;/a&gt;, lizensiert unter &lt;a href="https://github.com/aritchie/userdialogs/blob/master/LICENSE.md"&gt;MIT&lt;/a&gt;. Es wurden keine Änderungen vorgenommen.</value>
   </data>
@@ -756,9 +717,6 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   </data>
   <data name="RegisterScreenView_Error_Invalid_Email" xml:space="preserve">
     <value>Ungültige E-Mail</value>
-  </data>
-  <data name="ExhibitDetailsPage_Distance_alert_confirm" xml:space="preserve">
-    <value>OK</value>
   </data>
   <data name="ExhibitDetailsPage_Distance_Text" xml:space="preserve">
     <value>Sie müssen die Sehenswürdigkeit zuerst besucht haben, um die Details zu sehen!</value>
@@ -793,14 +751,8 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   <data name="ProfileView_Professor" xml:space="preserve">
     <value>Professor</value>
   </data>
-  <data name="ExhibitRouteDownloadPageViewModel_Wifi_Only_Cancel" xml:space="preserve">
-    <value>Nein</value>
-  </data>
   <data name="ExhibitRouteDownloadPageViewModel_Wifi_Only_Message" xml:space="preserve">
     <value>In den Einstellungen ist festgelegt, dass Daten nur über Wlan heruntergeladen werden sollen. Sollen die Daten dieses Mal trotzdem über die mobile Datenverbindung heruntergeladen werden?</value>
-  </data>
-  <data name="ExhibitRouteDownloadPageViewModel_Wifi_Only_Ok" xml:space="preserve">
-    <value>Ja</value>
   </data>
   <data name="ExhibitRouteDownloadPageViewModel_Wifi_Only_Title" xml:space="preserve">
     <value>Wlan deaktiviert</value>
@@ -821,10 +773,10 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
     <value>Dein Punktestand: </value>
   </data>
   <data name="AchievementsScreenView_PleaseLogin" xml:space="preserve">
-    <value>Um Achievements zu nutzen, musst du dich zunächst einloggen.</value>
+    <value>Um Erfolge zu nutzen, musst du dich zunächst einloggen.</value>
   </data>
   <data name="MainPageViewModel_Achievements" xml:space="preserve">
-    <value>Achievements</value>
+    <value>Erfolge</value>
   </data>
   <data name="ExhibitNearby_VisitRequest" xml:space="preserve">
     <value>Besuche eine nahe Sehenswürdigkeit!</value>
@@ -853,9 +805,6 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   <data name="UserRating_Dialog_Title_No_Rating" xml:space="preserve">
     <value>Keine Bewertung</value>
   </data>
-  <data name="UserRating_Ok" xml:space="preserve">
-    <value>Ok</value>
-  </data>
   <data name="UserRating_Rate" xml:space="preserve">
     <value>Bewerten</value>
   </data>
@@ -880,32 +829,14 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   <data name="SkipExhibit_Message" xml:space="preserve">
     <value>Alle Sehenswürdigkeiten wurden bereits besucht. Es kann keine weitere übersprungen werden.</value>
   </data>
-  <data name="SkipExhibit_OK" xml:space="preserve">
-    <value>OK</value>
-  </data>
-  <data name="ForgotPasswordScreenView_Cancel" xml:space="preserve">
-    <value>Abbrechen</value>
-  </data>
-  <data name="RegisterScreenView_Cancel" xml:space="preserve">
-    <value>Abbrechen</value>
-  </data>
   <data name="ForgotPasswordScreenView_Error_Invalid_Email" xml:space="preserve">
     <value>Ihre E-Mail-Adresse ist ungültig</value>
-  </data>
-  <data name="ExhibitRouteDownloadPageViewModel_OK" xml:space="preserve">
-    <value>OK</value>
-  </data>
-  <data name="ExhibitRouteDownloadPage_Cancel" xml:space="preserve">
-    <value>Abbrechen</value>
   </data>
   <data name="ExhibitRouteDownloadPage_Details" xml:space="preserve">
     <value>Details</value>
   </data>
   <data name="ExhibitRouteDownloadPage_Overview" xml:space="preserve">
     <value>Übersicht</value>
-  </data>
-  <data name="LoadingPage_Cancel" xml:space="preserve">
-    <value>Abbrechen</value>
   </data>
   <data name="NavigationPageViewModel_Title" xml:space="preserve">
     <value>Navigation</value>
@@ -916,10 +847,16 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   <data name="ProfileScreenViewModel_Dialog_Logout_Title" xml:space="preserve">
     <value>Abmeldung</value>
   </data>
-  <data name="ProfileScreenViewModel_No" xml:space="preserve">
+  <data name="Yes" xml:space="preserve">
+    <value>Ja</value>
+  </data>
+  <data name="No" xml:space="preserve">
     <value>Nein</value>
   </data>
-  <data name="ProfileScreenViewModel_Yes" xml:space="preserve">
-    <value>Ja</value>
+  <data name="Ok" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Abbrechen</value>
   </data>
 </root>

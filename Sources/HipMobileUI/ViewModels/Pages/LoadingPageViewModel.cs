@@ -184,8 +184,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             actionOnUiThread = null;
             var downloadData = await Navigation.DisplayAlert(Strings.LoadingPageViewModel_BaseData_DataAvailable,
                                                              Strings.LoadingPageViewModel_BaseData_DownloadViaMobile,
-                                                             Strings.LoadingPageViewModel_BaseData_MobileDownload_Confirm,
-                                                             Strings.LoadingPageViewModel_BaseData_MobileDownload_Cancel);
+                                                             Strings.Yes,
+                                                             Strings.No);
 
             try
             {
@@ -258,7 +258,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             {
                 if (errorMessage != null && errorTitle != null)
                 {
-                    await Navigation.DisplayAlert(errorTitle, errorMessage, Strings.LoadingPageViewModel_LoadingError_Confirm);
+                    await Navigation.DisplayAlert(errorTitle, errorMessage, Strings.Ok);
                 }
 
                 StartMainApplication();

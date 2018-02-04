@@ -54,11 +54,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 
         async void LogoutDummy()
         {
-            var title = Strings.ProfileScreenViewModel_Dialog_Logout_Title;
-            var message = Strings.ProfileScreenViewModel_Dialog_Logout_Message;
-            var yes = Strings.ProfileScreenViewModel_Yes;
-            var no = Strings.ProfileScreenViewModel_No;
-            var result = await Navigation.DisplayAlert(title, message, yes, no);
+            var result = await Navigation.DisplayAlert(Strings.ProfileScreenViewModel_Dialog_Logout_Title
+                                                       , Strings.ProfileScreenViewModel_Dialog_Logout_Message
+                                                       , Strings.Yes, Strings.No);
             if (!result)
                 return;
             Settings.IsLoggedIn = false;

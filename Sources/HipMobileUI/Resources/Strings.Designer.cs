@@ -71,7 +71,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Um Achievements zu nutzen, musst du dich zunächst einloggen..
+        ///   Looks up a localized string similar to Um Erfolge zu nutzen, musst du dich zunächst einloggen..
         /// </summary>
         internal static string AchievementsScreenView_PleaseLogin {
             get {
@@ -170,7 +170,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Play.
+        ///   Looks up a localized string similar to Abspielen.
         /// </summary>
         internal static string AudioToolbarView_Play {
             get {
@@ -206,6 +206,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Abbrechen.
+        /// </summary>
+        internal static string Cancel {
+            get {
+                return ResourceManager.GetString("Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Entdecke Paderborn auf eigene Faust! Mache neue Erfahrungen!.
         /// </summary>
         internal static string CharacterSelectionPage_Adventurer_Text {
@@ -224,29 +233,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ja.
-        /// </summary>
-        internal static string DownloadData_Accept {
-            get {
-                return ResourceManager.GetString("DownloadData_Accept", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Immer.
         /// </summary>
         internal static string DownloadData_Always {
             get {
                 return ResourceManager.GetString("DownloadData_Always", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Nein.
-        /// </summary>
-        internal static string DownloadData_Cancel {
-            get {
-                return ResourceManager.GetString("DownloadData_Cancel", resourceCulture);
             }
         }
         
@@ -323,15 +314,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to OK.
-        /// </summary>
-        internal static string ExhibitDetailsPage_Distance_alert_confirm {
-            get {
-                return ResourceManager.GetString("ExhibitDetailsPage_Distance_alert_confirm", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Sie müssen die Sehenswürdigkeit zuerst besucht haben, um die Details zu sehen!.
         /// </summary>
         internal static string ExhibitDetailsPage_Distance_Text {
@@ -386,15 +368,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ja.
-        /// </summary>
-        internal static string ExhibitOrRouteNearby_Confirm {
-            get {
-                return ResourceManager.GetString("ExhibitOrRouteNearby_Confirm", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Möchten Sie sich.
         /// </summary>
         internal static string ExhibitOrRouteNearby_Question_Part1 {
@@ -409,24 +382,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         internal static string ExhibitOrRouteNearby_Question_Part2 {
             get {
                 return ResourceManager.GetString("ExhibitOrRouteNearby_Question_Part2", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Nein.
-        /// </summary>
-        internal static string ExhibitOrRouteNearby_Reject {
-            get {
-                return ResourceManager.GetString("ExhibitOrRouteNearby_Reject", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Abbrechen.
-        /// </summary>
-        internal static string ExhibitRouteDownloadPage_Cancel {
-            get {
-                return ResourceManager.GetString("ExhibitRouteDownloadPage_Cancel", resourceCulture);
             }
         }
         
@@ -449,38 +404,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to OK.
-        /// </summary>
-        internal static string ExhibitRouteDownloadPageViewModel_OK {
-            get {
-                return ResourceManager.GetString("ExhibitRouteDownloadPageViewModel_OK", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Nein.
-        /// </summary>
-        internal static string ExhibitRouteDownloadPageViewModel_Wifi_Only_Cancel {
-            get {
-                return ResourceManager.GetString("ExhibitRouteDownloadPageViewModel_Wifi_Only_Cancel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to In den Einstellungen ist festgelegt, dass Daten nur über Wlan heruntergeladen werden sollen. Sollen die Daten dieses Mal trotzdem über die mobile Datenverbindung heruntergeladen werden?.
         /// </summary>
         internal static string ExhibitRouteDownloadPageViewModel_Wifi_Only_Message {
             get {
                 return ResourceManager.GetString("ExhibitRouteDownloadPageViewModel_Wifi_Only_Message", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Ja.
-        /// </summary>
-        internal static string ExhibitRouteDownloadPageViewModel_Wifi_Only_Ok {
-            get {
-                return ResourceManager.GetString("ExhibitRouteDownloadPageViewModel_Wifi_Only_Ok", resourceCulture);
             }
         }
         
@@ -530,15 +458,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ok.
-        /// </summary>
-        internal static string ForgotPasswordScreenView_Alert_Ok {
-            get {
-                return ResourceManager.GetString("ForgotPasswordScreenView_Alert_Ok", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Passwort zurückgesetzt.
         /// </summary>
         internal static string ForgotPasswordScreenView_Alert_Password_Resetted {
@@ -562,15 +481,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         internal static string ForgotPasswordScreenView_Alert_Unknown_Error_Title {
             get {
                 return ResourceManager.GetString("ForgotPasswordScreenView_Alert_Unknown_Error_Title", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Abbrechen.
-        /// </summary>
-        internal static string ForgotPasswordScreenView_Cancel {
-            get {
-                return ResourceManager.GetString("ForgotPasswordScreenView_Cancel", resourceCulture);
             }
         }
         
@@ -683,7 +593,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Copyright.
+        ///   Looks up a localized string similar to Urheberrechte.
         /// </summary>
         internal static string LicenseScreenView_Copyright_Title {
             get {
@@ -1197,15 +1107,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to OK.
-        /// </summary>
-        internal static string LicenseScreenViewModel_UnlockExhibits_Confirm {
-            get {
-                return ResourceManager.GetString("LicenseScreenViewModel_UnlockExhibits_Confirm", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Alle Sehenswürdigkeiten freigeschaltet!.
         /// </summary>
         internal static string LicenseScreenViewModel_UnlockExhibits_Text {
@@ -1220,15 +1121,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         internal static string LicenseScreenViewModel_UnlockExhibits_Title {
             get {
                 return ResourceManager.GetString("LicenseScreenViewModel_UnlockExhibits_Title", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Abbrechen.
-        /// </summary>
-        internal static string LoadingPage_Cancel {
-            get {
-                return ResourceManager.GetString("LoadingPage_Cancel", resourceCulture);
             }
         }
         
@@ -1296,38 +1188,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Nein.
-        /// </summary>
-        internal static string LoadingPageViewModel_BaseData_MobileDownload_Cancel {
-            get {
-                return ResourceManager.GetString("LoadingPageViewModel_BaseData_MobileDownload_Cancel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Ja.
-        /// </summary>
-        internal static string LoadingPageViewModel_BaseData_MobileDownload_Confirm {
-            get {
-                return ResourceManager.GetString("LoadingPageViewModel_BaseData_MobileDownload_Confirm", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to In den Einstellungen haben Sie die Möglichkeit, den Download der Daten auch über Mobile Datenverbindungen zu erlauben..
         /// </summary>
         internal static string LoadingPageViewModel_BaseData_OnlyMobile {
             get {
                 return ResourceManager.GetString("LoadingPageViewModel_BaseData_OnlyMobile", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to OK.
-        /// </summary>
-        internal static string LoadingPageViewModel_LoadingError_Confirm {
-            get {
-                return ResourceManager.GetString("LoadingPageViewModel_LoadingError_Confirm", resourceCulture);
             }
         }
         
@@ -1458,7 +1323,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Account.
+        ///   Looks up a localized string similar to Konto.
         /// </summary>
         internal static string MainPageViewModel_Account {
             get {
@@ -1467,7 +1332,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Achievements.
+        ///   Looks up a localized string similar to Erfolge.
         /// </summary>
         internal static string MainPageViewModel_Achievements {
             get {
@@ -1557,6 +1422,24 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Nein.
+        /// </summary>
+        internal static string No {
+            get {
+                return ResourceManager.GetString("No", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        internal static string Ok {
+            get {
+                return ResourceManager.GetString("Ok", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Wollen Sie sich wirklich abmelden?.
         /// </summary>
         internal static string ProfileScreenViewModel_Dialog_Logout_Message {
@@ -1571,24 +1454,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         internal static string ProfileScreenViewModel_Dialog_Logout_Title {
             get {
                 return ResourceManager.GetString("ProfileScreenViewModel_Dialog_Logout_Title", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Nein.
-        /// </summary>
-        internal static string ProfileScreenViewModel_No {
-            get {
-                return ResourceManager.GetString("ProfileScreenViewModel_No", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Ja.
-        /// </summary>
-        internal static string ProfileScreenViewModel_Yes {
-            get {
-                return ResourceManager.GetString("ProfileScreenViewModel_Yes", resourceCulture);
             }
         }
         
@@ -1674,29 +1539,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ok.
-        /// </summary>
-        internal static string RegisterScreenView_Alert_Ok {
-            get {
-                return ResourceManager.GetString("RegisterScreenView_Alert_Ok", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Benutzer Registrierung.
         /// </summary>
         internal static string RegisterScreenView_Alert_Registered {
             get {
                 return ResourceManager.GetString("RegisterScreenView_Alert_Registered", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Abbrechen.
-        /// </summary>
-        internal static string RegisterScreenView_Cancel {
-            get {
-                return ResourceManager.GetString("RegisterScreenView_Cancel", resourceCulture);
             }
         }
         
@@ -2088,15 +1935,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Abbrechen.
-        /// </summary>
-        internal static string SettingsScreenView_RemoveAllDownloadsPrompt_Reject {
-            get {
-                return ResourceManager.GetString("SettingsScreenView_RemoveAllDownloadsPrompt_Reject", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Alle Downloads entfernen.
         /// </summary>
         internal static string SettingsScreenView_RemoveAllDownloadsPrompt_Title {
@@ -2151,29 +1989,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ja.
-        /// </summary>
-        internal static string SkipExhibit_Confirm {
-            get {
-                return ResourceManager.GetString("SkipExhibit_Confirm", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Alle Sehenswürdigkeiten wurden bereits besucht. Es kann keine weitere übersprungen werden..
         /// </summary>
         internal static string SkipExhibit_Message {
             get {
                 return ResourceManager.GetString("SkipExhibit_Message", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to OK.
-        /// </summary>
-        internal static string SkipExhibit_OK {
-            get {
-                return ResourceManager.GetString("SkipExhibit_OK", resourceCulture);
             }
         }
         
@@ -2192,15 +2012,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         internal static string SkipExhibit_Question_Part2 {
             get {
                 return ResourceManager.GetString("SkipExhibit_Question_Part2", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Nein.
-        /// </summary>
-        internal static string SkipExhibit_Reject {
-            get {
-                return ResourceManager.GetString("SkipExhibit_Reject", resourceCulture);
             }
         }
         
@@ -2403,15 +2214,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ok.
-        /// </summary>
-        internal static string UserRating_Ok {
-            get {
-                return ResourceManager.GetString("UserRating_Ok", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Bewerten.
         /// </summary>
         internal static string UserRating_Rate {
@@ -2435,6 +2237,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         internal static string UserRating_Tap_Star_To_Rate {
             get {
                 return ResourceManager.GetString("UserRating_Tap_Star_To_Rate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ja.
+        /// </summary>
+        internal static string Yes {
+            get {
+                return ResourceManager.GetString("Yes", resourceCulture);
             }
         }
     }
