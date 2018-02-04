@@ -81,7 +81,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
 				{
 					IsAntialias = true,
 					Style = SKPaintStyle.StrokeAndFill,
-					Color = new SKColor(255, 165, 0),
+					Color = new SKColor(255, 204, 0),
 					StrokeWidth = 5
 				};
 
