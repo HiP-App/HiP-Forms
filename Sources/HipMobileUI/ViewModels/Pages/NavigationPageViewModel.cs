@@ -43,7 +43,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         {
             DetailsRoute = route;
             ShowNavigation = true;
-            Title = "Navigation";
+            Title = Strings.NavigationPageViewModel_Title;
             locationManager = IoCManager.Resolve<ILocationManager>();
             nearbyExhibitManager = IoCManager.Resolve<INearbyExhibitManager>();
             FocusGps = new Command(FocusGpsClicked);
@@ -64,7 +64,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
             if (!detailsRoute.ActiveSet.Any())
             {
-                await Navigation.DisplayAlert(Strings.SkipExhibit_Title, Strings.SkipExhibit_Message, Strings.SkipExhibit_OK);
+                await Navigation.DisplayAlert(Strings.SkipExhibit_Title, Strings.SkipExhibit_Message, Strings.Ok);
             }
             else
             {
@@ -141,7 +141,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                 await
                     IoCManager.Resolve<INavigationService>()
                               .DisplayAlert(Strings.SkipExhibit_Title, Strings.SkipExhibit_Question_Part1 + " \"" + e.Name + "\" " + Strings.SkipExhibit_Question_Part2,
-                                            Strings.SkipExhibit_Confirm, Strings.SkipExhibit_Reject);
+                                            Strings.Yes, Strings.No);
 
             if (result)
             {
