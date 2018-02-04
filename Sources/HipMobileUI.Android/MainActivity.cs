@@ -48,6 +48,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
     {
         protected override void OnCreate(Bundle bundle)
         {
+            IoCManager.RegisterType<IDbConnectionProvider, AndroidDbConnectionProvider>();
             var dataAccess = IoCManager.Resolve<IDataAccess>();
             if (Settings.ShouldDeleteDbOnLaunch)
             {

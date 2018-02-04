@@ -21,6 +21,7 @@
     <EmbeddedResource Include="Content\noImageTag.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Dapper" Version="1.50.4" />
     <PackageReference Include="Itinero.IO.Osm" Version="1.4.0" />
     <PackageReference Include="JetBrains.Annotations" Version="11.1.0" />
     <PackageReference Include="NUnit" Version="3.9.0" />

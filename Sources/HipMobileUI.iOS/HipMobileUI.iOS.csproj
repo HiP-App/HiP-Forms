@@ -97,6 +97,7 @@
     <Compile Include="Contracts\IosAppCloser.cs" />
     <Compile Include="Contracts\IosAudioPlayer.cs" />
     <Compile Include="Contracts\IosBarsColorsChanger.cs" />
+    <Compile Include="Contracts\IosDbConnectionProvider.cs" />
     <Compile Include="Contracts\IosImageDimensions.cs" />
     <Compile Include="Contracts\IosMediaFileManager.cs" />
     <Compile Include="Contracts\IosNetworkAccessChecker.cs" />
@@ -128,6 +129,7 @@
     <BundleResource Include="Resources\fonts\AlteSchwabacher.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </BundleResource>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Default-568h%402x.png" />
@@ -148,7 +150,19 @@
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Mono.Data.Sqlite, Version=4.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\ReferenceAssemblies\Microsoft\Framework\MonoAndroid\v1.0\Mono.Data.Sqlite.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Data, Version=2.0.5.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\ReferenceAssemblies\Microsoft\Framework\MonoAndroid\v1.0\System.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.Portable, Version=4.0.0.0, Culture=neutral, PublicKeyToken=59e704a76bc4613a">
+      <HintPath>..\..\packages\Mono.Data.Sqlite.Portable.1.0.3.5\lib\XamariniOS\System.Data.Portable.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Transactions.Portable, Version=4.0.0.0, Culture=neutral, PublicKeyToken=59e704a76bc4613a">
+      <HintPath>..\..\packages\Mono.Data.Sqlite.Portable.1.0.3.5\lib\XamariniOS\System.Transactions.Portable.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="Xamarin.iOS" />

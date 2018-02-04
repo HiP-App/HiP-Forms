@@ -56,6 +56,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios
         {
             EarlyIoC.Register();
 
+            IoCManager.RegisterType<IDbConnectionProvider, IosDbConnectionProvider>();
             var dataAccess = IoCManager.Resolve<IDataAccess>();
             if (Settings.ShouldDeleteDbOnLaunch)
             {
