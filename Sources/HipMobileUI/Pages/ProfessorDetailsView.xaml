@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+// Copyright (C) 2017 History in Paderborn App - Universität Paderborn
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+-->
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+		   	 Title="Adventurer"
+			 xmlns:helpers="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;assembly=HipMobileUI"
+	         xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Pages.ProfessorDetailsView">
+    <ContentPage.Content>
+        <AbsoluteLayout BackgroundColor="#7FACFF">
+	        <Image Source="ic_professor.png" AbsoluteLayout.LayoutBounds=".2,.1,.35,.35" AbsoluteLayout.LayoutFlags="All">
+			</Image>
+			 <Label x:Name="AdventurerLabel" Grid.Row="1"
+	        Text="{helpers:Translate CharacterSelectionPage_Professor_Text}" TextColor="Black"
+	        FontSize="Medium" AbsoluteLayout.LayoutBounds=".9,.7,.4,.4" AbsoluteLayout.LayoutFlags="All"/>
+			<Button x:Name="SelectModeButton"
+							BackgroundColor ="White"
+							AbsoluteLayout.LayoutBounds=".5,.80,.5,.06" AbsoluteLayout.LayoutFlags="All"
+                            Text="Choose this mode"
+                            Command="{Binding SelectModeButton}" />
+			<Button x:Name="ChangeModeButton"
+							BackgroundColor ="White"
+                            AbsoluteLayout.LayoutBounds=".5,.95,.5,.06" AbsoluteLayout.LayoutFlags="All"
+                            Text="Check other mode"
+                            Command="{Binding ChangeModeButton}" />
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>
