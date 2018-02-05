@@ -45,7 +45,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
                     }
                 }
                 await Navigation.DisplayAlert(Strings.LicenseScreenViewModel_UnlockExhibits_Title,
-                                              Strings.LicenseScreenViewModel_UnlockExhibits_Text, Strings.LicenseScreenViewModel_UnlockExhibits_Confirm);
+                                              Strings.LicenseScreenViewModel_UnlockExhibits_Text, Strings.Ok);
             }
         }
 
