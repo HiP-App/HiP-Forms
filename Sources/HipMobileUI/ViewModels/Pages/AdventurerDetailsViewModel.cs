@@ -27,11 +27,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 {
 	public class AdventurerDetailsViewModel : NavigationViewModel
 	{
+		private readonly NavigationViewModel parentViewModel;
 
-
-		public AdventurerDetailsViewModel()
+		public AdventurerDetailsViewModel(NavigationViewModel parentViewModel)
 		{
-
+			this.parentViewModel = parentViewModel;
 			SelectModeButton = new Command(OnSelectModeButton);
 			ChangeModeButton = new Command(OnChangeModeButton);
 		}
@@ -45,7 +45,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 		}
 		private void OnChangeModeButton()
 		{
-			Navigation.PushAsync(new ProfessorDetailsViewModel());
+
 		}
 
 

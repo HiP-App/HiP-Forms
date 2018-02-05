@@ -24,19 +24,22 @@
              x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Pages.ProfessorDetailsView">
     <ContentPage.Content>
         <AbsoluteLayout BackgroundColor="#7FACFF">
-	        <Image Source="ic_professor.png" AbsoluteLayout.LayoutBounds=".2,.1,.35,.35" AbsoluteLayout.LayoutFlags="All">
+	        <Image Source="ic_professor.png" AbsoluteLayout.LayoutBounds=".15,.25,.4,.4" AbsoluteLayout.LayoutFlags="All">
 			</Image>
 			 <Label x:Name="AdventurerLabel" Grid.Row="1"
 	        Text="{helpers:Translate CharacterSelectionPage_Professor_Text}" TextColor="Black"
-	        FontSize="Medium" AbsoluteLayout.LayoutBounds=".9,.7,.4,.4" AbsoluteLayout.LayoutFlags="All"/>
+	        FontSize="Medium" AbsoluteLayout.LayoutBounds=".9,.45,.4,.4" AbsoluteLayout.LayoutFlags="All"/>
+	        <BoxView AbsoluteLayout.LayoutBounds=".5,.85,1.0,.20" AbsoluteLayout.LayoutFlags="All" Color="White" />
 			<Button x:Name="SelectModeButton"
-							BackgroundColor ="White"
-							AbsoluteLayout.LayoutBounds=".5,.80,.5,.06" AbsoluteLayout.LayoutFlags="All"
+							BackgroundColor ="#7FACFF"
+							TextColor="Black"
+							AbsoluteLayout.LayoutBounds=".5,.75,.5,.06" AbsoluteLayout.LayoutFlags="All"
                             Text="Choose this mode"
                             Command="{Binding SelectModeButton}" />
 			<Button x:Name="ChangeModeButton"
-							BackgroundColor ="White"
-                            AbsoluteLayout.LayoutBounds=".5,.95,.5,.06" AbsoluteLayout.LayoutFlags="All"
+							BackgroundColor ="#FFE57F"
+							TextColor="Black"
+                            AbsoluteLayout.LayoutBounds=".5,.85,.5,.06" AbsoluteLayout.LayoutFlags="All"
                             Text="Check other mode"
                             Command="{Binding ChangeModeButton}" />
         </AbsoluteLayout>

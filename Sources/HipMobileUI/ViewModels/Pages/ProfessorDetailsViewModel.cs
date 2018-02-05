@@ -19,6 +19,7 @@ using System.Windows.Input;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.User;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.UserManagement;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using Xamarin.Forms;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 
@@ -40,7 +41,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
 		private void OnSelectModeButton()
 		{
-			Settings.AdventurerMode = false;
+			Settings.AdventurerMode = true;
 		}
 		private void OnChangeModeButton()
 		{

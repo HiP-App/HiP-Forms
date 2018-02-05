@@ -42,9 +42,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 		private void OnAdventurerGridTapped()
 		{
 			//move this code 
-			//Navigation.PushAsync(new AdventurerDetailsViewModel());
-			Settings.AdventurerMode = true;
-			AdjustThemeAndContinue();
+
+			Navigation.PushAsync(new AdventurerDetailsViewModel(parentViewModel));
+
+			//AdjustThemeAndContinue();
 		}
 
 		private void OnProfessorGridTapped()
