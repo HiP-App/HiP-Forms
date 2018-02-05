@@ -171,8 +171,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             {
                 // Catch all exceptions happening on startup cause otherwise the loading page will be shown indefinitely 
                 // This should only happen during development
-                errorMessage = e.Message;
-                errorTitle = "Error";
+                errorMessage = null;
+                errorTitle = null;
                 Debug.WriteLine(e);
             }
 
@@ -184,8 +184,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             actionOnUiThread = null;
             var downloadData = await Navigation.DisplayAlert(Strings.LoadingPageViewModel_BaseData_DataAvailable,
                                                              Strings.LoadingPageViewModel_BaseData_DownloadViaMobile,
-                                                             Strings.LoadingPageViewModel_BaseData_MobileDownload_Confirm,
-                                                             Strings.LoadingPageViewModel_BaseData_MobileDownload_Cancel);
+                                                             Strings.Yes,
+                                                             Strings.No);
 
             try
             {
@@ -200,8 +200,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             {
                 // Catch all exceptions happening on startup cause otherwise the loading page will be shown indefinitely 
                 // This should only happen during development
-                errorMessage = e.Message;
-                errorTitle = "Error";
+                errorMessage = null;
+                errorTitle = null;
                 Debug.WriteLine(e);
             }
         }
@@ -249,16 +249,16 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             {
                 // Catch all exceptions happening on startup cause otherwise the loading page will be shown indefinitely 
                 // This should only happen during development
-                errorMessage = e.Message;
-                errorTitle = "Error";
+                errorMessage = null;
+                errorTitle = null;
                 Debug.WriteLine(e);
             }
 
             actionOnUiThread = async () =>
             {
-                if (errorMessage != null)
+                if (errorMessage != null && errorTitle != null)
                 {
-                    await Navigation.DisplayAlert(errorTitle, errorMessage, Strings.LoadingPageViewModel_LoadingError_Confirm);
+                    await Navigation.DisplayAlert(errorTitle, errorMessage, Strings.Ok);
                 }
 
                 StartMainApplication();
@@ -295,7 +295,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                 // We can use this since everything goes through the FeatureToggleRouter anyway,
                 // which provides fallback in case the network is down
                 IoCManager.RegisterInstance(typeof(IFeatureToggleApiAccess), new FeatureToggleApiAccess(new ContentApiClient(ServerEndpoints.FeatureTogglesApiPath)));
-                
+
                 IoCManager.RegisterType<IAchievementsApiAccess, MockAchievementsApiAccess>();
                 IoCManager.RegisterType<IExhibitsApiAccess, MockExhibitsApiAccess>();
                 IoCManager.RegisterType<IMediasApiAccess, MockMediaApiAccess>();

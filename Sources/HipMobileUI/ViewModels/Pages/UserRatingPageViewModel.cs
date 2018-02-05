@@ -234,7 +234,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             {
                 Title = title,
                 Message = message,
-                OkText = Strings.UserRating_Ok
+                OkText = Strings.Ok
             });
         }
 
