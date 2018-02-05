@@ -30,12 +30,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
         {
             InitializeComponent();
             deviceOrientation = DeviceOrientation.Undefined;
-        }
-
-        protected override void OnParentSet()
-        {
-            base.OnParentSet();
-
             IoCManager.Resolve<IThemeManager>().AdjustTopBarTheme();
         }
 
