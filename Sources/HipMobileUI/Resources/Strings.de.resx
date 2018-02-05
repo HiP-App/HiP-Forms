@@ -305,22 +305,22 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
     <value>Feedback</value>
   </data>
   <data name="MainPageViewModel_LegalNotices" xml:space="preserve">
-    <value>Legal Notice</value>
+    <value>Rechtliche Hinweise</value>
   </data>
   <data name="MainPageViewModel_OverviewPage" xml:space="preserve">
-    <value>Overview</value>
+    <value>Übersicht</value>
   </data>
   <data name="MainPageViewModel_Routes" xml:space="preserve">
-    <value>Routes</value>
+    <value>Routen</value>
   </data>
   <data name="MainPageViewModel_Settings" xml:space="preserve">
-    <value>Settings</value>
+    <value>Einstellungen</value>
   </data>
   <data name="MainPage_MenuTitle" xml:space="preserve">
-    <value>Historical Paderborn</value>
+    <value>Historisches Paderborn</value>
   </data>
   <data name="RouteDetailsPageViewModel_Description" xml:space="preserve">
-    <value>Description</value>
+    <value>Beschreibung</value>
   </data>
   <data name="RouteDetailsPageViewModel_Distance" xml:space="preserve">
     <value>{0} km</value>
@@ -329,7 +329,7 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
     <value>{0} min</value>
   </data>
   <data name="RouteDetailsPageViewModel_Map" xml:space="preserve">
-    <value>Map</value>
+    <value>Karte</value>
   </data>
   <data name="RouteDetailsPage_PlayAudio" xml:space="preserve">
     <value>Vorlesen</value>
@@ -338,34 +338,34 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
     <value>Vorlesen pausieren</value>
   </data>
   <data name="RouteDetailsPage_StartRoute" xml:space="preserve">
-    <value>Start route</value>
+    <value>Route starten</value>
   </data>
   <data name="RouteDetailsPage_Tags" xml:space="preserve">
     <value>Auf der Route</value>
   </data>
   <data name="RoutesOverviewListItemViewModel_Distance" xml:space="preserve">
-    <value>{0} kilometre</value>
+    <value>{0} Kilometer</value>
   </data>
   <data name="RoutesOverviewListItemViewModel_Duration" xml:space="preserve">
-    <value>{0} minutes</value>
+    <value>{0} Minuten</value>
   </data>
   <data name="RoutesOverviewView_Tags" xml:space="preserve">
     <value>Auf der Route:</value>
   </data>
   <data name="AudioToolbarView_Caption" xml:space="preserve">
-    <value>Subtitle</value>
+    <value>Untertitel</value>
   </data>
   <data name="AudioToolbarView_Pause" xml:space="preserve">
     <value>Pause</value>
   </data>
   <data name="AudioToolbarView_Play" xml:space="preserve">
-    <value>Play</value>
+    <value>Abspielen</value>
   </data>
   <data name="AudioToolbarView_Progress" xml:space="preserve">
-    <value>Progress</value>
+    <value>Fortschritt</value>
   </data>
   <data name="SettingsScreenView_AppIntro_Title" xml:space="preserve">
-    <value>App Introduction</value>
+    <value>App Einführung</value>
   </data>
   <data name="SettingsScreenView_AutoStartAudio_Text" xml:space="preserve">
     <value>Wenn diese Einstellung aktiviert ist, wird Audio automatisch für die aktuelle Seite gestartet.</value>
@@ -401,7 +401,7 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
     <value>Audio Player</value>
   </data>
   <data name="ExhibitDetailsPage_AgreeFeature" xml:space="preserve">
-    <value>I want to use this feature</value>
+    <value>Ich möchte die Funktion nutzen</value>
   </data>
   <data name="ExhibitDetailsPage_AudioPlay" xml:space="preserve">
     <value>Audio startet automatisch sobald eine neue Seite geöffnet wird. Diese Eigenschaft kann unter Menu &gt;&gt; Einstellungen geändert werden.</value>
@@ -416,22 +416,22 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
     <value>Die Seiten werden automatisch gewechselt, wenn die Audiodatei abgespielt wurde. Diese Eigenschaft kann unter Menu &gt;&gt; Einstellungen geändert werden.</value>
   </data>
   <data name="AudioTranscriptView_Sources_Title" xml:space="preserve">
-    <value>Sources</value>
+    <value>Quellen</value>
   </data>
   <data name="AudioTranscriptView_Subtitles_Title" xml:space="preserve">
-    <value>Subtitle</value>
+    <value>Untertitel</value>
   </data>
   <data name="UserOnboarding_Explore_Text" xml:space="preserve">
     <value>Erlebe und entdecke selbst mit dem Smartphone Geschichte und Kultur vor Ort</value>
   </data>
   <data name="UserOnboarding_Explore_Title" xml:space="preserve">
-    <value>Explore Paderborn</value>
+    <value>Paderborn erkunden</value>
   </data>
   <data name="UserOnboarding_Forward" xml:space="preserve">
-    <value>NEXT</value>
+    <value>WEITER</value>
   </data>
   <data name="UserOnboarding_Ok" xml:space="preserve">
-    <value>ALL RIGHT</value>
+    <value>ALLES KLAR</value>
   </data>
   <data name="UserOnboarding_Route_Text" xml:space="preserve">
     <value>Erkunde frei oder anhand themenspezifischer Routen Paderborn</value>
@@ -548,28 +548,28 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
     <value> herunter</value>
   </data>
   <data name="MainPageViewModel_Account" xml:space="preserve">
-    <value>Account</value>
+    <value>Konto</value>
   </data>
   <data name="MainPageViewModel_Profile" xml:space="preserve">
-    <value>Profile</value>
+    <value>Profil</value>
   </data>
   <data name="ProfileView_Achievements" xml:space="preserve">
-    <value>Achievements</value>
+    <value>Erfolge</value>
   </data>
   <data name="ProfileView_Statistic" xml:space="preserve">
     <value>Statistik</value>
   </data>
   <data name="Logout" xml:space="preserve">
-    <value>Logout</value>
+    <value>Abmelden</value>
   </data>
   <data name="ProfileView_Overview_Achievements" xml:space="preserve">
-    <value>Achievements:</value>
+    <value>Erfolge:</value>
   </data>
   <data name="ProfileView_Overview_Progress" xml:space="preserve">
-    <value>Progress:</value>
+    <value>Fortschritt:</value>
   </data>
   <data name="ProfileView_Overview_Score" xml:space="preserve">
-    <value>Score:</value>
+    <value>Punkte:</value>
   </data>
   <data name="LoginScreenView_Error_Wrong_Credentials" xml:space="preserve">
     <value>Falsche E-Mail/Passwort Kombination</value>
@@ -683,13 +683,13 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
     <value>Es ist ein Server fehler aufgetreten. Bitte versuche es später noch einmal.</value>
   </data>
   <data name="Alert_Server_Error_Title" xml:space="preserve">
-    <value>Server Error</value>
+    <value>Server Fehler</value>
   </data>
   <data name="Alert_Unknown_Error_Description" xml:space="preserve">
     <value>Es ist ein unbekannter Fehler aufgetreten.</value>
   </data>
   <data name="Alert_Unknown_Error_Title" xml:space="preserve">
-    <value>Unknown Error</value>
+    <value>Unbekannter Fehler</value>
   </data>
   <data name="LicenseScreenView_User_Dialogs_Text" xml:space="preserve">
     <value>Von &lt;a href="https://github.com/aritchie/userdialogs"&gt;Allan Ritchie&lt;/a&gt;, lizensiert unter &lt;a href="https://github.com/aritchie/userdialogs/blob/master/LICENSE.md"&gt;MIT&lt;/a&gt;. Es wurden keine Änderungen vorgenommen.</value>
@@ -716,22 +716,22 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
     <value>Die Passwörter stimmen nicht überein</value>
   </data>
   <data name="RegisterScreenView_Error_Invalid_Email" xml:space="preserve">
-    <value>Invalid E-Mail</value>
+    <value>Ungültige E-Mail</value>
   </data>
   <data name="ExhibitDetailsPage_Distance_Text" xml:space="preserve">
     <value>Sie müssen die Sehenswürdigkeit zuerst besucht haben, um die Details zu sehen!</value>
   </data>
   <data name="ExhibitDetailsPage_Distance_Title" xml:space="preserve">
-    <value>Nicht freigeschaltet</value>
+    <value>Nicht Freigeschaltet</value>
   </data>
   <data name="LicenseScreenViewModel_UnlockExhibits_Text" xml:space="preserve">
     <value>Alle Sehenswürdigkeiten freigeschaltet!</value>
   </data>
   <data name="LicenseScreenViewModel_UnlockExhibits_Title" xml:space="preserve">
-    <value>Sehenswürdigkeiten freigeschaltet</value>
+    <value>Sehenswürdigkeiten Freigeschaltet</value>
   </data>
   <data name="MainPageViewModel_Leaderboard" xml:space="preserve">
-    <value>Leaderboard</value>
+    <value>Rangliste</value>
   </data>
   <data name="SettingsScreenView_CharacterSelection_Text_IsAdventurer" xml:space="preserve">
     <value>Sie nutzen die App im Abenteurer-Modus. </value>
@@ -740,13 +740,13 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
     <value>Sie nutzen die App im Professor-Modus.</value>
   </data>
   <data name="SettingsScreenView_CharacterSelection_Button_Text" xml:space="preserve">
-    <value>Change</value>
+    <value>Ändern</value>
   </data>
   <data name="ProfileView_Adventurer" xml:space="preserve">
-    <value>Adventurer</value>
+    <value>Abenteurer</value>
   </data>
   <data name="ProfileView_Button_Change_App_Mode" xml:space="preserve">
-    <value>Change character</value>
+    <value>Charakter ändern</value>
   </data>
   <data name="ProfileView_Professor" xml:space="preserve">
     <value>Professor</value>
@@ -755,7 +755,7 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
     <value>In den Einstellungen ist festgelegt, dass Daten nur über Wlan heruntergeladen werden sollen. Sollen die Daten dieses Mal trotzdem über die mobile Datenverbindung heruntergeladen werden?</value>
   </data>
   <data name="ExhibitRouteDownloadPageViewModel_Wifi_Only_Title" xml:space="preserve">
-    <value>Wlan deaktiviert</value>
+    <value>Wlan Deaktiviert</value>
   </data>
   <data name="ForgotPasswordScreenView_Alert_No_Connection_Description" xml:space="preserve">
     <value>Bitte überprüfen Sie ihre Netzwerkverbindung</value>
@@ -767,10 +767,10 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
     <value>Es ist ein unbekannter Fehler aufgetreten. Bitte versuchen Sie es später noch einmal.</value>
   </data>
   <data name="ForgotPasswordScreenView_Alert_Unknown_Error_Title" xml:space="preserve">
-    <value>Unknown Error</value>
+    <value>Unbekannter Fehler</value>
   </data>
   <data name="AchievementsScreenView_Score" xml:space="preserve">
-    <value>Your score: </value>
+    <value>Dein Punktestand: </value>
   </data>
   <data name="AchievementsScreenView_PleaseLogin" xml:space="preserve">
     <value>Um Erfolge zu nutzen, musst du dich zunächst einloggen.</value>
@@ -790,78 +790,73 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   <data name="UserRating_Dialog_Message_Not_Logged_In" xml:space="preserve">
     <value>Sie müssen sich erst anmelden oder registrieren, bevor eine Bewertung abgegeben werden kann.</value>
   </data>
-  
-  
-  
-  
-  
   <data name="UserRating_Dialog_Message_No_Internet" xml:space="preserve">
-    <value>There is no connection to the internet.</value>
+    <value>Es kann keine Verbindung zum Internet aufgebaut werden.</value>
   </data>
   <data name="UserRating_Dialog_Message_No_Rating" xml:space="preserve">
-    <value>None of the stars were marked for a rating.</value>
+    <value>Es wurde keiner der Sterne zum Bewerten markiert.</value>
   </data>
   <data name="UserRating_Dialog_Title_Not_Logged_In" xml:space="preserve">
-    <value>Not Logged In</value>
+    <value>Nicht Angemeldet</value>
   </data>
   <data name="UserRating_Dialog_Title_No_Internet" xml:space="preserve">
-    <value>No Internet Connection</value>
+    <value>Keine Internetverbindung</value>
   </data>
   <data name="UserRating_Dialog_Title_No_Rating" xml:space="preserve">
-    <value>No Rating</value>
+    <value>Keine Bewertung</value>
   </data>
   <data name="UserRating_Rate" xml:space="preserve">
-    <value>Rate</value>
+    <value>Bewerten</value>
   </data>
   <data name="UserRating_Tap_Star_To_Rate" xml:space="preserve">
-    <value>Tap on a star to rate</value>
+    <value>Berühre einen Stern zum Bewerten</value>
   </data>
   <data name="UserRating_Dialog_Message_Thx" xml:space="preserve">
-    <value>Thank you for your rating.</value>
+    <value>Vielen Dank für Ihre Bewertung.</value>
   </data>
   <data name="UserRating_Dialog_Message_Unkown_Error" xml:space="preserve">
-    <value>An unknown error has occurred. Please try again later.</value>
+    <value>Es ist ein unbekannter Fehler aufgetreten. Bitte versuchen Sie es zu einem späteren Zeitpunkt erneut.</value>
   </data>
   <data name="UserRating_Dialog_Title_Thx" xml:space="preserve">
-    <value>Thank You</value>
+    <value>Dankeschön</value>
   </data>
   <data name="UserRating_Dialog_Title_Unkown_Error" xml:space="preserve">
-    <value>Unknown Error</value>
+    <value>Unbekannter Fehler</value>
   </data>
   <data name="AchievementsDetailsExhibitView_VisitedMOfNExhibits" xml:space="preserve">
-    <value>You have visited {0} out of {1} sights.</value>
+    <value>Du hast {0} von {1} Sehenswürdigkeiten besucht</value>
   </data>
   <data name="SkipExhibit_Message" xml:space="preserve">
-    <value>All sights have been already visited. There is no one left to skip.</value>
+    <value>Alle Sehenswürdigkeiten wurden bereits besucht. Es kann keine weitere übersprungen werden.</value>
   </data>
   <data name="ForgotPasswordScreenView_Error_Invalid_Email" xml:space="preserve">
-    <value>Your E-Mail-Address is invalid</value>
+    <value>Ihre E-Mail-Adresse ist ungültig</value>
   </data>
   <data name="ExhibitRouteDownloadPage_Details" xml:space="preserve">
     <value>Details</value>
   </data>
   <data name="ExhibitRouteDownloadPage_Overview" xml:space="preserve">
-    <value>Overview</value>
+    <value>Übersicht</value>
   </data>
   <data name="NavigationPageViewModel_Title" xml:space="preserve">
     <value>Navigation</value>
   </data>
   <data name="ProfileScreenViewModel_Dialog_Logout_Message" xml:space="preserve">
-    <value>Do you really want to logout?</value>
+    <value>Wollen Sie sich wirklich abmelden?</value>
   </data>
   <data name="ProfileScreenViewModel_Dialog_Logout_Title" xml:space="preserve">
-    <value>Logout</value>
+    <value>Abmeldung</value>
   </data>
   <data name="Yes" xml:space="preserve">
-    <value>Yes</value>
+    <value>Ja</value>
   </data>
   <data name="No" xml:space="preserve">
-    <value>No</value>
+    <value>Nein</value>
   </data>
   <data name="Ok" xml:space="preserve">
     <value>OK</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Abbrechen</value>
   </data>
 </root>
