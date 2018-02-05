@@ -27,8 +27,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Map
             CalloutOffset = new CGPoint(0, 0);
             CenterOffset = new CGPoint(0,0);
 
-
-
             var infoButton = UIButton.FromType(UIButtonType.DetailDisclosure);
             LeftCalloutAccessoryView = infoButton;
         }
