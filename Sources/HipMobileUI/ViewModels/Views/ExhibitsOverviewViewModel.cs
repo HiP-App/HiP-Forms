@@ -206,14 +206,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             if (!Settings.AlwaysDownloadData)
             {
                 var result = await Navigation.DisplayActionSheet(Strings.DownloadData_Title,
-                                                                 null, null, Strings.DownloadData_Accept, Strings.DownloadData_Cancel, Strings.DownloadData_Always);
+                                                                 null, null, Strings.Yes, Strings.No, Strings.DownloadData_Always);
 
                 if (result == Strings.DownloadData_Always)
                 {
                     Settings.AlwaysDownloadData = true;
                     downloadData = true;
                 }
-                else if (result == Strings.DownloadData_Accept)
+                else if (result == Strings.Yes)
                 {
                     downloadData = true;
                 }
