@@ -25,9 +25,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Map
             Image = UIImage.FromBundle("ExhibitLocation");
 
             CalloutOffset = new CGPoint(0, 0);
+            CenterOffset = new CGPoint(0,0);
+
+
 
             var infoButton = UIButton.FromType(UIButtonType.DetailDisclosure);
-            RightCalloutAccessoryView = infoButton;
+            LeftCalloutAccessoryView = infoButton;
         }
     }
 }
