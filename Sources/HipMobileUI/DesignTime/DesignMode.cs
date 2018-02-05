@@ -77,6 +77,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.DesignTime
                 var viewModelType = viewForType.GenericTypeArguments[0];
                 view.BindingContext = _viewModels.TryGetValue(viewModelType, out var vm) ? vm : null;
             }
+
+            // Xamarin.Forms previewer displays a dark page background by default,
+            // so we explicitly set the color to white
+            if ((object)view is Xamarin.Forms.Page page)
+                page.BackgroundColor = Color.White;
         }
 
         /// <summary>
@@ -107,7 +112,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.DesignTime
 
         private static void ConfigureServices()
         {
-            NavigationService.Instance.RegisterViewModels(typeof(MainPage).GetTypeInfo().Assembly);
             IoCManager.RegisterType<IDataLoader, EmbeddedResourceDataLoader>();
             IoCManager.RegisterInstance(typeof(INavigationService), NavigationService.Instance);
             IoCManager.RegisterInstance(typeof(IViewCreator), NavigationService.Instance);
@@ -116,6 +120,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.DesignTime
             IoCManager.RegisterType<IThemeManager, DesignModeThemeManager>();
             IoCManager.RegisterType<ILocationManager, DesignModeLocationManager>();
             IoCManager.RegisterType<IAudioPlayer, DesignModeAudioPlayer>();
+            NavigationService.Instance.RegisterViewModels(typeof(MainPage).GetTypeInfo().Assembly);
         }
 
         private static void ConfigureServicesLate()
@@ -141,7 +146,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.DesignTime
                 Title = "Lorem ipsum!",
                 Description = "You unlocked stuff!",
                 Count = 3
-            }));
+            })
+            {
+                Exhibits = new System.Collections.ObjectModel.ObservableCollection<AchievementsDetailsExhibitViewModel.ExhibitViewModel>
+                {
+                    new AchievementsDetailsExhibitViewModel.ExhibitViewModel { Name = "Sample Exhibit 1", Unlocked = true, Image = ImageSource.FromUri(new Uri("https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Xamarin-logo.svg/2000px-Xamarin-logo.svg.png")) },
+                    new AchievementsDetailsExhibitViewModel.ExhibitViewModel { Name = "Sample Exhibit 2", Unlocked = true },
+                    new AchievementsDetailsExhibitViewModel.ExhibitViewModel { Name = "Sample Exhibit 3", Unlocked = false },
+                }
+            });
 
             Add(new AppetizerPageViewModel(new Exhibit
             {
