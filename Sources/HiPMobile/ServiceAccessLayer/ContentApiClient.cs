@@ -52,25 +52,30 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer
         {
             try
             {
-                var response = await GetHttpWebResponse(urlPath);
-                using (var responseStream = response.GetResponseStream())
-                {
-                    var reader = new StreamReader(responseStream, Encoding.UTF8);
-                    return reader.ReadToEnd();
-                }
+                return await GetResponseFromUrlAsString(urlPath, Settings.GenericToken);
             }
             catch (NetworkAccessFailedException e)
             {
-                if ((((WebException)e.InnerException).Response as HttpWebResponse)?.StatusCode == HttpStatusCode.Unauthorized)
+                if ((((WebException) e.InnerException).Response as HttpWebResponse)?.StatusCode == HttpStatusCode.Unauthorized)
                 {
                     // The token is expired, get a new one and retry
                     Settings.GenericToken = (await GetTokenForDataStore()).AccessToken;
-                    return await GetResponseFromUrlAsString(urlPath);
+                    return await GetResponseFromUrlAsString(urlPath, Settings.GenericToken);
                 }
                 else
                 {
                     throw e;
                 }
+            }
+        }
+
+        public async Task<string> GetResponseFromUrlAsString(string urlPath, string accessToken)
+        {
+            var response = await GetHttpWebResponse(urlPath, accessToken);
+            using (var responseStream = response.GetResponseStream())
+            {
+                var reader = new StreamReader(responseStream, Encoding.UTF8);
+                return reader.ReadToEnd();
             }
         }
 
@@ -99,7 +104,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer
             }
             catch (NetworkAccessFailedException e)
             {
-                if ((((WebException)e.InnerException).Response as HttpWebResponse)?.StatusCode == HttpStatusCode.Unauthorized)
+                if ((((WebException) e.InnerException).Response as HttpWebResponse)?.StatusCode == HttpStatusCode.Unauthorized)
                 {
                     // The token is expired, get a new one and retry
                     Settings.GenericToken = (await GetTokenForDataStore()).AccessToken;
@@ -119,6 +124,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer
             {
                 Settings.GenericToken = (await GetTokenForDataStore()).AccessToken;
             }
+            return await GetHttpWebResponse(urlPath, Settings.GenericToken);
+        }
+
+        public async Task<HttpWebResponse> GetHttpWebResponse(string urlPath, string accessToken)
+        {
             var fullUrl = basePath + urlPath;
             Exception innerException = null;
 
@@ -132,9 +142,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer
                 try
                 {
                     var request = WebRequest.Create(fullUrl) as HttpWebRequest;
-                    request.Headers["Authorization"] = "Bearer " + Settings.GenericToken;
+                    request.Headers["Authorization"] = "Bearer " + accessToken;
                     request.Accept = "application/json";
-                    var response = (HttpWebResponse)await request.GetResponseAsync();
+                    var response = (HttpWebResponse) await request.GetResponseAsync();
 
                     switch (response.StatusCode)
                     {
