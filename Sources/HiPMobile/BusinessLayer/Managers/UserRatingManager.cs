@@ -25,7 +25,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
     {
 
         /// <summary>
-        /// Fetch the user rating for one exhibit.
+        /// Fetch the user rating for one exhibit. 
         /// </summary>
         /// <param name="idForRestApi">The id of the exhibit for which the user rating should be returned.</param>
         /// <returns>An object which represents the user rating.</returns>
