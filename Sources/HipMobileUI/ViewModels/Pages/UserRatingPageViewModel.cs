@@ -92,26 +92,33 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
         private async void SetUserRatingUi()
         {
-            var userRating = await IoCManager.Resolve<IUserRatingManager>().GetUserRatingAsync(exhibit.IdForRestApi);
-            SetAverageAndCountRating(userRating.Average, userRating.Count);
-            SetStarImages(userRating.Average);
-            SetRatingBars(userRating.RatingTable, userRating.Count);
-            SetPreviousUserRating(userRating.Count);
-        }
-
-        private async void SetPreviousUserRating(int count)
-        {
-            var prevRating = 0;
-            if (Settings.IsLoggedIn && count > 0)
+            var ratingManager = IoCManager.Resolve<IUserRatingManager>();
+            if (IoCManager.Resolve<INetworkAccessChecker>().GetNetworkAccessStatus() == NetworkAccessStatus.NoAccess)
             {
-                prevRating = await IoCManager.Resolve<IUserRatingManager>().GetPreviousUserRatingAsync(exhibit.IdForRestApi);
+                SetAverageAndCountRating("-", 0);
+                SetStarImages(0);
+                SetRatingBars(ratingManager.InitializeEmptyRatingTable(), 0);
+                SetRatingStars(0);
+                UserDialogs.Instance.Alert(new AlertConfig()
+                {
+                    Title = Strings.UserRating_Dialog_Title_No_Internet,
+                    Message = Strings.UserRating_Dialog_Message_No_Internet,
+                    OkText = Strings.Ok
+                });
             }
-            SetRatingStars(prevRating);
+            else
+            {
+                var userRating = await ratingManager.GetUserRatingAsync(exhibit.IdForRestApi);
+                SetAverageAndCountRating(userRating.Average.ToString("0.#"), userRating.Count);
+                SetStarImages(userRating.Average);
+                SetRatingBars(userRating.RatingTable, userRating.Count);
+                SetRatingStars(Settings.IsLoggedIn && userRating.Count > 0 ? await ratingManager.GetPreviousUserRatingAsync(exhibit.IdForRestApi) : 0);
+            }
         }
 
-        private void SetAverageAndCountRating(double average, int count)
+        private void SetAverageAndCountRating(string average, int count)
         {
-            RatingAverage = count > 0 ? average.ToString("0.#") : "-";
+            RatingAverage = count > 0 ? average : "-";
             RatingCount = count + " " + Strings.UserRating_Rate_Count;
         }
 

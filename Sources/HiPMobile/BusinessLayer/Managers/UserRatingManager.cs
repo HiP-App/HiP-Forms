@@ -45,6 +45,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
         /// <param name="idForRestApi">The id of the exhibit for which the user rating should be returned.</param>
         /// <returns>The last rating given from the logged in user.</returns>
         Task<int> GetPreviousUserRatingAsync(int idForRestApi);
+
+        /// <summary>
+        /// Initializes a dictionary with the values 1-0, 2-0, 3-0, 4-0 and 5-0.
+        /// </summary>
+        /// <returns>A rating table where each value is 0.</returns>
+        Dictionary<int, int> InitializeEmptyRatingTable();
     }
 
     public class UserRatingManager : IUserRatingManager
@@ -69,7 +75,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
             return await client.SendUserRatingAsync(idForRestApi, rating);
         }
 
-        private Dictionary<int, int> InitializeEmptyRatingTable()
+        public Dictionary<int, int> InitializeEmptyRatingTable()
         {
             var ratingTable = new Dictionary<int, int>();
             for (var i = 1; i <= 5; i++)
