@@ -26,6 +26,7 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
 using System.IO;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelConverters;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 {
@@ -93,8 +94,18 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         private async void SetUserRatingUi()
         {
             var ratingManager = IoCManager.Resolve<IUserRatingManager>();
-            if (IoCManager.Resolve<INetworkAccessChecker>().GetNetworkAccessStatus() == NetworkAccessStatus.NoAccess)
+            try
             {
+                var userRating = await ratingManager.GetUserRatingAsync(exhibit.IdForRestApi);
+                SetAverageAndCountRating(userRating.Average.ToString("0.#"), userRating.Count);
+                SetStarImages(userRating.Average);
+                SetRatingBars(userRating.RatingTable, userRating.Count);
+                SetRatingStars(Settings.IsLoggedIn && userRating.Count > 0 ? await ratingManager.GetPreviousUserRatingAsync(exhibit.IdForRestApi) : 0);
+
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e);
                 SetAverageAndCountRating("-", 0);
                 SetStarImages(0);
                 SetRatingBars(ratingManager.InitializeEmptyRatingTable(), 0);
@@ -105,14 +116,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                     Message = Strings.UserRating_Dialog_Message_No_Internet,
                     OkText = Strings.Ok
                 });
-            }
-            else
-            {
-                var userRating = await ratingManager.GetUserRatingAsync(exhibit.IdForRestApi);
-                SetAverageAndCountRating(userRating.Average.ToString("0.#"), userRating.Count);
-                SetStarImages(userRating.Average);
-                SetRatingBars(userRating.RatingTable, userRating.Count);
-                SetRatingStars(Settings.IsLoggedIn && userRating.Count > 0 ? await ratingManager.GetPreviousUserRatingAsync(exhibit.IdForRestApi) : 0);
             }
         }
 
