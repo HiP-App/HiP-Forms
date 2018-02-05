@@ -21,6 +21,7 @@
              x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Pages.ExhibitRouteDownloadPage"
              Title="{Binding DownloadableName}"
              xmlns:effects="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Effects;assembly=HipMobileUI"
+             xmlns:helpers="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;assembly=HipMobileUI"
              xmlns:views="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Views;assembly=HipMobileUI">
     <ContentPage.Content>
         <views:NotificationExtensionView>
@@ -56,7 +57,7 @@
                             <Label Text="{Binding LoadingProgress, StringFormat='{0:p0}'}"
                                    HorizontalTextAlignment="Center" FontSize="16" />
                         </StackLayout>
-                        <Button Grid.Row="1" Margin="7" BackgroundColor="LightGray" Text="Abbrechen" 
+                        <Button Grid.Row="1" Margin="7" BackgroundColor="LightGray" Text="{helpers:Translate Cancel}" 
                                 FontSize="13" Command="{Binding CancelCommand}" />
                     </Grid>
                 </Grid>
