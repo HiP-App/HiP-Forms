@@ -853,4 +853,7 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   <data name="Cancel" xml:space="preserve">
     <value>Abbrechen</value>
   </data>
+  <data name="ExhibitRouteDonwloadPage_Download_Text" xml:space="preserve">
+    <value>Lade zusätzliche Daten herunter</value>
+  </data>
 </root>

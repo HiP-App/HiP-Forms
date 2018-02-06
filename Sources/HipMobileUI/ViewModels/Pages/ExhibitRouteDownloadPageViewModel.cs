@@ -40,9 +40,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             DownloadableId = downloadable.Id;
             DownloadableIdForRestApi = downloadable.IdForRestApi;
             DownloadableName = downloadable.Name;
-            DownloadableDescription = downloadable.Description;
 
-            Message = Strings.DownloadDetails_Text_Part1 + DownloadableName + Strings.DownloadDetails_Text_Part2;
             SetImage();
             DownloadableListItemViewModel = downloadableListItemViewModel;
 
@@ -84,22 +82,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         {
             get { return downloadableIdForRestApi; }
             set { SetProperty(ref downloadableIdForRestApi, value); }
-        }
-
-        private string downloadableDescription;
-
-        public string DownloadableDescription
-        {
-            get { return downloadableDescription; }
-            set { SetProperty(ref downloadableDescription, value); }
-        }
-
-        private string message;
-
-        public string Message
-        {
-            get { return message; }
-            set { SetProperty(ref message, value); }
         }
 
         private ImageSource image;

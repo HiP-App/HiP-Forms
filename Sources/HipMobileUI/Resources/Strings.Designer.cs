@@ -386,6 +386,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Lade zusätzliche Daten herunter.
+        /// </summary>
+        public static string ExhibitRouteDonwloadPage_Download_Text {
+            get {
+                return ResourceManager.GetString("ExhibitRouteDonwloadPage_Download_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to In den Einstellungen ist festgelegt, dass Daten nur über Wlan heruntergeladen werden sollen. Sollen die Daten dieses Mal trotzdem über die mobile Datenverbindung heruntergeladen werden?.
         /// </summary>
         public static string ExhibitRouteDownloadPageViewModel_Wifi_Only_Message {

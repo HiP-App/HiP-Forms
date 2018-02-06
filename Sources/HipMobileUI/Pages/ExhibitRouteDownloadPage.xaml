@@ -44,10 +44,7 @@
                             <RowDefinition Height="0.3*" />
                         </Grid.RowDefinitions>
                         <StackLayout Grid.Row="0" VerticalOptions="FillAndExpand" Margin="20,20,20,20">
-                            <Label Text="{Binding DownloadableDescription}" FontSize="Medium" FontAttributes="Bold"
-                                   TextColor="{StaticResource AccentDarkColor}" HorizontalTextAlignment="Center"
-                                   VerticalOptions="Center" />
-                            <Label Text="{Binding Message}" FontSize="Medium" TextColor="{StaticResource AccentDarkColor}"
+                            <Label Text="{helpers:Translate ExhibitRouteDonwloadPage_Download_Text}" FontSize="Medium" TextColor="{StaticResource AccentDarkColor}"
                                    HorizontalTextAlignment="Center" />
                             <ProgressBar Progress="{Binding LoadingProgress}">
                                 <ProgressBar.Effects>
