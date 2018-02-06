@@ -892,4 +892,7 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   <data name="ForgotPasswordScreenView_Error_Invalid_Email" xml:space="preserve">
     <value>Ihre E-Mail-Adresse ist ungültig</value>
   </data>
+  <data name="CharacterSelectionPage_SelectCharacter" xml:space="preserve">
+    <value>Wähle einen Charakter</value>
+  </data>
 </root>

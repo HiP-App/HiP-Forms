@@ -18,30 +18,30 @@
 
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-		   	 Title="Adventurer"
+		   	 Title="{Binding PageTitle}"
 			 xmlns:helpers="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;assembly=HipMobileUI"
 	         xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Pages.AdventurerDetailsView">
     <ContentPage.Content>
         <AbsoluteLayout BackgroundColor="#FFE57F">
-	        <Image Source="ic_adventurer.png" AbsoluteLayout.LayoutBounds=".15,.4,.4,.4" AbsoluteLayout.LayoutFlags="All">
-			</Image>
-			 <Label x:Name="AdventurerLabel" Grid.Row="1"
-	        Text="{helpers:Translate CharacterSelectionPage_Adventurer_Text}" TextColor="Black"
-	        FontSize="Medium" AbsoluteLayout.LayoutBounds=".9,.6,.4,.4" AbsoluteLayout.LayoutFlags="All"/>
-	        <BoxView AbsoluteLayout.LayoutBounds=".5,1.0,1.0,.20" AbsoluteLayout.LayoutFlags="All" Color="White" />
-			<Button x:Name="SelectModeButton"
+            <Image Source="{Binding Image}" AbsoluteLayout.LayoutBounds=".15,.4,.4,.4" AbsoluteLayout.LayoutFlags="All" />
+            <Label x:Name="AdventurerLabel"
+	                Text="{helpers:Translate CharacterSelectionPage_Adventurer_Text}"
+			        TextColor="Black" FontSize="Medium"
+			        AbsoluteLayout.LayoutBounds=".9,.6,.4,.4" AbsoluteLayout.LayoutFlags="All" />
+            <BoxView AbsoluteLayout.LayoutBounds=".5,1.0,1.0,.20" AbsoluteLayout.LayoutFlags="All" Color="White" />
+            <Button x:Name="SelectModeButton"
 							BackgroundColor ="#FFE57F"
 							TextColor="Black"
 							AbsoluteLayout.LayoutBounds=".5,.9,.5,.06" AbsoluteLayout.LayoutFlags="All"
                             Text="Choose this mode"
-                            Command="{Binding SelectModeButton}" />
-			<Button x:Name="ChangeModeButton"
+                            Command="{Binding SelectModeCommand}" />
+            <Button x:Name="ChangeModeButton"
 							BackgroundColor ="#7FACFF"
 							TextColor="Black"
                             AbsoluteLayout.LayoutBounds=".5,.97,.5,.06" AbsoluteLayout.LayoutFlags="All"
                             Text="Check other mode"
-                            Command="{Binding ChangeModeButton}" />
+                            Command="{Binding ChangeModeCommand}" />
         </AbsoluteLayout>
     </ContentPage.Content>
 </ContentPage>

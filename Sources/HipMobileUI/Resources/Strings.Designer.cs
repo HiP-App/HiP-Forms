@@ -224,6 +224,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Wähle einen Charakter.
+        /// </summary>
+        public static string CharacterSelectionPage_SelectCharacter {
+            get {
+                return ResourceManager.GetString("CharacterSelectionPage_SelectCharacter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ja.
         /// </summary>
         public static string DownloadData_Accept {

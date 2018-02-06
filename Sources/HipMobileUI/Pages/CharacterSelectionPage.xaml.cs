@@ -4,10 +4,6 @@ using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using SkiaSharp;
 using SkiaSharp.Views.Forms;
 using Xamarin.Forms;
@@ -15,94 +11,76 @@ using Xamarin.Forms.Xaml;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class CharacterSelectionPage : IViewFor<CharacterSelectionPageViewModel>
-	{
-		private double thisWidth, thisHeight;
-		private DeviceOrientation deviceOrientation;
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class CharacterSelectionPage : IViewFor<CharacterSelectionPageViewModel>
+    {
+        private DeviceOrientation deviceOrientation;
 
-		private CharacterSelectionPageViewModel ViewModel => ((CharacterSelectionPageViewModel)BindingContext);
+        private CharacterSelectionPageViewModel ViewModel => ((CharacterSelectionPageViewModel)BindingContext);
 
-		public CharacterSelectionPage()
-		{
-			InitializeComponent();
+        public CharacterSelectionPage()
+        {
+            InitializeComponent();
 
-			deviceOrientation = DeviceOrientation.Undefined;
+            deviceOrientation = DeviceOrientation.Undefined;
+        }
 
-			// hide the status bar for this page
-			IStatusBarController statusBarController = IoCManager.Resolve<IStatusBarController>();
-			statusBarController.HideStatusBar();
-		}
+        protected override void OnSizeAllocated(double width, double height)
+        {
+            base.OnSizeAllocated(width, height);
 
-		protected override void OnSizeAllocated(double width, double height)
-		{
-			base.OnSizeAllocated(width, height);
+            if (width > height && deviceOrientation != DeviceOrientation.Landscape)
+            {
+                // landscape mode
 
-			if (!(Math.Abs(width - thisWidth) > 0.4) && !(Math.Abs(height - thisHeight) > 0.4))
-				return;
+                deviceOrientation = DeviceOrientation.Landscape;
+            }
+            else if (width <= height && deviceOrientation != DeviceOrientation.Portrait)
+            {
+                // portrait mode
 
-			thisWidth = width;
-			thisHeight = height;
+                deviceOrientation = DeviceOrientation.Portrait;
+            }
+        }
 
-			if (width <= height)
-			{
-				//Portrait
-				if (deviceOrientation == DeviceOrientation.Portrait)
-					return;
+        private void OnPaintSample(object sender, SKPaintSurfaceEventArgs e)
+        {
+            var surfaceWidth = e.Info.Width;
+            var surfaceHeight = e.Info.Height;
 
+            var canvas = e.Surface.Canvas;
 
+            using (var paint = new SKPaint())
+            {
+                canvas.Clear(Color.Blue.ToSKColor()); //paint it blue
 
-				deviceOrientation = DeviceOrientation.Portrait;
-			}
-			else if (width > height)
-			{
-				//Landscape
-				if (deviceOrientation == DeviceOrientation.Landscape)
-					return;
+                var pathStroke = new SKPaint
+                {
+                    IsAntialias = true,
+                    Style = SKPaintStyle.StrokeAndFill,
+                    Color = new SKColor(255, 204, 0),
+                    StrokeWidth = 5
+                };
 
+                var path = new SKPath { FillType = SKPathFillType.EvenOdd };
+                path.MoveTo(surfaceWidth, 0);
+                path.LineTo(0, 0);
+                path.LineTo(0, surfaceHeight);
+                path.LineTo(surfaceWidth, 0);
+                path.Close();
+                canvas.DrawPath(path, pathStroke);
+            }
+        }
 
-				deviceOrientation = DeviceOrientation.Landscape;
-			}
-		}
-		private void OnPaintSample(object sender, SKPaintSurfaceEventArgs e)
-		{
-			int surfaceWidth = e.Info.Width;
-			int surfaceHeight = e.Info.Height;
+        protected override bool OnBackButtonPressed()
+        {
+            //The user cannot go back when he has to select the character on the first app start
+            if (ViewModel.ParentViewModel.GetType() != typeof(UserOnboardingPageViewModel))
+            {
+                ViewModel.ReturnToPreviousPage();
+            }
 
-			SKCanvas canvas = e.Surface.Canvas;
-
-
-			using (SKPaint paint = new SKPaint())
-			{
-				canvas.Clear(Color.Blue.ToSKColor()); //paint it blue
-
-
-				var pathStroke = new SKPaint
-				{
-					IsAntialias = true,
-					Style = SKPaintStyle.StrokeAndFill,
-					Color = new SKColor(255, 204, 0),
-					StrokeWidth = 5
-				};
-
-				var path = new SKPath { FillType = SKPathFillType.EvenOdd };
-				path.MoveTo(surfaceWidth, 0);
-				path.LineTo(0, 0);
-				path.LineTo(0, surfaceHeight);
-				path.LineTo(surfaceWidth, 0);
-				path.Close();
-				canvas.DrawPath(path, pathStroke);
-
-			}
-		}
-		protected override bool OnBackButtonPressed()
-		{
-			//The user cannot go back when he has to select the character on the first app start
-			if (ViewModel.ParentViewModel.GetType() != typeof(UserOnboardingPageViewModel))
-			{
-				ViewModel.SwitchToNextPage();
-			}
-			return true;
-		}
-	}
+            return true;
+        }
+    }
 }

@@ -253,14 +253,10 @@
       <DependentUpon>AchievementsDetailsExhibitPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\Views\AchievementsDetailsExhibitViewModel.cs" />
-    <Compile Include="Pages\AdventurerDetailsView.xaml.cs">
-      <DependentUpon>AdventurerDetailsView.xaml</DependentUpon>
+    <Compile Include="Pages\CharacterDetailsPage.xaml.cs">
+      <DependentUpon>CharacterDetailsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\Pages\AdventurerDetailsViewModel.cs" />
-    <Compile Include="ViewModels\Pages\ProfessorDetailsViewModel.cs" />
-    <Compile Include="Pages\AdventurerDetailsView.xaml %28copy%29.cs">
-      <DependentUpon>AdventurerDetailsView %28copy%29.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="ViewModels\Pages\CharacterDetailsPageViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="App.xaml">
@@ -287,11 +283,7 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Pages\AdventurerDetailsView.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Pages\AdventurerDetailsView %28copy%29.xaml">
+    <EmbeddedResource Include="Pages\CharacterDetailsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

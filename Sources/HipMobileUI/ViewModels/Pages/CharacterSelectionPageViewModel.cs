@@ -13,83 +13,57 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
-using PaderbornUniversity.SILab.Hip.Mobile.UI.Contracts;
 using System.Windows.Input;
-using PaderbornUniversity.SILab.Hip.Mobile.UI.Appearance;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
-
 using Xamarin.Forms;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 {
-	public class CharacterSelectionPageViewModel : NavigationViewModel
-	{
-		private readonly NavigationViewModel parentViewModel;
+    public class CharacterSelectionPageViewModel : NavigationViewModel
+    {
+        private readonly NavigationViewModel parentViewModel;
 
-		public CharacterSelectionPageViewModel(NavigationViewModel parentViewModel)
-		{
-			this.parentViewModel = parentViewModel;
+        public CharacterSelectionPageViewModel(NavigationViewModel parentViewModel)
+        {
+            this.parentViewModel = parentViewModel;
 
-			AdventurerGridTappedCommand = new Command(OnAdventurerGridTapped);
-			ProfessorGridTappedCommand = new Command(OnProfessorGridTapped);
-		}
+            AdventurerGridTappedCommand = new Command(OnAdventurerGridTapped);
+            ProfessorGridTappedCommand = new Command(OnProfessorGridTapped);
+        }
 
-		public ICommand AdventurerGridTappedCommand { get; }
-		public ICommand ProfessorGridTappedCommand { get; }
+        public ICommand AdventurerGridTappedCommand { get; }
+        public ICommand ProfessorGridTappedCommand { get; }
 
-		private void OnAdventurerGridTapped()
-		{
-			//move this code 
+        private async void OnAdventurerGridTapped()
+        {
+            await Navigation.PushAsync(new CharacterDetailsPageViewModel(parentViewModel, true), false);
+        }
 
-			Navigation.PushAsync(new AdventurerDetailsViewModel(parentViewModel));
+        private async void OnProfessorGridTapped()
+        {
+            await Navigation.PushAsync(new CharacterDetailsPageViewModel(parentViewModel, false), false);
+        }
 
-			//AdjustThemeAndContinue();
-		}
+        /// <summary>
+        /// Returns to the previous page if this page was called from the profile or settings page
+        /// </summary>
+        public void ReturnToPreviousPage()
+        {
+            if (parentViewModel.GetType() == typeof(ProfileScreenViewModel))
+            {
+                var mainPageViewModel = new MainPageViewModel();
+                Navigation.StartNewNavigationStack(mainPageViewModel);
+                mainPageViewModel.SwitchToProfileView();
+            }
+            else if (parentViewModel.GetType() == typeof(SettingsScreenViewModel))
+            {
+                var mainPageViewModel = new MainPageViewModel();
+                Navigation.StartNewNavigationStack(mainPageViewModel);
+                mainPageViewModel.SwitchToSettingsScreenView();
+            }
+        }
 
-		private void OnProfessorGridTapped()
-		{
-			//move this code 
-			Settings.AdventurerMode = false;
-			AdjustThemeAndContinue();
-		}
-
-		private void AdjustThemeAndContinue()
-		{
-			SwitchToNextPage();
-
-			// Make sure all related components are already initialized before adjusting theme
-			if (Settings.InitialThemeSelected)
-				IoCManager.Resolve<IThemeManager>().AdjustTopBarTheme();
-		}
-
-		/// <summary>
-		/// Switches to the next page after a character has been selected. If the parent view is the Settings- or ProfileScreenView, the next page is the previous page.
-		/// </summary>
-		public void SwitchToNextPage()
-		{
-			var statusBarController = IoCManager.Resolve<IStatusBarController>();
-			statusBarController.ShowStatusBar();
-
-			if (parentViewModel.GetType() == typeof(UserOnboardingPageViewModel))
-			{
-				Navigation.StartNewNavigationStack(new LoadingPageViewModel());
-			}
-			else if (parentViewModel.GetType() == typeof(ProfileScreenViewModel))
-			{
-				var mainPageViewModel = new MainPageViewModel();
-				Navigation.StartNewNavigationStack(mainPageViewModel);
-				mainPageViewModel.SwitchToProfileView();
-			}
-			else if (parentViewModel.GetType() == typeof(SettingsScreenViewModel))
-			{
-				var mainPageViewModel = new MainPageViewModel();
-				Navigation.StartNewNavigationStack(mainPageViewModel);
-				mainPageViewModel.SwitchToSettingsScreenView();
-			}
-		}
-
-		public NavigationViewModel ParentViewModel => parentViewModel;
-	}
+        public NavigationViewModel ParentViewModel => parentViewModel;
+    }
 }
