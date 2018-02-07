@@ -34,5 +34,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
         );
 
         public Task<bool> SendUserRatingAsync(int idForRestApi, int rating) => Task.FromResult(true);
+
+        public Task<int> GetPreviousUserRatingAsync(int idForRestApi) => Task.FromResult(3);
     }
 }
