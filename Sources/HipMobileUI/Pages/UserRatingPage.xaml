@@ -20,7 +20,7 @@
              xmlns:helpers="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;assembly=HipMobileUI"
              Title="{Binding Headline}">
     <ContentPage.Content>
-        <AbsoluteLayout x:Name="OuterAbsoluteLayout">
+        <AbsoluteLayout x:Name="OuterAbsoluteLayout" BackgroundColor="White">
             <!-- The image layout definition is set up in code -->
             <Image x:Name="Image" Source="{Binding Image}" Margin="5" Aspect="AspectFill" Opacity="0.08"/>
             <!-- The row and column definition is set up in code -->

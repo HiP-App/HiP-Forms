@@ -12,10 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses.Contracts
 {
@@ -23,5 +21,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
     {
         Task<UserRatingDto> GetUserRatingAsync(int idForRestApi);
         Task<bool> SendUserRatingAsync(int idForRestApi, int rating);
+        Task<int> GetPreviousUserRatingAsync(int idForRestApi);
     }
 }
