@@ -40,6 +40,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             DownloadableId = downloadable.Id;
             DownloadableIdForRestApi = downloadable.IdForRestApi;
             DownloadableName = downloadable.Name;
+            DownloadableDescription = downloadable.Description;
+            //Remove the description label if no description exists to center the other labels precisely
+            DescriptionExists = !(DownloadableDescription == null || DownloadableDescription.Equals(""));
 
             SetImage();
             DownloadableListItemViewModel = downloadableListItemViewModel;
@@ -100,6 +103,20 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             set { SetProperty(ref loadingProgress, value); }
         }
 
+        private bool descriptionExists;
+        public bool DescriptionExists
+        {
+            get { return descriptionExists; }
+            set { SetProperty(ref descriptionExists, value); }
+        }
+
+        private string downloadableDescription;
+        public string DownloadableDescription
+        {
+            get { return downloadableDescription; }
+            set { SetProperty(ref downloadableDescription, value); }
+        }
+
         private ICommand startDownload;
 
         public ICommand StartDownload
@@ -151,7 +168,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                 {
                     try
                     {
-                        await fullDownloadableDataFetcher.FetchFullDownloadableDataIntoDatabase(DownloadableId, DownloadableIdForRestApi, cancellationTokenSource.Token, this);
+                        //await fullDownloadableDataFetcher.FetchFullDownloadableDataIntoDatabase(DownloadableId, DownloadableIdForRestApi, cancellationTokenSource.Token, this);
                     }
                     catch (Exception e)
                     {
@@ -188,8 +205,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
             if (!cancellationTokenSource.IsCancellationRequested && isDownloadAllowed)
             {
-                DownloadableListItemViewModel.SetDetailsAvailable(true);
-                CloseDownloadPage();
+                //DownloadableListItemViewModel.SetDetailsAvailable(true);
+                //CloseDownloadPage();
             }
             IoCManager.Resolve<IDbChangedHandler>().NotifyAll();
         }
