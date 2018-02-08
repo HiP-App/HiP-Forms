@@ -29,7 +29,7 @@
                                 AbsoluteLayout.LayoutFlags="All"/-->
             <Label x:Name="ProfessorText"
                    Text="{helpers:Translate CharacterSelectionPage_Professor_Text}"
-                   TextColor="White" FontSize="Medium"
+                   TextColor="Black" FontSize="Medium"
                    AbsoluteLayout.LayoutBounds=".8,.9,.4,.4" AbsoluteLayout.LayoutFlags="All"/>
             <Image Source="ic_professor.png"
                    AbsoluteLayout.LayoutBounds=".8,1.0,.4,.4" AbsoluteLayout.LayoutFlags="All">
@@ -38,7 +38,7 @@
                 </Image.GestureRecognizers>
             </Image>
             <Label x:Name="AdventurerLabel" Grid.Row="1"
-                   Text="{helpers:Translate CharacterSelectionPage_Adventurer_Text}" TextColor="White" FontSize="Medium"
+                   Text="{helpers:Translate CharacterSelectionPage_Adventurer_Text}" TextColor="Black" FontSize="Medium"
                    AbsoluteLayout.LayoutBounds=".2,.6,.4,.4" AbsoluteLayout.LayoutFlags="All"/>
             <Image Source="ic_adventurer.png"
                    AbsoluteLayout.LayoutBounds=".2,.05,.35,.35" AbsoluteLayout.LayoutFlags="All">

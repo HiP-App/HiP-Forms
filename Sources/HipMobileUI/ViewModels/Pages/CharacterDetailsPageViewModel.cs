@@ -62,6 +62,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         private void UpdateView()
         {
             PageTitle = AdventurerModeSelected ? "Adventurer" : "Professor";
+			Image = AdventurerModeSelected? ImageSource.FromFile("ic_adventurer.png") : ImageSource.FromFile("ic_professor.png");
         }
 
         private void AdjustThemeAndContinue()
@@ -97,8 +98,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             }
         }
 
-        public ImageSource Image => AdventurerModeSelected ? ImageSource.FromFile("ic_adventurer.png") : ImageSource.FromFile("ic_professor.png");
-
+        
+		private ImageSource image;
+		public ImageSource Image
+		{
+		get => image;
+		set => SetProperty(ref image, value);   
+		}
         private string pageTitle;
         public string PageTitle
         {
