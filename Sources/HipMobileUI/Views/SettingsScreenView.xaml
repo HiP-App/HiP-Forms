@@ -25,17 +25,16 @@
         <ResourceDictionary>
             <!-- Defined Styles for Labels -->
             <Style x:Key="TitleStyle" TargetType="Label">
-                <Setter Property="FontSize" Value="Small" />
-                <Setter Property="TextColor" Value="{StaticResource AccentColor}" />
-                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="FontSize" Value="Medium" />
+                <Setter Property="TextColor" Value="{StaticResource PrimaryDarkColor}" />
                 <Setter Property="Grid.ColumnSpan" Value="2" />
                 <Setter Property="Style" Value="{DynamicResource Ssp-Regular}" />
             </Style>
             <Style x:Key="Title2Style" TargetType="Label">
-                <Setter Property="FontSize" Value="Medium" />
+                <Setter Property="FontSize" Value="Small" />
                 <Setter Property="TextColor" Value="Black" />
                 <Setter Property="Grid.ColumnSpan" Value="2" />
-                <Setter Property="Style" Value="{DynamicResource Ssp-Light}" />
+                <Setter Property="Style" Value="{DynamicResource Ssp-BoldItalic}" />
             </Style>
             <Style TargetType="Label">
                 <Setter Property="FontSize" Value="Small" />
@@ -54,7 +53,7 @@
     <ContentView.Content>
         <views:NotificationExtensionView>
             <views:NotificationExtensionView.ContentTemplate>
-                <ScrollView>
+                <ScrollView BackgroundColor="White">
                     <Grid HorizontalOptions="FillAndExpand" Padding="10">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
@@ -168,7 +167,7 @@
                         <Label Grid.Row="17" Grid.Column="0" Text="{Binding AppModeText}" />
                         <Button Grid.Row="17" Grid.Column="1" Command="{Binding SelectCharacterCommand}"
                                 Text="{helpers:Translate SettingsScreenView_CharacterSelection_Button_Text}"
-                                BackgroundColor="{StaticResource AccentColor}" TextColor="Black" />
+                                BackgroundColor="{StaticResource PrimaryColor}" TextColor="White" />
                         <BoxView Grid.Row="18" Grid.Column="0" />
                         <Label Text="{helpers:Translate StorageTitle}" Grid.Row="19" Grid.Column="0" />
                         <Label Text="{Binding Size, Mode=OneWay}" Grid.Row="19" Grid.Column="1" HorizontalOptions="End"
@@ -177,7 +176,7 @@
                         <Label Text="{helpers:Translate SettingsScreenView_RemoveAllDownloads_Text}"
                                HorizontalOptions="StartAndExpand" Grid.Row="21" Grid.Column="0" />
                         <Button Text="{helpers:Translate SettingsScreenView_RemoveAllDownloadsButton_Text}"
-                                BackgroundColor="{StaticResource AccentColor}" TextColor="Black"
+                                BackgroundColor="{StaticResource PrimaryColor}" TextColor="White"
                                 Command="{Binding RemoveAllDownloads}" HorizontalOptions="End" VerticalOptions="Center"
                                 Grid.Row="21" Grid.Column="1" />
                     </Grid>

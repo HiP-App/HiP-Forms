@@ -26,8 +26,8 @@
             <Color x:Key="PrimaryDarkColor">#0149D1</Color>
             <Color x:Key="AccentColor">#FFE57F</Color>
             <Color x:Key="AccentDarkColor">#FFCC00</Color>
-            <Color x:Key="TertiaryColor">#F22F0C</Color>
-            <Color x:Key="TertiaryDarkColor">#FF937F</Color>
+            <Color x:Key="TertiaryColor">#FF937F</Color>
+            <Color x:Key="TertiaryDarkColor">#F22F0C</Color>
             <Color x:Key="LightGrayColor">#05000000</Color>
             <Color x:Key="MediumGrayColor">#15000000</Color>
             <Color x:Key="DarkGrayColor">#66000000</Color>

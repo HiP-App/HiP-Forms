@@ -44,14 +44,14 @@
                            Placeholder="{helpers:Translate RegisterScreenView_RepeatPassword}" Text="{Binding RepeatPassword, Mode=OneWayToSource}" />
                     <Label x:Name="ErrorMsgLabel"
                            HorizontalOptions="Center" VerticalOptions="Start"
-                           FontSize="Small" TextColor="{StaticResource RedBarColor}" Text="{Binding ErrorMessage, Mode=TwoWay}" Style="{DynamicResource Ssp-Regular}"/>
+                           FontSize="Small" TextColor="{StaticResource TertiaryDarkColor}" Text="{Binding ErrorMessage, Mode=TwoWay}" Style="{DynamicResource Ssp-Regular}"/>
                     <Button x:Name="ButtonView"
                             VerticalOptions="End"
                             Text="{helpers:Translate RegisterScreenView_Register}"
                             Command="{Binding Register}" />
                     <Label x:Name="CancelLabel"
                            HorizontalOptions="Center" VerticalOptions="Center"
-                           Text="{helpers:Translate RegisterScreenView_Cancel}" FontSize="Small" TextColor="{StaticResource PrimaryDarkColor}" Style="{DynamicResource Ssp-Regular}">
+                           Text="{helpers:Translate Cancel}" FontSize="Small" TextColor="{StaticResource PrimaryDarkColor}" Style="{DynamicResource Ssp-Regular}">
                         <Label.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding ReturnCommand}"/>
                         </Label.GestureRecognizers>

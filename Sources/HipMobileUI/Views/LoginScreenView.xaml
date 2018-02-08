@@ -34,7 +34,7 @@
                            Text="{Binding Password}" TextChanged="Entry_TextChanged" />
                     <Label x:Name="ErrorMessageLabel"
                            HorizontalOptions="Center" VerticalOptions="Start"
-                           FontSize="Small" TextColor="{StaticResource RedBarColor}" Text="{Binding ErrorMessage, Mode=TwoWay}" 
+                           FontSize="Small" TextColor="{StaticResource TertiaryDarkColor}" Text="{Binding ErrorMessage, Mode=TwoWay}" 
                            Style="{DynamicResource Ssp-Regular}"/>
                     <Label x:Name="RegisterLabel"
                            HorizontalOptions="Center"

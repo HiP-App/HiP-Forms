@@ -30,14 +30,14 @@
                 <Setter Property="Style" Value="{DynamicResource Ssp-Regular}" /> 
             </Style>
             <Style x:Key="Title2Style" TargetType="Label">
-                <Setter Property="FontSize" Value="Medium" />
-                <Setter Property="TextColor" Value="Gray" />
+                <Setter Property="FontSize" Value="Small" />
+                <Setter Property="TextColor" Value="Black" />
                 <Setter Property="Style" Value="{DynamicResource Ssp-Light}" />
             </Style>
             <Style TargetType="Label">
                 <Setter Property="FontSize" Value="Small" />
                 <Setter Property="TextColor" Value="Gray" />
-                <Setter Property="Style" Value="{DynamicResource Ssp-Light}" />
+                <Setter Property="Style" Value="{DynamicResource Ssp-Regular}" />
             </Style>
             <Style TargetType="BoxView">
                 <Setter Property="HeightRequest" Value="1" />
