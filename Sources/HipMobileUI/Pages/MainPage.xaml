@@ -33,11 +33,11 @@
                 <BoxView Grid.Row="0" Style="{DynamicResource BoxView}" />
                 <Label Grid.Row="0" Text="{helpers:Translate MainPage_LoggedIn}"
                        TextColor="White" FontSize="Small"
-                       Margin="16,16,0,0" VerticalOptions="Start"
+                       Margin="16,32,0,0" VerticalOptions="Start"
                        IsVisible="{Binding UserNameDisplayed}" />
                 <Label Grid.Row="0" Text="{Binding UserName}"
                        TextColor="White" FontSize="Small" FontAttributes="Bold"
-                       Margin="16,32,0,0" VerticalOptions="Start"
+                       Margin="16,48,0,0" VerticalOptions="Start"
                        IsVisible="{Binding UserNameDisplayed}" />
                 <Label Grid.Row="0" Text="{helpers:Translate MainPage_MenuTitle}"
                        TextColor="White" FontSize="Small" FontAttributes="Bold"
