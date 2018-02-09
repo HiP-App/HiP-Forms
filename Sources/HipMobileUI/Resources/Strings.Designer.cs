@@ -386,20 +386,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Details.
+        ///   Looks up a localized string similar to Lade zusätzliche Daten herunter.
         /// </summary>
-        public static string ExhibitRouteDownloadPage_Details {
+        public static string ExhibitRouteDonwloadPage_Download_Text {
             get {
-                return ResourceManager.GetString("ExhibitRouteDownloadPage_Details", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Übersicht.
-        /// </summary>
-        public static string ExhibitRouteDownloadPage_Overview {
-            get {
-                return ResourceManager.GetString("ExhibitRouteDownloadPage_Overview", resourceCulture);
+                return ResourceManager.GetString("ExhibitRouteDonwloadPage_Download_Text", resourceCulture);
             }
         }
         
