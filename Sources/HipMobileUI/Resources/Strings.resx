@@ -859,4 +859,7 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   <data name="Cancel" xml:space="preserve">
     <value>Abbrechen</value>
   </data>
+  <data name="MainPage_LoggedIn" xml:space="preserve">
+    <value>Angemeldet als:</value>
+  </data>
 </root>

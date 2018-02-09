@@ -14,6 +14,7 @@
 
 using System;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.FeatureToggling;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
@@ -42,6 +43,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
         public MainPageViewModel(ExhibitSet set)
         {
+            Settings.ChangeEvents.PropertyChanged += LoginChangedHandler;
+            UpdateUserLogginInfo();
+
             profileScreenViewModel = new ProfileScreenViewModel(this)
             {
                 Title = Strings.MainPageViewModel_Profile,
@@ -81,6 +85,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                     Title = Strings.MainPageViewModel_Routes,
                     Icon = "ic_directions.png"
                 },
+                profileScreenViewModel,
+                achievementsScreenViewModel,
                 new SettingsScreenViewModel
                 {
                     Title = Strings.MainPageViewModel_Settings,
@@ -90,9 +96,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                 {
                     Title = Strings.MainPageViewModel_LegalNotices,
                     Icon = "ic_gavel.png"
-                },
-                profileScreenViewModel,
-                achievementsScreenViewModel
+                }
             };
             achievementsFeatureSubscription = IoCManager.Resolve<IFeatureToggleRouter>()
                       .IsFeatureEnabled(FeatureId.Achievements)
@@ -131,6 +135,17 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             }
         }
 
+        public void LoginChangedHandler(object o, PropertyChangedEventArgs args)
+        {
+            UpdateUserLogginInfo();
+        }
+
+        private void UpdateUserLogginInfo()
+        {
+            UserNameDisplayed = Settings.IsLoggedIn;
+            UserName = Settings.IsLoggedIn ? Settings.Username : "";
+        }
+
         /// <summary>
         /// Call this method after a change to 'Settings.IsLoggedIn' to display the correct view.
         /// </summary>
@@ -164,14 +179,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
         private void ChangeAccountRelatedView(NavigationViewModel accountRelatedView)
         {
-            mainScreenViewModels.RemoveAt(4);
-            mainScreenViewModels.Insert(4, accountRelatedView);
-            SelectedViewModel = mainScreenViewModels[4];
+            mainScreenViewModels.RemoveAt(2);
+            mainScreenViewModels.Insert(2, accountRelatedView);
+            SelectedViewModel = mainScreenViewModels[2];
         }
 
         public void SwitchToSettingsScreenView()
         {
-            SelectedViewModel = mainScreenViewModels[2];
+            SelectedViewModel = mainScreenViewModels[4];
         }
 
         public ObservableCollection<NavigationViewModel> MainScreenViewModels
@@ -192,6 +207,20 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                     SelectedViewModel?.OnAppearing();
                 }
             }
+        }
+
+        private bool userNameDisplayed;
+        public bool UserNameDisplayed
+        {
+            get => userNameDisplayed;
+            set => SetProperty(ref userNameDisplayed, value);
+        }
+
+        private string userName;
+        public string UserName
+        {
+            get => userName;
+            set => SetProperty(ref userName, value);
         }
 
         public override void OnDisappearing()
