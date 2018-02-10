@@ -407,7 +407,6 @@
     <AndroidResource Include="Resources\drawable\Splashscreen.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable\hiphop_transparent.png" />
     <AndroidResource Include="Resources\drawable-hdpi\ic_more.png" />
     <AndroidResource Include="Resources\drawable-mdpi\ic_more.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\ic_more.png" />
@@ -455,6 +454,7 @@
     <AndroidResource Include="Resources\drawable\star_empty.png" />
     <AndroidResource Include="Resources\drawable\ic_cancel_highlight.png" />
     <AndroidResource Include="Resources\drawable\ic_cancel.png" />
+    <AndroidResource Include="Resources\drawable\hiphop_transparent.jpg" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-hdpi\ic_keyboard_arrow_up.png" />
