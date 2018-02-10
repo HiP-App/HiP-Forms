@@ -26,8 +26,8 @@
             <Color x:Key="PrimaryDarkColor">#0149D1</Color>
             <Color x:Key="AccentColor">#FFE57F</Color>
             <Color x:Key="AccentDarkColor">#FFCC00</Color>
-            <Color x:Key="TertiaryColor">#F22F0C</Color>
-            <Color x:Key="TertiaryDarkColor">#FF937F</Color>
+            <Color x:Key="TertiaryColor">#FF937F</Color> 
+            <Color x:Key="TertiaryDarkColor">#F22F0C</Color>
             <Color x:Key="LightGrayColor">#05000000</Color>
             <Color x:Key="MediumGrayColor">#15000000</Color>
             <Color x:Key="DarkGrayColor">#66000000</Color>
@@ -43,48 +43,6 @@
             <Style TargetType="Label">
                 <Setter Property="FontSize" Value="12" />
                 <Setter Property="TextColor" Value="Black" />
-            </Style>
-
-            <Style x:Key="Ssp-Black" TargetType="Label">
-                <Setter Property="FontFamily">
-                    <Setter.Value>
-                        <OnPlatform x:TypeArguments="x:String">
-                            <On Platform="Android" >SourceSansPro-Black.ttf#SourceSansPro-Black</On>
-                            <On Platform ="iOS">SourceSansPro-Black</On>
-                        </OnPlatform>
-                    </Setter.Value>
-                </Setter>
-            </Style>
-            <Style x:Key="Ssp-BlackItalic" TargetType="Label">
-                <Setter Property="FontFamily">
-                    <Setter.Value>
-                        <OnPlatform x:TypeArguments="x:String">
-                            <On Platform="Android" >SourceSansPro-BlackItalic.ttf#SourceSansPro-BlackItalic</On>
-                            <On Platform ="iOS">SourceSansPro-BlackItalic</On>
-                        </OnPlatform>
-                    </Setter.Value>
-                    </Setter>
-                </Style>
-
-            <Style x:Key="Ssp-Bold" TargetType="Label">
-                <Setter Property="FontFamily">
-                    <Setter.Value>
-                        <OnPlatform x:TypeArguments="x:String">
-                            <On Platform="Android" >SourceSansPro-Bold.ttf#SourceSansPro-Bold</On>
-                            <On Platform ="iOS">SourceSansPro-Bold</On>
-                        </OnPlatform>
-                    </Setter.Value>
-                </Setter>
-            </Style>
-            <Style x:Key="Ssp-BoldItalic" TargetType="Label">
-                <Setter Property="FontFamily">
-                    <Setter.Value>
-                        <OnPlatform x:TypeArguments="x:String">
-                            <On Platform="Android" >SourceSansPro-BoldItalic.ttf#SourceSansPro-BoldItalic</On>
-                            <On Platform ="iOS">SourceSansPro-BoldItalic</On>
-                        </OnPlatform>
-                    </Setter.Value>
-                </Setter>
             </Style>
             <Style x:Key="Ssp-ExtraLight" TargetType="Label">
                 <Setter Property="FontFamily">
@@ -102,16 +60,6 @@
                         <OnPlatform x:TypeArguments="x:String">
                             <On Platform="Android" >SourceSansPro-ExtraLightItalic.ttf#SourceSansPro-ExtraLightItalic</On>
                             <On Platform ="iOS">SourceSansPro-ExtraLightItalic</On>
-                        </OnPlatform>
-                    </Setter.Value>
-                </Setter>
-            </Style>
-            <Style x:Key="Ssp-Italic" TargetType="Label">
-                <Setter Property="FontFamily">
-                    <Setter.Value>
-                        <OnPlatform x:TypeArguments="x:String">
-                            <On Platform="Android" >SourceSansPro-Italic.ttf#SourceSansPro-Italic</On>
-                            <On Platform ="iOS">SourceSansPro-Italic</On>
                         </OnPlatform>
                     </Setter.Value>
                 </Setter>
@@ -146,6 +94,16 @@
                     </Setter.Value>
                 </Setter>
             </Style>
+            <Style x:Key="Ssp-RegularItalic" TargetType="Label">
+                <Setter Property="FontFamily">
+                    <Setter.Value>
+                        <OnPlatform x:TypeArguments="x:String">
+                            <On Platform="Android" >SourceSansPro-Italic.ttf#SourceSansPro-Italic</On>
+                            <On Platform ="iOS">SourceSansPro-Italic</On>
+                        </OnPlatform>
+                    </Setter.Value>
+                </Setter>
+            </Style>
             <Style x:Key="Ssp-SemiBold" TargetType="Label">
                 <Setter Property="FontFamily">
                     <Setter.Value>
@@ -166,6 +124,51 @@
                     </Setter.Value>
                 </Setter>
             </Style>
+            <Style x:Key="Ssp-Bold" TargetType="Label">
+                <Setter Property="FontFamily">
+                    <Setter.Value>
+                        <OnPlatform x:TypeArguments="x:String">
+                            <On Platform="Android" >SourceSansPro-Bold.ttf#SourceSansPro-Bold</On>
+                            <On Platform ="iOS">SourceSansPro-Bold</On>
+                        </OnPlatform>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <Style x:Key="Ssp-BoldItalic" TargetType="Label">
+                <Setter Property="FontFamily">
+                    <Setter.Value>
+                        <OnPlatform x:TypeArguments="x:String">
+                            <On Platform="Android" >SourceSansPro-BoldItalic.ttf#SourceSansPro-BoldItalic</On>
+                            <On Platform ="iOS">SourceSansPro-BoldItalic</On>
+                        </OnPlatform>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <Style x:Key="Ssp-Black" TargetType="Label">
+                <Setter Property="FontFamily">
+                    <Setter.Value>
+                        <OnPlatform x:TypeArguments="x:String">
+                            <On Platform="Android" >SourceSansPro-Black.ttf#SourceSansPro-Black</On>
+                            <On Platform ="iOS">SourceSansPro-Black</On>
+                        </OnPlatform>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <Style x:Key="Ssp-BlackItalic" TargetType="Label">
+                <Setter Property="FontFamily">
+                    <Setter.Value>
+                        <OnPlatform x:TypeArguments="x:String">
+                            <On Platform="Android" >SourceSansPro-BlackItalic.ttf#SourceSansPro-BlackItalic</On>
+                            <On Platform ="iOS">SourceSansPro-BlackItalic</On>
+                        </OnPlatform>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+
+            
+           
+           
 
             <!--#region ThemedBoxView -->
             <Style x:Key="BoxViewAdventurerMode" TargetType="BoxView">
@@ -204,3 +207,6 @@
         </ResourceDictionary>
     </Application.Resources>
 </Application>
+
+
+

@@ -189,6 +189,10 @@
     <BundleResource Include="Resources\ic_done.png" />
     <BundleResource Include="Resources\ic_done_2x.png" />
     <BundleResource Include="Resources\ic_done_3x.png" />
+<BundleResource Include="Resources\ic_more_vert.png" /> 
+<BundleResource Include="Resources\ic_more_vert_2x.png" /> 
+<BundleResource Include="Resources\ic_more_vert_3x.png" />
+    
     <BundleResource Include="Resources\fonts\SourceSansPro-Regular.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </BundleResource>
