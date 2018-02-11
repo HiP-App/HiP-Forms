@@ -18,6 +18,7 @@ using Xamarin.Forms;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Appearance;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 {
@@ -67,6 +68,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 			MainScreenColor = AdventurerModeSelected ? "#FFE57F" : "#7FACFF";
 			SelectModeButton = AdventurerModeSelected ? "#FFE57F" : "#7FACFF";
 			ChangeModeButton = AdventurerModeSelected ? "#7FACFF" : "#FFE57F";
+			PageDetails = AdventurerModeSelected ? Strings.CharacterDetailsPage_Adventurer_Text : Strings.CharacterDetailsPage_Professor_Text;
 
 		}
 
@@ -136,6 +138,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 			get => pageTitle;
 			set => SetProperty(ref pageTitle, value);
 
+			}
+		private string pageDetails;
+		public string PageDetails
+		{
+			get => pageDetails;
+			set => SetProperty(ref pageDetails, value);
 			}
 		}
 	}
