@@ -1582,5 +1582,17 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
                 return ResourceManager.GetString("CharacterDetailsPage_Professor_Text", resourceCulture);
             }
         }
+        
+        public static string CharacterDetailsPage_SelectModeButton {
+            get {
+                return ResourceManager.GetString("CharacterDetailsPage_SelectModeButton", resourceCulture);
+            }
+        }
+        
+        public static string CharacterDetailsPage_ChangeModeButton {
+            get {
+                return ResourceManager.GetString("CharacterDetailsPage_ChangeModeButton", resourceCulture);
+            }
+        }
     }
 }
