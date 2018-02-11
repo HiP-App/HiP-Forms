@@ -22,8 +22,19 @@
 	</array>
 	<key>UIAppFonts</key>
 	<array>
-		<string>fonts/AlteSchwabacher.ttf</string>
-	</array>
+    <string>fonts/SourceSansPro-ExtraLight.ttf</string>
+	  <string>fonts/SourceSansPro-ExtraLightItalic.ttf</string>
+	  <string>fonts/SourceSansPro-Light.ttf</string>
+	  <string>fonts/SourceSansPro-LightItalic.ttf</string>
+	  <string>fonts/SourceSansPro-Regular.ttf</string>
+	  <string>fonts/SourceSansPro-Italic.ttf</string>
+	  <string>fonts/SourceSansPro-SemiBold.ttf</string>
+	  <string>fonts/SourceSansPro-SemiBoldItalic.ttf</string>
+    <string>fonts/SourceSansPro-Bold.ttf</string>
+	  <string>fonts/SourceSansPro-BoldItalic.ttf</string>
+	  <string>fonts/SourceSansPro-Black.ttf</string>
+	  <string>fonts/SourceSansPro-BlackItallic.ttf</string>
+  </array>
 	<key>MinimumOSVersion</key>
 	<string>7.0</string>
 	<key>CFBundleDisplayName</key>

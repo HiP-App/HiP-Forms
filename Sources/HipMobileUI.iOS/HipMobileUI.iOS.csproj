@@ -177,6 +177,7 @@
     <None Include="Entitlements.plist" />
     <None Include="Info.plist">
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <Compile Include="Map\ExhibitAnnotation.cs" />
     <Compile Include="Map\ExhibitAnnotationView.cs" />
@@ -189,10 +190,9 @@
     <BundleResource Include="Resources\ic_done.png" />
     <BundleResource Include="Resources\ic_done_2x.png" />
     <BundleResource Include="Resources\ic_done_3x.png" />
-<BundleResource Include="Resources\ic_more_vert.png" /> 
-<BundleResource Include="Resources\ic_more_vert_2x.png" /> 
-<BundleResource Include="Resources\ic_more_vert_3x.png" />
-    
+    <BundleResource Include="Resources\ic_more_vert.png" />
+    <BundleResource Include="Resources\ic_more_vert_2x.png" />
+    <BundleResource Include="Resources\ic_more_vert_3x.png" />
     <BundleResource Include="Resources\fonts\SourceSansPro-Regular.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </BundleResource>
