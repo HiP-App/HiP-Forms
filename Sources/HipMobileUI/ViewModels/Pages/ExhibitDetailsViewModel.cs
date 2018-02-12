@@ -1,4 +1,4 @@
-﻿// Copyright (C) 2017 History in Paderborn App - Universität Paderborn
+// Copyright (C) 2017 History in Paderborn App - Universität Paderborn
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -24,7 +24,6 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.AudioPlayer;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Contracts;
-using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views.ExhibitDetails;
@@ -33,6 +32,7 @@ using Page = PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.Pa
 using Settings = PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers.Settings;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
 using Acr.UserDialogs;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Appearance;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 {
@@ -57,7 +57,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         private bool additionalInformationButtonVisible;
         private readonly bool additionalInformation;
         private string pagenumber;
-
 
         public ExhibitDetailsViewModel(string exhibitId) : this(ExhibitManager.GetExhibit(exhibitId)) { }
 
@@ -107,9 +106,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             }
             else
             {
-                var resources = IoCManager.Resolve<ApplicationResourcesProvider>();
-                IoCManager.Resolve<IBarsColorsChanger>()
-                          .ChangeToolbarColor((Color)resources.GetResourceValue("PrimaryDarkColor"), (Color)resources.GetResourceValue("PrimaryColor"));
+                IoCManager.Resolve<IThemeManager>().AdjustTopBarTheme();
             }
         }
 
@@ -232,7 +229,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                     {
                         Title = Strings.UserRating_Dialog_Title_No_Internet,
                         Message = Strings.UserRating_Dialog_Message_No_Internet,
-                        OkText = Strings.UserRating_Ok
+                        OkText = Strings.Ok
                     });
                 }
             }
@@ -405,6 +402,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
         #region properties
 
+        /// <summary>
+        /// The exhibit for the details page.
+        /// </summary>
         public Exhibit Exhibit
         {
             get { return exhibit; }

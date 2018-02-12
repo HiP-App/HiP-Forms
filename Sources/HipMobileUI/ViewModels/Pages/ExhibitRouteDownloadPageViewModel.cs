@@ -19,6 +19,7 @@ using System.Threading;
 using System.Windows.Input;
 using Acr.UserDialogs;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers.Contracts;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelConverters;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
@@ -40,22 +41,22 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             DownloadableIdForRestApi = downloadable.IdForRestApi;
             DownloadableName = downloadable.Name;
             DownloadableDescription = downloadable.Description;
+            //Remove the description label if no description exists to center the other labels precisely
+            DescriptionExists = !(DownloadableDescription == null || DownloadableDescription.Equals(""));
 
-            Message = Strings.DownloadDetails_Text_Part1 + DownloadableName + Strings.DownloadDetails_Text_Part2;
-            var data = downloadable.Image.GetDataBlocking();
-            Image = ImageSource.FromStream(() => new MemoryStream(data));
+            SetImage();
             DownloadableListItemViewModel = downloadableListItemViewModel;
 
             CancelCommand = new Command(CancelDownload);
-            GoToDetailsCommand = new Command(GoToDetails);
-            GoToOverviewCommand = new Command(CloseDownloadPage);
             StartDownload = new Command(DownloadData);
 
             cancellationTokenSource = new CancellationTokenSource();
+        }
 
-            DownloadPending = true;
-            DownloadFinished =
-                !DownloadPending; // Since false is the default value this is just a reminder in case the database wants to set this to true when generating this item
+        private async void SetImage()
+        {
+            var imageData = await downloadable.Image.GetDataAsync();
+            Image = imageData != null ? ImageSource.FromStream(() => new MemoryStream(imageData)) : ImageSource.FromStream(() => new MemoryStream(BackupData.BackupImageData));
         }
 
         private readonly CancellationTokenSource cancellationTokenSource;
@@ -86,22 +87,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             set { SetProperty(ref downloadableIdForRestApi, value); }
         }
 
-        private string downloadableDescription;
-
-        public string DownloadableDescription
-        {
-            get { return downloadableDescription; }
-            set { SetProperty(ref downloadableDescription, value); }
-        }
-
-        private string message;
-
-        public string Message
-        {
-            get { return message; }
-            set { SetProperty(ref message, value); }
-        }
-
         private ImageSource image;
 
         public ImageSource Image
@@ -118,20 +103,18 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             set { SetProperty(ref loadingProgress, value); }
         }
 
-        private bool downloadFinished;
-
-        public bool DownloadFinished
+        private bool descriptionExists;
+        public bool DescriptionExists
         {
-            get { return downloadFinished; }
-            set { SetProperty(ref downloadFinished, value); }
+            get { return descriptionExists; }
+            set { SetProperty(ref descriptionExists, value); }
         }
 
-        private bool downloadPending;
-
-        public bool DownloadPending
+        private string downloadableDescription;
+        public string DownloadableDescription
         {
-            get { return downloadPending; }
-            set { SetProperty(ref downloadPending, value); }
+            get { return downloadableDescription; }
+            set { SetProperty(ref downloadableDescription, value); }
         }
 
         private ICommand startDownload;
@@ -143,8 +126,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         }
 
         public ICommand CancelCommand { get; }
-        public ICommand GoToOverviewCommand { get; }
-        public ICommand GoToDetailsCommand { get; }
 
         private void CancelDownload()
         {
@@ -155,11 +136,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         private void CloseDownloadPage()
         {
             DownloadableListItemViewModel.CloseDownloadPage();
-        }
-
-        private void GoToDetails()
-        {
-            DownloadableListItemViewModel.OpenDetailsView(DownloadableId);
         }
 
         private async void DownloadData()
@@ -183,8 +159,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                     {
                         Title = Strings.ExhibitRouteDownloadPageViewModel_Wifi_Only_Title,
                         Message = Strings.ExhibitRouteDownloadPageViewModel_Wifi_Only_Message,
-                        OkText = Strings.ExhibitRouteDownloadPageViewModel_Wifi_Only_Ok,
-                        CancelText = Strings.ExhibitRouteDownloadPageViewModel_Wifi_Only_Cancel
+                        OkText = Strings.Yes,
+                        CancelText = Strings.No
                     });
                 }
 
@@ -192,7 +168,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                 {
                     try
                     {
-                        await fullDownloadableDataFetcher.FetchFullDownloadableDataIntoDatabase(DownloadableId, DownloadableIdForRestApi, cancellationTokenSource.Token, this);
+                        //await fullDownloadableDataFetcher.FetchFullDownloadableDataIntoDatabase(DownloadableId, DownloadableIdForRestApi, cancellationTokenSource.Token, this);
                     }
                     catch (Exception e)
                     {
@@ -222,29 +198,17 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
             if (messageToShow != null)
             {
-                await Navigation.DisplayAlert(titleToShow, messageToShow, "OK");
+                await Navigation.DisplayAlert(titleToShow, messageToShow, Strings.Ok);
                 CloseDownloadPage();
                 return;
             }
 
             if (!cancellationTokenSource.IsCancellationRequested && isDownloadAllowed)
             {
-                SetDetailsAvailable();
+                //DownloadableListItemViewModel.SetDetailsAvailable(true);
+                //CloseDownloadPage();
             }
             IoCManager.Resolve<IDbChangedHandler>().NotifyAll();
-        }
-
-        private void SetDetailsAvailable()
-        {
-            DownloadPending = false;
-            DownloadFinished = !DownloadPending;
-            DownloadableListItemViewModel.SetDetailsAvailable(DownloadFinished);
-
-            //Close DownloadPage directly if download was started from the AppetizerView
-            if (DownloadFinished && (DownloadableListItemViewModel.GetType() == typeof(AppetizerPageViewModel)))
-            {
-                CloseDownloadPage();
-            }
         }
 
         public override void OnAppearing()

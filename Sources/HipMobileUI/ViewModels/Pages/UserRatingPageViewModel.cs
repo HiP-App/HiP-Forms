@@ -23,10 +23,10 @@ using Xamarin.Forms;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.ModelClasses;
 using System.IO;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelConverters;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 {
@@ -67,7 +67,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         private string ratingAverage;
         private string ratingCount;
 
-        private int lastRating = 0;
+        private int lastRating;
 
         private const string ImgStarEmpty = "star_empty.png";
         private const string ImgStarHalfFilled = "star_half_filled.png";
@@ -93,59 +93,60 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
         private async void SetUserRatingUi()
         {
-            UserRating userRating = await IoCManager.Resolve<IUserRatingManager>().GetUserRatingAsync(exhibit.IdForRestApi);
-            SetAverageAndCountRating(userRating.Average, userRating.Count);
-            SetStarImages(userRating.Average);
-            SetRatingBars(userRating.RatingTable, userRating.Count);
-            RatingStar1 = ImgStarEmpty;
-            RatingStar2 = ImgStarEmpty;
-            RatingStar3 = ImgStarEmpty;
-            RatingStar4 = ImgStarEmpty;
-            RatingStar5 = ImgStarEmpty;
+            var ratingManager = IoCManager.Resolve<IUserRatingManager>();
+            try
+            {
+                var userRating = await ratingManager.GetUserRatingAsync(exhibit.IdForRestApi);
+                SetAverageAndCountRating(userRating.Average.ToString("0.#"), userRating.Count);
+                SetStarImages(userRating.Average);
+                SetRatingBars(userRating.RatingTable, userRating.Count);
+                SetRatingStars(Settings.IsLoggedIn && userRating.Count > 0 ? await ratingManager.GetPreviousUserRatingAsync(exhibit.IdForRestApi) : 0);
+
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e);
+                SetAverageAndCountRating("-", 0);
+                SetStarImages(0);
+                SetRatingBars(ratingManager.InitializeEmptyRatingTable(), 0);
+                SetRatingStars(0);
+                UserDialogs.Instance.Alert(new AlertConfig()
+                {
+                    Title = Strings.UserRating_Dialog_Title_No_Internet,
+                    Message = Strings.UserRating_Dialog_Message_No_Internet,
+                    OkText = Strings.Ok
+                });
+            }
         }
 
-        private void SetAverageAndCountRating(double average, int count)
+        private void SetAverageAndCountRating(string average, int count)
         {
-            if (count > 0)
-                RatingAverage = average.ToString("0.#");
-            else
-                RatingAverage = "-";
-            RatingCount = count.ToString() + " " + Strings.UserRating_Rate_Count;
+            RatingAverage = count > 0 ? average : "-";
+            RatingCount = count + " " + Strings.UserRating_Rate_Count;
         }
 
         private void SetStarImages(double average)
         {
-            if (average < 1)
-                Star1 = ImgStarEmpty;
-            else
-                Star1 = ImgStarFilled;
+            Star1 = average < 1 ? ImgStarEmpty : ImgStarFilled;
             if (average < 1.25)
                 Star2 = ImgStarEmpty;
-            else if ((average >= 1.25 && average < 1.75))
-                Star2 = ImgStarHalfFilled;
             else
-                Star2 = ImgStarFilled;
+                Star2 = (average >= 1.25 && average < 1.75) ? ImgStarHalfFilled : ImgStarFilled;
             if (average < 2.25)
                 Star3 = ImgStarEmpty;
-            else if ((average >= 2.25 && average < 2.75))
-                Star3 = ImgStarHalfFilled;
             else
-                Star3 = ImgStarFilled;
+                Star3 = (average >= 2.25 && average < 2.75) ? ImgStarHalfFilled : ImgStarFilled;
             if (average < 3.25)
                 Star4 = ImgStarEmpty;
-            else if ((average >= 3.25 && average < 3.75))
-                Star4 = ImgStarHalfFilled;
             else
-                Star4 = ImgStarFilled;
+                Star4 = (average >= 3.25 && average < 3.75) ? ImgStarHalfFilled : ImgStarFilled;
             if (average < 4.25)
                 Star5 = ImgStarEmpty;
-            else if ((average >= 4.25 && average < 4.75))
-                Star5 = ImgStarHalfFilled;
             else
-                Star5 = ImgStarFilled;
+                Star5 = (average >= 4.25 && average < 4.75) ? ImgStarHalfFilled : ImgStarFilled;
         }
 
-        private void SetRatingBars(Dictionary<int, int> ratingTable, int count)
+        private void SetRatingBars(IReadOnlyDictionary<int, int> ratingTable, int count)
         {
             Star5BarCount = ratingTable[5].ToString();
             Star4BarCount = ratingTable[4].ToString();
@@ -161,11 +162,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
         private GridLength CalculateBarProportion(double value, double totalCount)
         {
-            if (value == 0)
+            if (Math.Abs(value) <= 0)
                 return new GridLength(0, GridUnitType.Absolute);
-            if (value == totalCount)
+            if (Math.Abs(value - totalCount) <= 0)
                 return new GridLength(short.MaxValue, GridUnitType.Star);
-            double prop = (1 / (1 - value / totalCount) - 1);
+            var prop = (1 / (1 - value / totalCount) - 1);
             return new GridLength(prop, GridUnitType.Star);
         }
 
@@ -179,34 +180,29 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             SetRatingStars(Convert.ToInt32(s));
         }
 
+        /// <summary>
+        /// This method changes the star images. 
+        /// Only the star images where the images needed to be changed are set to reduce unnecessary image changing.
+        /// </summary>
+        /// <param name="rating"></param>
+        /// <returns></returns>
         private void SetRatingStars(int rating)
         {
-            if (rating > lastRating)
-            {
-                String img = ImgStarFilled;
-                if (lastRating == 0 && rating >= 1)
-                    RatingStar1 = img;
-                if (lastRating <= 1 && rating >= 2)
-                    RatingStar2 = img;
-                if (lastRating <= 2 && rating >= 3)
-                    RatingStar3 = img;
-                if (lastRating <= 3 && rating >= 4)
-                    RatingStar4 = img;
-                if (lastRating <= 4 && rating == 5)
-                    RatingStar5 = img;
-            }
-            else
-            {
-                String img = ImgStarEmpty;
-                if (lastRating == 5 && rating <= 4)
-                    RatingStar5 = img;
-                if (lastRating >= 4 && rating <= 3)
-                    RatingStar4 = img;
-                if (lastRating >= 3 && rating <= 2)
-                    RatingStar3 = img;
-                if (lastRating >= 2 && rating <= 1)
-                    RatingStar2 = img;
-            }
+            var ratingStar1Img = rating >= 1 ? ImgStarFilled : ImgStarEmpty;
+            if (RatingStar1 == null || !((FileImageSource) RatingStar1).File.Equals(ratingStar1Img))
+                RatingStar1 = ratingStar1Img;
+            var ratingStar2Img = rating >= 2 ? ImgStarFilled : ImgStarEmpty;
+            if (RatingStar2 == null || !((FileImageSource) RatingStar2).File.Equals(ratingStar2Img))
+                RatingStar2 = ratingStar2Img;
+            var ratingStar3Img = rating >= 3 ? ImgStarFilled : ImgStarEmpty;
+            if (RatingStar3 == null || !((FileImageSource) RatingStar3).File.Equals(ratingStar3Img))
+                RatingStar3 = ratingStar3Img;
+            var ratingStar4Img = rating >= 4 ? ImgStarFilled : ImgStarEmpty;
+            if (RatingStar4 == null || !((FileImageSource) RatingStar4).File.Equals(ratingStar4Img))
+                RatingStar4 = ratingStar4Img;
+            var ratingStar5Img = rating >= 5 ? ImgStarFilled : ImgStarEmpty;
+            if (RatingStar5 == null || !((FileImageSource) RatingStar5).File.Equals(ratingStar5Img))
+                RatingStar5 = ratingStar5Img;
             lastRating = rating;
         }
 
@@ -248,7 +244,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             {
                 Title = title,
                 Message = message,
-                OkText = Strings.UserRating_Ok
+                OkText = Strings.Ok
             });
         }
 

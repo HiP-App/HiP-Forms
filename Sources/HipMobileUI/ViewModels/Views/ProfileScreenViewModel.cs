@@ -54,7 +54,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 
         async void LogoutDummy()
         {
-            var result = await Navigation.DisplayAlert("Abmeldung", "Wollen Sie sich wirklich abmelden?", "Ja", "Nein");
+            var result = await Navigation.DisplayAlert(Strings.ProfileScreenViewModel_Dialog_Logout_Title
+                                                       , Strings.ProfileScreenViewModel_Dialog_Logout_Message
+                                                       , Strings.Yes, Strings.No);
             if (!result)
                 return;
             Settings.IsLoggedIn = false;
