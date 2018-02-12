@@ -45,6 +45,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
 
 		private void OnPaintSample(object sender, SKPaintSurfaceEventArgs e)
 		{
+
 			var surfaceWidth = e.Info.Width;
 			var surfaceHeight = e.Info.Height;
 
@@ -53,22 +54,26 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
 			using (var paint = new SKPaint())
 			{
 				canvas.Clear(Color.Blue.ToSKColor()); //paint it blue
-
-				var pathStroke = new SKPaint
+				using (var pathStroke = new SKPaint
 				{
 					IsAntialias = true,
 					Style = SKPaintStyle.StrokeAndFill,
 					Color = new SKColor(255, 204, 0),
 					StrokeWidth = 5
-				};
+				})
+				{
 
-				var path = new SKPath { FillType = SKPathFillType.EvenOdd };
-				path.MoveTo(surfaceWidth, 0);
-				path.LineTo(0, 0);
-				path.LineTo(0, surfaceHeight);
-				path.LineTo(surfaceWidth, 0);
-				path.Close();
-				canvas.DrawPath(path, pathStroke);
+					using (var path = new SKPath { FillType = SKPathFillType.EvenOdd })
+					{
+						path.MoveTo(surfaceWidth, 0);
+						path.LineTo(0, 0);
+						path.LineTo(0, surfaceHeight);
+						path.LineTo(surfaceWidth, 0);
+						path.Close(); canvas.DrawPath(path, pathStroke);
+					}
+
+
+				}
 			}
 		}
 
