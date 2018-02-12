@@ -65,7 +65,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Appearance
 
         private void ChangeToAdventurerTheme()
         {
-            barsColorsChanger.ChangeToolbarColor(GetResourceColor("AccentDarkColor"), GetResourceColor("AccentColor"));
+            barsColorsChanger.ChangeToolbarColor(GetResourceColor("SecondayDarkColor"), GetResourceColor("SecondaryColor"));
         }
 
         private void ChangeToProfessorTheme()
