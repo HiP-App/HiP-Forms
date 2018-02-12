@@ -79,10 +79,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
         public static void DeleteDatabase()
         {
             // delete from "cache" to see the changes instantly
-            var exhibitsSets = ExhibitManager.GetExhibitSets();
-            foreach (var exhibitsSet in exhibitsSets)
+            var exhibits = ExhibitManager.GetExhibits();
+            foreach (var exhibit in exhibits)
             {
-                ExhibitManager.DeleteExhibitSet(exhibitsSet);
+                ExhibitManager.DeleteExhibit(exhibit);
             }
 
             var routes = RouteManager.GetRoutes();

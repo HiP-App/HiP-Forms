@@ -29,7 +29,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 {
     public class NavigationPageViewModel : NavigationViewModel, ILocationListener
     {
-        private ExhibitSet exhibitSet;
         private GeoLocation gpsLocation;
         private readonly ILocationManager locationManager;
         private readonly INearbyExhibitManager nearbyExhibitManager;
@@ -70,12 +69,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             {
                 SkipExhibitVisited(exhibits);
             }
-        }
-
-        public ExhibitSet ExhibitSet
-        {
-            get { return exhibitSet; }
-            set { SetProperty(ref exhibitSet, value); }
         }
 
         public GeoLocation GpsLocation

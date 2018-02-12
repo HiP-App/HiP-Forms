@@ -25,7 +25,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
     {
         public RoutePreviewViewModel(Route route, INearbyRouteManager nearbyRouteManager)
         {
-            RouteTitle = route.Title;
+            RouteTitle = route.Name;
             RouteId = route.Id;
             Question = Strings.ExhibitOrRouteNearby_Question_Part1 + " \"" + RouteTitle + "\" " + Strings.ExhibitOrRouteNearby_Question_Part2;
             RouteDescription = route.Description;

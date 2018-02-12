@@ -44,7 +44,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         public RoutesOverviewListItemViewModel(Route route)
         {
             Route = route;
-            RouteTitle = Route.Title;
+            RouteTitle = Route.Name;
             RouteDescription = Route.Description;
             Duration = GetRouteDurationText(Route.Duration);
             Distance = GetRouteDistanceText(Route.Distance);

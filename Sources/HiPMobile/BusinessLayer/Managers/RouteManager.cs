@@ -60,44 +60,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
             }
             return true;
         }
-
-        /// <summary>
-        ///     Returns a RouteSet, with specific id
-        /// </summary>
-        /// <param name="id">The id of the specific RouteSet to be passed</param>
-        /// <returns></returns>
-        public static RouteSet GetRouteSet(string id)
-        {
-            if (!string.IsNullOrEmpty(id))
-            {
-                return DataAccess.GetItem<RouteSet>(id);
-            }
-            return null;
-        }
-
-        /// <summary>
-        ///     Returns all existing RouteSets
-        /// </summary>
-        /// <returns>The enumerable of all avaible route sets</returns>
-        public static IEnumerable<RouteSet> GetRouteSets()
-        {
-            return DataAccess.GetItems<RouteSet>();
-        }
-
-        /// <summary>
-        ///     Deletes the RouteSet
-        /// </summary>
-        /// <param name="routeSet"> The RouteSet to be deleted</param>
-        /// <returns>true, if deletion was sucessfull, false otherwise</returns>
-        public static bool DeleteRouteSet(RouteSet routeSet)
-        {
-            if (routeSet != null)
-            {
-                return DataAccess.DeleteItem<RouteSet>(routeSet.Id);
-            }
-            return true;
-        }
-
+        
         /// <summary>
         ///     Checks if a route is active
         /// </summary>

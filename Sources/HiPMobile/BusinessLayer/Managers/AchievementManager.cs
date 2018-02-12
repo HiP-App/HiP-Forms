@@ -116,9 +116,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
         /// <returns></returns>
         private static async Task PostVisitedExhibitsToApi()
         {
-            var exhibits = IoCManager.Resolve<IDataAccess>()
-                                     .GetItems<ExhibitSet>()
-                                     .SelectMany(set => set.ActiveSet);
+            var exhibits = IoCManager.Resolve<IDataAccess>().GetItems<Exhibit>();
             var visitedExhibitIds = exhibits.Where(e => e.Unlocked).Select(e => e.IdForRestApi).ToList();
             var action = new ExhibitsVisitedActionDto(visitedExhibitIds);
             await IoCManager.Resolve<IAchievementsApiAccess>().PostExhibitVisited(action);

@@ -12,8 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System;
-using System.Linq;
 using System.Text.RegularExpressions;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
@@ -70,9 +68,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelCo
 
                     foreach (var image in dto.Images)
                     {
-                        var longElement = DbManager.CreateBusinessObject<LongElement>();
-                        longElement.Value = image.Date;
-                        existingModelObject.TimeSliderPage.Dates.Add(longElement);
+                        existingModelObject.TimeSliderPage.Dates.Add(image.Date);
                     }
                     break;
                 case PageTypeDto.TextPage:

@@ -291,7 +291,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Map
             {
                 currentSectionOverlay = new Polyline(activity)
                 {
-                    Title = osmMap.DetailsRoute.Title,
+                    Title = osmMap.DetailsRoute.Name,
                     Width = 5f,
                     Color = ((Color)resources.GetResourceValue("AccentColor")).ToAndroid(),
                     //Color = Color.Orange,
@@ -300,7 +300,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Map
                 };
                 currentRouteOverlay = new Polyline(activity)
                 {
-                    Title = osmMap.DetailsRoute.Title,
+                    Title = osmMap.DetailsRoute.Name,
                     Width = 5f,
                     Color = ((Color)resources.GetResourceValue("PrimaryColor")).ToAndroid(),
                     //Color = Color.Blue,
@@ -312,7 +312,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Map
             {
                 currentRouteOverlay = new Polyline(activity)
                 {
-                    Title = osmMap.DetailsRoute.Title,
+                    Title = osmMap.DetailsRoute.Name,
                     Width = 5f,
 
                     Color = ((Color)resources.GetResourceValue("PrimaryColor")).ToAndroid(),

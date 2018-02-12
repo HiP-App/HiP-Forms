@@ -36,7 +36,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         private NavigationViewModel selectedViewModel;
         private IDisposable achievementsFeatureSubscription;
 
-        public MainPageViewModel() : this(ExhibitManager.GetExhibitSets().FirstOrDefault())
+        public MainPageViewModel() : this(ExhibitManager.GetExhibits().FirstOrDefault())
         {
         }
 

@@ -19,27 +19,28 @@
   limitations under the License.*/
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 {
-	
-	using System;
-	using System.Collections.Generic;
-	using System.Linq;
-	using System.Text;
 
-	public class ImagePage : IIdentifiable
-	{
-		//Attributes
-		public string Id { get; set; }
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
 
-		public virtual IList<StringElement> Texts { get; }
+    public class ImagePage : IIdentifiable
+    {
+        //Attributes
+        public string Id { get; set; }
 
-		public virtual IList<Rectangle> Areas { get; }
+        public virtual IList<string> Texts { get; }
 
-		//Associations
-		public virtual Image Image { get; set; }
+        public virtual IList<Rectangle> Areas { get; }
 
-		// Contructor
-		public ImagePage() {
-		}
-	}
+        //Associations
+        public virtual Image Image { get; set; }
+
+        // Contructor
+        public ImagePage()
+        {
+        }
+    }
 }
 

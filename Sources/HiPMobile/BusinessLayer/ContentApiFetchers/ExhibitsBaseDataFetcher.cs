@@ -107,7 +107,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
 
             if (fetchedChangedExhibits.Any())
             {
-                var exhibitSet = ExhibitManager.GetExhibitSets().SingleOrDefault();
+                var exhibitSet = ExhibitManager.GetExhibits().SingleOrDefault();
                 exhibitSet.Timestamp = fetchedChangedExhibits.Max(x => x.Timestamp);
             }
         }
@@ -141,14 +141,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
 
         private void ProcessNewExhibits(IProgressListener listener)
         {
-            var exhibitSet = ExhibitManager.GetExhibitSets().SingleOrDefault();
+            var exhibits = ExhibitManager.GetExhibits();
 
             foreach (var exhibitDto in newExhibits)
             {
                 var dbExhibit = ExhibitConverter.Convert(exhibitDto);
 
                 AddImageToExhibit(dbExhibit, exhibitDto.Image, fetchedMedia);
-                exhibitSet.ActiveSet.Add(dbExhibit);
+                exhibits.Add(dbExhibit);
                 listener.ProgressOneStep();
             }
         }
@@ -176,24 +176,20 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
 
         public async Task<bool> AnyExhibitChanged()
         {
-            ExhibitsDto exhibits;
-            var exhibitSet = ExhibitManager.GetExhibitSets().SingleOrDefault();
-            if (exhibitSet != null)
+            ExhibitsDto changedExhibits;
+
+            var dbExhibits = ExhibitManager.GetExhibits().ToList();
+            if (dbExhibits.Any())
             {
-                exhibits = await exhibitsApiAccess.GetExhibits(exhibitSet.Timestamp);
+                var latestTimestamp = dbExhibits.Max(x => x.Timestamp);
+                changedExhibits = await exhibitsApiAccess.GetExhibits(latestTimestamp);
             }
             else
             {
-                exhibits = await exhibitsApiAccess.GetExhibits();
-
-                using (DbManager.StartTransaction())
-                {
-                    DbManager.CreateBusinessObject<ExhibitSet>();
-                }
+                changedExhibits = await exhibitsApiAccess.GetExhibits();
             }
 
-            fetchedChangedExhibits = exhibits.Items;
-
+            fetchedChangedExhibits = changedExhibits.Items;
             return fetchedChangedExhibits.Any();
         }
     }
