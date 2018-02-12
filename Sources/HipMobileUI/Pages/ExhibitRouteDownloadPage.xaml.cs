@@ -22,7 +22,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
             base.OnSizeAllocated(width, height);
             if (width > height && orientation != DeviceOrientation.Landscape)
             {
-                orientation = DeviceOrientation.Landscape;
                 OuterGrid.RowDefinitions.Clear();
                 OuterGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
                 OuterGrid.ColumnDefinitions.Clear();
@@ -36,10 +35,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
                 InnerGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.8, GridUnitType.Star) });
                 InnerGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.2, GridUnitType.Star) });
                 Image.Margin = new Thickness(5, 5, 0, 5);
+                orientation = DeviceOrientation.Landscape;
             }
             else if (width < height && orientation != DeviceOrientation.Portrait)
             {
-                orientation = DeviceOrientation.Portrait;
                 OuterGrid.ColumnDefinitions.Clear();
                 OuterGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
                 OuterGrid.RowDefinitions.Clear();
@@ -53,6 +52,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
                 InnerGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.7, GridUnitType.Star) });
                 InnerGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.3, GridUnitType.Star) });
                 Image.Margin = new Thickness(5, 5, 5, 0);
+                orientation = DeviceOrientation.Portrait;
             }
         }
     }
