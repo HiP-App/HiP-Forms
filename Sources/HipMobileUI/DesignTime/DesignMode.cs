@@ -115,7 +115,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.DesignTime
             IoCManager.RegisterType<IDataLoader, EmbeddedResourceDataLoader>();
             IoCManager.RegisterInstance(typeof(INavigationService), NavigationService.Instance);
             IoCManager.RegisterInstance(typeof(IViewCreator), NavigationService.Instance);
-            IoCManager.RegisterType<IStatusBarController, DesignTimeStatusBarController>();
+            IoCManager.RegisterType<IStatusBarController, DesignModeStatusBarController>();
             IoCManager.RegisterType<IDataAccess, DesignModeDataAccess>();
             IoCManager.RegisterType<IThemeManager, DesignModeThemeManager>();
             IoCManager.RegisterType<ILocationManager, DesignModeLocationManager>();

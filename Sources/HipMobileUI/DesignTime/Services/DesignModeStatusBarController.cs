@@ -16,14 +16,9 @@ using PaderbornUniversity.SILab.Hip.Mobile.UI.Contracts;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.DesignTime.Services
 {
-    public class DesignTimeStatusBarController : IStatusBarController
+    public class DesignModeStatusBarController : IStatusBarController
     {
-        public void HideStatusBar()
-        {
-        }
-
-        public void ShowStatusBar()
-        {
-        }
+        public void HideStatusBar() { }
+        public void ShowStatusBar() { }
     }
 }
