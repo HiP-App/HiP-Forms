@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+// Copyright (C) 2017 History in Paderborn App - Universität Paderborn
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+-->
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+		   	 Title="{Binding PageTitle}"
+			 xmlns:helpers="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;assembly=HipMobileUI"
+	         xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Pages.AdventurerDetailsView">
+    <ContentPage.Content>
+        <AbsoluteLayout BackgroundColor="{Binding MainScreenColor}">
+            <Image Source="{Binding Image}" AbsoluteLayout.LayoutBounds=".15,.4,.4,.4" AbsoluteLayout.LayoutFlags="All" />
+            <Label x:Name="AdventurerLabel"
+	                Text="{Binding PageDetails}"
+			        TextColor="Black" FontSize="Medium"
+			        AbsoluteLayout.LayoutBounds=".9,.6,.4,.4" AbsoluteLayout.LayoutFlags="All" />
+            <BoxView AbsoluteLayout.LayoutBounds=".5,1.0,1.0,.20" AbsoluteLayout.LayoutFlags="All" Color="White" />
+            <Button x:Name="SelectModeButton"
+							BackgroundColor ="{Binding SelectModeButton}"
+							TextColor="Black"
+							AbsoluteLayout.LayoutBounds=".5,.89,.5,.07" AbsoluteLayout.LayoutFlags="All"
+                            Text="{helpers:Translate CharacterDetailsPage_SelectModeButton}"
+                            Command="{Binding SelectModeCommand}" />
+            <Button x:Name="ChangeModeButton"
+							BackgroundColor ="{Binding ChangeModeButton}"
+							TextColor="Black"
+                            AbsoluteLayout.LayoutBounds=".5,.97,.5,.07" AbsoluteLayout.LayoutFlags="All"
+                            Text="{helpers:Translate CharacterDetailsPage_ChangeModeButton}"
+                            Command="{Binding ChangeModeCommand}" />
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>
