@@ -36,7 +36,7 @@ using PaderbornUniversity.SILab.Hip.Mobile.UI.Appearance;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 {
-    public class ExhibitDetailsViewModel : NavigationViewModel, IDbChangedObserver
+    public class ExhibitDetailsPageViewModel : NavigationViewModel, IDbChangedObserver
     {
         private ExhibitSubviewViewModel selectedView;
         private AudioToolbarViewModel audioToolbar;
@@ -58,11 +58,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         private readonly bool additionalInformation;
         private string pagenumber;
 
-        public ExhibitDetailsViewModel(string exhibitId) : this(ExhibitManager.GetExhibit(exhibitId)) { }
+        public ExhibitDetailsPageViewModel(string exhibitId) : this(ExhibitManager.GetExhibit(exhibitId)) { }
 
-        public ExhibitDetailsViewModel(Exhibit exhibit) : this(exhibit, exhibit.Pages, exhibit.Name) { }
+        public ExhibitDetailsPageViewModel(Exhibit exhibit) : this(exhibit, exhibit.Pages, exhibit.Name) { }
 
-        public ExhibitDetailsViewModel(Exhibit exhibit, IList<Page> pages, string title, bool additionalInformation = false)
+        public ExhibitDetailsPageViewModel(Exhibit exhibit, IList<Page> pages, string title, bool additionalInformation = false)
         {
             Exhibit = exhibit;
             this.additionalInformation = additionalInformation;
@@ -114,7 +114,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         {
             var currentPage = pages[currentViewIndex];
 
-            Navigation.PushAsync(new ExhibitDetailsViewModel(Exhibit, currentPage.AdditionalInformationPages, Strings.ExhibitDetailsPage_AdditionalInformation, true));
+            Navigation.PushAsync(new ExhibitDetailsPageViewModel(Exhibit, currentPage.AdditionalInformationPages, Strings.ExhibitDetailsPage_AdditionalInformation, true));
         }
 
         private CancellationTokenSource tokenSource;

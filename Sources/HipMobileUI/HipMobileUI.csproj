@@ -161,7 +161,7 @@
     <Compile Include="Properties\Annotations3.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\NavigationViewModel.cs" />
-    <Compile Include="ViewModels\Pages\ExhibitDetailsViewModel.cs" />
+    <Compile Include="ViewModels\Pages\ExhibitDetailsPageViewModel.cs" />
     <Compile Include="ViewModels\Pages\AudioTranscript\AudioTranscriptViewModel.cs" />
     <Compile Include="ViewModels\Pages\AudioTranscript\SourcesViewModel.cs" />
     <Compile Include="ViewModels\Pages\AudioTranscript\SubtitleViewModel.cs" />
@@ -177,12 +177,12 @@
     <Compile Include="ViewModels\Pages\MainPageViewModel.cs" />
     <Compile Include="ViewModels\Pages\RouteDetailsPageViewModel.cs" />
     <Compile Include="ViewModels\Views\DummyViewModel.cs" />
-    <Compile Include="ViewModels\Views\ExhibitPreviewViewModel.cs" />
+    <Compile Include="ViewModels\Pages\ExhibitPreviewPageViewModel.cs" />
     <Compile Include="ViewModels\Pages\ExhibitRouteDownloadPageViewModel.cs" />
     <Compile Include="ViewModels\Views\ExhibitsOverviewListItemViewModel.cs" />
     <Compile Include="ViewModels\Views\ExhibitsOverviewViewModel.cs" />
     <Compile Include="ViewModels\Views\LicenseScreenViewModel.cs" />
-    <Compile Include="ViewModels\Views\RoutePreviewViewModel.cs" />
+    <Compile Include="ViewModels\Pages\RoutePreviewPageViewModel.cs" />
     <Compile Include="Views\LoginScreenView.xaml.cs">
       <DependentUpon>LoginScreenView.xaml</DependentUpon>
     </Compile>
@@ -190,8 +190,8 @@
       <DependentUpon>AudioToolbarView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\Views\SettingsScreenViewModel.cs" />
-    <Compile Include="Views\ExhibitPreviewView.xaml.cs">
-      <DependentUpon>ExhibitPreviewView.xaml</DependentUpon>
+    <Compile Include="Pages\ExhibitPreviewPage.xaml.cs">
+      <DependentUpon>ExhibitPreviewPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\ExhibitRouteDownloadPage.xaml.cs">
       <DependentUpon>ExhibitRouteDownloadPage.xaml</DependentUpon>
@@ -222,8 +222,8 @@
       <DependentUpon>ExhibitsOverviewView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ReferenceLink.cs" />
-    <Compile Include="Views\RoutePreviewView.xaml.cs">
-      <DependentUpon>RoutePreviewView.xaml</DependentUpon>
+    <Compile Include="Pages\RoutePreviewPage.xaml.cs">
+      <DependentUpon>RoutePreviewPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\RoutesOverviewView.xaml.cs">
       <DependentUpon>RoutesOverviewView.xaml</DependentUpon>
@@ -248,11 +248,11 @@
     <Compile Include="Pages\AchievementsDetailsRoutePage.xaml.cs">
       <DependentUpon>AchievementsDetailsRoutePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\Views\AchievementsDetailsRouteViewModel.cs" />
+    <Compile Include="ViewModels\Pages\AchievementsDetailsRoutePageViewModel.cs" />
     <Compile Include="Pages\AchievementsDetailsExhibitPage.xaml.cs">
       <DependentUpon>AchievementsDetailsExhibitPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\Views\AchievementsDetailsExhibitViewModel.cs" />
+    <Compile Include="ViewModels\Pages\AchievementsDetailsExhibitPageViewModel.cs" />
     <Compile Include="Pages\CharacterDetailsPage.xaml.cs">
       <DependentUpon>CharacterDetailsPage.xaml</DependentUpon>
     </Compile>
@@ -540,13 +540,13 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\ExhibitPreviewView.xaml">
+    <EmbeddedResource Include="Pages\ExhibitPreviewPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\RoutePreviewView.xaml">
+    <EmbeddedResource Include="Pages\RoutePreviewPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
