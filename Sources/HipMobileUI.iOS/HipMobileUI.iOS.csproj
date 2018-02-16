@@ -97,7 +97,6 @@
     <Compile Include="Contracts\IosAppCloser.cs" />
     <Compile Include="Contracts\IosAudioPlayer.cs" />
     <Compile Include="Contracts\IosBarsColorsChanger.cs" />
-    <Compile Include="Contracts\IosDbConnectionProvider.cs" />
     <Compile Include="Contracts\IosImageDimensions.cs" />
     <Compile Include="Contracts\IosMediaFileManager.cs" />
     <Compile Include="Contracts\IosNetworkAccessChecker.cs" />
@@ -169,6 +168,9 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MaterialControls" Version="1.2.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite">
+      <Version>2.0.1</Version>
+    </PackageReference>
     <PackageReference Include="System.Reflection.Emit" Version="4.3.0">
       <ExcludeAssets>all</ExcludeAssets>
     </PackageReference>

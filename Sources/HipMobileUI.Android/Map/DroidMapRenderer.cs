@@ -34,6 +34,7 @@ using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Map;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
+using System.Collections.Generic;
 
 [assembly: ExportRenderer(typeof(OsmMap), typeof(DroidMapRenderer))]
 
@@ -119,7 +120,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Map
         /// Displays all markers on Mainmap and updates it if set changes
         /// </summary>
         /// <param name="set"></param>
-        private void NewElementOnExhibitSetChanged(ExhibitSet set)
+        private void NewElementOnExhibitSetChanged(IReadOnlyList<Exhibit> set)
         {
             SetMainScreenMarkers(set);
         }
@@ -205,7 +206,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Map
 
         //Here all Markers for the Exhibits in the Main Map are set
         //and some general stuff
-        private void SetMainScreenMarkers(ExhibitSet set)
+        private void SetMainScreenMarkers(IReadOnlyList<Exhibit> set)
         {
             locationOverlay = new MyLocationOverlay(activity, mapView);
             var compassOverlay = new CompassOverlay(activity, mapView);
@@ -220,7 +221,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Map
                 var mapMarkerIcon = ContextCompat.GetDrawable(activity, Resource.Drawable.marker_blue);
                 var setMarker = new SetMarker(mapView, markerInfoWindow);
 
-                foreach (var e in set.ActiveSet)
+                foreach (var e in set)
                 {
                     //One Marker Object
                     var geoPoint = new GeoPoint(e.Location.Latitude, e.Location.Longitude);

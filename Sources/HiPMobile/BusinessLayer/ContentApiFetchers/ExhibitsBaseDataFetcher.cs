@@ -141,14 +141,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
 
         private void ProcessNewExhibits(IProgressListener listener)
         {
-            var exhibits = ExhibitManager.GetExhibits();
-
             foreach (var exhibitDto in newExhibits)
             {
                 var dbExhibit = ExhibitConverter.Convert(exhibitDto);
 
                 AddImageToExhibit(dbExhibit, exhibitDto.Image, fetchedMedia);
-                exhibits.Add(dbExhibit);
+                ExhibitManager.AddExhibit(dbExhibit);
                 listener.ProgressOneStep();
             }
         }

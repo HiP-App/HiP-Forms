@@ -12,13 +12,16 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 {
     public partial class Exhibit : IIdentifiable, IDownloadable
     {
+
         //Attributes
         public string Id { get; set; }
 
@@ -26,7 +29,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 
         public string Description { get; set; }
 
-        public GeoLocation Location { get; set; }
+        [NotMapped]
+        public GeoLocation Location
+        {
+            get => GeoLocationConverter.FromString(LocationAsString);
+            set => LocationAsString = GeoLocationConverter.ToString(value);
+        }
+
+        public string LocationAsString { get; set; }
 
         public IList<string> Categories { get; }
 

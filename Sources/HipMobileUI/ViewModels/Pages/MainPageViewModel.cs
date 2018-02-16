@@ -22,6 +22,7 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
+using System.Collections.Generic;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 {
@@ -36,11 +37,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         private NavigationViewModel selectedViewModel;
         private IDisposable achievementsFeatureSubscription;
 
-        public MainPageViewModel() : this(ExhibitManager.GetExhibits().FirstOrDefault())
+        public MainPageViewModel() : this(ExhibitManager.GetExhibits().ToList())
         {
         }
 
-        public MainPageViewModel(ExhibitSet set)
+        public MainPageViewModel(IReadOnlyList<Exhibit> exhibits)
         {
             profileScreenViewModel = new ProfileScreenViewModel(this)
             {
@@ -71,7 +72,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             };
             MainScreenViewModels = new ObservableCollection<NavigationViewModel>
             {
-                new ExhibitsOverviewViewModel(set)
+                new ExhibitsOverviewViewModel(exhibits)
                 {
                     Title = Strings.MainPageViewModel_OverviewPage,
                     Icon = "ic_home.png"

@@ -12,23 +12,22 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System.Data;
-using System.IO;
-using Mono.Data.Sqlite;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
+using Microsoft.EntityFrameworkCore.Storage;
+using System;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Contracts
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
 {
-    public class AndroidDbConnectionProvider: IDbConnectionProvider
+    class EFCoreTransaction : BaseTransaction
     {
-        public IDbConnection ProvideIDbConnection(string dbPath)
-        {
-            if (!File.Exists(dbPath))
-            {
-                SqliteConnection.CreateFile(dbPath);
-            }
+        private readonly IDbContextTransaction _transaction;
 
-            return new SqliteConnection($"Data Source={dbPath};Version=3;");
+        public EFCoreTransaction(IDbContextTransaction transaction)
+        {
+            _transaction = transaction ?? throw new ArgumentNullException(nameof(transaction));
         }
+
+        public override void Commit() => _transaction.Commit();
+
+        public override void Rollback() => _transaction.Rollback();
     }
 }

@@ -12,6 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 {
     public class Waypoint : IIdentifiable
@@ -19,14 +22,21 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
         //Attributes
         public string Id { get; set; }
 
-        public virtual GeoLocation Location { get; set; }
+        [NotMapped]
+        public GeoLocation Location
+        {
+            get => GeoLocationConverter.FromString(LocationAsString);
+            set => LocationAsString = GeoLocationConverter.ToString(value);
+        }
 
-        public virtual bool Visited { get; set; }
+        public string LocationAsString { get; set; }
+
+        public bool Visited { get; set; }
 
         //Associations
-        public virtual Exhibit Exhibit { get; set; }
+        public Exhibit Exhibit { get; set; }
 
-        // Contructor
+        //Contructor
         public Waypoint()
         {
         }

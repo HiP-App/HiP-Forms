@@ -15,6 +15,7 @@
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
+using System;
 using System.Collections.Generic;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
@@ -47,6 +48,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
         public static IEnumerable<Exhibit> GetExhibits()
         {
             return DataAccess.GetItems<Exhibit>();
+        }
+
+        public static bool AddExhibit(Exhibit exhibit)
+        {
+            // TODO: Implement ExhibitManager.AddExhibit(Exhibit)
+            throw new NotImplementedException();
         }
 
         /// <summary>

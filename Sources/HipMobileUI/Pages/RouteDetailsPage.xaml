@@ -50,10 +50,13 @@
                                         ChildElements="{Binding Tags, Converter= {StaticResource RouteTagViewListConverter}}" />
                                 </StackLayout>
                             </ScrollView>
+
+                            <BoxView x:Name="Map" BackgroundColor="Magenta"/>
+                            <!-- TODO: Fix OsmMap
                             <map:OsmMap x:Name="Map" ExhibitSet="{Binding ExhibitSet}" GpsLocation="{Binding GpsLocation}"
                                         DetailsRoute="{Binding DetailsRoute}" ShowDetailsRoute="{Binding ShowDetailsRoute}"
                                         HorizontalOptions="FillAndExpand"
-                                        VerticalOptions="FillAndExpand" BackgroundColor="Transparent" />
+                                        VerticalOptions="FillAndExpand" BackgroundColor="Transparent" />-->
                         </container1:TabContainerView.TabViews>
                     </container1:TabContainerView>
                     

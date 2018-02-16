@@ -31,7 +31,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
         /// </summary>
         /// <typeparam name="T">The type of the object being created. T needs to be subtype of RealmObject and implement the IIdentifiable interface.</typeparam>
         /// <returns>The instance.</returns>
-        public static T CreateBusinessObject<T>() where T : IIdentifiable, new()
+        public static T CreateBusinessObject<T>() where T : class, IIdentifiable, new()
         {
             return DataAccess.CreateObject<T>();
         }
@@ -43,7 +43,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
         /// <param name="updateCurrent">If true, first removes any object of the same type with the id.</param>
         /// <typeparam name="T">The type of the object being created. T needs to be subtype of RealmObject and implement the IIdentifiable interface.</typeparam>
         /// <returns>The instance.</returns>
-        public static T CreateBusinessObject<T>([NotNull] string id, bool updateCurrent = false) where T : IIdentifiable, new()
+        public static T CreateBusinessObject<T>([NotNull] string id, bool updateCurrent = false) where T : class, IIdentifiable, new()
         {
             return DataAccess.CreateObject<T>(id, updateCurrent);
         }
@@ -54,7 +54,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
         /// <typeparam name="T">The type of the object. T needs to be subtype of RealmObject and implement the IIdentifiable interface.</typeparam>
         /// <param name="entitiy">The object to be deleted.</param>
         /// <returns>True if deletion was successful. False otherwise.</returns>
-        public static bool DeleteBusinessEntity<T>(T entitiy) where T : IIdentifiable
+        public static bool DeleteBusinessEntity<T>(T entitiy) where T : class, IIdentifiable
         {
             if (entitiy != null)
             {

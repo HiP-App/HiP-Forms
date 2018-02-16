@@ -25,7 +25,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelCo
     /// </summary>
     /// <typeparam name="TModelObject"></typeparam>
     /// <typeparam name="TDtoObject"></typeparam>
-    public abstract class DtoToModelConverter<TModelObject, TDtoObject> where TModelObject : IIdentifiable, new()
+    public abstract class DtoToModelConverter<TModelObject, TDtoObject> where TModelObject : class, IIdentifiable, new()
     {
         /// <summary>
         /// Converts the given <paramref name="dto"/> to a new model object
