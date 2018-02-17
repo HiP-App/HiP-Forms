@@ -22,9 +22,9 @@ using System.Text;
 using System.Threading.Tasks;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Contracts
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Common
 {
-    public class IosMediaFileManager : IMediaFileManager
+    public class MediaFileManager: IMediaFileManager
     {
         private static string MediaFolderPath
         {
@@ -56,6 +56,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Contracts
             {
                 await fs.WriteAsync(bytes, 0, bytes.Length);
             }
+
             using (var fs = new FileStream(restIdPath, FileMode.Create))
             {
                 var buffer = Encoding.UTF8.GetBytes(timestamp.ToString("o", CultureInfo.InvariantCulture)); // ISO 8601
@@ -64,8 +65,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Contracts
 
             return filePath;
         }
-
-        public byte[] ReadFromDisk(string filePath) => File.ReadAllBytes(filePath);
 
         public async Task<byte[]> ReadFromDiskAsync(string filePath)
         {
@@ -79,6 +78,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Contracts
                 }
             }
         }
+
+        public byte[] ReadFromDisk(string filePath) => File.ReadAllBytes(filePath);
 
         public Task PruneAsync(IList<int> restApiIdsToKeep)
         {
@@ -94,6 +95,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Contracts
                     File.Delete(mediaFile + RestApiTimestampPathSuffix);
                 }
             }
+
             return Task.CompletedTask;
         }
 
@@ -111,6 +113,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Contracts
 
                 Debug.WriteLine($"Warning: Found invalid media file timestamp '{stringTimestamp}'");
             }
+
             return false;
         }
 

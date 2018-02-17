@@ -59,7 +59,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
             dataAccess.CreateDatabase(0); // ensures the database exists and is up to date
 
             IoCManager.RegisterType<IImageDimension, AndroidImageDimensions>();
-            IoCManager.RegisterType<IMediaFileManager, AndroidMediaFileManager>();
             IoCManager.RegisterType<IAppCloser, AndroidAppCloser>();
 
             TabLayoutResource = Resource.Layout.Tabbar;
@@ -94,7 +93,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
             Forms.Init(this, bundle);
             Xamarin.FormsMaps.Init(this, bundle);
 
-            UserDialogs.Init(() => (Activity)Forms.Context);
+            UserDialogs.Init(() => (Activity) Forms.Context);
 
             LoadApplication(new App());
         }
