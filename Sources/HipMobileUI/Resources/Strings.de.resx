@@ -139,7 +139,7 @@
     <value>Credits der Bilder im Autokarussell</value>
   </data>
   <data name="LicenseScreenView_CSL_Text" xml:space="preserve">
-    <value>Von &lt;a href="http://commonservicelocator.codeplex.com"&gt;Microsoft&lt;/a&gt;, lizensiert unter &lt;a href="http://commonservicelocator.codeplex.com/license"&gt;Ms-PL&lt;/a&gt;. Es wurden keine Änderungen vorgenommen.</value>
+    <value>Von &lt;a href="http://commonservicelocator.codeplex.com"&gt;Microsoft&lt;/a&gt;, lizenziert unter &lt;a href="http://commonservicelocator.codeplex.com/license"&gt;Ms-PL&lt;/a&gt;. Es wurden keine Änderungen vorgenommen.</value>
   </data>
   <data name="LicenseScreenView_CSL_Title" xml:space="preserve">
     <value>Common Service Locator</value>
@@ -157,7 +157,7 @@
     <value>Feedback-Daten</value>
   </data>
   <data name="LicenseScreenView_Fody_Text" xml:space="preserve">
-    <value>Von &lt;a href="https://github.com/Fody/Fody"&gt;Simon Cropp&lt;/a&gt;, lizensiert unter &lt;a href="https://opensource.org/licenses/mit-license.php"&gt;MIT&lt;/a&gt;. Es wurden keine Änderungen vorgenommen.</value>
+    <value>Von &lt;a href="https://github.com/Fody/Fody"&gt;Simon Cropp&lt;/a&gt;, lizenziert unter &lt;a href="https://opensource.org/licenses/mit-license.php"&gt;MIT&lt;/a&gt;. Es wurden keine Änderungen vorgenommen.</value>
   </data>
   <data name="LicenseScreenView_Fody_Title" xml:space="preserve">
     <value>Fody</value>
@@ -169,7 +169,7 @@
     <value>Weitergehende Informationen</value>
   </data>
   <data name="LicenseScreenView_HockeyApp_Text" xml:space="preserve">
-    <value>Von &lt;a href="https://github.com/bitstadium/HockeySDK-Android"&gt;Microsoft&lt;/a&gt;, lizensiert unter &lt;a href="https://raw.githubusercontent.com/bitstadium/HockeySDK-Xamarin/master/LICENSE.md"&gt;Lizenz&lt;/a&gt;. Es wurden keine Änderungen vorgenommen.</value>
+    <value>Von &lt;a href="https://github.com/bitstadium/HockeySDK-Android"&gt;Microsoft&lt;/a&gt;, lizenziert unter &lt;a href="https://raw.githubusercontent.com/bitstadium/HockeySDK-Xamarin/master/LICENSE.md"&gt;Lizenz&lt;/a&gt;. Es wurden keine Änderungen vorgenommen.</value>
   </data>
   <data name="LicenseScreenView_HockeyApp_Title" xml:space="preserve">
     <value>HockeyApp</value>
@@ -197,7 +197,7 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
     <value>Impressum</value>
   </data>
   <data name="LicenseScreenView_Itinero_Text" xml:space="preserve">
-    <value>Von &lt;a href="https://github.com/Itinero"&gt;Ben Abelshausen&lt;/a&gt;, lizensiert unter &lt;a href="https://opensource.org/licenses/Apache-2.0"&gt;Apache License 2.0&lt;/a&gt; durch Erlaubnis. Es wurden keine Änderungen vorgenommen.</value>
+    <value>Von &lt;a href="https://github.com/Itinero"&gt;Ben Abelshausen&lt;/a&gt;, lizenziert unter &lt;a href="https://opensource.org/licenses/Apache-2.0"&gt;Apache License 2.0&lt;/a&gt; durch Erlaubnis. Es wurden keine Änderungen vorgenommen.</value>
   </data>
   <data name="LicenseScreenView_Itinero_Title" xml:space="preserve">
     <value>Itinero</value>
@@ -212,31 +212,31 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
     <value>Lizenzen</value>
   </data>
   <data name="LicenseScreenView_MapIcons_Text" xml:space="preserve">
-    <value>Von &lt;a href="https://mapicons.mapsmarker.com/"&gt;Maps Icons Collection&lt;/a&gt;, lizensiert unter &lt;a href="http://creativecommons.org/licenses/by-sa/3.0/"&gt;CC-BY-SA 3.0&lt;/a&gt;. Es wurden keine Änderungen vorgenommen.</value>
+    <value>Von &lt;a href="https://mapicons.mapsmarker.com/"&gt;Maps Icons Collection&lt;/a&gt;, lizenziert unter &lt;a href="http://creativecommons.org/licenses/by-sa/3.0/"&gt;CC-BY-SA 3.0&lt;/a&gt;. Es wurden keine Änderungen vorgenommen.</value>
   </data>
   <data name="LicenseScreenView_MapIcons_Title" xml:space="preserve">
     <value>Map Icons</value>
   </data>
   <data name="LicenseScreenView_MaterialIcons_Text" xml:space="preserve">
-    <value>Von &lt;a href="https://design.google.com/icons/"&gt;Google&lt;/a&gt;, lizensiert unter &lt;a href="https://opensource.org/licenses/Apache-2.0"&gt;Apache License 2.0&lt;/a&gt;. Es wurden keine Änderungen vorgenommen.</value>
+    <value>Von &lt;a href="https://design.google.com/icons/"&gt;Google&lt;/a&gt;, lizenziert unter &lt;a href="https://opensource.org/licenses/Apache-2.0"&gt;Apache License 2.0&lt;/a&gt;. Es wurden keine Änderungen vorgenommen.</value>
   </data>
   <data name="LicenseScreenView_MaterialIcons_Title" xml:space="preserve">
     <value>Material Icons</value>
   </data>
   <data name="LicenseScreenView_OSMBonusPack_Text" xml:space="preserve">
-    <value>Von &lt;a href="https://github.com/MKergall/osmbonuspack"&gt;MKergall&lt;/a&gt;, lizensiert unter &lt;a href="https://raw.githubusercontent.com/MKergall/osmbonuspack/master/LICENSE.md"&gt;GNU Lesser General Public License 3.0 (LGPL 3.0)&lt;/a&gt; (ohne §5.d und §5.e). Es wurden keine Änderungen vorgenommen.</value>
+    <value>Von &lt;a href="https://github.com/MKergall/osmbonuspack"&gt;MKergall&lt;/a&gt;, lizenziert unter &lt;a href="https://raw.githubusercontent.com/MKergall/osmbonuspack/master/LICENSE.md"&gt;GNU Lesser General Public License 3.0 (LGPL 3.0)&lt;/a&gt; (ohne §5.d und §5.e). Es wurden keine Änderungen vorgenommen.</value>
   </data>
   <data name="LicenseScreenView_OSMBonusPack_Title" xml:space="preserve">
     <value>OSMBonusPack</value>
   </data>
   <data name="LicenseScreenView_Osmdroid_Text" xml:space="preserve">
-    <value>Von &lt;a href="https://github.com/osmdroid/osmdroid"&gt;osmdroid&lt;/a&gt;, lizensiert unter &lt;a href="https://raw.githubusercontent.com/osmdroid/osmdroid/master/LICENSE"&gt;Apache License 2.0&lt;/a&gt;. Es wurden keine Änderungen vorgenommen.</value>
+    <value>Von &lt;a href="https://github.com/osmdroid/osmdroid"&gt;osmdroid&lt;/a&gt;, lizenziert unter &lt;a href="https://raw.githubusercontent.com/osmdroid/osmdroid/master/LICENSE"&gt;Apache License 2.0&lt;/a&gt;. Es wurden keine Änderungen vorgenommen.</value>
   </data>
   <data name="LicenseScreenView_Osmdroid_Title" xml:space="preserve">
     <value>osmdroid</value>
   </data>
   <data name="LicenseScreenView_OsmSharp_Text" xml:space="preserve">
-    <value>Von &lt;a href="https://osmsharp.com/"&gt;Ben Abelshausen&lt;/a&gt;, lizensiert unter &lt;a href="https://opensource.org/licenses/mit-license.php"&gt;MIT&lt;/a&gt;. Es wurden keine Änderungen vorgenommen.</value>
+    <value>Von &lt;a href="https://osmsharp.com/"&gt;Ben Abelshausen&lt;/a&gt;, lizenziert unter &lt;a href="https://opensource.org/licenses/mit-license.php"&gt;MIT&lt;/a&gt;. Es wurden keine Änderungen vorgenommen.</value>
   </data>
   <data name="LicenseScreenView_OsmSharp_Title" xml:space="preserve">
     <value>OsmSharp</value>
@@ -248,13 +248,13 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
     <value>Datenschutzerklärung</value>
   </data>
   <data name="LicenseScreenView_Realm_Text" xml:space="preserve">
-    <value>Von &lt;a href="https://github.com/realm/realm-java"&gt;Realm&lt;/a&gt;, lizensiert unter &lt;a href="https://raw.githubusercontent.com/realm/realm-java/master/LICENSE"&gt;Apache License 2.0&lt;/a&gt;. Es wurden keine Änderungen vorgenommen.</value>
+    <value>Von &lt;a href="https://github.com/realm/realm-java"&gt;Realm&lt;/a&gt;, lizenziert unter &lt;a href="https://raw.githubusercontent.com/realm/realm-java/master/LICENSE"&gt;Apache License 2.0&lt;/a&gt;. Es wurden keine Änderungen vorgenommen.</value>
   </data>
   <data name="LicenseScreenView_Realm_Title" xml:space="preserve">
     <value>Realm for Android</value>
   </data>
   <data name="LicenseScreenView_Reminiscence_Text" xml:space="preserve">
-    <value>Von &lt;a href="https://github.com/itinero/reminiscence/"&gt;Ben Abelshausen&lt;/a&gt;, lizensiert unter &lt;a href="https://opensource.org/licenses/mit-license.php"&gt;MIT&lt;/a&gt;. Es wurden keine Änderungen vorgenommen.</value>
+    <value>Von &lt;a href="https://github.com/itinero/reminiscence/"&gt;Ben Abelshausen&lt;/a&gt;, lizenziert unter &lt;a href="https://opensource.org/licenses/mit-license.php"&gt;MIT&lt;/a&gt;. Es wurden keine Änderungen vorgenommen.</value>
   </data>
   <data name="LicenseScreenView_Reminiscence_Title" xml:space="preserve">
     <value>Reminiscence</value>
@@ -266,7 +266,7 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
     <value>Rechtlicher Status der Datenschutzerklärung</value>
   </data>
   <data name="LicenseScreenView_SettingsPlugin_Text" xml:space="preserve">
-    <value>Von &lt;a href="https://github.com/jamesmontemagno/SettingsPlugin"&gt;James Montemagno&lt;/a&gt;, lizensiert unter &lt;a href="https://github.com/jamesmontemagno/SettingsPlugin/blob/master/LICENSE"&gt;MIT&lt;/a&gt;. Es wurden keine Änderungen vorgenommen.</value>
+    <value>Von &lt;a href="https://github.com/jamesmontemagno/SettingsPlugin"&gt;James Montemagno&lt;/a&gt;, lizenziert unter &lt;a href="https://github.com/jamesmontemagno/SettingsPlugin/blob/master/LICENSE"&gt;MIT&lt;/a&gt;. Es wurden keine Änderungen vorgenommen.</value>
   </data>
   <data name="LicenseScreenView_SettingsPlugin_Title" xml:space="preserve">
     <value>Settings Plugin</value>
@@ -284,7 +284,7 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
     <value>Sichtbarkeit der Daten / Transparenz</value>
   </data>
   <data name="LicenseScreenView_Unity_Text" xml:space="preserve">
-    <value>Von &lt;a href="https://github.com/unitycontainer/unity"&gt;Microsoft&lt;/a&gt;, lizensiert unter &lt;a href="https://opensource.org/licenses/Apache-2.0"&gt;Apache License 2.0&lt;/a&gt;. Es wurden keine Änderungen vorgenommen.</value>
+    <value>Von &lt;a href="https://github.com/unitycontainer/unity"&gt;Microsoft&lt;/a&gt;, lizenziert unter &lt;a href="https://opensource.org/licenses/Apache-2.0"&gt;Apache License 2.0&lt;/a&gt;. Es wurden keine Änderungen vorgenommen.</value>
   </data>
   <data name="LicenseScreenView_Unity_Title" xml:space="preserve">
     <value>Unity</value>
@@ -296,7 +296,7 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
     <value>Erhebung, Verarbeitung und Nutzung personenbezogener Daten</value>
   </data>
   <data name="LicenseScreenView_XSL_Text" xml:space="preserve">
-    <value>Von &lt;a href="https://github.com/xamarin/AndroidSupportComponents"&gt;Xamarin&lt;/a&gt;, lizensiert unter &lt;a href="https://github.com/xamarin/AndroidSupportComponents/blob/master/LICENSE.md"&gt;MIT&lt;/a&gt;. Es wurden keine Änderungen vorgenommen.</value>
+    <value>Von &lt;a href="https://github.com/xamarin/AndroidSupportComponents"&gt;Xamarin&lt;/a&gt;, lizenziert unter &lt;a href="https://github.com/xamarin/AndroidSupportComponents/blob/master/LICENSE.md"&gt;MIT&lt;/a&gt;. Es wurden keine Änderungen vorgenommen.</value>
   </data>
   <data name="LicenseScreenView_XSL_Title" xml:space="preserve">
     <value>Xamarin Support Libraries</value>
@@ -473,7 +473,7 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
     <value>Zusätzliche Informationen</value>
   </data>
   <data name="ExhibitNearby_ExhibitNearby" xml:space="preserve">
-    <value>Sehenwürdigkeit in der Nähe</value>
+    <value>Sehenswürdigkeit in der Nähe</value>
   </data>
   <data name="ExhibitOrRouteNearby_Question_Part1" xml:space="preserve">
     <value>Möchten Sie sich</value>
@@ -541,11 +541,8 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   <data name="StorageTitle" xml:space="preserve">
     <value>Belegter Speicherplatz für Daten</value>
   </data>
-  <data name="DownloadDetails_Text_Part1" xml:space="preserve">
-    <value>Lade Daten zu </value>
-  </data>
-  <data name="DownloadDetails_Text_Part2" xml:space="preserve">
-    <value> herunter</value>
+  <data name="ExhibitRouteDonwloadPage_Download_Text" xml:space="preserve">
+    <value>Lade zusätzliche Daten herunter</value>
   </data>
   <data name="MainPageViewModel_Account" xml:space="preserve">
     <value>Konto</value>
@@ -692,7 +689,7 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
     <value>Unbekannter Fehler</value>
   </data>
   <data name="LicenseScreenView_User_Dialogs_Text" xml:space="preserve">
-    <value>Von &lt;a href="https://github.com/aritchie/userdialogs"&gt;Allan Ritchie&lt;/a&gt;, lizensiert unter &lt;a href="https://github.com/aritchie/userdialogs/blob/master/LICENSE.md"&gt;MIT&lt;/a&gt;. Es wurden keine Änderungen vorgenommen.</value>
+    <value>Von &lt;a href="https://github.com/aritchie/userdialogs"&gt;Allan Ritchie&lt;/a&gt;, lizenziert unter &lt;a href="https://github.com/aritchie/userdialogs/blob/master/LICENSE.md"&gt;MIT&lt;/a&gt;. Es wurden keine Änderungen vorgenommen.</value>
   </data>
   <data name="LicenseScreenView_User_Dialogs_Title" xml:space="preserve">
     <value>ACR User Dialogs</value>
