@@ -12,24 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System;
-
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 {
-    public partial class Image : IIdentifiable
+    public partial class Image : Media
     {
-        //Attributes
-        public string Id { get; set; }
-
         public string Description { get; set; }
-
-        public string Title { get; set; }
-
-        public string DataPath { get; set; }
-
-        public int IdForRestApi { get; set; }
-
-        public DateTimeOffset Timestamp { get; set; }
 
         public Image()
         {

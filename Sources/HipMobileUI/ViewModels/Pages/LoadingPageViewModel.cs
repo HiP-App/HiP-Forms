@@ -241,7 +241,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             try
             {
                 // force the db to load the exhibitset into cache
-                ExhibitManager.GetExhibits();
+                DbManager.DataAccess.Exhibits().GetExhibits(); // TODO: This enforcement doesn't do anything now with EF Core. What was the purpose here?
                 LoadingProgress = 0.9;
                 await Task.Delay(100);
             }

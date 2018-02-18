@@ -34,9 +34,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers
 
         public static readonly string WillWakeUpMessage = "WillWakeUp";
 
-        public static int CurrentAchievementsScore() =>
-            AchievementManager.GetAchievements()
-                              .Where(achievement => achievement.IsUnlocked)
-                              .Sum(achievement => achievement.Points);
+        public static int CurrentAchievementsScore() => 
+            DbManager.DataAccess.Achievements().GetAchievements()
+                .Where(achievement => achievement.IsUnlocked)
+                .Sum(achievement => achievement.Points);
     }
 }

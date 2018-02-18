@@ -12,31 +12,32 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System.Collections.Generic;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 {
-    using System.Collections.Generic;
-
-    public class TimeSliderPage : IIdentifiable
+    public class TimeSliderPage : Page
     {
-        //Attributes
-        public string Id { get; set; }
+        public string Title { get; set; }
 
-        public virtual string Title { get; set; }
+        public string Text { get; set; }
 
-        public virtual string Text { get; set; }
+        public bool? HideYearNumbers { get; set; }
 
-        public virtual IList<long> Dates { get; set; }
+        public IList<TimeSliderPageImage> SliderImages { get; } = new List<TimeSliderPageImage>();
 
-        public virtual bool? HideYearNumbers { get; set; }
-
-        //Associations
-        public virtual IList<Image> Images { get; }
-
-        // Contructor
         public TimeSliderPage()
         {
         }
+    }
+
+    public class TimeSliderPageImage
+    {
+        public TimeSliderPage Page { get; set; }
+
+        public Image Image { get; set; }
+
+        public long Date { get; set; }
     }
 }
 

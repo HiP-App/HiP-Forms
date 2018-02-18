@@ -38,8 +38,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
 
         public async Task<bool> IsDatabaseUpToDate()
         {
-            bool anyExhibitChanged = await exhibitsBaseDataFetcher.AnyExhibitChanged();
-            bool anyRouteChanged = await routesBaseDataFetcher.AnyRouteChanged();
+            bool anyExhibitChanged = await exhibitsBaseDataFetcher.AnyExhibitChanged(DbManager.DataAccess);
+            bool anyRouteChanged = await routesBaseDataFetcher.AnyRouteChanged(DbManager.DataAccess);
 
             return !(anyExhibitChanged || anyRouteChanged);
         }
@@ -81,7 +81,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                     transaction.Rollback();
                     return;
                 }
-                await routesBaseDataFetcher.ProcessRoutes(listener);
+                await routesBaseDataFetcher.ProcessRoutes(listener, transaction.DataAccess);
                 if (token.IsCancellationRequested)
                 {
                     transaction.Rollback();

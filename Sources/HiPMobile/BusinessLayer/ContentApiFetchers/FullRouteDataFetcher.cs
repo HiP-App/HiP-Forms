@@ -46,17 +46,17 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
         private IList<ExhibitPagesAndMediaContainer> pagesAndMediaForMissingExhibits;
 
         public async Task FetchFullDownloadableDataIntoDatabase(
-            string routeId, int idForRestApi, CancellationToken token, 
-            IProgressListener listener, ITransactionDataAccess dataAccess)
+            string routeId, int idForRestApi, CancellationToken token, IProgressListener listener)
         {
+
             routeDto = (await routesApiAccess.GetRoutes(new List<int> { idForRestApi })).Items.First();
             if (token.IsCancellationRequested)
                 return;
 
-            route = dataAccess.Routes().GetRoute(routeId);
+            route = DbManager.DataAccess.Routes().GetRoute(routeId);
             pagesAndMediaForMissingExhibits = new List<ExhibitPagesAndMediaContainer>();
 
-            var allMissingExhibits = dataAccess.Exhibits().GetExhibits().ToList().FindAll(x => !x.DetailsDataLoaded); // Exhibits not fully loaded yet
+            var allMissingExhibits = DbManager.DataAccess.Exhibits().GetExhibits().ToList().FindAll(x => !x.DetailsDataLoaded); // Exhibits not fully loaded yet
             missingExhibitsForRoute = allMissingExhibits.ToList().FindAll(x => routeDto.Exhibits.Contains(x.IdForRestApi)); // Select those part of the route
 
             double totalSteps = FetchNeededMediaForFullRoute();
@@ -73,12 +73,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
 
             listener.SetMaxProgress(totalSteps);
 
-            await AddFullExhibitsToRoute(route, token, listener, dataAccess); // Download all missing exhibits
+            await AddFullExhibitsToRoute(route, token, listener); // Download all missing exhibits
             if (token.IsCancellationRequested)
                 return;
 
             using (var transaction = DbManager.StartTransaction())
             {
+                var dataAccess = transaction.DataAccess;
                 await ProcessRoute(token, listener); // Download audio
                 if (token.IsCancellationRequested)
                     transaction.Rollback();
@@ -122,7 +123,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             dbRoute.Audio = audio;
         }
 
-        private async Task AddFullExhibitsToRoute(Route r, CancellationToken token, IProgressListener listener, ITransactionDataAccess dataAccess)
+        private async Task AddFullExhibitsToRoute(Route r, CancellationToken token, IProgressListener listener)
         {
             foreach (var waypoint in r.Waypoints)
             {
@@ -132,7 +133,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                     continue;
 
                 var pagesAndMediaContainerForExhibit = pagesAndMediaForMissingExhibits.SingleOrDefault(x => x.ExhibitIdForRestApi == dbExhibit.IdForRestApi);
-                await fullExhibitDataFetcher.FetchFullExhibitDataIntoDatabaseWithFetchedPagesAndMedia(dbExhibit.Id, pagesAndMediaContainerForExhibit, token, listener, dataAccess);
+                await fullExhibitDataFetcher.FetchFullExhibitDataIntoDatabaseWithFetchedPagesAndMedia(dbExhibit.Id, pagesAndMediaContainerForExhibit, token, listener);
                 if (token.IsCancellationRequested)
                     return;
                 pagesAndMediaForMissingExhibits.Remove(pagesAndMediaContainerForExhibit);

@@ -19,7 +19,6 @@ using System.ComponentModel;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 using Xamarin.Forms;
-using Image = PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.Image;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views.ExhibitDetails
 {
@@ -33,16 +32,16 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views.ExhibitDetail
             Headline = timesliderPage.Title;
             Description = timesliderPage.Text;
 
-            for (int i = 0; i < timesliderPage.Images.Count; i++)
+            for (int i = 0; i < timesliderPage.SliderImages.Count; i++)
             {
-                Image timesliderPageImage = timesliderPage.Images[i];
+                var timesliderPageImage = timesliderPage.SliderImages[i].Image;
                 if (timesliderPageImage.GetDataBlocking().Length > 0)
                 {
                     Images.Add(timesliderPageImage.GetImageSource());
                     texts.Add(timesliderPageImage.Description);
                     if (timesliderPage.HideYearNumbers == false)
                     {
-                        Years.Add(timesliderPage.Dates[i].ToString());
+                        Years.Add(timesliderPage.SliderImages[i].Date.ToString());
                     }
                 }
             }

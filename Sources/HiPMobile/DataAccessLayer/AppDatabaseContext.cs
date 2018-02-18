@@ -14,6 +14,7 @@
 
 using Microsoft.EntityFrameworkCore;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.JoinClasses;
 using System.Linq;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
@@ -21,19 +22,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
     public class AppDatabaseContext : DbContext
     {
         // Note: EF Core includes all types declared as DbSet<> here as well as all types found by recursively
-        // exploring their navigation properties. For example, having a DbSet<Page> will also include
-        // ImagePage/TextPage/etc. because Page has properties of type ImagePage/TextPage/etc.
+        // exploring their navigation properties.
 
         public DbSet<Exhibit> Exhibits { get; set; }
         public DbSet<Route> Routes { get; set; }
-
         public DbSet<Page> Pages { get; set; }
-
-        public DbSet<Audio> Audios { get; set; }
-        public DbSet<Image> Images { get; set; }
-
-        public DbSet<ExhibitsVisitedAchievement> ExhibitsVisitedAchievements { get; set; }
-        public DbSet<RouteFinishedAchievement> RouteFinishedAchievements { get; set; }
+        public DbSet<Media> Media { get; set; }
+        public DbSet<IAchievement> Achievements { get; set; }
+        public DbSet<AchievementPendingNotification> AchievementPendingNotifications { get; set; }
 
         public AppDatabaseContext(QueryTrackingBehavior changeTrackingBehavior)
         {
@@ -48,6 +44,39 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            // configure inheritance hierarchies
+            // (see https://docs.microsoft.com/en-us/ef/core/modeling/relational/inheritance)
+            modelBuilder.Entity<Media>()
+                .HasDiscriminator<string>("Type")
+                .HasValue<Image>(nameof(Image))
+                .HasValue<Audio>(nameof(Audio));
+
+            modelBuilder.Entity<IAchievement>()
+                .HasDiscriminator<string>("Type")
+                .HasValue<ExhibitsVisitedAchievement>(nameof(ExhibitsVisitedAchievement))
+                .HasValue<RouteFinishedAchievement>(nameof(RouteFinishedAchievement));
+
+            modelBuilder.Entity<Page>()
+                .HasDiscriminator<int>(nameof(Page.PageType))
+                .HasValue<AppetizerPage>((int)PageType.AppetizerPage)
+                .HasValue<TextPage>((int)PageType.TextPage)
+                .HasValue<ImagePage>((int)PageType.ImagePage)
+                .HasValue<TimeSliderPage>((int)PageType.TimeSliderPage);
+
+            // configure composite primary keys of join tables
+            // (see https://docs.microsoft.com/en-us/ef/core/modeling/keys)
+            modelBuilder.Entity<JoinExhibitPage>()
+                .HasKey(j => new { j.Exhibit, j.Page });
+
+            modelBuilder.Entity<JoinPagePage>()
+                .HasKey(j => new { j.Page, j.AdditionalInformationPage });
+
+            modelBuilder.Entity<JoinRouteTag>()
+                .HasKey(j => new { j.Route, j.Tag });
+
+            modelBuilder.Entity<Waypoint>()
+                .HasKey(j => new { j.Route, j.Exhibit });
         }
 
         /// <summary>

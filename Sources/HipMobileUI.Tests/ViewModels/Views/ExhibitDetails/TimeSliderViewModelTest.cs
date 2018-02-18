@@ -82,7 +82,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Views
             var timesliderPage = Substitute.For<TimeSliderPage>();
             List<Image> imageList = new List<Image> { CreateImage("Foo"), CreateImage("Bar"), CreateImage("69") };
             List<long> dates = new List<long> { 1991, 7867, 454 };
-            timesliderPage.Images.Returns(imageList);
+            timesliderPage.SliderImages.Returns(imageList);
             timesliderPage.Dates.Returns(dates);
             timesliderPage.Title = "A title";
             timesliderPage.Text = "A text";

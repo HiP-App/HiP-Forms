@@ -17,7 +17,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
         /// <param name="dataAccess">Provides read/write access to the database</param>
         /// <returns></returns>
         Task FetchFullDownloadableDataIntoDatabase(
-            string downloadableId, int idForRestApi, CancellationToken token,
-            IProgressListener listener, ITransactionDataAccess dataAccess);
+            string downloadableId, int idForRestApi, CancellationToken token, IProgressListener listener);
     }
 }

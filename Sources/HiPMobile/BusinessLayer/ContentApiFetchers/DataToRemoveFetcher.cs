@@ -14,6 +14,7 @@
 
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.JoinClasses;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
@@ -179,7 +180,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
 
         private void RemoveRouteTags(Route route, List<RouteTag> deletedTags, List<Image> deletedImages)
         {
-            foreach (var tag in route.RouteTags)
+            foreach (var tag in route.Tags)
             {
                 if (!allTags.Contains(tag.IdForRestApi))
                 {
@@ -193,7 +194,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             }
             foreach (var tagToRemove in deletedTags)
             {
-                route.RouteTags.Remove(tagToRemove);
+                route.Tags.Remove(tagToRemove);
             }
         }
 
@@ -220,40 +221,34 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
 
         private void RemovePagesImages(Page page, List<Image> deletedImages)
         {
-            if (page.IsImagePage())
+            switch (page)
             {
-                var imagePage = page.ImagePage;
-                if (imagePage.Image != null && !allMedias.Contains(imagePage.Image.IdForRestApi))
-                {
-                    deletedImages.Add(imagePage.Image);
-                    imagePage.Image = null;
-                }
-            }
-            else if (page.IsAppetizerPage())
-            {
-                var appetizerPage = page.AppetizerPage;
-                if (appetizerPage.Image != null && !allMedias.Contains(appetizerPage.Image.IdForRestApi))
-                {
-                    deletedImages.Add(appetizerPage.Image);
-                    appetizerPage.Image = null;
-                }
-            }
-            else if (page.IsTimeSliderPage())
-            {
-                var timesliderPage = page.TimeSliderPage;
-                var imagesToRemove = new List<Image>();
-                foreach (var image in timesliderPage.Images)
-                {
-                    if (allMedias.Contains(image.IdForRestApi))
+                case ImagePage imagePage:
+                    if (imagePage.Image != null && !allMedias.Contains(imagePage.Image.IdForRestApi))
                     {
-                        imagesToRemove.Add(image);
+                        deletedImages.Add(imagePage.Image);
+                        imagePage.Image = null;
                     }
-                }
-                foreach (var image in imagesToRemove)
-                {
-                    timesliderPage.Images.Remove(image);
-                }
-                deletedImages.AddRange(imagesToRemove);
+                    break;
+
+                case AppetizerPage appetizerPage:
+                    if (appetizerPage.Image != null && !allMedias.Contains(appetizerPage.Image.IdForRestApi))
+                    {
+                        deletedImages.Add(appetizerPage.Image);
+                        appetizerPage.Image = null;
+                    }
+                    break;
+
+                case TimeSliderPage timeSliderPage:
+                    foreach (var entry in timeSliderPage.SliderImages.ToList())
+                    {
+                        if (allMedias.Contains(entry.Image.IdForRestApi))
+                        {
+                            deletedImages.Add(entry.Image);
+                            timeSliderPage.SliderImages.Remove(entry);
+                        }
+                    }
+                    break;
             }
         }
     }

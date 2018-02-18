@@ -12,23 +12,21 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 {
-    using System.Collections.Generic;
-
-    public class ImagePage : IIdentifiable
+    public class ImagePage : Page
     {
-        //Attributes
-        public string Id { get; set; }
+        [NotMapped] // purpose of this property is unclear
+        public IList<string> Texts { get; }
 
-        public virtual IList<string> Texts { get; }
+        [NotMapped] // purpose of this property is unclear
+        public IList<Rectangle> Areas { get; }
 
-        public virtual IList<Rectangle> Areas { get; }
+        public Image Image { get; set; }
 
-        //Associations
-        public virtual Image Image { get; set; }
-
-        // Contructor
         public ImagePage()
         {
         }

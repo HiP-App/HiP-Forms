@@ -12,10 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using System.Threading;
 using System.Threading.Tasks;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers.Contracts
 {
@@ -34,7 +33,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
         /// <returns></returns>
         Task FetchFullExhibitDataIntoDatabaseWithFetchedPagesAndMedia(
             string exhibitId, ExhibitPagesAndMediaContainer pagesAndMediaContainer, CancellationToken token,
-            IProgressListener listener, ITransactionDataAccess dataAccess);
+            IProgressListener listener);
 
         /// <summary>
         /// Load pages for related exhibit and prefetch media of an exhibit for later use in a full route fetcher

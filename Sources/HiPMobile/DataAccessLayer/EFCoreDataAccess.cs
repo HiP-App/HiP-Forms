@@ -78,7 +78,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
             }
         }
 
-        public void DeleteItem<T>(T item) where T : class, IIdentifiable
+        public void DeleteItem<T>(T item) where T : class
         {
             using (var scope = Scope())
             {

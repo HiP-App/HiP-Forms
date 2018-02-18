@@ -69,13 +69,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
             using (var transaction = DbManager.StartTransaction())
             {
                 var dataAccess = transaction.DataAccess;
-                var rAchievementsPending = dataAccess.GetItems<RouteFinishedAchievementPendingNotification>().ToList();
-                var eAchievementsPending = dataAccess.GetItems<ExhibitsVisitedAchievementPendingNotification>().ToList();
-                var rAchievements = rAchievementsPending.Select(it => it.Achievement).ToList();
-                var eAchievements = eAchievementsPending.Select(it => it.Achievement).ToList();
-                rAchievementsPending.ForEach(dataAccess.DeleteItem);
-                eAchievementsPending.ForEach(dataAccess.DeleteItem);
-                return rAchievements.Union<IAchievement>(eAchievements);
+
+                var notifications = dataAccess.GetItems<AchievementPendingNotification>().ToList();
+                notifications.ForEach(dataAccess.DeleteItem);
+                return notifications.Select(it => it.Achievement);
             }
         }
 
@@ -104,36 +101,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
 
                 foreach (var achievement in newlyUnlocked)
                 {
-                    switch (achievement)
+                    if (dataAccess.GetItem<AchievementPendingNotification>(achievement.Id) == null)
                     {
-                        case ExhibitsVisitedAchievement e:
-                            if (dataAccess.GetItem<ExhibitsVisitedAchievementPendingNotification>(achievement.Id) != null)
-                            {
-                                continue;
-                            }
-
-                            dataAccess.AddItem(new ExhibitsVisitedAchievementPendingNotification
-                            {
-                                Achievement = e,
-                                Id = e.Id
-                            });
-                            break;
-
-                        case RouteFinishedAchievement r:
-                            if (dataAccess.GetItem<RouteFinishedAchievementPendingNotification>(achievement.Id) != null)
-                            {
-                                continue;
-                            }
-
-                            dataAccess.AddItem(new RouteFinishedAchievementPendingNotification
-                            {
-                                Achievement = r,
-                                Id = r.Id
-                            });
-                            break;
-
-                        default:
-                            throw new ArgumentOutOfRangeException("Unknown achievement type!");
+                        dataAccess.AddItem(new AchievementPendingNotification
+                        {
+                            Achievement = achievement,
+                            Id = achievement.Id
+                        });
                     }
                 }
             }

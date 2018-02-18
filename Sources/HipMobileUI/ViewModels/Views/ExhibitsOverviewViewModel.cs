@@ -45,7 +45,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             if (exhibits != null)
             {
                 Exhibits = new ObservableCollection<ExhibitsOverviewListItemViewModel>(
-                    ExhibitManager.GetExhibits().Select(ex => new ExhibitsOverviewListItemViewModel(ex)));
+                    DbManager.DataAccess.Exhibits().GetExhibits().Select(ex => new ExhibitsOverviewListItemViewModel(ex)));
             }
 
             ItemTappedCommand = new Command(item => NavigateToExhibitDetails(item as ExhibitsOverviewListItemViewModel));
@@ -74,7 +74,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             SetDistances(args.Position);
 
             nearbyExhibitManager.CheckNearExhibit(exhibits.Select(vm => vm.Exhibit), args.Position.ToGeoLocation(), true, locationManager.ListeningInBackground);
-            nearbyRouteManager.CheckNearRoute(RouteManager.GetRoutes(), args.Position.ToGeoLocation());
+            nearbyRouteManager.CheckNearRoute(DbManager.DataAccess.Routes().GetRoutes(), args.Position.ToGeoLocation());
         }
 
         /// <summary>
@@ -161,7 +161,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         public void DbChanged()
         {
             Exhibits = new ObservableCollection<ExhibitsOverviewListItemViewModel>(
-                ExhibitManager.GetExhibits().Select(ex => new ExhibitsOverviewListItemViewModel(ex)));
+                DbManager.DataAccess.Exhibits().GetExhibits().Select(ex => new ExhibitsOverviewListItemViewModel(ex)));
         }
 
         /// <summary>

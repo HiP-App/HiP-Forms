@@ -12,13 +12,24 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
+using System;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 {
-    public class RouteFinishedAchievementPendingNotification : IIdentifiable
+    /// <summary>
+    /// Base class for <see cref="Image"/> and <see cref="Audio"/>.
+    /// </summary>
+    public abstract class Media : IIdentifiable
     {
-        public virtual RouteFinishedAchievement Achievement { get; set; }
-        public virtual string Id { get; set; }
+        public string Id { get; set; }
+
+        public string Title { get; set; }
+
+        public string DataPath { get; set; }
+
+        public int IdForRestApi { get; set; }
+
+        public DateTimeOffset Timestamp { get; set; }
     }
 }
+

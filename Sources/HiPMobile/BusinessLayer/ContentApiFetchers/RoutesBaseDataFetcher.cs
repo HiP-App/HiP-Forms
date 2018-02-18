@@ -183,7 +183,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
 
                     if (tagDto != null)
                     {
-                        RouteTag dbTag = dbRoute.RouteTags.SingleOrDefault(x => x.IdForRestApi == tagId);
+                        RouteTag dbTag = dbRoute.Tags.SingleOrDefault(x => x.IdForRestApi == tagId);
 
                         if (dbTag != null)
                         {
@@ -192,7 +192,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                         else
                         {
                             dbTag = TagConverter.Convert(tagDto);
-                            dbRoute.RouteTags.Add(dbTag);
+                            dbRoute.Tags.Add(dbTag);
                         }
 
                         if (tagDto.Image.HasValue)

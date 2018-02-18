@@ -47,7 +47,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
         /// <summary>
         /// Deletes an item from the database. If the item doesn't exists, nothing is changed.
         /// </summary>
-        void DeleteItem<T>(T item) where T : class, IIdentifiable;
+        void DeleteItem<T>(T item) where T : class;
     }
 
     /// <summary>

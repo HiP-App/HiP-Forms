@@ -26,7 +26,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelCo
     /// </summary>
     /// <typeparam name="TModelObject"></typeparam>
     /// <typeparam name="TDtoObject"></typeparam>
-    public abstract class DtoToModelConverter<TModelObject, TDtoObject> where TModelObject : class, IIdentifiable, new()
+    public abstract class DtoToModelConverter<TModelObject, TDtoObject> where TModelObject : class, IIdentifiable
     {
         /// <summary>
         /// Converts the given <paramref name="dto"/> to a new model object
@@ -35,7 +35,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelCo
         /// <returns></returns>
         public TModelObject Convert(TDtoObject dto)
         {
-            var modelObject = new TModelObject();
+            var modelObject = CreateModelInstance(dto);
             Convert(dto, modelObject);
             return modelObject;
         }
@@ -64,5 +64,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelCo
         /// <param name="dto"></param>
         /// <param name="existingModelObject"></param>
         public abstract void Convert(TDtoObject dto, TModelObject existingModelObject);
+
+        /// <summary>
+        /// Creates an empty instance of <typeparamref name="TModelObject"/>.
+        /// By default, this tries to use the parameterless constructor of <typeparamref name="TModelObject"/>.
+        /// This method only needs to be overridden if such a constructor is not available, e.g. if
+        /// <typeparamref name="TModelObject"/> is abstract and thus can't be constructed.
+        /// </summary>
+        /// <param name="dto"></param>
+        protected virtual TModelObject CreateModelInstance(TDtoObject dto) => Activator.CreateInstance<TModelObject>();
     }
 }

@@ -12,24 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System;
-
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 {
-    public partial class Audio : IIdentifiable
+
+    public partial class Audio : Media
     {
-        //Attributes
-        public string Id { get; set; }
-
-        public string DataPath { get; set; }
-
-        public string Title { get; set; }
-
         public string Caption { get; set; }
-
-        public int IdForRestApi { get; set; }
-
-        public DateTimeOffset Timestamp { get; set; }
 
         public Audio()
         {

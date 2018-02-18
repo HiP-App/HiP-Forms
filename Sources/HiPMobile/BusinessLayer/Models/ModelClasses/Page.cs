@@ -19,10 +19,11 @@ using System.Collections.Generic;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 {
-    public partial class Page : IIdentifiable
+    public abstract partial class Page : IIdentifiable
     {
-        //Attributes
         public string Id { get; set; }
+
+        public PageType PageType { get; set; }
 
         public Audio Audio { get; set; }
 
@@ -30,20 +31,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 
         public DateTimeOffset Timestamp { get; set; }
 
-        //Associations
-        public AppetizerPage AppetizerPage { get; set; }
-
-        public ImagePage ImagePage { get; set; }
-
-        public TextPage TextPage { get; set; }
-
-        public TimeSliderPage TimeSliderPage { get; set; }
-
         public ICollection<Page> AdditionalInformationPages => new JoinCollectionFacade<Page, JoinPagePage>(this, AdditionalInformationPagesRefs, JoinSide.B);
 
         public IList<JoinPagePage> AdditionalInformationPagesRefs { get; } = new List<JoinPagePage>();
 
-        // Contructor
         public Page()
         {
         }

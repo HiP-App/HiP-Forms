@@ -14,17 +14,12 @@
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 {
-    public class AppetizerPage : IIdentifiable
+    public class AppetizerPage : Page
     {
-        //Attributes
-        public string Id { get; set; }
-
         public string Text { get; set; }
 
-        //Associations
         public Image Image { get; set; }
 
-        // Constructor
         public AppetizerPage()
         {
         }

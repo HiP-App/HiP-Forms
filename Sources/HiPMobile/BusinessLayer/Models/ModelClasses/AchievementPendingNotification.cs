@@ -16,9 +16,10 @@
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 {
-    public class ExhibitsVisitedAchievementPendingNotification : IIdentifiable
+    public class AchievementPendingNotification : IIdentifiable
     {
-        public virtual ExhibitsVisitedAchievement Achievement { get; set; }
-        public virtual string Id { get; set; }
+        public string Id { get; set; }
+        
+        public IAchievement Achievement { get; set; }
     }
 }

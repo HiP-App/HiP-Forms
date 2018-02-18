@@ -42,7 +42,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         /// and passes it to the alternative constructor.
         /// </summary>
         /// <param name="id">The ID of the route the ViewModel is created for.</param>
-        public RouteDetailsPageViewModel(string id) : this(RouteManager.GetRoute(id))
+        public RouteDetailsPageViewModel(string id) : this(DbManager.DataAccess.Routes().GetRoute(id))
         {
             // Intentionally left blank
         }
@@ -58,7 +58,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             Distance = string.Format(Strings.RouteDetailsPageViewModel_Distance, route.Distance);
             Duration = string.Format(Strings.RouteDetailsPageViewModel_Duration, route.Duration / 60);
             ReadOutCaption = Strings.RouteDetailsPage_PlayAudio;
-            Tags = new ObservableCollection<RouteTag>(route.RouteTags);
+            Tags = new ObservableCollection<RouteTag>(route.Tags);
             var data = route.Image.GetDataBlocking();
             Image = ImageSource.FromStream(() => new MemoryStream(data));
             StartRouteCommand = new Command(StartRoute);

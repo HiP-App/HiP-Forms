@@ -53,7 +53,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 
             Tags = new ObservableCollection<ImageSource>();
 
-            foreach (var tag in Route.RouteTags)
+            foreach (var tag in Route.Tags)
             {
                 // Required to reference first due to threading problems in Realm
                 byte[] currentTagImageData = tag.Image.GetDataBlocking();

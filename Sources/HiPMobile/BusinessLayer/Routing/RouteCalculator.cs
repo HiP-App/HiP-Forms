@@ -100,8 +100,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Routing
         /// <returns></returns>
         public OrderedRoute CreateOrderedRoute(string routeId, GeoLocation userLocation = default(GeoLocation))
         {
-            OrderedRoute resultRoute = new OrderedRoute();
-            Route route = RouteManager.GetRoute(routeId);
+            var resultRoute = new OrderedRoute();
+            var route = DbManager.DataAccess.Routes().GetRoute(routeId);
+
             if (route != null && route.ActiveSet.Count > 0)
             {
                 // include the user location if possible
@@ -127,25 +128,19 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Routing
         /// <returns>IList GeoLocation</returns>
         public IList<GeoLocation> CreateRouteWithSeveralWaypoints(string id, GeoLocation userPosition = default(GeoLocation))
         {
-            //List of Geolocations for path
-            IList<GeoLocation> result = new List<GeoLocation>();
-            IList<Coordinate> locations = new List<Coordinate>();
+            var locations = new List<Coordinate>();
 
             if (userPosition != default(GeoLocation))
-            {
                 locations.Add(new Coordinate((float)userPosition.Latitude, (float)userPosition.Longitude));
-            }
 
-            foreach (var v in RouteManager.GetRoute(id).ActiveSet)
+            foreach (var v in DbManager.DataAccess.Routes().GetRoute(id).ActiveSet)
                 locations.Add(new Coordinate((float)v.Location.Latitude, (float)v.Location.Longitude));
 
             var route = routeRouter.TryCalculate(Vehicle.Pedestrian.Fastest(), locations.ToArray());
 
-            foreach (var c in route.Value.Shape)
-                result.Add(new GeoLocation(c.Latitude, c.Longitude));
-
-
-            return result;
+            return route.Value.Shape
+                .Select(c => new GeoLocation(c.Latitude, c.Longitude))
+                .ToList();
         }
 
     }

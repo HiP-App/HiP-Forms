@@ -59,11 +59,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         private string pagenumber;
 
 
-        public ExhibitDetailsViewModel(string exhibitId) : this(ExhibitManager.GetExhibit(exhibitId)) { }
+        public ExhibitDetailsViewModel(string exhibitId) : this(DbManager.DataAccess.Exhibits().GetExhibit(exhibitId)) { }
 
         public ExhibitDetailsViewModel(Exhibit exhibit) : this(exhibit, exhibit.Pages, exhibit.Name) { }
 
-        public ExhibitDetailsViewModel(Exhibit exhibit, IList<Page> pages, string title, bool additionalInformation = false)
+        public ExhibitDetailsViewModel(Exhibit exhibit, ICollection<Page> pages, string title, bool additionalInformation = false)
         {
             Exhibit = exhibit;
             this.additionalInformation = additionalInformation;
@@ -82,7 +82,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
             // init the current view
             currentViewIndex = 1;
-            this.pages = pages;
+            this.pages = pages.ToList();
             SetCurrentView().ConfigureAwait(true);
             Title = title;
             pagenumber = currentViewIndex + " / " + (pages.Count - 1);
@@ -299,16 +299,16 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                 AudioToolbarVisible = false;
             }
 
-            switch (currentPage.PageType)
+            switch (currentPage)
             {
-                case PageType.ImagePage:
-                    SelectedView = new ImageViewModel(currentPage.ImagePage, ToggleVisibilityOfNavigationButtons);
+                case ImagePage imagePage:
+                    SelectedView = new ImageViewModel(imagePage, ToggleVisibilityOfNavigationButtons);
                     break;
-                case PageType.TextPage:
-                    SelectedView = new TextViewModel(currentPage.TextPage, ToggleVisibilityOfNavigationButtons);
+                case TextPage textPage:
+                    SelectedView = new TextViewModel(textPage, ToggleVisibilityOfNavigationButtons);
                     break;
-                case PageType.TimeSliderPage:
-                    SelectedView = new TimeSliderViewModel(currentPage.TimeSliderPage, ToggleVisibilityOfNavigationButtons);
+                case TimeSliderPage timeSliderPage:
+                    SelectedView = new TimeSliderViewModel(timeSliderPage, ToggleVisibilityOfNavigationButtons);
                     break;
             }
 
@@ -359,7 +359,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         public async void DbChanged()
         {
             var exhibitId = Exhibit.Id;
-            Exhibit = ExhibitManager.GetExhibit(exhibitId);
+            Exhibit = DbManager.DataAccess.Exhibits().GetExhibit(exhibitId);
             if (!Exhibit.DetailsDataLoaded)
                 return;
             NextViewAvailable = currentViewIndex < pages.Count - 1;

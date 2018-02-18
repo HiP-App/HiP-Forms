@@ -12,90 +12,62 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System.Text.RegularExpressions;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos;
+using System;
+using System.Text.RegularExpressions;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelConverters
 {
     public class PageConverter : DtoToModelConverter<Page, PageDto>
     {
+        protected override Page CreateModelInstance(PageDto dto)
+        {
+            switch (dto.Type)
+            {
+                case PageTypeDto.AppetizerPage: return new AppetizerPage();
+                case PageTypeDto.TextPage: return new TextPage();
+                case PageTypeDto.ImagePage: return new ImagePage();
+                case PageTypeDto.SliderPage: return new TimeSliderPage();
+                default: throw new NotImplementedException();
+            }
+        }
+
         public override void Convert(PageDto dto, Page existingModelObject)
         {
             existingModelObject.IdForRestApi = dto.Id;
             existingModelObject.Timestamp = dto.Timestamp;
-            switch (dto.Type)
+
+            switch (existingModelObject)
             {
-                case PageTypeDto.AppetizerPage:
-                    if (existingModelObject.AppetizerPage == null)
-                    {
-                        existingModelObject.AppetizerPage = new AppetizerPage();
-                    }
-                    // Necessary for iOS
-                    if (dto.Text != null)
-                    {
-                        existingModelObject.AppetizerPage.Text = Regex.Unescape(dto.Text);
-                    }
-                    else
-                    {
-                        existingModelObject.AppetizerPage.Text = dto.Text;
-                    }
+                case AppetizerPage appetizerPage:
+                    appetizerPage.Text = (dto.Text != null) ? Regex.Unescape(dto.Text) : null; // Necessary for iOS
+                    break;
 
+                case ImagePage imagePage:
+                    // Nothing to do
                     break;
-                case PageTypeDto.ImagePage:
-                    if (existingModelObject.ImagePage == null)
-                    {
-                        existingModelObject.ImagePage = new ImagePage();
-                    }
-                    break;
-                case PageTypeDto.SliderPage:
-                    if (existingModelObject.TimeSliderPage == null)
-                    {
-                        existingModelObject.TimeSliderPage = new TimeSliderPage();
-                    }
-                    existingModelObject.TimeSliderPage.HideYearNumbers = dto.HideYearNumbers;
-                    existingModelObject.TimeSliderPage.Title = dto.Title;
-                    // Necessary for iOS
-                    if (dto.Text != null)
-                    {
-                        existingModelObject.TimeSliderPage.Text = Regex.Unescape(dto.Text);
-                    }
-                    else
-                    {
-                        existingModelObject.TimeSliderPage.Text = dto.Text;
-                    }
 
-                    foreach (var image in dto.Images)
+                case TimeSliderPage timeSliderPage:
+                    timeSliderPage.HideYearNumbers = dto.HideYearNumbers;
+                    timeSliderPage.Title = dto.Title;
+                    timeSliderPage.Text = (dto.Text != null) ? Regex.Unescape(dto.Text) : null; // Necessary for iOS
+
+                    foreach (var entry in dto.Images)
                     {
-                        existingModelObject.TimeSliderPage.Dates.Add(image.Date);
+                        timeSliderPage.SliderImages.Add(new TimeSliderPageImage
+                        {
+                            Page = timeSliderPage,
+                            Date = entry.Date
+                        });
                     }
                     break;
-                case PageTypeDto.TextPage:
-                    if (existingModelObject.TextPage == null)
-                    {
-                        existingModelObject.TextPage = new TextPage();
-                    }
-                    existingModelObject.TextPage.Title = dto.Title;
-                    // Necessary for iOS
-                    if (dto.Text != null)
-                    {
-                        existingModelObject.TextPage.Text = Regex.Unescape(dto.Text);
-                    }
-                    else
-                    {
-                        existingModelObject.TextPage.Text = dto.Text;
-                    }
-                    // Necessary for iOS
-                    if (dto.Description != null)
-                    {
-                        existingModelObject.TextPage.Description = Regex.Unescape(dto.Description);
-                    }
-                    else
-                    {
-                        existingModelObject.TextPage.Description = dto.Description;
-                    }
-                    existingModelObject.TextPage.FontFamily = dto.FontFamily;
+
+                case TextPage textPage:
+                    textPage.Title = dto.Title;
+                    textPage.Text = (dto.Text != null) ? Regex.Unescape(dto.Text) : null; // Necessary for iOS
+                    textPage.Description = (dto.Description != null) ? Regex.Unescape(dto.Description) : null; // Necessary for iOS
+                    textPage.FontFamily = dto.FontFamily;
                     break;
             }
         }

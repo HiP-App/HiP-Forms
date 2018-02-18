@@ -14,11 +14,8 @@
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 {
-    public class TextPage : IIdentifiable
+    public class TextPage : Page
     {
-        //Attributes
-        public string Id { get; set; }
-
         public string Text { get; set; }
 
         public string FontFamily { get; set; }
@@ -27,9 +24,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 
         public string Description { get; set; }
 
-        //Associations
-
-        //Contructor
         public TextPage()
         {
         }
