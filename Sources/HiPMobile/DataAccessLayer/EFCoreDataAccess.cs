@@ -48,7 +48,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
 
         /// <summary>
         /// Creates an instance in which all methods use the same database context.
-        /// The database context is never disposed.
+        /// The database context is never disposed. This is used when working with
+        /// transactions.
         /// </summary>
         public EFCoreDataAccess(AppDatabaseContext sharedDbContext)
         {

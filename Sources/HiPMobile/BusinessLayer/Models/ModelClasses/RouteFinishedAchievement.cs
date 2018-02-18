@@ -14,15 +14,8 @@
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 {
-    public class RouteFinishedAchievement : IAchievement
+    public class RouteFinishedAchievement : AchievementBase
     {
-        public virtual string Id { get; set; }
-        public virtual string Title { get; set; }
-        public virtual string Description { get; set; }
-        public virtual string ThumbnailUrl { get; set; }
-        public virtual string NextId { get; set; }
-        public virtual bool IsUnlocked { get; set; }
-        public virtual int Points { get; set; }
-        public virtual int RouteId { get; set; }
+        public int RouteId { get; set; }
     }
 }

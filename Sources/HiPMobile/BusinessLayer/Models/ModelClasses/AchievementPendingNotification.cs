@@ -20,6 +20,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
     {
         public string Id { get; set; }
         
-        public IAchievement Achievement { get; set; }
+        public AchievementBase Achievement { get; set; }
     }
 }

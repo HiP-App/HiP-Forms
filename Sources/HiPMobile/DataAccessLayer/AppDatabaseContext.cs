@@ -28,7 +28,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
         public DbSet<Route> Routes { get; set; }
         public DbSet<Page> Pages { get; set; }
         public DbSet<Media> Media { get; set; }
-        public DbSet<IAchievement> Achievements { get; set; }
+        public DbSet<AchievementBase> Achievements { get; set; }
         public DbSet<AchievementPendingNotification> AchievementPendingNotifications { get; set; }
 
         public AppDatabaseContext(QueryTrackingBehavior changeTrackingBehavior)
@@ -45,6 +45,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
         {
             base.OnModelCreating(modelBuilder);
 
+            modelBuilder.Entity<Route>()
+                .HasMany(r => r.Waypoints).WithOne(w => w.Route);
+
             // configure inheritance hierarchies
             // (see https://docs.microsoft.com/en-us/ef/core/modeling/relational/inheritance)
             modelBuilder.Entity<Media>()
@@ -52,31 +55,38 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
                 .HasValue<Image>(nameof(Image))
                 .HasValue<Audio>(nameof(Audio));
 
-            modelBuilder.Entity<IAchievement>()
+            modelBuilder.Entity<AchievementBase>()
                 .HasDiscriminator<string>("Type")
                 .HasValue<ExhibitsVisitedAchievement>(nameof(ExhibitsVisitedAchievement))
                 .HasValue<RouteFinishedAchievement>(nameof(RouteFinishedAchievement));
 
             modelBuilder.Entity<Page>()
-                .HasDiscriminator<int>(nameof(Page.PageType))
-                .HasValue<AppetizerPage>((int)PageType.AppetizerPage)
-                .HasValue<TextPage>((int)PageType.TextPage)
-                .HasValue<ImagePage>((int)PageType.ImagePage)
-                .HasValue<TimeSliderPage>((int)PageType.TimeSliderPage);
+                .HasDiscriminator<PageType>(nameof(Page.PageType))
+                .HasValue<AppetizerPage>(PageType.AppetizerPage)
+                .HasValue<TextPage>(PageType.TextPage)
+                .HasValue<ImagePage>(PageType.ImagePage)
+                .HasValue<TimeSliderPage>(PageType.TimeSliderPage);
 
             // configure composite primary keys of join tables
             // (see https://docs.microsoft.com/en-us/ef/core/modeling/keys)
             modelBuilder.Entity<JoinExhibitPage>()
-                .HasKey(j => new { j.Exhibit, j.Page });
+                .HasKey(j => new { j.ExhibitId, j.PageId });
 
             modelBuilder.Entity<JoinPagePage>()
-                .HasKey(j => new { j.Page, j.AdditionalInformationPage });
+                .HasKey(j => new { j.PageId, j.AdditionalInformationPageId });
 
             modelBuilder.Entity<JoinRouteTag>()
-                .HasKey(j => new { j.Route, j.Tag });
+                .HasKey(j => new { j.RouteId, j.TagId });
 
             modelBuilder.Entity<Waypoint>()
-                .HasKey(j => new { j.Route, j.Exhibit });
+                .HasKey(j => new { j.RouteId, j.ExhibitId });
+
+            // configure many-to-many-relationships of the same type
+            modelBuilder.Entity<JoinPagePage>(page =>
+            {
+                page.HasOne(j => j.Page).WithMany(p => p.AdditionalInformationPagesRefs);
+                page.HasOne(j => j.AdditionalInformationPage);
+            });
         }
 
         /// <summary>

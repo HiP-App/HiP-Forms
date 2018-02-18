@@ -5,8 +5,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.JoinC
     public class JoinPagePage : IJoinEntitySameType<Page>
     {
         public Page Page { get; set; }
+        public string PageId { get; set; }
 
         public Page AdditionalInformationPage { get; set; }
+        public string AdditionalInformationPageId { get; set; }
 
         public Page this[JoinSide side]
         {

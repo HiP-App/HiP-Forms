@@ -20,12 +20,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.JoinC
     public class Waypoint : IJoinEntity<Route>, IJoinEntity<Exhibit>
     {
         public Exhibit Exhibit { get; set; }
+        public string ExhibitId { get; set; }
+        Exhibit IJoinEntity<Exhibit>.Navigation { get => Exhibit; set => Exhibit = value; }
 
         public Route Route { get; set; }
-
+        public string RouteId { get; set; }
         Route IJoinEntity<Route>.Navigation { get => Route; set => Route = value; }
-
-        Exhibit IJoinEntity<Exhibit>.Navigation { get => Exhibit; set => Exhibit = value; }
 
         [NotMapped]
         public GeoLocation Location

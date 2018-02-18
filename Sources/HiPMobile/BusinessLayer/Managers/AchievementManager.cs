@@ -43,11 +43,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
             /// Retrieve achievements of any type from the local database
             /// </summary>
             /// <returns></returns>
-            public IEnumerable<IAchievement> GetAchievements()
+            public IEnumerable<AchievementBase> GetAchievements()
             {
-                return _dataAccess.GetItems<RouteFinishedAchievement>()
-                                 .Union<IAchievement>(_dataAccess.GetItems<ExhibitsVisitedAchievement>())
-                                 .ToList();
+                return _dataAccess.GetItems<AchievementBase>().ToList();
             }
 
             /// <summary>
@@ -86,7 +84,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
             using (var transaction = DbManager.StartTransaction())
             {
                 var dataAccess = transaction.DataAccess;
-                IEnumerable<IAchievement> newlyUnlocked;
+                IEnumerable<AchievementBase> newlyUnlocked;
                 try
                 {
                     await dataAccess.Achievements().PostVisitedExhibitsToApi();

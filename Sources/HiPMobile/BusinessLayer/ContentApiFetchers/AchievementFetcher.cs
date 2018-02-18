@@ -33,7 +33,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             this.client = client;
         }
 
-        public async Task<IEnumerable<IAchievement>> UpdateAchievements(ITransactionDataAccess dataAccess)
+        public async Task<IEnumerable<AchievementBase>> UpdateAchievements(ITransactionDataAccess dataAccess)
         {
             var existingUnlocked = dataAccess.Achievements().GetAchievements()
                 .Where(it => it.IsUnlocked)

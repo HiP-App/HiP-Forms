@@ -21,7 +21,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
     {
         public static void Register()
         {
-            IoCManager.RegisterType<IDataAccess, EFCoreDataAccess>();
+            IoCManager.RegisterInstance(typeof(IDataAccess), new EFCoreDataAccess());
         }
     }
 }

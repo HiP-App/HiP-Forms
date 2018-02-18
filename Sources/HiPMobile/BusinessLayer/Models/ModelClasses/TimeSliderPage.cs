@@ -31,8 +31,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
         }
     }
 
-    public class TimeSliderPageImage
+    public class TimeSliderPageImage : IIdentifiable
     {
+        public string Id { get; set; }
+
         public TimeSliderPage Page { get; set; }
 
         public Image Image { get; set; }

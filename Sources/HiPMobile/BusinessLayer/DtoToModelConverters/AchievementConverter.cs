@@ -35,9 +35,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelCo
         /// </summary>
         /// <returns>Converted items</returns>
         /// <exception cref="ArgumentException">For unsupported achievement types.</exception>
-        public static IList<IAchievement> Convert(IEnumerable<AchievementDto> dtos, ITransactionDataAccess dataAccess)
+        public static IList<AchievementBase> Convert(IEnumerable<AchievementDto> dtos, ITransactionDataAccess dataAccess)
         {
-            return dtos.Select<AchievementDto, IAchievement>(dto =>
+            return dtos.Select<AchievementDto, AchievementBase>(dto =>
             {
                 switch (dto)
                 {
