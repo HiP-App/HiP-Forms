@@ -30,16 +30,18 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Map
             BindableProperty.Create(nameof(ExhibitSet), typeof(IReadOnlyList<Exhibit>), typeof(OsmMap), null, propertyChanged: ExhibitPropertyChanged);
 
         public static readonly BindableProperty GpsLocationProperty =
-            BindableProperty.Create(nameof(GpsLocation), typeof(GeoLocation), typeof(OsmMap), null, propertyChanged: GpsLocationPropertyChanged);
+            BindableProperty.Create(nameof(GpsLocation), typeof(GeoLocation?), typeof(OsmMap), null, propertyChanged: GpsLocationPropertyChanged);
 
         public static readonly BindableProperty DetailsRouteProperty =
             BindableProperty.Create(nameof(DetailsRoute), typeof(Route), typeof(OsmMap), null, propertyChanged: DetailsRoutePropertyChanged);
 
         //Set this to true if you want to have direct polyline in routedetails screen for example
-        public static readonly BindableProperty ShowDetailsRouteProperty = BindableProperty.Create("ShowDetailsRoute", typeof(bool), typeof(OsmMap), false);
+        public static readonly BindableProperty ShowDetailsRouteProperty =
+            BindableProperty.Create(nameof(ShowDetailsRoute), typeof(bool), typeof(OsmMap), false);
 
         //Set this to true if want to have the navigation
-        public static readonly BindableProperty ShowNavigationProperty = BindableProperty.Create("ShowNavigation", typeof(bool), typeof(OsmMap), false);
+        public static readonly BindableProperty ShowNavigationProperty = 
+            BindableProperty.Create(nameof(ShowNavigation), typeof(bool), typeof(OsmMap), false);
 
         public static BindableProperty CenterCommandProperty =
             BindableProperty.Create(nameof(CenterCommand), typeof(ICommand), typeof(OsmMap), null, BindingMode.OneWayToSource);
@@ -66,9 +68,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Map
             set => SetValue(ExhibitSetProperty, value);
         }
 
-        public GeoLocation GpsLocation
+        public GeoLocation? GpsLocation
         {
-            get => (GeoLocation)GetValue(GpsLocationProperty);
+            get => (GeoLocation?)GetValue(GpsLocationProperty);
             set => SetValue(GpsLocationProperty, value);
         }
 
@@ -122,7 +124,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Map
 
         public event ExhibitSetChangedHandler ExhibitSetChanged;
 
-        public delegate void GpslocationChangedHandler(GeoLocation location);
+        public delegate void GpslocationChangedHandler(GeoLocation? location);
 
         public event GpslocationChangedHandler GpsLocationChanged;
 

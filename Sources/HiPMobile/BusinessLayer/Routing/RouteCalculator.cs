@@ -98,7 +98,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Routing
         /// <param name="routeId">The id of the route that shoudl be calculated.</param>
         /// <param name="userLocation">The users geolocation.</param>
         /// <returns></returns>
-        public OrderedRoute CreateOrderedRoute(string routeId, GeoLocation userLocation = default(GeoLocation))
+        public OrderedRoute CreateOrderedRoute(string routeId, GeoLocation? userLocation = null)
         {
             var resultRoute = new OrderedRoute();
             var route = DbManager.DataAccess.Routes().GetRoute(routeId);
@@ -106,9 +106,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Routing
             if (route != null && route.ActiveSet.Count > 0)
             {
                 // include the user location if possible
-                if (userLocation != default(GeoLocation))
+                if (userLocation != null)
                 {
-                    resultRoute.AddSection(CreateSimpleRoute(userLocation, route.ActiveSet.First().Location).ToList());
+                    resultRoute.AddSection(CreateSimpleRoute(userLocation.Value, route.ActiveSet.First().Location).ToList());
                 }
 
                 // calculate the route for exhibits

@@ -109,10 +109,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Map
         /// Called from center Button in navigation
         /// </summary>
         /// <param name="location"></param>
-        private void CenterMap(GeoLocation location)
+        private void CenterMap(GeoLocation? location)
         {
             mapController.SetCenter(location != null
-                ? new GeoPoint(location.Latitude, location.Longitude)
+                ? new GeoPoint(location.Value.Latitude, location.Value.Longitude)
                 : new GeoPoint(AppSharedData.PaderbornCenter.Latitude, AppSharedData.PaderbornCenter.Longitude));
         }
 
@@ -129,12 +129,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Map
         /// Everything regarding location changes is handled here
         /// </summary>
         /// <param name="gpsLocation">Location from Gps</param>
-        private void NewElementOnGpsLocationChanged(GeoLocation gpsLocation)
+        private void NewElementOnGpsLocationChanged(GeoLocation? gpsLocation)
         {
             //Userposition is always updated and shown if position is available
             if (gpsLocation != null)
             {
-                var userPosition = new GeoPoint(gpsLocation.Latitude, gpsLocation.Longitude);
+                var userPosition = new GeoPoint(gpsLocation.Value.Latitude, gpsLocation.Value.Longitude);
                 if (userMarkerPosition != null)
                     mapView.OverlayManager.Remove(userMarkerPosition);
 
@@ -186,11 +186,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Map
         /// Here the direct route in routedetails is calculated
         /// </summary>
         /// <param name="location"></param>
-        private void DrawDetailsRoute(GeoLocation location)
+        private void DrawDetailsRoute(GeoLocation? location)
         {
             var myPath = new PathOverlay(Resource.Color.colorPrimaryDark, 7, new DefaultResourceProxyImpl(activity));
             if (location != null)
-                myPath.AddPoint(new GeoPoint(location.Latitude, location.Longitude));
+                myPath.AddPoint(new GeoPoint(location.Value.Latitude, location.Value.Longitude));
 
             if (osmMap.DetailsRoute != null && osmMap.DetailsRoute.Waypoints.Any())
             {
@@ -238,7 +238,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Map
         /// and throws error message if no route was found
         /// </summary>
         /// <param name="userPosition">position of the user</param>
-        private void CalculateRoute(GeoLocation userPosition)
+        private void CalculateRoute(GeoLocation? userPosition)
         {
             var id = osmMap.DetailsRoute.Id;
 

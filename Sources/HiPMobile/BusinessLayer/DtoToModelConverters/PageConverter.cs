@@ -52,6 +52,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelCo
                     timeSliderPage.HideYearNumbers = dto.HideYearNumbers;
                     timeSliderPage.Title = dto.Title;
                     timeSliderPage.Text = (dto.Text != null) ? Regex.Unescape(dto.Text) : null; // Necessary for iOS
+                    timeSliderPage.SliderImages.Clear();
 
                     foreach (var entry in dto.Images)
                     {
