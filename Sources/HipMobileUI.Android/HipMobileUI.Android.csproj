@@ -67,7 +67,6 @@
     <Compile Include="Contracts\AndroidAppCloser.cs" />
     <Compile Include="Contracts\AndroidFabSizeCalculator.cs" />
     <Compile Include="Contracts\AndroidImageDimensions.cs" />
-    <Compile Include="Contracts\AndroidMediaFileManager.cs" />
     <Compile Include="Contracts\DroidAudioPlayer.cs" />
     <Compile Include="Contracts\DroidBarsColorsChanger.cs" />
     <Compile Include="Contracts\DroidNetworkAccessChecker.cs" />

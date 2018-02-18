@@ -13,6 +13,7 @@
 // limitations under the License.
 
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
@@ -22,6 +23,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
         public static void Register()
         {
             IoCManager.RegisterInstance(typeof(IDataAccess), new EFCoreDataAccess());
+            IoCManager.RegisterType<IMediaFileManager, MediaFileManager>();
         }
     }
 }

@@ -84,7 +84,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios
             IoCManager.RegisterInstance(typeof(IDbChangedHandler), new DbChangedHandler());
             IoCManager.RegisterInstance(typeof(INetworkAccessChecker), new IosNetworkAccessChecker());
             IoCManager.RegisterInstance(typeof(IStorageSizeProvider), new IosStorageSizeProvider());
-            IoCManager.RegisterType<IMediaFileManager, IosMediaFileManager>();
 
             // init crash manager
             var manager = BITHockeyManager.SharedHockeyManager;
