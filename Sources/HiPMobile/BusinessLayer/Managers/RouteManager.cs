@@ -12,12 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.JoinClasses;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
 {
@@ -35,7 +35,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
             }
 
             /// <summary>
-            ///     Returns a Route, with specific id
+            /// Returns the Route with the specific ID including its waypoints, tags, image and audio.
             /// </summary>
             /// <param name="id">The id of the specific Route to be passed</param>
             /// <returns>the Route with given id. If Route does not exits, return null</returns>
@@ -43,18 +43,26 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
             {
                 if (!string.IsNullOrEmpty(id))
                 {
-                    return _dataAccess.GetItem<Route>(id);
+                    return _dataAccess.GetItem<Route>(id,
+                        $"{nameof(Route.TagsRefs)}.{nameof(JoinRouteTag.Tag)}",
+                        nameof(Route.Image),
+                        nameof(Route.Audio),
+                        nameof(Route.Waypoints));
                 }
                 return null;
             }
 
             /// <summary>
-            ///     Returns all existing Routes
+            /// Returns all existing Routes including their waypoints, tags, images and audio.
             /// </summary>
             /// <returns>The enumerable of all avaible routes</returns>
             public IEnumerable<Route> GetRoutes()
             {
-                return _dataAccess.GetItems<Route>();
+                return _dataAccess.GetItems<Route>(
+                    $"{nameof(Route.TagsRefs)}.{nameof(JoinRouteTag.Tag)}",
+                    nameof(Route.Image),
+                    nameof(Route.Audio),
+                    nameof(Route.Waypoints));
             }
 
             /// <summary>

@@ -13,6 +13,7 @@
 // limitations under the License.
 
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.JoinClasses;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
 using System;
@@ -37,7 +38,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
             }
 
             /// <summary>
-            /// Get an exhibit with a specific id.
+            /// Get an exhibit with a specific id including its image and the IDs of its pages.
             /// </summary>
             /// <param name="id">The id of the exhibit to be retrived.</param>
             /// <returns>The exhibit with the given id. If no exhibit exists, null is returned.</returns>
@@ -45,18 +46,22 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
             {
                 if (!string.IsNullOrEmpty(id))
                 {
-                    return _dataAccess.GetItem<Exhibit>(id);
+                    return _dataAccess.GetItem<Exhibit>(id,
+                        nameof(Exhibit.Image),
+                        nameof(Exhibit.PagesRefs));
                 }
                 return null;
             }
 
             /// <summary>
-            /// Gets all available exhibits.
+            /// Gets all available exhibits including their image and the IDs of their pages.
             /// </summary>
             /// <returns>The enumerable of all available exhibits.</returns>
             public IEnumerable<Exhibit> GetExhibits()
             {
-                return _dataAccess.GetItems<Exhibit>();
+                return _dataAccess.GetItems<Exhibit>(
+                    nameof(Exhibit.Image),
+                    nameof(Exhibit.PagesRefs));
             }
 
             public void AddExhibit(Exhibit exhibit)

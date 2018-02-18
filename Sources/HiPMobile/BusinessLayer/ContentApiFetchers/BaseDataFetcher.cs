@@ -48,8 +48,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
         {
             using (var transaction = DbManager.StartTransaction())
             {
-                var routes = transaction.DataAccess.GetItems<Route>().ToDictionary(x => x.IdForRestApi, x => x.Timestamp);
-                var exhibits = transaction.DataAccess.GetItems<Exhibit>().ToDictionary(x => x.IdForRestApi, x => x.Timestamp);
+                var routes = transaction.DataAccess.Routes().GetRoutes().ToDictionary(x => x.IdForRestApi, x => x.Timestamp);
+                var exhibits = transaction.DataAccess.Exhibits().GetExhibits().ToDictionary(x => x.IdForRestApi, x => x.Timestamp);
 
                 double totalSteps = await exhibitsBaseDataFetcher.FetchNeededDataForExhibits(exhibits);
                 totalSteps += await routesBaseDataFetcher.FetchNeededDataForRoutes(routes);

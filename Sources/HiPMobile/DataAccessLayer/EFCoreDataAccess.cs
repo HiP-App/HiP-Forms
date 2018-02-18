@@ -17,6 +17,7 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
 {
@@ -56,16 +57,30 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
             _sharedDbContext = sharedDbContext;
         }
 
-        public T GetItem<T>(string id) where T : class, IIdentifiable
+        public T GetItem<T>(string id, params string[] pathsToInclude) where T : class, IIdentifiable
         {
             using (var scope = Scope())
-                return scope.Db.Find<T>(id);
+            {
+                IQueryable<T> query = scope.Db.Set<T>();
+
+                foreach (var path in pathsToInclude)
+                    query = query.Include(path);
+
+                return query.SingleOrDefault(o => o.Id == id);
+            }
         }
 
-        public IEnumerable<T> GetItems<T>() where T : class, IIdentifiable
+        public IEnumerable<T> GetItems<T>(params string[] pathsToInclude) where T : class, IIdentifiable
         {
             using (var scope = Scope())
-                return scope.Db.Set<T>().ToListAsync().Result;
+            {
+                IQueryable<T> query = scope.Db.Set<T>();
+
+                foreach (var path in pathsToInclude)
+                    query = query.Include(path);
+                
+                return query.ToListAsync().Result;
+            }
         }
 
         public void AddItem<T>(T item) where T : class, IIdentifiable

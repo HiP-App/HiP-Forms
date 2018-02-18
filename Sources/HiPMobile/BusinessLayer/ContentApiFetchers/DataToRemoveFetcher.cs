@@ -13,6 +13,7 @@
 // limitations under the License.
 
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers.Contracts;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.JoinClasses;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
@@ -81,8 +82,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             //Backup data fake id
             allMedias.Add(-1);
 
-            var routes = dataAccess.GetItems<Route>().ToList();
-            var exhibits = dataAccess.GetItems<Exhibit>().ToList();
+            var routes = dataAccess.Routes().GetRoutes().ToList();
+            var exhibits = dataAccess.Exhibits().GetExhibits().ToList();
 
             var deletedExhibits = exhibits.Where(x => !allExhibits.Contains(x.IdForRestApi)).ToList();
             var deletedRoutes = routes.Where(x => !allRoutes.Contains(x.IdForRestApi));

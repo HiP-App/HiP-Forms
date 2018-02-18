@@ -30,14 +30,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
         /// <typeparam name="T">The type of the item being retrieved.</typeparam>
         /// <param name="id">The key of the item.</param>
         /// <returns>The item if it exists, null otherwise.</returns>
-        T GetItem<T>(string id) where T : class, IIdentifiable;
+        T GetItem<T>(string id, params string[] pathsToInclude) where T : class, IIdentifiable;
 
         /// <summary>
         /// Gets all items of the specified type from the database.
         /// </summary>
         /// <typeparam name="T">The type of the items being retrieved.</typeparam>
         /// <returns>The enumerable of items.</returns>
-        IEnumerable<T> GetItems<T>() where T : class, IIdentifiable;
+        IEnumerable<T> GetItems<T>(params string[] pathsToInclude) where T : class, IIdentifiable;
 
         /// <summary>
         /// Inserts an item into the database.
