@@ -35,23 +35,23 @@
                     <Label x:Name="ErrorMessageLabel"
                            HorizontalOptions="Center" VerticalOptions="Start"
                            FontSize="Small" TextColor="Red" Text="{Binding ErrorMessage, Mode=TwoWay}" />
-                    <Label x:Name="RegisterLabel"
+                    <Button x:Name="RegisterButton"
                            HorizontalOptions="Center"
-                           FontSize="Small" TextColor="Blue" Text="{helpers:Translate LoginScreenView_Register}">
-                        <Label.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding RegisterCommand}" />
-                        </Label.GestureRecognizers>
-                    </Label>
-                    <Label x:Name="ForgotPasswordLabel"
+                           FontSize="Small" TextColor="Blue" Text="{helpers:Translate LoginScreenView_Register}"
+                            Command="{Binding RegisterCommand}">
+                        
+                    </Button>
+                    <Button x:Name="ForgotPasswordButton"
                            HorizontalOptions="Center"
-                           FontSize="Small" TextColor="Blue" Text="{helpers:Translate LoginScreenView_Forgot_Password}">
-                        <Label.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding ForgotPasswordCommand}" />
-                        </Label.GestureRecognizers>
-                    </Label>
+                           FontSize="Small" TextColor="Blue" Text="{helpers:Translate LoginScreenView_Forgot_Password}"
+                            Command="{Binding ForgotPasswordCommand}">
+                        
+                    </Button>
                     <Button x:Name="LoginButton"
                             Text="{helpers:Translate LoginScreenView_Login}"
-                            Command="{Binding LoginCommand}" />
+                            Command="{Binding LoginCommand}"
+                            >
+                    </Button>
                 </Grid>
             </views:NotificationExtensionView.ContentTemplate>
         </views:NotificationExtensionView>
