@@ -19,6 +19,7 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetche
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelConverters;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses.Contracts;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers
@@ -32,11 +33,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             this.client = client;
         }
 
-        public async Task<IEnumerable<IAchievement>> UpdateAchievements()
+        public async Task<IEnumerable<IAchievement>> UpdateAchievements(ITransactionDataAccess dataAccess)
         {
-            var existingUnlocked = AchievementManager.GetAchievements()
-                                                           .Where(it => it.IsUnlocked)
-                                                           .Select(it => it.Id);
+            var existingUnlocked = dataAccess.Achievements().GetAchievements()
+                .Where(it => it.IsUnlocked)
+                .Select(it => it.Id);
 
             var achievementDtos = await client.GetAchievements();
             var unlockedAchievementIds = (await client.GetUnlockedAchievements())
@@ -44,7 +45,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             
             using (DbManager.StartTransaction())
             {
-                var achievements = AchievementConverter.Convert(achievementDtos).ToList();
+                var achievements = AchievementConverter.Convert(achievementDtos, dataAccess).ToList();
                 foreach (var unlocked in achievements.Where(it => unlockedAchievementIds.Contains(it.Id)))
                 {
                     unlocked.IsUnlocked = true;

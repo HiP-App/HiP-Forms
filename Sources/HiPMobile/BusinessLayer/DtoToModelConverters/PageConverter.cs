@@ -30,7 +30,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelCo
                 case PageTypeDto.AppetizerPage:
                     if (existingModelObject.AppetizerPage == null)
                     {
-                        existingModelObject.AppetizerPage = DbManager.CreateBusinessObject<AppetizerPage>();
+                        existingModelObject.AppetizerPage = new AppetizerPage();
                     }
                     // Necessary for iOS
                     if (dto.Text != null)
@@ -46,13 +46,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelCo
                 case PageTypeDto.ImagePage:
                     if (existingModelObject.ImagePage == null)
                     {
-                        existingModelObject.ImagePage = DbManager.CreateBusinessObject<ImagePage>();
+                        existingModelObject.ImagePage = new ImagePage();
                     }
                     break;
                 case PageTypeDto.SliderPage:
                     if (existingModelObject.TimeSliderPage == null)
                     {
-                        existingModelObject.TimeSliderPage = DbManager.CreateBusinessObject<TimeSliderPage>();
+                        existingModelObject.TimeSliderPage = new TimeSliderPage();
                     }
                     existingModelObject.TimeSliderPage.HideYearNumbers = dto.HideYearNumbers;
                     existingModelObject.TimeSliderPage.Title = dto.Title;
@@ -74,7 +74,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelCo
                 case PageTypeDto.TextPage:
                     if (existingModelObject.TextPage == null)
                     {
-                        existingModelObject.TextPage = DbManager.CreateBusinessObject<TextPage>();
+                        existingModelObject.TextPage = new TextPage();
                     }
                     existingModelObject.TextPage.Title = dto.Title;
                     // Necessary for iOS

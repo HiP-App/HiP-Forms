@@ -17,7 +17,9 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentHandling;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelConverters;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.JoinClasses;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos;
@@ -109,17 +111,17 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
 
         private FetchedMediaData fetchedMedia;
 
-        public async Task ProcessRoutes(IProgressListener listener)
+        public async Task ProcessRoutes(IProgressListener listener, ITransactionDataAccess dataAccess)
         {
             fetchedMedia = await mediaDataFetcher.CombineMediasAndFiles();
 
-            ProcessUpdatedRoutes(listener);
-            ProcessNewRoutes(listener);
+            ProcessUpdatedRoutes(listener, dataAccess);
+            ProcessNewRoutes(listener, dataAccess);
         }
 
-        private void ProcessUpdatedRoutes(IProgressListener listener)
+        private void ProcessUpdatedRoutes(IProgressListener listener, ITransactionDataAccess dataAccess)
         {
-            var routes = RouteManager.GetRoutes().ToList();
+            var routes = dataAccess.Routes().GetRoutes().ToList();
 
             foreach (var routeDto in updatedRoutes)
             {
@@ -129,7 +131,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
 
                 AddImageToRoute(dbRoute, routeDto.Image, fetchedMedia);
                 AddTagsToRoute(dbRoute, routeDto, fetchedMedia);
-                AddExhibitsToRoute(dbRoute, routeDto);
+                AddExhibitsToRoute(dbRoute, routeDto, dataAccess);
 
                 if (dbRoute.DetailsDataLoaded)
                 {
@@ -140,7 +142,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             }
         }
 
-        private void ProcessNewRoutes(IProgressListener listener)
+        private void ProcessNewRoutes(IProgressListener listener, ITransactionDataAccess dataAccess)
         {
             foreach (var routeDto in newRoutes)
             {
@@ -148,7 +150,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
 
                 AddImageToRoute(dbRoute, routeDto.Image, fetchedMedia);
                 AddTagsToRoute(dbRoute, routeDto, fetchedMedia);
-                AddExhibitsToRoute(dbRoute, routeDto);
+                AddExhibitsToRoute(dbRoute, routeDto, dataAccess);
 
                 listener.ProgressOneStep();
             }
@@ -182,6 +184,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                     if (tagDto != null)
                     {
                         RouteTag dbTag = dbRoute.RouteTags.SingleOrDefault(x => x.IdForRestApi == tagId);
+
                         if (dbTag != null)
                         {
                             TagConverter.Convert(tagDto, dbTag);
@@ -209,9 +212,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             }
         }
 
-        private void AddExhibitsToRoute(Route dbRoute, RouteDto routeDto)
+        private void AddExhibitsToRoute(Route dbRoute, RouteDto routeDto, ITransactionDataAccess dataAccess)
         {
-            var exhibits = ExhibitManager.GetExhibits().ToList();
+            var exhibits = dataAccess.Exhibits().GetExhibits().ToList();
 
             if (routeDto.Exhibits.Count > 0)
             {
@@ -221,9 +224,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
 
                     if (dbExhibit != null)
                     {
-                        var waypoint = DbManager.CreateBusinessObject<Waypoint>();
-                        waypoint.Exhibit = dbExhibit;
-                        waypoint.Location = dbExhibit.Location;
+                        var waypoint = new Waypoint
+                        {
+                            Exhibit = dbExhibit,
+                            Location = dbExhibit.Location
+                        };
 
                         dbRoute.Waypoints.Add(waypoint);
                     }
@@ -244,11 +249,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             }
         }
 
-        public async Task<bool> AnyRouteChanged()
+        public async Task<bool> AnyRouteChanged(ITransactionDataAccess dataAccess)
         {
             RoutesDto changedRoutes;
 
-            var dbRoutes = RouteManager.GetRoutes().ToList();
+            var dbRoutes = dataAccess.Routes().GetRoutes().ToList();
             if (dbRoutes.Any())
             {
                 var latestTimestamp = dbRoutes.Max(x => x.Timestamp);

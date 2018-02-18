@@ -12,17 +12,16 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers.Contracts;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses.Contracts;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers
 {
@@ -71,17 +70,18 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             allMedias = await mediasApiAccess.GetIds();
             if (token.IsCancellationRequested)
             {
+                return;
             }
             allTags = await tagsApiAccess.GetIds();
         }
 
-        public async Task CleanupRemovedData()
+        public async Task CleanupRemovedData(ITransactionDataAccess dataAccess)
         {
             //Backup data fake id
             allMedias.Add(-1);
 
-            var routes = RouteManager.GetRoutes().ToList();
-            var exhibits = ExhibitManager.GetExhibits().ToList();
+            var routes = dataAccess.GetItems<Route>().ToList();
+            var exhibits = dataAccess.GetItems<Exhibit>().ToList();
 
             var deletedExhibits = exhibits.Where(x => !allExhibits.Contains(x.IdForRestApi)).ToList();
             var deletedRoutes = routes.Where(x => !allRoutes.Contains(x.IdForRestApi));
@@ -118,46 +118,47 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
 
             foreach (var exhibit in deletedExhibits)
             {
-                DbManager.DeleteBusinessEntity(exhibit);
+                dataAccess.DeleteItem(exhibit);
             }
             foreach (var route in deletedRoutes)
             {
-                DbManager.DeleteBusinessEntity(route);
+                dataAccess.DeleteItem(route);
             }
             foreach (var waypoint in deletedWaypoints)
             {
-                DbManager.DeleteBusinessEntity(waypoint);
+                dataAccess.DeleteItem(waypoint);
             }
             foreach (var tag in deletedTags)
             {
-                DbManager.DeleteBusinessEntity(tag);
+                dataAccess.DeleteItem(tag);
             }
             var fileManager = IoCManager.Resolve<IMediaFileManager>();
             foreach (var image in deletedImages)
             {
-                DbManager.DeleteBusinessEntity(image);
+                dataAccess.DeleteItem(image);
                 fileManager.DeleteFile(image.DataPath);
             }
             foreach (var audio in deletedAudios)
             {
-                DbManager.DeleteBusinessEntity(audio);
+                dataAccess.DeleteItem(audio);
                 fileManager.DeleteFile(audio.DataPath);
             }
             foreach (var page in deletedPages)
             {
-                DbManager.DeleteBusinessEntity(page);
+                dataAccess.DeleteItem(page);
             }
 
-            await PruneMediaFilesAsync();
+            await PruneMediaFilesAsync(dataAccess);
         }
 
-        public static async Task PruneMediaFilesAsync()
+        private static async Task PruneMediaFilesAsync(ITransactionDataAccess dataAccess)
         {
             var fileManager = IoCManager.Resolve<IMediaFileManager>();
-            var data = IoCManager.Resolve<IDataAccess>();
-            var restApiIdsToKeep = data.GetItems<Audio>()
-                                       .Select(it => it.IdForRestApi)
-                                       .Union(data.GetItems<Image>().Select(it => it.IdForRestApi));
+
+            var restApiIdsToKeep = dataAccess.GetItems<Audio>()
+                .Select(it => it.IdForRestApi)
+                .Union(dataAccess.GetItems<Image>().Select(it => it.IdForRestApi));
+
             await fileManager.PruneAsync(restApiIdsToKeep.ToList());
         }
 

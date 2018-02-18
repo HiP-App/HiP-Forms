@@ -1,5 +1,6 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers.Contracts
@@ -13,7 +14,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
         /// <param name="idForRestApi">The id for the REST API of the exhibit to be fetched</param>
         /// <param name="token">Used for cancelling the download</param>
         /// <param name="listener">Used for reporting progress</param>
+        /// <param name="dataAccess">Provides read/write access to the database</param>
         /// <returns></returns>
-        Task FetchFullDownloadableDataIntoDatabase(string downloadableId, int idForRestApi, CancellationToken token, IProgressListener listener);
+        Task FetchFullDownloadableDataIntoDatabase(
+            string downloadableId, int idForRestApi, CancellationToken token,
+            IProgressListener listener, ITransactionDataAccess dataAccess);
     }
 }

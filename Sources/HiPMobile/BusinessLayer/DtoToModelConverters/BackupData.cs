@@ -31,45 +31,44 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelCo
 
         public static async Task Init()
         {
-            var dataAccess = IoCManager.Resolve<IDataAccess>();
-            var dataLoader = IoCManager.Resolve<IDataLoader>();
-            var fileManager = IoCManager.Resolve<IMediaFileManager>();
-
-            backupImage = dataAccess.GetItems<Image>().SingleOrDefault(x => x.IdForRestApi == BackupImageIdForRestApi);
-            if (backupImage == null)
+            using (var transaction = DbManager.StartTransaction())
             {
-                using (DbManager.StartTransaction())
+                var dataAccess = transaction.DataAccess;
+                var dataLoader = IoCManager.Resolve<IDataLoader>();
+                var fileManager = IoCManager.Resolve<IMediaFileManager>();
+
+                backupImage = dataAccess.GetItems<Image>().SingleOrDefault(x => x.IdForRestApi == BackupImageIdForRestApi);
+                if (backupImage == null)
                 {
-                    backupImage = DbManager.CreateBusinessObject<Image>();
-
-                    backupImage.Title = "No Image";
-                    backupImage.Description = "Hier fehlt das Bild";
-                    backupImage.IdForRestApi = BackupImageIdForRestApi;
-
                     backupImageData = dataLoader.LoadByteData("noImage.png");
                     var path = await fileManager.WriteMediaToDiskAsync(backupImageData, BackupImageIdForRestApi, BackupTimestamp);
-                    backupImage.DataPath = path;
+
+                    dataAccess.AddItem(backupImage = new Image
+                    {
+                        Title = "No Image",
+                        Description = "Hier fehlt das Bild",
+                        IdForRestApi = BackupImageIdForRestApi,
+                        DataPath = path
+                    });
                 }
-            }
 
-            backupImageTag = dataAccess.GetItems<Image>().SingleOrDefault(x => x.IdForRestApi == BackupImageTagIdForRestApi);
-            if (backupImageTag == null)
-            {
-                using (DbManager.StartTransaction())
+                backupImageTag = dataAccess.GetItems<Image>().SingleOrDefault(x => x.IdForRestApi == BackupImageTagIdForRestApi);
+                if (backupImageTag == null)
                 {
-                    backupImageTag = DbManager.CreateBusinessObject<Image>();
-
-                    backupImageTag.Title = "No Tag Image";
-                    backupImageTag.Description = "Hier fehlt das Tag-Bild";
-                    backupImageTag.IdForRestApi = BackupImageTagIdForRestApi;
-
                     var backupImageDataTag = dataLoader.LoadByteData("noImageTag.jpg");
                     var path = await fileManager.WriteMediaToDiskAsync(backupImageDataTag, BackupImageTagIdForRestApi, BackupTimestamp);
-                    backupImageTag.DataPath = path;
-                }
-            }
 
-            mockAudioData = dataLoader.LoadByteData("mockaudio.mp3");
+                    dataAccess.AddItem(new Image
+                    {
+                        Title = "No Tag Image",
+                        Description = "Hier fehlt das Tag-Bild",
+                        IdForRestApi = BackupImageTagIdForRestApi,
+                        DataPath = path
+                    });
+                }
+
+                mockAudioData = dataLoader.LoadByteData("mockaudio.mp3");
+            }
         }
 
         private static byte[] backupImageData;
@@ -85,7 +84,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelCo
         public static Image BackupImageTag => backupImageTag ?? throw new NullReferenceException("BackupData.Init() not called yet!");
 
         private static byte[] mockAudioData;
-        
+
         public static byte[] MockAudioData => mockAudioData ?? throw new NullReferenceException("BackupData.Init() not called yet!");
     }
 }

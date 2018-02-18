@@ -25,49 +25,57 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
     /// </summary>
     public static class ExhibitManager
     {
-        private static readonly IDataAccess DataAccess = IoCManager.Resolve<IDataAccess>();
-        
-        /// <summary>
-        /// Get an exhibit with a specific id.
-        /// </summary>
-        /// <param name="id">The id of the exhibit to be retrived.</param>
-        /// <returns>The exhibit with the given id. If no exhibit exists, null is returned.</returns>
-        public static Exhibit GetExhibit(string id)
+        public static Instance Exhibits(this ITransactionDataAccess dataAccess) => new Instance(dataAccess);
+
+        public struct Instance
         {
-            if (!string.IsNullOrEmpty(id))
+            private readonly ITransactionDataAccess _dataAccess;
+
+            public Instance(ITransactionDataAccess dataAccess)
             {
-                return DataAccess.GetItem<Exhibit>(id);
+                _dataAccess = dataAccess ?? throw new ArgumentNullException(nameof(dataAccess));
             }
-            return null;
-        }
 
-        /// <summary>
-        /// Gets all available exhibits.
-        /// </summary>
-        /// <returns>The enumerable of all available exhibits.</returns>
-        public static IEnumerable<Exhibit> GetExhibits()
-        {
-            return DataAccess.GetItems<Exhibit>();
-        }
-
-        public static bool AddExhibit(Exhibit exhibit)
-        {
-            // TODO: Implement ExhibitManager.AddExhibit(Exhibit)
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Deletes the exhibit from the app.
-        /// </summary>
-        /// <param name="exhibit">The exhibit to be deleted.</param>
-        /// <returns>True, if deletion was succesful, false otherwise.</returns>
-        public static bool DeleteExhibit(Exhibit exhibit)
-        {
-            if (exhibit != null)
+            /// <summary>
+            /// Get an exhibit with a specific id.
+            /// </summary>
+            /// <param name="id">The id of the exhibit to be retrived.</param>
+            /// <returns>The exhibit with the given id. If no exhibit exists, null is returned.</returns>
+            public Exhibit GetExhibit(string id)
             {
-                return DataAccess.DeleteItem<Exhibit>(exhibit.Id);
+                if (!string.IsNullOrEmpty(id))
+                {
+                    return _dataAccess.GetItem<Exhibit>(id);
+                }
+                return null;
             }
-            return true;
+
+            /// <summary>
+            /// Gets all available exhibits.
+            /// </summary>
+            /// <returns>The enumerable of all available exhibits.</returns>
+            public IEnumerable<Exhibit> GetExhibits()
+            {
+                return _dataAccess.GetItems<Exhibit>();
+            }
+
+            public void AddExhibit(Exhibit exhibit)
+            {
+                _dataAccess.AddItem(exhibit);
+            }
+
+            /// <summary>
+            /// Deletes the exhibit from the app.
+            /// </summary>
+            /// <param name="exhibit">The exhibit to be deleted.</param>
+            /// <returns>True, if deletion was succesful, false otherwise.</returns>
+            public bool DeleteExhibit(Exhibit exhibit)
+            {
+                if (exhibit != null)
+                    _dataAccess.DeleteItem(exhibit);
+
+                return true;
+            }
         }
     }
 }

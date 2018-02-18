@@ -26,7 +26,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 
         public virtual string Text { get; set; }
 
-        public virtual IList<long> Dates { get; }
+        public virtual IList<long> Dates { get; set; }
 
         public virtual bool? HideYearNumbers { get; set; }
 

@@ -24,6 +24,7 @@ using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
 using Plugin.Geolocator.Abstractions;
 using Xamarin.Forms;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 {
@@ -119,7 +120,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             var moved = DetailsRoute.MoveToPassiveSet(waypoint);
             if (moved)
             {
-                using (IoCManager.Resolve<IDataAccess>().StartTransaction())
+                using (DbManager.StartTransaction(exhibit))
                 {
                     exhibit.Unlocked = true;
                 }

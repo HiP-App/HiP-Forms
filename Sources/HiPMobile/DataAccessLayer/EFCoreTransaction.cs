@@ -12,22 +12,54 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using Microsoft.EntityFrameworkCore.Storage;
 using System;
+using System.Linq;
+using System.Text;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
 {
     class EFCoreTransaction : BaseTransaction
     {
-        private readonly IDbContextTransaction _transaction;
+        private readonly AppDatabaseContext _db;
 
-        public EFCoreTransaction(IDbContextTransaction transaction)
+        public override ITransactionDataAccess DataAccess { get; }
+
+        public EFCoreTransaction(AppDatabaseContext db)
         {
-            _transaction = transaction ?? throw new ArgumentNullException(nameof(transaction));
+            _db = db ?? throw new ArgumentNullException(nameof(db));
+            DataAccess = new EFCoreDataAccess(db);
         }
 
-        public override void Commit() => _transaction.Commit();
+        public override void Commit()
+        {
+            ThrowIfDisposed();
+            DumpTrackedEntries();
+            _db.SaveChangesAndDetach();
+        }
 
-        public override void Rollback() => _transaction.Rollback();
+        public override void Rollback()
+        {
+            ThrowIfDisposed();
+        }
+
+        private void DumpTrackedEntries()
+        {
+            var sb = new StringBuilder($"TRACKED ENTITIES:\r\n");
+            void Print(string s) => sb.AppendLine("    " + s);
+
+            var entries = _db.ChangeTracker.Entries().OrderBy(e => e.Metadata.Name).ToList();
+
+            if (entries.Count > 0)
+            {
+                foreach (var e in entries)
+                    Print($"{e.Metadata.Name} \"{e.Entity}\" ({e.State})");
+            }
+            else
+            {
+                Print("None");
+            }
+
+            Console.WriteLine(sb);
+        }
     }
 }

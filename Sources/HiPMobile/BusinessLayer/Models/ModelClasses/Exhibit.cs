@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.ModelClasses.JoinClasses;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
 using System;
 using System.Collections.Generic;
@@ -55,7 +56,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
         public bool Unlocked { get; set; }
 
         //Associations
-        public IList<Page> Pages { get; }
+        public ICollection<Page> Pages => new JoinCollectionFacade<Page, Exhibit, JoinExhibitPage>(this, PagesRefs);
+
+        public IList<JoinExhibitPage> PagesRefs { get; } = new List<JoinExhibitPage>();
 
         public Image Image { get; set; }
 

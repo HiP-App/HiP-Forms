@@ -16,6 +16,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelConverters
@@ -34,16 +35,16 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelCo
         /// </summary>
         /// <returns>Converted items</returns>
         /// <exception cref="ArgumentException">For unsupported achievement types.</exception>
-        public static IList<IAchievement> Convert(IEnumerable<AchievementDto> dtos)
+        public static IList<IAchievement> Convert(IEnumerable<AchievementDto> dtos, ITransactionDataAccess dataAccess)
         {
             return dtos.Select<AchievementDto, IAchievement>(dto =>
             {
                 switch (dto)
                 {
                     case RouteFinishedAchievementDto r:
-                        return RouteFinishedAchievementConverter.Convert(r, r.Id.ToString(), updateCurrent: true);
+                        return RouteFinishedAchievementConverter.ConvertIntoExisting(r, r.Id.ToString(), dataAccess);
                     case ExhibitsVisitedAchievementDto e:
-                        return ExhibitsVisitedAchievementConverter.Convert(e, e.Id.ToString(), updateCurrent: true);
+                        return ExhibitsVisitedAchievementConverter.ConvertIntoExisting(e, e.Id.ToString(), dataAccess);
                     default:
                         throw new ArgumentException("Unsupported achievement type!");
                 }

@@ -14,10 +14,11 @@
 
 using Microsoft.EntityFrameworkCore;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
+using System.Linq;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
 {
-    class AppDatabaseContext : DbContext
+    public class AppDatabaseContext : DbContext
     {
         // Note: EF Core includes all types declared as DbSet<> here as well as all types found by recursively
         // exploring their navigation properties. For example, having a DbSet<Page> will also include
@@ -34,21 +35,30 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
         public DbSet<ExhibitsVisitedAchievement> ExhibitsVisitedAchievements { get; set; }
         public DbSet<RouteFinishedAchievement> RouteFinishedAchievements { get; set; }
 
-        public AppDatabaseContext()
+        public AppDatabaseContext(QueryTrackingBehavior changeTrackingBehavior)
         {
-            ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
+            ChangeTracker.QueryTrackingBehavior = changeTrackingBehavior;
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlite("Filename=" + EFCoreDataAccess.DbPath);
-            //var connectionProvider = IoCManager.Resolve<IDbConnectionProvider>();
-            //optionsBuilder.UseSqlite(connectionProvider.ProvideIDbConnection(EFCoreDataAccess.DbPath));
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+        }
+
+        /// <summary>
+        /// Saves all pending changes and then clears the list of tracked entities.
+        /// </summary>
+        public void SaveChangesAndDetach()
+        {
+            SaveChanges();
+
+            foreach (var entry in ChangeTracker.Entries().ToList())
+                entry.State = EntityState.Detached;
         }
     }
 }

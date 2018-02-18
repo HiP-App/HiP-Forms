@@ -15,7 +15,8 @@
 using JetBrains.Annotations;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
-
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
+using System;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelConverters
 {
@@ -34,26 +35,26 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelCo
         /// <returns></returns>
         public TModelObject Convert(TDtoObject dto)
         {
-            var modelObject = DbManager.CreateBusinessObject<TModelObject>();
-
+            var modelObject = new TModelObject();
             Convert(dto, modelObject);
-
             return modelObject;
         }
 
         /// <summary>
-        /// Converts the given <paramref name="dto"/> to a new model object
+        /// 
         /// </summary>
         /// <param name="dto"></param>
-        /// <param name="id">The ID to assign to the object.</param>
-        /// <param name="updateCurrent">If true, first removes any object of the same type with the id.</param>
+        /// <param name="id"></param>
+        /// <param name="dataAccess"></param>
         /// <returns></returns>
-        public TModelObject Convert(TDtoObject dto, [NotNull] string id, bool updateCurrent = false)
+        public TModelObject ConvertIntoExisting(TDtoObject dto, [NotNull]string id, ITransactionDataAccess dataAccess)
         {
-            var modelObject = DbManager.CreateBusinessObject<TModelObject>(id, updateCurrent);
+            var modelObject = dataAccess.GetItem<TModelObject>(id);
+
+            if (modelObject == null)
+                throw new InvalidOperationException($"Failed to convert DTO because no model object of type '{typeof(TModelObject).Name}' with ID '{id}' exists in the database");
 
             Convert(dto, modelObject);
-
             return modelObject;
         }
 

@@ -15,12 +15,17 @@
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.JoinClasses
 {
-    public class Waypoint : IIdentifiable
+    public class Waypoint : IJoinEntity<Route>, IJoinEntity<Exhibit>
     {
-        //Attributes
-        public string Id { get; set; }
+        public Exhibit Exhibit { get; set; }
+
+        public Route Route { get; set; }
+
+        Route IJoinEntity<Route>.Navigation { get => Route; set => Route = value; }
+
+        Exhibit IJoinEntity<Exhibit>.Navigation { get => Exhibit; set => Exhibit = value; }
 
         [NotMapped]
         public GeoLocation Location
@@ -32,9 +37,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
         public string LocationAsString { get; set; }
 
         public bool Visited { get; set; }
-
-        //Associations
-        public Exhibit Exhibit { get; set; }
 
         //Contructor
         public Waypoint()

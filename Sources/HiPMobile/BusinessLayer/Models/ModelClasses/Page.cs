@@ -12,6 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.JoinClasses;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
 using System;
 using System.Collections.Generic;
 
@@ -37,7 +39,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 
         public TimeSliderPage TimeSliderPage { get; set; }
 
-        public IList<Page> AdditionalInformationPages { get; }
+        public ICollection<Page> AdditionalInformationPages => new JoinCollectionFacade<Page, JoinPagePage>(this, AdditionalInformationPagesRefs, JoinSide.B);
+
+        public IList<JoinPagePage> AdditionalInformationPagesRefs { get; } = new List<JoinPagePage>();
 
         // Contructor
         public Page()

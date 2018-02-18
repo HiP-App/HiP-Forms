@@ -16,6 +16,7 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetche
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelConverters;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos;
@@ -44,7 +45,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
         private IList<int?> requiredMedia;
         private IList<PageDto> pageItems;
 
-        public async Task FetchFullDownloadableDataIntoDatabase(string exhibitId, int idForRestApi, CancellationToken token, IProgressListener listener)
+        public async Task FetchFullDownloadableDataIntoDatabase(
+            string exhibitId, int idForRestApi, CancellationToken token,
+            IProgressListener listener, ITransactionDataAccess dataAccess)
         {
             double totalSteps = await FetchNeededMediaForFullExhibit(idForRestApi);
 
@@ -56,7 +59,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
 
             using (var transaction = DbManager.StartTransaction())
             {
-                await ProcessPages(exhibitId, token, listener);
+                await ProcessPages(exhibitId, token, listener, dataAccess);
                 if (token.IsCancellationRequested)
                 {
                     transaction.Rollback();
@@ -64,15 +67,16 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             }
         }
 
-        public async Task FetchFullExhibitDataIntoDatabaseWithFetchedPagesAndMedia(string exhibitId, ExhibitPagesAndMediaContainer exhibitPagesAndMediaContainer,
-                                                                                   CancellationToken token, IProgressListener listener)
+        public async Task FetchFullExhibitDataIntoDatabaseWithFetchedPagesAndMedia(
+            string exhibitId, ExhibitPagesAndMediaContainer exhibitPagesAndMediaContainer,
+            CancellationToken token, IProgressListener listener, ITransactionDataAccess dataAccess)
         {
             requiredMedia = exhibitPagesAndMediaContainer.RequiredMedia;
             pageItems = exhibitPagesAndMediaContainer.PageDtos;
 
             using (var transaction = DbManager.StartTransaction())
             {
-                await ProcessPages(exhibitId, token, listener);
+                await ProcessPages(exhibitId, token, listener, dataAccess);
                 if (token.IsCancellationRequested)
                 {
                     transaction.Rollback();
@@ -136,7 +140,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             }
         }
 
-        private async Task ProcessPages(string exhibitId, CancellationToken token, IProgressListener listener)
+        private async Task ProcessPages(string exhibitId, CancellationToken token, IProgressListener listener, ITransactionDataAccess dataAccess)
         {
             await FetchMediaData(token, listener);
             var fetchedMedia = await mediaDataFetcher.CombineMediasAndFiles();
@@ -146,7 +150,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                 return;
             }
 
-            var exhibit = ExhibitManager.GetExhibit(exhibitId);
+            var exhibit = dataAccess.Exhibits().GetExhibit(exhibitId);
 
             foreach (var pageDto in pageItems)
             {
@@ -207,20 +211,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                     case PageType.AppetizerPage:
                         // Should not be reached
                         break;
+
                     case PageType.ImagePage:
                         var image = fetchedMedia.Images.SingleOrDefault(x => x.IdForRestApi == content.Image);
-
-                        if (image != null)
-                        {
-                            dbPage.ImagePage.Image = image;
-                        }
-                        else
-                        {
-                            dbPage.ImagePage.Image = BackupData.BackupImage;
-                        }
+                        dbPage.ImagePage.Image = image ?? BackupData.BackupImage;
                         break;
+
                     case PageType.TextPage:
                         break;
+
                     case PageType.TimeSliderPage:
                         var fetchedImages = fetchedMedia.Images;
 
@@ -228,13 +227,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                         {
                             foreach (var fImg in fetchedImages)
                             {
-                                foreach (var cImg in content.Images)
-                                {
-                                    if (fImg.IdForRestApi == cImg.Image)
-                                    {
-                                        dbPage.TimeSliderPage.Images.Add(fImg);
-                                    }
-                                }
+                                if (content.Images.Any(cImg => cImg.Image == fImg.IdForRestApi))
+                                    dbPage.TimeSliderPage.Images.Add(fImg);
                             }
                         }
                         else

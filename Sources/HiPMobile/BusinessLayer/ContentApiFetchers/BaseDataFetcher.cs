@@ -17,6 +17,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers
@@ -44,33 +46,36 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
 
         public async Task FetchBaseDataIntoDatabase(CancellationToken token, IProgressListener listener)
         {
-            var routes = RouteManager.GetRoutes().ToDictionary(x => x.IdForRestApi, x => x.Timestamp);
-            var exhibits = ExhibitManager.GetExhibits().ToDictionary(x => x.IdForRestApi, x => x.Timestamp);
-
-            double totalSteps = await exhibitsBaseDataFetcher.FetchNeededDataForExhibits(exhibits);
-            totalSteps += await routesBaseDataFetcher.FetchNeededDataForRoutes(routes);
-
-            if (token.IsCancellationRequested)
-            {
-                return;
-            }
-
-            listener.SetMaxProgress(totalSteps);
-
-            await exhibitsBaseDataFetcher.FetchMediaData(token, listener);
-            if (token.IsCancellationRequested)
-            {
-                return;
-            }
-            await routesBaseDataFetcher.FetchMediaData(token, listener);
-            if (token.IsCancellationRequested)
-            {
-                return;
-            }
-
             using (var transaction = DbManager.StartTransaction())
             {
-                await exhibitsBaseDataFetcher.ProcessExhibits(listener);
+                var routes = transaction.DataAccess.GetItems<Route>().ToDictionary(x => x.IdForRestApi, x => x.Timestamp);
+                var exhibits = transaction.DataAccess.GetItems<Exhibit>().ToDictionary(x => x.IdForRestApi, x => x.Timestamp);
+
+                double totalSteps = await exhibitsBaseDataFetcher.FetchNeededDataForExhibits(exhibits);
+                totalSteps += await routesBaseDataFetcher.FetchNeededDataForRoutes(routes);
+
+                if (token.IsCancellationRequested)
+                {
+                    transaction.Rollback();
+                    return;
+                }
+
+                listener.SetMaxProgress(totalSteps);
+
+                await exhibitsBaseDataFetcher.FetchMediaData(token, listener);
+                if (token.IsCancellationRequested)
+                {
+                    transaction.Rollback();
+                    return;
+                }
+                await routesBaseDataFetcher.FetchMediaData(token, listener);
+                if (token.IsCancellationRequested)
+                {
+                    transaction.Rollback();
+                    return;
+                }
+
+                await exhibitsBaseDataFetcher.ProcessExhibits(listener, transaction.DataAccess);
                 if (token.IsCancellationRequested)
                 {
                     transaction.Rollback();
@@ -82,15 +87,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                     transaction.Rollback();
                     return;
                 }
-                if (token.IsCancellationRequested)
-                {
-                    transaction.Rollback();
-                }
             }
-            await dataToRemoveFetcher.FetchDataToDelete(token);
-            using (DbManager.StartTransaction())
+
+            using (var transaction = DbManager.StartTransaction())
             {
-                await dataToRemoveFetcher.CleanupRemovedData();
+                await dataToRemoveFetcher.FetchDataToDelete(token);
+                await dataToRemoveFetcher.CleanupRemovedData(transaction.DataAccess);
             }
         }
     }

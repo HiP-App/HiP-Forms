@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.JoinClasses;
 using System;
 using System.Collections.Generic;
 
@@ -43,7 +44,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 
         public Image Image { get; set; }
 
-        public IList<Waypoint> Waypoints { get; }
+        public IList<Waypoint> Waypoints { get; } = new List<Waypoint>();
 
         public Audio Audio { get; set; }
 
