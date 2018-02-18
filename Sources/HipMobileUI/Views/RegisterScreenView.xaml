@@ -49,13 +49,11 @@
                             VerticalOptions="End"
                             Text="{helpers:Translate RegisterScreenView_Register}"
                             Command="{Binding Register}" />
-                    <Label x:Name="CancelLabel"
-                           HorizontalOptions="Center" VerticalOptions="Center"
-                           Text="{helpers:Translate Cancel}" FontSize="Small" TextColor="Blue">
-                        <Label.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding ReturnCommand}"/>
-                        </Label.GestureRecognizers>
-                    </Label>
+                    <Button x:Name="CancelButton"
+                            VerticalOptions="End"
+                           Text="{helpers:Translate Cancel}" FontSize="Small" TextColor="Blue"
+                           Command="{Binding ReturnCommand}">
+                    </Button>
                 </Grid>
             </views:NotificationExtensionView.ContentTemplate>
         </views:NotificationExtensionView>
