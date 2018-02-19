@@ -50,7 +50,7 @@
                                      BackgroundColor="{StaticResource LightGrayColor}" VerticalOptions="End">
                             <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
                                 <Label Text="{helpers:Translate ExhibitOrRouteNearby_Confirm}" FontSize="20"
-                                       TextColor="{StaticResource AccentColor}" Style="{DynamicResource Ssp-Bold}"
+                                       TextColor="{StaticResource SecondaryColor}" Style="{DynamicResource Ssp-Bold}"
                                        HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
                                 <StackLayout.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding Confirm}" />
@@ -59,7 +59,7 @@
                             <BoxView WidthRequest="2" Color="{StaticResource DarkGrayColor}" />
                             <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
                                 <Label Text="{helpers:Translate ExhibitOrRouteNearby_Reject}" FontSize="20"
-                                       TextColor="{StaticResource AccentColor}"
+                                       TextColor="{StaticResource SecondaryColor}"
                                        HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Style="{DynamicResource Ssp-Bold}"/>
                                 <StackLayout.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding Decline}" />

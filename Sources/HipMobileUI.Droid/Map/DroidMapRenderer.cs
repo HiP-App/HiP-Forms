@@ -293,7 +293,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Map
                 {
                     Title = osmMap.DetailsRoute.Title,
                     Width = 5f,
-                    Color = ((Color)resources.GetResourceValue("AccentColor")).ToAndroid(),
+                    Color = ((Color)resources.GetResourceValue("SecondaryColor")).ToAndroid(),
                     //Color = Color.Orange,
                     Points = route.FirstSection.Select(geoLocation => new GeoPoint(geoLocation.Latitude, geoLocation.Longitude)).ToList(),
                     Geodesic = true

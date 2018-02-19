@@ -52,7 +52,7 @@
                             <controls1:TimeSlider x:Name="Slider" Grid.Row="2" HorizontalOptions="FillAndExpand"
                                                   VerticalOptions="Center" HeightRequest="80" Images="{Binding Images}"
                                                   Texts="{Binding Years}" ItemWidth="100" SafezoneFraction="0.3"
-                                                  FadezoneFraction="0.7" SeparatorColor="{StaticResource AccentColor}"
+                                                  FadezoneFraction="0.7" SeparatorColor="{StaticResource SecondaryColor}"
                                                   SelectedValue="{Binding SelectedValue, Mode=OneWayToSource}" />
                         </Grid>
                     </views1:BottomSheetView.MainContent>

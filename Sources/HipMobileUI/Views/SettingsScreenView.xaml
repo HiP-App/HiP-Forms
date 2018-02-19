@@ -26,7 +26,7 @@
             <!-- Defined Styles for Labels -->
             <Style x:Key="TitleStyle" TargetType="Label">
                 <Setter Property="FontSize" Value="Small" />
-                <Setter Property="TextColor" Value="{StaticResource AccentColor}" />
+                <Setter Property="TextColor" Value="{StaticResource SecondaryColor}" />
                 <Setter Property="FontAttributes" Value="Bold" />
                 <Setter Property="Grid.ColumnSpan" Value="2" />
                 <Setter Property="Style" Value="{DynamicResource Ssp-Regular}" />
@@ -95,7 +95,7 @@
                         <Switch IsToggled="{Binding AutoSwitchPage, Mode=TwoWay}" VerticalOptions="Center" Grid.Row="2"
                                 Grid.Column="1">
                             <Switch.Effects>
-                                <effects:SwitchColorEffect Color="{StaticResource AccentColor}" />
+                                <effects:SwitchColorEffect Color="{StaticResource SecondaryColor}" />
                             </Switch.Effects>
                         </Switch>
                         <BoxView Grid.Row="3" Grid.Column="0" />
@@ -106,7 +106,7 @@
                         <Switch IsToggled="{Binding AutoStartAudio, Mode=TwoWay}" HorizontalOptions="End"
                                 VerticalOptions="Center" Grid.Row="5" Grid.Column="1">
                             <Switch.Effects>
-                                <effects:SwitchColorEffect Color="{StaticResource AccentColor}" />
+                                <effects:SwitchColorEffect Color="{StaticResource SecondaryColor}" />
                             </Switch.Effects>
                         </Switch>
 
@@ -118,7 +118,7 @@
                         <Switch IsToggled="{Binding RepeatHintAudio, Mode=TwoWay}" HorizontalOptions="End"
                                 VerticalOptions="Center" Grid.Row="7" Grid.Column="1">
                             <Switch.Effects>
-                                <effects:SwitchColorEffect Color="{StaticResource AccentColor}" />
+                                <effects:SwitchColorEffect Color="{StaticResource SecondaryColor}" />
                             </Switch.Effects>
                         </Switch>
                         <BoxView Grid.Row="8" Grid.Column="0" />
@@ -127,7 +127,7 @@
                         <Switch IsToggled="{Binding RepeatHintAutoPageSwitch, Mode=TwoWay}" HorizontalOptions="End"
                                 VerticalOptions="Center" Grid.Row="9" Grid.Column="1">
                             <Switch.Effects>
-                                <effects:SwitchColorEffect Color="{StaticResource AccentColor}" />
+                                <effects:SwitchColorEffect Color="{StaticResource SecondaryColor}" />
                             </Switch.Effects>
                         </Switch>
                         <BoxView Grid.Row="10" Grid.Column="0" />
@@ -136,7 +136,7 @@
                         <Switch IsToggled="{Binding RepeatIntro, Mode=TwoWay}" HorizontalOptions="End" VerticalOptions="Center"
                                 Grid.Row="11" Grid.Column="1">
                             <Switch.Effects>
-                                <effects:SwitchColorEffect Color="{StaticResource AccentColor}" />
+                                <effects:SwitchColorEffect Color="{StaticResource SecondaryColor}" />
                             </Switch.Effects>
                         </Switch>
 
@@ -148,7 +148,7 @@
                         <Switch IsToggled="{Binding WifiOnly, Mode=TwoWay}" HorizontalOptions="End" VerticalOptions="Center"
                                 Grid.Row="13" Grid.Column="1">
                             <Switch.Effects>
-                                <effects:SwitchColorEffect Color="{StaticResource AccentColor}" />
+                                <effects:SwitchColorEffect Color="{StaticResource SecondaryColor}" />
                             </Switch.Effects>
                         </Switch>
                         <BoxView Grid.Row="14" Grid.Column="0" />
@@ -157,7 +157,7 @@
                         <Switch IsToggled="{Binding AlwaysDownloadData, Mode=TwoWay}" HorizontalOptions="End"
                                 VerticalOptions="Center" Grid.Row="15" Grid.Column="1">
                             <Switch.Effects>
-                                <effects:SwitchColorEffect Color="{StaticResource AccentColor}" />
+                                <effects:SwitchColorEffect Color="{StaticResource SecondaryColor}" />
                             </Switch.Effects>
                         </Switch>
 
@@ -168,7 +168,7 @@
                         <Label Grid.Row="17" Grid.Column="0" Text="{Binding AppModeText}" />
                         <Button Grid.Row="17" Grid.Column="1" Command="{Binding SelectCharacterCommand}"
                                 Text="{helpers:Translate SettingsScreenView_CharacterSelection_Button_Text}"
-                                BackgroundColor="{StaticResource AccentColor}" TextColor="Black" />
+                                BackgroundColor="{StaticResource SecondaryColor}" TextColor="Black" />
                         <BoxView Grid.Row="18" Grid.Column="0" />
                         <Label Text="{helpers:Translate StorageTitle}" Grid.Row="19" Grid.Column="0" />
                         <Label Text="{Binding Size, Mode=OneWay}" Grid.Row="19" Grid.Column="1" HorizontalOptions="End"
@@ -177,7 +177,7 @@
                         <Label Text="{helpers:Translate SettingsScreenView_RemoveAllDownloads_Text}"
                                HorizontalOptions="StartAndExpand" Grid.Row="21" Grid.Column="0" />
                         <Button Text="{helpers:Translate SettingsScreenView_RemoveAllDownloadsButton_Text}"
-                                BackgroundColor="{StaticResource AccentColor}" TextColor="Black"
+                                BackgroundColor="{StaticResource SecondaryColor}" TextColor="Black"
                                 Command="{Binding RemoveAllDownloads}" HorizontalOptions="End" VerticalOptions="Center"
                                 Grid.Row="21" Grid.Column="1" />
                     </Grid>
