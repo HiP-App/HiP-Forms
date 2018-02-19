@@ -259,6 +259,10 @@
       <DependentUpon>AchievementsDetailsExhibitPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\Views\AchievementsDetailsExhibitViewModel.cs" />
+    <Compile Include="Pages\CharacterDetailsPage.xaml.cs">
+      <DependentUpon>CharacterDetailsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\Pages\CharacterDetailsPageViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="App.xaml">
@@ -287,6 +291,10 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\AchievementsDetailsExhibitPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\CharacterDetailsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -422,6 +430,12 @@
     </Reference>
     <Reference Include="zxing.portable, Version=0.16.2.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
       <HintPath>..\..\packages\ZXing.Net.0.16.2\lib\portable-win+net40+sl4+sl5+wp7+wp71+wp8\zxing.portable.dll</HintPath>
+    </Reference>
+    <Reference Include="SkiaSharp">
+      <HintPath>..\..\packages\SkiaSharp.1.59.3\lib\portable-net45+win8+wpa81+wp8\SkiaSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="SkiaSharp.Views.Forms">
+      <HintPath>..\..\packages\SkiaSharp.Views.Forms.1.59.3\lib\portable-net45+win8+wpa81+wp8\SkiaSharp.Views.Forms.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

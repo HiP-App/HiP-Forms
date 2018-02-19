@@ -29,7 +29,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         {
             mainPageViewModel = mainPageVm;
 
-            Tabs = new ObservableCollection<string> { Strings.MainPageViewModel_OverviewPage, "Statistik" };
+            Tabs = new ObservableCollection<string> { Strings.MainPageViewModel_OverviewPage, Strings.ProfileView_Statistic };
 
             ChangeAppModeCommand = new Command(OnChangeAppModeTapped);
             Logout = new Command(LogoutDummy);
@@ -49,7 +49,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 
         private void OnChangeAppModeTapped()
         {
-            Navigation.StartNewNavigationStack(new CharacterSelectionPageViewModel(this));
+            Navigation.StartNewLocalNavigationStack(new CharacterSelectionPageViewModel(this));
         }
 
         async void LogoutDummy()

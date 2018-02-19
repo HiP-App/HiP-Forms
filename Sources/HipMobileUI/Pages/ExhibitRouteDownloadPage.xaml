@@ -26,71 +26,35 @@
     <ContentPage.Content>
         <views:NotificationExtensionView>
             <views:NotificationExtensionView.ContentTemplate>
-                <Grid x:Name="Grid">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
+                <Grid x:Name="OuterGrid" AbsoluteLayout.LayoutBounds="1,1,1,1" AbsoluteLayout.LayoutFlags="All" BackgroundColor="White">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="0.3*" />
-                        <RowDefinition Height="0.1*" />
+                        <RowDefinition Height="0.6*" />
                         <RowDefinition Height="0.4*" />
-                        <RowDefinition Height="0.2*" />
                     </Grid.RowDefinitions>
-
-                    <Image x:Name="ImageView" Grid.Row="0" Source="{Binding Image}" Aspect="AspectFill"
-                           BackgroundColor="White" Margin="5" VerticalOptions="FillAndExpand" />
-
-                    <Frame x:Name="DescriptionView" Grid.Row="1" BackgroundColor="White"
-                           Padding="0" Margin="5" HasShadow="False">
-                        <Label Text="{Binding DownloadableDescription}" FontSize="Medium" FontAttributes="Bold"
-                               TextColor="{StaticResource AccentDarkColor}" HorizontalTextAlignment="Center"
-                               VerticalOptions="Center" />
-                    </Frame>
-
-                    <StackLayout x:Name="ProgressView" Grid.Row="2" Padding="10,30,10,30" VerticalOptions="FillAndExpand">
-                        <Label Text="{Binding Message}" FontSize="Medium" TextColor="{StaticResource AccentDarkColor}"
-                               HorizontalTextAlignment="Center" />
-                        <ProgressBar Progress="{Binding LoadingProgress}" Margin="20,0">
-                            <ProgressBar.Effects>
-                                <effects:ProgressBarColorEffect Color="{StaticResource PrimaryColor}" />
-                            </ProgressBar.Effects>
-                        </ProgressBar>
-                        <Label Text="{Binding LoadingProgress, StringFormat='{0:p0}'}"
-                               HorizontalTextAlignment="Center" FontSize="16" />
-                    </StackLayout>
-
-                    <StackLayout x:Name="ButtonView" Grid.Row="3" Orientation="Vertical" VerticalOptions="End" Padding="0">
-                        <BoxView HeightRequest="1" Color="{StaticResource DarkGrayColor}" />
-                        <StackLayout Orientation="Horizontal" Padding="8" BackgroundColor="{StaticResource LightGrayColor}">
-                            <Label IsVisible="{Binding DownloadFinished}" Text="{helpers:Translate ExhibitRouteDownloadPage_Overview}" FontSize="20"
-                                   TextColor="{StaticResource AccentColor}"
-                                   HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
-                                   Margin="5"
-                                   HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                                <Label.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding GoToOverviewCommand}" />
-                                </Label.GestureRecognizers>
-                            </Label>
-                            <BoxView IsVisible="{Binding DownloadFinished}" WidthRequest="1"
-                                     Color="{StaticResource DarkGrayColor}"/>
-                            <Label IsVisible="{Binding DownloadFinished}" Text="{helpers:Translate ExhibitRouteDownloadPage_Details}" FontSize="20"
-                                   TextColor="{StaticResource AccentColor}"
-                                   HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
-                                   HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                                <Label.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding GoToDetailsCommand}" />
-                                </Label.GestureRecognizers>
-                            </Label>
-                            <Label IsVisible="{Binding DownloadPending}" Text="{helpers:Translate Cancel}"  FontSize="20"
-                                   TextColor="{StaticResource AccentColor}"
-                                   HorizontalTextAlignment="Center"
-                                   HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                                <Label.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding CancelCommand}"/>
-                                </Label.GestureRecognizers>
-                            </Label>
+                    <!--The row and column definition is made in code to adjust them to the device orientation-->
+                    <Image x:Name="Image" Source="{Binding Image}" Grid.Row="0" Aspect="AspectFill" />
+                    <Grid x:Name="InnerGrid" Grid.Row="1" Grid.Column="0" RowSpacing="0" ColumnSpacing="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0.7*" />
+                            <RowDefinition Height="0.3*" />
+                        </Grid.RowDefinitions>
+                        <!--The row and column definition is made in code to adjust them to the device orientation-->
+                        <StackLayout Grid.Row="0" VerticalOptions="CenterAndExpand" Margin="20,20,20,20" >
+                            <Label IsVisible="{Binding DescriptionExists}" Text="{Binding DownloadableDescription}" FontSize="Medium" TextColor="{StaticResource AccentDarkColor}"
+                                   HorizontalTextAlignment="Center" FontAttributes="Bold" />
+                            <Label Text="{helpers:Translate ExhibitRouteDonwloadPage_Download_Text}" FontSize="Medium" TextColor="{StaticResource AccentDarkColor}"
+                                   HorizontalTextAlignment="Center" />
+                            <ProgressBar Progress="{Binding LoadingProgress}">
+                                <ProgressBar.Effects>
+                                    <effects:ProgressBarColorEffect Color="{StaticResource PrimaryColor}" />
+                                </ProgressBar.Effects>
+                            </ProgressBar>
+                            <Label Text="{Binding LoadingProgress, StringFormat='{0:p0}'}"
+                                   HorizontalTextAlignment="Center" FontSize="16" />
                         </StackLayout>
-                    </StackLayout>
+                        <Button Grid.Row="1" Margin="7" BackgroundColor="LightGray" Text="{helpers:Translate Cancel}" 
+                                FontSize="13" Command="{Binding CancelCommand}" />
+                    </Grid>
                 </Grid>
             </views:NotificationExtensionView.ContentTemplate>
         </views:NotificationExtensionView>

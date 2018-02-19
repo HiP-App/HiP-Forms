@@ -856,4 +856,19 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   <data name="Cancel" xml:space="preserve">
     <value>Abbrechen</value>
   </data>
+	<data name="CharacterDetailsPage_SelectModeButton" xml:space="preserve">
+    <value>Wähle diesen Modus</value>
+  </data>
+	<data name="CharacterDetailsPage_ChangeModeButton" xml:space="preserve">
+    <value>Anderer Modus</value>
+  </data>
+	<data name="CharacterSelectionPage_SelectCharacter" xml:space="preserve">
+    <value>Wähle einen Charakter</value>
+  </data>
+	<data name="CharacterDetailsPage_Adventurer_Text" xml:space="preserve">
+    <value>Entdecke Paderborn auf eigene Faust! Mache neue Erfahrungen!</value>
+  </data>
+	<data name="CharacterDetailsPage_Professor_Text" xml:space="preserve">
+    <value>Folge den geführten Touren um Paderborn zu entdecken!</value>
+  </data>
 </root>

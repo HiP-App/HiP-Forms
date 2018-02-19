@@ -14,6 +14,7 @@
 
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Location;
 using System;
+using System.Diagnostics;
 using System.Globalization;
 using System.Reflection;
 using System.Resources;
@@ -55,7 +56,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers
                 return "";
 
             var resourceManager = new ResourceManager(ResourceId, typeof(TranslateExtension).GetTypeInfo().Assembly);
-            return resourceManager.GetString(Text, ci) ?? Text;
+            var translatedText = resourceManager.GetString(Text, ci);
+            if (translatedText == null)
+                Debug.WriteLine("Cannot find the resource: " + Text);
+            return translatedText ?? Text;
         }
     }
 }

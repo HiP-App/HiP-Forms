@@ -217,6 +217,42 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Discover Paderborn on your own! Gain new experiences!.
         /// </summary>
+        public static string CharacterDetailsPage_Adventurer_Text {
+            get {
+                return ResourceManager.GetString("CharacterDetailsPage_Adventurer_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Check other mode.
+        /// </summary>
+        public static string CharacterDetailsPage_ChangeModeButton {
+            get {
+                return ResourceManager.GetString("CharacterDetailsPage_ChangeModeButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Follow the guided tours to discover Paderborn!.
+        /// </summary>
+        public static string CharacterDetailsPage_Professor_Text {
+            get {
+                return ResourceManager.GetString("CharacterDetailsPage_Professor_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select this mode.
+        /// </summary>
+        public static string CharacterDetailsPage_SelectModeButton {
+            get {
+                return ResourceManager.GetString("CharacterDetailsPage_SelectModeButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Discover Paderborn on your own! Gain new experiences!.
+        /// </summary>
         public static string CharacterSelectionPage_Adventurer_Text {
             get {
                 return ResourceManager.GetString("CharacterSelectionPage_Adventurer_Text", resourceCulture);
@@ -229,6 +265,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         public static string CharacterSelectionPage_Professor_Text {
             get {
                 return ResourceManager.GetString("CharacterSelectionPage_Professor_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Chose a Character.
+        /// </summary>
+        public static string CharacterSelectionPage_SelectCharacter {
+            get {
+                return ResourceManager.GetString("CharacterSelectionPage_SelectCharacter", resourceCulture);
             }
         }
         
