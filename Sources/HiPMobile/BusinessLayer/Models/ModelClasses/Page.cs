@@ -16,6 +16,7 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.JoinClass
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 {
@@ -31,6 +32,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 
         public DateTimeOffset Timestamp { get; set; }
 
+        [NotMapped]
         public ICollection<Page> AdditionalInformationPages => new JoinCollectionFacade<Page, JoinPagePage>(this, AdditionalInformationPagesRefs, JoinSide.B);
 
         public IList<JoinPagePage> AdditionalInformationPagesRefs { get; } = new List<JoinPagePage>();

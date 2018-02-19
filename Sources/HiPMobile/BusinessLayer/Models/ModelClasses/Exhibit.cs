@@ -59,6 +59,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
         public bool Unlocked { get; set; }
 
         //Associations
+        [NotMapped]
         public ICollection<Page> Pages => new JoinCollectionFacade<Page, Exhibit, JoinExhibitPage>(this, PagesRefs);
 
         public IList<JoinExhibitPage> PagesRefs { get; } = new List<JoinExhibitPage>();

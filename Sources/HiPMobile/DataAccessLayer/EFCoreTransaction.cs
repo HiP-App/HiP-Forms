@@ -24,6 +24,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
 
         public override ITransactionDataAccess DataAccess { get; }
 
+        public object DebugView => new DbContextDebugView { Db = _db };
+
         public EFCoreTransaction(AppDatabaseContext db)
         {
             _db = db ?? throw new ArgumentNullException(nameof(db));

@@ -96,6 +96,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
                             .Invoke(Db, null);
 
                         return set
+                            .AsNoTracking()
                             .Select(entity => new EntityView
                             {
                                 Db = Db,
@@ -124,7 +125,18 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
                 public EntityState State { get; set; }
 
                 [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-                public string Description => $"{State}: {Entries.Count}";
+                public string Description
+                {
+                    get
+                    {
+                        var groups = Entries
+                            .GroupBy(e => e.TrackingInfo.Entity.GetType())
+                            .Select(g => $"{g.Count()}x {g.First().TrackingInfo.Entity.GetType().Name}")
+                            .ToList();
+
+                        return $"{State}: {Entries.Count}" + (groups.Count > 0 ? $" ({string.Join(", ", groups)})" : "");
+                    }
+                }
 
                 [DebuggerBrowsable(DebuggerBrowsableState.RootHidden)]
                 public IReadOnlyList<EntryView> Entries { get; set; }
@@ -132,10 +144,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
                 [DebuggerDisplay("{Description}")]
                 public class EntryView
                 {
+                    [DebuggerBrowsable(DebuggerBrowsableState.Never)]
                     public DbContext Db { get; set; }
 
                     public EntityEntry TrackingInfo { get; set; }
 
+                    [DebuggerBrowsable(DebuggerBrowsableState.RootHidden)]
                     public EntityView Entity => new EntityView
                     {
                         Db = Db,
@@ -161,13 +175,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
                 References = Db.Entry(Entity).Navigations
                     .Select(nav =>
                     {
-                        nav.Load();
+                        var refs = nav.IsLoaded
+                            ? (nav.CurrentValue is IEnumerable<object> list) ? list : Enumerable.Repeat(nav.CurrentValue, 1)
+                            : nav.Query().Cast<object>().ToList(); // this won't attach to change tracker
+
                         return new ReferenceListView.ReferenceView
                         {
                             Name = $"🔗 {Entity.GetType().Name}.{nav.Metadata.Name}",
-                            Value = (nav.CurrentValue is IEnumerable<object> collection)
-                                ? collection.Select(entity => new EntityView { Db = Db, Entity = entity }).ToList()
-                                : new EntityView { Db = Db, Entity = nav.CurrentValue } as object
+                            Value = refs.Select(entity => new EntityView { Db = Db, Entity = entity }).ToList()
                         };
                     }).ToList()
             };

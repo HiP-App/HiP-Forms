@@ -16,6 +16,7 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.JoinClass
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 {
@@ -41,6 +42,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
         public DateTimeOffset Timestamp { get; set; }
 
         //Associations
+        [NotMapped]
         public ICollection<RouteTag> Tags => new JoinCollectionFacade<RouteTag, Route, JoinRouteTag>(this, TagsRefs);
 
         public IList<JoinRouteTag> TagsRefs { get; } = new List<JoinRouteTag>();
