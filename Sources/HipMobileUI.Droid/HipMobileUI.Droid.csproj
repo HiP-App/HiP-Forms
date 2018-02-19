@@ -362,7 +362,7 @@
     </AndroidResource>
     <AndroidResource Include="Resources\drawable-hdpi\ic_done.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\ic_more_vert.png" />
-    <AndroidResource Include="Resources\drawable\info.xml" />
+    <AndroidResource Include="Resources\drawable\info_bubble.xml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />
