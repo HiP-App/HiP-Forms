@@ -17,9 +17,11 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 {
+    [DebuggerDisplay("Exhibit '{Name}'")]
     public partial class Exhibit : IIdentifiable, IDownloadable
     {
         //Attributes

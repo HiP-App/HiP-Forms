@@ -66,22 +66,19 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
 
             foreach (var routeDto in fetchedChangedRoutes)
             {
-                DateTimeOffset? dbRouteData = null;
-                if (existingRoutesIdTimestampMapping.ContainsKey(routeDto.Id))
+                if (existingRoutesIdTimestampMapping.TryGetValue(routeDto.Id, out var dbRouteDate))
                 {
-                    dbRouteData = existingRoutesIdTimestampMapping[routeDto.Id];
-                }
-
-                if (dbRouteData.HasValue && Math.Abs((routeDto.Timestamp - dbRouteData.Value).Seconds) > 1)
-                {
-                    updatedRoutes.Add(routeDto);
-                    requiredRouteImages.Add(routeDto.Image);
-                    if (routeDto.Tags != null)
+                    if (Math.Abs((routeDto.Timestamp - dbRouteDate).Seconds) > 1)
                     {
-                        requiredRouteTags.AddRange(routeDto.Tags);
+                        updatedRoutes.Add(routeDto);
+                        requiredRouteImages.Add(routeDto.Image);
+                        if (routeDto.Tags != null)
+                        {
+                            requiredRouteTags.AddRange(routeDto.Tags);
+                        }
                     }
                 }
-                else if (!dbRouteData.HasValue)
+                else
                 {
                     newRoutes.Add(routeDto);
                     requiredRouteImages.Add(routeDto.Image);
@@ -152,6 +149,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                 AddTagsToRoute(dbRoute, routeDto, fetchedMedia);
                 AddExhibitsToRoute(dbRoute, routeDto, dataAccess);
 
+                dataAccess.Routes().AddRoute(dbRoute);
                 listener.ProgressOneStep();
             }
         }

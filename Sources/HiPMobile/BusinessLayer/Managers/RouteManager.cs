@@ -65,6 +65,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
                     nameof(Route.Waypoints));
             }
 
+            public void AddRoute(Route route)
+            {
+                _dataAccess.AddItem(route);
+            }
+
             /// <summary>
             ///     Deletes the Route
             /// </summary>

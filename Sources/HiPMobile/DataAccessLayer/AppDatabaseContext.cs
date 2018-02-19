@@ -13,13 +13,15 @@
 // limitations under the License.
 
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.JoinClasses;
+using System.Collections;
 using System.Linq;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
 {
-    public class AppDatabaseContext : DbContext
+    public partial class AppDatabaseContext : DbContext
     {
         // Note: EF Core includes all types declared as DbSet<> here as well as all types found by recursively
         // exploring their navigation properties.
@@ -30,6 +32,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
         public DbSet<Media> Media { get; set; }
         public DbSet<AchievementBase> Achievements { get; set; }
         public DbSet<AchievementPendingNotification> AchievementPendingNotifications { get; set; }
+
+        public object DebugView => new DbContextDebugView { Db = this };
 
         public AppDatabaseContext(QueryTrackingBehavior changeTrackingBehavior)
         {
