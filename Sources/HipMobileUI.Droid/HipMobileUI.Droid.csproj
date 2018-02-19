@@ -362,6 +362,7 @@
     </AndroidResource>
     <AndroidResource Include="Resources\drawable-hdpi\ic_done.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\ic_more_vert.png" />
+    <AndroidResource Include="Resources\drawable\info.xml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />
@@ -544,9 +545,6 @@
     <AndroidResource Include="Resources\drawable-xxxhdpi\ic_gavel.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\ic_home.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\ic_settings.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\drawable\info_bubble.svg" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
