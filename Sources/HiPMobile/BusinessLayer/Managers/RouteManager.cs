@@ -44,7 +44,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
                 if (!string.IsNullOrEmpty(id))
                 {
                     return _dataAccess.GetItem<Route>(id,
-                        $"{nameof(Route.TagsRefs)}.{nameof(JoinRouteTag.Tag)}",
+                        "TagsRefs.Tag.Image",
                         nameof(Route.Image),
                         nameof(Route.Audio),
                         nameof(Route.Waypoints));
@@ -59,7 +59,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
             public IEnumerable<Route> GetRoutes()
             {
                 return _dataAccess.GetItems<Route>(
-                    $"{nameof(Route.TagsRefs)}.{nameof(JoinRouteTag.Tag)}",
+                    "TagsRefs.Tag.Image",
                     nameof(Route.Image),
                     nameof(Route.Audio),
                     nameof(Route.Waypoints));
