@@ -274,8 +274,8 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   <data name="LicenseScreenView_ToU_Text" xml:space="preserve">
     <value>Die Applikation Historisches Paderborn ist eine experimentelle Software, welche zu Studien- und Forschungszwecken an der Universität Paderborn erstellt wurde. Die Software stellt historische Informationen als auch Kartendaten dar, wobei weder die Vollständigkeit noch die Korrektheit der Daten garantiert wird. Die Smartphone Applikation führt eine Positionsschätzung mit Hilfe von GPS durch. Die Genauigkeit der Positionsschätzung ist abhängig von vielen Faktoren, deshalb kann eine fehlerfreie Funktion nicht garantiert werden. Es kann eine Routenführung zu Sehenswürdigkeiten in Paderborn durch die Software bereitgestellt werden. Bitte bedenken Sie, dass die Routenberechnung Fehler enthalten kann. Beachten Sie Ihre Umgebung während der Nutzung des Systems, um Unfälle zu vermeiden. Die Applikation nutzt Kartendaten und kommuniziert mit Servern, wodurch tarifabhängige Kosten entstehen. Speziell das Laden von Kartendaten erzeugt ein sehr hohes Datenvolumen, so dass die Nutzung einer kostenfreien/kostengünstigen Verbindung, z.B. WLAN, gegenüber einer UMTS/LTE Datenverbindung ratsam ist. Die Software wird als solches zur kostenfreien Nutzung bereitgestellt. Eine Garantie für die Funktion bzw. die Bereitstellung des Dienstes an sich existiert nicht. Der Dienst kann ohne Angabe von Gründen jederzeit eingestellt werden. Da das System experimentellen Charakter besitzt, kann es zur Nicht-Verfügbarkeit von Diensten und zu Fehlern des Systems kommen, welche Systemabstürze auf dem Endgerät des Nutzers verursachen können. Der Einsatz der Software erfolgt auf eigene Gefahr. Mit der Zustimmung des Nutzers, sammelt die Software anonymisierte Nutzungsdaten, wie z.B. Absturzberichte. Der Benutzer wird vor dem Senden gefragt, ob er diesem zustimmt.</value>
   </data>
-  
-  
+
+
   <data name="LicenseScreenView_ToU_Title" xml:space="preserve">
     <value>Terms of Use</value>
   </data>
@@ -425,7 +425,7 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   </data>
   <data name="UserOnboarding_Explore_Text" xml:space="preserve">
     <value>Experience and discover history and culture by oneself with your smartphone on-site </value>
-  </data> 
+  </data>
   <data name="UserOnboarding_Explore_Title" xml:space="preserve">
     <value>Explore Paderborn</value>
   </data>
