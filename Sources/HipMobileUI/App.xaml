@@ -167,25 +167,27 @@
 
 
 
-            <!-- Defined Styles for Labels -->
-            <Style x:Key="TitleStyle" TargetType="Label">
+            <!-- Defined Styles for Labels in Setting Page-->
+            <Style x:Key="HeadingStyle" TargetType="Label">
                 <Setter Property="FontSize" Value="Small" />
-                <Setter Property="TextColor" Value="{StaticResource SecondaryColor}" />
+                <Setter Property="TextColor" Value="{StaticResource PrimaryColor}" />
                 <Setter Property="FontAttributes" Value="Bold" />
                 <Setter Property="Grid.ColumnSpan" Value="2" />
-                <Setter Property="Style" Value="{DynamicResource Ssp-Regular}" />
+                <Setter Property="Style" Value="{DynamicResource Ssp-SemiBold}" />
             </Style>
-            <Style x:Key="Title2Style" TargetType="Label">
+            <Style x:Key="Heading2Style" TargetType="Label">
                 <Setter Property="FontSize" Value="Medium" />
                 <Setter Property="TextColor" Value="Black" />
                 <Setter Property="Grid.ColumnSpan" Value="2" />
-                <Setter Property="Style" Value="{DynamicResource Ssp-Light}" />
+                <Setter Property="Style" Value="{DynamicResource Ssp-SemiBold}" />
             </Style>
-            <Style TargetType="Label">
-                <Setter Property="FontSize" Value="Small" />
-                <Setter Property="TextColor" Value="Gray" />
+            <Style x:Key="TextStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="Medium" />
+                <Setter Property="TextColor" Value="DarkGray" />
+                <Setter Property="Grid.ColumnSpan" Value="2" />
                 <Setter Property="Style" Value="{DynamicResource Ssp-Regular}" />
             </Style>
+
             <Style TargetType="BoxView">
                 <Setter Property="HeightRequest" Value="1" />
                 <Setter Property="BackgroundColor" Value="Gray" />
@@ -194,7 +196,26 @@
                 <Setter Property="Margin" Value="0,5,0,5" />
             </Style>
 
-            <!--#region ThemedBoxView -->
+            <!-- Defined Styles for Labels and horizontal lines in LicensePage-->
+            <Style x:Key="TitleStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="Large" />
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="Margin" Value="0,10,0,0" />
+                <Setter Property="Style" Value="{DynamicResource Ssp-Regular}" />
+            </Style>
+            <Style x:Key="Title2Style" TargetType="Label">
+                <Setter Property="FontSize" Value="Small" />
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="Style" Value="{DynamicResource Ssp-Light}" />
+            </Style>
+            <Style TargetType="Label">
+                <Setter Property="FontSize" Value="Small" />
+                <Setter Property="TextColor" Value="Gray" />
+                <Setter Property="Style" Value="{DynamicResource Ssp-Regular}" />
+            </Style>
+            <!--Boxview of LicencePagedefine was deleted here -->
+
+                <!--#region ThemedBoxView -->
             <Style x:Key="BoxViewAdventurerMode" TargetType="BoxView">
                 <Setter Property="Color" Value="{StaticResource PrimaryColor}"/>
             </Style>

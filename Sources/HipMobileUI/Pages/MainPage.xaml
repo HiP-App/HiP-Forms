@@ -33,7 +33,7 @@
                 <BoxView Grid.Row="0" Style="{DynamicResource BoxView}"/>
                 <Label Grid.Row="0" Text="{helpers:Translate MainPage_MenuTitle}"
                        TextColor="White" FontSize="Small" FontAttributes="Bold"
-                       Margin="16,0,0,32" VerticalOptions="End" Style="{DynamicResource Ssp-Italic}" />
+                       Margin="16,0,0,32" VerticalOptions="End" Style="{DynamicResource Ssp-SemiBoldItalic}" />
                 <ListView Grid.Row="1" x:Name="SelectedView" SeparatorVisibility="None"
                           ItemsSource="{Binding MainScreenViewModels}" SelectedItem="{Binding SelectedViewModel}"
                           ItemTapped="ListView_OnItemTapped">

@@ -44,7 +44,7 @@
                            Placeholder="{helpers:Translate RegisterScreenView_RepeatPassword}" Text="{Binding RepeatPassword, Mode=OneWayToSource}" />
                     <Label x:Name="ErrorMsgLabel"
                            HorizontalOptions="Center" VerticalOptions="Start"
-                           FontSize="Small" TextColor="{StaticResource RedBarColor}" Text="{Binding ErrorMessage, Mode=TwoWay}" Style="{DynamicResource Ssp-Regular}"/>
+                           FontSize="Small" TextColor="{StaticResource TertiaryDarkColor}" Text="{Binding ErrorMessage, Mode=TwoWay}" Style="{DynamicResource Ssp-Regular}"/>
                     <Button x:Name="ButtonView"
                             VerticalOptions="End"
                             Text="{helpers:Translate RegisterScreenView_Register}"
