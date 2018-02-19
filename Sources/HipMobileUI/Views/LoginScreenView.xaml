@@ -34,24 +34,15 @@
                            Text="{Binding Password}" TextChanged="Entry_TextChanged" />
                     <Label x:Name="ErrorMessageLabel"
                            HorizontalOptions="Center" VerticalOptions="Start"
-                           FontSize="Small" TextColor="{StaticResource TertiaryDarkColor}" Text="{Binding ErrorMessage, Mode=TwoWay}" 
-                           Style="{DynamicResource Ssp-Regular}"/>
-                    <Label x:Name="RegisterLabel"
-                           HorizontalOptions="Center"
-                           FontSize="Small" TextColor="{StaticResource PrimaryDarkColor}" Text="{helpers:Translate LoginScreenView_Register}"
-                           Style="{DynamicResource Ssp-Regular}">
-                        <Label.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding RegisterCommand}" />
-                        </Label.GestureRecognizers>
-                    </Label>
-                    <Label x:Name="ForgotPasswordLabel"
-                           HorizontalOptions="Center"
-                           FontSize="Small" TextColor="{StaticResource PrimaryDarkColor}" Text="{helpers:Translate LoginScreenView_Forgot_Password}"
-                           Style="{DynamicResource Ssp-Regular}">
-                        <Label.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding ForgotPasswordCommand}" />
-                        </Label.GestureRecognizers>
-                    </Label>
+                           FontSize="Small" TextColor="Red" Text="{Binding ErrorMessage, Mode=TwoWay}" />
+                    <Button x:Name="RegisterButton"
+                           FontSize="Small" Text="{helpers:Translate LoginScreenView_Register}"
+                           Command="{Binding RegisterCommand}" >
+                    </Button>
+                    <Button x:Name="ForgotPasswordButton"
+                           FontSize="Small" Text="{helpers:Translate LoginScreenView_Forgot_Password}"
+                           Command="{Binding ForgotPasswordCommand}" >
+                    </Button>
                     <Button x:Name="LoginButton"
                             Text="{helpers:Translate LoginScreenView_Login}"
                             Command="{Binding LoginCommand}" />

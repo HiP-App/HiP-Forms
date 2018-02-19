@@ -32,15 +32,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 {
     public class ExhibitRouteDownloadPageViewModel : NavigationViewModel, IProgressListener
     {
-        private readonly IDownloadable downloadable;
-
         public ExhibitRouteDownloadPageViewModel(IDownloadable downloadable, IDownloadableListItemViewModel downloadableListItemViewModel)
         {
-            this.downloadable = downloadable;
-            DownloadableId = downloadable.Id;
-            DownloadableIdForRestApi = downloadable.IdForRestApi;
-            DownloadableName = downloadable.Name;
-            DownloadableDescription = downloadable.Description;
+            Downloadable = downloadable;
             //Remove the description label if no description exists to center the other labels precisely
             DescriptionExists = !(DownloadableDescription == null || DownloadableDescription.Equals(""));
 
@@ -63,74 +57,60 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
         private IDownloadableListItemViewModel DownloadableListItemViewModel { get; set; }
 
-        private string downloadableName;
 
-        public string DownloadableName
+        private IDownloadable downloadable;
+        public IDownloadable Downloadable
         {
-            get { return downloadableName; }
-            set { SetProperty(ref downloadableName, value); }
+            get => downloadable;
+            set => SetProperty(ref downloadable, value);
         }
 
-        private string downloadableId;
+        public string DownloadableName => Downloadable.Name;
 
-        public string DownloadableId
-        {
-            get { return downloadableId; }
-            set { SetProperty(ref downloadableId, value); }
-        }
+        public string DownloadableDescription => Downloadable.Description;
 
-        private int downloadableIdForRestApi;
+        public string DownloadableId => Downloadable.Id;
 
-        public int DownloadableIdForRestApi
-        {
-            get { return downloadableIdForRestApi; }
-            set { SetProperty(ref downloadableIdForRestApi, value); }
-        }
+        public int DownloadableIdForRestApi => Downloadable.IdForRestApi;
 
         private ImageSource image;
-
         public ImageSource Image
         {
-            get { return image; }
-            set { SetProperty(ref image, value); }
+            get => image;
+            set => SetProperty(ref image, value);
         }
 
         private double loadingProgress;
-
         public double LoadingProgress
         {
-            get { return loadingProgress; }
-            set { SetProperty(ref loadingProgress, value); }
+            get => loadingProgress;
+            set => SetProperty(ref loadingProgress, value);
         }
 
         private bool descriptionExists;
         public bool DescriptionExists
         {
-            get { return descriptionExists; }
-            set { SetProperty(ref descriptionExists, value); }
-        }
-
-        private string downloadableDescription;
-        public string DownloadableDescription
-        {
-            get { return downloadableDescription; }
-            set { SetProperty(ref downloadableDescription, value); }
+            get => descriptionExists;
+            set => SetProperty(ref descriptionExists, value);
         }
 
         private ICommand startDownload;
-
         public ICommand StartDownload
         {
-            get { return startDownload; }
-            set { SetProperty(ref startDownload, value); }
+            get => startDownload;
+            set => SetProperty(ref startDownload, value);
         }
 
         public ICommand CancelCommand { get; }
-
         private void CancelDownload()
         {
             cancellationTokenSource?.Cancel();
             CloseDownloadPage();
+        }
+
+        private void OpenDetailsView()
+        {
+            DownloadableListItemViewModel.OpenDetailsView(DownloadableId);
         }
 
         private void CloseDownloadPage()
@@ -168,7 +148,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                 {
                     try
                     {
-                        //await fullDownloadableDataFetcher.FetchFullDownloadableDataIntoDatabase(DownloadableId, DownloadableIdForRestApi, cancellationTokenSource.Token, this);
+                        await fullDownloadableDataFetcher.FetchFullDownloadableDataIntoDatabase(DownloadableId, DownloadableIdForRestApi, cancellationTokenSource.Token, this);
                     }
                     catch (Exception e)
                     {
@@ -205,8 +185,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
             if (!cancellationTokenSource.IsCancellationRequested && isDownloadAllowed)
             {
-                //DownloadableListItemViewModel.SetDetailsAvailable(true);
-                //CloseDownloadPage();
+                DownloadableListItemViewModel.SetDetailsAvailable(true);
+
+                if (DownloadableListItemViewModel.GetType() != typeof(AppetizerPageViewModel))
+                    OpenDetailsView();
+                else
+                    CloseDownloadPage();
             }
             IoCManager.Resolve<IDbChangedHandler>().NotifyAll();
         }
