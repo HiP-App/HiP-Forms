@@ -117,18 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  
-  
-  
-  
   <data name="LicenseScreenView_Agreement_Text" xml:space="preserve">
     <value>Die Nutzung der App basiert auf Freiwilligkeit. Sämtliche Daten, die im Rahmen der Nutzung der Dienste und Applikation Verwendung finden, dürfen nur erhoben und verarbeitet werden, soweit dies für den Dienst und statistische Forschungs- und Evaluationszwecke erforderlich ist und den Regelungen der Universität Paderborn und dem Datenschutzgesetz NRW entspricht.</value>
   </data>
   <data name="LicenseScreenView_Agreement_Title" xml:space="preserve">
-    <value>Rechtsgrundlagen und Einwilligung</value>
+    <value>Legal Basis and Consent</value>
   </data>
   <data name="LicenseScreenView_Contribution_Title" xml:space="preserve">
-    <value>Beiträge</value>
+    <value>Contributions</value>
   </data>
   <data name="LicenseScreenView_Copyright_Text" xml:space="preserve">
     <value>Die Software Historisches Paderborn unterliegt dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung bedürfen der schriftlichen Zustimmung der Universität Paderborn. Die Nutzung der Software ist nur für den privaten, nicht kommerziellen Gebrauch gestattet.</value>
@@ -137,13 +133,13 @@
     <value>Copyrights</value>
   </data>
   <data name="LicenseScreenView_CreditsImagesAutocarousel_Text" xml:space="preserve">
-    <value>Bilder erstellt von &lt;a href="http://www.flaticon.com/authors/madebyoliver/"&gt;Madebyoliver&lt;/a&gt; from &lt;a href="http://www.flaticon.com/"&gt;www.flaticon.com&lt;/a&gt;.</value>
+    <value>Images made by &lt;a href="http://www.flaticon.com/authors/madebyoliver/"&gt;Madebyoliver&lt;/a&gt; from &lt;a href="http://www.flaticon.com/"&gt;www.flaticon.com&lt;/a&gt;.</value>
   </data>
   <data name="LicenseScreenView_CreditsImagesAutocarousel_Title" xml:space="preserve">
-    <value>Credits der Bilder im Autokarussell</value>
+    <value>Credits of the images in the car carousel</value>
   </data>
   <data name="LicenseScreenView_CSL_Text" xml:space="preserve">
-    <value>From &lt;a href="http://commonservicelocator.codeplex.com"&gt;Microsoft&lt;/a&gt;, licensed under &lt;a href="http://commonservicelocator.codeplex.com/license"&gt;Ms-PL&lt;/a&gt;. No changes were made..</value>
+    <value>From &lt;a href="http://commonservicelocator.codeplex.com"&gt;Microsoft&lt;/a&gt;, licensed under &lt;a href="http://commonservicelocator.codeplex.com/license"&gt;Ms-PL&lt;/a&gt;. No changes were made.</value>
   </data>
   <data name="LicenseScreenView_CSL_Title" xml:space="preserve">
     <value>Common Service Locator</value>
@@ -161,7 +157,7 @@
     <value>Feedback Data</value>
   </data>
   <data name="LicenseScreenView_Fody_Text" xml:space="preserve">
-    <value>From &lt;a href="https://github.com/Fody/Fody"&gt;Simon Cropp&lt;/a&gt;, licensed under &lt;a href="https://opensource.org/licenses/mit-license.php"&gt;MIT&lt;/a&gt;. No changes were made..</value>
+    <value>From &lt;a href="https://github.com/Fody/Fody"&gt;Simon Cropp&lt;/a&gt;, licensed under &lt;a href="https://opensource.org/licenses/mit-license.php"&gt;MIT&lt;/a&gt;. No changes were made.</value>
   </data>
   <data name="LicenseScreenView_Fody_Title" xml:space="preserve">
     <value>Fody</value>
@@ -173,7 +169,7 @@
     <value>Further Informations</value>
   </data>
   <data name="LicenseScreenView_HockeyApp_Text" xml:space="preserve">
-    <value>From &lt;a href="https://github.com/bitstadium/HockeySDK-Android"&gt;Microsoft&lt;/a&gt;, licensed under &lt;a href="https://raw.githubusercontent.com/bitstadium/HockeySDK-Xamarin/master/LICENSE.md"&gt;Lizenz&lt;/a&gt;. No changes were made..</value>
+    <value>From &lt;a href="https://github.com/bitstadium/HockeySDK-Android"&gt;Microsoft&lt;/a&gt;, licensed under &lt;a href="https://raw.githubusercontent.com/bitstadium/HockeySDK-Xamarin/master/LICENSE.md"&gt;Lizenz&lt;/a&gt;. No changes were made.</value>
   </data>
   <data name="LicenseScreenView_HockeyApp_Title" xml:space="preserve">
     <value>HockeyApp</value>
@@ -201,7 +197,7 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
     <value>Imprint</value>
   </data>
   <data name="LicenseScreenView_Itinero_Text" xml:space="preserve">
-    <value>From &lt;a href="https://github.com/Itinero"&gt;Ben Abelshausen&lt;/a&gt;, licensed under &lt;a href="https://opensource.org/licenses/Apache-2.0"&gt;Apache License 2.0&lt;/a&gt; by permission. No changes were made..</value>
+    <value>From &lt;a href="https://github.com/Itinero"&gt;Ben Abelshausen&lt;/a&gt;, licensed under &lt;a href="https://opensource.org/licenses/Apache-2.0"&gt;Apache License 2.0&lt;/a&gt; by permission. No changes were made.</value>
   </data>
   <data name="LicenseScreenView_Itinero_Title" xml:space="preserve">
     <value>Itinero</value>
@@ -216,31 +212,31 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
     <value>Licenses</value>
   </data>
   <data name="LicenseScreenView_MapIcons_Text" xml:space="preserve">
-    <value>From &lt;a href="https://mapicons.mapsmarker.com/"&gt;Maps Icons Collection&lt;/a&gt;, licensed under &lt;a href="http://creativecommons.org/licenses/by-sa/3.0/"&gt;CC-BY-SA 3.0&lt;/a&gt;. No changes were made..</value>
+    <value>From &lt;a href="https://mapicons.mapsmarker.com/"&gt;Maps Icons Collection&lt;/a&gt;, licensed under &lt;a href="http://creativecommons.org/licenses/by-sa/3.0/"&gt;CC-BY-SA 3.0&lt;/a&gt;. No changes were made.</value>
   </data>
   <data name="LicenseScreenView_MapIcons_Title" xml:space="preserve">
     <value>Map Icons</value>
   </data>
   <data name="LicenseScreenView_MaterialIcons_Text" xml:space="preserve">
-    <value>From &lt;a href="https://design.google.com/icons/"&gt;Google&lt;/a&gt;, licensed under &lt;a href="https://opensource.org/licenses/Apache-2.0"&gt;Apache License 2.0&lt;/a&gt;. No changes were made..</value>
+    <value>From &lt;a href="https://design.google.com/icons/"&gt;Google&lt;/a&gt;, licensed under &lt;a href="https://opensource.org/licenses/Apache-2.0"&gt;Apache License 2.0&lt;/a&gt;. No changes were made.</value>
   </data>
   <data name="LicenseScreenView_MaterialIcons_Title" xml:space="preserve">
     <value>Material Icons</value>
   </data>
   <data name="LicenseScreenView_OSMBonusPack_Text" xml:space="preserve">
-    <value>From &lt;a href="https://github.com/MKergall/osmbonuspack"&gt;MKergall&lt;/a&gt;, licensed under &lt;a href="https://raw.githubusercontent.com/MKergall/osmbonuspack/master/LICENSE.md"&gt;GNU Lesser General Public License 3.0 (LGPL 3.0)&lt;/a&gt; (ohne §5.d und §5.e). No changes were made..</value>
+    <value>From &lt;a href="https://github.com/MKergall/osmbonuspack"&gt;MKergall&lt;/a&gt;, licensed under &lt;a href="https://raw.githubusercontent.com/MKergall/osmbonuspack/master/LICENSE.md"&gt;GNU Lesser General Public License 3.0 (LGPL 3.0)&lt;/a&gt; (ohne §5.d und §5.e). No changes were made.</value>
   </data>
   <data name="LicenseScreenView_OSMBonusPack_Title" xml:space="preserve">
     <value>OSMBonusPack</value>
   </data>
   <data name="LicenseScreenView_Osmdroid_Text" xml:space="preserve">
-    <value>From &lt;a href="https://github.com/osmdroid/osmdroid"&gt;osmdroid&lt;/a&gt;, licensed under &lt;a href="https://raw.githubusercontent.com/osmdroid/osmdroid/master/LICENSE"&gt;Apache License 2.0&lt;/a&gt;. No changes were made..</value>
+    <value>From &lt;a href="https://github.com/osmdroid/osmdroid"&gt;osmdroid&lt;/a&gt;, licensed under &lt;a href="https://raw.githubusercontent.com/osmdroid/osmdroid/master/LICENSE"&gt;Apache License 2.0&lt;/a&gt;. No changes were made.</value>
   </data>
   <data name="LicenseScreenView_Osmdroid_Title" xml:space="preserve">
     <value>osmdroid</value>
   </data>
   <data name="LicenseScreenView_OsmSharp_Text" xml:space="preserve">
-    <value>From &lt;a href="https://osmsharp.com/"&gt;Ben Abelshausen&lt;/a&gt;, licensed under &lt;a href="https://opensource.org/licenses/mit-license.php"&gt;MIT&lt;/a&gt;. No changes were made..</value>
+    <value>From &lt;a href="https://osmsharp.com/"&gt;Ben Abelshausen&lt;/a&gt;, licensed under &lt;a href="https://opensource.org/licenses/mit-license.php"&gt;MIT&lt;/a&gt;. No changes were made.</value>
   </data>
   <data name="LicenseScreenView_OsmSharp_Title" xml:space="preserve">
     <value>OsmSharp</value>
@@ -249,16 +245,16 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
     <value>Historisches in Paderborn ist ein nicht-kommerzieller interaktiver Stadtführer der Universität Paderborn für mobile Endgeräte, dessen Nutzung auf Freiwilligkeit basiert. Die bei der Nutzung erhobenen Daten werden nur für die hier beschriebenen Zwecke verwendet und an keine Dritte weitergegeben. Diese Datenschutzerklärung beschreibt den Umgang mit personenbezogenen Daten innerhalb der Stadtführer App. Mit der Installation der App erklärt sich der Nutzer mit dieser Datenschutzerklärung einverstanden und kann sie jederzeit über die App-Seite im Google Play Store einsehen. Die Smartphone Applikation (App), bietet dem Nutzer die Möglichkeit Informationen zu verschiedenen Sehenswürdigkeiten in Paderborn zu erhalten. Dazu greift die App auf den Standort des Smartphones zu, um die nächsten Sehenswürdigkeiten für den Nutzer anzuzeigen und, falls gewünscht, für diesen eine Route zu den Sehenswürdigkeiten zu berechnen. Dazu wird ein Kartenausschnitt aus dem Web geladen. Zudem legt die App eine lokale Datenbank auf dem Smartphone an, in der die Daten gespeichert werden. Weiterhin bietet die App die Möglichkeit Audiodateien abzuspielen. Die Nutzung der jeweiligen Daten wird im Folgenden näher beschrieben.</value>
   </data>
   <data name="LicenseScreenView_PrivacyPolicy_Title" xml:space="preserve">
-    <value>Datenschutzerklärung</value>
+    <value>Privacy Statement</value>
   </data>
   <data name="LicenseScreenView_Realm_Text" xml:space="preserve">
-    <value>From &lt;a href="https://github.com/realm/realm-java"&gt;Realm&lt;/a&gt;, licensed under &lt;a href="https://raw.githubusercontent.com/realm/realm-java/master/LICENSE"&gt;Apache License 2.0&lt;/a&gt;. No changes were made..</value>
+    <value>From &lt;a href="https://github.com/realm/realm-java"&gt;Realm&lt;/a&gt;, licensed under &lt;a href="https://raw.githubusercontent.com/realm/realm-java/master/LICENSE"&gt;Apache License 2.0&lt;/a&gt;. No changes were made.</value>
   </data>
   <data name="LicenseScreenView_Realm_Title" xml:space="preserve">
     <value>Realm for Android</value>
   </data>
   <data name="LicenseScreenView_Reminiscence_Text" xml:space="preserve">
-    <value>From &lt;a href="https://github.com/itinero/reminiscence/"&gt;Ben Abelshausen&lt;/a&gt;, licensed under &lt;a href="https://opensource.org/licenses/mit-license.php"&gt;MIT&lt;/a&gt;. No changes were made..</value>
+    <value>From &lt;a href="https://github.com/itinero/reminiscence/"&gt;Ben Abelshausen&lt;/a&gt;, licensed under &lt;a href="https://opensource.org/licenses/mit-license.php"&gt;MIT&lt;/a&gt;. No changes were made.</value>
   </data>
   <data name="LicenseScreenView_Reminiscence_Title" xml:space="preserve">
     <value>Reminiscence</value>
@@ -270,7 +266,7 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
     <value>Legal Status of the Privacy Policy</value>
   </data>
   <data name="LicenseScreenView_SettingsPlugin_Text" xml:space="preserve">
-    <value>From &lt;a href="https://github.com/jamesmontemagno/SettingsPlugin"&gt;James Montemagno&lt;/a&gt;, licensed under &lt;a href="https://github.com/jamesmontemagno/SettingsPlugin/blob/master/LICENSE"&gt;MIT&lt;/a&gt;. No changes were made..</value>
+    <value>From &lt;a href="https://github.com/jamesmontemagno/SettingsPlugin"&gt;James Montemagno&lt;/a&gt;, licensed under &lt;a href="https://github.com/jamesmontemagno/SettingsPlugin/blob/master/LICENSE"&gt;MIT&lt;/a&gt;. No changes were made.</value>
   </data>
   <data name="LicenseScreenView_SettingsPlugin_Title" xml:space="preserve">
     <value>Settings Plugin</value>
@@ -278,32 +274,31 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   <data name="LicenseScreenView_ToU_Text" xml:space="preserve">
     <value>Die Applikation Historisches Paderborn ist eine experimentelle Software, welche zu Studien- und Forschungszwecken an der Universität Paderborn erstellt wurde. Die Software stellt historische Informationen als auch Kartendaten dar, wobei weder die Vollständigkeit noch die Korrektheit der Daten garantiert wird. Die Smartphone Applikation führt eine Positionsschätzung mit Hilfe von GPS durch. Die Genauigkeit der Positionsschätzung ist abhängig von vielen Faktoren, deshalb kann eine fehlerfreie Funktion nicht garantiert werden. Es kann eine Routenführung zu Sehenswürdigkeiten in Paderborn durch die Software bereitgestellt werden. Bitte bedenken Sie, dass die Routenberechnung Fehler enthalten kann. Beachten Sie Ihre Umgebung während der Nutzung des Systems, um Unfälle zu vermeiden. Die Applikation nutzt Kartendaten und kommuniziert mit Servern, wodurch tarifabhängige Kosten entstehen. Speziell das Laden von Kartendaten erzeugt ein sehr hohes Datenvolumen, so dass die Nutzung einer kostenfreien/kostengünstigen Verbindung, z.B. WLAN, gegenüber einer UMTS/LTE Datenverbindung ratsam ist. Die Software wird als solches zur kostenfreien Nutzung bereitgestellt. Eine Garantie für die Funktion bzw. die Bereitstellung des Dienstes an sich existiert nicht. Der Dienst kann ohne Angabe von Gründen jederzeit eingestellt werden. Da das System experimentellen Charakter besitzt, kann es zur Nicht-Verfügbarkeit von Diensten und zu Fehlern des Systems kommen, welche Systemabstürze auf dem Endgerät des Nutzers verursachen können. Der Einsatz der Software erfolgt auf eigene Gefahr. Mit der Zustimmung des Nutzers, sammelt die Software anonymisierte Nutzungsdaten, wie z.B. Absturzberichte. Der Benutzer wird vor dem Senden gefragt, ob er diesem zustimmt.</value>
   </data>
+  
+  
   <data name="LicenseScreenView_ToU_Title" xml:space="preserve">
     <value>Terms of Use</value>
   </data>
   <data name="LicenseScreenView_Transparancy_Text" xml:space="preserve">
     <value>Im Rahmen der Feedback Funktion die jeder Nutzer freiwillig nutzen kann, muss dieser einen Namen und eine Emailadresse angeben um eine Nachricht an die Entwickler zu senden. Diese Daten werden verschlüsselt versendet. Es werden ebenfalls keinerlei Daten aus dem privaten Speicher des Smartphones gelesen die nicht Teil der Datenbank sind.</value>
   </data>
-  
-  
-  
   <data name="LicenseScreenView_Transparancy_Title" xml:space="preserve">
     <value>Visibility of the Data / Transparency</value>
   </data>
   <data name="LicenseScreenView_Unity_Text" xml:space="preserve">
-    <value>From &lt;a href="https://github.com/unitycontainer/unity"&gt;Microsoft&lt;/a&gt;, licensed under &lt;a href="https://opensource.org/licenses/Apache-2.0"&gt;Apache License 2.0&lt;/a&gt;. No changes were made..</value>
+    <value>From &lt;a href="https://github.com/unitycontainer/unity"&gt;Microsoft&lt;/a&gt;, licensed under &lt;a href="https://opensource.org/licenses/Apache-2.0"&gt;Apache License 2.0&lt;/a&gt;. No changes were made.</value>
   </data>
   <data name="LicenseScreenView_Unity_Title" xml:space="preserve">
     <value>Unity</value>
   </data>
   <data name="LicenseScreenView_UsagePersonalData_Text" xml:space="preserve">
-    <value>The Historisches in Paderborn App is an open-source application that can be downloaded with a Google Account via the Google Playstore and the Apple iTunes App Store. In the current version, the app gets its data from a local database that is stored on the smartphone's memory when the app is installed. The map material is loaded from the OpenStreetMap server depending on the user's usage and location. In addition, the user is free to send feedback to the developers, which should improve the quality of the app.</value>
+    <value>Die Historisches in Paderborn App ist eine offene Applikation, welche mit einen Google Konto über den Google Playstore sowie dem Apple iTunes App Store heruntergeladen werden kann. In der aktuellen Version bezieht die App seine Daten von einer lokalen Datenbank die bei der Installation der App auf dem Speicher des Smartphones abgelegt wird. Das Kartenmaterial wird je nach Verwendung und Position des Nutzers vom OpenStreetMap Server geladen. Darüber hinaus steht es dem Nutzer frei ein Feedback an die Entwickler zu senden, welches die Qualität der App verbessern soll.</value>
   </data>
   <data name="LicenseScreenView_UsagePersonalData_Title" xml:space="preserve">
     <value>Collection, Processing and Use of Personal Data</value>
   </data>
   <data name="LicenseScreenView_XSL_Text" xml:space="preserve">
-    <value>From &lt;a href="https://github.com/xamarin/AndroidSupportComponents"&gt;Xamarin&lt;/a&gt;, licensed under &lt;a href="https://github.com/xamarin/AndroidSupportComponents/blob/master/LICENSE.md"&gt;MIT&lt;/a&gt;. No changes were made..</value>
+    <value>From &lt;a href="https://github.com/xamarin/AndroidSupportComponents"&gt;Xamarin&lt;/a&gt;, licensed under &lt;a href="https://github.com/xamarin/AndroidSupportComponents/blob/master/LICENSE.md"&gt;MIT&lt;/a&gt;. No changes were made.</value>
   </data>
   <data name="LicenseScreenView_XSL_Title" xml:space="preserve">
     <value>Xamarin Support Libraries</value>
@@ -696,7 +691,7 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
     <value>Unknown Error</value>
   </data>
   <data name="LicenseScreenView_User_Dialogs_Text" xml:space="preserve">
-    <value>From &lt;a href="https://github.com/aritchie/userdialogs"&gt;Allan Ritchie&lt;/a&gt;, licensed under &lt;a href="https://github.com/aritchie/userdialogs/blob/master/LICENSE.md"&gt;MIT&lt;/a&gt;. No changes were made..</value>
+    <value>From &lt;a href="https://github.com/aritchie/userdialogs"&gt;Allan Ritchie&lt;/a&gt;, licensed under &lt;a href="https://github.com/aritchie/userdialogs/blob/master/LICENSE.md"&gt;MIT&lt;/a&gt;. No changes were made.</value>
   </data>
   <data name="LicenseScreenView_User_Dialogs_Title" xml:space="preserve">
     <value>ACR User Dialogs</value>
