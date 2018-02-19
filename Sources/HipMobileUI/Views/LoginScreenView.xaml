@@ -36,11 +36,11 @@
                            HorizontalOptions="Center" VerticalOptions="Start"
                            FontSize="Small" TextColor="Red" Text="{Binding ErrorMessage, Mode=TwoWay}" />
                     <Button x:Name="RegisterButton"
-                           FontSize="Small" TextColor="Blue" Text="{helpers:Translate LoginScreenView_Register}"
+                           FontSize="Small" Text="{helpers:Translate LoginScreenView_Register}"
                            Command="{Binding RegisterCommand}" >
                     </Button>
                     <Button x:Name="ForgotPasswordButton"
-                           FontSize="Small" TextColor="Blue" Text="{helpers:Translate LoginScreenView_Forgot_Password}"
+                           FontSize="Small" Text="{helpers:Translate LoginScreenView_Forgot_Password}"
                            Command="{Binding ForgotPasswordCommand}" >
                     </Button>
                     <Button x:Name="LoginButton"
