@@ -46,7 +46,7 @@
                         <StackLayout BackgroundColor="White">
                             <BoxView Color="{StaticResource DarkGrayColor}" HeightRequest="1" />
                             <StackLayout Margin="16,16" Spacing="15" >
-                                <Label Text="{Binding Headline}" TextColor="black" FontSize="16" FontAttributes="Bold" Style="{DynamicResource Ssp-SemiBold}"/>
+                                <Label Text="{Binding Headline}" TextColor="Black" FontSize="16" FontAttributes="Bold" Style="{DynamicResource Ssp-SemiBold}"/>
                                 <ScrollView>
                                     <Label Text="{Binding Description}" TextColor="{StaticResource DarkGrayColor}" FontSize="14" Style="{DynamicResource Ssp-Regular}"/>
                                 </ScrollView>
