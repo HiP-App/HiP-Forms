@@ -22,7 +22,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:maxEms="17"
-                android:paddingLeft="3dp"
+                android:paddingLeft="4dp"
                 android:paddingRight="3dp"
                 android:text="Some title"
                 android:textColor="@color/textColorPrimaryInverse"
@@ -66,8 +66,8 @@
         android:minHeight="25px">
         <Button
             android:id="@+id/close_marker_info_window"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:background="@drawable/btn_close"
             android:visibility="visible" />
     </LinearLayout>
