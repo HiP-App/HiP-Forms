@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 
 <!--
 // Copyright (C) 2017 History in Paderborn App - Universität Paderborn
@@ -19,40 +19,33 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:helpers="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;assembly=HipMobileUI"
-             xmlns:views="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Views;assembly=HipMobileUI"
-             x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Pages.CharacterSelectionPage">
+			 xmlns:views="clr-namespace:SkiaSharp.Views.Forms;assembly=SkiaSharp.Views.Forms"
+             x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Pages.CharacterSelectionPage"
+             Title="{helpers:Translate CharacterSelectionPage_SelectCharacter}">
     <ContentPage.Content>
-        <views:NotificationExtensionView>
-            <views:NotificationExtensionView.ContentTemplate>
-                <Grid x:Name="MainGrid" RowSpacing="0" ColumnSpacing="0">
-                    <Grid x:Name="AdventurerGrid" BackgroundColor="Orange">
-                        <Grid.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding AdventurerGridTappedCommand}" />
-                        </Grid.GestureRecognizers>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="0.7*" />
-                            <RowDefinition Height="0.3*" />
-                        </Grid.RowDefinitions>
-                        <Image x:Name="AdventurerImage" Grid.Row="0" Source="ic_adventurer" Aspect="AspectFit" Margin="10" />
-                        <Label x:Name="AdventurerLabel" Grid.Row="1"
-                               Text="{helpers:Translate CharacterSelectionPage_Adventurer_Text}" TextColor="White"
-                               FontSize="Medium" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
-                    </Grid>
-                    <Grid x:Name="ProfessorGrid" BackgroundColor="Blue">
-                        <Grid.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding ProfessorGridTappedCommand}" />
-                        </Grid.GestureRecognizers>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="0.7*" />
-                            <RowDefinition Height="0.3*" />
-                        </Grid.RowDefinitions>
-                        <Image x:Name="ProfessorImage" Grid.Row="0" Source="ic_professor" Aspect="AspectFit" Margin="10" />
-                        <Label x:Name="ProfessorText" Grid.Row="1"
-                               Text="{helpers:Translate CharacterSelectionPage_Professor_Text}" TextColor="White"
-                               FontSize="Medium" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
-                    </Grid>
-                </Grid>
-            </views:NotificationExtensionView.ContentTemplate>
-        </views:NotificationExtensionView>
+        <AbsoluteLayout>
+            <views:SKCanvasView x:Name="Canvas" PaintSurface="OnPaintSample"
+                                AbsoluteLayout.LayoutBounds=".5,.5,2.0,2.0 "
+                                AbsoluteLayout.LayoutFlags="All"/>
+            <Label x:Name="ProfessorText"
+                   Text="{helpers:Translate CharacterSelectionPage_Professor_Text}"
+                   TextColor="Black" FontSize="Medium"
+                   AbsoluteLayout.LayoutBounds=".8,.9,.4,.4" AbsoluteLayout.LayoutFlags="All"/>
+            <Image Source="ic_professor.png"
+                   AbsoluteLayout.LayoutBounds=".8,1.0,.4,.4" AbsoluteLayout.LayoutFlags="All">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding ProfessorGridTappedCommand}" />
+                </Image.GestureRecognizers>
+            </Image>
+            <Label x:Name="AdventurerLabel" Grid.Row="1"
+                   Text="{helpers:Translate CharacterSelectionPage_Adventurer_Text}" TextColor="Black" FontSize="Medium"
+                   AbsoluteLayout.LayoutBounds=".2,.6,.4,.4" AbsoluteLayout.LayoutFlags="All"/>
+            <Image Source="ic_adventurer.png"
+                   AbsoluteLayout.LayoutBounds=".2,.05,.35,.35" AbsoluteLayout.LayoutFlags="All">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding AdventurerGridTappedCommand}" />
+                </Image.GestureRecognizers>
+            </Image>
+        </AbsoluteLayout>
     </ContentPage.Content>
 </ContentPage>

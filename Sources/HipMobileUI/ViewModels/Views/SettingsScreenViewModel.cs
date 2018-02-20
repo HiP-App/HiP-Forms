@@ -43,7 +43,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 
         private void OnSelectCharacterTapped()
         {
-            Navigation.StartNewNavigationStack(new CharacterSelectionPageViewModel(this));
+            Navigation.StartNewLocalNavigationStack(new CharacterSelectionPageViewModel(this));
         }
 
         private async void RemoveAllDownloadsClicked()
@@ -74,6 +74,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         {
             get => Settings.AutoSwitchPage;
             set
+
             {
                 Settings.AutoSwitchPage = value;
                 OnPropertyChanged();
@@ -87,6 +88,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         {
             get => Settings.AutoStartAudio;
             set
+
             {
                 Settings.AutoStartAudio = value;
                 OnPropertyChanged();
@@ -100,6 +102,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         {
             get => Settings.RepeatHintAudio;
             set
+
             {
                 Settings.RepeatHintAudio = value;
                 OnPropertyChanged();
@@ -113,6 +116,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         {
             get => Settings.RepeatHintAutoPageSwitch;
             set
+
             {
                 Settings.RepeatHintAutoPageSwitch = value;
                 OnPropertyChanged();
@@ -126,6 +130,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         {
             get => Settings.RepeatIntro;
             set
+
             {
                 Settings.RepeatIntro = value;
                 Settings.InitialThemeSelected = !value;
@@ -140,11 +145,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         {
             get => Settings.AlwaysDownloadData;
             set
+
             {
                 Settings.AlwaysDownloadData = value;
                 OnPropertyChanged();
             }
         }
+
 
         public string AppModeText => Settings.AdventurerMode ? Strings.SettingsScreenView_CharacterSelection_Text_IsAdventurer : Strings.SettingsScreenView_CharacterSelection_Text_IsProfessor;
 
@@ -173,10 +180,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             get => size;
         }
 
+
         public bool WifiOnly
         {
             get => Settings.WifiOnly;
             set
+
             {
                 Settings.WifiOnly = value;
                 OnPropertyChanged();

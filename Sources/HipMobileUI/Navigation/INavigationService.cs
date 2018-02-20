@@ -112,6 +112,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation
         void StartNewNavigationStack(NavigationViewModel newRoot);
 
         /// <summary>
+        /// Creates a new local navigation stack with a fresh NavigationPage as base.
+        /// </summary>
+        /// <param name="newRoot">The viewmodel which view is used as the new root.</param>
+        void StartNewLocalNavigationStack(NavigationViewModel newRoot);
+
+        /// <summary>
         /// Removes all modal pages of the modal navigation stack.
         /// </summary>
         /// <param name="animate">Animate the pops.</param>

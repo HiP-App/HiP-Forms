@@ -80,12 +80,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             AudioToolbar.AudioPlayer.AudioCompleted += AudioPlayerOnAudioCompleted;
 
             // init the current view
-            currentViewIndex = 1;
+            currentViewIndex = 0;
             this.pages = pages;
             SetCurrentView().ConfigureAwait(true);
             Title = title;
-            pagenumber = currentViewIndex + " / " + (pages.Count - 1);
-            if (pages.Count > 2)
+            pagenumber = currentViewIndex + 1 + " / " + pages.Count;
+            if (pages.Count > 1)
                 NextViewAvailable = true;
 
             // init commands     
@@ -113,6 +113,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         private void ShowAdditionalInformation()
         {
             var currentPage = pages[currentViewIndex];
+            if (currentPage.AdditionalInformationPages == null || !currentPage.AdditionalInformationPages.Any())
+                return;
 
             Navigation.PushAsync(new ExhibitDetailsViewModel(Exhibit, currentPage.AdditionalInformationPages, Strings.ExhibitDetailsPage_AdditionalInformation, true));
         }
@@ -206,7 +208,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                 }
                 // update the UI
                 currentViewIndex++;
-                NextViewAvailable = currentViewIndex < pages.Count;
+                NextViewAvailable = additionalInformation
+                    ? currentViewIndex < pages.Count - 1
+                    : currentViewIndex < pages.Count;
+
                 PreviousViewAvailable = true;
                 await SetCurrentView();
             }
@@ -245,19 +250,18 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         /// </summary>
         private async void GotoPreviousView()
         {
-            if (currentViewIndex > 1)
+            if (currentViewIndex > 0)
             {
                 // stop audio
                 if (AudioToolbar.AudioPlayer.IsPlaying)
                 {
                     AudioToolbar.AudioPlayer.Stop();
                 }
-
                 // update UI
                 currentViewIndex--;
-                await SetCurrentView();
-                PreviousViewAvailable = currentViewIndex > 1;
+                PreviousViewAvailable = currentViewIndex > 0;
                 NextViewAvailable = true;
+                await SetCurrentView();
             }
             // Go back to appetizer page
             else
@@ -272,16 +276,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         /// <returns></returns>
         private async Task SetCurrentView()
         {
-            // update UI
-            if (currentViewIndex == 0)
-            {
-                currentViewIndex++;
-            }
-
             var currentPage = pages[currentViewIndex];
             AudioAvailable = currentPage.Audio != null;
             AudioToolbarVisible = AudioAvailable;
-            Pagenumber = currentViewIndex + " / " + (pages.Count - 1);
+            Pagenumber = currentViewIndex + 1 + " / " + pages.Count;
 
             // It's possible to get no audio data even if it should exist
             try
@@ -359,8 +357,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             Exhibit = ExhibitManager.GetExhibit(exhibitId);
             if (!Exhibit.DetailsDataLoaded)
                 return;
-            NextViewAvailable = currentViewIndex < pages.Count - 1;
-            PreviousViewAvailable = currentViewIndex > 1;
+            NextViewAvailable = additionalInformation
+                ? currentViewIndex < pages.Count - 1
+                : currentViewIndex < pages.Count;
+            PreviousViewAvailable = currentViewIndex > 0;
             await SetCurrentView();
         }
 
