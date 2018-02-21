@@ -22,12 +22,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:maxEms="17"
-                android:paddingLeft="4dp"
+                android:paddingLeft="5dp"
                 android:paddingRight="3dp"
                 android:text="Some title"
                 android:textColor="@color/textColorPrimaryInverse"
                 android:textStyle="bold"
-                android:gravity="center_vertical" />
+                android:gravity="center_vertical"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="2dp" />
             <TextView
                 android:id="@+id/bubble_description"
                 android:layout_width="wrap_content"
@@ -56,11 +58,11 @@
         </LinearLayout>
     </android.gesture.GestureOverlayView>
     <Space
-        android:layout_width="20px"
-        android:layout_height="20px" />
+        android:layout_width="15px"
+        android:layout_height="18px" />
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:minWidth="25px"
         android:minHeight="25px">
@@ -69,6 +71,9 @@
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:background="@drawable/btn_close"
-            android:visibility="visible" />
+            android:visibility="visible"
+            android:paddingLeft="2dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginRight="9.5dp" />
     </LinearLayout>
 </LinearLayout>
