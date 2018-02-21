@@ -185,2643 +185,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
 			global::HockeyApp.Resource.Style.HockeyApp_SingleLineInputStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.HockeyApp_SingleLineInputStyle;
 			global::Splat.Resource.String.library_name = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.String.library_name;
 			global::Xamarin.Forms.Platform.Android.Resource.Attribute.actionBarSize = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.actionBarSize;
-			global::NGraphics.Android.Resource.String.library_name = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.String.library_name;
-			global::NControl.Droid.Resource.Animation.abc_fade_in = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Animation.abc_fade_in;
-			global::NControl.Droid.Resource.Animation.abc_fade_out = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Animation.abc_fade_out;
-			global::NControl.Droid.Resource.Animation.abc_grow_fade_in_from_bottom = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Animation.abc_grow_fade_in_from_bottom;
-			global::NControl.Droid.Resource.Animation.abc_popup_enter = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Animation.abc_popup_enter;
-			global::NControl.Droid.Resource.Animation.abc_popup_exit = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Animation.abc_popup_exit;
-			global::NControl.Droid.Resource.Animation.abc_shrink_fade_out_from_bottom = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Animation.abc_shrink_fade_out_from_bottom;
-			global::NControl.Droid.Resource.Animation.abc_slide_in_bottom = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Animation.abc_slide_in_bottom;
-			global::NControl.Droid.Resource.Animation.abc_slide_in_top = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Animation.abc_slide_in_top;
-			global::NControl.Droid.Resource.Animation.abc_slide_out_bottom = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Animation.abc_slide_out_bottom;
-			global::NControl.Droid.Resource.Animation.abc_slide_out_top = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Animation.abc_slide_out_top;
-			global::NControl.Droid.Resource.Animation.design_fab_in = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Animation.design_fab_in;
-			global::NControl.Droid.Resource.Animation.design_fab_out = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Animation.design_fab_out;
-			global::NControl.Droid.Resource.Animation.design_snackbar_in = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Animation.design_snackbar_in;
-			global::NControl.Droid.Resource.Animation.design_snackbar_out = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Animation.design_snackbar_out;
-			global::NControl.Droid.Resource.Attribute.actionBarDivider = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.actionBarDivider;
-			global::NControl.Droid.Resource.Attribute.actionBarItemBackground = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.actionBarItemBackground;
-			global::NControl.Droid.Resource.Attribute.actionBarPopupTheme = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.actionBarPopupTheme;
-			global::NControl.Droid.Resource.Attribute.actionBarSize = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.actionBarSize;
-			global::NControl.Droid.Resource.Attribute.actionBarSplitStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.actionBarSplitStyle;
-			global::NControl.Droid.Resource.Attribute.actionBarStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.actionBarStyle;
-			global::NControl.Droid.Resource.Attribute.actionBarTabBarStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.actionBarTabBarStyle;
-			global::NControl.Droid.Resource.Attribute.actionBarTabStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.actionBarTabStyle;
-			global::NControl.Droid.Resource.Attribute.actionBarTabTextStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.actionBarTabTextStyle;
-			global::NControl.Droid.Resource.Attribute.actionBarTheme = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.actionBarTheme;
-			global::NControl.Droid.Resource.Attribute.actionBarWidgetTheme = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.actionBarWidgetTheme;
-			global::NControl.Droid.Resource.Attribute.actionButtonStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.actionButtonStyle;
-			global::NControl.Droid.Resource.Attribute.actionDropDownStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.actionDropDownStyle;
-			global::NControl.Droid.Resource.Attribute.actionLayout = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.actionLayout;
-			global::NControl.Droid.Resource.Attribute.actionMenuTextAppearance = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.actionMenuTextAppearance;
-			global::NControl.Droid.Resource.Attribute.actionMenuTextColor = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.actionMenuTextColor;
-			global::NControl.Droid.Resource.Attribute.actionModeBackground = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.actionModeBackground;
-			global::NControl.Droid.Resource.Attribute.actionModeCloseButtonStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.actionModeCloseButtonStyle;
-			global::NControl.Droid.Resource.Attribute.actionModeCloseDrawable = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.actionModeCloseDrawable;
-			global::NControl.Droid.Resource.Attribute.actionModeCopyDrawable = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.actionModeCopyDrawable;
-			global::NControl.Droid.Resource.Attribute.actionModeCutDrawable = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.actionModeCutDrawable;
-			global::NControl.Droid.Resource.Attribute.actionModeFindDrawable = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.actionModeFindDrawable;
-			global::NControl.Droid.Resource.Attribute.actionModePasteDrawable = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.actionModePasteDrawable;
-			global::NControl.Droid.Resource.Attribute.actionModePopupWindowStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.actionModePopupWindowStyle;
-			global::NControl.Droid.Resource.Attribute.actionModeSelectAllDrawable = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.actionModeSelectAllDrawable;
-			global::NControl.Droid.Resource.Attribute.actionModeShareDrawable = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.actionModeShareDrawable;
-			global::NControl.Droid.Resource.Attribute.actionModeSplitBackground = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.actionModeSplitBackground;
-			global::NControl.Droid.Resource.Attribute.actionModeStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.actionModeStyle;
-			global::NControl.Droid.Resource.Attribute.actionModeWebSearchDrawable = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.actionModeWebSearchDrawable;
-			global::NControl.Droid.Resource.Attribute.actionOverflowButtonStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.actionOverflowButtonStyle;
-			global::NControl.Droid.Resource.Attribute.actionOverflowMenuStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.actionOverflowMenuStyle;
-			global::NControl.Droid.Resource.Attribute.actionProviderClass = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.actionProviderClass;
-			global::NControl.Droid.Resource.Attribute.actionViewClass = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.actionViewClass;
-			global::NControl.Droid.Resource.Attribute.activityChooserViewStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.activityChooserViewStyle;
-			global::NControl.Droid.Resource.Attribute.alertDialogButtonGroupStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.alertDialogButtonGroupStyle;
-			global::NControl.Droid.Resource.Attribute.alertDialogCenterButtons = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.alertDialogCenterButtons;
-			global::NControl.Droid.Resource.Attribute.alertDialogStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.alertDialogStyle;
-			global::NControl.Droid.Resource.Attribute.alertDialogTheme = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.alertDialogTheme;
-			global::NControl.Droid.Resource.Attribute.arrowHeadLength = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.arrowHeadLength;
-			global::NControl.Droid.Resource.Attribute.arrowShaftLength = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.arrowShaftLength;
-			global::NControl.Droid.Resource.Attribute.autoCompleteTextViewStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.autoCompleteTextViewStyle;
-			global::NControl.Droid.Resource.Attribute.background = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.background;
-			global::NControl.Droid.Resource.Attribute.backgroundSplit = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.backgroundSplit;
-			global::NControl.Droid.Resource.Attribute.backgroundStacked = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.backgroundStacked;
-			global::NControl.Droid.Resource.Attribute.backgroundTint = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.backgroundTint;
-			global::NControl.Droid.Resource.Attribute.backgroundTintMode = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.backgroundTintMode;
-			global::NControl.Droid.Resource.Attribute.barLength = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.barLength;
-			global::NControl.Droid.Resource.Attribute.behavior_overlapTop = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.behavior_overlapTop;
-			global::NControl.Droid.Resource.Attribute.borderWidth = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.borderWidth;
-			global::NControl.Droid.Resource.Attribute.borderlessButtonStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.borderlessButtonStyle;
-			global::NControl.Droid.Resource.Attribute.buttonBarButtonStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.buttonBarButtonStyle;
-			global::NControl.Droid.Resource.Attribute.buttonBarNegativeButtonStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.buttonBarNegativeButtonStyle;
-			global::NControl.Droid.Resource.Attribute.buttonBarNeutralButtonStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.buttonBarNeutralButtonStyle;
-			global::NControl.Droid.Resource.Attribute.buttonBarPositiveButtonStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.buttonBarPositiveButtonStyle;
-			global::NControl.Droid.Resource.Attribute.buttonBarStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.buttonBarStyle;
-			global::NControl.Droid.Resource.Attribute.buttonPanelSideLayout = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.buttonPanelSideLayout;
-			global::NControl.Droid.Resource.Attribute.buttonStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.buttonStyle;
-			global::NControl.Droid.Resource.Attribute.buttonStyleSmall = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.buttonStyleSmall;
-			global::NControl.Droid.Resource.Attribute.buttonTint = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.buttonTint;
-			global::NControl.Droid.Resource.Attribute.buttonTintMode = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.buttonTintMode;
-			global::NControl.Droid.Resource.Attribute.cardBackgroundColor = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.cardBackgroundColor;
-			global::NControl.Droid.Resource.Attribute.cardCornerRadius = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.cardCornerRadius;
-			global::NControl.Droid.Resource.Attribute.cardElevation = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.cardElevation;
-			global::NControl.Droid.Resource.Attribute.cardMaxElevation = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.cardMaxElevation;
-			global::NControl.Droid.Resource.Attribute.cardPreventCornerOverlap = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.cardPreventCornerOverlap;
-			global::NControl.Droid.Resource.Attribute.cardUseCompatPadding = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.cardUseCompatPadding;
-			global::NControl.Droid.Resource.Attribute.checkboxStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.checkboxStyle;
-			global::NControl.Droid.Resource.Attribute.checkedTextViewStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.checkedTextViewStyle;
-			global::NControl.Droid.Resource.Attribute.closeIcon = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.closeIcon;
-			global::NControl.Droid.Resource.Attribute.closeItemLayout = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.closeItemLayout;
-			global::NControl.Droid.Resource.Attribute.collapseContentDescription = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.collapseContentDescription;
-			global::NControl.Droid.Resource.Attribute.collapseIcon = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.collapseIcon;
-			global::NControl.Droid.Resource.Attribute.collapsedTitleGravity = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.collapsedTitleGravity;
-			global::NControl.Droid.Resource.Attribute.collapsedTitleTextAppearance = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.collapsedTitleTextAppearance;
-			global::NControl.Droid.Resource.Attribute.color = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.color;
-			global::NControl.Droid.Resource.Attribute.colorAccent = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.colorAccent;
-			global::NControl.Droid.Resource.Attribute.colorButtonNormal = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.colorButtonNormal;
-			global::NControl.Droid.Resource.Attribute.colorControlActivated = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.colorControlActivated;
-			global::NControl.Droid.Resource.Attribute.colorControlHighlight = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.colorControlHighlight;
-			global::NControl.Droid.Resource.Attribute.colorControlNormal = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.colorControlNormal;
-			global::NControl.Droid.Resource.Attribute.colorPrimary = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.colorPrimary;
-			global::NControl.Droid.Resource.Attribute.colorPrimaryDark = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.colorPrimaryDark;
-			global::NControl.Droid.Resource.Attribute.colorSwitchThumbNormal = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.colorSwitchThumbNormal;
-			global::NControl.Droid.Resource.Attribute.commitIcon = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.commitIcon;
-			global::NControl.Droid.Resource.Attribute.contentInsetEnd = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.contentInsetEnd;
-			global::NControl.Droid.Resource.Attribute.contentInsetLeft = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.contentInsetLeft;
-			global::NControl.Droid.Resource.Attribute.contentInsetRight = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.contentInsetRight;
-			global::NControl.Droid.Resource.Attribute.contentInsetStart = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.contentInsetStart;
-			global::NControl.Droid.Resource.Attribute.contentPadding = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.contentPadding;
-			global::NControl.Droid.Resource.Attribute.contentPaddingBottom = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.contentPaddingBottom;
-			global::NControl.Droid.Resource.Attribute.contentPaddingLeft = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.contentPaddingLeft;
-			global::NControl.Droid.Resource.Attribute.contentPaddingRight = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.contentPaddingRight;
-			global::NControl.Droid.Resource.Attribute.contentPaddingTop = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.contentPaddingTop;
-			global::NControl.Droid.Resource.Attribute.contentScrim = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.contentScrim;
-			global::NControl.Droid.Resource.Attribute.controlBackground = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.controlBackground;
-			global::NControl.Droid.Resource.Attribute.customNavigationLayout = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.customNavigationLayout;
-			global::NControl.Droid.Resource.Attribute.defaultQueryHint = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.defaultQueryHint;
-			global::NControl.Droid.Resource.Attribute.dialogPreferredPadding = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.dialogPreferredPadding;
-			global::NControl.Droid.Resource.Attribute.dialogTheme = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.dialogTheme;
-			global::NControl.Droid.Resource.Attribute.displayOptions = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.displayOptions;
-			global::NControl.Droid.Resource.Attribute.divider = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.divider;
-			global::NControl.Droid.Resource.Attribute.dividerHorizontal = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.dividerHorizontal;
-			global::NControl.Droid.Resource.Attribute.dividerPadding = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.dividerPadding;
-			global::NControl.Droid.Resource.Attribute.dividerVertical = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.dividerVertical;
-			global::NControl.Droid.Resource.Attribute.drawableSize = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.drawableSize;
-			global::NControl.Droid.Resource.Attribute.drawerArrowStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.drawerArrowStyle;
-			global::NControl.Droid.Resource.Attribute.dropDownListViewStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.dropDownListViewStyle;
-			global::NControl.Droid.Resource.Attribute.dropdownListPreferredItemHeight = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.dropdownListPreferredItemHeight;
-			global::NControl.Droid.Resource.Attribute.editTextBackground = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.editTextBackground;
-			global::NControl.Droid.Resource.Attribute.editTextColor = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.editTextColor;
-			global::NControl.Droid.Resource.Attribute.editTextStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.editTextStyle;
-			global::NControl.Droid.Resource.Attribute.elevation = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.elevation;
-			global::NControl.Droid.Resource.Attribute.errorEnabled = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.errorEnabled;
-			global::NControl.Droid.Resource.Attribute.errorTextAppearance = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.errorTextAppearance;
-			global::NControl.Droid.Resource.Attribute.expandActivityOverflowButtonDrawable = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.expandActivityOverflowButtonDrawable;
-			global::NControl.Droid.Resource.Attribute.expanded = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.expanded;
-			global::NControl.Droid.Resource.Attribute.expandedTitleGravity = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.expandedTitleGravity;
-			global::NControl.Droid.Resource.Attribute.expandedTitleMargin = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.expandedTitleMargin;
-			global::NControl.Droid.Resource.Attribute.expandedTitleMarginBottom = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.expandedTitleMarginBottom;
-			global::NControl.Droid.Resource.Attribute.expandedTitleMarginEnd = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.expandedTitleMarginEnd;
-			global::NControl.Droid.Resource.Attribute.expandedTitleMarginStart = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.expandedTitleMarginStart;
-			global::NControl.Droid.Resource.Attribute.expandedTitleMarginTop = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.expandedTitleMarginTop;
-			global::NControl.Droid.Resource.Attribute.expandedTitleTextAppearance = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.expandedTitleTextAppearance;
-			global::NControl.Droid.Resource.Attribute.externalRouteEnabledDrawable = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.externalRouteEnabledDrawable;
-			global::NControl.Droid.Resource.Attribute.fabSize = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.fabSize;
-			global::NControl.Droid.Resource.Attribute.gapBetweenBars = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.gapBetweenBars;
-			global::NControl.Droid.Resource.Attribute.goIcon = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.goIcon;
-			global::NControl.Droid.Resource.Attribute.headerLayout = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.headerLayout;
-			global::NControl.Droid.Resource.Attribute.height = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.height;
-			global::NControl.Droid.Resource.Attribute.hideOnContentScroll = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.hideOnContentScroll;
-			global::NControl.Droid.Resource.Attribute.hintAnimationEnabled = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.hintAnimationEnabled;
-			global::NControl.Droid.Resource.Attribute.hintTextAppearance = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.hintTextAppearance;
-			global::NControl.Droid.Resource.Attribute.homeAsUpIndicator = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.homeAsUpIndicator;
-			global::NControl.Droid.Resource.Attribute.homeLayout = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.homeLayout;
-			global::NControl.Droid.Resource.Attribute.icon = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.icon;
-			global::NControl.Droid.Resource.Attribute.iconifiedByDefault = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.iconifiedByDefault;
-			global::NControl.Droid.Resource.Attribute.indeterminateProgressStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.indeterminateProgressStyle;
-			global::NControl.Droid.Resource.Attribute.initialActivityCount = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.initialActivityCount;
-			global::NControl.Droid.Resource.Attribute.insetForeground = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.insetForeground;
-			global::NControl.Droid.Resource.Attribute.isLightTheme = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.isLightTheme;
-			global::NControl.Droid.Resource.Attribute.itemBackground = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.itemBackground;
-			global::NControl.Droid.Resource.Attribute.itemIconTint = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.itemIconTint;
-			global::NControl.Droid.Resource.Attribute.itemPadding = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.itemPadding;
-			global::NControl.Droid.Resource.Attribute.itemTextAppearance = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.itemTextAppearance;
-			global::NControl.Droid.Resource.Attribute.itemTextColor = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.itemTextColor;
-			global::NControl.Droid.Resource.Attribute.keylines = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.keylines;
-			global::NControl.Droid.Resource.Attribute.layout = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.layout;
-			global::NControl.Droid.Resource.Attribute.layout_anchor = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.layout_anchor;
-			global::NControl.Droid.Resource.Attribute.layout_anchorGravity = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.layout_anchorGravity;
-			global::NControl.Droid.Resource.Attribute.layout_behavior = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.layout_behavior;
-			global::NControl.Droid.Resource.Attribute.layout_collapseMode = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.layout_collapseMode;
-			global::NControl.Droid.Resource.Attribute.layout_collapseParallaxMultiplier = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.layout_collapseParallaxMultiplier;
-			global::NControl.Droid.Resource.Attribute.layout_keyline = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.layout_keyline;
-			global::NControl.Droid.Resource.Attribute.layout_scrollFlags = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.layout_scrollFlags;
-			global::NControl.Droid.Resource.Attribute.layout_scrollInterpolator = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.layout_scrollInterpolator;
-			global::NControl.Droid.Resource.Attribute.listChoiceBackgroundIndicator = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.listChoiceBackgroundIndicator;
-			global::NControl.Droid.Resource.Attribute.listDividerAlertDialog = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.listDividerAlertDialog;
-			global::NControl.Droid.Resource.Attribute.listItemLayout = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.listItemLayout;
-			global::NControl.Droid.Resource.Attribute.listLayout = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.listLayout;
-			global::NControl.Droid.Resource.Attribute.listPopupWindowStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.listPopupWindowStyle;
-			global::NControl.Droid.Resource.Attribute.listPreferredItemHeight = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.listPreferredItemHeight;
-			global::NControl.Droid.Resource.Attribute.listPreferredItemHeightLarge = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.listPreferredItemHeightLarge;
-			global::NControl.Droid.Resource.Attribute.listPreferredItemHeightSmall = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.listPreferredItemHeightSmall;
-			global::NControl.Droid.Resource.Attribute.listPreferredItemPaddingLeft = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.listPreferredItemPaddingLeft;
-			global::NControl.Droid.Resource.Attribute.listPreferredItemPaddingRight = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.listPreferredItemPaddingRight;
-			global::NControl.Droid.Resource.Attribute.logo = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.logo;
-			global::NControl.Droid.Resource.Attribute.logoDescription = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.logoDescription;
-			global::NControl.Droid.Resource.Attribute.maxActionInlineWidth = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.maxActionInlineWidth;
-			global::NControl.Droid.Resource.Attribute.maxButtonHeight = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.maxButtonHeight;
-			global::NControl.Droid.Resource.Attribute.measureWithLargestChild = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.measureWithLargestChild;
-			global::NControl.Droid.Resource.Attribute.mediaRouteButtonStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.mediaRouteButtonStyle;
-			global::NControl.Droid.Resource.Attribute.mediaRoutePauseDrawable = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.mediaRoutePauseDrawable;
-			global::NControl.Droid.Resource.Attribute.mediaRoutePlayDrawable = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.mediaRoutePlayDrawable;
-			global::NControl.Droid.Resource.Attribute.menu = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.menu;
-			global::NControl.Droid.Resource.Attribute.multiChoiceItemLayout = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.multiChoiceItemLayout;
-			global::NControl.Droid.Resource.Attribute.navigationContentDescription = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.navigationContentDescription;
-			global::NControl.Droid.Resource.Attribute.navigationIcon = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.navigationIcon;
-			global::NControl.Droid.Resource.Attribute.navigationMode = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.navigationMode;
-			global::NControl.Droid.Resource.Attribute.overlapAnchor = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.overlapAnchor;
-			global::NControl.Droid.Resource.Attribute.paddingEnd = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.paddingEnd;
-			global::NControl.Droid.Resource.Attribute.paddingStart = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.paddingStart;
-			global::NControl.Droid.Resource.Attribute.panelBackground = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.panelBackground;
-			global::NControl.Droid.Resource.Attribute.panelMenuListTheme = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.panelMenuListTheme;
-			global::NControl.Droid.Resource.Attribute.panelMenuListWidth = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.panelMenuListWidth;
-			global::NControl.Droid.Resource.Attribute.popupMenuStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.popupMenuStyle;
-			global::NControl.Droid.Resource.Attribute.popupTheme = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.popupTheme;
-			global::NControl.Droid.Resource.Attribute.popupWindowStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.popupWindowStyle;
-			global::NControl.Droid.Resource.Attribute.preserveIconSpacing = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.preserveIconSpacing;
-			global::NControl.Droid.Resource.Attribute.pressedTranslationZ = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.pressedTranslationZ;
-			global::NControl.Droid.Resource.Attribute.progressBarPadding = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.progressBarPadding;
-			global::NControl.Droid.Resource.Attribute.progressBarStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.progressBarStyle;
-			global::NControl.Droid.Resource.Attribute.queryBackground = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.queryBackground;
-			global::NControl.Droid.Resource.Attribute.queryHint = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.queryHint;
-			global::NControl.Droid.Resource.Attribute.radioButtonStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.radioButtonStyle;
-			global::NControl.Droid.Resource.Attribute.ratingBarStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.ratingBarStyle;
-			global::NControl.Droid.Resource.Attribute.rippleColor = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.rippleColor;
-			global::NControl.Droid.Resource.Attribute.searchHintIcon = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.searchHintIcon;
-			global::NControl.Droid.Resource.Attribute.searchIcon = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.searchIcon;
-			global::NControl.Droid.Resource.Attribute.searchViewStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.searchViewStyle;
-			global::NControl.Droid.Resource.Attribute.selectableItemBackground = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.selectableItemBackground;
-			global::NControl.Droid.Resource.Attribute.selectableItemBackgroundBorderless = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.selectableItemBackgroundBorderless;
-			global::NControl.Droid.Resource.Attribute.showAsAction = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.showAsAction;
-			global::NControl.Droid.Resource.Attribute.showDividers = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.showDividers;
-			global::NControl.Droid.Resource.Attribute.showText = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.showText;
-			global::NControl.Droid.Resource.Attribute.singleChoiceItemLayout = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.singleChoiceItemLayout;
-			global::NControl.Droid.Resource.Attribute.spinBars = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.spinBars;
-			global::NControl.Droid.Resource.Attribute.spinnerDropDownItemStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.spinnerDropDownItemStyle;
-			global::NControl.Droid.Resource.Attribute.spinnerStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.spinnerStyle;
-			global::NControl.Droid.Resource.Attribute.splitTrack = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.splitTrack;
-			global::NControl.Droid.Resource.Attribute.state_above_anchor = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.state_above_anchor;
-			global::NControl.Droid.Resource.Attribute.statusBarBackground = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.statusBarBackground;
-			global::NControl.Droid.Resource.Attribute.statusBarScrim = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.statusBarScrim;
-			global::NControl.Droid.Resource.Attribute.submitBackground = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.submitBackground;
-			global::NControl.Droid.Resource.Attribute.subtitle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.subtitle;
-			global::NControl.Droid.Resource.Attribute.subtitleTextAppearance = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.subtitleTextAppearance;
-			global::NControl.Droid.Resource.Attribute.subtitleTextColor = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.subtitleTextColor;
-			global::NControl.Droid.Resource.Attribute.subtitleTextStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.subtitleTextStyle;
-			global::NControl.Droid.Resource.Attribute.suggestionRowLayout = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.suggestionRowLayout;
-			global::NControl.Droid.Resource.Attribute.switchMinWidth = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.switchMinWidth;
-			global::NControl.Droid.Resource.Attribute.switchPadding = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.switchPadding;
-			global::NControl.Droid.Resource.Attribute.switchStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.switchStyle;
-			global::NControl.Droid.Resource.Attribute.switchTextAppearance = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.switchTextAppearance;
-			global::NControl.Droid.Resource.Attribute.tabBackground = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.tabBackground;
-			global::NControl.Droid.Resource.Attribute.tabContentStart = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.tabContentStart;
-			global::NControl.Droid.Resource.Attribute.tabGravity = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.tabGravity;
-			global::NControl.Droid.Resource.Attribute.tabIndicatorColor = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.tabIndicatorColor;
-			global::NControl.Droid.Resource.Attribute.tabIndicatorHeight = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.tabIndicatorHeight;
-			global::NControl.Droid.Resource.Attribute.tabMaxWidth = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.tabMaxWidth;
-			global::NControl.Droid.Resource.Attribute.tabMinWidth = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.tabMinWidth;
-			global::NControl.Droid.Resource.Attribute.tabMode = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.tabMode;
-			global::NControl.Droid.Resource.Attribute.tabPadding = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.tabPadding;
-			global::NControl.Droid.Resource.Attribute.tabPaddingBottom = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.tabPaddingBottom;
-			global::NControl.Droid.Resource.Attribute.tabPaddingEnd = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.tabPaddingEnd;
-			global::NControl.Droid.Resource.Attribute.tabPaddingStart = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.tabPaddingStart;
-			global::NControl.Droid.Resource.Attribute.tabPaddingTop = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.tabPaddingTop;
-			global::NControl.Droid.Resource.Attribute.tabSelectedTextColor = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.tabSelectedTextColor;
-			global::NControl.Droid.Resource.Attribute.tabTextAppearance = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.tabTextAppearance;
-			global::NControl.Droid.Resource.Attribute.tabTextColor = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.tabTextColor;
-			global::NControl.Droid.Resource.Attribute.textAllCaps = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.textAllCaps;
-			global::NControl.Droid.Resource.Attribute.textAppearanceLargePopupMenu = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.textAppearanceLargePopupMenu;
-			global::NControl.Droid.Resource.Attribute.textAppearanceListItem = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.textAppearanceListItem;
-			global::NControl.Droid.Resource.Attribute.textAppearanceListItemSmall = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.textAppearanceListItemSmall;
-			global::NControl.Droid.Resource.Attribute.textAppearanceSearchResultSubtitle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.textAppearanceSearchResultSubtitle;
-			global::NControl.Droid.Resource.Attribute.textAppearanceSearchResultTitle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.textAppearanceSearchResultTitle;
-			global::NControl.Droid.Resource.Attribute.textAppearanceSmallPopupMenu = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.textAppearanceSmallPopupMenu;
-			global::NControl.Droid.Resource.Attribute.textColorAlertDialogListItem = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.textColorAlertDialogListItem;
-			global::NControl.Droid.Resource.Attribute.textColorSearchUrl = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.textColorSearchUrl;
-			global::NControl.Droid.Resource.Attribute.theme = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.theme;
-			global::NControl.Droid.Resource.Attribute.thickness = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.thickness;
-			global::NControl.Droid.Resource.Attribute.thumbTextPadding = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.thumbTextPadding;
-			global::NControl.Droid.Resource.Attribute.title = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.title;
-			global::NControl.Droid.Resource.Attribute.titleEnabled = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.titleEnabled;
-			global::NControl.Droid.Resource.Attribute.titleMarginBottom = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.titleMarginBottom;
-			global::NControl.Droid.Resource.Attribute.titleMarginEnd = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.titleMarginEnd;
-			global::NControl.Droid.Resource.Attribute.titleMarginStart = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.titleMarginStart;
-			global::NControl.Droid.Resource.Attribute.titleMarginTop = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.titleMarginTop;
-			global::NControl.Droid.Resource.Attribute.titleMargins = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.titleMargins;
-			global::NControl.Droid.Resource.Attribute.titleTextAppearance = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.titleTextAppearance;
-			global::NControl.Droid.Resource.Attribute.titleTextColor = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.titleTextColor;
-			global::NControl.Droid.Resource.Attribute.titleTextStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.titleTextStyle;
-			global::NControl.Droid.Resource.Attribute.toolbarId = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.toolbarId;
-			global::NControl.Droid.Resource.Attribute.toolbarNavigationButtonStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.toolbarNavigationButtonStyle;
-			global::NControl.Droid.Resource.Attribute.toolbarStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.toolbarStyle;
-			global::NControl.Droid.Resource.Attribute.track = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.track;
-			global::NControl.Droid.Resource.Attribute.voiceIcon = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.voiceIcon;
-			global::NControl.Droid.Resource.Attribute.windowActionBar = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.windowActionBar;
-			global::NControl.Droid.Resource.Attribute.windowActionBarOverlay = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.windowActionBarOverlay;
-			global::NControl.Droid.Resource.Attribute.windowActionModeOverlay = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.windowActionModeOverlay;
-			global::NControl.Droid.Resource.Attribute.windowFixedHeightMajor = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.windowFixedHeightMajor;
-			global::NControl.Droid.Resource.Attribute.windowFixedHeightMinor = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.windowFixedHeightMinor;
-			global::NControl.Droid.Resource.Attribute.windowFixedWidthMajor = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.windowFixedWidthMajor;
-			global::NControl.Droid.Resource.Attribute.windowFixedWidthMinor = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.windowFixedWidthMinor;
-			global::NControl.Droid.Resource.Attribute.windowMinWidthMajor = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.windowMinWidthMajor;
-			global::NControl.Droid.Resource.Attribute.windowMinWidthMinor = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.windowMinWidthMinor;
-			global::NControl.Droid.Resource.Attribute.windowNoTitle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.windowNoTitle;
-			global::NControl.Droid.Resource.Boolean.abc_action_bar_embed_tabs = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Boolean.abc_action_bar_embed_tabs;
-			global::NControl.Droid.Resource.Boolean.abc_config_actionMenuItemAllCaps = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Boolean.abc_config_actionMenuItemAllCaps;
-			global::NControl.Droid.Resource.Boolean.abc_config_closeDialogWhenTouchOutside = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Boolean.abc_config_closeDialogWhenTouchOutside;
-			global::NControl.Droid.Resource.Boolean.abc_config_showMenuShortcutsWhenKeyboardPresent = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Boolean.abc_config_showMenuShortcutsWhenKeyboardPresent;
-			global::NControl.Droid.Resource.Color.abc_background_cache_hint_selector_material_dark = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.abc_background_cache_hint_selector_material_dark;
-			global::NControl.Droid.Resource.Color.abc_background_cache_hint_selector_material_light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.abc_background_cache_hint_selector_material_light;
-			global::NControl.Droid.Resource.Color.abc_color_highlight_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.abc_color_highlight_material;
-			global::NControl.Droid.Resource.Color.abc_input_method_navigation_guard = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.abc_input_method_navigation_guard;
-			global::NControl.Droid.Resource.Color.abc_primary_text_disable_only_material_dark = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.abc_primary_text_disable_only_material_dark;
-			global::NControl.Droid.Resource.Color.abc_primary_text_disable_only_material_light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.abc_primary_text_disable_only_material_light;
-			global::NControl.Droid.Resource.Color.abc_primary_text_material_dark = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.abc_primary_text_material_dark;
-			global::NControl.Droid.Resource.Color.abc_primary_text_material_light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.abc_primary_text_material_light;
-			global::NControl.Droid.Resource.Color.abc_search_url_text = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.abc_search_url_text;
-			global::NControl.Droid.Resource.Color.abc_search_url_text_normal = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.abc_search_url_text_normal;
-			global::NControl.Droid.Resource.Color.abc_search_url_text_pressed = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.abc_search_url_text_pressed;
-			global::NControl.Droid.Resource.Color.abc_search_url_text_selected = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.abc_search_url_text_selected;
-			global::NControl.Droid.Resource.Color.abc_secondary_text_material_dark = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.abc_secondary_text_material_dark;
-			global::NControl.Droid.Resource.Color.abc_secondary_text_material_light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.abc_secondary_text_material_light;
-			global::NControl.Droid.Resource.Color.accent_material_dark = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.accent_material_dark;
-			global::NControl.Droid.Resource.Color.accent_material_light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.accent_material_light;
-			global::NControl.Droid.Resource.Color.background_floating_material_dark = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.background_floating_material_dark;
-			global::NControl.Droid.Resource.Color.background_floating_material_light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.background_floating_material_light;
-			global::NControl.Droid.Resource.Color.background_material_dark = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.background_material_dark;
-			global::NControl.Droid.Resource.Color.background_material_light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.background_material_light;
-			global::NControl.Droid.Resource.Color.bright_foreground_disabled_material_dark = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.bright_foreground_disabled_material_dark;
-			global::NControl.Droid.Resource.Color.bright_foreground_disabled_material_light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.bright_foreground_disabled_material_light;
-			global::NControl.Droid.Resource.Color.bright_foreground_inverse_material_dark = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.bright_foreground_inverse_material_dark;
-			global::NControl.Droid.Resource.Color.bright_foreground_inverse_material_light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.bright_foreground_inverse_material_light;
-			global::NControl.Droid.Resource.Color.bright_foreground_material_dark = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.bright_foreground_material_dark;
-			global::NControl.Droid.Resource.Color.bright_foreground_material_light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.bright_foreground_material_light;
-			global::NControl.Droid.Resource.Color.button_material_dark = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.button_material_dark;
-			global::NControl.Droid.Resource.Color.button_material_light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.button_material_light;
-			global::NControl.Droid.Resource.Color.cardview_dark_background = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.cardview_dark_background;
-			global::NControl.Droid.Resource.Color.cardview_light_background = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.cardview_light_background;
-			global::NControl.Droid.Resource.Color.cardview_shadow_end_color = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.cardview_shadow_end_color;
-			global::NControl.Droid.Resource.Color.cardview_shadow_start_color = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.cardview_shadow_start_color;
-			global::NControl.Droid.Resource.Color.design_fab_shadow_end_color = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.design_fab_shadow_end_color;
-			global::NControl.Droid.Resource.Color.design_fab_shadow_mid_color = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.design_fab_shadow_mid_color;
-			global::NControl.Droid.Resource.Color.design_fab_shadow_start_color = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.design_fab_shadow_start_color;
-			global::NControl.Droid.Resource.Color.design_fab_stroke_end_inner_color = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.design_fab_stroke_end_inner_color;
-			global::NControl.Droid.Resource.Color.design_fab_stroke_end_outer_color = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.design_fab_stroke_end_outer_color;
-			global::NControl.Droid.Resource.Color.design_fab_stroke_top_inner_color = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.design_fab_stroke_top_inner_color;
-			global::NControl.Droid.Resource.Color.design_fab_stroke_top_outer_color = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.design_fab_stroke_top_outer_color;
-			global::NControl.Droid.Resource.Color.design_snackbar_background_color = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.design_snackbar_background_color;
-			global::NControl.Droid.Resource.Color.dim_foreground_disabled_material_dark = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.dim_foreground_disabled_material_dark;
-			global::NControl.Droid.Resource.Color.dim_foreground_disabled_material_light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.dim_foreground_disabled_material_light;
-			global::NControl.Droid.Resource.Color.dim_foreground_material_dark = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.dim_foreground_material_dark;
-			global::NControl.Droid.Resource.Color.dim_foreground_material_light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.dim_foreground_material_light;
-			global::NControl.Droid.Resource.Color.foreground_material_dark = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.foreground_material_dark;
-			global::NControl.Droid.Resource.Color.foreground_material_light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.foreground_material_light;
-			global::NControl.Droid.Resource.Color.highlighted_text_material_dark = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.highlighted_text_material_dark;
-			global::NControl.Droid.Resource.Color.highlighted_text_material_light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.highlighted_text_material_light;
-			global::NControl.Droid.Resource.Color.material_blue_grey_800 = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.material_blue_grey_800;
-			global::NControl.Droid.Resource.Color.material_blue_grey_900 = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.material_blue_grey_900;
-			global::NControl.Droid.Resource.Color.material_blue_grey_950 = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.material_blue_grey_950;
-			global::NControl.Droid.Resource.Color.material_deep_teal_200 = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.material_deep_teal_200;
-			global::NControl.Droid.Resource.Color.material_deep_teal_500 = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.material_deep_teal_500;
-			global::NControl.Droid.Resource.Color.material_grey_100 = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.material_grey_100;
-			global::NControl.Droid.Resource.Color.material_grey_300 = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.material_grey_300;
-			global::NControl.Droid.Resource.Color.material_grey_50 = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.material_grey_50;
-			global::NControl.Droid.Resource.Color.material_grey_600 = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.material_grey_600;
-			global::NControl.Droid.Resource.Color.material_grey_800 = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.material_grey_800;
-			global::NControl.Droid.Resource.Color.material_grey_850 = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.material_grey_850;
-			global::NControl.Droid.Resource.Color.material_grey_900 = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.material_grey_900;
-			global::NControl.Droid.Resource.Color.primary_dark_material_dark = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.primary_dark_material_dark;
-			global::NControl.Droid.Resource.Color.primary_dark_material_light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.primary_dark_material_light;
-			global::NControl.Droid.Resource.Color.primary_material_dark = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.primary_material_dark;
-			global::NControl.Droid.Resource.Color.primary_material_light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.primary_material_light;
-			global::NControl.Droid.Resource.Color.primary_text_default_material_dark = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.primary_text_default_material_dark;
-			global::NControl.Droid.Resource.Color.primary_text_default_material_light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.primary_text_default_material_light;
-			global::NControl.Droid.Resource.Color.primary_text_disabled_material_dark = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.primary_text_disabled_material_dark;
-			global::NControl.Droid.Resource.Color.primary_text_disabled_material_light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.primary_text_disabled_material_light;
-			global::NControl.Droid.Resource.Color.ripple_material_dark = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.ripple_material_dark;
-			global::NControl.Droid.Resource.Color.ripple_material_light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.ripple_material_light;
-			global::NControl.Droid.Resource.Color.secondary_text_default_material_dark = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.secondary_text_default_material_dark;
-			global::NControl.Droid.Resource.Color.secondary_text_default_material_light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.secondary_text_default_material_light;
-			global::NControl.Droid.Resource.Color.secondary_text_disabled_material_dark = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.secondary_text_disabled_material_dark;
-			global::NControl.Droid.Resource.Color.secondary_text_disabled_material_light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.secondary_text_disabled_material_light;
-			global::NControl.Droid.Resource.Color.switch_thumb_disabled_material_dark = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.switch_thumb_disabled_material_dark;
-			global::NControl.Droid.Resource.Color.switch_thumb_disabled_material_light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.switch_thumb_disabled_material_light;
-			global::NControl.Droid.Resource.Color.switch_thumb_material_dark = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.switch_thumb_material_dark;
-			global::NControl.Droid.Resource.Color.switch_thumb_material_light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.switch_thumb_material_light;
-			global::NControl.Droid.Resource.Color.switch_thumb_normal_material_dark = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.switch_thumb_normal_material_dark;
-			global::NControl.Droid.Resource.Color.switch_thumb_normal_material_light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.switch_thumb_normal_material_light;
-			global::NControl.Droid.Resource.Dimension.abc_action_bar_content_inset_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_action_bar_content_inset_material;
-			global::NControl.Droid.Resource.Dimension.abc_action_bar_default_height_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_action_bar_default_height_material;
-			global::NControl.Droid.Resource.Dimension.abc_action_bar_default_padding_end_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_action_bar_default_padding_end_material;
-			global::NControl.Droid.Resource.Dimension.abc_action_bar_default_padding_start_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_action_bar_default_padding_start_material;
-			global::NControl.Droid.Resource.Dimension.abc_action_bar_icon_vertical_padding_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_action_bar_icon_vertical_padding_material;
-			global::NControl.Droid.Resource.Dimension.abc_action_bar_overflow_padding_end_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_action_bar_overflow_padding_end_material;
-			global::NControl.Droid.Resource.Dimension.abc_action_bar_overflow_padding_start_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_action_bar_overflow_padding_start_material;
-			global::NControl.Droid.Resource.Dimension.abc_action_bar_progress_bar_size = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_action_bar_progress_bar_size;
-			global::NControl.Droid.Resource.Dimension.abc_action_bar_stacked_max_height = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_action_bar_stacked_max_height;
-			global::NControl.Droid.Resource.Dimension.abc_action_bar_stacked_tab_max_width = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_action_bar_stacked_tab_max_width;
-			global::NControl.Droid.Resource.Dimension.abc_action_bar_subtitle_bottom_margin_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_action_bar_subtitle_bottom_margin_material;
-			global::NControl.Droid.Resource.Dimension.abc_action_bar_subtitle_top_margin_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_action_bar_subtitle_top_margin_material;
-			global::NControl.Droid.Resource.Dimension.abc_action_button_min_height_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_action_button_min_height_material;
-			global::NControl.Droid.Resource.Dimension.abc_action_button_min_width_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_action_button_min_width_material;
-			global::NControl.Droid.Resource.Dimension.abc_action_button_min_width_overflow_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_action_button_min_width_overflow_material;
-			global::NControl.Droid.Resource.Dimension.abc_alert_dialog_button_bar_height = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_alert_dialog_button_bar_height;
-			global::NControl.Droid.Resource.Dimension.abc_button_inset_horizontal_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_button_inset_horizontal_material;
-			global::NControl.Droid.Resource.Dimension.abc_button_inset_vertical_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_button_inset_vertical_material;
-			global::NControl.Droid.Resource.Dimension.abc_button_padding_horizontal_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_button_padding_horizontal_material;
-			global::NControl.Droid.Resource.Dimension.abc_button_padding_vertical_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_button_padding_vertical_material;
-			global::NControl.Droid.Resource.Dimension.abc_config_prefDialogWidth = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_config_prefDialogWidth;
-			global::NControl.Droid.Resource.Dimension.abc_control_corner_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_control_corner_material;
-			global::NControl.Droid.Resource.Dimension.abc_control_inset_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_control_inset_material;
-			global::NControl.Droid.Resource.Dimension.abc_control_padding_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_control_padding_material;
-			global::NControl.Droid.Resource.Dimension.abc_dialog_min_width_major = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_dialog_min_width_major;
-			global::NControl.Droid.Resource.Dimension.abc_dialog_min_width_minor = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_dialog_min_width_minor;
-			global::NControl.Droid.Resource.Dimension.abc_dialog_padding_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_dialog_padding_material;
-			global::NControl.Droid.Resource.Dimension.abc_dialog_padding_top_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_dialog_padding_top_material;
-			global::NControl.Droid.Resource.Dimension.abc_disabled_alpha_material_dark = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_disabled_alpha_material_dark;
-			global::NControl.Droid.Resource.Dimension.abc_disabled_alpha_material_light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_disabled_alpha_material_light;
-			global::NControl.Droid.Resource.Dimension.abc_dropdownitem_icon_width = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_dropdownitem_icon_width;
-			global::NControl.Droid.Resource.Dimension.abc_dropdownitem_text_padding_left = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_dropdownitem_text_padding_left;
-			global::NControl.Droid.Resource.Dimension.abc_dropdownitem_text_padding_right = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_dropdownitem_text_padding_right;
-			global::NControl.Droid.Resource.Dimension.abc_edit_text_inset_bottom_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_edit_text_inset_bottom_material;
-			global::NControl.Droid.Resource.Dimension.abc_edit_text_inset_horizontal_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_edit_text_inset_horizontal_material;
-			global::NControl.Droid.Resource.Dimension.abc_edit_text_inset_top_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_edit_text_inset_top_material;
-			global::NControl.Droid.Resource.Dimension.abc_floating_window_z = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_floating_window_z;
-			global::NControl.Droid.Resource.Dimension.abc_list_item_padding_horizontal_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_list_item_padding_horizontal_material;
-			global::NControl.Droid.Resource.Dimension.abc_panel_menu_list_width = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_panel_menu_list_width;
-			global::NControl.Droid.Resource.Dimension.abc_search_view_preferred_width = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_search_view_preferred_width;
-			global::NControl.Droid.Resource.Dimension.abc_switch_padding = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_switch_padding;
-			global::NControl.Droid.Resource.Dimension.abc_text_size_body_1_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_text_size_body_1_material;
-			global::NControl.Droid.Resource.Dimension.abc_text_size_body_2_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_text_size_body_2_material;
-			global::NControl.Droid.Resource.Dimension.abc_text_size_button_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_text_size_button_material;
-			global::NControl.Droid.Resource.Dimension.abc_text_size_caption_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_text_size_caption_material;
-			global::NControl.Droid.Resource.Dimension.abc_text_size_display_1_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_text_size_display_1_material;
-			global::NControl.Droid.Resource.Dimension.abc_text_size_display_2_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_text_size_display_2_material;
-			global::NControl.Droid.Resource.Dimension.abc_text_size_display_3_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_text_size_display_3_material;
-			global::NControl.Droid.Resource.Dimension.abc_text_size_display_4_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_text_size_display_4_material;
-			global::NControl.Droid.Resource.Dimension.abc_text_size_headline_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_text_size_headline_material;
-			global::NControl.Droid.Resource.Dimension.abc_text_size_large_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_text_size_large_material;
-			global::NControl.Droid.Resource.Dimension.abc_text_size_medium_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_text_size_medium_material;
-			global::NControl.Droid.Resource.Dimension.abc_text_size_menu_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_text_size_menu_material;
-			global::NControl.Droid.Resource.Dimension.abc_text_size_small_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_text_size_small_material;
-			global::NControl.Droid.Resource.Dimension.abc_text_size_subhead_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_text_size_subhead_material;
-			global::NControl.Droid.Resource.Dimension.abc_text_size_subtitle_material_toolbar = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_text_size_subtitle_material_toolbar;
-			global::NControl.Droid.Resource.Dimension.abc_text_size_title_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_text_size_title_material;
-			global::NControl.Droid.Resource.Dimension.abc_text_size_title_material_toolbar = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_text_size_title_material_toolbar;
-			global::NControl.Droid.Resource.Dimension.cardview_compat_inset_shadow = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.cardview_compat_inset_shadow;
-			global::NControl.Droid.Resource.Dimension.cardview_default_elevation = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.cardview_default_elevation;
-			global::NControl.Droid.Resource.Dimension.cardview_default_radius = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.cardview_default_radius;
-			global::NControl.Droid.Resource.Dimension.design_appbar_elevation = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.design_appbar_elevation;
-			global::NControl.Droid.Resource.Dimension.design_fab_border_width = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.design_fab_border_width;
-			global::NControl.Droid.Resource.Dimension.design_fab_elevation = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.design_fab_elevation;
-			global::NControl.Droid.Resource.Dimension.design_fab_size_mini = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.design_fab_size_mini;
-			global::NControl.Droid.Resource.Dimension.design_fab_size_normal = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.design_fab_size_normal;
-			global::NControl.Droid.Resource.Dimension.design_fab_translation_z_pressed = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.design_fab_translation_z_pressed;
-			global::NControl.Droid.Resource.Dimension.design_navigation_elevation = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.design_navigation_elevation;
-			global::NControl.Droid.Resource.Dimension.design_navigation_icon_padding = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.design_navigation_icon_padding;
-			global::NControl.Droid.Resource.Dimension.design_navigation_icon_size = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.design_navigation_icon_size;
-			global::NControl.Droid.Resource.Dimension.design_navigation_max_width = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.design_navigation_max_width;
-			global::NControl.Droid.Resource.Dimension.design_navigation_padding_bottom = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.design_navigation_padding_bottom;
-			global::NControl.Droid.Resource.Dimension.design_navigation_separator_vertical_padding = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.design_navigation_separator_vertical_padding;
-			global::NControl.Droid.Resource.Dimension.design_snackbar_action_inline_max_width = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.design_snackbar_action_inline_max_width;
-			global::NControl.Droid.Resource.Dimension.design_snackbar_background_corner_radius = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.design_snackbar_background_corner_radius;
-			global::NControl.Droid.Resource.Dimension.design_snackbar_elevation = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.design_snackbar_elevation;
-			global::NControl.Droid.Resource.Dimension.design_snackbar_extra_spacing_horizontal = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.design_snackbar_extra_spacing_horizontal;
-			global::NControl.Droid.Resource.Dimension.design_snackbar_max_width = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.design_snackbar_max_width;
-			global::NControl.Droid.Resource.Dimension.design_snackbar_min_width = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.design_snackbar_min_width;
-			global::NControl.Droid.Resource.Dimension.design_snackbar_padding_horizontal = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.design_snackbar_padding_horizontal;
-			global::NControl.Droid.Resource.Dimension.design_snackbar_padding_vertical = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.design_snackbar_padding_vertical;
-			global::NControl.Droid.Resource.Dimension.design_snackbar_padding_vertical_2lines = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.design_snackbar_padding_vertical_2lines;
-			global::NControl.Droid.Resource.Dimension.design_snackbar_text_size = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.design_snackbar_text_size;
-			global::NControl.Droid.Resource.Dimension.design_tab_max_width = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.design_tab_max_width;
-			global::NControl.Droid.Resource.Dimension.disabled_alpha_material_dark = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.disabled_alpha_material_dark;
-			global::NControl.Droid.Resource.Dimension.disabled_alpha_material_light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.disabled_alpha_material_light;
-			global::NControl.Droid.Resource.Dimension.highlight_alpha_material_colored = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.highlight_alpha_material_colored;
-			global::NControl.Droid.Resource.Dimension.highlight_alpha_material_dark = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.highlight_alpha_material_dark;
-			global::NControl.Droid.Resource.Dimension.highlight_alpha_material_light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.highlight_alpha_material_light;
-			global::NControl.Droid.Resource.Dimension.notification_large_icon_height = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.notification_large_icon_height;
-			global::NControl.Droid.Resource.Dimension.notification_large_icon_width = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.notification_large_icon_width;
-			global::NControl.Droid.Resource.Dimension.notification_subtext_size = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.notification_subtext_size;
-			global::NControl.Droid.Resource.Drawable.abc_ab_share_pack_mtrl_alpha = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_ab_share_pack_mtrl_alpha;
-			global::NControl.Droid.Resource.Drawable.abc_action_bar_item_background_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_action_bar_item_background_material;
-			global::NControl.Droid.Resource.Drawable.abc_btn_borderless_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_btn_borderless_material;
-			global::NControl.Droid.Resource.Drawable.abc_btn_check_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_btn_check_material;
-			global::NControl.Droid.Resource.Drawable.abc_btn_check_to_on_mtrl_000 = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_btn_check_to_on_mtrl_000;
-			global::NControl.Droid.Resource.Drawable.abc_btn_check_to_on_mtrl_015 = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_btn_check_to_on_mtrl_015;
-			global::NControl.Droid.Resource.Drawable.abc_btn_colored_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_btn_colored_material;
-			global::NControl.Droid.Resource.Drawable.abc_btn_default_mtrl_shape = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_btn_default_mtrl_shape;
-			global::NControl.Droid.Resource.Drawable.abc_btn_radio_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_btn_radio_material;
-			global::NControl.Droid.Resource.Drawable.abc_btn_radio_to_on_mtrl_000 = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_btn_radio_to_on_mtrl_000;
-			global::NControl.Droid.Resource.Drawable.abc_btn_radio_to_on_mtrl_015 = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_btn_radio_to_on_mtrl_015;
-			global::NControl.Droid.Resource.Drawable.abc_btn_switch_to_on_mtrl_00001 = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_btn_switch_to_on_mtrl_00001;
-			global::NControl.Droid.Resource.Drawable.abc_btn_switch_to_on_mtrl_00012 = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_btn_switch_to_on_mtrl_00012;
-			global::NControl.Droid.Resource.Drawable.abc_cab_background_internal_bg = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_cab_background_internal_bg;
-			global::NControl.Droid.Resource.Drawable.abc_cab_background_top_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_cab_background_top_material;
-			global::NControl.Droid.Resource.Drawable.abc_cab_background_top_mtrl_alpha = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_cab_background_top_mtrl_alpha;
-			global::NControl.Droid.Resource.Drawable.abc_control_background_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_control_background_material;
-			global::NControl.Droid.Resource.Drawable.abc_edit_text_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_edit_text_material;
-			global::NControl.Droid.Resource.Drawable.abc_ic_commit_search_api_mtrl_alpha = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_ic_commit_search_api_mtrl_alpha;
-			global::NControl.Droid.Resource.Drawable.abc_ic_menu_copy_mtrl_am_alpha = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_ic_menu_copy_mtrl_am_alpha;
-			global::NControl.Droid.Resource.Drawable.abc_ic_menu_cut_mtrl_alpha = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_ic_menu_cut_mtrl_alpha;
-			global::NControl.Droid.Resource.Drawable.abc_ic_menu_paste_mtrl_am_alpha = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_ic_menu_paste_mtrl_am_alpha;
-			global::NControl.Droid.Resource.Drawable.abc_ic_menu_selectall_mtrl_alpha = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_ic_menu_selectall_mtrl_alpha;
-			global::NControl.Droid.Resource.Drawable.abc_ic_menu_share_mtrl_alpha = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_ic_menu_share_mtrl_alpha;
-			global::NControl.Droid.Resource.Drawable.abc_item_background_holo_dark = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_item_background_holo_dark;
-			global::NControl.Droid.Resource.Drawable.abc_item_background_holo_light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_item_background_holo_light;
-			global::NControl.Droid.Resource.Drawable.abc_list_divider_mtrl_alpha = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_list_divider_mtrl_alpha;
-			global::NControl.Droid.Resource.Drawable.abc_list_focused_holo = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_list_focused_holo;
-			global::NControl.Droid.Resource.Drawable.abc_list_longpressed_holo = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_list_longpressed_holo;
-			global::NControl.Droid.Resource.Drawable.abc_list_pressed_holo_dark = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_list_pressed_holo_dark;
-			global::NControl.Droid.Resource.Drawable.abc_list_pressed_holo_light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_list_pressed_holo_light;
-			global::NControl.Droid.Resource.Drawable.abc_list_selector_background_transition_holo_dark = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_list_selector_background_transition_holo_dark;
-			global::NControl.Droid.Resource.Drawable.abc_list_selector_background_transition_holo_light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_list_selector_background_transition_holo_light;
-			global::NControl.Droid.Resource.Drawable.abc_list_selector_disabled_holo_dark = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_list_selector_disabled_holo_dark;
-			global::NControl.Droid.Resource.Drawable.abc_list_selector_disabled_holo_light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_list_selector_disabled_holo_light;
-			global::NControl.Droid.Resource.Drawable.abc_list_selector_holo_dark = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_list_selector_holo_dark;
-			global::NControl.Droid.Resource.Drawable.abc_list_selector_holo_light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_list_selector_holo_light;
-			global::NControl.Droid.Resource.Drawable.abc_menu_hardkey_panel_mtrl_mult = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_menu_hardkey_panel_mtrl_mult;
-			global::NControl.Droid.Resource.Drawable.abc_popup_background_mtrl_mult = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_popup_background_mtrl_mult;
-			global::NControl.Droid.Resource.Drawable.abc_spinner_mtrl_am_alpha = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_spinner_mtrl_am_alpha;
-			global::NControl.Droid.Resource.Drawable.abc_spinner_textfield_background_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_spinner_textfield_background_material;
-			global::NControl.Droid.Resource.Drawable.abc_switch_thumb_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_switch_thumb_material;
-			global::NControl.Droid.Resource.Drawable.abc_switch_track_mtrl_alpha = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_switch_track_mtrl_alpha;
-			global::NControl.Droid.Resource.Drawable.abc_tab_indicator_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_tab_indicator_material;
-			global::NControl.Droid.Resource.Drawable.abc_tab_indicator_mtrl_alpha = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_tab_indicator_mtrl_alpha;
-			global::NControl.Droid.Resource.Drawable.abc_text_cursor_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_text_cursor_material;
-			global::NControl.Droid.Resource.Drawable.abc_textfield_activated_mtrl_alpha = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_textfield_activated_mtrl_alpha;
-			global::NControl.Droid.Resource.Drawable.abc_textfield_default_mtrl_alpha = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_textfield_default_mtrl_alpha;
-			global::NControl.Droid.Resource.Drawable.abc_textfield_search_activated_mtrl_alpha = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_textfield_search_activated_mtrl_alpha;
-			global::NControl.Droid.Resource.Drawable.abc_textfield_search_default_mtrl_alpha = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_textfield_search_default_mtrl_alpha;
-			global::NControl.Droid.Resource.Drawable.abc_textfield_search_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_textfield_search_material;
-			global::NControl.Droid.Resource.Drawable.design_fab_background = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.design_fab_background;
-			global::NControl.Droid.Resource.Drawable.design_snackbar_background = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.design_snackbar_background;
-			global::NControl.Droid.Resource.Drawable.notification_template_icon_bg = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.notification_template_icon_bg;
-			global::NControl.Droid.Resource.Id.action0 = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.action0;
-			global::NControl.Droid.Resource.Id.action_bar = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.action_bar;
-			global::NControl.Droid.Resource.Id.action_bar_activity_content = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.action_bar_activity_content;
-			global::NControl.Droid.Resource.Id.action_bar_container = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.action_bar_container;
-			global::NControl.Droid.Resource.Id.action_bar_root = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.action_bar_root;
-			global::NControl.Droid.Resource.Id.action_bar_spinner = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.action_bar_spinner;
-			global::NControl.Droid.Resource.Id.action_bar_subtitle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.action_bar_subtitle;
-			global::NControl.Droid.Resource.Id.action_bar_title = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.action_bar_title;
-			global::NControl.Droid.Resource.Id.action_context_bar = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.action_context_bar;
-			global::NControl.Droid.Resource.Id.action_divider = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.action_divider;
-			global::NControl.Droid.Resource.Id.action_menu_divider = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.action_menu_divider;
-			global::NControl.Droid.Resource.Id.action_menu_presenter = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.action_menu_presenter;
-			global::NControl.Droid.Resource.Id.action_mode_bar = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.action_mode_bar;
-			global::NControl.Droid.Resource.Id.action_mode_bar_stub = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.action_mode_bar_stub;
-			global::NControl.Droid.Resource.Id.action_mode_close_button = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.action_mode_close_button;
-			global::NControl.Droid.Resource.Id.activity_chooser_view_content = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.activity_chooser_view_content;
-			global::NControl.Droid.Resource.Id.alertTitle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.alertTitle;
-			global::NControl.Droid.Resource.Id.always = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.always;
-			global::NControl.Droid.Resource.Id.beginning = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.beginning;
-			global::NControl.Droid.Resource.Id.bottom = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.bottom;
-			global::NControl.Droid.Resource.Id.buttonPanel = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.buttonPanel;
-			global::NControl.Droid.Resource.Id.cancel_action = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.cancel_action;
-			global::NControl.Droid.Resource.Id.center = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.center;
-			global::NControl.Droid.Resource.Id.center_horizontal = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.center_horizontal;
-			global::NControl.Droid.Resource.Id.center_vertical = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.center_vertical;
-			global::NControl.Droid.Resource.Id.checkbox = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.checkbox;
-			global::NControl.Droid.Resource.Id.chronometer = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.chronometer;
-			global::NControl.Droid.Resource.Id.clip_horizontal = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.clip_horizontal;
-			global::NControl.Droid.Resource.Id.clip_vertical = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.clip_vertical;
-			global::NControl.Droid.Resource.Id.collapseActionView = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.collapseActionView;
-			global::NControl.Droid.Resource.Id.contentPanel = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.contentPanel;
-			global::NControl.Droid.Resource.Id.custom = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.custom;
-			global::NControl.Droid.Resource.Id.customPanel = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.customPanel;
-			global::NControl.Droid.Resource.Id.decor_content_parent = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.decor_content_parent;
-			global::NControl.Droid.Resource.Id.default_activity_button = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.default_activity_button;
-			global::NControl.Droid.Resource.Id.disableHome = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.disableHome;
-			global::NControl.Droid.Resource.Id.edit_query = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.edit_query;
-			global::NControl.Droid.Resource.Id.end = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.end;
-			global::NControl.Droid.Resource.Id.end_padder = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.end_padder;
-			global::NControl.Droid.Resource.Id.enterAlways = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.enterAlways;
-			global::NControl.Droid.Resource.Id.enterAlwaysCollapsed = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.enterAlwaysCollapsed;
-			global::NControl.Droid.Resource.Id.exitUntilCollapsed = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.exitUntilCollapsed;
-			global::NControl.Droid.Resource.Id.expand_activities_button = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.expand_activities_button;
-			global::NControl.Droid.Resource.Id.expanded_menu = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.expanded_menu;
-			global::NControl.Droid.Resource.Id.fill = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.fill;
-			global::NControl.Droid.Resource.Id.fill_horizontal = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.fill_horizontal;
-			global::NControl.Droid.Resource.Id.fill_vertical = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.fill_vertical;
-			global::NControl.Droid.Resource.Id.@fixed = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.@fixed;
-			global::NControl.Droid.Resource.Id.home = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.home;
-			global::NControl.Droid.Resource.Id.homeAsUp = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.homeAsUp;
-			global::NControl.Droid.Resource.Id.icon = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.icon;
-			global::NControl.Droid.Resource.Id.ifRoom = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.ifRoom;
-			global::NControl.Droid.Resource.Id.image = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.image;
-			global::NControl.Droid.Resource.Id.info = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.info;
-			global::NControl.Droid.Resource.Id.left = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.left;
-			global::NControl.Droid.Resource.Id.line1 = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.line1;
-			global::NControl.Droid.Resource.Id.line3 = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.line3;
-			global::NControl.Droid.Resource.Id.listMode = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.listMode;
-			global::NControl.Droid.Resource.Id.list_item = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.list_item;
-			global::NControl.Droid.Resource.Id.media_actions = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.media_actions;
-			global::NControl.Droid.Resource.Id.middle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.middle;
-			global::NControl.Droid.Resource.Id.mini = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.mini;
-			global::NControl.Droid.Resource.Id.multiply = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.multiply;
-			global::NControl.Droid.Resource.Id.never = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.never;
-			global::NControl.Droid.Resource.Id.none = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.none;
-			global::NControl.Droid.Resource.Id.normal = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.normal;
-			global::NControl.Droid.Resource.Id.parallax = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.parallax;
-			global::NControl.Droid.Resource.Id.parentPanel = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.parentPanel;
-			global::NControl.Droid.Resource.Id.pin = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.pin;
-			global::NControl.Droid.Resource.Id.progress_circular = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.progress_circular;
-			global::NControl.Droid.Resource.Id.progress_horizontal = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.progress_horizontal;
-			global::NControl.Droid.Resource.Id.radio = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.radio;
-			global::NControl.Droid.Resource.Id.right = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.right;
-			global::NControl.Droid.Resource.Id.screen = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.screen;
-			global::NControl.Droid.Resource.Id.scroll = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.scroll;
-			global::NControl.Droid.Resource.Id.scrollView = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.scrollView;
-			global::NControl.Droid.Resource.Id.scrollable = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.scrollable;
-			global::NControl.Droid.Resource.Id.search_badge = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.search_badge;
-			global::NControl.Droid.Resource.Id.search_bar = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.search_bar;
-			global::NControl.Droid.Resource.Id.search_button = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.search_button;
-			global::NControl.Droid.Resource.Id.search_close_btn = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.search_close_btn;
-			global::NControl.Droid.Resource.Id.search_edit_frame = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.search_edit_frame;
-			global::NControl.Droid.Resource.Id.search_go_btn = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.search_go_btn;
-			global::NControl.Droid.Resource.Id.search_mag_icon = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.search_mag_icon;
-			global::NControl.Droid.Resource.Id.search_plate = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.search_plate;
-			global::NControl.Droid.Resource.Id.search_src_text = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.search_src_text;
-			global::NControl.Droid.Resource.Id.search_voice_btn = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.search_voice_btn;
-			global::NControl.Droid.Resource.Id.select_dialog_listview = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.select_dialog_listview;
-			global::NControl.Droid.Resource.Id.shortcut = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.shortcut;
-			global::NControl.Droid.Resource.Id.showCustom = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.showCustom;
-			global::NControl.Droid.Resource.Id.showHome = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.showHome;
-			global::NControl.Droid.Resource.Id.showTitle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.showTitle;
-			global::NControl.Droid.Resource.Id.snackbar_action = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.snackbar_action;
-			global::NControl.Droid.Resource.Id.snackbar_text = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.snackbar_text;
-			global::NControl.Droid.Resource.Id.split_action_bar = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.split_action_bar;
-			global::NControl.Droid.Resource.Id.src_atop = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.src_atop;
-			global::NControl.Droid.Resource.Id.src_in = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.src_in;
-			global::NControl.Droid.Resource.Id.src_over = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.src_over;
-			global::NControl.Droid.Resource.Id.start = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.start;
-			global::NControl.Droid.Resource.Id.status_bar_latest_event_content = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.status_bar_latest_event_content;
-			global::NControl.Droid.Resource.Id.submit_area = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.submit_area;
-			global::NControl.Droid.Resource.Id.tabMode = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.tabMode;
-			global::NControl.Droid.Resource.Id.text = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.text;
-			global::NControl.Droid.Resource.Id.text2 = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.text2;
-			global::NControl.Droid.Resource.Id.textSpacerNoButtons = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.textSpacerNoButtons;
-			global::NControl.Droid.Resource.Id.time = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.time;
-			global::NControl.Droid.Resource.Id.title = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.title;
-			global::NControl.Droid.Resource.Id.title_template = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.title_template;
-			global::NControl.Droid.Resource.Id.top = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.top;
-			global::NControl.Droid.Resource.Id.topPanel = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.topPanel;
-			global::NControl.Droid.Resource.Id.up = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.up;
-			global::NControl.Droid.Resource.Id.useLogo = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.useLogo;
-			global::NControl.Droid.Resource.Id.view_offset_helper = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.view_offset_helper;
-			global::NControl.Droid.Resource.Id.withText = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.withText;
-			global::NControl.Droid.Resource.Id.wrap_content = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.wrap_content;
-			global::NControl.Droid.Resource.Integer.abc_config_activityDefaultDur = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Integer.abc_config_activityDefaultDur;
-			global::NControl.Droid.Resource.Integer.abc_config_activityShortDur = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Integer.abc_config_activityShortDur;
-			global::NControl.Droid.Resource.Integer.cancel_button_image_alpha = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Integer.cancel_button_image_alpha;
-			global::NControl.Droid.Resource.Integer.design_snackbar_text_max_lines = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Integer.design_snackbar_text_max_lines;
-			global::NControl.Droid.Resource.Integer.status_bar_notification_info_maxnum = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Integer.status_bar_notification_info_maxnum;
-			global::NControl.Droid.Resource.Layout.abc_action_bar_title_item = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Layout.abc_action_bar_title_item;
-			global::NControl.Droid.Resource.Layout.abc_action_bar_up_container = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Layout.abc_action_bar_up_container;
-			global::NControl.Droid.Resource.Layout.abc_action_bar_view_list_nav_layout = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Layout.abc_action_bar_view_list_nav_layout;
-			global::NControl.Droid.Resource.Layout.abc_action_menu_item_layout = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Layout.abc_action_menu_item_layout;
-			global::NControl.Droid.Resource.Layout.abc_action_menu_layout = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Layout.abc_action_menu_layout;
-			global::NControl.Droid.Resource.Layout.abc_action_mode_bar = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Layout.abc_action_mode_bar;
-			global::NControl.Droid.Resource.Layout.abc_action_mode_close_item_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Layout.abc_action_mode_close_item_material;
-			global::NControl.Droid.Resource.Layout.abc_activity_chooser_view = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Layout.abc_activity_chooser_view;
-			global::NControl.Droid.Resource.Layout.abc_activity_chooser_view_list_item = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Layout.abc_activity_chooser_view_list_item;
-			global::NControl.Droid.Resource.Layout.abc_alert_dialog_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Layout.abc_alert_dialog_material;
-			global::NControl.Droid.Resource.Layout.abc_dialog_title_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Layout.abc_dialog_title_material;
-			global::NControl.Droid.Resource.Layout.abc_expanded_menu_layout = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Layout.abc_expanded_menu_layout;
-			global::NControl.Droid.Resource.Layout.abc_list_menu_item_checkbox = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Layout.abc_list_menu_item_checkbox;
-			global::NControl.Droid.Resource.Layout.abc_list_menu_item_icon = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Layout.abc_list_menu_item_icon;
-			global::NControl.Droid.Resource.Layout.abc_list_menu_item_layout = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Layout.abc_list_menu_item_layout;
-			global::NControl.Droid.Resource.Layout.abc_list_menu_item_radio = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Layout.abc_list_menu_item_radio;
-			global::NControl.Droid.Resource.Layout.abc_popup_menu_item_layout = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Layout.abc_popup_menu_item_layout;
-			global::NControl.Droid.Resource.Layout.abc_screen_content_include = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Layout.abc_screen_content_include;
-			global::NControl.Droid.Resource.Layout.abc_screen_simple = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Layout.abc_screen_simple;
-			global::NControl.Droid.Resource.Layout.abc_screen_simple_overlay_action_mode = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Layout.abc_screen_simple_overlay_action_mode;
-			global::NControl.Droid.Resource.Layout.abc_screen_toolbar = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Layout.abc_screen_toolbar;
-			global::NControl.Droid.Resource.Layout.abc_search_dropdown_item_icons_2line = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Layout.abc_search_dropdown_item_icons_2line;
-			global::NControl.Droid.Resource.Layout.abc_search_view = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Layout.abc_search_view;
-			global::NControl.Droid.Resource.Layout.abc_select_dialog_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Layout.abc_select_dialog_material;
-			global::NControl.Droid.Resource.Layout.design_layout_snackbar = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Layout.design_layout_snackbar;
-			global::NControl.Droid.Resource.Layout.design_layout_snackbar_include = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Layout.design_layout_snackbar_include;
-			global::NControl.Droid.Resource.Layout.design_layout_tab_icon = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Layout.design_layout_tab_icon;
-			global::NControl.Droid.Resource.Layout.design_layout_tab_text = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Layout.design_layout_tab_text;
-			global::NControl.Droid.Resource.Layout.design_navigation_item = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Layout.design_navigation_item;
-			global::NControl.Droid.Resource.Layout.design_navigation_item_header = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Layout.design_navigation_item_header;
-			global::NControl.Droid.Resource.Layout.design_navigation_item_separator = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Layout.design_navigation_item_separator;
-			global::NControl.Droid.Resource.Layout.design_navigation_item_subheader = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Layout.design_navigation_item_subheader;
-			global::NControl.Droid.Resource.Layout.design_navigation_menu = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Layout.design_navigation_menu;
-			global::NControl.Droid.Resource.Layout.notification_media_action = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Layout.notification_media_action;
-			global::NControl.Droid.Resource.Layout.notification_media_cancel_action = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Layout.notification_media_cancel_action;
-			global::NControl.Droid.Resource.Layout.notification_template_big_media = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Layout.notification_template_big_media;
-			global::NControl.Droid.Resource.Layout.notification_template_big_media_narrow = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Layout.notification_template_big_media_narrow;
-			global::NControl.Droid.Resource.Layout.notification_template_media = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Layout.notification_template_media;
-			global::NControl.Droid.Resource.Layout.notification_template_part_chronometer = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Layout.notification_template_part_chronometer;
-			global::NControl.Droid.Resource.Layout.notification_template_part_time = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Layout.notification_template_part_time;
-			global::NControl.Droid.Resource.Layout.select_dialog_item_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Layout.select_dialog_item_material;
-			global::NControl.Droid.Resource.Layout.select_dialog_multichoice_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Layout.select_dialog_multichoice_material;
-			global::NControl.Droid.Resource.Layout.select_dialog_singlechoice_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Layout.select_dialog_singlechoice_material;
-			global::NControl.Droid.Resource.Layout.support_simple_spinner_dropdown_item = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Layout.support_simple_spinner_dropdown_item;
-			global::NControl.Droid.Resource.String.abc_action_bar_home_description = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.String.abc_action_bar_home_description;
-			global::NControl.Droid.Resource.String.abc_action_bar_home_description_format = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.String.abc_action_bar_home_description_format;
-			global::NControl.Droid.Resource.String.abc_action_bar_home_subtitle_description_format = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.String.abc_action_bar_home_subtitle_description_format;
-			global::NControl.Droid.Resource.String.abc_action_bar_up_description = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.String.abc_action_bar_up_description;
-			global::NControl.Droid.Resource.String.abc_action_menu_overflow_description = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.String.abc_action_menu_overflow_description;
-			global::NControl.Droid.Resource.String.abc_action_mode_done = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.String.abc_action_mode_done;
-			global::NControl.Droid.Resource.String.abc_activity_chooser_view_see_all = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.String.abc_activity_chooser_view_see_all;
-			global::NControl.Droid.Resource.String.abc_activitychooserview_choose_application = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.String.abc_activitychooserview_choose_application;
-			global::NControl.Droid.Resource.String.abc_search_hint = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.String.abc_search_hint;
-			global::NControl.Droid.Resource.String.abc_searchview_description_clear = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.String.abc_searchview_description_clear;
-			global::NControl.Droid.Resource.String.abc_searchview_description_query = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.String.abc_searchview_description_query;
-			global::NControl.Droid.Resource.String.abc_searchview_description_search = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.String.abc_searchview_description_search;
-			global::NControl.Droid.Resource.String.abc_searchview_description_submit = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.String.abc_searchview_description_submit;
-			global::NControl.Droid.Resource.String.abc_searchview_description_voice = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.String.abc_searchview_description_voice;
-			global::NControl.Droid.Resource.String.abc_shareactionprovider_share_with = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.String.abc_shareactionprovider_share_with;
-			global::NControl.Droid.Resource.String.abc_shareactionprovider_share_with_application = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.String.abc_shareactionprovider_share_with_application;
-			global::NControl.Droid.Resource.String.abc_toolbar_collapse_description = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.String.abc_toolbar_collapse_description;
-			global::NControl.Droid.Resource.String.appbar_scrolling_view_behavior = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.String.appbar_scrolling_view_behavior;
-			global::NControl.Droid.Resource.String.library_name = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.String.library_name;
-			global::NControl.Droid.Resource.String.mr_system_route_name = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.String.mr_system_route_name;
-			global::NControl.Droid.Resource.String.mr_user_route_category_name = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.String.mr_user_route_category_name;
-			global::NControl.Droid.Resource.String.status_bar_notification_info_overflow = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.String.status_bar_notification_info_overflow;
-			global::NControl.Droid.Resource.Style.AlertDialog_AppCompat = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.AlertDialog_AppCompat;
-			global::NControl.Droid.Resource.Style.AlertDialog_AppCompat_Light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.AlertDialog_AppCompat_Light;
-			global::NControl.Droid.Resource.Style.Animation_AppCompat_Dialog = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Animation_AppCompat_Dialog;
-			global::NControl.Droid.Resource.Style.Animation_AppCompat_DropDownUp = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Animation_AppCompat_DropDownUp;
-			global::NControl.Droid.Resource.Style.Base_AlertDialog_AppCompat = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_AlertDialog_AppCompat;
-			global::NControl.Droid.Resource.Style.Base_AlertDialog_AppCompat_Light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_AlertDialog_AppCompat_Light;
-			global::NControl.Droid.Resource.Style.Base_Animation_AppCompat_Dialog = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Animation_AppCompat_Dialog;
-			global::NControl.Droid.Resource.Style.Base_Animation_AppCompat_DropDownUp = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Animation_AppCompat_DropDownUp;
-			global::NControl.Droid.Resource.Style.Base_DialogWindowTitle_AppCompat = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_DialogWindowTitle_AppCompat;
-			global::NControl.Droid.Resource.Style.Base_DialogWindowTitleBackground_AppCompat = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_DialogWindowTitleBackground_AppCompat;
-			global::NControl.Droid.Resource.Style.Base_TextAppearance_AppCompat = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat;
-			global::NControl.Droid.Resource.Style.Base_TextAppearance_AppCompat_Body1 = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Body1;
-			global::NControl.Droid.Resource.Style.Base_TextAppearance_AppCompat_Body2 = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Body2;
-			global::NControl.Droid.Resource.Style.Base_TextAppearance_AppCompat_Button = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Button;
-			global::NControl.Droid.Resource.Style.Base_TextAppearance_AppCompat_Caption = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Caption;
-			global::NControl.Droid.Resource.Style.Base_TextAppearance_AppCompat_Display1 = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Display1;
-			global::NControl.Droid.Resource.Style.Base_TextAppearance_AppCompat_Display2 = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Display2;
-			global::NControl.Droid.Resource.Style.Base_TextAppearance_AppCompat_Display3 = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Display3;
-			global::NControl.Droid.Resource.Style.Base_TextAppearance_AppCompat_Display4 = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Display4;
-			global::NControl.Droid.Resource.Style.Base_TextAppearance_AppCompat_Headline = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Headline;
-			global::NControl.Droid.Resource.Style.Base_TextAppearance_AppCompat_Inverse = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Inverse;
-			global::NControl.Droid.Resource.Style.Base_TextAppearance_AppCompat_Large = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Large;
-			global::NControl.Droid.Resource.Style.Base_TextAppearance_AppCompat_Large_Inverse = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Large_Inverse;
-			global::NControl.Droid.Resource.Style.Base_TextAppearance_AppCompat_Light_Widget_PopupMenu_Large = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Light_Widget_PopupMenu_Large;
-			global::NControl.Droid.Resource.Style.Base_TextAppearance_AppCompat_Light_Widget_PopupMenu_Small = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Light_Widget_PopupMenu_Small;
-			global::NControl.Droid.Resource.Style.Base_TextAppearance_AppCompat_Medium = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Medium;
-			global::NControl.Droid.Resource.Style.Base_TextAppearance_AppCompat_Medium_Inverse = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Medium_Inverse;
-			global::NControl.Droid.Resource.Style.Base_TextAppearance_AppCompat_Menu = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Menu;
-			global::NControl.Droid.Resource.Style.Base_TextAppearance_AppCompat_SearchResult = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_SearchResult;
-			global::NControl.Droid.Resource.Style.Base_TextAppearance_AppCompat_SearchResult_Subtitle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_SearchResult_Subtitle;
-			global::NControl.Droid.Resource.Style.Base_TextAppearance_AppCompat_SearchResult_Title = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_SearchResult_Title;
-			global::NControl.Droid.Resource.Style.Base_TextAppearance_AppCompat_Small = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Small;
-			global::NControl.Droid.Resource.Style.Base_TextAppearance_AppCompat_Small_Inverse = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Small_Inverse;
-			global::NControl.Droid.Resource.Style.Base_TextAppearance_AppCompat_Subhead = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Subhead;
-			global::NControl.Droid.Resource.Style.Base_TextAppearance_AppCompat_Subhead_Inverse = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Subhead_Inverse;
-			global::NControl.Droid.Resource.Style.Base_TextAppearance_AppCompat_Title = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Title;
-			global::NControl.Droid.Resource.Style.Base_TextAppearance_AppCompat_Title_Inverse = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Title_Inverse;
-			global::NControl.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Menu = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Menu;
-			global::NControl.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Subtitle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Subtitle;
-			global::NControl.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Subtitle_Inverse = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Subtitle_Inverse;
-			global::NControl.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Title = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Title;
-			global::NControl.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Title_Inverse = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Title_Inverse;
-			global::NControl.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionMode_Subtitle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionMode_Subtitle;
-			global::NControl.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionMode_Title = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionMode_Title;
-			global::NControl.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button;
-			global::NControl.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button_Inverse = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button_Inverse;
-			global::NControl.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_DropDownItem = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_DropDownItem;
-			global::NControl.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_PopupMenu_Large = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_PopupMenu_Large;
-			global::NControl.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_PopupMenu_Small = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_PopupMenu_Small;
-			global::NControl.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Switch = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Switch;
-			global::NControl.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_TextView_SpinnerItem = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_TextView_SpinnerItem;
-			global::NControl.Droid.Resource.Style.Base_TextAppearance_Widget_AppCompat_ExpandedMenu_Item = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_TextAppearance_Widget_AppCompat_ExpandedMenu_Item;
-			global::NControl.Droid.Resource.Style.Base_TextAppearance_Widget_AppCompat_Toolbar_Subtitle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_TextAppearance_Widget_AppCompat_Toolbar_Subtitle;
-			global::NControl.Droid.Resource.Style.Base_TextAppearance_Widget_AppCompat_Toolbar_Title = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_TextAppearance_Widget_AppCompat_Toolbar_Title;
-			global::NControl.Droid.Resource.Style.Base_Theme_AppCompat = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Theme_AppCompat;
-			global::NControl.Droid.Resource.Style.Base_Theme_AppCompat_CompactMenu = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Theme_AppCompat_CompactMenu;
-			global::NControl.Droid.Resource.Style.Base_Theme_AppCompat_Dialog = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Theme_AppCompat_Dialog;
-			global::NControl.Droid.Resource.Style.Base_Theme_AppCompat_Dialog_Alert = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Theme_AppCompat_Dialog_Alert;
-			global::NControl.Droid.Resource.Style.Base_Theme_AppCompat_Dialog_FixedSize = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Theme_AppCompat_Dialog_FixedSize;
-			global::NControl.Droid.Resource.Style.Base_Theme_AppCompat_Dialog_MinWidth = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Theme_AppCompat_Dialog_MinWidth;
-			global::NControl.Droid.Resource.Style.Base_Theme_AppCompat_DialogWhenLarge = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Theme_AppCompat_DialogWhenLarge;
-			global::NControl.Droid.Resource.Style.Base_Theme_AppCompat_Light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Theme_AppCompat_Light;
-			global::NControl.Droid.Resource.Style.Base_Theme_AppCompat_Light_DarkActionBar = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Theme_AppCompat_Light_DarkActionBar;
-			global::NControl.Droid.Resource.Style.Base_Theme_AppCompat_Light_Dialog = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Theme_AppCompat_Light_Dialog;
-			global::NControl.Droid.Resource.Style.Base_Theme_AppCompat_Light_Dialog_Alert = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Theme_AppCompat_Light_Dialog_Alert;
-			global::NControl.Droid.Resource.Style.Base_Theme_AppCompat_Light_Dialog_FixedSize = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Theme_AppCompat_Light_Dialog_FixedSize;
-			global::NControl.Droid.Resource.Style.Base_Theme_AppCompat_Light_Dialog_MinWidth = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Theme_AppCompat_Light_Dialog_MinWidth;
-			global::NControl.Droid.Resource.Style.Base_Theme_AppCompat_Light_DialogWhenLarge = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Theme_AppCompat_Light_DialogWhenLarge;
-			global::NControl.Droid.Resource.Style.Base_ThemeOverlay_AppCompat = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_ThemeOverlay_AppCompat;
-			global::NControl.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_ActionBar = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_ActionBar;
-			global::NControl.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Dark = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Dark;
-			global::NControl.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Dark_ActionBar = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Dark_ActionBar;
-			global::NControl.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Light;
-			global::NControl.Droid.Resource.Style.Base_V11_Theme_AppCompat_Dialog = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_V11_Theme_AppCompat_Dialog;
-			global::NControl.Droid.Resource.Style.Base_V11_Theme_AppCompat_Light_Dialog = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_V11_Theme_AppCompat_Light_Dialog;
-			global::NControl.Droid.Resource.Style.Base_V12_Widget_AppCompat_AutoCompleteTextView = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_V12_Widget_AppCompat_AutoCompleteTextView;
-			global::NControl.Droid.Resource.Style.Base_V12_Widget_AppCompat_EditText = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_V12_Widget_AppCompat_EditText;
-			global::NControl.Droid.Resource.Style.Base_V21_Theme_AppCompat = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_V21_Theme_AppCompat;
-			global::NControl.Droid.Resource.Style.Base_V21_Theme_AppCompat_Dialog = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_V21_Theme_AppCompat_Dialog;
-			global::NControl.Droid.Resource.Style.Base_V21_Theme_AppCompat_Light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_V21_Theme_AppCompat_Light;
-			global::NControl.Droid.Resource.Style.Base_V21_Theme_AppCompat_Light_Dialog = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_V21_Theme_AppCompat_Light_Dialog;
-			global::NControl.Droid.Resource.Style.Base_V22_Theme_AppCompat = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_V22_Theme_AppCompat;
-			global::NControl.Droid.Resource.Style.Base_V22_Theme_AppCompat_Light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_V22_Theme_AppCompat_Light;
-			global::NControl.Droid.Resource.Style.Base_V23_Theme_AppCompat = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_V23_Theme_AppCompat;
-			global::NControl.Droid.Resource.Style.Base_V23_Theme_AppCompat_Light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_V23_Theme_AppCompat_Light;
-			global::NControl.Droid.Resource.Style.Base_V7_Theme_AppCompat = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_V7_Theme_AppCompat;
-			global::NControl.Droid.Resource.Style.Base_V7_Theme_AppCompat_Dialog = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_V7_Theme_AppCompat_Dialog;
-			global::NControl.Droid.Resource.Style.Base_V7_Theme_AppCompat_Light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_V7_Theme_AppCompat_Light;
-			global::NControl.Droid.Resource.Style.Base_V7_Theme_AppCompat_Light_Dialog = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_V7_Theme_AppCompat_Light_Dialog;
-			global::NControl.Droid.Resource.Style.Base_V7_Widget_AppCompat_AutoCompleteTextView = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_V7_Widget_AppCompat_AutoCompleteTextView;
-			global::NControl.Droid.Resource.Style.Base_V7_Widget_AppCompat_EditText = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_V7_Widget_AppCompat_EditText;
-			global::NControl.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar;
-			global::NControl.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar_Solid = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar_Solid;
-			global::NControl.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar_TabBar = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar_TabBar;
-			global::NControl.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar_TabText = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar_TabText;
-			global::NControl.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar_TabView = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar_TabView;
-			global::NControl.Droid.Resource.Style.Base_Widget_AppCompat_ActionButton = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_ActionButton;
-			global::NControl.Droid.Resource.Style.Base_Widget_AppCompat_ActionButton_CloseMode = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_ActionButton_CloseMode;
-			global::NControl.Droid.Resource.Style.Base_Widget_AppCompat_ActionButton_Overflow = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_ActionButton_Overflow;
-			global::NControl.Droid.Resource.Style.Base_Widget_AppCompat_ActionMode = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_ActionMode;
-			global::NControl.Droid.Resource.Style.Base_Widget_AppCompat_ActivityChooserView = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_ActivityChooserView;
-			global::NControl.Droid.Resource.Style.Base_Widget_AppCompat_AutoCompleteTextView = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_AutoCompleteTextView;
-			global::NControl.Droid.Resource.Style.Base_Widget_AppCompat_Button = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_Button;
-			global::NControl.Droid.Resource.Style.Base_Widget_AppCompat_Button_Borderless = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_Button_Borderless;
-			global::NControl.Droid.Resource.Style.Base_Widget_AppCompat_Button_Borderless_Colored = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_Button_Borderless_Colored;
-			global::NControl.Droid.Resource.Style.Base_Widget_AppCompat_Button_ButtonBar_AlertDialog = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_Button_ButtonBar_AlertDialog;
-			global::NControl.Droid.Resource.Style.Base_Widget_AppCompat_Button_Colored = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_Button_Colored;
-			global::NControl.Droid.Resource.Style.Base_Widget_AppCompat_Button_Small = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_Button_Small;
-			global::NControl.Droid.Resource.Style.Base_Widget_AppCompat_ButtonBar = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_ButtonBar;
-			global::NControl.Droid.Resource.Style.Base_Widget_AppCompat_ButtonBar_AlertDialog = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_ButtonBar_AlertDialog;
-			global::NControl.Droid.Resource.Style.Base_Widget_AppCompat_CompoundButton_CheckBox = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_CompoundButton_CheckBox;
-			global::NControl.Droid.Resource.Style.Base_Widget_AppCompat_CompoundButton_RadioButton = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_CompoundButton_RadioButton;
-			global::NControl.Droid.Resource.Style.Base_Widget_AppCompat_CompoundButton_Switch = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_CompoundButton_Switch;
-			global::NControl.Droid.Resource.Style.Base_Widget_AppCompat_DrawerArrowToggle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_DrawerArrowToggle;
-			global::NControl.Droid.Resource.Style.Base_Widget_AppCompat_DrawerArrowToggle_Common = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_DrawerArrowToggle_Common;
-			global::NControl.Droid.Resource.Style.Base_Widget_AppCompat_DropDownItem_Spinner = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_DropDownItem_Spinner;
-			global::NControl.Droid.Resource.Style.Base_Widget_AppCompat_EditText = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_EditText;
-			global::NControl.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar;
-			global::NControl.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_Solid = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_Solid;
-			global::NControl.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabBar = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabBar;
-			global::NControl.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabText = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabText;
-			global::NControl.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabText_Inverse = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabText_Inverse;
-			global::NControl.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabView = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabView;
-			global::NControl.Droid.Resource.Style.Base_Widget_AppCompat_Light_PopupMenu = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_Light_PopupMenu;
-			global::NControl.Droid.Resource.Style.Base_Widget_AppCompat_Light_PopupMenu_Overflow = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_Light_PopupMenu_Overflow;
-			global::NControl.Droid.Resource.Style.Base_Widget_AppCompat_ListPopupWindow = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_ListPopupWindow;
-			global::NControl.Droid.Resource.Style.Base_Widget_AppCompat_ListView = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_ListView;
-			global::NControl.Droid.Resource.Style.Base_Widget_AppCompat_ListView_DropDown = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_ListView_DropDown;
-			global::NControl.Droid.Resource.Style.Base_Widget_AppCompat_ListView_Menu = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_ListView_Menu;
-			global::NControl.Droid.Resource.Style.Base_Widget_AppCompat_PopupMenu = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_PopupMenu;
-			global::NControl.Droid.Resource.Style.Base_Widget_AppCompat_PopupMenu_Overflow = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_PopupMenu_Overflow;
-			global::NControl.Droid.Resource.Style.Base_Widget_AppCompat_PopupWindow = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_PopupWindow;
-			global::NControl.Droid.Resource.Style.Base_Widget_AppCompat_ProgressBar = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_ProgressBar;
-			global::NControl.Droid.Resource.Style.Base_Widget_AppCompat_ProgressBar_Horizontal = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_ProgressBar_Horizontal;
-			global::NControl.Droid.Resource.Style.Base_Widget_AppCompat_RatingBar = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_RatingBar;
-			global::NControl.Droid.Resource.Style.Base_Widget_AppCompat_SearchView = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_SearchView;
-			global::NControl.Droid.Resource.Style.Base_Widget_AppCompat_SearchView_ActionBar = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_SearchView_ActionBar;
-			global::NControl.Droid.Resource.Style.Base_Widget_AppCompat_Spinner = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_Spinner;
-			global::NControl.Droid.Resource.Style.Base_Widget_AppCompat_Spinner_Underlined = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_Spinner_Underlined;
-			global::NControl.Droid.Resource.Style.Base_Widget_AppCompat_TextView_SpinnerItem = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_TextView_SpinnerItem;
-			global::NControl.Droid.Resource.Style.Base_Widget_AppCompat_Toolbar = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_Toolbar;
-			global::NControl.Droid.Resource.Style.Base_Widget_AppCompat_Toolbar_Button_Navigation = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_Toolbar_Button_Navigation;
-			global::NControl.Droid.Resource.Style.Base_Widget_Design_TabLayout = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_Design_TabLayout;
-			global::NControl.Droid.Resource.Style.CardView = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.CardView;
-			global::NControl.Droid.Resource.Style.CardView_Dark = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.CardView_Dark;
-			global::NControl.Droid.Resource.Style.CardView_Light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.CardView_Light;
-			global::NControl.Droid.Resource.Style.Platform_AppCompat = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Platform_AppCompat;
-			global::NControl.Droid.Resource.Style.Platform_AppCompat_Light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Platform_AppCompat_Light;
-			global::NControl.Droid.Resource.Style.Platform_ThemeOverlay_AppCompat = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Platform_ThemeOverlay_AppCompat;
-			global::NControl.Droid.Resource.Style.Platform_ThemeOverlay_AppCompat_Dark = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Platform_ThemeOverlay_AppCompat_Dark;
-			global::NControl.Droid.Resource.Style.Platform_ThemeOverlay_AppCompat_Light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Platform_ThemeOverlay_AppCompat_Light;
-			global::NControl.Droid.Resource.Style.Platform_V11_AppCompat = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Platform_V11_AppCompat;
-			global::NControl.Droid.Resource.Style.Platform_V11_AppCompat_Light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Platform_V11_AppCompat_Light;
-			global::NControl.Droid.Resource.Style.Platform_V14_AppCompat = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Platform_V14_AppCompat;
-			global::NControl.Droid.Resource.Style.Platform_V14_AppCompat_Light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Platform_V14_AppCompat_Light;
-			global::NControl.Droid.Resource.Style.Platform_Widget_AppCompat_Spinner = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Platform_Widget_AppCompat_Spinner;
-			global::NControl.Droid.Resource.Style.RtlOverlay_DialogWindowTitle_AppCompat = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.RtlOverlay_DialogWindowTitle_AppCompat;
-			global::NControl.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_ActionBar_TitleItem = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_ActionBar_TitleItem;
-			global::NControl.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_DialogTitle_Icon = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_DialogTitle_Icon;
-			global::NControl.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem;
-			global::NControl.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem_InternalGroup = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem_InternalGroup;
-			global::NControl.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem_Text = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem_Text;
-			global::NControl.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown;
-			global::NControl.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Icon1 = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Icon1;
-			global::NControl.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Icon2 = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Icon2;
-			global::NControl.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Query = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Query;
-			global::NControl.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Text = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Text;
-			global::NControl.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_SearchView_MagIcon = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_SearchView_MagIcon;
-			global::NControl.Droid.Resource.Style.TextAppearance_AppCompat = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_AppCompat;
-			global::NControl.Droid.Resource.Style.TextAppearance_AppCompat_Body1 = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Body1;
-			global::NControl.Droid.Resource.Style.TextAppearance_AppCompat_Body2 = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Body2;
-			global::NControl.Droid.Resource.Style.TextAppearance_AppCompat_Button = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Button;
-			global::NControl.Droid.Resource.Style.TextAppearance_AppCompat_Caption = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Caption;
-			global::NControl.Droid.Resource.Style.TextAppearance_AppCompat_Display1 = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Display1;
-			global::NControl.Droid.Resource.Style.TextAppearance_AppCompat_Display2 = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Display2;
-			global::NControl.Droid.Resource.Style.TextAppearance_AppCompat_Display3 = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Display3;
-			global::NControl.Droid.Resource.Style.TextAppearance_AppCompat_Display4 = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Display4;
-			global::NControl.Droid.Resource.Style.TextAppearance_AppCompat_Headline = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Headline;
-			global::NControl.Droid.Resource.Style.TextAppearance_AppCompat_Inverse = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Inverse;
-			global::NControl.Droid.Resource.Style.TextAppearance_AppCompat_Large = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Large;
-			global::NControl.Droid.Resource.Style.TextAppearance_AppCompat_Large_Inverse = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Large_Inverse;
-			global::NControl.Droid.Resource.Style.TextAppearance_AppCompat_Light_SearchResult_Subtitle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Light_SearchResult_Subtitle;
-			global::NControl.Droid.Resource.Style.TextAppearance_AppCompat_Light_SearchResult_Title = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Light_SearchResult_Title;
-			global::NControl.Droid.Resource.Style.TextAppearance_AppCompat_Light_Widget_PopupMenu_Large = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Light_Widget_PopupMenu_Large;
-			global::NControl.Droid.Resource.Style.TextAppearance_AppCompat_Light_Widget_PopupMenu_Small = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Light_Widget_PopupMenu_Small;
-			global::NControl.Droid.Resource.Style.TextAppearance_AppCompat_Medium = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Medium;
-			global::NControl.Droid.Resource.Style.TextAppearance_AppCompat_Medium_Inverse = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Medium_Inverse;
-			global::NControl.Droid.Resource.Style.TextAppearance_AppCompat_Menu = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Menu;
-			global::NControl.Droid.Resource.Style.TextAppearance_AppCompat_SearchResult_Subtitle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_SearchResult_Subtitle;
-			global::NControl.Droid.Resource.Style.TextAppearance_AppCompat_SearchResult_Title = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_SearchResult_Title;
-			global::NControl.Droid.Resource.Style.TextAppearance_AppCompat_Small = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Small;
-			global::NControl.Droid.Resource.Style.TextAppearance_AppCompat_Small_Inverse = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Small_Inverse;
-			global::NControl.Droid.Resource.Style.TextAppearance_AppCompat_Subhead = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Subhead;
-			global::NControl.Droid.Resource.Style.TextAppearance_AppCompat_Subhead_Inverse = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Subhead_Inverse;
-			global::NControl.Droid.Resource.Style.TextAppearance_AppCompat_Title = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Title;
-			global::NControl.Droid.Resource.Style.TextAppearance_AppCompat_Title_Inverse = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Title_Inverse;
-			global::NControl.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Menu = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Menu;
-			global::NControl.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Subtitle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Subtitle;
-			global::NControl.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Subtitle_Inverse = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Subtitle_Inverse;
-			global::NControl.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Title = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Title;
-			global::NControl.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Title_Inverse = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Title_Inverse;
-			global::NControl.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Subtitle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Subtitle;
-			global::NControl.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Subtitle_Inverse = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Subtitle_Inverse;
-			global::NControl.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Title = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Title;
-			global::NControl.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Title_Inverse = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Title_Inverse;
-			global::NControl.Droid.Resource.Style.TextAppearance_AppCompat_Widget_Button = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Widget_Button;
-			global::NControl.Droid.Resource.Style.TextAppearance_AppCompat_Widget_Button_Inverse = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Widget_Button_Inverse;
-			global::NControl.Droid.Resource.Style.TextAppearance_AppCompat_Widget_DropDownItem = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Widget_DropDownItem;
-			global::NControl.Droid.Resource.Style.TextAppearance_AppCompat_Widget_PopupMenu_Large = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Widget_PopupMenu_Large;
-			global::NControl.Droid.Resource.Style.TextAppearance_AppCompat_Widget_PopupMenu_Small = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Widget_PopupMenu_Small;
-			global::NControl.Droid.Resource.Style.TextAppearance_AppCompat_Widget_Switch = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Widget_Switch;
-			global::NControl.Droid.Resource.Style.TextAppearance_AppCompat_Widget_TextView_SpinnerItem = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Widget_TextView_SpinnerItem;
-			global::NControl.Droid.Resource.Style.TextAppearance_Design_CollapsingToolbar_Expanded = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_Design_CollapsingToolbar_Expanded;
-			global::NControl.Droid.Resource.Style.TextAppearance_Design_Error = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_Design_Error;
-			global::NControl.Droid.Resource.Style.TextAppearance_Design_Hint = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_Design_Hint;
-			global::NControl.Droid.Resource.Style.TextAppearance_Design_Snackbar_Message = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_Design_Snackbar_Message;
-			global::NControl.Droid.Resource.Style.TextAppearance_Design_Tab = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_Design_Tab;
-			global::NControl.Droid.Resource.Style.TextAppearance_StatusBar_EventContent = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_StatusBar_EventContent;
-			global::NControl.Droid.Resource.Style.TextAppearance_StatusBar_EventContent_Info = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_StatusBar_EventContent_Info;
-			global::NControl.Droid.Resource.Style.TextAppearance_StatusBar_EventContent_Line2 = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_StatusBar_EventContent_Line2;
-			global::NControl.Droid.Resource.Style.TextAppearance_StatusBar_EventContent_Time = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_StatusBar_EventContent_Time;
-			global::NControl.Droid.Resource.Style.TextAppearance_StatusBar_EventContent_Title = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_StatusBar_EventContent_Title;
-			global::NControl.Droid.Resource.Style.TextAppearance_Widget_AppCompat_ExpandedMenu_Item = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_Widget_AppCompat_ExpandedMenu_Item;
-			global::NControl.Droid.Resource.Style.TextAppearance_Widget_AppCompat_Toolbar_Subtitle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_Widget_AppCompat_Toolbar_Subtitle;
-			global::NControl.Droid.Resource.Style.TextAppearance_Widget_AppCompat_Toolbar_Title = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_Widget_AppCompat_Toolbar_Title;
-			global::NControl.Droid.Resource.Style.Theme_AppCompat = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Theme_AppCompat;
-			global::NControl.Droid.Resource.Style.Theme_AppCompat_CompactMenu = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Theme_AppCompat_CompactMenu;
-			global::NControl.Droid.Resource.Style.Theme_AppCompat_Dialog = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Theme_AppCompat_Dialog;
-			global::NControl.Droid.Resource.Style.Theme_AppCompat_Dialog_Alert = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Theme_AppCompat_Dialog_Alert;
-			global::NControl.Droid.Resource.Style.Theme_AppCompat_Dialog_MinWidth = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Theme_AppCompat_Dialog_MinWidth;
-			global::NControl.Droid.Resource.Style.Theme_AppCompat_DialogWhenLarge = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Theme_AppCompat_DialogWhenLarge;
-			global::NControl.Droid.Resource.Style.Theme_AppCompat_Light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Theme_AppCompat_Light;
-			global::NControl.Droid.Resource.Style.Theme_AppCompat_Light_DarkActionBar = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Theme_AppCompat_Light_DarkActionBar;
-			global::NControl.Droid.Resource.Style.Theme_AppCompat_Light_Dialog = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Theme_AppCompat_Light_Dialog;
-			global::NControl.Droid.Resource.Style.Theme_AppCompat_Light_Dialog_Alert = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Theme_AppCompat_Light_Dialog_Alert;
-			global::NControl.Droid.Resource.Style.Theme_AppCompat_Light_Dialog_MinWidth = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Theme_AppCompat_Light_Dialog_MinWidth;
-			global::NControl.Droid.Resource.Style.Theme_AppCompat_Light_DialogWhenLarge = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Theme_AppCompat_Light_DialogWhenLarge;
-			global::NControl.Droid.Resource.Style.Theme_AppCompat_Light_NoActionBar = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Theme_AppCompat_Light_NoActionBar;
-			global::NControl.Droid.Resource.Style.Theme_AppCompat_NoActionBar = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Theme_AppCompat_NoActionBar;
-			global::NControl.Droid.Resource.Style.Theme_MediaRouter = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Theme_MediaRouter;
-			global::NControl.Droid.Resource.Style.Theme_MediaRouter_Light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Theme_MediaRouter_Light;
-			global::NControl.Droid.Resource.Style.ThemeOverlay_AppCompat = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.ThemeOverlay_AppCompat;
-			global::NControl.Droid.Resource.Style.ThemeOverlay_AppCompat_ActionBar = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.ThemeOverlay_AppCompat_ActionBar;
-			global::NControl.Droid.Resource.Style.ThemeOverlay_AppCompat_Dark = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.ThemeOverlay_AppCompat_Dark;
-			global::NControl.Droid.Resource.Style.ThemeOverlay_AppCompat_Dark_ActionBar = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.ThemeOverlay_AppCompat_Dark_ActionBar;
-			global::NControl.Droid.Resource.Style.ThemeOverlay_AppCompat_Light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.ThemeOverlay_AppCompat_Light;
-			global::NControl.Droid.Resource.Style.Widget_AppCompat_ActionBar = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_ActionBar;
-			global::NControl.Droid.Resource.Style.Widget_AppCompat_ActionBar_Solid = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_ActionBar_Solid;
-			global::NControl.Droid.Resource.Style.Widget_AppCompat_ActionBar_TabBar = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_ActionBar_TabBar;
-			global::NControl.Droid.Resource.Style.Widget_AppCompat_ActionBar_TabText = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_ActionBar_TabText;
-			global::NControl.Droid.Resource.Style.Widget_AppCompat_ActionBar_TabView = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_ActionBar_TabView;
-			global::NControl.Droid.Resource.Style.Widget_AppCompat_ActionButton = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_ActionButton;
-			global::NControl.Droid.Resource.Style.Widget_AppCompat_ActionButton_CloseMode = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_ActionButton_CloseMode;
-			global::NControl.Droid.Resource.Style.Widget_AppCompat_ActionButton_Overflow = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_ActionButton_Overflow;
-			global::NControl.Droid.Resource.Style.Widget_AppCompat_ActionMode = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_ActionMode;
-			global::NControl.Droid.Resource.Style.Widget_AppCompat_ActivityChooserView = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_ActivityChooserView;
-			global::NControl.Droid.Resource.Style.Widget_AppCompat_AutoCompleteTextView = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_AutoCompleteTextView;
-			global::NControl.Droid.Resource.Style.Widget_AppCompat_Button = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_Button;
-			global::NControl.Droid.Resource.Style.Widget_AppCompat_Button_Borderless = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_Button_Borderless;
-			global::NControl.Droid.Resource.Style.Widget_AppCompat_Button_Borderless_Colored = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_Button_Borderless_Colored;
-			global::NControl.Droid.Resource.Style.Widget_AppCompat_Button_ButtonBar_AlertDialog = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_Button_ButtonBar_AlertDialog;
-			global::NControl.Droid.Resource.Style.Widget_AppCompat_Button_Colored = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_Button_Colored;
-			global::NControl.Droid.Resource.Style.Widget_AppCompat_Button_Small = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_Button_Small;
-			global::NControl.Droid.Resource.Style.Widget_AppCompat_ButtonBar = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_ButtonBar;
-			global::NControl.Droid.Resource.Style.Widget_AppCompat_ButtonBar_AlertDialog = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_ButtonBar_AlertDialog;
-			global::NControl.Droid.Resource.Style.Widget_AppCompat_CompoundButton_CheckBox = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_CompoundButton_CheckBox;
-			global::NControl.Droid.Resource.Style.Widget_AppCompat_CompoundButton_RadioButton = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_CompoundButton_RadioButton;
-			global::NControl.Droid.Resource.Style.Widget_AppCompat_CompoundButton_Switch = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_CompoundButton_Switch;
-			global::NControl.Droid.Resource.Style.Widget_AppCompat_DrawerArrowToggle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_DrawerArrowToggle;
-			global::NControl.Droid.Resource.Style.Widget_AppCompat_DropDownItem_Spinner = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_DropDownItem_Spinner;
-			global::NControl.Droid.Resource.Style.Widget_AppCompat_EditText = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_EditText;
-			global::NControl.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar;
-			global::NControl.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_Solid = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_Solid;
-			global::NControl.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_Solid_Inverse = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_Solid_Inverse;
-			global::NControl.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabBar = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabBar;
-			global::NControl.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabBar_Inverse = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabBar_Inverse;
-			global::NControl.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabText = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabText;
-			global::NControl.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabText_Inverse = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabText_Inverse;
-			global::NControl.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabView = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabView;
-			global::NControl.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabView_Inverse = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabView_Inverse;
-			global::NControl.Droid.Resource.Style.Widget_AppCompat_Light_ActionButton = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_Light_ActionButton;
-			global::NControl.Droid.Resource.Style.Widget_AppCompat_Light_ActionButton_CloseMode = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_Light_ActionButton_CloseMode;
-			global::NControl.Droid.Resource.Style.Widget_AppCompat_Light_ActionButton_Overflow = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_Light_ActionButton_Overflow;
-			global::NControl.Droid.Resource.Style.Widget_AppCompat_Light_ActionMode_Inverse = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_Light_ActionMode_Inverse;
-			global::NControl.Droid.Resource.Style.Widget_AppCompat_Light_ActivityChooserView = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_Light_ActivityChooserView;
-			global::NControl.Droid.Resource.Style.Widget_AppCompat_Light_AutoCompleteTextView = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_Light_AutoCompleteTextView;
-			global::NControl.Droid.Resource.Style.Widget_AppCompat_Light_DropDownItem_Spinner = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_Light_DropDownItem_Spinner;
-			global::NControl.Droid.Resource.Style.Widget_AppCompat_Light_ListPopupWindow = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_Light_ListPopupWindow;
-			global::NControl.Droid.Resource.Style.Widget_AppCompat_Light_ListView_DropDown = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_Light_ListView_DropDown;
-			global::NControl.Droid.Resource.Style.Widget_AppCompat_Light_PopupMenu = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_Light_PopupMenu;
-			global::NControl.Droid.Resource.Style.Widget_AppCompat_Light_PopupMenu_Overflow = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_Light_PopupMenu_Overflow;
-			global::NControl.Droid.Resource.Style.Widget_AppCompat_Light_SearchView = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_Light_SearchView;
-			global::NControl.Droid.Resource.Style.Widget_AppCompat_Light_Spinner_DropDown_ActionBar = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_Light_Spinner_DropDown_ActionBar;
-			global::NControl.Droid.Resource.Style.Widget_AppCompat_ListPopupWindow = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_ListPopupWindow;
-			global::NControl.Droid.Resource.Style.Widget_AppCompat_ListView = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_ListView;
-			global::NControl.Droid.Resource.Style.Widget_AppCompat_ListView_DropDown = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_ListView_DropDown;
-			global::NControl.Droid.Resource.Style.Widget_AppCompat_ListView_Menu = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_ListView_Menu;
-			global::NControl.Droid.Resource.Style.Widget_AppCompat_PopupMenu = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_PopupMenu;
-			global::NControl.Droid.Resource.Style.Widget_AppCompat_PopupMenu_Overflow = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_PopupMenu_Overflow;
-			global::NControl.Droid.Resource.Style.Widget_AppCompat_PopupWindow = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_PopupWindow;
-			global::NControl.Droid.Resource.Style.Widget_AppCompat_ProgressBar = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_ProgressBar;
-			global::NControl.Droid.Resource.Style.Widget_AppCompat_ProgressBar_Horizontal = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_ProgressBar_Horizontal;
-			global::NControl.Droid.Resource.Style.Widget_AppCompat_RatingBar = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_RatingBar;
-			global::NControl.Droid.Resource.Style.Widget_AppCompat_SearchView = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_SearchView;
-			global::NControl.Droid.Resource.Style.Widget_AppCompat_SearchView_ActionBar = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_SearchView_ActionBar;
-			global::NControl.Droid.Resource.Style.Widget_AppCompat_Spinner = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_Spinner;
-			global::NControl.Droid.Resource.Style.Widget_AppCompat_Spinner_DropDown = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_Spinner_DropDown;
-			global::NControl.Droid.Resource.Style.Widget_AppCompat_Spinner_DropDown_ActionBar = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_Spinner_DropDown_ActionBar;
-			global::NControl.Droid.Resource.Style.Widget_AppCompat_Spinner_Underlined = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_Spinner_Underlined;
-			global::NControl.Droid.Resource.Style.Widget_AppCompat_TextView_SpinnerItem = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_TextView_SpinnerItem;
-			global::NControl.Droid.Resource.Style.Widget_AppCompat_Toolbar = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_Toolbar;
-			global::NControl.Droid.Resource.Style.Widget_AppCompat_Toolbar_Button_Navigation = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_Toolbar_Button_Navigation;
-			global::NControl.Droid.Resource.Style.Widget_Design_AppBarLayout = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_Design_AppBarLayout;
-			global::NControl.Droid.Resource.Style.Widget_Design_CollapsingToolbar = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_Design_CollapsingToolbar;
-			global::NControl.Droid.Resource.Style.Widget_Design_CoordinatorLayout = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_Design_CoordinatorLayout;
-			global::NControl.Droid.Resource.Style.Widget_Design_FloatingActionButton = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_Design_FloatingActionButton;
-			global::NControl.Droid.Resource.Style.Widget_Design_NavigationView = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_Design_NavigationView;
-			global::NControl.Droid.Resource.Style.Widget_Design_ScrimInsetsFrameLayout = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_Design_ScrimInsetsFrameLayout;
-			global::NControl.Droid.Resource.Style.Widget_Design_Snackbar = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_Design_Snackbar;
-			global::NControl.Droid.Resource.Style.Widget_Design_TabLayout = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_Design_TabLayout;
-			global::NControl.Droid.Resource.Style.Widget_Design_TextInputLayout = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_Design_TextInputLayout;
-			global::NControl.Droid.Resource.Style.Widget_MediaRouter_Light_MediaRouteButton = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_MediaRouter_Light_MediaRouteButton;
-			global::NControl.Droid.Resource.Style.Widget_MediaRouter_MediaRouteButton = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_MediaRouter_MediaRouteButton;
-			global::NControl.Droid.Resource.Styleable.ActionBar = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ActionBar;
-			global::NControl.Droid.Resource.Styleable.ActionBar_background = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ActionBar_background;
-			global::NControl.Droid.Resource.Styleable.ActionBar_backgroundSplit = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ActionBar_backgroundSplit;
-			global::NControl.Droid.Resource.Styleable.ActionBar_backgroundStacked = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ActionBar_backgroundStacked;
-			global::NControl.Droid.Resource.Styleable.ActionBar_contentInsetEnd = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ActionBar_contentInsetEnd;
-			global::NControl.Droid.Resource.Styleable.ActionBar_contentInsetLeft = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ActionBar_contentInsetLeft;
-			global::NControl.Droid.Resource.Styleable.ActionBar_contentInsetRight = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ActionBar_contentInsetRight;
-			global::NControl.Droid.Resource.Styleable.ActionBar_contentInsetStart = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ActionBar_contentInsetStart;
-			global::NControl.Droid.Resource.Styleable.ActionBar_customNavigationLayout = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ActionBar_customNavigationLayout;
-			global::NControl.Droid.Resource.Styleable.ActionBar_displayOptions = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ActionBar_displayOptions;
-			global::NControl.Droid.Resource.Styleable.ActionBar_divider = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ActionBar_divider;
-			global::NControl.Droid.Resource.Styleable.ActionBar_elevation = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ActionBar_elevation;
-			global::NControl.Droid.Resource.Styleable.ActionBar_height = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ActionBar_height;
-			global::NControl.Droid.Resource.Styleable.ActionBar_hideOnContentScroll = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ActionBar_hideOnContentScroll;
-			global::NControl.Droid.Resource.Styleable.ActionBar_homeAsUpIndicator = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ActionBar_homeAsUpIndicator;
-			global::NControl.Droid.Resource.Styleable.ActionBar_homeLayout = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ActionBar_homeLayout;
-			global::NControl.Droid.Resource.Styleable.ActionBar_icon = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ActionBar_icon;
-			global::NControl.Droid.Resource.Styleable.ActionBar_indeterminateProgressStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ActionBar_indeterminateProgressStyle;
-			global::NControl.Droid.Resource.Styleable.ActionBar_itemPadding = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ActionBar_itemPadding;
-			global::NControl.Droid.Resource.Styleable.ActionBar_logo = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ActionBar_logo;
-			global::NControl.Droid.Resource.Styleable.ActionBar_navigationMode = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ActionBar_navigationMode;
-			global::NControl.Droid.Resource.Styleable.ActionBar_popupTheme = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ActionBar_popupTheme;
-			global::NControl.Droid.Resource.Styleable.ActionBar_progressBarPadding = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ActionBar_progressBarPadding;
-			global::NControl.Droid.Resource.Styleable.ActionBar_progressBarStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ActionBar_progressBarStyle;
-			global::NControl.Droid.Resource.Styleable.ActionBar_subtitle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ActionBar_subtitle;
-			global::NControl.Droid.Resource.Styleable.ActionBar_subtitleTextStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ActionBar_subtitleTextStyle;
-			global::NControl.Droid.Resource.Styleable.ActionBar_title = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ActionBar_title;
-			global::NControl.Droid.Resource.Styleable.ActionBar_titleTextStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ActionBar_titleTextStyle;
-			global::NControl.Droid.Resource.Styleable.ActionBarLayout = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ActionBarLayout;
-			global::NControl.Droid.Resource.Styleable.ActionBarLayout_android_layout_gravity = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ActionBarLayout_android_layout_gravity;
-			global::NControl.Droid.Resource.Styleable.ActionMenuItemView = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ActionMenuItemView;
-			global::NControl.Droid.Resource.Styleable.ActionMenuItemView_android_minWidth = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ActionMenuItemView_android_minWidth;
-			global::NControl.Droid.Resource.Styleable.ActionMenuView = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ActionMenuView;
-			global::NControl.Droid.Resource.Styleable.ActionMode = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ActionMode;
-			global::NControl.Droid.Resource.Styleable.ActionMode_background = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ActionMode_background;
-			global::NControl.Droid.Resource.Styleable.ActionMode_backgroundSplit = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ActionMode_backgroundSplit;
-			global::NControl.Droid.Resource.Styleable.ActionMode_closeItemLayout = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ActionMode_closeItemLayout;
-			global::NControl.Droid.Resource.Styleable.ActionMode_height = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ActionMode_height;
-			global::NControl.Droid.Resource.Styleable.ActionMode_subtitleTextStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ActionMode_subtitleTextStyle;
-			global::NControl.Droid.Resource.Styleable.ActionMode_titleTextStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ActionMode_titleTextStyle;
-			global::NControl.Droid.Resource.Styleable.ActivityChooserView = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ActivityChooserView;
-			global::NControl.Droid.Resource.Styleable.ActivityChooserView_expandActivityOverflowButtonDrawable = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ActivityChooserView_expandActivityOverflowButtonDrawable;
-			global::NControl.Droid.Resource.Styleable.ActivityChooserView_initialActivityCount = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ActivityChooserView_initialActivityCount;
-			global::NControl.Droid.Resource.Styleable.AlertDialog = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.AlertDialog;
-			global::NControl.Droid.Resource.Styleable.AlertDialog_android_layout = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.AlertDialog_android_layout;
-			global::NControl.Droid.Resource.Styleable.AlertDialog_buttonPanelSideLayout = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.AlertDialog_buttonPanelSideLayout;
-			global::NControl.Droid.Resource.Styleable.AlertDialog_listItemLayout = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.AlertDialog_listItemLayout;
-			global::NControl.Droid.Resource.Styleable.AlertDialog_listLayout = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.AlertDialog_listLayout;
-			global::NControl.Droid.Resource.Styleable.AlertDialog_multiChoiceItemLayout = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.AlertDialog_multiChoiceItemLayout;
-			global::NControl.Droid.Resource.Styleable.AlertDialog_singleChoiceItemLayout = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.AlertDialog_singleChoiceItemLayout;
-			global::NControl.Droid.Resource.Styleable.AppBarLayout = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.AppBarLayout;
-			global::NControl.Droid.Resource.Styleable.AppBarLayout_android_background = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.AppBarLayout_android_background;
-			global::NControl.Droid.Resource.Styleable.AppBarLayout_elevation = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.AppBarLayout_elevation;
-			global::NControl.Droid.Resource.Styleable.AppBarLayout_expanded = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.AppBarLayout_expanded;
-			global::NControl.Droid.Resource.Styleable.AppCompatTextView = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.AppCompatTextView;
-			global::NControl.Droid.Resource.Styleable.AppCompatTextView_android_textAppearance = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.AppCompatTextView_android_textAppearance;
-			global::NControl.Droid.Resource.Styleable.AppCompatTextView_textAllCaps = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.AppCompatTextView_textAllCaps;
-			global::NControl.Droid.Resource.Styleable.CardView = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.CardView;
-			global::NControl.Droid.Resource.Styleable.CardView_cardBackgroundColor = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.CardView_cardBackgroundColor;
-			global::NControl.Droid.Resource.Styleable.CardView_cardCornerRadius = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.CardView_cardCornerRadius;
-			global::NControl.Droid.Resource.Styleable.CardView_cardElevation = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.CardView_cardElevation;
-			global::NControl.Droid.Resource.Styleable.CardView_cardMaxElevation = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.CardView_cardMaxElevation;
-			global::NControl.Droid.Resource.Styleable.CardView_cardPreventCornerOverlap = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.CardView_cardPreventCornerOverlap;
-			global::NControl.Droid.Resource.Styleable.CardView_cardUseCompatPadding = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.CardView_cardUseCompatPadding;
-			global::NControl.Droid.Resource.Styleable.CardView_contentPadding = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.CardView_contentPadding;
-			global::NControl.Droid.Resource.Styleable.CardView_contentPaddingBottom = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.CardView_contentPaddingBottom;
-			global::NControl.Droid.Resource.Styleable.CardView_contentPaddingLeft = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.CardView_contentPaddingLeft;
-			global::NControl.Droid.Resource.Styleable.CardView_contentPaddingRight = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.CardView_contentPaddingRight;
-			global::NControl.Droid.Resource.Styleable.CardView_contentPaddingTop = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.CardView_contentPaddingTop;
-			global::NControl.Droid.Resource.Styleable.CollapsingToolbarLayout = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.CollapsingToolbarLayout;
-			global::NControl.Droid.Resource.Styleable.CollapsingToolbarLayout_collapsedTitleGravity = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.CollapsingToolbarLayout_collapsedTitleGravity;
-			global::NControl.Droid.Resource.Styleable.CollapsingToolbarLayout_collapsedTitleTextAppearance = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.CollapsingToolbarLayout_collapsedTitleTextAppearance;
-			global::NControl.Droid.Resource.Styleable.CollapsingToolbarLayout_contentScrim = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.CollapsingToolbarLayout_contentScrim;
-			global::NControl.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleGravity = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleGravity;
-			global::NControl.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMargin = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMargin;
-			global::NControl.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginBottom = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginBottom;
-			global::NControl.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginEnd = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginEnd;
-			global::NControl.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginStart = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginStart;
-			global::NControl.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginTop = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginTop;
-			global::NControl.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleTextAppearance = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleTextAppearance;
-			global::NControl.Droid.Resource.Styleable.CollapsingToolbarLayout_statusBarScrim = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.CollapsingToolbarLayout_statusBarScrim;
-			global::NControl.Droid.Resource.Styleable.CollapsingToolbarLayout_title = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.CollapsingToolbarLayout_title;
-			global::NControl.Droid.Resource.Styleable.CollapsingToolbarLayout_titleEnabled = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.CollapsingToolbarLayout_titleEnabled;
-			global::NControl.Droid.Resource.Styleable.CollapsingToolbarLayout_toolbarId = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.CollapsingToolbarLayout_toolbarId;
-			global::NControl.Droid.Resource.Styleable.CompoundButton = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.CompoundButton;
-			global::NControl.Droid.Resource.Styleable.CompoundButton_android_button = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.CompoundButton_android_button;
-			global::NControl.Droid.Resource.Styleable.CompoundButton_buttonTint = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.CompoundButton_buttonTint;
-			global::NControl.Droid.Resource.Styleable.CompoundButton_buttonTintMode = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.CompoundButton_buttonTintMode;
-			global::NControl.Droid.Resource.Styleable.CoordinatorLayout = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.CoordinatorLayout;
-			global::NControl.Droid.Resource.Styleable.CoordinatorLayout_keylines = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.CoordinatorLayout_keylines;
-			global::NControl.Droid.Resource.Styleable.CoordinatorLayout_statusBarBackground = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.CoordinatorLayout_statusBarBackground;
-			global::NControl.Droid.Resource.Styleable.DrawerArrowToggle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.DrawerArrowToggle;
-			global::NControl.Droid.Resource.Styleable.DrawerArrowToggle_arrowHeadLength = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.DrawerArrowToggle_arrowHeadLength;
-			global::NControl.Droid.Resource.Styleable.DrawerArrowToggle_arrowShaftLength = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.DrawerArrowToggle_arrowShaftLength;
-			global::NControl.Droid.Resource.Styleable.DrawerArrowToggle_barLength = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.DrawerArrowToggle_barLength;
-			global::NControl.Droid.Resource.Styleable.DrawerArrowToggle_color = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.DrawerArrowToggle_color;
-			global::NControl.Droid.Resource.Styleable.DrawerArrowToggle_drawableSize = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.DrawerArrowToggle_drawableSize;
-			global::NControl.Droid.Resource.Styleable.DrawerArrowToggle_gapBetweenBars = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.DrawerArrowToggle_gapBetweenBars;
-			global::NControl.Droid.Resource.Styleable.DrawerArrowToggle_spinBars = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.DrawerArrowToggle_spinBars;
-			global::NControl.Droid.Resource.Styleable.DrawerArrowToggle_thickness = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.DrawerArrowToggle_thickness;
-			global::NControl.Droid.Resource.Styleable.FloatingActionButton = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.FloatingActionButton;
-			global::NControl.Droid.Resource.Styleable.FloatingActionButton_backgroundTint = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.FloatingActionButton_backgroundTint;
-			global::NControl.Droid.Resource.Styleable.FloatingActionButton_backgroundTintMode = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.FloatingActionButton_backgroundTintMode;
-			global::NControl.Droid.Resource.Styleable.FloatingActionButton_borderWidth = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.FloatingActionButton_borderWidth;
-			global::NControl.Droid.Resource.Styleable.FloatingActionButton_elevation = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.FloatingActionButton_elevation;
-			global::NControl.Droid.Resource.Styleable.FloatingActionButton_fabSize = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.FloatingActionButton_fabSize;
-			global::NControl.Droid.Resource.Styleable.FloatingActionButton_pressedTranslationZ = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.FloatingActionButton_pressedTranslationZ;
-			global::NControl.Droid.Resource.Styleable.FloatingActionButton_rippleColor = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.FloatingActionButton_rippleColor;
-			global::NControl.Droid.Resource.Styleable.LinearLayoutCompat = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.LinearLayoutCompat;
-			global::NControl.Droid.Resource.Styleable.LinearLayoutCompat_android_baselineAligned = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.LinearLayoutCompat_android_baselineAligned;
-			global::NControl.Droid.Resource.Styleable.LinearLayoutCompat_android_baselineAlignedChildIndex = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.LinearLayoutCompat_android_baselineAlignedChildIndex;
-			global::NControl.Droid.Resource.Styleable.LinearLayoutCompat_android_gravity = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.LinearLayoutCompat_android_gravity;
-			global::NControl.Droid.Resource.Styleable.LinearLayoutCompat_android_orientation = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.LinearLayoutCompat_android_orientation;
-			global::NControl.Droid.Resource.Styleable.LinearLayoutCompat_android_weightSum = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.LinearLayoutCompat_android_weightSum;
-			global::NControl.Droid.Resource.Styleable.LinearLayoutCompat_divider = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.LinearLayoutCompat_divider;
-			global::NControl.Droid.Resource.Styleable.LinearLayoutCompat_dividerPadding = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.LinearLayoutCompat_dividerPadding;
-			global::NControl.Droid.Resource.Styleable.LinearLayoutCompat_measureWithLargestChild = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.LinearLayoutCompat_measureWithLargestChild;
-			global::NControl.Droid.Resource.Styleable.LinearLayoutCompat_showDividers = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.LinearLayoutCompat_showDividers;
-			global::NControl.Droid.Resource.Styleable.LinearLayoutCompat_Layout = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.LinearLayoutCompat_Layout;
-			global::NControl.Droid.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_gravity = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_gravity;
-			global::NControl.Droid.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_height = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_height;
-			global::NControl.Droid.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_weight = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_weight;
-			global::NControl.Droid.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_width = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_width;
-			global::NControl.Droid.Resource.Styleable.ListPopupWindow = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ListPopupWindow;
-			global::NControl.Droid.Resource.Styleable.ListPopupWindow_android_dropDownHorizontalOffset = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ListPopupWindow_android_dropDownHorizontalOffset;
-			global::NControl.Droid.Resource.Styleable.ListPopupWindow_android_dropDownVerticalOffset = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ListPopupWindow_android_dropDownVerticalOffset;
-			global::NControl.Droid.Resource.Styleable.MediaRouteButton = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.MediaRouteButton;
-			global::NControl.Droid.Resource.Styleable.MediaRouteButton_android_minHeight = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.MediaRouteButton_android_minHeight;
-			global::NControl.Droid.Resource.Styleable.MediaRouteButton_android_minWidth = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.MediaRouteButton_android_minWidth;
-			global::NControl.Droid.Resource.Styleable.MediaRouteButton_externalRouteEnabledDrawable = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.MediaRouteButton_externalRouteEnabledDrawable;
-			global::NControl.Droid.Resource.Styleable.MenuGroup = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.MenuGroup;
-			global::NControl.Droid.Resource.Styleable.MenuGroup_android_checkableBehavior = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.MenuGroup_android_checkableBehavior;
-			global::NControl.Droid.Resource.Styleable.MenuGroup_android_enabled = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.MenuGroup_android_enabled;
-			global::NControl.Droid.Resource.Styleable.MenuGroup_android_id = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.MenuGroup_android_id;
-			global::NControl.Droid.Resource.Styleable.MenuGroup_android_menuCategory = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.MenuGroup_android_menuCategory;
-			global::NControl.Droid.Resource.Styleable.MenuGroup_android_orderInCategory = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.MenuGroup_android_orderInCategory;
-			global::NControl.Droid.Resource.Styleable.MenuGroup_android_visible = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.MenuGroup_android_visible;
-			global::NControl.Droid.Resource.Styleable.MenuItem = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.MenuItem;
-			global::NControl.Droid.Resource.Styleable.MenuItem_actionLayout = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.MenuItem_actionLayout;
-			global::NControl.Droid.Resource.Styleable.MenuItem_actionProviderClass = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.MenuItem_actionProviderClass;
-			global::NControl.Droid.Resource.Styleable.MenuItem_actionViewClass = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.MenuItem_actionViewClass;
-			global::NControl.Droid.Resource.Styleable.MenuItem_android_alphabeticShortcut = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.MenuItem_android_alphabeticShortcut;
-			global::NControl.Droid.Resource.Styleable.MenuItem_android_checkable = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.MenuItem_android_checkable;
-			global::NControl.Droid.Resource.Styleable.MenuItem_android_checked = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.MenuItem_android_checked;
-			global::NControl.Droid.Resource.Styleable.MenuItem_android_enabled = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.MenuItem_android_enabled;
-			global::NControl.Droid.Resource.Styleable.MenuItem_android_icon = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.MenuItem_android_icon;
-			global::NControl.Droid.Resource.Styleable.MenuItem_android_id = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.MenuItem_android_id;
-			global::NControl.Droid.Resource.Styleable.MenuItem_android_menuCategory = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.MenuItem_android_menuCategory;
-			global::NControl.Droid.Resource.Styleable.MenuItem_android_numericShortcut = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.MenuItem_android_numericShortcut;
-			global::NControl.Droid.Resource.Styleable.MenuItem_android_onClick = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.MenuItem_android_onClick;
-			global::NControl.Droid.Resource.Styleable.MenuItem_android_orderInCategory = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.MenuItem_android_orderInCategory;
-			global::NControl.Droid.Resource.Styleable.MenuItem_android_title = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.MenuItem_android_title;
-			global::NControl.Droid.Resource.Styleable.MenuItem_android_titleCondensed = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.MenuItem_android_titleCondensed;
-			global::NControl.Droid.Resource.Styleable.MenuItem_android_visible = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.MenuItem_android_visible;
-			global::NControl.Droid.Resource.Styleable.MenuItem_showAsAction = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.MenuItem_showAsAction;
-			global::NControl.Droid.Resource.Styleable.MenuView = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.MenuView;
-			global::NControl.Droid.Resource.Styleable.MenuView_android_headerBackground = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.MenuView_android_headerBackground;
-			global::NControl.Droid.Resource.Styleable.MenuView_android_horizontalDivider = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.MenuView_android_horizontalDivider;
-			global::NControl.Droid.Resource.Styleable.MenuView_android_itemBackground = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.MenuView_android_itemBackground;
-			global::NControl.Droid.Resource.Styleable.MenuView_android_itemIconDisabledAlpha = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.MenuView_android_itemIconDisabledAlpha;
-			global::NControl.Droid.Resource.Styleable.MenuView_android_itemTextAppearance = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.MenuView_android_itemTextAppearance;
-			global::NControl.Droid.Resource.Styleable.MenuView_android_verticalDivider = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.MenuView_android_verticalDivider;
-			global::NControl.Droid.Resource.Styleable.MenuView_android_windowAnimationStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.MenuView_android_windowAnimationStyle;
-			global::NControl.Droid.Resource.Styleable.MenuView_preserveIconSpacing = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.MenuView_preserveIconSpacing;
-			global::NControl.Droid.Resource.Styleable.NavigationView = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.NavigationView;
-			global::NControl.Droid.Resource.Styleable.NavigationView_android_background = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.NavigationView_android_background;
-			global::NControl.Droid.Resource.Styleable.NavigationView_android_fitsSystemWindows = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.NavigationView_android_fitsSystemWindows;
-			global::NControl.Droid.Resource.Styleable.NavigationView_android_maxWidth = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.NavigationView_android_maxWidth;
-			global::NControl.Droid.Resource.Styleable.NavigationView_elevation = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.NavigationView_elevation;
-			global::NControl.Droid.Resource.Styleable.NavigationView_headerLayout = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.NavigationView_headerLayout;
-			global::NControl.Droid.Resource.Styleable.NavigationView_itemBackground = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.NavigationView_itemBackground;
-			global::NControl.Droid.Resource.Styleable.NavigationView_itemIconTint = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.NavigationView_itemIconTint;
-			global::NControl.Droid.Resource.Styleable.NavigationView_itemTextAppearance = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.NavigationView_itemTextAppearance;
-			global::NControl.Droid.Resource.Styleable.NavigationView_itemTextColor = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.NavigationView_itemTextColor;
-			global::NControl.Droid.Resource.Styleable.NavigationView_menu = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.NavigationView_menu;
-			global::NControl.Droid.Resource.Styleable.PopupWindow = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.PopupWindow;
-			global::NControl.Droid.Resource.Styleable.PopupWindow_android_popupBackground = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.PopupWindow_android_popupBackground;
-			global::NControl.Droid.Resource.Styleable.PopupWindow_overlapAnchor = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.PopupWindow_overlapAnchor;
-			global::NControl.Droid.Resource.Styleable.PopupWindowBackgroundState = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.PopupWindowBackgroundState;
-			global::NControl.Droid.Resource.Styleable.PopupWindowBackgroundState_state_above_anchor = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.PopupWindowBackgroundState_state_above_anchor;
-			global::NControl.Droid.Resource.Styleable.ScrimInsetsFrameLayout = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ScrimInsetsFrameLayout;
-			global::NControl.Droid.Resource.Styleable.ScrimInsetsFrameLayout_insetForeground = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ScrimInsetsFrameLayout_insetForeground;
-			global::NControl.Droid.Resource.Styleable.SearchView = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.SearchView;
-			global::NControl.Droid.Resource.Styleable.SearchView_android_focusable = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.SearchView_android_focusable;
-			global::NControl.Droid.Resource.Styleable.SearchView_android_imeOptions = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.SearchView_android_imeOptions;
-			global::NControl.Droid.Resource.Styleable.SearchView_android_inputType = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.SearchView_android_inputType;
-			global::NControl.Droid.Resource.Styleable.SearchView_android_maxWidth = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.SearchView_android_maxWidth;
-			global::NControl.Droid.Resource.Styleable.SearchView_closeIcon = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.SearchView_closeIcon;
-			global::NControl.Droid.Resource.Styleable.SearchView_commitIcon = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.SearchView_commitIcon;
-			global::NControl.Droid.Resource.Styleable.SearchView_defaultQueryHint = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.SearchView_defaultQueryHint;
-			global::NControl.Droid.Resource.Styleable.SearchView_goIcon = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.SearchView_goIcon;
-			global::NControl.Droid.Resource.Styleable.SearchView_iconifiedByDefault = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.SearchView_iconifiedByDefault;
-			global::NControl.Droid.Resource.Styleable.SearchView_layout = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.SearchView_layout;
-			global::NControl.Droid.Resource.Styleable.SearchView_queryBackground = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.SearchView_queryBackground;
-			global::NControl.Droid.Resource.Styleable.SearchView_queryHint = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.SearchView_queryHint;
-			global::NControl.Droid.Resource.Styleable.SearchView_searchHintIcon = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.SearchView_searchHintIcon;
-			global::NControl.Droid.Resource.Styleable.SearchView_searchIcon = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.SearchView_searchIcon;
-			global::NControl.Droid.Resource.Styleable.SearchView_submitBackground = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.SearchView_submitBackground;
-			global::NControl.Droid.Resource.Styleable.SearchView_suggestionRowLayout = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.SearchView_suggestionRowLayout;
-			global::NControl.Droid.Resource.Styleable.SearchView_voiceIcon = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.SearchView_voiceIcon;
-			global::NControl.Droid.Resource.Styleable.SnackbarLayout = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.SnackbarLayout;
-			global::NControl.Droid.Resource.Styleable.SnackbarLayout_android_maxWidth = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.SnackbarLayout_android_maxWidth;
-			global::NControl.Droid.Resource.Styleable.SnackbarLayout_elevation = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.SnackbarLayout_elevation;
-			global::NControl.Droid.Resource.Styleable.SnackbarLayout_maxActionInlineWidth = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.SnackbarLayout_maxActionInlineWidth;
-			global::NControl.Droid.Resource.Styleable.Spinner = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.Spinner;
-			global::NControl.Droid.Resource.Styleable.Spinner_android_dropDownWidth = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.Spinner_android_dropDownWidth;
-			global::NControl.Droid.Resource.Styleable.Spinner_android_popupBackground = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.Spinner_android_popupBackground;
-			global::NControl.Droid.Resource.Styleable.Spinner_android_prompt = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.Spinner_android_prompt;
-			global::NControl.Droid.Resource.Styleable.Spinner_popupTheme = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.Spinner_popupTheme;
-			global::NControl.Droid.Resource.Styleable.SwitchCompat = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.SwitchCompat;
-			global::NControl.Droid.Resource.Styleable.SwitchCompat_android_textOff = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.SwitchCompat_android_textOff;
-			global::NControl.Droid.Resource.Styleable.SwitchCompat_android_textOn = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.SwitchCompat_android_textOn;
-			global::NControl.Droid.Resource.Styleable.SwitchCompat_android_thumb = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.SwitchCompat_android_thumb;
-			global::NControl.Droid.Resource.Styleable.SwitchCompat_showText = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.SwitchCompat_showText;
-			global::NControl.Droid.Resource.Styleable.SwitchCompat_splitTrack = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.SwitchCompat_splitTrack;
-			global::NControl.Droid.Resource.Styleable.SwitchCompat_switchMinWidth = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.SwitchCompat_switchMinWidth;
-			global::NControl.Droid.Resource.Styleable.SwitchCompat_switchPadding = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.SwitchCompat_switchPadding;
-			global::NControl.Droid.Resource.Styleable.SwitchCompat_switchTextAppearance = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.SwitchCompat_switchTextAppearance;
-			global::NControl.Droid.Resource.Styleable.SwitchCompat_thumbTextPadding = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.SwitchCompat_thumbTextPadding;
-			global::NControl.Droid.Resource.Styleable.SwitchCompat_track = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.SwitchCompat_track;
-			global::NControl.Droid.Resource.Styleable.TabLayout = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.TabLayout;
-			global::NControl.Droid.Resource.Styleable.TabLayout_tabBackground = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.TabLayout_tabBackground;
-			global::NControl.Droid.Resource.Styleable.TabLayout_tabContentStart = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.TabLayout_tabContentStart;
-			global::NControl.Droid.Resource.Styleable.TabLayout_tabGravity = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.TabLayout_tabGravity;
-			global::NControl.Droid.Resource.Styleable.TabLayout_tabIndicatorColor = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.TabLayout_tabIndicatorColor;
-			global::NControl.Droid.Resource.Styleable.TabLayout_tabIndicatorHeight = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.TabLayout_tabIndicatorHeight;
-			global::NControl.Droid.Resource.Styleable.TabLayout_tabMaxWidth = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.TabLayout_tabMaxWidth;
-			global::NControl.Droid.Resource.Styleable.TabLayout_tabMinWidth = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.TabLayout_tabMinWidth;
-			global::NControl.Droid.Resource.Styleable.TabLayout_tabMode = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.TabLayout_tabMode;
-			global::NControl.Droid.Resource.Styleable.TabLayout_tabPadding = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.TabLayout_tabPadding;
-			global::NControl.Droid.Resource.Styleable.TabLayout_tabPaddingBottom = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.TabLayout_tabPaddingBottom;
-			global::NControl.Droid.Resource.Styleable.TabLayout_tabPaddingEnd = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.TabLayout_tabPaddingEnd;
-			global::NControl.Droid.Resource.Styleable.TabLayout_tabPaddingStart = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.TabLayout_tabPaddingStart;
-			global::NControl.Droid.Resource.Styleable.TabLayout_tabPaddingTop = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.TabLayout_tabPaddingTop;
-			global::NControl.Droid.Resource.Styleable.TabLayout_tabSelectedTextColor = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.TabLayout_tabSelectedTextColor;
-			global::NControl.Droid.Resource.Styleable.TabLayout_tabTextAppearance = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.TabLayout_tabTextAppearance;
-			global::NControl.Droid.Resource.Styleable.TabLayout_tabTextColor = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.TabLayout_tabTextColor;
-			global::NControl.Droid.Resource.Styleable.TextAppearance = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.TextAppearance;
-			global::NControl.Droid.Resource.Styleable.TextAppearance_android_textColor = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.TextAppearance_android_textColor;
-			global::NControl.Droid.Resource.Styleable.TextAppearance_android_textSize = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.TextAppearance_android_textSize;
-			global::NControl.Droid.Resource.Styleable.TextAppearance_android_textStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.TextAppearance_android_textStyle;
-			global::NControl.Droid.Resource.Styleable.TextAppearance_android_typeface = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.TextAppearance_android_typeface;
-			global::NControl.Droid.Resource.Styleable.TextAppearance_textAllCaps = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.TextAppearance_textAllCaps;
-			global::NControl.Droid.Resource.Styleable.TextInputLayout = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.TextInputLayout;
-			global::NControl.Droid.Resource.Styleable.TextInputLayout_android_hint = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.TextInputLayout_android_hint;
-			global::NControl.Droid.Resource.Styleable.TextInputLayout_android_textColorHint = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.TextInputLayout_android_textColorHint;
-			global::NControl.Droid.Resource.Styleable.TextInputLayout_errorEnabled = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.TextInputLayout_errorEnabled;
-			global::NControl.Droid.Resource.Styleable.TextInputLayout_errorTextAppearance = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.TextInputLayout_errorTextAppearance;
-			global::NControl.Droid.Resource.Styleable.TextInputLayout_hintAnimationEnabled = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.TextInputLayout_hintAnimationEnabled;
-			global::NControl.Droid.Resource.Styleable.TextInputLayout_hintTextAppearance = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.TextInputLayout_hintTextAppearance;
-			global::NControl.Droid.Resource.Styleable.Toolbar = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.Toolbar;
-			global::NControl.Droid.Resource.Styleable.Toolbar_android_gravity = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.Toolbar_android_gravity;
-			global::NControl.Droid.Resource.Styleable.Toolbar_android_minHeight = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.Toolbar_android_minHeight;
-			global::NControl.Droid.Resource.Styleable.Toolbar_collapseContentDescription = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.Toolbar_collapseContentDescription;
-			global::NControl.Droid.Resource.Styleable.Toolbar_collapseIcon = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.Toolbar_collapseIcon;
-			global::NControl.Droid.Resource.Styleable.Toolbar_contentInsetEnd = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.Toolbar_contentInsetEnd;
-			global::NControl.Droid.Resource.Styleable.Toolbar_contentInsetLeft = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.Toolbar_contentInsetLeft;
-			global::NControl.Droid.Resource.Styleable.Toolbar_contentInsetRight = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.Toolbar_contentInsetRight;
-			global::NControl.Droid.Resource.Styleable.Toolbar_contentInsetStart = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.Toolbar_contentInsetStart;
-			global::NControl.Droid.Resource.Styleable.Toolbar_logo = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.Toolbar_logo;
-			global::NControl.Droid.Resource.Styleable.Toolbar_logoDescription = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.Toolbar_logoDescription;
-			global::NControl.Droid.Resource.Styleable.Toolbar_maxButtonHeight = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.Toolbar_maxButtonHeight;
-			global::NControl.Droid.Resource.Styleable.Toolbar_navigationContentDescription = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.Toolbar_navigationContentDescription;
-			global::NControl.Droid.Resource.Styleable.Toolbar_navigationIcon = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.Toolbar_navigationIcon;
-			global::NControl.Droid.Resource.Styleable.Toolbar_popupTheme = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.Toolbar_popupTheme;
-			global::NControl.Droid.Resource.Styleable.Toolbar_subtitle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.Toolbar_subtitle;
-			global::NControl.Droid.Resource.Styleable.Toolbar_subtitleTextAppearance = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.Toolbar_subtitleTextAppearance;
-			global::NControl.Droid.Resource.Styleable.Toolbar_subtitleTextColor = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.Toolbar_subtitleTextColor;
-			global::NControl.Droid.Resource.Styleable.Toolbar_title = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.Toolbar_title;
-			global::NControl.Droid.Resource.Styleable.Toolbar_titleMarginBottom = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.Toolbar_titleMarginBottom;
-			global::NControl.Droid.Resource.Styleable.Toolbar_titleMarginEnd = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.Toolbar_titleMarginEnd;
-			global::NControl.Droid.Resource.Styleable.Toolbar_titleMarginStart = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.Toolbar_titleMarginStart;
-			global::NControl.Droid.Resource.Styleable.Toolbar_titleMarginTop = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.Toolbar_titleMarginTop;
-			global::NControl.Droid.Resource.Styleable.Toolbar_titleMargins = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.Toolbar_titleMargins;
-			global::NControl.Droid.Resource.Styleable.Toolbar_titleTextAppearance = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.Toolbar_titleTextAppearance;
-			global::NControl.Droid.Resource.Styleable.Toolbar_titleTextColor = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.Toolbar_titleTextColor;
-			global::NControl.Droid.Resource.Styleable.View = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.View;
-			global::NControl.Droid.Resource.Styleable.View_android_focusable = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.View_android_focusable;
-			global::NControl.Droid.Resource.Styleable.View_android_theme = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.View_android_theme;
-			global::NControl.Droid.Resource.Styleable.View_paddingEnd = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.View_paddingEnd;
-			global::NControl.Droid.Resource.Styleable.View_paddingStart = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.View_paddingStart;
-			global::NControl.Droid.Resource.Styleable.View_theme = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.View_theme;
-			global::NControl.Droid.Resource.Styleable.ViewBackgroundHelper = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ViewBackgroundHelper;
-			global::NControl.Droid.Resource.Styleable.ViewBackgroundHelper_android_background = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ViewBackgroundHelper_android_background;
-			global::NControl.Droid.Resource.Styleable.ViewBackgroundHelper_backgroundTint = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ViewBackgroundHelper_backgroundTint;
-			global::NControl.Droid.Resource.Styleable.ViewBackgroundHelper_backgroundTintMode = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ViewBackgroundHelper_backgroundTintMode;
-			global::NControl.Droid.Resource.Styleable.ViewStubCompat = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ViewStubCompat;
-			global::NControl.Droid.Resource.Styleable.ViewStubCompat_android_id = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ViewStubCompat_android_id;
-			global::NControl.Droid.Resource.Styleable.ViewStubCompat_android_inflatedId = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ViewStubCompat_android_inflatedId;
-			global::NControl.Droid.Resource.Styleable.ViewStubCompat_android_layout = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ViewStubCompat_android_layout;
-			global::TwinTechsForms.NControl.Resource.Animation.abc_fade_in = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Animation.abc_fade_in;
-			global::TwinTechsForms.NControl.Resource.Animation.abc_fade_out = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Animation.abc_fade_out;
-			global::TwinTechsForms.NControl.Resource.Animation.abc_grow_fade_in_from_bottom = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Animation.abc_grow_fade_in_from_bottom;
-			global::TwinTechsForms.NControl.Resource.Animation.abc_popup_enter = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Animation.abc_popup_enter;
-			global::TwinTechsForms.NControl.Resource.Animation.abc_popup_exit = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Animation.abc_popup_exit;
-			global::TwinTechsForms.NControl.Resource.Animation.abc_shrink_fade_out_from_bottom = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Animation.abc_shrink_fade_out_from_bottom;
-			global::TwinTechsForms.NControl.Resource.Animation.abc_slide_in_bottom = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Animation.abc_slide_in_bottom;
-			global::TwinTechsForms.NControl.Resource.Animation.abc_slide_in_top = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Animation.abc_slide_in_top;
-			global::TwinTechsForms.NControl.Resource.Animation.abc_slide_out_bottom = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Animation.abc_slide_out_bottom;
-			global::TwinTechsForms.NControl.Resource.Animation.abc_slide_out_top = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Animation.abc_slide_out_top;
-			global::TwinTechsForms.NControl.Resource.Animation.design_fab_in = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Animation.design_fab_in;
-			global::TwinTechsForms.NControl.Resource.Animation.design_fab_out = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Animation.design_fab_out;
-			global::TwinTechsForms.NControl.Resource.Animation.design_snackbar_in = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Animation.design_snackbar_in;
-			global::TwinTechsForms.NControl.Resource.Animation.design_snackbar_out = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Animation.design_snackbar_out;
-			global::TwinTechsForms.NControl.Resource.Attribute.actionBarDivider = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.actionBarDivider;
-			global::TwinTechsForms.NControl.Resource.Attribute.actionBarItemBackground = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.actionBarItemBackground;
-			global::TwinTechsForms.NControl.Resource.Attribute.actionBarPopupTheme = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.actionBarPopupTheme;
-			global::TwinTechsForms.NControl.Resource.Attribute.actionBarSize = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.actionBarSize;
-			global::TwinTechsForms.NControl.Resource.Attribute.actionBarSplitStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.actionBarSplitStyle;
-			global::TwinTechsForms.NControl.Resource.Attribute.actionBarStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.actionBarStyle;
-			global::TwinTechsForms.NControl.Resource.Attribute.actionBarTabBarStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.actionBarTabBarStyle;
-			global::TwinTechsForms.NControl.Resource.Attribute.actionBarTabStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.actionBarTabStyle;
-			global::TwinTechsForms.NControl.Resource.Attribute.actionBarTabTextStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.actionBarTabTextStyle;
-			global::TwinTechsForms.NControl.Resource.Attribute.actionBarTheme = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.actionBarTheme;
-			global::TwinTechsForms.NControl.Resource.Attribute.actionBarWidgetTheme = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.actionBarWidgetTheme;
-			global::TwinTechsForms.NControl.Resource.Attribute.actionButtonStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.actionButtonStyle;
-			global::TwinTechsForms.NControl.Resource.Attribute.actionDropDownStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.actionDropDownStyle;
-			global::TwinTechsForms.NControl.Resource.Attribute.actionLayout = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.actionLayout;
-			global::TwinTechsForms.NControl.Resource.Attribute.actionMenuTextAppearance = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.actionMenuTextAppearance;
-			global::TwinTechsForms.NControl.Resource.Attribute.actionMenuTextColor = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.actionMenuTextColor;
-			global::TwinTechsForms.NControl.Resource.Attribute.actionModeBackground = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.actionModeBackground;
-			global::TwinTechsForms.NControl.Resource.Attribute.actionModeCloseButtonStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.actionModeCloseButtonStyle;
-			global::TwinTechsForms.NControl.Resource.Attribute.actionModeCloseDrawable = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.actionModeCloseDrawable;
-			global::TwinTechsForms.NControl.Resource.Attribute.actionModeCopyDrawable = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.actionModeCopyDrawable;
-			global::TwinTechsForms.NControl.Resource.Attribute.actionModeCutDrawable = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.actionModeCutDrawable;
-			global::TwinTechsForms.NControl.Resource.Attribute.actionModeFindDrawable = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.actionModeFindDrawable;
-			global::TwinTechsForms.NControl.Resource.Attribute.actionModePasteDrawable = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.actionModePasteDrawable;
-			global::TwinTechsForms.NControl.Resource.Attribute.actionModePopupWindowStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.actionModePopupWindowStyle;
-			global::TwinTechsForms.NControl.Resource.Attribute.actionModeSelectAllDrawable = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.actionModeSelectAllDrawable;
-			global::TwinTechsForms.NControl.Resource.Attribute.actionModeShareDrawable = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.actionModeShareDrawable;
-			global::TwinTechsForms.NControl.Resource.Attribute.actionModeSplitBackground = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.actionModeSplitBackground;
-			global::TwinTechsForms.NControl.Resource.Attribute.actionModeStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.actionModeStyle;
-			global::TwinTechsForms.NControl.Resource.Attribute.actionModeWebSearchDrawable = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.actionModeWebSearchDrawable;
-			global::TwinTechsForms.NControl.Resource.Attribute.actionOverflowButtonStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.actionOverflowButtonStyle;
-			global::TwinTechsForms.NControl.Resource.Attribute.actionOverflowMenuStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.actionOverflowMenuStyle;
-			global::TwinTechsForms.NControl.Resource.Attribute.actionProviderClass = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.actionProviderClass;
-			global::TwinTechsForms.NControl.Resource.Attribute.actionViewClass = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.actionViewClass;
-			global::TwinTechsForms.NControl.Resource.Attribute.activityChooserViewStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.activityChooserViewStyle;
-			global::TwinTechsForms.NControl.Resource.Attribute.alertDialogButtonGroupStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.alertDialogButtonGroupStyle;
-			global::TwinTechsForms.NControl.Resource.Attribute.alertDialogCenterButtons = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.alertDialogCenterButtons;
-			global::TwinTechsForms.NControl.Resource.Attribute.alertDialogStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.alertDialogStyle;
-			global::TwinTechsForms.NControl.Resource.Attribute.alertDialogTheme = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.alertDialogTheme;
-			global::TwinTechsForms.NControl.Resource.Attribute.arrowHeadLength = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.arrowHeadLength;
-			global::TwinTechsForms.NControl.Resource.Attribute.arrowShaftLength = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.arrowShaftLength;
-			global::TwinTechsForms.NControl.Resource.Attribute.autoCompleteTextViewStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.autoCompleteTextViewStyle;
-			global::TwinTechsForms.NControl.Resource.Attribute.background = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.background;
-			global::TwinTechsForms.NControl.Resource.Attribute.backgroundSplit = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.backgroundSplit;
-			global::TwinTechsForms.NControl.Resource.Attribute.backgroundStacked = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.backgroundStacked;
-			global::TwinTechsForms.NControl.Resource.Attribute.backgroundTint = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.backgroundTint;
-			global::TwinTechsForms.NControl.Resource.Attribute.backgroundTintMode = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.backgroundTintMode;
-			global::TwinTechsForms.NControl.Resource.Attribute.barLength = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.barLength;
-			global::TwinTechsForms.NControl.Resource.Attribute.behavior_overlapTop = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.behavior_overlapTop;
-			global::TwinTechsForms.NControl.Resource.Attribute.borderWidth = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.borderWidth;
-			global::TwinTechsForms.NControl.Resource.Attribute.borderlessButtonStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.borderlessButtonStyle;
-			global::TwinTechsForms.NControl.Resource.Attribute.buttonBarButtonStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.buttonBarButtonStyle;
-			global::TwinTechsForms.NControl.Resource.Attribute.buttonBarNegativeButtonStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.buttonBarNegativeButtonStyle;
-			global::TwinTechsForms.NControl.Resource.Attribute.buttonBarNeutralButtonStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.buttonBarNeutralButtonStyle;
-			global::TwinTechsForms.NControl.Resource.Attribute.buttonBarPositiveButtonStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.buttonBarPositiveButtonStyle;
-			global::TwinTechsForms.NControl.Resource.Attribute.buttonBarStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.buttonBarStyle;
-			global::TwinTechsForms.NControl.Resource.Attribute.buttonPanelSideLayout = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.buttonPanelSideLayout;
-			global::TwinTechsForms.NControl.Resource.Attribute.buttonStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.buttonStyle;
-			global::TwinTechsForms.NControl.Resource.Attribute.buttonStyleSmall = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.buttonStyleSmall;
-			global::TwinTechsForms.NControl.Resource.Attribute.buttonTint = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.buttonTint;
-			global::TwinTechsForms.NControl.Resource.Attribute.buttonTintMode = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.buttonTintMode;
-			global::TwinTechsForms.NControl.Resource.Attribute.cardBackgroundColor = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.cardBackgroundColor;
-			global::TwinTechsForms.NControl.Resource.Attribute.cardCornerRadius = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.cardCornerRadius;
-			global::TwinTechsForms.NControl.Resource.Attribute.cardElevation = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.cardElevation;
-			global::TwinTechsForms.NControl.Resource.Attribute.cardMaxElevation = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.cardMaxElevation;
-			global::TwinTechsForms.NControl.Resource.Attribute.cardPreventCornerOverlap = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.cardPreventCornerOverlap;
-			global::TwinTechsForms.NControl.Resource.Attribute.cardUseCompatPadding = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.cardUseCompatPadding;
-			global::TwinTechsForms.NControl.Resource.Attribute.checkboxStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.checkboxStyle;
-			global::TwinTechsForms.NControl.Resource.Attribute.checkedTextViewStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.checkedTextViewStyle;
-			global::TwinTechsForms.NControl.Resource.Attribute.closeIcon = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.closeIcon;
-			global::TwinTechsForms.NControl.Resource.Attribute.closeItemLayout = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.closeItemLayout;
-			global::TwinTechsForms.NControl.Resource.Attribute.collapseContentDescription = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.collapseContentDescription;
-			global::TwinTechsForms.NControl.Resource.Attribute.collapseIcon = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.collapseIcon;
-			global::TwinTechsForms.NControl.Resource.Attribute.collapsedTitleGravity = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.collapsedTitleGravity;
-			global::TwinTechsForms.NControl.Resource.Attribute.collapsedTitleTextAppearance = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.collapsedTitleTextAppearance;
-			global::TwinTechsForms.NControl.Resource.Attribute.color = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.color;
-			global::TwinTechsForms.NControl.Resource.Attribute.colorAccent = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.colorAccent;
-			global::TwinTechsForms.NControl.Resource.Attribute.colorButtonNormal = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.colorButtonNormal;
-			global::TwinTechsForms.NControl.Resource.Attribute.colorControlActivated = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.colorControlActivated;
-			global::TwinTechsForms.NControl.Resource.Attribute.colorControlHighlight = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.colorControlHighlight;
-			global::TwinTechsForms.NControl.Resource.Attribute.colorControlNormal = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.colorControlNormal;
-			global::TwinTechsForms.NControl.Resource.Attribute.colorPrimary = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.colorPrimary;
-			global::TwinTechsForms.NControl.Resource.Attribute.colorPrimaryDark = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.colorPrimaryDark;
-			global::TwinTechsForms.NControl.Resource.Attribute.colorSwitchThumbNormal = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.colorSwitchThumbNormal;
-			global::TwinTechsForms.NControl.Resource.Attribute.commitIcon = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.commitIcon;
-			global::TwinTechsForms.NControl.Resource.Attribute.contentInsetEnd = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.contentInsetEnd;
-			global::TwinTechsForms.NControl.Resource.Attribute.contentInsetLeft = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.contentInsetLeft;
-			global::TwinTechsForms.NControl.Resource.Attribute.contentInsetRight = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.contentInsetRight;
-			global::TwinTechsForms.NControl.Resource.Attribute.contentInsetStart = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.contentInsetStart;
-			global::TwinTechsForms.NControl.Resource.Attribute.contentPadding = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.contentPadding;
-			global::TwinTechsForms.NControl.Resource.Attribute.contentPaddingBottom = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.contentPaddingBottom;
-			global::TwinTechsForms.NControl.Resource.Attribute.contentPaddingLeft = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.contentPaddingLeft;
-			global::TwinTechsForms.NControl.Resource.Attribute.contentPaddingRight = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.contentPaddingRight;
-			global::TwinTechsForms.NControl.Resource.Attribute.contentPaddingTop = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.contentPaddingTop;
-			global::TwinTechsForms.NControl.Resource.Attribute.contentScrim = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.contentScrim;
-			global::TwinTechsForms.NControl.Resource.Attribute.controlBackground = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.controlBackground;
-			global::TwinTechsForms.NControl.Resource.Attribute.customNavigationLayout = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.customNavigationLayout;
-			global::TwinTechsForms.NControl.Resource.Attribute.defaultQueryHint = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.defaultQueryHint;
-			global::TwinTechsForms.NControl.Resource.Attribute.dialogPreferredPadding = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.dialogPreferredPadding;
-			global::TwinTechsForms.NControl.Resource.Attribute.dialogTheme = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.dialogTheme;
-			global::TwinTechsForms.NControl.Resource.Attribute.displayOptions = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.displayOptions;
-			global::TwinTechsForms.NControl.Resource.Attribute.divider = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.divider;
-			global::TwinTechsForms.NControl.Resource.Attribute.dividerHorizontal = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.dividerHorizontal;
-			global::TwinTechsForms.NControl.Resource.Attribute.dividerPadding = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.dividerPadding;
-			global::TwinTechsForms.NControl.Resource.Attribute.dividerVertical = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.dividerVertical;
-			global::TwinTechsForms.NControl.Resource.Attribute.drawableSize = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.drawableSize;
-			global::TwinTechsForms.NControl.Resource.Attribute.drawerArrowStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.drawerArrowStyle;
-			global::TwinTechsForms.NControl.Resource.Attribute.dropDownListViewStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.dropDownListViewStyle;
-			global::TwinTechsForms.NControl.Resource.Attribute.dropdownListPreferredItemHeight = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.dropdownListPreferredItemHeight;
-			global::TwinTechsForms.NControl.Resource.Attribute.editTextBackground = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.editTextBackground;
-			global::TwinTechsForms.NControl.Resource.Attribute.editTextColor = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.editTextColor;
-			global::TwinTechsForms.NControl.Resource.Attribute.editTextStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.editTextStyle;
-			global::TwinTechsForms.NControl.Resource.Attribute.elevation = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.elevation;
-			global::TwinTechsForms.NControl.Resource.Attribute.errorEnabled = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.errorEnabled;
-			global::TwinTechsForms.NControl.Resource.Attribute.errorTextAppearance = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.errorTextAppearance;
-			global::TwinTechsForms.NControl.Resource.Attribute.expandActivityOverflowButtonDrawable = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.expandActivityOverflowButtonDrawable;
-			global::TwinTechsForms.NControl.Resource.Attribute.expanded = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.expanded;
-			global::TwinTechsForms.NControl.Resource.Attribute.expandedTitleGravity = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.expandedTitleGravity;
-			global::TwinTechsForms.NControl.Resource.Attribute.expandedTitleMargin = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.expandedTitleMargin;
-			global::TwinTechsForms.NControl.Resource.Attribute.expandedTitleMarginBottom = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.expandedTitleMarginBottom;
-			global::TwinTechsForms.NControl.Resource.Attribute.expandedTitleMarginEnd = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.expandedTitleMarginEnd;
-			global::TwinTechsForms.NControl.Resource.Attribute.expandedTitleMarginStart = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.expandedTitleMarginStart;
-			global::TwinTechsForms.NControl.Resource.Attribute.expandedTitleMarginTop = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.expandedTitleMarginTop;
-			global::TwinTechsForms.NControl.Resource.Attribute.expandedTitleTextAppearance = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.expandedTitleTextAppearance;
-			global::TwinTechsForms.NControl.Resource.Attribute.externalRouteEnabledDrawable = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.externalRouteEnabledDrawable;
-			global::TwinTechsForms.NControl.Resource.Attribute.fabSize = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.fabSize;
-			global::TwinTechsForms.NControl.Resource.Attribute.gapBetweenBars = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.gapBetweenBars;
-			global::TwinTechsForms.NControl.Resource.Attribute.goIcon = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.goIcon;
-			global::TwinTechsForms.NControl.Resource.Attribute.headerLayout = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.headerLayout;
-			global::TwinTechsForms.NControl.Resource.Attribute.height = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.height;
-			global::TwinTechsForms.NControl.Resource.Attribute.hideOnContentScroll = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.hideOnContentScroll;
-			global::TwinTechsForms.NControl.Resource.Attribute.hintAnimationEnabled = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.hintAnimationEnabled;
-			global::TwinTechsForms.NControl.Resource.Attribute.hintTextAppearance = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.hintTextAppearance;
-			global::TwinTechsForms.NControl.Resource.Attribute.homeAsUpIndicator = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.homeAsUpIndicator;
-			global::TwinTechsForms.NControl.Resource.Attribute.homeLayout = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.homeLayout;
-			global::TwinTechsForms.NControl.Resource.Attribute.icon = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.icon;
-			global::TwinTechsForms.NControl.Resource.Attribute.iconifiedByDefault = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.iconifiedByDefault;
-			global::TwinTechsForms.NControl.Resource.Attribute.indeterminateProgressStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.indeterminateProgressStyle;
-			global::TwinTechsForms.NControl.Resource.Attribute.initialActivityCount = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.initialActivityCount;
-			global::TwinTechsForms.NControl.Resource.Attribute.insetForeground = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.insetForeground;
-			global::TwinTechsForms.NControl.Resource.Attribute.isLightTheme = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.isLightTheme;
-			global::TwinTechsForms.NControl.Resource.Attribute.itemBackground = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.itemBackground;
-			global::TwinTechsForms.NControl.Resource.Attribute.itemIconTint = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.itemIconTint;
-			global::TwinTechsForms.NControl.Resource.Attribute.itemPadding = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.itemPadding;
-			global::TwinTechsForms.NControl.Resource.Attribute.itemTextAppearance = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.itemTextAppearance;
-			global::TwinTechsForms.NControl.Resource.Attribute.itemTextColor = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.itemTextColor;
-			global::TwinTechsForms.NControl.Resource.Attribute.keylines = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.keylines;
-			global::TwinTechsForms.NControl.Resource.Attribute.layout = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.layout;
-			global::TwinTechsForms.NControl.Resource.Attribute.layout_anchor = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.layout_anchor;
-			global::TwinTechsForms.NControl.Resource.Attribute.layout_anchorGravity = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.layout_anchorGravity;
-			global::TwinTechsForms.NControl.Resource.Attribute.layout_behavior = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.layout_behavior;
-			global::TwinTechsForms.NControl.Resource.Attribute.layout_collapseMode = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.layout_collapseMode;
-			global::TwinTechsForms.NControl.Resource.Attribute.layout_collapseParallaxMultiplier = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.layout_collapseParallaxMultiplier;
-			global::TwinTechsForms.NControl.Resource.Attribute.layout_keyline = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.layout_keyline;
-			global::TwinTechsForms.NControl.Resource.Attribute.layout_scrollFlags = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.layout_scrollFlags;
-			global::TwinTechsForms.NControl.Resource.Attribute.layout_scrollInterpolator = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.layout_scrollInterpolator;
-			global::TwinTechsForms.NControl.Resource.Attribute.listChoiceBackgroundIndicator = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.listChoiceBackgroundIndicator;
-			global::TwinTechsForms.NControl.Resource.Attribute.listDividerAlertDialog = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.listDividerAlertDialog;
-			global::TwinTechsForms.NControl.Resource.Attribute.listItemLayout = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.listItemLayout;
-			global::TwinTechsForms.NControl.Resource.Attribute.listLayout = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.listLayout;
-			global::TwinTechsForms.NControl.Resource.Attribute.listPopupWindowStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.listPopupWindowStyle;
-			global::TwinTechsForms.NControl.Resource.Attribute.listPreferredItemHeight = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.listPreferredItemHeight;
-			global::TwinTechsForms.NControl.Resource.Attribute.listPreferredItemHeightLarge = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.listPreferredItemHeightLarge;
-			global::TwinTechsForms.NControl.Resource.Attribute.listPreferredItemHeightSmall = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.listPreferredItemHeightSmall;
-			global::TwinTechsForms.NControl.Resource.Attribute.listPreferredItemPaddingLeft = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.listPreferredItemPaddingLeft;
-			global::TwinTechsForms.NControl.Resource.Attribute.listPreferredItemPaddingRight = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.listPreferredItemPaddingRight;
-			global::TwinTechsForms.NControl.Resource.Attribute.logo = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.logo;
-			global::TwinTechsForms.NControl.Resource.Attribute.logoDescription = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.logoDescription;
-			global::TwinTechsForms.NControl.Resource.Attribute.maxActionInlineWidth = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.maxActionInlineWidth;
-			global::TwinTechsForms.NControl.Resource.Attribute.maxButtonHeight = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.maxButtonHeight;
-			global::TwinTechsForms.NControl.Resource.Attribute.measureWithLargestChild = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.measureWithLargestChild;
-			global::TwinTechsForms.NControl.Resource.Attribute.mediaRouteButtonStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.mediaRouteButtonStyle;
-			global::TwinTechsForms.NControl.Resource.Attribute.mediaRoutePauseDrawable = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.mediaRoutePauseDrawable;
-			global::TwinTechsForms.NControl.Resource.Attribute.mediaRoutePlayDrawable = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.mediaRoutePlayDrawable;
-			global::TwinTechsForms.NControl.Resource.Attribute.menu = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.menu;
-			global::TwinTechsForms.NControl.Resource.Attribute.multiChoiceItemLayout = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.multiChoiceItemLayout;
-			global::TwinTechsForms.NControl.Resource.Attribute.navigationContentDescription = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.navigationContentDescription;
-			global::TwinTechsForms.NControl.Resource.Attribute.navigationIcon = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.navigationIcon;
-			global::TwinTechsForms.NControl.Resource.Attribute.navigationMode = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.navigationMode;
-			global::TwinTechsForms.NControl.Resource.Attribute.overlapAnchor = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.overlapAnchor;
-			global::TwinTechsForms.NControl.Resource.Attribute.paddingEnd = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.paddingEnd;
-			global::TwinTechsForms.NControl.Resource.Attribute.paddingStart = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.paddingStart;
-			global::TwinTechsForms.NControl.Resource.Attribute.panelBackground = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.panelBackground;
-			global::TwinTechsForms.NControl.Resource.Attribute.panelMenuListTheme = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.panelMenuListTheme;
-			global::TwinTechsForms.NControl.Resource.Attribute.panelMenuListWidth = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.panelMenuListWidth;
-			global::TwinTechsForms.NControl.Resource.Attribute.popupMenuStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.popupMenuStyle;
-			global::TwinTechsForms.NControl.Resource.Attribute.popupTheme = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.popupTheme;
-			global::TwinTechsForms.NControl.Resource.Attribute.popupWindowStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.popupWindowStyle;
-			global::TwinTechsForms.NControl.Resource.Attribute.preserveIconSpacing = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.preserveIconSpacing;
-			global::TwinTechsForms.NControl.Resource.Attribute.pressedTranslationZ = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.pressedTranslationZ;
-			global::TwinTechsForms.NControl.Resource.Attribute.progressBarPadding = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.progressBarPadding;
-			global::TwinTechsForms.NControl.Resource.Attribute.progressBarStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.progressBarStyle;
-			global::TwinTechsForms.NControl.Resource.Attribute.queryBackground = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.queryBackground;
-			global::TwinTechsForms.NControl.Resource.Attribute.queryHint = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.queryHint;
-			global::TwinTechsForms.NControl.Resource.Attribute.radioButtonStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.radioButtonStyle;
-			global::TwinTechsForms.NControl.Resource.Attribute.ratingBarStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.ratingBarStyle;
-			global::TwinTechsForms.NControl.Resource.Attribute.rippleColor = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.rippleColor;
-			global::TwinTechsForms.NControl.Resource.Attribute.searchHintIcon = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.searchHintIcon;
-			global::TwinTechsForms.NControl.Resource.Attribute.searchIcon = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.searchIcon;
-			global::TwinTechsForms.NControl.Resource.Attribute.searchViewStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.searchViewStyle;
-			global::TwinTechsForms.NControl.Resource.Attribute.selectableItemBackground = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.selectableItemBackground;
-			global::TwinTechsForms.NControl.Resource.Attribute.selectableItemBackgroundBorderless = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.selectableItemBackgroundBorderless;
-			global::TwinTechsForms.NControl.Resource.Attribute.showAsAction = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.showAsAction;
-			global::TwinTechsForms.NControl.Resource.Attribute.showDividers = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.showDividers;
-			global::TwinTechsForms.NControl.Resource.Attribute.showText = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.showText;
-			global::TwinTechsForms.NControl.Resource.Attribute.singleChoiceItemLayout = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.singleChoiceItemLayout;
-			global::TwinTechsForms.NControl.Resource.Attribute.spinBars = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.spinBars;
-			global::TwinTechsForms.NControl.Resource.Attribute.spinnerDropDownItemStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.spinnerDropDownItemStyle;
-			global::TwinTechsForms.NControl.Resource.Attribute.spinnerStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.spinnerStyle;
-			global::TwinTechsForms.NControl.Resource.Attribute.splitTrack = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.splitTrack;
-			global::TwinTechsForms.NControl.Resource.Attribute.state_above_anchor = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.state_above_anchor;
-			global::TwinTechsForms.NControl.Resource.Attribute.statusBarBackground = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.statusBarBackground;
-			global::TwinTechsForms.NControl.Resource.Attribute.statusBarScrim = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.statusBarScrim;
-			global::TwinTechsForms.NControl.Resource.Attribute.submitBackground = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.submitBackground;
-			global::TwinTechsForms.NControl.Resource.Attribute.subtitle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.subtitle;
-			global::TwinTechsForms.NControl.Resource.Attribute.subtitleTextAppearance = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.subtitleTextAppearance;
-			global::TwinTechsForms.NControl.Resource.Attribute.subtitleTextColor = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.subtitleTextColor;
-			global::TwinTechsForms.NControl.Resource.Attribute.subtitleTextStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.subtitleTextStyle;
-			global::TwinTechsForms.NControl.Resource.Attribute.suggestionRowLayout = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.suggestionRowLayout;
-			global::TwinTechsForms.NControl.Resource.Attribute.switchMinWidth = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.switchMinWidth;
-			global::TwinTechsForms.NControl.Resource.Attribute.switchPadding = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.switchPadding;
-			global::TwinTechsForms.NControl.Resource.Attribute.switchStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.switchStyle;
-			global::TwinTechsForms.NControl.Resource.Attribute.switchTextAppearance = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.switchTextAppearance;
-			global::TwinTechsForms.NControl.Resource.Attribute.tabBackground = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.tabBackground;
-			global::TwinTechsForms.NControl.Resource.Attribute.tabContentStart = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.tabContentStart;
-			global::TwinTechsForms.NControl.Resource.Attribute.tabGravity = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.tabGravity;
-			global::TwinTechsForms.NControl.Resource.Attribute.tabIndicatorColor = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.tabIndicatorColor;
-			global::TwinTechsForms.NControl.Resource.Attribute.tabIndicatorHeight = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.tabIndicatorHeight;
-			global::TwinTechsForms.NControl.Resource.Attribute.tabMaxWidth = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.tabMaxWidth;
-			global::TwinTechsForms.NControl.Resource.Attribute.tabMinWidth = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.tabMinWidth;
-			global::TwinTechsForms.NControl.Resource.Attribute.tabMode = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.tabMode;
-			global::TwinTechsForms.NControl.Resource.Attribute.tabPadding = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.tabPadding;
-			global::TwinTechsForms.NControl.Resource.Attribute.tabPaddingBottom = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.tabPaddingBottom;
-			global::TwinTechsForms.NControl.Resource.Attribute.tabPaddingEnd = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.tabPaddingEnd;
-			global::TwinTechsForms.NControl.Resource.Attribute.tabPaddingStart = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.tabPaddingStart;
-			global::TwinTechsForms.NControl.Resource.Attribute.tabPaddingTop = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.tabPaddingTop;
-			global::TwinTechsForms.NControl.Resource.Attribute.tabSelectedTextColor = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.tabSelectedTextColor;
-			global::TwinTechsForms.NControl.Resource.Attribute.tabTextAppearance = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.tabTextAppearance;
-			global::TwinTechsForms.NControl.Resource.Attribute.tabTextColor = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.tabTextColor;
-			global::TwinTechsForms.NControl.Resource.Attribute.textAllCaps = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.textAllCaps;
-			global::TwinTechsForms.NControl.Resource.Attribute.textAppearanceLargePopupMenu = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.textAppearanceLargePopupMenu;
-			global::TwinTechsForms.NControl.Resource.Attribute.textAppearanceListItem = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.textAppearanceListItem;
-			global::TwinTechsForms.NControl.Resource.Attribute.textAppearanceListItemSmall = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.textAppearanceListItemSmall;
-			global::TwinTechsForms.NControl.Resource.Attribute.textAppearanceSearchResultSubtitle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.textAppearanceSearchResultSubtitle;
-			global::TwinTechsForms.NControl.Resource.Attribute.textAppearanceSearchResultTitle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.textAppearanceSearchResultTitle;
-			global::TwinTechsForms.NControl.Resource.Attribute.textAppearanceSmallPopupMenu = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.textAppearanceSmallPopupMenu;
-			global::TwinTechsForms.NControl.Resource.Attribute.textColorAlertDialogListItem = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.textColorAlertDialogListItem;
-			global::TwinTechsForms.NControl.Resource.Attribute.textColorSearchUrl = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.textColorSearchUrl;
-			global::TwinTechsForms.NControl.Resource.Attribute.theme = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.theme;
-			global::TwinTechsForms.NControl.Resource.Attribute.thickness = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.thickness;
-			global::TwinTechsForms.NControl.Resource.Attribute.thumbTextPadding = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.thumbTextPadding;
-			global::TwinTechsForms.NControl.Resource.Attribute.title = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.title;
-			global::TwinTechsForms.NControl.Resource.Attribute.titleEnabled = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.titleEnabled;
-			global::TwinTechsForms.NControl.Resource.Attribute.titleMarginBottom = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.titleMarginBottom;
-			global::TwinTechsForms.NControl.Resource.Attribute.titleMarginEnd = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.titleMarginEnd;
-			global::TwinTechsForms.NControl.Resource.Attribute.titleMarginStart = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.titleMarginStart;
-			global::TwinTechsForms.NControl.Resource.Attribute.titleMarginTop = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.titleMarginTop;
-			global::TwinTechsForms.NControl.Resource.Attribute.titleMargins = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.titleMargins;
-			global::TwinTechsForms.NControl.Resource.Attribute.titleTextAppearance = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.titleTextAppearance;
-			global::TwinTechsForms.NControl.Resource.Attribute.titleTextColor = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.titleTextColor;
-			global::TwinTechsForms.NControl.Resource.Attribute.titleTextStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.titleTextStyle;
-			global::TwinTechsForms.NControl.Resource.Attribute.toolbarId = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.toolbarId;
-			global::TwinTechsForms.NControl.Resource.Attribute.toolbarNavigationButtonStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.toolbarNavigationButtonStyle;
-			global::TwinTechsForms.NControl.Resource.Attribute.toolbarStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.toolbarStyle;
-			global::TwinTechsForms.NControl.Resource.Attribute.track = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.track;
-			global::TwinTechsForms.NControl.Resource.Attribute.voiceIcon = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.voiceIcon;
-			global::TwinTechsForms.NControl.Resource.Attribute.windowActionBar = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.windowActionBar;
-			global::TwinTechsForms.NControl.Resource.Attribute.windowActionBarOverlay = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.windowActionBarOverlay;
-			global::TwinTechsForms.NControl.Resource.Attribute.windowActionModeOverlay = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.windowActionModeOverlay;
-			global::TwinTechsForms.NControl.Resource.Attribute.windowFixedHeightMajor = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.windowFixedHeightMajor;
-			global::TwinTechsForms.NControl.Resource.Attribute.windowFixedHeightMinor = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.windowFixedHeightMinor;
-			global::TwinTechsForms.NControl.Resource.Attribute.windowFixedWidthMajor = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.windowFixedWidthMajor;
-			global::TwinTechsForms.NControl.Resource.Attribute.windowFixedWidthMinor = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.windowFixedWidthMinor;
-			global::TwinTechsForms.NControl.Resource.Attribute.windowMinWidthMajor = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.windowMinWidthMajor;
-			global::TwinTechsForms.NControl.Resource.Attribute.windowMinWidthMinor = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.windowMinWidthMinor;
-			global::TwinTechsForms.NControl.Resource.Attribute.windowNoTitle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.windowNoTitle;
-			global::TwinTechsForms.NControl.Resource.Boolean.abc_action_bar_embed_tabs = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Boolean.abc_action_bar_embed_tabs;
-			global::TwinTechsForms.NControl.Resource.Boolean.abc_config_actionMenuItemAllCaps = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Boolean.abc_config_actionMenuItemAllCaps;
-			global::TwinTechsForms.NControl.Resource.Boolean.abc_config_closeDialogWhenTouchOutside = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Boolean.abc_config_closeDialogWhenTouchOutside;
-			global::TwinTechsForms.NControl.Resource.Boolean.abc_config_showMenuShortcutsWhenKeyboardPresent = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Boolean.abc_config_showMenuShortcutsWhenKeyboardPresent;
-			global::TwinTechsForms.NControl.Resource.Color.abc_background_cache_hint_selector_material_dark = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.abc_background_cache_hint_selector_material_dark;
-			global::TwinTechsForms.NControl.Resource.Color.abc_background_cache_hint_selector_material_light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.abc_background_cache_hint_selector_material_light;
-			global::TwinTechsForms.NControl.Resource.Color.abc_color_highlight_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.abc_color_highlight_material;
-			global::TwinTechsForms.NControl.Resource.Color.abc_input_method_navigation_guard = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.abc_input_method_navigation_guard;
-			global::TwinTechsForms.NControl.Resource.Color.abc_primary_text_disable_only_material_dark = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.abc_primary_text_disable_only_material_dark;
-			global::TwinTechsForms.NControl.Resource.Color.abc_primary_text_disable_only_material_light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.abc_primary_text_disable_only_material_light;
-			global::TwinTechsForms.NControl.Resource.Color.abc_primary_text_material_dark = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.abc_primary_text_material_dark;
-			global::TwinTechsForms.NControl.Resource.Color.abc_primary_text_material_light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.abc_primary_text_material_light;
-			global::TwinTechsForms.NControl.Resource.Color.abc_search_url_text = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.abc_search_url_text;
-			global::TwinTechsForms.NControl.Resource.Color.abc_search_url_text_normal = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.abc_search_url_text_normal;
-			global::TwinTechsForms.NControl.Resource.Color.abc_search_url_text_pressed = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.abc_search_url_text_pressed;
-			global::TwinTechsForms.NControl.Resource.Color.abc_search_url_text_selected = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.abc_search_url_text_selected;
-			global::TwinTechsForms.NControl.Resource.Color.abc_secondary_text_material_dark = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.abc_secondary_text_material_dark;
-			global::TwinTechsForms.NControl.Resource.Color.abc_secondary_text_material_light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.abc_secondary_text_material_light;
-			global::TwinTechsForms.NControl.Resource.Color.accent_material_dark = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.accent_material_dark;
-			global::TwinTechsForms.NControl.Resource.Color.accent_material_light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.accent_material_light;
-			global::TwinTechsForms.NControl.Resource.Color.background_floating_material_dark = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.background_floating_material_dark;
-			global::TwinTechsForms.NControl.Resource.Color.background_floating_material_light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.background_floating_material_light;
-			global::TwinTechsForms.NControl.Resource.Color.background_material_dark = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.background_material_dark;
-			global::TwinTechsForms.NControl.Resource.Color.background_material_light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.background_material_light;
-			global::TwinTechsForms.NControl.Resource.Color.bright_foreground_disabled_material_dark = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.bright_foreground_disabled_material_dark;
-			global::TwinTechsForms.NControl.Resource.Color.bright_foreground_disabled_material_light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.bright_foreground_disabled_material_light;
-			global::TwinTechsForms.NControl.Resource.Color.bright_foreground_inverse_material_dark = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.bright_foreground_inverse_material_dark;
-			global::TwinTechsForms.NControl.Resource.Color.bright_foreground_inverse_material_light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.bright_foreground_inverse_material_light;
-			global::TwinTechsForms.NControl.Resource.Color.bright_foreground_material_dark = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.bright_foreground_material_dark;
-			global::TwinTechsForms.NControl.Resource.Color.bright_foreground_material_light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.bright_foreground_material_light;
-			global::TwinTechsForms.NControl.Resource.Color.button_material_dark = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.button_material_dark;
-			global::TwinTechsForms.NControl.Resource.Color.button_material_light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.button_material_light;
-			global::TwinTechsForms.NControl.Resource.Color.cardview_dark_background = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.cardview_dark_background;
-			global::TwinTechsForms.NControl.Resource.Color.cardview_light_background = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.cardview_light_background;
-			global::TwinTechsForms.NControl.Resource.Color.cardview_shadow_end_color = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.cardview_shadow_end_color;
-			global::TwinTechsForms.NControl.Resource.Color.cardview_shadow_start_color = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.cardview_shadow_start_color;
-			global::TwinTechsForms.NControl.Resource.Color.design_fab_shadow_end_color = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.design_fab_shadow_end_color;
-			global::TwinTechsForms.NControl.Resource.Color.design_fab_shadow_mid_color = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.design_fab_shadow_mid_color;
-			global::TwinTechsForms.NControl.Resource.Color.design_fab_shadow_start_color = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.design_fab_shadow_start_color;
-			global::TwinTechsForms.NControl.Resource.Color.design_fab_stroke_end_inner_color = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.design_fab_stroke_end_inner_color;
-			global::TwinTechsForms.NControl.Resource.Color.design_fab_stroke_end_outer_color = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.design_fab_stroke_end_outer_color;
-			global::TwinTechsForms.NControl.Resource.Color.design_fab_stroke_top_inner_color = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.design_fab_stroke_top_inner_color;
-			global::TwinTechsForms.NControl.Resource.Color.design_fab_stroke_top_outer_color = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.design_fab_stroke_top_outer_color;
-			global::TwinTechsForms.NControl.Resource.Color.design_snackbar_background_color = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.design_snackbar_background_color;
-			global::TwinTechsForms.NControl.Resource.Color.dim_foreground_disabled_material_dark = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.dim_foreground_disabled_material_dark;
-			global::TwinTechsForms.NControl.Resource.Color.dim_foreground_disabled_material_light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.dim_foreground_disabled_material_light;
-			global::TwinTechsForms.NControl.Resource.Color.dim_foreground_material_dark = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.dim_foreground_material_dark;
-			global::TwinTechsForms.NControl.Resource.Color.dim_foreground_material_light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.dim_foreground_material_light;
-			global::TwinTechsForms.NControl.Resource.Color.foreground_material_dark = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.foreground_material_dark;
-			global::TwinTechsForms.NControl.Resource.Color.foreground_material_light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.foreground_material_light;
-			global::TwinTechsForms.NControl.Resource.Color.highlighted_text_material_dark = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.highlighted_text_material_dark;
-			global::TwinTechsForms.NControl.Resource.Color.highlighted_text_material_light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.highlighted_text_material_light;
-			global::TwinTechsForms.NControl.Resource.Color.material_blue_grey_800 = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.material_blue_grey_800;
-			global::TwinTechsForms.NControl.Resource.Color.material_blue_grey_900 = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.material_blue_grey_900;
-			global::TwinTechsForms.NControl.Resource.Color.material_blue_grey_950 = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.material_blue_grey_950;
-			global::TwinTechsForms.NControl.Resource.Color.material_deep_teal_200 = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.material_deep_teal_200;
-			global::TwinTechsForms.NControl.Resource.Color.material_deep_teal_500 = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.material_deep_teal_500;
-			global::TwinTechsForms.NControl.Resource.Color.material_grey_100 = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.material_grey_100;
-			global::TwinTechsForms.NControl.Resource.Color.material_grey_300 = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.material_grey_300;
-			global::TwinTechsForms.NControl.Resource.Color.material_grey_50 = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.material_grey_50;
-			global::TwinTechsForms.NControl.Resource.Color.material_grey_600 = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.material_grey_600;
-			global::TwinTechsForms.NControl.Resource.Color.material_grey_800 = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.material_grey_800;
-			global::TwinTechsForms.NControl.Resource.Color.material_grey_850 = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.material_grey_850;
-			global::TwinTechsForms.NControl.Resource.Color.material_grey_900 = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.material_grey_900;
-			global::TwinTechsForms.NControl.Resource.Color.primary_dark_material_dark = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.primary_dark_material_dark;
-			global::TwinTechsForms.NControl.Resource.Color.primary_dark_material_light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.primary_dark_material_light;
-			global::TwinTechsForms.NControl.Resource.Color.primary_material_dark = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.primary_material_dark;
-			global::TwinTechsForms.NControl.Resource.Color.primary_material_light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.primary_material_light;
-			global::TwinTechsForms.NControl.Resource.Color.primary_text_default_material_dark = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.primary_text_default_material_dark;
-			global::TwinTechsForms.NControl.Resource.Color.primary_text_default_material_light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.primary_text_default_material_light;
-			global::TwinTechsForms.NControl.Resource.Color.primary_text_disabled_material_dark = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.primary_text_disabled_material_dark;
-			global::TwinTechsForms.NControl.Resource.Color.primary_text_disabled_material_light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.primary_text_disabled_material_light;
-			global::TwinTechsForms.NControl.Resource.Color.ripple_material_dark = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.ripple_material_dark;
-			global::TwinTechsForms.NControl.Resource.Color.ripple_material_light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.ripple_material_light;
-			global::TwinTechsForms.NControl.Resource.Color.secondary_text_default_material_dark = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.secondary_text_default_material_dark;
-			global::TwinTechsForms.NControl.Resource.Color.secondary_text_default_material_light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.secondary_text_default_material_light;
-			global::TwinTechsForms.NControl.Resource.Color.secondary_text_disabled_material_dark = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.secondary_text_disabled_material_dark;
-			global::TwinTechsForms.NControl.Resource.Color.secondary_text_disabled_material_light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.secondary_text_disabled_material_light;
-			global::TwinTechsForms.NControl.Resource.Color.switch_thumb_disabled_material_dark = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.switch_thumb_disabled_material_dark;
-			global::TwinTechsForms.NControl.Resource.Color.switch_thumb_disabled_material_light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.switch_thumb_disabled_material_light;
-			global::TwinTechsForms.NControl.Resource.Color.switch_thumb_material_dark = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.switch_thumb_material_dark;
-			global::TwinTechsForms.NControl.Resource.Color.switch_thumb_material_light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.switch_thumb_material_light;
-			global::TwinTechsForms.NControl.Resource.Color.switch_thumb_normal_material_dark = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.switch_thumb_normal_material_dark;
-			global::TwinTechsForms.NControl.Resource.Color.switch_thumb_normal_material_light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Color.switch_thumb_normal_material_light;
-			global::TwinTechsForms.NControl.Resource.Dimension.abc_action_bar_content_inset_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_action_bar_content_inset_material;
-			global::TwinTechsForms.NControl.Resource.Dimension.abc_action_bar_default_height_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_action_bar_default_height_material;
-			global::TwinTechsForms.NControl.Resource.Dimension.abc_action_bar_default_padding_end_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_action_bar_default_padding_end_material;
-			global::TwinTechsForms.NControl.Resource.Dimension.abc_action_bar_default_padding_start_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_action_bar_default_padding_start_material;
-			global::TwinTechsForms.NControl.Resource.Dimension.abc_action_bar_icon_vertical_padding_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_action_bar_icon_vertical_padding_material;
-			global::TwinTechsForms.NControl.Resource.Dimension.abc_action_bar_overflow_padding_end_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_action_bar_overflow_padding_end_material;
-			global::TwinTechsForms.NControl.Resource.Dimension.abc_action_bar_overflow_padding_start_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_action_bar_overflow_padding_start_material;
-			global::TwinTechsForms.NControl.Resource.Dimension.abc_action_bar_progress_bar_size = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_action_bar_progress_bar_size;
-			global::TwinTechsForms.NControl.Resource.Dimension.abc_action_bar_stacked_max_height = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_action_bar_stacked_max_height;
-			global::TwinTechsForms.NControl.Resource.Dimension.abc_action_bar_stacked_tab_max_width = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_action_bar_stacked_tab_max_width;
-			global::TwinTechsForms.NControl.Resource.Dimension.abc_action_bar_subtitle_bottom_margin_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_action_bar_subtitle_bottom_margin_material;
-			global::TwinTechsForms.NControl.Resource.Dimension.abc_action_bar_subtitle_top_margin_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_action_bar_subtitle_top_margin_material;
-			global::TwinTechsForms.NControl.Resource.Dimension.abc_action_button_min_height_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_action_button_min_height_material;
-			global::TwinTechsForms.NControl.Resource.Dimension.abc_action_button_min_width_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_action_button_min_width_material;
-			global::TwinTechsForms.NControl.Resource.Dimension.abc_action_button_min_width_overflow_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_action_button_min_width_overflow_material;
-			global::TwinTechsForms.NControl.Resource.Dimension.abc_alert_dialog_button_bar_height = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_alert_dialog_button_bar_height;
-			global::TwinTechsForms.NControl.Resource.Dimension.abc_button_inset_horizontal_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_button_inset_horizontal_material;
-			global::TwinTechsForms.NControl.Resource.Dimension.abc_button_inset_vertical_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_button_inset_vertical_material;
-			global::TwinTechsForms.NControl.Resource.Dimension.abc_button_padding_horizontal_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_button_padding_horizontal_material;
-			global::TwinTechsForms.NControl.Resource.Dimension.abc_button_padding_vertical_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_button_padding_vertical_material;
-			global::TwinTechsForms.NControl.Resource.Dimension.abc_config_prefDialogWidth = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_config_prefDialogWidth;
-			global::TwinTechsForms.NControl.Resource.Dimension.abc_control_corner_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_control_corner_material;
-			global::TwinTechsForms.NControl.Resource.Dimension.abc_control_inset_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_control_inset_material;
-			global::TwinTechsForms.NControl.Resource.Dimension.abc_control_padding_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_control_padding_material;
-			global::TwinTechsForms.NControl.Resource.Dimension.abc_dialog_min_width_major = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_dialog_min_width_major;
-			global::TwinTechsForms.NControl.Resource.Dimension.abc_dialog_min_width_minor = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_dialog_min_width_minor;
-			global::TwinTechsForms.NControl.Resource.Dimension.abc_dialog_padding_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_dialog_padding_material;
-			global::TwinTechsForms.NControl.Resource.Dimension.abc_dialog_padding_top_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_dialog_padding_top_material;
-			global::TwinTechsForms.NControl.Resource.Dimension.abc_disabled_alpha_material_dark = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_disabled_alpha_material_dark;
-			global::TwinTechsForms.NControl.Resource.Dimension.abc_disabled_alpha_material_light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_disabled_alpha_material_light;
-			global::TwinTechsForms.NControl.Resource.Dimension.abc_dropdownitem_icon_width = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_dropdownitem_icon_width;
-			global::TwinTechsForms.NControl.Resource.Dimension.abc_dropdownitem_text_padding_left = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_dropdownitem_text_padding_left;
-			global::TwinTechsForms.NControl.Resource.Dimension.abc_dropdownitem_text_padding_right = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_dropdownitem_text_padding_right;
-			global::TwinTechsForms.NControl.Resource.Dimension.abc_edit_text_inset_bottom_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_edit_text_inset_bottom_material;
-			global::TwinTechsForms.NControl.Resource.Dimension.abc_edit_text_inset_horizontal_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_edit_text_inset_horizontal_material;
-			global::TwinTechsForms.NControl.Resource.Dimension.abc_edit_text_inset_top_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_edit_text_inset_top_material;
-			global::TwinTechsForms.NControl.Resource.Dimension.abc_floating_window_z = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_floating_window_z;
-			global::TwinTechsForms.NControl.Resource.Dimension.abc_list_item_padding_horizontal_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_list_item_padding_horizontal_material;
-			global::TwinTechsForms.NControl.Resource.Dimension.abc_panel_menu_list_width = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_panel_menu_list_width;
-			global::TwinTechsForms.NControl.Resource.Dimension.abc_search_view_preferred_width = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_search_view_preferred_width;
-			global::TwinTechsForms.NControl.Resource.Dimension.abc_switch_padding = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_switch_padding;
-			global::TwinTechsForms.NControl.Resource.Dimension.abc_text_size_body_1_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_text_size_body_1_material;
-			global::TwinTechsForms.NControl.Resource.Dimension.abc_text_size_body_2_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_text_size_body_2_material;
-			global::TwinTechsForms.NControl.Resource.Dimension.abc_text_size_button_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_text_size_button_material;
-			global::TwinTechsForms.NControl.Resource.Dimension.abc_text_size_caption_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_text_size_caption_material;
-			global::TwinTechsForms.NControl.Resource.Dimension.abc_text_size_display_1_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_text_size_display_1_material;
-			global::TwinTechsForms.NControl.Resource.Dimension.abc_text_size_display_2_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_text_size_display_2_material;
-			global::TwinTechsForms.NControl.Resource.Dimension.abc_text_size_display_3_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_text_size_display_3_material;
-			global::TwinTechsForms.NControl.Resource.Dimension.abc_text_size_display_4_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_text_size_display_4_material;
-			global::TwinTechsForms.NControl.Resource.Dimension.abc_text_size_headline_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_text_size_headline_material;
-			global::TwinTechsForms.NControl.Resource.Dimension.abc_text_size_large_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_text_size_large_material;
-			global::TwinTechsForms.NControl.Resource.Dimension.abc_text_size_medium_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_text_size_medium_material;
-			global::TwinTechsForms.NControl.Resource.Dimension.abc_text_size_menu_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_text_size_menu_material;
-			global::TwinTechsForms.NControl.Resource.Dimension.abc_text_size_small_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_text_size_small_material;
-			global::TwinTechsForms.NControl.Resource.Dimension.abc_text_size_subhead_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_text_size_subhead_material;
-			global::TwinTechsForms.NControl.Resource.Dimension.abc_text_size_subtitle_material_toolbar = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_text_size_subtitle_material_toolbar;
-			global::TwinTechsForms.NControl.Resource.Dimension.abc_text_size_title_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_text_size_title_material;
-			global::TwinTechsForms.NControl.Resource.Dimension.abc_text_size_title_material_toolbar = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.abc_text_size_title_material_toolbar;
-			global::TwinTechsForms.NControl.Resource.Dimension.cardview_compat_inset_shadow = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.cardview_compat_inset_shadow;
-			global::TwinTechsForms.NControl.Resource.Dimension.cardview_default_elevation = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.cardview_default_elevation;
-			global::TwinTechsForms.NControl.Resource.Dimension.cardview_default_radius = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.cardview_default_radius;
-			global::TwinTechsForms.NControl.Resource.Dimension.design_appbar_elevation = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.design_appbar_elevation;
-			global::TwinTechsForms.NControl.Resource.Dimension.design_fab_border_width = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.design_fab_border_width;
-			global::TwinTechsForms.NControl.Resource.Dimension.design_fab_elevation = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.design_fab_elevation;
-			global::TwinTechsForms.NControl.Resource.Dimension.design_fab_size_mini = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.design_fab_size_mini;
-			global::TwinTechsForms.NControl.Resource.Dimension.design_fab_size_normal = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.design_fab_size_normal;
-			global::TwinTechsForms.NControl.Resource.Dimension.design_fab_translation_z_pressed = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.design_fab_translation_z_pressed;
-			global::TwinTechsForms.NControl.Resource.Dimension.design_navigation_elevation = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.design_navigation_elevation;
-			global::TwinTechsForms.NControl.Resource.Dimension.design_navigation_icon_padding = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.design_navigation_icon_padding;
-			global::TwinTechsForms.NControl.Resource.Dimension.design_navigation_icon_size = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.design_navigation_icon_size;
-			global::TwinTechsForms.NControl.Resource.Dimension.design_navigation_max_width = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.design_navigation_max_width;
-			global::TwinTechsForms.NControl.Resource.Dimension.design_navigation_padding_bottom = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.design_navigation_padding_bottom;
-			global::TwinTechsForms.NControl.Resource.Dimension.design_navigation_separator_vertical_padding = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.design_navigation_separator_vertical_padding;
-			global::TwinTechsForms.NControl.Resource.Dimension.design_snackbar_action_inline_max_width = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.design_snackbar_action_inline_max_width;
-			global::TwinTechsForms.NControl.Resource.Dimension.design_snackbar_background_corner_radius = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.design_snackbar_background_corner_radius;
-			global::TwinTechsForms.NControl.Resource.Dimension.design_snackbar_elevation = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.design_snackbar_elevation;
-			global::TwinTechsForms.NControl.Resource.Dimension.design_snackbar_extra_spacing_horizontal = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.design_snackbar_extra_spacing_horizontal;
-			global::TwinTechsForms.NControl.Resource.Dimension.design_snackbar_max_width = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.design_snackbar_max_width;
-			global::TwinTechsForms.NControl.Resource.Dimension.design_snackbar_min_width = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.design_snackbar_min_width;
-			global::TwinTechsForms.NControl.Resource.Dimension.design_snackbar_padding_horizontal = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.design_snackbar_padding_horizontal;
-			global::TwinTechsForms.NControl.Resource.Dimension.design_snackbar_padding_vertical = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.design_snackbar_padding_vertical;
-			global::TwinTechsForms.NControl.Resource.Dimension.design_snackbar_padding_vertical_2lines = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.design_snackbar_padding_vertical_2lines;
-			global::TwinTechsForms.NControl.Resource.Dimension.design_snackbar_text_size = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.design_snackbar_text_size;
-			global::TwinTechsForms.NControl.Resource.Dimension.design_tab_max_width = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.design_tab_max_width;
-			global::TwinTechsForms.NControl.Resource.Dimension.disabled_alpha_material_dark = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.disabled_alpha_material_dark;
-			global::TwinTechsForms.NControl.Resource.Dimension.disabled_alpha_material_light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.disabled_alpha_material_light;
-			global::TwinTechsForms.NControl.Resource.Dimension.highlight_alpha_material_colored = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.highlight_alpha_material_colored;
-			global::TwinTechsForms.NControl.Resource.Dimension.highlight_alpha_material_dark = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.highlight_alpha_material_dark;
-			global::TwinTechsForms.NControl.Resource.Dimension.highlight_alpha_material_light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.highlight_alpha_material_light;
-			global::TwinTechsForms.NControl.Resource.Dimension.notification_large_icon_height = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.notification_large_icon_height;
-			global::TwinTechsForms.NControl.Resource.Dimension.notification_large_icon_width = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.notification_large_icon_width;
-			global::TwinTechsForms.NControl.Resource.Dimension.notification_subtext_size = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Dimension.notification_subtext_size;
-			global::TwinTechsForms.NControl.Resource.Drawable.abc_ab_share_pack_mtrl_alpha = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_ab_share_pack_mtrl_alpha;
-			global::TwinTechsForms.NControl.Resource.Drawable.abc_action_bar_item_background_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_action_bar_item_background_material;
-			global::TwinTechsForms.NControl.Resource.Drawable.abc_btn_borderless_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_btn_borderless_material;
-			global::TwinTechsForms.NControl.Resource.Drawable.abc_btn_check_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_btn_check_material;
-			global::TwinTechsForms.NControl.Resource.Drawable.abc_btn_check_to_on_mtrl_000 = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_btn_check_to_on_mtrl_000;
-			global::TwinTechsForms.NControl.Resource.Drawable.abc_btn_check_to_on_mtrl_015 = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_btn_check_to_on_mtrl_015;
-			global::TwinTechsForms.NControl.Resource.Drawable.abc_btn_colored_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_btn_colored_material;
-			global::TwinTechsForms.NControl.Resource.Drawable.abc_btn_default_mtrl_shape = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_btn_default_mtrl_shape;
-			global::TwinTechsForms.NControl.Resource.Drawable.abc_btn_radio_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_btn_radio_material;
-			global::TwinTechsForms.NControl.Resource.Drawable.abc_btn_radio_to_on_mtrl_000 = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_btn_radio_to_on_mtrl_000;
-			global::TwinTechsForms.NControl.Resource.Drawable.abc_btn_radio_to_on_mtrl_015 = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_btn_radio_to_on_mtrl_015;
-			global::TwinTechsForms.NControl.Resource.Drawable.abc_btn_switch_to_on_mtrl_00001 = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_btn_switch_to_on_mtrl_00001;
-			global::TwinTechsForms.NControl.Resource.Drawable.abc_btn_switch_to_on_mtrl_00012 = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_btn_switch_to_on_mtrl_00012;
-			global::TwinTechsForms.NControl.Resource.Drawable.abc_cab_background_internal_bg = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_cab_background_internal_bg;
-			global::TwinTechsForms.NControl.Resource.Drawable.abc_cab_background_top_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_cab_background_top_material;
-			global::TwinTechsForms.NControl.Resource.Drawable.abc_cab_background_top_mtrl_alpha = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_cab_background_top_mtrl_alpha;
-			global::TwinTechsForms.NControl.Resource.Drawable.abc_control_background_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_control_background_material;
-			global::TwinTechsForms.NControl.Resource.Drawable.abc_edit_text_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_edit_text_material;
-			global::TwinTechsForms.NControl.Resource.Drawable.abc_ic_commit_search_api_mtrl_alpha = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_ic_commit_search_api_mtrl_alpha;
-			global::TwinTechsForms.NControl.Resource.Drawable.abc_ic_menu_copy_mtrl_am_alpha = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_ic_menu_copy_mtrl_am_alpha;
-			global::TwinTechsForms.NControl.Resource.Drawable.abc_ic_menu_cut_mtrl_alpha = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_ic_menu_cut_mtrl_alpha;
-			global::TwinTechsForms.NControl.Resource.Drawable.abc_ic_menu_paste_mtrl_am_alpha = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_ic_menu_paste_mtrl_am_alpha;
-			global::TwinTechsForms.NControl.Resource.Drawable.abc_ic_menu_selectall_mtrl_alpha = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_ic_menu_selectall_mtrl_alpha;
-			global::TwinTechsForms.NControl.Resource.Drawable.abc_ic_menu_share_mtrl_alpha = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_ic_menu_share_mtrl_alpha;
-			global::TwinTechsForms.NControl.Resource.Drawable.abc_item_background_holo_dark = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_item_background_holo_dark;
-			global::TwinTechsForms.NControl.Resource.Drawable.abc_item_background_holo_light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_item_background_holo_light;
-			global::TwinTechsForms.NControl.Resource.Drawable.abc_list_divider_mtrl_alpha = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_list_divider_mtrl_alpha;
-			global::TwinTechsForms.NControl.Resource.Drawable.abc_list_focused_holo = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_list_focused_holo;
-			global::TwinTechsForms.NControl.Resource.Drawable.abc_list_longpressed_holo = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_list_longpressed_holo;
-			global::TwinTechsForms.NControl.Resource.Drawable.abc_list_pressed_holo_dark = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_list_pressed_holo_dark;
-			global::TwinTechsForms.NControl.Resource.Drawable.abc_list_pressed_holo_light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_list_pressed_holo_light;
-			global::TwinTechsForms.NControl.Resource.Drawable.abc_list_selector_background_transition_holo_dark = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_list_selector_background_transition_holo_dark;
-			global::TwinTechsForms.NControl.Resource.Drawable.abc_list_selector_background_transition_holo_light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_list_selector_background_transition_holo_light;
-			global::TwinTechsForms.NControl.Resource.Drawable.abc_list_selector_disabled_holo_dark = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_list_selector_disabled_holo_dark;
-			global::TwinTechsForms.NControl.Resource.Drawable.abc_list_selector_disabled_holo_light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_list_selector_disabled_holo_light;
-			global::TwinTechsForms.NControl.Resource.Drawable.abc_list_selector_holo_dark = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_list_selector_holo_dark;
-			global::TwinTechsForms.NControl.Resource.Drawable.abc_list_selector_holo_light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_list_selector_holo_light;
-			global::TwinTechsForms.NControl.Resource.Drawable.abc_menu_hardkey_panel_mtrl_mult = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_menu_hardkey_panel_mtrl_mult;
-			global::TwinTechsForms.NControl.Resource.Drawable.abc_popup_background_mtrl_mult = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_popup_background_mtrl_mult;
-			global::TwinTechsForms.NControl.Resource.Drawable.abc_spinner_mtrl_am_alpha = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_spinner_mtrl_am_alpha;
-			global::TwinTechsForms.NControl.Resource.Drawable.abc_spinner_textfield_background_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_spinner_textfield_background_material;
-			global::TwinTechsForms.NControl.Resource.Drawable.abc_switch_thumb_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_switch_thumb_material;
-			global::TwinTechsForms.NControl.Resource.Drawable.abc_switch_track_mtrl_alpha = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_switch_track_mtrl_alpha;
-			global::TwinTechsForms.NControl.Resource.Drawable.abc_tab_indicator_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_tab_indicator_material;
-			global::TwinTechsForms.NControl.Resource.Drawable.abc_tab_indicator_mtrl_alpha = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_tab_indicator_mtrl_alpha;
-			global::TwinTechsForms.NControl.Resource.Drawable.abc_text_cursor_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_text_cursor_material;
-			global::TwinTechsForms.NControl.Resource.Drawable.abc_textfield_activated_mtrl_alpha = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_textfield_activated_mtrl_alpha;
-			global::TwinTechsForms.NControl.Resource.Drawable.abc_textfield_default_mtrl_alpha = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_textfield_default_mtrl_alpha;
-			global::TwinTechsForms.NControl.Resource.Drawable.abc_textfield_search_activated_mtrl_alpha = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_textfield_search_activated_mtrl_alpha;
-			global::TwinTechsForms.NControl.Resource.Drawable.abc_textfield_search_default_mtrl_alpha = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_textfield_search_default_mtrl_alpha;
-			global::TwinTechsForms.NControl.Resource.Drawable.abc_textfield_search_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.abc_textfield_search_material;
-			global::TwinTechsForms.NControl.Resource.Drawable.design_fab_background = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.design_fab_background;
-			global::TwinTechsForms.NControl.Resource.Drawable.design_snackbar_background = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.design_snackbar_background;
-			global::TwinTechsForms.NControl.Resource.Drawable.notification_template_icon_bg = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.notification_template_icon_bg;
-			global::TwinTechsForms.NControl.Resource.Id.action0 = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.action0;
-			global::TwinTechsForms.NControl.Resource.Id.action_bar = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.action_bar;
-			global::TwinTechsForms.NControl.Resource.Id.action_bar_activity_content = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.action_bar_activity_content;
-			global::TwinTechsForms.NControl.Resource.Id.action_bar_container = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.action_bar_container;
-			global::TwinTechsForms.NControl.Resource.Id.action_bar_root = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.action_bar_root;
-			global::TwinTechsForms.NControl.Resource.Id.action_bar_spinner = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.action_bar_spinner;
-			global::TwinTechsForms.NControl.Resource.Id.action_bar_subtitle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.action_bar_subtitle;
-			global::TwinTechsForms.NControl.Resource.Id.action_bar_title = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.action_bar_title;
-			global::TwinTechsForms.NControl.Resource.Id.action_context_bar = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.action_context_bar;
-			global::TwinTechsForms.NControl.Resource.Id.action_divider = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.action_divider;
-			global::TwinTechsForms.NControl.Resource.Id.action_menu_divider = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.action_menu_divider;
-			global::TwinTechsForms.NControl.Resource.Id.action_menu_presenter = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.action_menu_presenter;
-			global::TwinTechsForms.NControl.Resource.Id.action_mode_bar = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.action_mode_bar;
-			global::TwinTechsForms.NControl.Resource.Id.action_mode_bar_stub = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.action_mode_bar_stub;
-			global::TwinTechsForms.NControl.Resource.Id.action_mode_close_button = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.action_mode_close_button;
-			global::TwinTechsForms.NControl.Resource.Id.activity_chooser_view_content = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.activity_chooser_view_content;
-			global::TwinTechsForms.NControl.Resource.Id.alertTitle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.alertTitle;
-			global::TwinTechsForms.NControl.Resource.Id.always = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.always;
-			global::TwinTechsForms.NControl.Resource.Id.beginning = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.beginning;
-			global::TwinTechsForms.NControl.Resource.Id.bottom = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.bottom;
-			global::TwinTechsForms.NControl.Resource.Id.buttonPanel = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.buttonPanel;
-			global::TwinTechsForms.NControl.Resource.Id.cancel_action = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.cancel_action;
-			global::TwinTechsForms.NControl.Resource.Id.center = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.center;
-			global::TwinTechsForms.NControl.Resource.Id.center_horizontal = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.center_horizontal;
-			global::TwinTechsForms.NControl.Resource.Id.center_vertical = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.center_vertical;
-			global::TwinTechsForms.NControl.Resource.Id.checkbox = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.checkbox;
-			global::TwinTechsForms.NControl.Resource.Id.chronometer = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.chronometer;
-			global::TwinTechsForms.NControl.Resource.Id.clip_horizontal = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.clip_horizontal;
-			global::TwinTechsForms.NControl.Resource.Id.clip_vertical = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.clip_vertical;
-			global::TwinTechsForms.NControl.Resource.Id.collapseActionView = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.collapseActionView;
-			global::TwinTechsForms.NControl.Resource.Id.contentPanel = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.contentPanel;
-			global::TwinTechsForms.NControl.Resource.Id.custom = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.custom;
-			global::TwinTechsForms.NControl.Resource.Id.customPanel = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.customPanel;
-			global::TwinTechsForms.NControl.Resource.Id.decor_content_parent = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.decor_content_parent;
-			global::TwinTechsForms.NControl.Resource.Id.default_activity_button = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.default_activity_button;
-			global::TwinTechsForms.NControl.Resource.Id.disableHome = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.disableHome;
-			global::TwinTechsForms.NControl.Resource.Id.edit_query = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.edit_query;
-			global::TwinTechsForms.NControl.Resource.Id.end = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.end;
-			global::TwinTechsForms.NControl.Resource.Id.end_padder = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.end_padder;
-			global::TwinTechsForms.NControl.Resource.Id.enterAlways = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.enterAlways;
-			global::TwinTechsForms.NControl.Resource.Id.enterAlwaysCollapsed = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.enterAlwaysCollapsed;
-			global::TwinTechsForms.NControl.Resource.Id.exitUntilCollapsed = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.exitUntilCollapsed;
-			global::TwinTechsForms.NControl.Resource.Id.expand_activities_button = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.expand_activities_button;
-			global::TwinTechsForms.NControl.Resource.Id.expanded_menu = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.expanded_menu;
-			global::TwinTechsForms.NControl.Resource.Id.fill = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.fill;
-			global::TwinTechsForms.NControl.Resource.Id.fill_horizontal = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.fill_horizontal;
-			global::TwinTechsForms.NControl.Resource.Id.fill_vertical = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.fill_vertical;
-			global::TwinTechsForms.NControl.Resource.Id.@fixed = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.@fixed;
-			global::TwinTechsForms.NControl.Resource.Id.home = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.home;
-			global::TwinTechsForms.NControl.Resource.Id.homeAsUp = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.homeAsUp;
-			global::TwinTechsForms.NControl.Resource.Id.icon = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.icon;
-			global::TwinTechsForms.NControl.Resource.Id.ifRoom = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.ifRoom;
-			global::TwinTechsForms.NControl.Resource.Id.image = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.image;
-			global::TwinTechsForms.NControl.Resource.Id.info = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.info;
-			global::TwinTechsForms.NControl.Resource.Id.left = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.left;
-			global::TwinTechsForms.NControl.Resource.Id.line1 = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.line1;
-			global::TwinTechsForms.NControl.Resource.Id.line3 = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.line3;
-			global::TwinTechsForms.NControl.Resource.Id.listMode = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.listMode;
-			global::TwinTechsForms.NControl.Resource.Id.list_item = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.list_item;
-			global::TwinTechsForms.NControl.Resource.Id.media_actions = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.media_actions;
-			global::TwinTechsForms.NControl.Resource.Id.middle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.middle;
-			global::TwinTechsForms.NControl.Resource.Id.mini = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.mini;
-			global::TwinTechsForms.NControl.Resource.Id.multiply = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.multiply;
-			global::TwinTechsForms.NControl.Resource.Id.never = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.never;
-			global::TwinTechsForms.NControl.Resource.Id.none = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.none;
-			global::TwinTechsForms.NControl.Resource.Id.normal = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.normal;
-			global::TwinTechsForms.NControl.Resource.Id.parallax = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.parallax;
-			global::TwinTechsForms.NControl.Resource.Id.parentPanel = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.parentPanel;
-			global::TwinTechsForms.NControl.Resource.Id.pin = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.pin;
-			global::TwinTechsForms.NControl.Resource.Id.progress_circular = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.progress_circular;
-			global::TwinTechsForms.NControl.Resource.Id.progress_horizontal = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.progress_horizontal;
-			global::TwinTechsForms.NControl.Resource.Id.radio = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.radio;
-			global::TwinTechsForms.NControl.Resource.Id.right = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.right;
-			global::TwinTechsForms.NControl.Resource.Id.screen = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.screen;
-			global::TwinTechsForms.NControl.Resource.Id.scroll = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.scroll;
-			global::TwinTechsForms.NControl.Resource.Id.scrollView = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.scrollView;
-			global::TwinTechsForms.NControl.Resource.Id.scrollable = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.scrollable;
-			global::TwinTechsForms.NControl.Resource.Id.search_badge = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.search_badge;
-			global::TwinTechsForms.NControl.Resource.Id.search_bar = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.search_bar;
-			global::TwinTechsForms.NControl.Resource.Id.search_button = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.search_button;
-			global::TwinTechsForms.NControl.Resource.Id.search_close_btn = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.search_close_btn;
-			global::TwinTechsForms.NControl.Resource.Id.search_edit_frame = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.search_edit_frame;
-			global::TwinTechsForms.NControl.Resource.Id.search_go_btn = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.search_go_btn;
-			global::TwinTechsForms.NControl.Resource.Id.search_mag_icon = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.search_mag_icon;
-			global::TwinTechsForms.NControl.Resource.Id.search_plate = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.search_plate;
-			global::TwinTechsForms.NControl.Resource.Id.search_src_text = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.search_src_text;
-			global::TwinTechsForms.NControl.Resource.Id.search_voice_btn = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.search_voice_btn;
-			global::TwinTechsForms.NControl.Resource.Id.select_dialog_listview = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.select_dialog_listview;
-			global::TwinTechsForms.NControl.Resource.Id.shortcut = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.shortcut;
-			global::TwinTechsForms.NControl.Resource.Id.showCustom = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.showCustom;
-			global::TwinTechsForms.NControl.Resource.Id.showHome = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.showHome;
-			global::TwinTechsForms.NControl.Resource.Id.showTitle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.showTitle;
-			global::TwinTechsForms.NControl.Resource.Id.snackbar_action = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.snackbar_action;
-			global::TwinTechsForms.NControl.Resource.Id.snackbar_text = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.snackbar_text;
-			global::TwinTechsForms.NControl.Resource.Id.split_action_bar = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.split_action_bar;
-			global::TwinTechsForms.NControl.Resource.Id.src_atop = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.src_atop;
-			global::TwinTechsForms.NControl.Resource.Id.src_in = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.src_in;
-			global::TwinTechsForms.NControl.Resource.Id.src_over = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.src_over;
-			global::TwinTechsForms.NControl.Resource.Id.start = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.start;
-			global::TwinTechsForms.NControl.Resource.Id.status_bar_latest_event_content = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.status_bar_latest_event_content;
-			global::TwinTechsForms.NControl.Resource.Id.submit_area = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.submit_area;
-			global::TwinTechsForms.NControl.Resource.Id.tabMode = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.tabMode;
-			global::TwinTechsForms.NControl.Resource.Id.text = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.text;
-			global::TwinTechsForms.NControl.Resource.Id.text2 = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.text2;
-			global::TwinTechsForms.NControl.Resource.Id.textSpacerNoButtons = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.textSpacerNoButtons;
-			global::TwinTechsForms.NControl.Resource.Id.time = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.time;
-			global::TwinTechsForms.NControl.Resource.Id.title = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.title;
-			global::TwinTechsForms.NControl.Resource.Id.title_template = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.title_template;
-			global::TwinTechsForms.NControl.Resource.Id.top = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.top;
-			global::TwinTechsForms.NControl.Resource.Id.topPanel = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.topPanel;
-			global::TwinTechsForms.NControl.Resource.Id.up = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.up;
-			global::TwinTechsForms.NControl.Resource.Id.useLogo = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.useLogo;
-			global::TwinTechsForms.NControl.Resource.Id.view_offset_helper = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.view_offset_helper;
-			global::TwinTechsForms.NControl.Resource.Id.withText = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.withText;
-			global::TwinTechsForms.NControl.Resource.Id.wrap_content = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.wrap_content;
-			global::TwinTechsForms.NControl.Resource.Integer.abc_config_activityDefaultDur = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Integer.abc_config_activityDefaultDur;
-			global::TwinTechsForms.NControl.Resource.Integer.abc_config_activityShortDur = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Integer.abc_config_activityShortDur;
-			global::TwinTechsForms.NControl.Resource.Integer.cancel_button_image_alpha = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Integer.cancel_button_image_alpha;
-			global::TwinTechsForms.NControl.Resource.Integer.design_snackbar_text_max_lines = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Integer.design_snackbar_text_max_lines;
-			global::TwinTechsForms.NControl.Resource.Integer.status_bar_notification_info_maxnum = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Integer.status_bar_notification_info_maxnum;
-			global::TwinTechsForms.NControl.Resource.Layout.abc_action_bar_title_item = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Layout.abc_action_bar_title_item;
-			global::TwinTechsForms.NControl.Resource.Layout.abc_action_bar_up_container = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Layout.abc_action_bar_up_container;
-			global::TwinTechsForms.NControl.Resource.Layout.abc_action_bar_view_list_nav_layout = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Layout.abc_action_bar_view_list_nav_layout;
-			global::TwinTechsForms.NControl.Resource.Layout.abc_action_menu_item_layout = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Layout.abc_action_menu_item_layout;
-			global::TwinTechsForms.NControl.Resource.Layout.abc_action_menu_layout = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Layout.abc_action_menu_layout;
-			global::TwinTechsForms.NControl.Resource.Layout.abc_action_mode_bar = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Layout.abc_action_mode_bar;
-			global::TwinTechsForms.NControl.Resource.Layout.abc_action_mode_close_item_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Layout.abc_action_mode_close_item_material;
-			global::TwinTechsForms.NControl.Resource.Layout.abc_activity_chooser_view = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Layout.abc_activity_chooser_view;
-			global::TwinTechsForms.NControl.Resource.Layout.abc_activity_chooser_view_list_item = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Layout.abc_activity_chooser_view_list_item;
-			global::TwinTechsForms.NControl.Resource.Layout.abc_alert_dialog_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Layout.abc_alert_dialog_material;
-			global::TwinTechsForms.NControl.Resource.Layout.abc_dialog_title_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Layout.abc_dialog_title_material;
-			global::TwinTechsForms.NControl.Resource.Layout.abc_expanded_menu_layout = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Layout.abc_expanded_menu_layout;
-			global::TwinTechsForms.NControl.Resource.Layout.abc_list_menu_item_checkbox = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Layout.abc_list_menu_item_checkbox;
-			global::TwinTechsForms.NControl.Resource.Layout.abc_list_menu_item_icon = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Layout.abc_list_menu_item_icon;
-			global::TwinTechsForms.NControl.Resource.Layout.abc_list_menu_item_layout = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Layout.abc_list_menu_item_layout;
-			global::TwinTechsForms.NControl.Resource.Layout.abc_list_menu_item_radio = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Layout.abc_list_menu_item_radio;
-			global::TwinTechsForms.NControl.Resource.Layout.abc_popup_menu_item_layout = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Layout.abc_popup_menu_item_layout;
-			global::TwinTechsForms.NControl.Resource.Layout.abc_screen_content_include = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Layout.abc_screen_content_include;
-			global::TwinTechsForms.NControl.Resource.Layout.abc_screen_simple = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Layout.abc_screen_simple;
-			global::TwinTechsForms.NControl.Resource.Layout.abc_screen_simple_overlay_action_mode = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Layout.abc_screen_simple_overlay_action_mode;
-			global::TwinTechsForms.NControl.Resource.Layout.abc_screen_toolbar = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Layout.abc_screen_toolbar;
-			global::TwinTechsForms.NControl.Resource.Layout.abc_search_dropdown_item_icons_2line = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Layout.abc_search_dropdown_item_icons_2line;
-			global::TwinTechsForms.NControl.Resource.Layout.abc_search_view = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Layout.abc_search_view;
-			global::TwinTechsForms.NControl.Resource.Layout.abc_select_dialog_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Layout.abc_select_dialog_material;
-			global::TwinTechsForms.NControl.Resource.Layout.design_layout_snackbar = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Layout.design_layout_snackbar;
-			global::TwinTechsForms.NControl.Resource.Layout.design_layout_snackbar_include = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Layout.design_layout_snackbar_include;
-			global::TwinTechsForms.NControl.Resource.Layout.design_layout_tab_icon = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Layout.design_layout_tab_icon;
-			global::TwinTechsForms.NControl.Resource.Layout.design_layout_tab_text = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Layout.design_layout_tab_text;
-			global::TwinTechsForms.NControl.Resource.Layout.design_navigation_item = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Layout.design_navigation_item;
-			global::TwinTechsForms.NControl.Resource.Layout.design_navigation_item_header = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Layout.design_navigation_item_header;
-			global::TwinTechsForms.NControl.Resource.Layout.design_navigation_item_separator = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Layout.design_navigation_item_separator;
-			global::TwinTechsForms.NControl.Resource.Layout.design_navigation_item_subheader = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Layout.design_navigation_item_subheader;
-			global::TwinTechsForms.NControl.Resource.Layout.design_navigation_menu = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Layout.design_navigation_menu;
-			global::TwinTechsForms.NControl.Resource.Layout.notification_media_action = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Layout.notification_media_action;
-			global::TwinTechsForms.NControl.Resource.Layout.notification_media_cancel_action = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Layout.notification_media_cancel_action;
-			global::TwinTechsForms.NControl.Resource.Layout.notification_template_big_media = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Layout.notification_template_big_media;
-			global::TwinTechsForms.NControl.Resource.Layout.notification_template_big_media_narrow = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Layout.notification_template_big_media_narrow;
-			global::TwinTechsForms.NControl.Resource.Layout.notification_template_media = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Layout.notification_template_media;
-			global::TwinTechsForms.NControl.Resource.Layout.notification_template_part_chronometer = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Layout.notification_template_part_chronometer;
-			global::TwinTechsForms.NControl.Resource.Layout.notification_template_part_time = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Layout.notification_template_part_time;
-			global::TwinTechsForms.NControl.Resource.Layout.select_dialog_item_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Layout.select_dialog_item_material;
-			global::TwinTechsForms.NControl.Resource.Layout.select_dialog_multichoice_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Layout.select_dialog_multichoice_material;
-			global::TwinTechsForms.NControl.Resource.Layout.select_dialog_singlechoice_material = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Layout.select_dialog_singlechoice_material;
-			global::TwinTechsForms.NControl.Resource.Layout.support_simple_spinner_dropdown_item = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Layout.support_simple_spinner_dropdown_item;
-			global::TwinTechsForms.NControl.Resource.String.abc_action_bar_home_description = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.String.abc_action_bar_home_description;
-			global::TwinTechsForms.NControl.Resource.String.abc_action_bar_home_description_format = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.String.abc_action_bar_home_description_format;
-			global::TwinTechsForms.NControl.Resource.String.abc_action_bar_home_subtitle_description_format = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.String.abc_action_bar_home_subtitle_description_format;
-			global::TwinTechsForms.NControl.Resource.String.abc_action_bar_up_description = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.String.abc_action_bar_up_description;
-			global::TwinTechsForms.NControl.Resource.String.abc_action_menu_overflow_description = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.String.abc_action_menu_overflow_description;
-			global::TwinTechsForms.NControl.Resource.String.abc_action_mode_done = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.String.abc_action_mode_done;
-			global::TwinTechsForms.NControl.Resource.String.abc_activity_chooser_view_see_all = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.String.abc_activity_chooser_view_see_all;
-			global::TwinTechsForms.NControl.Resource.String.abc_activitychooserview_choose_application = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.String.abc_activitychooserview_choose_application;
-			global::TwinTechsForms.NControl.Resource.String.abc_search_hint = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.String.abc_search_hint;
-			global::TwinTechsForms.NControl.Resource.String.abc_searchview_description_clear = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.String.abc_searchview_description_clear;
-			global::TwinTechsForms.NControl.Resource.String.abc_searchview_description_query = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.String.abc_searchview_description_query;
-			global::TwinTechsForms.NControl.Resource.String.abc_searchview_description_search = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.String.abc_searchview_description_search;
-			global::TwinTechsForms.NControl.Resource.String.abc_searchview_description_submit = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.String.abc_searchview_description_submit;
-			global::TwinTechsForms.NControl.Resource.String.abc_searchview_description_voice = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.String.abc_searchview_description_voice;
-			global::TwinTechsForms.NControl.Resource.String.abc_shareactionprovider_share_with = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.String.abc_shareactionprovider_share_with;
-			global::TwinTechsForms.NControl.Resource.String.abc_shareactionprovider_share_with_application = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.String.abc_shareactionprovider_share_with_application;
-			global::TwinTechsForms.NControl.Resource.String.abc_toolbar_collapse_description = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.String.abc_toolbar_collapse_description;
-			global::TwinTechsForms.NControl.Resource.String.appbar_scrolling_view_behavior = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.String.appbar_scrolling_view_behavior;
-			global::TwinTechsForms.NControl.Resource.String.library_name = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.String.library_name;
-			global::TwinTechsForms.NControl.Resource.String.mr_system_route_name = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.String.mr_system_route_name;
-			global::TwinTechsForms.NControl.Resource.String.mr_user_route_category_name = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.String.mr_user_route_category_name;
-			global::TwinTechsForms.NControl.Resource.String.status_bar_notification_info_overflow = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.String.status_bar_notification_info_overflow;
-			global::TwinTechsForms.NControl.Resource.Style.AlertDialog_AppCompat = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.AlertDialog_AppCompat;
-			global::TwinTechsForms.NControl.Resource.Style.AlertDialog_AppCompat_Light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.AlertDialog_AppCompat_Light;
-			global::TwinTechsForms.NControl.Resource.Style.Animation_AppCompat_Dialog = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Animation_AppCompat_Dialog;
-			global::TwinTechsForms.NControl.Resource.Style.Animation_AppCompat_DropDownUp = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Animation_AppCompat_DropDownUp;
-			global::TwinTechsForms.NControl.Resource.Style.Base_AlertDialog_AppCompat = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_AlertDialog_AppCompat;
-			global::TwinTechsForms.NControl.Resource.Style.Base_AlertDialog_AppCompat_Light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_AlertDialog_AppCompat_Light;
-			global::TwinTechsForms.NControl.Resource.Style.Base_Animation_AppCompat_Dialog = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Animation_AppCompat_Dialog;
-			global::TwinTechsForms.NControl.Resource.Style.Base_Animation_AppCompat_DropDownUp = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Animation_AppCompat_DropDownUp;
-			global::TwinTechsForms.NControl.Resource.Style.Base_DialogWindowTitle_AppCompat = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_DialogWindowTitle_AppCompat;
-			global::TwinTechsForms.NControl.Resource.Style.Base_DialogWindowTitleBackground_AppCompat = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_DialogWindowTitleBackground_AppCompat;
-			global::TwinTechsForms.NControl.Resource.Style.Base_TextAppearance_AppCompat = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat;
-			global::TwinTechsForms.NControl.Resource.Style.Base_TextAppearance_AppCompat_Body1 = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Body1;
-			global::TwinTechsForms.NControl.Resource.Style.Base_TextAppearance_AppCompat_Body2 = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Body2;
-			global::TwinTechsForms.NControl.Resource.Style.Base_TextAppearance_AppCompat_Button = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Button;
-			global::TwinTechsForms.NControl.Resource.Style.Base_TextAppearance_AppCompat_Caption = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Caption;
-			global::TwinTechsForms.NControl.Resource.Style.Base_TextAppearance_AppCompat_Display1 = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Display1;
-			global::TwinTechsForms.NControl.Resource.Style.Base_TextAppearance_AppCompat_Display2 = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Display2;
-			global::TwinTechsForms.NControl.Resource.Style.Base_TextAppearance_AppCompat_Display3 = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Display3;
-			global::TwinTechsForms.NControl.Resource.Style.Base_TextAppearance_AppCompat_Display4 = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Display4;
-			global::TwinTechsForms.NControl.Resource.Style.Base_TextAppearance_AppCompat_Headline = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Headline;
-			global::TwinTechsForms.NControl.Resource.Style.Base_TextAppearance_AppCompat_Inverse = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Inverse;
-			global::TwinTechsForms.NControl.Resource.Style.Base_TextAppearance_AppCompat_Large = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Large;
-			global::TwinTechsForms.NControl.Resource.Style.Base_TextAppearance_AppCompat_Large_Inverse = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Large_Inverse;
-			global::TwinTechsForms.NControl.Resource.Style.Base_TextAppearance_AppCompat_Light_Widget_PopupMenu_Large = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Light_Widget_PopupMenu_Large;
-			global::TwinTechsForms.NControl.Resource.Style.Base_TextAppearance_AppCompat_Light_Widget_PopupMenu_Small = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Light_Widget_PopupMenu_Small;
-			global::TwinTechsForms.NControl.Resource.Style.Base_TextAppearance_AppCompat_Medium = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Medium;
-			global::TwinTechsForms.NControl.Resource.Style.Base_TextAppearance_AppCompat_Medium_Inverse = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Medium_Inverse;
-			global::TwinTechsForms.NControl.Resource.Style.Base_TextAppearance_AppCompat_Menu = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Menu;
-			global::TwinTechsForms.NControl.Resource.Style.Base_TextAppearance_AppCompat_SearchResult = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_SearchResult;
-			global::TwinTechsForms.NControl.Resource.Style.Base_TextAppearance_AppCompat_SearchResult_Subtitle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_SearchResult_Subtitle;
-			global::TwinTechsForms.NControl.Resource.Style.Base_TextAppearance_AppCompat_SearchResult_Title = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_SearchResult_Title;
-			global::TwinTechsForms.NControl.Resource.Style.Base_TextAppearance_AppCompat_Small = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Small;
-			global::TwinTechsForms.NControl.Resource.Style.Base_TextAppearance_AppCompat_Small_Inverse = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Small_Inverse;
-			global::TwinTechsForms.NControl.Resource.Style.Base_TextAppearance_AppCompat_Subhead = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Subhead;
-			global::TwinTechsForms.NControl.Resource.Style.Base_TextAppearance_AppCompat_Subhead_Inverse = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Subhead_Inverse;
-			global::TwinTechsForms.NControl.Resource.Style.Base_TextAppearance_AppCompat_Title = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Title;
-			global::TwinTechsForms.NControl.Resource.Style.Base_TextAppearance_AppCompat_Title_Inverse = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Title_Inverse;
-			global::TwinTechsForms.NControl.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Menu = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Menu;
-			global::TwinTechsForms.NControl.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Subtitle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Subtitle;
-			global::TwinTechsForms.NControl.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Subtitle_Inverse = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Subtitle_Inverse;
-			global::TwinTechsForms.NControl.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Title = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Title;
-			global::TwinTechsForms.NControl.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Title_Inverse = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Title_Inverse;
-			global::TwinTechsForms.NControl.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionMode_Subtitle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionMode_Subtitle;
-			global::TwinTechsForms.NControl.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionMode_Title = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionMode_Title;
-			global::TwinTechsForms.NControl.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button;
-			global::TwinTechsForms.NControl.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button_Inverse = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button_Inverse;
-			global::TwinTechsForms.NControl.Resource.Style.Base_TextAppearance_AppCompat_Widget_DropDownItem = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_DropDownItem;
-			global::TwinTechsForms.NControl.Resource.Style.Base_TextAppearance_AppCompat_Widget_PopupMenu_Large = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_PopupMenu_Large;
-			global::TwinTechsForms.NControl.Resource.Style.Base_TextAppearance_AppCompat_Widget_PopupMenu_Small = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_PopupMenu_Small;
-			global::TwinTechsForms.NControl.Resource.Style.Base_TextAppearance_AppCompat_Widget_Switch = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Switch;
-			global::TwinTechsForms.NControl.Resource.Style.Base_TextAppearance_AppCompat_Widget_TextView_SpinnerItem = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_TextView_SpinnerItem;
-			global::TwinTechsForms.NControl.Resource.Style.Base_TextAppearance_Widget_AppCompat_ExpandedMenu_Item = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_TextAppearance_Widget_AppCompat_ExpandedMenu_Item;
-			global::TwinTechsForms.NControl.Resource.Style.Base_TextAppearance_Widget_AppCompat_Toolbar_Subtitle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_TextAppearance_Widget_AppCompat_Toolbar_Subtitle;
-			global::TwinTechsForms.NControl.Resource.Style.Base_TextAppearance_Widget_AppCompat_Toolbar_Title = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_TextAppearance_Widget_AppCompat_Toolbar_Title;
-			global::TwinTechsForms.NControl.Resource.Style.Base_Theme_AppCompat = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Theme_AppCompat;
-			global::TwinTechsForms.NControl.Resource.Style.Base_Theme_AppCompat_CompactMenu = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Theme_AppCompat_CompactMenu;
-			global::TwinTechsForms.NControl.Resource.Style.Base_Theme_AppCompat_Dialog = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Theme_AppCompat_Dialog;
-			global::TwinTechsForms.NControl.Resource.Style.Base_Theme_AppCompat_Dialog_Alert = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Theme_AppCompat_Dialog_Alert;
-			global::TwinTechsForms.NControl.Resource.Style.Base_Theme_AppCompat_Dialog_FixedSize = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Theme_AppCompat_Dialog_FixedSize;
-			global::TwinTechsForms.NControl.Resource.Style.Base_Theme_AppCompat_Dialog_MinWidth = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Theme_AppCompat_Dialog_MinWidth;
-			global::TwinTechsForms.NControl.Resource.Style.Base_Theme_AppCompat_DialogWhenLarge = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Theme_AppCompat_DialogWhenLarge;
-			global::TwinTechsForms.NControl.Resource.Style.Base_Theme_AppCompat_Light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Theme_AppCompat_Light;
-			global::TwinTechsForms.NControl.Resource.Style.Base_Theme_AppCompat_Light_DarkActionBar = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Theme_AppCompat_Light_DarkActionBar;
-			global::TwinTechsForms.NControl.Resource.Style.Base_Theme_AppCompat_Light_Dialog = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Theme_AppCompat_Light_Dialog;
-			global::TwinTechsForms.NControl.Resource.Style.Base_Theme_AppCompat_Light_Dialog_Alert = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Theme_AppCompat_Light_Dialog_Alert;
-			global::TwinTechsForms.NControl.Resource.Style.Base_Theme_AppCompat_Light_Dialog_FixedSize = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Theme_AppCompat_Light_Dialog_FixedSize;
-			global::TwinTechsForms.NControl.Resource.Style.Base_Theme_AppCompat_Light_Dialog_MinWidth = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Theme_AppCompat_Light_Dialog_MinWidth;
-			global::TwinTechsForms.NControl.Resource.Style.Base_Theme_AppCompat_Light_DialogWhenLarge = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Theme_AppCompat_Light_DialogWhenLarge;
-			global::TwinTechsForms.NControl.Resource.Style.Base_ThemeOverlay_AppCompat = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_ThemeOverlay_AppCompat;
-			global::TwinTechsForms.NControl.Resource.Style.Base_ThemeOverlay_AppCompat_ActionBar = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_ActionBar;
-			global::TwinTechsForms.NControl.Resource.Style.Base_ThemeOverlay_AppCompat_Dark = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Dark;
-			global::TwinTechsForms.NControl.Resource.Style.Base_ThemeOverlay_AppCompat_Dark_ActionBar = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Dark_ActionBar;
-			global::TwinTechsForms.NControl.Resource.Style.Base_ThemeOverlay_AppCompat_Light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Light;
-			global::TwinTechsForms.NControl.Resource.Style.Base_V11_Theme_AppCompat_Dialog = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_V11_Theme_AppCompat_Dialog;
-			global::TwinTechsForms.NControl.Resource.Style.Base_V11_Theme_AppCompat_Light_Dialog = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_V11_Theme_AppCompat_Light_Dialog;
-			global::TwinTechsForms.NControl.Resource.Style.Base_V12_Widget_AppCompat_AutoCompleteTextView = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_V12_Widget_AppCompat_AutoCompleteTextView;
-			global::TwinTechsForms.NControl.Resource.Style.Base_V12_Widget_AppCompat_EditText = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_V12_Widget_AppCompat_EditText;
-			global::TwinTechsForms.NControl.Resource.Style.Base_V21_Theme_AppCompat = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_V21_Theme_AppCompat;
-			global::TwinTechsForms.NControl.Resource.Style.Base_V21_Theme_AppCompat_Dialog = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_V21_Theme_AppCompat_Dialog;
-			global::TwinTechsForms.NControl.Resource.Style.Base_V21_Theme_AppCompat_Light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_V21_Theme_AppCompat_Light;
-			global::TwinTechsForms.NControl.Resource.Style.Base_V21_Theme_AppCompat_Light_Dialog = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_V21_Theme_AppCompat_Light_Dialog;
-			global::TwinTechsForms.NControl.Resource.Style.Base_V22_Theme_AppCompat = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_V22_Theme_AppCompat;
-			global::TwinTechsForms.NControl.Resource.Style.Base_V22_Theme_AppCompat_Light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_V22_Theme_AppCompat_Light;
-			global::TwinTechsForms.NControl.Resource.Style.Base_V23_Theme_AppCompat = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_V23_Theme_AppCompat;
-			global::TwinTechsForms.NControl.Resource.Style.Base_V23_Theme_AppCompat_Light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_V23_Theme_AppCompat_Light;
-			global::TwinTechsForms.NControl.Resource.Style.Base_V7_Theme_AppCompat = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_V7_Theme_AppCompat;
-			global::TwinTechsForms.NControl.Resource.Style.Base_V7_Theme_AppCompat_Dialog = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_V7_Theme_AppCompat_Dialog;
-			global::TwinTechsForms.NControl.Resource.Style.Base_V7_Theme_AppCompat_Light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_V7_Theme_AppCompat_Light;
-			global::TwinTechsForms.NControl.Resource.Style.Base_V7_Theme_AppCompat_Light_Dialog = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_V7_Theme_AppCompat_Light_Dialog;
-			global::TwinTechsForms.NControl.Resource.Style.Base_V7_Widget_AppCompat_AutoCompleteTextView = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_V7_Widget_AppCompat_AutoCompleteTextView;
-			global::TwinTechsForms.NControl.Resource.Style.Base_V7_Widget_AppCompat_EditText = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_V7_Widget_AppCompat_EditText;
-			global::TwinTechsForms.NControl.Resource.Style.Base_Widget_AppCompat_ActionBar = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar;
-			global::TwinTechsForms.NControl.Resource.Style.Base_Widget_AppCompat_ActionBar_Solid = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar_Solid;
-			global::TwinTechsForms.NControl.Resource.Style.Base_Widget_AppCompat_ActionBar_TabBar = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar_TabBar;
-			global::TwinTechsForms.NControl.Resource.Style.Base_Widget_AppCompat_ActionBar_TabText = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar_TabText;
-			global::TwinTechsForms.NControl.Resource.Style.Base_Widget_AppCompat_ActionBar_TabView = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar_TabView;
-			global::TwinTechsForms.NControl.Resource.Style.Base_Widget_AppCompat_ActionButton = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_ActionButton;
-			global::TwinTechsForms.NControl.Resource.Style.Base_Widget_AppCompat_ActionButton_CloseMode = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_ActionButton_CloseMode;
-			global::TwinTechsForms.NControl.Resource.Style.Base_Widget_AppCompat_ActionButton_Overflow = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_ActionButton_Overflow;
-			global::TwinTechsForms.NControl.Resource.Style.Base_Widget_AppCompat_ActionMode = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_ActionMode;
-			global::TwinTechsForms.NControl.Resource.Style.Base_Widget_AppCompat_ActivityChooserView = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_ActivityChooserView;
-			global::TwinTechsForms.NControl.Resource.Style.Base_Widget_AppCompat_AutoCompleteTextView = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_AutoCompleteTextView;
-			global::TwinTechsForms.NControl.Resource.Style.Base_Widget_AppCompat_Button = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_Button;
-			global::TwinTechsForms.NControl.Resource.Style.Base_Widget_AppCompat_Button_Borderless = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_Button_Borderless;
-			global::TwinTechsForms.NControl.Resource.Style.Base_Widget_AppCompat_Button_Borderless_Colored = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_Button_Borderless_Colored;
-			global::TwinTechsForms.NControl.Resource.Style.Base_Widget_AppCompat_Button_ButtonBar_AlertDialog = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_Button_ButtonBar_AlertDialog;
-			global::TwinTechsForms.NControl.Resource.Style.Base_Widget_AppCompat_Button_Colored = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_Button_Colored;
-			global::TwinTechsForms.NControl.Resource.Style.Base_Widget_AppCompat_Button_Small = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_Button_Small;
-			global::TwinTechsForms.NControl.Resource.Style.Base_Widget_AppCompat_ButtonBar = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_ButtonBar;
-			global::TwinTechsForms.NControl.Resource.Style.Base_Widget_AppCompat_ButtonBar_AlertDialog = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_ButtonBar_AlertDialog;
-			global::TwinTechsForms.NControl.Resource.Style.Base_Widget_AppCompat_CompoundButton_CheckBox = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_CompoundButton_CheckBox;
-			global::TwinTechsForms.NControl.Resource.Style.Base_Widget_AppCompat_CompoundButton_RadioButton = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_CompoundButton_RadioButton;
-			global::TwinTechsForms.NControl.Resource.Style.Base_Widget_AppCompat_CompoundButton_Switch = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_CompoundButton_Switch;
-			global::TwinTechsForms.NControl.Resource.Style.Base_Widget_AppCompat_DrawerArrowToggle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_DrawerArrowToggle;
-			global::TwinTechsForms.NControl.Resource.Style.Base_Widget_AppCompat_DrawerArrowToggle_Common = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_DrawerArrowToggle_Common;
-			global::TwinTechsForms.NControl.Resource.Style.Base_Widget_AppCompat_DropDownItem_Spinner = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_DropDownItem_Spinner;
-			global::TwinTechsForms.NControl.Resource.Style.Base_Widget_AppCompat_EditText = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_EditText;
-			global::TwinTechsForms.NControl.Resource.Style.Base_Widget_AppCompat_Light_ActionBar = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar;
-			global::TwinTechsForms.NControl.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_Solid = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_Solid;
-			global::TwinTechsForms.NControl.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabBar = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabBar;
-			global::TwinTechsForms.NControl.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabText = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabText;
-			global::TwinTechsForms.NControl.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabText_Inverse = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabText_Inverse;
-			global::TwinTechsForms.NControl.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabView = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabView;
-			global::TwinTechsForms.NControl.Resource.Style.Base_Widget_AppCompat_Light_PopupMenu = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_Light_PopupMenu;
-			global::TwinTechsForms.NControl.Resource.Style.Base_Widget_AppCompat_Light_PopupMenu_Overflow = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_Light_PopupMenu_Overflow;
-			global::TwinTechsForms.NControl.Resource.Style.Base_Widget_AppCompat_ListPopupWindow = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_ListPopupWindow;
-			global::TwinTechsForms.NControl.Resource.Style.Base_Widget_AppCompat_ListView = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_ListView;
-			global::TwinTechsForms.NControl.Resource.Style.Base_Widget_AppCompat_ListView_DropDown = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_ListView_DropDown;
-			global::TwinTechsForms.NControl.Resource.Style.Base_Widget_AppCompat_ListView_Menu = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_ListView_Menu;
-			global::TwinTechsForms.NControl.Resource.Style.Base_Widget_AppCompat_PopupMenu = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_PopupMenu;
-			global::TwinTechsForms.NControl.Resource.Style.Base_Widget_AppCompat_PopupMenu_Overflow = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_PopupMenu_Overflow;
-			global::TwinTechsForms.NControl.Resource.Style.Base_Widget_AppCompat_PopupWindow = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_PopupWindow;
-			global::TwinTechsForms.NControl.Resource.Style.Base_Widget_AppCompat_ProgressBar = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_ProgressBar;
-			global::TwinTechsForms.NControl.Resource.Style.Base_Widget_AppCompat_ProgressBar_Horizontal = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_ProgressBar_Horizontal;
-			global::TwinTechsForms.NControl.Resource.Style.Base_Widget_AppCompat_RatingBar = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_RatingBar;
-			global::TwinTechsForms.NControl.Resource.Style.Base_Widget_AppCompat_SearchView = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_SearchView;
-			global::TwinTechsForms.NControl.Resource.Style.Base_Widget_AppCompat_SearchView_ActionBar = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_SearchView_ActionBar;
-			global::TwinTechsForms.NControl.Resource.Style.Base_Widget_AppCompat_Spinner = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_Spinner;
-			global::TwinTechsForms.NControl.Resource.Style.Base_Widget_AppCompat_Spinner_Underlined = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_Spinner_Underlined;
-			global::TwinTechsForms.NControl.Resource.Style.Base_Widget_AppCompat_TextView_SpinnerItem = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_TextView_SpinnerItem;
-			global::TwinTechsForms.NControl.Resource.Style.Base_Widget_AppCompat_Toolbar = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_Toolbar;
-			global::TwinTechsForms.NControl.Resource.Style.Base_Widget_AppCompat_Toolbar_Button_Navigation = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_AppCompat_Toolbar_Button_Navigation;
-			global::TwinTechsForms.NControl.Resource.Style.Base_Widget_Design_TabLayout = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Base_Widget_Design_TabLayout;
-			global::TwinTechsForms.NControl.Resource.Style.CardView = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.CardView;
-			global::TwinTechsForms.NControl.Resource.Style.CardView_Dark = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.CardView_Dark;
-			global::TwinTechsForms.NControl.Resource.Style.CardView_Light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.CardView_Light;
-			global::TwinTechsForms.NControl.Resource.Style.Platform_AppCompat = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Platform_AppCompat;
-			global::TwinTechsForms.NControl.Resource.Style.Platform_AppCompat_Light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Platform_AppCompat_Light;
-			global::TwinTechsForms.NControl.Resource.Style.Platform_ThemeOverlay_AppCompat = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Platform_ThemeOverlay_AppCompat;
-			global::TwinTechsForms.NControl.Resource.Style.Platform_ThemeOverlay_AppCompat_Dark = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Platform_ThemeOverlay_AppCompat_Dark;
-			global::TwinTechsForms.NControl.Resource.Style.Platform_ThemeOverlay_AppCompat_Light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Platform_ThemeOverlay_AppCompat_Light;
-			global::TwinTechsForms.NControl.Resource.Style.Platform_V11_AppCompat = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Platform_V11_AppCompat;
-			global::TwinTechsForms.NControl.Resource.Style.Platform_V11_AppCompat_Light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Platform_V11_AppCompat_Light;
-			global::TwinTechsForms.NControl.Resource.Style.Platform_V14_AppCompat = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Platform_V14_AppCompat;
-			global::TwinTechsForms.NControl.Resource.Style.Platform_V14_AppCompat_Light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Platform_V14_AppCompat_Light;
-			global::TwinTechsForms.NControl.Resource.Style.Platform_Widget_AppCompat_Spinner = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Platform_Widget_AppCompat_Spinner;
-			global::TwinTechsForms.NControl.Resource.Style.RtlOverlay_DialogWindowTitle_AppCompat = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.RtlOverlay_DialogWindowTitle_AppCompat;
-			global::TwinTechsForms.NControl.Resource.Style.RtlOverlay_Widget_AppCompat_ActionBar_TitleItem = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_ActionBar_TitleItem;
-			global::TwinTechsForms.NControl.Resource.Style.RtlOverlay_Widget_AppCompat_DialogTitle_Icon = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_DialogTitle_Icon;
-			global::TwinTechsForms.NControl.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem;
-			global::TwinTechsForms.NControl.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem_InternalGroup = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem_InternalGroup;
-			global::TwinTechsForms.NControl.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem_Text = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem_Text;
-			global::TwinTechsForms.NControl.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown;
-			global::TwinTechsForms.NControl.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Icon1 = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Icon1;
-			global::TwinTechsForms.NControl.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Icon2 = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Icon2;
-			global::TwinTechsForms.NControl.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Query = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Query;
-			global::TwinTechsForms.NControl.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Text = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Text;
-			global::TwinTechsForms.NControl.Resource.Style.RtlOverlay_Widget_AppCompat_SearchView_MagIcon = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_SearchView_MagIcon;
-			global::TwinTechsForms.NControl.Resource.Style.TextAppearance_AppCompat = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_AppCompat;
-			global::TwinTechsForms.NControl.Resource.Style.TextAppearance_AppCompat_Body1 = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Body1;
-			global::TwinTechsForms.NControl.Resource.Style.TextAppearance_AppCompat_Body2 = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Body2;
-			global::TwinTechsForms.NControl.Resource.Style.TextAppearance_AppCompat_Button = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Button;
-			global::TwinTechsForms.NControl.Resource.Style.TextAppearance_AppCompat_Caption = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Caption;
-			global::TwinTechsForms.NControl.Resource.Style.TextAppearance_AppCompat_Display1 = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Display1;
-			global::TwinTechsForms.NControl.Resource.Style.TextAppearance_AppCompat_Display2 = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Display2;
-			global::TwinTechsForms.NControl.Resource.Style.TextAppearance_AppCompat_Display3 = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Display3;
-			global::TwinTechsForms.NControl.Resource.Style.TextAppearance_AppCompat_Display4 = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Display4;
-			global::TwinTechsForms.NControl.Resource.Style.TextAppearance_AppCompat_Headline = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Headline;
-			global::TwinTechsForms.NControl.Resource.Style.TextAppearance_AppCompat_Inverse = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Inverse;
-			global::TwinTechsForms.NControl.Resource.Style.TextAppearance_AppCompat_Large = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Large;
-			global::TwinTechsForms.NControl.Resource.Style.TextAppearance_AppCompat_Large_Inverse = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Large_Inverse;
-			global::TwinTechsForms.NControl.Resource.Style.TextAppearance_AppCompat_Light_SearchResult_Subtitle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Light_SearchResult_Subtitle;
-			global::TwinTechsForms.NControl.Resource.Style.TextAppearance_AppCompat_Light_SearchResult_Title = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Light_SearchResult_Title;
-			global::TwinTechsForms.NControl.Resource.Style.TextAppearance_AppCompat_Light_Widget_PopupMenu_Large = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Light_Widget_PopupMenu_Large;
-			global::TwinTechsForms.NControl.Resource.Style.TextAppearance_AppCompat_Light_Widget_PopupMenu_Small = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Light_Widget_PopupMenu_Small;
-			global::TwinTechsForms.NControl.Resource.Style.TextAppearance_AppCompat_Medium = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Medium;
-			global::TwinTechsForms.NControl.Resource.Style.TextAppearance_AppCompat_Medium_Inverse = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Medium_Inverse;
-			global::TwinTechsForms.NControl.Resource.Style.TextAppearance_AppCompat_Menu = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Menu;
-			global::TwinTechsForms.NControl.Resource.Style.TextAppearance_AppCompat_SearchResult_Subtitle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_SearchResult_Subtitle;
-			global::TwinTechsForms.NControl.Resource.Style.TextAppearance_AppCompat_SearchResult_Title = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_SearchResult_Title;
-			global::TwinTechsForms.NControl.Resource.Style.TextAppearance_AppCompat_Small = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Small;
-			global::TwinTechsForms.NControl.Resource.Style.TextAppearance_AppCompat_Small_Inverse = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Small_Inverse;
-			global::TwinTechsForms.NControl.Resource.Style.TextAppearance_AppCompat_Subhead = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Subhead;
-			global::TwinTechsForms.NControl.Resource.Style.TextAppearance_AppCompat_Subhead_Inverse = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Subhead_Inverse;
-			global::TwinTechsForms.NControl.Resource.Style.TextAppearance_AppCompat_Title = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Title;
-			global::TwinTechsForms.NControl.Resource.Style.TextAppearance_AppCompat_Title_Inverse = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Title_Inverse;
-			global::TwinTechsForms.NControl.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Menu = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Menu;
-			global::TwinTechsForms.NControl.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Subtitle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Subtitle;
-			global::TwinTechsForms.NControl.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Subtitle_Inverse = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Subtitle_Inverse;
-			global::TwinTechsForms.NControl.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Title = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Title;
-			global::TwinTechsForms.NControl.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Title_Inverse = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Title_Inverse;
-			global::TwinTechsForms.NControl.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Subtitle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Subtitle;
-			global::TwinTechsForms.NControl.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Subtitle_Inverse = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Subtitle_Inverse;
-			global::TwinTechsForms.NControl.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Title = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Title;
-			global::TwinTechsForms.NControl.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Title_Inverse = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Title_Inverse;
-			global::TwinTechsForms.NControl.Resource.Style.TextAppearance_AppCompat_Widget_Button = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Widget_Button;
-			global::TwinTechsForms.NControl.Resource.Style.TextAppearance_AppCompat_Widget_Button_Inverse = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Widget_Button_Inverse;
-			global::TwinTechsForms.NControl.Resource.Style.TextAppearance_AppCompat_Widget_DropDownItem = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Widget_DropDownItem;
-			global::TwinTechsForms.NControl.Resource.Style.TextAppearance_AppCompat_Widget_PopupMenu_Large = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Widget_PopupMenu_Large;
-			global::TwinTechsForms.NControl.Resource.Style.TextAppearance_AppCompat_Widget_PopupMenu_Small = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Widget_PopupMenu_Small;
-			global::TwinTechsForms.NControl.Resource.Style.TextAppearance_AppCompat_Widget_Switch = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Widget_Switch;
-			global::TwinTechsForms.NControl.Resource.Style.TextAppearance_AppCompat_Widget_TextView_SpinnerItem = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_AppCompat_Widget_TextView_SpinnerItem;
-			global::TwinTechsForms.NControl.Resource.Style.TextAppearance_Design_CollapsingToolbar_Expanded = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_Design_CollapsingToolbar_Expanded;
-			global::TwinTechsForms.NControl.Resource.Style.TextAppearance_Design_Error = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_Design_Error;
-			global::TwinTechsForms.NControl.Resource.Style.TextAppearance_Design_Hint = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_Design_Hint;
-			global::TwinTechsForms.NControl.Resource.Style.TextAppearance_Design_Snackbar_Message = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_Design_Snackbar_Message;
-			global::TwinTechsForms.NControl.Resource.Style.TextAppearance_Design_Tab = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_Design_Tab;
-			global::TwinTechsForms.NControl.Resource.Style.TextAppearance_StatusBar_EventContent = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_StatusBar_EventContent;
-			global::TwinTechsForms.NControl.Resource.Style.TextAppearance_StatusBar_EventContent_Info = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_StatusBar_EventContent_Info;
-			global::TwinTechsForms.NControl.Resource.Style.TextAppearance_StatusBar_EventContent_Line2 = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_StatusBar_EventContent_Line2;
-			global::TwinTechsForms.NControl.Resource.Style.TextAppearance_StatusBar_EventContent_Time = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_StatusBar_EventContent_Time;
-			global::TwinTechsForms.NControl.Resource.Style.TextAppearance_StatusBar_EventContent_Title = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_StatusBar_EventContent_Title;
-			global::TwinTechsForms.NControl.Resource.Style.TextAppearance_Widget_AppCompat_ExpandedMenu_Item = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_Widget_AppCompat_ExpandedMenu_Item;
-			global::TwinTechsForms.NControl.Resource.Style.TextAppearance_Widget_AppCompat_Toolbar_Subtitle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_Widget_AppCompat_Toolbar_Subtitle;
-			global::TwinTechsForms.NControl.Resource.Style.TextAppearance_Widget_AppCompat_Toolbar_Title = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.TextAppearance_Widget_AppCompat_Toolbar_Title;
-			global::TwinTechsForms.NControl.Resource.Style.Theme_AppCompat = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Theme_AppCompat;
-			global::TwinTechsForms.NControl.Resource.Style.Theme_AppCompat_CompactMenu = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Theme_AppCompat_CompactMenu;
-			global::TwinTechsForms.NControl.Resource.Style.Theme_AppCompat_Dialog = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Theme_AppCompat_Dialog;
-			global::TwinTechsForms.NControl.Resource.Style.Theme_AppCompat_Dialog_Alert = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Theme_AppCompat_Dialog_Alert;
-			global::TwinTechsForms.NControl.Resource.Style.Theme_AppCompat_Dialog_MinWidth = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Theme_AppCompat_Dialog_MinWidth;
-			global::TwinTechsForms.NControl.Resource.Style.Theme_AppCompat_DialogWhenLarge = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Theme_AppCompat_DialogWhenLarge;
-			global::TwinTechsForms.NControl.Resource.Style.Theme_AppCompat_Light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Theme_AppCompat_Light;
-			global::TwinTechsForms.NControl.Resource.Style.Theme_AppCompat_Light_DarkActionBar = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Theme_AppCompat_Light_DarkActionBar;
-			global::TwinTechsForms.NControl.Resource.Style.Theme_AppCompat_Light_Dialog = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Theme_AppCompat_Light_Dialog;
-			global::TwinTechsForms.NControl.Resource.Style.Theme_AppCompat_Light_Dialog_Alert = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Theme_AppCompat_Light_Dialog_Alert;
-			global::TwinTechsForms.NControl.Resource.Style.Theme_AppCompat_Light_Dialog_MinWidth = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Theme_AppCompat_Light_Dialog_MinWidth;
-			global::TwinTechsForms.NControl.Resource.Style.Theme_AppCompat_Light_DialogWhenLarge = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Theme_AppCompat_Light_DialogWhenLarge;
-			global::TwinTechsForms.NControl.Resource.Style.Theme_AppCompat_Light_NoActionBar = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Theme_AppCompat_Light_NoActionBar;
-			global::TwinTechsForms.NControl.Resource.Style.Theme_AppCompat_NoActionBar = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Theme_AppCompat_NoActionBar;
-			global::TwinTechsForms.NControl.Resource.Style.Theme_MediaRouter = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Theme_MediaRouter;
-			global::TwinTechsForms.NControl.Resource.Style.Theme_MediaRouter_Light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Theme_MediaRouter_Light;
-			global::TwinTechsForms.NControl.Resource.Style.ThemeOverlay_AppCompat = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.ThemeOverlay_AppCompat;
-			global::TwinTechsForms.NControl.Resource.Style.ThemeOverlay_AppCompat_ActionBar = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.ThemeOverlay_AppCompat_ActionBar;
-			global::TwinTechsForms.NControl.Resource.Style.ThemeOverlay_AppCompat_Dark = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.ThemeOverlay_AppCompat_Dark;
-			global::TwinTechsForms.NControl.Resource.Style.ThemeOverlay_AppCompat_Dark_ActionBar = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.ThemeOverlay_AppCompat_Dark_ActionBar;
-			global::TwinTechsForms.NControl.Resource.Style.ThemeOverlay_AppCompat_Light = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.ThemeOverlay_AppCompat_Light;
-			global::TwinTechsForms.NControl.Resource.Style.Widget_AppCompat_ActionBar = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_ActionBar;
-			global::TwinTechsForms.NControl.Resource.Style.Widget_AppCompat_ActionBar_Solid = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_ActionBar_Solid;
-			global::TwinTechsForms.NControl.Resource.Style.Widget_AppCompat_ActionBar_TabBar = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_ActionBar_TabBar;
-			global::TwinTechsForms.NControl.Resource.Style.Widget_AppCompat_ActionBar_TabText = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_ActionBar_TabText;
-			global::TwinTechsForms.NControl.Resource.Style.Widget_AppCompat_ActionBar_TabView = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_ActionBar_TabView;
-			global::TwinTechsForms.NControl.Resource.Style.Widget_AppCompat_ActionButton = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_ActionButton;
-			global::TwinTechsForms.NControl.Resource.Style.Widget_AppCompat_ActionButton_CloseMode = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_ActionButton_CloseMode;
-			global::TwinTechsForms.NControl.Resource.Style.Widget_AppCompat_ActionButton_Overflow = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_ActionButton_Overflow;
-			global::TwinTechsForms.NControl.Resource.Style.Widget_AppCompat_ActionMode = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_ActionMode;
-			global::TwinTechsForms.NControl.Resource.Style.Widget_AppCompat_ActivityChooserView = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_ActivityChooserView;
-			global::TwinTechsForms.NControl.Resource.Style.Widget_AppCompat_AutoCompleteTextView = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_AutoCompleteTextView;
-			global::TwinTechsForms.NControl.Resource.Style.Widget_AppCompat_Button = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_Button;
-			global::TwinTechsForms.NControl.Resource.Style.Widget_AppCompat_Button_Borderless = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_Button_Borderless;
-			global::TwinTechsForms.NControl.Resource.Style.Widget_AppCompat_Button_Borderless_Colored = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_Button_Borderless_Colored;
-			global::TwinTechsForms.NControl.Resource.Style.Widget_AppCompat_Button_ButtonBar_AlertDialog = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_Button_ButtonBar_AlertDialog;
-			global::TwinTechsForms.NControl.Resource.Style.Widget_AppCompat_Button_Colored = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_Button_Colored;
-			global::TwinTechsForms.NControl.Resource.Style.Widget_AppCompat_Button_Small = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_Button_Small;
-			global::TwinTechsForms.NControl.Resource.Style.Widget_AppCompat_ButtonBar = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_ButtonBar;
-			global::TwinTechsForms.NControl.Resource.Style.Widget_AppCompat_ButtonBar_AlertDialog = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_ButtonBar_AlertDialog;
-			global::TwinTechsForms.NControl.Resource.Style.Widget_AppCompat_CompoundButton_CheckBox = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_CompoundButton_CheckBox;
-			global::TwinTechsForms.NControl.Resource.Style.Widget_AppCompat_CompoundButton_RadioButton = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_CompoundButton_RadioButton;
-			global::TwinTechsForms.NControl.Resource.Style.Widget_AppCompat_CompoundButton_Switch = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_CompoundButton_Switch;
-			global::TwinTechsForms.NControl.Resource.Style.Widget_AppCompat_DrawerArrowToggle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_DrawerArrowToggle;
-			global::TwinTechsForms.NControl.Resource.Style.Widget_AppCompat_DropDownItem_Spinner = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_DropDownItem_Spinner;
-			global::TwinTechsForms.NControl.Resource.Style.Widget_AppCompat_EditText = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_EditText;
-			global::TwinTechsForms.NControl.Resource.Style.Widget_AppCompat_Light_ActionBar = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar;
-			global::TwinTechsForms.NControl.Resource.Style.Widget_AppCompat_Light_ActionBar_Solid = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_Solid;
-			global::TwinTechsForms.NControl.Resource.Style.Widget_AppCompat_Light_ActionBar_Solid_Inverse = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_Solid_Inverse;
-			global::TwinTechsForms.NControl.Resource.Style.Widget_AppCompat_Light_ActionBar_TabBar = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabBar;
-			global::TwinTechsForms.NControl.Resource.Style.Widget_AppCompat_Light_ActionBar_TabBar_Inverse = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabBar_Inverse;
-			global::TwinTechsForms.NControl.Resource.Style.Widget_AppCompat_Light_ActionBar_TabText = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabText;
-			global::TwinTechsForms.NControl.Resource.Style.Widget_AppCompat_Light_ActionBar_TabText_Inverse = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabText_Inverse;
-			global::TwinTechsForms.NControl.Resource.Style.Widget_AppCompat_Light_ActionBar_TabView = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabView;
-			global::TwinTechsForms.NControl.Resource.Style.Widget_AppCompat_Light_ActionBar_TabView_Inverse = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabView_Inverse;
-			global::TwinTechsForms.NControl.Resource.Style.Widget_AppCompat_Light_ActionButton = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_Light_ActionButton;
-			global::TwinTechsForms.NControl.Resource.Style.Widget_AppCompat_Light_ActionButton_CloseMode = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_Light_ActionButton_CloseMode;
-			global::TwinTechsForms.NControl.Resource.Style.Widget_AppCompat_Light_ActionButton_Overflow = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_Light_ActionButton_Overflow;
-			global::TwinTechsForms.NControl.Resource.Style.Widget_AppCompat_Light_ActionMode_Inverse = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_Light_ActionMode_Inverse;
-			global::TwinTechsForms.NControl.Resource.Style.Widget_AppCompat_Light_ActivityChooserView = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_Light_ActivityChooserView;
-			global::TwinTechsForms.NControl.Resource.Style.Widget_AppCompat_Light_AutoCompleteTextView = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_Light_AutoCompleteTextView;
-			global::TwinTechsForms.NControl.Resource.Style.Widget_AppCompat_Light_DropDownItem_Spinner = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_Light_DropDownItem_Spinner;
-			global::TwinTechsForms.NControl.Resource.Style.Widget_AppCompat_Light_ListPopupWindow = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_Light_ListPopupWindow;
-			global::TwinTechsForms.NControl.Resource.Style.Widget_AppCompat_Light_ListView_DropDown = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_Light_ListView_DropDown;
-			global::TwinTechsForms.NControl.Resource.Style.Widget_AppCompat_Light_PopupMenu = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_Light_PopupMenu;
-			global::TwinTechsForms.NControl.Resource.Style.Widget_AppCompat_Light_PopupMenu_Overflow = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_Light_PopupMenu_Overflow;
-			global::TwinTechsForms.NControl.Resource.Style.Widget_AppCompat_Light_SearchView = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_Light_SearchView;
-			global::TwinTechsForms.NControl.Resource.Style.Widget_AppCompat_Light_Spinner_DropDown_ActionBar = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_Light_Spinner_DropDown_ActionBar;
-			global::TwinTechsForms.NControl.Resource.Style.Widget_AppCompat_ListPopupWindow = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_ListPopupWindow;
-			global::TwinTechsForms.NControl.Resource.Style.Widget_AppCompat_ListView = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_ListView;
-			global::TwinTechsForms.NControl.Resource.Style.Widget_AppCompat_ListView_DropDown = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_ListView_DropDown;
-			global::TwinTechsForms.NControl.Resource.Style.Widget_AppCompat_ListView_Menu = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_ListView_Menu;
-			global::TwinTechsForms.NControl.Resource.Style.Widget_AppCompat_PopupMenu = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_PopupMenu;
-			global::TwinTechsForms.NControl.Resource.Style.Widget_AppCompat_PopupMenu_Overflow = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_PopupMenu_Overflow;
-			global::TwinTechsForms.NControl.Resource.Style.Widget_AppCompat_PopupWindow = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_PopupWindow;
-			global::TwinTechsForms.NControl.Resource.Style.Widget_AppCompat_ProgressBar = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_ProgressBar;
-			global::TwinTechsForms.NControl.Resource.Style.Widget_AppCompat_ProgressBar_Horizontal = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_ProgressBar_Horizontal;
-			global::TwinTechsForms.NControl.Resource.Style.Widget_AppCompat_RatingBar = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_RatingBar;
-			global::TwinTechsForms.NControl.Resource.Style.Widget_AppCompat_SearchView = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_SearchView;
-			global::TwinTechsForms.NControl.Resource.Style.Widget_AppCompat_SearchView_ActionBar = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_SearchView_ActionBar;
-			global::TwinTechsForms.NControl.Resource.Style.Widget_AppCompat_Spinner = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_Spinner;
-			global::TwinTechsForms.NControl.Resource.Style.Widget_AppCompat_Spinner_DropDown = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_Spinner_DropDown;
-			global::TwinTechsForms.NControl.Resource.Style.Widget_AppCompat_Spinner_DropDown_ActionBar = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_Spinner_DropDown_ActionBar;
-			global::TwinTechsForms.NControl.Resource.Style.Widget_AppCompat_Spinner_Underlined = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_Spinner_Underlined;
-			global::TwinTechsForms.NControl.Resource.Style.Widget_AppCompat_TextView_SpinnerItem = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_TextView_SpinnerItem;
-			global::TwinTechsForms.NControl.Resource.Style.Widget_AppCompat_Toolbar = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_Toolbar;
-			global::TwinTechsForms.NControl.Resource.Style.Widget_AppCompat_Toolbar_Button_Navigation = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_AppCompat_Toolbar_Button_Navigation;
-			global::TwinTechsForms.NControl.Resource.Style.Widget_Design_AppBarLayout = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_Design_AppBarLayout;
-			global::TwinTechsForms.NControl.Resource.Style.Widget_Design_CollapsingToolbar = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_Design_CollapsingToolbar;
-			global::TwinTechsForms.NControl.Resource.Style.Widget_Design_CoordinatorLayout = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_Design_CoordinatorLayout;
-			global::TwinTechsForms.NControl.Resource.Style.Widget_Design_FloatingActionButton = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_Design_FloatingActionButton;
-			global::TwinTechsForms.NControl.Resource.Style.Widget_Design_NavigationView = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_Design_NavigationView;
-			global::TwinTechsForms.NControl.Resource.Style.Widget_Design_ScrimInsetsFrameLayout = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_Design_ScrimInsetsFrameLayout;
-			global::TwinTechsForms.NControl.Resource.Style.Widget_Design_Snackbar = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_Design_Snackbar;
-			global::TwinTechsForms.NControl.Resource.Style.Widget_Design_TabLayout = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_Design_TabLayout;
-			global::TwinTechsForms.NControl.Resource.Style.Widget_Design_TextInputLayout = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_Design_TextInputLayout;
-			global::TwinTechsForms.NControl.Resource.Style.Widget_MediaRouter_Light_MediaRouteButton = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_MediaRouter_Light_MediaRouteButton;
-			global::TwinTechsForms.NControl.Resource.Style.Widget_MediaRouter_MediaRouteButton = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Style.Widget_MediaRouter_MediaRouteButton;
-			global::TwinTechsForms.NControl.Resource.Styleable.ActionBar = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ActionBar;
-			global::TwinTechsForms.NControl.Resource.Styleable.ActionBar_background = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ActionBar_background;
-			global::TwinTechsForms.NControl.Resource.Styleable.ActionBar_backgroundSplit = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ActionBar_backgroundSplit;
-			global::TwinTechsForms.NControl.Resource.Styleable.ActionBar_backgroundStacked = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ActionBar_backgroundStacked;
-			global::TwinTechsForms.NControl.Resource.Styleable.ActionBar_contentInsetEnd = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ActionBar_contentInsetEnd;
-			global::TwinTechsForms.NControl.Resource.Styleable.ActionBar_contentInsetLeft = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ActionBar_contentInsetLeft;
-			global::TwinTechsForms.NControl.Resource.Styleable.ActionBar_contentInsetRight = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ActionBar_contentInsetRight;
-			global::TwinTechsForms.NControl.Resource.Styleable.ActionBar_contentInsetStart = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ActionBar_contentInsetStart;
-			global::TwinTechsForms.NControl.Resource.Styleable.ActionBar_customNavigationLayout = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ActionBar_customNavigationLayout;
-			global::TwinTechsForms.NControl.Resource.Styleable.ActionBar_displayOptions = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ActionBar_displayOptions;
-			global::TwinTechsForms.NControl.Resource.Styleable.ActionBar_divider = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ActionBar_divider;
-			global::TwinTechsForms.NControl.Resource.Styleable.ActionBar_elevation = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ActionBar_elevation;
-			global::TwinTechsForms.NControl.Resource.Styleable.ActionBar_height = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ActionBar_height;
-			global::TwinTechsForms.NControl.Resource.Styleable.ActionBar_hideOnContentScroll = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ActionBar_hideOnContentScroll;
-			global::TwinTechsForms.NControl.Resource.Styleable.ActionBar_homeAsUpIndicator = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ActionBar_homeAsUpIndicator;
-			global::TwinTechsForms.NControl.Resource.Styleable.ActionBar_homeLayout = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ActionBar_homeLayout;
-			global::TwinTechsForms.NControl.Resource.Styleable.ActionBar_icon = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ActionBar_icon;
-			global::TwinTechsForms.NControl.Resource.Styleable.ActionBar_indeterminateProgressStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ActionBar_indeterminateProgressStyle;
-			global::TwinTechsForms.NControl.Resource.Styleable.ActionBar_itemPadding = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ActionBar_itemPadding;
-			global::TwinTechsForms.NControl.Resource.Styleable.ActionBar_logo = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ActionBar_logo;
-			global::TwinTechsForms.NControl.Resource.Styleable.ActionBar_navigationMode = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ActionBar_navigationMode;
-			global::TwinTechsForms.NControl.Resource.Styleable.ActionBar_popupTheme = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ActionBar_popupTheme;
-			global::TwinTechsForms.NControl.Resource.Styleable.ActionBar_progressBarPadding = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ActionBar_progressBarPadding;
-			global::TwinTechsForms.NControl.Resource.Styleable.ActionBar_progressBarStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ActionBar_progressBarStyle;
-			global::TwinTechsForms.NControl.Resource.Styleable.ActionBar_subtitle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ActionBar_subtitle;
-			global::TwinTechsForms.NControl.Resource.Styleable.ActionBar_subtitleTextStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ActionBar_subtitleTextStyle;
-			global::TwinTechsForms.NControl.Resource.Styleable.ActionBar_title = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ActionBar_title;
-			global::TwinTechsForms.NControl.Resource.Styleable.ActionBar_titleTextStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ActionBar_titleTextStyle;
-			global::TwinTechsForms.NControl.Resource.Styleable.ActionBarLayout = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ActionBarLayout;
-			global::TwinTechsForms.NControl.Resource.Styleable.ActionBarLayout_android_layout_gravity = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ActionBarLayout_android_layout_gravity;
-			global::TwinTechsForms.NControl.Resource.Styleable.ActionMenuItemView = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ActionMenuItemView;
-			global::TwinTechsForms.NControl.Resource.Styleable.ActionMenuItemView_android_minWidth = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ActionMenuItemView_android_minWidth;
-			global::TwinTechsForms.NControl.Resource.Styleable.ActionMenuView = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ActionMenuView;
-			global::TwinTechsForms.NControl.Resource.Styleable.ActionMode = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ActionMode;
-			global::TwinTechsForms.NControl.Resource.Styleable.ActionMode_background = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ActionMode_background;
-			global::TwinTechsForms.NControl.Resource.Styleable.ActionMode_backgroundSplit = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ActionMode_backgroundSplit;
-			global::TwinTechsForms.NControl.Resource.Styleable.ActionMode_closeItemLayout = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ActionMode_closeItemLayout;
-			global::TwinTechsForms.NControl.Resource.Styleable.ActionMode_height = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ActionMode_height;
-			global::TwinTechsForms.NControl.Resource.Styleable.ActionMode_subtitleTextStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ActionMode_subtitleTextStyle;
-			global::TwinTechsForms.NControl.Resource.Styleable.ActionMode_titleTextStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ActionMode_titleTextStyle;
-			global::TwinTechsForms.NControl.Resource.Styleable.ActivityChooserView = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ActivityChooserView;
-			global::TwinTechsForms.NControl.Resource.Styleable.ActivityChooserView_expandActivityOverflowButtonDrawable = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ActivityChooserView_expandActivityOverflowButtonDrawable;
-			global::TwinTechsForms.NControl.Resource.Styleable.ActivityChooserView_initialActivityCount = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ActivityChooserView_initialActivityCount;
-			global::TwinTechsForms.NControl.Resource.Styleable.AlertDialog = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.AlertDialog;
-			global::TwinTechsForms.NControl.Resource.Styleable.AlertDialog_android_layout = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.AlertDialog_android_layout;
-			global::TwinTechsForms.NControl.Resource.Styleable.AlertDialog_buttonPanelSideLayout = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.AlertDialog_buttonPanelSideLayout;
-			global::TwinTechsForms.NControl.Resource.Styleable.AlertDialog_listItemLayout = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.AlertDialog_listItemLayout;
-			global::TwinTechsForms.NControl.Resource.Styleable.AlertDialog_listLayout = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.AlertDialog_listLayout;
-			global::TwinTechsForms.NControl.Resource.Styleable.AlertDialog_multiChoiceItemLayout = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.AlertDialog_multiChoiceItemLayout;
-			global::TwinTechsForms.NControl.Resource.Styleable.AlertDialog_singleChoiceItemLayout = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.AlertDialog_singleChoiceItemLayout;
-			global::TwinTechsForms.NControl.Resource.Styleable.AppBarLayout = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.AppBarLayout;
-			global::TwinTechsForms.NControl.Resource.Styleable.AppBarLayout_android_background = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.AppBarLayout_android_background;
-			global::TwinTechsForms.NControl.Resource.Styleable.AppBarLayout_elevation = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.AppBarLayout_elevation;
-			global::TwinTechsForms.NControl.Resource.Styleable.AppBarLayout_expanded = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.AppBarLayout_expanded;
-			global::TwinTechsForms.NControl.Resource.Styleable.AppCompatTextView = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.AppCompatTextView;
-			global::TwinTechsForms.NControl.Resource.Styleable.AppCompatTextView_android_textAppearance = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.AppCompatTextView_android_textAppearance;
-			global::TwinTechsForms.NControl.Resource.Styleable.AppCompatTextView_textAllCaps = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.AppCompatTextView_textAllCaps;
-			global::TwinTechsForms.NControl.Resource.Styleable.CardView = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.CardView;
-			global::TwinTechsForms.NControl.Resource.Styleable.CardView_cardBackgroundColor = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.CardView_cardBackgroundColor;
-			global::TwinTechsForms.NControl.Resource.Styleable.CardView_cardCornerRadius = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.CardView_cardCornerRadius;
-			global::TwinTechsForms.NControl.Resource.Styleable.CardView_cardElevation = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.CardView_cardElevation;
-			global::TwinTechsForms.NControl.Resource.Styleable.CardView_cardMaxElevation = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.CardView_cardMaxElevation;
-			global::TwinTechsForms.NControl.Resource.Styleable.CardView_cardPreventCornerOverlap = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.CardView_cardPreventCornerOverlap;
-			global::TwinTechsForms.NControl.Resource.Styleable.CardView_cardUseCompatPadding = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.CardView_cardUseCompatPadding;
-			global::TwinTechsForms.NControl.Resource.Styleable.CardView_contentPadding = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.CardView_contentPadding;
-			global::TwinTechsForms.NControl.Resource.Styleable.CardView_contentPaddingBottom = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.CardView_contentPaddingBottom;
-			global::TwinTechsForms.NControl.Resource.Styleable.CardView_contentPaddingLeft = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.CardView_contentPaddingLeft;
-			global::TwinTechsForms.NControl.Resource.Styleable.CardView_contentPaddingRight = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.CardView_contentPaddingRight;
-			global::TwinTechsForms.NControl.Resource.Styleable.CardView_contentPaddingTop = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.CardView_contentPaddingTop;
-			global::TwinTechsForms.NControl.Resource.Styleable.CollapsingToolbarLayout = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.CollapsingToolbarLayout;
-			global::TwinTechsForms.NControl.Resource.Styleable.CollapsingToolbarLayout_collapsedTitleGravity = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.CollapsingToolbarLayout_collapsedTitleGravity;
-			global::TwinTechsForms.NControl.Resource.Styleable.CollapsingToolbarLayout_collapsedTitleTextAppearance = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.CollapsingToolbarLayout_collapsedTitleTextAppearance;
-			global::TwinTechsForms.NControl.Resource.Styleable.CollapsingToolbarLayout_contentScrim = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.CollapsingToolbarLayout_contentScrim;
-			global::TwinTechsForms.NControl.Resource.Styleable.CollapsingToolbarLayout_expandedTitleGravity = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleGravity;
-			global::TwinTechsForms.NControl.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMargin = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMargin;
-			global::TwinTechsForms.NControl.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginBottom = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginBottom;
-			global::TwinTechsForms.NControl.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginEnd = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginEnd;
-			global::TwinTechsForms.NControl.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginStart = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginStart;
-			global::TwinTechsForms.NControl.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginTop = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginTop;
-			global::TwinTechsForms.NControl.Resource.Styleable.CollapsingToolbarLayout_expandedTitleTextAppearance = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleTextAppearance;
-			global::TwinTechsForms.NControl.Resource.Styleable.CollapsingToolbarLayout_statusBarScrim = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.CollapsingToolbarLayout_statusBarScrim;
-			global::TwinTechsForms.NControl.Resource.Styleable.CollapsingToolbarLayout_title = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.CollapsingToolbarLayout_title;
-			global::TwinTechsForms.NControl.Resource.Styleable.CollapsingToolbarLayout_titleEnabled = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.CollapsingToolbarLayout_titleEnabled;
-			global::TwinTechsForms.NControl.Resource.Styleable.CollapsingToolbarLayout_toolbarId = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.CollapsingToolbarLayout_toolbarId;
-			global::TwinTechsForms.NControl.Resource.Styleable.CompoundButton = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.CompoundButton;
-			global::TwinTechsForms.NControl.Resource.Styleable.CompoundButton_android_button = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.CompoundButton_android_button;
-			global::TwinTechsForms.NControl.Resource.Styleable.CompoundButton_buttonTint = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.CompoundButton_buttonTint;
-			global::TwinTechsForms.NControl.Resource.Styleable.CompoundButton_buttonTintMode = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.CompoundButton_buttonTintMode;
-			global::TwinTechsForms.NControl.Resource.Styleable.CoordinatorLayout = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.CoordinatorLayout;
-			global::TwinTechsForms.NControl.Resource.Styleable.CoordinatorLayout_keylines = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.CoordinatorLayout_keylines;
-			global::TwinTechsForms.NControl.Resource.Styleable.CoordinatorLayout_statusBarBackground = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.CoordinatorLayout_statusBarBackground;
-			global::TwinTechsForms.NControl.Resource.Styleable.DrawerArrowToggle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.DrawerArrowToggle;
-			global::TwinTechsForms.NControl.Resource.Styleable.DrawerArrowToggle_arrowHeadLength = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.DrawerArrowToggle_arrowHeadLength;
-			global::TwinTechsForms.NControl.Resource.Styleable.DrawerArrowToggle_arrowShaftLength = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.DrawerArrowToggle_arrowShaftLength;
-			global::TwinTechsForms.NControl.Resource.Styleable.DrawerArrowToggle_barLength = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.DrawerArrowToggle_barLength;
-			global::TwinTechsForms.NControl.Resource.Styleable.DrawerArrowToggle_color = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.DrawerArrowToggle_color;
-			global::TwinTechsForms.NControl.Resource.Styleable.DrawerArrowToggle_drawableSize = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.DrawerArrowToggle_drawableSize;
-			global::TwinTechsForms.NControl.Resource.Styleable.DrawerArrowToggle_gapBetweenBars = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.DrawerArrowToggle_gapBetweenBars;
-			global::TwinTechsForms.NControl.Resource.Styleable.DrawerArrowToggle_spinBars = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.DrawerArrowToggle_spinBars;
-			global::TwinTechsForms.NControl.Resource.Styleable.DrawerArrowToggle_thickness = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.DrawerArrowToggle_thickness;
-			global::TwinTechsForms.NControl.Resource.Styleable.FloatingActionButton = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.FloatingActionButton;
-			global::TwinTechsForms.NControl.Resource.Styleable.FloatingActionButton_backgroundTint = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.FloatingActionButton_backgroundTint;
-			global::TwinTechsForms.NControl.Resource.Styleable.FloatingActionButton_backgroundTintMode = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.FloatingActionButton_backgroundTintMode;
-			global::TwinTechsForms.NControl.Resource.Styleable.FloatingActionButton_borderWidth = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.FloatingActionButton_borderWidth;
-			global::TwinTechsForms.NControl.Resource.Styleable.FloatingActionButton_elevation = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.FloatingActionButton_elevation;
-			global::TwinTechsForms.NControl.Resource.Styleable.FloatingActionButton_fabSize = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.FloatingActionButton_fabSize;
-			global::TwinTechsForms.NControl.Resource.Styleable.FloatingActionButton_pressedTranslationZ = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.FloatingActionButton_pressedTranslationZ;
-			global::TwinTechsForms.NControl.Resource.Styleable.FloatingActionButton_rippleColor = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.FloatingActionButton_rippleColor;
-			global::TwinTechsForms.NControl.Resource.Styleable.LinearLayoutCompat = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.LinearLayoutCompat;
-			global::TwinTechsForms.NControl.Resource.Styleable.LinearLayoutCompat_android_baselineAligned = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.LinearLayoutCompat_android_baselineAligned;
-			global::TwinTechsForms.NControl.Resource.Styleable.LinearLayoutCompat_android_baselineAlignedChildIndex = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.LinearLayoutCompat_android_baselineAlignedChildIndex;
-			global::TwinTechsForms.NControl.Resource.Styleable.LinearLayoutCompat_android_gravity = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.LinearLayoutCompat_android_gravity;
-			global::TwinTechsForms.NControl.Resource.Styleable.LinearLayoutCompat_android_orientation = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.LinearLayoutCompat_android_orientation;
-			global::TwinTechsForms.NControl.Resource.Styleable.LinearLayoutCompat_android_weightSum = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.LinearLayoutCompat_android_weightSum;
-			global::TwinTechsForms.NControl.Resource.Styleable.LinearLayoutCompat_divider = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.LinearLayoutCompat_divider;
-			global::TwinTechsForms.NControl.Resource.Styleable.LinearLayoutCompat_dividerPadding = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.LinearLayoutCompat_dividerPadding;
-			global::TwinTechsForms.NControl.Resource.Styleable.LinearLayoutCompat_measureWithLargestChild = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.LinearLayoutCompat_measureWithLargestChild;
-			global::TwinTechsForms.NControl.Resource.Styleable.LinearLayoutCompat_showDividers = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.LinearLayoutCompat_showDividers;
-			global::TwinTechsForms.NControl.Resource.Styleable.LinearLayoutCompat_Layout = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.LinearLayoutCompat_Layout;
-			global::TwinTechsForms.NControl.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_gravity = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_gravity;
-			global::TwinTechsForms.NControl.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_height = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_height;
-			global::TwinTechsForms.NControl.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_weight = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_weight;
-			global::TwinTechsForms.NControl.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_width = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_width;
-			global::TwinTechsForms.NControl.Resource.Styleable.ListPopupWindow = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ListPopupWindow;
-			global::TwinTechsForms.NControl.Resource.Styleable.ListPopupWindow_android_dropDownHorizontalOffset = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ListPopupWindow_android_dropDownHorizontalOffset;
-			global::TwinTechsForms.NControl.Resource.Styleable.ListPopupWindow_android_dropDownVerticalOffset = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ListPopupWindow_android_dropDownVerticalOffset;
-			global::TwinTechsForms.NControl.Resource.Styleable.MediaRouteButton = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.MediaRouteButton;
-			global::TwinTechsForms.NControl.Resource.Styleable.MediaRouteButton_android_minHeight = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.MediaRouteButton_android_minHeight;
-			global::TwinTechsForms.NControl.Resource.Styleable.MediaRouteButton_android_minWidth = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.MediaRouteButton_android_minWidth;
-			global::TwinTechsForms.NControl.Resource.Styleable.MediaRouteButton_externalRouteEnabledDrawable = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.MediaRouteButton_externalRouteEnabledDrawable;
-			global::TwinTechsForms.NControl.Resource.Styleable.MenuGroup = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.MenuGroup;
-			global::TwinTechsForms.NControl.Resource.Styleable.MenuGroup_android_checkableBehavior = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.MenuGroup_android_checkableBehavior;
-			global::TwinTechsForms.NControl.Resource.Styleable.MenuGroup_android_enabled = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.MenuGroup_android_enabled;
-			global::TwinTechsForms.NControl.Resource.Styleable.MenuGroup_android_id = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.MenuGroup_android_id;
-			global::TwinTechsForms.NControl.Resource.Styleable.MenuGroup_android_menuCategory = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.MenuGroup_android_menuCategory;
-			global::TwinTechsForms.NControl.Resource.Styleable.MenuGroup_android_orderInCategory = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.MenuGroup_android_orderInCategory;
-			global::TwinTechsForms.NControl.Resource.Styleable.MenuGroup_android_visible = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.MenuGroup_android_visible;
-			global::TwinTechsForms.NControl.Resource.Styleable.MenuItem = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.MenuItem;
-			global::TwinTechsForms.NControl.Resource.Styleable.MenuItem_actionLayout = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.MenuItem_actionLayout;
-			global::TwinTechsForms.NControl.Resource.Styleable.MenuItem_actionProviderClass = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.MenuItem_actionProviderClass;
-			global::TwinTechsForms.NControl.Resource.Styleable.MenuItem_actionViewClass = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.MenuItem_actionViewClass;
-			global::TwinTechsForms.NControl.Resource.Styleable.MenuItem_android_alphabeticShortcut = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.MenuItem_android_alphabeticShortcut;
-			global::TwinTechsForms.NControl.Resource.Styleable.MenuItem_android_checkable = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.MenuItem_android_checkable;
-			global::TwinTechsForms.NControl.Resource.Styleable.MenuItem_android_checked = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.MenuItem_android_checked;
-			global::TwinTechsForms.NControl.Resource.Styleable.MenuItem_android_enabled = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.MenuItem_android_enabled;
-			global::TwinTechsForms.NControl.Resource.Styleable.MenuItem_android_icon = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.MenuItem_android_icon;
-			global::TwinTechsForms.NControl.Resource.Styleable.MenuItem_android_id = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.MenuItem_android_id;
-			global::TwinTechsForms.NControl.Resource.Styleable.MenuItem_android_menuCategory = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.MenuItem_android_menuCategory;
-			global::TwinTechsForms.NControl.Resource.Styleable.MenuItem_android_numericShortcut = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.MenuItem_android_numericShortcut;
-			global::TwinTechsForms.NControl.Resource.Styleable.MenuItem_android_onClick = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.MenuItem_android_onClick;
-			global::TwinTechsForms.NControl.Resource.Styleable.MenuItem_android_orderInCategory = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.MenuItem_android_orderInCategory;
-			global::TwinTechsForms.NControl.Resource.Styleable.MenuItem_android_title = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.MenuItem_android_title;
-			global::TwinTechsForms.NControl.Resource.Styleable.MenuItem_android_titleCondensed = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.MenuItem_android_titleCondensed;
-			global::TwinTechsForms.NControl.Resource.Styleable.MenuItem_android_visible = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.MenuItem_android_visible;
-			global::TwinTechsForms.NControl.Resource.Styleable.MenuItem_showAsAction = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.MenuItem_showAsAction;
-			global::TwinTechsForms.NControl.Resource.Styleable.MenuView = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.MenuView;
-			global::TwinTechsForms.NControl.Resource.Styleable.MenuView_android_headerBackground = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.MenuView_android_headerBackground;
-			global::TwinTechsForms.NControl.Resource.Styleable.MenuView_android_horizontalDivider = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.MenuView_android_horizontalDivider;
-			global::TwinTechsForms.NControl.Resource.Styleable.MenuView_android_itemBackground = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.MenuView_android_itemBackground;
-			global::TwinTechsForms.NControl.Resource.Styleable.MenuView_android_itemIconDisabledAlpha = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.MenuView_android_itemIconDisabledAlpha;
-			global::TwinTechsForms.NControl.Resource.Styleable.MenuView_android_itemTextAppearance = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.MenuView_android_itemTextAppearance;
-			global::TwinTechsForms.NControl.Resource.Styleable.MenuView_android_verticalDivider = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.MenuView_android_verticalDivider;
-			global::TwinTechsForms.NControl.Resource.Styleable.MenuView_android_windowAnimationStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.MenuView_android_windowAnimationStyle;
-			global::TwinTechsForms.NControl.Resource.Styleable.MenuView_preserveIconSpacing = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.MenuView_preserveIconSpacing;
-			global::TwinTechsForms.NControl.Resource.Styleable.NavigationView = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.NavigationView;
-			global::TwinTechsForms.NControl.Resource.Styleable.NavigationView_android_background = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.NavigationView_android_background;
-			global::TwinTechsForms.NControl.Resource.Styleable.NavigationView_android_fitsSystemWindows = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.NavigationView_android_fitsSystemWindows;
-			global::TwinTechsForms.NControl.Resource.Styleable.NavigationView_android_maxWidth = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.NavigationView_android_maxWidth;
-			global::TwinTechsForms.NControl.Resource.Styleable.NavigationView_elevation = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.NavigationView_elevation;
-			global::TwinTechsForms.NControl.Resource.Styleable.NavigationView_headerLayout = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.NavigationView_headerLayout;
-			global::TwinTechsForms.NControl.Resource.Styleable.NavigationView_itemBackground = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.NavigationView_itemBackground;
-			global::TwinTechsForms.NControl.Resource.Styleable.NavigationView_itemIconTint = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.NavigationView_itemIconTint;
-			global::TwinTechsForms.NControl.Resource.Styleable.NavigationView_itemTextAppearance = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.NavigationView_itemTextAppearance;
-			global::TwinTechsForms.NControl.Resource.Styleable.NavigationView_itemTextColor = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.NavigationView_itemTextColor;
-			global::TwinTechsForms.NControl.Resource.Styleable.NavigationView_menu = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.NavigationView_menu;
-			global::TwinTechsForms.NControl.Resource.Styleable.PopupWindow = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.PopupWindow;
-			global::TwinTechsForms.NControl.Resource.Styleable.PopupWindow_android_popupBackground = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.PopupWindow_android_popupBackground;
-			global::TwinTechsForms.NControl.Resource.Styleable.PopupWindow_overlapAnchor = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.PopupWindow_overlapAnchor;
-			global::TwinTechsForms.NControl.Resource.Styleable.PopupWindowBackgroundState = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.PopupWindowBackgroundState;
-			global::TwinTechsForms.NControl.Resource.Styleable.PopupWindowBackgroundState_state_above_anchor = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.PopupWindowBackgroundState_state_above_anchor;
-			global::TwinTechsForms.NControl.Resource.Styleable.ScrimInsetsFrameLayout = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ScrimInsetsFrameLayout;
-			global::TwinTechsForms.NControl.Resource.Styleable.ScrimInsetsFrameLayout_insetForeground = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ScrimInsetsFrameLayout_insetForeground;
-			global::TwinTechsForms.NControl.Resource.Styleable.SearchView = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.SearchView;
-			global::TwinTechsForms.NControl.Resource.Styleable.SearchView_android_focusable = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.SearchView_android_focusable;
-			global::TwinTechsForms.NControl.Resource.Styleable.SearchView_android_imeOptions = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.SearchView_android_imeOptions;
-			global::TwinTechsForms.NControl.Resource.Styleable.SearchView_android_inputType = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.SearchView_android_inputType;
-			global::TwinTechsForms.NControl.Resource.Styleable.SearchView_android_maxWidth = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.SearchView_android_maxWidth;
-			global::TwinTechsForms.NControl.Resource.Styleable.SearchView_closeIcon = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.SearchView_closeIcon;
-			global::TwinTechsForms.NControl.Resource.Styleable.SearchView_commitIcon = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.SearchView_commitIcon;
-			global::TwinTechsForms.NControl.Resource.Styleable.SearchView_defaultQueryHint = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.SearchView_defaultQueryHint;
-			global::TwinTechsForms.NControl.Resource.Styleable.SearchView_goIcon = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.SearchView_goIcon;
-			global::TwinTechsForms.NControl.Resource.Styleable.SearchView_iconifiedByDefault = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.SearchView_iconifiedByDefault;
-			global::TwinTechsForms.NControl.Resource.Styleable.SearchView_layout = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.SearchView_layout;
-			global::TwinTechsForms.NControl.Resource.Styleable.SearchView_queryBackground = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.SearchView_queryBackground;
-			global::TwinTechsForms.NControl.Resource.Styleable.SearchView_queryHint = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.SearchView_queryHint;
-			global::TwinTechsForms.NControl.Resource.Styleable.SearchView_searchHintIcon = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.SearchView_searchHintIcon;
-			global::TwinTechsForms.NControl.Resource.Styleable.SearchView_searchIcon = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.SearchView_searchIcon;
-			global::TwinTechsForms.NControl.Resource.Styleable.SearchView_submitBackground = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.SearchView_submitBackground;
-			global::TwinTechsForms.NControl.Resource.Styleable.SearchView_suggestionRowLayout = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.SearchView_suggestionRowLayout;
-			global::TwinTechsForms.NControl.Resource.Styleable.SearchView_voiceIcon = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.SearchView_voiceIcon;
-			global::TwinTechsForms.NControl.Resource.Styleable.SnackbarLayout = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.SnackbarLayout;
-			global::TwinTechsForms.NControl.Resource.Styleable.SnackbarLayout_android_maxWidth = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.SnackbarLayout_android_maxWidth;
-			global::TwinTechsForms.NControl.Resource.Styleable.SnackbarLayout_elevation = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.SnackbarLayout_elevation;
-			global::TwinTechsForms.NControl.Resource.Styleable.SnackbarLayout_maxActionInlineWidth = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.SnackbarLayout_maxActionInlineWidth;
-			global::TwinTechsForms.NControl.Resource.Styleable.Spinner = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.Spinner;
-			global::TwinTechsForms.NControl.Resource.Styleable.Spinner_android_dropDownWidth = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.Spinner_android_dropDownWidth;
-			global::TwinTechsForms.NControl.Resource.Styleable.Spinner_android_popupBackground = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.Spinner_android_popupBackground;
-			global::TwinTechsForms.NControl.Resource.Styleable.Spinner_android_prompt = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.Spinner_android_prompt;
-			global::TwinTechsForms.NControl.Resource.Styleable.Spinner_popupTheme = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.Spinner_popupTheme;
-			global::TwinTechsForms.NControl.Resource.Styleable.SwitchCompat = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.SwitchCompat;
-			global::TwinTechsForms.NControl.Resource.Styleable.SwitchCompat_android_textOff = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.SwitchCompat_android_textOff;
-			global::TwinTechsForms.NControl.Resource.Styleable.SwitchCompat_android_textOn = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.SwitchCompat_android_textOn;
-			global::TwinTechsForms.NControl.Resource.Styleable.SwitchCompat_android_thumb = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.SwitchCompat_android_thumb;
-			global::TwinTechsForms.NControl.Resource.Styleable.SwitchCompat_showText = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.SwitchCompat_showText;
-			global::TwinTechsForms.NControl.Resource.Styleable.SwitchCompat_splitTrack = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.SwitchCompat_splitTrack;
-			global::TwinTechsForms.NControl.Resource.Styleable.SwitchCompat_switchMinWidth = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.SwitchCompat_switchMinWidth;
-			global::TwinTechsForms.NControl.Resource.Styleable.SwitchCompat_switchPadding = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.SwitchCompat_switchPadding;
-			global::TwinTechsForms.NControl.Resource.Styleable.SwitchCompat_switchTextAppearance = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.SwitchCompat_switchTextAppearance;
-			global::TwinTechsForms.NControl.Resource.Styleable.SwitchCompat_thumbTextPadding = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.SwitchCompat_thumbTextPadding;
-			global::TwinTechsForms.NControl.Resource.Styleable.SwitchCompat_track = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.SwitchCompat_track;
-			global::TwinTechsForms.NControl.Resource.Styleable.TabLayout = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.TabLayout;
-			global::TwinTechsForms.NControl.Resource.Styleable.TabLayout_tabBackground = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.TabLayout_tabBackground;
-			global::TwinTechsForms.NControl.Resource.Styleable.TabLayout_tabContentStart = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.TabLayout_tabContentStart;
-			global::TwinTechsForms.NControl.Resource.Styleable.TabLayout_tabGravity = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.TabLayout_tabGravity;
-			global::TwinTechsForms.NControl.Resource.Styleable.TabLayout_tabIndicatorColor = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.TabLayout_tabIndicatorColor;
-			global::TwinTechsForms.NControl.Resource.Styleable.TabLayout_tabIndicatorHeight = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.TabLayout_tabIndicatorHeight;
-			global::TwinTechsForms.NControl.Resource.Styleable.TabLayout_tabMaxWidth = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.TabLayout_tabMaxWidth;
-			global::TwinTechsForms.NControl.Resource.Styleable.TabLayout_tabMinWidth = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.TabLayout_tabMinWidth;
-			global::TwinTechsForms.NControl.Resource.Styleable.TabLayout_tabMode = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.TabLayout_tabMode;
-			global::TwinTechsForms.NControl.Resource.Styleable.TabLayout_tabPadding = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.TabLayout_tabPadding;
-			global::TwinTechsForms.NControl.Resource.Styleable.TabLayout_tabPaddingBottom = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.TabLayout_tabPaddingBottom;
-			global::TwinTechsForms.NControl.Resource.Styleable.TabLayout_tabPaddingEnd = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.TabLayout_tabPaddingEnd;
-			global::TwinTechsForms.NControl.Resource.Styleable.TabLayout_tabPaddingStart = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.TabLayout_tabPaddingStart;
-			global::TwinTechsForms.NControl.Resource.Styleable.TabLayout_tabPaddingTop = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.TabLayout_tabPaddingTop;
-			global::TwinTechsForms.NControl.Resource.Styleable.TabLayout_tabSelectedTextColor = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.TabLayout_tabSelectedTextColor;
-			global::TwinTechsForms.NControl.Resource.Styleable.TabLayout_tabTextAppearance = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.TabLayout_tabTextAppearance;
-			global::TwinTechsForms.NControl.Resource.Styleable.TabLayout_tabTextColor = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.TabLayout_tabTextColor;
-			global::TwinTechsForms.NControl.Resource.Styleable.TextAppearance = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.TextAppearance;
-			global::TwinTechsForms.NControl.Resource.Styleable.TextAppearance_android_textColor = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.TextAppearance_android_textColor;
-			global::TwinTechsForms.NControl.Resource.Styleable.TextAppearance_android_textSize = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.TextAppearance_android_textSize;
-			global::TwinTechsForms.NControl.Resource.Styleable.TextAppearance_android_textStyle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.TextAppearance_android_textStyle;
-			global::TwinTechsForms.NControl.Resource.Styleable.TextAppearance_android_typeface = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.TextAppearance_android_typeface;
-			global::TwinTechsForms.NControl.Resource.Styleable.TextAppearance_textAllCaps = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.TextAppearance_textAllCaps;
-			global::TwinTechsForms.NControl.Resource.Styleable.TextInputLayout = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.TextInputLayout;
-			global::TwinTechsForms.NControl.Resource.Styleable.TextInputLayout_android_hint = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.TextInputLayout_android_hint;
-			global::TwinTechsForms.NControl.Resource.Styleable.TextInputLayout_android_textColorHint = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.TextInputLayout_android_textColorHint;
-			global::TwinTechsForms.NControl.Resource.Styleable.TextInputLayout_errorEnabled = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.TextInputLayout_errorEnabled;
-			global::TwinTechsForms.NControl.Resource.Styleable.TextInputLayout_errorTextAppearance = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.TextInputLayout_errorTextAppearance;
-			global::TwinTechsForms.NControl.Resource.Styleable.TextInputLayout_hintAnimationEnabled = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.TextInputLayout_hintAnimationEnabled;
-			global::TwinTechsForms.NControl.Resource.Styleable.TextInputLayout_hintTextAppearance = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.TextInputLayout_hintTextAppearance;
-			global::TwinTechsForms.NControl.Resource.Styleable.Toolbar = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.Toolbar;
-			global::TwinTechsForms.NControl.Resource.Styleable.Toolbar_android_gravity = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.Toolbar_android_gravity;
-			global::TwinTechsForms.NControl.Resource.Styleable.Toolbar_android_minHeight = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.Toolbar_android_minHeight;
-			global::TwinTechsForms.NControl.Resource.Styleable.Toolbar_collapseContentDescription = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.Toolbar_collapseContentDescription;
-			global::TwinTechsForms.NControl.Resource.Styleable.Toolbar_collapseIcon = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.Toolbar_collapseIcon;
-			global::TwinTechsForms.NControl.Resource.Styleable.Toolbar_contentInsetEnd = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.Toolbar_contentInsetEnd;
-			global::TwinTechsForms.NControl.Resource.Styleable.Toolbar_contentInsetLeft = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.Toolbar_contentInsetLeft;
-			global::TwinTechsForms.NControl.Resource.Styleable.Toolbar_contentInsetRight = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.Toolbar_contentInsetRight;
-			global::TwinTechsForms.NControl.Resource.Styleable.Toolbar_contentInsetStart = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.Toolbar_contentInsetStart;
-			global::TwinTechsForms.NControl.Resource.Styleable.Toolbar_logo = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.Toolbar_logo;
-			global::TwinTechsForms.NControl.Resource.Styleable.Toolbar_logoDescription = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.Toolbar_logoDescription;
-			global::TwinTechsForms.NControl.Resource.Styleable.Toolbar_maxButtonHeight = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.Toolbar_maxButtonHeight;
-			global::TwinTechsForms.NControl.Resource.Styleable.Toolbar_navigationContentDescription = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.Toolbar_navigationContentDescription;
-			global::TwinTechsForms.NControl.Resource.Styleable.Toolbar_navigationIcon = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.Toolbar_navigationIcon;
-			global::TwinTechsForms.NControl.Resource.Styleable.Toolbar_popupTheme = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.Toolbar_popupTheme;
-			global::TwinTechsForms.NControl.Resource.Styleable.Toolbar_subtitle = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.Toolbar_subtitle;
-			global::TwinTechsForms.NControl.Resource.Styleable.Toolbar_subtitleTextAppearance = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.Toolbar_subtitleTextAppearance;
-			global::TwinTechsForms.NControl.Resource.Styleable.Toolbar_subtitleTextColor = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.Toolbar_subtitleTextColor;
-			global::TwinTechsForms.NControl.Resource.Styleable.Toolbar_title = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.Toolbar_title;
-			global::TwinTechsForms.NControl.Resource.Styleable.Toolbar_titleMarginBottom = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.Toolbar_titleMarginBottom;
-			global::TwinTechsForms.NControl.Resource.Styleable.Toolbar_titleMarginEnd = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.Toolbar_titleMarginEnd;
-			global::TwinTechsForms.NControl.Resource.Styleable.Toolbar_titleMarginStart = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.Toolbar_titleMarginStart;
-			global::TwinTechsForms.NControl.Resource.Styleable.Toolbar_titleMarginTop = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.Toolbar_titleMarginTop;
-			global::TwinTechsForms.NControl.Resource.Styleable.Toolbar_titleMargins = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.Toolbar_titleMargins;
-			global::TwinTechsForms.NControl.Resource.Styleable.Toolbar_titleTextAppearance = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.Toolbar_titleTextAppearance;
-			global::TwinTechsForms.NControl.Resource.Styleable.Toolbar_titleTextColor = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.Toolbar_titleTextColor;
-			global::TwinTechsForms.NControl.Resource.Styleable.View = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.View;
-			global::TwinTechsForms.NControl.Resource.Styleable.View_android_focusable = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.View_android_focusable;
-			global::TwinTechsForms.NControl.Resource.Styleable.View_android_theme = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.View_android_theme;
-			global::TwinTechsForms.NControl.Resource.Styleable.View_paddingEnd = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.View_paddingEnd;
-			global::TwinTechsForms.NControl.Resource.Styleable.View_paddingStart = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.View_paddingStart;
-			global::TwinTechsForms.NControl.Resource.Styleable.View_theme = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.View_theme;
-			global::TwinTechsForms.NControl.Resource.Styleable.ViewBackgroundHelper = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ViewBackgroundHelper;
-			global::TwinTechsForms.NControl.Resource.Styleable.ViewBackgroundHelper_android_background = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ViewBackgroundHelper_android_background;
-			global::TwinTechsForms.NControl.Resource.Styleable.ViewBackgroundHelper_backgroundTint = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ViewBackgroundHelper_backgroundTint;
-			global::TwinTechsForms.NControl.Resource.Styleable.ViewBackgroundHelper_backgroundTintMode = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ViewBackgroundHelper_backgroundTintMode;
-			global::TwinTechsForms.NControl.Resource.Styleable.ViewStubCompat = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ViewStubCompat;
-			global::TwinTechsForms.NControl.Resource.Styleable.ViewStubCompat_android_id = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ViewStubCompat_android_id;
-			global::TwinTechsForms.NControl.Resource.Styleable.ViewStubCompat_android_inflatedId = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ViewStubCompat_android_inflatedId;
-			global::TwinTechsForms.NControl.Resource.Styleable.ViewStubCompat_android_layout = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Styleable.ViewStubCompat_android_layout;
 		}
 		
 		public partial class Animation
@@ -4359,449 +1722,449 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
 		public partial class Dimension
 		{
 			
-			// aapt resource value: 0x7f080018
-			public const int abc_action_bar_content_inset_material = 2131230744;
+			// aapt resource value: 0x7f070018
+			public const int abc_action_bar_content_inset_material = 2131165208;
 			
-			// aapt resource value: 0x7f080019
-			public const int abc_action_bar_content_inset_with_nav = 2131230745;
+			// aapt resource value: 0x7f070019
+			public const int abc_action_bar_content_inset_with_nav = 2131165209;
 			
-			// aapt resource value: 0x7f08000d
-			public const int abc_action_bar_default_height_material = 2131230733;
+			// aapt resource value: 0x7f07000d
+			public const int abc_action_bar_default_height_material = 2131165197;
 			
-			// aapt resource value: 0x7f08001a
-			public const int abc_action_bar_default_padding_end_material = 2131230746;
+			// aapt resource value: 0x7f07001a
+			public const int abc_action_bar_default_padding_end_material = 2131165210;
 			
-			// aapt resource value: 0x7f08001b
-			public const int abc_action_bar_default_padding_start_material = 2131230747;
+			// aapt resource value: 0x7f07001b
+			public const int abc_action_bar_default_padding_start_material = 2131165211;
 			
-			// aapt resource value: 0x7f080021
-			public const int abc_action_bar_elevation_material = 2131230753;
+			// aapt resource value: 0x7f070021
+			public const int abc_action_bar_elevation_material = 2131165217;
 			
-			// aapt resource value: 0x7f080022
-			public const int abc_action_bar_icon_vertical_padding_material = 2131230754;
+			// aapt resource value: 0x7f070022
+			public const int abc_action_bar_icon_vertical_padding_material = 2131165218;
 			
-			// aapt resource value: 0x7f080023
-			public const int abc_action_bar_overflow_padding_end_material = 2131230755;
+			// aapt resource value: 0x7f070023
+			public const int abc_action_bar_overflow_padding_end_material = 2131165219;
 			
-			// aapt resource value: 0x7f080024
-			public const int abc_action_bar_overflow_padding_start_material = 2131230756;
+			// aapt resource value: 0x7f070024
+			public const int abc_action_bar_overflow_padding_start_material = 2131165220;
 			
-			// aapt resource value: 0x7f08000e
-			public const int abc_action_bar_progress_bar_size = 2131230734;
+			// aapt resource value: 0x7f07000e
+			public const int abc_action_bar_progress_bar_size = 2131165198;
 			
-			// aapt resource value: 0x7f080025
-			public const int abc_action_bar_stacked_max_height = 2131230757;
+			// aapt resource value: 0x7f070025
+			public const int abc_action_bar_stacked_max_height = 2131165221;
 			
-			// aapt resource value: 0x7f080026
-			public const int abc_action_bar_stacked_tab_max_width = 2131230758;
+			// aapt resource value: 0x7f070026
+			public const int abc_action_bar_stacked_tab_max_width = 2131165222;
 			
-			// aapt resource value: 0x7f080027
-			public const int abc_action_bar_subtitle_bottom_margin_material = 2131230759;
+			// aapt resource value: 0x7f070027
+			public const int abc_action_bar_subtitle_bottom_margin_material = 2131165223;
 			
-			// aapt resource value: 0x7f080028
-			public const int abc_action_bar_subtitle_top_margin_material = 2131230760;
+			// aapt resource value: 0x7f070028
+			public const int abc_action_bar_subtitle_top_margin_material = 2131165224;
 			
-			// aapt resource value: 0x7f080029
-			public const int abc_action_button_min_height_material = 2131230761;
+			// aapt resource value: 0x7f070029
+			public const int abc_action_button_min_height_material = 2131165225;
 			
-			// aapt resource value: 0x7f08002a
-			public const int abc_action_button_min_width_material = 2131230762;
+			// aapt resource value: 0x7f07002a
+			public const int abc_action_button_min_width_material = 2131165226;
 			
-			// aapt resource value: 0x7f08002b
-			public const int abc_action_button_min_width_overflow_material = 2131230763;
+			// aapt resource value: 0x7f07002b
+			public const int abc_action_button_min_width_overflow_material = 2131165227;
 			
-			// aapt resource value: 0x7f08000c
-			public const int abc_alert_dialog_button_bar_height = 2131230732;
+			// aapt resource value: 0x7f07000c
+			public const int abc_alert_dialog_button_bar_height = 2131165196;
 			
-			// aapt resource value: 0x7f08002c
-			public const int abc_button_inset_horizontal_material = 2131230764;
+			// aapt resource value: 0x7f07002c
+			public const int abc_button_inset_horizontal_material = 2131165228;
 			
-			// aapt resource value: 0x7f08002d
-			public const int abc_button_inset_vertical_material = 2131230765;
+			// aapt resource value: 0x7f07002d
+			public const int abc_button_inset_vertical_material = 2131165229;
 			
-			// aapt resource value: 0x7f08002e
-			public const int abc_button_padding_horizontal_material = 2131230766;
+			// aapt resource value: 0x7f07002e
+			public const int abc_button_padding_horizontal_material = 2131165230;
 			
-			// aapt resource value: 0x7f08002f
-			public const int abc_button_padding_vertical_material = 2131230767;
+			// aapt resource value: 0x7f07002f
+			public const int abc_button_padding_vertical_material = 2131165231;
 			
-			// aapt resource value: 0x7f080030
-			public const int abc_cascading_menus_min_smallest_width = 2131230768;
+			// aapt resource value: 0x7f070030
+			public const int abc_cascading_menus_min_smallest_width = 2131165232;
 			
-			// aapt resource value: 0x7f080011
-			public const int abc_config_prefDialogWidth = 2131230737;
+			// aapt resource value: 0x7f070011
+			public const int abc_config_prefDialogWidth = 2131165201;
 			
-			// aapt resource value: 0x7f080031
-			public const int abc_control_corner_material = 2131230769;
+			// aapt resource value: 0x7f070031
+			public const int abc_control_corner_material = 2131165233;
 			
-			// aapt resource value: 0x7f080032
-			public const int abc_control_inset_material = 2131230770;
+			// aapt resource value: 0x7f070032
+			public const int abc_control_inset_material = 2131165234;
 			
-			// aapt resource value: 0x7f080033
-			public const int abc_control_padding_material = 2131230771;
+			// aapt resource value: 0x7f070033
+			public const int abc_control_padding_material = 2131165235;
 			
-			// aapt resource value: 0x7f080012
-			public const int abc_dialog_fixed_height_major = 2131230738;
+			// aapt resource value: 0x7f070012
+			public const int abc_dialog_fixed_height_major = 2131165202;
 			
-			// aapt resource value: 0x7f080013
-			public const int abc_dialog_fixed_height_minor = 2131230739;
+			// aapt resource value: 0x7f070013
+			public const int abc_dialog_fixed_height_minor = 2131165203;
 			
-			// aapt resource value: 0x7f080014
-			public const int abc_dialog_fixed_width_major = 2131230740;
+			// aapt resource value: 0x7f070014
+			public const int abc_dialog_fixed_width_major = 2131165204;
 			
-			// aapt resource value: 0x7f080015
-			public const int abc_dialog_fixed_width_minor = 2131230741;
+			// aapt resource value: 0x7f070015
+			public const int abc_dialog_fixed_width_minor = 2131165205;
 			
-			// aapt resource value: 0x7f080034
-			public const int abc_dialog_list_padding_bottom_no_buttons = 2131230772;
+			// aapt resource value: 0x7f070034
+			public const int abc_dialog_list_padding_bottom_no_buttons = 2131165236;
 			
-			// aapt resource value: 0x7f080035
-			public const int abc_dialog_list_padding_top_no_title = 2131230773;
+			// aapt resource value: 0x7f070035
+			public const int abc_dialog_list_padding_top_no_title = 2131165237;
 			
-			// aapt resource value: 0x7f080016
-			public const int abc_dialog_min_width_major = 2131230742;
+			// aapt resource value: 0x7f070016
+			public const int abc_dialog_min_width_major = 2131165206;
 			
-			// aapt resource value: 0x7f080017
-			public const int abc_dialog_min_width_minor = 2131230743;
+			// aapt resource value: 0x7f070017
+			public const int abc_dialog_min_width_minor = 2131165207;
 			
-			// aapt resource value: 0x7f080036
-			public const int abc_dialog_padding_material = 2131230774;
+			// aapt resource value: 0x7f070036
+			public const int abc_dialog_padding_material = 2131165238;
 			
-			// aapt resource value: 0x7f080037
-			public const int abc_dialog_padding_top_material = 2131230775;
+			// aapt resource value: 0x7f070037
+			public const int abc_dialog_padding_top_material = 2131165239;
 			
-			// aapt resource value: 0x7f080038
-			public const int abc_dialog_title_divider_material = 2131230776;
+			// aapt resource value: 0x7f070038
+			public const int abc_dialog_title_divider_material = 2131165240;
 			
-			// aapt resource value: 0x7f080039
-			public const int abc_disabled_alpha_material_dark = 2131230777;
+			// aapt resource value: 0x7f070039
+			public const int abc_disabled_alpha_material_dark = 2131165241;
 			
-			// aapt resource value: 0x7f08003a
-			public const int abc_disabled_alpha_material_light = 2131230778;
+			// aapt resource value: 0x7f07003a
+			public const int abc_disabled_alpha_material_light = 2131165242;
 			
-			// aapt resource value: 0x7f08003b
-			public const int abc_dropdownitem_icon_width = 2131230779;
+			// aapt resource value: 0x7f07003b
+			public const int abc_dropdownitem_icon_width = 2131165243;
 			
-			// aapt resource value: 0x7f08003c
-			public const int abc_dropdownitem_text_padding_left = 2131230780;
+			// aapt resource value: 0x7f07003c
+			public const int abc_dropdownitem_text_padding_left = 2131165244;
 			
-			// aapt resource value: 0x7f08003d
-			public const int abc_dropdownitem_text_padding_right = 2131230781;
+			// aapt resource value: 0x7f07003d
+			public const int abc_dropdownitem_text_padding_right = 2131165245;
 			
-			// aapt resource value: 0x7f08003e
-			public const int abc_edit_text_inset_bottom_material = 2131230782;
+			// aapt resource value: 0x7f07003e
+			public const int abc_edit_text_inset_bottom_material = 2131165246;
 			
-			// aapt resource value: 0x7f08003f
-			public const int abc_edit_text_inset_horizontal_material = 2131230783;
+			// aapt resource value: 0x7f07003f
+			public const int abc_edit_text_inset_horizontal_material = 2131165247;
 			
-			// aapt resource value: 0x7f080040
-			public const int abc_edit_text_inset_top_material = 2131230784;
+			// aapt resource value: 0x7f070040
+			public const int abc_edit_text_inset_top_material = 2131165248;
 			
-			// aapt resource value: 0x7f080041
-			public const int abc_floating_window_z = 2131230785;
+			// aapt resource value: 0x7f070041
+			public const int abc_floating_window_z = 2131165249;
 			
-			// aapt resource value: 0x7f080042
-			public const int abc_list_item_padding_horizontal_material = 2131230786;
+			// aapt resource value: 0x7f070042
+			public const int abc_list_item_padding_horizontal_material = 2131165250;
 			
-			// aapt resource value: 0x7f080043
-			public const int abc_panel_menu_list_width = 2131230787;
+			// aapt resource value: 0x7f070043
+			public const int abc_panel_menu_list_width = 2131165251;
 			
-			// aapt resource value: 0x7f080044
-			public const int abc_progress_bar_height_material = 2131230788;
+			// aapt resource value: 0x7f070044
+			public const int abc_progress_bar_height_material = 2131165252;
 			
-			// aapt resource value: 0x7f080045
-			public const int abc_search_view_preferred_height = 2131230789;
+			// aapt resource value: 0x7f070045
+			public const int abc_search_view_preferred_height = 2131165253;
 			
-			// aapt resource value: 0x7f080046
-			public const int abc_search_view_preferred_width = 2131230790;
+			// aapt resource value: 0x7f070046
+			public const int abc_search_view_preferred_width = 2131165254;
 			
-			// aapt resource value: 0x7f080047
-			public const int abc_seekbar_track_background_height_material = 2131230791;
+			// aapt resource value: 0x7f070047
+			public const int abc_seekbar_track_background_height_material = 2131165255;
 			
-			// aapt resource value: 0x7f080048
-			public const int abc_seekbar_track_progress_height_material = 2131230792;
+			// aapt resource value: 0x7f070048
+			public const int abc_seekbar_track_progress_height_material = 2131165256;
 			
-			// aapt resource value: 0x7f080049
-			public const int abc_select_dialog_padding_start_material = 2131230793;
+			// aapt resource value: 0x7f070049
+			public const int abc_select_dialog_padding_start_material = 2131165257;
 			
-			// aapt resource value: 0x7f08001d
-			public const int abc_switch_padding = 2131230749;
+			// aapt resource value: 0x7f07001d
+			public const int abc_switch_padding = 2131165213;
 			
-			// aapt resource value: 0x7f08004a
-			public const int abc_text_size_body_1_material = 2131230794;
+			// aapt resource value: 0x7f07004a
+			public const int abc_text_size_body_1_material = 2131165258;
 			
-			// aapt resource value: 0x7f08004b
-			public const int abc_text_size_body_2_material = 2131230795;
+			// aapt resource value: 0x7f07004b
+			public const int abc_text_size_body_2_material = 2131165259;
 			
-			// aapt resource value: 0x7f08004c
-			public const int abc_text_size_button_material = 2131230796;
+			// aapt resource value: 0x7f07004c
+			public const int abc_text_size_button_material = 2131165260;
 			
-			// aapt resource value: 0x7f08004d
-			public const int abc_text_size_caption_material = 2131230797;
+			// aapt resource value: 0x7f07004d
+			public const int abc_text_size_caption_material = 2131165261;
 			
-			// aapt resource value: 0x7f08004e
-			public const int abc_text_size_display_1_material = 2131230798;
+			// aapt resource value: 0x7f07004e
+			public const int abc_text_size_display_1_material = 2131165262;
 			
-			// aapt resource value: 0x7f08004f
-			public const int abc_text_size_display_2_material = 2131230799;
+			// aapt resource value: 0x7f07004f
+			public const int abc_text_size_display_2_material = 2131165263;
 			
-			// aapt resource value: 0x7f080050
-			public const int abc_text_size_display_3_material = 2131230800;
+			// aapt resource value: 0x7f070050
+			public const int abc_text_size_display_3_material = 2131165264;
 			
-			// aapt resource value: 0x7f080051
-			public const int abc_text_size_display_4_material = 2131230801;
+			// aapt resource value: 0x7f070051
+			public const int abc_text_size_display_4_material = 2131165265;
 			
-			// aapt resource value: 0x7f080052
-			public const int abc_text_size_headline_material = 2131230802;
+			// aapt resource value: 0x7f070052
+			public const int abc_text_size_headline_material = 2131165266;
 			
-			// aapt resource value: 0x7f080053
-			public const int abc_text_size_large_material = 2131230803;
+			// aapt resource value: 0x7f070053
+			public const int abc_text_size_large_material = 2131165267;
 			
-			// aapt resource value: 0x7f080054
-			public const int abc_text_size_medium_material = 2131230804;
+			// aapt resource value: 0x7f070054
+			public const int abc_text_size_medium_material = 2131165268;
 			
-			// aapt resource value: 0x7f080055
-			public const int abc_text_size_menu_header_material = 2131230805;
+			// aapt resource value: 0x7f070055
+			public const int abc_text_size_menu_header_material = 2131165269;
 			
-			// aapt resource value: 0x7f080056
-			public const int abc_text_size_menu_material = 2131230806;
+			// aapt resource value: 0x7f070056
+			public const int abc_text_size_menu_material = 2131165270;
 			
-			// aapt resource value: 0x7f080057
-			public const int abc_text_size_small_material = 2131230807;
+			// aapt resource value: 0x7f070057
+			public const int abc_text_size_small_material = 2131165271;
 			
-			// aapt resource value: 0x7f080058
-			public const int abc_text_size_subhead_material = 2131230808;
+			// aapt resource value: 0x7f070058
+			public const int abc_text_size_subhead_material = 2131165272;
 			
-			// aapt resource value: 0x7f08000f
-			public const int abc_text_size_subtitle_material_toolbar = 2131230735;
+			// aapt resource value: 0x7f07000f
+			public const int abc_text_size_subtitle_material_toolbar = 2131165199;
 			
-			// aapt resource value: 0x7f080059
-			public const int abc_text_size_title_material = 2131230809;
+			// aapt resource value: 0x7f070059
+			public const int abc_text_size_title_material = 2131165273;
 			
-			// aapt resource value: 0x7f080010
-			public const int abc_text_size_title_material_toolbar = 2131230736;
+			// aapt resource value: 0x7f070010
+			public const int abc_text_size_title_material_toolbar = 2131165200;
 			
-			// aapt resource value: 0x7f080009
-			public const int cardview_compat_inset_shadow = 2131230729;
+			// aapt resource value: 0x7f070009
+			public const int cardview_compat_inset_shadow = 2131165193;
 			
-			// aapt resource value: 0x7f08000a
-			public const int cardview_default_elevation = 2131230730;
+			// aapt resource value: 0x7f07000a
+			public const int cardview_default_elevation = 2131165194;
 			
-			// aapt resource value: 0x7f08000b
-			public const int cardview_default_radius = 2131230731;
+			// aapt resource value: 0x7f07000b
+			public const int cardview_default_radius = 2131165195;
 			
-			// aapt resource value: 0x7f080076
-			public const int design_appbar_elevation = 2131230838;
+			// aapt resource value: 0x7f070076
+			public const int design_appbar_elevation = 2131165302;
 			
-			// aapt resource value: 0x7f080077
-			public const int design_bottom_navigation_active_item_max_width = 2131230839;
+			// aapt resource value: 0x7f070077
+			public const int design_bottom_navigation_active_item_max_width = 2131165303;
 			
-			// aapt resource value: 0x7f080078
-			public const int design_bottom_navigation_active_text_size = 2131230840;
+			// aapt resource value: 0x7f070078
+			public const int design_bottom_navigation_active_text_size = 2131165304;
 			
-			// aapt resource value: 0x7f080079
-			public const int design_bottom_navigation_elevation = 2131230841;
+			// aapt resource value: 0x7f070079
+			public const int design_bottom_navigation_elevation = 2131165305;
 			
-			// aapt resource value: 0x7f08007a
-			public const int design_bottom_navigation_height = 2131230842;
+			// aapt resource value: 0x7f07007a
+			public const int design_bottom_navigation_height = 2131165306;
 			
-			// aapt resource value: 0x7f08007b
-			public const int design_bottom_navigation_item_max_width = 2131230843;
+			// aapt resource value: 0x7f07007b
+			public const int design_bottom_navigation_item_max_width = 2131165307;
 			
-			// aapt resource value: 0x7f08007c
-			public const int design_bottom_navigation_item_min_width = 2131230844;
+			// aapt resource value: 0x7f07007c
+			public const int design_bottom_navigation_item_min_width = 2131165308;
 			
-			// aapt resource value: 0x7f08007d
-			public const int design_bottom_navigation_margin = 2131230845;
+			// aapt resource value: 0x7f07007d
+			public const int design_bottom_navigation_margin = 2131165309;
 			
-			// aapt resource value: 0x7f08007e
-			public const int design_bottom_navigation_shadow_height = 2131230846;
+			// aapt resource value: 0x7f07007e
+			public const int design_bottom_navigation_shadow_height = 2131165310;
 			
-			// aapt resource value: 0x7f08007f
-			public const int design_bottom_navigation_text_size = 2131230847;
+			// aapt resource value: 0x7f07007f
+			public const int design_bottom_navigation_text_size = 2131165311;
 			
-			// aapt resource value: 0x7f080080
-			public const int design_bottom_sheet_modal_elevation = 2131230848;
+			// aapt resource value: 0x7f070080
+			public const int design_bottom_sheet_modal_elevation = 2131165312;
 			
-			// aapt resource value: 0x7f080081
-			public const int design_bottom_sheet_peek_height_min = 2131230849;
+			// aapt resource value: 0x7f070081
+			public const int design_bottom_sheet_peek_height_min = 2131165313;
 			
-			// aapt resource value: 0x7f080082
-			public const int design_fab_border_width = 2131230850;
+			// aapt resource value: 0x7f070082
+			public const int design_fab_border_width = 2131165314;
 			
-			// aapt resource value: 0x7f080083
-			public const int design_fab_elevation = 2131230851;
+			// aapt resource value: 0x7f070083
+			public const int design_fab_elevation = 2131165315;
 			
-			// aapt resource value: 0x7f080084
-			public const int design_fab_image_size = 2131230852;
+			// aapt resource value: 0x7f070084
+			public const int design_fab_image_size = 2131165316;
 			
-			// aapt resource value: 0x7f080085
-			public const int design_fab_size_mini = 2131230853;
+			// aapt resource value: 0x7f070085
+			public const int design_fab_size_mini = 2131165317;
 			
-			// aapt resource value: 0x7f080086
-			public const int design_fab_size_normal = 2131230854;
+			// aapt resource value: 0x7f070086
+			public const int design_fab_size_normal = 2131165318;
 			
-			// aapt resource value: 0x7f080087
-			public const int design_fab_translation_z_pressed = 2131230855;
+			// aapt resource value: 0x7f070087
+			public const int design_fab_translation_z_pressed = 2131165319;
 			
-			// aapt resource value: 0x7f080088
-			public const int design_navigation_elevation = 2131230856;
+			// aapt resource value: 0x7f070088
+			public const int design_navigation_elevation = 2131165320;
 			
-			// aapt resource value: 0x7f080089
-			public const int design_navigation_icon_padding = 2131230857;
+			// aapt resource value: 0x7f070089
+			public const int design_navigation_icon_padding = 2131165321;
 			
-			// aapt resource value: 0x7f08008a
-			public const int design_navigation_icon_size = 2131230858;
+			// aapt resource value: 0x7f07008a
+			public const int design_navigation_icon_size = 2131165322;
 			
-			// aapt resource value: 0x7f08006e
-			public const int design_navigation_max_width = 2131230830;
+			// aapt resource value: 0x7f07006e
+			public const int design_navigation_max_width = 2131165294;
 			
-			// aapt resource value: 0x7f08008b
-			public const int design_navigation_padding_bottom = 2131230859;
+			// aapt resource value: 0x7f07008b
+			public const int design_navigation_padding_bottom = 2131165323;
 			
-			// aapt resource value: 0x7f08008c
-			public const int design_navigation_separator_vertical_padding = 2131230860;
+			// aapt resource value: 0x7f07008c
+			public const int design_navigation_separator_vertical_padding = 2131165324;
 			
-			// aapt resource value: 0x7f08006f
-			public const int design_snackbar_action_inline_max_width = 2131230831;
+			// aapt resource value: 0x7f07006f
+			public const int design_snackbar_action_inline_max_width = 2131165295;
 			
-			// aapt resource value: 0x7f080070
-			public const int design_snackbar_background_corner_radius = 2131230832;
+			// aapt resource value: 0x7f070070
+			public const int design_snackbar_background_corner_radius = 2131165296;
 			
-			// aapt resource value: 0x7f08008d
-			public const int design_snackbar_elevation = 2131230861;
+			// aapt resource value: 0x7f07008d
+			public const int design_snackbar_elevation = 2131165325;
 			
-			// aapt resource value: 0x7f080071
-			public const int design_snackbar_extra_spacing_horizontal = 2131230833;
+			// aapt resource value: 0x7f070071
+			public const int design_snackbar_extra_spacing_horizontal = 2131165297;
 			
-			// aapt resource value: 0x7f080072
-			public const int design_snackbar_max_width = 2131230834;
+			// aapt resource value: 0x7f070072
+			public const int design_snackbar_max_width = 2131165298;
 			
-			// aapt resource value: 0x7f080073
-			public const int design_snackbar_min_width = 2131230835;
+			// aapt resource value: 0x7f070073
+			public const int design_snackbar_min_width = 2131165299;
 			
-			// aapt resource value: 0x7f08008e
-			public const int design_snackbar_padding_horizontal = 2131230862;
+			// aapt resource value: 0x7f07008e
+			public const int design_snackbar_padding_horizontal = 2131165326;
 			
-			// aapt resource value: 0x7f08008f
-			public const int design_snackbar_padding_vertical = 2131230863;
+			// aapt resource value: 0x7f07008f
+			public const int design_snackbar_padding_vertical = 2131165327;
 			
-			// aapt resource value: 0x7f080074
-			public const int design_snackbar_padding_vertical_2lines = 2131230836;
+			// aapt resource value: 0x7f070074
+			public const int design_snackbar_padding_vertical_2lines = 2131165300;
 			
-			// aapt resource value: 0x7f080090
-			public const int design_snackbar_text_size = 2131230864;
+			// aapt resource value: 0x7f070090
+			public const int design_snackbar_text_size = 2131165328;
 			
-			// aapt resource value: 0x7f080091
-			public const int design_tab_max_width = 2131230865;
+			// aapt resource value: 0x7f070091
+			public const int design_tab_max_width = 2131165329;
 			
-			// aapt resource value: 0x7f080075
-			public const int design_tab_scrollable_min_width = 2131230837;
+			// aapt resource value: 0x7f070075
+			public const int design_tab_scrollable_min_width = 2131165301;
 			
-			// aapt resource value: 0x7f080092
-			public const int design_tab_text_size = 2131230866;
+			// aapt resource value: 0x7f070092
+			public const int design_tab_text_size = 2131165330;
 			
-			// aapt resource value: 0x7f080093
-			public const int design_tab_text_size_2line = 2131230867;
+			// aapt resource value: 0x7f070093
+			public const int design_tab_text_size_2line = 2131165331;
 			
-			// aapt resource value: 0x7f08005a
-			public const int disabled_alpha_material_dark = 2131230810;
+			// aapt resource value: 0x7f07005a
+			public const int disabled_alpha_material_dark = 2131165274;
 			
-			// aapt resource value: 0x7f08005b
-			public const int disabled_alpha_material_light = 2131230811;
+			// aapt resource value: 0x7f07005b
+			public const int disabled_alpha_material_light = 2131165275;
 			
-			// aapt resource value: 0x7f08005c
-			public const int highlight_alpha_material_colored = 2131230812;
+			// aapt resource value: 0x7f07005c
+			public const int highlight_alpha_material_colored = 2131165276;
 			
-			// aapt resource value: 0x7f08005d
-			public const int highlight_alpha_material_dark = 2131230813;
+			// aapt resource value: 0x7f07005d
+			public const int highlight_alpha_material_dark = 2131165277;
 			
-			// aapt resource value: 0x7f08005e
-			public const int highlight_alpha_material_light = 2131230814;
+			// aapt resource value: 0x7f07005e
+			public const int highlight_alpha_material_light = 2131165278;
 			
-			// aapt resource value: 0x7f08005f
-			public const int hint_alpha_material_dark = 2131230815;
+			// aapt resource value: 0x7f07005f
+			public const int hint_alpha_material_dark = 2131165279;
 			
-			// aapt resource value: 0x7f080060
-			public const int hint_alpha_material_light = 2131230816;
+			// aapt resource value: 0x7f070060
+			public const int hint_alpha_material_light = 2131165280;
 			
-			// aapt resource value: 0x7f080061
-			public const int hint_pressed_alpha_material_dark = 2131230817;
+			// aapt resource value: 0x7f070061
+			public const int hint_pressed_alpha_material_dark = 2131165281;
 			
-			// aapt resource value: 0x7f080062
-			public const int hint_pressed_alpha_material_light = 2131230818;
+			// aapt resource value: 0x7f070062
+			public const int hint_pressed_alpha_material_light = 2131165282;
 			
-			// aapt resource value: 0x7f080000
-			public const int item_touch_helper_max_drag_scroll_per_frame = 2131230720;
+			// aapt resource value: 0x7f070000
+			public const int item_touch_helper_max_drag_scroll_per_frame = 2131165184;
 			
-			// aapt resource value: 0x7f080001
-			public const int item_touch_helper_swipe_escape_max_velocity = 2131230721;
+			// aapt resource value: 0x7f070001
+			public const int item_touch_helper_swipe_escape_max_velocity = 2131165185;
 			
-			// aapt resource value: 0x7f080002
-			public const int item_touch_helper_swipe_escape_velocity = 2131230722;
+			// aapt resource value: 0x7f070002
+			public const int item_touch_helper_swipe_escape_velocity = 2131165186;
 			
-			// aapt resource value: 0x7f080003
-			public const int mr_controller_volume_group_list_item_height = 2131230723;
+			// aapt resource value: 0x7f070003
+			public const int mr_controller_volume_group_list_item_height = 2131165187;
 			
-			// aapt resource value: 0x7f080004
-			public const int mr_controller_volume_group_list_item_icon_size = 2131230724;
+			// aapt resource value: 0x7f070004
+			public const int mr_controller_volume_group_list_item_icon_size = 2131165188;
 			
-			// aapt resource value: 0x7f080005
-			public const int mr_controller_volume_group_list_max_height = 2131230725;
+			// aapt resource value: 0x7f070005
+			public const int mr_controller_volume_group_list_max_height = 2131165189;
 			
-			// aapt resource value: 0x7f080008
-			public const int mr_controller_volume_group_list_padding_top = 2131230728;
+			// aapt resource value: 0x7f070008
+			public const int mr_controller_volume_group_list_padding_top = 2131165192;
 			
-			// aapt resource value: 0x7f080006
-			public const int mr_dialog_fixed_width_major = 2131230726;
+			// aapt resource value: 0x7f070006
+			public const int mr_dialog_fixed_width_major = 2131165190;
 			
-			// aapt resource value: 0x7f080007
-			public const int mr_dialog_fixed_width_minor = 2131230727;
+			// aapt resource value: 0x7f070007
+			public const int mr_dialog_fixed_width_minor = 2131165191;
 			
-			// aapt resource value: 0x7f080063
-			public const int notification_action_icon_size = 2131230819;
+			// aapt resource value: 0x7f070063
+			public const int notification_action_icon_size = 2131165283;
 			
-			// aapt resource value: 0x7f080064
-			public const int notification_action_text_size = 2131230820;
+			// aapt resource value: 0x7f070064
+			public const int notification_action_text_size = 2131165284;
 			
-			// aapt resource value: 0x7f080065
-			public const int notification_big_circle_margin = 2131230821;
+			// aapt resource value: 0x7f070065
+			public const int notification_big_circle_margin = 2131165285;
 			
-			// aapt resource value: 0x7f08001e
-			public const int notification_content_margin_start = 2131230750;
+			// aapt resource value: 0x7f07001e
+			public const int notification_content_margin_start = 2131165214;
 			
-			// aapt resource value: 0x7f080066
-			public const int notification_large_icon_height = 2131230822;
+			// aapt resource value: 0x7f070066
+			public const int notification_large_icon_height = 2131165286;
 			
-			// aapt resource value: 0x7f080067
-			public const int notification_large_icon_width = 2131230823;
+			// aapt resource value: 0x7f070067
+			public const int notification_large_icon_width = 2131165287;
 			
-			// aapt resource value: 0x7f08001f
-			public const int notification_main_column_padding_top = 2131230751;
+			// aapt resource value: 0x7f07001f
+			public const int notification_main_column_padding_top = 2131165215;
 			
-			// aapt resource value: 0x7f080020
-			public const int notification_media_narrow_margin = 2131230752;
+			// aapt resource value: 0x7f070020
+			public const int notification_media_narrow_margin = 2131165216;
 			
-			// aapt resource value: 0x7f080068
-			public const int notification_right_icon_size = 2131230824;
+			// aapt resource value: 0x7f070068
+			public const int notification_right_icon_size = 2131165288;
 			
-			// aapt resource value: 0x7f08001c
-			public const int notification_right_side_padding_top = 2131230748;
+			// aapt resource value: 0x7f07001c
+			public const int notification_right_side_padding_top = 2131165212;
 			
-			// aapt resource value: 0x7f080069
-			public const int notification_small_icon_background_padding = 2131230825;
+			// aapt resource value: 0x7f070069
+			public const int notification_small_icon_background_padding = 2131165289;
 			
-			// aapt resource value: 0x7f08006a
-			public const int notification_small_icon_size_as_large = 2131230826;
+			// aapt resource value: 0x7f07006a
+			public const int notification_small_icon_size_as_large = 2131165290;
 			
-			// aapt resource value: 0x7f08006b
-			public const int notification_subtext_size = 2131230827;
+			// aapt resource value: 0x7f07006b
+			public const int notification_subtext_size = 2131165291;
 			
-			// aapt resource value: 0x7f08006c
-			public const int notification_top_pad = 2131230828;
+			// aapt resource value: 0x7f07006c
+			public const int notification_top_pad = 2131165292;
 			
-			// aapt resource value: 0x7f08006d
-			public const int notification_top_pad_large_text = 2131230829;
+			// aapt resource value: 0x7f07006d
+			public const int notification_top_pad_large_text = 2131165293;
 			
 			static Dimension()
 			{
@@ -5080,8 +2443,26 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
 			// aapt resource value: 0x7f020057
 			public const int avd_hide_password = 2130837591;
 			
+			// aapt resource value: 0x7f020143
+			public const int avd_hide_password_1 = 2130837827;
+			
+			// aapt resource value: 0x7f020144
+			public const int avd_hide_password_2 = 2130837828;
+			
+			// aapt resource value: 0x7f020145
+			public const int avd_hide_password_3 = 2130837829;
+			
 			// aapt resource value: 0x7f020058
 			public const int avd_show_password = 2130837592;
+			
+			// aapt resource value: 0x7f020146
+			public const int avd_show_password_1 = 2130837830;
+			
+			// aapt resource value: 0x7f020147
+			public const int avd_show_password_2 = 2130837831;
+			
+			// aapt resource value: 0x7f020148
+			public const int avd_show_password_3 = 2130837832;
 			
 			// aapt resource value: 0x7f020059
 			public const int bonuspack_bubble_new = 2130837593;
@@ -5798,671 +3179,671 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f0900c6
-			public const int action0 = 2131296454;
+			// aapt resource value: 0x7f0800c6
+			public const int action0 = 2131230918;
 			
-			// aapt resource value: 0x7f090064
-			public const int action_bar = 2131296356;
+			// aapt resource value: 0x7f080064
+			public const int action_bar = 2131230820;
 			
-			// aapt resource value: 0x7f090001
-			public const int action_bar_activity_content = 2131296257;
+			// aapt resource value: 0x7f080001
+			public const int action_bar_activity_content = 2131230721;
 			
-			// aapt resource value: 0x7f090063
-			public const int action_bar_container = 2131296355;
+			// aapt resource value: 0x7f080063
+			public const int action_bar_container = 2131230819;
 			
-			// aapt resource value: 0x7f09005f
-			public const int action_bar_root = 2131296351;
+			// aapt resource value: 0x7f08005f
+			public const int action_bar_root = 2131230815;
 			
-			// aapt resource value: 0x7f090002
-			public const int action_bar_spinner = 2131296258;
+			// aapt resource value: 0x7f080002
+			public const int action_bar_spinner = 2131230722;
 			
-			// aapt resource value: 0x7f090042
-			public const int action_bar_subtitle = 2131296322;
+			// aapt resource value: 0x7f080042
+			public const int action_bar_subtitle = 2131230786;
 			
-			// aapt resource value: 0x7f090041
-			public const int action_bar_title = 2131296321;
+			// aapt resource value: 0x7f080041
+			public const int action_bar_title = 2131230785;
 			
-			// aapt resource value: 0x7f0900c3
-			public const int action_container = 2131296451;
+			// aapt resource value: 0x7f0800c3
+			public const int action_container = 2131230915;
 			
-			// aapt resource value: 0x7f090065
-			public const int action_context_bar = 2131296357;
+			// aapt resource value: 0x7f080065
+			public const int action_context_bar = 2131230821;
 			
-			// aapt resource value: 0x7f0900ca
-			public const int action_divider = 2131296458;
+			// aapt resource value: 0x7f0800ca
+			public const int action_divider = 2131230922;
 			
-			// aapt resource value: 0x7f0900c4
-			public const int action_image = 2131296452;
+			// aapt resource value: 0x7f0800c4
+			public const int action_image = 2131230916;
 			
-			// aapt resource value: 0x7f090003
-			public const int action_menu_divider = 2131296259;
+			// aapt resource value: 0x7f080003
+			public const int action_menu_divider = 2131230723;
 			
-			// aapt resource value: 0x7f090004
-			public const int action_menu_presenter = 2131296260;
+			// aapt resource value: 0x7f080004
+			public const int action_menu_presenter = 2131230724;
 			
-			// aapt resource value: 0x7f090061
-			public const int action_mode_bar = 2131296353;
+			// aapt resource value: 0x7f080061
+			public const int action_mode_bar = 2131230817;
 			
-			// aapt resource value: 0x7f090060
-			public const int action_mode_bar_stub = 2131296352;
+			// aapt resource value: 0x7f080060
+			public const int action_mode_bar_stub = 2131230816;
 			
-			// aapt resource value: 0x7f090043
-			public const int action_mode_close_button = 2131296323;
+			// aapt resource value: 0x7f080043
+			public const int action_mode_close_button = 2131230787;
 			
-			// aapt resource value: 0x7f0900c5
-			public const int action_text = 2131296453;
+			// aapt resource value: 0x7f0800c5
+			public const int action_text = 2131230917;
 			
-			// aapt resource value: 0x7f0900d3
-			public const int actions = 2131296467;
+			// aapt resource value: 0x7f0800d3
+			public const int actions = 2131230931;
 			
-			// aapt resource value: 0x7f090044
-			public const int activity_chooser_view_content = 2131296324;
+			// aapt resource value: 0x7f080044
+			public const int activity_chooser_view_content = 2131230788;
 			
-			// aapt resource value: 0x7f090019
-			public const int add = 2131296281;
+			// aapt resource value: 0x7f080019
+			public const int add = 2131230745;
 			
-			// aapt resource value: 0x7f090058
-			public const int alertTitle = 2131296344;
+			// aapt resource value: 0x7f080058
+			public const int alertTitle = 2131230808;
 			
-			// aapt resource value: 0x7f09003d
-			public const int all = 2131296317;
+			// aapt resource value: 0x7f08003d
+			public const int all = 2131230781;
 			
-			// aapt resource value: 0x7f090023
-			public const int always = 2131296291;
+			// aapt resource value: 0x7f080023
+			public const int always = 2131230755;
 			
-			// aapt resource value: 0x7f090074
-			public const int audio_progress_bar = 2131296372;
+			// aapt resource value: 0x7f080074
+			public const int audio_progress_bar = 2131230836;
 			
-			// aapt resource value: 0x7f09002f
-			public const int auto = 2131296303;
+			// aapt resource value: 0x7f08002f
+			public const int auto = 2131230767;
 			
-			// aapt resource value: 0x7f090020
-			public const int beginning = 2131296288;
+			// aapt resource value: 0x7f080020
+			public const int beginning = 2131230752;
 			
-			// aapt resource value: 0x7f090028
-			public const int bottom = 2131296296;
+			// aapt resource value: 0x7f080028
+			public const int bottom = 2131230760;
 			
-			// aapt resource value: 0x7f090075
-			public const int btnPlayPause = 2131296373;
+			// aapt resource value: 0x7f080075
+			public const int btnPlayPause = 2131230837;
 			
-			// aapt resource value: 0x7f090076
-			public const int btnStop = 2131296374;
+			// aapt resource value: 0x7f080076
+			public const int btnStop = 2131230838;
 			
-			// aapt resource value: 0x7f0900c0
-			public const int bubble_description = 2131296448;
+			// aapt resource value: 0x7f0800c0
+			public const int bubble_description = 2131230912;
 			
-			// aapt resource value: 0x7f0900be
-			public const int bubble_image = 2131296446;
+			// aapt resource value: 0x7f0800be
+			public const int bubble_image = 2131230910;
 			
-			// aapt resource value: 0x7f0900c1
-			public const int bubble_subdescription = 2131296449;
+			// aapt resource value: 0x7f0800c1
+			public const int bubble_subdescription = 2131230913;
 			
-			// aapt resource value: 0x7f0900bf
-			public const int bubble_title = 2131296447;
+			// aapt resource value: 0x7f0800bf
+			public const int bubble_title = 2131230911;
 			
-			// aapt resource value: 0x7f09004b
-			public const int buttonPanel = 2131296331;
+			// aapt resource value: 0x7f08004b
+			public const int buttonPanel = 2131230795;
 			
-			// aapt resource value: 0x7f090090
-			public const int button_add_response = 2131296400;
+			// aapt resource value: 0x7f080090
+			public const int button_add_response = 2131230864;
 			
-			// aapt resource value: 0x7f09008b
-			public const int button_attachment = 2131296395;
+			// aapt resource value: 0x7f08008b
+			public const int button_attachment = 2131230859;
 			
-			// aapt resource value: 0x7f090095
-			public const int button_login = 2131296405;
+			// aapt resource value: 0x7f080095
+			public const int button_login = 2131230869;
 			
-			// aapt resource value: 0x7f090091
-			public const int button_refresh = 2131296401;
+			// aapt resource value: 0x7f080091
+			public const int button_refresh = 2131230865;
 			
-			// aapt resource value: 0x7f09008c
-			public const int button_send = 2131296396;
+			// aapt resource value: 0x7f08008c
+			public const int button_send = 2131230860;
 			
-			// aapt resource value: 0x7f090099
-			public const int button_update = 2131296409;
+			// aapt resource value: 0x7f080099
+			public const int button_update = 2131230873;
 			
-			// aapt resource value: 0x7f0900c7
-			public const int cancel_action = 2131296455;
+			// aapt resource value: 0x7f0800c7
+			public const int cancel_action = 2131230919;
 			
-			// aapt resource value: 0x7f090030
-			public const int center = 2131296304;
+			// aapt resource value: 0x7f080030
+			public const int center = 2131230768;
 			
-			// aapt resource value: 0x7f090031
-			public const int center_horizontal = 2131296305;
+			// aapt resource value: 0x7f080031
+			public const int center_horizontal = 2131230769;
 			
-			// aapt resource value: 0x7f090032
-			public const int center_vertical = 2131296306;
+			// aapt resource value: 0x7f080032
+			public const int center_vertical = 2131230770;
 			
-			// aapt resource value: 0x7f09005b
-			public const int checkbox = 2131296347;
+			// aapt resource value: 0x7f08005b
+			public const int checkbox = 2131230811;
 			
-			// aapt resource value: 0x7f0900cf
-			public const int chronometer = 2131296463;
+			// aapt resource value: 0x7f0800cf
+			public const int chronometer = 2131230927;
 			
-			// aapt resource value: 0x7f090039
-			public const int clip_horizontal = 2131296313;
+			// aapt resource value: 0x7f080039
+			public const int clip_horizontal = 2131230777;
 			
-			// aapt resource value: 0x7f09003a
-			public const int clip_vertical = 2131296314;
+			// aapt resource value: 0x7f08003a
+			public const int clip_vertical = 2131230778;
 			
-			// aapt resource value: 0x7f0900c2
-			public const int close_marker_info_window = 2131296450;
+			// aapt resource value: 0x7f0800c2
+			public const int close_marker_info_window = 2131230914;
 			
-			// aapt resource value: 0x7f090024
-			public const int collapseActionView = 2131296292;
+			// aapt resource value: 0x7f080024
+			public const int collapseActionView = 2131230756;
 			
-			// aapt resource value: 0x7f09004e
-			public const int contentPanel = 2131296334;
+			// aapt resource value: 0x7f08004e
+			public const int contentPanel = 2131230798;
 			
-			// aapt resource value: 0x7f090055
-			public const int custom = 2131296341;
+			// aapt resource value: 0x7f080055
+			public const int custom = 2131230805;
 			
-			// aapt resource value: 0x7f090054
-			public const int customPanel = 2131296340;
+			// aapt resource value: 0x7f080054
+			public const int customPanel = 2131230804;
 			
-			// aapt resource value: 0x7f090062
-			public const int decor_content_parent = 2131296354;
+			// aapt resource value: 0x7f080062
+			public const int decor_content_parent = 2131230818;
 			
-			// aapt resource value: 0x7f090047
-			public const int default_activity_button = 2131296327;
+			// aapt resource value: 0x7f080047
+			public const int default_activity_button = 2131230791;
 			
-			// aapt resource value: 0x7f09007a
-			public const int design_bottom_sheet = 2131296378;
+			// aapt resource value: 0x7f08007a
+			public const int design_bottom_sheet = 2131230842;
 			
-			// aapt resource value: 0x7f090081
-			public const int design_menu_item_action_area = 2131296385;
+			// aapt resource value: 0x7f080081
+			public const int design_menu_item_action_area = 2131230849;
 			
-			// aapt resource value: 0x7f090080
-			public const int design_menu_item_action_area_stub = 2131296384;
+			// aapt resource value: 0x7f080080
+			public const int design_menu_item_action_area_stub = 2131230848;
 			
-			// aapt resource value: 0x7f09007f
-			public const int design_menu_item_text = 2131296383;
+			// aapt resource value: 0x7f08007f
+			public const int design_menu_item_text = 2131230847;
 			
-			// aapt resource value: 0x7f09007e
-			public const int design_navigation_view = 2131296382;
+			// aapt resource value: 0x7f08007e
+			public const int design_navigation_view = 2131230846;
 			
-			// aapt resource value: 0x7f090012
-			public const int disableHome = 2131296274;
+			// aapt resource value: 0x7f080012
+			public const int disableHome = 2131230738;
 			
-			// aapt resource value: 0x7f090066
-			public const int edit_query = 2131296358;
+			// aapt resource value: 0x7f080066
+			public const int edit_query = 2131230822;
 			
-			// aapt resource value: 0x7f090021
-			public const int end = 2131296289;
+			// aapt resource value: 0x7f080021
+			public const int end = 2131230753;
 			
-			// aapt resource value: 0x7f0900d9
-			public const int end_padder = 2131296473;
+			// aapt resource value: 0x7f0800d9
+			public const int end_padder = 2131230937;
 			
-			// aapt resource value: 0x7f09002a
-			public const int enterAlways = 2131296298;
+			// aapt resource value: 0x7f08002a
+			public const int enterAlways = 2131230762;
 			
-			// aapt resource value: 0x7f09002b
-			public const int enterAlwaysCollapsed = 2131296299;
+			// aapt resource value: 0x7f08002b
+			public const int enterAlwaysCollapsed = 2131230763;
 			
-			// aapt resource value: 0x7f09002c
-			public const int exitUntilCollapsed = 2131296300;
+			// aapt resource value: 0x7f08002c
+			public const int exitUntilCollapsed = 2131230764;
 			
-			// aapt resource value: 0x7f090045
-			public const int expand_activities_button = 2131296325;
+			// aapt resource value: 0x7f080045
+			public const int expand_activities_button = 2131230789;
 			
-			// aapt resource value: 0x7f09005a
-			public const int expanded_menu = 2131296346;
+			// aapt resource value: 0x7f08005a
+			public const int expanded_menu = 2131230810;
 			
-			// aapt resource value: 0x7f09003b
-			public const int fill = 2131296315;
+			// aapt resource value: 0x7f08003b
+			public const int fill = 2131230779;
 			
-			// aapt resource value: 0x7f09003c
-			public const int fill_horizontal = 2131296316;
+			// aapt resource value: 0x7f08003c
+			public const int fill_horizontal = 2131230780;
 			
-			// aapt resource value: 0x7f090033
-			public const int fill_vertical = 2131296307;
+			// aapt resource value: 0x7f080033
+			public const int fill_vertical = 2131230771;
 			
-			// aapt resource value: 0x7f09003f
-			public const int @fixed = 2131296319;
+			// aapt resource value: 0x7f08003f
+			public const int @fixed = 2131230783;
 			
-			// aapt resource value: 0x7f090005
-			public const int home = 2131296261;
+			// aapt resource value: 0x7f080005
+			public const int home = 2131230725;
 			
-			// aapt resource value: 0x7f090013
-			public const int homeAsUp = 2131296275;
+			// aapt resource value: 0x7f080013
+			public const int homeAsUp = 2131230739;
 			
-			// aapt resource value: 0x7f090049
-			public const int icon = 2131296329;
+			// aapt resource value: 0x7f080049
+			public const int icon = 2131230793;
 			
-			// aapt resource value: 0x7f0900d4
-			public const int icon_group = 2131296468;
+			// aapt resource value: 0x7f0800d4
+			public const int icon_group = 2131230932;
 			
-			// aapt resource value: 0x7f090025
-			public const int ifRoom = 2131296293;
+			// aapt resource value: 0x7f080025
+			public const int ifRoom = 2131230757;
 			
-			// aapt resource value: 0x7f090046
-			public const int image = 2131296326;
+			// aapt resource value: 0x7f080046
+			public const int image = 2131230790;
 			
-			// aapt resource value: 0x7f0900d0
-			public const int info = 2131296464;
+			// aapt resource value: 0x7f0800d0
+			public const int info = 2131230928;
 			
-			// aapt resource value: 0x7f090087
-			public const int input_email = 2131296391;
+			// aapt resource value: 0x7f080087
+			public const int input_email = 2131230855;
 			
-			// aapt resource value: 0x7f090089
-			public const int input_message = 2131296393;
+			// aapt resource value: 0x7f080089
+			public const int input_message = 2131230857;
 			
-			// aapt resource value: 0x7f090086
-			public const int input_name = 2131296390;
+			// aapt resource value: 0x7f080086
+			public const int input_name = 2131230854;
 			
-			// aapt resource value: 0x7f090094
-			public const int input_password = 2131296404;
+			// aapt resource value: 0x7f080094
+			public const int input_password = 2131230868;
 			
-			// aapt resource value: 0x7f090088
-			public const int input_subject = 2131296392;
+			// aapt resource value: 0x7f080088
+			public const int input_subject = 2131230856;
 			
-			// aapt resource value: 0x7f090000
-			public const int item_touch_helper_previous_elevation = 2131296256;
+			// aapt resource value: 0x7f080000
+			public const int item_touch_helper_previous_elevation = 2131230720;
 			
-			// aapt resource value: 0x7f09009b
-			public const int label_author = 2131296411;
+			// aapt resource value: 0x7f08009b
+			public const int label_author = 2131230875;
 			
-			// aapt resource value: 0x7f09009c
-			public const int label_date = 2131296412;
+			// aapt resource value: 0x7f08009c
+			public const int label_date = 2131230876;
 			
-			// aapt resource value: 0x7f09008e
-			public const int label_last_updated = 2131296398;
+			// aapt resource value: 0x7f08008e
+			public const int label_last_updated = 2131230862;
 			
-			// aapt resource value: 0x7f090083
-			public const int label_message = 2131296387;
+			// aapt resource value: 0x7f080083
+			public const int label_message = 2131230851;
 			
-			// aapt resource value: 0x7f09009d
-			public const int label_text = 2131296413;
+			// aapt resource value: 0x7f08009d
+			public const int label_text = 2131230877;
 			
-			// aapt resource value: 0x7f090097
-			public const int label_title = 2131296407;
+			// aapt resource value: 0x7f080097
+			public const int label_title = 2131230871;
 			
-			// aapt resource value: 0x7f090098
-			public const int label_version = 2131296408;
+			// aapt resource value: 0x7f080098
+			public const int label_version = 2131230872;
 			
-			// aapt resource value: 0x7f090078
-			public const int largeLabel = 2131296376;
+			// aapt resource value: 0x7f080078
+			public const int largeLabel = 2131230840;
 			
-			// aapt resource value: 0x7f090034
-			public const int left = 2131296308;
+			// aapt resource value: 0x7f080034
+			public const int left = 2131230772;
 			
-			// aapt resource value: 0x7f0900d5
-			public const int line1 = 2131296469;
+			// aapt resource value: 0x7f0800d5
+			public const int line1 = 2131230933;
 			
-			// aapt resource value: 0x7f0900d7
-			public const int line3 = 2131296471;
+			// aapt resource value: 0x7f0800d7
+			public const int line3 = 2131230935;
 			
-			// aapt resource value: 0x7f09000f
-			public const int listMode = 2131296271;
+			// aapt resource value: 0x7f08000f
+			public const int listMode = 2131230735;
 			
-			// aapt resource value: 0x7f09009e
-			public const int list_attachments = 2131296414;
+			// aapt resource value: 0x7f08009e
+			public const int list_attachments = 2131230878;
 			
-			// aapt resource value: 0x7f090092
-			public const int list_feedback_messages = 2131296402;
+			// aapt resource value: 0x7f080092
+			public const int list_feedback_messages = 2131230866;
 			
-			// aapt resource value: 0x7f090048
-			public const int list_item = 2131296328;
+			// aapt resource value: 0x7f080048
+			public const int list_item = 2131230792;
 			
-			// aapt resource value: 0x7f0900a1
-			public const int loadingImage = 2131296417;
+			// aapt resource value: 0x7f0800a1
+			public const int loadingImage = 2131230881;
 			
-			// aapt resource value: 0x7f09009f
-			public const int loadingProgressBar = 2131296415;
+			// aapt resource value: 0x7f08009f
+			public const int loadingProgressBar = 2131230879;
 			
-			// aapt resource value: 0x7f0900a2
-			public const int loadingProgressWheel = 2131296418;
+			// aapt resource value: 0x7f0800a2
+			public const int loadingProgressWheel = 2131230882;
 			
-			// aapt resource value: 0x7f0900dd
-			public const int masked = 2131296477;
+			// aapt resource value: 0x7f0800dd
+			public const int masked = 2131230941;
 			
-			// aapt resource value: 0x7f0900c9
-			public const int media_actions = 2131296457;
+			// aapt resource value: 0x7f0800c9
+			public const int media_actions = 2131230921;
 			
-			// aapt resource value: 0x7f090022
-			public const int middle = 2131296290;
+			// aapt resource value: 0x7f080022
+			public const int middle = 2131230754;
 			
-			// aapt resource value: 0x7f09003e
-			public const int mini = 2131296318;
+			// aapt resource value: 0x7f08003e
+			public const int mini = 2131230782;
 			
-			// aapt resource value: 0x7f0900af
-			public const int mr_art = 2131296431;
+			// aapt resource value: 0x7f0800af
+			public const int mr_art = 2131230895;
 			
-			// aapt resource value: 0x7f0900a4
-			public const int mr_chooser_list = 2131296420;
+			// aapt resource value: 0x7f0800a4
+			public const int mr_chooser_list = 2131230884;
 			
-			// aapt resource value: 0x7f0900a7
-			public const int mr_chooser_route_desc = 2131296423;
+			// aapt resource value: 0x7f0800a7
+			public const int mr_chooser_route_desc = 2131230887;
 			
-			// aapt resource value: 0x7f0900a5
-			public const int mr_chooser_route_icon = 2131296421;
+			// aapt resource value: 0x7f0800a5
+			public const int mr_chooser_route_icon = 2131230885;
 			
-			// aapt resource value: 0x7f0900a6
-			public const int mr_chooser_route_name = 2131296422;
+			// aapt resource value: 0x7f0800a6
+			public const int mr_chooser_route_name = 2131230886;
 			
-			// aapt resource value: 0x7f0900a3
-			public const int mr_chooser_title = 2131296419;
+			// aapt resource value: 0x7f0800a3
+			public const int mr_chooser_title = 2131230883;
 			
-			// aapt resource value: 0x7f0900ac
-			public const int mr_close = 2131296428;
+			// aapt resource value: 0x7f0800ac
+			public const int mr_close = 2131230892;
 			
-			// aapt resource value: 0x7f0900b2
-			public const int mr_control_divider = 2131296434;
+			// aapt resource value: 0x7f0800b2
+			public const int mr_control_divider = 2131230898;
 			
-			// aapt resource value: 0x7f0900b8
-			public const int mr_control_playback_ctrl = 2131296440;
+			// aapt resource value: 0x7f0800b8
+			public const int mr_control_playback_ctrl = 2131230904;
 			
-			// aapt resource value: 0x7f0900bb
-			public const int mr_control_subtitle = 2131296443;
+			// aapt resource value: 0x7f0800bb
+			public const int mr_control_subtitle = 2131230907;
 			
-			// aapt resource value: 0x7f0900ba
-			public const int mr_control_title = 2131296442;
+			// aapt resource value: 0x7f0800ba
+			public const int mr_control_title = 2131230906;
 			
-			// aapt resource value: 0x7f0900b9
-			public const int mr_control_title_container = 2131296441;
+			// aapt resource value: 0x7f0800b9
+			public const int mr_control_title_container = 2131230905;
 			
-			// aapt resource value: 0x7f0900ad
-			public const int mr_custom_control = 2131296429;
+			// aapt resource value: 0x7f0800ad
+			public const int mr_custom_control = 2131230893;
 			
-			// aapt resource value: 0x7f0900ae
-			public const int mr_default_control = 2131296430;
+			// aapt resource value: 0x7f0800ae
+			public const int mr_default_control = 2131230894;
 			
-			// aapt resource value: 0x7f0900a9
-			public const int mr_dialog_area = 2131296425;
+			// aapt resource value: 0x7f0800a9
+			public const int mr_dialog_area = 2131230889;
 			
-			// aapt resource value: 0x7f0900a8
-			public const int mr_expandable_area = 2131296424;
+			// aapt resource value: 0x7f0800a8
+			public const int mr_expandable_area = 2131230888;
 			
-			// aapt resource value: 0x7f0900bc
-			public const int mr_group_expand_collapse = 2131296444;
+			// aapt resource value: 0x7f0800bc
+			public const int mr_group_expand_collapse = 2131230908;
 			
-			// aapt resource value: 0x7f0900b0
-			public const int mr_media_main_control = 2131296432;
+			// aapt resource value: 0x7f0800b0
+			public const int mr_media_main_control = 2131230896;
 			
-			// aapt resource value: 0x7f0900ab
-			public const int mr_name = 2131296427;
+			// aapt resource value: 0x7f0800ab
+			public const int mr_name = 2131230891;
 			
-			// aapt resource value: 0x7f0900b1
-			public const int mr_playback_control = 2131296433;
+			// aapt resource value: 0x7f0800b1
+			public const int mr_playback_control = 2131230897;
 			
-			// aapt resource value: 0x7f0900aa
-			public const int mr_title_bar = 2131296426;
+			// aapt resource value: 0x7f0800aa
+			public const int mr_title_bar = 2131230890;
 			
-			// aapt resource value: 0x7f0900b3
-			public const int mr_volume_control = 2131296435;
+			// aapt resource value: 0x7f0800b3
+			public const int mr_volume_control = 2131230899;
 			
-			// aapt resource value: 0x7f0900b4
-			public const int mr_volume_group_list = 2131296436;
+			// aapt resource value: 0x7f0800b4
+			public const int mr_volume_group_list = 2131230900;
 			
-			// aapt resource value: 0x7f0900b6
-			public const int mr_volume_item_icon = 2131296438;
+			// aapt resource value: 0x7f0800b6
+			public const int mr_volume_item_icon = 2131230902;
 			
-			// aapt resource value: 0x7f0900b7
-			public const int mr_volume_slider = 2131296439;
+			// aapt resource value: 0x7f0800b7
+			public const int mr_volume_slider = 2131230903;
 			
-			// aapt resource value: 0x7f09001a
-			public const int multiply = 2131296282;
+			// aapt resource value: 0x7f08001a
+			public const int multiply = 2131230746;
 			
-			// aapt resource value: 0x7f09007d
-			public const int navigation_header_container = 2131296381;
+			// aapt resource value: 0x7f08007d
+			public const int navigation_header_container = 2131230845;
 			
-			// aapt resource value: 0x7f090026
-			public const int never = 2131296294;
+			// aapt resource value: 0x7f080026
+			public const int never = 2131230758;
 			
-			// aapt resource value: 0x7f090014
-			public const int none = 2131296276;
+			// aapt resource value: 0x7f080014
+			public const int none = 2131230740;
 			
-			// aapt resource value: 0x7f090010
-			public const int normal = 2131296272;
+			// aapt resource value: 0x7f080010
+			public const int normal = 2131230736;
 			
-			// aapt resource value: 0x7f0900d2
-			public const int notification_background = 2131296466;
+			// aapt resource value: 0x7f0800d2
+			public const int notification_background = 2131230930;
 			
-			// aapt resource value: 0x7f0900cc
-			public const int notification_main_column = 2131296460;
+			// aapt resource value: 0x7f0800cc
+			public const int notification_main_column = 2131230924;
 			
-			// aapt resource value: 0x7f0900cb
-			public const int notification_main_column_container = 2131296459;
+			// aapt resource value: 0x7f0800cb
+			public const int notification_main_column_container = 2131230923;
 			
-			// aapt resource value: 0x7f0900bd
-			public const int open_appetizer_page = 2131296445;
+			// aapt resource value: 0x7f0800bd
+			public const int open_appetizer_page = 2131230909;
 			
-			// aapt resource value: 0x7f090037
-			public const int parallax = 2131296311;
+			// aapt resource value: 0x7f080037
+			public const int parallax = 2131230775;
 			
-			// aapt resource value: 0x7f09004d
-			public const int parentPanel = 2131296333;
+			// aapt resource value: 0x7f08004d
+			public const int parentPanel = 2131230797;
 			
-			// aapt resource value: 0x7f090038
-			public const int pin = 2131296312;
+			// aapt resource value: 0x7f080038
+			public const int pin = 2131230776;
 			
-			// aapt resource value: 0x7f090006
-			public const int progress_circular = 2131296262;
+			// aapt resource value: 0x7f080006
+			public const int progress_circular = 2131230726;
 			
-			// aapt resource value: 0x7f090007
-			public const int progress_horizontal = 2131296263;
+			// aapt resource value: 0x7f080007
+			public const int progress_horizontal = 2131230727;
 			
-			// aapt resource value: 0x7f09005d
-			public const int radio = 2131296349;
+			// aapt resource value: 0x7f08005d
+			public const int radio = 2131230813;
 			
-			// aapt resource value: 0x7f090035
-			public const int right = 2131296309;
+			// aapt resource value: 0x7f080035
+			public const int right = 2131230773;
 			
-			// aapt resource value: 0x7f0900d1
-			public const int right_icon = 2131296465;
+			// aapt resource value: 0x7f0800d1
+			public const int right_icon = 2131230929;
 			
-			// aapt resource value: 0x7f0900cd
-			public const int right_side = 2131296461;
+			// aapt resource value: 0x7f0800cd
+			public const int right_side = 2131230925;
 			
-			// aapt resource value: 0x7f09001b
-			public const int screen = 2131296283;
+			// aapt resource value: 0x7f08001b
+			public const int screen = 2131230747;
 			
-			// aapt resource value: 0x7f09002d
-			public const int scroll = 2131296301;
+			// aapt resource value: 0x7f08002d
+			public const int scroll = 2131230765;
 			
-			// aapt resource value: 0x7f090053
-			public const int scrollIndicatorDown = 2131296339;
+			// aapt resource value: 0x7f080053
+			public const int scrollIndicatorDown = 2131230803;
 			
-			// aapt resource value: 0x7f09004f
-			public const int scrollIndicatorUp = 2131296335;
+			// aapt resource value: 0x7f08004f
+			public const int scrollIndicatorUp = 2131230799;
 			
-			// aapt resource value: 0x7f090050
-			public const int scrollView = 2131296336;
+			// aapt resource value: 0x7f080050
+			public const int scrollView = 2131230800;
 			
-			// aapt resource value: 0x7f090040
-			public const int scrollable = 2131296320;
+			// aapt resource value: 0x7f080040
+			public const int scrollable = 2131230784;
 			
-			// aapt resource value: 0x7f090068
-			public const int search_badge = 2131296360;
+			// aapt resource value: 0x7f080068
+			public const int search_badge = 2131230824;
 			
-			// aapt resource value: 0x7f090067
-			public const int search_bar = 2131296359;
+			// aapt resource value: 0x7f080067
+			public const int search_bar = 2131230823;
 			
-			// aapt resource value: 0x7f090069
-			public const int search_button = 2131296361;
+			// aapt resource value: 0x7f080069
+			public const int search_button = 2131230825;
 			
-			// aapt resource value: 0x7f09006e
-			public const int search_close_btn = 2131296366;
+			// aapt resource value: 0x7f08006e
+			public const int search_close_btn = 2131230830;
 			
-			// aapt resource value: 0x7f09006a
-			public const int search_edit_frame = 2131296362;
+			// aapt resource value: 0x7f08006a
+			public const int search_edit_frame = 2131230826;
 			
-			// aapt resource value: 0x7f090070
-			public const int search_go_btn = 2131296368;
+			// aapt resource value: 0x7f080070
+			public const int search_go_btn = 2131230832;
 			
-			// aapt resource value: 0x7f09006b
-			public const int search_mag_icon = 2131296363;
+			// aapt resource value: 0x7f08006b
+			public const int search_mag_icon = 2131230827;
 			
-			// aapt resource value: 0x7f09006c
-			public const int search_plate = 2131296364;
+			// aapt resource value: 0x7f08006c
+			public const int search_plate = 2131230828;
 			
-			// aapt resource value: 0x7f09006d
-			public const int search_src_text = 2131296365;
+			// aapt resource value: 0x7f08006d
+			public const int search_src_text = 2131230829;
 			
-			// aapt resource value: 0x7f090071
-			public const int search_voice_btn = 2131296369;
+			// aapt resource value: 0x7f080071
+			public const int search_voice_btn = 2131230833;
 			
-			// aapt resource value: 0x7f090072
-			public const int select_dialog_listview = 2131296370;
+			// aapt resource value: 0x7f080072
+			public const int select_dialog_listview = 2131230834;
 			
-			// aapt resource value: 0x7f09005c
-			public const int shortcut = 2131296348;
+			// aapt resource value: 0x7f08005c
+			public const int shortcut = 2131230812;
 			
-			// aapt resource value: 0x7f090015
-			public const int showCustom = 2131296277;
+			// aapt resource value: 0x7f080015
+			public const int showCustom = 2131230741;
 			
-			// aapt resource value: 0x7f090016
-			public const int showHome = 2131296278;
+			// aapt resource value: 0x7f080016
+			public const int showHome = 2131230742;
 			
-			// aapt resource value: 0x7f090017
-			public const int showTitle = 2131296279;
+			// aapt resource value: 0x7f080017
+			public const int showTitle = 2131230743;
 			
-			// aapt resource value: 0x7f0900da
-			public const int sliding_tabs = 2131296474;
+			// aapt resource value: 0x7f0800da
+			public const int sliding_tabs = 2131230938;
 			
-			// aapt resource value: 0x7f090077
-			public const int smallLabel = 2131296375;
+			// aapt resource value: 0x7f080077
+			public const int smallLabel = 2131230839;
 			
-			// aapt resource value: 0x7f09007c
-			public const int snackbar_action = 2131296380;
+			// aapt resource value: 0x7f08007c
+			public const int snackbar_action = 2131230844;
 			
-			// aapt resource value: 0x7f09007b
-			public const int snackbar_text = 2131296379;
+			// aapt resource value: 0x7f08007b
+			public const int snackbar_text = 2131230843;
 			
-			// aapt resource value: 0x7f09002e
-			public const int snap = 2131296302;
+			// aapt resource value: 0x7f08002e
+			public const int snap = 2131230766;
 			
-			// aapt resource value: 0x7f09004c
-			public const int spacer = 2131296332;
+			// aapt resource value: 0x7f08004c
+			public const int spacer = 2131230796;
 			
-			// aapt resource value: 0x7f090008
-			public const int split_action_bar = 2131296264;
+			// aapt resource value: 0x7f080008
+			public const int split_action_bar = 2131230728;
 			
-			// aapt resource value: 0x7f09001c
-			public const int src_atop = 2131296284;
+			// aapt resource value: 0x7f08001c
+			public const int src_atop = 2131230748;
 			
-			// aapt resource value: 0x7f09001d
-			public const int src_in = 2131296285;
+			// aapt resource value: 0x7f08001d
+			public const int src_in = 2131230749;
 			
-			// aapt resource value: 0x7f09001e
-			public const int src_over = 2131296286;
+			// aapt resource value: 0x7f08001e
+			public const int src_over = 2131230750;
 			
-			// aapt resource value: 0x7f090036
-			public const int start = 2131296310;
+			// aapt resource value: 0x7f080036
+			public const int start = 2131230774;
 			
-			// aapt resource value: 0x7f0900c8
-			public const int status_bar_latest_event_content = 2131296456;
+			// aapt resource value: 0x7f0800c8
+			public const int status_bar_latest_event_content = 2131230920;
 			
-			// aapt resource value: 0x7f09005e
-			public const int submenuarrow = 2131296350;
+			// aapt resource value: 0x7f08005e
+			public const int submenuarrow = 2131230814;
 			
-			// aapt resource value: 0x7f09006f
-			public const int submit_area = 2131296367;
+			// aapt resource value: 0x7f08006f
+			public const int submit_area = 2131230831;
 			
-			// aapt resource value: 0x7f090011
-			public const int tabMode = 2131296273;
+			// aapt resource value: 0x7f080011
+			public const int tabMode = 2131230737;
 			
-			// aapt resource value: 0x7f0900d8
-			public const int text = 2131296472;
+			// aapt resource value: 0x7f0800d8
+			public const int text = 2131230936;
 			
-			// aapt resource value: 0x7f0900d6
-			public const int text2 = 2131296470;
+			// aapt resource value: 0x7f0800d6
+			public const int text2 = 2131230934;
 			
-			// aapt resource value: 0x7f090052
-			public const int textSpacerNoButtons = 2131296338;
+			// aapt resource value: 0x7f080052
+			public const int textSpacerNoButtons = 2131230802;
 			
-			// aapt resource value: 0x7f090051
-			public const int textSpacerNoTitle = 2131296337;
+			// aapt resource value: 0x7f080051
+			public const int textSpacerNoTitle = 2131230801;
 			
-			// aapt resource value: 0x7f0900a0
-			public const int textViewStatus = 2131296416;
+			// aapt resource value: 0x7f0800a0
+			public const int textViewStatus = 2131230880;
 			
-			// aapt resource value: 0x7f090073
-			public const int textViewTitle = 2131296371;
+			// aapt resource value: 0x7f080073
+			public const int textViewTitle = 2131230835;
 			
-			// aapt resource value: 0x7f090093
-			public const int text_headline = 2131296403;
+			// aapt resource value: 0x7f080093
+			public const int text_headline = 2131230867;
 			
-			// aapt resource value: 0x7f090082
-			public const int text_input_password_toggle = 2131296386;
+			// aapt resource value: 0x7f080082
+			public const int text_input_password_toggle = 2131230850;
 			
-			// aapt resource value: 0x7f09000c
-			public const int textinput_counter = 2131296268;
+			// aapt resource value: 0x7f08000c
+			public const int textinput_counter = 2131230732;
 			
-			// aapt resource value: 0x7f09000d
-			public const int textinput_error = 2131296269;
+			// aapt resource value: 0x7f08000d
+			public const int textinput_error = 2131230733;
 			
-			// aapt resource value: 0x7f0900ce
-			public const int time = 2131296462;
+			// aapt resource value: 0x7f0800ce
+			public const int time = 2131230926;
 			
-			// aapt resource value: 0x7f09004a
-			public const int title = 2131296330;
+			// aapt resource value: 0x7f08004a
+			public const int title = 2131230794;
 			
-			// aapt resource value: 0x7f090059
-			public const int titleDividerNoCustom = 2131296345;
+			// aapt resource value: 0x7f080059
+			public const int titleDividerNoCustom = 2131230809;
 			
-			// aapt resource value: 0x7f090057
-			public const int title_template = 2131296343;
+			// aapt resource value: 0x7f080057
+			public const int title_template = 2131230807;
 			
-			// aapt resource value: 0x7f0900db
-			public const int toolbar = 2131296475;
+			// aapt resource value: 0x7f0800db
+			public const int toolbar = 2131230939;
 			
-			// aapt resource value: 0x7f090029
-			public const int top = 2131296297;
+			// aapt resource value: 0x7f080029
+			public const int top = 2131230761;
 			
-			// aapt resource value: 0x7f090056
-			public const int topPanel = 2131296342;
+			// aapt resource value: 0x7f080056
+			public const int topPanel = 2131230806;
 			
-			// aapt resource value: 0x7f090079
-			public const int touch_outside = 2131296377;
+			// aapt resource value: 0x7f080079
+			public const int touch_outside = 2131230841;
 			
-			// aapt resource value: 0x7f09000a
-			public const int transition_current_scene = 2131296266;
+			// aapt resource value: 0x7f08000a
+			public const int transition_current_scene = 2131230730;
 			
-			// aapt resource value: 0x7f09000b
-			public const int transition_scene_layoutid_cache = 2131296267;
+			// aapt resource value: 0x7f08000b
+			public const int transition_scene_layoutid_cache = 2131230731;
 			
-			// aapt resource value: 0x7f090009
-			public const int up = 2131296265;
+			// aapt resource value: 0x7f080009
+			public const int up = 2131230729;
 			
-			// aapt resource value: 0x7f090018
-			public const int useLogo = 2131296280;
+			// aapt resource value: 0x7f080018
+			public const int useLogo = 2131230744;
 			
-			// aapt resource value: 0x7f090096
-			public const int view_header = 2131296406;
+			// aapt resource value: 0x7f080096
+			public const int view_header = 2131230870;
 			
-			// aapt resource value: 0x7f09000e
-			public const int view_offset_helper = 2131296270;
+			// aapt resource value: 0x7f08000e
+			public const int view_offset_helper = 2131230734;
 			
-			// aapt resource value: 0x7f0900dc
-			public const int visible = 2131296476;
+			// aapt resource value: 0x7f0800dc
+			public const int visible = 2131230940;
 			
-			// aapt resource value: 0x7f0900b5
-			public const int volume_item_container = 2131296437;
+			// aapt resource value: 0x7f0800b5
+			public const int volume_item_container = 2131230901;
 			
-			// aapt resource value: 0x7f09009a
-			public const int web_update_details = 2131296410;
+			// aapt resource value: 0x7f08009a
+			public const int web_update_details = 2131230874;
 			
-			// aapt resource value: 0x7f090027
-			public const int withText = 2131296295;
+			// aapt resource value: 0x7f080027
+			public const int withText = 2131230759;
 			
-			// aapt resource value: 0x7f09001f
-			public const int wrap_content = 2131296287;
+			// aapt resource value: 0x7f08001f
+			public const int wrap_content = 2131230751;
 			
-			// aapt resource value: 0x7f09008a
-			public const int wrapper_attachments = 2131296394;
+			// aapt resource value: 0x7f08008a
+			public const int wrapper_attachments = 2131230858;
 			
-			// aapt resource value: 0x7f090085
-			public const int wrapper_feedback = 2131296389;
+			// aapt resource value: 0x7f080085
+			public const int wrapper_feedback = 2131230853;
 			
-			// aapt resource value: 0x7f090084
-			public const int wrapper_feedback_scroll = 2131296388;
+			// aapt resource value: 0x7f080084
+			public const int wrapper_feedback_scroll = 2131230852;
 			
-			// aapt resource value: 0x7f09008d
-			public const int wrapper_messages = 2131296397;
+			// aapt resource value: 0x7f08008d
+			public const int wrapper_messages = 2131230861;
 			
-			// aapt resource value: 0x7f09008f
-			public const int wrapper_messages_buttons = 2131296399;
+			// aapt resource value: 0x7f08008f
+			public const int wrapper_messages_buttons = 2131230863;
 			
 			static Id()
 			{
@@ -6795,407 +4176,407 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
 		public partial class String
 		{
 			
-			// aapt resource value: 0x7f070016
-			public const int abc_action_bar_home_description = 2131165206;
+			// aapt resource value: 0x7f090015
+			public const int abc_action_bar_home_description = 2131296277;
 			
-			// aapt resource value: 0x7f070017
-			public const int abc_action_bar_home_description_format = 2131165207;
+			// aapt resource value: 0x7f090016
+			public const int abc_action_bar_home_description_format = 2131296278;
 			
-			// aapt resource value: 0x7f070018
-			public const int abc_action_bar_home_subtitle_description_format = 2131165208;
+			// aapt resource value: 0x7f090017
+			public const int abc_action_bar_home_subtitle_description_format = 2131296279;
 			
-			// aapt resource value: 0x7f070019
-			public const int abc_action_bar_up_description = 2131165209;
+			// aapt resource value: 0x7f090018
+			public const int abc_action_bar_up_description = 2131296280;
 			
-			// aapt resource value: 0x7f07001a
-			public const int abc_action_menu_overflow_description = 2131165210;
+			// aapt resource value: 0x7f090019
+			public const int abc_action_menu_overflow_description = 2131296281;
 			
-			// aapt resource value: 0x7f07001b
-			public const int abc_action_mode_done = 2131165211;
+			// aapt resource value: 0x7f09001a
+			public const int abc_action_mode_done = 2131296282;
 			
-			// aapt resource value: 0x7f07001c
-			public const int abc_activity_chooser_view_see_all = 2131165212;
+			// aapt resource value: 0x7f09001b
+			public const int abc_activity_chooser_view_see_all = 2131296283;
 			
-			// aapt resource value: 0x7f07001d
-			public const int abc_activitychooserview_choose_application = 2131165213;
+			// aapt resource value: 0x7f09001c
+			public const int abc_activitychooserview_choose_application = 2131296284;
 			
-			// aapt resource value: 0x7f07001e
-			public const int abc_capital_off = 2131165214;
+			// aapt resource value: 0x7f09001d
+			public const int abc_capital_off = 2131296285;
 			
-			// aapt resource value: 0x7f07001f
-			public const int abc_capital_on = 2131165215;
+			// aapt resource value: 0x7f09001e
+			public const int abc_capital_on = 2131296286;
 			
-			// aapt resource value: 0x7f07002b
-			public const int abc_font_family_body_1_material = 2131165227;
+			// aapt resource value: 0x7f09002a
+			public const int abc_font_family_body_1_material = 2131296298;
 			
-			// aapt resource value: 0x7f07002c
-			public const int abc_font_family_body_2_material = 2131165228;
+			// aapt resource value: 0x7f09002b
+			public const int abc_font_family_body_2_material = 2131296299;
 			
-			// aapt resource value: 0x7f07002d
-			public const int abc_font_family_button_material = 2131165229;
+			// aapt resource value: 0x7f09002c
+			public const int abc_font_family_button_material = 2131296300;
 			
-			// aapt resource value: 0x7f07002e
-			public const int abc_font_family_caption_material = 2131165230;
+			// aapt resource value: 0x7f09002d
+			public const int abc_font_family_caption_material = 2131296301;
 			
-			// aapt resource value: 0x7f07002f
-			public const int abc_font_family_display_1_material = 2131165231;
+			// aapt resource value: 0x7f09002e
+			public const int abc_font_family_display_1_material = 2131296302;
 			
-			// aapt resource value: 0x7f070030
-			public const int abc_font_family_display_2_material = 2131165232;
+			// aapt resource value: 0x7f09002f
+			public const int abc_font_family_display_2_material = 2131296303;
 			
-			// aapt resource value: 0x7f070031
-			public const int abc_font_family_display_3_material = 2131165233;
+			// aapt resource value: 0x7f090030
+			public const int abc_font_family_display_3_material = 2131296304;
 			
-			// aapt resource value: 0x7f070032
-			public const int abc_font_family_display_4_material = 2131165234;
+			// aapt resource value: 0x7f090031
+			public const int abc_font_family_display_4_material = 2131296305;
 			
-			// aapt resource value: 0x7f070033
-			public const int abc_font_family_headline_material = 2131165235;
+			// aapt resource value: 0x7f090032
+			public const int abc_font_family_headline_material = 2131296306;
 			
-			// aapt resource value: 0x7f070034
-			public const int abc_font_family_menu_material = 2131165236;
+			// aapt resource value: 0x7f090033
+			public const int abc_font_family_menu_material = 2131296307;
 			
-			// aapt resource value: 0x7f070035
-			public const int abc_font_family_subhead_material = 2131165237;
+			// aapt resource value: 0x7f090034
+			public const int abc_font_family_subhead_material = 2131296308;
 			
-			// aapt resource value: 0x7f070036
-			public const int abc_font_family_title_material = 2131165238;
+			// aapt resource value: 0x7f090035
+			public const int abc_font_family_title_material = 2131296309;
 			
-			// aapt resource value: 0x7f070020
-			public const int abc_search_hint = 2131165216;
+			// aapt resource value: 0x7f09001f
+			public const int abc_search_hint = 2131296287;
 			
-			// aapt resource value: 0x7f070021
-			public const int abc_searchview_description_clear = 2131165217;
+			// aapt resource value: 0x7f090020
+			public const int abc_searchview_description_clear = 2131296288;
 			
-			// aapt resource value: 0x7f070022
-			public const int abc_searchview_description_query = 2131165218;
+			// aapt resource value: 0x7f090021
+			public const int abc_searchview_description_query = 2131296289;
 			
-			// aapt resource value: 0x7f070023
-			public const int abc_searchview_description_search = 2131165219;
+			// aapt resource value: 0x7f090022
+			public const int abc_searchview_description_search = 2131296290;
 			
-			// aapt resource value: 0x7f070024
-			public const int abc_searchview_description_submit = 2131165220;
+			// aapt resource value: 0x7f090023
+			public const int abc_searchview_description_submit = 2131296291;
 			
-			// aapt resource value: 0x7f070025
-			public const int abc_searchview_description_voice = 2131165221;
+			// aapt resource value: 0x7f090024
+			public const int abc_searchview_description_voice = 2131296292;
 			
-			// aapt resource value: 0x7f070026
-			public const int abc_shareactionprovider_share_with = 2131165222;
+			// aapt resource value: 0x7f090025
+			public const int abc_shareactionprovider_share_with = 2131296293;
 			
-			// aapt resource value: 0x7f070027
-			public const int abc_shareactionprovider_share_with_application = 2131165223;
+			// aapt resource value: 0x7f090026
+			public const int abc_shareactionprovider_share_with_application = 2131296294;
 			
-			// aapt resource value: 0x7f070028
-			public const int abc_toolbar_collapse_description = 2131165224;
+			// aapt resource value: 0x7f090027
+			public const int abc_toolbar_collapse_description = 2131296295;
 			
-			// aapt resource value: 0x7f070037
-			public const int appbar_scrolling_view_behavior = 2131165239;
+			// aapt resource value: 0x7f090036
+			public const int appbar_scrolling_view_behavior = 2131296310;
 			
-			// aapt resource value: 0x7f070038
-			public const int bottom_sheet_behavior = 2131165240;
+			// aapt resource value: 0x7f090037
+			public const int bottom_sheet_behavior = 2131296311;
 			
-			// aapt resource value: 0x7f070039
-			public const int character_counter_pattern = 2131165241;
+			// aapt resource value: 0x7f090038
+			public const int character_counter_pattern = 2131296312;
 			
-			// aapt resource value: 0x7f07003f
-			public const int hockeyapp_crash_dialog_app_name_fallback = 2131165247;
+			// aapt resource value: 0x7f09003f
+			public const int hockeyapp_crash_dialog_app_name_fallback = 2131296319;
 			
-			// aapt resource value: 0x7f070040
-			public const int hockeyapp_crash_dialog_message = 2131165248;
+			// aapt resource value: 0x7f090040
+			public const int hockeyapp_crash_dialog_message = 2131296320;
 			
-			// aapt resource value: 0x7f070041
-			public const int hockeyapp_crash_dialog_negative_button = 2131165249;
+			// aapt resource value: 0x7f090041
+			public const int hockeyapp_crash_dialog_negative_button = 2131296321;
 			
-			// aapt resource value: 0x7f070042
-			public const int hockeyapp_crash_dialog_neutral_button = 2131165250;
+			// aapt resource value: 0x7f090042
+			public const int hockeyapp_crash_dialog_neutral_button = 2131296322;
 			
-			// aapt resource value: 0x7f070043
-			public const int hockeyapp_crash_dialog_positive_button = 2131165251;
+			// aapt resource value: 0x7f090043
+			public const int hockeyapp_crash_dialog_positive_button = 2131296323;
 			
-			// aapt resource value: 0x7f070044
-			public const int hockeyapp_crash_dialog_title = 2131165252;
+			// aapt resource value: 0x7f090044
+			public const int hockeyapp_crash_dialog_title = 2131296324;
 			
-			// aapt resource value: 0x7f070045
-			public const int hockeyapp_dialog_error_message = 2131165253;
+			// aapt resource value: 0x7f090045
+			public const int hockeyapp_dialog_error_message = 2131296325;
 			
-			// aapt resource value: 0x7f070046
-			public const int hockeyapp_dialog_error_title = 2131165254;
+			// aapt resource value: 0x7f090046
+			public const int hockeyapp_dialog_error_title = 2131296326;
 			
-			// aapt resource value: 0x7f070047
-			public const int hockeyapp_dialog_negative_button = 2131165255;
+			// aapt resource value: 0x7f090047
+			public const int hockeyapp_dialog_negative_button = 2131296327;
 			
-			// aapt resource value: 0x7f070048
-			public const int hockeyapp_dialog_positive_button = 2131165256;
+			// aapt resource value: 0x7f090048
+			public const int hockeyapp_dialog_positive_button = 2131296328;
 			
-			// aapt resource value: 0x7f070049
-			public const int hockeyapp_download_failed_dialog_message = 2131165257;
+			// aapt resource value: 0x7f090049
+			public const int hockeyapp_download_failed_dialog_message = 2131296329;
 			
-			// aapt resource value: 0x7f07004a
-			public const int hockeyapp_download_failed_dialog_negative_button = 2131165258;
+			// aapt resource value: 0x7f09004a
+			public const int hockeyapp_download_failed_dialog_negative_button = 2131296330;
 			
-			// aapt resource value: 0x7f07004b
-			public const int hockeyapp_download_failed_dialog_positive_button = 2131165259;
+			// aapt resource value: 0x7f09004b
+			public const int hockeyapp_download_failed_dialog_positive_button = 2131296331;
 			
-			// aapt resource value: 0x7f07004c
-			public const int hockeyapp_download_failed_dialog_title = 2131165260;
+			// aapt resource value: 0x7f09004c
+			public const int hockeyapp_download_failed_dialog_title = 2131296332;
 			
-			// aapt resource value: 0x7f07004d
-			public const int hockeyapp_error_no_network_message = 2131165261;
+			// aapt resource value: 0x7f09004d
+			public const int hockeyapp_error_no_network_message = 2131296333;
 			
-			// aapt resource value: 0x7f07004e
-			public const int hockeyapp_expiry_info_text = 2131165262;
+			// aapt resource value: 0x7f09004e
+			public const int hockeyapp_expiry_info_text = 2131296334;
 			
-			// aapt resource value: 0x7f07004f
-			public const int hockeyapp_expiry_info_title = 2131165263;
+			// aapt resource value: 0x7f09004f
+			public const int hockeyapp_expiry_info_title = 2131296335;
 			
-			// aapt resource value: 0x7f070050
-			public const int hockeyapp_feedback_attach_file = 2131165264;
+			// aapt resource value: 0x7f090050
+			public const int hockeyapp_feedback_attach_file = 2131296336;
 			
-			// aapt resource value: 0x7f070051
-			public const int hockeyapp_feedback_attach_picture = 2131165265;
+			// aapt resource value: 0x7f090051
+			public const int hockeyapp_feedback_attach_picture = 2131296337;
 			
-			// aapt resource value: 0x7f070052
-			public const int hockeyapp_feedback_attachment_button_text = 2131165266;
+			// aapt resource value: 0x7f090052
+			public const int hockeyapp_feedback_attachment_button_text = 2131296338;
 			
-			// aapt resource value: 0x7f070053
-			public const int hockeyapp_feedback_attachment_error = 2131165267;
+			// aapt resource value: 0x7f090053
+			public const int hockeyapp_feedback_attachment_error = 2131296339;
 			
-			// aapt resource value: 0x7f070054
-			public const int hockeyapp_feedback_attachment_loading = 2131165268;
+			// aapt resource value: 0x7f090054
+			public const int hockeyapp_feedback_attachment_loading = 2131296340;
 			
-			// aapt resource value: 0x7f070055
-			public const int hockeyapp_feedback_email_hint = 2131165269;
+			// aapt resource value: 0x7f090055
+			public const int hockeyapp_feedback_email_hint = 2131296341;
 			
-			// aapt resource value: 0x7f070056
-			public const int hockeyapp_feedback_failed_text = 2131165270;
+			// aapt resource value: 0x7f090056
+			public const int hockeyapp_feedback_failed_text = 2131296342;
 			
-			// aapt resource value: 0x7f070057
-			public const int hockeyapp_feedback_failed_title = 2131165271;
+			// aapt resource value: 0x7f090057
+			public const int hockeyapp_feedback_failed_title = 2131296343;
 			
-			// aapt resource value: 0x7f070058
-			public const int hockeyapp_feedback_fetching_feedback_text = 2131165272;
+			// aapt resource value: 0x7f090058
+			public const int hockeyapp_feedback_fetching_feedback_text = 2131296344;
 			
-			// aapt resource value: 0x7f070059
-			public const int hockeyapp_feedback_generic_error = 2131165273;
+			// aapt resource value: 0x7f090059
+			public const int hockeyapp_feedback_generic_error = 2131296345;
 			
-			// aapt resource value: 0x7f07005a
-			public const int hockeyapp_feedback_last_updated_text = 2131165274;
+			// aapt resource value: 0x7f09005a
+			public const int hockeyapp_feedback_last_updated_text = 2131296346;
 			
-			// aapt resource value: 0x7f07005b
-			public const int hockeyapp_feedback_max_attachments_allowed = 2131165275;
+			// aapt resource value: 0x7f09005b
+			public const int hockeyapp_feedback_max_attachments_allowed = 2131296347;
 			
-			// aapt resource value: 0x7f07005c
-			public const int hockeyapp_feedback_message_hint = 2131165276;
+			// aapt resource value: 0x7f09005c
+			public const int hockeyapp_feedback_message_hint = 2131296348;
 			
-			// aapt resource value: 0x7f07005d
-			public const int hockeyapp_feedback_name_hint = 2131165277;
+			// aapt resource value: 0x7f09005d
+			public const int hockeyapp_feedback_name_hint = 2131296349;
 			
-			// aapt resource value: 0x7f07005e
-			public const int hockeyapp_feedback_refresh_button_text = 2131165278;
+			// aapt resource value: 0x7f09005e
+			public const int hockeyapp_feedback_refresh_button_text = 2131296350;
 			
-			// aapt resource value: 0x7f07005f
-			public const int hockeyapp_feedback_response_button_text = 2131165279;
+			// aapt resource value: 0x7f09005f
+			public const int hockeyapp_feedback_response_button_text = 2131296351;
 			
-			// aapt resource value: 0x7f070060
-			public const int hockeyapp_feedback_select_file = 2131165280;
+			// aapt resource value: 0x7f090060
+			public const int hockeyapp_feedback_select_file = 2131296352;
 			
-			// aapt resource value: 0x7f070061
-			public const int hockeyapp_feedback_select_picture = 2131165281;
+			// aapt resource value: 0x7f090061
+			public const int hockeyapp_feedback_select_picture = 2131296353;
 			
-			// aapt resource value: 0x7f070062
-			public const int hockeyapp_feedback_send_button_text = 2131165282;
+			// aapt resource value: 0x7f090062
+			public const int hockeyapp_feedback_send_button_text = 2131296354;
 			
-			// aapt resource value: 0x7f070063
-			public const int hockeyapp_feedback_send_generic_error = 2131165283;
+			// aapt resource value: 0x7f090063
+			public const int hockeyapp_feedback_send_generic_error = 2131296355;
 			
-			// aapt resource value: 0x7f070064
-			public const int hockeyapp_feedback_send_network_error = 2131165284;
+			// aapt resource value: 0x7f090064
+			public const int hockeyapp_feedback_send_network_error = 2131296356;
 			
-			// aapt resource value: 0x7f070065
-			public const int hockeyapp_feedback_sending_feedback_text = 2131165285;
+			// aapt resource value: 0x7f090065
+			public const int hockeyapp_feedback_sending_feedback_text = 2131296357;
 			
-			// aapt resource value: 0x7f070066
-			public const int hockeyapp_feedback_subject_hint = 2131165286;
+			// aapt resource value: 0x7f090066
+			public const int hockeyapp_feedback_subject_hint = 2131296358;
 			
-			// aapt resource value: 0x7f070067
-			public const int hockeyapp_feedback_title = 2131165287;
+			// aapt resource value: 0x7f090067
+			public const int hockeyapp_feedback_title = 2131296359;
 			
-			// aapt resource value: 0x7f070068
-			public const int hockeyapp_feedback_validate_email_empty = 2131165288;
+			// aapt resource value: 0x7f090068
+			public const int hockeyapp_feedback_validate_email_empty = 2131296360;
 			
-			// aapt resource value: 0x7f070069
-			public const int hockeyapp_feedback_validate_email_error = 2131165289;
+			// aapt resource value: 0x7f090069
+			public const int hockeyapp_feedback_validate_email_error = 2131296361;
 			
-			// aapt resource value: 0x7f07006a
-			public const int hockeyapp_feedback_validate_name_error = 2131165290;
+			// aapt resource value: 0x7f09006a
+			public const int hockeyapp_feedback_validate_name_error = 2131296362;
 			
-			// aapt resource value: 0x7f07006b
-			public const int hockeyapp_feedback_validate_subject_error = 2131165291;
+			// aapt resource value: 0x7f09006b
+			public const int hockeyapp_feedback_validate_subject_error = 2131296363;
 			
-			// aapt resource value: 0x7f07006c
-			public const int hockeyapp_feedback_validate_text_error = 2131165292;
+			// aapt resource value: 0x7f09006c
+			public const int hockeyapp_feedback_validate_text_error = 2131296364;
 			
-			// aapt resource value: 0x7f07006d
-			public const int hockeyapp_login_email_hint = 2131165293;
+			// aapt resource value: 0x7f09006d
+			public const int hockeyapp_login_email_hint = 2131296365;
 			
-			// aapt resource value: 0x7f07006e
-			public const int hockeyapp_login_headline_text = 2131165294;
+			// aapt resource value: 0x7f09006e
+			public const int hockeyapp_login_headline_text = 2131296366;
 			
-			// aapt resource value: 0x7f07006f
-			public const int hockeyapp_login_headline_text_email_only = 2131165295;
+			// aapt resource value: 0x7f09006f
+			public const int hockeyapp_login_headline_text_email_only = 2131296367;
 			
-			// aapt resource value: 0x7f070070
-			public const int hockeyapp_login_login_button_text = 2131165296;
+			// aapt resource value: 0x7f090070
+			public const int hockeyapp_login_login_button_text = 2131296368;
 			
-			// aapt resource value: 0x7f070071
-			public const int hockeyapp_login_missing_credentials_toast = 2131165297;
+			// aapt resource value: 0x7f090071
+			public const int hockeyapp_login_missing_credentials_toast = 2131296369;
 			
-			// aapt resource value: 0x7f070072
-			public const int hockeyapp_login_password_hint = 2131165298;
+			// aapt resource value: 0x7f090072
+			public const int hockeyapp_login_password_hint = 2131296370;
 			
-			// aapt resource value: 0x7f070073
-			public const int hockeyapp_paint_dialog_message = 2131165299;
+			// aapt resource value: 0x7f090073
+			public const int hockeyapp_paint_dialog_message = 2131296371;
 			
-			// aapt resource value: 0x7f070074
-			public const int hockeyapp_paint_dialog_negative_button = 2131165300;
+			// aapt resource value: 0x7f090074
+			public const int hockeyapp_paint_dialog_negative_button = 2131296372;
 			
-			// aapt resource value: 0x7f070075
-			public const int hockeyapp_paint_dialog_neutral_button = 2131165301;
+			// aapt resource value: 0x7f090075
+			public const int hockeyapp_paint_dialog_neutral_button = 2131296373;
 			
-			// aapt resource value: 0x7f070076
-			public const int hockeyapp_paint_dialog_positive_button = 2131165302;
+			// aapt resource value: 0x7f090076
+			public const int hockeyapp_paint_dialog_positive_button = 2131296374;
 			
-			// aapt resource value: 0x7f070077
-			public const int hockeyapp_paint_indicator_toast = 2131165303;
+			// aapt resource value: 0x7f090077
+			public const int hockeyapp_paint_indicator_toast = 2131296375;
 			
-			// aapt resource value: 0x7f070078
-			public const int hockeyapp_paint_menu_clear = 2131165304;
+			// aapt resource value: 0x7f090078
+			public const int hockeyapp_paint_menu_clear = 2131296376;
 			
-			// aapt resource value: 0x7f070079
-			public const int hockeyapp_paint_menu_save = 2131165305;
+			// aapt resource value: 0x7f090079
+			public const int hockeyapp_paint_menu_save = 2131296377;
 			
-			// aapt resource value: 0x7f07007a
-			public const int hockeyapp_paint_menu_undo = 2131165306;
+			// aapt resource value: 0x7f09007a
+			public const int hockeyapp_paint_menu_undo = 2131296378;
 			
-			// aapt resource value: 0x7f07007b
-			public const int hockeyapp_permission_dialog_negative_button = 2131165307;
+			// aapt resource value: 0x7f09007b
+			public const int hockeyapp_permission_dialog_negative_button = 2131296379;
 			
-			// aapt resource value: 0x7f07007c
-			public const int hockeyapp_permission_dialog_positive_button = 2131165308;
+			// aapt resource value: 0x7f09007c
+			public const int hockeyapp_permission_dialog_positive_button = 2131296380;
 			
-			// aapt resource value: 0x7f07007d
-			public const int hockeyapp_permission_update_message = 2131165309;
+			// aapt resource value: 0x7f09007d
+			public const int hockeyapp_permission_update_message = 2131296381;
 			
-			// aapt resource value: 0x7f07007e
-			public const int hockeyapp_permission_update_title = 2131165310;
+			// aapt resource value: 0x7f09007e
+			public const int hockeyapp_permission_update_title = 2131296382;
 			
-			// aapt resource value: 0x7f07007f
-			public const int hockeyapp_update_button = 2131165311;
+			// aapt resource value: 0x7f09007f
+			public const int hockeyapp_update_button = 2131296383;
 			
-			// aapt resource value: 0x7f070080
-			public const int hockeyapp_update_dialog_message = 2131165312;
+			// aapt resource value: 0x7f090080
+			public const int hockeyapp_update_dialog_message = 2131296384;
 			
-			// aapt resource value: 0x7f070081
-			public const int hockeyapp_update_dialog_negative_button = 2131165313;
+			// aapt resource value: 0x7f090081
+			public const int hockeyapp_update_dialog_negative_button = 2131296385;
 			
-			// aapt resource value: 0x7f070082
-			public const int hockeyapp_update_dialog_positive_button = 2131165314;
+			// aapt resource value: 0x7f090082
+			public const int hockeyapp_update_dialog_positive_button = 2131296386;
 			
-			// aapt resource value: 0x7f070083
-			public const int hockeyapp_update_dialog_title = 2131165315;
+			// aapt resource value: 0x7f090083
+			public const int hockeyapp_update_dialog_title = 2131296387;
 			
-			// aapt resource value: 0x7f070084
-			public const int hockeyapp_update_mandatory_toast = 2131165316;
+			// aapt resource value: 0x7f090084
+			public const int hockeyapp_update_mandatory_toast = 2131296388;
 			
-			// aapt resource value: 0x7f070085
-			public const int hockeyapp_update_version_details_label = 2131165317;
+			// aapt resource value: 0x7f090085
+			public const int hockeyapp_update_version_details_label = 2131296389;
 			
-			// aapt resource value: 0x7f070000
-			public const int library_name = 2131165184;
+			// aapt resource value: 0x7f09003e
+			public const int library_name = 2131296318;
 			
-			// aapt resource value: 0x7f070001
-			public const int mr_button_content_description = 2131165185;
+			// aapt resource value: 0x7f090000
+			public const int mr_button_content_description = 2131296256;
 			
-			// aapt resource value: 0x7f070002
-			public const int mr_cast_button_connected = 2131165186;
+			// aapt resource value: 0x7f090001
+			public const int mr_cast_button_connected = 2131296257;
 			
-			// aapt resource value: 0x7f070003
-			public const int mr_cast_button_connecting = 2131165187;
+			// aapt resource value: 0x7f090002
+			public const int mr_cast_button_connecting = 2131296258;
 			
-			// aapt resource value: 0x7f070004
-			public const int mr_cast_button_disconnected = 2131165188;
+			// aapt resource value: 0x7f090003
+			public const int mr_cast_button_disconnected = 2131296259;
 			
-			// aapt resource value: 0x7f070005
-			public const int mr_chooser_searching = 2131165189;
+			// aapt resource value: 0x7f090004
+			public const int mr_chooser_searching = 2131296260;
 			
-			// aapt resource value: 0x7f070006
-			public const int mr_chooser_title = 2131165190;
+			// aapt resource value: 0x7f090005
+			public const int mr_chooser_title = 2131296261;
 			
-			// aapt resource value: 0x7f070007
-			public const int mr_controller_album_art = 2131165191;
+			// aapt resource value: 0x7f090006
+			public const int mr_controller_album_art = 2131296262;
 			
-			// aapt resource value: 0x7f070008
-			public const int mr_controller_casting_screen = 2131165192;
+			// aapt resource value: 0x7f090007
+			public const int mr_controller_casting_screen = 2131296263;
 			
-			// aapt resource value: 0x7f070009
-			public const int mr_controller_close_description = 2131165193;
+			// aapt resource value: 0x7f090008
+			public const int mr_controller_close_description = 2131296264;
 			
-			// aapt resource value: 0x7f07000a
-			public const int mr_controller_collapse_group = 2131165194;
+			// aapt resource value: 0x7f090009
+			public const int mr_controller_collapse_group = 2131296265;
 			
-			// aapt resource value: 0x7f07000b
-			public const int mr_controller_disconnect = 2131165195;
+			// aapt resource value: 0x7f09000a
+			public const int mr_controller_disconnect = 2131296266;
 			
-			// aapt resource value: 0x7f07000c
-			public const int mr_controller_expand_group = 2131165196;
+			// aapt resource value: 0x7f09000b
+			public const int mr_controller_expand_group = 2131296267;
 			
-			// aapt resource value: 0x7f07000d
-			public const int mr_controller_no_info_available = 2131165197;
+			// aapt resource value: 0x7f09000c
+			public const int mr_controller_no_info_available = 2131296268;
 			
-			// aapt resource value: 0x7f07000e
-			public const int mr_controller_no_media_selected = 2131165198;
+			// aapt resource value: 0x7f09000d
+			public const int mr_controller_no_media_selected = 2131296269;
 			
-			// aapt resource value: 0x7f07000f
-			public const int mr_controller_pause = 2131165199;
+			// aapt resource value: 0x7f09000e
+			public const int mr_controller_pause = 2131296270;
 			
-			// aapt resource value: 0x7f070010
-			public const int mr_controller_play = 2131165200;
+			// aapt resource value: 0x7f09000f
+			public const int mr_controller_play = 2131296271;
 			
-			// aapt resource value: 0x7f070015
-			public const int mr_controller_stop = 2131165205;
+			// aapt resource value: 0x7f090014
+			public const int mr_controller_stop = 2131296276;
 			
-			// aapt resource value: 0x7f070011
-			public const int mr_controller_stop_casting = 2131165201;
+			// aapt resource value: 0x7f090010
+			public const int mr_controller_stop_casting = 2131296272;
 			
-			// aapt resource value: 0x7f070012
-			public const int mr_controller_volume_slider = 2131165202;
+			// aapt resource value: 0x7f090011
+			public const int mr_controller_volume_slider = 2131296273;
 			
-			// aapt resource value: 0x7f070013
-			public const int mr_system_route_name = 2131165203;
+			// aapt resource value: 0x7f090012
+			public const int mr_system_route_name = 2131296274;
 			
-			// aapt resource value: 0x7f070014
-			public const int mr_user_route_category_name = 2131165204;
+			// aapt resource value: 0x7f090013
+			public const int mr_user_route_category_name = 2131296275;
 			
-			// aapt resource value: 0x7f07003a
-			public const int password_toggle_content_description = 2131165242;
+			// aapt resource value: 0x7f090039
+			public const int password_toggle_content_description = 2131296313;
 			
-			// aapt resource value: 0x7f07003b
-			public const int path_password_eye = 2131165243;
+			// aapt resource value: 0x7f09003a
+			public const int path_password_eye = 2131296314;
 			
-			// aapt resource value: 0x7f07003c
-			public const int path_password_eye_mask_strike_through = 2131165244;
+			// aapt resource value: 0x7f09003b
+			public const int path_password_eye_mask_strike_through = 2131296315;
 			
-			// aapt resource value: 0x7f07003d
-			public const int path_password_eye_mask_visible = 2131165245;
+			// aapt resource value: 0x7f09003c
+			public const int path_password_eye_mask_visible = 2131296316;
 			
-			// aapt resource value: 0x7f07003e
-			public const int path_password_strike_through = 2131165246;
+			// aapt resource value: 0x7f09003d
+			public const int path_password_strike_through = 2131296317;
 			
-			// aapt resource value: 0x7f070029
-			public const int search_menu_title = 2131165225;
+			// aapt resource value: 0x7f090028
+			public const int search_menu_title = 2131296296;
 			
-			// aapt resource value: 0x7f07002a
-			public const int status_bar_notification_info_overflow = 2131165226;
+			// aapt resource value: 0x7f090029
+			public const int status_bar_notification_info_overflow = 2131296297;
 			
 			static String()
 			{
