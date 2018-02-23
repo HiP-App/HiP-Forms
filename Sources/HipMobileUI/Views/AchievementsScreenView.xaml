@@ -69,8 +69,10 @@
             </StackLayout>
             <ContentView HorizontalOptions="Fill" VerticalOptions="FillAndExpand" />
             <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="End" Orientation="Horizontal"
-                         BackgroundColor="{StaticResource PrimaryColor}" Padding="20">
+                         BackgroundColor="{StaticResource PrimaryColor}" IsVisible="{Binding IsLoggedIn}"
+					   	 Padding="20">
                 <Label FontSize="24" Text="{Binding Score}" FontAttributes="Bold"
+					   IsVisible="{Binding IsLoggedIn}"	
                        HorizontalTextAlignment="Center" VerticalOptions="Center"
                        HorizontalOptions="CenterAndExpand" TextColor="White" />
             </StackLayout>
