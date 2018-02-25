@@ -393,7 +393,7 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
     <value>When enabled, the hint for the time bar will appear again</value>
   </data>
   <data name="SettingsScreenView_RepeatIntro_Text" xml:space="preserve">
-    <value>When enabled, When enabled, the app introduction will be shown on the next start again</value>
+    <value>When enabled, the app introduction will be shown on the next start again</value>
   </data>
   <data name="SettingsScreenView_DownloadData_Text" xml:space="preserve">
     <value>When enabled, data updates are going to be downloaded automatically</value>
@@ -543,7 +543,7 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
     <value>Used Disk Space for Data</value>
   </data>
   <data name="ExhibitRouteDonwloadPage_Download_Text" xml:space="preserve">
-    <value>Download additional data</value>
+    <value>Downloading...</value>
   </data>
   <data name="MainPageViewModel_Account" xml:space="preserve">
     <value>Account</value>
@@ -864,7 +864,7 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
     <value>Check other mode</value>
   </data>
 	<data name="CharacterSelectionPage_SelectCharacter" xml:space="preserve">
-    <value>Chose a Character</value>
+    <value>Choose a Character</value>
   </data>
 	<data name="CharacterDetailsPage_Adventurer_Text" xml:space="preserve">
     <value>Discover Paderborn on your own! Gain new experiences!</value>
