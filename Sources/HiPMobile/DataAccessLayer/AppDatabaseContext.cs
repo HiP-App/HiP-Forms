@@ -33,7 +33,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
         public DbSet<AchievementBase> Achievements { get; set; }
         public DbSet<AchievementPendingNotification> AchievementPendingNotifications { get; set; }
 
-        public object DebugView => new DbContextDebugView { Db = this };
+        public DbContextDebugView DebugView => new DbContextDebugView(this);
 
         public AppDatabaseContext(QueryTrackingBehavior changeTrackingBehavior)
         {

@@ -1,27 +1,12 @@
-﻿// Copyright (C) 2017 History in Paderborn App - Universität Paderborn
-//  
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//  
-//      http://www.apache.org/licenses/LICENSE-2.0
-//  
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
-
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
+﻿using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Metadata;
 using System;
-using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Diagnostics;
 using System.Linq;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
+namespace Microsoft.EntityFrameworkCore
 {
     /// <summary>
     /// Provides properties that allow the developer to drill into the current
@@ -31,177 +16,268 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
     public class DbContextDebugView
     {
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        public DbContext Db { get; set; }
+        private readonly DbContext _db;
 
-        public DataView Data => new DataView
+        public DbContextDebugView(DbContext db) => _db = db ?? throw new ArgumentNullException(nameof(db));
+
+        public DbContextDataDebugView Data => new DbContextDataDebugView(_db);
+
+        public DbContextChangeTrackingDebugView ChangeTracking => new DbContextChangeTrackingDebugView(_db);
+
+        public IReadOnlyList<IEntityType> Model => _db.Model.GetEntityTypes().ToList();
+    }
+
+    [DebuggerDisplay("{_description}")]
+    public class DbContextDataDebugView
+    {
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private readonly DbContext _db;
+
+        public DbContextDataDebugView(DbContext db)
         {
-            Db = Db,
-            EntityTypes = Db.Model.GetEntityTypes()
-                .OrderBy(type => type.ClrType.Name)
-                .Select(type => new DataView.EntityTypeView
-                {
-                    Db = Db,
-                    EntityType = type
-                })
-                .ToList()
-        };
+            _db = db ?? throw new ArgumentNullException(nameof(db));
+        }
 
-        public ChangeTrackingView ChangeTracking => new ChangeTrackingView
+        [DebuggerBrowsable(DebuggerBrowsableState.RootHidden)]
+        public IReadOnlyList<EntityTypeCollectionDebugView> EntityTypes => _db.Model.GetEntityTypes()
+            .OrderBy(type => type.ClrType.Name)
+            .Select(type => new EntityTypeCollectionDebugView(_db, type))
+            .ToList();
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private string _description => $"{EntityTypes.Count} entity type(s)";
+    }
+
+    /// <summary>
+    /// Lists all database entities of a certain type.
+    /// </summary>
+    [DebuggerDisplay("{_description}")]
+    public class EntityTypeCollectionDebugView
+    {
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private readonly DbContext _db;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private readonly IEntityType _entityType;
+
+        public EntityTypeCollectionDebugView(DbContext db, IEntityType entityType)
         {
-            States = Enum.GetValues(typeof(EntityState))
-                .Cast<EntityState>()
-                .Select(state => new ChangeTrackingView.EntityStateView
-                {
-                    State = state,
-                    Entries = Db.ChangeTracker.Entries()
-                        .Where(e => e.State == state)
-                        .OrderBy(e => e.Entity.GetType().Name)
-                        .Select(e => new ChangeTrackingView.EntityStateView.EntryView { Db = Db, TrackingInfo = e })
-                        .ToList()
-                })
-                .ToList()
-        };
+            _db = db ?? throw new ArgumentNullException(nameof(db));
+            _entityType = entityType ?? throw new ArgumentNullException(nameof(entityType));
+        }
 
-        [DebuggerDisplay("{Description}")]
-        public class DataView
+        [DebuggerBrowsable(DebuggerBrowsableState.RootHidden)]
+        public IReadOnlyList<EntityDebugView> Entities
         {
-            [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-            public DbContext Db { get; set; }
-
-            [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-            public string Description => $"{EntityTypes.Count} entity type(s)";
-
-            [DebuggerBrowsable(DebuggerBrowsableState.RootHidden)]
-            public IReadOnlyList<EntityTypeView> EntityTypes { get; set; }
-
-            [DebuggerDisplay("{EntityTypeName}")]
-            public class EntityTypeView
+            get
             {
-                [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-                public DbContext Db { get; set; }
+                var set = (IQueryable<object>)_db.GetType().GetMethod("Set")
+                    .MakeGenericMethod(_entityType.ClrType)
+                    .Invoke(_db, null);
 
-                [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-                public IEntityType EntityType { get; set; }
+                return set
+                    .AsNoTracking()
+                    .Select(entity => new EntityDebugView(_db, entity))
+                    .ToList();
+            }
+        }
 
-                [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-                public string EntityTypeName => EntityType.ClrType.Name;
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private string _description => _entityType.ClrType.Name;
+    }
 
-                [DebuggerBrowsable(DebuggerBrowsableState.RootHidden)]
-                public IReadOnlyList<object> Entities
+    /// <summary>
+    /// Lists all entities currently attached to a <see cref="DbContext"/>, grouped by <see cref="EntityState"/>.
+    /// </summary>
+    [DebuggerDisplay("{_description}")]
+    public class DbContextChangeTrackingDebugView
+    {
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private readonly DbContext _db;
+
+        public DbContextChangeTrackingDebugView(DbContext db)
+        {
+            _db = db ?? throw new ArgumentNullException(nameof(db));
+        }
+
+        [DebuggerBrowsable(DebuggerBrowsableState.RootHidden)]
+        public IReadOnlyList<TrackedEntityCollectionDebugView> States => Enum.GetValues(typeof(EntityState))
+            .Cast<EntityState>()
+            .Select(state => new TrackedEntityCollectionDebugView(_db, state))
+            .ToList();
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private string _description => string.Join(", ", States
+            .Where(s => s.Entries.Count > 0)
+            .Select(s => $"{s.Entries.Count} {s.State}"));
+    }
+
+    /// <summary>
+    /// Lists all entities that are currently being tracked in a certain state by a <see cref="DbContext"/>.
+    /// </summary>
+    [DebuggerDisplay("{_description}")]
+    public class TrackedEntityCollectionDebugView
+    {
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private readonly DbContext _db;
+
+        public TrackedEntityCollectionDebugView(DbContext db, EntityState state)
+        {
+            _db = db ?? throw new ArgumentNullException(nameof(db));
+            State = state;
+        }
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        public EntityState State { get; }
+
+        [DebuggerBrowsable(DebuggerBrowsableState.RootHidden)]
+        public IReadOnlyList<TrackedEntityDebugView> Entries => _db.ChangeTracker.Entries()
+            .Where(e => e.State == State)
+            .OrderBy(e => e.Entity.GetType().Name)
+            .Select(e => new TrackedEntityDebugView(_db, e))
+            .ToList();
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private string _description
+        {
+            get
+            {
+                var groups = Entries
+                    .GroupBy(e => e.TrackingInfo.Entity.GetType())
+                    .Select(g => $"{g.Count()}x {g.First().TrackingInfo.Entity.GetType().Name}")
+                    .ToList();
+
+                return $"{State}: {Entries.Count}" + (groups.Count > 0 ? $" ({string.Join(", ", groups)})" : "");
+            }
+        }
+    }
+
+    [DebuggerDisplay("{_description}")]
+    public class TrackedEntityDebugView
+    {
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private readonly DbContext _db;
+
+        public TrackedEntityDebugView(DbContext db, EntityEntry trackingInfo)
+        {
+            _db = db ?? throw new ArgumentNullException(nameof(db));
+            TrackingInfo = trackingInfo ?? throw new ArgumentNullException(nameof(trackingInfo));
+        }
+
+        public EntityEntry TrackingInfo { get; }
+
+        [DebuggerBrowsable(DebuggerBrowsableState.RootHidden)]
+        public EntityDebugView Entity => new EntityDebugView(_db, TrackingInfo.Entity);
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private string _description => $"{TrackingInfo.Entity.GetType().Name} ({TrackingInfo.Entity})";
+    }
+
+    [DebuggerDisplay("{Entity}")]
+    public class EntityDebugView
+    {
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private readonly DbContext _db;
+
+        public EntityDebugView(DbContext db, object entity)
+        {
+            _db = db ?? throw new ArgumentNullException(nameof(db));
+            Entity = entity;
+        }
+
+        // Note: 'DebuggerBrowsableState.HideRoot' causes 'References' to be missing in Xamarin
+        public object Entity { get; set; }
+
+        public NavigationCollectionDebugView References => new NavigationCollectionDebugView(_db, Entity);
+    }
+
+    /// <summary>
+    /// Lists the navigation properties of an entity and loads them on demand.
+    /// </summary>
+    [DebuggerDisplay("🔗 References")]
+    public class NavigationCollectionDebugView
+    {
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private readonly DbContext _db;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private readonly object _entity;
+
+        public NavigationCollectionDebugView(DbContext db, object entity)
+        {
+            _db = db ?? throw new ArgumentNullException(nameof(db));
+            _entity = entity;
+        }
+
+        [DebuggerBrowsable(DebuggerBrowsableState.RootHidden)]
+        public IReadOnlyList<NavigationDebugView> References => (_entity == null)
+            ? ImmutableList<NavigationDebugView>.Empty
+            : _db.Entry(_entity).Navigations
+                .Select(nav => new NavigationDebugView(_db, nav))
+                .ToList() as IReadOnlyList<NavigationDebugView>;
+    }
+
+    /// <summary>
+    /// Displays a navigation property and loads it on demand.
+    /// </summary>
+    [DebuggerDisplay("{_description}")]
+    public class NavigationDebugView
+    {
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private readonly DbContext _db;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private readonly NavigationEntry _nav;
+
+        public NavigationDebugView(DbContext db, NavigationEntry nav)
+        {
+            _db = db ?? throw new ArgumentNullException(nameof(db));
+            _nav = nav ?? throw new ArgumentNullException(nameof(nav));
+        }
+
+        [DebuggerBrowsable(DebuggerBrowsableState.RootHidden)]
+        public object Value
+        {
+            get
+            {
+                // For nav.Query() we need to ensure that the entity is (at least temporarily) attached
+                var isDetached = _nav.EntityEntry.State == EntityState.Detached;
+
+                if (isDetached)
+                    _nav.EntityEntry.State = EntityState.Unchanged;
+
+                try
                 {
-                    get
+                    switch (_nav)
                     {
-                        var set = (IQueryable<object>)Db.GetType().GetMethod("Set")
-                            .MakeGenericMethod(EntityType.ClrType)
-                            .Invoke(Db, null);
+                        // Note: Query() won't attach to change tracker
 
-                        return set
-                            .AsNoTracking()
-                            .Select(entity => new EntityView
-                            {
-                                Db = Db,
-                                Entity = entity
-                            }).ToList();
+                        // TODO: This doesn't seem to work correctly
+
+                        case ReferenceEntry _:
+                            return new EntityDebugView(_db, _nav.IsLoaded
+                                ? _nav.CurrentValue
+                                : _nav.Query().Cast<object>().FirstOrDefault());
+
+                        case CollectionEntry _:
+                            var targets = _nav.IsLoaded
+                                ? (IEnumerable<object>)_nav.CurrentValue
+                                : _nav.Query().Cast<object>();
+                            return targets.Select(e => new EntityDebugView(_db, e)).ToList();
+
+                        default:
+                            throw new NotSupportedException();
                     }
                 }
-            }
-        }
-
-        [DebuggerDisplay("{Description}")]
-        public class ChangeTrackingView
-        {
-            [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-            public string Description => string.Join(", ", States
-                .Where(s => s.Entries.Count > 0)
-                .Select(s => $"{s.Entries.Count} {s.State}"));
-
-            [DebuggerBrowsable(DebuggerBrowsableState.RootHidden)]
-            public IReadOnlyList<EntityStateView> States { get; set; }
-
-            [DebuggerDisplay("{Description}")]
-            public class EntityStateView
-            {
-                [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-                public EntityState State { get; set; }
-
-                [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-                public string Description
+                finally
                 {
-                    get
-                    {
-                        var groups = Entries
-                            .GroupBy(e => e.TrackingInfo.Entity.GetType())
-                            .Select(g => $"{g.Count()}x {g.First().TrackingInfo.Entity.GetType().Name}")
-                            .ToList();
-
-                        return $"{State}: {Entries.Count}" + (groups.Count > 0 ? $" ({string.Join(", ", groups)})" : "");
-                    }
-                }
-
-                [DebuggerBrowsable(DebuggerBrowsableState.RootHidden)]
-                public IReadOnlyList<EntryView> Entries { get; set; }
-
-                [DebuggerDisplay("{Description}")]
-                public class EntryView
-                {
-                    [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-                    public DbContext Db { get; set; }
-
-                    public EntityEntry TrackingInfo { get; set; }
-
-                    [DebuggerBrowsable(DebuggerBrowsableState.RootHidden)]
-                    public EntityView Entity => new EntityView
-                    {
-                        Db = Db,
-                        Entity = TrackingInfo.Entity
-                    };
-
-                    [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-                    public string Description => $"{TrackingInfo.Entity.GetType().Name} ({TrackingInfo.Entity})";
+                    if (isDetached)
+                        _nav.EntityEntry.State = EntityState.Detached;
                 }
             }
         }
 
-        [DebuggerDisplay("{Entity}")]
-        public class EntityView
-        {
-            [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-            public DbContext Db { get; set; }
-
-            public object Entity { get; set; }
-
-            public ReferenceListView References => new ReferenceListView
-            {
-                References = Db.Entry(Entity).Navigations
-                    .Select(nav =>
-                    {
-                        var refs = nav.IsLoaded
-                            ? (nav.CurrentValue is IEnumerable<object> list) ? list : Enumerable.Repeat(nav.CurrentValue, 1)
-                            : nav.Query().Cast<object>().ToList(); // this won't attach to change tracker
-
-                        return new ReferenceListView.ReferenceView
-                        {
-                            Name = $"🔗 {Entity.GetType().Name}.{nav.Metadata.Name}",
-                            Value = refs.Select(entity => new EntityView { Db = Db, Entity = entity }).ToList()
-                        };
-                    }).ToList()
-            };
-
-            [DebuggerDisplay("🔗 References")]
-            public class ReferenceListView
-            {
-                [DebuggerBrowsable(DebuggerBrowsableState.RootHidden)]
-                public IReadOnlyList<ReferenceView> References { get; set; }
-
-                [DebuggerDisplay("{Name}")]
-                public class ReferenceView
-                {
-                    [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-                    public string Name { get; set; }
-                    [DebuggerBrowsable(DebuggerBrowsableState.RootHidden)]
-                    public object Value { get; set; }
-                }
-            }
-        }
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private string _description => $"🔗 {_nav.EntityEntry.Entity.GetType().Name}.{_nav.Metadata.Name}";
     }
 }

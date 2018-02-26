@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
 using System.Text;
@@ -24,7 +25,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
 
         public override ITransactionDataAccess DataAccess { get; }
 
-        public object DebugView => new DbContextDebugView { Db = _db };
+        public DbContextDebugView DebugView => new DbContextDebugView(_db);
 
         public EFCoreTransaction(AppDatabaseContext db)
         {
