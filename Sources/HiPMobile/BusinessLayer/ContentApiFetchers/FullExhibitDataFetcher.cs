@@ -141,7 +141,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
 
         private async Task ProcessPages(string exhibitId, CancellationToken token, IProgressListener listener, ITransactionDataAccess dataAccess)
         {
-            await FetchMediaData(token, listener);
+            await mediaDataFetcher.FetchMedias(requiredMedia, token, listener);
             var fetchedMedia = await mediaDataFetcher.CombineMediasAndFiles(dataAccess);
 
             if (token.IsCancellationRequested)
@@ -192,11 +192,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             }
 
             exhibit.DetailsDataLoaded = true;
-        }
-
-        private async Task FetchMediaData(CancellationToken token, IProgressListener listener)
-        {
-            await mediaDataFetcher.FetchMedias(requiredMedia, token, listener);
         }
 
         private void AddContentToPage(Page dbPage, PageDto pageDto, FetchedMediaData fetchedMedia)

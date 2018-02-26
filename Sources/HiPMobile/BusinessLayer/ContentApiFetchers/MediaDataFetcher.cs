@@ -28,7 +28,6 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Unity.Attributes;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers
 {
@@ -36,17 +35,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
     {
         private readonly IMediasApiAccess mediasApiAccess;
         private readonly IFileApiAccess fileApiAccess;
+        private readonly MediaToImageConverter imageConverter;
+        private readonly MediaToAudioConverter audioConverter;
 
-        [Dependency]
-        public MediaToImageConverter ImageConverter { private get; set; }
-
-        [Dependency]
-        public MediaToAudioConverter AudioConverter { private get; set; }
-
-        public MediaDataFetcher(IMediasApiAccess mediasApiAccess, IFileApiAccess fileApiAccess)
+        public MediaDataFetcher(IMediasApiAccess mediasApiAccess, IFileApiAccess fileApiAccess, MediaToImageConverter imageConverter, MediaToAudioConverter audioConverter)
         {
             this.mediasApiAccess = mediasApiAccess;
             this.fileApiAccess = fileApiAccess;
+            this.imageConverter = imageConverter;
+            this.audioConverter = audioConverter;
         }
 
         private IList<MediaDto> fetchedMedias;
@@ -86,8 +83,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                     throw new ArgumentOutOfRangeException("Unsupported media type");
 
                 var dbMedia = isAudio
-                    ? AudioConverter.ConvertReplacingExisting(mediaDto, mediaDto.Id.ToString(), dataAccess)
-                    : ImageConverter.ConvertReplacingExisting(mediaDto, mediaDto.Id.ToString(), dataAccess) as Media;
+                    ? audioConverter.ConvertReplacingExisting(mediaDto, mediaDto.Id.ToString(), dataAccess)
+                    : imageConverter.ConvertReplacingExisting(mediaDto, mediaDto.Id.ToString(), dataAccess) as Media;
 
                 var file = fetchedFiles?.SingleOrDefault(x => x.MediaId == mediaDto.Id);
 
