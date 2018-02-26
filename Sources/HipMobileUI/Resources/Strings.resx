@@ -543,7 +543,7 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
     <value>Used Disk Space for Data</value>
   </data>
   <data name="ExhibitRouteDonwloadPage_Download_Text" xml:space="preserve">
-    <value>Downloading...</value>
+    <value>Downloading additional data</value>
   </data>
   <data name="MainPageViewModel_Account" xml:space="preserve">
     <value>Account</value>
