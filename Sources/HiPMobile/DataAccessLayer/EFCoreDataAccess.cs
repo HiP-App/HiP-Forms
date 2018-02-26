@@ -84,7 +84,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
             }
         }
 
-        public IEnumerable<T> GetItems<T>(params string[] pathsToInclude) where T : class, IIdentifiable
+        public IReadOnlyList<T> GetItems<T>(params string[] pathsToInclude) where T : class, IIdentifiable
         {
             using (var scope = Scope())
             {
@@ -126,7 +126,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
                 throw new InvalidOperationException($"{nameof(StartTransaction)} must not be called from within the scope of a transaction");
 
             var db = new AppDatabaseContext(QueryTrackingBehavior.TrackAll);
-            db.AttachRange(itemsToTrack);
+            db.AttachRange(itemsToTrack.Distinct());
             return new EFCoreTransaction(db);
         }
 

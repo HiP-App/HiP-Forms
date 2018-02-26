@@ -110,7 +110,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
 
         public async Task ProcessRoutes(IProgressListener listener, ITransactionDataAccess dataAccess)
         {
-            fetchedMedia = await mediaDataFetcher.CombineMediasAndFiles();
+            fetchedMedia = await mediaDataFetcher.CombineMediasAndFiles(dataAccess);
 
             ProcessUpdatedRoutes(listener, dataAccess);
             ProcessNewRoutes(listener, dataAccess);

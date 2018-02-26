@@ -85,7 +85,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
 
         public async Task ProcessExhibits(IProgressListener listener, ITransactionDataAccess dataAccess)
         {
-            var fetchedMedia = await mediaDataFetcher.CombineMediasAndFiles();
+            var fetchedMedia = await mediaDataFetcher.CombineMediasAndFiles(dataAccess);
 
             ProcessUpdatedExhibits(listener, fetchedMedia, dataAccess);
             ProcessNewExhibits(listener, fetchedMedia, dataAccess);

@@ -12,9 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelConverters;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
 {
@@ -33,13 +35,25 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
         /// <summary>
         /// Starts a new write transaction. Make sure to close the transaction by either committing it or rolling back.
         /// </summary>
+        /// <param name="itemsToTrack">
+        /// Entities that should be added to the change tracker.
+        /// See <see cref="IDataAccess.StartTransaction(IEnumerable{object})"/> for an example scenario where this is needed.
+        /// Note that <see cref="BackupData.BackupImage"/> and <see cref="BackupData.BackupImageTag"/> are included by default
+        /// so they can be freely assigned to any other entity without being considered "new".
+        /// </param>
         /// <returns>The transaction object which can perform committing or rolling back.</returns>
         public static BaseTransaction StartTransaction(IEnumerable<object> itemsToTrack) =>
-            DataAccess.StartTransaction(itemsToTrack);
+            DataAccess.StartTransaction(itemsToTrack.Concat(new[] { BackupData.BackupImage, BackupData.BackupImageTag }));
 
         /// <summary>
         /// Starts a new write transaction. Make sure to close the transaction by either committing it or rolling back.
         /// </summary>
+        /// <param name="itemsToTrack">
+        /// Entities that should be added to the change tracker.
+        /// See <see cref="IDataAccess.StartTransaction(IEnumerable{object})"/> for an example scenario where this is needed.
+        /// Note that <see cref="BackupData.BackupImage"/> and <see cref="BackupData.BackupImageTag"/> are included by default
+        /// so they can be freely assigned to any other entity without being considered "new".
+        /// </param>
         /// <returns>The transaction object which can perform committing or rolling back.</returns>
         public static BaseTransaction StartTransaction(params object[] itemsToTrack) =>
             StartTransaction(itemsToTrack as IEnumerable<object>);

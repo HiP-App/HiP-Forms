@@ -37,7 +37,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
         /// </summary>
         /// <typeparam name="T">The type of the items being retrieved.</typeparam>
         /// <returns>The enumerable of items.</returns>
-        IEnumerable<T> GetItems<T>(params string[] pathsToInclude) where T : class, IIdentifiable;
+        IReadOnlyList<T> GetItems<T>(params string[] pathsToInclude) where T : class, IIdentifiable;
 
         /// <summary>
         /// Inserts an item into the database.
@@ -60,11 +60,18 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
         /// The method enables change tracking for the specified root items and all directly or
         /// indirectly referenced items. All changes within the transaction are recorded and saved when the
         /// transaction is committed.
-        /// Important: The items to be tracked must already exist in the database.
-        /// Furthermore, changes are only detected within the scope of the transaction,
-        /// i.e. if some item in the graph already has unsaved changes at the time of calling
-        /// <see cref="StartTransaction(IEnumerable{object})"/>, these changes won't be detected and won't be saved.
+        /// Note: Changes are only detected within the scope of the transaction, i.e. if some item in the graph
+        /// already has unsaved changes at the time of calling <see cref="StartTransaction(IEnumerable{object})"/>, 
+        /// these changes won't be detected and won't be saved.
         /// </summary>
+        /// <param name="itemsToTrack">
+        /// Existing entities that should be attached to the transaction scope.
+        /// Example: Assume you have already retrieved an <see cref="Image"/> entity from the database. Now you start
+        /// a transaction in which you create a new <see cref="Exhibit"/> entity and assign the image to it. In this case
+        /// you MUST pass the image as one of the <paramref name="itemsToTrack"/>. Otherwise the transaction scope doesn't
+        /// know about the image and assumes that it has been created within the transaction and needs to be inserted into
+        /// the database which, of course, would be wrong.
+        /// </param>
         /// <returns>The transaction object.</returns>
         BaseTransaction StartTransaction(IEnumerable<object> itemsToTrack);
         

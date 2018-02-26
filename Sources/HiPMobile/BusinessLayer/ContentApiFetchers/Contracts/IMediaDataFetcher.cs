@@ -15,17 +15,18 @@
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers.Contracts
 {
     /// <summary>
-    /// Fetcher for audio and images
+    /// Fetcher for audio and images.
     /// </summary>
     public interface IMediaDataFetcher
     {
         /// <summary>
-        /// Fetches the media data including the real files for the given ids
+        /// Fetches the media data including the real files for the given IDs.
         /// </summary>
         /// <param name="mediaIds"></param>
         /// <param name="token">Can be provided for canceling the action</param>
@@ -33,10 +34,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
         Task FetchMedias(IList<int?> mediaIds, CancellationToken token, IProgressListener progressListener);
 
         /// <summary>
-        /// Combines media data and files
-        /// Must be called inside a database transaction
+        /// Combines media data and files, creating new image/audio entities in the database or updating existing ones.
+        /// Must be called inside a database transaction.
         /// </summary>
-        /// <returns></returns>
-        Task<FetchedMediaData> CombineMediasAndFiles();
+        Task<FetchedMediaData> CombineMediasAndFiles(ITransactionDataAccess dataAccess);
     }
 }

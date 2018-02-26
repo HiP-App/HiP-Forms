@@ -80,7 +80,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             using (var transaction = DbManager.StartTransaction())
             {
                 var dataAccess = transaction.DataAccess;
-                await ProcessRoute(token, listener); // Download audio
+                await ProcessRoute(token, listener, dataAccess); // Download audio
                 if (token.IsCancellationRequested)
                     transaction.Rollback();
             }
@@ -96,10 +96,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             return requiredMedia.Count;
         }
 
-        private async Task ProcessRoute(CancellationToken token, IProgressListener listener)
+        private async Task ProcessRoute(CancellationToken token, IProgressListener listener, ITransactionDataAccess dataAccess)
         {
             await FetchMediaData(token, listener);
-            var fetchedMedia = await mediaDataFetcher.CombineMediasAndFiles();
+            var fetchedMedia = await mediaDataFetcher.CombineMediasAndFiles(dataAccess);
             if (token.IsCancellationRequested)
                 return;
 
