@@ -37,6 +37,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
 
         public DbContextDebugView DebugView => Scope().Db.DebugView;
 
+        public string DatabasePath => DbPath;
+
         // Creates an IDisposable that, if no shared DbContext is set, provides a transient
         // DbContext and disposes it when the scope is disposed.
         private DbScope Scope() => new DbScope(_sharedDbContext);
@@ -63,12 +65,21 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
         {
             using (var scope = Scope())
             {
-                IQueryable<T> query = scope.Db.Set<T>();
+                var dbSet = scope.Db.Set<T>();
 
-                foreach (var path in pathsToInclude)
-                    query = query.Include(path);
+                // First, query local cache
+                // (only relevant in transaction scopes; otherwise we have a transient DbContext where the cache is always empty)
+                var localResult = BuildQuery(dbSet.Local.AsQueryable(), pathsToInclude)
+                    .SingleOrDefault(o => o.Id == id);
 
-                return query.SingleOrDefault(o => o.Id == id);
+                if (localResult != null)
+                    return localResult;
+
+                // If entity not cached, query the database
+                var dbResult = BuildQuery(dbSet, pathsToInclude)
+                    .SingleOrDefault(o => o.Id == id);
+
+                return dbResult; // may still be null if entity doesn't exist
             }
         }
 
@@ -76,12 +87,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
         {
             using (var scope = Scope())
             {
-                IQueryable<T> query = scope.Db.Set<T>();
-
-                foreach (var path in pathsToInclude)
-                    query = query.Include(path);
-                
-                return query.ToListAsync().Result;
+                // Combine entities from local cache and database
+                // (only relevant in transaction scopes; otherwise we have a transient DbContext where the cache is always empty)
+                var dbSet = scope.Db.Set<T>();
+                var localResults = BuildQuery(dbSet.Local.AsQueryable(), pathsToInclude);
+                var dbResults = BuildQuery(dbSet, pathsToInclude);
+                var allResults = localResults.Union(dbResults).ToList();
+                return allResults;
             }
         }
 
@@ -131,8 +143,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
                 scope.Db.Database.EnsureCreated();
         }
 
-        public string DatabasePath => DbPath;
-
+        private static IQueryable<T> BuildQuery<T>(IQueryable<T> dataSource, IEnumerable<string> pathsToInclude) where T : class
+        {
+            foreach (var path in pathsToInclude)
+                dataSource = dataSource.Include(path);
+            return dataSource;
+        }
 
         class DbScope : IDisposable
         {

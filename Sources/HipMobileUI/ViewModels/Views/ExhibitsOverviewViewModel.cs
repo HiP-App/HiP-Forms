@@ -45,7 +45,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             if (exhibits != null)
             {
                 Exhibits = new ObservableCollection<ExhibitsOverviewListItemViewModel>(
-                    DbManager.DataAccess.Exhibits().GetExhibits().Select(ex => new ExhibitsOverviewListItemViewModel(ex)));
+                    exhibits.Select(ex => new ExhibitsOverviewListItemViewModel(ex)));
             }
 
             ItemTappedCommand = new Command(item => NavigateToExhibitDetails(item as ExhibitsOverviewListItemViewModel));
