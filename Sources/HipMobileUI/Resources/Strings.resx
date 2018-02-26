@@ -121,7 +121,7 @@
     <value>Die Nutzung der App basiert auf Freiwilligkeit. Sämtliche Daten, die im Rahmen der Nutzung der Dienste und Applikation Verwendung finden, dürfen nur erhoben und verarbeitet werden, soweit dies für den Dienst und statistische Forschungs- und Evaluationszwecke erforderlich ist und den Regelungen der Universität Paderborn und dem Datenschutzgesetz NRW entspricht.</value>
   </data>
   <data name="LicenseScreenView_Agreement_Title" xml:space="preserve">
-    <value>Legal Basis and Consent</value>
+    <value>Legal basis and consent</value>
   </data>
   <data name="LicenseScreenView_Contribution_Title" xml:space="preserve">
     <value>Contributions</value>
@@ -142,19 +142,19 @@
     <value>From &lt;a href="http://commonservicelocator.codeplex.com"&gt;Microsoft&lt;/a&gt;, licensed under &lt;a href="http://commonservicelocator.codeplex.com/license"&gt;Ms-PL&lt;/a&gt;. No changes were made.</value>
   </data>
 	<data name="LicenseScreenView_CSL_Title" xml:space="preserve">
-    <value>Common Service Locator</value>
+    <value>Common service locator</value>
   </data>
 	<data name="LicenseScreenView_DatabaseData_Text" xml:space="preserve">
     <value>Die Daten die die App darstellt werden auf dem Smartphone in einer separaten Datenbank gespeichert. Die App liest und schreibt ausschließlich in dieser Datenbank. Der gesamte Datenverkehr erfolgt lokal.</value>
   </data>
   <data name="LicenseScreenView_DatabaseData_Title" xml:space="preserve">
-    <value>Database Data</value>
+    <value>Database data</value>
   </data>
 	<data name="LicenseScreenView_FeedbackData_Text" xml:space="preserve">
     <value>Für den technischen Betrieb, das Aufspüren von Fehlern steht es dem Nutzer frei Feedback an die Entwickler zu senden. Die Daten enthalten Informationen über Namen und E-Mail-Adresse, die vom User frei gewählt werden können. Die Erhebung und Nutzung dieser Feedback-Daten dienen lediglich der Fehlerbeseitigung und werden zudem in anonymisierter Form für statistischen Forschungs- und Evaluationszwecke ausgewertet. Die Log-Daten werden auf den Servern der Feedback Anwendung Hockeyapp gespeichert.</value>
   </data>
   <data name="LicenseScreenView_FeedbackData_Title" xml:space="preserve">
-    <value>Feedback Data</value>
+    <value>Feedback data</value>
   </data>
   <data name="LicenseScreenView_Fody_Text" xml:space="preserve">
     <value>From &lt;a href="https://github.com/Fody/Fody"&gt;Simon Cropp&lt;/a&gt;, licensed under &lt;a href="https://opensource.org/licenses/mit-license.php"&gt;MIT&lt;/a&gt;. No changes were made.</value>
@@ -166,7 +166,7 @@
     <value>Wenn Fragen bestehen, die diese Datenschutzerklärung nicht beantwortet, oder wenn zu einzelnen Punkten vertiefte Informationen gewünscht werden, gibt der Software Innovation Campus Paderborn gerne weitere Auskunft. E-Mail: hip-app@campus.uni-paderborn.de Telefon +49 5251 603358 Postalisch: Universität Paderborn Software Innovation Campus Warburger Str. 100 D-33098 Paderborn</value>
   </data>
   <data name="LicenseScreenView_FurtherInfo_Title" xml:space="preserve">
-    <value>Further Informations</value>
+    <value>Further information</value>
   </data>
   <data name="LicenseScreenView_HockeyApp_Text" xml:space="preserve">
     <value>From &lt;a href="https://github.com/bitstadium/HockeySDK-Android"&gt;Microsoft&lt;/a&gt;, licensed under &lt;a href="https://raw.githubusercontent.com/bitstadium/HockeySDK-Xamarin/master/LICENSE.md"&gt;Lizenz&lt;/a&gt;. No changes were made.</value>
@@ -216,13 +216,13 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
     <value>From &lt;a href="https://mapicons.mapsmarker.com/"&gt;Maps Icons Collection&lt;/a&gt;, licensed under &lt;a href="http://creativecommons.org/licenses/by-sa/3.0/"&gt;CC-BY-SA 3.0&lt;/a&gt;. No changes were made.</value>
   </data>
 	<data name="LicenseScreenView_MapIcons_Title" xml:space="preserve">
-    <value>Map Icons</value>
+    <value>Map icons</value>
   </data>
   <data name="LicenseScreenView_MaterialIcons_Text" xml:space="preserve">
     <value>From &lt;a href="https://design.google.com/icons/"&gt;Google&lt;/a&gt;, licensed under &lt;a href="https://opensource.org/licenses/Apache-2.0"&gt;Apache License 2.0&lt;/a&gt;. No changes were made.</value>
   </data>
 	<data name="LicenseScreenView_MaterialIcons_Title" xml:space="preserve">
-    <value>Material Icons</value>
+    <value>Material icons</value>
   </data>
   <data name="LicenseScreenView_OSMBonusPack_Text" xml:space="preserve">
     <value>From &lt;a href="https://github.com/MKergall/osmbonuspack"&gt;MKergall&lt;/a&gt;, licensed under &lt;a href="https://raw.githubusercontent.com/MKergall/osmbonuspack/master/LICENSE.md"&gt;GNU Lesser General Public License 3.0 (LGPL 3.0)&lt;/a&gt; (ohne §5.d und §5.e). No changes were made.</value>
@@ -234,7 +234,7 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
     <value>From &lt;a href="https://github.com/osmdroid/osmdroid"&gt;osmdroid&lt;/a&gt;, licensed under &lt;a href="https://raw.githubusercontent.com/osmdroid/osmdroid/master/LICENSE"&gt;Apache License 2.0&lt;/a&gt;. No changes were made.</value>
   </data>
 	<data name="LicenseScreenView_Osmdroid_Title" xml:space="preserve">
-    <value>osmdroid</value>
+    <value>Osmdroid</value>
   </data>
   <data name="LicenseScreenView_OsmSharp_Text" xml:space="preserve">
     <value>From &lt;a href="https://osmsharp.com/"&gt;Ben Abelshausen&lt;/a&gt;, licensed under &lt;a href="https://opensource.org/licenses/mit-license.php"&gt;MIT&lt;/a&gt;. No changes were made.</value>
@@ -246,7 +246,7 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
     <value>Historisches in Paderborn ist ein nicht-kommerzieller interaktiver Stadtführer der Universität Paderborn für mobile Endgeräte, dessen Nutzung auf Freiwilligkeit basiert. Die bei der Nutzung erhobenen Daten werden nur für die hier beschriebenen Zwecke verwendet und an keine Dritte weitergegeben. Diese Datenschutzerklärung beschreibt den Umgang mit personenbezogenen Daten innerhalb der Stadtführer App. Mit der Installation der App erklärt sich der Nutzer mit dieser Datenschutzerklärung einverstanden und kann sie jederzeit über die App-Seite im Google Play Store einsehen. Die Smartphone Applikation (App), bietet dem Nutzer die Möglichkeit Informationen zu verschiedenen Sehenswürdigkeiten in Paderborn zu erhalten. Dazu greift die App auf den Standort des Smartphones zu, um die nächsten Sehenswürdigkeiten für den Nutzer anzuzeigen und, falls gewünscht, für diesen eine Route zu den Sehenswürdigkeiten zu berechnen. Dazu wird ein Kartenausschnitt aus dem Web geladen. Zudem legt die App eine lokale Datenbank auf dem Smartphone an, in der die Daten gespeichert werden. Weiterhin bietet die App die Möglichkeit Audiodateien abzuspielen. Die Nutzung der jeweiligen Daten wird im Folgenden näher beschrieben.</value>
   </data>
   <data name="LicenseScreenView_PrivacyPolicy_Title" xml:space="preserve">
-    <value>Privacy Statement</value>
+    <value>Privacy statement</value>
   </data>
   <data name="LicenseScreenView_Realm_Text" xml:space="preserve">
     <value>From &lt;a href="https://github.com/realm/realm-java"&gt;Realm&lt;/a&gt;, licensed under &lt;a href="https://raw.githubusercontent.com/realm/realm-java/master/LICENSE"&gt;Apache License 2.0&lt;/a&gt;. No changes were made.</value>
@@ -264,25 +264,25 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
     <value>Diese Datenschutzerklärung hat einen rein informativen Charakter, beschreibt aber verlässlich den aktuellen Stand des Systems. Änderungen innerhalb des Systems, die die Nutzung personenbezogener Daten betreffen, werden umgehend in die Datenschutzerklärung eingepflegt, um den Nutzerinnen und Nutzern jederzeit den aktuellen datenschutzrechtlichen Stand des Systems darlegen zu können. Die jeweiligen Sachverhalte ergeben sich aus den einschlägigen rechtlichen Regelungen und sind unabhängig von dieser Erläuterung gültig. Falls die Darstellung in dieser Erläuterung und das tatsächliche Verhalten von Historisches in Paderborn (beispielsweise durch zu bestimmten Zeitpunkten bestehende Programmfehler) voneinander abweichen, ergeben sich allein aus dieser Tatsache keinerlei Ansprüche.</value>
   </data>
   <data name="LicenseScreenView_RightOfPP_Title" xml:space="preserve">
-    <value>Legal Status of the Privacy Policy</value>
+    <value>Legal status of the privacy policy</value>
   </data>
   <data name="LicenseScreenView_SettingsPlugin_Text" xml:space="preserve">
     <value>From &lt;a href="https://github.com/jamesmontemagno/SettingsPlugin"&gt;James Montemagno&lt;/a&gt;, licensed under &lt;a href="https://github.com/jamesmontemagno/SettingsPlugin/blob/master/LICENSE"&gt;MIT&lt;/a&gt;. No changes were made.</value>
   </data>
 	<data name="LicenseScreenView_SettingsPlugin_Title" xml:space="preserve">
-    <value>Settings Plugin</value>
+    <value>Settings plugin</value>
   </data>
 	<data name="LicenseScreenView_ToU_Text" xml:space="preserve">
     <value>Die Applikation Historisches Paderborn ist eine experimentelle Software, welche zu Studien- und Forschungszwecken an der Universität Paderborn erstellt wurde. Die Software stellt historische Informationen als auch Kartendaten dar, wobei weder die Vollständigkeit noch die Korrektheit der Daten garantiert wird. Die Smartphone Applikation führt eine Positionsschätzung mit Hilfe von GPS durch. Die Genauigkeit der Positionsschätzung ist abhängig von vielen Faktoren, deshalb kann eine fehlerfreie Funktion nicht garantiert werden. Es kann eine Routenführung zu Sehenswürdigkeiten in Paderborn durch die Software bereitgestellt werden. Bitte bedenken Sie, dass die Routenberechnung Fehler enthalten kann. Beachten Sie Ihre Umgebung während der Nutzung des Systems, um Unfälle zu vermeiden. Die Applikation nutzt Kartendaten und kommuniziert mit Servern, wodurch tarifabhängige Kosten entstehen. Speziell das Laden von Kartendaten erzeugt ein sehr hohes Datenvolumen, so dass die Nutzung einer kostenfreien/kostengünstigen Verbindung, z.B. WLAN, gegenüber einer UMTS/LTE Datenverbindung ratsam ist. Die Software wird als solches zur kostenfreien Nutzung bereitgestellt. Eine Garantie für die Funktion bzw. die Bereitstellung des Dienstes an sich existiert nicht. Der Dienst kann ohne Angabe von Gründen jederzeit eingestellt werden. Da das System experimentellen Charakter besitzt, kann es zur Nicht-Verfügbarkeit von Diensten und zu Fehlern des Systems kommen, welche Systemabstürze auf dem Endgerät des Nutzers verursachen können. Der Einsatz der Software erfolgt auf eigene Gefahr. Mit der Zustimmung des Nutzers, sammelt die Software anonymisierte Nutzungsdaten, wie z.B. Absturzberichte. Der Benutzer wird vor dem Senden gefragt, ob er diesem zustimmt.</value>
   </data>
   <data name="LicenseScreenView_ToU_Title" xml:space="preserve">
-    <value>Terms of Use</value>
+    <value>Terms of use</value>
   </data>
 	<data name="LicenseScreenView_Transparancy_Text" xml:space="preserve">
     <value>Im Rahmen der Feedback Funktion die jeder Nutzer freiwillig nutzen kann, muss dieser einen Namen und eine Emailadresse angeben um eine Nachricht an die Entwickler zu senden. Diese Daten werden verschlüsselt versendet. Es werden ebenfalls keinerlei Daten aus dem privaten Speicher des Smartphones gelesen die nicht Teil der Datenbank sind.</value>
   </data>
   <data name="LicenseScreenView_Transparancy_Title" xml:space="preserve">
-    <value>Visibility of the Data / Transparency</value>
+    <value>Visibility of the data / transparency</value>
   </data>
   <data name="LicenseScreenView_Unity_Text" xml:space="preserve">
     <value>From &lt;a href="https://github.com/unitycontainer/unity"&gt;Microsoft&lt;/a&gt;, licensed under &lt;a href="https://opensource.org/licenses/Apache-2.0"&gt;Apache License 2.0&lt;/a&gt;. No changes were made.</value>
@@ -294,13 +294,13 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
     <value>Die Historisches in Paderborn App ist eine offene Applikation, welche mit einen Google Konto über den Google Playstore sowie dem Apple iTunes App Store heruntergeladen werden kann. In der aktuellen Version bezieht die App seine Daten von einer lokalen Datenbank die bei der Installation der App auf dem Speicher des Smartphones abgelegt wird. Das Kartenmaterial wird je nach Verwendung und Position des Nutzers vom OpenStreetMap Server geladen. Darüber hinaus steht es dem Nutzer frei ein Feedback an die Entwickler zu senden, welches die Qualität der App verbessern soll.</value>
   </data>
   <data name="LicenseScreenView_UsagePersonalData_Title" xml:space="preserve">
-    <value>Collection, Processing and Use of Personal Data</value>
+    <value>Collection, processing and use of personal data</value>
   </data>
   <data name="LicenseScreenView_XSL_Text" xml:space="preserve">
     <value>From &lt;a href="https://github.com/xamarin/AndroidSupportComponents"&gt;Xamarin&lt;/a&gt;, licensed under &lt;a href="https://github.com/xamarin/AndroidSupportComponents/blob/master/LICENSE.md"&gt;MIT&lt;/a&gt;. No changes were made.</value>
   </data>
 	<data name="LicenseScreenView_XSL_Title" xml:space="preserve">
-    <value>Xamarin Support Libraries</value>
+    <value>Xamarin support libraries</value>
   </data>
 	<data name="MainPageViewModel_Feedback" xml:space="preserve">
     <value>Feedback</value>
@@ -438,7 +438,7 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
     <value>Explore Paderborn on your own or with topic-specific routes</value>
   </data>
   <data name="UserOnboarding_Route_Title" xml:space="preserve">
-    <value>Theme-specific Routes</value>
+    <value>Theme-specific routes</value>
   </data>
   <data name="UserOnboarding_Skip" xml:space="preserve">
     <value>SKIP</value>
@@ -492,10 +492,10 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
     <value>?</value>
   </data>
   <data name="SkipExhibit_Title" xml:space="preserve">
-    <value>Skip Sight</value>
+    <value>Skip sight</value>
   </data>
   <data name="SettingsScreenView_FurtherSettings_Title" xml:space="preserve">
-    <value>More Settings</value>
+    <value>More settings</value>
   </data>
   <data name="SettingsScreenView_RemoveAllDownloadsButton_Text" xml:space="preserve">
     <value>Remove</value>
@@ -504,10 +504,10 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
     <value>Remove</value>
   </data>
   <data name="SettingsScreenView_RemoveAllDownloadsPrompt_Question" xml:space="preserve">
-    <value>Do you really want to remove  all downloads? The app has to be restarted for this.</value>
+    <value>Do you really want to remove all downloads? The app has to be restarted for this.</value>
   </data>
   <data name="SettingsScreenView_RemoveAllDownloadsPrompt_Title" xml:space="preserve">
-    <value>Remove All Downloads</value>
+    <value>Remove all downloads</value>
   </data>
   <data name="SettingsScreenView_RemoveAllDownloads_Text" xml:space="preserve">
     <value>Remove all downloads (Use this option to free up disk space)</value>
@@ -519,7 +519,7 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
     <value>No routes available. Download routes to get started!</value>
   </data>
   <data name="DownloadData_Title" xml:space="preserve">
-    <value>Donwload new data?</value>
+    <value>Download new data?</value>
   </data>
   <data name="DownloadData_Always" xml:space="preserve">
     <value>Always</value>
@@ -540,9 +540,9 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
     <value>It is recommended to keep the base data up to date. The settings define that data should not be downloaded via mobile data connections. Do you still want to download this base data anyway?</value>
   </data>
   <data name="StorageTitle" xml:space="preserve">
-    <value>Used Disk Space for Data</value>
+    <value>Used disc space for data</value>
   </data>
-  <data name="ExhibitRouteDonwloadPage_Download_Text" xml:space="preserve">
+  <data name="ExhibitRouteDownloadPage_Download_Text" xml:space="preserve">
     <value>Downloading additional data</value>
   </data>
   <data name="MainPageViewModel_Account" xml:space="preserve">
@@ -591,13 +591,13 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
     <value>E-mail</value>
   </data>
   <data name="LoginScreenView_Forgot_Password" xml:space="preserve">
-    <value>Forgot Password?</value>
+    <value>Forgot password?</value>
   </data>
   <data name="LoadingPageViewModel_BaseData_DownloadFailed_Text" xml:space="preserve">
     <value>The current data could not be downloaded.</value>
   </data>
   <data name="LoadingPageViewModel_BaseData_DownloadFailed_Title" xml:space="preserve">
-    <value>Data Download</value>
+    <value>Data download</value>
   </data>
   <data name="LoadingPageViewModel_BaseData_OnlyMobile" xml:space="preserve">
     <value>The settings give you the ability to allow the download of data via mobile data connections.</value>
@@ -606,7 +606,7 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
     <value>E-mail</value>
   </data>
   <data name="ForgotPasswordScreenView_Forgot_Password" xml:space="preserve">
-    <value>Forgot Password?</value>
+    <value>Forgot password?</value>
   </data>
   <data name="ForgotPasswordScreenView_Info" xml:space="preserve">
     <value>No problem. We'll send you an e-mail to reset your password.</value>
@@ -639,7 +639,7 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
     <value>An e-mail has been sent to you. Please confirm this e-mail to be able to log in.</value>
   </data>
   <data name="RegisterScreenView_Alert_Registered" xml:space="preserve">
-    <value>User Registration</value>
+    <value>User registration</value>
   </data>
   <data name="RegisterScreenView_Error_Empty_Email_And_Password" xml:space="preserve">
     <value>The e-mail and password input field is empty</value>
@@ -675,25 +675,25 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
     <value>Confirm</value>
   </data>
   <data name="Alert_No_Internet_Title" xml:space="preserve">
-    <value>No Network Connection</value>
+    <value>No network connection</value>
   </data>
   <data name="Alert_Server_Error_Description" xml:space="preserve">
     <value>A server error occurred. Please try again later.</value>
   </data>
   <data name="Alert_Server_Error_Title" xml:space="preserve">
-    <value>Server Error</value>
+    <value>Server error</value>
   </data>
   <data name="Alert_Unknown_Error_Description" xml:space="preserve">
     <value>An unknown error occurred.</value>
   </data>
   <data name="Alert_Unknown_Error_Title" xml:space="preserve">
-    <value>Unknown Error</value>
+    <value>Unknown error</value>
   </data>
   <data name="LicenseScreenView_User_Dialogs_Text" xml:space="preserve">
     <value>From &lt;a href="https://github.com/aritchie/userdialogs"&gt;Allan Ritchie&lt;/a&gt;, licensed under &lt;a href="https://github.com/aritchie/userdialogs/blob/master/LICENSE.md"&gt;MIT&lt;/a&gt;. No changes were made.</value>
   </data>
 	<data name="LicenseScreenView_User_Dialogs_Title" xml:space="preserve">
-    <value>ACR User Dialogs</value>
+    <value>ACR user dialogs</value>
   </data>
   <data name="CharacterSelectionPage_Adventurer_Text" xml:space="preserve">
     <value>Discover Paderborn on your own! Gain new experiences!</value>
@@ -714,13 +714,13 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
     <value>The passwords are not matching</value>
   </data>
   <data name="RegisterScreenView_Error_Invalid_Email" xml:space="preserve">
-    <value>Invalid E-Mail</value>
+    <value>Invalid e-mail</value>
   </data>
   <data name="ExhibitDetailsPage_Distance_Text" xml:space="preserve">
     <value>You have to visit the sight first before the details are available!</value>
   </data>
   <data name="ExhibitDetailsPage_Distance_Title" xml:space="preserve">
-    <value>Not Unlocked</value>
+    <value>Not unlocked</value>
   </data>
   <data name="LicenseScreenViewModel_UnlockExhibits_Text" xml:space="preserve">
     <value>All sights unlocked!</value>
@@ -753,19 +753,19 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
     <value>The settings specify that data should only be downloaded via WiFi. Should the data still be downloaded via the mobile data connection this time?</value>
   </data>
   <data name="ExhibitRouteDownloadPageViewModel_Wifi_Only_Title" xml:space="preserve">
-    <value>WiFi Disabled</value>
+    <value>WiFi disabled</value>
   </data>
   <data name="ForgotPasswordScreenView_Alert_No_Connection_Description" xml:space="preserve">
     <value>Please check your network connection</value>
   </data>
   <data name="ForgotPasswordScreenView_Alert_No_Connection_Title" xml:space="preserve">
-    <value>No Network Connection</value>
+    <value>No network connection</value>
   </data>
   <data name="ForgotPasswordScreenView_Alert_Unknown_Error_Description" xml:space="preserve">
     <value>An unknown error occurred. Please try again later.</value>
   </data>
   <data name="ForgotPasswordScreenView_Alert_Unknown_Error_Title" xml:space="preserve">
-    <value>Unknown Error</value>
+    <value>Unknown error</value>
   </data>
   <data name="AchievementsScreenView_Score" xml:space="preserve">
     <value>Your score: </value>
@@ -783,7 +783,7 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
     <value>Ratings</value>
   </data>
   <data name="UserRating_Average_Rating" xml:space="preserve">
-    <value>Average Ratings</value>
+    <value>Average ratings</value>
   </data>
   <data name="UserRating_Dialog_Message_Not_Logged_In" xml:space="preserve">
     <value>You have to sign up or register first before a review can be made.</value>
@@ -795,13 +795,13 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
     <value>None of the stars were marked for a rating.</value>
   </data>
   <data name="UserRating_Dialog_Title_Not_Logged_In" xml:space="preserve">
-    <value>Not Logged In</value>
+    <value>Not logged in</value>
   </data>
   <data name="UserRating_Dialog_Title_No_Internet" xml:space="preserve">
-    <value>No Internet Connection</value>
+    <value>No internet connection</value>
   </data>
   <data name="UserRating_Dialog_Title_No_Rating" xml:space="preserve">
-    <value>No Rating</value>
+    <value>No rating</value>
   </data>
   <data name="UserRating_Rate" xml:space="preserve">
     <value>Rate</value>
@@ -816,10 +816,10 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
     <value>An unknown error has occurred. Please try again later.</value>
   </data>
   <data name="UserRating_Dialog_Title_Thx" xml:space="preserve">
-    <value>Thank You</value>
+    <value>Thank you</value>
   </data>
   <data name="UserRating_Dialog_Title_Unkown_Error" xml:space="preserve">
-    <value>Unknown Error</value>
+    <value>Unknown error</value>
   </data>
   <data name="AchievementsDetailsExhibitView_VisitedMOfNExhibits" xml:space="preserve">
     <value>You have visited {0} out of {1} sights.</value>
@@ -864,7 +864,7 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
     <value>Check other mode</value>
   </data>
 	<data name="CharacterSelectionPage_SelectCharacter" xml:space="preserve">
-    <value>Choose a Character</value>
+    <value>Choose a character</value>
   </data>
 	<data name="CharacterDetailsPage_Adventurer_Text" xml:space="preserve">
     <value>Discover Paderborn on your own! Gain new experiences!</value>
