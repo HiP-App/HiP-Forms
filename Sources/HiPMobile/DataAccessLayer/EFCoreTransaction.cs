@@ -36,33 +36,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
         public override void Commit()
         {
             ThrowIfDisposed();
-            DumpTrackedEntries();
             _db.SaveChangesAndDetach();
         }
 
         public override void Rollback()
         {
             ThrowIfDisposed();
-        }
-
-        private void DumpTrackedEntries()
-        {
-            var sb = new StringBuilder($"TRACKED ENTITIES:\r\n");
-            void Print(string s) => sb.AppendLine("    " + s);
-
-            var entries = _db.ChangeTracker.Entries().OrderBy(e => e.Metadata.Name).ToList();
-
-            if (entries.Count > 0)
-            {
-                foreach (var e in entries)
-                    Print($"{e.Metadata.Name} \"{e.Entity}\" ({e.State})");
-            }
-            else
-            {
-                Print("None");
-            }
-
-            Console.WriteLine(sb);
         }
     }
 }

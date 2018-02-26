@@ -16,6 +16,7 @@ using Microsoft.EntityFrameworkCore;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 
@@ -177,14 +178,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
     /// </summary>
     static class GeoLocationConverter
     {
-        public static string ToString(GeoLocation p) => $"{p.Latitude},{p.Longitude}";
+        public static string ToString(GeoLocation p) => 
+            $"{p.Latitude.ToString(CultureInfo.InvariantCulture)},{p.Longitude.ToString(CultureInfo.InvariantCulture)}";
 
         public static GeoLocation FromString(string s)
         {
             if (s?.Split(',') is string[] parts &&
                 parts.Length == 2 &&
-                double.TryParse(parts[0], out var lat) &&
-                double.TryParse(parts[1], out var lon))
+                double.TryParse(parts[0], NumberStyles.Any, CultureInfo.InvariantCulture, out var lat) &&
+                double.TryParse(parts[1], NumberStyles.Any, CultureInfo.InvariantCulture, out var lon))
             {
                 return new GeoLocation(lat, lon);
             }
