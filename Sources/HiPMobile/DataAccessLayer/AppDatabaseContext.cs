@@ -98,7 +98,16 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
         /// </summary>
         public void SaveChangesAndDetach()
         {
-            SaveChanges();
+            try
+            {
+                SaveChanges();
+            }
+            catch (System.Exception e)
+            {
+                // Breakpoint useful for debugging because the Mono debugger for some reason doesn't
+                // break here when exceptions are thrown (e.g. when SaveChanges() detects a DB conflict)
+                throw;
+            }
 
             foreach (var entry in ChangeTracker.Entries().ToList())
                 entry.State = EntityState.Detached;

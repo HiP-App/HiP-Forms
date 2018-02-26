@@ -38,7 +38,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 
         private ObservableCollection<ExhibitsOverviewListItemViewModel> exhibits; // observable because items are reordered according to distance to user
         private bool displayDistances = false;
-        private Position position;
+        private GeoLocation? position;
 
         public ExhibitsOverviewViewModel(IReadOnlyList<Exhibit> exhibits)
         {
@@ -66,7 +66,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         /// <param name="args">The event params.</param>
         public void LocationChanged(object sender, PositionEventArgs args)
         {
-            Position = args.Position;
+            Position = new GeoLocation(args.Position.Latitude, args.Position.Longitude);
 
             if (Exhibits == null)
                 return;
@@ -132,6 +132,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             set => SetProperty(ref exhibits, value);
         }
 
+        // Temporarily needed for OsmMap binding. TODO: No longer needed when merged with HIPM-868.
+        public IReadOnlyList<Exhibit> RawExhibits => Exhibits.Select(vm => vm.Exhibit).ToList();
+
         /// <summary>
         /// The command for tapping on exhibits.
         /// </summary>
@@ -149,7 +152,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         /// <summary>
         /// The geolocation of the user
         /// </summary>
-        public Position Position
+        public GeoLocation? Position
         {
             get => position;
             set => SetProperty(ref position, value);

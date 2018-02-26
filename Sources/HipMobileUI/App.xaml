@@ -74,7 +74,6 @@
             <converters1:ItemTappedConverter x:Key="ItemTappedConverter" />
             <converters1:ImageListConverter x:Key="ImageListConverter" />
             <converters1:RouteTagViewListConverter x:Key="RouteTagViewListConverter" />
-            <converters1:PositionGeoLocationConverter x:Key="PositionGeoLocationConverter" />
             <converters1:EmptyListConverter x:Key="EmptyListConverter" />
             <converters1:InverseBooleanConverter x:Key="InverseBooleanConverter" />
         </ResourceDictionary>

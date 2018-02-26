@@ -39,8 +39,8 @@
                         <RowDefinition Height="0*" />
                     </Grid.RowDefinitions>
 
-                    <map:OsmMap Grid.Row="0" x:Name="Map" ExhibitSet="{Binding DisplayedExhibitSet}"
-                                GpsLocation="{Binding Position, Converter={StaticResource PositionGeoLocationConverter}}"
+                    <map:OsmMap Grid.Row="0" x:Name="Map" ExhibitSet="{Binding RawExhibits}"
+                                GpsLocation="{Binding Position}"
                                 ShowDetailsRoute="False" />
 
                     <ListView Grid.Row="1" ItemsSource="{Binding Exhibits}" HasUnevenRows="True" x:Name="List">
