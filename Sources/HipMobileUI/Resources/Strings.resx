@@ -345,7 +345,7 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
     <value>On the route</value>
   </data>
   <data name="RoutesOverviewListItemViewModel_Distance" xml:space="preserve">
-    <value>{0} kilometre</value>
+    <value>{0} kilometres</value>
   </data>
   <data name="RoutesOverviewListItemViewModel_Duration" xml:space="preserve">
     <value>{0} minutes</value>
@@ -366,19 +366,19 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
     <value>Progress</value>
   </data>
   <data name="SettingsScreenView_AppIntro_Title" xml:space="preserve">
-    <value>App Introduction</value>
+    <value>App introduction</value>
   </data>
   <data name="SettingsScreenView_AutoStartAudio_Text" xml:space="preserve">
     <value>When this setting is enabled, audio will automatically start for the current page.</value>
   </data>
   <data name="SettingsScreenView_AutoStartAudio_Title" xml:space="preserve">
-    <value>Automatically Start Audio</value>
+    <value>Automatically start audio</value>
   </data>
   <data name="SettingsScreenView_AutoSwitchPage_Text" xml:space="preserve">
     <value>When this setting is enabled, the next page will be automatically shown after the end of an audio file.</value>
   </data>
   <data name="SettingsScreenView_AutoSwitchPage_Title" xml:space="preserve">
-    <value>Automatically Change Pages</value>
+    <value>Automatically change pages</value>
   </data>
   <data name="SettingsScreenView_POI_Title" xml:space="preserve">
     <value>Sights</value>
@@ -447,13 +447,13 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
     <value>An evolving app created by students of the University of Paderborn</value>
   </data>
   <data name="UserOnboarding_Students_Title" xml:space="preserve">
-    <value>Made By Students</value>
+    <value>Made by students</value>
   </data>
   <data name="LoadingPage_Subtext" xml:space="preserve">
     <value>One moment please...</value>
   </data>
   <data name="LoadingPage_Text" xml:space="preserve">
-    <value>Historical Paderborn is going to be loaded</value>
+    <value>Historical Paderborn is being loaded</value>
   </data>
   <data name="MapRenderer_NoLocation_Text" xml:space="preserve">
     <value>You are not in Paderborn or there is currently no GPS signal available</value>
@@ -471,7 +471,7 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
     <value>The route has already started:</value>
   </data>
   <data name="ExhibitDetailsPage_AdditionalInformation" xml:space="preserve">
-    <value>Additional Informations</value>
+    <value>Additional information</value>
   </data>
   <data name="ExhibitNearby_ExhibitNearby" xml:space="preserve">
     <value>Sight nearby</value>
