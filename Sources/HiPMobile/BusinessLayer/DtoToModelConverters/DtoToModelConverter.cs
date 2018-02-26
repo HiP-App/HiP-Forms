@@ -31,8 +31,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelCo
         /// <summary>
         /// Converts the given <paramref name="dto"/> to a new model object
         /// </summary>
-        /// <param name="dto"></param>
-        /// <returns></returns>
         public TModelObject Convert(TDtoObject dto)
         {
             var modelObject = CreateModelInstance(dto);
@@ -41,19 +39,16 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelCo
         }
 
         /// <summary>
-        /// 
+        /// Converts the given <paramref name="dto"/> to a new model object, deleting the entity first if it already exists.
         /// </summary>
-        /// <param name="dto"></param>
-        /// <param name="id"></param>
-        /// <param name="dataAccess"></param>
-        /// <returns></returns>
-        public TModelObject ConvertIntoExisting(TDtoObject dto, [NotNull]string id, ITransactionDataAccess dataAccess)
+        public TModelObject ConvertReplacingExisting(TDtoObject dto, [NotNull]string id, ITransactionDataAccess dataAccess)
         {
-            var modelObject = dataAccess.GetItem<TModelObject>(id);
+            // If an entity of the same type and ID already exists, delete it first
+            if (dataAccess.GetItem<TModelObject>(id) is TModelObject existing)
+                dataAccess.DeleteItem(existing);
 
-            if (modelObject == null)
-                throw new InvalidOperationException($"Failed to convert DTO because no model object of type '{typeof(TModelObject).Name}' with ID '{id}' exists in the database");
-
+            var modelObject = CreateModelInstance(dto);
+            modelObject.Id = id ?? throw new ArgumentNullException(nameof(id));
             Convert(dto, modelObject);
             return modelObject;
         }

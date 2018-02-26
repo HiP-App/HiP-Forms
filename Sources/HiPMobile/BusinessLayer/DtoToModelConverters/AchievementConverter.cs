@@ -42,9 +42,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelCo
                 switch (dto)
                 {
                     case RouteFinishedAchievementDto r:
-                        return RouteFinishedAchievementConverter.ConvertIntoExisting(r, r.Id.ToString(), dataAccess);
+                        return RouteFinishedAchievementConverter.ConvertReplacingExisting(r, r.Id.ToString(), dataAccess);
                     case ExhibitsVisitedAchievementDto e:
-                        return ExhibitsVisitedAchievementConverter.ConvertIntoExisting(e, e.Id.ToString(), dataAccess);
+                        return ExhibitsVisitedAchievementConverter.ConvertReplacingExisting(e, e.Id.ToString(), dataAccess);
                     default:
                         throw new ArgumentException("Unsupported achievement type!");
                 }

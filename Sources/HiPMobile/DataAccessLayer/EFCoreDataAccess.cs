@@ -35,6 +35,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
 
         private AppDatabaseContext _sharedDbContext;
 
+        public object DebugView => Scope().Db.DebugView;
+
         // Creates an IDisposable that, if no shared DbContext is set, provides a transient
         // DbContext and disposes it when the scope is disposed.
         private DbScope Scope() => new DbScope(_sharedDbContext);
