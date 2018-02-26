@@ -426,7 +426,6 @@
     <BundleResource Include="Resources\ic_my_location_white.png" />
     <BundleResource Include="Resources\ic_my_location_white%402x.png" />
     <BundleResource Include="Resources\ic_my_location_white%403x.png" />
-    <BundleResource Include="Resources\hiphop_transparent.png" />
     <BundleResource Include="Resources\Icon.png" />
     <BundleResource Include="Resources\Icon%402x.png" />
     <BundleResource Include="Resources\Icon-72.png" />
@@ -462,6 +461,7 @@
     <BundleResource Include="Resources\star_half_filled.png" />
     <BundleResource Include="Resources\star_empty.png" />
     <BundleResource Include="Resources\star_filled.png" />
+    <BundleResource Include="Resources\hiphop_transparent.jpg" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Resources\MapAnnotations.xcassets\AppIcons.appiconset\Contents.json">
