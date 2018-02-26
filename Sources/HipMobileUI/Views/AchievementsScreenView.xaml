@@ -52,7 +52,7 @@
                                                  VerticalOptions="Fill" Spacing="0" Margin="3,0">
                                         <Label Text="{Binding Achievement.Title}" FontSize="18"
                                                LineBreakMode="WordWrap"
-                                               FontAttributes="Bold" TextColor="{StaticResource PrimaryDarkColor}" Style="{DynamicResource Ssp-Regular}"/>
+                                               FontAttributes="Bold" TextColor="{StaticResource PrimaryDarkColor}" Style="{DynamicResource Ssp-SemiBold}"/>
                                         <Label Text="{Binding Achievement.Description}" FontSize="16"
                                                LineBreakMode="WordWrap"
                                                TextColor="{StaticResource DarkGrayColor}" Style="{DynamicResource Ssp-Italic}"/>
@@ -73,7 +73,7 @@
                          BackgroundColor="{StaticResource PrimaryColor}" Padding="20">
                 <Label FontSize="24" Text="{Binding Score}" FontAttributes="Bold"
                        HorizontalTextAlignment="Center" VerticalOptions="Center"
-                       HorizontalOptions="CenterAndExpand" TextColor="White" Style="{DynamicResource Ssp-Light}"/>
+                       HorizontalOptions="CenterAndExpand" TextColor="White" Style="{DynamicResource Ssp-SemiBold}"/>
             </StackLayout>
         </StackLayout>
     </ContentView.Content>

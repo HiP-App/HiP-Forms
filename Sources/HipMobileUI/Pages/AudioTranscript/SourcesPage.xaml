@@ -30,9 +30,9 @@
                                 <StackLayout Padding="15,0" HorizontalOptions="StartAndExpand" Orientation="Vertical">
                                     <Label x:Name="referenceTitle" Text="{Binding SubstituteText}"
                                            TextColor="{StaticResource PrimaryDarkColor}"
-                                           FontSize="{Binding BindingContext.FontSize, Source={x:Reference SourcesPage}}" />
-                                    <Label Text="{Binding Text}" VerticalTextAlignment="Center"
-                                           FontSize="{Binding BindingContext.FontSize, Source={x:Reference SourcesPage}}" />
+                                           FontSize="{Binding BindingContext.FontSize, Source={x:Reference SourcesPage}}" Style="{DynamicResource Ssp-Regular}"/>
+                                    <Label Text="{Binding Text}" VerticalTextAlignment="Center" TextColor="Gray"
+                                           FontSize="{Binding BindingContext.FontSize, Source={x:Reference SourcesPage}}" Style="{DynamicResource Ssp-Regular}"/>
                                 </StackLayout>
                             </ViewCell>
                         </DataTemplate>
