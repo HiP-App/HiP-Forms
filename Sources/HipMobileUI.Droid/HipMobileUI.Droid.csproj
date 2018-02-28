@@ -284,6 +284,15 @@
       <HintPath>..\..\packages\Xamarin.GooglePlayServices.Maps.29.0.0.1\lib\MonoAndroid41\Xamarin.GooglePlayServices.Maps.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="SkiaSharp">
+      <HintPath>..\..\packages\SkiaSharp.1.59.3\lib\MonoAndroid\SkiaSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="SkiaSharp.Views.Android">
+      <HintPath>..\..\packages\SkiaSharp.Views.1.59.3\lib\MonoAndroid\SkiaSharp.Views.Android.dll</HintPath>
+    </Reference>
+    <Reference Include="SkiaSharp.Views.Forms">
+      <HintPath>..\..\packages\SkiaSharp.Views.Forms.1.59.3\lib\MonoAndroid\SkiaSharp.Views.Forms.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\..\HiP-Mobile-Internal\Keys\AndroidKeyProvider.cs">
@@ -418,7 +427,6 @@
     <AndroidResource Include="Resources\drawable\Splashscreen.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable\hiphop_transparent.png" />
     <AndroidResource Include="Resources\drawable-hdpi\ic_more.png" />
     <AndroidResource Include="Resources\drawable-mdpi\ic_more.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\ic_more.png" />
@@ -466,6 +474,7 @@
     <AndroidResource Include="Resources\drawable\star_empty.png" />
     <AndroidResource Include="Resources\drawable\ic_cancel_highlight.png" />
     <AndroidResource Include="Resources\drawable\ic_cancel.png" />
+    <AndroidResource Include="Resources\drawable\hiphop_transparent.jpg" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-hdpi\ic_keyboard_arrow_up.png" />

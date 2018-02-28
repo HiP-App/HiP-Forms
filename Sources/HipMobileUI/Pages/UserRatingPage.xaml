@@ -20,10 +20,10 @@
              xmlns:helpers="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;assembly=HipMobileUI"
              Title="{Binding Headline}">
     <ContentPage.Content>
-        <AbsoluteLayout x:Name="OuterAbsoluteLayout">
+        <AbsoluteLayout x:Name="OuterAbsoluteLayout" BackgroundColor="White">
             <!-- The image layout definition is set up in code -->
             <Image x:Name="Image" Source="{Binding Image}" Margin="5" Aspect="AspectFill" Opacity="0.08"/>
-            <!-- The row and column definition is set up in code -->
+            <!--The row and column definition is made in code to adjust them to the device orientation-->
             <Grid x:Name="OuterGrid" AbsoluteLayout.LayoutBounds="1,1,1,1" AbsoluteLayout.LayoutFlags="All" RowSpacing="0" ColumnSpacing="0">
                 <Grid x:Name="InnerGrid1" Grid.Row="0" Grid.Column="0" RowSpacing="0" ColumnSpacing="0">
                     <Grid.ColumnDefinitions>
@@ -134,13 +134,7 @@
                     </StackLayout>
                 </Grid>
                 <Grid x:Name="InnerGrid2" Grid.Row="1" Grid.Column="0" RowSpacing="0" ColumnSpacing="0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="0.7*" />
-                        <RowDefinition Height="0.3*" />
-                    </Grid.RowDefinitions>
+                    <!--The row and column definition is made in code to adjust them to the device orientation-->
                     <StackLayout Grid.Row="0" Orientation="Vertical" Spacing="3" VerticalOptions="Center">
                         <Label Text="{helpers:Translate UserRating_Tap_Star_To_Rate}" HorizontalOptions="CenterAndExpand" TextColor="Gray" FontSize="15" VerticalOptions="Start" Style="{DynamicResource Ssp-Regular}"/>
                         <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Spacing="8">

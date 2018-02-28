@@ -38,7 +38,7 @@
             <Color x:Key="LightGreenBarColor">#A9D839</Color>
             <Color x:Key="YellowBarColor">#FDDB37</Color>
             <Color x:Key="OrangeBarColor">#FEB533</Color>
-            <Color x:Key="RedBarColor">#F22F0C</Color>       
+            <Color x:Key="RedBarColor">#F22F0C</Color>
 
             <Style TargetType="Label">
                 <Setter Property="FontSize" Value="12" />
@@ -63,8 +63,8 @@
                             <On Platform ="iOS">fonts/SourceSansPro-BlackItalic</On>
                         </OnPlatform>
                     </Setter.Value>
-                    </Setter>
-                </Style>
+                </Setter>
+            </Style>
 
             <Style x:Key="Ssp-Bold" TargetType="Label">
                 <Setter Property="FontFamily">
@@ -166,6 +166,29 @@
                     </Setter.Value>
                 </Setter>
             </Style>
+
+            <!--#region Styles for custom headings -->
+            <Style x:Key="Heading1Style" TargetType="Label" BasedOn="{StaticResource Ssp-SemiBold}">
+                <Setter Property="FontSize" Value="Medium" />
+                <Setter Property="TextColor" Value="{StaticResource PrimaryColor}" />
+            </Style>
+            <Style x:Key="Heading2Style" TargetType="Label" BasedOn="{StaticResource Ssp-SemiBoldItalic}">
+                <Setter Property="FontSize" Value="Small" />
+                <Setter Property="TextColor" Value="Black" />
+            </Style>
+            <Style x:Key="BasicTextStyle" TargetType="Label" BasedOn="{StaticResource Ssp-Regular}">
+                <Setter Property="FontSize" Value="Small" />
+                <Setter Property="TextColor" Value="Gray" />
+            </Style>
+            <Style x:Key="SettingsBoxViewStyle" TargetType="BoxView">
+                <Setter Property="HeightRequest" Value="1" />
+                <Setter Property="BackgroundColor" Value="Gray" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="Grid.ColumnSpan" Value="2" />
+                <Setter Property="Margin" Value="0,5,0,5" />
+            </Style>
+            <!--#endregion-->
+
 
             <!--#region ThemedBoxView -->
             <Style x:Key="BoxViewAdventurerMode" TargetType="BoxView">

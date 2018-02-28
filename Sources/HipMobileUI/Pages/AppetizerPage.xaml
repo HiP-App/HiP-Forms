@@ -25,22 +25,10 @@
             <views:NotificationExtensionView.ContentTemplate>
                 <AbsoluteLayout x:Name="AbsoluteLayout">
                     <Grid x:Name="OuterGrid" AbsoluteLayout.LayoutBounds="1,1,1,1" AbsoluteLayout.LayoutFlags="All" BackgroundColor="White">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="0.6*" />
-                            <RowDefinition Height="0.4*" />
-                        </Grid.RowDefinitions>
+                        <!--The row and column definition is made in code to adjust them to the device orientation-->
                         <Image x:Name="Image" Source="{Binding Image}" Grid.Row="0" Aspect="AspectFill" />
                         <Grid x:Name="InnerGrid" Grid.Row="1" Grid.Column="0" RowSpacing="0" ColumnSpacing="0">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="0.7*" />
-                                <RowDefinition Height="0.3*" />
-                            </Grid.RowDefinitions>
+                            <!--The row and column definition is made in code to adjust them to the device orientation-->
                             <ScrollView Grid.Row="0" VerticalOptions="StartAndExpand">
                                 <Grid BackgroundColor="White" Margin="7">
                                     <Grid.ColumnDefinitions>

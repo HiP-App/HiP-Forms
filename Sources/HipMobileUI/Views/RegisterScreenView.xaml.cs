@@ -62,7 +62,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
                 Grid.SetRow(RePasswordEntry, 2);
                 Grid.SetRow(ErrorMsgLabel, 3);
                 Grid.SetRow(ButtonView, 4);
-                Grid.SetRow(CancelLabel, 5);
+                Grid.SetRow(CancelButton, 5);
 
                 deviceOrientation = DeviceOrientation.Portrait;
             }
@@ -85,7 +85,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
                 Grid.SetRow(RePasswordEntry, 2);
                 Grid.SetRow(ErrorMsgLabel, 3);
                 Grid.SetRow(ButtonView, 4);
-                Grid.SetRow(CancelLabel, 5);
+                Grid.SetRow(CancelButton, 5);
 
                 deviceOrientation = DeviceOrientation.Landscape;
             }
