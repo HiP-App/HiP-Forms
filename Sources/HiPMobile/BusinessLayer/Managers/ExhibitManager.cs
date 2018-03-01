@@ -48,7 +48,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
                 {
                     return _dataAccess.GetItem<Exhibit>(id,
                         nameof(Exhibit.Image),
-                        nameof(Exhibit.PagesRefs));
+                        "PagesRefs.Page.Audio");
                 }
                 return null;
             }
@@ -61,7 +61,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
             {
                 return _dataAccess.GetItems<Exhibit>(
                     nameof(Exhibit.Image),
-                    nameof(Exhibit.PagesRefs));
+                    "PagesRefs.Page.Audio");
             }
 
             public void AddExhibit(Exhibit exhibit)

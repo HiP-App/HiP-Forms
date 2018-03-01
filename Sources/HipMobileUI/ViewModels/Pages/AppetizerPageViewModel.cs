@@ -96,7 +96,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                 if (exhibitUnblocked)
                 {
                     await Navigation.PushAsync(new ExhibitDetailsViewModel(Exhibit));
-
                 }
                 else
                 {

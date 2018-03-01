@@ -282,6 +282,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             }
 
             var currentPage = pages[currentViewIndex];
+            PageManager.LoadPageDetails(currentPage);
             AudioAvailable = currentPage.Audio != null;
             AudioToolbarVisible = AudioAvailable;
             Pagenumber = currentViewIndex + " / " + (pages.Count - 1);

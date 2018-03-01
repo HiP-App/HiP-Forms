@@ -79,7 +79,22 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
             return _collection.Any(e => Equals(item, e, target));
         }
 
-        public void CopyTo(TEntity[] array, int arrayIndex) => this.ToList().CopyTo(array, arrayIndex);
+        public void CopyTo(TEntity[] array, int arrayIndex)
+        {
+            if (array == null)
+                throw new ArgumentNullException(nameof(array));
+
+            if (arrayIndex < 0)
+                throw new ArgumentOutOfRangeException(nameof(arrayIndex));
+
+            if (_collection.Count > array.Length - arrayIndex)
+                throw new ArgumentException("Insufficient space in target array");
+
+            var i = 0;
+            var target = _navigationTarget;
+            foreach (var item in _collection)
+                array[arrayIndex + i++] = item[target];
+        }
 
         public bool Remove(TEntity item)
         {
@@ -132,7 +147,21 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
 
         public bool Contains(TEntity item) => _collection.Any(e => Equals(item, e));
 
-        public void CopyTo(TEntity[] array, int arrayIndex) => this.ToList().CopyTo(array, arrayIndex);
+        public void CopyTo(TEntity[] array, int arrayIndex)
+        {
+            if (array == null)
+                throw new ArgumentNullException(nameof(array));
+
+            if (arrayIndex < 0)
+                throw new ArgumentOutOfRangeException(nameof(arrayIndex));
+
+            if (_collection.Count > array.Length - arrayIndex)
+                throw new ArgumentException("Insufficient space in target array");
+
+            var i = 0;
+            foreach (var item in _collection)
+                array[arrayIndex + i++] = ((IJoinEntity<TEntity>)item).Navigation;
+        }
 
         public bool Remove(TEntity item) => _collection.Remove(_collection.FirstOrDefault(e => Equals(item, e)));
 
