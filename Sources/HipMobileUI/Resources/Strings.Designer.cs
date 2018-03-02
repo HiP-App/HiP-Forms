@@ -107,7 +107,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No Network Connection.
+        ///   Looks up a localized string similar to No network connection.
         /// </summary>
         public static string Alert_No_Internet_Title {
             get {
@@ -125,7 +125,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Server Error.
+        ///   Looks up a localized string similar to Server error.
         /// </summary>
         public static string Alert_Server_Error_Title {
             get {
@@ -143,7 +143,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unknown Error.
+        ///   Looks up a localized string similar to Unknown error.
         /// </summary>
         public static string Alert_Unknown_Error_Title {
             get {
@@ -269,7 +269,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Chose a Character.
+        ///   Looks up a localized string similar to Choose a character.
         /// </summary>
         public static string CharacterSelectionPage_SelectCharacter {
             get {
@@ -287,7 +287,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Donwload new data?.
+        ///   Looks up a localized string similar to Download new data?.
         /// </summary>
         public static string DownloadData_Title {
             get {
@@ -296,7 +296,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Additional Informations.
+        ///   Looks up a localized string similar to Additional information.
         /// </summary>
         public static string ExhibitDetailsPage_AdditionalInformation {
             get {
@@ -350,7 +350,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Not Unlocked.
+        ///   Looks up a localized string similar to Not unlocked.
         /// </summary>
         public static string ExhibitDetailsPage_Distance_Title {
             get {
@@ -413,20 +413,20 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Download additional data.
-        /// </summary>
-        public static string ExhibitRouteDonwloadPage_Download_Text {
-            get {
-                return ResourceManager.GetString("ExhibitRouteDonwloadPage_Download_Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Details.
         /// </summary>
         public static string ExhibitRouteDownloadPage_Details {
             get {
                 return ResourceManager.GetString("ExhibitRouteDownloadPage_Details", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Downloading additional data.
+        /// </summary>
+        public static string ExhibitRouteDownloadPage_Download_Text {
+            get {
+                return ResourceManager.GetString("ExhibitRouteDownloadPage_Download_Text", resourceCulture);
             }
         }
         
@@ -449,7 +449,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to WiFi Disabled.
+        ///   Looks up a localized string similar to WiFi disabled.
         /// </summary>
         public static string ExhibitRouteDownloadPageViewModel_Wifi_Only_Title {
             get {
@@ -485,7 +485,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No Network Connection.
+        ///   Looks up a localized string similar to No network connection.
         /// </summary>
         public static string ForgotPasswordScreenView_Alert_No_Connection_Title {
             get {
@@ -512,7 +512,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unknown Error.
+        ///   Looks up a localized string similar to Unknown error.
         /// </summary>
         public static string ForgotPasswordScreenView_Alert_Unknown_Error_Title {
             get {
@@ -548,7 +548,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Forgot Password?.
+        ///   Looks up a localized string similar to Forgot password?.
         /// </summary>
         public static string ForgotPasswordScreenView_Forgot_Password {
             get {
@@ -602,7 +602,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Legal Basis and Consent.
+        ///   Looks up a localized string similar to Legal basis and consent.
         /// </summary>
         public static string LicenseScreenView_Agreement_Title {
             get {
@@ -683,7 +683,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Common Service Locator.
+        ///   Looks up a localized string similar to Common service locator.
         /// </summary>
         public static string LicenseScreenView_CSL_Title {
             get {
@@ -701,7 +701,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Database Data.
+        ///   Looks up a localized string similar to Database data.
         /// </summary>
         public static string LicenseScreenView_DatabaseData_Title {
             get {
@@ -719,7 +719,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Feedback Data.
+        ///   Looks up a localized string similar to Feedback data.
         /// </summary>
         public static string LicenseScreenView_FeedbackData_Title {
             get {
@@ -755,7 +755,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Further Informations.
+        ///   Looks up a localized string similar to Further information.
         /// </summary>
         public static string LicenseScreenView_FurtherInfo_Title {
             get {
@@ -864,7 +864,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Map Icons.
+        ///   Looks up a localized string similar to Map icons.
         /// </summary>
         public static string LicenseScreenView_MapIcons_Title {
             get {
@@ -882,7 +882,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Material Icons.
+        ///   Looks up a localized string similar to Material icons.
         /// </summary>
         public static string LicenseScreenView_MaterialIcons_Title {
             get {
@@ -918,7 +918,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to osmdroid.
+        ///   Looks up a localized string similar to Osmdroid.
         /// </summary>
         public static string LicenseScreenView_Osmdroid_Title {
             get {
@@ -954,7 +954,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Privacy Statement.
+        ///   Looks up a localized string similar to Privacy statement.
         /// </summary>
         public static string LicenseScreenView_PrivacyPolicy_Title {
             get {
@@ -1008,7 +1008,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Legal Status of the Privacy Policy.
+        ///   Looks up a localized string similar to Legal status of the privacy policy.
         /// </summary>
         public static string LicenseScreenView_RightOfPP_Title {
             get {
@@ -1026,7 +1026,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Settings Plugin.
+        ///   Looks up a localized string similar to Settings plugin.
         /// </summary>
         public static string LicenseScreenView_SettingsPlugin_Title {
             get {
@@ -1044,7 +1044,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Terms of Use.
+        ///   Looks up a localized string similar to Terms of use.
         /// </summary>
         public static string LicenseScreenView_ToU_Title {
             get {
@@ -1062,7 +1062,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Visibility of the Data / Transparency.
+        ///   Looks up a localized string similar to Visibility of the data / transparency.
         /// </summary>
         public static string LicenseScreenView_Transparancy_Title {
             get {
@@ -1098,7 +1098,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Collection, Processing and Use of Personal Data.
+        ///   Looks up a localized string similar to Collection, processing and use of personal data.
         /// </summary>
         public static string LicenseScreenView_UsagePersonalData_Title {
             get {
@@ -1116,7 +1116,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ACR User Dialogs.
+        ///   Looks up a localized string similar to ACR user dialogs.
         /// </summary>
         public static string LicenseScreenView_User_Dialogs_Title {
             get {
@@ -1134,7 +1134,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Xamarin Support Libraries.
+        ///   Looks up a localized string similar to Xamarin support libraries.
         /// </summary>
         public static string LicenseScreenView_XSL_Title {
             get {
@@ -1170,7 +1170,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Historical Paderborn is going to be loaded.
+        ///   Looks up a localized string similar to Historical Paderborn is being loaded.
         /// </summary>
         public static string LoadingPage_Text {
             get {
@@ -1206,7 +1206,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Data Download.
+        ///   Looks up a localized string similar to Data download.
         /// </summary>
         public static string LoadingPageViewModel_BaseData_DownloadFailed_Title {
             get {
@@ -1305,7 +1305,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Forgot Password?.
+        ///   Looks up a localized string similar to Forgot password?.
         /// </summary>
         public static string LoginScreenView_Forgot_Password {
             get {
@@ -1346,6 +1346,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         public static string Logout {
             get {
                 return ResourceManager.GetString("Logout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Logged in as:.
+        /// </summary>
+        public static string MainPage_LoggedIn {
+            get {
+                return ResourceManager.GetString("MainPage_LoggedIn", resourceCulture);
             }
         }
         
@@ -1575,7 +1584,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to User Registration.
+        ///   Looks up a localized string similar to User registration.
         /// </summary>
         public static string RegisterScreenView_Alert_Registered {
             get {
@@ -1620,7 +1629,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Invalid E-Mail.
+        ///   Looks up a localized string similar to Invalid e-mail.
         /// </summary>
         public static string RegisterScreenView_Error_Invalid_Email {
             get {
@@ -1791,7 +1800,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} kilometre.
+        ///   Looks up a localized string similar to {0} kilometres.
         /// </summary>
         public static string RoutesOverviewListItemViewModel_Distance {
             get {
@@ -1827,7 +1836,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to App Introduction.
+        ///   Looks up a localized string similar to App introduction.
         /// </summary>
         public static string SettingsScreenView_AppIntro_Title {
             get {
@@ -1845,7 +1854,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Automatically Start Audio.
+        ///   Looks up a localized string similar to Automatically start audio.
         /// </summary>
         public static string SettingsScreenView_AutoStartAudio_Title {
             get {
@@ -1863,7 +1872,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Automatically Change Pages.
+        ///   Looks up a localized string similar to Automatically change pages.
         /// </summary>
         public static string SettingsScreenView_AutoSwitchPage_Title {
             get {
@@ -1917,7 +1926,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to More Settings.
+        ///   Looks up a localized string similar to More settings.
         /// </summary>
         public static string SettingsScreenView_FurtherSettings_Title {
             get {
@@ -1962,7 +1971,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Do you really want to remove  all downloads? The app has to be restarted for this..
+        ///   Looks up a localized string similar to Do you really want to remove all downloads? The app has to be restarted for this..
         /// </summary>
         public static string SettingsScreenView_RemoveAllDownloadsPrompt_Question {
             get {
@@ -1971,7 +1980,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Remove All Downloads.
+        ///   Looks up a localized string similar to Remove all downloads.
         /// </summary>
         public static string SettingsScreenView_RemoveAllDownloadsPrompt_Title {
             get {
@@ -2007,7 +2016,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to When enabled, When enabled, the app introduction will be shown on the next start again.
+        ///   Looks up a localized string similar to When enabled, the app introduction will be shown on the next start again.
         /// </summary>
         public static string SettingsScreenView_RepeatIntro_Text {
             get {
@@ -2052,7 +2061,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Skip Sight.
+        ///   Looks up a localized string similar to Skip sight.
         /// </summary>
         public static string SkipExhibit_Title {
             get {
@@ -2061,7 +2070,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Used Disk Space for Data.
+        ///   Looks up a localized string similar to Used disc space for data.
         /// </summary>
         public static string StorageTitle {
             get {
@@ -2115,7 +2124,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Theme-specific Routes.
+        ///   Looks up a localized string similar to Theme-specific routes.
         /// </summary>
         public static string UserOnboarding_Route_Title {
             get {
@@ -2142,7 +2151,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Made By Students.
+        ///   Looks up a localized string similar to Made by students.
         /// </summary>
         public static string UserOnboarding_Students_Title {
             get {
@@ -2151,7 +2160,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Average Ratings.
+        ///   Looks up a localized string similar to Average ratings.
         /// </summary>
         public static string UserRating_Average_Rating {
             get {
@@ -2205,7 +2214,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No Internet Connection.
+        ///   Looks up a localized string similar to No internet connection.
         /// </summary>
         public static string UserRating_Dialog_Title_No_Internet {
             get {
@@ -2214,7 +2223,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No Rating.
+        ///   Looks up a localized string similar to No rating.
         /// </summary>
         public static string UserRating_Dialog_Title_No_Rating {
             get {
@@ -2223,7 +2232,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Not Logged In.
+        ///   Looks up a localized string similar to Not logged in.
         /// </summary>
         public static string UserRating_Dialog_Title_Not_Logged_In {
             get {
@@ -2232,7 +2241,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Thank You.
+        ///   Looks up a localized string similar to Thank you.
         /// </summary>
         public static string UserRating_Dialog_Title_Thx {
             get {
@@ -2241,7 +2250,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unknown Error.
+        ///   Looks up a localized string similar to Unknown error.
         /// </summary>
         public static string UserRating_Dialog_Title_Unkown_Error {
             get {

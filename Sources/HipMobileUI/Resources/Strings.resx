@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-	<!-- 
+  <!-- 
     Microsoft ResX Schema 
     
     Version 2.0
@@ -59,65 +59,65 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-	<xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-		<xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
-		<xsd:element name="root" msdata:IsDataSet="true">
-			<xsd:complexType>
-				<xsd:choice maxOccurs="unbounded">
-					<xsd:element name="metadata">
-						<xsd:complexType>
-							<xsd:sequence>
-								<xsd:element name="value" type="xsd:string" minOccurs="0" />
-							</xsd:sequence>
-							<xsd:attribute name="name" use="required" type="xsd:string" />
-							<xsd:attribute name="type" type="xsd:string" />
-							<xsd:attribute name="mimetype" type="xsd:string" />
-							<xsd:attribute ref="xml:space" />
-						</xsd:complexType>
-					</xsd:element>
-					<xsd:element name="assembly">
-						<xsd:complexType>
-							<xsd:attribute name="alias" type="xsd:string" />
-							<xsd:attribute name="name" type="xsd:string" />
-						</xsd:complexType>
-					</xsd:element>
-					<xsd:element name="data">
-						<xsd:complexType>
-							<xsd:sequence>
-								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-								<xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
-							</xsd:sequence>
-							<xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-							<xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-							<xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-							<xsd:attribute ref="xml:space" />
-						</xsd:complexType>
-					</xsd:element>
-					<xsd:element name="resheader">
-						<xsd:complexType>
-							<xsd:sequence>
-								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-							</xsd:sequence>
-							<xsd:attribute name="name" type="xsd:string" use="required" />
-						</xsd:complexType>
-					</xsd:element>
-				</xsd:choice>
-			</xsd:complexType>
-		</xsd:element>
-	</xsd:schema>
-	<resheader name="resmimetype">
-		<value>text/microsoft-resx</value>
-	</resheader>
-	<resheader name="version">
-		<value>2.0</value>
-	</resheader>
-	<resheader name="reader">
-		<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-	</resheader>
-	<resheader name="writer">
-		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-	</resheader>
-	<data name="LicenseScreenView_Agreement_Text" xml:space="preserve">
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="LicenseScreenView_Agreement_Text" xml:space="preserve">
     <value>Die Nutzung der App basiert auf Freiwilligkeit. Sämtliche Daten, die im Rahmen der Nutzung der Dienste und Applikation Verwendung finden, dürfen nur erhoben und verarbeitet werden, soweit dies für den Dienst und statistische Forschungs- und Evaluationszwecke erforderlich ist und den Regelungen der Universität Paderborn und dem Datenschutzgesetz NRW entspricht.</value>
   </data>
   <data name="LicenseScreenView_Agreement_Title" xml:space="preserve">
@@ -126,7 +126,7 @@
   <data name="LicenseScreenView_Contribution_Title" xml:space="preserve">
     <value>Contributions</value>
   </data>
-	<data name="LicenseScreenView_Copyright_Text" xml:space="preserve">
+  <data name="LicenseScreenView_Copyright_Text" xml:space="preserve">
     <value>Die Software Historisches Paderborn unterliegt dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung bedürfen der schriftlichen Zustimmung der Universität Paderborn. Die Nutzung der Software ist nur für den privaten, nicht kommerziellen Gebrauch gestattet.</value>
   </data>
   <data name="LicenseScreenView_Copyright_Title" xml:space="preserve">
@@ -141,16 +141,16 @@
   <data name="LicenseScreenView_CSL_Text" xml:space="preserve">
     <value>From &lt;a href="http://commonservicelocator.codeplex.com"&gt;Microsoft&lt;/a&gt;, licensed under &lt;a href="http://commonservicelocator.codeplex.com/license"&gt;Ms-PL&lt;/a&gt;. No changes were made.</value>
   </data>
-	<data name="LicenseScreenView_CSL_Title" xml:space="preserve">
+  <data name="LicenseScreenView_CSL_Title" xml:space="preserve">
     <value>Common service locator</value>
   </data>
-	<data name="LicenseScreenView_DatabaseData_Text" xml:space="preserve">
+  <data name="LicenseScreenView_DatabaseData_Text" xml:space="preserve">
     <value>Die Daten die die App darstellt werden auf dem Smartphone in einer separaten Datenbank gespeichert. Die App liest und schreibt ausschließlich in dieser Datenbank. Der gesamte Datenverkehr erfolgt lokal.</value>
   </data>
   <data name="LicenseScreenView_DatabaseData_Title" xml:space="preserve">
     <value>Database data</value>
   </data>
-	<data name="LicenseScreenView_FeedbackData_Text" xml:space="preserve">
+  <data name="LicenseScreenView_FeedbackData_Text" xml:space="preserve">
     <value>Für den technischen Betrieb, das Aufspüren von Fehlern steht es dem Nutzer frei Feedback an die Entwickler zu senden. Die Daten enthalten Informationen über Namen und E-Mail-Adresse, die vom User frei gewählt werden können. Die Erhebung und Nutzung dieser Feedback-Daten dienen lediglich der Fehlerbeseitigung und werden zudem in anonymisierter Form für statistischen Forschungs- und Evaluationszwecke ausgewertet. Die Log-Daten werden auf den Servern der Feedback Anwendung Hockeyapp gespeichert.</value>
   </data>
   <data name="LicenseScreenView_FeedbackData_Title" xml:space="preserve">
@@ -159,10 +159,10 @@
   <data name="LicenseScreenView_Fody_Text" xml:space="preserve">
     <value>From &lt;a href="https://github.com/Fody/Fody"&gt;Simon Cropp&lt;/a&gt;, licensed under &lt;a href="https://opensource.org/licenses/mit-license.php"&gt;MIT&lt;/a&gt;. No changes were made.</value>
   </data>
-	<data name="LicenseScreenView_Fody_Title" xml:space="preserve">
+  <data name="LicenseScreenView_Fody_Title" xml:space="preserve">
     <value>Fody</value>
   </data>
-	<data name="LicenseScreenView_FurtherInfo_Text" xml:space="preserve">
+  <data name="LicenseScreenView_FurtherInfo_Text" xml:space="preserve">
     <value>Wenn Fragen bestehen, die diese Datenschutzerklärung nicht beantwortet, oder wenn zu einzelnen Punkten vertiefte Informationen gewünscht werden, gibt der Software Innovation Campus Paderborn gerne weitere Auskunft. E-Mail: hip-app@campus.uni-paderborn.de Telefon +49 5251 603358 Postalisch: Universität Paderborn Software Innovation Campus Warburger Str. 100 D-33098 Paderborn</value>
   </data>
   <data name="LicenseScreenView_FurtherInfo_Title" xml:space="preserve">
@@ -171,10 +171,10 @@
   <data name="LicenseScreenView_HockeyApp_Text" xml:space="preserve">
     <value>From &lt;a href="https://github.com/bitstadium/HockeySDK-Android"&gt;Microsoft&lt;/a&gt;, licensed under &lt;a href="https://raw.githubusercontent.com/bitstadium/HockeySDK-Xamarin/master/LICENSE.md"&gt;Lizenz&lt;/a&gt;. No changes were made.</value>
   </data>
-	<data name="LicenseScreenView_HockeyApp_Title" xml:space="preserve">
+  <data name="LicenseScreenView_HockeyApp_Title" xml:space="preserve">
     <value>HockeyApp</value>
   </data>
-	<data name="LicenseScreenView_Impressum_Text" xml:space="preserve">
+  <data name="LicenseScreenView_Impressum_Text" xml:space="preserve">
     <value>HiP (History in Paderborn) ist eine Plattform der:
 &lt;a href="http://www.uni-paderborn.de"&gt;Universität Paderborn&lt;/a&gt;
 Warburger Str. 100 
@@ -199,13 +199,12 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   <data name="LicenseScreenView_Itinero_Text" xml:space="preserve">
     <value>From &lt;a href="https://github.com/Itinero"&gt;Ben Abelshausen&lt;/a&gt;, licensed under &lt;a href="https://opensource.org/licenses/Apache-2.0"&gt;Apache License 2.0&lt;/a&gt; by permission. No changes were made.</value>
   </data>
-	<data name="LicenseScreenView_Itinero_Title" xml:space="preserve">
+  <data name="LicenseScreenView_Itinero_Title" xml:space="preserve">
     <value>Itinero</value>
   </data>
-	<data name="LicenseScreenView_Liability_Text" xml:space="preserve">
+  <data name="LicenseScreenView_Liability_Text" xml:space="preserve">
     <value>Die Universität Paderborn übernimmt keine Garantie dafür, dass der Dienst fehlerfrei und jederzeit ohne Unterbrechung zur Verfügung steht. Eventuelle Datenverluste infolge technischer Störungen sowie die Kenntnisnahme vertraulicher Daten durch unberechtigte Zugriffe Dritter können nicht in jedem Fall ausgeschlossen werden. Die Universität Paderborn übernimmt keine Verantwortung für die Korrektheit der durch den Dienst zur Verfügung gestellten Informationen. Sie haftet auch nicht für den Inhalt, insbesondere für die Richtigkeit, Vollständigkeit und Aktualität der Informationen. Im Übrigen haftet die Universität Paderborn nur bei Vorsatz oder grober Fahrlässigkeit. In diesem Fall ist die Haftung auf typische, bei Begründung des Nutzungsverhältnisses vorhersehbare Schäden begrenzt. Die Haftung für Schäden aus der Verletzung des Lebens, des Körpers oder der Gesundheit bleibt unberührt.</value>
   </data>
-
   <data name="LicenseScreenView_Liability_Title" xml:space="preserve">
     <value>Liability</value>
   </data>
@@ -215,34 +214,34 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   <data name="LicenseScreenView_MapIcons_Text" xml:space="preserve">
     <value>From &lt;a href="https://mapicons.mapsmarker.com/"&gt;Maps Icons Collection&lt;/a&gt;, licensed under &lt;a href="http://creativecommons.org/licenses/by-sa/3.0/"&gt;CC-BY-SA 3.0&lt;/a&gt;. No changes were made.</value>
   </data>
-	<data name="LicenseScreenView_MapIcons_Title" xml:space="preserve">
+  <data name="LicenseScreenView_MapIcons_Title" xml:space="preserve">
     <value>Map icons</value>
   </data>
   <data name="LicenseScreenView_MaterialIcons_Text" xml:space="preserve">
     <value>From &lt;a href="https://design.google.com/icons/"&gt;Google&lt;/a&gt;, licensed under &lt;a href="https://opensource.org/licenses/Apache-2.0"&gt;Apache License 2.0&lt;/a&gt;. No changes were made.</value>
   </data>
-	<data name="LicenseScreenView_MaterialIcons_Title" xml:space="preserve">
+  <data name="LicenseScreenView_MaterialIcons_Title" xml:space="preserve">
     <value>Material icons</value>
   </data>
   <data name="LicenseScreenView_OSMBonusPack_Text" xml:space="preserve">
     <value>From &lt;a href="https://github.com/MKergall/osmbonuspack"&gt;MKergall&lt;/a&gt;, licensed under &lt;a href="https://raw.githubusercontent.com/MKergall/osmbonuspack/master/LICENSE.md"&gt;GNU Lesser General Public License 3.0 (LGPL 3.0)&lt;/a&gt; (ohne §5.d und §5.e). No changes were made.</value>
   </data>
-	<data name="LicenseScreenView_OSMBonusPack_Title" xml:space="preserve">
+  <data name="LicenseScreenView_OSMBonusPack_Title" xml:space="preserve">
     <value>OSMBonusPack</value>
   </data>
   <data name="LicenseScreenView_Osmdroid_Text" xml:space="preserve">
     <value>From &lt;a href="https://github.com/osmdroid/osmdroid"&gt;osmdroid&lt;/a&gt;, licensed under &lt;a href="https://raw.githubusercontent.com/osmdroid/osmdroid/master/LICENSE"&gt;Apache License 2.0&lt;/a&gt;. No changes were made.</value>
   </data>
-	<data name="LicenseScreenView_Osmdroid_Title" xml:space="preserve">
+  <data name="LicenseScreenView_Osmdroid_Title" xml:space="preserve">
     <value>Osmdroid</value>
   </data>
   <data name="LicenseScreenView_OsmSharp_Text" xml:space="preserve">
     <value>From &lt;a href="https://osmsharp.com/"&gt;Ben Abelshausen&lt;/a&gt;, licensed under &lt;a href="https://opensource.org/licenses/mit-license.php"&gt;MIT&lt;/a&gt;. No changes were made.</value>
   </data>
-	<data name="LicenseScreenView_OsmSharp_Title" xml:space="preserve">
+  <data name="LicenseScreenView_OsmSharp_Title" xml:space="preserve">
     <value>OsmSharp</value>
   </data>
-	<data name="LicenseScreenView_PrivacyPolicy_Text" xml:space="preserve">
+  <data name="LicenseScreenView_PrivacyPolicy_Text" xml:space="preserve">
     <value>Historisches in Paderborn ist ein nicht-kommerzieller interaktiver Stadtführer der Universität Paderborn für mobile Endgeräte, dessen Nutzung auf Freiwilligkeit basiert. Die bei der Nutzung erhobenen Daten werden nur für die hier beschriebenen Zwecke verwendet und an keine Dritte weitergegeben. Diese Datenschutzerklärung beschreibt den Umgang mit personenbezogenen Daten innerhalb der Stadtführer App. Mit der Installation der App erklärt sich der Nutzer mit dieser Datenschutzerklärung einverstanden und kann sie jederzeit über die App-Seite im Google Play Store einsehen. Die Smartphone Applikation (App), bietet dem Nutzer die Möglichkeit Informationen zu verschiedenen Sehenswürdigkeiten in Paderborn zu erhalten. Dazu greift die App auf den Standort des Smartphones zu, um die nächsten Sehenswürdigkeiten für den Nutzer anzuzeigen und, falls gewünscht, für diesen eine Route zu den Sehenswürdigkeiten zu berechnen. Dazu wird ein Kartenausschnitt aus dem Web geladen. Zudem legt die App eine lokale Datenbank auf dem Smartphone an, in der die Daten gespeichert werden. Weiterhin bietet die App die Möglichkeit Audiodateien abzuspielen. Die Nutzung der jeweiligen Daten wird im Folgenden näher beschrieben.</value>
   </data>
   <data name="LicenseScreenView_PrivacyPolicy_Title" xml:space="preserve">
@@ -251,16 +250,16 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   <data name="LicenseScreenView_Realm_Text" xml:space="preserve">
     <value>From &lt;a href="https://github.com/realm/realm-java"&gt;Realm&lt;/a&gt;, licensed under &lt;a href="https://raw.githubusercontent.com/realm/realm-java/master/LICENSE"&gt;Apache License 2.0&lt;/a&gt;. No changes were made.</value>
   </data>
-	<data name="LicenseScreenView_Realm_Title" xml:space="preserve">
+  <data name="LicenseScreenView_Realm_Title" xml:space="preserve">
     <value>Realm for Android</value>
   </data>
   <data name="LicenseScreenView_Reminiscence_Text" xml:space="preserve">
     <value>From &lt;a href="https://github.com/itinero/reminiscence/"&gt;Ben Abelshausen&lt;/a&gt;, licensed under &lt;a href="https://opensource.org/licenses/mit-license.php"&gt;MIT&lt;/a&gt;. No changes were made.</value>
   </data>
-	<data name="LicenseScreenView_Reminiscence_Title" xml:space="preserve">
+  <data name="LicenseScreenView_Reminiscence_Title" xml:space="preserve">
     <value>Reminiscence</value>
   </data>
-	<data name="LicenseScreenView_RightOfPP_Text" xml:space="preserve">
+  <data name="LicenseScreenView_RightOfPP_Text" xml:space="preserve">
     <value>Diese Datenschutzerklärung hat einen rein informativen Charakter, beschreibt aber verlässlich den aktuellen Stand des Systems. Änderungen innerhalb des Systems, die die Nutzung personenbezogener Daten betreffen, werden umgehend in die Datenschutzerklärung eingepflegt, um den Nutzerinnen und Nutzern jederzeit den aktuellen datenschutzrechtlichen Stand des Systems darlegen zu können. Die jeweiligen Sachverhalte ergeben sich aus den einschlägigen rechtlichen Regelungen und sind unabhängig von dieser Erläuterung gültig. Falls die Darstellung in dieser Erläuterung und das tatsächliche Verhalten von Historisches in Paderborn (beispielsweise durch zu bestimmten Zeitpunkten bestehende Programmfehler) voneinander abweichen, ergeben sich allein aus dieser Tatsache keinerlei Ansprüche.</value>
   </data>
   <data name="LicenseScreenView_RightOfPP_Title" xml:space="preserve">
@@ -269,16 +268,16 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   <data name="LicenseScreenView_SettingsPlugin_Text" xml:space="preserve">
     <value>From &lt;a href="https://github.com/jamesmontemagno/SettingsPlugin"&gt;James Montemagno&lt;/a&gt;, licensed under &lt;a href="https://github.com/jamesmontemagno/SettingsPlugin/blob/master/LICENSE"&gt;MIT&lt;/a&gt;. No changes were made.</value>
   </data>
-	<data name="LicenseScreenView_SettingsPlugin_Title" xml:space="preserve">
+  <data name="LicenseScreenView_SettingsPlugin_Title" xml:space="preserve">
     <value>Settings plugin</value>
   </data>
-	<data name="LicenseScreenView_ToU_Text" xml:space="preserve">
+  <data name="LicenseScreenView_ToU_Text" xml:space="preserve">
     <value>Die Applikation Historisches Paderborn ist eine experimentelle Software, welche zu Studien- und Forschungszwecken an der Universität Paderborn erstellt wurde. Die Software stellt historische Informationen als auch Kartendaten dar, wobei weder die Vollständigkeit noch die Korrektheit der Daten garantiert wird. Die Smartphone Applikation führt eine Positionsschätzung mit Hilfe von GPS durch. Die Genauigkeit der Positionsschätzung ist abhängig von vielen Faktoren, deshalb kann eine fehlerfreie Funktion nicht garantiert werden. Es kann eine Routenführung zu Sehenswürdigkeiten in Paderborn durch die Software bereitgestellt werden. Bitte bedenken Sie, dass die Routenberechnung Fehler enthalten kann. Beachten Sie Ihre Umgebung während der Nutzung des Systems, um Unfälle zu vermeiden. Die Applikation nutzt Kartendaten und kommuniziert mit Servern, wodurch tarifabhängige Kosten entstehen. Speziell das Laden von Kartendaten erzeugt ein sehr hohes Datenvolumen, so dass die Nutzung einer kostenfreien/kostengünstigen Verbindung, z.B. WLAN, gegenüber einer UMTS/LTE Datenverbindung ratsam ist. Die Software wird als solches zur kostenfreien Nutzung bereitgestellt. Eine Garantie für die Funktion bzw. die Bereitstellung des Dienstes an sich existiert nicht. Der Dienst kann ohne Angabe von Gründen jederzeit eingestellt werden. Da das System experimentellen Charakter besitzt, kann es zur Nicht-Verfügbarkeit von Diensten und zu Fehlern des Systems kommen, welche Systemabstürze auf dem Endgerät des Nutzers verursachen können. Der Einsatz der Software erfolgt auf eigene Gefahr. Mit der Zustimmung des Nutzers, sammelt die Software anonymisierte Nutzungsdaten, wie z.B. Absturzberichte. Der Benutzer wird vor dem Senden gefragt, ob er diesem zustimmt.</value>
   </data>
   <data name="LicenseScreenView_ToU_Title" xml:space="preserve">
     <value>Terms of use</value>
   </data>
-	<data name="LicenseScreenView_Transparancy_Text" xml:space="preserve">
+  <data name="LicenseScreenView_Transparancy_Text" xml:space="preserve">
     <value>Im Rahmen der Feedback Funktion die jeder Nutzer freiwillig nutzen kann, muss dieser einen Namen und eine Emailadresse angeben um eine Nachricht an die Entwickler zu senden. Diese Daten werden verschlüsselt versendet. Es werden ebenfalls keinerlei Daten aus dem privaten Speicher des Smartphones gelesen die nicht Teil der Datenbank sind.</value>
   </data>
   <data name="LicenseScreenView_Transparancy_Title" xml:space="preserve">
@@ -287,10 +286,10 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   <data name="LicenseScreenView_Unity_Text" xml:space="preserve">
     <value>From &lt;a href="https://github.com/unitycontainer/unity"&gt;Microsoft&lt;/a&gt;, licensed under &lt;a href="https://opensource.org/licenses/Apache-2.0"&gt;Apache License 2.0&lt;/a&gt;. No changes were made.</value>
   </data>
-	<data name="LicenseScreenView_Unity_Title" xml:space="preserve">
+  <data name="LicenseScreenView_Unity_Title" xml:space="preserve">
     <value>Unity</value>
   </data>
-	<data name="LicenseScreenView_UsagePersonalData_Text" xml:space="preserve">
+  <data name="LicenseScreenView_UsagePersonalData_Text" xml:space="preserve">
     <value>Die Historisches in Paderborn App ist eine offene Applikation, welche mit einen Google Konto über den Google Playstore sowie dem Apple iTunes App Store heruntergeladen werden kann. In der aktuellen Version bezieht die App seine Daten von einer lokalen Datenbank die bei der Installation der App auf dem Speicher des Smartphones abgelegt wird. Das Kartenmaterial wird je nach Verwendung und Position des Nutzers vom OpenStreetMap Server geladen. Darüber hinaus steht es dem Nutzer frei ein Feedback an die Entwickler zu senden, welches die Qualität der App verbessern soll.</value>
   </data>
   <data name="LicenseScreenView_UsagePersonalData_Title" xml:space="preserve">
@@ -299,10 +298,10 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   <data name="LicenseScreenView_XSL_Text" xml:space="preserve">
     <value>From &lt;a href="https://github.com/xamarin/AndroidSupportComponents"&gt;Xamarin&lt;/a&gt;, licensed under &lt;a href="https://github.com/xamarin/AndroidSupportComponents/blob/master/LICENSE.md"&gt;MIT&lt;/a&gt;. No changes were made.</value>
   </data>
-	<data name="LicenseScreenView_XSL_Title" xml:space="preserve">
+  <data name="LicenseScreenView_XSL_Title" xml:space="preserve">
     <value>Xamarin support libraries</value>
   </data>
-	<data name="MainPageViewModel_Feedback" xml:space="preserve">
+  <data name="MainPageViewModel_Feedback" xml:space="preserve">
     <value>Feedback</value>
   </data>
   <data name="MainPageViewModel_LegalNotices" xml:space="preserve">
@@ -323,10 +322,10 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   <data name="RouteDetailsPageViewModel_Description" xml:space="preserve">
     <value>Description</value>
   </data>
-	<data name="RouteDetailsPageViewModel_Distance" xml:space="preserve">
+  <data name="RouteDetailsPageViewModel_Distance" xml:space="preserve">
     <value>{0} km</value>
   </data>
-	<data name="RouteDetailsPageViewModel_Duration" xml:space="preserve">
+  <data name="RouteDetailsPageViewModel_Duration" xml:space="preserve">
     <value>{0} min</value>
   </data>
   <data name="RouteDetailsPageViewModel_Map" xml:space="preserve">
@@ -356,7 +355,7 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   <data name="AudioToolbarView_Caption" xml:space="preserve">
     <value>Subtitle</value>
   </data>
-	<data name="AudioToolbarView_Pause" xml:space="preserve">
+  <data name="AudioToolbarView_Pause" xml:space="preserve">
     <value>Pause</value>
   </data>
   <data name="AudioToolbarView_Play" xml:space="preserve">
@@ -398,7 +397,7 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   <data name="SettingsScreenView_DownloadData_Text" xml:space="preserve">
     <value>When enabled, data updates are going to be downloaded automatically</value>
   </data>
-	<data name="ExhibitDetailsPage_AudioToolbar" xml:space="preserve">
+  <data name="ExhibitDetailsPage_AudioToolbar" xml:space="preserve">
     <value>Audio Player</value>
   </data>
   <data name="ExhibitDetailsPage_AgreeFeature" xml:space="preserve">
@@ -692,7 +691,7 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   <data name="LicenseScreenView_User_Dialogs_Text" xml:space="preserve">
     <value>From &lt;a href="https://github.com/aritchie/userdialogs"&gt;Allan Ritchie&lt;/a&gt;, licensed under &lt;a href="https://github.com/aritchie/userdialogs/blob/master/LICENSE.md"&gt;MIT&lt;/a&gt;. No changes were made.</value>
   </data>
-	<data name="LicenseScreenView_User_Dialogs_Title" xml:space="preserve">
+  <data name="LicenseScreenView_User_Dialogs_Title" xml:space="preserve">
     <value>ACR user dialogs</value>
   </data>
   <data name="CharacterSelectionPage_Adventurer_Text" xml:space="preserve">
@@ -701,7 +700,7 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   <data name="CharacterSelectionPage_Professor_Text" xml:space="preserve">
     <value>Follow the guided tours to discover Paderborn!</value>
   </data>
-	<data name="LicenseScreenView_CreditsImagesCharacterSelection_Text" xml:space="preserve">
+  <data name="LicenseScreenView_CreditsImagesCharacterSelection_Text" xml:space="preserve">
     <value>Icons made by &lt;a href="http://www.freepik.com" title="Freepik"&gt;Freepik&lt;/a&gt; from &lt;a href="http://www.flaticon.com" title="Flaticon"&gt;www.flaticon.com&lt;/a&gt;. Bilder erstellt von &lt;a href="http://www.freepik.com" title="Freepik"&gt;Freepik&lt;/a&gt; von &lt;a href="http://www.flaticon.com" title="Flaticon"&gt;www.flaticon.com&lt;/a&gt;.</value>
   </data>
   <data name="LicenseScreenView_CreditsImagesCharacterSelection_Title" xml:space="preserve">
@@ -746,7 +745,7 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   <data name="ProfileView_Button_Change_App_Mode" xml:space="preserve">
     <value>Change character</value>
   </data>
-	<data name="ProfileView_Professor" xml:space="preserve">
+  <data name="ProfileView_Professor" xml:space="preserve">
     <value>Professor</value>
   </data>
   <data name="ExhibitRouteDownloadPageViewModel_Wifi_Only_Message" xml:space="preserve">
@@ -851,25 +850,28 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   <data name="No" xml:space="preserve">
     <value>No</value>
   </data>
-	<data name="Ok" xml:space="preserve">
+  <data name="Ok" xml:space="preserve">
     <value>OK</value>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
-	<data name="CharacterDetailsPage_SelectModeButton" xml:space="preserve">
+  <data name="CharacterDetailsPage_SelectModeButton" xml:space="preserve">
     <value>Select this mode</value>
   </data>
-	<data name="CharacterDetailsPage_ChangeModeButton" xml:space="preserve">
+  <data name="CharacterDetailsPage_ChangeModeButton" xml:space="preserve">
     <value>Check other mode</value>
   </data>
-	<data name="CharacterSelectionPage_SelectCharacter" xml:space="preserve">
+  <data name="CharacterSelectionPage_SelectCharacter" xml:space="preserve">
     <value>Choose a character</value>
   </data>
-	<data name="CharacterDetailsPage_Adventurer_Text" xml:space="preserve">
+  <data name="CharacterDetailsPage_Adventurer_Text" xml:space="preserve">
     <value>Discover Paderborn on your own! Gain new experiences!</value>
   </data>
-	<data name="CharacterDetailsPage_Professor_Text" xml:space="preserve">
+  <data name="CharacterDetailsPage_Professor_Text" xml:space="preserve">
     <value>Follow the guided tours to discover Paderborn!</value>
+  </data>
+  <data name="MainPage_LoggedIn" xml:space="preserve">
+    <value>Logged in as:</value>
   </data>
 </root>
