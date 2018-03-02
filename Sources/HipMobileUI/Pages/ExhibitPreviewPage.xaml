@@ -18,7 +18,7 @@
 
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Views.ExhibitPreviewView"
+             x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Pages.ExhibitPreviewView"
              Title="{Binding ExhibitName}"
              xmlns:helpers="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;assembly=HipMobileUI"
              xmlns:views="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Views;assembly=HipMobileUI">

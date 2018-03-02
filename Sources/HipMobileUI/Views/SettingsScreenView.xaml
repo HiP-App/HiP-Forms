@@ -57,7 +57,7 @@
                         </Grid.ColumnDefinitions>
 
                         <!-- Points of Interests -->
-                        <Label Style="{StaticResource Heading1Style}" Text="{helpers:Translate SettingsScreenView_POI_Title}"
+                        <Label Style="{DynamicResource Heading1Style}" Text="{helpers:Translate SettingsScreenView_POI_Title}"
                                Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,0,10" />
                         <Label Style="{StaticResource Heading2Style}"
                                Text="{helpers:Translate SettingsScreenView_AutoSwitchPage_Title}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" />
@@ -83,7 +83,7 @@
                         </Switch>
 
                         <!-- App Introduction -->
-                        <Label Style="{StaticResource Heading1Style}" Text="{helpers:Translate SettingsScreenView_AppIntro_Title}"
+                        <Label Style="{DynamicResource Heading1Style}" Text="{helpers:Translate SettingsScreenView_AppIntro_Title}"
                                Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,20,0,10" />
                         <Label Style="{StaticResource BasicTextStyle}"
                                Text="{helpers:Translate SettingsScreenView_RepeatHintAudio_Text}"
@@ -116,7 +116,7 @@
                         </Switch>
 
                         <!-- Data -->
-                        <Label Style="{StaticResource Heading1Style}" Text="{helpers:Translate SettingsScreenView_Data_Title}"
+                        <Label Style="{DynamicResource Heading1Style}" Text="{helpers:Translate SettingsScreenView_Data_Title}"
                                Grid.Row="12" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,20,0,10" />
                         <Label Style="{StaticResource BasicTextStyle}"
                                Text="{helpers:Translate SettingsScreenView_WifiOnly_Text}" HorizontalOptions="StartAndExpand"
@@ -139,14 +139,15 @@
                         </Switch>
 
                         <!-- Further Settings -->
-                        <Label Style="{StaticResource Heading1Style}"
+                        <Label Style="{DynamicResource Heading1Style}"
                                Text="{helpers:Translate SettingsScreenView_FurtherSettings_Title}" Grid.Row="16"
                                Grid.Column="0" Grid.ColumnSpan="2" Margin="0,20,0,10" />
                         <Label Style="{StaticResource BasicTextStyle}"
                                Grid.Row="17" Grid.Column="0" Text="{Binding AppModeText}" />
-                        <Button Grid.Row="17" Grid.Column="1" Command="{Binding SelectCharacterCommand}"
+                        <Button Style="{DynamicResource Button}"
+                                Grid.Row="17" Grid.Column="1" Command="{Binding SelectCharacterCommand}"
                                 Text="{helpers:Translate SettingsScreenView_CharacterSelection_Button_Text}"
-                                BackgroundColor="{StaticResource PrimaryColor}" TextColor="White" />
+                                TextColor="White" />
                         <BoxView Grid.Row="18" Grid.Column="0" Style="{StaticResource SettingsBoxViewStyle}" />
                         <Label Style="{StaticResource BasicTextStyle}"
                                Text="{helpers:Translate StorageTitle}" Grid.Row="19" Grid.Column="0" />
@@ -157,8 +158,9 @@
                         <Label Style="{StaticResource BasicTextStyle}"
                                Text="{helpers:Translate SettingsScreenView_RemoveAllDownloads_Text}"
                                HorizontalOptions="StartAndExpand" Grid.Row="21" Grid.Column="0" />
-                        <Button Text="{helpers:Translate SettingsScreenView_RemoveAllDownloadsButton_Text}"
-                                BackgroundColor="{StaticResource PrimaryColor}" TextColor="White"
+                        <Button Style="{DynamicResource Button}" 
+                                Text="{helpers:Translate SettingsScreenView_RemoveAllDownloadsButton_Text}"
+                                TextColor="White"
                                 Command="{Binding RemoveAllDownloads}" HorizontalOptions="End" VerticalOptions="Center"
                                 Grid.Row="21" Grid.Column="1" />
                     </Grid>

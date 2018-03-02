@@ -40,11 +40,7 @@
             <Color x:Key="OrangeBarColor">#FEB533</Color>
             <Color x:Key="RedBarColor">#F22F0C</Color>
 
-            <Style TargetType="Label">
-                <Setter Property="FontSize" Value="12" />
-                <Setter Property="TextColor" Value="Black" />
-            </Style>
-
+            <!--#region Fonts-->
             <Style x:Key="Ssp-Black" TargetType="Label">
                 <Setter Property="FontFamily">
                     <Setter.Value>
@@ -65,7 +61,6 @@
                     </Setter.Value>
                 </Setter>
             </Style>
-
             <Style x:Key="Ssp-Bold" TargetType="Label">
                 <Setter Property="FontFamily">
                     <Setter.Value>
@@ -166,12 +161,9 @@
                     </Setter.Value>
                 </Setter>
             </Style>
+            <!--#endregion -->
 
-            <!--#region Styles for custom headings -->
-            <Style x:Key="Heading1Style" TargetType="Label" BasedOn="{StaticResource Ssp-SemiBold}">
-                <Setter Property="FontSize" Value="Medium" />
-                <Setter Property="TextColor" Value="{StaticResource PrimaryColor}" />
-            </Style>
+            <!--#region GlobalStyles-->
             <Style x:Key="Heading2Style" TargetType="Label" BasedOn="{StaticResource Ssp-SemiBoldItalic}">
                 <Setter Property="FontSize" Value="Small" />
                 <Setter Property="TextColor" Value="Black" />
@@ -187,12 +179,26 @@
                 <Setter Property="Grid.ColumnSpan" Value="2" />
                 <Setter Property="Margin" Value="0,5,0,5" />
             </Style>
+            <Style TargetType="Label">
+                <Setter Property="FontSize" Value="12" />
+                <Setter Property="TextColor" Value="Black" />
+            </Style>
             <!--#endregion-->
 
+            <!--#region ThemedHeading-->
+            <Style x:Key="Heading1StyleAdventurerMode" TargetType="Label" BasedOn="{StaticResource Ssp-SemiBold}">
+                <Setter Property="FontSize" Value="Medium" />
+                <Setter Property="TextColor" Value="{StaticResource AccentDarkColor}" />
+            </Style>
+            <Style x:Key="Heading1StyleProfessorMode" TargetType="Label" BasedOn="{StaticResource Ssp-SemiBold}">
+                <Setter Property="FontSize" Value="Medium" />
+                <Setter Property="TextColor" Value="{StaticResource PrimaryColor}" />
+            </Style>
+            <!--#endregion -->
 
-            <!--#region ThemedBoxView -->
+            <!--#region ThemedBoxView-->
             <Style x:Key="BoxViewAdventurerMode" TargetType="BoxView">
-                <Setter Property="Color" Value="{StaticResource AccentColor}"/>
+                <Setter Property="Color" Value="{StaticResource AccentDarkColor}"/>
             </Style>
             <Style x:Key="BoxViewProfessorMode" TargetType="BoxView">
                 <Setter Property="Color" Value="{StaticResource PrimaryColor}"/>
@@ -204,16 +210,16 @@
                 <Setter Property="TextColor" Value="{StaticResource PrimaryColor}"/>
             </Style>
             <Style x:Key="LabelProfessorMode" TargetType="Label">
-                <Setter Property="TextColor" Value="{StaticResource AccentColor}"/>
+                <Setter Property="TextColor" Value="{StaticResource AccentDarkColor}"/>
             </Style>
             <!--#endregion-->
 
             <!--#region ThemedButton-->
             <Style x:Key="ButtonAdventurerMode" TargetType="Button">
-                <Setter Property="BackgroundColor" Value="{StaticResource PrimaryColor}"/>
+                <Setter Property="BackgroundColor" Value="{StaticResource AccentDarkColor}"/>
             </Style>
             <Style x:Key="ButtonProfessorMode" TargetType="Button">
-                <Setter Property="BackgroundColor" Value="{StaticResource AccentColor}"/>
+                <Setter Property="BackgroundColor" Value="{StaticResource PrimaryColor}"/>
             </Style>
             <!--#endregion-->
 

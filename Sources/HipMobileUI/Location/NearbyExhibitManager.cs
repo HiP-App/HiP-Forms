@@ -28,6 +28,7 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiA
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.NotificationPlayer;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Location
 {
@@ -92,7 +93,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Location
                     }
                     else
                     {
-                        var nv = new ExhibitPreviewViewModel(e, this);
+                        var nv = new ExhibitPreviewPageViewModel(e, this);
                         await
                             IoCManager.Resolve<INavigationService>()
                                       .PushModalAsync(nv);
