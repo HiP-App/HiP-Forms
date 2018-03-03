@@ -46,11 +46,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers
         /// <param name="comparer"></param>
         public static void SortCollection<TSource, TKey>(this ObservableCollection<TSource> collection, Func<TSource, TKey> keySelector, IComparer<TKey> comparer = null)
         {
-            TSource[] sortedList;
-            if (comparer == null)
-                sortedList = collection.OrderBy(keySelector).ToArray();
-            else
-                sortedList = collection.OrderBy(keySelector, comparer).ToArray();
+            var sortedList = comparer == null ? collection.OrderBy(keySelector).ToArray() : collection.OrderBy(keySelector, comparer).ToArray();
             if (!CompareCollectionToArray(collection, sortedList))
             {
                 collection.Clear();
@@ -66,14 +62,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers
                 return false;
             }
 
-            for (int i = 0; i < collection.Count; i++)
-            {
-                if (!array[i].Equals(collection[i]))
-                {
-                    return false;
-                }
-            }
-            return true;
+            return !collection.Where((t, i) => !array[i].Equals(t)).Any();
         }
 
         /// <summary>
@@ -83,11 +72,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers
         /// <returns>The corresponding geolocation.</returns>
         public static GeoLocation ToGeoLocation(this Position position)
         {
-            if (position != null)
-            {
-                return new GeoLocation(position.Latitude, position.Longitude);
-            }
-            return null;
+            return position != null ? new GeoLocation(position.Latitude, position.Longitude) : null;
         }
     }
 }

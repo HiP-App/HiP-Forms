@@ -19,11 +19,11 @@ using PaderbornUniversity.SILab.Hip.Mobile.UI.Location;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using Xamarin.Forms;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
+namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 {
-    public class RoutePreviewViewModel : NavigationViewModel
+    public class RoutePreviewPageViewModel : NavigationViewModel
     {
-        public RoutePreviewViewModel(Route route, INearbyRouteManager nearbyRouteManager)
+        public RoutePreviewPageViewModel(Route route, INearbyRouteManager nearbyRouteManager)
         {
             RouteTitle = route.Title;
             RouteId = route.Id;

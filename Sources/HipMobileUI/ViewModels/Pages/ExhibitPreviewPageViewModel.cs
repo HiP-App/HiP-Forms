@@ -14,18 +14,16 @@
 
 using System.IO;
 using System.Windows.Input;
-using Xamarin.Forms;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Location;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
-using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
+using Xamarin.Forms;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
+namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 {
-    public class ExhibitPreviewViewModel : NavigationViewModel
+    public class ExhibitPreviewPageViewModel : NavigationViewModel
     {
-        public ExhibitPreviewViewModel(Exhibit exhibit, INearbyExhibitManager exManager)
+        public ExhibitPreviewPageViewModel(Exhibit exhibit, INearbyExhibitManager exManager)
         {
             this.exhibit = exhibit;
             Question = Strings.ExhibitOrRouteNearby_Question_Part1 + " \"" + this.exhibit.Name + "\" " + Strings.ExhibitOrRouteNearby_Question_Part2;
