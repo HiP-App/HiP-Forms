@@ -14,6 +14,7 @@
 
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
+using Plugin.GoogleAnalytics;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
 {
@@ -22,6 +23,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
         public NavigationPage()
         {
             InitializeComponent();
+            GoogleAnalytics.Current.Tracker.SendView("NavigationalPage");
         }
     }
 }

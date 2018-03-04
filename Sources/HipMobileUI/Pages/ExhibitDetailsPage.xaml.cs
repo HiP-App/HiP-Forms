@@ -18,6 +18,7 @@ using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
+using Plugin.GoogleAnalytics;
 using Xamarin.Forms;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
@@ -29,8 +30,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
         private bool isOnDisappearingContext;
 
         public ExhibitDetailsPage()
-        {
+       {
             InitializeComponent();
+           
 
             // Workaround because OnDisappearing is called when the app starts sleeping(on Android) and the OrientationController is reset. Therefore, we need to safe the controller and reapply it after the app wakes up.
             //savedControllerState = OrientationController;
@@ -63,6 +65,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
         protected override void OnBindingContextChanged()
         {
             base.OnBindingContextChanged();
+            GoogleAnalytics.Current.Tracker.SendEvent("Exhibit", "Click", ViewModel.Exhibit.IdForRestApi.ToString());
+            GoogleAnalytics.Current.Tracker.SendView("ExhibitDetailsPage");
 
             UpdateAudioBarVisibility();
             ViewModel.PropertyChanged += ViewModelOnPropertyChanged;

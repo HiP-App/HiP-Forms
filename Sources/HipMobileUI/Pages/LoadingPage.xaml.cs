@@ -15,6 +15,7 @@
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
+using Plugin.GoogleAnalytics;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -34,6 +35,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
         protected override void OnAppearing()
         {
             base.OnAppearing();
+
+            GoogleAnalytics.Current.Tracker.SendView("LoadingPage");
 
             ((LoadingPageViewModel) BindingContext).StartLoading.Execute(null);
         }

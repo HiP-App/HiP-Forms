@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Plugin.GoogleAnalytics;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -24,6 +25,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
         public CharacterSelectionPage()
         {
             InitializeComponent();
+            GoogleAnalytics.Current.Tracker.SendView("characterSelectionPage");
 
             deviceOrientation = DeviceOrientation.Undefined;
 

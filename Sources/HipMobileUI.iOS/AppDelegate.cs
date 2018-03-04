@@ -14,6 +14,7 @@
 
 using System.IO;
 using FFImageLoading.Forms.Touch;
+using Flurry.Analytics;
 using Foundation;
 using HockeyApp.iOS;
 using PaderbornUniversity.SILab.Hip.Mobile.Ios.Contracts;
@@ -94,6 +95,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios
             CachedImageRenderer.Init();
             Xamarin.Forms.Forms.Init();
             Xamarin.FormsMaps.Init();
+            FlurryAgent.StartSession("GP8MR9J25Q9RQ4RR24WP");
 
             LoadApplication(new App());
 

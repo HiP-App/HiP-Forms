@@ -16,6 +16,7 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
+using Plugin.GoogleAnalytics;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Settings = PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers.Settings;
@@ -30,6 +31,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI
         {
             InitializeComponent();
 
+            SetupAnalytics();
+
             // Handle when your app starts
 
             // set the first page that is shown
@@ -42,6 +45,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI
             {
                 navigationService.StartNewNavigationStack(new LoadingPageViewModel());
             }
+        }
+
+        private void SetupAnalytics()
+        {
+            GoogleAnalytics.Current.Config.TrackingId = "UA-113997636-1";
+            GoogleAnalytics.Current.Config.AppName = "Historisches Paderborn";
+            GoogleAnalytics.Current.Config.AnonymizeIp = true;
+            GoogleAnalytics.Current.InitTracker();
         }
 
         protected override void OnStart()

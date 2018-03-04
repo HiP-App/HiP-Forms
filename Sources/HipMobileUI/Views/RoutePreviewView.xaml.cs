@@ -2,6 +2,7 @@
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
+using Plugin.GoogleAnalytics;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 

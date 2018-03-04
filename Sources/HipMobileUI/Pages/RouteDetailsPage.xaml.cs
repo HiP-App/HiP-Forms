@@ -17,6 +17,7 @@ using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
 using Xamarin.Forms;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
+using Plugin.GoogleAnalytics;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
 {
@@ -28,6 +29,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
         public RouteDetailsView()
         {
             InitializeComponent();
+           
         }
 
         protected override void OnSizeAllocated(double width, double height)

@@ -13,12 +13,14 @@
 // limitations under the License.
 
 using System.Collections.Generic;
+using Flurry.Analytics.Portable;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Appearance;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
+using Plugin.GoogleAnalytics;
 using Xamarin.Forms;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
@@ -36,6 +38,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
         {
             InitializeComponent();
             UpdateTheme();
+            GoogleAnalytics.Current.Tracker.SendView("MainPage");
+            AnalyticsApi.LogEvent("MainPageView");
         }
 
         private void UpdateTheme()

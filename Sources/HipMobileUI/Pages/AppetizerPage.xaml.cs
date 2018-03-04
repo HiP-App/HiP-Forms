@@ -14,6 +14,7 @@
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
+using Plugin.GoogleAnalytics;
 using Xamarin.Forms;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
@@ -26,6 +27,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
         {
             InitializeComponent();
             orientation = DeviceOrientation.Undefined;
+            GoogleAnalytics.Current.Tracker.SendView("AppetizerPage");
         }
 
         /// <summary>

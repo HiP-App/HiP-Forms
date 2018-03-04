@@ -15,6 +15,7 @@ using System;
 using Android.App;
 using Android.OS;
 using Android.Runtime;
+using Flurry.Analytics;
 using Plugin.CurrentActivity;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 
@@ -41,6 +42,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
         {
             base.OnTerminate();
             UnregisterActivityLifecycleCallbacks(this);
+            
         }
 
         public void OnActivityCreated(Activity activity, Bundle savedInstanceState)
