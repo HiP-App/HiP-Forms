@@ -120,7 +120,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
             };
             indicators.SetBinding(CarouselIndicators.PositionProperty, "SelectedPage");
             indicators.SetBinding(CarouselIndicators.ItemsSourceProperty, "Pages");
-            var separator = new BoxView() { Color = Color.Silver, HeightRequest = 1 };
+            var separator = new BoxView() { Color = Color.White, HeightRequest = 1 };
 
             // add pieces together
             layout.Children.Add(carousel, widthConstraint: Constraint.RelativeToParent(parent => parent.Width),

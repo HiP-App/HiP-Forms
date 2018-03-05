@@ -39,7 +39,7 @@
                                         <RowDefinition Height="*" />
                                     </Grid.RowDefinitions>
                                     <controls1:CardView Grid.Column="0" HasShadow="False">
-                                        <Label Text="{Binding Text}"  TextColor="#87000000" FontSize="16" Style="{DynamicResource Ssp-Italic}"/>
+                                        <Label Text="A longer description for the exhibit, not just the name of the exhibit." TextColor="{StaticResource DarkGrayColor}" FontSize="16" Style="{DynamicResource Ssp-Italic}"/>
                                     </controls1:CardView>
                                     <StackLayout Grid.Column="1" Spacing="0">
                                         <StackLayout.GestureRecognizers>
@@ -57,7 +57,7 @@
                                     </StackLayout>
                                 </Grid>
                             </ScrollView>
-                            <Button Grid.Row="1" Margin="7" BackgroundColor="LightGray"  AbsoluteLayout.LayoutFlags="All"
+                            <Button Grid.Row="1" Margin="7" BackgroundColor="{StaticResource MediumGrayColor}"  AbsoluteLayout.LayoutFlags="All"
                                     Image="ic_file_download.png" IsVisible="{Binding IsDownloadButtonVisible}" Command="{Binding DownloadCommand}" />
                         </Grid>
                     </Grid>

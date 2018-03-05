@@ -50,13 +50,13 @@
                                                  d:DataContext="{d:DesignInstance views:RoutesOverviewListItemViewModel}">
                                         <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
                                             <Label Text="{Binding RouteTitle}" TextColor="Black" FontSize="18" Style="{DynamicResource Ssp-SemiBold}"/>
-                                            <Label Text="{Binding RouteDescription}" TextColor="Black" Style="{DynamicResource Ssp-Regular}"/>
+                                            <Label Text="{Binding RouteDescription}" TextColor="{StaticResource DarkGrayColor}" Style="{DynamicResource Ssp-Regular}"/>
                                             <StackLayout Orientation="Horizontal">
                                                 <Image Source="{Binding Image}" HeightRequest="100" />
                                                 <StackLayout Orientation="Vertical">
                                                     <StackLayout Orientation="Horizontal">
                                                         <Image Source="ic_schedule.png" />
-                                                        <Label Text="{Binding Duration}" VerticalOptions="Center" Style="{DynamicResource Ssp-Italic}" />
+                                                        <Label Text="{Binding Duration}" VerticalOptions="Center" Style="{DynamicResource Ssp-Italic}"/>
                                                     </StackLayout>
                                                     <StackLayout Orientation="Horizontal">
                                                         <Image Source="ic_directions_walk.png" />
