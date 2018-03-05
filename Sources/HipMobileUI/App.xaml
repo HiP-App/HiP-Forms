@@ -179,6 +179,11 @@
                 <Setter Property="Grid.ColumnSpan" Value="2" />
                 <Setter Property="Margin" Value="0,5,0,5" />
             </Style>
+            <Style x:Key="LicenseBoxViewStyle" TargetType="BoxView">
+                <Setter Property="HeightRequest" Value="1" />
+                <Setter Property="BackgroundColor" Value="Gray" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+            </Style>
             <Style TargetType="Label">
                 <Setter Property="FontSize" Value="12" />
                 <Setter Property="TextColor" Value="Black" />
