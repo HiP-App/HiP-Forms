@@ -328,6 +328,7 @@
     <Compile Include="Map\SetMarker.cs" />
     <Compile Include="Map\ViaPointInfoWindow.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
+	<Compile Include="Helpers\Localize.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
