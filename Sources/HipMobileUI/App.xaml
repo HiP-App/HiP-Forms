@@ -164,6 +164,10 @@
             </Style>
 
             <!--#region GlobalStyles-->
+            <Style x:Key="Heading1Style" TargetType="Label" BasedOn="{StaticResource Ssp-SemiBold}">
+                <Setter Property="FontSize" Value="Medium" />
+                <Setter Property="TextColor" Value="{DynamicResource PrimaryColor}" />
+            </Style>
             <Style x:Key="Heading2Style" TargetType="Label" BasedOn="{StaticResource Ssp-SemiBoldItalic}">
                 <Setter Property="FontSize" Value="Small" />
                 <Setter Property="TextColor" Value="Black" />
