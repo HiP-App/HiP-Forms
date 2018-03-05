@@ -39,7 +39,7 @@
                                         <RowDefinition Height="*" />
                                     </Grid.RowDefinitions>
                                     <controls1:CardView Grid.Column="0" HasShadow="False">
-                                        <Label Text="A longer description for the exhibit, not just the name of the exhibit." TextColor="{StaticResource DarkGrayColor}" FontSize="16" Style="{DynamicResource Ssp-Italic}"/>
+                                        <Label Text="A longer description for the exhibit, not just the name of the exhibit." TextColor="Black" FontSize="16" Style="{DynamicResource Ssp-Italic}"/>
                                     </controls1:CardView>
                                     <StackLayout Grid.Column="1" Spacing="0">
                                         <StackLayout.GestureRecognizers>

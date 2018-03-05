@@ -40,9 +40,9 @@
                         </Grid.RowDefinitions>
                         <!--The row and column definition is made in code to adjust them to the device orientation-->
                         <StackLayout Grid.Row="0" VerticalOptions="CenterAndExpand" Margin="20,20,20,20" >
-                            <Label IsVisible="{Binding DescriptionExists}" Text="{Binding DownloadableDescription}" FontSize="Medium" TextColor="{StaticResource AccentDarkColor}"
+                            <Label IsVisible="{Binding DescriptionExists}" Text="{Binding DownloadableDescription}" FontSize="Medium" TextColor="{StaticResource SecondaryDarkColor}"
                                    HorizontalTextAlignment="Center" FontAttributes="Bold" />
-                            <Label Text="{helpers:Translate ExhibitRouteDownloadPage_Download_Text}" FontSize="Medium" TextColor="{StaticResource AccentDarkColor}"
+                            <Label Text="{helpers:Translate ExhibitRouteDownloadPage_Download_Text}" FontSize="Medium" TextColor="{StaticResource SecondaryDarkColor}"
                                    HorizontalTextAlignment="Center" />
                             <ProgressBar Progress="{Binding LoadingProgress}">
                                 <ProgressBar.Effects>

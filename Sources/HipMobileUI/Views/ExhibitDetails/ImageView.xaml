@@ -37,7 +37,7 @@
                             <StackLayout Margin="16,16" Spacing="15" >
                                 <Label Text="{Binding Headline}" TextColor="Black" FontSize="16" FontAttributes="Bold" Style="{DynamicResource Ssp-SemiBold}"/>
                                 <ScrollView>
-                                    <Label Text="{Binding Description}" TextColor="{StaticResource DarkGrayColor}" FontSize="14" Style="{DynamicResource Ssp-Regular}"/>
+                                    <Label Text="{Binding Description}" TextColor="Black" FontSize="14" Style="{DynamicResource Ssp-Regular}"/>
                                 </ScrollView>
                             </StackLayout>
                         </StackLayout>
