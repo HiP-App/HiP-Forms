@@ -13,7 +13,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
     {
         private DeviceOrientation deviceOrientation;
 
-        private CharacterSelectionPageViewModel ViewModel => ((CharacterSelectionPageViewModel)BindingContext);
+        private CharacterSelectionPageViewModel ViewModel => (CharacterSelectionPageViewModel) BindingContext;
 
         public CharacterSelectionPage()
         {
@@ -61,7 +61,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
                         path.LineTo(0, 0);
                         path.LineTo(0, surfaceHeight);
                         path.LineTo(surfaceWidth, 0);
-                        path.Close(); canvas.DrawPath(path, pathStroke);
+                        path.Close();
+                        canvas.DrawPath(path, pathStroke);
                     }
                 }
             }

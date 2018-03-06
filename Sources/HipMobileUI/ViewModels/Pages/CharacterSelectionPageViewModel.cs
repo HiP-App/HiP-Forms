@@ -1,4 +1,3 @@
-
 // Copyright (C) 2017 History in Paderborn App - Universität Paderborn
 //  
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -21,53 +20,54 @@ using SkiaSharp.Views.Forms;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 {
-	public class CharacterSelectionPageViewModel : NavigationViewModel
-	{
-		private readonly NavigationViewModel parentViewModel;
+    public class CharacterSelectionPageViewModel : NavigationViewModel
+    {
+        private readonly NavigationViewModel parentViewModel;
 
-		public CharacterSelectionPageViewModel(NavigationViewModel parentViewModel)
-		{
-			this.parentViewModel = parentViewModel;
+        public CharacterSelectionPageViewModel(NavigationViewModel parentViewModel)
+        {
+            this.parentViewModel = parentViewModel;
 
-			AdventurerGridTappedCommand = new Command(OnAdventurerGridTapped);
-			ProfessorGridTappedCommand = new Command(OnProfessorGridTapped);
-		}
+            AdventurerGridTappedCommand = new Command(OnAdventurerGridTapped);
+            ProfessorGridTappedCommand = new Command(OnProfessorGridTapped);
+        }
 
-		public ICommand AdventurerGridTappedCommand { get; }
-		public ICommand ProfessorGridTappedCommand { get; }
+        public ICommand AdventurerGridTappedCommand { get; }
+        public ICommand ProfessorGridTappedCommand { get; }
 
-		private async void OnAdventurerGridTapped()
-		{
-			await Navigation.PushAsync(new CharacterDetailsPageViewModel(parentViewModel, true), false);
-		}
+        private async void OnAdventurerGridTapped()
+        {
+            await Navigation.PushAsync(new CharacterDetailsPageViewModel(parentViewModel, true), false);
+        }
 
-		private async void OnProfessorGridTapped()
-		{
-			await Navigation.PushAsync(new CharacterDetailsPageViewModel(parentViewModel, false), false);
-		}
-		private void OnPaintSample(object sender, SKPaintSurfaceEventArgs e)
-		{
+        private async void OnProfessorGridTapped()
+        {
+            await Navigation.PushAsync(new CharacterDetailsPageViewModel(parentViewModel, false), false);
+        }
 
-		}
-		/// <summary>
-		/// Returns to the previous page if this page was called from the profile or settings page
-		/// </summary>
-		public void ReturnToPreviousPage()
-		{
-			if (parentViewModel.GetType() == typeof(ProfileScreenViewModel))
-			{
-				var mainPageViewModel = new MainPageViewModel();
-				Navigation.StartNewNavigationStack(mainPageViewModel);
-				mainPageViewModel.SwitchToProfileView();
-			}
-			else if (parentViewModel.GetType() == typeof(SettingsScreenViewModel))
-			{
-				var mainPageViewModel = new MainPageViewModel();
-				Navigation.StartNewNavigationStack(mainPageViewModel);
-				mainPageViewModel.SwitchToSettingsScreenView();
-			}
-		}
+        private void OnPaintSample(object sender, SKPaintSurfaceEventArgs e)
+        {
+        }
 
-		public NavigationViewModel ParentViewModel => parentViewModel;
-	}
+        /// <summary>
+        /// Returns to the previous page if this page was called from the profile or settings page
+        /// </summary>
+        public void ReturnToPreviousPage()
+        {
+            if (parentViewModel.GetType() == typeof(ProfileScreenViewModel))
+            {
+                var mainPageViewModel = new MainPageViewModel();
+                Navigation.StartNewNavigationStack(mainPageViewModel);
+                mainPageViewModel.SwitchToProfileView();
+            }
+            else if (parentViewModel.GetType() == typeof(SettingsScreenViewModel))
+            {
+                var mainPageViewModel = new MainPageViewModel();
+                Navigation.StartNewNavigationStack(mainPageViewModel);
+                mainPageViewModel.SwitchToSettingsScreenView();
+            }
+        }
+
+        public NavigationViewModel ParentViewModel => parentViewModel;
+    }
 }
