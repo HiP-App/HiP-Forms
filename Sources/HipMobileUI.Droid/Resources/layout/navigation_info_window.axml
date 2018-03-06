@@ -73,7 +73,7 @@
             android:background="@drawable/btn_close"
             android:visibility="visible"
             android:paddingLeft="2dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginRight="13.5dp" />
+            android:layout_marginTop="5.5dp"
+            android:layout_marginRight="12.5dp" />
     </LinearLayout>
 </LinearLayout>
