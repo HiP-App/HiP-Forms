@@ -30,7 +30,7 @@
                    LineBreakMode="WordWrap"
                    FontAttributes="Bold"
                    FontSize="20"
-                   TextColor="{StaticResource PrimaryDarkColor}" 
+                   TextColor="{StaticResource PrimaryColor}" 
                    Style="{DynamicResource Ssp-Regular}"/>
             <StackLayout IsVisible="{Binding IsLoggedIn}" Orientation="Vertical" HorizontalOptions="Fill"
                          VerticalOptions="Fill" Spacing="0">
@@ -55,7 +55,7 @@
                                                FontAttributes="Bold" TextColor="{StaticResource PrimaryDarkColor}" Style="{DynamicResource Ssp-Regular}"/>
                                         <Label Text="{Binding Achievement.Description}" FontSize="16"
                                                LineBreakMode="WordWrap"
-                                               TextColor="{StaticResource DarkGrayColor}" Style="{DynamicResource Ssp-Italic}"/>
+                                               TextColor="Black" Style="{DynamicResource Ssp-Italic}"/>
                                     </StackLayout>
                                     <Image Source="ic_done.png" IsVisible="{Binding Achievement.IsUnlocked}"
                                            Opacity="1" Aspect="AspectFit" />
