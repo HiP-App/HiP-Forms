@@ -40,10 +40,7 @@
             <Color x:Key="OrangeBarColor">#FEB533</Color>
             <Color x:Key="RedBarColor">#FF8E59</Color>
 
-
-            
-
-            
+            <!--Fonts used in the app -->
             <Style x:Key="Ssp-ExtraLight" TargetType="Label">
                 <Setter Property="FontFamily">
                     <Setter.Value>
@@ -193,6 +190,9 @@
             <Style TargetType="Label">
                 <Setter Property="FontSize" Value="12" />
                 <Setter Property="TextColor" Value="Black" />
+            </Style>
+            <Style TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{StaticResource MediumGrayColor}" />
             </Style>
             <!--#endregion-->
 

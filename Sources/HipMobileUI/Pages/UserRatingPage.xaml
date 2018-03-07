@@ -170,7 +170,7 @@
                             </Image>
                         </StackLayout>
                     </StackLayout>
-                    <Button  Grid.Row="1"  Margin="7" BackgroundColor="LightGray" 
+                    <Button  Grid.Row="1"  Margin="7" 
                          Text="{helpers:Translate UserRating_Rate}" FontSize="13"  Command="{Binding SendRatingCommand}" />
                 </Grid>
             </Grid>

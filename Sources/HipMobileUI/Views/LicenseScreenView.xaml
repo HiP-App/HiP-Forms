@@ -64,7 +64,7 @@
 
                         <!-- Labels for contribution -->
                         <Label Style="{DynamicResource Heading1Style}"
-                               Text="{helpers:Translate LicenseScreenView_Contribution_Title}" />
+                               Text="{helpers:Translate LicenseScreenView_Contribution_Title}" Margin="0,20,0,0" />
                         <BoxView Style="{StaticResource LicenseBoxViewStyle}"/>
                         <Label Style="{StaticResource Heading2Style}"
                                Text="{helpers:Translate LicenseScreenView_CreditsImagesAutocarousel_Title}" />
@@ -75,7 +75,8 @@
                         <views1:HtmlLink Text="{helpers:Translate LicenseScreenView_CreditsImagesCharacterSelection_Text}" />
 
                         <!-- Labels for Terms of Use -->
-                        <Label Style="{DynamicResource Heading1Style}" Text="{helpers:Translate LicenseScreenView_ToU_Title}" />
+                        <Label Style="{DynamicResource Heading1Style}"
+                               Text="{helpers:Translate LicenseScreenView_ToU_Title}" Margin="0,20,0,0" />
                         <BoxView Style="{StaticResource LicenseBoxViewStyle}"/>
                         <Label Style="{StaticResource BasicTextStyle}"
                                Text="{helpers:Translate LicenseScreenView_ToU_Text}" />
@@ -90,7 +91,7 @@
 
                         <!-- Labels for Privacy Policy -->
                         <Label Style="{DynamicResource Heading1Style}"
-                               Text="{helpers:Translate LicenseScreenView_PrivacyPolicy_Title}" />
+                               Text="{helpers:Translate LicenseScreenView_PrivacyPolicy_Title}" Margin="0,20,0,0" />
                         <BoxView Style="{StaticResource LicenseBoxViewStyle}"/>
                         <Label Style="{StaticResource BasicTextStyle}"
                                Text="{helpers:Translate LicenseScreenView_PrivacyPolicy_Text}" />
@@ -124,7 +125,8 @@
                                Text="{helpers:Translate LicenseScreenView_FurtherInfo_Text}" />
 
                         <!-- Labels for Impressum -->
-                        <Label Style="{DynamicResource Heading1Style}" Text="{helpers:Translate LicenseScreenView_Impressum_Title}">
+                        <Label Style="{DynamicResource Heading1Style}"
+                               Text="{helpers:Translate LicenseScreenView_Impressum_Title}" Margin="0,20,0,0">
                             <Label.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding UnlockExhibits}" />
                             </Label.GestureRecognizers>
