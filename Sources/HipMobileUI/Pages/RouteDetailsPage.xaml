@@ -41,9 +41,9 @@
                                         </StackLayout.GestureRecognizers>
                                         <Image Source="ic_volume_up.png" />
                                         <Label VerticalTextAlignment="Center" Text="{Binding ReadOutCaption}"
-                                       TextColor="{StaticResource SecondaryColor}" FontSize="Medium" Style="{DynamicResource Ssp-Regular}" />
+                                       TextColor="Black" FontSize="Medium" Style="{DynamicResource Ssp-SemiBold}" />
                                     </StackLayout>
-                                    <Label Text="{Binding Description}" FontSize="Small" Style="{DynamicResource Ssp-Light}"/>
+                                    <Label Text="{Binding Description}" FontSize="Small" Style="{DynamicResource Ssp-Regular}" TextColor="Black"/>
                                     <Label Text="{helpers:Translate RouteDetailsPage_Tags}" FontSize="19" Margin="0,24,0,0" Style="{DynamicResource Ssp-Italic}"/>
                                     <container1:BindableChildrenStackLayout
                                         Orientation="Vertical" Margin="8,4,0,16"

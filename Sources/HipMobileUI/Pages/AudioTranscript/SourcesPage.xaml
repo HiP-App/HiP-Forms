@@ -31,7 +31,7 @@
                                     <Label x:Name="referenceTitle" Text="{Binding SubstituteText}"
                                            TextColor="{StaticResource PrimaryDarkColor}"
                                            FontSize="{Binding BindingContext.FontSize, Source={x:Reference SourcesPage}}" Style="{DynamicResource Ssp-Regular}"/>
-                                    <Label Text="{Binding Text}" VerticalTextAlignment="Center" TextColor="Gray"
+                                    <Label Text="{Binding Text}" VerticalTextAlignment="Center" TextColor="Black"
                                            FontSize="{Binding BindingContext.FontSize, Source={x:Reference SourcesPage}}" Style="{DynamicResource Ssp-Regular}"/>
                                 </StackLayout>
                             </ViewCell>

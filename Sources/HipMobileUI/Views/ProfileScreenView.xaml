@@ -78,7 +78,7 @@
                                 <Button WidthRequest="200" HeightRequest="40"
                                         Command="{Binding ChangeAppModeCommand}"
                                         Text="{helpers:Translate ProfileView_Button_Change_App_Mode}"
-                                        TextColor="{StaticResource AccentDarkColor}"
+                                        TextColor="Black"
                                         BackgroundColor="{StaticResource MediumGrayColor}" />
                                 <Button WidthRequest="200" HeightRequest="40"
                                         Command="{Binding Logout}" Text="{helpers:Translate Logout}"
