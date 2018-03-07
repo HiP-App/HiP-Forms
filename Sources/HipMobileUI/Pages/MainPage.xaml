@@ -21,7 +21,7 @@
                   x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Pages.MainPage"
                   xmlns:helpers="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;assembly=HipMobileUI">
     <MasterDetailPage.Master>
-        <ContentPage Title="Menu" Padding="0">
+        <ContentPage Title="Menu" Padding="0" BackgroundColor="White">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />

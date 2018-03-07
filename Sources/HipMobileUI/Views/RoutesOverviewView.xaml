@@ -29,7 +29,7 @@
     <ContentView.Content>
         <views1:NotificationExtensionView>
             <views1:NotificationExtensionView.ContentTemplate>
-                <Grid x:Name="Grid">
+                <Grid x:Name="Grid" BackgroundColor="White">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>

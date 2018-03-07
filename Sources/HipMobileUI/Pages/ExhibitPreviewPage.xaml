@@ -49,7 +49,7 @@
                         <StackLayout Orientation="Horizontal" Padding="12,0,0,0"
                                      BackgroundColor="White" VerticalOptions="End">
                             <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                                <Label Text="{helpers:Translate YES}" FontSize="20"
+                                <Label Text="{helpers:Translate Yes}" FontSize="20"
                                        TextColor="{StaticResource PrimaryDarkColor}" Style="{DynamicResource Ssp-Regular}"
                                        HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
                                 <StackLayout.GestureRecognizers>
@@ -58,7 +58,7 @@
                             </StackLayout>
                             <BoxView WidthRequest="1" Color="{StaticResource DarkGrayColor}" />
                             <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                                <Label Text="{helpers:Translate NO}" FontSize="20"
+                                <Label Text="{helpers:Translate No}" FontSize="20"
                                        TextColor="{StaticResource PrimaryDarkColor}"
                                        HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Style="{DynamicResource Ssp-Regular}"/>
                                 <StackLayout.GestureRecognizers>

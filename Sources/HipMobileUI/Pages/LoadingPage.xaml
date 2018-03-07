@@ -27,7 +27,7 @@
         <AbsoluteLayout>
             <StackLayout x:Name="OuterStack" Orientation="Vertical" HorizontalOptions="CenterAndExpand"
                          VerticalOptions="CenterAndExpand" Spacing="20" AbsoluteLayout.LayoutFlags="All"
-                         AbsoluteLayout.LayoutBounds="0,0,1,1" IsVisible="{Binding IsExtendedViewsVisible}">
+                         AbsoluteLayout.LayoutBounds="0,0,1,1" IsVisible="{Binding IsExtendedViewsVisible}" BackgroundColor="White">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />

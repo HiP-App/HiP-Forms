@@ -300,7 +300,6 @@
     <Reference Include="System.Net.Http.Primitives, Version=4.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.Net.Http.2.2.29\lib\portable-net45+win8\System.Net.Http.Primitives.dll</HintPath>
     </Reference>
-    <Reference Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="BusinessLayer\Routing\Route_Network_Paderborn.pbf" />

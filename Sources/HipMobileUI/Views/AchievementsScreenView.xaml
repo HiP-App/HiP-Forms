@@ -19,7 +19,7 @@
              xmlns:helpers="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;assembly=HipMobileUI"
              xmlns:customTriggers="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.CustomTriggers;assembly=HipMobileUI">
     <ContentView.Content>
-        <StackLayout Orientation="Vertical" HorizontalOptions="Fill" VerticalOptions="Fill" Spacing="0">
+        <StackLayout Orientation="Vertical" HorizontalOptions="Fill" VerticalOptions="Fill" Spacing="0" BackgroundColor="White">
             <Label Text="{helpers:Translate AchievementsScreenView_PleaseLogin}"
                    HorizontalOptions="FillAndExpand"
                    VerticalOptions="FillAndExpand"

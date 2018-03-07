@@ -25,7 +25,7 @@
     <ContentView.Content>
         <views:NotificationExtensionView>
             <views:NotificationExtensionView.ContentTemplate>
-                <Grid x:Name="Grid" Padding="10" HorizontalOptions="Fill">
+                <Grid x:Name="Grid" Padding="10" HorizontalOptions="Fill" BackgroundColor="White">
                     <Entry x:Name="EmailEntry"
                            Keyboard="Email"
                            VerticalOptions="End"

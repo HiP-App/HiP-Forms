@@ -23,7 +23,7 @@
     <ContentView.Content>
         <views1:NotificationExtensionView>
             <views1:NotificationExtensionView.ContentTemplate>
-                <ScrollView>
+                <ScrollView BackgroundColor="White">
                     <StackLayout Padding="10">
                         <!-- Labels for licensing -->
                         <Label Style="{DynamicResource Heading1Style}" Text="{helpers:Translate LicenseScreenView_License_Title}" />
@@ -85,7 +85,8 @@
                                Text="{helpers:Translate LicenseScreenView_Copyright_Text}" />
                         <Label Style="{StaticResource Heading2Style}"
                                Text="{helpers:Translate LicenseScreenView_Liability_Title}" />
-                        <Label Text="{helpers:Translate LicenseScreenView_Liability_Text}" />
+                        <Label Style="{StaticResource BasicTextStyle}"
+                               Text="{helpers:Translate LicenseScreenView_Liability_Text}" />
 
                         <!-- Labels for Privacy Policy -->
                         <Label Style="{DynamicResource Heading1Style}"
@@ -128,6 +129,7 @@
                                 <TapGestureRecognizer Command="{Binding UnlockExhibits}" />
                             </Label.GestureRecognizers>
                         </Label>
+                        <BoxView Style="{StaticResource LicenseBoxViewStyle}"/>
                         <views1:HtmlLink Text="{helpers:Translate LicenseScreenView_Impressum_Text}" />
                     </StackLayout>
                 </ScrollView>

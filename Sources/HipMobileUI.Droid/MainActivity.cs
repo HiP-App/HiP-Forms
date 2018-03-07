@@ -38,94 +38,94 @@ using TwinTechsForms.NControl.Android;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
 {
-	[Activity(Label = "Historisches Paderborn", Icon = "@drawable/ic_launcher", Theme = "@style/splashscreen", MainLauncher = true,
-		LaunchMode = LaunchMode.SingleTop, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
-	public class MainActivity : Xamarin.Forms.Platform.Android.FormsAppCompatActivity
-	{
-		protected override void OnCreate(Bundle bundle)
-		{
-			var dataAccess = IoCManager.Resolve<IDataAccess>();
-			if (Settings.ShouldDeleteDbOnLaunch)
-			{
-				File.Delete(dataAccess.DatabasePath);
-				Settings.ShouldDeleteDbOnLaunch = false;
-			}
+    [Activity(Label = "Historisches Paderborn", Icon = "@drawable/ic_launcher", Theme = "@style/splashscreen", MainLauncher = true,
+        LaunchMode = LaunchMode.SingleTop, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    public class MainActivity : Xamarin.Forms.Platform.Android.FormsAppCompatActivity
+    {
+        protected override void OnCreate(Bundle bundle)
+        {
+            var dataAccess = IoCManager.Resolve<IDataAccess>();
+            if (Settings.ShouldDeleteDbOnLaunch)
+            {
+                File.Delete(dataAccess.DatabasePath);
+                Settings.ShouldDeleteDbOnLaunch = false;
+            }
 
-			IoCManager.RegisterType<IImageDimension, AndroidImageDimensions>();
-			IoCManager.RegisterType<IMediaFileManager, AndroidMediaFileManager>();
-			IoCManager.RegisterType<IAppCloser, AndroidAppCloser>();
+            IoCManager.RegisterType<IImageDimension, AndroidImageDimensions>();
+            IoCManager.RegisterType<IMediaFileManager, AndroidMediaFileManager>();
+            IoCManager.RegisterType<IAppCloser, AndroidAppCloser>();
 
-			TabLayoutResource = Resource.Layout.Tabbar;
-			ToolbarResource = Resource.Layout.Toolbar;
+            TabLayoutResource = Resource.Layout.Tabbar;
+            ToolbarResource = Resource.Layout.Toolbar;
 
-			SetTheme(Resource.Style.MainTheme);
-			base.OnCreate(bundle);
+            SetTheme(Resource.Style.MainTheme);
+            base.OnCreate(bundle);
 
-			// Init Navigation
-			NavigationService.Instance.RegisterViewModels(typeof(MainPage).Assembly);
-			IoCManager.RegisterInstance(typeof(INavigationService), NavigationService.Instance);
-			IoCManager.RegisterInstance(typeof(IViewCreator), NavigationService.Instance);
+            // Init Navigation
+            NavigationService.Instance.RegisterViewModels(typeof(MainPage).Assembly);
+            IoCManager.RegisterInstance(typeof(INavigationService), NavigationService.Instance);
+            IoCManager.RegisterInstance(typeof(IViewCreator), NavigationService.Instance);
 
-			// init other inversion of control classes
-			IoCManager.RegisterInstance(typeof(IFabSizeCalculator), new AndroidFabSizeCalculator());
-			IoCManager.RegisterInstance(typeof(IAudioPlayer), new DroidAudioPlayer());
-			IoCManager.RegisterInstance(typeof(INotificationPlayer), new DroidNotificationPlayer());
-			IoCManager.RegisterInstance(typeof(IStatusBarController), new DroidStatusBarController());
-			IoCManager.RegisterInstance(typeof(ILocationManager), new LocationManager());
-			IoCManager.RegisterInstance(typeof(IKeyProvider), new AndroidKeyProvider());
-			IoCManager.RegisterInstance(typeof(IBarsColorsChanger), new DroidBarsColorsChanger(this));
-			IoCManager.RegisterInstance(typeof(IDbChangedHandler), new DbChangedHandler());
-			IoCManager.RegisterInstance(typeof(INetworkAccessChecker), new DroidNetworkAccessChecker());
-			IoCManager.RegisterInstance(typeof(IStorageSizeProvider), new DroidStorageSizeProvider());
+            // init other inversion of control classes
+            IoCManager.RegisterInstance(typeof(IFabSizeCalculator), new AndroidFabSizeCalculator());
+            IoCManager.RegisterInstance(typeof(IAudioPlayer), new DroidAudioPlayer());
+            IoCManager.RegisterInstance(typeof(INotificationPlayer), new DroidNotificationPlayer());
+            IoCManager.RegisterInstance(typeof(IStatusBarController), new DroidStatusBarController());
+            IoCManager.RegisterInstance(typeof(ILocationManager), new LocationManager());
+            IoCManager.RegisterInstance(typeof(IKeyProvider), new AndroidKeyProvider());
+            IoCManager.RegisterInstance(typeof(IBarsColorsChanger), new DroidBarsColorsChanger(this));
+            IoCManager.RegisterInstance(typeof(IDbChangedHandler), new DbChangedHandler());
+            IoCManager.RegisterInstance(typeof(INetworkAccessChecker), new DroidNetworkAccessChecker());
+            IoCManager.RegisterInstance(typeof(IStorageSizeProvider), new DroidStorageSizeProvider());
 
-			// setup crash reporting
-			IKeyProvider keyProvider = IoCManager.Resolve<IKeyProvider>();
-			CrashManager.Register(this, keyProvider.GetKeyByName("hockeyapp.android"));
+            // setup crash reporting
+            IKeyProvider keyProvider = IoCManager.Resolve<IKeyProvider>();
+            CrashManager.Register(this, keyProvider.GetKeyByName("hockeyapp.android"));
 
-			// init forms and third party libraries
-			CachedImageRenderer.Init();
-			Forms.Init(this, bundle);
-			SvgImageViewRenderer.Init();
-			Xamarin.FormsMaps.Init(this, bundle);
+            // init forms and third party libraries
+            CachedImageRenderer.Init();
+            Forms.Init(this, bundle);
+            SvgImageViewRenderer.Init();
+            Xamarin.FormsMaps.Init(this, bundle);
 
-			UserDialogs.Init(() => (Activity)Forms.Context);
+            UserDialogs.Init(() => (Activity)Forms.Context);
 
-			LoadApplication(new App());
-		}
+            LoadApplication(new App());
+        }
 
-		public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
-		{
-			PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
-		}
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
+        {
+            PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
 
-		/// <summary>
-		/// Workaround for a IllegalStateException in Xamarin Forms 2.3. It should be fixed in 2.4 so this can be removed then.
-		/// Further discussion: https://forums.xamarin.com/discussion/83864/java-lang-illegalstateexception-activity-has-been-destroyed-when-using-admob
-		/// </summary>
-		protected override void OnDestroy()
-		{
-			CallOnDisappearingForAllOpenPages();
+        /// <summary>
+        /// Workaround for a IllegalStateException in Xamarin Forms 2.3. It should be fixed in 2.4 so this can be removed then.
+        /// Further discussion: https://forums.xamarin.com/discussion/83864/java-lang-illegalstateexception-activity-has-been-destroyed-when-using-admob
+        /// </summary>
+        protected override void OnDestroy()
+        {
+            CallOnDisappearingForAllOpenPages();
 
-			Xamarin.Forms.Application.Current.MainPage = new ContentPage();
-			base.OnDestroy();
-		}
+            Xamarin.Forms.Application.Current.MainPage = new ContentPage();
+            base.OnDestroy();
+        }
 
-		private void CallOnDisappearingForAllOpenPages()
-		{
-			var tabController = Xamarin.Forms.Application.Current.MainPage as TabbedPage;
-			var masterController = Xamarin.Forms.Application.Current.MainPage as MasterDetailPage;
+        private void CallOnDisappearingForAllOpenPages()
+        {
+            var tabController = Xamarin.Forms.Application.Current.MainPage as TabbedPage;
+            var masterController = Xamarin.Forms.Application.Current.MainPage as MasterDetailPage;
 
-			// First check to see if we're on a tabbed page, then master detail, finally go to overall fallback
-			var nav = tabController?.CurrentPage?.Navigation ??
-					  (masterController?.Detail as TabbedPage)?.CurrentPage?.Navigation ?? // special consideration for a tabbed page inside master/detail
-					  masterController?.Detail?.Navigation ??
-					  Xamarin.Forms.Application.Current.MainPage.Navigation;
+            // First check to see if we're on a tabbed page, then master detail, finally go to overall fallback
+            var nav = tabController?.CurrentPage?.Navigation ??
+                      (masterController?.Detail as TabbedPage)?.CurrentPage?.Navigation ?? // special consideration for a tabbed page inside master/detail
+                      masterController?.Detail?.Navigation ??
+                      Xamarin.Forms.Application.Current.MainPage.Navigation;
 
-			foreach (var page in nav.NavigationStack)
-			{
-				var navigationViewModel = page.BindingContext as NavigationViewModel;
-				navigationViewModel?.OnDisappearing();
-			}
-		}
-	}
+            foreach (var page in nav.NavigationStack)
+            {
+                var navigationViewModel = page.BindingContext as NavigationViewModel;
+                navigationViewModel?.OnDisappearing();
+            }
+        }
+    }
 }

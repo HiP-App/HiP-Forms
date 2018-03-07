@@ -169,7 +169,7 @@
     <Compile Include="Effects\IosProgressBarColorEffect.cs" />
     <Compile Include="CustomRenderers\IosCustomFontLabelRenderer.cs" />
     <Compile Include="Map\UserAnnotation.cs" />
-	<Compile Include="Helpers\Localize.cs" />
+    <Compile Include="Helpers\Localize.cs" />
     <Compile Include="ViewControllers\OrientationViewController.cs" />
     <Compile Include="CustomRenderers\IosHtmlLinkRenderer.cs" />
     <Compile Include="Main.cs" />

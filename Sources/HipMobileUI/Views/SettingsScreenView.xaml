@@ -63,10 +63,10 @@
                                Text="{helpers:Translate SettingsScreenView_AutoSwitchPage_Title}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" />
                         <Label Style="{StaticResource BasicTextStyle}"
                                Text="{helpers:Translate SettingsScreenView_AutoSwitchPage_Text}" Grid.Row="2" Grid.Column="0" />
-                        <Switch IsToggled="{Binding AutoSwitchPage, Mode=TwoWay}" VerticalOptions="Center" Grid.Row="2"
-                                Grid.Column="1">
+                        <Switch IsToggled="{Binding AutoSwitchPage, Mode=TwoWay}" HorizontalOptions="End"
+                                VerticalOptions="Center" Grid.Row="2" Grid.Column="1">
                             <Switch.Effects>
-                                <effects:SwitchColorEffect Color="{StaticResource SecondaryColor}" />
+                                <effects:SwitchColorEffect Color="{StaticResource PrimaryColor}" />
                             </Switch.Effects>
                         </Switch>
                         <BoxView Grid.Row="3" Grid.Column="0" Style="{StaticResource SettingsBoxViewStyle}" />
@@ -78,7 +78,7 @@
                         <Switch IsToggled="{Binding AutoStartAudio, Mode=TwoWay}" HorizontalOptions="End"
                                 VerticalOptions="Center" Grid.Row="5" Grid.Column="1">
                             <Switch.Effects>
-                                <effects:SwitchColorEffect Color="{StaticResource SecondaryColor}" />
+                                <effects:SwitchColorEffect Color="{StaticResource PrimaryColor}" />
                             </Switch.Effects>
                         </Switch>
 
@@ -91,7 +91,7 @@
                         <Switch IsToggled="{Binding RepeatHintAudio, Mode=TwoWay}" HorizontalOptions="End"
                                 VerticalOptions="Center" Grid.Row="7" Grid.Column="1">
                             <Switch.Effects>
-                                <effects:SwitchColorEffect Color="{StaticResource SecondaryColor}" />
+                                <effects:SwitchColorEffect Color="{StaticResource PrimaryColor}" />
                             </Switch.Effects>
                         </Switch>
                         <BoxView Grid.Row="8" Grid.Column="0" Style="{StaticResource SettingsBoxViewStyle}" />
@@ -101,7 +101,7 @@
                         <Switch IsToggled="{Binding RepeatHintAutoPageSwitch, Mode=TwoWay}" HorizontalOptions="End"
                                 VerticalOptions="Center" Grid.Row="9" Grid.Column="1">
                             <Switch.Effects>
-                                <effects:SwitchColorEffect Color="{StaticResource SecondaryColor}" />
+                                <effects:SwitchColorEffect Color="{StaticResource PrimaryColor}" />
                             </Switch.Effects>
                         </Switch>
                         <BoxView Grid.Row="10" Grid.Column="0" Style="{StaticResource SettingsBoxViewStyle}" />
@@ -111,7 +111,7 @@
                         <Switch IsToggled="{Binding RepeatIntro, Mode=TwoWay}" HorizontalOptions="End" VerticalOptions="Center"
                                 Grid.Row="11" Grid.Column="1">
                             <Switch.Effects>
-                                <effects:SwitchColorEffect Color="{StaticResource SecondaryColor}" />
+                                <effects:SwitchColorEffect Color="{StaticResource PrimaryColor}" />
                             </Switch.Effects>
                         </Switch>
 
@@ -124,7 +124,7 @@
                         <Switch IsToggled="{Binding WifiOnly, Mode=TwoWay}" HorizontalOptions="End" VerticalOptions="Center"
                                 Grid.Row="13" Grid.Column="1">
                             <Switch.Effects>
-                                <effects:SwitchColorEffect Color="{StaticResource SecondaryColor}" />
+                                <effects:SwitchColorEffect Color="{StaticResource PrimaryColor}" />
                             </Switch.Effects>
                         </Switch>
                         <BoxView Grid.Row="14" Grid.Column="0" Style="{StaticResource SettingsBoxViewStyle}" />
@@ -134,7 +134,7 @@
                         <Switch IsToggled="{Binding AlwaysDownloadData, Mode=TwoWay}" HorizontalOptions="End"
                                 VerticalOptions="Center" Grid.Row="15" Grid.Column="1">
                             <Switch.Effects>
-                                <effects:SwitchColorEffect Color="{StaticResource SecondaryColor}" />
+                                <effects:SwitchColorEffect Color="{StaticResource PrimaryColor}" />
                             </Switch.Effects>
                         </Switch>
 
