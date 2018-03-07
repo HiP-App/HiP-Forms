@@ -23,7 +23,7 @@
     <ContentPage.Content>
         <views:NotificationExtensionView>
             <views:NotificationExtensionView.ContentTemplate>
-                <ListView ItemsSource="{Binding References}" HasUnevenRows="true">
+                <ListView ItemsSource="{Binding References}" HasUnevenRows="true" BackgroundColor="White">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell Tapped="OnViewCellTapped">

@@ -23,7 +23,7 @@
     <ContentPage.Content>
         <views1:NotificationExtensionView>
             <views1:NotificationExtensionView.ContentTemplate>
-                <StackLayout>
+                <StackLayout BackgroundColor="White">
                     <ScrollView>
                         <StackLayout>
                             <views1:ReferenceLink Text="{Binding FormatedText}" Sources="{Binding SourcesList}"
