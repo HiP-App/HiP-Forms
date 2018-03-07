@@ -350,8 +350,19 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidAsset Include="Assets\fonts\AlteSchwabacher.ttf" />
     <None Include="app.config" />
+    <AndroidAsset Include="Assets\SourceSansPro-Black.ttf" />
+    <AndroidAsset Include="Assets\SourceSansPro-BlackItalic.ttf" />
+    <AndroidAsset Include="Assets\SourceSansPro-Bold.ttf" />
+    <AndroidAsset Include="Assets\SourceSansPro-BoldItalic.ttf" />
+    <AndroidAsset Include="Assets\SourceSansPro-ExtraLight.ttf" />
+    <AndroidAsset Include="Assets\SourceSansPro-ExtraLightItalic.ttf" />
+    <AndroidAsset Include="Assets\SourceSansPro-Italic.ttf" />
+    <AndroidAsset Include="Assets\SourceSansPro-Light.ttf" />
+    <AndroidAsset Include="Assets\SourceSansPro-LightItalic.ttf" />
+    <AndroidAsset Include="Assets\SourceSansPro-Regular.ttf" />
+    <AndroidAsset Include="Assets\SourceSansPro-SemiBold.ttf" />
+    <AndroidAsset Include="Assets\SourceSansPro-SemiBoldItalic.ttf" />
     <None Include="packages.config" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
@@ -546,6 +557,9 @@
     <AndroidResource Include="Resources\drawable-xxxhdpi\ic_gavel.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\ic_home.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\ic_settings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Assets\fonts\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

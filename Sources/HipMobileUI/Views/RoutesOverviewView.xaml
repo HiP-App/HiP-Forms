@@ -29,7 +29,7 @@
     <ContentView.Content>
         <views1:NotificationExtensionView>
             <views1:NotificationExtensionView.ContentTemplate>
-                <Grid x:Name="Grid">
+                <Grid x:Name="Grid" BackgroundColor="White">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
@@ -49,22 +49,22 @@
                                     <StackLayout Orientation="Horizontal" Padding="5,5,5,10"
                                                  d:DataContext="{d:DesignInstance views:RoutesOverviewListItemViewModel}">
                                         <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
-                                            <Label Text="{Binding RouteTitle}" TextColor="Black" FontSize="18" />
-                                            <Label Text="{Binding RouteDescription}" TextColor="Black" />
+                                            <Label Text="{Binding RouteTitle}" TextColor="Black" FontSize="18" Style="{DynamicResource Ssp-SemiBold}"/>
+                                            <Label Text="{Binding RouteDescription}" TextColor="{StaticResource DarkGrayColor}" Style="{DynamicResource Ssp-Regular}"/>
                                             <StackLayout Orientation="Horizontal">
                                                 <Image Source="{Binding Image}" HeightRequest="100" />
                                                 <StackLayout Orientation="Vertical">
                                                     <StackLayout Orientation="Horizontal">
                                                         <Image Source="ic_schedule.png" />
-                                                        <Label Text="{Binding Duration}" VerticalOptions="Center" />
+                                                        <Label Text="{Binding Duration}" VerticalOptions="Center" Style="{DynamicResource Ssp-Italic}"/>
                                                     </StackLayout>
                                                     <StackLayout Orientation="Horizontal">
                                                         <Image Source="ic_directions_walk.png" />
-                                                        <Label Text="{Binding Distance}" VerticalOptions="Center" />
+                                                        <Label Text="{Binding Distance}" VerticalOptions="Center" Style="{DynamicResource Ssp-Italic}"/>
                                                     </StackLayout>
                                                     <StackLayout Orientation="Horizontal">
                                                         <Label Text="{helpers:Translate RoutesOverviewView_Tags}"
-                                                               VerticalOptions="Center" />
+                                                               VerticalOptions="Center" Style="{DynamicResource Ssp-Regular}"/>
                                                         <container1:BindableChildrenStackLayout
                                                             ChildElements="{Binding Tags, Converter= {StaticResource ImageListConverter}}"
                                                             Orientation="Horizontal" />

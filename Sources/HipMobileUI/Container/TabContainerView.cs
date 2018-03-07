@@ -195,7 +195,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Container
         private static void HighlightTabLabel(Label tab)
         {
             var resources = IoCManager.Resolve<ApplicationResourcesProvider>();
-            tab.TextColor = (Color) resources.GetResourceValue("AccentColor");
+            tab.TextColor = (Color) resources.GetResourceValue("PrimaryColor");
         }
 
         /// <summary>

@@ -88,7 +88,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
             SvgImageViewRenderer.Init();
             Xamarin.FormsMaps.Init(this, bundle);
 
-            UserDialogs.Init(() => (Activity) Forms.Context);
+            UserDialogs.Init(() => (Activity)Forms.Context);
 
             LoadApplication(new App());
         }

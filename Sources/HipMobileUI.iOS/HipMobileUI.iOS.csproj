@@ -169,7 +169,7 @@
     <Compile Include="Effects\IosProgressBarColorEffect.cs" />
     <Compile Include="CustomRenderers\IosCustomFontLabelRenderer.cs" />
     <Compile Include="Map\UserAnnotation.cs" />
-	<Compile Include="Helpers\Localize.cs" />
+    <Compile Include="Helpers\Localize.cs" />
     <Compile Include="ViewControllers\OrientationViewController.cs" />
     <Compile Include="CustomRenderers\IosHtmlLinkRenderer.cs" />
     <Compile Include="Main.cs" />
@@ -187,16 +187,45 @@
     <ITunesArtwork Include="iTunesArtwork" />
     <ITunesArtwork Include="iTunesArtwork@2x" />
     <None Include="packages.config" />
-    <BundleResource Include="Resources\fonts\AlteSchwabacher.ttf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </BundleResource>
     <BundleResource Include="Resources\ic_done.png" />
     <BundleResource Include="Resources\ic_done_2x.png" />
     <BundleResource Include="Resources\ic_done_3x.png" />
-    <BundleResource Include="Resources\Contents.json" />
-    <BundleResource Include="Resources\ic_more_vert.png" />
-    <BundleResource Include="Resources\ic_more_vert_2x.png" />
-    <BundleResource Include="Resources\ic_more_vert_3x.png" />
+    <BundleResource Include="Resources\fonts\SourceSansPro-Regular.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </BundleResource>
+    <BundleResource Include="Resources\fonts\SourceSansPro-SemiBold.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </BundleResource>
+    <BundleResource Include="Resources\fonts\SourceSansPro-SemiBoldItalic.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </BundleResource>
+    <BundleResource Include="Resources\fonts\SourceSansPro-Black.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </BundleResource>
+    <BundleResource Include="Resources\fonts\SourceSansPro-BlackItalic.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </BundleResource>
+    <BundleResource Include="Resources\fonts\SourceSansPro-Bold.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </BundleResource>
+    <BundleResource Include="Resources\fonts\SourceSansPro-BoldItalic.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </BundleResource>
+    <BundleResource Include="Resources\fonts\SourceSansPro-ExtraLight.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </BundleResource>
+    <BundleResource Include="Resources\fonts\SourceSansPro-ExtraLightItalic.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </BundleResource>
+    <BundleResource Include="Resources\fonts\SourceSansPro-Italic.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </BundleResource>
+    <BundleResource Include="Resources\fonts\SourceSansPro-Light.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </BundleResource>
+    <BundleResource Include="Resources\fonts\SourceSansPro-LightItalic.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </BundleResource>
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Default-568h%402x.png" />
