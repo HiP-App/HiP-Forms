@@ -72,8 +72,7 @@
                                                 </StackLayout>
                                             </StackLayout>
                                         </StackLayout>
-                                        <Button BorderRadius="2" BackgroundColor="{StaticResource MediumGrayColor}"
-                                                WidthRequest="40" Image="ic_file_download.png"
+                                        <Button WidthRequest="40" Image="ic_file_download.png"
                                                 IsVisible="{Binding IsDownloadPanelVisible}"
                                                 Command="{Binding DownloadCommand}" />
                                     </StackLayout>

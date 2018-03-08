@@ -78,12 +78,10 @@
                                 <Button WidthRequest="200" HeightRequest="40"
                                         Command="{Binding ChangeAppModeCommand}"
                                         Text="{helpers:Translate ProfileView_Button_Change_App_Mode}"
-                                        TextColor="Black"
-                                        BackgroundColor="{StaticResource MediumGrayColor}" />
+                                        TextColor="Black" />
                                 <Button WidthRequest="200" HeightRequest="40"
                                         Command="{Binding Logout}" Text="{helpers:Translate Logout}"
-                                        TextColor="Black"
-                                        BackgroundColor="{StaticResource MediumGrayColor}" />
+                                        TextColor="Black" />
                             </StackLayout>
                         </Grid>
 
