@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+// Copyright (C) 2017 History in Paderborn App - Universität Paderborn
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+-->
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Pages.ExhibitRoutePreviewPage"
+             Title="{Binding ExhibitRouteTitle}"
+             xmlns:helpers="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;assembly=HipMobileUI"
+             xmlns:controls1="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Controls;assembly=HipMobileUI"
+             xmlns:views="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Views;assembly=HipMobileUI">
+    <ContentPage.Content>
+        <views:NotificationExtensionView>
+            <views:NotificationExtensionView.ContentTemplate>
+                <AbsoluteLayout x:Name="AbsoluteLayout">
+                    <Grid x:Name="OuterGrid" AbsoluteLayout.LayoutBounds="1,1,1,1" AbsoluteLayout.LayoutFlags="All" BackgroundColor="White">
+                        <!--The row and column definition is made in code to adjust them to the device orientation-->
+                        <Image x:Name="Image" Source="{Binding Image}" Grid.Row="0" Aspect="AspectFill" />
+                        <Grid x:Name="InnerGrid" Grid.Row="1" Grid.Column="0" RowSpacing="0" ColumnSpacing="0">
+                            <!--The row and column definition is made in code to adjust them to the device orientation-->
+                            <StackLayout Grid.Row="0" Orientation="Vertical" Spacing="3" VerticalOptions="Center">
+                                <Label Text="{Binding Name}" FontSize="Large" FontAttributes="Bold"
+                                           HorizontalTextAlignment="Center" TextColor="{StaticResource PrimaryDarkColor}"/>
+                                <Label Text="{Binding Question}" FontSize="Medium" HorizontalTextAlignment="Center" />
+                            </StackLayout>
+                            <StackLayout Grid.Row="1" Orientation="Horizontal" Spacing="0" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                                <Button  Margin="7,7,3.5,7" Text="{helpers:Translate No}" FontSize="Medium"  Command="{Binding Decline}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" />
+                                <Button  Margin="3.5,7,7,7" Text="{helpers:Translate Yes}" FontSize="Medium"  Command="{Binding Confirm}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" />
+                            </StackLayout>
+                        </Grid>
+                    </Grid>
+                </AbsoluteLayout>
+            </views:NotificationExtensionView.ContentTemplate>
+        </views:NotificationExtensionView>
+    </ContentPage.Content>
+</ContentPage>
