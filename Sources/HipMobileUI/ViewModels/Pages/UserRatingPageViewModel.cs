@@ -422,7 +422,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         #endregion
         public async void ReturnToAppetizerPage()
         {
-            Navigation.PopAsync(false);
+            await Navigation.PopAsync(false);
         }
     }
 }
