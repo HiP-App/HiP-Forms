@@ -34,6 +34,7 @@ using Acr.UserDialogs;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.NotificationPlayer;
+using TwinTechsForms.NControl.Android;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
 {
@@ -84,9 +85,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
             // init forms and third party libraries
             CachedImageRenderer.Init();
             Forms.Init(this, bundle);
+            SvgImageViewRenderer.Init();
             Xamarin.FormsMaps.Init(this, bundle);
 
-            UserDialogs.Init(() => (Activity) Forms.Context);
+            UserDialogs.Init(() => (Activity)Forms.Context);
 
             LoadApplication(new App());
         }

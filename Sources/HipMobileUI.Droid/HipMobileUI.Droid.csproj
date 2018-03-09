@@ -293,6 +293,24 @@
     <Reference Include="SkiaSharp.Views.Forms">
       <HintPath>..\..\packages\SkiaSharp.Views.Forms.1.59.3\lib\MonoAndroid\SkiaSharp.Views.Forms.dll</HintPath>
     </Reference>
+    <Reference Include="NGraphics.Android">
+      <HintPath>..\..\packages\NGraphics.0.4.0\lib\MonoAndroid10\NGraphics.Android.dll</HintPath>
+    </Reference>
+    <Reference Include="NGraphics">
+      <HintPath>..\..\packages\NGraphics.0.4.0\lib\MonoAndroid10\NGraphics.dll</HintPath>
+    </Reference>
+    <Reference Include="NControl">
+      <HintPath>..\..\packages\NControl.0.8.6\lib\MonoAndroid10\NControl.dll</HintPath>
+    </Reference>
+    <Reference Include="NControl.Droid">
+      <HintPath>..\..\packages\NControl.0.8.6\lib\MonoAndroid10\NControl.Droid.dll</HintPath>
+    </Reference>
+    <Reference Include="TwinTechsForms.NControl.SvgImageView.Android">
+      <HintPath>..\..\packages\TwinTechsForms.NControl.SvgImageView.0.0.3\lib\MonoAndroid10\TwinTechsForms.NControl.SvgImageView.Android.dll</HintPath>
+    </Reference>
+    <Reference Include="TwinTechsForms.NControl.SvgImageView">
+      <HintPath>..\..\packages\TwinTechsForms.NControl.SvgImageView.0.0.3\lib\MonoAndroid10\TwinTechsForms.NControl.SvgImageView.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\..\HiP-Mobile-Internal\Keys\AndroidKeyProvider.cs">
@@ -328,11 +346,23 @@
     <Compile Include="Map\SetMarker.cs" />
     <Compile Include="Map\ViaPointInfoWindow.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
+	<Compile Include="Helpers\Localize.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidAsset Include="Assets\fonts\AlteSchwabacher.ttf" />
     <None Include="app.config" />
+    <AndroidAsset Include="Assets\SourceSansPro-Black.ttf" />
+    <AndroidAsset Include="Assets\SourceSansPro-BlackItalic.ttf" />
+    <AndroidAsset Include="Assets\SourceSansPro-Bold.ttf" />
+    <AndroidAsset Include="Assets\SourceSansPro-BoldItalic.ttf" />
+    <AndroidAsset Include="Assets\SourceSansPro-ExtraLight.ttf" />
+    <AndroidAsset Include="Assets\SourceSansPro-ExtraLightItalic.ttf" />
+    <AndroidAsset Include="Assets\SourceSansPro-Italic.ttf" />
+    <AndroidAsset Include="Assets\SourceSansPro-Light.ttf" />
+    <AndroidAsset Include="Assets\SourceSansPro-LightItalic.ttf" />
+    <AndroidAsset Include="Assets\SourceSansPro-Regular.ttf" />
+    <AndroidAsset Include="Assets\SourceSansPro-SemiBold.ttf" />
+    <AndroidAsset Include="Assets\SourceSansPro-SemiBoldItalic.ttf" />
     <None Include="packages.config" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
@@ -344,6 +374,7 @@
     </AndroidResource>
     <AndroidResource Include="Resources\drawable-hdpi\ic_done.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\ic_more_vert.png" />
+    <AndroidResource Include="Resources\drawable\info_bubble.xml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />
@@ -526,6 +557,9 @@
     <AndroidResource Include="Resources\drawable-xxxhdpi\ic_gavel.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\ic_home.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\ic_settings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Assets\fonts\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

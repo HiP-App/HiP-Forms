@@ -39,13 +39,13 @@
                                         <ColumnDefinition Width="0.5*" />
                                     </Grid.ColumnDefinitions>
                                     <Label Text="{Binding Position}" FontSize="Large" FontAttributes="Bold"
-                                           VerticalOptions="Center" Grid.Row="0" Grid.Column="0" />
+                                           VerticalOptions="Center" Grid.Row="0" Grid.Column="0" Style="{DynamicResource Ssp-Regular}"/>
                                     <Label Text="{Binding Points}" FontSize="Medium" Opacity="0.5" VerticalOptions="Center"
-                                           Grid.Row="0" Grid.Column="1" />
+                                           Grid.Row="0" Grid.Column="1" Style="{DynamicResource Ssp-Regular}"/>
                                     <Image Source="hiphop_transparent.png" Aspect="AspectFit" VerticalOptions="Center"
                                            Grid.Row="0" Grid.Column="2" />
                                     <Label Text="{Binding Username}" FontSize="Large" VerticalOptions="Center" Grid.Row="0"
-                                           Grid.Column="3" />
+                                           Grid.Column="3" Style="{DynamicResource Ssp-Regular}"/>
                                 </Grid>
                             </ViewCell>
                         </DataTemplate>
