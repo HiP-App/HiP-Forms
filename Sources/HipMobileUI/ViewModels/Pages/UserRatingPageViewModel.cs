@@ -189,19 +189,19 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         private void SetRatingStars(int rating)
         {
             var ratingStar1Img = rating >= 1 ? ImgStarFilled : ImgStarEmpty;
-            if (RatingStar1 == null || !((FileImageSource) RatingStar1).File.Equals(ratingStar1Img))
+            if (RatingStar1 == null || !((FileImageSource)RatingStar1).File.Equals(ratingStar1Img))
                 RatingStar1 = ratingStar1Img;
             var ratingStar2Img = rating >= 2 ? ImgStarFilled : ImgStarEmpty;
-            if (RatingStar2 == null || !((FileImageSource) RatingStar2).File.Equals(ratingStar2Img))
+            if (RatingStar2 == null || !((FileImageSource)RatingStar2).File.Equals(ratingStar2Img))
                 RatingStar2 = ratingStar2Img;
             var ratingStar3Img = rating >= 3 ? ImgStarFilled : ImgStarEmpty;
-            if (RatingStar3 == null || !((FileImageSource) RatingStar3).File.Equals(ratingStar3Img))
+            if (RatingStar3 == null || !((FileImageSource)RatingStar3).File.Equals(ratingStar3Img))
                 RatingStar3 = ratingStar3Img;
             var ratingStar4Img = rating >= 4 ? ImgStarFilled : ImgStarEmpty;
-            if (RatingStar4 == null || !((FileImageSource) RatingStar4).File.Equals(ratingStar4Img))
+            if (RatingStar4 == null || !((FileImageSource)RatingStar4).File.Equals(ratingStar4Img))
                 RatingStar4 = ratingStar4Img;
             var ratingStar5Img = rating >= 5 ? ImgStarFilled : ImgStarEmpty;
-            if (RatingStar5 == null || !((FileImageSource) RatingStar5).File.Equals(ratingStar5Img))
+            if (RatingStar5 == null || !((FileImageSource)RatingStar5).File.Equals(ratingStar5Img))
                 RatingStar5 = ratingStar5Img;
             lastRating = rating;
         }
@@ -420,5 +420,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             set { SetProperty(ref ratingCount, value); }
         }
         #endregion
+        public async void ReturnToAppetizerPage()
+        {
+            await Navigation.PopAsync(false);
+        }
     }
 }
