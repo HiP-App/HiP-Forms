@@ -15,6 +15,7 @@
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Windows.Input;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelConverters;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
@@ -59,8 +60,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             Duration = string.Format(Strings.RouteDetailsPageViewModel_Duration, route.Duration / 60);
             ReadOutCaption = Strings.RouteDetailsPage_PlayAudio;
             Tags = new ObservableCollection<RouteTag>(route.RouteTags);
-            var data = route.Image.GetDataBlocking();
-            Image = ImageSource.FromStream(() => new MemoryStream(data));
+            SetRouteImage(route);
             StartRouteCommand = new Command(StartRoute);
             StartDescriptionPlaybackCommand = new Command(StartDescriptionPlayback);
 
@@ -74,6 +74,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             audioPlayer.CurrentAudio = route.Audio;
             audioPlayer.AudioTitle = route.Title;
             audioPlayer.IsPlayingChanged += AudioPlayerOnIsPlayingChanged;
+        }
+
+        private async void SetRouteImage(Route route)
+        {
+            var imageData = await route.Image.GetDataAsync();
+            Image = imageData != null ? ImageSource.FromStream(() => new MemoryStream(imageData)) : ImageSource.FromStream(() => new MemoryStream(BackupData.BackupImageData));
         }
 
         private void AudioPlayerOnIsPlayingChanged(bool newvalue)
