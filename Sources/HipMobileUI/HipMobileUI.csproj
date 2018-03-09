@@ -187,12 +187,10 @@
     <Compile Include="ViewModels\Pages\MainPageViewModel.cs" />
     <Compile Include="ViewModels\Pages\RouteDetailsPageViewModel.cs" />
     <Compile Include="ViewModels\Views\DummyViewModel.cs" />
-    <Compile Include="ViewModels\Pages\ExhibitPreviewPageViewModel.cs" />
     <Compile Include="ViewModels\Pages\ExhibitRouteDownloadPageViewModel.cs" />
     <Compile Include="ViewModels\Views\ExhibitsOverviewListItemViewModel.cs" />
     <Compile Include="ViewModels\Views\ExhibitsOverviewViewModel.cs" />
     <Compile Include="ViewModels\Views\LicenseScreenViewModel.cs" />
-    <Compile Include="ViewModels\Pages\RoutePreviewPageViewModel.cs" />
     <Compile Include="Views\LoginScreenView.xaml.cs">
       <DependentUpon>LoginScreenView.xaml</DependentUpon>
     </Compile>
@@ -200,9 +198,6 @@
       <DependentUpon>AudioToolbarView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\Views\SettingsScreenViewModel.cs" />
-    <Compile Include="Pages\ExhibitPreviewPage.xaml.cs">
-      <DependentUpon>ExhibitPreviewPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Pages\ExhibitRouteDownloadPage.xaml.cs">
       <DependentUpon>ExhibitRouteDownloadPage.xaml</DependentUpon>
     </Compile>
@@ -232,9 +227,6 @@
       <DependentUpon>ExhibitsOverviewView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ReferenceLink.cs" />
-    <Compile Include="Pages\RoutePreviewPage.xaml.cs">
-      <DependentUpon>RoutePreviewPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\RoutesOverviewView.xaml.cs">
       <DependentUpon>RoutesOverviewView.xaml</DependentUpon>
     </Compile>
@@ -550,18 +542,6 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\ExhibitDetails\TextView.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Pages\ExhibitPreviewPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Pages\RoutePreviewPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
