@@ -21,6 +21,7 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.User;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.UserManagement;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using Acr.UserDialogs;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.AuthenticationApiAccess;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 {
@@ -36,11 +37,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             mainPageViewModel = mainPageVm;
 
             LoginCommand = new Command(OnLoginClicked);
+            DebugLoginCommand = new Command(OnDebugLoginClicked);
             RegisterCommand = new Command(OnRegisterClicked);
             ForgotPasswordCommand = new Command(OnForgotPasswordClicked);
         }
 
         public ICommand LoginCommand { get; }
+        public ICommand DebugLoginCommand { get; }
         public ICommand RegisterCommand { get; }
         public ICommand ForgotPasswordCommand { get; }
 
@@ -62,6 +65,17 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             {
                 PerformLogin();
             }
+        }
+
+        private void OnDebugLoginClicked()
+        {
+#if DEBUG
+            Email = Constants.DebugUsername;
+            Password = Constants.DebugPassword;
+            PerformLogin();
+#else
+            throw new Exception("This button must not be visible in non-debug mode!");
+#endif
         }
 
         private void OnRegisterClicked()
