@@ -74,7 +74,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             Password = Constants.DebugPassword;
             PerformLogin();
 #else
-            throw new Exception("This button must not be visible in non-debug mode!");
+            throw new System.Exception("This button must not be visible in non-debug mode!");
 #endif
         }
 
