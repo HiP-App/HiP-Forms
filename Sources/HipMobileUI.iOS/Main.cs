@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System;
 using UIKit;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Ios
@@ -23,7 +24,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios
         {
             // if you want to use a different Application Delegate class from "AppDelegate"
             // you can specify it here.
-            UIApplication.Main(args, null, "AppDelegate");
+            try
+            {
+                UIApplication.Main(args, null, "AppDelegate");
+            }
+            catch (Exception ex)
+            {
+                // I put a breakpoint here, but the execution never hits this point...
+                Console.WriteLine(ex.Message);
+            }
         }
     }
 }

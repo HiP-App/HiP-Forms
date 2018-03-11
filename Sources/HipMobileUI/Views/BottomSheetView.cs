@@ -33,16 +33,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
         /// </summary>
         private readonly double bottomSheetExtensionFraction = 0.35;
 
-        /// <summary>
-        /// The size of the unextended bottom sheet
-        /// </summary>
-        private readonly double bottomSheetSize = 64;
-
-        /// <summary>
-        /// The distance between the right displayborder and the button
-        /// </summary>
-        private readonly double buttonRightPadding = 15;
-
         private BottomSheetState bottomSheetState = BottomSheetState.Collapsed;
         private FloatingActionButton Button { get; set; }
         private bool initLayout = true;
@@ -67,21 +57,21 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
         {
             if (initLayout)
             {
-                var absoluteLayout = new AbsoluteLayout();
+                AbsoluteLayout absoluteLayout = new AbsoluteLayout();
                 absoluteLayout.Children.Add(mainContentView, new Rectangle(0, 0, width, height));
-                absoluteLayout.Children.Add(BottomSheetContentView, new Rectangle(0, height - bottomSheetSize, width, bottomSheetSize));
+                absoluteLayout.Children.Add(BottomSheetContentView, new Rectangle(0, height - 64, width, 64));
 
-                var fabSize = Device.RuntimePlatform == Device.iOS ? FloatingActionButton.IosSize : IoCManager.Resolve<IFabSizeCalculator>().CalculateFabSize();
-                if (IoCManager.Resolve<IFabSizeCalculator>().GetOsVersionNumber() >= 21)
+                double fabSize;
+                if (Device.RuntimePlatform == Device.iOS)
                 {
-                    absoluteLayout.Children.Add(Button, new Point(width - buttonRightPadding - fabSize, height - bottomSheetSize - fabSize / 2));
+                    fabSize = FloatingActionButton.IosSize;
                 }
                 else
                 {
-                    // Don't need to use concrete point coordinates, because the button is rearranged in the "SetButtonPosition" method
-                    absoluteLayout.Children.Add(Button, new Point(0, 0));
-                    SetButtonPosition(width);
+                    fabSize = IoCManager.Resolve<IFabSizeCalculator>().CalculateFabSize();
                 }
+                absoluteLayout.Children.Add(Button, new Point(width * 0.9 - fabSize, height - 64 - fabSize / 2));
+
                 Content = absoluteLayout;
 
                 // restore the state when the layout changes
@@ -89,25 +79,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
                 initLayout = false;
             }
             base.OnSizeAllocated(width, height);
-        }
-
-        /// <summary>
-        /// Sets the position of the button afterwards for all android versions below Lollipop, where the calculated fabSize is not correct.
-        /// This repositioning cannot be done in the OnSizeAllocated method because the button have to be 
-        /// added first to get the right button width and height.
-        /// </summary>
-        private void SetButtonPosition(double width)
-        {
-            Button.SizeChanged += (sender, e) =>
-            {
-                var buttonRect = new Rectangle
-                {
-                    Top = Height - bottomSheetSize - Button.Height / 2,
-                    Size = new Size(Button.Width, Button.Height),
-                    X = width - buttonRightPadding - Button.Width
-                };
-                Button.LayoutTo(buttonRect, 0);
-            };
         }
 
         protected override void OnBindingContextChanged()
@@ -158,13 +129,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
         /// <returns>The task.</returns>
         private async Task ExtendBottomSheet()
         {
-            var bottomSheetRect = new Rectangle
+            Rectangle bottomSheetRect = new Rectangle
             {
                 Left = 0,
                 Top = Height * (1 - bottomSheetExtensionFraction),
                 Size = new Size(Width, Height * bottomSheetExtensionFraction)
             };
-            var buttonRect = new Rectangle
+            Rectangle buttonRect = new Rectangle
             {
                 Top = bottomSheetRect.Top - Button.Height / 2,
                 Size = new Size(Button.Width, Button.Height),
@@ -180,13 +151,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
         /// <returns>The task.</returns>
         private async Task CollapseBottomSheet()
         {
-            var bottomSheetRect = new Rectangle
+            Rectangle bottomSheetRect = new Rectangle
             {
                 Left = 0,
-                Top = Height - bottomSheetSize,
-                Size = new Size(Width, bottomSheetSize)
+                Top = Height - 64,
+                Size = new Size(Width, 64)
             };
-            var buttonRect = new Rectangle
+            Rectangle buttonRect = new Rectangle
             {
                 Top = bottomSheetRect.Top - Button.Height / 2,
                 Size = new Size(Button.Width, Button.Height),
