@@ -16,7 +16,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
-using CoreGraphics;
 using CoreLocation;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using MapKit;
@@ -105,7 +104,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Map
                 Control.SetRegion(backupRegion, true);
             }
             else
+            {
                 backupRegion = Control.Region;
+            }
         }
 
         /// <summary>
@@ -114,14 +115,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Map
         /// <param name="location">The location to center on.</param>
         private void CenterLocation(GeoLocation location)
         {
-            if (location != null)
-            {
-                Control.CenterCoordinate = new CLLocationCoordinate2D(location.Latitude, location.Longitude);
-            }
-            else
-            {
-                Control.CenterCoordinate = new CLLocationCoordinate2D(AppSharedData.PaderbornCenter.Latitude, AppSharedData.PaderbornCenter.Longitude);
-            }
+            Control.CenterCoordinate = location != null
+                ? new CLLocationCoordinate2D(location.Latitude, location.Longitude)
+                : new CLLocationCoordinate2D(AppSharedData.PaderbornCenter.Latitude, AppSharedData.PaderbornCenter.Longitude);
         }
 
         /// <summary>
@@ -269,6 +265,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Map
         {
             MKAnnotationView annotationView;
             MKAnnotationView dequedView;
+
             if (annotation is UserAnnotation) //(annotation is MKUserLocation) doesn't work
             {
                 const string userAnnotationReusableId = "UserAnnotation";
@@ -277,11 +274,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Map
                 {
                     return dequedView;
                 }
-                else
-                {
-                    annotationView = new UserAnnotationView(annotation, userAnnotationReusableId);
-                    return annotationView;
-                }
+
+                annotationView = new UserAnnotationView(annotation, userAnnotationReusableId);
+                return annotationView;
             }
 
             const string annotationReusableId = "ExhibitAnnotation";
@@ -307,22 +302,21 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Map
         /// <returns>The corresponding overlay renderer.</returns>
         private MKOverlayRenderer OverlayRenderer(MKMapView mapView, IMKOverlay overlay)
         {
-            var tileOverlay = ObjCRuntime.Runtime.GetNSObject(overlay.Handle) as MKTileOverlay;
-            if (tileOverlay != null)
+            if (ObjCRuntime.Runtime.GetNSObject(overlay.Handle) is MKTileOverlay tileOverlay)
             {
                 var renderer = new MKTileOverlayRenderer(tileOverlay);
                 return renderer;
             }
 
-            if (overlay is MKPolyline)
+            if (overlay is MKPolyline polyline)
             {
                 var resources = IoCManager.Resolve<ApplicationResourcesProvider>();
 
                 MKPolylineRenderer polylineRenderer;
-                if (overlay.Equals(currentSectionPolyLine))
+                if (polyline.Equals(currentSectionPolyLine))
                 {
-                    UIColor color = ((Color)resources.GetResourceValue("AccentColor")).ToUIColor();
-                    polylineRenderer = new MKPolylineRenderer((MKPolyline)overlay)
+                    var color = ((Color)resources.GetResourceValue("SecondaryColor")).ToUIColor();
+                    polylineRenderer = new MKPolylineRenderer(polyline)
                     {
                         FillColor = color,
                         StrokeColor = color,
@@ -331,8 +325,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Map
                 }
                 else
                 {
-                    UIColor color = ((Color)resources.GetResourceValue("PrimaryColor")).ToUIColor();
-                    polylineRenderer = new MKPolylineRenderer((MKPolyline)overlay)
+                    var color = ((Color)resources.GetResourceValue("PrimaryColor")).ToUIColor();
+                    polylineRenderer = new MKPolylineRenderer(polyline)
                     {
                         FillColor = color,
                         StrokeColor = color,
@@ -352,11 +346,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Map
         private void OnCalloutAccessoryControlTapped(object sender, MKMapViewAccessoryTappedEventArgs e)
         {
             var exhibitAnnotationView = e.View as ExhibitAnnotationView;
-            var annotation = exhibitAnnotationView?.Annotation as ExhibitAnnotation;
-            if (annotation != null)
+            if (exhibitAnnotationView?.Annotation is ExhibitAnnotation annotation)
             {
                 var exhibitId = annotation.ExhibitId;
-                IoCManager.Resolve<INavigationService>().PushAsync(new ExhibitDetailsViewModel(exhibitId));
+                IoCManager.Resolve<INavigationService>().PushAsync(new AppetizerPageViewModel(exhibitId));
             }
         }
 
@@ -371,8 +364,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Map
             {
                 foreach (var exhibit in exhibitSet)
                 {
-                    var annotation = new ExhibitAnnotation(exhibit.Location.Latitude, exhibit.Location.Longitude, exhibit.Id,
-                                                           exhibit.Name);
+                    var annotation = new ExhibitAnnotation(
+                        exhibit.Location.Latitude, exhibit.Location.Longitude, exhibit);
                     Control.AddAnnotation(annotation);
                 }
             }
@@ -383,8 +376,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Map
                 {
                     if (exhibitSet == null || !exhibitSet.Contains(routeWaypoint.Exhibit))
                     {
-                        var annotation = new ExhibitAnnotation(routeWaypoint.Location.Latitude, routeWaypoint.Location.Longitude, routeWaypoint.Exhibit.Id,
-                                                               routeWaypoint.Exhibit.Name);
+                        var annotation = new ExhibitAnnotation(
+                            routeWaypoint.Location.Latitude, routeWaypoint.Location.Longitude, routeWaypoint.Exhibit);
                         Control.AddAnnotation(annotation);
                     }
                 }
@@ -398,10 +391,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Map
 
         public double GetZoomLevel()
         {
-            double longitudeDelta = Control.Region.Span.LongitudeDelta;
-            float mapWidthInPixels = (float)Control.Bounds.Size.Width;
-            double zoomScale = longitudeDelta * 85445659.44705395 * Math.PI / (180.0 * mapWidthInPixels);
-            double zoomer = 20 - Math.Log(zoomScale);
+            var longitudeDelta = Control.Region.Span.LongitudeDelta;
+            var mapWidthInPixels = (float)Control.Bounds.Size.Width;
+            var zoomScale = longitudeDelta * 85445659.44705395 * Math.PI / (180.0 * mapWidthInPixels);
+            var zoomer = 20 - Math.Log(zoomScale);
             if (zoomer < 0)
                 zoomer = 0;
             //  zoomer = round(zoomer);

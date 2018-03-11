@@ -19,7 +19,7 @@
              xmlns:helpers="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;assembly=HipMobileUI"
              xmlns:customTriggers="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.CustomTriggers;assembly=HipMobileUI">
     <ContentView.Content>
-        <StackLayout Orientation="Vertical" HorizontalOptions="Fill" VerticalOptions="Fill" Spacing="0">
+        <StackLayout Orientation="Vertical" HorizontalOptions="Fill" VerticalOptions="Fill" Spacing="0" BackgroundColor="White">
             <Label Text="{helpers:Translate AchievementsScreenView_PleaseLogin}"
                    HorizontalOptions="FillAndExpand"
                    VerticalOptions="FillAndExpand"
@@ -30,7 +30,8 @@
                    LineBreakMode="WordWrap"
                    FontAttributes="Bold"
                    FontSize="20"
-                   TextColor="{StaticResource PrimaryColor}" />
+                   TextColor="{StaticResource PrimaryColor}" 
+                   Style="{DynamicResource Ssp-Regular}"/>
             <StackLayout IsVisible="{Binding IsLoggedIn}" Orientation="Vertical" HorizontalOptions="Fill"
                          VerticalOptions="Fill" Spacing="0">
                 <ListView SeparatorVisibility="None" HasUnevenRows="True"
@@ -51,10 +52,10 @@
                                                  VerticalOptions="Fill" Spacing="0" Margin="3,0">
                                         <Label Text="{Binding Achievement.Title}" FontSize="18"
                                                LineBreakMode="WordWrap"
-                                               FontAttributes="Bold" TextColor="{StaticResource PrimaryColor}" />
+                                               FontAttributes="Bold" TextColor="{StaticResource PrimaryDarkColor}" Style="{DynamicResource Ssp-Regular}"/>
                                         <Label Text="{Binding Achievement.Description}" FontSize="16"
                                                LineBreakMode="WordWrap"
-                                               TextColor="{StaticResource DarkGrayColor}" />
+                                               TextColor="Black" Style="{DynamicResource Ssp-Italic}"/>
                                     </StackLayout>
                                     <Image Source="ic_done.png" IsVisible="{Binding Achievement.IsUnlocked}"
                                            Opacity="1" Aspect="AspectFit" />
@@ -69,10 +70,11 @@
             </StackLayout>
             <ContentView HorizontalOptions="Fill" VerticalOptions="FillAndExpand" />
             <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="End" Orientation="Horizontal"
-                         BackgroundColor="{StaticResource PrimaryColor}" Padding="20">
-                <Label FontSize="24" Text="{Binding Score}" FontAttributes="Bold"
+                         BackgroundColor="{StaticResource PrimaryColor}" IsVisible="{Binding IsLoggedIn}"
+					   	 Padding="20">
+                <Label FontSize="24" Text="{Binding Score}" FontAttributes="Bold"					  	
                        HorizontalTextAlignment="Center" VerticalOptions="Center"
-                       HorizontalOptions="CenterAndExpand" TextColor="White" />
+                       HorizontalOptions="CenterAndExpand" TextColor="White" Style="{DynamicResource Ssp-Light}"/>
             </StackLayout>
         </StackLayout>
     </ContentView.Content>

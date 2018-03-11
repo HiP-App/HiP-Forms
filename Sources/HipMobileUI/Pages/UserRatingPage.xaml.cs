@@ -21,6 +21,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
 {
     public partial class UserRatingPage : IViewFor<UserRatingPageViewModel>
     {
+        private UserRatingPageViewModel ViewModel => ((UserRatingPageViewModel)BindingContext);
         private DeviceOrientation orientation;
 
         public UserRatingPage()
@@ -74,5 +75,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
                 InnerGrid2.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.3, GridUnitType.Star) });
             }
         }
+        protected override bool OnBackButtonPressed()
+        {
+            ViewModel.ReturnToAppetizerPage();
+            return true;
+        }
+
     }
 }

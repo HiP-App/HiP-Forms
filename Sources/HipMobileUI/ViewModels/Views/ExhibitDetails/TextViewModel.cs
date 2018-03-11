@@ -28,7 +28,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views.ExhibitDetail
         public TextViewModel(TextPage page, Action toggleButtonVisibility) : base(toggleButtonVisibility)
         {
             Text = page.Text;
-            FontFamily = page.FontFamily;
+            // Legacy code: specific font families for text pages are no longer used
+            // FontFamily = page.FontFamily;
             Headline = page.Title;
             Description = page.Description;
             BottomSheetVisible = !(string.IsNullOrEmpty(Headline) && string.IsNullOrEmpty(Description));

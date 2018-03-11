@@ -22,7 +22,6 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
-using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Location
 {
@@ -66,11 +65,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Location
                 {
                     if (now.Subtract(r.LastTimeDismissed.Value) <= TimeSpan.FromMinutes(30))
                     {
-                        continue; // This route was dismissed in the last 30 minutes
+                        // This route was dismissed in the last 30 minutes; don't show it again yet
+                        continue;
                     }
                 }
 
-                await IoCManager.Resolve<INavigationService>().PushModalAsync(new RoutePreviewViewModel(r, this));
+                await IoCManager.Resolve<INavigationService>().PushModalAsync(new RoutePreviewPageViewModel(r, this));
                 popupActive = true;
 
                 using (DbManager.StartTransaction())

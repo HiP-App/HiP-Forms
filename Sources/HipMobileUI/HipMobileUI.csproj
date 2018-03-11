@@ -61,6 +61,7 @@
     <Compile Include="Container\TabContainerView.cs" />
     <Compile Include="Contracts\IStatusBarController.cs" />
     <Compile Include="Controls\ZeroPaddingButton.cs" />
+	<Compile Include="Location\ILocalize.cs" />
     <Compile Include="NotificationPlayer\INotificationPlayer.cs" />
     <Compile Include="Controls\CardView.cs" />
     <Compile Include="Controls\CarouselIndicators.cs" />
@@ -94,6 +95,11 @@
     </Compile>
     <Compile Include="Pages\UserRatingPage.xaml.cs">
       <DependentUpon>UserRatingPage.xaml</DependentUpon>
+    </Compile>
+	<Compile Include="Resources\Strings.de.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Strings.de.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\Strings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -164,7 +170,7 @@
     <Compile Include="Properties\Annotations3.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\NavigationViewModel.cs" />
-    <Compile Include="ViewModels\Pages\ExhibitDetailsViewModel.cs" />
+    <Compile Include="ViewModels\Pages\ExhibitDetailsPageViewModel.cs" />
     <Compile Include="ViewModels\Pages\AudioTranscript\AudioTranscriptViewModel.cs" />
     <Compile Include="ViewModels\Pages\AudioTranscript\SourcesViewModel.cs" />
     <Compile Include="ViewModels\Pages\AudioTranscript\SubtitleViewModel.cs" />
@@ -180,12 +186,12 @@
     <Compile Include="ViewModels\Pages\MainPageViewModel.cs" />
     <Compile Include="ViewModels\Pages\RouteDetailsPageViewModel.cs" />
     <Compile Include="ViewModels\Views\DummyViewModel.cs" />
-    <Compile Include="ViewModels\Views\ExhibitPreviewViewModel.cs" />
+    <Compile Include="ViewModels\Pages\ExhibitPreviewPageViewModel.cs" />
     <Compile Include="ViewModels\Pages\ExhibitRouteDownloadPageViewModel.cs" />
     <Compile Include="ViewModels\Views\ExhibitsOverviewListItemViewModel.cs" />
     <Compile Include="ViewModels\Views\ExhibitsOverviewViewModel.cs" />
     <Compile Include="ViewModels\Views\LicenseScreenViewModel.cs" />
-    <Compile Include="ViewModels\Views\RoutePreviewViewModel.cs" />
+    <Compile Include="ViewModels\Pages\RoutePreviewPageViewModel.cs" />
     <Compile Include="Views\LoginScreenView.xaml.cs">
       <DependentUpon>LoginScreenView.xaml</DependentUpon>
     </Compile>
@@ -193,8 +199,8 @@
       <DependentUpon>AudioToolbarView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\Views\SettingsScreenViewModel.cs" />
-    <Compile Include="Views\ExhibitPreviewView.xaml.cs">
-      <DependentUpon>ExhibitPreviewView.xaml</DependentUpon>
+    <Compile Include="Pages\ExhibitPreviewPage.xaml.cs">
+      <DependentUpon>ExhibitPreviewPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\ExhibitRouteDownloadPage.xaml.cs">
       <DependentUpon>ExhibitRouteDownloadPage.xaml</DependentUpon>
@@ -225,8 +231,8 @@
       <DependentUpon>ExhibitsOverviewView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ReferenceLink.cs" />
-    <Compile Include="Views\RoutePreviewView.xaml.cs">
-      <DependentUpon>RoutePreviewView.xaml</DependentUpon>
+    <Compile Include="Pages\RoutePreviewPage.xaml.cs">
+      <DependentUpon>RoutePreviewPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\RoutesOverviewView.xaml.cs">
       <DependentUpon>RoutesOverviewView.xaml</DependentUpon>
@@ -251,16 +257,25 @@
     <Compile Include="Pages\AchievementsDetailsRoutePage.xaml.cs">
       <DependentUpon>AchievementsDetailsRoutePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\Views\AchievementsDetailsRouteViewModel.cs" />
+    <Compile Include="ViewModels\Pages\AchievementsDetailsRoutePageViewModel.cs" />
     <Compile Include="Pages\AchievementsDetailsExhibitPage.xaml.cs">
       <DependentUpon>AchievementsDetailsExhibitPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\Views\AchievementsDetailsExhibitViewModel.cs" />
+    <Compile Include="ViewModels\Pages\AchievementsDetailsExhibitPageViewModel.cs" />
+    <Compile Include="Pages\CharacterDetailsPage.xaml.cs">
+      <DependentUpon>CharacterDetailsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\Pages\CharacterDetailsPageViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="App.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+	<EmbeddedResource Include="Resources\Strings.de.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.de.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\RegisterScreenView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
@@ -279,6 +294,10 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\AchievementsDetailsExhibitPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\CharacterDetailsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -347,14 +366,14 @@
       <HintPath>..\..\packages\Xam.Plugins.Settings.2.5.1.0\lib\portable-net45+wp80+win8+wpa81\Plugin.Settings.Abstractions.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Realm, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Realm.Database.1.5.0\lib\portable-net45+sl5+wp8+wpa81+win8+monoandroid+Xamarin.iOS10+monotouch+Xamarin.Mac\Realm.dll</HintPath>
+    <Reference Include="Realm, Version=1.6.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Realm.Database.1.6.0\lib\portable-net45+sl5+wp8+wpa81+win8+monoandroid+Xamarin.iOS10+monotouch+Xamarin.Mac\Realm.dll</HintPath>
     </Reference>
-    <Reference Include="Realm.DataBinding, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Realm.DataBinding.1.1.0\lib\netstandard1.0\Realm.DataBinding.dll</HintPath>
+    <Reference Include="Realm.DataBinding, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Realm.DataBinding.1.2.0\lib\netstandard1.0\Realm.DataBinding.dll</HintPath>
     </Reference>
-    <Reference Include="Realm.Sync, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Realm.1.5.0\lib\portable-net45+sl5+wp8+wpa81+win8+monoandroid+Xamarin.iOS10+monotouch+Xamarin.Mac\Realm.Sync.dll</HintPath>
+    <Reference Include="Realm.Sync, Version=1.6.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Realm.1.6.0\lib\portable-net45+sl5+wp8+wpa81+win8+monoandroid+Xamarin.iOS10+monotouch+Xamarin.Mac\Realm.Sync.dll</HintPath>
     </Reference>
     <Reference Include="Remotion.Linq, Version=2.1.0.0, Culture=neutral, PublicKeyToken=fee00910d6e5f53b, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Remotion.Linq.2.1.1\lib\portable-net45+win+wpa81+wp80\Remotion.Linq.dll</HintPath>
@@ -414,6 +433,12 @@
     </Reference>
     <Reference Include="zxing.portable, Version=0.16.2.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
       <HintPath>..\..\packages\ZXing.Net.0.16.2\lib\portable-win+net40+sl4+sl5+wp7+wp71+wp8\zxing.portable.dll</HintPath>
+    </Reference>
+    <Reference Include="SkiaSharp">
+      <HintPath>..\..\packages\SkiaSharp.1.59.3\lib\portable-net45+win8+wpa81+wp8\SkiaSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="SkiaSharp.Views.Forms">
+      <HintPath>..\..\packages\SkiaSharp.Views.Forms.1.59.3\lib\portable-net45+win8+wpa81+wp8\SkiaSharp.Views.Forms.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -529,13 +554,13 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\ExhibitPreviewView.xaml">
+    <EmbeddedResource Include="Pages\ExhibitPreviewPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\RoutePreviewView.xaml">
+    <EmbeddedResource Include="Pages\RoutePreviewPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -600,12 +625,12 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\..\packages\Fody.2.0.6\build\portable-net+sl+win+wpa+wp\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Fody.2.0.6\build\portable-net+sl+win+wpa+wp\Fody.targets'))" />
-    <Error Condition="!Exists('..\..\packages\Realm.Database.1.5.0\build\Realm.Database.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Realm.Database.1.5.0\build\Realm.Database.targets'))" />
-    <Error Condition="!Exists('..\..\packages\Realm.1.5.0\build\Realm.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Realm.1.5.0\build\Realm.targets'))" />
     <Error Condition="!Exists('..\..\packages\Xamarin.Forms.2.4.0.280\build\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Xamarin.Forms.2.4.0.280\build\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.targets'))" />
+    <Error Condition="!Exists('..\..\packages\Realm.Database.1.6.0\build\Realm.Database.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Realm.Database.1.6.0\build\Realm.Database.targets'))" />
+    <Error Condition="!Exists('..\..\packages\Realm.1.6.0\build\Realm.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Realm.1.6.0\build\Realm.targets'))" />
   </Target>
   <Import Project="..\..\packages\Fody.2.0.6\build\portable-net+sl+win+wpa+wp\Fody.targets" Condition="Exists('..\..\packages\Fody.2.0.6\build\portable-net+sl+win+wpa+wp\Fody.targets')" />
-  <Import Project="..\..\packages\Realm.Database.1.5.0\build\Realm.Database.targets" Condition="Exists('..\..\packages\Realm.Database.1.5.0\build\Realm.Database.targets')" />
-  <Import Project="..\..\packages\Realm.1.5.0\build\Realm.targets" Condition="Exists('..\..\packages\Realm.1.5.0\build\Realm.targets')" />
   <Import Project="..\..\packages\Xamarin.Forms.2.4.0.280\build\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.targets" Condition="Exists('..\..\packages\Xamarin.Forms.2.4.0.280\build\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.targets')" />
+  <Import Project="..\..\packages\Realm.Database.1.6.0\build\Realm.Database.targets" Condition="Exists('..\..\packages\Realm.Database.1.6.0\build\Realm.Database.targets')" />
+  <Import Project="..\..\packages\Realm.1.6.0\build\Realm.targets" Condition="Exists('..\..\packages\Realm.1.6.0\build\Realm.targets')" />
 </Project>

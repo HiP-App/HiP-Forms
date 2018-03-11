@@ -29,7 +29,7 @@
                      Icon="ic_format_size.png" />
     </TabbedPage.ToolbarItems>
     <audioTranscript1:SubtitlesPage x:Name="SubtitlesPage" BindingContext="{Binding SubtitleTab}"
-                                    Title="{helpers:Translate AudioTranscriptView_Subtitles_Title}" />
+                                    Title="{helpers:Translate AudioTranscriptView_Subtitles_Title}"/>
     <audioTranscript1:SourcesPage x:Name="SourcesPage" BindingContext="{Binding SourcesTab}"
-                                  Title="{helpers:Translate AudioTranscriptView_Sources_Title}" />
+                                  Title="{helpers:Translate AudioTranscriptView_Sources_Title}"/>
 </TabbedPage>
