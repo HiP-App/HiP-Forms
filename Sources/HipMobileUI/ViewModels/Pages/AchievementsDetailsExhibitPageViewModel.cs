@@ -1,14 +1,17 @@
-﻿using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
-using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
+﻿using System.Collections.ObjectModel;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
-using System.Collections.ObjectModel;
-using System.Linq;
 using Xamarin.Forms;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
+using System.Linq;
+using System.Collections.ObjectModel;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
+namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 {
-    public class AchievementsDetailsExhibitViewModel : NavigationViewModel
+    public class AchievementsDetailsExhibitPageViewModel : NavigationViewModel
     {
         public class ExhibitViewModel
         {
@@ -17,7 +20,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             public bool Unlocked { get; set; }
         }
 
-        public AchievementsDetailsExhibitViewModel(ExhibitsVisitedAchievement exhibitsVisitedAchievement)
+        public AchievementsDetailsExhibitPageViewModel(ExhibitsVisitedAchievement exhibitsVisitedAchievement)
         {
             var exhibits = DbManager.DataAccess.Exhibits().GetExhibits().ToList();
             var visited = exhibits.Count(it => it.Unlocked);

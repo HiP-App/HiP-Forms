@@ -14,20 +14,16 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
-using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses.Contracts;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.NotificationPlayer;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Location
 {
@@ -51,7 +47,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Location
 
     public class NearbyExhibitManager : INearbyExhibitManager
     {
-        private readonly TimeSpan dialogTimeout = TimeSpan.FromMinutes(1);
         public event ExhibitVisitedDelegate ExhibitVisitedEvent;
 
         public async void CheckNearExhibit(IEnumerable<Exhibit> exhibits, GeoLocation gpsLocation, bool considerTimeouts, bool appMinimized)
@@ -71,7 +66,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Location
                         var now = DateTimeOffset.Now;
                         if (e.LastNearbyTime.HasValue)
                         {
-                            if (now.Subtract(e.LastNearbyTime.Value) <= dialogTimeout)
+                            if (now.Subtract(e.LastNearbyTime.Value) <= TimeSpan.FromMinutes(30))
                             {
                                 // dialog for this exhibit was shown recently, skip it
                                 continue;
@@ -93,7 +88,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Location
                     }
                     else
                     {
-                        var nv = new ExhibitPreviewViewModel(e, this);
+                        var nv = new ExhibitPreviewPageViewModel(e, this);
                         await IoCManager.Resolve<INavigationService>().PushModalAsync(nv);
                     }
                 }

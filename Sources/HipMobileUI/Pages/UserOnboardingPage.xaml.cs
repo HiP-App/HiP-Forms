@@ -120,7 +120,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
             };
             indicators.SetBinding(CarouselIndicators.PositionProperty, "SelectedPage");
             indicators.SetBinding(CarouselIndicators.ItemsSourceProperty, "Pages");
-            var separator = new BoxView() { Color = Color.Silver, HeightRequest = 1 };
+            var separator = new BoxView() { Color = Color.White, HeightRequest = 1 };
 
             // add pieces together
             layout.Children.Add(carousel, widthConstraint: Constraint.RelativeToParent(parent => parent.Width),
@@ -155,10 +155,21 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
                 HorizontalOptions = LayoutOptions.EndAndExpand,
                 VerticalOptions = LayoutOptions.CenterAndExpand
             };
-            Label headline = new Label() { TextColor = Color.White, FontSize = 18, FontAttributes = FontAttributes.Bold, HorizontalTextAlignment = TextAlignment.Center };
+            Label headline = new Label()
+            {
+                TextColor = Color.White, FontSize = 18, FontAttributes = FontAttributes.Bold, HorizontalTextAlignment = TextAlignment.Center,
+                FontFamily = Device.RuntimePlatform == Device.Android ? "SourceSansPro-Regular.ttf#SourceSansPro-Regular" : null,
+               
+            };
             headline.SetBinding(Label.TextProperty, "Headline");
-            Label text = new Label() { TextColor = Color.White, FontSize = 12, HorizontalTextAlignment = TextAlignment.Center };
+            
+            Label text = new Label()
+            {
+                TextColor = Color.White, FontSize = 12, HorizontalTextAlignment = TextAlignment.Center,
+                FontFamily = Device.RuntimePlatform == Device.Android ? "SourceSansPro-Regular.ttf#SourceSansPro-Regular" : null
+            };
             text.SetBinding(Label.TextProperty, "Text");
+            
             innerStack.Children.Add(headline);
             innerStack.Children.Add(text);
             outerStack.Children.Add(image);
@@ -184,10 +195,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
                 VerticalOptions = LayoutOptions.CenterAndExpand,
                 FontSize = 18,
                 FontAttributes = FontAttributes.Bold,
-                HorizontalTextAlignment = TextAlignment.Center
+                HorizontalTextAlignment = TextAlignment.Center,
+                FontFamily = Device.RuntimePlatform == Device.Android ? "SourceSansPro-Regular.ttf#SourceSansPro-Regular" : null,
             };
             headline.SetBinding(Label.TextProperty, "Headline");
-            Label text = new Label() { TextColor = Color.White, VerticalOptions = LayoutOptions.CenterAndExpand, FontSize = 12, HorizontalTextAlignment = TextAlignment.Center };
+            Label text = new Label()
+            {
+                TextColor = Color.White, VerticalOptions = LayoutOptions.CenterAndExpand, FontSize = 12, HorizontalTextAlignment = TextAlignment.Center,
+                FontFamily = Device.RuntimePlatform == Device.Android ? "SourceSansPro-Regular.ttf#SourceSansPro-Regular" : null
+            };
             text.SetBinding(Label.TextProperty, "Text");
             innerStack.Children.Add(headline);
             innerStack.Children.Add(text);

@@ -1,6 +1,9 @@
 ﻿using System.Collections.ObjectModel;
+using System.Linq;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using Xamarin.Forms;
 using System.Linq;
@@ -8,9 +11,9 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
+namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 {
-    public class AchievementsDetailsRouteViewModel : NavigationViewModel
+    public class AchievementsDetailsRoutePageViewModel : NavigationViewModel
     {
         public class ExhibitViewModel
         {
@@ -19,7 +22,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             public bool Unlocked { get; set; }
         }
 
-        public AchievementsDetailsRouteViewModel(RouteFinishedAchievement routeFinishedAchievement)
+        public AchievementsDetailsRoutePageViewModel(RouteFinishedAchievement routeFinishedAchievement)
         {
             var exhibits = DbManager.DataAccess.Routes().GetRoutes()
                 .First(it => it.IdForRestApi == routeFinishedAchievement.RouteId)

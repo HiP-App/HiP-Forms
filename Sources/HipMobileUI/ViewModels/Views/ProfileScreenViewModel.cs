@@ -29,7 +29,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         {
             mainPageViewModel = mainPageVm;
 
-            Tabs = new ObservableCollection<string> { Strings.MainPageViewModel_OverviewPage, "Statistik" };
+            Tabs = new ObservableCollection<string> { Strings.MainPageViewModel_OverviewPage, Strings.ProfileView_Statistic };
 
             ChangeAppModeCommand = new Command(OnChangeAppModeTapped);
             Logout = new Command(LogoutDummy);
@@ -49,12 +49,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 
         private void OnChangeAppModeTapped()
         {
-            Navigation.StartNewNavigationStack(new CharacterSelectionPageViewModel(this));
+            Navigation.StartNewLocalNavigationStack(new CharacterSelectionPageViewModel(this));
         }
 
         async void LogoutDummy()
         {
-            var result = await Navigation.DisplayAlert("Abmeldung", "Wollen Sie sich wirklich abmelden?", "Ja", "Nein");
+            var result = await Navigation.DisplayAlert(Strings.ProfileScreenViewModel_Dialog_Logout_Title
+                                                       , Strings.ProfileScreenViewModel_Dialog_Logout_Message
+                                                       , Strings.Yes, Strings.No);
             if (!result)
                 return;
             Settings.IsLoggedIn = false;

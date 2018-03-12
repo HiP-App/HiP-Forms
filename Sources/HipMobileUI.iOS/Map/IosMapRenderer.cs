@@ -315,7 +315,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Map
                 MKPolylineRenderer polylineRenderer;
                 if (polyline.Equals(currentSectionPolyLine))
                 {
-                    var color = ((Color)resources.GetResourceValue("AccentColor")).ToUIColor();
+                    var color = ((Color)resources.GetResourceValue("SecondaryColor")).ToUIColor();
                     polylineRenderer = new MKPolylineRenderer(polyline)
                     {
                         FillColor = color,

@@ -42,96 +42,92 @@
                                          VerticalOptions="CenterAndExpand" Padding="5,15">
                                 <Image WidthRequest="200" HeightRequest="50" Aspect="AspectFit" Source="{Binding Avatar}" />
                                 <Label Text="{Binding Username}" FontAttributes="Bold" FontSize="20"
-                                       HorizontalTextAlignment="Center" TextColor="{StaticResource AccentColor}" />
+                                       HorizontalTextAlignment="Center" TextColor="{StaticResource DarkGrayColor}" Style="{DynamicResource Ssp-Regular}"/>
                                 <Label Text="{Binding Character}" FontSize="15" HorizontalTextAlignment="Center"
-                                       TextColor="{StaticResource AccentColor}" />
-                                <Label Text="{Binding EMail}" FontSize="10" HorizontalTextAlignment="Center" Margin="0" />
+                                       TextColor="{StaticResource PrimaryDarkColor}" Style="{DynamicResource Ssp-SemiBold}"/>
+                                <Label Text="{Binding EMail}" FontSize="10" HorizontalTextAlignment="Center" Margin="0" Style="{DynamicResource Ssp-Regular}"/>
                             </StackLayout>
                             <StackLayout x:Name="Scores" Grid.Row="1" Spacing="0" Orientation="Vertical"
                                          VerticalOptions="StartAndExpand" Padding="5,5,5,0">
                                 <Label FontSize="14" Text="{helpers:Translate ProfileView_Overview_Score}" Margin="3,5,3,0"
-                                       HorizontalTextAlignment="Center"
-                                       TextColor="{StaticResource PrimaryColor}"
+                                       HorizontalTextAlignment="Center" Style="{DynamicResource Ssp-Regular}"
+                                       TextColor="Black"
                                        BackgroundColor="{StaticResource MediumGrayColor}" />
                                 <Label FontSize="25" Text="{Binding Score}" Margin="3,0" HorizontalTextAlignment="Center"
-                                       TextColor="{StaticResource AccentColor}" FontAttributes="Bold"
-                                       BackgroundColor="{StaticResource LightGrayColor}" />
+                                       TextColor="{StaticResource PrimaryDarkColor}"
+                                       BackgroundColor="{StaticResource LightGrayColor}" Style="{DynamicResource Ssp-Regular}" />
                                 <Label FontSize="14" Text="{helpers:Translate ProfileView_Overview_Achievements}"
                                        Margin="3,5,3,0" HorizontalTextAlignment="Center"
-                                       TextColor="{StaticResource PrimaryColor}"
-                                       BackgroundColor="{StaticResource MediumGrayColor}" />
+                                       TextColor="Black"
+                                       BackgroundColor="{StaticResource MediumGrayColor}" Style="{DynamicResource Ssp-Regular}"/>
                                 <Label FontSize="25" Text="{Binding AchievementCount}" Margin="3,0"
                                        HorizontalTextAlignment="Center"
-                                       TextColor="{StaticResource AccentColor}" FontAttributes="Bold"
-                                       BackgroundColor="{StaticResource LightGrayColor}" />
+                                       TextColor="{StaticResource PrimaryDarkColor}"
+                                       BackgroundColor="{StaticResource LightGrayColor}" Style="{DynamicResource Ssp-Regular}"/>
                                 <Label FontSize="14" Text="{helpers:Translate ProfileView_Overview_Progress}" Margin="3,5,3,0"
                                        HorizontalTextAlignment="Center"
-                                       TextColor="{StaticResource PrimaryColor}"
-                                       BackgroundColor="{StaticResource MediumGrayColor}" />
+                                       TextColor="Black"
+                                       BackgroundColor="{StaticResource MediumGrayColor}" Style="{DynamicResource Ssp-Regular}"/>
                                 <Label FontSize="25" Text="{Binding Completeness}" Margin="3,0"
                                        HorizontalTextAlignment="Center"
-                                       TextColor="{StaticResource AccentColor}" FontAttributes="Bold"
-                                       BackgroundColor="{StaticResource LightGrayColor}" />
+                                       TextColor="{StaticResource PrimaryDarkColor}"
+                                       BackgroundColor="{StaticResource LightGrayColor}" Style="{DynamicResource Ssp-Regular}"/>
                             </StackLayout>
                             <StackLayout x:Name="Logout" Grid.Row="2" HorizontalOptions="Center" VerticalOptions="End"
                                          Padding="3">
-                                <Button WidthRequest="200" HeightRequest="40" BorderRadius="2"
-                                        BorderColor="{StaticResource DarkGrayColor}" BorderWidth="1"
+                                <Button WidthRequest="200" HeightRequest="40"
                                         Command="{Binding ChangeAppModeCommand}"
                                         Text="{helpers:Translate ProfileView_Button_Change_App_Mode}"
-                                        TextColor="{StaticResource AccentDarkColor}"
-                                        BackgroundColor="{StaticResource MediumGrayColor}" />
-                                <Button WidthRequest="200" HeightRequest="40" BorderRadius="2"
-                                        BorderColor="{StaticResource DarkGrayColor}" BorderWidth="1"
+                                        TextColor="Black" />
+                                <Button WidthRequest="200" HeightRequest="40"
                                         Command="{Binding Logout}" Text="{helpers:Translate Logout}"
-                                        TextColor="{StaticResource AccentDarkColor}"
-                                        BackgroundColor="{StaticResource MediumGrayColor}" />
+                                        TextColor="Black" />
                             </StackLayout>
                         </Grid>
 
                         <ScrollView>
                             <StackLayout HorizontalOptions="Fill" VerticalOptions="StartAndExpand" Spacing="0" Padding="3">
                                 <!-- This could also be changed to use DataTemplates -->
-                                <Label FontSize="20" Text="Statistik 1" HorizontalTextAlignment="Start"
-                                       BackgroundColor="{StaticResource MediumGrayColor}" />
+                                <Label  FontSize="20" Text="Statistik 1" HorizontalTextAlignment="Start"
+                                       BackgroundColor="{StaticResource MediumGrayColor}" Style="{DynamicResource Ssp-Regular}"/>
                                 <Label FontSize="20" Text="Statistik 2" HorizontalTextAlignment="Start"
-                                       BackgroundColor="{StaticResource LightGrayColor}" />
+                                       BackgroundColor="{StaticResource LightGrayColor}" Style="{DynamicResource Ssp-Regular}"/>
                                 <Label FontSize="20" Text="Statistik 3" HorizontalTextAlignment="Start"
-                                       BackgroundColor="{StaticResource MediumGrayColor}" />
+                                       BackgroundColor="{StaticResource MediumGrayColor}" Style="{DynamicResource Ssp-Regular}"/>
                                 <Label FontSize="20" Text="Statistik 4" HorizontalTextAlignment="Start"
-                                       BackgroundColor="{StaticResource LightGrayColor}" />
+                                       BackgroundColor="{StaticResource LightGrayColor}" Style="{DynamicResource Ssp-Regular}"/>
                                 <Label FontSize="20" Text="Statistik 5" HorizontalTextAlignment="Start"
-                                       BackgroundColor="{StaticResource MediumGrayColor}" />
+                                       BackgroundColor="{StaticResource MediumGrayColor}" Style="{DynamicResource Ssp-Regular}"/>
                                 <Label FontSize="20" Text="Statistik 6" HorizontalTextAlignment="Start"
-                                       BackgroundColor="{StaticResource LightGrayColor}" />
+                                       BackgroundColor="{StaticResource LightGrayColor}" Style="{DynamicResource Ssp-Regular}"/>
                                 <Label FontSize="20" Text="Statistik 7" HorizontalTextAlignment="Start"
-                                       BackgroundColor="{StaticResource MediumGrayColor}" />
+                                       BackgroundColor="{StaticResource MediumGrayColor}" Style="{DynamicResource Ssp-Regular}"/>
                                 <Label FontSize="20" Text="Statistik 8" HorizontalTextAlignment="Start"
-                                       BackgroundColor="{StaticResource LightGrayColor}" />
+                                       BackgroundColor="{StaticResource LightGrayColor}" Style="{DynamicResource Ssp-Regular}"/>
                                 <Label FontSize="20" Text="Statistik 9" HorizontalTextAlignment="Start"
-                                       BackgroundColor="{StaticResource MediumGrayColor}" />
+                                       BackgroundColor="{StaticResource MediumGrayColor}" Style="{DynamicResource Ssp-Regular}"/>
                                 <Label FontSize="20" Text="Statistik 10" HorizontalTextAlignment="Start"
-                                       BackgroundColor="{StaticResource LightGrayColor}" />
+                                       BackgroundColor="{StaticResource LightGrayColor}" Style="{DynamicResource Ssp-Regular}"/>
                                 <Label FontSize="20" Text="Statistik 11" HorizontalTextAlignment="Start"
-                                       BackgroundColor="{StaticResource MediumGrayColor}" />
+                                       BackgroundColor="{StaticResource MediumGrayColor}" Style="{DynamicResource Ssp-Regular}"/>
                                 <Label FontSize="20" Text="Statistik 12" HorizontalTextAlignment="Start"
-                                       BackgroundColor="{StaticResource LightGrayColor}" />
+                                       BackgroundColor="{StaticResource LightGrayColor}" Style="{DynamicResource Ssp-Regular}"/>
                                 <Label FontSize="20" Text="Statistik 13" HorizontalTextAlignment="Start"
-                                       BackgroundColor="{StaticResource MediumGrayColor}" />
+                                       BackgroundColor="{StaticResource MediumGrayColor}" Style="{DynamicResource Ssp-Regular}"/>
                                 <Label FontSize="20" Text="Statistik 14" HorizontalTextAlignment="Start"
-                                       BackgroundColor="{StaticResource LightGrayColor}" />
+                                       BackgroundColor="{StaticResource LightGrayColor}" Style="{DynamicResource Ssp-Regular}"/>
                                 <Label FontSize="20" Text="Statistik 15" HorizontalTextAlignment="Start"
-                                       BackgroundColor="{StaticResource MediumGrayColor}" />
+                                       BackgroundColor="{StaticResource MediumGrayColor}" Style="{DynamicResource Ssp-Regular}"/>
                                 <Label FontSize="20" Text="Statistik 16" HorizontalTextAlignment="Start"
-                                       BackgroundColor="{StaticResource LightGrayColor}" />
+                                       BackgroundColor="{StaticResource LightGrayColor}" Style="{DynamicResource Ssp-Regular}"/>
                                 <Label FontSize="20" Text="Statistik 17" HorizontalTextAlignment="Start"
-                                       BackgroundColor="{StaticResource MediumGrayColor}" />
+                                       BackgroundColor="{StaticResource MediumGrayColor}" Style="{DynamicResource Ssp-Regular}"/>
                                 <Label FontSize="20" Text="Statistik 18" HorizontalTextAlignment="Start"
-                                       BackgroundColor="{StaticResource LightGrayColor}" />
+                                       BackgroundColor="{StaticResource LightGrayColor}" Style="{DynamicResource Ssp-Regular}"/>
                                 <Label FontSize="20" Text="Statistik 19" HorizontalTextAlignment="Start"
-                                       BackgroundColor="{StaticResource MediumGrayColor}" />
+                                       BackgroundColor="{StaticResource MediumGrayColor}" Style="{DynamicResource Ssp-Regular}"/>
                                 <Label FontSize="20" Text="Statistik 20" HorizontalTextAlignment="Start"
-                                       BackgroundColor="{StaticResource LightGrayColor}" />
+                                       BackgroundColor="{StaticResource LightGrayColor}" Style="{DynamicResource Ssp-Regular}"/>
                             </StackLayout>
                         </ScrollView>
                     </container1:TabContainerView.TabViews>

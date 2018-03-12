@@ -30,6 +30,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer
         Task<string> GetResponseFromUrlAsString(string urlPath);
 
         /// <summary>
+        /// Get result for the given path on the content api server as string with the given token as authorization
+        /// </summary>
+        /// <param name="urlPath"></param>
+        /// <param name="accessToken"></param>
+        /// <returns>String result of the api call</returns>
+        Task<string> GetResponseFromUrlAsString(string urlPath, string accessToken);
+
+        /// <summary>
         /// Get result for the given path on the content api server as byte array
         /// </summary>
         /// <param name="urlPath"></param>
