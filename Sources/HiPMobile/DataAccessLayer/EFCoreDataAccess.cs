@@ -141,7 +141,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
         public void CreateDatabase(int version)
         {
             using (var scope = Scope())
+            {
+                SQLitePCL.Batteries.Init();
                 scope.Db.Database.EnsureCreated();
+            }
         }
 
         private static IQueryable<T> BuildQuery<T>(IQueryable<T> dataSource, IEnumerable<string> pathsToInclude) where T : class
