@@ -80,6 +80,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
             {
                 UpdateAudioBarVisibility();
             }
+
+            if (propertyChangedEventArgs.PropertyName.Equals(nameof(ViewModel.HasAdditionalInformation)))
+            {
+                AdditionalInformationButton.IsVisible = ViewModel.HasAdditionalInformation;
+            }
             if (propertyChangedEventArgs.PropertyName.Equals(nameof(ViewModel.WillDisappear)) && ViewModel.WillDisappear)
             {
                 MessagingCenter.Unsubscribe<App>(this, AppSharedData.WillWakeUpMessage);

@@ -26,12 +26,19 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Controls
         /// </summary>
         public bool IsVisible
         {
-            get { return (bool) GetValue(IsVisibleProperty); }
-            set { SetValue(IsVisibleProperty, value); }
+            get => (bool) GetValue(IsVisibleProperty);
+            set => SetValue(IsVisibleProperty, value);
         }
 
         public static readonly BindableProperty IsVisibleProperty =
             BindableProperty.Create(nameof(IsVisible), typeof(bool), typeof(HideableToolbarItem), propertyChanged: OnIsVisibleChanged, defaultValue: false);
+
+        protected override void OnParentSet()
+        {
+            base.OnParentSet();
+            // Set initial state
+            OnIsVisibleChanged(this, false, IsVisible);
+        }
 
         private static void OnIsVisibleChanged(BindableObject bindable, object oldvalue, object newvalue)
         {

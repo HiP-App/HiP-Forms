@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <!--
 // Copyright (C) 2017 History in Paderborn App - Universität Paderborn
 //
@@ -16,13 +17,16 @@
 -->
 <pages1:OrientationContentPage xmlns="http://xamarin.com/schemas/2014/forms"
                                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-	                           x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Pages.ExhibitDetailsPage"
-	                           Title="{Binding Title}" OrientationController="PortraitConstant"
+                               x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Pages.ExhibitDetailsPage"
+                               Title="{Binding Title}" OrientationController="PortraitConstant"
                                xmlns:pages1="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Pages;assembly=HipMobileUI"
-	                           xmlns:views1="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Views;assembly=HipMobileUI">
+                               xmlns:views1="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Views;assembly=HipMobileUI"
+                               xmlns:controls="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Controls;assembly=HipMobileUI">
     <pages1:OrientationContentPage.ToolbarItems>
-        <ToolbarItem Order="Primary" Command="{Binding ShowAdditionalInformationCommand}"
-                     Text="addn_info" Icon="ic_more_vert.png" IsEnabled="{Binding HasAdditionalInformation}" />
+        <controls:HideableToolbarItem x:Name="AdditionalInformationButton" Order="Primary"
+                                      Command="{Binding ShowAdditionalInformationCommand}"
+                                      Text="addn_info" Icon="ic_more.png"
+                                      IsVisible="{Binding HasAdditionalInformation}" />
     </pages1:OrientationContentPage.ToolbarItems>
     <StackLayout BackgroundColor="White">
         <AbsoluteLayout VerticalOptions="FillAndExpand">
