@@ -23,16 +23,16 @@
     <ContentPage.Content>
         <views:NotificationExtensionView>
             <views:NotificationExtensionView.ContentTemplate>
-                <ListView ItemsSource="{Binding References}" HasUnevenRows="true">
+                <ListView ItemsSource="{Binding References}" HasUnevenRows="true" BackgroundColor="White">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell Tapped="OnViewCellTapped">
                                 <StackLayout Padding="15,0" HorizontalOptions="StartAndExpand" Orientation="Vertical">
                                     <Label x:Name="referenceTitle" Text="{Binding SubstituteText}"
-                                           TextColor="{StaticResource AccentColor}"
-                                           FontSize="{Binding BindingContext.FontSize, Source={x:Reference SourcesPage}}" />
-                                    <Label Text="{Binding Text}" VerticalTextAlignment="Center"
-                                           FontSize="{Binding BindingContext.FontSize, Source={x:Reference SourcesPage}}" />
+                                           TextColor="{StaticResource PrimaryDarkColor}"
+                                           FontSize="{Binding BindingContext.FontSize, Source={x:Reference SourcesPage}}" Style="{DynamicResource Ssp-Regular}"/>
+                                    <Label Text="{Binding Text}" VerticalTextAlignment="Center" TextColor="Black"
+                                           FontSize="{Binding BindingContext.FontSize, Source={x:Reference SourcesPage}}" Style="{DynamicResource Ssp-Regular}"/>
                                 </StackLayout>
                             </ViewCell>
                         </DataTemplate>

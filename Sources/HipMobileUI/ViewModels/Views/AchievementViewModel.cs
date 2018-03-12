@@ -17,6 +17,7 @@ using System.Windows.Input;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
 using Xamarin.Forms;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
@@ -40,10 +41,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             switch (Achievement)
             {
                 case ExhibitsVisitedAchievement e:
-                    viewModel = new AchievementsDetailsExhibitViewModel(e);
+                    viewModel = new AchievementsDetailsExhibitPageViewModel(e);
                     break;
                 case RouteFinishedAchievement r:
-                    viewModel = new AchievementsDetailsRouteViewModel(r);
+                    viewModel = new AchievementsDetailsRoutePageViewModel(r);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException("Unknown achievement type.");

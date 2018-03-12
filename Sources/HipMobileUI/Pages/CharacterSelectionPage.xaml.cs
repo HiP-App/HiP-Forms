@@ -1,14 +1,8 @@
-﻿using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
-using PaderbornUniversity.SILab.Hip.Mobile.UI.Contracts;
-using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
+﻿using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Xamarin.Forms;
+using SkiaSharp;
+using SkiaSharp.Views.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
@@ -16,65 +10,64 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CharacterSelectionPage : IViewFor<CharacterSelectionPageViewModel>
     {
-        private double thisWidth, thisHeight;
         private DeviceOrientation deviceOrientation;
 
-        private CharacterSelectionPageViewModel ViewModel => ((CharacterSelectionPageViewModel) BindingContext);
+        private CharacterSelectionPageViewModel ViewModel => (CharacterSelectionPageViewModel) BindingContext;
 
         public CharacterSelectionPage()
         {
             InitializeComponent();
 
             deviceOrientation = DeviceOrientation.Undefined;
-
-            // hide the status bar for this page
-            IStatusBarController statusBarController = IoCManager.Resolve<IStatusBarController>();
-            statusBarController.HideStatusBar();
         }
 
         protected override void OnSizeAllocated(double width, double height)
         {
             base.OnSizeAllocated(width, height);
 
-            if (!(Math.Abs(width - thisWidth) > 0.4) && !(Math.Abs(height - thisHeight) > 0.4))
-                return;
-
-            thisWidth = width;
-            thisHeight = height;
-
-            if (width <= height)
+            if (width > height && deviceOrientation != DeviceOrientation.Landscape)
             {
-                //Portrait
-                if (deviceOrientation == DeviceOrientation.Portrait)
-                    return;
+                // landscape mode
 
-                MainGrid.RowDefinitions.Clear();
-                MainGrid.ColumnDefinitions.Clear();
-
-                MainGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
-                MainGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
-
-                MainGrid.Children.Add(AdventurerGrid, 0, 0);
-                MainGrid.Children.Add(ProfessorGrid, 0, 1);
+                deviceOrientation = DeviceOrientation.Landscape;
+            }
+            else if (width <= height && deviceOrientation != DeviceOrientation.Portrait)
+            {
+                // portrait mode
 
                 deviceOrientation = DeviceOrientation.Portrait;
             }
-            else if (width > height)
+        }
+
+        private void OnPaintSample(object sender, SKPaintSurfaceEventArgs e)
+        {
+
+            var surfaceWidth = e.Info.Width;
+            var surfaceHeight = e.Info.Height;
+
+            var canvas = e.Surface.Canvas;
+
+            using (var paint = new SKPaint())
             {
-                //Landscape
-                if (deviceOrientation == DeviceOrientation.Landscape)
-                    return;
-
-                MainGrid.RowDefinitions.Clear();
-                MainGrid.ColumnDefinitions.Clear();
-
-                MainGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
-                MainGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
-
-                MainGrid.Children.Add(AdventurerGrid, 0, 0);
-                MainGrid.Children.Add(ProfessorGrid, 1, 0);
-
-                deviceOrientation = DeviceOrientation.Landscape;
+                canvas.Clear(new SKColor(127,172,255)); //paint it blue
+                using (var pathStroke = new SKPaint
+                {
+                    IsAntialias = true,
+                    Style = SKPaintStyle.StrokeAndFill,
+                    Color = new SKColor(255, 229, 127),
+                    StrokeWidth = 5
+                })
+                {
+                    using (var path = new SKPath { FillType = SKPathFillType.EvenOdd })
+                    {
+                        path.MoveTo(surfaceWidth, 0);
+                        path.LineTo(0, 0);
+                        path.LineTo(0, surfaceHeight);
+                        path.LineTo(surfaceWidth, 0);
+                        path.Close();
+                        canvas.DrawPath(path, pathStroke);
+                    }
+                }
             }
         }
 
@@ -83,8 +76,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
             //The user cannot go back when he has to select the character on the first app start
             if (ViewModel.ParentViewModel.GetType() != typeof(UserOnboardingPageViewModel))
             {
-                ViewModel.SwitchToNextPage();
+                ViewModel.ReturnToPreviousPage();
             }
+
             return true;
         }
     }

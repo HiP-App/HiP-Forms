@@ -183,9 +183,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation
 
         public void StartNewNavigationStack(NavigationViewModel newRoot)
         {
-            // instatiate the view for the viewmodel and set it as the new root
-            Page rootView = (Page) InstantiateView(newRoot);
+            // instantiate the view for the viewmodel and set it as the new root
+            var rootView = (Page) InstantiateView(newRoot);
             Application.Current.MainPage = rootView;
+        }
+
+        public void StartNewLocalNavigationStack(NavigationViewModel newRoot)
+        {
+            var rootPage = new NavigationPage((Page) InstantiateView(newRoot));
+            Application.Current.MainPage = rootPage;
         }
 
         public void Register(Type viewModelType, Type viewType)

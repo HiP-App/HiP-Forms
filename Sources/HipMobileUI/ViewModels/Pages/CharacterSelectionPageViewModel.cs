@@ -1,4 +1,3 @@
-
 // Copyright (C) 2017 History in Paderborn App - Universität Paderborn
 //  
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,13 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
-using PaderbornUniversity.SILab.Hip.Mobile.UI.Contracts;
 using System.Windows.Input;
-using PaderbornUniversity.SILab.Hip.Mobile.UI.Appearance;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
 using Xamarin.Forms;
+using SkiaSharp.Views.Forms;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 {
@@ -38,40 +35,26 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         public ICommand AdventurerGridTappedCommand { get; }
         public ICommand ProfessorGridTappedCommand { get; }
 
-        private void OnAdventurerGridTapped()
+        private async void OnAdventurerGridTapped()
         {
-            Settings.AdventurerMode = true;
-            AdjustThemeAndContinue();
+            await Navigation.PushAsync(new CharacterDetailsPageViewModel(parentViewModel, true), false);
         }
 
-        private void OnProfessorGridTapped()
+        private async void OnProfessorGridTapped()
         {
-            Settings.AdventurerMode = false;
-            AdjustThemeAndContinue();
+            await Navigation.PushAsync(new CharacterDetailsPageViewModel(parentViewModel, false), false);
         }
 
-        private void AdjustThemeAndContinue()
+        private void OnPaintSample(object sender, SKPaintSurfaceEventArgs e)
         {
-            SwitchToNextPage();
-
-            // Make sure all related components are already initialized before adjusting theme
-            if (Settings.InitialThemeSelected)
-                IoCManager.Resolve<IThemeManager>().AdjustTopBarTheme();
         }
 
         /// <summary>
-        /// Switches to the next page after a character has been selected. If the parent view is the Settings- or ProfileScreenView, the next page is the previous page.
+        /// Returns to the previous page if this page was called from the profile or settings page
         /// </summary>
-        public void SwitchToNextPage()
+        public void ReturnToPreviousPage()
         {
-            var statusBarController = IoCManager.Resolve<IStatusBarController>();
-            statusBarController.ShowStatusBar();
-
-            if (parentViewModel.GetType() == typeof(UserOnboardingPageViewModel))
-            {
-                Navigation.StartNewNavigationStack(new LoadingPageViewModel());
-            }
-            else if (parentViewModel.GetType() == typeof(ProfileScreenViewModel))
+            if (parentViewModel.GetType() == typeof(ProfileScreenViewModel))
             {
                 var mainPageViewModel = new MainPageViewModel();
                 Navigation.StartNewNavigationStack(mainPageViewModel);

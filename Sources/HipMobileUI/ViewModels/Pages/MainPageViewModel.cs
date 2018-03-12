@@ -14,6 +14,7 @@
 
 using System;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.FeatureToggling;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
@@ -28,80 +29,40 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 {
     public class MainPageViewModel : NavigationViewModel
     {
-        private ObservableCollection<NavigationViewModel> mainScreenViewModels;
+        private readonly MenuConfiguration menuConfiguration;
+
         private readonly ProfileScreenViewModel profileScreenViewModel;
         private readonly LoginScreenViewModel loginScreenViewModel;
-        private readonly ForgotPasswordScreenViewModel forgotPasswordScreenViewModel;
         private readonly RegisterScreenViewModel registerScreenViewModel;
+        private readonly ForgotPasswordScreenViewModel forgotPasswordScreenViewModel;
 
-        private NavigationViewModel selectedViewModel;
-        private IDisposable achievementsFeatureSubscription;
+        private readonly IDisposable achievementsFeatureSubscription;
 
         public MainPageViewModel() : this(DbManager.DataAccess.Exhibits().GetExhibits().ToList())
         {
         }
 
-        public MainPageViewModel(IReadOnlyList<Exhibit> exhibits)
+        private MainPageViewModel(IReadOnlyList<Exhibit> exhibits)
         {
-            profileScreenViewModel = new ProfileScreenViewModel(this)
-            {
-                Title = Strings.MainPageViewModel_Profile,
-                Icon = "ic_account_circle.png"
-            };
-            loginScreenViewModel = new LoginScreenViewModel(this)
-            {
-                Title = Strings.MainPageViewModel_Account,
-                Icon = "ic_account_circle.png"
-            };
-            forgotPasswordScreenViewModel = new ForgotPasswordScreenViewModel(this)
-            {
-                Title = Strings.MainPageViewModel_Account,
-                Icon = "ic_account_circle.png"
-            };
+            menuConfiguration = new MenuConfiguration(this, exhibits);
+            UpdateMenuConfiguration();
+            
+            profileScreenViewModel = MainScreenViewModels.OfType<ProfileScreenViewModel>().SingleOrDefault();
+            loginScreenViewModel = menuConfiguration.GetLoginScreenViewModel();
+            registerScreenViewModel = menuConfiguration.GetRegisterScreenViewModel();
+            forgotPasswordScreenViewModel = menuConfiguration.GetForgotPasswordScreenViewModel();
 
-            registerScreenViewModel = new RegisterScreenViewModel(this)
-            {
-                Title = Strings.MainPageViewModel_Account,
-                Icon = "ic_account_circle.png"
-            };
+            Settings.ChangeEvents.PropertyChanged += LoginChangedHandler;
+            UpdateUserLogginInfo();
 
-            var achievementsScreenViewModel = new AchievementsScreenViewModel
-            {
-                Title = Strings.MainPageViewModel_Achievements,
-                Icon = "ic_equalizer.png"
-            };
-            MainScreenViewModels = new ObservableCollection<NavigationViewModel>
-            {
-                new ExhibitsOverviewViewModel(exhibits)
-                {
-                    Title = Strings.MainPageViewModel_OverviewPage,
-                    Icon = "ic_home.png"
-                },
-                new RoutesOverviewViewModel
-                {
-                    Title = Strings.MainPageViewModel_Routes,
-                    Icon = "ic_directions.png"
-                },
-                new SettingsScreenViewModel
-                {
-                    Title = Strings.MainPageViewModel_Settings,
-                    Icon = "ic_settings.png"
-                },
-                new LicenseScreenViewModel
-                {
-                    Title = Strings.MainPageViewModel_LegalNotices,
-                    Icon = "ic_gavel.png"
-                },
-                profileScreenViewModel,
-                achievementsScreenViewModel
-            };
             achievementsFeatureSubscription = IoCManager.Resolve<IFeatureToggleRouter>()
                       .IsFeatureEnabled(FeatureId.Achievements)
-                      .Subscribe(new AchievementsVmHider(achievementsScreenViewModel, mainScreenViewModels));
+                      .Subscribe(new AchievementsVmHider(MainScreenViewModels.OfType<AchievementsScreenViewModel>().FirstOrDefault(), MainScreenViewModels));
+
             UpdateAccountViews();
         }
-        
-        private class AchievementsVmHider: IObserver<bool>
+
+        private class AchievementsVmHider : IObserver<bool>
         {
             private readonly AchievementsScreenViewModel vm;
             private readonly ObservableCollection<NavigationViewModel> vms;
@@ -125,11 +86,138 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                 if (enabled && !vms.Contains(vm))
                 {
                     vms.Add(vm);
-                } else if (!enabled)
+                }
+                else if (!enabled)
                 {
                     vms.Remove(vm);
                 }
             }
+        }
+
+        /// <summary>
+        /// Used to control the displayed menu items in the main menu. Initializes all
+        /// NavigationViewModels and grants access to predefined collections for the exploration modes.
+        /// </summary>
+        private class MenuConfiguration
+        {
+            private readonly ExhibitsOverviewViewModel exhibitsOverviewViewModel;
+            private readonly RoutesOverviewViewModel routesOverviewViewModel;
+            private readonly LoginScreenViewModel loginScreenViewModel;
+            private readonly ForgotPasswordScreenViewModel forgotPasswordScreenViewModel;
+            private readonly RegisterScreenViewModel registerScreenViewModel;
+            private readonly ProfileScreenViewModel profileScreenViewModel;
+            private readonly AchievementsScreenViewModel achievementsScreenViewModel;
+            private readonly SettingsScreenViewModel settingsScreenViewModel;
+            private readonly LicenseScreenViewModel licenseScreenViewModel;
+
+            public MenuConfiguration(MainPageViewModel mainPageViewModel, IReadOnlyList<Exhibit> exhibitSet)
+            {
+                exhibitsOverviewViewModel = new ExhibitsOverviewViewModel(exhibitSet)
+                {
+                    Title = Strings.MainPageViewModel_OverviewPage,
+                    Icon = "ic_home.png"
+                };
+                routesOverviewViewModel = new RoutesOverviewViewModel
+                {
+                    Title = Strings.MainPageViewModel_Routes,
+                    Icon = "ic_directions.png"
+                };
+                loginScreenViewModel = new LoginScreenViewModel(mainPageViewModel)
+                {
+                    Title = Strings.MainPageViewModel_Account,
+                    Icon = "ic_account_circle.png"
+                };
+                forgotPasswordScreenViewModel = new ForgotPasswordScreenViewModel(mainPageViewModel)
+                {
+                    Title = Strings.MainPageViewModel_Account,
+                    Icon = "ic_account_circle.png"
+                };
+                registerScreenViewModel = new RegisterScreenViewModel(mainPageViewModel)
+                {
+                    Title = Strings.MainPageViewModel_Account,
+                    Icon = "ic_account_circle.png"
+                };
+                profileScreenViewModel = new ProfileScreenViewModel(mainPageViewModel)
+                {
+                    Title = Strings.MainPageViewModel_Profile,
+                    Icon = "ic_account_circle.png"
+                };
+                achievementsScreenViewModel = new AchievementsScreenViewModel
+                {
+                    Title = Strings.MainPageViewModel_Achievements,
+                    Icon = "ic_equalizer.png"
+                };
+                settingsScreenViewModel = new SettingsScreenViewModel
+                {
+                    Title = Strings.MainPageViewModel_Settings,
+                    Icon = "ic_settings.png"
+                };
+                licenseScreenViewModel = new LicenseScreenViewModel
+                {
+                    Title = Strings.MainPageViewModel_LegalNotices,
+                    Icon = "ic_gavel.png"
+                };
+            }
+
+            /// <summary>
+            /// Creates and returns the collection of menu items for the adventurer mode
+            /// </summary>
+            public ObservableCollection<NavigationViewModel> AdventurerCollection()
+            {
+                return new ObservableCollection<NavigationViewModel> {
+                    exhibitsOverviewViewModel,
+                    profileScreenViewModel,
+                    achievementsScreenViewModel,
+                    settingsScreenViewModel,
+                    licenseScreenViewModel
+                };
+            }
+
+            /// <summary>
+            /// Creates and returns the collection of menu items for the professor mode
+            /// </summary>
+            public ObservableCollection<NavigationViewModel> ProfessorCollection()
+            {
+                return new ObservableCollection<NavigationViewModel> {
+                    exhibitsOverviewViewModel,
+                    routesOverviewViewModel,
+                    profileScreenViewModel,
+                    achievementsScreenViewModel,
+                    settingsScreenViewModel,
+                    licenseScreenViewModel
+                };
+            }
+
+            public LoginScreenViewModel GetLoginScreenViewModel()
+            {
+                return loginScreenViewModel;
+            }
+
+            public RegisterScreenViewModel GetRegisterScreenViewModel()
+            {
+                return registerScreenViewModel;
+            }
+
+            public ForgotPasswordScreenViewModel GetForgotPasswordScreenViewModel()
+            {
+                return forgotPasswordScreenViewModel;
+            }
+        }
+
+        private void UpdateMenuConfiguration()
+        {
+            MainScreenViewModels = Settings.AdventurerMode ? menuConfiguration.AdventurerCollection() : menuConfiguration.ProfessorCollection();
+        }
+
+        private void LoginChangedHandler(object o, PropertyChangedEventArgs args)
+        {
+            UpdateUserLogginInfo();
+        }
+
+        private void UpdateUserLogginInfo()
+        {
+            UserNameDisplayed = Settings.IsLoggedIn;
+            UserName = Settings.IsLoggedIn ? Settings.Username : "";
         }
 
         /// <summary>
@@ -143,44 +231,43 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                 SwitchToLoginView();
         }
 
-        public void SwitchToLoginView()
-        {
-            ChangeAccountRelatedView(loginScreenViewModel);
-        }
-
-        public void SwitchToForgotPasswordView()
-        {
-            ChangeAccountRelatedView(forgotPasswordScreenViewModel);
-        }
-
         public void SwitchToProfileView()
         {
-            ChangeAccountRelatedView(profileScreenViewModel);
+            if (MainScreenViewModels.Contains(loginScreenViewModel))
+                MainScreenViewModels[MainScreenViewModels.IndexOf(loginScreenViewModel)] = profileScreenViewModel;
+            SelectedViewModel = profileScreenViewModel;
+        }
+
+        public void SwitchToLoginView()
+        {
+            if (MainScreenViewModels.Contains(profileScreenViewModel))
+                MainScreenViewModels[MainScreenViewModels.IndexOf(profileScreenViewModel)] = loginScreenViewModel;
+            SelectedViewModel = loginScreenViewModel;
         }
 
         public void SwitchToRegisterView()
         {
-            ChangeAccountRelatedView(registerScreenViewModel);
+            SelectedViewModel = registerScreenViewModel;
         }
 
-        private void ChangeAccountRelatedView(NavigationViewModel accountRelatedView)
+        public void SwitchToForgotPasswordView()
         {
-            mainScreenViewModels.RemoveAt(4);
-            mainScreenViewModels.Insert(4, accountRelatedView);
-            SelectedViewModel = mainScreenViewModels[4];
+            SelectedViewModel = forgotPasswordScreenViewModel;
         }
 
         public void SwitchToSettingsScreenView()
         {
-            SelectedViewModel = mainScreenViewModels[2];
+            SelectedViewModel = MainScreenViewModels.OfType<SettingsScreenViewModel>().SingleOrDefault();
         }
 
+        private ObservableCollection<NavigationViewModel> mainScreenViewModels;
         public ObservableCollection<NavigationViewModel> MainScreenViewModels
         {
             get => mainScreenViewModels;
             set => SetProperty(ref mainScreenViewModels, value);
         }
 
+        private NavigationViewModel selectedViewModel;
         public NavigationViewModel SelectedViewModel
         {
             get => selectedViewModel;
@@ -193,6 +280,20 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                     SelectedViewModel?.OnAppearing();
                 }
             }
+        }
+
+        private bool userNameDisplayed;
+        public bool UserNameDisplayed
+        {
+            get => userNameDisplayed;
+            set => SetProperty(ref userNameDisplayed, value);
+        }
+
+        private string userName;
+        public string UserName
+        {
+            get => userName;
+            set => SetProperty(ref userName, value);
         }
 
         public override void OnDisappearing()

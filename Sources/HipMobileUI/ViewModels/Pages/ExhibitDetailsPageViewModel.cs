@@ -1,4 +1,4 @@
-﻿// Copyright (C) 2017 History in Paderborn App - Universität Paderborn
+// Copyright (C) 2017 History in Paderborn App - Universität Paderborn
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -24,7 +24,6 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.AudioPlayer;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Contracts;
-using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views.ExhibitDetails;
@@ -33,10 +32,11 @@ using Page = PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.Pa
 using Settings = PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers.Settings;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
 using Acr.UserDialogs;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Appearance;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 {
-    public class ExhibitDetailsViewModel : NavigationViewModel, IDbChangedObserver
+    public class ExhibitDetailsPageViewModel : NavigationViewModel, IDbChangedObserver
     {
         private ExhibitSubviewViewModel selectedView;
         private AudioToolbarViewModel audioToolbar;
@@ -54,12 +54,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         private bool additionalInformationButtonVisible;
         private readonly bool additionalInformation;
 
+        public ExhibitDetailsPageViewModel(string exhibitId) : this(DbManager.DataAccess.Exhibits().GetExhibit(exhibitId)) { }
 
-        public ExhibitDetailsViewModel(string exhibitId) : this(DbManager.DataAccess.Exhibits().GetExhibit(exhibitId)) { }
+        public ExhibitDetailsPageViewModel(Exhibit exhibit) : this(exhibit, exhibit.Pages, exhibit.Name) { }
 
-        public ExhibitDetailsViewModel(Exhibit exhibit) : this(exhibit, exhibit.Pages, exhibit.Name) { }
-
-        public ExhibitDetailsViewModel(Exhibit exhibit, ICollection<Page> pages, string title, bool additionalInformation = false)
+        public ExhibitDetailsPageViewModel(Exhibit exhibit, ICollection<Page> pages, string title, bool additionalInformation = false)
         {
             Exhibit = exhibit;
             this.additionalInformation = additionalInformation;
@@ -100,17 +99,17 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             }
             else
             {
-                var resources = IoCManager.Resolve<ApplicationResourcesProvider>();
-                IoCManager.Resolve<IBarsColorsChanger>()
-                          .ChangeToolbarColor((Color)resources.GetResourceValue("PrimaryDarkColor"), (Color)resources.GetResourceValue("PrimaryColor"));
+                IoCManager.Resolve<IThemeManager>().AdjustTopBarTheme();
             }
         }
 
         private void ShowAdditionalInformation()
         {
             var currentPage = pages[currentViewIndex];
+            if (currentPage.AdditionalInformationPages == null || !currentPage.AdditionalInformationPages.Any())
+                return;
 
-            Navigation.PushAsync(new ExhibitDetailsViewModel(Exhibit, currentPage.AdditionalInformationPages, Strings.ExhibitDetailsPage_AdditionalInformation, true));
+            Navigation.PushAsync(new ExhibitDetailsPageViewModel(Exhibit, currentPage.AdditionalInformationPages, Strings.ExhibitDetailsPage_AdditionalInformation, true));
         }
 
         private CancellationTokenSource tokenSource;
@@ -213,7 +212,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                     {
                         AudioToolbar.AudioPlayer.Stop();
                     }
-                    await Navigation.PushAsync(new UserRatingPageViewModel(Exhibit));
+                    Navigation.InsertPageBefore(new UserRatingPageViewModel(Exhibit), this);
+                    await Navigation.PopAsync(false);
                 }
                 else
                 {
@@ -221,7 +221,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                     {
                         Title = Strings.UserRating_Dialog_Title_No_Internet,
                         Message = Strings.UserRating_Dialog_Message_No_Internet,
-                        OkText = Strings.UserRating_Ok
+                        OkText = Strings.Ok
                     });
                 }
             }
@@ -237,14 +237,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         /// </summary>
         private async void GotoPreviousView()
         {
-            if (currentViewIndex > 1)
+            if (currentViewIndex > 0)
             {
                 // stop audio
                 if (AudioToolbar.AudioPlayer.IsPlaying)
                 {
                     AudioToolbar.AudioPlayer.Stop();
                 }
-
                 // update UI
                 currentViewIndex--;
                 await SetCurrentView();
@@ -262,12 +261,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         /// <returns></returns>
         private async Task SetCurrentView()
         {
-            // update UI
-            if (currentViewIndex == 0)
-            {
-                currentViewIndex++;
-            }
-
             var currentPage = pages[currentViewIndex];
             PageManager.LoadPageDetails(currentPage);
             OnPropertyChanged(nameof(AudioAvailable));
@@ -393,6 +386,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
         #region properties
 
+        /// <summary>
+        /// The exhibit for the details page.
+        /// </summary>
         public Exhibit Exhibit
         {
             get { return exhibit; }

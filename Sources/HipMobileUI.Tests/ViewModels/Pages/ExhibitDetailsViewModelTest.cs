@@ -149,7 +149,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Pages
             IoCManager.RegisterInstance(typeof(IBarsColorsChanger), resources);
             // ReSharper disable once UnusedVariable
             // It's necessary to create this object once
-            var sut = new ExhibitDetailsViewModel(new Exhibit(), new List<Page>(), "Test", true);
+            var sut = new ExhibitDetailsPageViewModel(new Exhibit(), new List<Page>(), "Test", true);
 
             resources.Received().ChangeToolbarColor(Color.FromRgb(128, 128, 128), Color.FromRgb(169, 169, 169));
         }
@@ -161,21 +161,21 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Pages
             IoCManager.RegisterInstance(typeof(IBarsColorsChanger), resources);
             // ReSharper disable once UnusedVariable
             // It's necessary to create this object once
-            var sut = new ExhibitDetailsViewModel(new Exhibit(), new List<Page>(), "Test");
+            var sut = new ExhibitDetailsPageViewModel(new Exhibit(), new List<Page>(), "Test");
 
             resources.Received().ChangeToolbarColor(Color.Pink, Color.Pink);
         }
 
         #region Helper Methods
 
-        public ExhibitDetailsViewModel CreateSystemUnderTest()
+        public ExhibitDetailsPageViewModel CreateSystemUnderTest()
         {
             var exhibit = Substitute.For<Exhibit>();
             var pages = new List<Page> { CreateImagePage(), CreateTimeSliderPage(), CreateImagePage() };
             exhibit.Pages.Returns(pages);
 
             exhibit.Unlocked = true;
-            return new ExhibitDetailsViewModel(exhibit);
+            return new ExhibitDetailsPageViewModel(exhibit);
         }
 
         private Page CreateAppetizerPage()

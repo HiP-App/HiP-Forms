@@ -30,7 +30,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             {
                 var exhibits = DbManager.DataAccess.Exhibits().GetExhibits();
                 var ex = exhibits.FirstOrDefault();
-                Navigation.PushAsync(new ExhibitDetailsViewModel(ex.Id));
+                Navigation.PushAsync(new ExhibitDetailsPageViewModel(ex.Id));
             });
         }
 

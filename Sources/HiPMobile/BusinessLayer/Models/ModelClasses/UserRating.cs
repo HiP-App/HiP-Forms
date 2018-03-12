@@ -20,7 +20,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
     {
         public UserRating(UserRatingDto userRatingDto)
         {
-            Id = userRatingDto.Id;
             Average = userRatingDto.Average;
             Count = userRatingDto.Count;
 
@@ -31,24 +30,31 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
             NumFiveStarRatings = userRatingDto.RatingTable.TryGetValue(5, out var n5) ? n5 : 0;
         }
 
-        public UserRating()
+        public UserRating(int numOneStarRatings, int numTwoStarRatings, int numThreeStarRatings, int numFourStarRatings, int numFiveStarRatings)
         {
-        }
+            Count = numOneStarRatings + numTwoStarRatings + numThreeStarRatings + numFourStarRatings + numFiveStarRatings;
+            var starSum = 1 * numOneStarRatings + 2 * numTwoStarRatings + 3 * numThreeStarRatings + 4 * numFourStarRatings + 5 * numFiveStarRatings;
+            Average = Count == 0 ? 0 : (double) starSum / Count;
 
-        public int Id { get; }
+            NumOneStarRatings = numOneStarRatings;
+            NumTwoStarRatings = numTwoStarRatings;
+            NumThreeStarRatings = numThreeStarRatings;
+            NumFourStarRatings = numFourStarRatings;
+            NumFiveStarRatings = numFiveStarRatings;
+        }
 
         public double Average { get; }
 
         public int Count { get; }
 
-        public int NumOneStarRatings { get; set; }
+        public int NumOneStarRatings { get; }
 
-        public int NumTwoStarRatings { get; set; }
+        public int NumTwoStarRatings { get; }
 
-        public int NumThreeStarRatings { get; set; }
+        public int NumThreeStarRatings { get; }
 
-        public int NumFourStarRatings { get; set; }
+        public int NumFourStarRatings { get; }
 
-        public int NumFiveStarRatings { get; set; }
+        public int NumFiveStarRatings { get; }
     }
 }

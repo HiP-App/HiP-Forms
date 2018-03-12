@@ -14,9 +14,7 @@
 
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
-using PaderbornUniversity.SILab.Hip.Mobile.UI.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using Xamarin.Forms;
 
@@ -28,9 +26,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         {
             Pages = new ObservableCollection<UserOnboardingItemViewModel>
             {
-                new UserOnboardingItemViewModel(Strings.UserOnboarding_Explore_Title, Strings.UserOnboarding_Explore_Text, "ac_erkunden.jpg", Color.Green),
-                new UserOnboardingItemViewModel(Strings.UserOnboarding_Route_Title, Strings.UserOnboarding_Route_Text, "ac_route.jpg", Color.Orange, "ac_route2.jpg"),
-                new UserOnboardingItemViewModel(Strings.UserOnboarding_Students_Title, Strings.UserOnboarding_Students_Text, "ac_students", Color.Blue)
+                new UserOnboardingItemViewModel(Strings.UserOnboarding_Explore_Title, Strings.UserOnboarding_Explore_Text, "ac_erkunden.jpg", Color.FromRgb(127,172,255)),
+                new UserOnboardingItemViewModel(Strings.UserOnboarding_Route_Title, Strings.UserOnboarding_Route_Text, "ac_route.jpg", Color.FromRgb(127,172,255), "ac_route2.jpg"),
+                new UserOnboardingItemViewModel(Strings.UserOnboarding_Students_Title, Strings.UserOnboarding_Students_Text, "ac_students", Color.FromRgb(127,172,255))
             };
             ContentOrientation = StackOrientation.Vertical;
             ForwardCommand = new Command(GotoNextPage);
@@ -58,15 +56,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         /// </summary>
         private void ClosePage()
         {
-            // hide the status bar
-            var statusBarController = IoCManager.Resolve<IStatusBarController>();
-            statusBarController.ShowStatusBar();
-
             // update the settings to not show this page next time
             Settings.RepeatIntro = false;
 
             // open the character selection page
-            Navigation.StartNewNavigationStack(new CharacterSelectionPageViewModel(this));
+            Navigation.StartNewLocalNavigationStack(new CharacterSelectionPageViewModel(this));
         }
 
         /// <summary>

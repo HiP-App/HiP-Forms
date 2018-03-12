@@ -1,14 +1,14 @@
-﻿using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
+﻿using System.Collections.ObjectModel;
+using System.Linq;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
-using System.Collections.ObjectModel;
-using System.Linq;
 using Xamarin.Forms;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
+namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 {
-    public class AchievementsDetailsExhibitViewModel : NavigationViewModel
+    public class AchievementsDetailsRoutePageViewModel : NavigationViewModel
     {
         public class ExhibitViewModel
         {
@@ -17,23 +17,27 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             public bool Unlocked { get; set; }
         }
 
-        public AchievementsDetailsExhibitViewModel(ExhibitsVisitedAchievement exhibitsVisitedAchievement)
+        public AchievementsDetailsRoutePageViewModel(RouteFinishedAchievement routeFinishedAchievement)
         {
-            var exhibits = DbManager.DataAccess.Exhibits().GetExhibits().ToList();
+            var exhibits = DbManager.DataAccess.Routes().GetRoutes()
+                .First(it => it.IdForRestApi == routeFinishedAchievement.RouteId)
+                .Waypoints
+                .Select(it => it.Exhibit)
+                .ToList();
             var visited = exhibits.Count(it => it.Unlocked);
             var total = exhibits.Count;
-            
+
             Exhibits = new ObservableCollection<ExhibitViewModel>(exhibits.Select(it => new ExhibitViewModel
             {
                 Name = it.Name,
                 Image = it.Image.GetImageSource(),
                 Unlocked = it.Unlocked
             }));
-            Title = exhibitsVisitedAchievement.Title;
+            Title = routeFinishedAchievement.Title;
             Score = $"{Strings.AchievementsScreenView_Score} {AppSharedData.CurrentAchievementsScore()}";
             VisitedText = string.Format(Strings.AchievementsDetailsExhibitView_VisitedMOfNExhibits, visited, total);
         }
-        
+
         private ObservableCollection<ExhibitViewModel> exhibits;
 
         public ObservableCollection<ExhibitViewModel> Exhibits
@@ -49,7 +53,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             get => visitedText;
             set => SetProperty(ref visitedText, value);
         }
-        
+
         private string score;
 
         public string Score
