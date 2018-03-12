@@ -55,8 +55,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
             // Floating Action Button
             Button = new FloatingActionButton
             {
-                NormalColor = (Color)resources.GetResourceValue("SecondaryColor"),
-                RippleColor = (Color)resources.GetResourceValue("SecondaryDarkColor"),
+                NormalColor = (Color) resources.GetResourceValue("SecondaryColor"),
+                RippleColor = (Color) resources.GetResourceValue("SecondaryDarkColor"),
                 Command = new Command(ButtonOnClicked),
                 Icon = "ic_keyboard_arrow_up",
                 AutomationId = "Fab"
@@ -72,19 +72,18 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
                 absoluteLayout.Children.Add(BottomSheetContentView, new Rectangle(0, height - bottomSheetSize, width, bottomSheetSize));
 
                 var fabSize = Device.RuntimePlatform == Device.iOS ? FloatingActionButton.IosSize : IoCManager.Resolve<IFabSizeCalculator>().CalculateFabSize();
-                if (Device.RuntimePlatform != Device.iOS)
+
+                if (Device.RuntimePlatform == Device.iOS || IoCManager.Resolve<IFabSizeCalculator>().GetOsVersionNumber() >= 21)
                 {
-                    if (IoCManager.Resolve<IFabSizeCalculator>().GetOsVersionNumber() >= 21)
-                    {
-                        absoluteLayout.Children.Add(Button, new Point(width - buttonRightPadding - fabSize, height - bottomSheetSize - fabSize / 2));
-                    }
-                    else
-                    {
-                        // Don't need to use concrete point coordinates, because the button is rearranged in the "SetButtonPosition" method
-                        absoluteLayout.Children.Add(Button, new Point(0, 0));
-                        SetButtonPosition(width);
-                    }
+                    absoluteLayout.Children.Add(Button, new Point(width - buttonRightPadding - fabSize, height - bottomSheetSize - fabSize / 2));
                 }
+                else
+                {
+                    // Don't need to use concrete point coordinates, because the button is rearranged in the "SetButtonPosition" method
+                    absoluteLayout.Children.Add(Button, new Point(0, 0));
+                    SetButtonPosition(width);
+                }
+
                 Content = absoluteLayout;
 
                 // restore the state when the layout changes
@@ -210,7 +209,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
 
         private static void MainContentPropertyChanged(BindableObject bindable, object oldValue, object newValue)
         {
-            ((BottomSheetView)bindable).mainContentView.Content = (View)newValue;
+            ((BottomSheetView) bindable).mainContentView.Content = (View) newValue;
         }
 
         /// <summary>
@@ -218,7 +217,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
         /// </summary>
         public View MainContent
         {
-            get { return (View)GetValue(MainContentProperty); }
+            get { return (View) GetValue(MainContentProperty); }
             set { SetValue(MainContentProperty, value); }
         }
 
@@ -229,7 +228,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
 
         private static void BottomSheetPropertyChanged(BindableObject bindable, object oldValue, object newValue)
         {
-            ((BottomSheetView)bindable).BottomSheetContentView.Content = (View)newValue;
+            ((BottomSheetView) bindable).BottomSheetContentView.Content = (View) newValue;
         }
 
         /// <summary>
@@ -237,7 +236,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
         /// </summary>
         public View BottomSheet
         {
-            get { return (View)GetValue(MainContentProperty); }
+            get { return (View) GetValue(MainContentProperty); }
             set { SetValue(MainContentProperty, value); }
         }
 
@@ -246,7 +245,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
 
         private static void BottomSheetVisiblePropertyChanged(BindableObject bindable, object oldValue, object newValue)
         {
-            ((BottomSheetView)bindable).BottomSheetVisible = (bool)newValue;
+            ((BottomSheetView) bindable).BottomSheetVisible = (bool) newValue;
         }
 
         /// <summary>
@@ -255,7 +254,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
         /// </summary>
         public bool BottomSheetVisible
         {
-            get { return (bool)GetValue(BottomSheetVisibleProperty); }
+            get { return (bool) GetValue(BottomSheetVisibleProperty); }
             set { SetValue(BottomSheetVisibleProperty, value); }
         }
 
