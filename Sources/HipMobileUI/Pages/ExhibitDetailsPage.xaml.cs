@@ -120,16 +120,22 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
         protected override void OnSizeAllocated(double width, double height)
         {
             base.OnSizeAllocated(width, height);
-            //bool t1 = ContentView.Content.GetType() == typeof(ImageView);
+
             if (width > height && orientation != DeviceOrientation.Landscape)
             {
+                if (ContentView.Content.GetType() == typeof(ImageView) || ContentView.Content.GetType() == typeof(TimeSliderView))
+                {
+                    AudioContainer.IsVisible = false;
+                    ContentView.Margin = 0;
+                }
                 orientation = DeviceOrientation.Landscape;
 
             }
             else if (width < height && orientation != DeviceOrientation.Portrait)
             {
                 orientation = DeviceOrientation.Portrait;
-
+                AudioContainer.IsVisible = true;
+                ContentView.Margin = 5;
             }
         }
     }

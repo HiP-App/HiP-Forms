@@ -36,8 +36,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views.ExhibitDetails
         /// <param name="height">The new height.</param>
         protected override void OnSizeAllocated(double width, double height)
         {
-            
-
             if (width > height && orientation != DeviceOrientation.Landscape)
             {
                 orientation = DeviceOrientation.Landscape;
@@ -47,7 +45,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views.ExhibitDetails
             else if (width < height && orientation != DeviceOrientation.Portrait)
             {
                 orientation = DeviceOrientation.Portrait;
-                BottomSheetView.BottomSheetVisible = false;
+                BottomSheetView.BottomSheetVisible = true;
             }
 
             base.OnSizeAllocated(width, height);

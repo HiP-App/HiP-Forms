@@ -294,7 +294,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                 AudioToolbarVisible = false;
             }
 
-            /*switch (currentPage.PageType)
+            switch (currentPage.PageType)
             {
                 case PageType.ImagePage:
                     SelectedView = new ImageViewModel(currentPage.ImagePage, ToggleVisibilityOfNavigationButtons);
@@ -305,7 +305,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                 case PageType.TimeSliderPage:
                     SelectedView = new TimeSliderViewModel(currentPage.TimeSliderPage, ToggleVisibilityOfNavigationButtons);
                     break;
-            }*/
+            }
 
             if (currentPage.AdditionalInformationPages != null && currentPage.AdditionalInformationPages.Any())
             {

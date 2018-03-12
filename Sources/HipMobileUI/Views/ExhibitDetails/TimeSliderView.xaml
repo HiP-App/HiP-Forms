@@ -23,27 +23,19 @@
     <ContentView.Content>
         <views1:NotificationExtensionView>
             <views1:NotificationExtensionView.ContentTemplate>
-                <views1:BottomSheetView BottomSheetVisible="{Binding BottomSheetVisible}">
+                <views1:BottomSheetView x:Name="BottomSheetView" BottomSheetVisible="{Binding BottomSheetVisible}">
                     <views1:BottomSheetView.MainContent>
-                        <Grid Margin="0,10,0,30">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="90" />
-                                <RowDefinition Height="80" />
-                                <RowDefinition Height="0.1*" />
-                            </Grid.RowDefinitions>
-                            <controls1:FadeoverImageView Images="{Binding Images}"
+                        <!--The row and column definition is made in code to adjust them to the device orientation-->
+                        <Grid x:Name="ContentGrid" Margin="0,5,0,0">
+                            <controls1:FadeoverImageView Grid.Row="0" Images="{Binding Images}"
                                                          SelectedValue="{Binding Source={x:Reference Slider}, Path=SelectedValue}"
                                                          VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
                                 <controls1:FadeoverImageView.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding ToggleButtonVisibility}" />
                                 </controls1:FadeoverImageView.GestureRecognizers>
                             </controls1:FadeoverImageView>
-                            <ScrollView Grid.Row="1" MinimumHeightRequest="100">
-                                <Label Text="{Binding DisplayedText}" LineBreakMode="WordWrap" Margin="10" TextColor="{StaticResource DarkGrayColor}" Style="{DynamicResource Ssp-Regular}">
+                            <ScrollView Grid.Row="1">
+                                <Label Text="{Binding DisplayedText}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" LineBreakMode="WordWrap" Margin="10,0,10,0" TextColor="{StaticResource DarkGrayColor}" Style="{DynamicResource Ssp-Regular}">
                                     <Label.GestureRecognizers>
                                         <TapGestureRecognizer Command="{Binding ToggleButtonVisibility}" />
                                     </Label.GestureRecognizers>
