@@ -57,6 +57,9 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite">
       <Version>2.0.1</Version>
     </PackageReference>
+    <PackageReference Include="TwinTechsForms.NControl.SvgImageView">
+      <Version>0.0.3</Version>
+    </PackageReference>
     <PackageReference Include="Xamarin.Android.Support.Design" Version="26.1.0.1" />
     <PackageReference Include="Xamarin.Android.Support.v7.AppCompat" Version="26.1.0.1" />
     <PackageReference Include="Xamarin.Android.Support.v4" Version="26.1.0.1" />
@@ -99,12 +102,13 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <AndroidAsset Include="Assets\fonts\AlteSchwabacher.ttf" />
     <None Include="Properties\AndroidManifest.xml" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
     <AndroidResource Include="Resources\layout\audioNotificationView.axml" />
-    <AndroidResource Include="Resources\layout\navigation_info_window.axml" />
+    <AndroidResource Include="Resources\layout\navigation_info_window.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
     <AndroidResource Include="Resources\layout\Tabbar.axml" />
     <AndroidResource Include="Resources\layout\Toolbar.axml" />
   </ItemGroup>
@@ -125,9 +129,6 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\btn_close.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\hiphop_transparent.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\ic_adventurer.png" />
@@ -594,6 +595,12 @@
       <Project>{703afe03-8f94-4f5c-a5e8-7d9774d0ced1}</Project>
       <Name>HiPMobile</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\hiphop_transparent.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\info_bubble.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

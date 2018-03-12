@@ -22,18 +22,10 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Windows.Input;
 using Xamarin.Forms;
-using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.ModelClasses;
-using System.IO;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelConverters;
-using System.Collections.Generic;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 {
@@ -115,7 +107,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                 Debug.WriteLine(e);
                 SetAverageAndCountRating("-", 0);
                 SetStarImages(0);
-                SetRatingBars(ratingManager.InitializeEmptyRatingTable(), 0);
+                SetRatingBars(ratingManager.InitializeEmptyUserRating(), 0);
                 SetRatingStars(0);
                 UserDialogs.Instance.Alert(new AlertConfig()
                 {

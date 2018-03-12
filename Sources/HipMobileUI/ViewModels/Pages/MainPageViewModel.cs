@@ -44,7 +44,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
         private MainPageViewModel(IReadOnlyList<Exhibit> exhibits)
         {
-            menuConfiguration = new MenuConfiguration(this, set);
+            menuConfiguration = new MenuConfiguration(this, exhibits);
             UpdateMenuConfiguration();
             
             profileScreenViewModel = MainScreenViewModels.OfType<ProfileScreenViewModel>().SingleOrDefault();
@@ -110,7 +110,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             private readonly SettingsScreenViewModel settingsScreenViewModel;
             private readonly LicenseScreenViewModel licenseScreenViewModel;
 
-            public MenuConfiguration(MainPageViewModel mainPageViewModel, ExhibitSet exhibitSet)
+            public MenuConfiguration(MainPageViewModel mainPageViewModel, IReadOnlyList<Exhibit> exhibitSet)
             {
                 exhibitsOverviewViewModel = new ExhibitsOverviewViewModel(exhibitSet)
                 {

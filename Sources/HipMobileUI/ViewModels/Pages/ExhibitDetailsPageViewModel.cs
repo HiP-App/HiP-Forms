@@ -58,9 +58,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         private readonly bool additionalInformation;
         private string pagenumber;
 
-        public ExhibitDetailsPageViewModel(string exhibitId) : this(ExhibitManager.GetExhibit(exhibitId)) { }
+        public ExhibitDetailsPageViewModel(string exhibitId) : this(DbManager.DataAccess.Exhibits().GetExhibit(exhibitId)) { }
 
-        public ExhibitDetailsPageViewModel(Exhibit exhibit) : this(ExhibitManager.GetExhibit(exhibit.Id)) { }
+        public ExhibitDetailsPageViewModel(Exhibit exhibit) : this(exhibit, exhibit.Pages, exhibit.Name) { }
 
         public ExhibitDetailsPageViewModel(Exhibit exhibit, ICollection<Page> pages, string title, bool additionalInformation = false)
         {

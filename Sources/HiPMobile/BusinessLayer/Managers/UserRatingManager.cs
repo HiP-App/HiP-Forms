@@ -49,7 +49,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
         /// Initializes a dictionary with the values 1-0, 2-0, 3-0, 4-0 and 5-0.
         /// </summary>
         /// <returns>A rating table where each value is 0.</returns>
-        Dictionary<int, int> InitializeEmptyRatingTable();
+        UserRating InitializeEmptyUserRating();
     }
 
     public class UserRatingManager : IUserRatingManager
@@ -60,8 +60,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
         public async Task<UserRating> GetUserRatingAsync(int idForRestApi)
         {
             var userRatingDto = await client.GetUserRatingAsync(idForRestApi);
-            userRatingDto.RatingTable = userRatingDto.RatingTable ?? InitializeEmptyRatingTable();
-            return new UserRating(userRatingDto);
+            return userRatingDto.RatingTable == null ? InitializeEmptyUserRating() : new UserRating(userRatingDto);
         }
 
         public async Task<int> GetPreviousUserRatingAsync(int idForRestApi)
@@ -74,12 +73,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
             return await client.SendUserRatingAsync(idForRestApi, rating);
         }
 
-        public Dictionary<int, int> InitializeEmptyRatingTable()
-        {
-            var ratingTable = new Dictionary<int, int>();
-            for (var i = 1; i <= 5; i++)
-                ratingTable.Add(i, 0);
-            return ratingTable;
-        }
+        public UserRating InitializeEmptyUserRating() => new UserRating(0, 0, 0, 0, 0);
     }
 }

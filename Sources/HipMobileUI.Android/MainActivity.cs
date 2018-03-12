@@ -88,7 +88,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
             CachedImageRenderer.Init(enableFastRenderer: true);
             Forms.Init(this, bundle);
             SvgImageViewRenderer.Init();
-            Xamarin.FormsMaps.Init(this, bundle);
 
             UserDialogs.Init(() => (Activity)Forms.Context);
 
