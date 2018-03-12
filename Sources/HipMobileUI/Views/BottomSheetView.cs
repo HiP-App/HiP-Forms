@@ -78,7 +78,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
                 {
                     absoluteLayout.Children.Add(BottomSheetContentView, new Rectangle(0, height - bottomSheetSize, width, bottomSheetSize));
                     var fabSize = Device.RuntimePlatform == Device.iOS ? FloatingActionButton.IosSize : IoCManager.Resolve<IFabSizeCalculator>().CalculateFabSize();
-                    if (IoCManager.Resolve<IFabSizeCalculator>().GetOsVersionNumber() >= 21)
+                    if (Device.RuntimePlatform == Device.iOS || IoCManager.Resolve<IFabSizeCalculator>().GetOsVersionNumber() >= 21)
                     {
                         absoluteLayout.Children.Add(Button, new Point(width - buttonRightPadding - fabSize, height - bottomSheetSize - fabSize / 2));
                     }
@@ -89,6 +89,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
                         SetButtonPosition(width);
                     }
                 }
+
                 Content = absoluteLayout;
 
                 // restore the state when the layout changes
