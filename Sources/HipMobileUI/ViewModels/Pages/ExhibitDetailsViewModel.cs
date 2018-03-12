@@ -47,16 +47,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         private ICommand audioToolbarCommand;
         private ICommand additionalInformationCommand;
         private int currentViewIndex;
-        private bool previousViewAvailable;
-        private bool nextViewAvailable;
         private bool previousVisible;
         private bool nextVisible;
-        private bool audioAvailabe;
         private bool audioToolbarVisible;
         private bool hasAdditionalInformation;
         private bool additionalInformationButtonVisible;
         private readonly bool additionalInformation;
-        private string pagenumber;
 
 
         public ExhibitDetailsViewModel(string exhibitId) : this(DbManager.DataAccess.Exhibits().GetExhibit(exhibitId)) { }
@@ -81,13 +77,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             AudioToolbar.AudioPlayer.AudioCompleted += AudioPlayerOnAudioCompleted;
 
             // init the current view
-            currentViewIndex = 1;
+            currentViewIndex = 0;
             this.pages = pages.ToList();
             SetCurrentView().ConfigureAwait(true);
             Title = title;
-            pagenumber = currentViewIndex + " / " + (pages.Count - 1);
-            if (pages.Count > 2)
-                NextViewAvailable = true;
 
             // init commands     
             NextViewCommand = new Command(async () => await GotoNextView());
@@ -209,8 +202,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                 }
                 // update the UI
                 currentViewIndex++;
-                NextViewAvailable = currentViewIndex < pages.Count;
-                PreviousViewAvailable = true;
                 await SetCurrentView();
             }
             else if (currentViewIndex == pages.Count - 1)
@@ -222,8 +213,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                     {
                         AudioToolbar.AudioPlayer.Stop();
                     }
-                    NextViewAvailable = true;
-                    PreviousViewAvailable = true;
                     await Navigation.PushAsync(new UserRatingPageViewModel(Exhibit));
                 }
                 else
@@ -259,8 +248,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                 // update UI
                 currentViewIndex--;
                 await SetCurrentView();
-                PreviousViewAvailable = currentViewIndex > 1;
-                NextViewAvailable = true;
             }
             // Go back to appetizer page
             else
@@ -283,9 +270,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
             var currentPage = pages[currentViewIndex];
             PageManager.LoadPageDetails(currentPage);
-            AudioAvailable = currentPage.Audio != null;
+            OnPropertyChanged(nameof(AudioAvailable));
             AudioToolbarVisible = AudioAvailable;
-            Pagenumber = currentViewIndex + " / " + (pages.Count - 1);
+            OnPropertyChanged(nameof(Pagenumber));
+            OnPropertyChanged(nameof(NextViewAvailable));
+            OnPropertyChanged(nameof(PreviousViewAvailable));
 
             // It's possible to get no audio data even if it should exist
             try
@@ -363,8 +352,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             Exhibit = DbManager.DataAccess.Exhibits().GetExhibit(exhibitId);
             if (!Exhibit.DetailsDataLoaded)
                 return;
-            NextViewAvailable = currentViewIndex < pages.Count - 1;
-            PreviousViewAvailable = currentViewIndex > 1;
             await SetCurrentView();
         }
 
@@ -424,46 +411,22 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         /// <summary>
         /// The command for switching to the next view, if available.
         /// </summary>
-        public ICommand NextViewCommand
-        {
-            get { return nextViewCommand; }
-            set { SetProperty(ref nextViewCommand, value); }
-        }
+        public ICommand NextViewCommand { get; }
 
         /// <summary>
         /// The command for switching to the previous view, if available.
         /// </summary>
-        public ICommand PreviousViewCommand
-        {
-            get { return previousViewCommand; }
-            set { SetProperty(ref previousViewCommand, value); }
-        }
+        public ICommand PreviousViewCommand { get; }
 
         /// <summary>
         /// Indicator if a previous view is available.
         /// </summary>
-        public bool PreviousViewAvailable
-        {
-            get { return previousViewAvailable; }
-            set
-            {
-                PreviousVisible = value;
-                SetProperty(ref previousViewAvailable, value);
-            }
-        }
+        public bool PreviousViewAvailable => currentViewIndex > 0;
 
         /// <summary>
         /// Indicator if a next view is available.
         /// </summary>
-        public bool NextViewAvailable
-        {
-            get { return nextViewAvailable; }
-            set
-            {
-                NextVisible = value;
-                SetProperty(ref nextViewAvailable, value);
-            }
-        }
+        public bool NextViewAvailable => currentViewIndex < pages.Count - 1;
 
         /// <summary>
         /// Indicator if navigation to previous is visible
@@ -486,20 +449,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         /// <summary>
         /// Shows the audio toolbar
         /// </summary>
-        public ICommand ShowAudioToolbarCommand
-        {
-            get { return audioToolbarCommand; }
-            set { SetProperty(ref audioToolbarCommand, value); }
-        }
+        public ICommand ShowAudioToolbarCommand { get; }
 
         /// <summary>
         /// Indicates whether the current page has audio available
         /// </summary>
-        public bool AudioAvailable
-        {
-            get { return audioAvailabe; }
-            set { SetProperty(ref audioAvailabe, value); }
-        }
+        public bool AudioAvailable => pages[currentViewIndex].Audio != null;
 
         /// <summary>
         /// Indicates whether the audio toolbar is visible
@@ -520,13 +475,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         }
 
         /// <summary>
-        /// sets the pagenumber
+        /// The page number
         /// </summary>
-        public string Pagenumber
-        {
-            get { return pagenumber; }
-            set { SetProperty(ref pagenumber, value); }
-        }
+        public string Pagenumber => (currentViewIndex + 1) + " / " + pages.Count;
 
         /// <summary>
         /// Indicates whether there are additional informations for this page
@@ -553,11 +504,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         /// <summary>
         /// Navigates to the additional Information
         /// </summary>
-        public ICommand ShowAdditionalInformationCommand
-        {
-            get { return additionalInformationCommand; }
-            set { SetProperty(ref additionalInformationCommand, value); }
-        }
+        public ICommand ShowAdditionalInformationCommand { get; }
 
         /// <summary>
         /// Value indicating that the view of this viewmodel will disappear.
