@@ -12,13 +12,26 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
-
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 {
-    public class RouteFinishedAchievementPendingNotification : IIdentifiable
+    /// <remarks>
+    /// For inheritance to be mapped correctly to a relational model, Entity Framework Core requires
+    /// a base class (an interface is not sufficient). That's why we need this base type.
+    /// </remarks>
+    public abstract class AchievementBase : IAchievement
     {
-        public virtual RouteFinishedAchievement Achievement { get; set; }
-        public virtual string Id { get; set; }
+        public string Id { get; set; }
+
+        public string Title { get; set; }
+
+        public string Description { get; set; }
+
+        public string ThumbnailUrl { get; set; }
+
+        public string NextId { get; set; }
+
+        public bool IsUnlocked { get; set; }
+
+        public int Points { get; set; }
     }
 }

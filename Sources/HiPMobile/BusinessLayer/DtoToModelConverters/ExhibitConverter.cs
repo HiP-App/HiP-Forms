@@ -12,7 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos;
 
@@ -24,16 +23,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelCo
         {
             existingModelObject.IdForRestApi = dto.Id;
             existingModelObject.Timestamp = dto.Timestamp;
-
             existingModelObject.Name = dto.Name;
             existingModelObject.Description = dto.Description;
-            if (existingModelObject.Location == null)
-            {
-                existingModelObject.Location = DbManager.CreateBusinessObject<GeoLocation>();
-            }
-
-            existingModelObject.Location.Latitude = dto.Latitude;
-            existingModelObject.Location.Longitude = dto.Longitude;
+            existingModelObject.Location = new GeoLocation(dto.Latitude, dto.Longitude);
         }
     }
 }

@@ -12,10 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System.Collections.Generic;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.JoinClasses;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
+using System;
+using System.Collections.Generic;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
 {
@@ -24,80 +26,61 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
     /// </summary>
     public static class ExhibitManager
     {
-        private static readonly IDataAccess DataAccess = IoCManager.Resolve<IDataAccess>();
+        public static Instance Exhibits(this ITransactionDataAccess dataAccess) => new Instance(dataAccess);
 
-        /// <summary>
-        /// Gets an exhibitset with a specific id.
-        /// </summary>
-        /// <param name="id">The id of the exhibitset to be retrived.</param>
-        /// <returns>The exhibitSet with the given id. If it doesn't exist, null is returned.</returns>
-        public static ExhibitSet GetExhibitSet(string id)
+        public struct Instance
         {
-            if (!string.IsNullOrEmpty(id))
+            private readonly ITransactionDataAccess _dataAccess;
+
+            public Instance(ITransactionDataAccess dataAccess)
             {
-                return DataAccess.GetItem<ExhibitSet>(id);
+                _dataAccess = dataAccess ?? throw new ArgumentNullException(nameof(dataAccess));
             }
-            return null;
-        }
 
-        /// <summary>
-        /// Get all available exhibitsets.
-        /// </summary>
-        /// <returns>The enumerable of all available exibitsets.</returns>
-        public static IEnumerable<ExhibitSet> GetExhibitSets()
-        {
-            return DataAccess.GetItems<ExhibitSet>();
-        }
-
-        /// <summary>
-        /// Deletes the exhibitSet from the app.
-        /// </summary>
-        /// <param name="exhibitSet">The exhibitSet to be deleted.</param>
-        /// <returns>True, if deletion was succesful, false otherwise.</returns>
-        public static bool DeleteExhibitSet(ExhibitSet exhibitSet)
-        {
-            if (exhibitSet != null)
+            /// <summary>
+            /// Get an exhibit with a specific id including its image and the IDs of its pages.
+            /// </summary>
+            /// <param name="id">The id of the exhibit to be retrived.</param>
+            /// <returns>The exhibit with the given id. If no exhibit exists, null is returned.</returns>
+            public Exhibit GetExhibit(string id)
             {
-                return DataAccess.DeleteItem<ExhibitSet>(exhibitSet.Id);
+                if (!string.IsNullOrEmpty(id))
+                {
+                    return _dataAccess.GetItem<Exhibit>(id,
+                        nameof(Exhibit.Image),
+                        "PagesRefs.Page.Audio");
+                }
+                return null;
             }
-            return true;
-        }
 
-        /// <summary>
-        /// Get an exhibit with a specific id.
-        /// </summary>
-        /// <param name="id">The id of the exhibit to be retrived.</param>
-        /// <returns>The exhibit with the given id. If no exhibit exists, null is returned.</returns>
-        public static Exhibit GetExhibit(string id)
-        {
-            if (!string.IsNullOrEmpty(id))
+            /// <summary>
+            /// Gets all available exhibits including their image and the IDs of their pages.
+            /// </summary>
+            /// <returns>The enumerable of all available exhibits.</returns>
+            public IEnumerable<Exhibit> GetExhibits()
             {
-                return DataAccess.GetItem<Exhibit>(id);
+                return _dataAccess.GetItems<Exhibit>(
+                    nameof(Exhibit.Image),
+                    "PagesRefs.Page.Audio");
             }
-            return null;
-        }
 
-        /// <summary>
-        /// Gets all available exhibits.
-        /// </summary>
-        /// <returns>The enumerable of all available exhibits.</returns>
-        public static IEnumerable<Exhibit> GetExhibits()
-        {
-            return DataAccess.GetItems<Exhibit>();
-        }
-
-        /// <summary>
-        /// Deletes the exhibit from the app.
-        /// </summary>
-        /// <param name="exhibit">The exhibit to be deleted.</param>
-        /// <returns>True, if deletion was succesful, false otherwise.</returns>
-        public static bool DeleteExhibit(Exhibit exhibit)
-        {
-            if (exhibit != null)
+            public void AddExhibit(Exhibit exhibit)
             {
-                return DataAccess.DeleteItem<Exhibit>(exhibit.Id);
+                _dataAccess.AddItem(exhibit);
             }
-            return true;
+
+            /// <summary>
+            /// Deletes the exhibit from the app.
+            /// </summary>
+            /// <param name="exhibit">The exhibit to be deleted.</param>
+            /// <returns>True, if deletion was succesful, false otherwise.</returns>
+            public bool DeleteExhibit(Exhibit exhibit)
+            {
+                if (exhibit != null)
+                    _dataAccess.DeleteItem(exhibit);
+
+                return true;
+            }
         }
     }
 }

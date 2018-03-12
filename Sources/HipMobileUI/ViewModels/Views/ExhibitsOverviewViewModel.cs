@@ -26,34 +26,29 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
 using Plugin.Geolocator.Abstractions;
 using Xamarin.Forms;
+using System.Collections.Generic;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 {
     public class ExhibitsOverviewViewModel : NavigationViewModel, ILocationListener, IDbChangedObserver
     {
-        private ObservableCollection<ExhibitsOverviewListItemViewModel> exhibitsList;
-        private ICommand itemTappedCommand;
         private readonly ILocationManager locationManager;
         private readonly INearbyExhibitManager nearbyExhibitManager;
         private readonly INearbyRouteManager nearbyRouteManager;
-        private bool displayDistances;
-        private ExhibitSet displayedExhibitSet;
-        private Position position;
 
-        public ExhibitsOverviewViewModel(ExhibitSet set)
+        private ObservableCollection<ExhibitsOverviewListItemViewModel> exhibits; // observable because items are reordered according to distance to user
+        private bool displayDistances = false;
+        private GeoLocation? position;
+
+        public ExhibitsOverviewViewModel(IReadOnlyList<Exhibit> exhibits)
         {
-            if (set != null)
+            if (exhibits != null)
             {
-                DisplayedExhibitSet = set;
-                ExhibitsList = new ObservableCollection<ExhibitsOverviewListItemViewModel>();
-                foreach (var exhibit in set)
-                {
-                    var listItem = new ExhibitsOverviewListItemViewModel(exhibit);
-                    ExhibitsList.Add(listItem);
-                }
+                Exhibits = new ObservableCollection<ExhibitsOverviewListItemViewModel>(
+                    exhibits.Select(ex => new ExhibitsOverviewListItemViewModel(ex)));
             }
+
             ItemTappedCommand = new Command(item => NavigateToExhibitDetails(item as ExhibitsOverviewListItemViewModel));
-            DisplayDistances = false;
 
             locationManager = IoCManager.Resolve<ILocationManager>();
             nearbyExhibitManager = IoCManager.Resolve<INearbyExhibitManager>();
@@ -64,10 +59,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             DownloadUpdatedData();
         }
 
-        public ExhibitsOverviewViewModel(string exhibitSetId) : this(ExhibitManager.GetExhibitSet(exhibitSetId))
-        {
-        }
-
         /// <summary>
         /// React to position changes.
         /// </summary>
@@ -75,15 +66,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         /// <param name="args">The event params.</param>
         public void LocationChanged(object sender, PositionEventArgs args)
         {
-            Position = args.Position;
+            Position = new GeoLocation(args.Position.Latitude, args.Position.Longitude);
 
-            if (ExhibitsList == null)
+            if (Exhibits == null)
                 return;
 
             SetDistances(args.Position);
 
-            nearbyExhibitManager.CheckNearExhibit(displayedExhibitSet, args.Position.ToGeoLocation(), true, locationManager.ListeningInBackground);
-            nearbyRouteManager.CheckNearRoute(RouteManager.GetRoutes(), args.Position.ToGeoLocation());
+            nearbyExhibitManager.CheckNearExhibit(exhibits.Select(vm => vm.Exhibit), args.Position.ToGeoLocation(), true, locationManager.ListeningInBackground);
+            nearbyRouteManager.CheckNearRoute(DbManager.DataAccess.Routes().GetRoutes(), args.Position.ToGeoLocation());
         }
 
         /// <summary>
@@ -93,11 +84,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         private void SetDistances(Position pos)
         {
             DisplayDistances = true;
-            foreach (var exhibit in ExhibitsList)
+            foreach (var exhibit in Exhibits)
             {
                 exhibit.UpdateDistance(pos);
             }
-            ExhibitsList.SortCollection(exhibit => exhibit.Distance);
+            Exhibits.SortCollection(exhibit => exhibit.Distance);
         }
 
         /// <summary>
@@ -135,46 +126,36 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         /// <summary>
         /// The list of displayed exhibits.
         /// </summary>
-        public ObservableCollection<ExhibitsOverviewListItemViewModel> ExhibitsList
+        public ObservableCollection<ExhibitsOverviewListItemViewModel> Exhibits
         {
-            get { return exhibitsList; }
-            set { SetProperty(ref exhibitsList, value); }
+            get => exhibits;
+            set => SetProperty(ref exhibits, value);
         }
+
+        // Temporarily needed for OsmMap binding. TODO: No longer needed when merged with HIPM-868.
+        public IReadOnlyList<Exhibit> RawExhibits => Exhibits.Select(vm => vm.Exhibit).ToList();
 
         /// <summary>
         /// The command for tapping on exhibits.
         /// </summary>
-        public ICommand ItemTappedCommand
-        {
-            get { return itemTappedCommand; }
-            set { SetProperty(ref itemTappedCommand, value); }
-        }
+        public ICommand ItemTappedCommand { get; }
 
         /// <summary>
         /// Whether to display the distance to exhibit.
         /// </summary>
         public bool DisplayDistances
         {
-            get { return displayDistances; }
-            set { SetProperty(ref displayDistances, value); }
-        }
-
-        /// <summary>
-        /// The displayed set of exhibits on the map.
-        /// </summary>
-        public ExhibitSet DisplayedExhibitSet
-        {
-            get { return displayedExhibitSet; }
-            set { SetProperty(ref displayedExhibitSet, value); }
+            get => displayDistances;
+            set => SetProperty(ref displayDistances, value);
         }
 
         /// <summary>
         /// The geolocation of the user
         /// </summary>
-        public Position Position
+        public GeoLocation? Position
         {
-            get { return position; }
-            set { SetProperty(ref position, value); }
+            get => position;
+            set => SetProperty(ref position, value);
         }
 
         /// <summary>
@@ -182,14 +163,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         /// </summary>
         public void DbChanged()
         {
-            var set = ExhibitManager.GetExhibitSets().Single();
-            DisplayedExhibitSet = set;
-            ExhibitsList = new ObservableCollection<ExhibitsOverviewListItemViewModel>();
-            foreach (var exhibit in set)
-            {
-                var listItem = new ExhibitsOverviewListItemViewModel(exhibit);
-                ExhibitsList.Add(listItem);
-            }
+            Exhibits = new ObservableCollection<ExhibitsOverviewListItemViewModel>(
+                DbManager.DataAccess.Exhibits().GetExhibits().Select(ex => new ExhibitsOverviewListItemViewModel(ex)));
         }
 
         /// <summary>
@@ -205,8 +180,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             var downloadData = false;
             if (!Settings.AlwaysDownloadData)
             {
-                var result = await Navigation.DisplayActionSheet(Strings.DownloadData_Title,
-                                                                 null, null, Strings.DownloadData_Accept, Strings.DownloadData_Cancel, Strings.DownloadData_Always);
+                var result = await Navigation.DisplayActionSheet(Strings.DownloadData_Title, null, null,
+                    Strings.DownloadData_Accept, Strings.DownloadData_Cancel, Strings.DownloadData_Always);
 
                 if (result == Strings.DownloadData_Always)
                 {

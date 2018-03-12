@@ -12,23 +12,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System.Data;
-using System.IO;
-using Mono.Data.Sqlite;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Contracts
+
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 {
-    public class AndroidDbConnectionProvider: IDbConnectionProvider
+    public class AchievementPendingNotification : IIdentifiable
     {
-        public IDbConnection ProvideIDbConnection(string dbPath)
-        {
-            if (!File.Exists(dbPath))
-            {
-                SqliteConnection.CreateFile(dbPath);
-            }
-
-            return new SqliteConnection($"Data Source={dbPath};Version=3;");
-        }
+        public string Id { get; set; }
+        
+        public AchievementBase Achievement { get; set; }
     }
 }

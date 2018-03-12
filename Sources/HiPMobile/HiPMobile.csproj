@@ -21,13 +21,14 @@
     <EmbeddedResource Include="Content\noImageTag.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Dapper" Version="1.50.4" />
     <PackageReference Include="Itinero.IO.Osm" Version="1.4.0" />
     <PackageReference Include="JetBrains.Annotations" Version="11.1.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="2.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
     <PackageReference Include="NUnit" Version="3.9.0" />
     <PackageReference Include="OsmSharp" Version="6.0.0" />
-    <PackageReference Include="Realm" Version="1.6.0" />
-    <PackageReference Include="Unity" Version="5.5.6" />
+    <PackageReference Include="Unity" Version="5.6.0" />
     <PackageReference Include="Xam.Plugins.Settings" Version="3.1.1" />
   </ItemGroup>
 </Project>

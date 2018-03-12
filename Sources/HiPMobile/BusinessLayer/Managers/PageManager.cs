@@ -12,9 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using Microsoft.EntityFrameworkCore;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.JoinClasses;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
+using System;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
 {
@@ -23,48 +26,102 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
     /// </summary>
     public static class PageManager
     {
-        private static readonly IDataAccess DataAccess = IoCManager.Resolve<IDataAccess>();
+        public static Instance Pages(this ITransactionDataAccess dataAccess) => new Instance(dataAccess);
 
         /// <summary>
-        /// Gets an imagepage with a specific id.
+        /// Explicitly loads all audio and images associated with the specified page.
+        /// Additional information pages are loaded recursively in the same way.
         /// </summary>
-        /// <param name="id">The id of the imagepage to be retrived.</param>
-        /// <returns>The imagepage with the given id. If it doesn't exist, null is returned.</returns>
-        public static ImagePage GetImagePage(string id)
+        /// <param name="page"></param>
+        public static void LoadPageDetails(Page page)
         {
-            if (!string.IsNullOrEmpty(id))
+            // Loading must happen in one DbContext scope so that
+            // references between pages are correctly fixed up.
+            using (var db = new AppDatabaseContext(QueryTrackingBehavior.TrackAll))
             {
-                return DataAccess.GetItem<ImagePage>(id);
+                db.Attach(page);
+                var pageEntry = db.Entry(page);
+                pageEntry.Navigation(nameof(Page.Audio)).Load();
+
+                switch (page)
+                {
+                    case ImagePage imagePage:
+                        db.Entry(imagePage).Navigation(nameof(ImagePage.Image)).Load();
+                        break;
+
+                    case TimeSliderPage timeSliderPage:
+                        pageEntry.Navigation(nameof(TimeSliderPage.SliderImages)).Load();
+                        foreach (var img in timeSliderPage.SliderImages)
+                            db.Entry(img).Navigation(nameof(TimeSliderPageImage.Image)).Load();
+                        break;
+                }
+
+                var subpageNav = pageEntry.Navigation(nameof(Page.AdditionalInformationPagesRefs));
+
+                // Recursively load additional information pages
+                // (Note: page references may be circular - this check breaks the recursion)
+                if (!subpageNav.IsLoaded) 
+                {
+                    subpageNav.Load();
+                    foreach (var subpageRef in page.AdditionalInformationPagesRefs)
+                    {
+                        db.Entry(subpageRef).Navigation(nameof(JoinPagePage.AdditionalInformationPage)).Load();
+                        LoadPageDetails(subpageRef.AdditionalInformationPage);
+                    }
+                }
             }
-            return null;
         }
 
-        /// <summary>
-        /// Gets an TextPage with a specific id.
-        /// </summary>
-        /// <param name="id">The id of the TextPage to be retrived.</param>
-        /// <returns>The TextPage with the given id. If it doesn't exist, null is returned.</returns>
-        public static TextPage GetTextPage(string id)
+        public struct Instance
         {
-            if (!string.IsNullOrEmpty(id))
-            {
-                return DataAccess.GetItem<TextPage>(id);
-            }
-            return null;
-        }
+            private readonly ITransactionDataAccess _dataAccess;
 
-        /// <summary>
-        /// Gets an TimeSliderPage with a specific id.
-        /// </summary>
-        /// <param name="id">The id of the TimeSliderPage to be retrived.</param>
-        /// <returns>The TimeSliderPage with the given id. If it doesn't exist, null is returned.</returns>
-        public static TimeSliderPage GetTimesliderPage(string id)
-        {
-            if (!string.IsNullOrEmpty(id))
+            public Instance(ITransactionDataAccess dataAccess)
             {
-                return DataAccess.GetItem<TimeSliderPage>(id);
+                _dataAccess = dataAccess ?? throw new ArgumentNullException(nameof(dataAccess));
             }
-            return null;
+
+            /// <summary>
+            /// Gets an imagepage with a specific id.
+            /// </summary>
+            /// <param name="id">The id of the imagepage to be retrived.</param>
+            /// <returns>The imagepage with the given id. If it doesn't exist, null is returned.</returns>
+            public ImagePage GetImagePage(string id)
+            {
+                if (!string.IsNullOrEmpty(id))
+                {
+                    return _dataAccess.GetItem<ImagePage>(id);
+                }
+                return null;
+            }
+
+            /// <summary>
+            /// Gets an TextPage with a specific id.
+            /// </summary>
+            /// <param name="id">The id of the TextPage to be retrived.</param>
+            /// <returns>The TextPage with the given id. If it doesn't exist, null is returned.</returns>
+            public TextPage GetTextPage(string id)
+            {
+                if (!string.IsNullOrEmpty(id))
+                {
+                    return _dataAccess.GetItem<TextPage>(id);
+                }
+                return null;
+            }
+
+            /// <summary>
+            /// Gets an TimeSliderPage with a specific id.
+            /// </summary>
+            /// <param name="id">The id of the TimeSliderPage to be retrived.</param>
+            /// <returns>The TimeSliderPage with the given id. If it doesn't exist, null is returned.</returns>
+            public TimeSliderPage GetTimesliderPage(string id)
+            {
+                if (!string.IsNullOrEmpty(id))
+                {
+                    return _dataAccess.GetItem<TimeSliderPage>(id);
+                }
+                return null;
+            }
         }
     }
 }

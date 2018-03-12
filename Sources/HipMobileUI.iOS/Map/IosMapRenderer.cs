@@ -146,7 +146,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Map
         /// React to changes in the exhibitset.
         /// </summary>
         /// <param name="set">The exhibitset that changed.</param>
-        private void OnExhibitSetChanged(ExhibitSet set)
+        private void OnExhibitSetChanged(IReadOnlyList<Exhibit> set)
         {
             InitAnnotations(set, osmMap.DetailsRoute);
         }
@@ -358,7 +358,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Map
         /// </summary>
         /// <param name="exhibitSet">The set of exhibits.</param>
         /// <param name="route">The route.</param>
-        private void InitAnnotations(ExhibitSet exhibitSet, Route route)
+        private void InitAnnotations(IReadOnlyList<Exhibit> exhibitSet, Route route)
         {
             if (exhibitSet != null)
             {

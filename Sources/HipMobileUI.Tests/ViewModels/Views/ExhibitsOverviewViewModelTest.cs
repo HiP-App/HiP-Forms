@@ -55,10 +55,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Views
         {
             var sut = CreateSystemUnderTest();
 
-            Assert.AreEqual(sut.ExhibitsList.Count, 3);
-            Assert.AreNotSame(sut.ExhibitsList[0], sut.ExhibitsList[1]);
-            Assert.AreNotSame(sut.ExhibitsList[0], sut.ExhibitsList[2]);
-            Assert.AreNotSame(sut.ExhibitsList[1], sut.ExhibitsList[2]);
+            Assert.AreEqual(sut.Exhibits.Count, 3);
+            Assert.AreNotSame(sut.Exhibits[0], sut.Exhibits[1]);
+            Assert.AreNotSame(sut.Exhibits[0], sut.Exhibits[2]);
+            Assert.AreNotSame(sut.Exhibits[1], sut.Exhibits[2]);
             Assert.NotNull(sut.ItemTappedCommand);
             Assert.IsFalse(sut.DisplayDistances);
         }
@@ -70,7 +70,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Views
         {
             var sut = CreateSystemUnderTest();
 
-            sut.ItemTappedCommand.Execute(sut.ExhibitsList[item]);
+            sut.ItemTappedCommand.Execute(sut.Exhibits[item]);
             navservice.ReceivedWithAnyArgs().PushAsync(null);
         }
 
@@ -78,11 +78,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Views
 
         private ExhibitsOverviewViewModel CreateSystemUnderTest()
         {
-            var set = Substitute.For<ExhibitSet>();
-            var exhibitList = new List<Exhibit> { CreateExhibit("Exhibit 1", 51, 7), CreateExhibit("Exhibit 2", 52, 8), CreateExhibit("Exhibit 3", 52.5, 7.5) };
-            set.ActiveSet.Returns(exhibitList);
+            var exhibitList = new List<Exhibit>
+            {
+                CreateExhibit("Exhibit 1", 51, 7),
+                CreateExhibit("Exhibit 2", 52, 8),
+                CreateExhibit("Exhibit 3", 52.5, 7.5)
+            };
 
-            return new ExhibitsOverviewViewModel(set);
+            return new ExhibitsOverviewViewModel(exhibitList);
         }
 
         private Exhibit CreateExhibit(string name, double latitude = 0, double longitude = 0)
@@ -91,20 +94,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Views
             exhibit.Name = name;
             exhibit.Image = CreateImage();
 
-            exhibit.Location = CreateGeoLocation(latitude, longitude);
+            exhibit.Location = new GeoLocation(latitude, longitude);
 
             var pages = new List<Page> { CreateImagePage() };
             exhibit.Pages.Returns(pages);
 
             return exhibit;
-        }
-
-        private GeoLocation CreateGeoLocation(double latitude, double longitude)
-        {
-            var geolocation = Substitute.For<GeoLocation>();
-            geolocation.Latitude.Returns(latitude);
-            geolocation.Longitude.Returns(longitude);
-            return geolocation;
         }
 
         private AppetizerPage CreateAppetizerPage()

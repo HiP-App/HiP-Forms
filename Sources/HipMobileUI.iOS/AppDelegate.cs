@@ -56,13 +56,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios
         {
             EarlyIoC.Register();
 
-            IoCManager.RegisterType<IDbConnectionProvider, IosDbConnectionProvider>();
             var dataAccess = IoCManager.Resolve<IDataAccess>();
+
             if (Settings.ShouldDeleteDbOnLaunch)
             {
                 File.Delete(dataAccess.DatabasePath);
                 Settings.ShouldDeleteDbOnLaunch = false;
             }
+
+            dataAccess.CreateDatabase(0); // ensures the database exists and is up to date
 
             IoCManager.RegisterType<IImageDimension, IosImageDimensions>();
             IoCManager.RegisterType<IAppCloser, IosAppCloser>();
@@ -82,7 +84,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios
             IoCManager.RegisterInstance(typeof(IDbChangedHandler), new DbChangedHandler());
             IoCManager.RegisterInstance(typeof(INetworkAccessChecker), new IosNetworkAccessChecker());
             IoCManager.RegisterInstance(typeof(IStorageSizeProvider), new IosStorageSizeProvider());
-            IoCManager.RegisterType<IMediaFileManager, IosMediaFileManager>();
 
             // init crash manager
             var manager = BITHockeyManager.SharedHockeyManager;

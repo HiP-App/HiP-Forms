@@ -12,99 +12,85 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.JoinClasses;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
 {
     public static class RouteManager
     {
-        private static readonly IDataAccess DataAccess = IoCManager.Resolve<IDataAccess>();
+        public static Instance Routes(this ITransactionDataAccess dataAccess) => new Instance(dataAccess);
 
-        /// <summary>
-        ///     Returns a Route, with specific id
-        /// </summary>
-        /// <param name="id">The id of the specific Route to be passed</param>
-        /// <returns>the Route with given id. If Route does not exits, return null</returns>
-        public static Route GetRoute(string id)
+        public struct Instance
         {
-            if (!string.IsNullOrEmpty(id))
+            private readonly ITransactionDataAccess _dataAccess;
+
+            public Instance(ITransactionDataAccess dataAccess)
             {
-                return DataAccess.GetItem<Route>(id);
+                _dataAccess = dataAccess ?? throw new ArgumentNullException(nameof(dataAccess));
             }
-            return null;
-        }
 
-        /// <summary>
-        ///     Returns all existing Routes
-        /// </summary>
-        /// <returns>The enumerable of all avaible routes</returns>
-        public static IEnumerable<Route> GetRoutes()
-        {
-            return DataAccess.GetItems<Route>();
-        }
-
-        /// <summary>
-        ///     Deletes the Route
-        /// </summary>
-        /// <param name="route"> The Route to be deleted</param>
-        /// <returns>true, if deletion was sucessfull, false otherwise</returns>
-        public static bool DeleteRoute(Route route)
-        {
-            if (route != null)
+            /// <summary>
+            /// Returns the Route with the specific ID including its waypoints, tags, image and audio.
+            /// </summary>
+            /// <param name="id">The id of the specific Route to be passed</param>
+            /// <returns>the Route with given id. If Route does not exits, return null</returns>
+            public Route GetRoute(string id)
             {
-                return DataAccess.DeleteItem<Route>(route.Id);
+                if (!string.IsNullOrEmpty(id))
+                {
+                    return _dataAccess.GetItem<Route>(id,
+                        "TagsRefs.Tag.Image",
+                        nameof(Route.Image),
+                        nameof(Route.Audio),
+                        nameof(Route.Waypoints));
+                }
+                return null;
             }
-            return true;
-        }
 
-        /// <summary>
-        ///     Returns a RouteSet, with specific id
-        /// </summary>
-        /// <param name="id">The id of the specific RouteSet to be passed</param>
-        /// <returns></returns>
-        public static RouteSet GetRouteSet(string id)
-        {
-            if (!string.IsNullOrEmpty(id))
+            /// <summary>
+            /// Returns all existing Routes including their waypoints, tags, images and audio.
+            /// </summary>
+            /// <returns>The enumerable of all avaible routes</returns>
+            public IEnumerable<Route> GetRoutes()
             {
-                return DataAccess.GetItem<RouteSet>(id);
+                return _dataAccess.GetItems<Route>(
+                    "TagsRefs.Tag.Image",
+                    nameof(Route.Image),
+                    nameof(Route.Audio),
+                    nameof(Route.Waypoints));
             }
-            return null;
-        }
 
-        /// <summary>
-        ///     Returns all existing RouteSets
-        /// </summary>
-        /// <returns>The enumerable of all avaible route sets</returns>
-        public static IEnumerable<RouteSet> GetRouteSets()
-        {
-            return DataAccess.GetItems<RouteSet>();
-        }
-
-        /// <summary>
-        ///     Deletes the RouteSet
-        /// </summary>
-        /// <param name="routeSet"> The RouteSet to be deleted</param>
-        /// <returns>true, if deletion was sucessfull, false otherwise</returns>
-        public static bool DeleteRouteSet(RouteSet routeSet)
-        {
-            if (routeSet != null)
+            public void AddRoute(Route route)
             {
-                return DataAccess.DeleteItem<RouteSet>(routeSet.Id);
+                _dataAccess.AddItem(route);
             }
-            return true;
-        }
 
-        /// <summary>
-        ///     Checks if a route is active
-        /// </summary>
-        /// <returns>true, if one route is active, false otherwise</returns>
-        public static bool IsOneRouteActive()
-        {
-            return GetRoutes().Any(route => route.IsRouteStarted());
+            /// <summary>
+            ///     Deletes the Route
+            /// </summary>
+            /// <param name="route"> The Route to be deleted</param>
+            /// <returns>true, if deletion was sucessfull, false otherwise</returns>
+            public bool DeleteRoute(Route route)
+            {
+                if (route != null)
+                    _dataAccess.DeleteItem(route);
+
+                return true;
+            }
+
+            /// <summary>
+            ///     Checks if a route is active
+            /// </summary>
+            /// <returns>true, if one route is active, false otherwise</returns>
+            public bool IsOneRouteActive()
+            {
+                return GetRoutes().Any(route => route.IsRouteStarted());
+            }
         }
     }
 }

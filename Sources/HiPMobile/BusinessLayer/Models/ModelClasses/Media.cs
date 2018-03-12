@@ -1,4 +1,4 @@
-﻿// Copyright (C) 2016 History in Paderborn App - Universität Paderborn
+﻿// Copyright (C) 2017 History in Paderborn App - Universität Paderborn
 //  
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,19 +12,24 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System;
+
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 {
-    public partial class GeoLocation
+    /// <summary>
+    /// Base class for <see cref="Image"/> and <see cref="Audio"/>.
+    /// </summary>
+    public abstract class Media : IIdentifiable
     {
-        public GeoLocation(double lat, double lon)
-        {
-            Latitude = lat;
-            Longitude = lon;
-        }
+        public string Id { get; set; }
 
-        public override string ToString()
-        {
-            return $"({Latitude},{Longitude}";
-        }
+        public string Title { get; set; }
+
+        public string DataPath { get; set; }
+
+        public int IdForRestApi { get; set; }
+
+        public DateTimeOffset Timestamp { get; set; }
     }
 }
+

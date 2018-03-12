@@ -16,6 +16,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers.Contracts
@@ -44,12 +45,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
         /// </summary>
         /// <param name="listener"></param>
         /// <returns></returns>
-        Task ProcessRoutes(IProgressListener listener);
+        Task ProcessRoutes(IProgressListener listener, ITransactionDataAccess dataAccess);
 
         /// <summary>
         /// Indicates whether any route was changed
         /// </summary>
         /// <returns></returns>
-        Task<bool> AnyRouteChanged();
+        Task<bool> AnyRouteChanged(ITransactionDataAccess dataAccess);
     }
 }

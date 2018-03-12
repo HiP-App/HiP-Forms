@@ -12,11 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.JoinClasses;
 using System.Collections.Generic;
 using System.Linq;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
-
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 {
@@ -35,7 +34,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
         {
             if (waypoint != null)
             {
-                using (IoCManager.Resolve<IDataAccess>().StartTransaction())
+                using (DbManager.StartTransaction(waypoint))
                 {
                     bool exists = ActiveSet.Contains(waypoint);
                     waypoint.Visited = true;
@@ -53,9 +52,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
         /// </summary>
         public void ResetRoute()
         {
-            using (IoCManager.Resolve<IDataAccess>().StartTransaction())
+            using (DbManager.StartTransaction(PassiveSet))
             {
-                foreach (Waypoint waypoint in PassiveSet)
+                foreach (var waypoint in PassiveSet)
                 {
                     waypoint.Visited = false;
                 }
