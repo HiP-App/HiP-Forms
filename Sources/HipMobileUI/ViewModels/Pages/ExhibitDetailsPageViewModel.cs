@@ -226,7 +226,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                     }
                     NextViewAvailable = true;
                     PreviousViewAvailable = true;
-                    await Navigation.PushAsync(new UserRatingPageViewModel(Exhibit));
+                    Navigation.InsertPageBefore(new UserRatingPageViewModel(Exhibit), this);
+                    Navigation.PopAsync(false);
                 }
                 else
                 {
