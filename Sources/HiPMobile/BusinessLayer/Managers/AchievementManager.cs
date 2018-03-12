@@ -32,11 +32,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
 
         public struct Instance
         {
-            private readonly ITransactionDataAccess _dataAccess;
+            private readonly ITransactionDataAccess dataAccess;
 
             public Instance(ITransactionDataAccess dataAccess)
             {
-                _dataAccess = dataAccess ?? throw new ArgumentNullException(nameof(dataAccess));
+                this.dataAccess = dataAccess ?? throw new ArgumentNullException(nameof(dataAccess));
             }
 
             /// <summary>
@@ -45,7 +45,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
             /// <returns></returns>
             public IEnumerable<AchievementBase> GetAchievements()
             {
-                return _dataAccess.GetItems<AchievementBase>().ToList();
+                return dataAccess.GetItems<AchievementBase>().ToList();
             }
 
             /// <summary>
@@ -55,7 +55,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
             /// <returns></returns>
             internal async Task PostVisitedExhibitsToApi()
             {
-                var exhibits = _dataAccess.Exhibits().GetExhibits();
+                var exhibits = dataAccess.Exhibits().GetExhibits();
                 var visitedExhibitIds = exhibits.Where(e => e.Unlocked).Select(e => e.IdForRestApi).ToList();
                 var action = new ExhibitsVisitedActionDto(visitedExhibitIds);
                 await IoCManager.Resolve<IAchievementsApiAccess>().PostExhibitVisited(action);

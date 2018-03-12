@@ -34,7 +34,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
     {
         public static readonly string DbPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "db.sqlite");
 
-        private AppDatabaseContext _sharedDbContext;
+        private readonly AppDatabaseContext sharedDbContext;
 
         public DbContextDebugView DebugView => Scope().Db.DebugView;
 
@@ -42,7 +42,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
 
         // Creates an IDisposable that, if no shared DbContext is set, provides a transient
         // DbContext and disposes it when the scope is disposed.
-        private DbScope Scope() => new DbScope(_sharedDbContext);
+        private DbScope Scope() => new DbScope(sharedDbContext);
 
         /// <summary>
         /// Creates an instance in which each method is executed atomically,
@@ -59,7 +59,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
         /// </summary>
         public EFCoreDataAccess(AppDatabaseContext sharedDbContext)
         {
-            _sharedDbContext = sharedDbContext;
+            this.sharedDbContext = sharedDbContext;
         }
 
         public T GetItem<T>(string id, params string[] pathsToInclude) where T : class, IIdentifiable
@@ -122,7 +122,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
 
         public BaseTransaction StartTransaction(IEnumerable<object> itemsToTrack)
         {
-            if (_sharedDbContext != null)
+            if (sharedDbContext != null)
                 throw new InvalidOperationException($"{nameof(StartTransaction)} must not be called from within the scope of a transaction");
 
             var db = new AppDatabaseContext(QueryTrackingBehavior.TrackAll);

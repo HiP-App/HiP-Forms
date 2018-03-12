@@ -18,7 +18,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
 {
     public abstract class BaseTransaction : IDisposable
     {
-        private bool _isDisposed = false;
+        private bool isDisposed = false;
 
         /// <summary>
         /// Gets an instance of <see cref="ITransactionDataAccess"/> that tracks changes of queried entities.
@@ -40,14 +40,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
         /// </summary>
         public virtual void Dispose()
         {
-            if (!_isDisposed)
+            if (!isDisposed)
                 Commit();
-            _isDisposed = true;
+            isDisposed = true;
         }
 
         protected void ThrowIfDisposed()
         {
-            if (_isDisposed)
+            if (isDisposed)
                 throw new ObjectDisposedException(GetType().Name);
         }
     }

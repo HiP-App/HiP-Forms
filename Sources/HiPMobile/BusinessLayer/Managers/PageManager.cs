@@ -15,7 +15,6 @@
 using Microsoft.EntityFrameworkCore;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.JoinClasses;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
 using System;
 
@@ -74,11 +73,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
 
         public struct Instance
         {
-            private readonly ITransactionDataAccess _dataAccess;
+            private readonly ITransactionDataAccess dataAccess;
 
             public Instance(ITransactionDataAccess dataAccess)
             {
-                _dataAccess = dataAccess ?? throw new ArgumentNullException(nameof(dataAccess));
+                this.dataAccess = dataAccess ?? throw new ArgumentNullException(nameof(dataAccess));
             }
 
             /// <summary>
@@ -90,7 +89,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
             {
                 if (!string.IsNullOrEmpty(id))
                 {
-                    return _dataAccess.GetItem<ImagePage>(id);
+                    return dataAccess.GetItem<ImagePage>(id);
                 }
                 return null;
             }
@@ -104,7 +103,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
             {
                 if (!string.IsNullOrEmpty(id))
                 {
-                    return _dataAccess.GetItem<TextPage>(id);
+                    return dataAccess.GetItem<TextPage>(id);
                 }
                 return null;
             }
@@ -118,7 +117,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
             {
                 if (!string.IsNullOrEmpty(id))
                 {
-                    return _dataAccess.GetItem<TimeSliderPage>(id);
+                    return dataAccess.GetItem<TimeSliderPage>(id);
                 }
                 return null;
             }

@@ -13,8 +13,6 @@
 // limitations under the License.
 
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.JoinClasses;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
 using System;
 using System.Collections.Generic;
@@ -30,11 +28,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
 
         public struct Instance
         {
-            private readonly ITransactionDataAccess _dataAccess;
+            private readonly ITransactionDataAccess dataAccess;
 
             public Instance(ITransactionDataAccess dataAccess)
             {
-                _dataAccess = dataAccess ?? throw new ArgumentNullException(nameof(dataAccess));
+                this.dataAccess = dataAccess ?? throw new ArgumentNullException(nameof(dataAccess));
             }
 
             /// <summary>
@@ -46,7 +44,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
             {
                 if (!string.IsNullOrEmpty(id))
                 {
-                    return _dataAccess.GetItem<Exhibit>(id,
+                    return dataAccess.GetItem<Exhibit>(id,
                         nameof(Exhibit.Image),
                         "PagesRefs.Page.Audio");
                 }
@@ -59,14 +57,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
             /// <returns>The enumerable of all available exhibits.</returns>
             public IEnumerable<Exhibit> GetExhibits()
             {
-                return _dataAccess.GetItems<Exhibit>(
+                return dataAccess.GetItems<Exhibit>(
                     nameof(Exhibit.Image),
                     "PagesRefs.Page.Audio");
             }
 
             public void AddExhibit(Exhibit exhibit)
             {
-                _dataAccess.AddItem(exhibit);
+                dataAccess.AddItem(exhibit);
             }
 
             /// <summary>
@@ -77,7 +75,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
             public bool DeleteExhibit(Exhibit exhibit)
             {
                 if (exhibit != null)
-                    _dataAccess.DeleteItem(exhibit);
+                    dataAccess.DeleteItem(exhibit);
 
                 return true;
             }

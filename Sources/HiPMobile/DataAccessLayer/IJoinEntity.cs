@@ -43,22 +43,22 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
     public struct JoinCollectionFacade<TEntity, TJoinEntity> : ICollection<TEntity>
         where TJoinEntity : IJoinEntitySameType<TEntity>, new()
     {
-        private readonly TEntity _ownerEntity;
-        private readonly ICollection<TJoinEntity> _collection;
-        private readonly JoinSide _navigationTarget;
+        private readonly TEntity ownerEntity;
+        private readonly ICollection<TJoinEntity> collection;
+        private readonly JoinSide navigationTarget;
         private static int target;
 
         public JoinCollectionFacade(TEntity ownerEntity, ICollection<TJoinEntity> collection, JoinSide navigationTarget)
         {
-            _ownerEntity = ownerEntity;
-            _collection = collection;
-            _navigationTarget = navigationTarget;
+            this.ownerEntity = ownerEntity;
+            this.collection = collection;
+            this.navigationTarget = navigationTarget;
         }
 
         public IEnumerator<TEntity> GetEnumerator()
         {
-            var target = _navigationTarget;
-            return _collection.Select(e => e[target]).GetEnumerator();
+            var target = navigationTarget;
+            return collection.Select(e => e[target]).GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
@@ -66,17 +66,17 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
         public void Add(TEntity item)
         {
             var entity = new TJoinEntity();
-            entity[_navigationTarget] = item;
-            entity[_navigationTarget == JoinSide.A ? JoinSide.B : JoinSide.A] = _ownerEntity;
-            _collection.Add(entity);
+            entity[navigationTarget] = item;
+            entity[navigationTarget == JoinSide.A ? JoinSide.B : JoinSide.A] = ownerEntity;
+            collection.Add(entity);
         }
 
-        public void Clear() => _collection.Clear();
+        public void Clear() => collection.Clear();
 
         public bool Contains(TEntity item)
         {
-            var target = _navigationTarget;
-            return _collection.Any(e => Equals(item, e, target));
+            var target = navigationTarget;
+            return collection.Any(e => Equals(item, e, target));
         }
 
         public void CopyTo(TEntity[] array, int arrayIndex)
@@ -87,24 +87,24 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
             if (arrayIndex < 0)
                 throw new ArgumentOutOfRangeException(nameof(arrayIndex));
 
-            if (_collection.Count > array.Length - arrayIndex)
+            if (collection.Count > array.Length - arrayIndex)
                 throw new ArgumentException("Insufficient space in target array");
 
             var i = 0;
-            var target = _navigationTarget;
-            foreach (var item in _collection)
+            var target = navigationTarget;
+            foreach (var item in collection)
                 array[arrayIndex + i++] = item[target];
         }
 
         public bool Remove(TEntity item)
         {
-            var target = _navigationTarget;
-            return _collection.Remove(_collection.FirstOrDefault(e => Equals(item, e, target)));
+            var target = navigationTarget;
+            return collection.Remove(collection.FirstOrDefault(e => Equals(item, e, target)));
         }
 
-        public int Count => _collection.Count;
+        public int Count => collection.Count;
 
-        public bool IsReadOnly => _collection.IsReadOnly;
+        public bool IsReadOnly => collection.IsReadOnly;
 
         private static bool Equals(TEntity item, TJoinEntity e, JoinSide target) => Equals(e[target], item);
     }
@@ -121,17 +121,17 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
     public struct JoinCollectionFacade<TEntity, TOtherEntity, TJoinEntity> : ICollection<TEntity>
         where TJoinEntity : IJoinEntity<TEntity>, IJoinEntity<TOtherEntity>, new()
     {
-        private readonly TOtherEntity _ownerEntity;
-        private readonly ICollection<TJoinEntity> _collection;
+        private readonly TOtherEntity ownerEntity;
+        private readonly ICollection<TJoinEntity> collection;
 
         public JoinCollectionFacade(TOtherEntity ownerEntity, ICollection<TJoinEntity> collection)
         {
-            _ownerEntity = ownerEntity;
-            _collection = collection;
+            this.ownerEntity = ownerEntity;
+            this.collection = collection;
         }
 
         public IEnumerator<TEntity> GetEnumerator() =>
-            _collection.Select(e => ((IJoinEntity<TEntity>)e).Navigation).GetEnumerator();
+            collection.Select(e => ((IJoinEntity<TEntity>)e).Navigation).GetEnumerator();
 
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
@@ -139,13 +139,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
         {
             var entity = new TJoinEntity();
             ((IJoinEntity<TEntity>)entity).Navigation = item;
-            ((IJoinEntity<TOtherEntity>)entity).Navigation = _ownerEntity;
-            _collection.Add(entity);
+            ((IJoinEntity<TOtherEntity>)entity).Navigation = ownerEntity;
+            collection.Add(entity);
         }
 
-        public void Clear() => _collection.Clear();
+        public void Clear() => collection.Clear();
 
-        public bool Contains(TEntity item) => _collection.Any(e => Equals(item, e));
+        public bool Contains(TEntity item) => collection.Any(e => Equals(item, e));
 
         public void CopyTo(TEntity[] array, int arrayIndex)
         {
@@ -155,19 +155,19 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
             if (arrayIndex < 0)
                 throw new ArgumentOutOfRangeException(nameof(arrayIndex));
 
-            if (_collection.Count > array.Length - arrayIndex)
+            if (collection.Count > array.Length - arrayIndex)
                 throw new ArgumentException("Insufficient space in target array");
 
             var i = 0;
-            foreach (var item in _collection)
+            foreach (var item in collection)
                 array[arrayIndex + i++] = ((IJoinEntity<TEntity>)item).Navigation;
         }
 
-        public bool Remove(TEntity item) => _collection.Remove(_collection.FirstOrDefault(e => Equals(item, e)));
+        public bool Remove(TEntity item) => collection.Remove(collection.FirstOrDefault(e => Equals(item, e)));
 
-        public int Count => _collection.Count;
+        public int Count => collection.Count;
 
-        public bool IsReadOnly => _collection.IsReadOnly;
+        public bool IsReadOnly => collection.IsReadOnly;
 
         private static bool Equals(TEntity item, TJoinEntity e) => Equals(((IJoinEntity<TEntity>)e).Navigation, item);
     }

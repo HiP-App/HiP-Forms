@@ -13,7 +13,6 @@
 // limitations under the License.
 
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.JoinClasses;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
 using System;
 using System.Collections.Generic;
@@ -27,11 +26,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
 
         public struct Instance
         {
-            private readonly ITransactionDataAccess _dataAccess;
+            private readonly ITransactionDataAccess dataAccess;
 
             public Instance(ITransactionDataAccess dataAccess)
             {
-                _dataAccess = dataAccess ?? throw new ArgumentNullException(nameof(dataAccess));
+                this.dataAccess = dataAccess ?? throw new ArgumentNullException(nameof(dataAccess));
             }
 
             /// <summary>
@@ -43,7 +42,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
             {
                 if (!string.IsNullOrEmpty(id))
                 {
-                    return _dataAccess.GetItem<Route>(id,
+                    return dataAccess.GetItem<Route>(id,
                         "TagsRefs.Tag.Image",
                         nameof(Route.Image),
                         nameof(Route.Audio),
@@ -58,7 +57,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
             /// <returns>The enumerable of all avaible routes</returns>
             public IEnumerable<Route> GetRoutes()
             {
-                return _dataAccess.GetItems<Route>(
+                return dataAccess.GetItems<Route>(
                     "TagsRefs.Tag.Image",
                     nameof(Route.Image),
                     nameof(Route.Audio),
@@ -67,7 +66,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
 
             public void AddRoute(Route route)
             {
-                _dataAccess.AddItem(route);
+                dataAccess.AddItem(route);
             }
 
             /// <summary>
@@ -78,7 +77,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
             public bool DeleteRoute(Route route)
             {
                 if (route != null)
-                    _dataAccess.DeleteItem(route);
+                    dataAccess.DeleteItem(route);
 
                 return true;
             }

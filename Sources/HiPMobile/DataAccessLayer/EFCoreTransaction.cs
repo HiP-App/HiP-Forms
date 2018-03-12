@@ -14,29 +14,27 @@
 
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Linq;
-using System.Text;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
 {
     class EFCoreTransaction : BaseTransaction
     {
-        private readonly AppDatabaseContext _db;
+        private readonly AppDatabaseContext db;
 
         public override ITransactionDataAccess DataAccess { get; }
 
-        public DbContextDebugView DebugView => new DbContextDebugView(_db);
+        public DbContextDebugView DebugView => new DbContextDebugView(db);
 
         public EFCoreTransaction(AppDatabaseContext db)
         {
-            _db = db ?? throw new ArgumentNullException(nameof(db));
+            this.db = db ?? throw new ArgumentNullException(nameof(db));
             DataAccess = new EFCoreDataAccess(db);
         }
 
         public override void Commit()
         {
             ThrowIfDisposed();
-            _db.SaveChangesAndDetach();
+            db.SaveChangesAndDetach();
         }
 
         public override void Rollback()
