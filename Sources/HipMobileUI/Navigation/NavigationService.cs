@@ -192,6 +192,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation
         {
             var rootPage = new NavigationPage((Page) InstantiateView(newRoot));
             Application.Current.MainPage = rootPage;
+            rootPage.BarBackgroundColor = Color.FromRgb(128,128,128);
         }
 
         public void Register(Type viewModelType, Type viewType)
