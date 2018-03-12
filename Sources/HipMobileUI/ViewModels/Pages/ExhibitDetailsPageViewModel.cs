@@ -464,11 +464,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         /// <summary>
         /// Viewmodel of audio toolbar which can be shown on the details page
         /// </summary>
-        public AudioToolbarViewModel AudioToolbar
-        {
-            get { return audioToolbar; }
-            set { SetProperty(ref audioToolbar, value); }
-        }
+        public AudioToolbarViewModel AudioToolbar { get; }
 
         /// <summary>
         /// The page number
