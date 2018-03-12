@@ -34,7 +34,6 @@ using Acr.UserDialogs;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.NotificationPlayer;
-using TwinTechsForms.NControl.Android;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
 {
@@ -87,7 +86,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
             // init forms and third party libraries
             CachedImageRenderer.Init(enableFastRenderer: true);
             Forms.Init(this, bundle);
-            SvgImageViewRenderer.Init();
 
             UserDialogs.Init(() => (Activity)Forms.Context);
 
