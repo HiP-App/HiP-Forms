@@ -180,24 +180,21 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Pages
 
         private Page CreateAppetizerPage()
         {
-            var page = Substitute.For<Page>();
-            page.AppetizerPage = Substitute.For<AppetizerPage>();
-            page.AppetizerPage.Image = CreateImage();
+            var page = Substitute.For<AppetizerPage>();
+            page.Image = CreateImage();
             return page;
         }
 
         private Page CreateImagePage()
         {
-            var page = Substitute.For<Page>();
-            page.ImagePage = Substitute.For<ImagePage>();
-            page.ImagePage.Image = CreateImage();
+            var page = Substitute.For<ImagePage>();
+            page.Image = CreateImage();
             return page;
         }
 
         private Page CreateTimeSliderPage()
         {
-            var page = Substitute.For<Page>();
-            page.TimeSliderPage = Substitute.For<TimeSliderPage>();
+            var page = Substitute.For<TimeSliderPage>();
             return page;
         }
 

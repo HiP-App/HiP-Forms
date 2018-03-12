@@ -112,9 +112,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Views
 
         private Page CreateImagePage()
         {
-            var page = Substitute.For<Page>();
-            page.ImagePage = Substitute.For<ImagePage>();
-            page.ImagePage.Image = CreateImage();
+            var page = Substitute.For<ImagePage>();
+            page.Image = CreateImage();
             return page;
         }
 

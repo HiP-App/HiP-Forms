@@ -30,19 +30,18 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.BusinessLayer.DtoT
         {
             IoCManager.Clear();
             var sub = Substitute.For<IDataAccess>();
-            sub.CreateObject<ExhibitsVisitedAchievement>("").ReturnsForAnyArgs(Substitute.For<ExhibitsVisitedAchievement>());
-            sub.CreateObject<RouteFinishedAchievement>("").ReturnsForAnyArgs(Substitute.For<RouteFinishedAchievement>());
             IoCManager.RegisterInstance(typeof(IDataAccess), sub);
         }
         
         [Test, Category("UnitTest")]
         public void Test_RouteFinishedAchievementConversion()
         {
+            var dataAccess = IoCManager.Resolve<IDataAccess>();
             var routeFinishedAchievementDto = new RouteFinishedAchievementDto(123, "title", "description", "imageUrl", 124, 25, 456);
             var routeFinishedAchievement = AchievementConverter.Convert(new List<AchievementDto>
             {
                 routeFinishedAchievementDto
-            })[0] as RouteFinishedAchievement;
+            }, dataAccess)[0] as RouteFinishedAchievement;
             Assert.NotNull(routeFinishedAchievement);
             Assert.AreEqual(routeFinishedAchievementDto.Id.ToString(), routeFinishedAchievement.Id);
             Assert.AreEqual(routeFinishedAchievementDto.Description, routeFinishedAchievement.Description);
@@ -56,11 +55,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.BusinessLayer.DtoT
         [Test, Category("UnitTest")]
         public void Test_ExhibitsVisitedAchievementConversion()
         {
+            var dataAccess = IoCManager.Resolve<IDataAccess>();
             var exhibitsVisitedAchievementDto = new ExhibitsVisitedAchievementDto(234, "title", "description", "imageUrl", 235, 10, 25);
             var exhibitsVisitedAchievement = AchievementConverter.Convert(new List<AchievementDto>
             {
                 exhibitsVisitedAchievementDto
-            })[0] as ExhibitsVisitedAchievement;
+            }, dataAccess)[0] as ExhibitsVisitedAchievement;
             Assert.NotNull(exhibitsVisitedAchievement);
             Assert.AreEqual(exhibitsVisitedAchievementDto.Id.ToString(), exhibitsVisitedAchievement.Id);
             Assert.AreEqual(exhibitsVisitedAchievementDto.Description, exhibitsVisitedAchievement.Description);

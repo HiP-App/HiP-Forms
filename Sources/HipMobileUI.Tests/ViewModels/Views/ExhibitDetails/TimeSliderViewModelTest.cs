@@ -80,10 +80,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Views
         public TimeSliderViewModel CreateSystemUnderTest(Action action)
         {
             var timesliderPage = Substitute.For<TimeSliderPage>();
-            List<Image> imageList = new List<Image> { CreateImage("Foo"), CreateImage("Bar"), CreateImage("69") };
-            List<long> dates = new List<long> { 1991, 7867, 454 };
+            var imageList = new List<TimeSliderPageImage>
+            {
+                new TimeSliderPageImage { Image = CreateImage("Foo"), Date = 1991 },
+                new TimeSliderPageImage { Image = CreateImage("Bar"), Date = 7867 },
+                new TimeSliderPageImage { Image = CreateImage("69"), Date = 454 }
+            };
             timesliderPage.SliderImages.Returns(imageList);
-            timesliderPage.Dates.Returns(dates);
             timesliderPage.Title = "A title";
             timesliderPage.Text = "A text";
 
