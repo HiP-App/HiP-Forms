@@ -34,8 +34,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             SetImage(exhibit.Image);
 
             NearbyExhibitManager = nearbyExhibitManager;
+            ExhibitRouteNearby = Strings.ExhibitRoutePreviewPage_Exhibit_Nearby_Title;
             ExhibitRouteTitle = exhibit.Name;
-            Name = exhibit.Name;
+            Description = exhibit.Description == "" ? exhibit.Name : exhibit.Description;
 
             Confirm = new Command(AcceptExhibit);
             Decline = new Command(Deny);
@@ -44,12 +45,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         public ExhibitRoutePreviewPageViewModel(Route route, INearbyRouteManager nearbyRouteManager)
         {
             this.route = route;
+
             Question = Strings.ExhibitOrRouteNearby_Question_Part1 + " \"" + route.Title + "\" " + Strings.ExhibitOrRouteNearby_Question_Part2;
             SetImage(route.Image);
 
             NearbyRouteManager = nearbyRouteManager;
+            ExhibitRouteNearby = Strings.ExhibitRoutePreviewPage_Route_Nearby_Title;
             ExhibitRouteTitle = route.Title;
-            Name = route.Description;
+            Description = route.Description == "" ? route.Name : route.Description;
 
             Confirm = new Command(AcceptRoute);
             Decline = new Command(Deny);
@@ -65,12 +68,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
         private INearbyRouteManager NearbyRouteManager { get; set; }
 
-        public string Name { set; get; }
+        public string ExhibitRouteNearby { set; get; }
+        public string Description { set; get; }
         public string Question { set; get; }
         public ImageSource Image { set; get; }
         public ICommand Confirm { get; }
         public ICommand Decline { get; }
-
         public string ExhibitRouteTitle { get; }
 
         private async void AcceptExhibit()
