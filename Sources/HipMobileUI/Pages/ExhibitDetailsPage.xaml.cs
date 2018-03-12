@@ -18,18 +18,21 @@ using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Views.ExhibitDetails;
 using Xamarin.Forms;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
 {
     public partial class ExhibitDetailsPage : IViewFor<ExhibitDetailsPageViewModel>
     {
-        private ExhibitDetailsPageViewModel ViewModel => (ExhibitDetailsPageViewModel)BindingContext;
+        private ExhibitDetailsPageViewModel ViewModel => (ExhibitDetailsPageViewModel) BindingContext;
         private OrientationController savedControllerState;
         private bool isOnDisappearingContext;
+        private DeviceOrientation orientation;
 
         public ExhibitDetailsPage()
         {
+            orientation = DeviceOrientation.Undefined;
             InitializeComponent();
 
             // Workaround because OnDisappearing is called when the app starts sleeping(on Android) and the OrientationController is reset. Therefore, we need to safe the controller and reapply it after the app wakes up.
@@ -107,6 +110,27 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
             isOnDisappearingContext = true;
             //OrientationController = OrientationController.Sensor;
             isOnDisappearingContext = false;
+        }
+
+        /// <summary>
+        /// Size changed, determine if we need to update the layout.
+        /// </summary>
+        /// <param name="width">The new width.</param>
+        /// <param name="height">The new height.</param>
+        protected override void OnSizeAllocated(double width, double height)
+        {
+            base.OnSizeAllocated(width, height);
+            //bool t1 = ContentView.Content.GetType() == typeof(ImageView);
+            if (width > height && orientation != DeviceOrientation.Landscape)
+            {
+                orientation = DeviceOrientation.Landscape;
+
+            }
+            else if (width < height && orientation != DeviceOrientation.Portrait)
+            {
+                orientation = DeviceOrientation.Portrait;
+
+            }
         }
     }
 }
