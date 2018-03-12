@@ -73,7 +73,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
 
                 var fabSize = Device.RuntimePlatform == Device.iOS ? FloatingActionButton.IosSize : IoCManager.Resolve<IFabSizeCalculator>().CalculateFabSize();
                 if (Device.RuntimePlatform != Device.iOS)
-
                 {
                     if (IoCManager.Resolve<IFabSizeCalculator>().GetOsVersionNumber() >= 21)
                     {
