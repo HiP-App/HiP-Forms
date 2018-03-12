@@ -68,6 +68,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.DesignTime
             if (view == null)
                 throw new ArgumentNullException(nameof(view));
 
+            if (!IsEnabled)
+                return;
+
             var viewForType = view.GetType().GetTypeInfo().ImplementedInterfaces.FirstOrDefault(ii =>
                 ii.IsConstructedGenericType &&
                 ii.GetGenericTypeDefinition() == typeof(IViewFor<>));
