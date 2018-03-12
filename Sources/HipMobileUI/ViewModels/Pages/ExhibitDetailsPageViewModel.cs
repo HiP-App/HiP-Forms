@@ -12,6 +12,17 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using Acr.UserDialogs;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Appearance;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.AudioPlayer;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Contracts;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views.ExhibitDetails;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -19,39 +30,21 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
-using PaderbornUniversity.SILab.Hip.Mobile.UI.AudioPlayer;
-using PaderbornUniversity.SILab.Hip.Mobile.UI.Contracts;
-using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
-using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
-using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views.ExhibitDetails;
 using Xamarin.Forms;
 using Page = PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.Page;
 using Settings = PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers.Settings;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
-using Acr.UserDialogs;
-using PaderbornUniversity.SILab.Hip.Mobile.UI.Appearance;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 {
     public class ExhibitDetailsPageViewModel : NavigationViewModel, IDbChangedObserver
     {
         private ExhibitSubviewViewModel selectedView;
-        private AudioToolbarViewModel audioToolbar;
         private Exhibit exhibit;
         private readonly IList<Page> pages;
-        private ICommand nextViewCommand;
-        private ICommand previousViewCommand;
-        private ICommand audioToolbarCommand;
-        private ICommand additionalInformationCommand;
         private int currentViewIndex;
-        private bool previousVisible;
-        private bool nextVisible;
         private bool audioToolbarVisible;
         private bool hasAdditionalInformation;
-        private bool additionalInformationButtonVisible;
+        private bool buttonsVisible = true;
         private readonly bool additionalInformation;
 
         public ExhibitDetailsPageViewModel(string exhibitId) : this(DbManager.DataAccess.Exhibits().GetExhibit(exhibitId)) { }
@@ -148,19 +141,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         /// </summary>
         private void ToggleVisibilityOfNavigationButtons()
         {
-            if (NextViewAvailable)
-            {
-                NextVisible = !NextVisible;
-            }
-            if (PreviousViewAvailable)
-            {
-                PreviousVisible = !PreviousVisible;
-            }
-            if (HasAdditionalInformation)
-            {
-                AdditionalInformationButtonVisible = !AdditionalInformationButtonVisible;
-            }
-
+            buttonsVisible = !buttonsVisible;
+            OnPropertyChanged(nameof(NextVisible));
+            OnPropertyChanged(nameof(PreviousVisible));
+            OnPropertyChanged(nameof(AdditionalInformationButtonVisible));
             tokenSource?.Cancel();
         }
 
@@ -268,6 +252,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             OnPropertyChanged(nameof(Pagenumber));
             OnPropertyChanged(nameof(NextViewAvailable));
             OnPropertyChanged(nameof(PreviousViewAvailable));
+            OnPropertyChanged(nameof(NextVisible));
+            OnPropertyChanged(nameof(PreviousVisible));
+            OnPropertyChanged(nameof(AdditionalInformationButtonVisible));
 
             // It's possible to get no audio data even if it should exist
             try
@@ -422,25 +409,17 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         /// <summary>
         /// Indicator if a next view is available.
         /// </summary>
-        public bool NextViewAvailable => currentViewIndex < pages.Count - 1;
+        public bool NextViewAvailable => currentViewIndex < pages.Count;
 
         /// <summary>
         /// Indicator if navigation to previous is visible
         /// </summary>
-        public bool PreviousVisible
-        {
-            get { return previousVisible; }
-            set { SetProperty(ref previousVisible, value); }
-        }
+        public bool PreviousVisible => buttonsVisible && PreviousViewAvailable;
 
         /// <summary>
         /// Indicator if navigation to next is visible
         /// </summary>
-        public bool NextVisible
-        {
-            get { return nextVisible; }
-            set { SetProperty(ref nextVisible, value); }
-        }
+        public bool NextVisible => buttonsVisible && NextViewAvailable;
 
         /// <summary>
         /// Shows the audio toolbar
@@ -479,19 +458,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             get { return hasAdditionalInformation; }
             set
             {
-                AdditionalInformationButtonVisible = value;
-                SetProperty(ref hasAdditionalInformation, value);
+                if (SetProperty(ref hasAdditionalInformation, value))
+                    OnPropertyChanged(nameof(AdditionalInformationButtonVisible));
             }
         }
 
         /// <summary>
         /// Indicator if additional information button is visible
         /// </summary>
-        public bool AdditionalInformationButtonVisible
-        {
-            get { return additionalInformationButtonVisible; }
-            set { SetProperty(ref additionalInformationButtonVisible, value); }
-        }
+        public bool AdditionalInformationButtonVisible => buttonsVisible && HasAdditionalInformation;
 
         /// <summary>
         /// Navigates to the additional Information
