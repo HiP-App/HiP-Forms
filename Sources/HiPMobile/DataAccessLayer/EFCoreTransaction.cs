@@ -17,6 +17,7 @@ using System;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
 {
+    // ReSharper disable once InconsistentNaming
     class EFCoreTransaction : BaseTransaction
     {
         private readonly AppDatabaseContext db;
