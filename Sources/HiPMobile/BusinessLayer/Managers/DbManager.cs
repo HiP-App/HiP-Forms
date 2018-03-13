@@ -21,16 +21,15 @@ using System.Linq;
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
 {
     /// <summary>
-    /// Access to database methods.
+    /// Provides access to database methods.
     /// </summary>
     public static class DbManager
     {
         /// <summary>
-        /// TODO: Validate comment about read-only access
-        /// This should be used for read-only access. To modify the database in any way,
+        /// Provides read-only database access. To modify the database in any way,
         /// use <see cref="StartTransaction(IEnumerable{object})"/> instead.
         /// </summary>
-        public static IDataAccess DataAccess { get; } = IoCManager.Resolve<IDataAccess>();
+        public static IReadOnlyDataAccess DataAccess { get; } = IoCManager.Resolve<IDataAccess>();
 
         /// <summary>
         /// Starts a new write transaction. Make sure to close the transaction by either committing it or rolling back.
@@ -43,7 +42,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
         /// </param>
         /// <returns>The transaction object which can perform committing or rolling back.</returns>
         public static BaseTransaction StartTransaction(IEnumerable<object> itemsToTrack) =>
-            DataAccess.StartTransaction(itemsToTrack.Concat(new[] { BackupData.BackupImage, BackupData.BackupImageTag }));
+            IoCManager.Resolve<IDataAccess>().StartTransaction(itemsToTrack.Concat(new[] { BackupData.BackupImage, BackupData.BackupImageTag }));
 
         /// <summary>
         /// Starts a new write transaction. Make sure to close the transaction by either committing it or rolling back.
@@ -81,7 +80,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
                 }
             }
 
-            DataAccess.DeleteDatabase();
+            IoCManager.Resolve<IDataAccess>().DeleteDatabase();
             IoCManager.Resolve<IDbChangedHandler>().NotifyAll();
         }
     }

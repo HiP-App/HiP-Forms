@@ -247,7 +247,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             }
         }
 
-        public async Task<bool> AnyRouteChanged(ITransactionDataAccess dataAccess)
+        public async Task<bool> AnyRouteChanged(IReadOnlyDataAccess dataAccess)
         {
             RoutesDto changedRoutes;
 

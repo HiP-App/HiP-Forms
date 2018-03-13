@@ -15,12 +15,10 @@
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses.Contracts;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
 {
-
     public interface IUserRatingManager
     {
         /// <summary>
@@ -54,7 +52,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
 
     public class UserRatingManager : IUserRatingManager
     {
-
         private readonly IUserRatingApiAccess client = IoCManager.Resolve<IUserRatingApiAccess>();
 
         public async Task<UserRating> GetUserRatingAsync(int idForRestApi)

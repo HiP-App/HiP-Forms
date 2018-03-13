@@ -14,46 +14,15 @@
 //  * limitations under the License.
 //  */
 
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using System.Collections.Generic;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
 {
     /// <summary>
-    /// The interface describing the access to the data layer in the scope of a transaction.
+    /// Data access interface used with the IoC container.
+    /// Provides read-only access to the data layer and some additional DB utility methods.
     /// </summary>
-    public interface ITransactionDataAccess
-    {
-        /// <summary>
-        /// Gets an item with the given key from the database.
-        /// </summary>
-        /// <typeparam name="T">The type of the item being retrieved.</typeparam>
-        /// <param name="id">The key of the item.</param>
-        /// <returns>The item if it exists, null otherwise.</returns>
-        T GetItem<T>(string id, params string[] pathsToInclude) where T : class, IIdentifiable;
-
-        /// <summary>
-        /// Gets all items of the specified type from the database.
-        /// </summary>
-        /// <typeparam name="T">The type of the items being retrieved.</typeparam>
-        /// <returns>The enumerable of items.</returns>
-        IReadOnlyList<T> GetItems<T>(params string[] pathsToInclude) where T : class, IIdentifiable;
-
-        /// <summary>
-        /// Inserts an item into the database.
-        /// </summary>
-        void AddItem<T>(T item) where T : class, IIdentifiable;
-
-        /// <summary>
-        /// Deletes an item from the database. If the item doesn't exists, nothing is changed.
-        /// </summary>
-        void DeleteItem<T>(T item) where T : class;
-    }
-
-    /// <summary>
-    /// The interface describing the access to the data layer.
-    /// </summary>
-    public interface IDataAccess : ITransactionDataAccess
+    public interface IDataAccess : IReadOnlyDataAccess
     {
         /// <summary>
         /// Starts a transaction in which items can be added, updated and deleted in a whole graph of items.

@@ -153,7 +153,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             await PruneMediaFilesAsync(dataAccess);
         }
 
-        private static async Task PruneMediaFilesAsync(ITransactionDataAccess dataAccess)
+        private static async Task PruneMediaFilesAsync(IReadOnlyDataAccess dataAccess)
         {
             var fileManager = IoCManager.Resolve<IMediaFileManager>();
 

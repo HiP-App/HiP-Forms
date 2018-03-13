@@ -28,13 +28,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
 {
     public static class AchievementManager
     {
-        public static Instance Achievements(this ITransactionDataAccess dataAccess) => new Instance(dataAccess);
+        public static ReadExtensions Achievements(this IReadOnlyDataAccess dataAccess) => new ReadExtensions(dataAccess);
 
-        public struct Instance
+        public struct ReadExtensions
         {
-            private readonly ITransactionDataAccess dataAccess;
+            private readonly IReadOnlyDataAccess dataAccess;
 
-            public Instance(ITransactionDataAccess dataAccess)
+            public ReadExtensions(IReadOnlyDataAccess dataAccess)
             {
                 this.dataAccess = dataAccess ?? throw new ArgumentNullException(nameof(dataAccess));
             }
@@ -75,10 +75,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
         }
 
         /// <summary>
-        /// Post visited exhibits to API and enqueue resulting achievement
-        /// notifications.
+        /// Posts visited exhibits to API and enqueues resulting achievement notifications.
         /// </summary>
-        /// <returns></returns>
         public static async Task UpdateServerAndLocalState()
         {
             using (var transaction = DbManager.StartTransaction())

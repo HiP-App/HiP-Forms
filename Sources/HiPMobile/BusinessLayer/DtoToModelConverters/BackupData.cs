@@ -16,6 +16,7 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -32,7 +33,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelCo
         {
             // We do NOT use DbManager.StartTransaction() here because that would attach BackupImage & BackupImageTag
             // to the transaction and these properties are still null at this point.
-            using (var transaction = DbManager.DataAccess.StartTransaction(Enumerable.Empty<object>()))
+            using (var transaction = IoCManager.Resolve<IDataAccess>().StartTransaction(Enumerable.Empty<object>()))
             {
                 var dataAccess = transaction.DataAccess;
                 var dataLoader = IoCManager.Resolve<IDataLoader>();

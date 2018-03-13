@@ -51,6 +51,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
         /// Indicates whether any route was changed
         /// </summary>
         /// <returns></returns>
-        Task<bool> AnyRouteChanged(ITransactionDataAccess dataAccess);
+        Task<bool> AnyRouteChanged(IReadOnlyDataAccess dataAccess);
     }
 }

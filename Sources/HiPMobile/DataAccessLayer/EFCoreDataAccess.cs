@@ -30,7 +30,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
     ///   change tracking enabled. Each method call uses this DB context without disposing it or saving
     ///   changes - the transaction is responsible to do these things when it is committed.
     /// </remarks>
-    public class EFCoreDataAccess : IDataAccess
+    public class EFCoreDataAccess : IDataAccess, ITransactionDataAccess
     {
         public static readonly string DbPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "db.sqlite");
 

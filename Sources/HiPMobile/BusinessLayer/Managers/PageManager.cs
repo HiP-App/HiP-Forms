@@ -25,8 +25,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
     /// </summary>
     public static class PageManager
     {
-        public static Instance Pages(this ITransactionDataAccess dataAccess) => new Instance(dataAccess);
-
         /// <summary>
         /// Explicitly loads all audio and images associated with the specified page.
         /// Additional information pages are loaded recursively in the same way.
@@ -68,58 +66,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
                         LoadPageDetails(subpageRef.AdditionalInformationPage);
                     }
                 }
-            }
-        }
-
-        public struct Instance
-        {
-            private readonly ITransactionDataAccess dataAccess;
-
-            public Instance(ITransactionDataAccess dataAccess)
-            {
-                this.dataAccess = dataAccess ?? throw new ArgumentNullException(nameof(dataAccess));
-            }
-
-            /// <summary>
-            /// Gets an imagepage with a specific id.
-            /// </summary>
-            /// <param name="id">The id of the imagepage to be retrived.</param>
-            /// <returns>The imagepage with the given id. If it doesn't exist, null is returned.</returns>
-            public ImagePage GetImagePage(string id)
-            {
-                if (!string.IsNullOrEmpty(id))
-                {
-                    return dataAccess.GetItem<ImagePage>(id);
-                }
-                return null;
-            }
-
-            /// <summary>
-            /// Gets an TextPage with a specific id.
-            /// </summary>
-            /// <param name="id">The id of the TextPage to be retrived.</param>
-            /// <returns>The TextPage with the given id. If it doesn't exist, null is returned.</returns>
-            public TextPage GetTextPage(string id)
-            {
-                if (!string.IsNullOrEmpty(id))
-                {
-                    return dataAccess.GetItem<TextPage>(id);
-                }
-                return null;
-            }
-
-            /// <summary>
-            /// Gets an TimeSliderPage with a specific id.
-            /// </summary>
-            /// <param name="id">The id of the TimeSliderPage to be retrived.</param>
-            /// <returns>The TimeSliderPage with the given id. If it doesn't exist, null is returned.</returns>
-            public TimeSliderPage GetTimesliderPage(string id)
-            {
-                if (!string.IsNullOrEmpty(id))
-                {
-                    return dataAccess.GetItem<TimeSliderPage>(id);
-                }
-                return null;
             }
         }
     }

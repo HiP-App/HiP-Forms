@@ -24,13 +24,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
     /// </summary>
     public static class ExhibitManager
     {
-        public static Instance Exhibits(this ITransactionDataAccess dataAccess) => new Instance(dataAccess);
+        public static ReadExtensions Exhibits(this IReadOnlyDataAccess dataAccess) => new ReadExtensions(dataAccess);
 
-        public struct Instance
+        public static ReadWriteExtensions Exhibits(this ITransactionDataAccess dataAccess) => new ReadWriteExtensions(dataAccess);
+
+        public class ReadExtensions
         {
-            private readonly ITransactionDataAccess dataAccess;
+            private readonly IReadOnlyDataAccess dataAccess;
 
-            public Instance(ITransactionDataAccess dataAccess)
+            public ReadExtensions(IReadOnlyDataAccess dataAccess)
             {
                 this.dataAccess = dataAccess ?? throw new ArgumentNullException(nameof(dataAccess));
             }
@@ -60,6 +62,16 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
                 return dataAccess.GetItems<Exhibit>(
                     nameof(Exhibit.Image),
                     "PagesRefs.Page.Audio");
+            }
+        }
+
+        public class ReadWriteExtensions : ReadExtensions
+        {
+            private readonly ITransactionDataAccess dataAccess;
+
+            public ReadWriteExtensions(ITransactionDataAccess dataAccess) : base(dataAccess)
+            {
+                this.dataAccess = dataAccess ?? throw new ArgumentNullException(nameof(dataAccess));
             }
 
             public void AddExhibit(Exhibit exhibit)

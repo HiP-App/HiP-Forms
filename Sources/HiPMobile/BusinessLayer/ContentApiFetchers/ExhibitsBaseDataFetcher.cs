@@ -158,7 +158,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             }
         }
 
-        public async Task<bool> AnyExhibitChanged(ITransactionDataAccess dataAccess)
+        public async Task<bool> AnyExhibitChanged(IReadOnlyDataAccess dataAccess)
         {
             ExhibitsDto changedExhibits;
 

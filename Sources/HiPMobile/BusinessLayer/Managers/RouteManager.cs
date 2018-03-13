@@ -22,13 +22,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
 {
     public static class RouteManager
     {
-        public static Instance Routes(this ITransactionDataAccess dataAccess) => new Instance(dataAccess);
+        public static ReadExtensions Routes(this IReadOnlyDataAccess dataAccess) => new ReadExtensions(dataAccess);
 
-        public struct Instance
+        public static ReadWriteExtensions Routes(this ITransactionDataAccess dataAccess) => new ReadWriteExtensions(dataAccess);
+
+        public class ReadExtensions
         {
-            private readonly ITransactionDataAccess dataAccess;
+            private readonly IReadOnlyDataAccess dataAccess;
 
-            public Instance(ITransactionDataAccess dataAccess)
+            public ReadExtensions(IReadOnlyDataAccess dataAccess)
             {
                 this.dataAccess = dataAccess ?? throw new ArgumentNullException(nameof(dataAccess));
             }
@@ -37,7 +39,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
             /// Returns the Route with the specific ID including its waypoints, tags, image and audio.
             /// </summary>
             /// <param name="id">The id of the specific Route to be passed</param>
-            /// <returns>the Route with given id. If Route does not exits, return null</returns>
+            /// <returns>The Route with given id. If Route does not exits, return null</returns>
             public Route GetRoute(string id)
             {
                 if (!string.IsNullOrEmpty(id))
@@ -63,6 +65,16 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
                     nameof(Route.Audio),
                     nameof(Route.Waypoints));
             }
+        }
+
+        public class ReadWriteExtensions : ReadExtensions
+        {
+            private readonly ITransactionDataAccess dataAccess;
+
+            public ReadWriteExtensions(ITransactionDataAccess dataAccess) : base(dataAccess)
+            {
+                this.dataAccess = dataAccess ?? throw new ArgumentNullException(nameof(dataAccess));
+            }
 
             public void AddRoute(Route route)
             {
@@ -70,10 +82,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
             }
 
             /// <summary>
-            ///     Deletes the Route
+            /// Deletes the Route
             /// </summary>
             /// <param name="route"> The Route to be deleted</param>
-            /// <returns>true, if deletion was sucessfull, false otherwise</returns>
+            /// <returns>True, if deletion was sucessfull, false otherwise</returns>
             public bool DeleteRoute(Route route)
             {
                 if (route != null)
@@ -83,9 +95,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
             }
 
             /// <summary>
-            ///     Checks if a route is active
+            /// Checks if a route is active
             /// </summary>
-            /// <returns>true, if one route is active, false otherwise</returns>
+            /// <returns>True, if one route is active, false otherwise</returns>
             public bool IsOneRouteActive()
             {
                 return GetRoutes().Any(route => route.IsRouteStarted());

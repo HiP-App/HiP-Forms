@@ -51,6 +51,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
         /// Indicates whether any exhibit was changed
         /// </summary>
         /// <returns></returns>
-        Task<bool> AnyExhibitChanged(ITransactionDataAccess dataAccess);
+        Task<bool> AnyExhibitChanged(IReadOnlyDataAccess dataAccess);
     }
 }
