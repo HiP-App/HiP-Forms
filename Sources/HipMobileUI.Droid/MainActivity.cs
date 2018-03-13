@@ -35,7 +35,6 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.NotificationPlayer;
 using TwinTechsForms.NControl.Android;
-using Xamarin.Forms.Platform.Android;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
 {
@@ -60,7 +59,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
             ToolbarResource = Resource.Layout.Toolbar;
 
             SetTheme(Resource.Style.MainTheme);
-            Window.SetStatusBarColor(Android.Graphics.Color.Rgb(169,169,169));
+            Window.SetStatusBarColor(Android.Graphics.Color.Black);
             base.OnCreate(bundle);
 
             // Init Navigation
