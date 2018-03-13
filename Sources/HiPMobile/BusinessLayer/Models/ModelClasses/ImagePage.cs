@@ -30,9 +30,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
         /// <remarks>
         /// HACK: This property shouldn't be necessary. If it's not defined, EF Core creates
         /// a "shadow property" with the same name. But for some reason, explicitly loading the
-        /// navigation property "Image" in
-        /// <see cref="Shared.BusinessLayer.Managers.PageManager.LoadPageDetails(Page)"/> fails
-        /// if this property is not defined. This looks like an EF Core bug worth reporting.
+        /// navigation property "Image" in <see cref="Managers.PageManager.LoadPageDetails(Page)"/>
+        /// fails if this property is not defined. This seems to be an EF Core bug. In the future,
+        /// try updating EF Core, remove this property and see if it works.
         /// </remarks>
         public string ImageId { get; set; }
 

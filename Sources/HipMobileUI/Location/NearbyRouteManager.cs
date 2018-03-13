@@ -57,7 +57,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Location
 
             foreach (var r in routes)
             {
-                // TODO: Add condition "r.Waypoints.Count == 0 || ..."
                 if (!(MathUtil.CalculateDistance(r.Waypoints.First().Location, gpsLocation) < AppSharedData.RouteRadius))
                     continue;
 
