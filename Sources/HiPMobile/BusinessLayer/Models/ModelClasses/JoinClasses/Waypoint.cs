@@ -17,6 +17,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.JoinClasses
 {
+    /// <summary>
+    /// Represents the many-to-many relationship between
+    /// <see cref="Models.Route"/> and <see cref="Models.Exhibit"/>.
+    /// </summary>
     public class Waypoint : IJoinEntity<Route>, IJoinEntity<Exhibit>
     {
         public Exhibit Exhibit { get; set; }

@@ -18,12 +18,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
 
     /// <summary>
     /// Supports relational many-to-many relationships of the same entity type. Such a
-    /// many-to-many relationship between is usually modeled through a "join type/table"
-    /// J containing one row for each connection. This type J should implement this interface.
+    /// many-to-many relationship is usually modeled through a "join type/table" J containing
+    /// one row for each connection. This type J should implement this interface.
     /// </summary>
-    /// <typeparam name="TEntity"></typeparam>
-    /// <typeparam name="TOtherEntity"></typeparam>
-    /// <typeparam name="TJoinEntity">The join type</typeparam>
     public interface IJoinEntitySameType<TEntity>
     {
         TEntity this[JoinSide side] { get; set; }
@@ -33,12 +30,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
 
     /// <summary>
     /// Supports relational many-to-many relationships of the same entity type. Such a
-    /// many-to-many relationship between is usually modeled through a "join type/table"
-    /// J containing one row for each connection. This facade allows to get, establish
-    /// and remove connections without the need to deal with the join type J.
+    /// many-to-many relationship is usually modeled through a "join type/table" J
+    /// containing one row for each connection. This facade is a "shortcut" which allows
+    /// to get, establish and remove connections without the need to deal with the join type J.
     /// </summary>
     /// <typeparam name="TEntity"></typeparam>
-    /// <typeparam name="TOtherEntity"></typeparam>
     /// <typeparam name="TJoinEntity">The join type</typeparam>
     public struct JoinCollectionFacade<TEntity, TJoinEntity> : ICollection<TEntity>
         where TJoinEntity : IJoinEntitySameType<TEntity>, new()
@@ -112,8 +108,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
     /// <summary>
     /// Supports relational many-to-many relationships. A many-to-many relationship between
     /// two types A and B is usually modeled through a third "join type/table" J containing
-    /// one row for each connection between A and B. This facade allows to get, establish
-    /// and remove A-B-connections without the need to deal with the join type J.
+    /// one row for each connection between A and B. This facade is a "shortcut" which allows
+    /// to get, establish and remove A-B-connections without the need to deal with the join type J.
     /// </summary>
     /// <typeparam name="TEntity"></typeparam>
     /// <typeparam name="TOtherEntity"></typeparam>

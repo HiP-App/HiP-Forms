@@ -16,6 +16,9 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiD
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 {
+    /// <remarks>
+    /// Objects of this class are not persisted in the database.
+    /// </remarks>
     public class UserRating
     {
         public UserRating(UserRatingDto userRatingDto)

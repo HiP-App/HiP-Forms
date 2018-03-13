@@ -23,11 +23,14 @@ using System.Linq;
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
 {
     /// <remarks>
-    /// This type is used for both, general data access and transaction scopes.
-    /// * In the general case, each method call uses a fresh, transient DB context. Before a method call
-    ///   returns, changes are saved and the DB context is disposed.
+    /// This type is used for both, general read-only data access and read/write transaction scopes.
+    /// 
+    /// * In the general case, each method call uses a fresh, transient DB context. Change tracking is
+    ///   disabled, so any entities that are returned are (in EF Core terms) in a "detached" state. 
+    ///   Before a method call returns, the DB context is disposed of.
+    ///   
     /// * In a transaction scope, the transaction provides us with a single, permanent DB context with
-    ///   change tracking enabled. Each method call uses this DB context without disposing it or saving
+    ///   change tracking enabled. Each method call uses this DB context without disposing of it or saving
     ///   changes - the transaction is responsible to do these things when it is committed.
     /// </remarks>
     public class EFCoreDataAccess : IDataAccess, ITransactionDataAccess
@@ -123,7 +126,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
         public BaseTransaction StartTransaction(IEnumerable<object> itemsToTrack)
         {
             if (sharedDbContext != null)
-                throw new InvalidOperationException($"{nameof(StartTransaction)} must not be called from within the scope of a transaction");
+                throw new InvalidOperationException($"{nameof(StartTransaction)} must not be called within the scope of a transaction");
 
             var db = new AppDatabaseContext(QueryTrackingBehavior.TrackAll);
             db.AttachRange(itemsToTrack.Distinct());

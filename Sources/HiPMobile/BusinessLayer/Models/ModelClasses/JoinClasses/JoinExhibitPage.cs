@@ -2,6 +2,10 @@
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.JoinClasses
 {
+    /// <summary>
+    /// Represents the many-to-many relationship between
+    /// <see cref="Models.Exhibit"/> and <see cref="Models.Page"/>.
+    /// </summary>
     public class JoinExhibitPage : IJoinEntity<Exhibit>, IJoinEntity<Page>
     {
         public Exhibit Exhibit { get; set; }
