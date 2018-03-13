@@ -38,5 +38,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
         /// <typeparam name="T">The type of the items being retrieved.</typeparam>
         /// <returns>The enumerable of items.</returns>
         IReadOnlyList<T> GetItems<T>(params string[] pathsToInclude) where T : class, IIdentifiable;
+
+        /// <summary>
+        /// The database path.
+        /// </summary> 
+        string DatabasePath { get; }
     }
 }

@@ -42,7 +42,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
         /// the database which, of course, would be wrong.
         /// </param>
         /// <returns>The transaction object.</returns>
-        BaseTransaction StartTransaction(IEnumerable<object> itemsToTrack);
+        BaseTransaction StartTransaction(IEnumerable<object> itemsToTrack = null);
         
         /// <summary>
         /// Gets the version number for the currently saved data.
@@ -60,10 +60,5 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
         /// </summary>
         /// <param name="version">The version of the new database.</param>
         void CreateDatabase(int version);
-
-        /// <summary>
-        /// The database path.
-        /// </summary> 
-        string DatabasePath { get; }
     }
 }

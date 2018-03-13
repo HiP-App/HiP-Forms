@@ -129,7 +129,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
                 throw new InvalidOperationException($"{nameof(StartTransaction)} must not be called within the scope of a transaction");
 
             var db = new AppDatabaseContext(QueryTrackingBehavior.TrackAll);
-            db.AttachRange(itemsToTrack.Distinct());
+            db.AttachRange(itemsToTrack?.Distinct() ?? Enumerable.Empty<object>());
             return new EFCoreTransaction(db);
         }
 
