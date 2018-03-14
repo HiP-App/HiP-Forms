@@ -25,7 +25,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelCo
         {
             switch (dto.Type)
             {
-                case PageTypeDto.AppetizerPage: return new AppetizerPage();
                 case PageTypeDto.TextPage: return new TextPage();
                 case PageTypeDto.ImagePage: return new ImagePage();
                 case PageTypeDto.SliderPage: return new TimeSliderPage();
@@ -40,10 +39,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelCo
 
             switch (existingModelObject)
             {
-                case AppetizerPage appetizerPage:
-                    appetizerPage.Text = (dto.Text != null) ? Regex.Unescape(dto.Text) : null; // Necessary for iOS
-                    break;
-
                 case ImagePage imagePage:
                     // Nothing to do
                     break;

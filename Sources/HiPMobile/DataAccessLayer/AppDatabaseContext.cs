@@ -65,7 +65,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
 
             modelBuilder.Entity<Page>()
                 .HasDiscriminator<PageType>(nameof(Page.PageType))
-                .HasValue<AppetizerPage>(PageType.AppetizerPage)
                 .HasValue<TextPage>(PageType.TextPage)
                 .HasValue<ImagePage>(PageType.ImagePage)
                 .HasValue<TimeSliderPage>(PageType.TimeSliderPage);

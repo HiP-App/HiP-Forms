@@ -102,14 +102,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Views
             return exhibit;
         }
 
-        private AppetizerPage CreateAppetizerPage()
-        {
-            var appetizerPage = Substitute.For<AppetizerPage>();
-            appetizerPage.Text = "Foo";
-            appetizerPage.Image = CreateImage();
-            return appetizerPage;
-        }
-
         private Page CreateImagePage()
         {
             var page = Substitute.For<ImagePage>();

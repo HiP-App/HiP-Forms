@@ -178,13 +178,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Pages
             return new ExhibitDetailsPageViewModel(exhibit);
         }
 
-        private Page CreateAppetizerPage()
-        {
-            var page = Substitute.For<AppetizerPage>();
-            page.Image = CreateImage();
-            return page;
-        }
-
         private Page CreateImagePage()
         {
             var page = Substitute.For<ImagePage>();

@@ -231,15 +231,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                         imagePage.Image = null;
                     }
                     break;
-
-                case AppetizerPage appetizerPage:
-                    if (appetizerPage.Image != null && !allMedias.Contains(appetizerPage.Image.IdForRestApi))
-                    {
-                        deletedImages.Add(appetizerPage.Image);
-                        appetizerPage.Image = null;
-                    }
-                    break;
-
+                    
                 case TimeSliderPage timeSliderPage:
                     foreach (var entry in timeSliderPage.SliderImages.ToList())
                     {

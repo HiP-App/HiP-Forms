@@ -95,33 +95,20 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             pageItems = (await pagesApiAccess.GetPages(idForRestApi)).Items;
 
             // Since AppetizerPages have been loaded before, do not consider them anymore
-            List<PageDto> appetizerPagesToRemove = new List<PageDto>();
             foreach (var page in pageItems)
             {
-                if (page.Type != PageTypeDto.AppetizerPage)
+                AddMediaId(page.Image);
+                if (page.Type == PageTypeDto.SliderPage)
                 {
-                    AddMediaId(page.Image);
-                    if (page.Type == PageTypeDto.SliderPage)
+                    if (page.Images.Count > 0)
                     {
-                        if (page.Images.Count > 0)
+                        foreach (var image in page.Images)
                         {
-                            foreach (var image in page.Images)
-                            {
-                                AddMediaId(image.Image);
-                            }
+                            AddMediaId(image.Image);
                         }
                     }
-                    AddMediaId(page.Audio);
                 }
-                else
-                {
-                    appetizerPagesToRemove.Add(page);
-                }
-            }
-
-            foreach (var appPage in appetizerPagesToRemove)
-            {
-                pageItems.Remove(appPage);
+                AddMediaId(page.Audio);
             }
 
             return requiredMedia.Count;
@@ -202,10 +189,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
 
                 switch (dbPage)
                 {
-                    case AppetizerPage appetizerPage:
-                        // Should not be reached
-                        break;
-
                     case ImagePage imagePage:
                         var image = fetchedMedia.Images.SingleOrDefault(x => x.IdForRestApi == pageDto.Image);
                         imagePage.Image = image ?? BackupData.BackupImage;
