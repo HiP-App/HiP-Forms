@@ -21,6 +21,7 @@
     <EmbeddedResource Include="Content\noImageTag.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="NETStandard.Library" version="2.0.0" />
     <PackageReference Include="Itinero.IO.Osm" Version="1.4.0" />
     <PackageReference Include="JetBrains.Annotations" Version="11.1.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.0.1" />
