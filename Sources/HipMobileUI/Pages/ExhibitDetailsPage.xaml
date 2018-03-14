@@ -21,11 +21,12 @@
                                Title="{Binding Title}" OrientationController="PortraitConstant"
                                xmlns:pages1="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Pages;assembly=HipMobileUI"
                                xmlns:views1="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Views;assembly=HipMobileUI"
-                               xmlns:controls="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Controls;assembly=HipMobileUI">
+                               xmlns:controls="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Controls;assembly=HipMobileUI"
+                               xmlns:helpers="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;assembly=HipMobileUI">
     <pages1:OrientationContentPage.ToolbarItems>
         <controls:HideableToolbarItem x:Name="AdditionalInformationButton" Order="Primary"
                                       Command="{Binding ShowAdditionalInformationCommand}"
-                                      Text="addn_info" Icon="ic_more.png"
+                                      Text="{helpers:Translate ExhibitDetailsPage_AdditionalInformation}" Icon="ic_more.png"
                                       IsVisible="{Binding HasAdditionalInformation}" />
     </pages1:OrientationContentPage.ToolbarItems>
     <StackLayout BackgroundColor="White">
