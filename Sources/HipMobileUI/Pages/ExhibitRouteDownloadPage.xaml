@@ -32,7 +32,7 @@
                         <RowDefinition Height="0.4*" />
                     </Grid.RowDefinitions>
                     <!--The row and column definition is made in code to adjust them to the device orientation-->
-                    <Image x:Name="Image" Source="{Binding Image}" Grid.Row="0" Aspect="AspectFill" />
+                    <Image x:Name="Image" Source="{Binding Image}" Grid.Row="0" Aspect="AspectFit" />
                     <Grid x:Name="InnerGrid" Grid.Row="1" Grid.Column="0" RowSpacing="0" ColumnSpacing="0">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="0.7*" />

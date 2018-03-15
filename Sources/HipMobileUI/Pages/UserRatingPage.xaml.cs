@@ -60,12 +60,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
             {
                 orientation = DeviceOrientation.Portrait;
                 OuterAbsoluteLayout.Children.Remove(Image);
-                OuterAbsoluteLayout.Children.Add(Image, new Rectangle(0, 0, 1, 0.6), AbsoluteLayoutFlags.All);
+                OuterAbsoluteLayout.Children.Add(Image, new Rectangle(0, 0, 1, 0.53), AbsoluteLayoutFlags.All);
                 OuterGrid.ColumnDefinitions.Clear();
                 OuterGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
                 OuterGrid.RowDefinitions.Clear();
-                OuterGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.6, GridUnitType.Star) });
-                OuterGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.4, GridUnitType.Star) });
+                OuterGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.53, GridUnitType.Star) });
+                OuterGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.47, GridUnitType.Star) });
                 OuterGrid.Children.Remove(InnerGrid1);
                 OuterGrid.Children.Add(InnerGrid1, 0, 0);
                 OuterGrid.Children.Remove(InnerGrid2);

@@ -22,7 +22,7 @@
     <ContentPage.Content>
         <AbsoluteLayout x:Name="OuterAbsoluteLayout" BackgroundColor="White">
             <!-- The image layout definition is set up in code -->
-            <Image x:Name="Image" Source="{Binding Image}" Margin="5" Aspect="AspectFill" Opacity="0.08"/>
+            <Image x:Name="Image" Source="{Binding Image}" Margin="5" Aspect="AspectFit" Opacity="0.08"/>
             <!--The row and column definition is made in code to adjust them to the device orientation-->
             <Grid x:Name="OuterGrid" AbsoluteLayout.LayoutBounds="1,1,1,1" AbsoluteLayout.LayoutFlags="All" RowSpacing="0" ColumnSpacing="0">
                 <Grid x:Name="InnerGrid1" Grid.Row="0" Grid.Column="0" RowSpacing="0" ColumnSpacing="0">
