@@ -35,7 +35,7 @@
                                 </controls1:FadeoverImageView.GestureRecognizers>
                             </controls1:FadeoverImageView>
                             <ScrollView Grid.Row="1">
-                                <Label Text="{Binding DisplayedText}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" LineBreakMode="WordWrap" Margin="10,0,10,0" TextColor="{StaticResource DarkGrayColor}" Style="{DynamicResource Ssp-Regular}">
+                                <Label x:Name="ImageDescription" Text="{Binding DisplayedText}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" LineBreakMode="WordWrap" Margin="10,0,10,0" TextColor="{StaticResource DarkGrayColor}" Style="{DynamicResource Ssp-Regular}">
                                     <Label.GestureRecognizers>
                                         <TapGestureRecognizer Command="{Binding ToggleButtonVisibility}" />
                                     </Label.GestureRecognizers>

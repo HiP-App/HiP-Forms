@@ -44,8 +44,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views.ExhibitDetails
                 ContentGrid.ColumnDefinitions.Add(new ColumnDefinition());
                 ContentGrid.RowDefinitions.Clear();
                 ContentGrid.RowDefinitions.Add(new RowDefinition());
-                ContentGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(30, GridUnitType.Absolute) });
+                ContentGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0, GridUnitType.Absolute) });
                 ContentGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(80, GridUnitType.Absolute) });
+                ImageDescription.IsVisible = false;
             }
             else if (width < height && orientation != DeviceOrientation.Portrait)
             {
@@ -58,6 +59,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views.ExhibitDetails
                 ContentGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(30, GridUnitType.Absolute) });
                 ContentGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(80, GridUnitType.Absolute) });
                 ContentGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.175, GridUnitType.Star) });
+                ImageDescription.IsVisible = true;
             }
 
             base.OnSizeAllocated(width, height);
