@@ -226,7 +226,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                     }
                     NextViewAvailable = true;
                     PreviousViewAvailable = true;
-                    Navigation.InsertPageBefore(new QuizStartingPageViewModel(), this);
+                    Navigation.InsertPageBefore(new QuizStartingPageViewModel(exhibit), this);
                     //Navigation.InsertPageBefore(new UserRatingPageViewModel(Exhibit), this);
                     Navigation.PopAsync(false);
                 }

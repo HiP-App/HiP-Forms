@@ -11,10 +11,35 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+
+using System;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
+
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 {
     public class QuizStartingPageViewModel: NavigationViewModel
     {
-        
+        private Exhibit exhibit;
+        private String headline;
+
+        public QuizStartingPageViewModel(Exhibit e)
+        {
+            Exhibit = e;
+            Headline = e.Name;
+        }
+        public Exhibit Exhibit
+        {
+            get { return exhibit; }
+            set { SetProperty(ref exhibit, value); }
+        }
+
+        /// <summary>
+        /// The headline of the description.
+        /// </summary>
+        public string Headline
+        {
+            get { return headline; }
+            set { SetProperty(ref headline, value); }
+        }
     }
 }
