@@ -5,12 +5,25 @@
     <ContentPage.Content>
         <StackLayout>
             <Label Text="Quiz" 
-                VerticalOptions="Start" 
-                HorizontalOptions="CenterAndExpand" />
-            <Label Text="Bisher hast du" HorizontalOptions="Center"/>
-            <Label Text="{Binding Score}" HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand"/>
-            <Label Text="Fragen richtig beantwortet" HorizontalOptions="Center"/>
-            <Button Text="Quiz starten" HorizontalOptions="Center" VerticalOptions="EndAndExpand"/>
+                   FontSize="36"
+                   VerticalOptions="Start" 
+                   HorizontalOptions="CenterAndExpand" 
+                   Margin="20"/>
+            <Label/>
+            <Label Text="Bisher hast du" 
+                   FontSize="16"
+                   HorizontalOptions="Center"/>
+            <Label Text="{Binding Score}" 
+                   FontSize="36"
+                   HorizontalOptions="CenterAndExpand" 
+                   VerticalOptions="FillAndExpand"/>
+            <Label Text="Fragen richtig beantwortet" 
+                   FontSize="16"
+                   HorizontalOptions="Center"/>
+            <Button Text="Quiz starten" 
+                    Margin="10"
+                    HorizontalOptions="Center" 
+                    VerticalOptions="EndAndExpand"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
