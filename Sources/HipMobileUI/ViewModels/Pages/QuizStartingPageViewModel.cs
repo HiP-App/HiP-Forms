@@ -13,7 +13,10 @@
 // limitations under the License.
 
 using System;
+using System.Threading.Tasks;
+using System.Windows.Input;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
+using Xamarin.Forms;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 {
@@ -21,12 +24,22 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
     {
         private Exhibit exhibit;
         private String headline;
+        private ICommand nextViewCommand;
 
         public QuizStartingPageViewModel(Exhibit e)
         {
             Exhibit = e;
             Headline = e.Name;
+            NextViewCommand = new Command(async () => await GotoNextView());
         }
+
+        private async Task GotoNextView()
+        {
+            Navigation.InsertPageBefore(new UserRatingPageViewModel(Exhibit), this);
+            Navigation.PopAsync(false);
+        }
+
+        #region properties
         public Exhibit Exhibit
         {
             get { return exhibit; }
@@ -41,5 +54,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             get { return headline; }
             set { SetProperty(ref headline, value); }
         }
+
+        public ICommand NextViewCommand
+        {
+            get { return nextViewCommand; }
+            set { SetProperty(ref nextViewCommand, value); }
+        }
+        #endregion
     }
 }
