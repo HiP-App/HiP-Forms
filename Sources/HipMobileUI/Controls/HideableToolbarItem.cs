@@ -35,6 +35,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Controls
             BindableProperty.Create(nameof(IsVisible), typeof(bool), typeof(HideableToolbarItem), propertyChanged: OnIsVisibleChanged, defaultValue: false);
 
         private bool isInitialized;
+        
+        // Removing a ToolbarItem from a Toolbar resets the BindingContext of the item,
+        // so we save it in here and will restore it before adding it back to the Toolbar
+        private object savedContext;
 
         protected override void OnBindingContextChanged()
         {
@@ -47,11 +51,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Controls
                 isInitialized = true;
             }
         }
-
-        // Removing a ToolbarItem from a Toolbar resets the BindingContext of the item,
-        // so we save it in here and will restore it before adding it back to the Toolbar
-        private static readonly ConditionalWeakTable<HideableToolbarItem, object> BindingContextRestorationTable =
-            new ConditionalWeakTable<HideableToolbarItem, object>();
 
         private static void OnIsVisibleChanged(BindableObject bindable, object oldvalue, object newvalue)
         {
@@ -67,13 +66,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Controls
 
             if (isVisible && !items.Contains(item))
             {
-                lock (BindingContextRestorationTable)
+                if (item.savedContext != null)
                 {
-                    if (BindingContextRestorationTable.TryGetValue(item, out var bindingContext))
-                    {
-                        item.BindingContext = bindingContext;
-                        BindingContextRestorationTable.Remove(item);
-                    }
+                    item.BindingContext = item.savedContext;
                 }
 
                 // Enqueue into event loop to avoid modifying items while it's iterated over by the internal Xamarin.Forms method
@@ -82,11 +77,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Controls
             }
             else if (!isVisible && items.Contains(item))
             {
-                lock (BindingContextRestorationTable)
-                {
-                    BindingContextRestorationTable.Remove(item);
-                    BindingContextRestorationTable.Add(item, item.BindingContext);
-                }
+                item.savedContext = item.BindingContext;
 
                 // Enqueue into event loop to avoid modifying items while it's iterated over by the internal Xamarin.Forms method
                 // that eventually causes OnBindingContextChanged and then OnIsVisibleChanged to be called
