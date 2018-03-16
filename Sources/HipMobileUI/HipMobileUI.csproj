@@ -90,6 +90,9 @@
     <Compile Include="Helpers\DeviceOrientation.cs" />
     <Compile Include="Helpers\OrientationController.cs" />
     <Compile Include="Contracts\IBarsColorsChanger.cs" />
+    <Compile Include="Pages\QuizPage.xaml.cs">
+      <DependentUpon>QuizPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\QuizStartingPage.xaml.cs">
       <DependentUpon>QuizStartingPage.xaml</DependentUpon>
     </Compile>
@@ -106,6 +109,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Strings.resx</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\Pages\QuizPageViewModel.cs" />
     <Compile Include="ViewModels\Pages\QuizStartingPageViewModel.cs" />
     <Compile Include="ViewModels\Pages\UserRatingPageViewModel.cs" />
     <Compile Include="ViewModels\Views\AchievementNotificationViewModel.cs" />
@@ -616,6 +620,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Pages\QuizStartingPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\QuizPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

@@ -13,6 +13,7 @@
 // limitations under the License.
 
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
@@ -20,31 +21,40 @@ using Xamarin.Forms;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 {
-    public class QuizStartingPageViewModel: NavigationViewModel
+    public class QuizPageViewModel: NavigationViewModel
     {
         private Exhibit exhibit;
         private String headline;
         private ICommand nextViewCommand;
-        private ICommand startQuizCommand;
+        private Quiz[] Quizzes;
+        private String question;
+        private String[] answers;
+        private ImageSource quizImage;
 
-        public QuizStartingPageViewModel(Exhibit e)
+        public QuizPageViewModel(Exhibit e)
         {
+
             Exhibit = e;
             Headline = e.Name;
+            answers= new String[4];
+            SetQuiz();
             NextViewCommand = new Command(async () => await GotoNextView());
-            StartQuizCommand = new Command(async () => await GotoQuizView());
-        }
 
+        }
         private async Task GotoNextView()
         {
             Navigation.InsertPageBefore(new UserRatingPageViewModel(Exhibit), this);
             Navigation.PopAsync(false);
         }
 
-        private async Task GotoQuizView()
+        private void SetQuiz()
         {
-            Navigation.InsertPageBefore(new QuizPageViewModel(Exhibit),this );
-            Navigation.PopAsync(false);
+            QuizImage = ImageSource.FromFile("quiz_default_picture.png");
+            Question = "This is a dummy question!";
+            Answer1 = "first answer";
+            Answer2 = "second answer";
+            Answer3 = "third answer";
+            Answer4 = "fourth answer";
         }
         #region properties
         public Exhibit Exhibit
@@ -58,19 +68,48 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         /// </summary>
         public string Headline
         {
+            get { return question; }
+            set { SetProperty(ref question, value); }
+        }
+
+        public ImageSource QuizImage
+        {
+            get { return quizImage; }
+            set { SetProperty(ref quizImage, value); }
+        }
+        
+        public string Question
+        {
             get { return headline; }
             set { SetProperty(ref headline, value); }
         }
 
+        public string Answer1
+        {
+            get { return answers[0]; }
+            set { SetProperty(ref answers[0], value); }
+        }
+
+        public string Answer2
+        {
+            get { return answers[1]; }
+            set { SetProperty(ref answers[1], value); }
+        }
+
+        public string Answer3
+        {
+            get { return answers[2]; }
+            set { SetProperty(ref answers[2], value); }
+        }
+        public string Answer4
+        {
+            get { return answers[3]; }
+            set { SetProperty(ref answers[3], value); }
+        }
         public ICommand NextViewCommand
         {
             get { return nextViewCommand; }
             set { SetProperty(ref nextViewCommand, value); }
-        }
-        public ICommand StartQuizCommand
-        {
-            get { return startQuizCommand; }
-            set { SetProperty(ref startQuizCommand, value); }
         }
         #endregion
     }

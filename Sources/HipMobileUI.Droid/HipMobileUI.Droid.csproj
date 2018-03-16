@@ -346,7 +346,7 @@
     <Compile Include="Map\SetMarker.cs" />
     <Compile Include="Map\ViaPointInfoWindow.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
-	<Compile Include="Helpers\Localize.cs" />
+    <Compile Include="Helpers\Localize.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -366,6 +366,7 @@
     <None Include="packages.config" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
+    <AndroidResource Include="Resources\drawable\quiz_default_picture.png" />
     <AndroidResource Include="Resources\layout\navigation_info_window.axml">
       <SubType>Designer</SubType>
     </AndroidResource>

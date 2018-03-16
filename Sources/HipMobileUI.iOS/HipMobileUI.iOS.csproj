@@ -492,6 +492,7 @@
     <BundleResource Include="Resources\star_empty.png" />
     <BundleResource Include="Resources\star_filled.png" />
     <BundleResource Include="Resources\hiphop_transparent.jpg" />
+    <BundleResource Include="Resources\quiz_default_picture.png" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Resources\MapAnnotations.xcassets\AppIcons.appiconset\Contents.json">

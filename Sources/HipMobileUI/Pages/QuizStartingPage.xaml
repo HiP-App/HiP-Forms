@@ -38,6 +38,7 @@
                 <StackLayout Orientation="Horizontal" Padding="0,0,5,0">
                     <Button Text="Quiz starten" 
                             BackgroundColor="#80D3D3D3"
+                            Command="{Binding StartQuizCommand}"
                             Margin="10"
                             HorizontalOptions="FillAndExpand" 
                             VerticalOptions="EndAndExpand"/>
