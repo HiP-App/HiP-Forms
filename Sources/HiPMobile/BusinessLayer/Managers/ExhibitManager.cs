@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using JetBrains.Annotations;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
 using System;
@@ -80,11 +81,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
             }
 
             /// <summary>
-            /// Deletes the exhibit from the app.
+            /// Deletes an exhibit.
             /// </summary>
-            /// <param name="exhibit">The exhibit to be deleted.</param>
-            /// <returns>True, if deletion was succesful, false otherwise.</returns>
-            public bool DeleteExhibit(Exhibit exhibit)
+            /// <param name="exhibit">The exhibit to be deleted. Passing null does nothing and returns true.</param>
+            /// <returns>True iff deletion was successful or <paramref name="exhibit"/> was null.</returns>
+            public bool DeleteExhibit([CanBeNull] Exhibit exhibit)
             {
                 if (exhibit != null)
                     dataAccess.DeleteItem(exhibit);

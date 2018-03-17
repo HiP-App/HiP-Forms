@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using JetBrains.Annotations;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
 using System;
@@ -82,11 +83,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
             }
 
             /// <summary>
-            /// Deletes the Route
+            /// Deletes a route.
             /// </summary>
-            /// <param name="route"> The Route to be deleted</param>
-            /// <returns>True, if deletion was sucessfull, false otherwise</returns>
-            public bool DeleteRoute(Route route)
+            /// <param name="route">The route to be deleted. Passing null does nothing and returns true.</param>
+            /// <returns>True iff deletion was successful or <paramref name="route"/> was null.</returns>
+            public bool DeleteRoute([CanBeNull] Route route)
             {
                 if (route != null)
                     dataAccess.DeleteItem(route);
@@ -95,9 +96,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
             }
 
             /// <summary>
-            /// Checks if a route is active
+            /// Checks if a route is active.
             /// </summary>
-            /// <returns>True, if one route is active, false otherwise</returns>
+            /// <returns>True iff one route is active, false otherwise</returns>
             public bool IsOneRouteActive()
             {
                 return GetRoutes().Any(route => route.IsRouteStarted());
