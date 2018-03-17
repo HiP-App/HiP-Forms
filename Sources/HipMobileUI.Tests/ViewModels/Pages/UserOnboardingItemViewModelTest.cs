@@ -29,7 +29,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Pages
         public void Init()
         {
             IoCManager.RegisterInstance(typeof(INavigationService), Substitute.For<INavigationService>());
-            IoCManager.RegisterInstance(typeof(IStatusBarController), Substitute.For<IStatusBarController>());
         }
 
         [Test, Category("UnitTest")]
