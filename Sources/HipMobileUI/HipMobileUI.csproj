@@ -61,7 +61,7 @@
     <Compile Include="Container\TabContainerView.cs" />
     <Compile Include="Contracts\IStatusBarController.cs" />
     <Compile Include="Controls\ZeroPaddingButton.cs" />
-	<Compile Include="Location\ILocalize.cs" />
+    <Compile Include="Location\ILocalize.cs" />
     <Compile Include="NotificationPlayer\INotificationPlayer.cs" />
     <Compile Include="Controls\CardView.cs" />
     <Compile Include="Controls\CarouselIndicators.cs" />
@@ -93,7 +93,7 @@
     <Compile Include="Pages\UserRatingPage.xaml.cs">
       <DependentUpon>UserRatingPage.xaml</DependentUpon>
     </Compile>
-	<Compile Include="Resources\Strings.de.Designer.cs">
+    <Compile Include="Resources\Strings.de.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Strings.de.resx</DependentUpon>
@@ -269,7 +269,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-	<EmbeddedResource Include="Resources\Strings.de.resx">
+    <EmbeddedResource Include="Resources\Strings.de.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Strings.de.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>

@@ -54,7 +54,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         private bool audioAvailabe;
         private bool audioToolbarVisible;
         private bool hasAdditionalInformation;
-        private bool additionalInformationButtonVisible;
         private readonly bool additionalInformation;
         private string pagenumber;
 
@@ -163,10 +162,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             {
                 PreviousVisible = !PreviousVisible;
             }
-            if (HasAdditionalInformation)
-            {
-                AdditionalInformationButtonVisible = !AdditionalInformationButtonVisible;
-            }
 
             tokenSource?.Cancel();
         }
@@ -227,7 +222,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                     NextViewAvailable = true;
                     PreviousViewAvailable = true;
                     Navigation.InsertPageBefore(new UserRatingPageViewModel(Exhibit), this);
-                    Navigation.PopAsync(false);
+                    await Navigation.PopAsync(false);
                 }
                 else
                 {
@@ -308,14 +303,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                     break;
             }
 
-            if (currentPage.AdditionalInformationPages != null && currentPage.AdditionalInformationPages.Any())
-            {
-                HasAdditionalInformation = true;
-            }
-            else
-            {
-                HasAdditionalInformation = false;
-            }
+            HasAdditionalInformation = currentPage.AdditionalInformationPages?.Any() == true;
 
             //Cancel disabling navigation buttons caused by page selected before
             tokenSource?.Cancel();
@@ -408,8 +396,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         /// </summary>
         public Exhibit Exhibit
         {
-            get { return exhibit; }
-            set { SetProperty(ref exhibit, value); }
+            get => exhibit;
+            set => SetProperty(ref exhibit, value);
         }
 
         /// <summary>
@@ -417,8 +405,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         /// </summary>
         public ExhibitSubviewViewModel SelectedView
         {
-            get { return selectedView; }
-            set { SetProperty(ref selectedView, value); }
+            get => selectedView;
+            set => SetProperty(ref selectedView, value);
         }
 
         /// <summary>
@@ -426,8 +414,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         /// </summary>
         public ICommand NextViewCommand
         {
-            get { return nextViewCommand; }
-            set { SetProperty(ref nextViewCommand, value); }
+            get => nextViewCommand;
+            set => SetProperty(ref nextViewCommand, value);
         }
 
         /// <summary>
@@ -435,8 +423,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         /// </summary>
         public ICommand PreviousViewCommand
         {
-            get { return previousViewCommand; }
-            set { SetProperty(ref previousViewCommand, value); }
+            get => previousViewCommand;
+            set => SetProperty(ref previousViewCommand, value);
         }
 
         /// <summary>
@@ -444,7 +432,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         /// </summary>
         public bool PreviousViewAvailable
         {
-            get { return previousViewAvailable; }
+            get => previousViewAvailable;
             set
             {
                 PreviousVisible = value;
@@ -457,7 +445,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         /// </summary>
         public bool NextViewAvailable
         {
-            get { return nextViewAvailable; }
+            get => nextViewAvailable;
             set
             {
                 NextVisible = value;
@@ -470,8 +458,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         /// </summary>
         public bool PreviousVisible
         {
-            get { return previousVisible; }
-            set { SetProperty(ref previousVisible, value); }
+            get => previousVisible;
+            set => SetProperty(ref previousVisible, value);
         }
 
         /// <summary>
@@ -479,8 +467,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         /// </summary>
         public bool NextVisible
         {
-            get { return nextVisible; }
-            set { SetProperty(ref nextVisible, value); }
+            get => nextVisible;
+            set => SetProperty(ref nextVisible, value);
         }
 
         /// <summary>
@@ -488,8 +476,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         /// </summary>
         public ICommand ShowAudioToolbarCommand
         {
-            get { return audioToolbarCommand; }
-            set { SetProperty(ref audioToolbarCommand, value); }
+            get => audioToolbarCommand;
+            set => SetProperty(ref audioToolbarCommand, value);
         }
 
         /// <summary>
@@ -497,8 +485,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         /// </summary>
         public bool AudioAvailable
         {
-            get { return audioAvailabe; }
-            set { SetProperty(ref audioAvailabe, value); }
+            get => audioAvailabe;
+            set => SetProperty(ref audioAvailabe, value);
         }
 
         /// <summary>
@@ -506,8 +494,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         /// </summary>
         public bool AudioToolbarVisible
         {
-            get { return audioToolbarVisible; }
-            set { SetProperty(ref audioToolbarVisible, value); }
+            get => audioToolbarVisible;
+            set => SetProperty(ref audioToolbarVisible, value);
         }
 
         /// <summary>
@@ -515,8 +503,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         /// </summary>
         public AudioToolbarViewModel AudioToolbar
         {
-            get { return audioToolbar; }
-            set { SetProperty(ref audioToolbar, value); }
+            get => audioToolbar;
+            set => SetProperty(ref audioToolbar, value);
         }
 
         /// <summary>
@@ -524,8 +512,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         /// </summary>
         public string Pagenumber
         {
-            get { return pagenumber; }
-            set { SetProperty(ref pagenumber, value); }
+            get => pagenumber;
+            set => SetProperty(ref pagenumber, value);
         }
 
         /// <summary>
@@ -533,21 +521,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         /// </summary>
         public bool HasAdditionalInformation
         {
-            get { return hasAdditionalInformation; }
-            set
-            {
-                AdditionalInformationButtonVisible = value;
-                SetProperty(ref hasAdditionalInformation, value);
-            }
-        }
-
-        /// <summary>
-        /// Indicator if additional information button is visible
-        /// </summary>
-        public bool AdditionalInformationButtonVisible
-        {
-            get { return additionalInformationButtonVisible; }
-            set { SetProperty(ref additionalInformationButtonVisible, value); }
+            get => hasAdditionalInformation;
+            set => SetProperty(ref hasAdditionalInformation, value);
         }
 
         /// <summary>
@@ -555,8 +530,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         /// </summary>
         public ICommand ShowAdditionalInformationCommand
         {
-            get { return additionalInformationCommand; }
-            set { SetProperty(ref additionalInformationCommand, value); }
+            get => additionalInformationCommand;
+            set => SetProperty(ref additionalInformationCommand, value);
         }
 
         /// <summary>
@@ -564,8 +539,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         /// </summary>
         public bool WillDisappear
         {
-            get { return willDisappear; }
-            set { SetProperty(ref willDisappear, value); }
+            get => willDisappear;
+            set => SetProperty(ref willDisappear, value);
         }
 
         #endregion
