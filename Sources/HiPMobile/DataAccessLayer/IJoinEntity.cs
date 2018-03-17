@@ -13,10 +13,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
     // For example, this allows us to write "myExhibit.Pages.Add(myPage)" without needing to construct the join entity
     // that holds the foreign keys to "myExhibit" and "myPage".
     //
-    // Implementations in this file are mostly taken from the following blog post:
+    // Code in this file is mostly taken from the following blog post:
     // https://blog.oneunicorn.com/2017/09/25/many-to-many-relationships-in-ef-core-2-0-part-4-a-more-general-abstraction/
-    // The implementation has been extended to support many-to-many relationships between entities of the same type.
-    
+    // It has been extended to support many-to-many relationships between entities of the same type.
+    // The feature request for "automatic" many-to-many relationship mapping is being tracked here:
+    // https://github.com/aspnet/EntityFrameworkCore/issues/1368
+
     /// <summary>
     /// Supports relational many-to-many relationships. A many-to-many relationship between
     /// two types A and B is usually modeled through a third "join type/table" J containing
