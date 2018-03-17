@@ -14,6 +14,7 @@
 
 using JetBrains.Annotations;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.JoinClasses;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
 using System;
 using System.Collections.Generic;
@@ -49,7 +50,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
                 {
                     return dataAccess.GetItem<Exhibit>(id,
                         nameof(Exhibit.Image),
-                        "PagesRefs.Page.Audio");
+                        nameof(Exhibit.PagesRefs) + '.' + nameof(JoinExhibitPage.Page) + '.' + nameof(Page.Audio));
                 }
                 return null;
             }
@@ -62,7 +63,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
             {
                 return dataAccess.GetItems<Exhibit>(
                     nameof(Exhibit.Image),
-                    "PagesRefs.Page.Audio");
+                    nameof(Exhibit.PagesRefs) + '.' + nameof(JoinExhibitPage.Page) + '.' + nameof(Page.Audio));
             }
         }
 

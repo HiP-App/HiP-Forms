@@ -14,6 +14,7 @@
 
 using JetBrains.Annotations;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.JoinClasses;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
 using System;
 using System.Collections.Generic;
@@ -46,7 +47,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
                 if (!string.IsNullOrEmpty(id))
                 {
                     return dataAccess.GetItem<Route>(id,
-                        "TagsRefs.Tag.Image",
+                        nameof(Route.TagsRefs) + '.' + nameof(JoinRouteTag.Tag) + '.' + nameof(RouteTag.Image),
                         nameof(Route.Image),
                         nameof(Route.Audio),
                         nameof(Route.Waypoints));
@@ -61,7 +62,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
             public IEnumerable<Route> GetRoutes()
             {
                 return dataAccess.GetItems<Route>(
-                    "TagsRefs.Tag.Image",
+                    nameof(Route.TagsRefs) + '.' + nameof(JoinRouteTag.Tag) + '.' + nameof(RouteTag.Image),
                     nameof(Route.Image),
                     nameof(Route.Audio),
                     nameof(Route.Waypoints));
