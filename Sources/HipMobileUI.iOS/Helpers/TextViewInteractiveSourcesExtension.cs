@@ -57,7 +57,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Helpers
                 sourcePositions.Add(source, finalPostion);
 
                 var resources = IoCManager.Resolve<ApplicationResourcesProvider>();
-                formattedTextWithSubstitutes.AddAttribute(UIStringAttributeKey.ForegroundColor, ((Color) resources.GetResourceValue("AccentColor")).ToUIColor(),
+                formattedTextWithSubstitutes.AddAttribute(UIStringAttributeKey.ForegroundColor, ((Color) resources.GetResourceValue("SecondaryColor")).ToUIColor(),
                                                           new NSRange(finalPostion.Start, source.SubstituteText.Length));
             }
             textView.AttributedText = formattedTextWithSubstitutes;

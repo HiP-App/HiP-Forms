@@ -27,7 +27,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelCo
             existingModelObject.Description = dto.Description;
             existingModelObject.Duration = dto.Duration;
             existingModelObject.Distance = dto.Distance;
-            existingModelObject.Title = dto.Title;
+            existingModelObject.Name = dto.Title;
         }
     }
 }

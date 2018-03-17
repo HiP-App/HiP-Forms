@@ -19,13 +19,8 @@ using Android.OS;
 using FFImageLoading.Forms.Droid;
 using HockeyApp.Android;
 using PaderbornUniversity.SILab.Hip.Mobile.Droid.Contracts;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelConverters;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.AudioPlayer;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Location;
@@ -49,14 +44,16 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
         protected override void OnCreate(Bundle bundle)
         {
             var dataAccess = IoCManager.Resolve<IDataAccess>();
+
             if (Settings.ShouldDeleteDbOnLaunch)
             {
                 File.Delete(dataAccess.DatabasePath);
                 Settings.ShouldDeleteDbOnLaunch = false;
             }
 
+            dataAccess.CreateDatabase(0); // ensures the database exists and is up to date
+
             IoCManager.RegisterType<IImageDimension, AndroidImageDimensions>();
-            IoCManager.RegisterType<IMediaFileManager, AndroidMediaFileManager>();
             IoCManager.RegisterType<IAppCloser, AndroidAppCloser>();
 
             TabLayoutResource = Resource.Layout.Tabbar;
@@ -89,7 +86,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
             // init forms and third party libraries
             CachedImageRenderer.Init(enableFastRenderer: true);
             Forms.Init(this, bundle);
-            Xamarin.FormsMaps.Init(this, bundle);
 
             UserDialogs.Init(() => (Activity)Forms.Context);
 

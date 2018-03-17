@@ -12,20 +12,17 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.ModelClasses;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses.Contracts;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
 {
-
     public interface IUserRatingManager
     {
-
         /// <summary>
-        /// Fetch the user rating for one exhibit.
+        /// Fetch the user rating for one exhibit. 
         /// </summary>
         /// <param name="idForRestApi">The id of the exhibit for which the user rating should be returned.</param>
         /// <returns>An object which represents the user rating.</returns>
@@ -38,18 +35,34 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
         /// <param name="rating">The rating for an exhibit. The rating should be between 1 and 5.</param>
         /// <returns>A boolean which tells if the rating was successfully sent to the server.</returns>
         Task<bool> SendUserRatingAsync(int idForRestApi, int rating);
+
+        /// <summary>
+        /// Fetch the rating the current user has given the exhibit.
+        /// </summary>
+        /// <param name="idForRestApi">The id of the exhibit for which the user rating should be returned.</param>
+        /// <returns>The last rating given from the logged in user.</returns>
+        Task<int> GetPreviousUserRatingAsync(int idForRestApi);
+
+        /// <summary>
+        /// Initializes a dictionary with the values 1-0, 2-0, 3-0, 4-0 and 5-0.
+        /// </summary>
+        /// <returns>A rating table where each value is 0.</returns>
+        UserRating InitializeEmptyUserRating();
     }
 
     public class UserRatingManager : IUserRatingManager
     {
-
         private readonly IUserRatingApiAccess client = IoCManager.Resolve<IUserRatingApiAccess>();
 
         public async Task<UserRating> GetUserRatingAsync(int idForRestApi)
         {
             var userRatingDto = await client.GetUserRatingAsync(idForRestApi);
-            userRatingDto.RatingTable = userRatingDto.RatingTable == null ? InitializeEmptyRatingTable() : userRatingDto.RatingTable;
-            return new UserRating(userRatingDto);
+            return userRatingDto.RatingTable == null ? InitializeEmptyUserRating() : new UserRating(userRatingDto);
+        }
+
+        public async Task<int> GetPreviousUserRatingAsync(int idForRestApi)
+        {
+            return await client.GetPreviousUserRatingAsync(idForRestApi);
         }
 
         public async Task<bool> SendUserRatingAsync(int idForRestApi, int rating)
@@ -57,12 +70,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
             return await client.SendUserRatingAsync(idForRestApi, rating);
         }
 
-        private Dictionary<int, int> InitializeEmptyRatingTable()
-        {
-            var ratingTable = new Dictionary<int, int>();
-            for (int i = 1; i <= 5; i++)
-                ratingTable.Add(i, 0);
-            return ratingTable;
-        }
+        public UserRating InitializeEmptyUserRating() => new UserRating(0, 0, 0, 0, 0);
     }
 }

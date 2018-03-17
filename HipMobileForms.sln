@@ -13,7 +13,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HipMobile", "HipMobile", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HipMobileUI", "HipMobileUI", "{9135C941-A58C-4733-B191-A61C6CA2A016}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HipMobileUI.UITests", "Sources\HipMobileUI.UITests\HipMobileUI.UITests.csproj", "{5CCB5487-8031-4BAB-9EBA-D4A04A1D010E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HipMobileUI.UITests", "Sources\HipMobileUI.UITests\HipMobileUI.UITests.csproj", "{5CCB5487-8031-4BAB-9EBA-D4A04A1D010E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HipMobileUI.Android", "Sources\HipMobileUI.Android\HipMobileUI.Android.csproj", "{C400B409-92B2-4726-B24A-3942722189FA}"
 EndProject

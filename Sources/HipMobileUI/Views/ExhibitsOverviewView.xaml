@@ -38,10 +38,12 @@
                         <RowDefinition Height="0.5*" />
                         <RowDefinition Height="0*" />
                     </Grid.RowDefinitions>
-                    <map:OsmMap Grid.Row="0" x:Name="Map" ExhibitSet="{Binding DisplayedExhibitSet}"
-                                GpsLocation="{Binding Position, Converter={StaticResource PositionGeoLocationConverter}}"
+
+                    <map:OsmMap Grid.Row="0" x:Name="Map" ExhibitSet="{Binding RawExhibits}"
+                                GpsLocation="{Binding Position}"
                                 ShowDetailsRoute="False" />
-                    <ListView Grid.Row="1" ItemsSource="{Binding ExhibitsList}" HasUnevenRows="True" x:Name="List">
+
+                    <ListView Grid.Row="1" ItemsSource="{Binding Exhibits}" HasUnevenRows="True" x:Name="List">
                         <ListView.Behaviors>
                             <behaviors:ListViewTappedItemBehavior Command="{Binding ItemTappedCommand}"
                                                                   Converter="{StaticResource ItemTappedConverter}" />
@@ -75,11 +77,11 @@
                                         <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" Padding="5,5"
                                                      Grid.Row="0" Grid.Column="1">
                                             <Label Text="{Binding ExhibitName}" VerticalOptions="CenterAndExpand" FontSize="16"
-                                                   LineBreakMode="WordWrap" FontAttributes="Bold" />
+                                                   LineBreakMode="WordWrap" FontAttributes="Bold"  Style="{DynamicResource Ssp-Regular}" />
                                             <Label Text="{Binding FormatedDistance}"
                                                    IsVisible="{Binding Source={x:Reference ExhibitsOveriew}, Path=BindingContext.DisplayDistances}"
                                                    VerticalOptions="End" FontSize="14"
-                                                   TextColor="Gray" />
+                                                   TextColor="Gray"  Style="{DynamicResource Ssp-Italic}"/>
                                         </StackLayout>
                                         <Button Image="ic_file_download.png" BackgroundColor="White" Opacity="1"
                                                 IsVisible="{Binding IsDownloadButtonVisible}"
@@ -90,8 +92,8 @@
                         </ListView.ItemTemplate>
                     </ListView>
                     <Label x:Name="Label" Grid.Row="2" Text="{helpers:Translate ExhibitsOverviewView_EmptyList}"
-                           IsVisible="{Binding ExhibitsList, Converter={StaticResource EmptyListConverter}}"
-                           TextColor="Gray" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="16"
+                           IsVisible="{Binding Exhibits, Converter={StaticResource EmptyListConverter}}"
+                           TextColor="Black" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="16"
                            Margin="5" />
                 </Grid>
             </views:NotificationExtensionView.ContentTemplate>

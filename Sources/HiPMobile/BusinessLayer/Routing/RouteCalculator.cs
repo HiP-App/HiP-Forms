@@ -24,46 +24,50 @@ using Itinero.Osm.Vehicles;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using Route = PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.Route;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Routing {
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Routing
+{
     /// <summary>
     /// Class for routing operations
     /// 
     /// Implements Singleton pattern
     /// </summary>
-    public sealed class RouteCalculator {
+    public sealed class RouteCalculator
+    {
 
         private static Router routeRouter;
 
         private static RouteCalculator instance;
-        private static readonly object Padlock = new object ();
+        private static readonly object Padlock = new object();
 
         /// <summary>
         ///     Initializes the database for the routing from a serialited pbf file
         /// </summary>
-        private RouteCalculator ()
+        private RouteCalculator()
         {
             RouterDb routingDb;
 
-            var assembly = typeof (RouteCalculator).GetTypeInfo ().Assembly;
-            using (var stream = assembly.GetManifestResourceStream ("PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Routing.osmfile.routerdb"))
+            var assembly = typeof(RouteCalculator).GetTypeInfo().Assembly;
+            using (var stream = assembly.GetManifestResourceStream("PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Routing.osmfile.routerdb"))
             {
-                routingDb = RouterDb.Deserialize (stream);
+                routingDb = RouterDb.Deserialize(stream);
             }
 
             //Initialize Router after loading Deserializing is important, otherwise Profiles are not loaded properly
-            routeRouter = new Router (routingDb);
+            routeRouter = new Router(routingDb);
         }
 
 
         /// <summary>
         /// Returns the Singleton
         /// </summary>
-        public static RouteCalculator Instance {
-            get {
+        public static RouteCalculator Instance
+        {
+            get
+            {
                 lock (Padlock)
                 {
                     if (instance == null)
-                        instance = new RouteCalculator ();
+                        instance = new RouteCalculator();
                     return instance;
                 }
             }
@@ -75,15 +79,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Routing {
         /// <param name="start">start position</param>
         /// <param name="end">end position</param>
         /// <returns>IList GeoLocation</returns>
-        public IList<GeoLocation> CreateSimpleRoute (GeoLocation start, GeoLocation end)
+        public IList<GeoLocation> CreateSimpleRoute(GeoLocation start, GeoLocation end)
         {
-            IList<GeoLocation> result = new List<GeoLocation> ();
+            IList<GeoLocation> result = new List<GeoLocation>();
             // calculate a route.
-            var r = routeRouter.Calculate (Vehicle.Pedestrian.Fastest (),
-                                           (float) start.Latitude, (float) start.Longitude, (float) end.Latitude, (float) end.Longitude);
+            var r = routeRouter.Calculate(Vehicle.Pedestrian.Fastest(),
+                                           (float)start.Latitude, (float)start.Longitude, (float)end.Latitude, (float)end.Longitude);
 
             foreach (var c in r.Shape)
-                result.Add (new GeoLocation (c.Latitude, c.Longitude));
+                result.Add(new GeoLocation(c.Latitude, c.Longitude));
 
             return result;
         }
@@ -94,22 +98,23 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Routing {
         /// <param name="routeId">The id of the route that shoudl be calculated.</param>
         /// <param name="userLocation">The users geolocation.</param>
         /// <returns></returns>
-        public OrderedRoute CreateOrderedRoute (string routeId, GeoLocation userLocation = null)
+        public OrderedRoute CreateOrderedRoute(string routeId, GeoLocation? userLocation = null)
         {
-            OrderedRoute resultRoute = new OrderedRoute ();
-            Route route = RouteManager.GetRoute (routeId);
+            var resultRoute = new OrderedRoute();
+            var route = DbManager.DataAccess.Routes().GetRoute(routeId);
+
             if (route != null && route.ActiveSet.Count > 0)
             {
                 // include the user location if possible
                 if (userLocation != null)
                 {
-                    resultRoute.AddSection (CreateSimpleRoute (userLocation, route.ActiveSet.First().Location).ToList ());
+                    resultRoute.AddSection(CreateSimpleRoute(userLocation.Value, route.ActiveSet.First().Location).ToList());
                 }
 
                 // calculate the route for exhibits
-                for (int i = 0; i <route.ActiveSet.Count - 1; i++)
+                for (int i = 0; i < route.ActiveSet.Count - 1; i++)
                 {
-                    resultRoute.AddSection ((CreateSimpleRoute (route.ActiveSet[i].Location, route.ActiveSet[i+1].Location).ToList ()));
+                    resultRoute.AddSection((CreateSimpleRoute(route.ActiveSet[i].Location, route.ActiveSet[i + 1].Location).ToList()));
                 }
             }
             return resultRoute;
@@ -121,27 +126,21 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Routing {
         /// <param name="id"></param>
         /// <param name="userPosition">position of user</param>
         /// <returns>IList GeoLocation</returns>
-        public IList<GeoLocation> CreateRouteWithSeveralWaypoints (string id, GeoLocation userPosition=null)
+        public IList<GeoLocation> CreateRouteWithSeveralWaypoints(string id, GeoLocation userPosition = default(GeoLocation))
         {
-            //List of Geolocations for path
-            IList<GeoLocation> result = new List<GeoLocation> ();
-            IList<Coordinate> locations = new List<Coordinate> ();
+            var locations = new List<Coordinate>();
 
-            if (userPosition != null)
-            {
-                locations.Add (new Coordinate ((float) userPosition.Latitude, (float) userPosition.Longitude));
-            }
+            if (userPosition != default(GeoLocation))
+                locations.Add(new Coordinate((float)userPosition.Latitude, (float)userPosition.Longitude));
 
-            foreach (var v in RouteManager.GetRoute(id).ActiveSet)
-                locations.Add (new Coordinate ((float) v.Location.Latitude, (float) v.Location.Longitude));
+            foreach (var v in DbManager.DataAccess.Routes().GetRoute(id).ActiveSet)
+                locations.Add(new Coordinate((float)v.Location.Latitude, (float)v.Location.Longitude));
 
-            var route = routeRouter.TryCalculate (Vehicle.Pedestrian.Fastest (), locations.ToArray ());
+            var route = routeRouter.TryCalculate(Vehicle.Pedestrian.Fastest(), locations.ToArray());
 
-            foreach (var c in route.Value.Shape)
-                result.Add (new GeoLocation (c.Latitude, c.Longitude));
-
-
-            return result;
+            return route.Value.Shape
+                .Select(c => new GeoLocation(c.Latitude, c.Longitude))
+                .ToList();
         }
 
     }

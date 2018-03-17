@@ -17,14 +17,10 @@ using FFImageLoading.Forms.Touch;
 using Foundation;
 using HockeyApp.iOS;
 using PaderbornUniversity.SILab.Hip.Mobile.Ios.Contracts;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelConverters;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.AudioPlayer;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Location;
@@ -57,11 +53,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios
             EarlyIoC.Register();
 
             var dataAccess = IoCManager.Resolve<IDataAccess>();
+
             if (Settings.ShouldDeleteDbOnLaunch)
             {
                 File.Delete(dataAccess.DatabasePath);
                 Settings.ShouldDeleteDbOnLaunch = false;
             }
+
+            dataAccess.CreateDatabase(0); // ensures the database exists and is up to date
 
             IoCManager.RegisterType<IImageDimension, IosImageDimensions>();
             IoCManager.RegisterType<IAppCloser, IosAppCloser>();
@@ -81,7 +80,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios
             IoCManager.RegisterInstance(typeof(IDbChangedHandler), new DbChangedHandler());
             IoCManager.RegisterInstance(typeof(INetworkAccessChecker), new IosNetworkAccessChecker());
             IoCManager.RegisterInstance(typeof(IStorageSizeProvider), new IosStorageSizeProvider());
-            IoCManager.RegisterType<IMediaFileManager, IosMediaFileManager>();
 
             // init crash manager
             var manager = BITHockeyManager.SharedHockeyManager;
@@ -93,7 +91,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios
             // init forms and third party libraries
             CachedImageRenderer.Init();
             Xamarin.Forms.Forms.Init();
-            Xamarin.FormsMaps.Init();
 
             LoadApplication(new App());
 

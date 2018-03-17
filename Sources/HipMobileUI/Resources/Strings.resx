@@ -121,55 +121,49 @@
     <value>Die Nutzung der App basiert auf Freiwilligkeit. Sämtliche Daten, die im Rahmen der Nutzung der Dienste und Applikation Verwendung finden, dürfen nur erhoben und verarbeitet werden, soweit dies für den Dienst und statistische Forschungs- und Evaluationszwecke erforderlich ist und den Regelungen der Universität Paderborn und dem Datenschutzgesetz NRW entspricht.</value>
   </data>
   <data name="LicenseScreenView_Agreement_Title" xml:space="preserve">
-    <value>Rechtsgrundlagen und Einwilligung</value>
+    <value>Legal basis and consent</value>
   </data>
   <data name="LicenseScreenView_Contribution_Title" xml:space="preserve">
-    <value>Beiträge</value>
+    <value>Contributions</value>
   </data>
   <data name="LicenseScreenView_Copyright_Text" xml:space="preserve">
     <value>Die Software Historisches Paderborn unterliegt dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung bedürfen der schriftlichen Zustimmung der Universität Paderborn. Die Nutzung der Software ist nur für den privaten, nicht kommerziellen Gebrauch gestattet.</value>
   </data>
   <data name="LicenseScreenView_Copyright_Title" xml:space="preserve">
-    <value>Copyright</value>
+    <value>Copyrights</value>
   </data>
   <data name="LicenseScreenView_CreditsImagesAutocarousel_Text" xml:space="preserve">
-    <value>Bilder erstellt von &lt;a href="http://www.flaticon.com/authors/madebyoliver/"&gt;Madebyoliver&lt;/a&gt; from &lt;a href="http://www.flaticon.com/"&gt;www.flaticon.com&lt;/a&gt;.</value>
+    <value>Images made by &lt;a href="http://www.flaticon.com/authors/madebyoliver/"&gt;Madebyoliver&lt;/a&gt; from &lt;a href="http://www.flaticon.com/"&gt;www.flaticon.com&lt;/a&gt;.</value>
   </data>
   <data name="LicenseScreenView_CreditsImagesAutocarousel_Title" xml:space="preserve">
-    <value>Credits der Bilder im Autokarussell</value>
+    <value>Credits of the images in the car carousel</value>
   </data>
   <data name="LicenseScreenView_CSL_Text" xml:space="preserve">
-    <value>Von &lt;a href="http://commonservicelocator.codeplex.com"&gt;Microsoft&lt;/a&gt;, lizensiert unter &lt;a href="http://commonservicelocator.codeplex.com/license"&gt;Ms-PL&lt;/a&gt;. Es wurden keine Änderungen vorgenommen.</value>
+    <value>From &lt;a href="http://commonservicelocator.codeplex.com"&gt;Microsoft&lt;/a&gt;, licensed under &lt;a href="http://commonservicelocator.codeplex.com/license"&gt;Ms-PL&lt;/a&gt;. No changes were made.</value>
   </data>
   <data name="LicenseScreenView_CSL_Title" xml:space="preserve">
-    <value>Common Service Locator</value>
+    <value>Common service locator</value>
   </data>
   <data name="LicenseScreenView_DatabaseData_Text" xml:space="preserve">
     <value>Die Daten die die App darstellt werden auf dem Smartphone in einer separaten Datenbank gespeichert. Die App liest und schreibt ausschließlich in dieser Datenbank. Der gesamte Datenverkehr erfolgt lokal.</value>
   </data>
   <data name="LicenseScreenView_DatabaseData_Title" xml:space="preserve">
-    <value>Datenbank-Daten</value>
+    <value>Database data</value>
   </data>
   <data name="LicenseScreenView_FeedbackData_Text" xml:space="preserve">
     <value>Für den technischen Betrieb, das Aufspüren von Fehlern steht es dem Nutzer frei Feedback an die Entwickler zu senden. Die Daten enthalten Informationen über Namen und E-Mail-Adresse, die vom User frei gewählt werden können. Die Erhebung und Nutzung dieser Feedback-Daten dienen lediglich der Fehlerbeseitigung und werden zudem in anonymisierter Form für statistischen Forschungs- und Evaluationszwecke ausgewertet. Die Log-Daten werden auf den Servern der Feedback Anwendung Hockeyapp gespeichert.</value>
   </data>
   <data name="LicenseScreenView_FeedbackData_Title" xml:space="preserve">
-    <value>Feedback-Daten</value>
-  </data>
-  <data name="LicenseScreenView_Fody_Text" xml:space="preserve">
-    <value>Von &lt;a href="https://github.com/Fody/Fody"&gt;Simon Cropp&lt;/a&gt;, lizensiert unter &lt;a href="https://opensource.org/licenses/mit-license.php"&gt;MIT&lt;/a&gt;. Es wurden keine Änderungen vorgenommen.</value>
-  </data>
-  <data name="LicenseScreenView_Fody_Title" xml:space="preserve">
-    <value>Fody</value>
+    <value>Feedback data</value>
   </data>
   <data name="LicenseScreenView_FurtherInfo_Text" xml:space="preserve">
     <value>Wenn Fragen bestehen, die diese Datenschutzerklärung nicht beantwortet, oder wenn zu einzelnen Punkten vertiefte Informationen gewünscht werden, gibt der Software Innovation Campus Paderborn gerne weitere Auskunft. E-Mail: hip-app@campus.uni-paderborn.de Telefon +49 5251 603358 Postalisch: Universität Paderborn Software Innovation Campus Warburger Str. 100 D-33098 Paderborn</value>
   </data>
   <data name="LicenseScreenView_FurtherInfo_Title" xml:space="preserve">
-    <value>Weitergehende Informationen</value>
+    <value>Further information</value>
   </data>
   <data name="LicenseScreenView_HockeyApp_Text" xml:space="preserve">
-    <value>Von &lt;a href="https://github.com/bitstadium/HockeySDK-Android"&gt;Microsoft&lt;/a&gt;, lizensiert unter &lt;a href="https://raw.githubusercontent.com/bitstadium/HockeySDK-Xamarin/master/LICENSE.md"&gt;Lizenz&lt;/a&gt;. Es wurden keine Änderungen vorgenommen.</value>
+    <value>From &lt;a href="https://github.com/bitstadium/HockeySDK-Android"&gt;Microsoft&lt;/a&gt;, licensed under &lt;a href="https://raw.githubusercontent.com/bitstadium/HockeySDK-Xamarin/master/LICENSE.md"&gt;Lizenz&lt;/a&gt;. No changes were made.</value>
   </data>
   <data name="LicenseScreenView_HockeyApp_Title" xml:space="preserve">
     <value>HockeyApp</value>
@@ -194,10 +188,10 @@ Leitung: Prof. Dr. Gregor Engels
 Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   </data>
   <data name="LicenseScreenView_Impressum_Title" xml:space="preserve">
-    <value>Impressum</value>
+    <value>Imprint</value>
   </data>
   <data name="LicenseScreenView_Itinero_Text" xml:space="preserve">
-    <value>Von &lt;a href="https://github.com/Itinero"&gt;Ben Abelshausen&lt;/a&gt;, lizensiert unter &lt;a href="https://opensource.org/licenses/Apache-2.0"&gt;Apache License 2.0&lt;/a&gt; durch Erlaubnis. Es wurden keine Änderungen vorgenommen.</value>
+    <value>From &lt;a href="https://github.com/Itinero"&gt;Ben Abelshausen&lt;/a&gt;, licensed under &lt;a href="https://opensource.org/licenses/Apache-2.0"&gt;Apache License 2.0&lt;/a&gt; by permission. No changes were made.</value>
   </data>
   <data name="LicenseScreenView_Itinero_Title" xml:space="preserve">
     <value>Itinero</value>
@@ -206,37 +200,37 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
     <value>Die Universität Paderborn übernimmt keine Garantie dafür, dass der Dienst fehlerfrei und jederzeit ohne Unterbrechung zur Verfügung steht. Eventuelle Datenverluste infolge technischer Störungen sowie die Kenntnisnahme vertraulicher Daten durch unberechtigte Zugriffe Dritter können nicht in jedem Fall ausgeschlossen werden. Die Universität Paderborn übernimmt keine Verantwortung für die Korrektheit der durch den Dienst zur Verfügung gestellten Informationen. Sie haftet auch nicht für den Inhalt, insbesondere für die Richtigkeit, Vollständigkeit und Aktualität der Informationen. Im Übrigen haftet die Universität Paderborn nur bei Vorsatz oder grober Fahrlässigkeit. In diesem Fall ist die Haftung auf typische, bei Begründung des Nutzungsverhältnisses vorhersehbare Schäden begrenzt. Die Haftung für Schäden aus der Verletzung des Lebens, des Körpers oder der Gesundheit bleibt unberührt.</value>
   </data>
   <data name="LicenseScreenView_Liability_Title" xml:space="preserve">
-    <value>Haftung</value>
+    <value>Liability</value>
   </data>
   <data name="LicenseScreenView_License_Title" xml:space="preserve">
-    <value>Lizenzen</value>
+    <value>Licenses</value>
   </data>
   <data name="LicenseScreenView_MapIcons_Text" xml:space="preserve">
-    <value>Von &lt;a href="https://mapicons.mapsmarker.com/"&gt;Maps Icons Collection&lt;/a&gt;, lizensiert unter &lt;a href="http://creativecommons.org/licenses/by-sa/3.0/"&gt;CC-BY-SA 3.0&lt;/a&gt;. Es wurden keine Änderungen vorgenommen.</value>
+    <value>From &lt;a href="https://mapicons.mapsmarker.com/"&gt;Maps Icons Collection&lt;/a&gt;, licensed under &lt;a href="http://creativecommons.org/licenses/by-sa/3.0/"&gt;CC-BY-SA 3.0&lt;/a&gt;. No changes were made.</value>
   </data>
   <data name="LicenseScreenView_MapIcons_Title" xml:space="preserve">
-    <value>Map Icons</value>
+    <value>Map icons</value>
   </data>
   <data name="LicenseScreenView_MaterialIcons_Text" xml:space="preserve">
-    <value>Von &lt;a href="https://design.google.com/icons/"&gt;Google&lt;/a&gt;, lizensiert unter &lt;a href="https://opensource.org/licenses/Apache-2.0"&gt;Apache License 2.0&lt;/a&gt;. Es wurden keine Änderungen vorgenommen.</value>
+    <value>From &lt;a href="https://design.google.com/icons/"&gt;Google&lt;/a&gt;, licensed under &lt;a href="https://opensource.org/licenses/Apache-2.0"&gt;Apache License 2.0&lt;/a&gt;. No changes were made.</value>
   </data>
   <data name="LicenseScreenView_MaterialIcons_Title" xml:space="preserve">
-    <value>Material Icons</value>
+    <value>Material icons</value>
   </data>
   <data name="LicenseScreenView_OSMBonusPack_Text" xml:space="preserve">
-    <value>Von &lt;a href="https://github.com/MKergall/osmbonuspack"&gt;MKergall&lt;/a&gt;, lizensiert unter &lt;a href="https://raw.githubusercontent.com/MKergall/osmbonuspack/master/LICENSE.md"&gt;GNU Lesser General Public License 3.0 (LGPL 3.0)&lt;/a&gt; (ohne §5.d und §5.e). Es wurden keine Änderungen vorgenommen.</value>
+    <value>From &lt;a href="https://github.com/MKergall/osmbonuspack"&gt;MKergall&lt;/a&gt;, licensed under &lt;a href="https://raw.githubusercontent.com/MKergall/osmbonuspack/master/LICENSE.md"&gt;GNU Lesser General Public License 3.0 (LGPL 3.0)&lt;/a&gt; (ohne §5.d und §5.e). No changes were made.</value>
   </data>
   <data name="LicenseScreenView_OSMBonusPack_Title" xml:space="preserve">
     <value>OSMBonusPack</value>
   </data>
   <data name="LicenseScreenView_Osmdroid_Text" xml:space="preserve">
-    <value>Von &lt;a href="https://github.com/osmdroid/osmdroid"&gt;osmdroid&lt;/a&gt;, lizensiert unter &lt;a href="https://raw.githubusercontent.com/osmdroid/osmdroid/master/LICENSE"&gt;Apache License 2.0&lt;/a&gt;. Es wurden keine Änderungen vorgenommen.</value>
+    <value>From &lt;a href="https://github.com/osmdroid/osmdroid"&gt;osmdroid&lt;/a&gt;, licensed under &lt;a href="https://raw.githubusercontent.com/osmdroid/osmdroid/master/LICENSE"&gt;Apache License 2.0&lt;/a&gt;. No changes were made.</value>
   </data>
   <data name="LicenseScreenView_Osmdroid_Title" xml:space="preserve">
-    <value>osmdroid</value>
+    <value>Osmdroid</value>
   </data>
   <data name="LicenseScreenView_OsmSharp_Text" xml:space="preserve">
-    <value>Von &lt;a href="https://osmsharp.com/"&gt;Ben Abelshausen&lt;/a&gt;, lizensiert unter &lt;a href="https://opensource.org/licenses/mit-license.php"&gt;MIT&lt;/a&gt;. Es wurden keine Änderungen vorgenommen.</value>
+    <value>From &lt;a href="https://osmsharp.com/"&gt;Ben Abelshausen&lt;/a&gt;, licensed under &lt;a href="https://opensource.org/licenses/mit-license.php"&gt;MIT&lt;/a&gt;. No changes were made.</value>
   </data>
   <data name="LicenseScreenView_OsmSharp_Title" xml:space="preserve">
     <value>OsmSharp</value>
@@ -245,16 +239,16 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
     <value>Historisches in Paderborn ist ein nicht-kommerzieller interaktiver Stadtführer der Universität Paderborn für mobile Endgeräte, dessen Nutzung auf Freiwilligkeit basiert. Die bei der Nutzung erhobenen Daten werden nur für die hier beschriebenen Zwecke verwendet und an keine Dritte weitergegeben. Diese Datenschutzerklärung beschreibt den Umgang mit personenbezogenen Daten innerhalb der Stadtführer App. Mit der Installation der App erklärt sich der Nutzer mit dieser Datenschutzerklärung einverstanden und kann sie jederzeit über die App-Seite im Google Play Store einsehen. Die Smartphone Applikation (App), bietet dem Nutzer die Möglichkeit Informationen zu verschiedenen Sehenswürdigkeiten in Paderborn zu erhalten. Dazu greift die App auf den Standort des Smartphones zu, um die nächsten Sehenswürdigkeiten für den Nutzer anzuzeigen und, falls gewünscht, für diesen eine Route zu den Sehenswürdigkeiten zu berechnen. Dazu wird ein Kartenausschnitt aus dem Web geladen. Zudem legt die App eine lokale Datenbank auf dem Smartphone an, in der die Daten gespeichert werden. Weiterhin bietet die App die Möglichkeit Audiodateien abzuspielen. Die Nutzung der jeweiligen Daten wird im Folgenden näher beschrieben.</value>
   </data>
   <data name="LicenseScreenView_PrivacyPolicy_Title" xml:space="preserve">
-    <value>Datenschutzerklärung</value>
+    <value>Privacy statement</value>
   </data>
   <data name="LicenseScreenView_Realm_Text" xml:space="preserve">
-    <value>Von &lt;a href="https://github.com/realm/realm-java"&gt;Realm&lt;/a&gt;, lizensiert unter &lt;a href="https://raw.githubusercontent.com/realm/realm-java/master/LICENSE"&gt;Apache License 2.0&lt;/a&gt;. Es wurden keine Änderungen vorgenommen.</value>
+    <value>From &lt;a href="https://github.com/realm/realm-java"&gt;Realm&lt;/a&gt;, licensed under &lt;a href="https://raw.githubusercontent.com/realm/realm-java/master/LICENSE"&gt;Apache License 2.0&lt;/a&gt;. No changes were made.</value>
   </data>
   <data name="LicenseScreenView_Realm_Title" xml:space="preserve">
     <value>Realm for Android</value>
   </data>
   <data name="LicenseScreenView_Reminiscence_Text" xml:space="preserve">
-    <value>Von &lt;a href="https://github.com/itinero/reminiscence/"&gt;Ben Abelshausen&lt;/a&gt;, lizensiert unter &lt;a href="https://opensource.org/licenses/mit-license.php"&gt;MIT&lt;/a&gt;. Es wurden keine Änderungen vorgenommen.</value>
+    <value>From &lt;a href="https://github.com/itinero/reminiscence/"&gt;Ben Abelshausen&lt;/a&gt;, licensed under &lt;a href="https://opensource.org/licenses/mit-license.php"&gt;MIT&lt;/a&gt;. No changes were made.</value>
   </data>
   <data name="LicenseScreenView_Reminiscence_Title" xml:space="preserve">
     <value>Reminiscence</value>
@@ -263,28 +257,28 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
     <value>Diese Datenschutzerklärung hat einen rein informativen Charakter, beschreibt aber verlässlich den aktuellen Stand des Systems. Änderungen innerhalb des Systems, die die Nutzung personenbezogener Daten betreffen, werden umgehend in die Datenschutzerklärung eingepflegt, um den Nutzerinnen und Nutzern jederzeit den aktuellen datenschutzrechtlichen Stand des Systems darlegen zu können. Die jeweiligen Sachverhalte ergeben sich aus den einschlägigen rechtlichen Regelungen und sind unabhängig von dieser Erläuterung gültig. Falls die Darstellung in dieser Erläuterung und das tatsächliche Verhalten von Historisches in Paderborn (beispielsweise durch zu bestimmten Zeitpunkten bestehende Programmfehler) voneinander abweichen, ergeben sich allein aus dieser Tatsache keinerlei Ansprüche.</value>
   </data>
   <data name="LicenseScreenView_RightOfPP_Title" xml:space="preserve">
-    <value>Rechtlicher Status der Datenschutzerklärung</value>
+    <value>Legal status of the privacy policy</value>
   </data>
   <data name="LicenseScreenView_SettingsPlugin_Text" xml:space="preserve">
-    <value>Von &lt;a href="https://github.com/jamesmontemagno/SettingsPlugin"&gt;James Montemagno&lt;/a&gt;, lizensiert unter &lt;a href="https://github.com/jamesmontemagno/SettingsPlugin/blob/master/LICENSE"&gt;MIT&lt;/a&gt;. Es wurden keine Änderungen vorgenommen.</value>
+    <value>From &lt;a href="https://github.com/jamesmontemagno/SettingsPlugin"&gt;James Montemagno&lt;/a&gt;, licensed under &lt;a href="https://github.com/jamesmontemagno/SettingsPlugin/blob/master/LICENSE"&gt;MIT&lt;/a&gt;. No changes were made.</value>
   </data>
   <data name="LicenseScreenView_SettingsPlugin_Title" xml:space="preserve">
-    <value>Settings Plugin</value>
+    <value>Settings plugin</value>
   </data>
   <data name="LicenseScreenView_ToU_Text" xml:space="preserve">
     <value>Die Applikation Historisches Paderborn ist eine experimentelle Software, welche zu Studien- und Forschungszwecken an der Universität Paderborn erstellt wurde. Die Software stellt historische Informationen als auch Kartendaten dar, wobei weder die Vollständigkeit noch die Korrektheit der Daten garantiert wird. Die Smartphone Applikation führt eine Positionsschätzung mit Hilfe von GPS durch. Die Genauigkeit der Positionsschätzung ist abhängig von vielen Faktoren, deshalb kann eine fehlerfreie Funktion nicht garantiert werden. Es kann eine Routenführung zu Sehenswürdigkeiten in Paderborn durch die Software bereitgestellt werden. Bitte bedenken Sie, dass die Routenberechnung Fehler enthalten kann. Beachten Sie Ihre Umgebung während der Nutzung des Systems, um Unfälle zu vermeiden. Die Applikation nutzt Kartendaten und kommuniziert mit Servern, wodurch tarifabhängige Kosten entstehen. Speziell das Laden von Kartendaten erzeugt ein sehr hohes Datenvolumen, so dass die Nutzung einer kostenfreien/kostengünstigen Verbindung, z.B. WLAN, gegenüber einer UMTS/LTE Datenverbindung ratsam ist. Die Software wird als solches zur kostenfreien Nutzung bereitgestellt. Eine Garantie für die Funktion bzw. die Bereitstellung des Dienstes an sich existiert nicht. Der Dienst kann ohne Angabe von Gründen jederzeit eingestellt werden. Da das System experimentellen Charakter besitzt, kann es zur Nicht-Verfügbarkeit von Diensten und zu Fehlern des Systems kommen, welche Systemabstürze auf dem Endgerät des Nutzers verursachen können. Der Einsatz der Software erfolgt auf eigene Gefahr. Mit der Zustimmung des Nutzers, sammelt die Software anonymisierte Nutzungsdaten, wie z.B. Absturzberichte. Der Benutzer wird vor dem Senden gefragt, ob er diesem zustimmt.</value>
   </data>
   <data name="LicenseScreenView_ToU_Title" xml:space="preserve">
-    <value>Nutzungsbedingungen</value>
+    <value>Terms of use</value>
   </data>
   <data name="LicenseScreenView_Transparancy_Text" xml:space="preserve">
     <value>Im Rahmen der Feedback Funktion die jeder Nutzer freiwillig nutzen kann, muss dieser einen Namen und eine Emailadresse angeben um eine Nachricht an die Entwickler zu senden. Diese Daten werden verschlüsselt versendet. Es werden ebenfalls keinerlei Daten aus dem privaten Speicher des Smartphones gelesen die nicht Teil der Datenbank sind.</value>
   </data>
   <data name="LicenseScreenView_Transparancy_Title" xml:space="preserve">
-    <value>Sichtbarkeit der Daten / Transparenz</value>
+    <value>Visibility of the data / transparency</value>
   </data>
   <data name="LicenseScreenView_Unity_Text" xml:space="preserve">
-    <value>Von &lt;a href="https://github.com/unitycontainer/unity"&gt;Microsoft&lt;/a&gt;, lizensiert unter &lt;a href="https://opensource.org/licenses/Apache-2.0"&gt;Apache License 2.0&lt;/a&gt;. Es wurden keine Änderungen vorgenommen.</value>
+    <value>From &lt;a href="https://github.com/unitycontainer/unity"&gt;Microsoft&lt;/a&gt;, licensed under &lt;a href="https://opensource.org/licenses/Apache-2.0"&gt;Apache License 2.0&lt;/a&gt;. No changes were made.</value>
   </data>
   <data name="LicenseScreenView_Unity_Title" xml:space="preserve">
     <value>Unity</value>
@@ -293,34 +287,34 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
     <value>Die Historisches in Paderborn App ist eine offene Applikation, welche mit einen Google Konto über den Google Playstore sowie dem Apple iTunes App Store heruntergeladen werden kann. In der aktuellen Version bezieht die App seine Daten von einer lokalen Datenbank die bei der Installation der App auf dem Speicher des Smartphones abgelegt wird. Das Kartenmaterial wird je nach Verwendung und Position des Nutzers vom OpenStreetMap Server geladen. Darüber hinaus steht es dem Nutzer frei ein Feedback an die Entwickler zu senden, welches die Qualität der App verbessern soll.</value>
   </data>
   <data name="LicenseScreenView_UsagePersonalData_Title" xml:space="preserve">
-    <value>Erhebung, Verarbeitung und Nutzung personenbezogener Daten</value>
+    <value>Collection, processing and use of personal data</value>
   </data>
   <data name="LicenseScreenView_XSL_Text" xml:space="preserve">
-    <value>Von &lt;a href="https://github.com/xamarin/AndroidSupportComponents"&gt;Xamarin&lt;/a&gt;, lizensiert unter &lt;a href="https://github.com/xamarin/AndroidSupportComponents/blob/master/LICENSE.md"&gt;MIT&lt;/a&gt;. Es wurden keine Änderungen vorgenommen.</value>
+    <value>From &lt;a href="https://github.com/xamarin/AndroidSupportComponents"&gt;Xamarin&lt;/a&gt;, licensed under &lt;a href="https://github.com/xamarin/AndroidSupportComponents/blob/master/LICENSE.md"&gt;MIT&lt;/a&gt;. No changes were made.</value>
   </data>
   <data name="LicenseScreenView_XSL_Title" xml:space="preserve">
-    <value>Xamarin Support Libraries</value>
+    <value>Xamarin support libraries</value>
   </data>
   <data name="MainPageViewModel_Feedback" xml:space="preserve">
     <value>Feedback</value>
   </data>
   <data name="MainPageViewModel_LegalNotices" xml:space="preserve">
-    <value>Rechtliche Hinweise</value>
+    <value>Legal Notice</value>
   </data>
   <data name="MainPageViewModel_OverviewPage" xml:space="preserve">
-    <value>Übersicht</value>
+    <value>Overview</value>
   </data>
   <data name="MainPageViewModel_Routes" xml:space="preserve">
-    <value>Routen</value>
+    <value>Routes</value>
   </data>
   <data name="MainPageViewModel_Settings" xml:space="preserve">
-    <value>Einstellungen</value>
+    <value>Settings</value>
   </data>
   <data name="MainPage_MenuTitle" xml:space="preserve">
-    <value>Historisches Paderborn</value>
+    <value>Historical Paderborn</value>
   </data>
   <data name="RouteDetailsPageViewModel_Description" xml:space="preserve">
-    <value>Beschreibung</value>
+    <value>Description</value>
   </data>
   <data name="RouteDetailsPageViewModel_Distance" xml:space="preserve">
     <value>{0} km</value>
@@ -329,31 +323,31 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
     <value>{0} min</value>
   </data>
   <data name="RouteDetailsPageViewModel_Map" xml:space="preserve">
-    <value>Karte</value>
+    <value>Map</value>
   </data>
   <data name="RouteDetailsPage_PlayAudio" xml:space="preserve">
-    <value>Vorlesen</value>
+    <value>Read aloud</value>
   </data>
   <data name="RouteDetailsPage_PauseAudio" xml:space="preserve">
-    <value>Vorlesen pausieren</value>
+    <value>Pause reading aloud</value>
   </data>
   <data name="RouteDetailsPage_StartRoute" xml:space="preserve">
-    <value>Route starten</value>
+    <value>Start route</value>
   </data>
   <data name="RouteDetailsPage_Tags" xml:space="preserve">
-    <value>Auf der Route</value>
+    <value>On the route</value>
   </data>
   <data name="RoutesOverviewListItemViewModel_Distance" xml:space="preserve">
-    <value>{0} Kilometer</value>
+    <value>{0} kilometres</value>
   </data>
   <data name="RoutesOverviewListItemViewModel_Duration" xml:space="preserve">
-    <value>{0} Minuten</value>
+    <value>{0} minutes</value>
   </data>
   <data name="RoutesOverviewView_Tags" xml:space="preserve">
-    <value>Auf der Route:</value>
+    <value>On the route:</value>
   </data>
   <data name="AudioToolbarView_Caption" xml:space="preserve">
-    <value>Untertitel</value>
+    <value>Subtitle</value>
   </data>
   <data name="AudioToolbarView_Pause" xml:space="preserve">
     <value>Pause</value>
@@ -362,534 +356,516 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
     <value>Play</value>
   </data>
   <data name="AudioToolbarView_Progress" xml:space="preserve">
-    <value>Fortschritt</value>
+    <value>Progress</value>
   </data>
   <data name="SettingsScreenView_AppIntro_Title" xml:space="preserve">
-    <value>App Einführung</value>
+    <value>App introduction</value>
   </data>
   <data name="SettingsScreenView_AutoStartAudio_Text" xml:space="preserve">
-    <value>Wenn diese Einstellung aktiviert ist, wird Audio automatisch für die aktuelle Seite gestartet.</value>
+    <value>When this setting is enabled, audio will automatically start for the current page.</value>
   </data>
   <data name="SettingsScreenView_AutoStartAudio_Title" xml:space="preserve">
-    <value>Automatisch Audio beginnen</value>
+    <value>Automatically start audio</value>
   </data>
   <data name="SettingsScreenView_AutoSwitchPage_Text" xml:space="preserve">
-    <value>Wenn diese Einstellung aktiviert ist, wird nach Ende der Audiowiedergabe automatisch zur nächsten Seite gewechselt.</value>
+    <value>When this setting is enabled, the next page will be automatically shown after the end of an audio file.</value>
   </data>
   <data name="SettingsScreenView_AutoSwitchPage_Title" xml:space="preserve">
-    <value>Automatisch Seiten wechseln</value>
+    <value>Automatically change pages</value>
   </data>
   <data name="SettingsScreenView_POI_Title" xml:space="preserve">
-    <value>Sehenswürdigkeiten</value>
+    <value>Sights</value>
   </data>
   <data name="SettingsScreenView_RepeatHintAudio_Text" xml:space="preserve">
-    <value>Wenn aktiviert, wird der Hinweis zur Audiowiedergabe erneut angezeigt</value>
+    <value>When enabled, the hint for the audio playback will appear again</value>
   </data>
   <data name="SettingsScreenView_RepeatHintAutoPageSwitch_Text" xml:space="preserve">
-    <value>Wenn aktiviert, wird der Hinweis zum automatischen Seitenwechsel erneut angezeigt</value>
+    <value>When enabled, the hint for the automatic page changing will appear again</value>
   </data>
   <data name="SettingsScreenView_RepeatHintTimeSlider_Text" xml:space="preserve">
-    <value>Wenn aktiviert, wird der Hinweis zur Zeitleiste erneut angezeigt</value>
+    <value>When enabled, the hint for the time bar will appear again</value>
   </data>
   <data name="SettingsScreenView_RepeatIntro_Text" xml:space="preserve">
-    <value>Wenn aktiviert, wird die App Einführung beim nächsten Start erneut angezeigt</value>
+    <value>When enabled, the app introduction will be shown on the next start again</value>
   </data>
   <data name="SettingsScreenView_DownloadData_Text" xml:space="preserve">
-    <value>Wenn aktiviert, werden Datenupdates automatisch heruntergeladen</value>
+    <value>When enabled, data updates are going to be downloaded automatically</value>
   </data>
   <data name="ExhibitDetailsPage_AudioToolbar" xml:space="preserve">
     <value>Audio Player</value>
   </data>
   <data name="ExhibitDetailsPage_AgreeFeature" xml:space="preserve">
-    <value>Ich möchte die Funktion nutzen</value>
+    <value>I want to use this feature</value>
   </data>
   <data name="ExhibitDetailsPage_AudioPlay" xml:space="preserve">
-    <value>Audio startet automatisch sobald eine neue Seite geöffnet wird. Diese Eigenschaft kann unter Menu &gt;&gt; Einstellungen geändert werden.</value>
+    <value>Audio starts automatically when a new page is opened. This feature can be changed under Menu &gt;&gt; Settings.</value>
   </data>
   <data name="ExhibitDetailsPage_DisagreeFeature" xml:space="preserve">
-    <value>Ich möchte die Funktion nicht nutzen</value>
+    <value>I do not want to use this feature</value>
   </data>
   <data name="ExhibitDetailsPage_Hinweis" xml:space="preserve">
-    <value>Hinweis</value>
+    <value>Note</value>
   </data>
   <data name="ExhibitDetailsPage_PageSwitch" xml:space="preserve">
-    <value>Die Seiten werden automatisch gewechselt, wenn die Audiodatei abgespielt wurde. Diese Eigenschaft kann unter Menu &gt;&gt; Einstellungen geändert werden.</value>
+    <value>The pages are automatically changed when the audio file has been played. This feature can be changed under Menu &gt;&gt; Settings.</value>
   </data>
   <data name="AudioTranscriptView_Sources_Title" xml:space="preserve">
-    <value>Quellen</value>
+    <value>Sources</value>
   </data>
   <data name="AudioTranscriptView_Subtitles_Title" xml:space="preserve">
-    <value>Untertitel</value>
+    <value>Subtitle</value>
   </data>
   <data name="UserOnboarding_Explore_Text" xml:space="preserve">
-    <value>Erlebe und entdecke selbst mit dem Smartphone Geschichte und Kultur vor Ort</value>
+    <value>Experience and discover history and culture by oneself with your smartphone on-site </value>
   </data>
   <data name="UserOnboarding_Explore_Title" xml:space="preserve">
-    <value>Paderborn erkunden</value>
+    <value>Explore Paderborn</value>
   </data>
   <data name="UserOnboarding_Forward" xml:space="preserve">
-    <value>WEITER</value>
+    <value>NEXT</value>
   </data>
   <data name="UserOnboarding_Ok" xml:space="preserve">
-    <value>ALLES KLAR</value>
+    <value>ALL RIGHT</value>
   </data>
   <data name="UserOnboarding_Route_Text" xml:space="preserve">
-    <value>Erkunde frei oder anhand themenspezifischer Routen Paderborn</value>
+    <value>Explore Paderborn on your own or with topic-specific routes</value>
   </data>
   <data name="UserOnboarding_Route_Title" xml:space="preserve">
-    <value>Themenspezifische Routen</value>
+    <value>Theme-specific routes</value>
   </data>
   <data name="UserOnboarding_Skip" xml:space="preserve">
-    <value>ÜBERSPRINGEN</value>
+    <value>SKIP</value>
   </data>
   <data name="UserOnboarding_Students_Text" xml:space="preserve">
-    <value>Eine sich weiterentwickelnde App erstellt von Studierenden der Universität Paderborn</value>
+    <value>An evolving app created by students of the University of Paderborn</value>
   </data>
   <data name="UserOnboarding_Students_Title" xml:space="preserve">
-    <value>Von Studierenden</value>
+    <value>Made by students</value>
   </data>
   <data name="LoadingPage_Subtext" xml:space="preserve">
-    <value>Einen Moment bitte...</value>
+    <value>One moment please...</value>
   </data>
   <data name="LoadingPage_Text" xml:space="preserve">
-    <value>Historisches Paderborn wird geladen</value>
+    <value>Historical Paderborn is being loaded</value>
   </data>
   <data name="MapRenderer_NoLocation_Text" xml:space="preserve">
-    <value>Sie sind nicht in Paderborn oder es ist momentan kein GPS Signal vorhanden</value>
+    <value>You are not in Paderborn or there is currently no GPS signal available</value>
   </data>
   <data name="RouteDetailspageViewModel_Back" xml:space="preserve">
-    <value>Zurück</value>
+    <value>Back</value>
   </data>
   <data name="RouteDetailspageViewModel_ContinueRoute" xml:space="preserve">
-    <value>Route fortführen</value>
+    <value>Continue the route</value>
   </data>
   <data name="RouteDetailspageViewModel_RestartRoute" xml:space="preserve">
-    <value>Route neu starten</value>
+    <value>Restart the route</value>
   </data>
   <data name="RouteDetailspageViewModel_RouteStarted" xml:space="preserve">
-    <value>Die Route wurde bereits begonnen:</value>
+    <value>The route has already started:</value>
   </data>
   <data name="ExhibitDetailsPage_AdditionalInformation" xml:space="preserve">
-    <value>Zusätzliche Informationen</value>
-  </data>
-  <data name="ExhibitOrRouteNearby_Confirm" xml:space="preserve">
-    <value>Ja</value>
+    <value>Additional information</value>
   </data>
   <data name="ExhibitNearby_ExhibitNearby" xml:space="preserve">
-    <value>Sehenwürdigkeit in der Nähe</value>
-  </data>
-  <data name="ExhibitOrRouteNearby_Question_Part1" xml:space="preserve">
-    <value>Möchten Sie sich</value>
-  </data>
-  <data name="ExhibitOrRouteNearby_Question_Part2" xml:space="preserve">
-    <value>genauer ansehen?</value>
-  </data>
-  <data name="ExhibitOrRouteNearby_Reject" xml:space="preserve">
-    <value>Nein</value>
+    <value>Sight nearby</value>
   </data>
   <data name="RouteNearby" xml:space="preserve">
-    <value>Route in der Nähe</value>
+    <value>Nearby route</value>
   </data>
-  <data name="SkipExhibit_Confirm" xml:space="preserve">
-    <value>Ja</value>
+  <data name="ExhibitOrRouteNearby_Question_Part1" xml:space="preserve">
+    <value>Would you like to have a closer look at</value>
+  </data>
+  <data name="ExhibitOrRouteNearby_Question_Part2" xml:space="preserve">
+    <value>?</value>
   </data>
   <data name="SkipExhibit_Question_Part1" xml:space="preserve">
-    <value>Möchten Sie wirklich</value>
+    <value>Do you really want to skip</value>
   </data>
   <data name="SkipExhibit_Question_Part2" xml:space="preserve">
-    <value>überspringen?</value>
-  </data>
-  <data name="SkipExhibit_Reject" xml:space="preserve">
-    <value>Nein</value>
+    <value>?</value>
   </data>
   <data name="SkipExhibit_Title" xml:space="preserve">
-    <value>Sehenswürdigkeit überspringen</value>
+    <value>Skip sight</value>
   </data>
   <data name="SettingsScreenView_FurtherSettings_Title" xml:space="preserve">
-    <value>Weitere Einstellungen</value>
+    <value>More settings</value>
   </data>
   <data name="SettingsScreenView_RemoveAllDownloadsButton_Text" xml:space="preserve">
-    <value>Entfernen</value>
+    <value>Remove</value>
   </data>
   <data name="SettingsScreenView_RemoveAllDownloadsPrompt_Confirm" xml:space="preserve">
-    <value>Entfernen</value>
+    <value>Remove</value>
   </data>
   <data name="SettingsScreenView_RemoveAllDownloadsPrompt_Question" xml:space="preserve">
-    <value>Möchten Sie wirklich alle Downloads entfernen? Die App muss dafür neu gestartet werden.</value>
-  </data>
-  <data name="SettingsScreenView_RemoveAllDownloadsPrompt_Reject" xml:space="preserve">
-    <value>Abbrechen</value>
+    <value>Do you really want to remove all downloads? The app has to be restarted for this.</value>
   </data>
   <data name="SettingsScreenView_RemoveAllDownloadsPrompt_Title" xml:space="preserve">
-    <value>Alle Downloads entfernen</value>
+    <value>Remove all downloads</value>
   </data>
   <data name="SettingsScreenView_RemoveAllDownloads_Text" xml:space="preserve">
-    <value>Alle Downloads entfernen (Nutzen Sie diese Option, um Speicherplatz freizugeben)</value>
+    <value>Remove all downloads (Use this option to free up disk space)</value>
   </data>
   <data name="ExhibitsOverviewView_EmptyList" xml:space="preserve">
-    <value>Keine Sehenswürdigkeiten verfügbar. Laden Sie Sehenswürdigkeiten herunter, um loszulegen!</value>
+    <value>No sights available. Download sights to get started!</value>
   </data>
   <data name="RoutesOverviewView_EmptyList" xml:space="preserve">
-    <value>Keine Routen verfügbar. Laden Sie Routen herunter, um loszulegen!</value>
+    <value>No routes available. Download routes to get started!</value>
   </data>
   <data name="DownloadData_Title" xml:space="preserve">
-    <value>Neue Daten herunterladen?</value>
-  </data>
-  <data name="DownloadData_Cancel" xml:space="preserve">
-    <value>Nein</value>
-  </data>
-  <data name="DownloadData_Accept" xml:space="preserve">
-    <value>Ja</value>
+    <value>Download new data?</value>
   </data>
   <data name="DownloadData_Always" xml:space="preserve">
-    <value>Immer</value>
+    <value>Always</value>
   </data>
   <data name="SettingsScreenView_Data_Title" xml:space="preserve">
-    <value>Daten</value>
+    <value>Data</value>
   </data>
   <data name="SettingsScreenView_WifiOnly_Text" xml:space="preserve">
-    <value>Wenn aktiviert, werden Daten nur über Wlan heruntergeladen</value>
+    <value>When enabled, data will only be downloaded via WiFi</value>
   </data>
   <data name="LoadingPageViewModel_BaseData_DatabaseUpToDateCheckFailed" xml:space="preserve">
-    <value>Es konnte nicht überprüft werden, ob es neue Routen oder Sehenswürdigkeiten Daten gibt. Überprüfen Sie Ihre Internetverbindung.</value>
+    <value>It could not be verified if there are new routes or sights data. Check your internet connection.</value>
   </data>
   <data name="LoadingPageViewModel_BaseData_DataAvailable" xml:space="preserve">
-    <value>Basis Daten verfügbar</value>
+    <value>Base data available</value>
   </data>
   <data name="LoadingPageViewModel_BaseData_DownloadViaMobile" xml:space="preserve">
-    <value>Es wird empfohlen die Basis Daten immer aktuell zu halten. In den Einstellungen ist festgelegt, dass Daten nicht über Mobile Datenverbindungen heruntergeladen werden sollen. Möchten Sie diese Basis Daten jetzt trotzdem herunterladen?</value>
-  </data>
-  <data name="LoadingPageViewModel_BaseData_MobileDownload_Cancel" xml:space="preserve">
-    <value>Nein</value>
-  </data>
-  <data name="LoadingPageViewModel_BaseData_MobileDownload_Confirm" xml:space="preserve">
-    <value>Ja</value>
-  </data>
-  <data name="LoadingPageViewModel_LoadingError_Confirm" xml:space="preserve">
-    <value>OK</value>
+    <value>It is recommended to keep the base data up to date. The settings define that data should not be downloaded via mobile data connections. Do you still want to download this base data anyway?</value>
   </data>
   <data name="StorageTitle" xml:space="preserve">
-    <value>Belegter Speicherplatz für Daten</value>
+    <value>Used disc space for data</value>
   </data>
-  <data name="DownloadDetails_Text_Part1" xml:space="preserve">
-    <value>Lade Daten zu </value>
-  </data>
-  <data name="DownloadDetails_Text_Part2" xml:space="preserve">
-    <value> herunter</value>
+  <data name="ExhibitRouteDownloadPage_Download_Text" xml:space="preserve">
+    <value>Downloading additional data</value>
   </data>
   <data name="MainPageViewModel_Account" xml:space="preserve">
     <value>Account</value>
   </data>
   <data name="MainPageViewModel_Profile" xml:space="preserve">
-    <value>Profil</value>
+    <value>Profile</value>
   </data>
   <data name="ProfileView_Achievements" xml:space="preserve">
-    <value>Erfolge</value>
+    <value>Achievements</value>
   </data>
   <data name="ProfileView_Statistic" xml:space="preserve">
-    <value>Statistik</value>
+    <value>Statistic</value>
   </data>
   <data name="Logout" xml:space="preserve">
-    <value>Abmelden</value>
+    <value>Logout</value>
   </data>
   <data name="ProfileView_Overview_Achievements" xml:space="preserve">
-    <value>Erfolge:</value>
+    <value>Achievements:</value>
   </data>
   <data name="ProfileView_Overview_Progress" xml:space="preserve">
-    <value>Fortschritt:</value>
+    <value>Progress:</value>
   </data>
   <data name="ProfileView_Overview_Score" xml:space="preserve">
-    <value>Punkte:</value>
+    <value>Score:</value>
   </data>
   <data name="LoginScreenView_Error_Wrong_Credentials" xml:space="preserve">
-    <value>Falsche E-Mail/Passwort Kombination</value>
+    <value>Wrong e-mail / password combination</value>
   </data>
   <data name="LoginScreenView_Error_Unknown_Email" xml:space="preserve">
-    <value>Unbekannte E-Mail Adresse</value>
+    <value>Unknown e-mail address</value>
   </data>
   <data name="LoginScreenView_Error_Wrong_Password" xml:space="preserve">
-    <value>Falsches Passwort</value>
+    <value>Wrong password</value>
   </data>
   <data name="LoginScreenView_Login" xml:space="preserve">
-    <value>Einloggen</value>
+    <value>Log in</value>
   </data>
   <data name="LoginScreenView_Password" xml:space="preserve">
-    <value>Passwort</value>
+    <value>Password</value>
   </data>
   <data name="LoginScreenView_Register" xml:space="preserve">
-    <value>Registrieren</value>
+    <value>Register</value>
   </data>
   <data name="LoginScreenView_Email" xml:space="preserve">
-    <value>E-Mail</value>
+    <value>E-mail</value>
   </data>
   <data name="LoginScreenView_Forgot_Password" xml:space="preserve">
-    <value>Passwort vergessen?</value>
+    <value>Forgot password?</value>
   </data>
   <data name="LoadingPageViewModel_BaseData_DownloadFailed_Text" xml:space="preserve">
-    <value>Die aktuellen Daten konnten nicht heruntergeladen werden.</value>
+    <value>The current data could not be downloaded.</value>
   </data>
   <data name="LoadingPageViewModel_BaseData_DownloadFailed_Title" xml:space="preserve">
-    <value>Daten Download</value>
+    <value>Data download</value>
   </data>
   <data name="LoadingPageViewModel_BaseData_OnlyMobile" xml:space="preserve">
-    <value>In den Einstellungen haben Sie die Möglichkeit, den Download der Daten auch über Mobile Datenverbindungen zu erlauben.</value>
+    <value>The settings give you the ability to allow the download of data via mobile data connections.</value>
   </data>
   <data name="ForgotPasswordScreenView_Email" xml:space="preserve">
-    <value>E-Mail</value>
+    <value>E-mail</value>
   </data>
   <data name="ForgotPasswordScreenView_Forgot_Password" xml:space="preserve">
-    <value>Passwort vergessen?</value>
+    <value>Forgot password?</value>
   </data>
   <data name="ForgotPasswordScreenView_Info" xml:space="preserve">
-    <value>Kein Problem. Wir schicken dir eine E-Mail zum Zurücksetzen deines Passworts.</value>
+    <value>No problem. We'll send you an e-mail to reset your password.</value>
   </data>
   <data name="ForgotPasswordScreenView_Invalid_Email" xml:space="preserve">
-    <value>Ungültige E-Mail-Adresse</value>
+    <value>Invalid e-mail address</value>
   </data>
   <data name="ForgotPasswordScreenView_Reset_Password" xml:space="preserve">
-    <value>Passwort zurücksetzen</value>
+    <value>Reset password</value>
   </data>
   <data name="ForgotPasswordScreenView_Unknown_Email" xml:space="preserve">
-    <value>Unbekannte E-Mail-Adresse. Bitte registriere dich mit deiner E-Mail-Adresse.</value>
+    <value>Unknown e-mail address. Please register with your e-mail address.</value>
   </data>
   <data name="RegisterScreenView_Email" xml:space="preserve">
-    <value>E-Mail</value>
+    <value>E-mail</value>
   </data>
   <data name="RegisterScreenView_Password" xml:space="preserve">
-    <value>Passwort</value>
+    <value>Password</value>
   </data>
   <data name="RegisterScreenView_RepeatPassword" xml:space="preserve">
-    <value>Passwort wiederholen</value>
+    <value>Repeat password</value>
   </data>
   <data name="RegisterScreenView_Register" xml:space="preserve">
-    <value>Registrieren</value>
+    <value>Register</value>
   </data>
   <data name="RegisterScreenView_Error_Register_Fail" xml:space="preserve">
-    <value>Registrierung fehlgeschlagen</value>
+    <value>Registration failed</value>
   </data>
   <data name="RegisterScreenView_Alert_Description" xml:space="preserve">
-    <value>Eine E-Mail wurde Ihnen gesendet. Bitte bestätigen Sie diese E-Mail, um sich einloggen zu können.</value>
-  </data>
-  <data name="RegisterScreenView_Alert_Ok" xml:space="preserve">
-    <value>Ok</value>
+    <value>An e-mail has been sent to you. Please confirm this e-mail to be able to log in.</value>
   </data>
   <data name="RegisterScreenView_Alert_Registered" xml:space="preserve">
-    <value>Benutzer Registrierung</value>
+    <value>User registration</value>
   </data>
   <data name="RegisterScreenView_Error_Empty_Email_And_Password" xml:space="preserve">
-    <value>Das E-Mail und Passwort-Eingabefeld ist leer</value>
+    <value>The e-mail and password input field is empty</value>
   </data>
   <data name="RegisterScreenView_Error_Empty_Password" xml:space="preserve">
-    <value>Das Passwort-Eingabefeld ist leer</value>
+    <value>The password input field is empty</value>
   </data>
   <data name="ForgotPasswordScreenView_Alert_Description" xml:space="preserve">
-    <value>Wir haben dir eine E-Mail mit Anweisungen zum Zurücksetzen deines Passworts geschickt</value>
-  </data>
-  <data name="ForgotPasswordScreenView_Alert_Ok" xml:space="preserve">
-    <value>Ok</value>
+    <value>We've sent you an e-mail with instructions on how to reset your password</value>
   </data>
   <data name="ForgotPasswordScreenView_Alert_Password_Resetted" xml:space="preserve">
-    <value>Passwort zurückgesetzt</value>
+    <value>Reset password</value>
   </data>
   <data name="ForgotPasswordScreenView_Error_Empty_Email" xml:space="preserve">
-    <value>Das E-Mail-Eingabefeld ist leer</value>
+    <value>The e-mail input field is empty</value>
   </data>
   <data name="LoginScreenView_Error_Empty_Email" xml:space="preserve">
-    <value>Das E-Mail-Eingabefeld ist leer</value>
+    <value>The e-mail input field is empty</value>
   </data>
   <data name="LoginScreenView_Error_Empty_Email_And_Password" xml:space="preserve">
-    <value>Das E-Mail- und Passwort-Eingabefeld ist leer</value>
+    <value>The e-mail and password input field is empty</value>
   </data>
   <data name="LoginScreenView_Error_Empty_Password" xml:space="preserve">
-    <value>Das Passwort-Eingabefeld ist leer</value>
+    <value>The password input field is empty</value>
   </data>
   <data name="LoginScreenView_Dialog_Login" xml:space="preserve">
-    <value>Melde an</value>
+    <value>Sign in</value>
   </data>
   <data name="Alert_No_Internet_Description" xml:space="preserve">
-    <value>Wir konnten keine Verbindung mit dem Internet herstellen. Bitte überprüfe deine Netzwerkverbindung.</value>
+    <value>We are not able to connect to the internet. Please check your network connection.</value>
   </data>
   <data name="Alert_Confirm" xml:space="preserve">
-    <value>Bestätigen</value>
+    <value>Confirm</value>
   </data>
   <data name="Alert_No_Internet_Title" xml:space="preserve">
-    <value>Keine Netzwerkverbindung</value>
+    <value>No network connection</value>
   </data>
   <data name="Alert_Server_Error_Description" xml:space="preserve">
-    <value>Es ist ein Server fehler aufgetreten. Bitte versuche es später noch einmal.</value>
+    <value>A server error occurred. Please try again later.</value>
   </data>
   <data name="Alert_Server_Error_Title" xml:space="preserve">
-    <value>Server Fehler</value>
+    <value>Server error</value>
   </data>
   <data name="Alert_Unknown_Error_Description" xml:space="preserve">
-    <value>Es ist ein unbekannter Fehler aufgetreten.</value>
+    <value>An unknown error occurred.</value>
   </data>
   <data name="Alert_Unknown_Error_Title" xml:space="preserve">
-    <value>Unbekannter Fehler</value>
-  </data>
-  <data name="LicenseScreenViewModel_UnlockExhibits_Confirm" xml:space="preserve">
-    <value>OK</value>
+    <value>Unknown error</value>
   </data>
   <data name="LicenseScreenView_User_Dialogs_Text" xml:space="preserve">
-    <value>Von &lt;a href="https://github.com/aritchie/userdialogs"&gt;Allan Ritchie&lt;/a&gt;, lizensiert unter &lt;a href="https://github.com/aritchie/userdialogs/blob/master/LICENSE.md"&gt;MIT&lt;/a&gt;. Es wurden keine Änderungen vorgenommen.</value>
+    <value>From &lt;a href="https://github.com/aritchie/userdialogs"&gt;Allan Ritchie&lt;/a&gt;, licensed under &lt;a href="https://github.com/aritchie/userdialogs/blob/master/LICENSE.md"&gt;MIT&lt;/a&gt;. No changes were made.</value>
   </data>
   <data name="LicenseScreenView_User_Dialogs_Title" xml:space="preserve">
-    <value>ACR User Dialogs</value>
+    <value>ACR user dialogs</value>
   </data>
   <data name="CharacterSelectionPage_Adventurer_Text" xml:space="preserve">
-    <value>Entdecke Paderborn auf eigene Faust! Mache neue Erfahrungen!</value>
+    <value>Discover Paderborn on your own! Gain new experiences!</value>
   </data>
   <data name="CharacterSelectionPage_Professor_Text" xml:space="preserve">
-    <value>Folge den geführten Touren um Paderborn zu entdecken!</value>
+    <value>Follow the guided tours to discover Paderborn!</value>
   </data>
   <data name="LicenseScreenView_CreditsImagesCharacterSelection_Text" xml:space="preserve">
     <value>Icons made by &lt;a href="http://www.freepik.com" title="Freepik"&gt;Freepik&lt;/a&gt; from &lt;a href="http://www.flaticon.com" title="Flaticon"&gt;www.flaticon.com&lt;/a&gt;. Bilder erstellt von &lt;a href="http://www.freepik.com" title="Freepik"&gt;Freepik&lt;/a&gt; von &lt;a href="http://www.flaticon.com" title="Flaticon"&gt;www.flaticon.com&lt;/a&gt;.</value>
   </data>
   <data name="LicenseScreenView_CreditsImagesCharacterSelection_Title" xml:space="preserve">
-    <value>Credits der Bilder in der Avatar Auswahl und in der Profil Ansicht</value>
+    <value>Credits of the images in the avatar selection and in the profile view</value>
   </data>
   <data name="RegisterScreenView_Error_Empty_Email" xml:space="preserve">
-    <value>Das E-Mail-Eingabefeld ist leer</value>
+    <value>The e-mail input field is empty</value>
   </data>
   <data name="RegisterScreenView_Error_Mismatch_Password" xml:space="preserve">
-    <value>Die Passwörter stimmen nicht überein</value>
+    <value>The passwords are not matching</value>
   </data>
   <data name="RegisterScreenView_Error_Invalid_Email" xml:space="preserve">
-    <value>Ungültige E-Mail</value>
-  </data>
-  <data name="ExhibitDetailsPage_Distance_alert_confirm" xml:space="preserve">
-    <value>OK</value>
+    <value>Invalid e-mail</value>
   </data>
   <data name="ExhibitDetailsPage_Distance_Text" xml:space="preserve">
-    <value>Sie müssen die Sehenswürdigkeit zuerst besucht haben, um die Details zu sehen!</value>
+    <value>You have to visit the sight first before the details are available!</value>
   </data>
   <data name="ExhibitDetailsPage_Distance_Title" xml:space="preserve">
-    <value>Nicht freigeschaltet</value>
+    <value>Not unlocked</value>
   </data>
   <data name="LicenseScreenViewModel_UnlockExhibits_Text" xml:space="preserve">
-    <value>Alle Sehenswürdigkeiten freigeschaltet!</value>
+    <value>All sights unlocked!</value>
   </data>
   <data name="LicenseScreenViewModel_UnlockExhibits_Title" xml:space="preserve">
-    <value>Sehenswürdigkeiten freigeschaltet</value>
+    <value>Sight unlocked</value>
   </data>
   <data name="MainPageViewModel_Leaderboard" xml:space="preserve">
-    <value>Rangliste</value>
+    <value>Leaderboard</value>
   </data>
   <data name="SettingsScreenView_CharacterSelection_Text_IsAdventurer" xml:space="preserve">
-    <value>Sie nutzen die App im Abenteurer-Modus. </value>
+    <value>You are using the app in adventurer mode. </value>
   </data>
   <data name="SettingsScreenView_CharacterSelection_Text_IsProfessor" xml:space="preserve">
-    <value>Sie nutzen die App im Professor-Modus.</value>
+    <value>You are using the app in professor mode.</value>
   </data>
   <data name="SettingsScreenView_CharacterSelection_Button_Text" xml:space="preserve">
-    <value>Ändern</value>
+    <value>Change</value>
   </data>
   <data name="ProfileView_Adventurer" xml:space="preserve">
-    <value>Abenteurer</value>
+    <value>Adventurer</value>
   </data>
   <data name="ProfileView_Button_Change_App_Mode" xml:space="preserve">
-    <value>Charakter ändern</value>
+    <value>Change character</value>
   </data>
   <data name="ProfileView_Professor" xml:space="preserve">
     <value>Professor</value>
   </data>
-  <data name="ExhibitRouteDownloadPageViewModel_Wifi_Only_Cancel" xml:space="preserve">
-    <value>Nein</value>
-  </data>
   <data name="ExhibitRouteDownloadPageViewModel_Wifi_Only_Message" xml:space="preserve">
-    <value>In den Einstellungen ist festgelegt, dass Daten nur über Wlan heruntergeladen werden sollen. Sollen die Daten dieses Mal trotzdem über die mobile Datenverbindung heruntergeladen werden?</value>
-  </data>
-  <data name="ExhibitRouteDownloadPageViewModel_Wifi_Only_Ok" xml:space="preserve">
-    <value>Ja</value>
+    <value>The settings specify that data should only be downloaded via WiFi. Should the data still be downloaded via the mobile data connection this time?</value>
   </data>
   <data name="ExhibitRouteDownloadPageViewModel_Wifi_Only_Title" xml:space="preserve">
-    <value>Wlan deaktiviert</value>
+    <value>WiFi disabled</value>
   </data>
   <data name="ForgotPasswordScreenView_Alert_No_Connection_Description" xml:space="preserve">
-    <value>Bitte überprüfen Sie ihre Netzwerkverbindung</value>
+    <value>Please check your network connection</value>
   </data>
   <data name="ForgotPasswordScreenView_Alert_No_Connection_Title" xml:space="preserve">
-    <value>Keine Netzwerkverbindung</value>
+    <value>No network connection</value>
   </data>
   <data name="ForgotPasswordScreenView_Alert_Unknown_Error_Description" xml:space="preserve">
-    <value>Es ist ein unbekannter Fehler aufgetreten. Bitte versuchen Sie es später noch einmal.</value>
+    <value>An unknown error occurred. Please try again later.</value>
   </data>
   <data name="ForgotPasswordScreenView_Alert_Unknown_Error_Title" xml:space="preserve">
-    <value>Unbekannter Fehler</value>
+    <value>Unknown error</value>
   </data>
   <data name="AchievementsScreenView_Score" xml:space="preserve">
-    <value>Dein Punktestand: </value>
+    <value>Your score: </value>
   </data>
   <data name="AchievementsScreenView_PleaseLogin" xml:space="preserve">
-    <value>Um Achievements zu nutzen, musst du dich zunächst einloggen.</value>
+    <value>You have to sign up or register first before you can use the achievements.</value>
   </data>
   <data name="MainPageViewModel_Achievements" xml:space="preserve">
     <value>Achievements</value>
   </data>
   <data name="ExhibitNearby_VisitRequest" xml:space="preserve">
-    <value>Besuche eine nahe Sehenswürdigkeit!</value>
+    <value>Visit a near sight!</value>
   </data>
   <data name="UserRating_Rate_Count" xml:space="preserve">
-    <value>Bewertungen</value>
+    <value>Ratings</value>
   </data>
   <data name="UserRating_Average_Rating" xml:space="preserve">
-    <value>Durchschnittliche Bewertungen</value>
+    <value>Average ratings</value>
   </data>
   <data name="UserRating_Dialog_Message_Not_Logged_In" xml:space="preserve">
-    <value>Sie müssen sich erst anmelden oder registrieren, bevor eine Bewertung abgegeben werden kann.</value>
+    <value>You have to sign up or register first before a review can be made.</value>
   </data>
   <data name="UserRating_Dialog_Message_No_Internet" xml:space="preserve">
-    <value>Es kann keine Verbindung zum Internet aufgebaut werden.</value>
+    <value>There is no connection to the internet.</value>
   </data>
   <data name="UserRating_Dialog_Message_No_Rating" xml:space="preserve">
-    <value>Es wurde keiner der Sterne zum Bewerten markiert.</value>
+    <value>None of the stars were marked for a rating.</value>
   </data>
   <data name="UserRating_Dialog_Title_Not_Logged_In" xml:space="preserve">
-    <value>Nicht angemeldet</value>
+    <value>Not logged in</value>
   </data>
   <data name="UserRating_Dialog_Title_No_Internet" xml:space="preserve">
-    <value>Keine Internetverbindung</value>
+    <value>No internet connection</value>
   </data>
   <data name="UserRating_Dialog_Title_No_Rating" xml:space="preserve">
-    <value>Keine Bewertung</value>
-  </data>
-  <data name="UserRating_Ok" xml:space="preserve">
-    <value>Ok</value>
+    <value>No rating</value>
   </data>
   <data name="UserRating_Rate" xml:space="preserve">
-    <value>Bewerten</value>
+    <value>Rate</value>
   </data>
   <data name="UserRating_Tap_Star_To_Rate" xml:space="preserve">
-    <value>Berühre einen Stern zum Bewerten</value>
+    <value>Tap on a star to rate</value>
   </data>
   <data name="UserRating_Dialog_Message_Thx" xml:space="preserve">
-    <value>Vielen Dank für Ihre Bewertung.</value>
+    <value>Thank you for your rating.</value>
   </data>
   <data name="UserRating_Dialog_Message_Unkown_Error" xml:space="preserve">
-    <value>Es ist ein unbekannter Fehler aufgetreten. Bitte versuchen Sie es zu einem späteren Zeitpunkt erneut.</value>
+    <value>An unknown error has occurred. Please try again later.</value>
   </data>
   <data name="UserRating_Dialog_Title_Thx" xml:space="preserve">
-    <value>Dankeschön</value>
+    <value>Thank you</value>
   </data>
   <data name="UserRating_Dialog_Title_Unkown_Error" xml:space="preserve">
-    <value>Unbekannter Fehler</value>
+    <value>Unknown error</value>
   </data>
   <data name="AchievementsDetailsExhibitView_VisitedMOfNExhibits" xml:space="preserve">
-    <value>Du hast {0} von {1} Sehenswürdigkeiten besucht</value>
+    <value>You have visited {0} out of {1} sights.</value>
   </data>
   <data name="SkipExhibit_Message" xml:space="preserve">
-    <value>Alle Sehenswürdigkeiten wurden bereits besucht. Es kann keine weitere übersprungen werden.</value>
-  </data>
-  <data name="SkipExhibit_OK" xml:space="preserve">
-    <value>OK</value>
-  </data>
-  <data name="ForgotPasswordScreenView_Cancel" xml:space="preserve">
-    <value>Abbrechen</value>
-  </data>
-  <data name="RegisterScreenView_Cancel" xml:space="preserve">
-    <value>Abbrechen</value>
+    <value>All sights have been already visited. There is no one left to skip.</value>
   </data>
   <data name="ForgotPasswordScreenView_Error_Invalid_Email" xml:space="preserve">
-    <value>Ihre E-Mail-Adresse ist ungültig</value>
+    <value>Your E-Mail-Address is invalid</value>
+  </data>
+  <data name="ExhibitRouteDownloadPage_Details" xml:space="preserve">
+    <value>Details</value>
+  </data>
+  <data name="ExhibitRouteDownloadPage_Overview" xml:space="preserve">
+    <value>Overview</value>
+  </data>
+  <data name="NavigationPageViewModel_Title" xml:space="preserve">
+    <value>Navigation</value>
+  </data>
+  <data name="ProfileScreenViewModel_Dialog_Logout_Message" xml:space="preserve">
+    <value>Do you really want to logout?</value>
+  </data>
+  <data name="ProfileScreenViewModel_Dialog_Logout_Title" xml:space="preserve">
+    <value>Logout</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="Ok" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="CharacterDetailsPage_SelectModeButton" xml:space="preserve">
+    <value>Select this mode</value>
+  </data>
+  <data name="CharacterDetailsPage_ChangeModeButton" xml:space="preserve">
+    <value>Check other mode</value>
+  </data>
+  <data name="CharacterSelectionPage_SelectCharacter" xml:space="preserve">
+    <value>Choose a character</value>
+  </data>
+  <data name="CharacterDetailsPage_Adventurer_Text" xml:space="preserve">
+    <value>Discover Paderborn on your own! Gain new experiences!</value>
+  </data>
+  <data name="CharacterDetailsPage_Professor_Text" xml:space="preserve">
+    <value>Follow the guided tours to discover Paderborn!</value>
+  </data>
+  <data name="MainPage_LoggedIn" xml:space="preserve">
+    <value>Logged in as:</value>
   </data>
 </root>

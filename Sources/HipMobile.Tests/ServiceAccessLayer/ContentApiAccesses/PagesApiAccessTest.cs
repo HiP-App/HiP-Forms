@@ -26,48 +26,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.ServiceAccessLayer
     public class PagesApiAccessTest
     {
         private IContentApiClient contentApiSubstitute;
-
-        [Test, Category("UnitTest")]
-        public async Task GetPages_AppetizerPage()
-        {
-            var sut = CreateSystemUnderTest();
-            string jsonReturn = "{" +
-                                "total: 1," +
-                                "items: [" +
-                                "{" +
-                                "\"exhibitId\": 17," +
-                                "\"id\": 1," +
-                                "\"type\": \"appetizerpage\"," +
-                                "\"text\": \"Test Text\"," +
-                                "\"image\": 42," +
-                                "\"status\": \"Test Status\"," +
-                                "\"timestamp\": \"2017-05-29T10:10:10.10+00:00\"," +
-                                "\"additionalInformationPages\": [4, 5]," +
-                                "}" +
-                                "]" +
-                                "}";
-            contentApiSubstitute.GetResponseFromUrlAsString(null).ReturnsForAnyArgs(jsonReturn);
-
-            var pages = await sut.GetPages();
-            Assert.AreEqual(1, pages.Total);
-            Assert.AreEqual(1, pages.Items.Count);
-
-            var firstPage = pages.Items[0];
-            Assert.AreEqual(1, firstPage.Id);
-            Assert.AreEqual(17, firstPage.ExhibitId);
-            Assert.AreEqual("Test Text", firstPage.Text);
-            Assert.AreEqual(42, firstPage.Image);
-            Assert.AreEqual(PageTypeDto.AppetizerPage, firstPage.Type);
-
-            var additionalInformationPages = firstPage.AdditionalInformationPages;
-            Assert.AreEqual(2, additionalInformationPages.Count);
-            Assert.AreEqual(4, additionalInformationPages[0]);
-            Assert.AreEqual(5, additionalInformationPages[1]);
-
-            Assert.AreEqual("Test Status", firstPage.Status);
-            Shared.Helpers.AssertionHelper.AreEqual(new DateTimeOffset(2017, 5, 29, 10, 10, 10, 10, TimeSpan.Zero), firstPage.Timestamp);
-        }
-
+        
         [Test, Category("UnitTest")]
         public async Task GetPages_ImagePage()
         {

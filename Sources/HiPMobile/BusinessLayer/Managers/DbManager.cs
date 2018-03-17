@@ -12,85 +12,75 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using JetBrains.Annotations;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelConverters;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
-using Realms;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
 {
     /// <summary>
-    /// Access to database methods.
+    /// Provides access to database methods.
     /// </summary>
     public static class DbManager
     {
-        private static readonly IDataAccess DataAccess = IoCManager.Resolve<IDataAccess>();
-
         /// <summary>
-        /// Creates an object of type T that is synced to the database.
+        /// Provides read-only database access. To modify the database in any way,
+        /// use <see cref="StartTransaction(IEnumerable{object})"/> instead.
         /// </summary>
-        /// <typeparam name="T">The type of the object being created. T needs to be subtype of RealmObject and implement the IIdentifiable interface.</typeparam>
-        /// <returns>The instance.</returns>
-        public static T CreateBusinessObject<T>() where T : RealmObject, IIdentifiable, new()
-        {
-            return DataAccess.CreateObject<T>();
-        }
-        
-        /// <summary>
-        /// Creates an object of type T that is synced to the database.
-        /// </summary>
-        /// <param name="id">The ID to assign to the object.</param>
-        /// <param name="updateCurrent">If true, first removes any object of the same type with the id.</param>
-        /// <typeparam name="T">The type of the object being created. T needs to be subtype of RealmObject and implement the IIdentifiable interface.</typeparam>
-        /// <returns>The instance.</returns>
-        public static T CreateBusinessObject<T>([NotNull] string id, bool updateCurrent = false) where T : RealmObject, IIdentifiable, new()
-        {
-            return DataAccess.CreateObject<T>(id, updateCurrent);
-        }
-
-        /// <summary>
-        /// Delete an object of type T from the database.
-        /// </summary>
-        /// <typeparam name="T">The type of the object. T needs to be subtype of RealmObject and implement the IIdentifiable interface.</typeparam>
-        /// <param name="entitiy">The object to be deleted.</param>
-        /// <returns>True if deletion was successful. False otherwise.</returns>
-        public static bool DeleteBusinessEntity<T>(T entitiy) where T : RealmObject, IIdentifiable
-        {
-            if (entitiy != null)
-            {
-                return DataAccess.DeleteItem<T>(entitiy.Id);
-            }
-            return true;
-        }
+        public static IReadOnlyDataAccess DataAccess { get; } = IoCManager.Resolve<IDataAccess>();
 
         /// <summary>
         /// Starts a new write transaction. Make sure to close the transaction by either committing it or rolling back.
         /// </summary>
+        /// <param name="itemsToTrack">
+        /// Entities that should be added to the change tracker.
+        /// See <see cref="IDataAccess.StartTransaction(IEnumerable{object})"/> for an example scenario where this is needed.
+        /// Note that <see cref="BackupData.BackupImage"/> and <see cref="BackupData.BackupImageTag"/> are included by default
+        /// so they can be freely assigned to any other entity without being considered "new".
+        /// </param>
         /// <returns>The transaction object which can perform committing or rolling back.</returns>
-        public static BaseTransaction StartTransaction()
-        {
-            return DataAccess.StartTransaction();
-        }
+        public static BaseTransaction StartTransaction(IEnumerable<object> itemsToTrack) =>
+            IoCManager.Resolve<IDataAccess>().StartTransaction(itemsToTrack.Concat(new[] { BackupData.BackupImage, BackupData.BackupImageTag }));
+
+        /// <summary>
+        /// Starts a new write transaction. Make sure to close the transaction by either committing it or rolling back.
+        /// </summary>
+        /// <param name="itemsToTrack">
+        /// Entities that should be added to the change tracker.
+        /// See <see cref="IDataAccess.StartTransaction(IEnumerable{object})"/> for an example scenario where this is needed.
+        /// Note that <see cref="BackupData.BackupImage"/> and <see cref="BackupData.BackupImageTag"/> are included by default
+        /// so they can be freely assigned to any other entity without being considered "new".
+        /// </param>
+        /// <returns>The transaction object which can perform committing or rolling back.</returns>
+        public static BaseTransaction StartTransaction(params object[] itemsToTrack) =>
+            StartTransaction(itemsToTrack as IEnumerable<object>);
 
         /// <summary>
         /// Deletes the whole database and restarts the app
         /// </summary>
         public static void DeleteDatabase()
         {
-            // delete from "cache" to see the changes instantly
-            var exhibitsSets = ExhibitManager.GetExhibitSets();
-            foreach (var exhibitsSet in exhibitsSets)
+            using (var transaction = StartTransaction())
             {
-                ExhibitManager.DeleteExhibitSet(exhibitsSet);
-            }
-            var routes = RouteManager.GetRoutes();
-            foreach (var route in routes)
-            {
-                RouteManager.DeleteRoute(route);
+                var dataAccess = transaction.DataAccess;
+
+                // delete from "cache" to see the changes instantly
+                var exhibits = dataAccess.Exhibits().GetExhibits();
+                foreach (var exhibit in exhibits)
+                {
+                    dataAccess.Exhibits().DeleteExhibit(exhibit);
+                }
+
+                var routes = dataAccess.Routes().GetRoutes();
+                foreach (var route in routes)
+                {
+                    dataAccess.Routes().DeleteRoute(route);
+                }
             }
 
-            DataAccess.DeleteDatabase();
+            IoCManager.Resolve<IDataAccess>().DeleteDatabase();
             IoCManager.Resolve<IDbChangedHandler>().NotifyAll();
         }
     }

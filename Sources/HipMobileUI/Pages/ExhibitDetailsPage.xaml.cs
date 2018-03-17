@@ -22,9 +22,9 @@ using Xamarin.Forms;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
 {
-    public partial class ExhibitDetailsPage : IViewFor<ExhibitDetailsViewModel>
+    public partial class ExhibitDetailsPage : IViewFor<ExhibitDetailsPageViewModel>
     {
-        private ExhibitDetailsViewModel ViewModel => (ExhibitDetailsViewModel)BindingContext;
+        private ExhibitDetailsPageViewModel ViewModel => (ExhibitDetailsPageViewModel)BindingContext;
         private OrientationController savedControllerState;
         private bool isOnDisappearingContext;
 
@@ -69,7 +69,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
         }
 
         /// <summary>
-        /// Listens on changes in the viewmodel to the propery <see cref="ExhibitDetailsViewModel.AudioToolbarVisible"/>
+        /// Listens on changes in the viewmodel to the propery <see cref="ExhibitDetailsPageViewModel.AudioToolbarVisible"/>
         /// Toggles the visibility of the audio bar accordingly
         /// </summary>
         /// <param name="sender"></param>

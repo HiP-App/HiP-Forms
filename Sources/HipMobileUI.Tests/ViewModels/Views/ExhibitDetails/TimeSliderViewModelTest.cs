@@ -80,10 +80,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Views
         public TimeSliderViewModel CreateSystemUnderTest(Action action)
         {
             var timesliderPage = Substitute.For<TimeSliderPage>();
-            List<Image> imageList = new List<Image> { CreateImage("Foo"), CreateImage("Bar"), CreateImage("69") };
-            List<LongElement> dates = new List<LongElement> { CreateLongElement(1991), CreateLongElement(7867), CreateLongElement(454) };
-            timesliderPage.Images.Returns(imageList);
-            timesliderPage.Dates.Returns(dates);
+            var imageList = new List<TimeSliderPageImage>
+            {
+                new TimeSliderPageImage { Image = CreateImage("Foo"), Date = 1991 },
+                new TimeSliderPageImage { Image = CreateImage("Bar"), Date = 7867 },
+                new TimeSliderPageImage { Image = CreateImage("69"), Date = 454 }
+            };
+            timesliderPage.SliderImages.Returns(imageList);
             timesliderPage.Title = "A title";
             timesliderPage.Text = "A text";
 
@@ -98,13 +101,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Views
             image.Title = "Foo";
             image.Description = description;
             return image;
-        }
-
-        private LongElement CreateLongElement(long year)
-        {
-            var longElement = Substitute.For<LongElement>();
-            longElement.Value = year;
-            return longElement;
         }
 
         #endregion

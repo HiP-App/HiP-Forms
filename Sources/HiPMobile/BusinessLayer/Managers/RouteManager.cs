@@ -12,99 +12,98 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using JetBrains.Annotations;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.JoinClasses;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
 {
     public static class RouteManager
     {
-        private static readonly IDataAccess DataAccess = IoCManager.Resolve<IDataAccess>();
+        public static ReadExtensions Routes(this IReadOnlyDataAccess dataAccess) => new ReadExtensions(dataAccess);
 
-        /// <summary>
-        ///     Returns a Route, with specific id
-        /// </summary>
-        /// <param name="id">The id of the specific Route to be passed</param>
-        /// <returns>the Route with given id. If Route does not exits, return null</returns>
-        public static Route GetRoute(string id)
+        public static ReadWriteExtensions Routes(this ITransactionDataAccess dataAccess) => new ReadWriteExtensions(dataAccess);
+
+        public class ReadExtensions
         {
-            if (!string.IsNullOrEmpty(id))
+            private readonly IReadOnlyDataAccess dataAccess;
+
+            public ReadExtensions(IReadOnlyDataAccess dataAccess)
             {
-                return DataAccess.GetItem<Route>(id);
+                this.dataAccess = dataAccess ?? throw new ArgumentNullException(nameof(dataAccess));
             }
-            return null;
-        }
 
-        /// <summary>
-        ///     Returns all existing Routes
-        /// </summary>
-        /// <returns>The enumerable of all avaible routes</returns>
-        public static IEnumerable<Route> GetRoutes()
-        {
-            return DataAccess.GetItems<Route>();
-        }
-
-        /// <summary>
-        ///     Deletes the Route
-        /// </summary>
-        /// <param name="route"> The Route to be deleted</param>
-        /// <returns>true, if deletion was sucessfull, false otherwise</returns>
-        public static bool DeleteRoute(Route route)
-        {
-            if (route != null)
+            /// <summary>
+            /// Returns the Route with the specific ID including its waypoints, tags, image and audio.
+            /// </summary>
+            /// <param name="id">The id of the specific Route to be passed</param>
+            /// <returns>The Route with given id. If Route does not exits, return null</returns>
+            public Route GetRoute(string id)
             {
-                return DataAccess.DeleteItem<Route>(route.Id);
+                if (!string.IsNullOrEmpty(id))
+                {
+                    return dataAccess.GetItem<Route>(id,
+                        nameof(Route.TagsRefs) + '.' + nameof(JoinRouteTag.Tag) + '.' + nameof(RouteTag.Image),
+                        nameof(Route.Image),
+                        nameof(Route.Audio),
+                        nameof(Route.Waypoints));
+                }
+                return null;
             }
-            return true;
-        }
 
-        /// <summary>
-        ///     Returns a RouteSet, with specific id
-        /// </summary>
-        /// <param name="id">The id of the specific RouteSet to be passed</param>
-        /// <returns></returns>
-        public static RouteSet GetRouteSet(string id)
-        {
-            if (!string.IsNullOrEmpty(id))
+            /// <summary>
+            /// Returns all existing Routes including their waypoints, tags, images and audio.
+            /// </summary>
+            /// <returns>The enumerable of all avaible routes</returns>
+            public IEnumerable<Route> GetRoutes()
             {
-                return DataAccess.GetItem<RouteSet>(id);
+                return dataAccess.GetItems<Route>(
+                    nameof(Route.TagsRefs) + '.' + nameof(JoinRouteTag.Tag) + '.' + nameof(RouteTag.Image),
+                    nameof(Route.Image),
+                    nameof(Route.Audio),
+                    nameof(Route.Waypoints));
             }
-            return null;
         }
 
-        /// <summary>
-        ///     Returns all existing RouteSets
-        /// </summary>
-        /// <returns>The enumerable of all avaible route sets</returns>
-        public static IEnumerable<RouteSet> GetRouteSets()
+        public class ReadWriteExtensions : ReadExtensions
         {
-            return DataAccess.GetItems<RouteSet>();
-        }
+            private readonly ITransactionDataAccess dataAccess;
 
-        /// <summary>
-        ///     Deletes the RouteSet
-        /// </summary>
-        /// <param name="routeSet"> The RouteSet to be deleted</param>
-        /// <returns>true, if deletion was sucessfull, false otherwise</returns>
-        public static bool DeleteRouteSet(RouteSet routeSet)
-        {
-            if (routeSet != null)
+            public ReadWriteExtensions(ITransactionDataAccess dataAccess) : base(dataAccess)
             {
-                return DataAccess.DeleteItem<RouteSet>(routeSet.Id);
+                this.dataAccess = dataAccess ?? throw new ArgumentNullException(nameof(dataAccess));
             }
-            return true;
-        }
 
-        /// <summary>
-        ///     Checks if a route is active
-        /// </summary>
-        /// <returns>true, if one route is active, false otherwise</returns>
-        public static bool IsOneRouteActive()
-        {
-            return GetRoutes().Any(route => route.IsRouteStarted());
+            public void AddRoute(Route route)
+            {
+                dataAccess.AddItem(route);
+            }
+
+            /// <summary>
+            /// Deletes a route.
+            /// </summary>
+            /// <param name="route">The route to be deleted. Passing null does nothing and returns true.</param>
+            /// <returns>True iff deletion was successful or <paramref name="route"/> was null.</returns>
+            public bool DeleteRoute([CanBeNull] Route route)
+            {
+                if (route != null)
+                    dataAccess.DeleteItem(route);
+
+                return true;
+            }
+
+            /// <summary>
+            /// Checks if a route is active.
+            /// </summary>
+            /// <returns>True iff one route is active, false otherwise</returns>
+            public bool IsOneRouteActive()
+            {
+                return GetRoutes().Any(route => route.IsRouteStarted());
+            }
         }
     }
 }

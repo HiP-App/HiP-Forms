@@ -16,10 +16,12 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetche
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelConverters;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -44,7 +46,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
         private IList<int?> requiredMedia;
         private IList<PageDto> pageItems;
 
-        public async Task FetchFullDownloadableDataIntoDatabase(string exhibitId, int idForRestApi, CancellationToken token, IProgressListener listener)
+        public async Task FetchFullDownloadableDataIntoDatabase(
+            string exhibitId, int idForRestApi, CancellationToken token, IProgressListener listener)
         {
             double totalSteps = await FetchNeededMediaForFullExhibit(idForRestApi);
 
@@ -56,7 +59,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
 
             using (var transaction = DbManager.StartTransaction())
             {
-                await ProcessPages(exhibitId, token, listener);
+                await ProcessPages(exhibitId, token, listener, transaction.DataAccess);
                 if (token.IsCancellationRequested)
                 {
                     transaction.Rollback();
@@ -64,15 +67,16 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             }
         }
 
-        public async Task FetchFullExhibitDataIntoDatabaseWithFetchedPagesAndMedia(string exhibitId, ExhibitPagesAndMediaContainer exhibitPagesAndMediaContainer,
-                                                                                   CancellationToken token, IProgressListener listener)
+        public async Task FetchFullExhibitDataIntoDatabaseWithFetchedPagesAndMedia(
+            string exhibitId, ExhibitPagesAndMediaContainer exhibitPagesAndMediaContainer,
+            CancellationToken token, IProgressListener listener)
         {
             requiredMedia = exhibitPagesAndMediaContainer.RequiredMedia;
             pageItems = exhibitPagesAndMediaContainer.PageDtos;
 
             using (var transaction = DbManager.StartTransaction())
             {
-                await ProcessPages(exhibitId, token, listener);
+                await ProcessPages(exhibitId, token, listener, transaction.DataAccess);
                 if (token.IsCancellationRequested)
                 {
                     transaction.Rollback();
@@ -91,34 +95,17 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             requiredMedia = new List<int?>();
             pageItems = (await pagesApiAccess.GetPages(idForRestApi)).Items;
 
-            // Since AppetizerPages have been loaded before, do not consider them anymore
-            List<PageDto> appetizerPagesToRemove = new List<PageDto>();
             foreach (var page in pageItems)
             {
-                if (page.Type != PageTypeDto.AppetizerPage)
+                AddMediaId(page.Image);
+                if (page.Type == PageTypeDto.SliderPage)
                 {
-                    AddMediaId(page.Image);
-                    if (page.Type == PageTypeDto.SliderPage)
+                    foreach (var image in page.Images)
                     {
-                        if (page.Images.Count > 0)
-                        {
-                            foreach (var image in page.Images)
-                            {
-                                AddMediaId(image.Image);
-                            }
-                        }
+                        AddMediaId(image.Image);
                     }
-                    AddMediaId(page.Audio);
                 }
-                else
-                {
-                    appetizerPagesToRemove.Add(page);
-                }
-            }
-
-            foreach (var appPage in appetizerPagesToRemove)
-            {
-                pageItems.Remove(appPage);
+                AddMediaId(page.Audio);
             }
 
             return requiredMedia.Count;
@@ -136,17 +123,17 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             }
         }
 
-        private async Task ProcessPages(string exhibitId, CancellationToken token, IProgressListener listener)
+        private async Task ProcessPages(string exhibitId, CancellationToken token, IProgressListener listener, ITransactionDataAccess dataAccess)
         {
-            await FetchMediaData(token, listener);
-            var fetchedMedia = await mediaDataFetcher.CombineMediasAndFiles();
+            await mediaDataFetcher.FetchMedias(requiredMedia, token, listener);
+            var fetchedMedia = await mediaDataFetcher.CombineMediasAndFiles(dataAccess);
 
             if (token.IsCancellationRequested)
             {
                 return;
             }
 
-            var exhibit = ExhibitManager.GetExhibit(exhibitId);
+            var exhibit = dataAccess.Exhibits().GetExhibit(exhibitId);
 
             foreach (var pageDto in pageItems)
             {
@@ -191,60 +178,47 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             exhibit.DetailsDataLoaded = true;
         }
 
-        private async Task FetchMediaData(CancellationToken token, IProgressListener listener)
+        private void AddContentToPage(Page dbPage, PageDto pageDto, FetchedMediaData fetchedMedia)
         {
-            await mediaDataFetcher.FetchMedias(requiredMedia, token, listener);
-        }
-
-        private void AddContentToPage(Page dbPage, PageDto content, FetchedMediaData fetchedMedia)
-        {
-            if (content != null && dbPage != null)
+            if (pageDto != null && dbPage != null)
             {
-                PageConverter.Convert(content, dbPage);
+                PageConverter.Convert(pageDto, dbPage);
 
-                switch (dbPage.PageType)
+                switch (dbPage)
                 {
-                    case PageType.AppetizerPage:
-                        // Should not be reached
+                    case ImagePage imagePage:
+                        var image = fetchedMedia.Images.SingleOrDefault(x => x.IdForRestApi == pageDto.Image);
+                        imagePage.Image = image ?? BackupData.BackupImage;
                         break;
-                    case PageType.ImagePage:
-                        var image = fetchedMedia.Images.SingleOrDefault(x => x.IdForRestApi == content.Image);
 
-                        if (image != null)
-                        {
-                            dbPage.ImagePage.Image = image;
-                        }
-                        else
-                        {
-                            dbPage.ImagePage.Image = BackupData.BackupImage;
-                        }
+                    case TextPage textPage:
                         break;
-                    case PageType.TextPage:
-                        break;
-                    case PageType.TimeSliderPage:
+
+                    case TimeSliderPage timeSliderPage:
                         var fetchedImages = fetchedMedia.Images;
 
                         if (fetchedImages.Count > 0)
                         {
-                            foreach (var fImg in fetchedImages)
+                            Debug.Assert(timeSliderPage.SliderImages.Count == pageDto.Images.Count);
+                            for (var i = 0; i < timeSliderPage.SliderImages.Count; i++)
                             {
-                                foreach (var cImg in content.Images)
-                                {
-                                    if (fImg.IdForRestApi == cImg.Image)
-                                    {
-                                        dbPage.TimeSliderPage.Images.Add(fImg);
-                                    }
-                                }
+                                var imageId = pageDto.Images[i].Image;
+                                var dbImage = fetchedImages.FirstOrDefault(img => img.IdForRestApi == imageId);
+                                timeSliderPage.SliderImages[i].Image = dbImage;
                             }
                         }
                         else
                         {
-                            dbPage.TimeSliderPage.Images.Add(BackupData.BackupImage);
+                            timeSliderPage.SliderImages.Add(new TimeSliderPageImage
+                            {
+                                Page = timeSliderPage,
+                                Image = BackupData.BackupImage
+                            });
                         }
                         break;
                 }
 
-                var audio = fetchedMedia.Audios.SingleOrDefault(x => x.IdForRestApi == content.Audio);
+                var audio = fetchedMedia.Audios.SingleOrDefault(x => x.IdForRestApi == pageDto.Audio);
 
                 if (audio != null)
                 {

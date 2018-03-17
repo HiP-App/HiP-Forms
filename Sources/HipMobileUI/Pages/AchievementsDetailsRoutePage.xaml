@@ -46,7 +46,7 @@
                                     </controls:FadeInImage>
                                     <Label Text="{Binding Name}" HorizontalOptions="FillAndExpand"
                                            VerticalOptions="Fill" VerticalTextAlignment="Center" Margin="5,0"
-                                           FontSize="18" LineBreakMode="WordWrap" />
+                                           FontSize="18" LineBreakMode="WordWrap" Style="{DynamicResource Ssp-Regular}"/>
                                     <Image Source="ic_done.png" WidthRequest="20" HeightRequest="20"
                                            Opacity="1" VerticalOptions="Center" IsVisible="{Binding Unlocked}" />
                                 </StackLayout>
@@ -60,10 +60,10 @@
                          BackgroundColor="{StaticResource PrimaryColor}" Padding="20" Spacing="20">
                 <Label FontSize="20" Text="{Binding VisitedText}" FontAttributes="Bold"
                        HorizontalTextAlignment="Center" VerticalOptions="Center"
-                       HorizontalOptions="CenterAndExpand" TextColor="White" />
+                       HorizontalOptions="CenterAndExpand" TextColor="White" Style="{DynamicResource Ssp-Regular}"/>
                 <Label FontSize="24" Text="{Binding Score}" FontAttributes="Bold"
                        HorizontalTextAlignment="Center" VerticalOptions="Center"
-                       HorizontalOptions="CenterAndExpand" TextColor="White" />
+                       HorizontalOptions="CenterAndExpand" TextColor="White" Style="{DynamicResource Ssp-Bold}" />
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>
