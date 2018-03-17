@@ -40,10 +40,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 
         public string LocationAsString { get; set; }
 
-        [NotMapped] // purpose of this property is unclear
+        [NotMapped] // TODO: purpose of this property is unclear
         public IList<string> Categories { get; }
 
-        [NotMapped] // purpose of this property is unclear
+        [NotMapped] // TODO: purpose of this property is unclear
         public IList<string> Tags { get; }
 
         public int Radius { get; set; }

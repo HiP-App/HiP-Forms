@@ -19,10 +19,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 {
     public class ImagePage : Page
     {
-        [NotMapped] // purpose of this property is unclear
+        [NotMapped] // TODO: purpose of this property is unclear
         public IList<string> Texts { get; }
 
-        [NotMapped] // purpose of this property is unclear
+        [NotMapped] // TODO: purpose of this property is unclear
         public IList<Rectangle> Areas { get; }
 
         public Image Image { get; set; }
