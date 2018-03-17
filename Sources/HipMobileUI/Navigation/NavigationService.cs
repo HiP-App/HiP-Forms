@@ -82,7 +82,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation
         {
             await FormsNavigation.PopModalAsync(animate);
 
-            var currentPageBindingContext = (NavigationViewModel) NavigationPage?.CurrentPage.BindingContext;
+            var currentPageBindingContext = (NavigationViewModel)NavigationPage?.CurrentPage.BindingContext;
             currentPageBindingContext?.OnRevealed();
         }
 
@@ -98,10 +98,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation
         {
             try
             {
-                var oldViewModel = (NavigationViewModel) NavigationPage?.CurrentPage.BindingContext;
+                var oldViewModel = (NavigationViewModel)NavigationPage?.CurrentPage.BindingContext;
                 var view = InstantiateView(viewModel);
 
-                await FormsNavigation.PushAsync((Page) view, animate);
+                await FormsNavigation.PushAsync((Page)view, animate);
                 oldViewModel?.OnHidden();
             }
             catch (Exception e)
@@ -115,11 +115,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation
         {
             try
             {
-                var oldViewModel = (NavigationViewModel) NavigationPage?.CurrentPage.BindingContext;
+                var oldViewModel = (NavigationViewModel)NavigationPage?.CurrentPage.BindingContext;
                 var view = InstantiateView(viewModel);
 
                 // Most likely we're going to want to put this into a navigation page so we can have a title bar on it
-                var nv = new NavigationPage((Page) view);
+                var nv = new NavigationPage((Page)view);
 
                 await FormsNavigation.PushModalAsync(nv, animate);
                 oldViewModel?.OnHidden();
@@ -142,7 +142,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation
             var pageBefore = FormsNavigation.NavigationStack.FirstOrDefault(x => x.BindingContext == before);
             var view = InstantiateView(viewModel);
 
-            FormsNavigation.InsertPageBefore((Page) view, pageBefore);
+            FormsNavigation.InsertPageBefore((Page)view, pageBefore);
         }
 
         public async Task PopToRootAsync(bool animate = false)
@@ -184,14 +184,22 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation
         public void StartNewNavigationStack(NavigationViewModel newRoot)
         {
             // instantiate the view for the viewmodel and set it as the new root
-            var rootView = (Page) InstantiateView(newRoot);
+            var rootView = (Page)InstantiateView(newRoot);
             Application.Current.MainPage = rootView;
         }
 
         public void StartNewLocalNavigationStack(NavigationViewModel newRoot)
         {
-            var rootPage = new NavigationPage((Page) InstantiateView(newRoot));
+            var rootPage = new NavigationPage((Page)InstantiateView(newRoot));
             Application.Current.MainPage = rootPage;
+            if (Device.RuntimePlatform == Device.Android)
+            {
+                rootPage.BarBackgroundColor = Color.FromRgb(128, 128, 128);
+            }
+            else if (Device.RuntimePlatform == Device.iOS)
+            {
+                rootPage.BarBackgroundColor = Color.White;
+            }
         }
 
         public void Register(Type viewModelType, Type viewType)
@@ -211,9 +219,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation
             var viewType = viewModelViewDictionary[viewModelType];
 
             // instantiate it
-            var view = (IViewFor) Activator.CreateInstance(viewType);
+            var view = (IViewFor)Activator.CreateInstance(viewType);
 
-            ((BindableObject) view).BindingContext = viewModel;
+            ((BindableObject)view).BindingContext = viewModel;
 
             return view;
         }

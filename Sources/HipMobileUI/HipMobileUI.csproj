@@ -59,7 +59,6 @@
     <Compile Include="Appearance\ThemeManager.cs" />
     <Compile Include="AudioPlayer\IAudioPlayer.cs" />
     <Compile Include="Container\TabContainerView.cs" />
-    <Compile Include="Contracts\IStatusBarController.cs" />
     <Compile Include="Controls\ZeroPaddingButton.cs" />
     <Compile Include="Location\ILocalize.cs" />
     <Compile Include="NotificationPlayer\INotificationPlayer.cs" />
