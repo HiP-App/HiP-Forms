@@ -24,7 +24,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 
         public int Bottom { get; }
 
-        public Rectangle(int left, int top, int right, int bottom) : this()
+        public Rectangle(int left, int top, int right, int bottom)
         {
             Top = top;
             Bottom = bottom;
