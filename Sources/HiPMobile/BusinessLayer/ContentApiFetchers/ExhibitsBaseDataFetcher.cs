@@ -89,13 +89,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
 
             ProcessUpdatedExhibits(listener, fetchedMedia, dataAccess);
             ProcessNewExhibits(listener, fetchedMedia, dataAccess);
-
-            if (fetchedChangedExhibits.Any())
-            {
-                // TODO: How to set timestamp of ExhibitSet?
-                // var exhibitSet = dataAccess.Exhibits().GetExhibits().SingleOrDefault();
-                // exhibitSet.Timestamp = fetchedChangedExhibits.Max(x => x.Timestamp);
-            }
         }
 
         private void ProcessUpdatedExhibits(IProgressListener listener, FetchedMediaData fetchedMedia, ITransactionDataAccess dataAccess)

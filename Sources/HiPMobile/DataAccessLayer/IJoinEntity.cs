@@ -5,6 +5,18 @@ using System.Linq;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
 {
+    // Currently, EF Core does not have built-in support for many-to-many relationships (such as between exhibits and
+    // pages), so these need to be manually modeled through two one-to-many relationships and an intermediate so-called
+    // join type, which makes it awkward to program against our model classes, though.
+    //
+    // The types in this file make it easier to deal with such relationships by "bridging" the intermediate join entities.
+    // For example, this allows us to write "myExhibit.Pages.Add(myPage)" without needing to construct the join entity
+    // that holds the foreign keys to "myExhibit" and "myPage".
+    //
+    // Implementations in this file are mostly taken from the following blog post:
+    // https://blog.oneunicorn.com/2017/09/25/many-to-many-relationships-in-ef-core-2-0-part-4-a-more-general-abstraction/
+    // The implementation has been extended to support many-to-many relationships between entities of the same type.
+    
     /// <summary>
     /// Supports relational many-to-many relationships. A many-to-many relationship between
     /// two types A and B is usually modeled through a third "join type/table" J containing
@@ -88,8 +100,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
 
             var i = 0;
             var target = navigationTarget;
+
             foreach (var item in collection)
-                array[arrayIndex + i++] = item[target];
+            {
+                array[arrayIndex + i] = item[target];
+                i++;
+            }
         }
 
         public bool Remove(TEntity item)

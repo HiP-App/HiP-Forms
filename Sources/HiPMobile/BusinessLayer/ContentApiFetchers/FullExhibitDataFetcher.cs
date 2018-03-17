@@ -21,6 +21,7 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -94,18 +95,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             requiredMedia = new List<int?>();
             pageItems = (await pagesApiAccess.GetPages(idForRestApi)).Items;
 
-            // Since AppetizerPages have been loaded before, do not consider them anymore
             foreach (var page in pageItems)
             {
                 AddMediaId(page.Image);
                 if (page.Type == PageTypeDto.SliderPage)
                 {
-                    if (page.Images.Count > 0)
+                    foreach (var image in page.Images)
                     {
-                        foreach (var image in page.Images)
-                        {
-                            AddMediaId(image.Image);
-                        }
+                        AddMediaId(image.Image);
                     }
                 }
                 AddMediaId(page.Audio);
@@ -202,6 +199,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
 
                         if (fetchedImages.Count > 0)
                         {
+                            Debug.Assert(timeSliderPage.SliderImages.Count == pageDto.Images.Count);
                             for (var i = 0; i < timeSliderPage.SliderImages.Count; i++)
                             {
                                 var imageId = pageDto.Images[i].Image;

@@ -40,7 +40,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelCo
         /// <summary>
         /// Converts the given <paramref name="dto"/> to a new model object, deleting the entity first if it already exists.
         /// </summary>
-        public TModelObject ConvertReplacingExisting(TDtoObject dto, [NotNull]string id, ITransactionDataAccess dataAccess)
+        public TModelObject ConvertReplacingExisting(TDtoObject dto, [NotNull] string id, ITransactionDataAccess dataAccess)
         {
             // If an entity of the same type and ID already exists, delete it first
             if (dataAccess.GetItem<TModelObject>(id) is TModelObject existing)
@@ -66,6 +66,19 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelCo
         /// <typeparamref name="TModelObject"/> is abstract and thus can't be constructed.
         /// </summary>
         /// <param name="dto"></param>
-        protected virtual TModelObject CreateModelInstance(TDtoObject dto) => Activator.CreateInstance<TModelObject>();
+        protected virtual TModelObject CreateModelInstance(TDtoObject dto)
+        {
+            try
+            {
+                return Activator.CreateInstance<TModelObject>();
+            }
+            catch (MissingMethodException e)
+            {
+                throw new InvalidOperationException(
+                    $"'{GetType().Name}' failed to create an instance of '{typeof(TModelObject).Name}' because the type " +
+                    $"does not have a parameterless constructor or is abstract. Consider adding a parameterless constructor " +
+                    $"or overriding '{nameof(CreateModelInstance)}'.", e);
+            }
+        }
     }
 }
