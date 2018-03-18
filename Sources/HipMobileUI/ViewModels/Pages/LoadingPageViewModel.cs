@@ -41,11 +41,11 @@ using Xamarin.Forms;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 {
-    class LoadingPageViewModel : NavigationViewModel, IProgressListener
+    public class LoadingPageViewModel : NavigationViewModel, IProgressListener
     {
         public LoadingPageViewModel()
         {
-			// This lookup NOT required for Windows platforms - the Culture will be automatically set
+            // This lookup NOT required for Windows platforms - the Culture will be automatically set
             if (Device.RuntimePlatform == Device.iOS || Device.RuntimePlatform == Device.Android)
             {
                 // determine the correct, supported .NET culture
@@ -53,7 +53,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                 Strings.Culture = ci; // set the RESX for resource localization
                 DependencyService.Get<ILocalize>().SetLocale(ci); // set the Thread for locale-aware methods
             }
-			
+
             Text = Strings.LoadingPage_Text;
             Subtext = Strings.LoadingPage_Subtext;
             StartLoading = new Command(Load);
@@ -136,7 +136,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
         private IBaseDataFetcher baseDataFetcher;
 
-        public async void Load()
+        private async void Load()
         {
             try
             {

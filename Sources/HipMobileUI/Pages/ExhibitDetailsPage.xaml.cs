@@ -13,10 +13,8 @@
 // limitations under the License.
 
 using System.ComponentModel;
-using PaderbornUniversity.SILab.Hip.Mobile.UI.Controls;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
-using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
 using Xamarin.Forms;
 
@@ -24,7 +22,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
 {
     public partial class ExhibitDetailsPage : IViewFor<ExhibitDetailsPageViewModel>
     {
-        private ExhibitDetailsPageViewModel ViewModel => (ExhibitDetailsPageViewModel)BindingContext;
+        private ExhibitDetailsPageViewModel ViewModel => (ExhibitDetailsPageViewModel) BindingContext;
         private OrientationController savedControllerState;
         private bool isOnDisappearingContext;
 
@@ -80,6 +78,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
             {
                 UpdateAudioBarVisibility();
             }
+
             if (propertyChangedEventArgs.PropertyName.Equals(nameof(ViewModel.WillDisappear)) && ViewModel.WillDisappear)
             {
                 MessagingCenter.Unsubscribe<App>(this, AppSharedData.WillWakeUpMessage);

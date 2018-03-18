@@ -1341,6 +1341,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Log in with debug login.
+        /// </summary>
+        public static string LoginScreenView_Login_Debug {
+            get {
+                return ResourceManager.GetString("LoginScreenView_Login_Debug", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Password.
         /// </summary>
         public static string LoginScreenView_Password {
