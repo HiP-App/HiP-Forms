@@ -323,7 +323,6 @@
     <Compile Include="Contracts\DroidAudioPlayer.cs" />
     <Compile Include="Contracts\DroidNetworkAccessChecker.cs" />
     <Compile Include="Contracts\DroidNotificationPlayer.cs" />
-    <Compile Include="Contracts\DroidStatusBarController.cs" />
     <Compile Include="Contracts\DroidBarsColorsChanger.cs" />
     <Compile Include="Contracts\DroidStorageSizeProvider.cs" />
     <Compile Include="CustomRenderers\AndroidOrientationPageRenderer.cs" />
@@ -346,7 +345,7 @@
     <Compile Include="Map\SetMarker.cs" />
     <Compile Include="Map\ViaPointInfoWindow.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
-	<Compile Include="Helpers\Localize.cs" />
+    <Compile Include="Helpers\Localize.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

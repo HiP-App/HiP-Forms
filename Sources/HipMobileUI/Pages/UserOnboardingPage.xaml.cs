@@ -34,10 +34,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
         {
             InitializeComponent();
             orientation = DeviceOrientation.Undefined;
-
-            // hide the status bar for this page
-            IStatusBarController statusBarController = IoCManager.Resolve<IStatusBarController>();
-            statusBarController.HideStatusBar();
         }
 
         /// <summary>

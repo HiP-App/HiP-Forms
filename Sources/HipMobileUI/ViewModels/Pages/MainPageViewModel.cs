@@ -21,6 +21,7 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Appearance;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
 
@@ -45,7 +46,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         {
             menuConfiguration = new MenuConfiguration(this, set);
             UpdateMenuConfiguration();
-            
+
             profileScreenViewModel = MainScreenViewModels.OfType<ProfileScreenViewModel>().SingleOrDefault();
             loginScreenViewModel = menuConfiguration.GetLoginScreenViewModel();
             registerScreenViewModel = menuConfiguration.GetRegisterScreenViewModel();
@@ -257,6 +258,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         public void SwitchToSettingsScreenView()
         {
             SelectedViewModel = MainScreenViewModels.OfType<SettingsScreenViewModel>().SingleOrDefault();
+
+            IoCManager.Resolve<IThemeManager>().AdjustTopBarTheme();
         }
 
         private ObservableCollection<NavigationViewModel> mainScreenViewModels;
