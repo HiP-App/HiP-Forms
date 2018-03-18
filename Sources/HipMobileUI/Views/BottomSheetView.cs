@@ -31,7 +31,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
         /// <summary>
         /// The fraction of how much the bottom sheet is extended relative to the whole view.
         /// </summary>
-        private readonly double bottomSheetExtensionFraction = 0.35;
+        private readonly double bottomSheetExtensionFraction = 0.5;
 
         /// <summary>
         /// The size of the unextended bottom sheet
