@@ -32,9 +32,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 {
     public class ExhibitRouteDownloadPageViewModel : NavigationViewModel, IProgressListener
     {
-        private readonly IDownloadable downloadable;
-        private readonly CancellationTokenSource cancellationTokenSource;
-
+        private readonly CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
+        private readonly IDownloadableListItemViewModel downloadableListItemViewModel;
         private bool downloadPending;
         private double loadingProgress;
         private double maximumProgress;
@@ -43,78 +42,43 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         public ExhibitRouteDownloadPageViewModel(IDownloadable downloadable, IDownloadableListItemViewModel downloadableListItemViewModel)
         {
             Downloadable = downloadable;
-            //Remove the description label if no description exists to center the other labels precisely
-            DescriptionExists = !(DownloadableDescription == null || DownloadableDescription.Equals(""));
-
+            this.downloadableListItemViewModel = downloadableListItemViewModel;
             SetImage();
-            DownloadableListItemViewModel = downloadableListItemViewModel;
 
-            CancelCommand = new Command(CancelDownload);
             StartDownload = new Command(DownloadData);
-
-            cancellationTokenSource = new CancellationTokenSource();
-
-            DownloadPending = true;  // TODO: Is this needed? Was present in 868 but not in 890
+            CancelCommand = new Command(CancelDownload);
         }
 
-        public string Message =>
-            Strings.DownloadDetails_Text_Part1 + 
-            downloadable.Name + 
-            Strings.DownloadDetails_Text_Part2;
+        public IDownloadable Downloadable { get; }
 
-        public ImageSource Image { get; }
+        public ImageSource Image { get; private set; }
 
-        private async void SetImage()
-        {
-            var imageData = await downloadable.Image.GetDataAsync();
-            Image = imageData != null ? ImageSource.FromStream(() => new MemoryStream(imageData)) : ImageSource.FromStream(() => new MemoryStream(BackupData.BackupImageData));
-        }
+        public ICommand StartDownload { get; }
 
-        private IDownloadableListItemViewModel DownloadableListItemViewModel { get; set; }
+        public ICommand CancelCommand { get; }
 
-        private IDownloadable downloadable;
-        public IDownloadable Downloadable
-        {
-            get => downloadable;
-            set => SetProperty(ref downloadable, value);
-        }
-
-        public string DownloadableName => Downloadable.Name;
-
-        public string DownloadableDescription => Downloadable.Description;
-
-        public string DownloadableId => Downloadable.Id;
+        // Remove the description label if no description exists to center the other labels precisely
+        public bool DescriptionExists => !string.IsNullOrEmpty(Downloadable.Description);
 
         public int DownloadableIdForRestApi => Downloadable.IdForRestApi;
 
-        private double loadingProgress;
+        public string Message =>
+            Strings.DownloadDetails_Text_Part1 +
+            Downloadable.Name +
+            Strings.DownloadDetails_Text_Part2;
+
         public double LoadingProgress
         {
             get => loadingProgress;
             set => SetProperty(ref loadingProgress, value);
         }
 
-        public bool DownloadFinished => !DownloadPending;
-
-        public bool DownloadPending
+        private async void SetImage()
         {
-            get => downloadPending;
-            set
-            {
-                if (SetProperty(ref downloadPending, value))
-                    OnPropertyChanged(nameof(DownloadFinished));
-            }
-
-        private bool descriptionExists;
-        public bool DescriptionExists
-        {
-            get => descriptionExists;
-            set => SetProperty(ref descriptionExists, value);
+            var imageData = await Downloadable.Image.GetDataAsync();
+            Image = imageData != null ? ImageSource.FromStream(() => new MemoryStream(imageData)) : ImageSource.FromStream(() => new MemoryStream(BackupData.BackupImageData));
         }
 
-        public ICommand StartDownload { get; }
-        public ICommand CancelCommand { get; }
-        
         private void CancelDownload()
         {
             cancellationTokenSource?.Cancel();
@@ -123,12 +87,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
         private void OpenDetailsView()
         {
-            DownloadableListItemViewModel.OpenDetailsView(DownloadableId);
+            downloadableListItemViewModel.OpenDetailsView(Downloadable.Id);
         }
 
         private void CloseDownloadPage()
         {
-            DownloadableListItemViewModel.CloseDownloadPage();
+            downloadableListItemViewModel.CloseDownloadPage();
         }
 
         private async void DownloadData()
@@ -138,7 +102,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             var isDownloadAllowed = true;
             var networkAccessStatus = IoCManager.Resolve<INetworkAccessChecker>().GetNetworkAccessStatus();
 
-            var fullDownloadableDataFetcher = (downloadable.Type == DownloadableType.Exhibit)
+            var fullDownloadableDataFetcher = (Downloadable.Type == DownloadableType.Exhibit)
                 ? IoCManager.Resolve<IFullExhibitDataFetcher>()
                 : IoCManager.Resolve<IFullRouteDataFetcher>() as IFullDownloadableDataFetcher;
 
@@ -159,7 +123,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                 {
                     try
                     {
-                        await fullDownloadableDataFetcher.FetchFullDownloadableDataIntoDatabase(DownloadableId, DownloadableIdForRestApi, cancellationTokenSource.Token, this);
+                        await fullDownloadableDataFetcher.FetchFullDownloadableDataIntoDatabase(Downloadable.Id, DownloadableIdForRestApi, cancellationTokenSource.Token, this);
                     }
                     catch (Exception e)
                     {
@@ -196,9 +160,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
             if (!cancellationTokenSource.IsCancellationRequested && isDownloadAllowed)
             {
-                DownloadableListItemViewModel.SetDetailsAvailable(true);
+                downloadableListItemViewModel.SetDetailsAvailable(true);
 
-                if (DownloadableListItemViewModel.GetType() != typeof(AppetizerPageViewModel))
+                if (downloadableListItemViewModel.GetType() != typeof(AppetizerPageViewModel))
                     OpenDetailsView();
                 else
                     CloseDownloadPage();
