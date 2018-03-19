@@ -12,6 +12,17 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using Acr.UserDialogs;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Appearance;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.AudioPlayer;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Contracts;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views.ExhibitDetails;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -19,49 +30,28 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
-using PaderbornUniversity.SILab.Hip.Mobile.UI.AudioPlayer;
-using PaderbornUniversity.SILab.Hip.Mobile.UI.Contracts;
-using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
-using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
-using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views.ExhibitDetails;
 using Xamarin.Forms;
 using Page = PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.Page;
 using Settings = PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers.Settings;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
-using Acr.UserDialogs;
-using PaderbornUniversity.SILab.Hip.Mobile.UI.Appearance;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 {
     public class ExhibitDetailsPageViewModel : NavigationViewModel, IDbChangedObserver
     {
         private ExhibitSubviewViewModel selectedView;
-        private AudioToolbarViewModel audioToolbar;
         private Exhibit exhibit;
         private readonly IList<Page> pages;
-        private ICommand nextViewCommand;
-        private ICommand previousViewCommand;
-        private ICommand audioToolbarCommand;
-        private ICommand additionalInformationCommand;
         private int currentViewIndex;
-        private bool previousViewAvailable;
-        private bool nextViewAvailable;
-        private bool previousVisible;
-        private bool nextVisible;
-        private bool audioAvailabe;
         private bool audioToolbarVisible;
         private bool hasAdditionalInformation;
+        private bool buttonsVisible = true;
         private readonly bool additionalInformation;
-        private string pagenumber;
 
-        public ExhibitDetailsPageViewModel(string exhibitId) : this(ExhibitManager.GetExhibit(exhibitId)) { }
+        public ExhibitDetailsPageViewModel(string exhibitId) : this(DbManager.DataAccess.Exhibits().GetExhibit(exhibitId)) { }
 
         public ExhibitDetailsPageViewModel(Exhibit exhibit) : this(exhibit, exhibit.Pages, exhibit.Name) { }
 
-        public ExhibitDetailsPageViewModel(Exhibit exhibit, IList<Page> pages, string title, bool additionalInformation = false)
+        public ExhibitDetailsPageViewModel(Exhibit exhibit, ICollection<Page> pages, string title, bool additionalInformation = false)
         {
             Exhibit = exhibit;
             this.additionalInformation = additionalInformation;
@@ -80,12 +70,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
             // init the current view
             currentViewIndex = 0;
-            this.pages = pages;
+            this.pages = pages.ToList();
             SetCurrentView().ConfigureAwait(true);
             Title = title;
-            pagenumber = currentViewIndex + 1 + " / " + pages.Count;
-            if (pages.Count > 1)
-                NextViewAvailable = true;
 
             // init commands     
             NextViewCommand = new Command(async () => await GotoNextView());
@@ -154,15 +141,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         /// </summary>
         private void ToggleVisibilityOfNavigationButtons()
         {
-            if (NextViewAvailable)
-            {
-                NextVisible = !NextVisible;
-            }
-            if (PreviousViewAvailable)
-            {
-                PreviousVisible = !PreviousVisible;
-            }
-
+            buttonsVisible = !buttonsVisible;
+            OnPropertyChanged(nameof(NextVisible));
+            OnPropertyChanged(nameof(PreviousVisible));
             tokenSource?.Cancel();
         }
 
@@ -203,11 +184,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                 }
                 // update the UI
                 currentViewIndex++;
-                NextViewAvailable = additionalInformation
-                    ? currentViewIndex < pages.Count - 1
-                    : currentViewIndex < pages.Count;
-
-                PreviousViewAvailable = true;
                 await SetCurrentView();
             }
             else if (currentViewIndex == pages.Count - 1)
@@ -219,8 +195,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                     {
                         AudioToolbar.AudioPlayer.Stop();
                     }
-                    NextViewAvailable = true;
-                    PreviousViewAvailable = true;
                     Navigation.InsertPageBefore(new UserRatingPageViewModel(Exhibit), this);
                     await Navigation.PopAsync(false);
                 }
@@ -255,8 +229,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                 }
                 // update UI
                 currentViewIndex--;
-                PreviousViewAvailable = currentViewIndex > 0;
-                NextViewAvailable = true;
                 await SetCurrentView();
             }
             // Go back to appetizer page
@@ -273,9 +245,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         private async Task SetCurrentView()
         {
             var currentPage = pages[currentViewIndex];
-            AudioAvailable = currentPage.Audio != null;
+            PageManager.LoadPageDetails(currentPage);
+            OnPropertyChanged(nameof(AudioAvailable));
             AudioToolbarVisible = AudioAvailable;
-            Pagenumber = currentViewIndex + 1 + " / " + pages.Count;
+            OnPropertyChanged(nameof(Pagenumber));
+            OnPropertyChanged(nameof(NextViewAvailable));
+            OnPropertyChanged(nameof(PreviousViewAvailable));
+            OnPropertyChanged(nameof(NextVisible));
+            OnPropertyChanged(nameof(PreviousVisible));
 
             // It's possible to get no audio data even if it should exist
             try
@@ -290,16 +267,16 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                 AudioToolbarVisible = false;
             }
 
-            switch (currentPage.PageType)
+            switch (currentPage)
             {
-                case PageType.ImagePage:
-                    SelectedView = new ImageViewModel(currentPage.ImagePage, ToggleVisibilityOfNavigationButtons);
+                case ImagePage imagePage:
+                    SelectedView = new ImageViewModel(imagePage, ToggleVisibilityOfNavigationButtons);
                     break;
-                case PageType.TextPage:
-                    SelectedView = new TextViewModel(currentPage.TextPage, ToggleVisibilityOfNavigationButtons);
+                case TextPage textPage:
+                    SelectedView = new TextViewModel(textPage, ToggleVisibilityOfNavigationButtons);
                     break;
-                case PageType.TimeSliderPage:
-                    SelectedView = new TimeSliderViewModel(currentPage.TimeSliderPage, ToggleVisibilityOfNavigationButtons);
+                case TimeSliderPage timeSliderPage:
+                    SelectedView = new TimeSliderViewModel(timeSliderPage, ToggleVisibilityOfNavigationButtons);
                     break;
             }
 
@@ -343,13 +320,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         public async void DbChanged()
         {
             var exhibitId = Exhibit.Id;
-            Exhibit = ExhibitManager.GetExhibit(exhibitId);
+            Exhibit = DbManager.DataAccess.Exhibits().GetExhibit(exhibitId);
             if (!Exhibit.DetailsDataLoaded)
                 return;
-            NextViewAvailable = additionalInformation
-                ? currentViewIndex < pages.Count - 1
-                : currentViewIndex < pages.Count;
-            PreviousViewAvailable = currentViewIndex > 0;
             await SetCurrentView();
         }
 
@@ -412,82 +385,42 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         /// <summary>
         /// The command for switching to the next view, if available.
         /// </summary>
-        public ICommand NextViewCommand
-        {
-            get => nextViewCommand;
-            set => SetProperty(ref nextViewCommand, value);
-        }
+        public ICommand NextViewCommand { get; }
 
         /// <summary>
         /// The command for switching to the previous view, if available.
         /// </summary>
-        public ICommand PreviousViewCommand
-        {
-            get => previousViewCommand;
-            set => SetProperty(ref previousViewCommand, value);
-        }
+        public ICommand PreviousViewCommand { get; }
 
         /// <summary>
         /// Indicator if a previous view is available.
         /// </summary>
-        public bool PreviousViewAvailable
-        {
-            get => previousViewAvailable;
-            set
-            {
-                PreviousVisible = value;
-                SetProperty(ref previousViewAvailable, value);
-            }
-        }
+        public bool PreviousViewAvailable => currentViewIndex > 0;
 
         /// <summary>
         /// Indicator if a next view is available.
         /// </summary>
-        public bool NextViewAvailable
-        {
-            get => nextViewAvailable;
-            set
-            {
-                NextVisible = value;
-                SetProperty(ref nextViewAvailable, value);
-            }
-        }
+        public bool NextViewAvailable => currentViewIndex < pages.Count;
 
         /// <summary>
         /// Indicator if navigation to previous is visible
         /// </summary>
-        public bool PreviousVisible
-        {
-            get => previousVisible;
-            set => SetProperty(ref previousVisible, value);
-        }
+        public bool PreviousVisible => buttonsVisible && PreviousViewAvailable;
 
         /// <summary>
         /// Indicator if navigation to next is visible
         /// </summary>
-        public bool NextVisible
-        {
-            get => nextVisible;
-            set => SetProperty(ref nextVisible, value);
-        }
+        public bool NextVisible => buttonsVisible && NextViewAvailable;
 
         /// <summary>
         /// Shows the audio toolbar
         /// </summary>
-        public ICommand ShowAudioToolbarCommand
-        {
-            get => audioToolbarCommand;
-            set => SetProperty(ref audioToolbarCommand, value);
-        }
+        public ICommand ShowAudioToolbarCommand { get; }
 
         /// <summary>
         /// Indicates whether the current page has audio available
         /// </summary>
-        public bool AudioAvailable
-        {
-            get => audioAvailabe;
-            set => SetProperty(ref audioAvailabe, value);
-        }
+        public bool AudioAvailable => pages[currentViewIndex].Audio != null;
 
         /// <summary>
         /// Indicates whether the audio toolbar is visible
@@ -501,20 +434,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         /// <summary>
         /// Viewmodel of audio toolbar which can be shown on the details page
         /// </summary>
-        public AudioToolbarViewModel AudioToolbar
-        {
-            get => audioToolbar;
-            set => SetProperty(ref audioToolbar, value);
-        }
+        public AudioToolbarViewModel AudioToolbar { get; }
 
         /// <summary>
-        /// sets the pagenumber
+        /// The page number
         /// </summary>
-        public string Pagenumber
-        {
-            get => pagenumber;
-            set => SetProperty(ref pagenumber, value);
-        }
+        public string Pagenumber => (currentViewIndex + 1) + " / " + pages.Count;
 
         /// <summary>
         /// Indicates whether there are additional informations for this page
@@ -528,11 +453,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         /// <summary>
         /// Navigates to the additional Information
         /// </summary>
-        public ICommand ShowAdditionalInformationCommand
-        {
-            get => additionalInformationCommand;
-            set => SetProperty(ref additionalInformationCommand, value);
-        }
+        public ICommand ShowAdditionalInformationCommand { get; }
 
         /// <summary>
         /// Value indicating that the view of this viewmodel will disappear.

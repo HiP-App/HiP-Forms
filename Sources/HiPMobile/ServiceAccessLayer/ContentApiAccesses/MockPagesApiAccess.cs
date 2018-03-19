@@ -57,7 +57,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
                 Text = "Pagetext",
                 Timestamp = DateTimeOffset.Now,
                 Title = "Title",
-                Type = PageTypeDto.AppetizerPage
+                Type = PageTypeDto.ImagePage
             },
             new PageDto
             {

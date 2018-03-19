@@ -12,117 +12,101 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.Practices.ObjectBuilder2;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
 {
     public static class AchievementManager
     {
-        private static readonly IDataAccess DataAccess = IoCManager.Resolve<IDataAccess>();
+        public static ReadExtensions Achievements(this IReadOnlyDataAccess dataAccess) => new ReadExtensions(dataAccess);
+
+        public struct ReadExtensions
+        {
+            private readonly IReadOnlyDataAccess dataAccess;
+
+            public ReadExtensions(IReadOnlyDataAccess dataAccess)
+            {
+                this.dataAccess = dataAccess ?? throw new ArgumentNullException(nameof(dataAccess));
+            }
+
+            /// <summary>
+            /// Retrieve achievements of any type from the local database
+            /// </summary>
+            /// <returns></returns>
+            public IEnumerable<AchievementBase> GetAchievements()
+            {
+                return dataAccess.GetItems<AchievementBase>().ToList();
+            }
+
+            /// <summary>
+            /// Check which exhibits are unlocked and mark them as visited
+            /// in the API.
+            /// </summary>
+            /// <returns></returns>
+            internal async Task PostVisitedExhibitsToApi()
+            {
+                var exhibits = dataAccess.Exhibits().GetExhibits();
+                var visitedExhibitIds = exhibits.Where(e => e.Unlocked).Select(e => e.IdForRestApi).ToList();
+                var action = new ExhibitsVisitedActionDto(visitedExhibitIds);
+                await IoCManager.Resolve<IAchievementsApiAccess>().PostExhibitVisited(action);
+            }
+        }
 
         public static IEnumerable<IAchievement> DequeuePendingAchievementNotifications()
         {
-            using (DataAccess.StartTransaction())
+            using (var transaction = DbManager.StartTransaction())
             {
-                var rAchievementsPending = DataAccess.GetItems<RouteFinishedAchievementPendingNotification>().ToList();
-                var eAchievementsPending = DataAccess.GetItems<ExhibitsVisitedAchievementPendingNotification>().ToList();
-                var rAchievements = rAchievementsPending.Select(it => it.Achievement).ToList();
-                var eAchievements = eAchievementsPending.Select(it => it.Achievement).ToList();
-                rAchievementsPending.ForEach(it => DataAccess.DeleteItem<RouteFinishedAchievementPendingNotification>(it.Id));
-                eAchievementsPending.ForEach(it => DataAccess.DeleteItem<ExhibitsVisitedAchievementPendingNotification>(it.Id));
-                return rAchievements.Union<IAchievement>(eAchievements);
+                var dataAccess = transaction.DataAccess;
+
+                var notifications = dataAccess.GetItems<AchievementPendingNotification>().ToList();
+                notifications.ForEach(dataAccess.DeleteItem);
+                return notifications.Select(it => it.Achievement);
             }
         }
 
         /// <summary>
-        /// Retrieve achievements of any type from the local database
+        /// Posts visited exhibits to API and enqueues resulting achievement notifications.
         /// </summary>
-        /// <returns></returns>
-        public static IEnumerable<IAchievement> GetAchievements()
-        {
-            return DataAccess.GetItems<RouteFinishedAchievement>()
-                             .Union<IAchievement>(DataAccess.GetItems<ExhibitsVisitedAchievement>())
-                             .ToList();
-        }
-
-        /// <summary>
-        /// Post visited exhibits to API and enqueue resulting achievement
-        /// notifications.
-        /// </summary>
-        /// <returns></returns>
         public static async Task UpdateServerAndLocalState()
         {
-            IEnumerable<IAchievement> newlyUnlocked;
-            try
+            using (var transaction = DbManager.StartTransaction())
             {
-                await PostVisitedExhibitsToApi();
-                newlyUnlocked = await IoCManager.Resolve<IAchievementFetcher>().UpdateAchievements();
-            }
-            catch (Exception e)
-            {
-                // If this fails, we can just log, ignore and try again later
-                Debug.WriteLine(e);
-                return;
-            }
+                var dataAccess = transaction.DataAccess;
+                IEnumerable<AchievementBase> newlyUnlocked;
+                try
+                {
+                    await dataAccess.Achievements().PostVisitedExhibitsToApi();
+                    newlyUnlocked = await IoCManager.Resolve<IAchievementFetcher>().UpdateAchievements(dataAccess);
+                }
+                catch (Exception e)
+                {
+                    // If this fails, we can just log, ignore and try again later
+                    Debug.WriteLine(e);
+                    return;
+                }
 
-            var data = IoCManager.Resolve<IDataAccess>();
-            using (data.StartTransaction())
-            {
                 foreach (var achievement in newlyUnlocked)
                 {
-                    switch (achievement)
+                    if (dataAccess.GetItem<AchievementPendingNotification>(achievement.Id) == null)
                     {
-                        case ExhibitsVisitedAchievement e:
-                            if (data.GetItem<ExhibitsVisitedAchievementPendingNotification>(achievement.Id) != null)
-                            {
-                                continue;
-                            }
-
-                            var pendingE = data.CreateObject<ExhibitsVisitedAchievementPendingNotification>();
-                            pendingE.Achievement = e;
-                            pendingE.Id = e.Id;
-                            break;
-                        case RouteFinishedAchievement r:
-                            if (data.GetItem<RouteFinishedAchievementPendingNotification>(achievement.Id) != null)
-                            {
-                                continue;
-                            }
-
-                            var pendingR = data.CreateObject<RouteFinishedAchievementPendingNotification>();
-                            pendingR.Achievement = r;
-                            pendingR.Id = r.Id;
-                            break;
-                        default:
-                            throw new ArgumentOutOfRangeException("Unknown achievement type!");
+                        dataAccess.AddItem(new AchievementPendingNotification
+                        {
+                            Achievement = achievement,
+                            Id = achievement.Id
+                        });
                     }
                 }
             }
-        }
-
-        /// <summary>
-        /// Check which exhibits are unlocked and mark them as visited
-        /// in the API.
-        /// </summary>
-        /// <returns></returns>
-        private static async Task PostVisitedExhibitsToApi()
-        {
-            var exhibits = IoCManager.Resolve<IDataAccess>()
-                                     .GetItems<ExhibitSet>()
-                                     .SelectMany(set => set.ActiveSet);
-            var visitedExhibitIds = exhibits.Where(e => e.Unlocked).Select(e => e.IdForRestApi).ToList();
-            var action = new ExhibitsVisitedActionDto(visitedExhibitIds);
-            await IoCManager.Resolve<IAchievementsApiAccess>().PostExhibitVisited(action);
         }
     }
 }

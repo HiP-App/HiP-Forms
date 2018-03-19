@@ -40,7 +40,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         public RoutesOverviewViewModel()
         {
             Routes = new ObservableCollection<RoutesOverviewListItemViewModel>();
-            foreach (var route in RouteManager.GetRoutes())
+            foreach (var route in DbManager.DataAccess.Routes().GetRoutes())
             {
                 Routes.Add(new RoutesOverviewListItemViewModel(route));
             }
@@ -78,7 +78,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         public void DbChanged()
         {
             Routes = new ObservableCollection<RoutesOverviewListItemViewModel>();
-            foreach (var route in RouteManager.GetRoutes())
+            foreach (var route in DbManager.DataAccess.Routes().GetRoutes())
             {
                 Routes.Add(new RoutesOverviewListItemViewModel(route));
             }

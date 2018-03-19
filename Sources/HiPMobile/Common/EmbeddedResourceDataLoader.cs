@@ -24,7 +24,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Common
     {
         public byte[] LoadByteData(string name)
         {
-            var stream = GetEmbeddedResourceStream(Assembly.Load(new AssemblyName("HiPMobilePCL")), name);
+            var stream = GetEmbeddedResourceStream(Assembly.Load(new AssemblyName("HiPMobile")), name);
 
             using (var memoryStream = new MemoryStream())
             {

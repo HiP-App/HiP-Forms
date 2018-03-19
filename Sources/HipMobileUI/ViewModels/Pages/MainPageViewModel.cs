@@ -24,6 +24,7 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Appearance;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
+using System.Collections.Generic;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 {
@@ -38,15 +39,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
         private readonly IDisposable achievementsFeatureSubscription;
 
-        public MainPageViewModel() : this(ExhibitManager.GetExhibitSets().FirstOrDefault())
+        public MainPageViewModel() : this(DbManager.DataAccess.Exhibits().GetExhibits().ToList())
         {
         }
 
-        private MainPageViewModel(ExhibitSet set)
+        private MainPageViewModel(IReadOnlyList<Exhibit> exhibits)
         {
-            menuConfiguration = new MenuConfiguration(this, set);
+            menuConfiguration = new MenuConfiguration(this, exhibits);
             UpdateMenuConfiguration();
-
+            
             profileScreenViewModel = MainScreenViewModels.OfType<ProfileScreenViewModel>().SingleOrDefault();
             loginScreenViewModel = menuConfiguration.GetLoginScreenViewModel();
             registerScreenViewModel = menuConfiguration.GetRegisterScreenViewModel();
@@ -110,7 +111,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             private readonly SettingsScreenViewModel settingsScreenViewModel;
             private readonly LicenseScreenViewModel licenseScreenViewModel;
 
-            public MenuConfiguration(MainPageViewModel mainPageViewModel, ExhibitSet exhibitSet)
+            public MenuConfiguration(MainPageViewModel mainPageViewModel, IReadOnlyList<Exhibit> exhibitSet)
             {
                 exhibitsOverviewViewModel = new ExhibitsOverviewViewModel(exhibitSet)
                 {

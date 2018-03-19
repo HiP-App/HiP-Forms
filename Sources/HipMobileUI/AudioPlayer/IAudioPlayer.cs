@@ -12,8 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using PaderbornUniversity.SILab.Hip.Mobile.UI.Properties;
-
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.AudioPlayer
 {
     public delegate void ProgressChangedDelegate(double newProgress);

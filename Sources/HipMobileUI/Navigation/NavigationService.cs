@@ -190,7 +190,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation
 
         public void StartNewLocalNavigationStack(NavigationViewModel newRoot)
         {
-            var rootPage = new NavigationPage((Page)InstantiateView(newRoot));
+            var rootPage = new NavigationPage((Page) InstantiateView(newRoot));
             Application.Current.MainPage = rootPage;
             if (Device.RuntimePlatform == Device.Android)
             {

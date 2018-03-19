@@ -19,7 +19,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
     /// </summary>
     public enum PageType
     {
-        AppetizerPage,
         ImagePage,
         TimeSliderPage,
         TextPage

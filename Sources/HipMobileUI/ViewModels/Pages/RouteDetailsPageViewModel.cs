@@ -43,7 +43,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         /// and passes it to the alternative constructor.
         /// </summary>
         /// <param name="id">The ID of the route the ViewModel is created for.</param>
-        public RouteDetailsPageViewModel(string id) : this(RouteManager.GetRoute(id))
+        public RouteDetailsPageViewModel(string id) : this(DbManager.DataAccess.Routes().GetRoute(id))
         {
             // Intentionally left blank
         }
@@ -54,12 +54,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         /// <param name="route">The <see cref="Route"/> the ViewModel is created for.</param>
         public RouteDetailsPageViewModel(Route route)
         {
-            Title = route.Title;
+            Title = route.Name;
             Description = route.Audio?.Caption;
             Distance = string.Format(Strings.RouteDetailsPageViewModel_Distance, route.Distance);
             Duration = string.Format(Strings.RouteDetailsPageViewModel_Duration, route.Duration / 60);
             ReadOutCaption = Strings.RouteDetailsPage_PlayAudio;
-            Tags = new ObservableCollection<RouteTag>(route.RouteTags);
+            Tags = new ObservableCollection<RouteTag>(route.Tags);
             SetRouteImage(route);
             StartRouteCommand = new Command(StartRoute);
             StartDescriptionPlaybackCommand = new Command(StartDescriptionPlayback);
@@ -72,7 +72,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             // init the audio button
             audioPlayer = IoCManager.Resolve<IAudioPlayer>();
             audioPlayer.CurrentAudio = route.Audio;
-            audioPlayer.AudioTitle = route.Title;
+            audioPlayer.AudioTitle = route.Name;
             audioPlayer.IsPlayingChanged += AudioPlayerOnIsPlayingChanged;
         }
 

@@ -38,7 +38,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.BusinessLayer.DtoT
             Assert.AreEqual(1, route.IdForRestApi);
             Assert.AreEqual(new DateTimeOffset(2017, 5, 29, 10, 10, 10, 10, TimeSpan.Zero), route.Timestamp);
             Assert.AreEqual("Test Description", route.Description);
-            Assert.AreEqual("Test Title", route.Title);
+            Assert.AreEqual("Test Title", route.Name);
             Assert.AreEqual(42.2, route.Distance);
             Assert.AreEqual(100, route.Duration);
         }

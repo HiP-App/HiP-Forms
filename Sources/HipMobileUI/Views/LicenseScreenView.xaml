@@ -52,9 +52,7 @@
                         <views1:HtmlLink Text="{helpers:Translate LicenseScreenView_XSL_Text}" />
                         <Label Style="{StaticResource Heading2Style}" Text="{helpers:Translate LicenseScreenView_CSL_Title}" />
                         <views1:HtmlLink Text="{helpers:Translate LicenseScreenView_CSL_Text}" />
-                        <Label Style="{StaticResource Heading2Style}" Text="{helpers:Translate LicenseScreenView_Fody_Title}" />
-                        <views1:HtmlLink Text="{helpers:Translate LicenseScreenView_Fody_Text}" />
-                        <Label Style="{StaticResource Heading2Style}" Text="{helpers:Translate LicenseScreenView_Itinero_Title}" />
+                        <Label Style="{StaticResource Title2Style}" Text="{helpers:Translate LicenseScreenView_Itinero_Title}" />
                         <views1:HtmlLink Text="{helpers:Translate LicenseScreenView_Itinero_Text}" />
                         <Label Style="{StaticResource Heading2Style}" Text="{helpers:Translate LicenseScreenView_OsmSharp_Title}" />
                         <views1:HtmlLink Text="{helpers:Translate LicenseScreenView_OsmSharp_Text}" />
