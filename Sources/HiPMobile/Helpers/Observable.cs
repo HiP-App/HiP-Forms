@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Microsoft.Practices.ObjectBuilder2;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
 {
@@ -51,7 +50,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
 
         private void UpdateObservers()
         {
-            observers.ForEach(observer => observer.OnNext(Current));
+            foreach (var observer in observers)
+                observer.OnNext(Current);
         }
     }
 }

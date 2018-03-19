@@ -12,20 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using Realms;
-
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 {
-    public class RouteFinishedAchievement: RealmObject, IAchievement
+    public class RouteFinishedAchievement : AchievementBase
     {
-        [PrimaryKey]
-        public virtual string Id { get; set; }
-        public virtual string Title { get; set; }
-        public virtual string Description { get; set; }
-        public virtual string ThumbnailUrl { get; set; }
-        public virtual string NextId { get; set; }
-        public virtual bool IsUnlocked { get; set; }
-        public virtual int Points { get; set; }
-        public virtual int RouteId { get; set; }
+        public int RouteId { get; set; }
     }
 }

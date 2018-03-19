@@ -46,33 +46,24 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers
         /// <param name="comparer"></param>
         public static void SortCollection<TSource, TKey>(this ObservableCollection<TSource> collection, Func<TSource, TKey> keySelector, IComparer<TKey> comparer = null)
         {
-            var sortedList = comparer == null ? collection.OrderBy(keySelector).ToArray() : collection.OrderBy(keySelector, comparer).ToArray();
-            if (!CompareCollectionToArray(collection, sortedList))
+            var sortedList = (comparer == null)
+                ? collection.OrderBy(keySelector).ToList()
+                : collection.OrderBy(keySelector, comparer).ToList();
+
+            if (!collection.SequenceEqual(sortedList))
             {
                 collection.Clear();
                 foreach (var item in sortedList)
                     collection.Add(item);
             }
         }
-
-        private static bool CompareCollectionToArray<T>(ObservableCollection<T> collection, T[] array)
-        {
-            if (collection.Count != array.Length)
-            {
-                return false;
-            }
-
-            return !collection.Where((t, i) => !array[i].Equals(t)).Any();
-        }
-
+        
         /// <summary>
         /// Converts the position to a geolocation.
         /// </summary>
         /// <param name="position">The position to convert</param>
         /// <returns>The corresponding geolocation.</returns>
-        public static GeoLocation ToGeoLocation(this Position position)
-        {
-            return position != null ? new GeoLocation(position.Latitude, position.Longitude) : null;
-        }
+        public static GeoLocation ToGeoLocation(this Position position) => 
+            new GeoLocation(position.Latitude, position.Longitude);
     }
 }

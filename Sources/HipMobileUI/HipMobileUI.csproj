@@ -1,277 +1,24 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{8A545C1B-B2C8-425F-8303-BD5BD08A978D}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>PaderbornUniversity.SILab.Hip.Mobile.UI</RootNamespace>
-    <AssemblyName>HipMobileUI</AssemblyName>
-    <FileAlignment>512</FileAlignment>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Profile7</TargetFrameworkProfile>
-    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'iOS Release|AnyCPU'">
-    <OutputPath>bin\iOS Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <Optimize>true</Optimize>
-    <DebugType>pdbonly</DebugType>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'TestsOnly|AnyCPU'">
-    <OutputPath>bin\TestsOnly\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <Optimize>true</Optimize>
-    <DebugType>pdbonly</DebugType>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
+
   <ItemGroup>
-    <Compile Include="App.xaml.cs">
-      <DependentUpon>App.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Appearance\ThemeManager.cs" />
-    <Compile Include="AudioPlayer\IAudioPlayer.cs" />
-    <Compile Include="Container\TabContainerView.cs" />
-    <Compile Include="Contracts\IStatusBarController.cs" />
-    <Compile Include="Controls\ZeroPaddingButton.cs" />
-    <Compile Include="Location\ILocalize.cs" />
-    <Compile Include="NotificationPlayer\INotificationPlayer.cs" />
-    <Compile Include="Controls\CardView.cs" />
-    <Compile Include="Controls\CarouselIndicators.cs" />
-    <Compile Include="Controls\CustomFontLabel.cs" />
-    <Compile Include="Controls\FadeInImage.cs" />
-    <Compile Include="Controls\FadeoverImageView.cs" />
-    <Compile Include="Controls\FloatingActionButton.cs" />
-    <Compile Include="Behaviors\ListViewTappedItemBehavior.cs" />
-    <Compile Include="Controls\HideableToolbarItem.cs" />
-    <Compile Include="Controls\TouchEventSlider.cs" />
-    <Compile Include="Converters\EmptyListConverter.cs" />
-    <Compile Include="Converters\InverseBooleanConverter.cs" />
-    <Compile Include="Controls\TimeSlider.cs" />
-    <Compile Include="Converters\PositionGeoLocationConverter.cs" />
-    <Compile Include="Converters\RouteTagViewListConverter.cs" />
-    <Compile Include="Converters\ImageListConverter.cs" />
-    <Compile Include="Converters\ItemTappedConverter.cs" />
-    <Compile Include="Converters\ViewModelViewConverter.cs" />
-    <Compile Include="CustomTriggers\DeselectListViewItemAction.cs" />
-    <Compile Include="Effects\ProgressBarColorEffect.cs" />
-    <Compile Include="Effects\SwitchColorEffect.cs" />
-    <Compile Include="Helpers\ApplicationResourcesProvider.cs" />
-    <Compile Include="Helpers\AppSharedData.cs" />
-    <Compile Include="Helpers\ExtensionMethods.cs" />
-    <Compile Include="Container\BindableChildrenStackLayout.cs" />
-    <Compile Include="Helpers\DeviceOrientation.cs" />
-    <Compile Include="Helpers\OrientationController.cs" />
-    <Compile Include="Contracts\IBarsColorsChanger.cs" />
-    <Compile Include="Pages\QuizPage.xaml.cs">
-      <DependentUpon>QuizPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\QuizStartingPage.xaml.cs">
-      <DependentUpon>QuizStartingPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\UserRatingPage.xaml.cs">
-      <DependentUpon>UserRatingPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Resources\Strings.de.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Strings.de.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Resources\Strings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Strings.resx</DependentUpon>
-    </Compile>
-    <Compile Include="ViewModels\Pages\QuizPageViewModel.cs" />
-    <Compile Include="ViewModels\Pages\QuizStartingPageViewModel.cs" />
-    <Compile Include="ViewModels\Pages\UserRatingPageViewModel.cs" />
-    <Compile Include="ViewModels\Views\AchievementNotificationViewModel.cs" />
-    <Compile Include="ViewModels\Views\AchievementViewModel.cs" />
-    <Compile Include="ViewModels\Views\ForgotPasswordScreenViewModel.cs" />
-    <Compile Include="ViewModels\Views\LeaderboardViewModel.cs" />
-    <Compile Include="Views\AchievementNotificationView.xaml.cs">
-      <DependentUpon>AchievementNotificationView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\NotificationExtensionView.cs" />
-    <Compile Include="Views\ForgotPasswordScreenView.xaml.cs">
-      <DependentUpon>ForgotPasswordScreenView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\CharacterSelectionPage.xaml.cs">
-      <DependentUpon>CharacterSelectionPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ViewModels\Pages\CharacterSelectionPageViewModel.cs" />
-    <Compile Include="Views\LeaderboardView.xaml.cs">
-      <DependentUpon>LeaderboardView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\ProfileScreenView.xaml.cs">
-      <DependentUpon>ProfileScreenView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ViewModels\Views\ProfileScreenViewModel.cs" />
-    <Compile Include="ViewModels\Views\LoginScreenViewModel.cs" />
-    <Compile Include="ViewModels\Views\IDownloadableListItemViewModel.cs" />
-    <Compile Include="Location\LocationManager.cs" />
-    <Compile Include="Location\NearbyExhibitManager.cs" />
-    <Compile Include="Location\NearbyRouteManager.cs" />
-    <Compile Include="ViewModels\Pages\NavigationPageViewModel.cs" />
-    <Compile Include="Map\OsmMap.cs" />
-    <Compile Include="Helpers\TranslateExtension.cs" />
-    <Compile Include="Navigation\INavigationService.cs" />
-    <Compile Include="Navigation\IViewCreator.cs" />
-    <Compile Include="Navigation\IViewFor.cs" />
-    <Compile Include="Navigation\NavigationService.cs" />
-    <Compile Include="Pages\AudioTranscript\SwitchTabAndScrollToSourceAction.cs" />
-    <Compile Include="Pages\ExhibitDetailsPage.xaml.cs">
-      <DependentUpon>ExhibitDetailsPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\LoadingPage.xaml.cs">
-      <DependentUpon>LoadingPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\MainPage.xaml.cs">
-      <DependentUpon>MainPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\OrientationContentPage.cs" />
-    <Compile Include="Pages\RouteDetailsPage.xaml.cs">
-      <DependentUpon>RouteDetailsPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\AudioTranscript\AudioTranscriptPage.xaml.cs">
-      <DependentUpon>AudioTranscriptPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\AudioTranscript\SourcesPage.xaml.cs">
-      <DependentUpon>SourcesPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\AudioTranscript\SubtitlesPage.xaml.cs">
-      <DependentUpon>SubtitlesPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\UserOnboardingPage.xaml.cs">
-      <DependentUpon>UserOnboardingPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\Annotations3.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\NavigationViewModel.cs" />
-    <Compile Include="ViewModels\Pages\ExhibitDetailsPageViewModel.cs" />
-    <Compile Include="ViewModels\Pages\AudioTranscript\AudioTranscriptViewModel.cs" />
-    <Compile Include="ViewModels\Pages\AudioTranscript\SourcesViewModel.cs" />
-    <Compile Include="ViewModels\Pages\AudioTranscript\SubtitleViewModel.cs" />
-    <Compile Include="ViewModels\Pages\LoadingPageViewModel.cs" />
-    <Compile Include="ViewModels\Pages\UserOnboardingItemViewModel.cs" />
-    <Compile Include="ViewModels\Pages\UserOnboardingPageViewModel.cs" />
-    <Compile Include="ViewModels\Views\AudioToolbarViewModel.cs" />
-    <Compile Include="ViewModels\Views\ExhibitDetails\ExhibitSubviewHiddeableNavigationViewModel.cs" />
-    <Compile Include="ViewModels\Views\ExhibitDetails\ExhibitSubviewViewModel.cs" />
-    <Compile Include="ViewModels\Views\ExhibitDetails\TextViewModel.cs" />
-    <Compile Include="ViewModels\Views\ExhibitDetails\ImageViewModel.cs" />
-    <Compile Include="ViewModels\Views\ExhibitDetails\TimeSliderViewModel.cs" />
-    <Compile Include="ViewModels\Pages\MainPageViewModel.cs" />
-    <Compile Include="ViewModels\Pages\RouteDetailsPageViewModel.cs" />
-    <Compile Include="ViewModels\Views\DummyViewModel.cs" />
-    <Compile Include="ViewModels\Pages\ExhibitPreviewPageViewModel.cs" />
-    <Compile Include="ViewModels\Pages\ExhibitRouteDownloadPageViewModel.cs" />
-    <Compile Include="ViewModels\Views\ExhibitsOverviewListItemViewModel.cs" />
-    <Compile Include="ViewModels\Views\ExhibitsOverviewViewModel.cs" />
-    <Compile Include="ViewModels\Views\LicenseScreenViewModel.cs" />
-    <Compile Include="ViewModels\Pages\RoutePreviewPageViewModel.cs" />
-    <Compile Include="Views\LoginScreenView.xaml.cs">
-      <DependentUpon>LoginScreenView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\AudioToolbarView.xaml.cs">
-      <DependentUpon>AudioToolbarView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ViewModels\Views\SettingsScreenViewModel.cs" />
-    <Compile Include="Pages\ExhibitPreviewPage.xaml.cs">
-      <DependentUpon>ExhibitPreviewPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\ExhibitRouteDownloadPage.xaml.cs">
-      <DependentUpon>ExhibitRouteDownloadPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\HtmlLink.cs" />
-    <Compile Include="Views\ExhibitDetails\TextView.xaml.cs">
-      <DependentUpon>TextView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\DummyView.xaml.cs">
-      <DependentUpon>DummyView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\LicenseScreenView.xaml.cs">
-      <DependentUpon>LicenseScreenView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\BottomSheetView.cs" />
-    <Compile Include="Pages\NavigationPage.xaml.cs">
-      <DependentUpon>NavigationPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\ExhibitDetails\ImageView.xaml.cs">
-      <DependentUpon>ImageView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\ExhibitDetails\TimeSliderView.xaml.cs">
-      <DependentUpon>TimeSliderView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ViewModels\Views\RoutesOverviewListItemViewModel.cs" />
-    <Compile Include="ViewModels\Views\RoutesOverviewViewModel.cs" />
-    <Compile Include="Views\ExhibitsOverviewView.xaml.cs">
-      <DependentUpon>ExhibitsOverviewView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\ReferenceLink.cs" />
-    <Compile Include="Pages\RoutePreviewPage.xaml.cs">
-      <DependentUpon>RoutePreviewPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\RoutesOverviewView.xaml.cs">
-      <DependentUpon>RoutesOverviewView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\SettingsScreenView.xaml.cs">
-      <DependentUpon>SettingsScreenView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ViewModels\Views\RegisterScreenViewModel.cs" />
-    <Compile Include="Views\RegisterScreenView.xaml.cs">
-      <DependentUpon>RegisterScreenView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Behaviors\PasswordValidationBehavior.cs" />
-    <Compile Include="Behaviors\EmailValidationBehavior.cs" />
-    <Compile Include="ViewModels\Pages\AppetizerPageViewModel.cs" />
-    <Compile Include="Pages\AppetizerPage.xaml.cs">
-      <DependentUpon>AppetizerPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\AchievementsScreenView.xaml.cs">
-      <DependentUpon>AchievementsScreenView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ViewModels\Views\AchievementsScreenViewModel.cs" />
-    <Compile Include="Pages\AchievementsDetailsRoutePage.xaml.cs">
-      <DependentUpon>AchievementsDetailsRoutePage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ViewModels\Pages\AchievementsDetailsRoutePageViewModel.cs" />
-    <Compile Include="Pages\AchievementsDetailsExhibitPage.xaml.cs">
-      <DependentUpon>AchievementsDetailsExhibitPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ViewModels\Pages\AchievementsDetailsExhibitPageViewModel.cs" />
-    <Compile Include="Pages\CharacterDetailsPage.xaml.cs">
-      <DependentUpon>CharacterDetailsPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ViewModels\Pages\CharacterDetailsPageViewModel.cs" />
+
+    <PackageReference Include="NETStandard.Library" version="2.0.0" />
+    <PackageReference Include="Acr.UserDialogs" Version="7.0.1" />
+    <PackageReference Include="HockeySDK.Xamarin" Version="5.1.2" NoWarn="NU1701" />
+    <PackageReference Include="Refractored.MvvmHelpers" Version="1.3.0" NoWarn="NU1701" />
+    <PackageReference Include="SkiaSharp.Views.Forms" Version="1.60.0" />
+    <PackageReference Include="Xam.Plugin.Geolocator" Version="4.2.0" />
+    <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.3.4" />
+    <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.3.4" />
+    <PackageReference Include="Xamarin.Forms" Version="2.5.0.122203" />
+    <PackageReference Include="Xamarin.Forms.CarouselView" Version="2.3.0-pre2" NoWarn="NU1701" />
   </ItemGroup>
+
   <ItemGroup>
     <EmbeddedResource Include="App.xaml">
       <SubType>Designer</SubType>
@@ -611,13 +358,17 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+=======
+    <ProjectReference Include="..\HiPMobile\HiPMobile.csproj" />
+>>>>>>> master
   </ItemGroup>
+
   <ItemGroup>
-    <EmbeddedResource Include="Views\AchievementNotificationView.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
+    <EmbeddedResource Update="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
   </ItemGroup>
+<<<<<<< HEAD
   <ItemGroup>
     <EmbeddedResource Include="Pages\QuizStartingPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
@@ -645,3 +396,7 @@
   <Import Project="..\..\packages\Realm.Database.1.6.0\build\Realm.Database.targets" Condition="Exists('..\..\packages\Realm.Database.1.6.0\build\Realm.Database.targets')" />
   <Import Project="..\..\packages\Realm.1.6.0\build\Realm.targets" Condition="Exists('..\..\packages\Realm.1.6.0\build\Realm.targets')" />
 </Project>
+=======
+  
+</Project>
+>>>>>>> master

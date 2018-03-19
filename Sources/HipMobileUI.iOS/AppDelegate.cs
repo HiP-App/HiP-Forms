@@ -53,11 +53,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios
             EarlyIoC.Register();
 
             var dataAccess = IoCManager.Resolve<IDataAccess>();
+
             if (Settings.ShouldDeleteDbOnLaunch)
             {
                 File.Delete(dataAccess.DatabasePath);
                 Settings.ShouldDeleteDbOnLaunch = false;
             }
+
+            dataAccess.CreateDatabase(0); // ensures the database exists and is up to date
 
             IoCManager.RegisterType<IImageDimension, IosImageDimensions>();
             IoCManager.RegisterType<IAppCloser, IosAppCloser>();
@@ -70,14 +73,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios
             // init other inversion of control classes
             IoCManager.RegisterInstance(typeof(IAudioPlayer), new IosAudioPlayer());
             IoCManager.RegisterInstance(typeof(INotificationPlayer), new IosNotificationPlayer());
-            IoCManager.RegisterType<IStatusBarController, IosStatusBarController>();
             IoCManager.RegisterInstance(typeof(ILocationManager), new LocationManager());
             IoCManager.RegisterInstance(typeof(IKeyProvider), new IosKeyProvider());
             IoCManager.RegisterInstance(typeof(IBarsColorsChanger), new IosBarsColorsChanger());
             IoCManager.RegisterInstance(typeof(IDbChangedHandler), new DbChangedHandler());
             IoCManager.RegisterInstance(typeof(INetworkAccessChecker), new IosNetworkAccessChecker());
             IoCManager.RegisterInstance(typeof(IStorageSizeProvider), new IosStorageSizeProvider());
-            IoCManager.RegisterType<IMediaFileManager, IosMediaFileManager>();
 
             // init crash manager
             var manager = BITHockeyManager.SharedHockeyManager;
@@ -89,7 +90,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios
             // init forms and third party libraries
             CachedImageRenderer.Init();
             Xamarin.Forms.Forms.Init();
-            Xamarin.FormsMaps.Init();
 
             LoadApplication(new App());
 

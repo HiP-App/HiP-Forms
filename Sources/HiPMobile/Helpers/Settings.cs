@@ -15,14 +15,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
     /// </summary>
     public static class Settings
     {
-        private static ISettings AppSettings
-        {
-            get
-            {
-                return CrossSettings.Current;
-            }
-        }
-        
+        private static ISettings AppSettings => CrossSettings.Current;
+
         public sealed class Events : INotifyPropertyChanged
         {
             public void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
@@ -49,14 +43,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
 
         public static string GeneralSettings
         {
-            get
-            {
-                return AppSettings.GetValueOrDefault<string>(SettingsKey, SettingsDefault);
-            }
-            set
-            {
-                AppSettings.AddOrUpdateValue<string>(SettingsKey, value);
-            }
+            get => AppSettings.GetValueOrDefault(SettingsKey, SettingsDefault);
+            set => AppSettings.AddOrUpdateValue(SettingsKey, value);
         }
 
         /// <summary>
@@ -68,8 +56,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
 
         public static int DatabaseVersion
         {
-            get { return AppSettings.GetValueOrDefault<int>(DatabaseVersionKey, DatabaseVersionDefault); }
-            set { AppSettings.AddOrUpdateValue<int>(DatabaseVersionKey, value); }
+            get => AppSettings.GetValueOrDefault(DatabaseVersionKey, DatabaseVersionDefault);
+            set => AppSettings.AddOrUpdateValue(DatabaseVersionKey, value);
         }
         #endregion
 
@@ -86,8 +74,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
 
         public static bool AutoSwitchPage
         {
-            get { return AppSettings.GetValueOrDefault<bool>(AutoSwitchPageKey, AutoSwitchPageDefault); }
-            set { AppSettings.AddOrUpdateValue<bool>(AutoSwitchPageKey, value); }
+            get => AppSettings.GetValueOrDefault(AutoSwitchPageKey, AutoSwitchPageDefault);
+            set => AppSettings.AddOrUpdateValue(AutoSwitchPageKey, value);
         }
 
         /// <summary>
@@ -98,8 +86,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
 
         public static bool AutoStartAudio
         {
-            get { return AppSettings.GetValueOrDefault<bool>(AutoStartAudioKey, AutoStartAudioDefault); }
-            set { AppSettings.AddOrUpdateValue<bool>(AutoStartAudioKey, value); }
+            get => AppSettings.GetValueOrDefault(AutoStartAudioKey, AutoStartAudioDefault);
+            set => AppSettings.AddOrUpdateValue(AutoStartAudioKey, value);
         }
 
         /// <summary>
@@ -110,8 +98,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
 
         public static bool RepeatHintAudio
         {
-            get { return AppSettings.GetValueOrDefault<bool>(RepeatHintAudioKey, RepeatHintAudioDefault); }
-            set { AppSettings.AddOrUpdateValue<bool>(RepeatHintAudioKey, value); }
+            get => AppSettings.GetValueOrDefault(RepeatHintAudioKey, RepeatHintAudioDefault);
+            set => AppSettings.AddOrUpdateValue(RepeatHintAudioKey, value);
         }
 
         /// <summary>
@@ -122,8 +110,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
 
         public static bool RepeatHintAutoPageSwitch
         {
-            get { return AppSettings.GetValueOrDefault<bool>(RepeatHintAutoPageSwitchKey, RepeatHintAutoPageSwitchDefault); }
-            set { AppSettings.AddOrUpdateValue<bool>(RepeatHintAutoPageSwitchKey, value); }
+            get => AppSettings.GetValueOrDefault(RepeatHintAutoPageSwitchKey, RepeatHintAutoPageSwitchDefault);
+            set => AppSettings.AddOrUpdateValue(RepeatHintAutoPageSwitchKey, value);
         }
 
         /// <summary>
@@ -134,8 +122,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
 
         public static bool RepeatIntro
         {
-            get { return AppSettings.GetValueOrDefault<bool>(RepeatIntroKey, RepeatIntroDefault); }
-            set { AppSettings.AddOrUpdateValue<bool>(RepeatIntroKey, value); }
+            get => AppSettings.GetValueOrDefault(RepeatIntroKey, RepeatIntroDefault);
+            set => AppSettings.AddOrUpdateValue(RepeatIntroKey, value);
         }
 
         /// <summary>
@@ -146,8 +134,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
 
         public static bool AlwaysDownloadData
         {
-            get { return AppSettings.GetValueOrDefault<bool>(DownloadDataKey, DownloadDataDefault); }
-            set { AppSettings.AddOrUpdateValue<bool>(DownloadDataKey, value); }
+            get => AppSettings.GetValueOrDefault(DownloadDataKey, DownloadDataDefault);
+            set => AppSettings.AddOrUpdateValue(DownloadDataKey, value);
         }
 
         /// <summary>
@@ -158,8 +146,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
 
         public static double AudioTranscriptFontSize
         {
-            get { return AppSettings.GetValueOrDefault<double>(AudioTranscriptFontSizeKey, AudioTranscriptFontSizeDefault); }
-            set { AppSettings.AddOrUpdateValue<double>(AudioTranscriptFontSizeKey, value); }
+            get => AppSettings.GetValueOrDefault(AudioTranscriptFontSizeKey, AudioTranscriptFontSizeDefault);
+            set => AppSettings.AddOrUpdateValue(AudioTranscriptFontSizeKey, value);
         }
 
         /// <summary>
@@ -170,8 +158,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
 
         public static bool WifiOnly
         {
-            get { return AppSettings.GetValueOrDefault<bool>(WifiOnlyKey, WifiOnlyDefault); }
-            set { AppSettings.AddOrUpdateValue<bool>(WifiOnlyKey, value); }
+            get => AppSettings.GetValueOrDefault(WifiOnlyKey, WifiOnlyDefault);
+            set => AppSettings.AddOrUpdateValue(WifiOnlyKey, value);
         }
 
 
@@ -185,8 +173,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
         /// </summary>
         public static bool AdventurerMode
         {
-            get { return AppSettings.GetValueOrDefault<bool>(AdventurerModeKey, AdventurerModeDefault); }
-            set { AppSettings.AddOrUpdateValue<bool>(AdventurerModeKey, value); }
+            get => AppSettings.GetValueOrDefault(AdventurerModeKey, AdventurerModeDefault);
+            set => AppSettings.AddOrUpdateValue(AdventurerModeKey, value);
         }
 
         private const string InitialThemeSelectedKey = "initial_theme_selected_key";
@@ -194,8 +182,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
 
         public static bool InitialThemeSelected
         {
-            get { return AppSettings.GetValueOrDefault(InitialThemeSelectedKey, InitialThemeSelectedDefault); }
-            set { AppSettings.AddOrUpdateValue(InitialThemeSelectedKey, value); }
+            get => AppSettings.GetValueOrDefault(InitialThemeSelectedKey, InitialThemeSelectedDefault);
+            set => AppSettings.AddOrUpdateValue(InitialThemeSelectedKey, value);
         }
         #endregion
 
@@ -212,7 +200,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
 
         public static bool IsLoggedIn
         {
-            get { return AppSettings.GetValueOrDefault(IsLoggedInKey, IsLoggedInDefault); }
+            get => AppSettings.GetValueOrDefault(IsLoggedInKey, IsLoggedInDefault);
             set
             {
                 AppSettings.AddOrUpdateValue(IsLoggedInKey, value);
@@ -228,8 +216,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
 
         public static string Username
         {
-            get { return AppSettings.GetValueOrDefault(UserNameKey, UsernameDefault); }
-            set { AppSettings.AddOrUpdateValue(UserNameKey, value); }
+            get => AppSettings.GetValueOrDefault(UserNameKey, UsernameDefault);
+            set => AppSettings.AddOrUpdateValue(UserNameKey, value);
         }
 
         /// <summary>
@@ -240,8 +228,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
 
         public static string EMail
         {
-            get { return AppSettings.GetValueOrDefault(EMailKey, EMailDefault); }
-            set { AppSettings.AddOrUpdateValue(EMailKey, value); }
+            get => AppSettings.GetValueOrDefault(EMailKey, EMailDefault);
+            set => AppSettings.AddOrUpdateValue(EMailKey, value);
         }
 
         /// <summary>
@@ -252,8 +240,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
 
         public static string Password
         {
-            get { return AppSettings.GetValueOrDefault(PasswordKey, PasswordDefault); }
-            set { AppSettings.AddOrUpdateValue(PasswordKey, value); }
+            get => AppSettings.GetValueOrDefault(PasswordKey, PasswordDefault);
+            set => AppSettings.AddOrUpdateValue(PasswordKey, value);
         }
 
         /// <summary>
@@ -264,8 +252,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
 
         public static string AccessToken
         {
-            get { return AppSettings.GetValueOrDefault(AccessTokenKey, AccessTokenDefault); }
-            set { AppSettings.AddOrUpdateValue(AccessTokenKey, value); }
+            get => AppSettings.GetValueOrDefault(AccessTokenKey, AccessTokenDefault);
+            set => AppSettings.AddOrUpdateValue(AccessTokenKey, value);
         }
 
         private const string GenericTokenKey = "generic_token_key";
@@ -273,8 +261,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
 
         public static string GenericToken
         {
-            get { return AppSettings.GetValueOrDefault(GenericTokenKey, GenericTokenDefault); }
-            set { AppSettings.AddOrUpdateValue(GenericTokenKey, value); }
+            get => AppSettings.GetValueOrDefault(GenericTokenKey, GenericTokenDefault);
+            set => AppSettings.AddOrUpdateValue(GenericTokenKey, value);
         }
 
 
@@ -287,8 +275,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
 
         public static int Score
         {
-            get { return AppSettings.GetValueOrDefault(ScoreKey, ScoreDefault); }
-            set { AppSettings.AddOrUpdateValue(ScoreKey, value); }
+            get => AppSettings.GetValueOrDefault(ScoreKey, ScoreDefault);
+            set => AppSettings.AddOrUpdateValue(ScoreKey, value);
         }
 
         /// <summary>
@@ -299,8 +287,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
 
         public static int Achievements
         {
-            get { return AppSettings.GetValueOrDefault(AchievementsKey, AchievementsDefault); }
-            set { AppSettings.AddOrUpdateValue(AchievementsKey, value); }
+            get => AppSettings.GetValueOrDefault(AchievementsKey, AchievementsDefault);
+            set => AppSettings.AddOrUpdateValue(AchievementsKey, value);
         }
 
         /// <summary>
@@ -311,12 +299,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
 
         public static int Completeness
         {
-            get { return AppSettings.GetValueOrDefault(CompletenessKey, CompletenessDefault); }
-            set { AppSettings.AddOrUpdateValue(CompletenessKey, value); }
+            get => AppSettings.GetValueOrDefault(CompletenessKey, CompletenessDefault);
+            set => AppSettings.AddOrUpdateValue(CompletenessKey, value);
         }
 
         #endregion
-        
+
         private const string ShouldDeleteDbOnLaunchKey = "should_delete_db_on_launch_key";
         private static readonly string ShouldDeleteDbOnLaunchDefault = false.ToString();
          

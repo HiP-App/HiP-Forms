@@ -12,21 +12,22 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers.Contracts
 {
     public interface IAchievementFetcher
     {
         /// <summary>
-        /// Fetches the all achievements from the API and stores
+        /// Fetches all achievements from the API and stores
         /// them in the database, including locked ones.
         /// WARNING: If you call this method, use the return value to show
         /// notifications about new unlocked achievements!
         /// </summary>
         /// <returns>Achievements that have been newly added to the database and are unlocked.</returns>
-        Task<IEnumerable<IAchievement>> UpdateAchievements();
+        Task<IEnumerable<AchievementBase>> UpdateAchievements(ITransactionDataAccess dataAccess);
     }
 }

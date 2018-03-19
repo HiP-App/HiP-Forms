@@ -156,12 +156,6 @@
   <data name="LicenseScreenView_FeedbackData_Title" xml:space="preserve">
     <value>Feedback-Daten</value>
   </data>
-  <data name="LicenseScreenView_Fody_Text" xml:space="preserve">
-    <value>Von &lt;a href="https://github.com/Fody/Fody"&gt;Simon Cropp&lt;/a&gt;, lizenziert unter &lt;a href="https://opensource.org/licenses/mit-license.php"&gt;MIT&lt;/a&gt;. Es wurden keine Änderungen vorgenommen.</value>
-  </data>
-  <data name="LicenseScreenView_Fody_Title" xml:space="preserve">
-    <value>Fody</value>
-  </data>
   <data name="LicenseScreenView_FurtherInfo_Text" xml:space="preserve">
     <value>Wenn Fragen bestehen, die diese Datenschutzerklärung nicht beantwortet, oder wenn zu einzelnen Punkten vertiefte Informationen gewünscht werden, gibt der Software Innovation Campus Paderborn gerne weitere Auskunft. E-Mail: hip-app@campus.uni-paderborn.de Telefon +49 5251 603358 Postalisch: Universität Paderborn Software Innovation Campus Warburger Str. 100 D-33098 Paderborn</value>
   </data>
@@ -579,6 +573,9 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   </data>
   <data name="LoginScreenView_Login" xml:space="preserve">
     <value>Einloggen</value>
+  </data>  
+  <data name="LoginScreenView_Debug" xml:space="preserve">
+    <value>Einloggen mit Debug-Login</value>
   </data>
   <data name="LoginScreenView_Password" xml:space="preserve">
     <value>Passwort</value>
