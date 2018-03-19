@@ -15,9 +15,7 @@
 using JetBrains.Annotations;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
-using Realms;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.DesignTime.Services
 {
@@ -27,26 +25,20 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.DesignTime.Services
 
         public void CreateDatabase(int version) { }
 
-        public T CreateObject<T>() where T : RealmObject, IIdentifiable, new()
-        {
-            return new T();
-        }
+        public T CreateObject<T>() where T : IIdentifiable, new() => new T();
 
-        public T CreateObject<T>([NotNull]string id, bool updateCurrent = false) where T : RealmObject, IIdentifiable, new()
-        {
-            return new T { Id = id };
-        }
+        public T CreateObject<T>([NotNull]string id, bool updateCurrent = false) where T : IIdentifiable, new() => new T { Id = id };
 
         public void DeleteDatabase() { }
 
-        public bool DeleteItem<T>(string id) where T : RealmObject, IIdentifiable => false;
-
-        public T GetItem<T>(string id) where T : RealmObject, IIdentifiable => null;
-
-        public IEnumerable<T> GetItems<T>() where T : RealmObject, IIdentifiable => Enumerable.Empty<T>();
+        public bool DeleteItem<T>(string id) where T : IIdentifiable => false;
 
         public int GetVersion() => 0;
 
-        public BaseTransaction StartTransaction() => null;
+        public BaseTransaction StartTransaction(IEnumerable<object> itemsToTrack = null) => null;
+
+        T IReadOnlyDataAccess.GetItem<T>(string id, params string[] pathsToInclude) => null;
+
+        IReadOnlyList<T> IReadOnlyDataAccess.GetItems<T>(params string[] pathsToInclude) => new List<T>();
     }
 }

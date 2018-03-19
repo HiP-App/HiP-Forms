@@ -118,7 +118,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.DesignTime
             IoCManager.RegisterType<IDataLoader, EmbeddedResourceDataLoader>();
             IoCManager.RegisterInstance(typeof(INavigationService), NavigationService.Instance);
             IoCManager.RegisterInstance(typeof(IViewCreator), NavigationService.Instance);
-            IoCManager.RegisterType<IStatusBarController, DesignModeStatusBarController>();
             IoCManager.RegisterType<IDataAccess, DesignModeDataAccess>();
             IoCManager.RegisterType<IThemeManager, DesignModeThemeManager>();
             IoCManager.RegisterType<ILocationManager, DesignModeLocationManager>();
@@ -144,18 +143,18 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.DesignTime
                 Text = "Sample Text"
             });
 
-            Add(new AchievementsDetailsExhibitViewModel(new ExhibitsVisitedAchievement
+            Add(new AchievementsDetailsExhibitPageViewModel(new ExhibitsVisitedAchievement
             {
                 Title = "Lorem ipsum!",
                 Description = "You unlocked stuff!",
                 Count = 3
             })
             {
-                Exhibits = new System.Collections.ObjectModel.ObservableCollection<AchievementsDetailsExhibitViewModel.ExhibitViewModel>
+                Exhibits = new System.Collections.ObjectModel.ObservableCollection<AchievementsDetailsExhibitPageViewModel.ExhibitViewModel>
                 {
-                    new AchievementsDetailsExhibitViewModel.ExhibitViewModel { Name = "Sample Exhibit 1", Unlocked = true, Image = ImageSource.FromUri(new Uri("https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Xamarin-logo.svg/2000px-Xamarin-logo.svg.png")) },
-                    new AchievementsDetailsExhibitViewModel.ExhibitViewModel { Name = "Sample Exhibit 2", Unlocked = true },
-                    new AchievementsDetailsExhibitViewModel.ExhibitViewModel { Name = "Sample Exhibit 3", Unlocked = false },
+                    new AchievementsDetailsExhibitPageViewModel.ExhibitViewModel { Name = "Sample Exhibit 1", Unlocked = true, Image = ImageSource.FromUri(new Uri("https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Xamarin-logo.svg/2000px-Xamarin-logo.svg.png")) },
+                    new AchievementsDetailsExhibitPageViewModel.ExhibitViewModel { Name = "Sample Exhibit 2", Unlocked = true },
+                    new AchievementsDetailsExhibitPageViewModel.ExhibitViewModel { Name = "Sample Exhibit 3", Unlocked = false },
                 }
             });
 

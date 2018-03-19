@@ -35,6 +35,7 @@ using PaderbornUniversity.SILab.Hip.Mobile.UI.Map;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 using System.Collections.Generic;
+using Android.Content;
 
 [assembly: ExportRenderer(typeof(OsmMap), typeof(DroidMapRenderer))]
 

@@ -34,7 +34,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
     {
         private readonly CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
         private readonly IDownloadableListItemViewModel downloadableListItemViewModel;
-        private bool downloadPending;
         private double loadingProgress;
         private double maximumProgress;
         private double currentProgress;
@@ -61,11 +60,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         public bool DescriptionExists => !string.IsNullOrEmpty(Downloadable.Description);
 
         public int DownloadableIdForRestApi => Downloadable.IdForRestApi;
-
-        public string Message =>
-            Strings.DownloadDetails_Text_Part1 +
-            Downloadable.Name +
-            Strings.DownloadDetails_Text_Part2;
 
         public double LoadingProgress
         {

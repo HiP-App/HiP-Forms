@@ -51,11 +51,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         public ICommand DownloadCommand { get; }
 
         /// <summary>
-        /// The name of the exhibit.
-        /// </summary>
-        public string ExhibitName => Exhibit.Name;
-
-        /// <summary>
         /// The appetizer image for the exhibit.
         /// </summary>
         public ImageSource Image { get; }
@@ -70,7 +65,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             {
                 if (SetProperty(ref distance, value))
                 {
-                    OnPropertyChanged(nameof(FormatedDistance));
+                    OnPropertyChanged(nameof(FormattedDistance));
                 }
             }
         }
@@ -78,7 +73,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         /// <summary>
         /// The formatted distance string.
         /// </summary>
-        public string FormatedDistance => (Distance < 1000)
+        public string FormattedDistance => (Distance < 1000)
             ? $"{Distance:F0} m"
             : $"{Distance / 1000:0.##} km";
 
@@ -126,11 +121,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             IoCManager.Resolve<INavigationService>().PopAsync();
         }
 
-        public override bool Equals(object obj)
-        {
-            return (obj is ExhibitsOverviewListItemViewModel otherItem)
-                ? ExhibitName.Equals(otherItem.ExhibitName)
-                : Equals(obj);
-        }
+        public override bool Equals(object obj) =>
+            obj is ExhibitsOverviewListItemViewModel otherItem &&
+            Exhibit.Name == otherItem.Exhibit.Name;
+
+        public override int GetHashCode() => Exhibit.Name.GetHashCode();
     }
 }

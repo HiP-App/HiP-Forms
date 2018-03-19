@@ -39,9 +39,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentHandl
             return exhibitsToBeUpdated.Any() || routesToBeUpdated.Any();
         }
 
-        public async Task UpdateData()
+        public Task UpdateData()
         {
             //TODO Use fetcher for downloading routes and exhibits details data
+            return Task.CompletedTask;
         }
     }
 }
