@@ -30,20 +30,9 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
-using PaderbornUniversity.SILab.Hip.Mobile.UI.AudioPlayer;
-using PaderbornUniversity.SILab.Hip.Mobile.UI.Contracts;
-using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
-using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
-using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
-using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views.ExhibitDetails;
 using Xamarin.Forms;
 using Page = PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.Page;
 using Settings = PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers.Settings;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
-using Acr.UserDialogs;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 {
@@ -155,7 +144,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             buttonsVisible = !buttonsVisible;
             OnPropertyChanged(nameof(NextVisible));
             OnPropertyChanged(nameof(PreviousVisible));
-            OnPropertyChanged(nameof(AdditionalInformationButtonVisible));
             tokenSource?.Cancel();
         }
 
@@ -241,8 +229,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                 }
                 // update UI
                 currentViewIndex--;
-                PreviousViewAvailable = currentViewIndex > 0;
-                NextViewAvailable = true;
                 await SetCurrentView();
             }
             // Go back to appetizer page
@@ -267,7 +253,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             OnPropertyChanged(nameof(PreviousViewAvailable));
             OnPropertyChanged(nameof(NextVisible));
             OnPropertyChanged(nameof(PreviousVisible));
-            OnPropertyChanged(nameof(AdditionalInformationButtonVisible));
 
             // It's possible to get no audio data even if it should exist
             try
@@ -461,12 +446,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         /// </summary>
         public bool HasAdditionalInformation
         {
-            get { return hasAdditionalInformation; }
-            set
-            {
-                if (SetProperty(ref hasAdditionalInformation, value))
-                    OnPropertyChanged(nameof(AdditionalInformationButtonVisible));
-            }
+            get => hasAdditionalInformation;
+            set => SetProperty(ref hasAdditionalInformation, value);
         }
 
         /// <summary>
