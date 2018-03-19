@@ -27,9 +27,6 @@
                                       Command="{Binding ShowAdditionalInformationCommand}"
                                       Text="{helpers:Translate ExhibitDetailsPage_AdditionalInformation}" Icon="ic_more.png"
                                       IsVisible="{Binding HasAdditionalInformation}" />
-    </pages1:OrientationContentPage.ToolbarItems><pages1:OrientationContentPage.ToolbarItems>
-        <ToolbarItem Order="Primary" Command="{Binding ShowAdditionalInformationCommand}"
-                     Text="addn_info" Icon="ic_more_vert.png" IsEnabled="{Binding HasAdditionalInformation}" />
     </pages1:OrientationContentPage.ToolbarItems>
     <StackLayout BackgroundColor="White">
     <AbsoluteLayout VerticalOptions="FillAndExpand">

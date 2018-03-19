@@ -20,7 +20,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:helpers="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;assembly=HipMobileUI"
              xmlns:views="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Views;assembly=HipMobileUI"
-             xmlns:authenticationApiAccess="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.AuthenticationApiAccess;assembly=HiPMobilePCL"
+             xmlns:authenticationApiAccess="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.AuthenticationApiAccess;assembly=HiPMobile"
              x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Views.LoginScreenView">
     <ContentView.Content>
         <views:NotificationExtensionView>
