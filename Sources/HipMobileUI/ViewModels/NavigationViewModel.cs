@@ -16,6 +16,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using MvvmHelpers;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelConverters;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.FeatureToggling;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
@@ -87,6 +88,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels
                 {
                     if (featureObserver.Last /* feature is enabled */)
                     {
+                        await BackupData.WaitForInitAsync();
                         var pending = AchievementManager.DequeuePendingAchievementNotifications();
                         AchievementNotification.QueueAchievementNotifications(pending);
                     }

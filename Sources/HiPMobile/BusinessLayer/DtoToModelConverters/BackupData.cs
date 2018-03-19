@@ -12,13 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
 using System;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelConverters
@@ -29,6 +29,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelCo
         private const int BackupImageTagIdForRestApi = -2;
         private static readonly DateTimeOffset BackupTimestamp = DateTimeOffset.MinValue;
 
+        private static readonly SemaphoreSlim IsInitializedSema = new SemaphoreSlim(0);
+
+        public static async Task WaitForInitAsync()
+        {
+            await IsInitializedSema.WaitAsync();
+            IsInitializedSema.Release();
+        }
+        
         public static async Task Init()
         {
             // We do NOT use DbManager.StartTransaction() here because that would attach BackupImage & BackupImageTag
@@ -71,6 +79,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelCo
 
                 mockAudioData = dataLoader.LoadByteData("mockaudio.mp3");
             });
+            IsInitializedSema.Release();
         }
 
         private static byte[] backupImageData;
