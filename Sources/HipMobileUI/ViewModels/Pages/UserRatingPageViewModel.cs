@@ -14,19 +14,19 @@
 
 
 using Acr.UserDialogs;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelConverters;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
-using System;
-using System.Windows.Input;
-using Xamarin.Forms;
-using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
-using System.IO;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelConverters;
-using System.Collections.Generic;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
+using System;
 using System.Diagnostics;
+using System.Windows.Input;
+using Xamarin.Forms;
+using System.IO;
+using System.Collections.Generic;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 {
@@ -99,7 +99,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                 var userRating = await ratingManager.GetUserRatingAsync(exhibit.IdForRestApi);
                 SetAverageAndCountRating(userRating.Average.ToString("0.#"), userRating.Count);
                 SetStarImages(userRating.Average);
-                SetRatingBars(userRating.RatingTable, userRating.Count);
+                SetRatingBars(userRating, userRating.Count);
                 SetRatingStars(Settings.IsLoggedIn && userRating.Count > 0 ? await ratingManager.GetPreviousUserRatingAsync(exhibit.IdForRestApi) : 0);
 
             }
@@ -108,7 +108,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                 Debug.WriteLine(e);
                 SetAverageAndCountRating("-", 0);
                 SetStarImages(0);
-                SetRatingBars(ratingManager.InitializeEmptyRatingTable(), 0);
+                SetRatingBars(ratingManager.InitializeEmptyUserRating(), 0);
                 SetRatingStars(0);
                 UserDialogs.Instance.Alert(new AlertConfig()
                 {
@@ -146,18 +146,18 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                 Star5 = (average >= 4.25 && average < 4.75) ? ImgStarHalfFilled : ImgStarFilled;
         }
 
-        private void SetRatingBars(IReadOnlyDictionary<int, int> ratingTable, int count)
+        private void SetRatingBars(UserRating rating, int count)
         {
-            Star5BarCount = ratingTable[5].ToString();
-            Star4BarCount = ratingTable[4].ToString();
-            Star3BarCount = ratingTable[3].ToString();
-            Star2BarCount = ratingTable[2].ToString();
-            Star1BarCount = ratingTable[1].ToString();
-            Star5Bar = CalculateBarProportion(ratingTable[5], count);
-            Star4Bar = CalculateBarProportion(ratingTable[4], count);
-            Star3Bar = CalculateBarProportion(ratingTable[3], count);
-            Star2Bar = CalculateBarProportion(ratingTable[2], count);
-            Star1Bar = CalculateBarProportion(ratingTable[1], count);
+            Star5BarCount = rating.NumFiveStarRatings.ToString();
+            Star4BarCount = rating.NumFourStarRatings.ToString();
+            Star3BarCount = rating.NumThreeStarRatings.ToString();
+            Star2BarCount = rating.NumTwoStarRatings.ToString();
+            Star1BarCount = rating.NumOneStarRatings.ToString();
+            Star5Bar = CalculateBarProportion(rating.NumFiveStarRatings, count);
+            Star4Bar = CalculateBarProportion(rating.NumFourStarRatings, count);
+            Star3Bar = CalculateBarProportion(rating.NumThreeStarRatings, count);
+            Star2Bar = CalculateBarProportion(rating.NumTwoStarRatings, count);
+            Star1Bar = CalculateBarProportion(rating.NumOneStarRatings, count);
         }
 
         private GridLength CalculateBarProportion(double value, double totalCount)

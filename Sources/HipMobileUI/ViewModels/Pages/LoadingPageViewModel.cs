@@ -247,21 +247,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
         private async void LoadCacheAndStart()
         {
-            try
-            {
-                // force the db to load the exhibitset into cache
-                ExhibitManager.GetExhibitSets();
-                LoadingProgress = 0.9;
-                await Task.Delay(100);
-            }
-            catch (Exception e)
-            {
-                // Catch all exceptions happening on startup cause otherwise the loading page will be shown indefinitely 
-                // This should only happen during development
-                errorMessage = null;
-                errorTitle = null;
-                Debug.WriteLine(e);
-            }
+            LoadingProgress = 0.9;
+            await Task.Delay(100);
 
             actionOnUiThread = async () =>
             {

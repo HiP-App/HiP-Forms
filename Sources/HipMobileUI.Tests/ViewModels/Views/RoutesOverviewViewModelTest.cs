@@ -29,7 +29,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Views
     [TestFixture]
     public class RoutesOverviewViewModelTest
     {
-        [TestFixtureSetUp]
+        [OneTimeSetUp]
         public void Init()
         {
             IoCManager.Clear();
@@ -69,7 +69,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Views
             route.Description = "Test Description";
             route.Distance = 10;
             route.Duration = 4800;
-            route.Title = "Test Title";
+            route.Name = "Test Title";
             route.Image = image;
 
             var dataAccess = Substitute.For<IDataAccess>();

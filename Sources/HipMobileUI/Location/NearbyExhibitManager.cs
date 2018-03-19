@@ -56,10 +56,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Location
                 var dist = MathUtil.CalculateDistance(e.Location, gpsLocation);
                 if (dist < AppSharedData.ExhibitRadius)
                 {
-                    using (IoCManager.Resolve<IDataAccess>().StartTransaction())
+                    using (DbManager.StartTransaction(e))
                     {
                         e.Unlocked = true;
                     }
+
                     if (considerTimeouts)
                     {
                         var now = DateTimeOffset.Now;
@@ -88,9 +89,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Location
                     else
                     {
                         var nv = new ExhibitPreviewPageViewModel(e, this);
-                        await
-                            IoCManager.Resolve<INavigationService>()
-                                      .PushModalAsync(nv);
+                        await IoCManager.Resolve<INavigationService>().PushModalAsync(nv);
                     }
                 }
             }

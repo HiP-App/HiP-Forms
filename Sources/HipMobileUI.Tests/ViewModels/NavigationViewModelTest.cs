@@ -24,7 +24,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels
     [TestFixture]
     public class NavigationViewModelTest
     {
-        [TestFixtureSetUp]
+        [OneTimeSetUp]
         public void Init()
         {
             IoCManager.RegisterInstance(typeof(INavigationService), Substitute.For<INavigationService>());

@@ -14,7 +14,6 @@
 
 using System;
 using NSubstitute;
-using NUnit.Core;
 using NUnit.Framework;
 using PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.Common.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelConverters;
@@ -43,8 +42,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.BusinessLayer.DtoT
             Assert.AreEqual("Test Title", audio.Title);
         }
 
-        #region HelperMethods
-
         private MediaDto CreateMediaDto()
         {
             return new MediaDto
@@ -61,7 +58,5 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.BusinessLayer.DtoT
             IoCManager.RegisterInstance(typeof(IMediaFileManager), new DummyMediaFileManager());
             return new MediaToAudioConverter();
         }
-
-        #endregion
     }
 }

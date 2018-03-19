@@ -44,7 +44,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         public RoutesOverviewListItemViewModel(Route route)
         {
             Route = route;
-            RouteTitle = Route.Title;
+            RouteTitle = Route.Name;
             RouteDescription = Route.Description;
             Duration = GetRouteDurationText(Route.Duration);
             Distance = GetRouteDistanceText(Route.Distance);
@@ -53,7 +53,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 
             Tags = new ObservableCollection<ImageSource>();
 
-            foreach (var tag in Route.RouteTags)
+            foreach (var tag in Route.Tags)
             {
                 // Required to reference first due to threading problems in Realm
                 byte[] currentTagImageData = tag.Image.GetDataBlocking();
@@ -70,12 +70,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 
         public ICommand DownloadCommand { get; set; }
 
-        internal string GetRouteDistanceText(double routeDistance)
+        public string GetRouteDistanceText(double routeDistance)
         {
             return string.Format(Strings.RoutesOverviewListItemViewModel_Distance, routeDistance);
         }
 
-        internal string GetRouteDurationText(int routeDuration)
+        public string GetRouteDurationText(int routeDuration)
         {
             var durationInMinutes = routeDuration / 60;
             return string.Format(Strings.RoutesOverviewListItemViewModel_Duration, durationInMinutes);

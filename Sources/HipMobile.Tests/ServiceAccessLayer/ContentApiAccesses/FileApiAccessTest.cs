@@ -12,11 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System.Text;
 using NSubstitute;
 using NUnit.Framework;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.ServiceAccessLayer.ContentApiAccesses
 {
@@ -26,7 +27,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.ServiceAccessLayer
         private IContentApiClient contentApiSubstitute;
 
         [Test, Category("UnitTest")]
-        public async void GetFile_Test()
+        public async Task GetFile_Test()
         {
             var sut = CreateSystemUnderTest();
             string jsonReturn = "ThisIsATestByteArray";

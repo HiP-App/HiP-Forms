@@ -12,11 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System;
 using NSubstitute;
 using NUnit.Framework;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses;
+using System;
+using System.Threading.Tasks;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.ServiceAccessLayer.ContentApiAccesses
 {
@@ -26,7 +27,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.ServiceAccessLayer
         private IContentApiClient contentApiSubstitute;
 
         [Test, Category("UnitTest")]
-        public async void GetMedias_SingleMedia()
+        public async Task GetMedias_SingleMedia()
         {
             var sut = CreateSystemUnderTest();
             string jsonReturn = "{" +
@@ -59,7 +60,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.ServiceAccessLayer
         }
 
         [Test, Category("UnitTest")]
-        public async void GetMedias_MultipleMedia()
+        public async Task GetMedias_MultipleMedia()
         {
             var sut = CreateSystemUnderTest();
             string jsonReturn = "{" +

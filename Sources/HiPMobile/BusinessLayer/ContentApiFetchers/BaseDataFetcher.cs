@@ -12,12 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers.Contracts;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers.Contracts;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers
 {
@@ -36,61 +37,61 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
 
         public async Task<bool> IsDatabaseUpToDate()
         {
-            bool anyExhibitChanged = await exhibitsBaseDataFetcher.AnyExhibitChanged();
-            bool anyRouteChanged = await routesBaseDataFetcher.AnyRouteChanged();
+            bool anyExhibitChanged = await exhibitsBaseDataFetcher.AnyExhibitChanged(DbManager.DataAccess);
+            bool anyRouteChanged = await routesBaseDataFetcher.AnyRouteChanged(DbManager.DataAccess);
 
             return !(anyExhibitChanged || anyRouteChanged);
         }
 
         public async Task FetchBaseDataIntoDatabase(CancellationToken token, IProgressListener listener)
         {
-            var routes = RouteManager.GetRoutes().ToDictionary(x => x.IdForRestApi, x => x.Timestamp);
-            var exhibits = ExhibitManager.GetExhibits().ToDictionary(x => x.IdForRestApi, x => x.Timestamp);
-
-            double totalSteps = await exhibitsBaseDataFetcher.FetchNeededDataForExhibits(exhibits);
-            totalSteps += await routesBaseDataFetcher.FetchNeededDataForRoutes(routes);
-
-            if (token.IsCancellationRequested)
+            using (var transaction = DbManager.StartTransaction())
             {
-                return;
-            }
+                var routes = transaction.DataAccess.Routes().GetRoutes().ToDictionary(x => x.IdForRestApi, x => x.Timestamp);
+                var exhibits = transaction.DataAccess.Exhibits().GetExhibits().ToDictionary(x => x.IdForRestApi, x => x.Timestamp);
 
-            listener.SetMaxProgress(totalSteps);
+                double totalSteps = await exhibitsBaseDataFetcher.FetchNeededDataForExhibits(exhibits);
+                totalSteps += await routesBaseDataFetcher.FetchNeededDataForRoutes(routes);
 
-            await exhibitsBaseDataFetcher.FetchMediaData(token, listener);
-            if (token.IsCancellationRequested)
-            {
-                return;
-            }
-            await routesBaseDataFetcher.FetchMediaData(token, listener);
-            if (token.IsCancellationRequested)
-            {
-                return;
+                if (token.IsCancellationRequested)
+                {
+                    transaction.Rollback();
+                    return;
+                }
+
+                listener.SetMaxProgress(totalSteps);
+
+                await exhibitsBaseDataFetcher.FetchMediaData(token, listener);
+                if (token.IsCancellationRequested)
+                {
+                    transaction.Rollback();
+                    return;
+                }
+                await routesBaseDataFetcher.FetchMediaData(token, listener);
+                if (token.IsCancellationRequested)
+                {
+                    transaction.Rollback();
+                    return;
+                }
+
+                await exhibitsBaseDataFetcher.ProcessExhibits(listener, transaction.DataAccess);
+                if (token.IsCancellationRequested)
+                {
+                    transaction.Rollback();
+                    return;
+                }
+                await routesBaseDataFetcher.ProcessRoutes(listener, transaction.DataAccess);
+                if (token.IsCancellationRequested)
+                {
+                    transaction.Rollback();
+                    return;
+                }
             }
 
             using (var transaction = DbManager.StartTransaction())
             {
-                await exhibitsBaseDataFetcher.ProcessExhibits(listener);
-                if (token.IsCancellationRequested)
-                {
-                    transaction.Rollback();
-                    return;
-                }
-                await routesBaseDataFetcher.ProcessRoutes(listener);
-                if (token.IsCancellationRequested)
-                {
-                    transaction.Rollback();
-                    return;
-                }
-                if (token.IsCancellationRequested)
-                {
-                    transaction.Rollback();
-                }
-            }
-            await dataToRemoveFetcher.FetchDataToDelete(token);
-            using (DbManager.StartTransaction())
-            {
-                await dataToRemoveFetcher.CleanupRemovedData();
+                await dataToRemoveFetcher.FetchDataToDelete(token);
+                await dataToRemoveFetcher.CleanupRemovedData(transaction.DataAccess);
             }
         }
     }

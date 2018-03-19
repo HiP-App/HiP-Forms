@@ -15,61 +15,35 @@
 //  */
 
 using System.Collections.Generic;
-using JetBrains.Annotations;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
-using Realms;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
 {
     /// <summary>
-    ///     The interface describing the access to the data layer.
+    /// Data access interface used with the IoC container.
+    /// Provides read-only access to the data layer and some additional DB utility methods.
     /// </summary>
-    public interface IDataAccess
+    public interface IDataAccess : IReadOnlyDataAccess
     {
         /// <summary>
-        ///     Gets an item with the given key from the database.
+        /// Starts a transaction in which items can be added, updated and deleted in a whole graph of items.
+        /// The method enables change tracking for the specified root items and all directly or
+        /// indirectly referenced items. All changes within the transaction are recorded and saved when the
+        /// transaction is committed.
+        /// Note: Changes are only detected within the scope of the transaction, i.e. if some item in the graph
+        /// already has unsaved changes at the time of calling <see cref="StartTransaction(IEnumerable{object})"/>, 
+        /// these changes won't be detected and won't be saved.
         /// </summary>
-        /// <typeparam name="T">The type of the item being retrived. It has to be a subtype of BusinessEntityBase.</typeparam>
-        /// <param name="id">The key of the item.</param>
-        /// <returns>The item if it exists, null otherwise.</returns>
-        T GetItem<T>(string id) where T : RealmObject, IIdentifiable;
-
-        /// <summary>
-        ///     Gets an enumeration of items from the database.
-        /// </summary>
-        /// <typeparam name="T">The type of the items being retrived. It has to be a subtype of BusinessEntityBase.</typeparam>
-        /// <returns>The enumerable of items.</returns>
-        IEnumerable<T> GetItems<T>() where T : RealmObject, IIdentifiable;
-
-        /// <summary>
-        ///     Deletes an item from the database. Id the item doesn't exists, nothing is changed.
-        /// </summary>
-        /// <param name="id">The item to be deleted.</param>
-        /// <returns>True if deletion was successfull, False otherwise.</returns>
-        bool DeleteItem<T>(string id) where T : RealmObject, IIdentifiable;
-
-        /// <summary>
-        /// Starts a transaction.
-        /// </summary>
+        /// <param name="itemsToTrack">
+        /// Existing entities that should be attached to the transaction scope.
+        /// Example: Assume you have already retrieved an <see cref="Image"/> entity from the database. Now you start
+        /// a transaction in which you create a new <see cref="Exhibit"/> entity and assign the image to it. In this case
+        /// you MUST pass the image as one of the <paramref name="itemsToTrack"/>. Otherwise the transaction scope doesn't
+        /// know about the image and assumes that it has been created within the transaction and needs to be inserted into
+        /// the database which, of course, would be wrong.
+        /// </param>
         /// <returns>The transaction object.</returns>
-        BaseTransaction StartTransaction();
-
-        /// <summary>
-        /// Creates an object of type T that is synced to the database.
-        /// </summary>
-        /// <typeparam name="T">The type of the object being created. T needs to be subtype of RealmObject and implement the IIdentifiable interface.</typeparam>
-        /// <returns>The instance.</returns>
-        T CreateObject<T>() where T : RealmObject, IIdentifiable, new();
+        BaseTransaction StartTransaction(IEnumerable<object> itemsToTrack = null);
         
-        /// <summary>
-        /// Creates an object of type T that is synced to the database.
-        /// </summary>
-        /// <param name="id">The ID to assign to the object.</param>
-        /// <param name="updateCurrent">If true, first removes any object of the same type with the id.</param>
-        /// <typeparam name="T">The type of the object being created. T needs to be subtype of RealmObject and implement the IIdentifiable interface.</typeparam>
-        /// <returns>The instance.</returns>
-        T CreateObject<T>([NotNull] string id, bool updateCurrent = false) where T : RealmObject, IIdentifiable, new();
-
         /// <summary>
         /// Gets the version number for the currently saved data.
         /// </summary>
@@ -86,10 +60,5 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
         /// </summary>
         /// <param name="version">The version of the new database.</param>
         void CreateDatabase(int version);
-
-        /// <summary>
-        /// Return database path
-        /// </summary> 
-        string DatabasePath { get; }
     }
 }

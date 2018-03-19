@@ -36,9 +36,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 
             try
             {
-                var newlyUnlocked = await IoCManager.Resolve<IAchievementFetcher>().UpdateAchievements();
-                AchievementNotification.QueueAchievementNotifications(newlyUnlocked);
-                foreach (var achievement in AchievementManager.GetAchievements())
+                using (var transaction = DbManager.StartTransaction())
+                {
+                    var newlyUnlocked = await IoCManager.Resolve<IAchievementFetcher>().UpdateAchievements(transaction.DataAccess);
+                    AchievementNotification.QueueAchievementNotifications(newlyUnlocked);
+                }
+
+                foreach (var achievement in DbManager.DataAccess.Achievements().GetAchievements())
                 {
                     Achievements.Add(AchievementViewModel.CreateFrom(achievement));
                 }
@@ -49,8 +53,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             {
                 Debug.WriteLine(e);
                 await IoCManager.Resolve<INavigationService>()
-                                .DisplayAlert(Strings.Alert_No_Internet_Title, 
-                                              Strings.Alert_No_Internet_Description, 
+                                .DisplayAlert(Strings.Alert_No_Internet_Title,
+                                              Strings.Alert_No_Internet_Description,
                                               Strings.Alert_Confirm);
             }
         }
