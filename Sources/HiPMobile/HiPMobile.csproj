@@ -132,6 +132,7 @@
     <Compile Include="ServiceAccessLayer\AuthenticationApiAccess\MockAuthApiAccess.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiAccesses\AchievementsApiAccess.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiAccesses\Contracts\IAchievementsApiAccess.cs" />
+    <Compile Include="ServiceAccessLayer\ContentApiAccesses\Contracts\IQuizApiAccess.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiAccesses\Contracts\IUserRatingApiAccess.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiAccesses\MockAchievementsApiAccess.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiAccesses\MockExhibitsApiAccess.cs" />
@@ -141,6 +142,7 @@
     <Compile Include="ServiceAccessLayer\ContentApiAccesses\MockRoutesApiAccess.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiAccesses\MockTagsApiAccess.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiAccesses\MockUserRatingApiAccess.cs" />
+    <Compile Include="ServiceAccessLayer\ContentApiAccesses\QuizApiAccess.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiAccesses\UserRatingApiAccess.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiClient.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiAccesses\Contracts\ITagsApiAccess.cs" />
@@ -162,6 +164,7 @@
     <Compile Include="ServiceAccessLayer\ContentApiDtos\PageImageDto.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiDtos\PageTypeDto.cs" />
     <Compile Include="ServiceAccessLayer\AuthenticationApiAccess\IAuthApiAccess.cs" />
+    <Compile Include="ServiceAccessLayer\ContentApiDtos\QuestionDto.cs" />
     <Compile Include="ServiceAccessLayer\ContentApiDtos\UserRatingDto.cs" />
     <Compile Include="ServiceAccessLayer\Exceptions\InvalidUserNamePassword.cs" />
     <Compile Include="ServiceAccessLayer\FeatureToggleApiAccess\FeatureToggleApiAccess.cs" />
