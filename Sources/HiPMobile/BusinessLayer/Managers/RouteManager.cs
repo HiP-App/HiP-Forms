@@ -50,7 +50,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
                         nameof(Route.TagsRefs) + '.' + nameof(JoinRouteTag.Tag) + '.' + nameof(RouteTag.Image),
                         nameof(Route.Image),
                         nameof(Route.Audio),
-                        nameof(Route.Waypoints));
+                        nameof(Route.Waypoints) + '.' + nameof(Waypoint.Exhibit));
                 }
                 return null;
             }
@@ -65,7 +65,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
                     nameof(Route.TagsRefs) + '.' + nameof(JoinRouteTag.Tag) + '.' + nameof(RouteTag.Image),
                     nameof(Route.Image),
                     nameof(Route.Audio),
-                    nameof(Route.Waypoints));
+                    nameof(Route.Waypoints) + '.' + nameof(Waypoint.Exhibit));
             }
         }
 
