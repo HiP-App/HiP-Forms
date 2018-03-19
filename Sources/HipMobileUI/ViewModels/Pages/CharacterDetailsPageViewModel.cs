@@ -22,128 +22,126 @@ using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 {
-	public class CharacterDetailsPageViewModel : NavigationViewModel
-	{
-		private readonly NavigationViewModel parentViewModel;
+    public class CharacterDetailsPageViewModel : NavigationViewModel
+    {
+        private readonly NavigationViewModel parentViewModel;
 
-		public CharacterDetailsPageViewModel(NavigationViewModel parentViewModel, bool adventurerModeSelected)
-		{
-			this.parentViewModel = parentViewModel;
-			AdventurerModeSelected = adventurerModeSelected;
+        public CharacterDetailsPageViewModel(NavigationViewModel parentViewModel, bool adventurerModeSelected)
+        {
+            this.parentViewModel = parentViewModel;
+            AdventurerModeSelected = adventurerModeSelected;
 
-			UpdateView();
+            UpdateView();
 
-			SelectModeCommand = new Command(OnSelectModeTapped);
-			ChangeModeCommand = new Command(OnChangeModeTapped);
-		}
+            SelectModeCommand = new Command(OnSelectModeTapped);
+            ChangeModeCommand = new Command(OnChangeModeTapped);
+        }
 
-		public ICommand SelectModeCommand { get; }
-		public ICommand ChangeModeCommand { get; }
+        public ICommand SelectModeCommand { get; }
+        public ICommand ChangeModeCommand { get; }
 
-		private bool adventurerModeSelected;
-		public bool AdventurerModeSelected
-		{
-			get => adventurerModeSelected;
-			set => SetProperty(ref adventurerModeSelected, value);
-			}
+        private bool adventurerModeSelected;
+        public bool AdventurerModeSelected
+        {
+            get => adventurerModeSelected;
+            set => SetProperty(ref adventurerModeSelected, value);
+        }
+        
+        private void OnSelectModeTapped()
+        {
+            Settings.AdventurerMode = AdventurerModeSelected;
 
+            AdjustThemeAndContinue();
+        }
 
-		private void OnSelectModeTapped()
-		{
-			Settings.AdventurerMode = AdventurerModeSelected;
+        private void OnChangeModeTapped()
+        {
+            AdventurerModeSelected = !AdventurerModeSelected;
+            UpdateView();
+        }
 
-			AdjustThemeAndContinue();
-		}
+        private void UpdateView()
+        {
+            PageTitle = AdventurerModeSelected ? "Adventurer" : "Professor";
+            Image = AdventurerModeSelected ? ImageSource.FromFile("ic_adventurer.png") : ImageSource.FromFile("ic_professor.png");
+            MainScreenColor = AdventurerModeSelected ? "#FFE57F" : "#7FACFF";
+            SelectModeButton = AdventurerModeSelected ? "#FFE57F" : "#7FACFF";
+            ChangeModeButton = AdventurerModeSelected ? "#7FACFF" : "#FFE57F";
+            PageDetails = AdventurerModeSelected ? Strings.CharacterDetailsPage_Adventurer_Text : Strings.CharacterDetailsPage_Professor_Text;
 
-		private void OnChangeModeTapped()
-		{
-			AdventurerModeSelected = !AdventurerModeSelected;
-			UpdateView();
-		}
+        }
 
-		private void UpdateView()
-		{
-			PageTitle = AdventurerModeSelected ? "Adventurer" : "Professor";
-			Image = AdventurerModeSelected ? ImageSource.FromFile("ic_adventurer.png") : ImageSource.FromFile("ic_professor.png");
-			MainScreenColor = AdventurerModeSelected ? "#FFE57F" : "#7FACFF";
-			SelectModeButton = AdventurerModeSelected ? "#FFE57F" : "#7FACFF";
-			ChangeModeButton = AdventurerModeSelected ? "#7FACFF" : "#FFE57F";
-			PageDetails = AdventurerModeSelected ? Strings.CharacterDetailsPage_Adventurer_Text : Strings.CharacterDetailsPage_Professor_Text;
+        private void AdjustThemeAndContinue()
+        {
+            SwitchToNextPage();
 
-		}
+            // Make sure all related components are already initialized before adjusting theme
+            if (Settings.InitialThemeSelected)
+                IoCManager.Resolve<IThemeManager>().AdjustTopBarTheme();
+        }
 
-		private void AdjustThemeAndContinue()
-		{
-			SwitchToNextPage();
+        /// <summary>
+        /// Switches to the next page after a character has been selected.
+        /// If the parent view is the Settings- or ProfileScreenView, the next page is the previous page.
+        /// </summary>
+        private void SwitchToNextPage()
+        {
+            if (parentViewModel.GetType() == typeof(UserOnboardingPageViewModel))
+            {
+                Navigation.StartNewNavigationStack(new LoadingPageViewModel());
+            }
+            else if (parentViewModel.GetType() == typeof(ProfileScreenViewModel))
+            {
+                var mainPageViewModel = new MainPageViewModel();
+                Navigation.StartNewNavigationStack(mainPageViewModel);
+                mainPageViewModel.SwitchToProfileView();
+            }
+            else if (parentViewModel.GetType() == typeof(SettingsScreenViewModel))
+            {
+                var mainPageViewModel = new MainPageViewModel();
+                Navigation.StartNewNavigationStack(mainPageViewModel);
+                mainPageViewModel.SwitchToSettingsScreenView();
+            }
+        }
 
-			// Make sure all related components are already initialized before adjusting theme
-			if (Settings.InitialThemeSelected)
-				IoCManager.Resolve<IThemeManager>().AdjustTopBarTheme();
-		}
+        private ImageSource image;
+        public ImageSource Image
+        {
+            get => image;
+            set => SetProperty(ref image, value);
 
-		/// <summary>
-		/// Switches to the next page after a character has been selected.
-		/// If the parent view is the Settings- or ProfileScreenView, the next page is the previous page.
-		/// </summary>
-		private void SwitchToNextPage()
-		{
-			if (parentViewModel.GetType() == typeof(UserOnboardingPageViewModel))
-			{
-				Navigation.StartNewNavigationStack(new LoadingPageViewModel());
-			}
-			else if (parentViewModel.GetType() == typeof(ProfileScreenViewModel))
-			{
-				var mainPageViewModel = new MainPageViewModel();
-				Navigation.StartNewNavigationStack(mainPageViewModel);
-				mainPageViewModel.SwitchToProfileView();
-			}
-			else if (parentViewModel.GetType() == typeof(SettingsScreenViewModel))
-			{
-				var mainPageViewModel = new MainPageViewModel();
-				Navigation.StartNewNavigationStack(mainPageViewModel);
-				mainPageViewModel.SwitchToSettingsScreenView();
-			}
-		}
+        }
+        private string mainScreenColor;
+        public string MainScreenColor
+        {
+            get => mainScreenColor;
+            set => SetProperty(ref mainScreenColor, value);
 
+        }
+        private string selectModeButton;
+        public string SelectModeButton
+        {
+            get => selectModeButton;
+            set => SetProperty(ref selectModeButton, value);
+        }
+        private string changeModeButton;
+        public string ChangeModeButton
+        {
+            get => changeModeButton;
+            set => SetProperty(ref changeModeButton, value);
+        }
+        private string pageTitle;
+        public string PageTitle
+        {
+            get => pageTitle;
+            set => SetProperty(ref pageTitle, value);
 
-		private ImageSource image;
-		public ImageSource Image
-		{
-			get => image;
-			set => SetProperty(ref image, value);
-
-			}
-		private string mainScreenColor;
-		public string MainScreenColor
-		{
-			get => mainScreenColor;
-			set => SetProperty(ref mainScreenColor, value);
-
-			}
-		private string selectModeButton;
-		public string SelectModeButton
-		{
-			get => selectModeButton;
-			set => SetProperty(ref selectModeButton, value);
-			}
-		private string changeModeButton;
-		public string ChangeModeButton
-		{
-			get => changeModeButton;
-			set => SetProperty(ref changeModeButton, value);
-			}
-		private string pageTitle;
-		public string PageTitle
-		{
-			get => pageTitle;
-			set => SetProperty(ref pageTitle, value);
-
-			}
-		private string pageDetails;
-		public string PageDetails
-		{
-			get => pageDetails;
-			set => SetProperty(ref pageDetails, value);
-			}
-		}
-	}
+        }
+        private string pageDetails;
+        public string PageDetails
+        {
+            get => pageDetails;
+            set => SetProperty(ref pageDetails, value);
+        }
+    }
+}

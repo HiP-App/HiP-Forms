@@ -30,9 +30,20 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.AudioPlayer;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Contracts;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views.ExhibitDetails;
 using Xamarin.Forms;
 using Page = PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.Page;
 using Settings = PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers.Settings;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
+using Acr.UserDialogs;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 {
@@ -230,6 +241,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                 }
                 // update UI
                 currentViewIndex--;
+                PreviousViewAvailable = currentViewIndex > 0;
+                NextViewAvailable = true;
                 await SetCurrentView();
             }
             // Go back to appetizer page
@@ -282,14 +295,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                     break;
             }
 
-            if (currentPage.AdditionalInformationPages != null && currentPage.AdditionalInformationPages.Any())
-            {
-                HasAdditionalInformation = true;
-            }
-            else
-            {
-                HasAdditionalInformation = false;
-            }
+            HasAdditionalInformation = currentPage.AdditionalInformationPages?.Any() == true;
 
             //Cancel disabling navigation buttons caused by page selected before
             tokenSource?.Cancel();
@@ -378,8 +384,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         /// </summary>
         public Exhibit Exhibit
         {
-            get { return exhibit; }
-            set { SetProperty(ref exhibit, value); }
+            get => exhibit;
+            set => SetProperty(ref exhibit, value);
         }
 
         /// <summary>
@@ -387,8 +393,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         /// </summary>
         public ExhibitSubviewViewModel SelectedView
         {
-            get { return selectedView; }
-            set { SetProperty(ref selectedView, value); }
+            get => selectedView;
+            set => SetProperty(ref selectedView, value);
         }
 
         /// <summary>
@@ -436,8 +442,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         /// </summary>
         public bool AudioToolbarVisible
         {
-            get { return audioToolbarVisible; }
-            set { SetProperty(ref audioToolbarVisible, value); }
+            get => audioToolbarVisible;
+            set => SetProperty(ref audioToolbarVisible, value);
         }
 
         /// <summary>
@@ -464,11 +470,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         }
 
         /// <summary>
-        /// Indicator if additional information button is visible
-        /// </summary>
-        public bool AdditionalInformationButtonVisible => buttonsVisible && HasAdditionalInformation;
-
-        /// <summary>
         /// Navigates to the additional Information
         /// </summary>
         public ICommand ShowAdditionalInformationCommand { get; }
@@ -478,8 +479,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         /// </summary>
         public bool WillDisappear
         {
-            get { return willDisappear; }
-            set { SetProperty(ref willDisappear, value); }
+            get => willDisappear;
+            set => SetProperty(ref willDisappear, value);
         }
 
         #endregion

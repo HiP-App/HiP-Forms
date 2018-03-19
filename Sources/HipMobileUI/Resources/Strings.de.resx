@@ -573,6 +573,9 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   </data>
   <data name="LoginScreenView_Login" xml:space="preserve">
     <value>Einloggen</value>
+  </data>  
+  <data name="LoginScreenView_Debug" xml:space="preserve">
+    <value>Einloggen mit Debug-Login</value>
   </data>
   <data name="LoginScreenView_Password" xml:space="preserve">
     <value>Passwort</value>

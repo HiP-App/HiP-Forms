@@ -466,6 +466,9 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   <data name="ExhibitDetailsPage_AdditionalInformation" xml:space="preserve">
     <value>Additional information</value>
   </data>
+  <data name="RouteNearby" xml:space="preserve">
+    <value>Nearby route</value>
+  </data>
   <data name="ExhibitNearby_ExhibitNearby" xml:space="preserve">
     <value>Sight nearby</value>
   </data>
@@ -573,6 +576,9 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   </data>
   <data name="LoginScreenView_Login" xml:space="preserve">
     <value>Log in</value>
+  </data>
+  <data name="LoginScreenView_Login_Debug" xml:space="preserve">
+    <value>Log in with debug login</value>
   </data>
   <data name="LoginScreenView_Password" xml:space="preserve">
     <value>Password</value>

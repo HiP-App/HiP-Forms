@@ -136,7 +136,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
         private IBaseDataFetcher baseDataFetcher;
 
-        public async void Load()
+        private async void Load()
         {
             try
             {

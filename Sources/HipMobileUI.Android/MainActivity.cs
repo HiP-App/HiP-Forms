@@ -34,6 +34,7 @@ using Acr.UserDialogs;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.NotificationPlayer;
+using TwinTechsForms.NControl.Android;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
 {
@@ -60,6 +61,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
             ToolbarResource = Resource.Layout.Toolbar;
 
             SetTheme(Resource.Style.MainTheme);
+            Window.SetStatusBarColor(Android.Graphics.Color.Black);
             base.OnCreate(bundle);
 
             // Init Navigation
@@ -71,7 +73,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
             IoCManager.RegisterInstance(typeof(IFabSizeCalculator), new AndroidFabSizeCalculator());
             IoCManager.RegisterInstance(typeof(IAudioPlayer), new DroidAudioPlayer());
             IoCManager.RegisterInstance(typeof(INotificationPlayer), new DroidNotificationPlayer());
-            IoCManager.RegisterInstance(typeof(IStatusBarController), new DroidStatusBarController());
             IoCManager.RegisterInstance(typeof(ILocationManager), new LocationManager());
             IoCManager.RegisterInstance(typeof(IKeyProvider), new AndroidKeyProvider());
             IoCManager.RegisterInstance(typeof(IBarsColorsChanger), new DroidBarsColorsChanger(this));
@@ -86,6 +87,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
             // init forms and third party libraries
             CachedImageRenderer.Init(enableFastRenderer: true);
             Forms.Init(this, bundle);
+            SvgImageViewRenderer.Init();
 
             UserDialogs.Init(() => (Activity)Forms.Context);
 

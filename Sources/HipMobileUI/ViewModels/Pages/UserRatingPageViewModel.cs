@@ -26,6 +26,13 @@ using System.Diagnostics;
 using System.IO;
 using System.Windows.Input;
 using Xamarin.Forms;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
+using System.IO;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelConverters;
+using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 {
