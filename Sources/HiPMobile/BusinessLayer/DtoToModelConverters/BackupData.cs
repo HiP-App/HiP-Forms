@@ -33,7 +33,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelCo
         {
             // We do NOT use DbManager.StartTransaction() here because that would attach BackupImage & BackupImageTag
             // to the transaction and these properties are still null at this point.
-            using (var transaction = IoCManager.Resolve<IDataAccess>().StartTransaction(Enumerable.Empty<object>()))
+            await IoCManager.Resolve<IDataAccess>().InTransaction(Enumerable.Empty<object>(), async transaction =>
             {
                 var dataAccess = transaction.DataAccess;
                 var dataLoader = IoCManager.Resolve<IDataLoader>();
@@ -70,7 +70,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelCo
                 }
 
                 mockAudioData = dataLoader.LoadByteData("mockaudio.mp3");
-            }
+            });
         }
 
         private static byte[] backupImageData;

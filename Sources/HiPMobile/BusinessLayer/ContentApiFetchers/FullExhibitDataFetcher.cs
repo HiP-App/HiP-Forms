@@ -55,16 +55,17 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             {
                 return;
             }
+
             listener.SetMaxProgress(totalSteps);
 
-            using (var transaction = DbManager.StartTransaction())
+            await DbManager.InTransaction(async transaction =>
             {
                 await ProcessPages(exhibitId, token, listener, transaction.DataAccess);
                 if (token.IsCancellationRequested)
                 {
                     transaction.Rollback();
                 }
-            }
+            });
         }
 
         public async Task FetchFullExhibitDataIntoDatabaseWithFetchedPagesAndMedia(
@@ -74,14 +75,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             requiredMedia = exhibitPagesAndMediaContainer.RequiredMedia;
             pageItems = exhibitPagesAndMediaContainer.PageDtos;
 
-            using (var transaction = DbManager.StartTransaction())
+            await DbManager.InTransaction(async transaction =>
             {
                 await ProcessPages(exhibitId, token, listener, transaction.DataAccess);
                 if (token.IsCancellationRequested)
                 {
                     transaction.Rollback();
                 }
-            }
+            });
         }
 
         public async Task<ExhibitPagesAndMediaContainer> FetchPagesAndMediaForExhibitFromRouteFetcher(int idForRestApi)
@@ -105,6 +106,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                         AddMediaId(image.Image);
                     }
                 }
+
                 AddMediaId(page.Audio);
             }
 
@@ -170,6 +172,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                     }
                 }
             }
+
             foreach (var pageToBeRemoved in pagesToBeRemoved)
             {
                 exhibit.Pages.Remove(pageToBeRemoved);
@@ -215,6 +218,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                                 Image = BackupData.BackupImage
                             });
                         }
+
                         break;
                 }
 

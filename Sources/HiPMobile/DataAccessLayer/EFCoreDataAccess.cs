@@ -123,14 +123,28 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
             }
         }
 
-        public BaseTransaction StartTransaction(IEnumerable<object> itemsToTrack)
+        public T InTransaction<T>(IEnumerable<object> itemsToTrack, Func<BaseTransaction, T> func)
         {
             if (sharedDbContext != null)
-                throw new InvalidOperationException($"{nameof(StartTransaction)} must not be called within the scope of a transaction");
+                throw new InvalidOperationException($"{nameof(InTransaction)} must not be called within the scope of a transaction");
 
             var db = new AppDatabaseContext(QueryTrackingBehavior.TrackAll);
             db.AttachRange(itemsToTrack?.Distinct() ?? Enumerable.Empty<object>());
-            return new EFCoreTransaction(db);
+            var transaction = new EFCoreTransaction(db);
+
+            T value;
+            try
+            {
+                value = func.Invoke(transaction);
+                transaction.Commit();
+            }
+            catch (Exception)
+            {
+                transaction.Rollback();
+                throw;
+            }
+
+            return value;
         }
 
         public int GetVersion() => 0;
@@ -184,7 +198,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
     /// </summary>
     static class GeoLocationConverter
     {
-        public static string ToString(GeoLocation p) => 
+        public static string ToString(GeoLocation p) =>
             $"{p.Latitude.ToString(CultureInfo.InvariantCulture)},{p.Longitude.ToString(CultureInfo.InvariantCulture)}";
 
         public static GeoLocation FromString(string s)

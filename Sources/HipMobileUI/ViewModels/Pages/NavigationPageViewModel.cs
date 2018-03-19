@@ -120,10 +120,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             var moved = DetailsRoute.MoveToPassiveSet(waypoint);
             if (moved)
             {
-                using (DbManager.StartTransaction(exhibit))
-                {
-                    exhibit.Unlocked = true;
-                }
+                DbManager.InTransaction(transaction => { exhibit.Unlocked = true; });
                 OnPropertyChanged(nameof(DetailsRoute));
             }
         }
@@ -153,6 +150,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             {
                 DetailsRoute.ResetRoute();
             }
+
             nearbyExhibitManager.ExhibitVisitedEvent -= ExhibitVisited;
         }
     }

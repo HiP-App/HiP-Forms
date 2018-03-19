@@ -100,6 +100,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
                 {
                     return $"{Distance:F0} m";
                 }
+
                 return $"{Distance / 1000:0.##} km";
             }
         }
@@ -130,10 +131,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             if (!available)
                 return;
 
-            using (DbManager.StartTransaction())
-            {
-                Exhibit.DetailsDataLoaded = true;
-            }
+            DbManager.InTransaction(transaction => { Exhibit.DetailsDataLoaded = true; });
             IsDownloadButtonVisible = !Exhibit.DetailsDataLoaded;
         }
 
@@ -157,6 +155,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             {
                 return ExhibitName.Equals(otherItem.ExhibitName);
             }
+
             return Equals(obj);
         }
     }

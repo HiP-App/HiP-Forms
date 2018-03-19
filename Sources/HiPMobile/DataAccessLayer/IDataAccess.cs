@@ -14,7 +14,10 @@
 //  * limitations under the License.
 //  */
 
+using System;
 using System.Collections.Generic;
+using JetBrains.Annotations;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
 {
@@ -30,7 +33,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
         /// indirectly referenced items. All changes within the transaction are recorded and saved when the
         /// transaction is committed.
         /// Note: Changes are only detected within the scope of the transaction, i.e. if some item in the graph
-        /// already has unsaved changes at the time of calling <see cref="StartTransaction(IEnumerable{object})"/>, 
+        /// already has unsaved changes at the time of calling <see cref="InTransaction{T}"/>, 
         /// these changes won't be detected and won't be saved.
         /// </summary>
         /// <param name="itemsToTrack">
@@ -41,8 +44,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
         /// know about the image and assumes that it has been created within the transaction and needs to be inserted into
         /// the database which, of course, would be wrong.
         /// </param>
+        /// <param name="func">
+        /// The function that should be executed in the scope of the transaction.
+        /// </param>
         /// <returns>The transaction object.</returns>
-        BaseTransaction StartTransaction(IEnumerable<object> itemsToTrack = null);
+        T InTransaction<T>([CanBeNull] IEnumerable<object> itemsToTrack, Func<BaseTransaction, T> func);
         
         /// <summary>
         /// Gets the version number for the currently saved data.

@@ -18,7 +18,6 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
 
-
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 {
     public partial class Image
@@ -84,11 +83,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
                 {
                     return ImageWidth;
                 }
+
                 var w = imgDimension.GetDimensions(this)[0];
-                using (DbManager.StartTransaction())
-                {
-                    ImageWidth = w;
-                }
+                DbManager.InTransaction(transaction => { ImageWidth = w; });
                 return w;
             }
         }
@@ -103,11 +100,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
                 {
                     return ImageHeight;
                 }
+
                 var h = imgDimension.GetDimensions(this)[1];
-                using (DbManager.StartTransaction())
-                {
-                    ImageHeight = h;
-                }
+                DbManager.InTransaction(transaction => { ImageHeight = h; });
                 return h;
             }
         }

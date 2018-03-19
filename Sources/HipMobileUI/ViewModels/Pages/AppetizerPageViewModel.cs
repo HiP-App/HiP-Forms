@@ -53,7 +53,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         private const string ImgStarHalfFilled = "star_half_filled.png";
         private const string ImgStarFilled = "star_filled.png";
 
-        public AppetizerPageViewModel(string exhibitId) : this(DbManager.DataAccess.Exhibits().GetExhibit(exhibitId)) { }
+        public AppetizerPageViewModel(string exhibitId) : this(DbManager.DataAccess.Exhibits().GetExhibit(exhibitId))
+        {
+        }
 
         public AppetizerPageViewModel(Exhibit exhibit)
         {
@@ -66,7 +68,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             pages = exhibit.Pages;
 
             Headline = exhibit.Name;
-            Text = string.IsNullOrEmpty(exhibit.Description) ? exhibit.Name : exhibit.Description ;
+            Text = string.IsNullOrEmpty(exhibit.Description) ? exhibit.Name : exhibit.Description;
 
             if (pages.Count > 1 && Exhibit.DetailsDataLoaded)
                 NextViewAvailable = true;
@@ -178,7 +180,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             if (IoCManager.Resolve<INetworkAccessChecker>().GetNetworkAccessStatus() != NetworkAccessStatus.NoAccess)
             {
                 await Navigation.PushAsync(new UserRatingPageViewModel(Exhibit));
-            } else
+            }
+            else
             {
                 UserDialogs.Instance.Alert(new AlertConfig()
                 {
@@ -200,6 +203,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         }
 
         private bool isDownloadButtonVisible;
+
         public bool IsDownloadButtonVisible
         {
             get { return isDownloadButtonVisible; }
@@ -211,10 +215,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             if (!available)
                 return;
 
-            using (DbManager.StartTransaction())
-            {
-                Exhibit.DetailsDataLoaded = true;
-            }
+            DbManager.InTransaction(transaction => { Exhibit.DetailsDataLoaded = true; });
             IsDownloadButtonVisible = !Exhibit.DetailsDataLoaded;
 
             NextViewAvailable = pages.Count > 1;
@@ -258,6 +259,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             get { return text; }
             set { SetProperty(ref text, value); }
         }
+
         /// <summary>
         /// The command for switching to the next view, if available.
         /// </summary>
@@ -265,8 +267,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         {
             get { return nextViewCommand; }
             set { SetProperty(ref nextViewCommand, value); }
-
         }
+
         /// <summary>
         /// Indicator if a next view is available.
         /// </summary>
@@ -346,5 +348,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             set { SetProperty(ref star5, value); }
         }
     }
+
     #endregion
 }

@@ -12,14 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System;
-
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
 {
-    public abstract class BaseTransaction : IDisposable
+    public abstract class BaseTransaction
     {
-        private bool isDisposed = false;
-
         /// <summary>
         /// Gets an instance of <see cref="ITransactionDataAccess"/> that tracks changes of queried entities.
         /// </summary>
@@ -35,20 +31,5 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
         /// </summary>
         public abstract void Rollback();
 
-        /// <summary>
-        /// Commits changes made when being disposed. Subclasses need to take care of disposing their own resources.
-        /// </summary>
-        public virtual void Dispose()
-        {
-            if (!isDisposed)
-                Commit();
-            isDisposed = true;
-        }
-
-        protected void ThrowIfDisposed()
-        {
-            if (isDisposed)
-                throw new ObjectDisposedException(GetType().Name);
-        }
     }
 }

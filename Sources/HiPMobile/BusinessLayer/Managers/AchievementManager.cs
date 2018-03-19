@@ -64,14 +64,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
 
         public static IEnumerable<IAchievement> DequeuePendingAchievementNotifications()
         {
-            using (var transaction = DbManager.StartTransaction())
+            return DbManager.InTransaction(transaction =>
             {
                 var dataAccess = transaction.DataAccess;
 
                 var notifications = dataAccess.GetItems<AchievementPendingNotification>().ToList();
                 notifications.ForEach(dataAccess.DeleteItem);
                 return notifications.Select(it => it.Achievement);
-            }
+            });
         }
 
         /// <summary>
@@ -79,7 +79,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
         /// </summary>
         public static async Task UpdateServerAndLocalState()
         {
-            using (var transaction = DbManager.StartTransaction())
+            await DbManager.InTransaction(async transaction =>
             {
                 var dataAccess = transaction.DataAccess;
                 IEnumerable<AchievementBase> newlyUnlocked;
@@ -106,7 +106,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
                         });
                     }
                 }
-            }
+            });
         }
     }
 }

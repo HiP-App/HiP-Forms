@@ -45,7 +45,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
 
         public async Task FetchBaseDataIntoDatabase(CancellationToken token, IProgressListener listener)
         {
-            using (var transaction = DbManager.StartTransaction())
+            var cancelled = await DbManager.InTransaction(async transaction =>
             {
                 var routes = transaction.DataAccess.Routes().GetRoutes().ToDictionary(x => x.IdForRestApi, x => x.Timestamp);
                 var exhibits = transaction.DataAccess.Exhibits().GetExhibits().ToDictionary(x => x.IdForRestApi, x => x.Timestamp);
@@ -56,7 +56,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                 if (token.IsCancellationRequested)
                 {
                     transaction.Rollback();
-                    return;
+                    return true;
                 }
 
                 listener.SetMaxProgress(totalSteps);
@@ -65,33 +65,40 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                 if (token.IsCancellationRequested)
                 {
                     transaction.Rollback();
-                    return;
+                    return true;
                 }
+
                 await routesBaseDataFetcher.FetchMediaData(token, listener);
                 if (token.IsCancellationRequested)
                 {
                     transaction.Rollback();
-                    return;
+                    return true;
                 }
 
                 await exhibitsBaseDataFetcher.ProcessExhibits(listener, transaction.DataAccess);
                 if (token.IsCancellationRequested)
                 {
                     transaction.Rollback();
-                    return;
+                    return true;
                 }
+
                 await routesBaseDataFetcher.ProcessRoutes(listener, transaction.DataAccess);
                 if (token.IsCancellationRequested)
                 {
                     transaction.Rollback();
-                    return;
+                    return true;
                 }
-            }
 
-            using (var transaction = DbManager.StartTransaction())
+                return false;
+            });
+
+            if (!cancelled)
             {
-                await dataToRemoveFetcher.FetchDataToDelete(token);
-                await dataToRemoveFetcher.CleanupRemovedData(transaction.DataAccess);
+                await DbManager.InTransaction(async transaction =>
+                {
+                    await dataToRemoveFetcher.FetchDataToDelete(token);
+                    await dataToRemoveFetcher.CleanupRemovedData(transaction.DataAccess);
+                });
             }
         }
     }

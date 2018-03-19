@@ -37,13 +37,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 
             if (tapCounter == 10)
             {
-                using (DbManager.StartTransaction())
+                DbManager.InTransaction(transaction =>
                 {
                     foreach (var exhibit in DbManager.DataAccess.Exhibits().GetExhibits())
                     {
                         exhibit.Unlocked = true;
                     }
-                }
+                });
 
                 await Navigation.DisplayAlert(
                     Strings.LicenseScreenViewModel_UnlockExhibits_Title,

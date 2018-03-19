@@ -103,10 +103,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             if (!available)
                 return;
 
-            using (DbManager.StartTransaction())
-            {
-                Route.DetailsDataLoaded = true;
-            }
+            DbManager.InTransaction(transaction => { Route.DetailsDataLoaded = true; });
 
             IsDownloadPanelVisible = !Route.DetailsDataLoaded;
         }

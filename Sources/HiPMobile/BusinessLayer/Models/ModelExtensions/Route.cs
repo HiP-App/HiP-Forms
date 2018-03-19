@@ -34,16 +34,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
         {
             if (waypoint != null)
             {
-                using (DbManager.StartTransaction(waypoint))
+                return DbManager.InTransaction(transaction =>
                 {
-                    bool exists = ActiveSet.Contains(waypoint);
+                    var exists = ActiveSet.Contains(waypoint);
                     waypoint.Visited = true;
-                    if (exists)
-                    {
-                        return true;
-                    }
-                }
+                    return exists;
+                });
             }
+
             return false;
         }
 
@@ -52,13 +50,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
         /// </summary>
         public void ResetRoute()
         {
-            using (DbManager.StartTransaction(PassiveSet))
+            DbManager.InTransaction(PassiveSet, transaction =>
             {
                 foreach (var waypoint in PassiveSet)
                 {
                     waypoint.Visited = false;
                 }
-            }
+            });
         }
 
         /// <summary>

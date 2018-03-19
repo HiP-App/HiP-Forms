@@ -56,10 +56,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Location
                 var dist = MathUtil.CalculateDistance(e.Location, gpsLocation);
                 if (dist < AppSharedData.ExhibitRadius)
                 {
-                    using (DbManager.StartTransaction(e))
-                    {
-                        e.Unlocked = true;
-                    }
+                    DbManager.InTransaction(transaction => { e.Unlocked = true; });
 
                     if (considerTimeouts)
                     {
@@ -74,10 +71,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Location
                         }
 
                         // update the time the dialog was last shown
-                        using (DbManager.StartTransaction())
-                        {
-                            e.LastNearbyTime = now;
-                        }
+                        DbManager.InTransaction(transaction => { e.LastNearbyTime = now; });
                     }
 
                     // Display popup page or local notification
