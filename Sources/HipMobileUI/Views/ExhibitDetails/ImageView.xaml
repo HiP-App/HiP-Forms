@@ -23,7 +23,7 @@
     <ContentView.Content>
         <views1:NotificationExtensionView>
             <views1:NotificationExtensionView.ContentTemplate>
-                <views1:BottomSheetView BottomSheetVisible="{Binding BottomSheetVisible}">
+                <views1:BottomSheetView  x:Name="BottomSheetView" BottomSheetVisible="{Binding BottomSheetVisible}" >
                     <views1:BottomSheetView.MainContent>
                         <controls1:FadeInImage Source="{Binding Image}" DownsampleToViewSize="True">
                             <controls1:FadeInImage.GestureRecognizers>
@@ -33,11 +33,11 @@
                     </views1:BottomSheetView.MainContent>
                     <views1:BottomSheetView.BottomSheet>
                         <StackLayout BackgroundColor="White">
-                            <BoxView Color="#50000000" HeightRequest="1" />
-                            <StackLayout Margin="16,16" Spacing="15" BackgroundColor="White">
-                                <Label Text="{Binding Headline}" TextColor="#000000" FontSize="16" FontAttributes="Bold" />
+                            <BoxView Color="{StaticResource DarkGrayColor}" HeightRequest="1" />
+                            <StackLayout Margin="16,16" Spacing="15" >
+                                <Label Text="{Binding Headline}" TextColor="Black" FontSize="16" FontAttributes="Bold" Style="{DynamicResource Ssp-SemiBold}"/>
                                 <ScrollView>
-                                    <Label  BackgroundColor="White" Text="{Binding Description}" TextColor="#87000000" FontSize="14" />
+                                    <Label Text="{Binding Description}" TextColor="Black" FontSize="14" Style="{DynamicResource Ssp-Regular}"/>
                                 </ScrollView>
                             </StackLayout>
                         </StackLayout>

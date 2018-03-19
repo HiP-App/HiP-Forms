@@ -12,16 +12,57 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views.ExhibitDetails;
+using Xamarin.Forms;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views.ExhibitDetails
 {
     public partial class TimeSliderView : IViewFor<TimeSliderViewModel>
     {
+        private DeviceOrientation orientation;
+
         public TimeSliderView()
         {
+            orientation = DeviceOrientation.Undefined;
             InitializeComponent();
+        }
+
+        /// <summary>
+        /// Size changed, determine if we need to update the layout.
+        /// </summary>
+        /// <param name="width">The new width.</param>
+        /// <param name="height">The new height.</param>
+        protected override void OnSizeAllocated(double width, double height)
+        {
+            if (width > height && orientation != DeviceOrientation.Landscape)
+            {
+                orientation = DeviceOrientation.Landscape;
+                BottomSheetView.BottomSheetVisible = false;
+                ContentGrid.ColumnDefinitions.Clear();
+                ContentGrid.ColumnDefinitions.Add(new ColumnDefinition());
+                ContentGrid.RowDefinitions.Clear();
+                ContentGrid.RowDefinitions.Add(new RowDefinition());
+                ContentGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0, GridUnitType.Star) });
+                ContentGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(80, GridUnitType.Absolute) });
+                ImageDescription.IsVisible = false;
+            }
+            else if (width < height && orientation != DeviceOrientation.Portrait)
+            {
+                orientation = DeviceOrientation.Portrait;
+                BottomSheetView.BottomSheetVisible = true;
+                ContentGrid.ColumnDefinitions.Clear();
+                ContentGrid.ColumnDefinitions.Add(new ColumnDefinition());
+                ContentGrid.RowDefinitions.Clear();
+                ContentGrid.RowDefinitions.Add(new RowDefinition());
+                ContentGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(30, GridUnitType.Absolute) });
+                ContentGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(80, GridUnitType.Absolute) });
+                ContentGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.175, GridUnitType.Star) });
+                ImageDescription.IsVisible = true;
+            }
+
+            base.OnSizeAllocated(width, height);
         }
     }
 }

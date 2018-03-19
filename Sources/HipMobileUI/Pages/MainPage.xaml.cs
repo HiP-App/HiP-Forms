@@ -26,7 +26,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
 {
     public partial class MainPage : IViewFor<MainPageViewModel>
     {
-        private MainPageViewModel ViewModel => ((MainPageViewModel)BindingContext);
+        private MainPageViewModel ViewModel => (MainPageViewModel)BindingContext;
 
         /// <summary>
         /// Accessor to get the navigation page from other classes.
@@ -106,12 +106,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
 
         protected override bool OnBackButtonPressed()
         {
-            if (ViewModel.SelectedViewModel.GetType() == typeof(ForgotPasswordScreenViewModel))
-            {
-                ViewModel.SwitchToLoginView();
-                return true;
-            }
-            if (ViewModel.SelectedViewModel.GetType() == typeof(RegisterScreenViewModel))
+            if (ViewModel.SelectedViewModel.GetType() == typeof(ForgotPasswordScreenViewModel)
+                || ViewModel.SelectedViewModel.GetType() == typeof(RegisterScreenViewModel))
             {
                 ViewModel.SwitchToLoginView();
                 return true;

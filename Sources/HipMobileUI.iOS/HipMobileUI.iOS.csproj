@@ -98,10 +98,8 @@
     <Compile Include="Contracts\IosAudioPlayer.cs" />
     <Compile Include="Contracts\IosBarsColorsChanger.cs" />
     <Compile Include="Contracts\IosImageDimensions.cs" />
-    <Compile Include="Contracts\IosMediaFileManager.cs" />
     <Compile Include="Contracts\IosNetworkAccessChecker.cs" />
     <Compile Include="Contracts\IosNotificationPlayer.cs" />
-    <Compile Include="Contracts\IosStatusBarController.cs" />
     <Compile Include="Contracts\IosStorageSizeProvider.cs" />
     <Compile Include="CustomRenderers\FloatingActionButtonIosRenderer.cs" />
     <Compile Include="CustomRenderers\IosCustomFontLabelRenderer.cs" />
@@ -111,6 +109,7 @@
     <Compile Include="CustomRenderers\IosTouchEventSlider.cs" />
     <Compile Include="Effects\IosProgressBarColorEffect.cs" />
     <Compile Include="Effects\IosSwitchColorEffect.cs" />
+    <Compile Include="Helpers\Localize.cs" />
     <Compile Include="Helpers\TextViewInteractiveSourcesExtension.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
@@ -123,13 +122,49 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
-    <ITunesArtwork Include="iTunesArtwork%402x" />
     <ITunesArtwork Include="iTunesArtwork" />
-    <BundleResource Include="Resources\fonts\AlteSchwabacher.ttf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </BundleResource>
+    <ITunesArtwork Include="iTunesArtwork@2x" />
+    <BundleResource Include="Resources\ic_done.png" />
+    <BundleResource Include="Resources\ic_done_2x.png" />
+    <BundleResource Include="Resources\ic_done_3x.png" />
   </ItemGroup>
   <ItemGroup>
+    <BundleResource Include="Resources\fonts\SourceSansPro-Regular.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </BundleResource>
+    <BundleResource Include="Resources\fonts\SourceSansPro-SemiBold.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </BundleResource>
+    <BundleResource Include="Resources\fonts\SourceSansPro-SemiBoldItalic.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </BundleResource>
+    <BundleResource Include="Resources\fonts\SourceSansPro-Black.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </BundleResource>
+    <BundleResource Include="Resources\fonts\SourceSansPro-BlackItalic.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </BundleResource>
+    <BundleResource Include="Resources\fonts\SourceSansPro-Bold.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </BundleResource>
+    <BundleResource Include="Resources\fonts\SourceSansPro-BoldItalic.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </BundleResource>
+    <BundleResource Include="Resources\fonts\SourceSansPro-ExtraLight.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </BundleResource>
+    <BundleResource Include="Resources\fonts\SourceSansPro-ExtraLightItalic.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </BundleResource>
+    <BundleResource Include="Resources\fonts\SourceSansPro-Italic.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </BundleResource>
+    <BundleResource Include="Resources\fonts\SourceSansPro-Light.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </BundleResource>
+    <BundleResource Include="Resources\fonts\SourceSansPro-LightItalic.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </BundleResource>
     <BundleResource Include="Resources\Default-568h%402x.png" />
     <BundleResource Include="Resources\Default-Portrait.png" />
     <BundleResource Include="Resources\Default-Portrait%402x.png" />
@@ -155,6 +190,8 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MaterialControls" Version="1.2.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.0.1" />
+    <PackageReference Include="SkiaSharp.Views.Forms" Version="1.60.0" />
     <PackageReference Include="System.Reflection.Emit" Version="4.3.0">
       <ExcludeAssets>all</ExcludeAssets>
     </PackageReference>
@@ -170,9 +207,6 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\ac_students.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\hiphop_transparent.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\ic_account_circle.png" />
@@ -449,6 +483,27 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\unselected_circle.png" />
+    <BundleResource Include="Resources\hiphop_transparent.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <ImageAsset Include="Resources\MapAnnotations.xcassets\AppIcons.appiconset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\MapAnnotations.xcassets\CurrentLocation.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\MapAnnotations.xcassets\CurrentLocation.imageset\ic_my_location.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\MapAnnotations.xcassets\ExhibitLocation.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\MapAnnotations.xcassets\ExhibitLocation.imageset\map-marker.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\MapAnnotations.xcassets\LaunchImages.launchimage\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\HipMobileUI\HipMobileUI.csproj">
@@ -459,6 +514,9 @@
       <Project>{703afe03-8f94-4f5c-a5e8-7d9774d0ced1}</Project>
       <Name>HiPMobile</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\hiphop_transparent.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

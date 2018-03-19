@@ -17,6 +17,7 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelConver
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses.Contracts;
@@ -27,7 +28,6 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Unity.Attributes;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers
 {
@@ -35,17 +35,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
     {
         private readonly IMediasApiAccess mediasApiAccess;
         private readonly IFileApiAccess fileApiAccess;
+        private readonly MediaToImageConverter imageConverter;
+        private readonly MediaToAudioConverter audioConverter;
 
-        [Dependency]
-        public MediaToImageConverter ImageConverter { private get; set; }
-
-        [Dependency]
-        public MediaToAudioConverter AudioConverter { private get; set; }
-
-        public MediaDataFetcher(IMediasApiAccess mediasApiAccess, IFileApiAccess fileApiAccess)
+        public MediaDataFetcher(IMediasApiAccess mediasApiAccess, IFileApiAccess fileApiAccess, MediaToImageConverter imageConverter, MediaToAudioConverter audioConverter)
         {
             this.mediasApiAccess = mediasApiAccess;
             this.fileApiAccess = fileApiAccess;
+            this.imageConverter = imageConverter;
+            this.audioConverter = audioConverter;
         }
 
         private IList<MediaDto> fetchedMedias;
@@ -62,7 +60,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             }
         }
 
-        public async Task<FetchedMediaData> CombineMediasAndFiles()
+        public async Task<FetchedMediaData> CombineMediasAndFiles(ITransactionDataAccess dataAccess)
         {
             var fetchedData = new FetchedMediaData
             {
@@ -77,43 +75,27 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
 
             var fileManager = IoCManager.Resolve<IMediaFileManager>();
 
-            foreach (var media in fetchedMedias)
+            foreach (var mediaDto in fetchedMedias)
             {
-                switch (media.Type)
-                {
-                    case MediaTypeDto.Audio:
-                        var audio = AudioConverter.Convert(media);
-                        var audioFile = fetchedFiles?.SingleOrDefault(x => x.MediaId == media.Id);
+                var isAudio =
+                    mediaDto.Type == MediaTypeDto.Audio ? true :
+                    mediaDto.Type == MediaTypeDto.Image ? false :
+                    throw new ArgumentOutOfRangeException("Unsupported media type");
 
-                        if (audioFile != null)
-                        {
-                            var path = await fileManager.WriteMediaToDiskAsync(audioFile.Data, audio.IdForRestApi, audio.Timestamp);
-                            audio.DataPath = path;
-                        }
-                        else /* Download was skipped because file is already downloaded */
-                        {
-                            audio.DataPath = fileManager.PathForRestApiId(audio.IdForRestApi);
-                        }
-                        fetchedData.Audios.Add(audio);
-                        break;
-                    case MediaTypeDto.Image:
-                        var image = ImageConverter.Convert(media);
-                        var imageFile = fetchedFiles?.SingleOrDefault(x => x.MediaId == media.Id);
+                var dbMedia = isAudio
+                    ? audioConverter.ConvertReplacingExisting(mediaDto, mediaDto.Id.ToString(), dataAccess)
+                    : imageConverter.ConvertReplacingExisting(mediaDto, mediaDto.Id.ToString(), dataAccess) as Media;
 
-                        if (imageFile != null)
-                        {
-                            var path = await fileManager.WriteMediaToDiskAsync(imageFile.Data, image.IdForRestApi, image.Timestamp);
-                            image.DataPath = path;
-                        }
-                        else /* Download was skipped because file is already downloaded */
-                        {
-                            image.DataPath = fileManager.PathForRestApiId(image.IdForRestApi);
-                        }
-                        fetchedData.Images.Add(image);
-                        break;
-                    default:
-                        throw new ArgumentOutOfRangeException("Unsupported MediaTypeDto!");
-                }
+                var file = fetchedFiles?.SingleOrDefault(x => x.MediaId == mediaDto.Id);
+
+                dbMedia.DataPath = (file == null)
+                    ? fileManager.PathForRestApiId(mediaDto.Id) // file is already downloaded, assign correct path
+                    : await fileManager.WriteMediaToDiskAsync(file.Data, mediaDto.Id, dbMedia.Timestamp); // new file was downloaded, store it
+
+                if (isAudio)
+                    fetchedData.Audios.Add((Audio)dbMedia);
+                else
+                    fetchedData.Images.Add((Image)dbMedia);
             }
 
             return fetchedData;

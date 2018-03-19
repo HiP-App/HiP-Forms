@@ -9,83 +9,51 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
 {
     public partial class ExhibitRouteDownloadPage : IViewFor<ExhibitRouteDownloadPageViewModel>
     {
-        private double thisWidth, thisHeight;
-        private DeviceOrientation deviceOrientation;
+        private DeviceOrientation orientation;
 
         public ExhibitRouteDownloadPage()
         {
             InitializeComponent();
             DesignMode.Initialize(this);
-            deviceOrientation = DeviceOrientation.Undefined;
+            orientation = DeviceOrientation.Undefined;
         }
 
         protected override void OnSizeAllocated(double width, double height)
         {
             base.OnSizeAllocated(width, height);
-
-            if (!(Math.Abs(width - thisWidth) > 0.4) && !(Math.Abs(height - thisHeight) > 0.4))
-                return;
-
-            thisWidth = width;
-            thisHeight = height;
-
-            if (width <= height)
+            if (width > height && orientation != DeviceOrientation.Landscape)
             {
-                // Orientation changes to Portrait
-                if (deviceOrientation == DeviceOrientation.Portrait)
-                    return;
-                Grid.RowDefinitions.Clear();
-                Grid.ColumnDefinitions.Clear();
-
-                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.3, GridUnitType.Star) });
-                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.1, GridUnitType.Star) });
-                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.4, GridUnitType.Star) });
-                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.2, GridUnitType.Star) });
-
-                Grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
-
-                Grid.SetRow(ImageView, 0);
-                Grid.SetRow(DescriptionView, 1);
-                Grid.SetRow(ProgressView, 2);
-                Grid.SetRow(ButtonView, 3);
-                Grid.SetColumnSpan(ButtonView, 1);
-
-                Grid.SetColumn(ImageView, 0);
-                Grid.SetColumn(DescriptionView, 0);
-                Grid.SetColumn(ProgressView, 0);
-                Grid.SetColumn(ButtonView, 0);
-                Grid.SetRowSpan(ImageView, 1);
-
-                deviceOrientation = DeviceOrientation.Portrait;
+                OuterGrid.RowDefinitions.Clear();
+                OuterGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
+                OuterGrid.ColumnDefinitions.Clear();
+                OuterGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(0.5, GridUnitType.Star) });
+                OuterGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(0.5, GridUnitType.Star) });
+                OuterGrid.Children.Remove(Image);
+                OuterGrid.Children.Add(Image, 0, 0);
+                OuterGrid.Children.Remove(InnerGrid);
+                OuterGrid.Children.Add(InnerGrid, 1, 0);
+                InnerGrid.RowDefinitions.Clear();
+                InnerGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.8, GridUnitType.Star) });
+                InnerGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.2, GridUnitType.Star) });
+                Image.Margin = new Thickness(5, 5, 0, 5);
+                orientation = DeviceOrientation.Landscape;
             }
-            else if (width > height)
+            else if (width < height && orientation != DeviceOrientation.Portrait)
             {
-                // Orientation changes to Landscape
-                if (deviceOrientation == DeviceOrientation.Landscape)
-                    return;
-                Grid.RowDefinitions.Clear();
-                Grid.ColumnDefinitions.Clear();
-
-                Grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(0.5, GridUnitType.Star) });
-                Grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(0.5, GridUnitType.Star) });
-
-                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.2, GridUnitType.Star) });
-                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.6, GridUnitType.Star) });
-                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.2, GridUnitType.Star) });
-
-                Grid.SetColumn(ImageView, 0);
-                Grid.SetColumn(DescriptionView, 1);
-                Grid.SetColumn(ProgressView, 1);
-                Grid.SetColumn(ButtonView, 0);
-                Grid.SetColumnSpan(ButtonView, 2);
-
-                Grid.SetRow(ImageView, 0);
-                Grid.SetRowSpan(ImageView, 2);
-                Grid.SetRow(DescriptionView, 0);
-                Grid.SetRow(ProgressView, 1);
-                Grid.SetRow(ButtonView, 2);
-
-                deviceOrientation = DeviceOrientation.Landscape;
+                OuterGrid.ColumnDefinitions.Clear();
+                OuterGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+                OuterGrid.RowDefinitions.Clear();
+                OuterGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.6, GridUnitType.Star) });
+                OuterGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.4, GridUnitType.Star) });
+                OuterGrid.Children.Remove(Image);
+                OuterGrid.Children.Add(Image, 0, 0);
+                OuterGrid.Children.Remove(InnerGrid);
+                OuterGrid.Children.Add(InnerGrid, 0, 1);
+                InnerGrid.RowDefinitions.Clear();
+                InnerGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.7, GridUnitType.Star) });
+                InnerGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.3, GridUnitType.Star) });
+                Image.Margin = new Thickness(5, 5, 5, 0);
+                orientation = DeviceOrientation.Portrait;
             }
         }
     }

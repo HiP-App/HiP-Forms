@@ -14,15 +14,15 @@
 
 using System.Linq;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
-using Xamarin.Forms.Maps;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers
 {
     public static class AppSharedData
     {
-        public static readonly Position PaderbornMainStation = new Position(51.71352, 8.74021);
+        public static readonly GeoLocation PaderbornMainStation = new GeoLocation(51.71352, 8.74021);
 
-        public static readonly Position PaderbornCenter = new Position(51.7189205, 8.7545093);
+        public static readonly GeoLocation PaderbornCenter = new GeoLocation(51.7189205, 8.7545093);
 
         public static readonly int MinTimeBwUpdates = 10000; //(10 seconds)
         public static readonly int MinDistanceChangeForUpdates = 10; // 10 meters
@@ -34,9 +34,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers
 
         public static readonly string WillWakeUpMessage = "WillWakeUp";
 
-        public static int CurrentAchievementsScore() =>
-            AchievementManager.GetAchievements()
-                              .Where(achievement => achievement.IsUnlocked)
-                              .Sum(achievement => achievement.Points);
+        public static int CurrentAchievementsScore() => 
+            DbManager.DataAccess.Achievements().GetAchievements()
+                .Where(achievement => achievement.IsUnlocked)
+                .Sum(achievement => achievement.Points);
     }
 }

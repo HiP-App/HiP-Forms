@@ -1,10 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>PaderbornUniversity.SILab.Hip.Mobile.Shared</RootNamespace>
   </PropertyGroup>
-
   <ItemGroup>
     <None Remove="BusinessLayer\Routing\osmfile.routerdb" />
     <None Remove="BusinessLayer\Routing\Route_Network_Paderborn.pbf" />
@@ -12,11 +10,9 @@
     <None Remove="Content\noImage.png" />
     <None Remove="Content\noImageTag.jpg" />
   </ItemGroup>
-
   <ItemGroup>
     <Compile Include="..\..\HiP-Mobile-Internal\Constants.cs" Link="ServiceAccessLayer\AuthenticationApiAccess\Constants.cs" />
   </ItemGroup>
-
   <ItemGroup>
     <EmbeddedResource Include="BusinessLayer\Routing\osmfile.routerdb" />
     <EmbeddedResource Include="BusinessLayer\Routing\Route_Network_Paderborn.pbf" />
@@ -24,16 +20,17 @@
     <EmbeddedResource Include="Content\noImage.png" />
     <EmbeddedResource Include="Content\noImageTag.jpg" />
   </ItemGroup>
-
   <ItemGroup>
+    <PackageReference Include="NETStandard.Library" version="2.0.0" />
     <PackageReference Include="Itinero.IO.Osm" Version="1.4.0" />
     <PackageReference Include="JetBrains.Annotations" Version="11.1.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="2.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="11.0.1" />
     <PackageReference Include="NUnit" Version="3.9.0" />
-    <PackageReference Include="OsmSharp" Version="6.0.0" />
-    <PackageReference Include="Realm" Version="1.6.0" />
-    <PackageReference Include="Unity" Version="5.5.6" />
+    <PackageReference Include="OsmSharp" Version="600.0.0-hip" />
+    <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="400.4.0-hip" />
+    <PackageReference Include="Unity" Version="5.6.0" />
     <PackageReference Include="Xam.Plugins.Settings" Version="3.1.1" />
   </ItemGroup>
-  
 </Project>

@@ -1,6 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
+    <JavaMaximumHeapSize>1G</JavaMaximumHeapSize>
+  </PropertyGroup>
+  <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{C400B409-92B2-4726-B24A-3942722189FA}</ProjectGuid>
@@ -15,7 +18,7 @@
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
-    <AndroidUseLatestPlatformSdk>true</AndroidUseLatestPlatformSdk>
+    <AndroidUseLatestPlatformSdk>false</AndroidUseLatestPlatformSdk>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
   </PropertyGroup>
@@ -28,6 +31,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AndroidLinkMode>None</AndroidLinkMode>
+    <BundleAssemblies>true</BundleAssemblies>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -53,25 +57,22 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.0.1" />
+    <PackageReference Include="TwinTechsForms.NControl.SvgImageView" Version="0.0.3" />
     <PackageReference Include="Xamarin.Android.Support.Design" Version="26.1.0.1" />
     <PackageReference Include="Xamarin.Android.Support.v7.AppCompat" Version="26.1.0.1" />
     <PackageReference Include="Xamarin.Android.Support.v4" Version="26.1.0.1" />
     <PackageReference Include="Xamarin.Android.Support.v7.CardView" Version="26.1.0.1" />
     <PackageReference Include="Xamarin.Android.Support.v7.MediaRouter" Version="26.1.0.1" />
-    <PackageReference Include="Xamarin.GooglePlayServices.Maps">
-      <Version>42.1021.1</Version>
-    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contracts\AndroidAppCloser.cs" />
     <Compile Include="Contracts\AndroidFabSizeCalculator.cs" />
     <Compile Include="Contracts\AndroidImageDimensions.cs" />
-    <Compile Include="Contracts\AndroidMediaFileManager.cs" />
     <Compile Include="Contracts\DroidAudioPlayer.cs" />
     <Compile Include="Contracts\DroidBarsColorsChanger.cs" />
     <Compile Include="Contracts\DroidNetworkAccessChecker.cs" />
     <Compile Include="Contracts\DroidNotificationPlayer.cs" />
-    <Compile Include="Contracts\DroidStatusBarController.cs" />
     <Compile Include="Contracts\DroidStorageSizeProvider.cs" />
     <Compile Include="CustomRenderers\AndroidCustomFontLabelRenderer.cs" />
     <Compile Include="CustomRenderers\AndroidOrientationPageRenderer.cs" />
@@ -84,6 +85,7 @@
     <Compile Include="Effects\DroidSwitchColorEffect.cs" />
     <Compile Include="Helpers\HtmlTagHelper.cs" />
     <Compile Include="Helpers\IListReplacementProvider.cs" />
+    <Compile Include="Helpers\Localize.cs" />
     <Compile Include="Helpers\OrderedListItemReplacementProvider.cs" />
     <Compile Include="Helpers\SpannableTextBuilder.cs" />
     <Compile Include="Helpers\UnorderedListItemReplacementProvider.cs" />
@@ -99,12 +101,25 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <AndroidAsset Include="Assets\fonts\AlteSchwabacher.ttf" />
+    <AndroidAsset Include="Assets\SourceSansPro-Black.ttf" />
+    <AndroidAsset Include="Assets\SourceSansPro-BlackItalic.ttf" />
+    <AndroidAsset Include="Assets\SourceSansPro-Bold.ttf" />
+    <AndroidAsset Include="Assets\SourceSansPro-BoldItalic.ttf" />
+    <AndroidAsset Include="Assets\SourceSansPro-ExtraLight.ttf" />
+    <AndroidAsset Include="Assets\SourceSansPro-ExtraLightItalic.ttf" />
+    <AndroidAsset Include="Assets\SourceSansPro-Italic.ttf" />
+    <AndroidAsset Include="Assets\SourceSansPro-Light.ttf" />
+    <AndroidAsset Include="Assets\SourceSansPro-LightItalic.ttf" />
+    <AndroidAsset Include="Assets\SourceSansPro-Regular.ttf" />
+    <AndroidAsset Include="Assets\SourceSansPro-SemiBold.ttf" />
+    <AndroidAsset Include="Assets\SourceSansPro-SemiBoldItalic.ttf" />
     <None Include="Properties\AndroidManifest.xml" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
     <AndroidResource Include="Resources\layout\audioNotificationView.axml" />
-    <AndroidResource Include="Resources\layout\navigation_info_window.axml" />
+    <AndroidResource Include="Resources\layout\navigation_info_window.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
     <AndroidResource Include="Resources\layout\Tabbar.axml" />
     <AndroidResource Include="Resources\layout\Toolbar.axml" />
   </ItemGroup>
@@ -125,9 +140,6 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\btn_close.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\hiphop_transparent.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\ic_adventurer.png" />
@@ -594,6 +606,12 @@
       <Project>{703afe03-8f94-4f5c-a5e8-7d9774d0ced1}</Project>
       <Name>HiPMobile</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\hiphop_transparent.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\info_bubble.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

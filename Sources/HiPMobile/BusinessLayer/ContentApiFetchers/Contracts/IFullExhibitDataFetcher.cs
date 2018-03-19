@@ -12,10 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System.Collections.Generic;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using System.Threading;
 using System.Threading.Tasks;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers.Contracts
 {
@@ -32,8 +31,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
         /// <param name="token">For cancellation</param>
         /// <param name="listener">To update the progressbar of the downloadpage</param>
         /// <returns></returns>
-        Task FetchFullExhibitDataIntoDatabaseWithFetchedPagesAndMedia(string exhibitId, ExhibitPagesAndMediaContainer pagesAndMediaContainer, CancellationToken token,
-                                                                      IProgressListener listener);
+        Task FetchFullExhibitDataIntoDatabaseWithFetchedPagesAndMedia(
+            string exhibitId, ExhibitPagesAndMediaContainer pagesAndMediaContainer, CancellationToken token,
+            IProgressListener listener);
 
         /// <summary>
         /// Load pages for related exhibit and prefetch media of an exhibit for later use in a full route fetcher

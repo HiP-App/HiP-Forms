@@ -29,6 +29,7 @@ using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
 using UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.JoinClasses;
 
 [assembly: ExportRenderer(typeof(OsmMap), typeof(IosMapRenderer))]
 
@@ -113,10 +114,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Map
         /// Centers the map on a given lcoation if available. Otherwise the center of paderborn is centered.
         /// </summary>
         /// <param name="location">The location to center on.</param>
-        private void CenterLocation(GeoLocation location)
+        private void CenterLocation(GeoLocation? location)
         {
             Control.CenterCoordinate = location != null
-                ? new CLLocationCoordinate2D(location.Latitude, location.Longitude)
+                ? new CLLocationCoordinate2D(location.Value.Latitude, location.Value.Longitude)
                 : new CLLocationCoordinate2D(AppSharedData.PaderbornCenter.Latitude, AppSharedData.PaderbornCenter.Longitude);
         }
 
@@ -133,7 +134,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Map
                 // add user location and route locations
                 if (osmMap.GpsLocation != null)
                 {
-                    waypoints.Add(new CLLocationCoordinate2D(osmMap.GpsLocation.Latitude, osmMap.GpsLocation.Longitude));
+                    waypoints.Add(new CLLocationCoordinate2D(osmMap.GpsLocation.Value.Latitude, osmMap.GpsLocation.Value.Longitude));
                 }
                 waypoints = waypoints.Concat(route.Waypoints.Select(waypoint => new CLLocationCoordinate2D(waypoint.Location.Latitude, waypoint.Location.Longitude))).ToList();
 
@@ -146,7 +147,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Map
         /// React to changes in the exhibitset.
         /// </summary>
         /// <param name="set">The exhibitset that changed.</param>
-        private void OnExhibitSetChanged(ExhibitSet set)
+        private void OnExhibitSetChanged(IReadOnlyList<Exhibit> set)
         {
             InitAnnotations(set, osmMap.DetailsRoute);
         }
@@ -155,7 +156,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Map
         /// React to changes of the gps position.
         /// </summary>
         /// <param name="location">The position that changed.</param>
-        private void OnGpsLocationChanged(GeoLocation location)
+        private void OnGpsLocationChanged(GeoLocation? location)
         {
             if (location != null)
             {
@@ -164,7 +165,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Map
                 {
                     Control.RemoveAnnotation(userAnnotation);
                 }
-                userAnnotation = new UserAnnotation(location.Latitude, location.Longitude);
+                userAnnotation = new UserAnnotation(location.Value.Latitude, location.Value.Longitude);
                 Control.AddAnnotation(userAnnotation);
 
                 if (osmMap.ShowNavigation)
@@ -246,7 +247,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Map
             CLLocationCoordinate2D center;
             if (osmMap.GpsLocation != null)
             {
-                center = new CLLocationCoordinate2D(osmMap.GpsLocation.Latitude, osmMap.GpsLocation.Longitude);
+                center = new CLLocationCoordinate2D(osmMap.GpsLocation.Value.Latitude, osmMap.GpsLocation.Value.Longitude);
             }
             else
             {
@@ -315,7 +316,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Map
                 MKPolylineRenderer polylineRenderer;
                 if (polyline.Equals(currentSectionPolyLine))
                 {
-                    var color = ((Color)resources.GetResourceValue("AccentColor")).ToUIColor();
+                    var color = ((Color)resources.GetResourceValue("SecondaryColor")).ToUIColor();
                     polylineRenderer = new MKPolylineRenderer(polyline)
                     {
                         FillColor = color,
@@ -358,7 +359,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Map
         /// </summary>
         /// <param name="exhibitSet">The set of exhibits.</param>
         /// <param name="route">The route.</param>
-        private void InitAnnotations(ExhibitSet exhibitSet, Route route)
+        private void InitAnnotations(IReadOnlyList<Exhibit> exhibitSet, Route route)
         {
             if (exhibitSet != null)
             {
@@ -385,7 +386,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Map
 
             if (osmMap.GpsLocation != null)
             {
-                userAnnotation = new UserAnnotation(osmMap.GpsLocation.Latitude, osmMap.GpsLocation.Longitude);
+                userAnnotation = new UserAnnotation(osmMap.GpsLocation.Value.Latitude, osmMap.GpsLocation.Value.Longitude);
             }
         }
 

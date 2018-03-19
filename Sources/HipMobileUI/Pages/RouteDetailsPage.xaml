@@ -27,8 +27,8 @@
     <ContentPage.Content>
         <views:NotificationExtensionView>
             <views:NotificationExtensionView.ContentTemplate>
-                <StackLayout Spacing="10" Padding="5" x:Name="OuterLayout" Orientation="Vertical">
-                    <container:TabContainerView Tabs="{Binding Tabs} "
+                <StackLayout Spacing="10" Padding="5" x:Name="OuterLayout" Orientation="Vertical" BackgroundColor="White">
+                    <container:TabContainerView Tabs="{Binding Tabs}"
                                          HorizontalOptions="FillAndExpand"
                                          VerticalOptions="FillAndExpand"
                                          BackgroundColor="White">
@@ -41,15 +41,16 @@
                                         </StackLayout.GestureRecognizers>
                                         <Image Source="ic_volume_up.png" />
                                         <Label VerticalTextAlignment="Center" Text="{Binding ReadOutCaption}"
-                                       TextColor="{StaticResource AccentColor}" FontSize="Medium" />
+                                            TextColor="{StaticResource PrimaryColor}" FontSize="Medium" Style="{DynamicResource Ssp-SemiBold}" />
                                     </StackLayout>
-                                    <Label Text="{Binding Description}" FontSize="Small" />
-                                    <Label Text="{helpers:Translate RouteDetailsPage_Tags}" FontSize="19" Margin="0,24,0,0" />
+                                    <Label Text="{Binding Description}" FontSize="Small" Style="{DynamicResource Ssp-Regular}" TextColor="Black"/>
+                                    <Label Text="{helpers:Translate RouteDetailsPage_Tags}" FontSize="19" Margin="0,24,0,0" Style="{DynamicResource Ssp-Italic}"/>
                                     <container:BindableChildrenStackLayout
                                         Orientation="Vertical" Margin="8,4,0,16"
                                         ChildElements="{Binding Tags, Converter= {StaticResource RouteTagViewListConverter}}" />
                                 </StackLayout>
                             </ScrollView>
+
                             <map:OsmMap x:Name="Map" ExhibitSet="{Binding ExhibitSet}" GpsLocation="{Binding GpsLocation}"
                                         DetailsRoute="{Binding DetailsRoute}" ShowDetailsRoute="{Binding ShowDetailsRoute}"
                                         HorizontalOptions="FillAndExpand"
@@ -59,21 +60,21 @@
                     
                     <StackLayout Orientation="Vertical" VerticalOptions="End">
                         <Image Source="{Binding Image}" Aspect="AspectFill" HeightRequest="200" />
-                        <BoxView HeightRequest="1" Color="#66000000" />
+                        <BoxView HeightRequest="1" Color="{StaticResource DarkGrayColor}" />
                         <StackLayout Orientation="Horizontal" Padding="16,6,16,0"
-                                     HorizontalOptions="FillAndExpand" BackgroundColor="#05000000">
+                                     HorizontalOptions="FillAndExpand" BackgroundColor="White">
                             <StackLayout Orientation="Vertical">
                                 <Image Source="ic_schedule.png" />
-                                <Label Text="{Binding Duration}" FontSize="Small" />
+                                <Label Text="{Binding Duration}" FontSize="Small" Style="{DynamicResource Ssp-Italic}" />
                             </StackLayout>
-                            <BoxView Color="#66000000" WidthRequest="1" Margin="10,0,10,0" />
+                            <BoxView Color="{StaticResource DarkGrayColor}" WidthRequest="1" Margin="10,0,10,0" />
                             <StackLayout Orientation="Vertical">
                                 <Image Source="ic_directions_walk.png" />
-                                <Label Text="{Binding Distance}" FontSize="Small" />
+                                <Label Text="{Binding Distance}" FontSize="Small" Style="{DynamicResource Ssp-Italic}" />
                             </StackLayout>
-                            <BoxView Color="#66000000" WidthRequest="1" Margin="10,0,10,0" />
+                            <BoxView Color="{StaticResource DarkGrayColor}" WidthRequest="1" Margin="10,0,10,0" />
                             <Label Text="{helpers:Translate RouteDetailsPage_StartRoute}" FontSize="Large"
-                                   TextColor="{StaticResource AccentColor}"
+                                   TextColor="{StaticResource PrimaryColor}" Style="{DynamicResource Ssp-SemiBold}"
                                    HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
                                    HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                                 <Label.GestureRecognizers>

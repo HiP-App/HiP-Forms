@@ -19,13 +19,8 @@ using Android.OS;
 using FFImageLoading.Forms.Droid;
 using HockeyApp.Android;
 using PaderbornUniversity.SILab.Hip.Mobile.Droid.Contracts;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelConverters;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.AudioPlayer;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Location;
@@ -40,6 +35,7 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.NotificationPlayer;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.DesignTime;
+using TwinTechsForms.NControl.Android;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
 {
@@ -50,20 +46,23 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
         protected override void OnCreate(Bundle bundle)
         {
             var dataAccess = IoCManager.Resolve<IDataAccess>();
+
             if (Settings.ShouldDeleteDbOnLaunch)
             {
                 File.Delete(dataAccess.DatabasePath);
                 Settings.ShouldDeleteDbOnLaunch = false;
             }
 
+            dataAccess.CreateDatabase(0); // ensures the database exists and is up to date
+
             IoCManager.RegisterType<IImageDimension, AndroidImageDimensions>();
-            IoCManager.RegisterType<IMediaFileManager, AndroidMediaFileManager>();
             IoCManager.RegisterType<IAppCloser, AndroidAppCloser>();
 
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 
             SetTheme(Resource.Style.MainTheme);
+            Window.SetStatusBarColor(Android.Graphics.Color.Black);
             base.OnCreate(bundle);
 
             // Init Navigation
@@ -75,7 +74,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
             IoCManager.RegisterInstance(typeof(IFabSizeCalculator), new AndroidFabSizeCalculator());
             IoCManager.RegisterInstance(typeof(IAudioPlayer), new DroidAudioPlayer());
             IoCManager.RegisterInstance(typeof(INotificationPlayer), new DroidNotificationPlayer());
-            IoCManager.RegisterInstance(typeof(IStatusBarController), new DroidStatusBarController());
             IoCManager.RegisterInstance(typeof(ILocationManager), new LocationManager());
             IoCManager.RegisterInstance(typeof(IKeyProvider), new AndroidKeyProvider());
             IoCManager.RegisterInstance(typeof(IBarsColorsChanger), new DroidBarsColorsChanger(this));
@@ -90,7 +88,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
             // init forms and third party libraries
             CachedImageRenderer.Init(enableFastRenderer: true);
             Forms.Init(this, bundle);
-            Xamarin.FormsMaps.Init(this, bundle);
+            SvgImageViewRenderer.Init();
+
             UserDialogs.Init(() => (Activity)Forms.Context);
 
             DesignMode.IsEnabled = false;

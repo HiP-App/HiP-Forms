@@ -22,6 +22,7 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses.Contracts;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers
 {
@@ -44,16 +45,18 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
         private List<Exhibit> missingExhibitsForRoute;
         private IList<ExhibitPagesAndMediaContainer> pagesAndMediaForMissingExhibits;
 
-        public async Task FetchFullDownloadableDataIntoDatabase(string routeId, int idForRestApi, CancellationToken token, IProgressListener listener)
+        public async Task FetchFullDownloadableDataIntoDatabase(
+            string routeId, int idForRestApi, CancellationToken token, IProgressListener listener)
         {
+
             routeDto = (await routesApiAccess.GetRoutes(new List<int> { idForRestApi })).Items.First();
             if (token.IsCancellationRequested)
                 return;
 
-            route = RouteManager.GetRoute(routeId);
+            route = DbManager.DataAccess.Routes().GetRoute(routeId);
             pagesAndMediaForMissingExhibits = new List<ExhibitPagesAndMediaContainer>();
 
-            IList<Exhibit> allMissingExhibits = ExhibitManager.GetExhibits().ToList().FindAll(x => !x.DetailsDataLoaded); // Exhibits not fully loaded yet
+            var allMissingExhibits = DbManager.DataAccess.Exhibits().GetExhibits().ToList().FindAll(x => !x.DetailsDataLoaded); // Exhibits not fully loaded yet
             missingExhibitsForRoute = allMissingExhibits.ToList().FindAll(x => routeDto.Exhibits.Contains(x.IdForRestApi)); // Select those part of the route
 
             double totalSteps = FetchNeededMediaForFullRoute();
@@ -76,7 +79,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
 
             using (var transaction = DbManager.StartTransaction())
             {
-                await ProcessRoute(token, listener); // Download audio
+                var dataAccess = transaction.DataAccess;
+                await ProcessRoute(token, listener, dataAccess); // Download audio
                 if (token.IsCancellationRequested)
                     transaction.Rollback();
             }
@@ -92,10 +96,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             return requiredMedia.Count;
         }
 
-        private async Task ProcessRoute(CancellationToken token, IProgressListener listener)
+        private async Task ProcessRoute(CancellationToken token, IProgressListener listener, ITransactionDataAccess dataAccess)
         {
             await FetchMediaData(token, listener);
-            var fetchedMedia = await mediaDataFetcher.CombineMediasAndFiles();
+            var fetchedMedia = await mediaDataFetcher.CombineMediasAndFiles(dataAccess);
             if (token.IsCancellationRequested)
                 return;
 

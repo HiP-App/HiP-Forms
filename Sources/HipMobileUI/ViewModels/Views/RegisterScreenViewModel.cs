@@ -49,7 +49,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             if (userStatus == UserStatus.Registered)
             {
                 mainPageViewModel.SwitchToLoginView();
-                await Application.Current.MainPage.DisplayAlert(Strings.RegisterScreenView_Alert_Registered, Strings.RegisterScreenView_Alert_Description, Strings.RegisterScreenView_Alert_Ok);
+                await Application.Current.MainPage.DisplayAlert(Strings.RegisterScreenView_Alert_Registered, Strings.RegisterScreenView_Alert_Description, Strings.Ok);
             }
             else
             {

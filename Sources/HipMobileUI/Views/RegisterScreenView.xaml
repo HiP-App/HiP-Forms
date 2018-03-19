@@ -25,7 +25,7 @@
     <ContentView.Content>
         <views:NotificationExtensionView>
             <views:NotificationExtensionView.ContentTemplate>
-                <Grid x:Name="Grid" Padding="10" HorizontalOptions="Fill">
+                <Grid x:Name="Grid" Padding="10" HorizontalOptions="Fill" BackgroundColor="White">
                     <Entry x:Name="EmailEntry"
                            Keyboard="Email"
                            VerticalOptions="End"
@@ -44,18 +44,16 @@
                            Placeholder="{helpers:Translate RegisterScreenView_RepeatPassword}" Text="{Binding RepeatPassword, Mode=OneWayToSource}" />
                     <Label x:Name="ErrorMsgLabel"
                            HorizontalOptions="Center" VerticalOptions="Start"
-                           FontSize="Small" TextColor="Red" Text="{Binding ErrorMessage, Mode=TwoWay}" />
+                           FontSize="Small" TextColor="{StaticResource TertiaryDarkColor}" Text="{Binding ErrorMessage, Mode=TwoWay}" Style="{DynamicResource Ssp-Regular}"/>
                     <Button x:Name="ButtonView"
                             VerticalOptions="End"
                             Text="{helpers:Translate RegisterScreenView_Register}"
                             Command="{Binding Register}" />
-                    <Label x:Name="CancelLabel"
-                           HorizontalOptions="Center" VerticalOptions="Center"
-                           Text="{helpers:Translate RegisterScreenView_Cancel}" FontSize="Small" TextColor="Blue">
-                        <Label.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding ReturnCommand}"/>
-                        </Label.GestureRecognizers>
-                    </Label>
+                    <Button x:Name="CancelButton"
+                            VerticalOptions="End"
+                           Text="{helpers:Translate Cancel}" FontSize="Small" 
+                           Command="{Binding ReturnCommand}">
+                    </Button>
                 </Grid>
             </views:NotificationExtensionView.ContentTemplate>
         </views:NotificationExtensionView>

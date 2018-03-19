@@ -23,27 +23,19 @@
     <ContentView.Content>
         <views1:NotificationExtensionView>
             <views1:NotificationExtensionView.ContentTemplate>
-                <views1:BottomSheetView BottomSheetVisible="{Binding BottomSheetVisible}">
+                <views1:BottomSheetView x:Name="BottomSheetView" BottomSheetVisible="{Binding BottomSheetVisible}">
                     <views1:BottomSheetView.MainContent>
-                        <Grid Margin="0,10,0,30">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="90" />
-                                <RowDefinition Height="80" />
-                                <RowDefinition Height="0.1*" />
-                            </Grid.RowDefinitions>
-                            <controls1:FadeoverImageView Images="{Binding Images}"
+                        <!--The row and column definition is made in code to adjust them to the device orientation-->
+                        <Grid x:Name="ContentGrid" Margin="0,5,0,0">
+                            <controls1:FadeoverImageView Grid.Row="0" Images="{Binding Images}"
                                                          SelectedValue="{Binding Source={x:Reference Slider}, Path=SelectedValue}"
                                                          VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
                                 <controls1:FadeoverImageView.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding ToggleButtonVisibility}" />
                                 </controls1:FadeoverImageView.GestureRecognizers>
                             </controls1:FadeoverImageView>
-                            <ScrollView Grid.Row="1" MinimumHeightRequest="100">
-                                <Label Text="{Binding DisplayedText}" LineBreakMode="WordWrap" Margin="10">
+                            <ScrollView Grid.Row="1">
+                                <Label x:Name="ImageDescription" Text="{Binding DisplayedText}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" LineBreakMode="WordWrap" Margin="10,0,10,0" TextColor="{StaticResource DarkGrayColor}" Style="{DynamicResource Ssp-Regular}">
                                     <Label.GestureRecognizers>
                                         <TapGestureRecognizer Command="{Binding ToggleButtonVisibility}" />
                                     </Label.GestureRecognizers>
@@ -52,17 +44,17 @@
                             <controls1:TimeSlider x:Name="Slider" Grid.Row="2" HorizontalOptions="FillAndExpand"
                                                   VerticalOptions="Center" HeightRequest="80" Images="{Binding Images}"
                                                   Texts="{Binding Years}" ItemWidth="100" SafezoneFraction="0.3"
-                                                  FadezoneFraction="0.7" SeparatorColor="{StaticResource AccentColor}"
+                                                  FadezoneFraction="0.7" SeparatorColor="{StaticResource TertiaryColor}"
                                                   SelectedValue="{Binding SelectedValue, Mode=OneWayToSource}" />
                         </Grid>
                     </views1:BottomSheetView.MainContent>
                     <views1:BottomSheetView.BottomSheet>
                         <StackLayout BackgroundColor="White">
-                            <BoxView Color="#50000000" HeightRequest="1" />
+                            <BoxView Color="{StaticResource DarkGrayColor}" HeightRequest="1" />
                             <StackLayout Margin="16,16" Spacing="15" >
-                                <Label Text="{Binding Headline}" TextColor="#000000" FontSize="16" FontAttributes="Bold" />
+                                <Label Text="{Binding Headline}" TextColor="Black" FontSize="16" FontAttributes="Bold" Style="{DynamicResource Ssp-SemiBold}"/>
                                 <ScrollView>
-                                    <Label Text="{Binding Description}" TextColor="#87000000" FontSize="14" />
+                                    <Label Text="{Binding Description}" TextColor="Black" FontSize="14" Style="{DynamicResource Ssp-Regular}"/>
                                 </ScrollView>
                             </StackLayout>
                         </StackLayout>

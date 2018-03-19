@@ -34,7 +34,7 @@ using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Map;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
-using Android.Content;
+using System.Collections.Generic;
 
 [assembly: ExportRenderer(typeof(OsmMap), typeof(DroidMapRenderer))]
 
@@ -113,10 +113,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Map
         /// Called from center Button in navigation
         /// </summary>
         /// <param name="location"></param>
-        private void CenterMap(GeoLocation location)
+        private void CenterMap(GeoLocation? location)
         {
             mapController.SetCenter(location != null
-                ? new GeoPoint(location.Latitude, location.Longitude)
+                ? new GeoPoint(location.Value.Latitude, location.Value.Longitude)
                 : new GeoPoint(AppSharedData.PaderbornCenter.Latitude, AppSharedData.PaderbornCenter.Longitude));
         }
 
@@ -124,7 +124,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Map
         /// Displays all markers on Mainmap and updates it if set changes
         /// </summary>
         /// <param name="set"></param>
-        private void NewElementOnExhibitSetChanged(ExhibitSet set)
+        private void NewElementOnExhibitSetChanged(IReadOnlyList<Exhibit> set)
         {
             SetMainScreenMarkers(set);
         }
@@ -133,12 +133,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Map
         /// Everything regarding location changes is handled here
         /// </summary>
         /// <param name="gpsLocation">Location from Gps</param>
-        private void NewElementOnGpsLocationChanged(GeoLocation gpsLocation)
+        private void NewElementOnGpsLocationChanged(GeoLocation? gpsLocation)
         {
             //Userposition is always updated and shown if position is available
             if (gpsLocation != null)
             {
-                var userPosition = new GeoPoint(gpsLocation.Latitude, gpsLocation.Longitude);
+                var userPosition = new GeoPoint(gpsLocation.Value.Latitude, gpsLocation.Value.Longitude);
                 if (userMarkerPosition != null)
                     mapView.OverlayManager.Remove(userMarkerPosition);
 
@@ -190,11 +190,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Map
         /// Here the direct route in routedetails is calculated
         /// </summary>
         /// <param name="location"></param>
-        private void DrawDetailsRoute(GeoLocation location)
+        private void DrawDetailsRoute(GeoLocation? location)
         {
             var myPath = new PathOverlay(Resource.Color.colorPrimaryDark, 7, new DefaultResourceProxyImpl(activity));
             if (location != null)
-                myPath.AddPoint(new GeoPoint(location.Latitude, location.Longitude));
+                myPath.AddPoint(new GeoPoint(location.Value.Latitude, location.Value.Longitude));
 
             if (osmMap.DetailsRoute != null && osmMap.DetailsRoute.Waypoints.Any())
             {
@@ -210,7 +210,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Map
 
         //Here all Markers for the Exhibits in the Main Map are set
         //and some general stuff
-        private void SetMainScreenMarkers(ExhibitSet set)
+        private void SetMainScreenMarkers(IReadOnlyList<Exhibit> set)
         {
             locationOverlay = new MyLocationOverlay(activity, mapView);
             var compassOverlay = new CompassOverlay(activity, mapView);
@@ -225,7 +225,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Map
                 var mapMarkerIcon = ContextCompat.GetDrawable(activity, Resource.Drawable.marker_blue);
                 var setMarker = new SetMarker(mapView, markerInfoWindow);
 
-                foreach (var e in set.ActiveSet)
+                foreach (var e in set)
                 {
                     //One Marker Object
                     var geoPoint = new GeoPoint(e.Location.Latitude, e.Location.Longitude);
@@ -242,7 +242,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Map
         /// and throws error message if no route was found
         /// </summary>
         /// <param name="userPosition">position of the user</param>
-        private void CalculateRoute(GeoLocation userPosition)
+        private void CalculateRoute(GeoLocation? userPosition)
         {
             var id = osmMap.DetailsRoute.Id;
 
@@ -296,16 +296,16 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Map
             {
                 currentSectionOverlay = new Polyline(activity)
                 {
-                    Title = osmMap.DetailsRoute.Title,
+                    Title = osmMap.DetailsRoute.Name,
                     Width = 5f,
-                    Color = ((Color)resources.GetResourceValue("AccentColor")).ToAndroid(),
+                    Color = ((Color)resources.GetResourceValue("SecondaryColor")).ToAndroid(),
                     //Color = Color.Orange,
                     Points = route.FirstSection.Select(geoLocation => new GeoPoint(geoLocation.Latitude, geoLocation.Longitude)).ToList(),
                     Geodesic = true
                 };
                 currentRouteOverlay = new Polyline(activity)
                 {
-                    Title = osmMap.DetailsRoute.Title,
+                    Title = osmMap.DetailsRoute.Name,
                     Width = 5f,
                     Color = ((Color)resources.GetResourceValue("PrimaryColor")).ToAndroid(),
                     //Color = Color.Blue,
@@ -317,7 +317,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Map
             {
                 currentRouteOverlay = new Polyline(activity)
                 {
-                    Title = osmMap.DetailsRoute.Title,
+                    Title = osmMap.DetailsRoute.Name,
                     Width = 5f,
 
                     Color = ((Color)resources.GetResourceValue("PrimaryColor")).ToAndroid(),

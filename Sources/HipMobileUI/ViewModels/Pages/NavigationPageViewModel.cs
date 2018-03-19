@@ -24,12 +24,12 @@ using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
 using Plugin.Geolocator.Abstractions;
 using Xamarin.Forms;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 {
     public class NavigationPageViewModel : NavigationViewModel, ILocationListener
     {
-        private ExhibitSet exhibitSet;
         private GeoLocation gpsLocation;
         private readonly ILocationManager locationManager;
         private readonly INearbyExhibitManager nearbyExhibitManager;
@@ -43,7 +43,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         {
             DetailsRoute = route;
             ShowNavigation = true;
-            Title = "Navigation";
+            Title = Strings.NavigationPageViewModel_Title;
             locationManager = IoCManager.Resolve<ILocationManager>();
             nearbyExhibitManager = IoCManager.Resolve<INearbyExhibitManager>();
             FocusGps = new Command(FocusGpsClicked);
@@ -64,18 +64,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
             if (!detailsRoute.ActiveSet.Any())
             {
-                await Navigation.DisplayAlert(Strings.SkipExhibit_Title, Strings.SkipExhibit_Message, Strings.SkipExhibit_OK);
+                await Navigation.DisplayAlert(Strings.SkipExhibit_Title, Strings.SkipExhibit_Message, Strings.Ok);
             }
             else
             {
                 SkipExhibitVisited(exhibits);
             }
-        }
-
-        public ExhibitSet ExhibitSet
-        {
-            get { return exhibitSet; }
-            set { SetProperty(ref exhibitSet, value); }
         }
 
         public GeoLocation GpsLocation
@@ -126,7 +120,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             var moved = DetailsRoute.MoveToPassiveSet(waypoint);
             if (moved)
             {
-                using (IoCManager.Resolve<IDataAccess>().StartTransaction())
+                using (DbManager.StartTransaction(exhibit))
                 {
                     exhibit.Unlocked = true;
                 }
@@ -141,7 +135,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                 await
                     IoCManager.Resolve<INavigationService>()
                               .DisplayAlert(Strings.SkipExhibit_Title, Strings.SkipExhibit_Question_Part1 + " \"" + e.Name + "\" " + Strings.SkipExhibit_Question_Part2,
-                                            Strings.SkipExhibit_Confirm, Strings.SkipExhibit_Reject);
+                                            Strings.Yes, Strings.No);
 
             if (result)
             {

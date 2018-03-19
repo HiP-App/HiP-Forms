@@ -34,7 +34,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         private ImageSource image;
         private string text;
         private string headline;
-        private readonly IList<Page> pages;
+        private readonly ICollection<Page> pages;
         private bool nextVisible;
         private bool nextViewAvailable;
         private ICommand nextViewCommand;
@@ -53,7 +53,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         private const string ImgStarHalfFilled = "star_half_filled.png";
         private const string ImgStarFilled = "star_filled.png";
 
-        public AppetizerPageViewModel(string exhibitId) : this(ExhibitManager.GetExhibit(exhibitId)) { }
+        public AppetizerPageViewModel(string exhibitId) : this(DbManager.DataAccess.Exhibits().GetExhibit(exhibitId)) { }
 
         public AppetizerPageViewModel(Exhibit exhibit)
         {
@@ -66,7 +66,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             pages = exhibit.Pages;
 
             Headline = exhibit.Name;
-            Text = exhibit.Name;
+            Text = string.IsNullOrEmpty(exhibit.Description) ? exhibit.Name : exhibit.Description ;
 
             if (pages != null && pages.Count > 1 && Exhibit.DetailsDataLoaded)
                 NextViewAvailable = true;
@@ -97,12 +97,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             {
                 if (exhibitUnblocked)
                 {
-                    await Navigation.PushAsync(new ExhibitDetailsViewModel(Exhibit));
-
+                    await Navigation.PushAsync(new ExhibitDetailsPageViewModel(Exhibit));
                 }
                 else
                 {
-                    await Navigation.DisplayAlert(Strings.ExhibitDetailsPage_Distance_Title, Strings.ExhibitDetailsPage_Distance_Text, Strings.ExhibitDetailsPage_Distance_alert_confirm);
+                    await Navigation.DisplayAlert(Strings.ExhibitDetailsPage_Distance_Title, Strings.ExhibitDetailsPage_Distance_Text, Strings.Ok);
                 }
             }
         }
@@ -129,7 +128,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                 {
                     Title = Strings.UserRating_Dialog_Title_No_Internet,
                     Message = Strings.UserRating_Dialog_Message_No_Internet,
-                    OkText = Strings.UserRating_Ok
+                    OkText = Strings.Ok
                 });
             }
             else
@@ -140,7 +139,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                 else
                     RatingAverage = "-";
                 SetStarImages(userRating.Average);
-                RatingCount = userRating.Count.ToString() + " " + Strings.UserRating_Rate_Count;
+                RatingCount = userRating.Count + " " + Strings.UserRating_Rate_Count;
             }
         }
 
@@ -188,7 +187,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                 {
                     Title = Strings.UserRating_Dialog_Title_No_Internet,
                     Message = Strings.UserRating_Dialog_Message_No_Internet,
-                    OkText = Strings.UserRating_Ok
+                    OkText = Strings.Ok
                 });
             }
         }

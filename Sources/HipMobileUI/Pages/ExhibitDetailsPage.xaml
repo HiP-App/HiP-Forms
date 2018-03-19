@@ -1,5 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
 // Copyright (C) 2017 History in Paderborn App - Universität Paderborn
 //
@@ -15,44 +14,49 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 -->
-
 <pages1:OrientationContentPage xmlns="http://xamarin.com/schemas/2014/forms"
                                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                               x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Pages.ExhibitDetailsPage"
-                               Title="{Binding Title}"
-                               OrientationController="PortraitConstant"
-                               xmlns:controls1="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Controls;assembly=HipMobileUI"
+	                           x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Pages.ExhibitDetailsPage"
+	                           Title="{Binding Title}"
                                xmlns:pages1="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Pages;assembly=HipMobileUI"
-                               xmlns:views1="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Views;assembly=HipMobileUI">
-  <StackLayout BackgroundColor="White">
-    <AbsoluteLayout VerticalOptions="FillAndExpand">
-      <ContentView Content="{Binding SelectedView, Converter={StaticResource ViewModelViewConverter}}"
-                   AbsoluteLayout.LayoutFlags="SizeProportional" Margin="5" AbsoluteLayout.LayoutBounds="0,0,1,1" />
-      <Button Image="ic_chevron_left" Command="{Binding PreviousViewCommand}"
-              IsVisible="{Binding PreviousVisible}"
-              AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0,0.5"
-              BackgroundColor="#80D3D3D3" AutomationId="PreviousButton" />
-      <Button Image="ic_chevron_right" Command="{Binding NextViewCommand}"
-              IsVisible="{Binding NextVisible}"
-              AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="1,0.5"
-              BackgroundColor="#80D3D3D3" AutomationId="NextButton" />
-      <controls1:FloatingActionButton Icon="ic_more"
-                                      NormalColor="{StaticResource AccentColor}"
-                                      RippleColor="{StaticResource AccentDarkColor}"
-                                      IsVisible="{Binding AdditionalInformationButtonVisible}"
+                               xmlns:views1="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Views;assembly=HipMobileUI"
+  xmlns:controls="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Controls;assembly=HipMobileUI"
+                               xmlns:helpers="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;assembly=HipMobileUI">
+    <pages1:OrientationContentPage.ToolbarItems>
+        <controls:HideableToolbarItem x:Name="AdditionalInformationButton" Order="Primary"
                                       Command="{Binding ShowAdditionalInformationCommand}"
-                                      AbsoluteLayout.LayoutFlags="XProportional" AbsoluteLayout.LayoutBounds="1,100"
-                                      Margin="5" />
-    </AbsoluteLayout>
-    <StackLayout VerticalOptions="End" HeightRequest="50" BackgroundColor="White">
-      <BoxView HeightRequest="1" Color="Black" VerticalOptions="Start" />
-      <StackLayout Orientation="Horizontal" Padding="0,0,5,0">
-        <ContentView  HorizontalOptions="FillAndExpand" >
-          <views1:AudioToolbarView x:Name="AudioToolbar"
-                                 BindingContext="{Binding AudioToolbar}"  HorizontalOptions="FillAndExpand"/>
-        </ContentView>
-        <Label HorizontalOptions="End" VerticalOptions="End" BackgroundColor="White" Text="{Binding Pagenumber}" />
-      </StackLayout>
+                                      Text="{helpers:Translate ExhibitDetailsPage_AdditionalInformation}" Icon="ic_more.png"
+                                      IsVisible="{Binding HasAdditionalInformation}" />
+    </pages1:OrientationContentPage.ToolbarItems>
+    <StackLayout BackgroundColor="White">
+        <AbsoluteLayout VerticalOptions="FillAndExpand">
+            <ContentView x:Name="ContentView" Content="{Binding SelectedView, Converter={StaticResource ViewModelViewConverter}}"
+                         AbsoluteLayout.LayoutFlags="SizeProportional" Margin="5"
+                         AbsoluteLayout.LayoutBounds="0,0,1,1" />
+            <Button Image="ic_chevron_left"
+                    Command="{Binding PreviousViewCommand}"
+                    IsVisible="{Binding PreviousVisible}"
+                    AbsoluteLayout.LayoutFlags="PositionProportional"
+                    AbsoluteLayout.LayoutBounds="0,0.5" BackgroundColor="#80D3D3D3"
+                    AutomationId="PreviousButton" />
+            <Button Image="ic_chevron_right"
+                    Command="{Binding NextViewCommand}"
+                    IsVisible="{Binding NextVisible}"
+                    AbsoluteLayout.LayoutFlags="PositionProportional"
+                    AbsoluteLayout.LayoutBounds="1,0.5" BackgroundColor="#80D3D3D3"
+                    AutomationId="NextButton" />
+        </AbsoluteLayout>
+        <StackLayout x:Name="AudioContainer" VerticalOptions="End" HeightRequest="50" BackgroundColor="White">
+            <BoxView HeightRequest="1" Color="Black" VerticalOptions="Start" />
+            <StackLayout Orientation="Horizontal" Padding="0,0,5,0">
+                <ContentView HorizontalOptions="FillAndExpand">
+                    <views1:AudioToolbarView x:Name="AudioToolbar"
+                                             BindingContext="{Binding AudioToolbar}"
+                                             HorizontalOptions="FillAndExpand" />
+                </ContentView>
+                <Label HorizontalOptions="End" VerticalOptions="End"
+                       BackgroundColor="White" Text="{Binding Pagenumber}" />
+            </StackLayout>
+        </StackLayout>
     </StackLayout>
-  </StackLayout>
 </pages1:OrientationContentPage>

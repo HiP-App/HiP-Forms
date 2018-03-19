@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -21,6 +22,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
     {
         Task FetchDataToDelete(CancellationToken token);
 
-        Task CleanupRemovedData();
+        Task CleanupRemovedData(ITransactionDataAccess dataAccess);
     }
 }
