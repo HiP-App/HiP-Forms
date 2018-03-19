@@ -31,7 +31,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
         /// <summary>
         /// The fraction of how much the bottom sheet is extended relative to the whole view.
         /// </summary>
-        private readonly double bottomSheetExtensionFraction = 0.35;
+        private readonly double bottomSheetExtensionFraction = 0.5;
 
         /// <summary>
         /// The size of the unextended bottom sheet
@@ -45,7 +45,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
 
         private BottomSheetState bottomSheetState = BottomSheetState.Collapsed;
         private FloatingActionButton Button { get; set; }
-        private bool initLayout = true;
+        private double width;
+        private double height;
 
         public BottomSheetView()
         {
@@ -65,30 +66,34 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
 
         protected override void OnSizeAllocated(double width, double height)
         {
-            if (initLayout)
+            //Just add the button when the screen size / orientation has changed
+            if (this.width != width || this.height != height)
             {
+                this.width = width;
+                this.height = height;
                 var absoluteLayout = new AbsoluteLayout();
                 absoluteLayout.Children.Add(mainContentView, new Rectangle(0, 0, width, height));
-                absoluteLayout.Children.Add(BottomSheetContentView, new Rectangle(0, height - bottomSheetSize, width, bottomSheetSize));
 
-                var fabSize = Device.RuntimePlatform == Device.iOS ? FloatingActionButton.IosSize : IoCManager.Resolve<IFabSizeCalculator>().CalculateFabSize();
-
-                if (Device.RuntimePlatform == Device.iOS || IoCManager.Resolve<IFabSizeCalculator>().GetOsVersionNumber() >= 21)
+                if (BottomSheetVisible)
                 {
-                    absoluteLayout.Children.Add(Button, new Point(width - buttonRightPadding - fabSize, height - bottomSheetSize - fabSize / 2));
-                }
-                else
-                {
-                    // Don't need to use concrete point coordinates, because the button is rearranged in the "SetButtonPosition" method
-                    absoluteLayout.Children.Add(Button, new Point(0, 0));
-                    SetButtonPosition(width);
+                    absoluteLayout.Children.Add(BottomSheetContentView, new Rectangle(0, height - bottomSheetSize, width, bottomSheetSize));
+                    var fabSize = Device.RuntimePlatform == Device.iOS ? FloatingActionButton.IosSize : IoCManager.Resolve<IFabSizeCalculator>().CalculateFabSize();
+                    if (Device.RuntimePlatform == Device.iOS || IoCManager.Resolve<IFabSizeCalculator>().GetOsVersionNumber() >= 21)
+                    {
+                        absoluteLayout.Children.Add(Button, new Point(width - buttonRightPadding - fabSize, height - bottomSheetSize - fabSize / 2));
+                    }
+                    else
+                    {
+                        // Don't need to use concrete point coordinates, because the button is rearranged in the "SetButtonPosition" method
+                        absoluteLayout.Children.Add(Button, new Point(0, 0));
+                        SetButtonPosition(width);
+                    }
                 }
 
                 Content = absoluteLayout;
 
                 // restore the state when the layout changes
                 absoluteLayout.LayoutChanged += OnLayoutChanged;
-                initLayout = false;
             }
             base.OnSizeAllocated(width, height);
         }

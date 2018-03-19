@@ -29,18 +29,16 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views.ExhibitDetail
 
         public ImageViewModel(ImagePage page, Action toggleButtonVisibility) : base(toggleButtonVisibility)
         {
-            var imageData = page.Image.GetDataBlocking();
-            if (imageData != null)
-            {
-                Image = ImageSource.FromStream(() => new MemoryStream(imageData));
-            }
-            else
-            {
-                Image = ImageSource.FromStream(() => new MemoryStream(BackupData.BackupImageData));
-            }
+            SetImage(page);
             Headline = page.Image.Title;
             Description = page.Image.Description;
             BottomSheetVisible = Headline != "No Image" && !(string.IsNullOrEmpty(Headline) && string.IsNullOrEmpty(Description));
+        }
+
+        private async void SetImage(ImagePage page)
+        {
+            var imageData = await page.Image.GetDataAsync();
+            Image = imageData != null ? ImageSource.FromStream(() => new MemoryStream(imageData)) : ImageSource.FromStream(() => new MemoryStream(BackupData.BackupImageData));
         }
 
         /// <summary>

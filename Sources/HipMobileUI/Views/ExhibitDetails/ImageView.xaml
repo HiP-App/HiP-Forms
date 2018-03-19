@@ -23,7 +23,7 @@
     <ContentView.Content>
         <views1:NotificationExtensionView>
             <views1:NotificationExtensionView.ContentTemplate>
-                <views1:BottomSheetView BottomSheetVisible="{Binding BottomSheetVisible}">
+                <views1:BottomSheetView  x:Name="BottomSheetView" BottomSheetVisible="{Binding BottomSheetVisible}" >
                     <views1:BottomSheetView.MainContent>
                         <controls1:FadeInImage Source="{Binding Image}" DownsampleToViewSize="True">
                             <controls1:FadeInImage.GestureRecognizers>
