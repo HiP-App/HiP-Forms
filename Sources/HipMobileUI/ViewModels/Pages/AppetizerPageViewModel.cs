@@ -67,7 +67,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             pages = exhibit.Pages;
 
             Headline = exhibit.Name;
-            Text = exhibit.Name;
+            Text = string.IsNullOrEmpty(exhibit.Description) ? exhibit.Name : exhibit.Description ;
 
             if (pages.Count > 1 && Exhibit.DetailsDataLoaded)
                 NextViewAvailable = true;
