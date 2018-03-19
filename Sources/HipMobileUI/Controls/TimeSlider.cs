@@ -276,8 +276,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Controls
             parent.Children.Add(rightButton);
 
 
-            int gridRows = 0;
-            int gridColumns = 0;
+            var gridRows = 0;
+            var gridColumns = 0;
             if (Images != null)
             {
                 gridColumns = Math.Max(Images.Count, gridColumns);
@@ -290,11 +290,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Controls
                 if (Texts.Count > 0)
                     gridRows++;
             }
-            for (int i = 0; i < gridColumns; i++)
+            for (var i = 0; i < gridColumns; i++)
             {
                 slider.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(ItemWidth) });
             }
-            for (int i = 0; i < gridRows; i++)
+            for (var i = 0; i < gridRows; i++)
             {
                 if (gridRows == 2)
                 {
@@ -313,9 +313,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Controls
 
                 int i = 0;
 
-                foreach (ImageSource imageSource in Images)
+                foreach (var imageSource in Images)
                 {
-                    CachedImage image = new CachedImage()
+                    var image = new CachedImage()
                     {
                         Source = imageSource,
                         DownsampleToViewSize = true,
@@ -329,8 +329,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Controls
             }
             if (Texts != null)
             {
-                int i = 0;
-                foreach (string text in Texts)
+                var i = 0;
+                foreach (var text in Texts)
                 {
                     Label label = new Label() { Text = text, HorizontalOptions = LayoutOptions.Center, VerticalOptions = LayoutOptions.Center };
                     label.GestureRecognizers.Add(tapGestureRecognizer);
@@ -356,7 +356,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Controls
         /// <returns>The currently selected value.</returns>
         private double CalculateSelectedValue()
         {
-            double dx = box.X - (box.Width / 2) - SliderX;
+            var dx = box.X - (box.Width / 2) - SliderX;
 
             if (dx < (double)fadezoneWidth / 2)
             {
@@ -368,8 +368,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Controls
             }
             else
             {
-                double result = Math.Floor((dx - (double)fadezoneWidth / 2) / (fadezoneWidth + safezoneWidth));
-                double mod = (dx - (double)fadezoneWidth / 2) % (fadezoneWidth + safezoneWidth);
+                var result = Math.Floor((dx - (double)fadezoneWidth / 2) / (fadezoneWidth + safezoneWidth));
+                var mod = (dx - (double)fadezoneWidth / 2) % (fadezoneWidth + safezoneWidth);
                 if (mod > safezoneWidth)
                 {
                     result += (mod - safezoneWidth) / fadezoneWidth;
@@ -383,9 +383,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Controls
         /// Animates the slider to the value.
         /// </summary>
         /// <param name="value">The value to animate to.</param>
-        private void UpdateSliderAccordingToValue(Double Selectedvalue)
+        private void UpdateSliderAccordingToValue(double selectedValue)
         {
-            double x = (Selectedvalue) * ItemWidth * (-1);
+            var x = (selectedValue) * ItemWidth * (-1);
             slider.TranslateTo(x, 0, 100);
         }
 
@@ -409,7 +409,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Controls
             if (!disableTap)
             {
                 // move to the tapped element
-                int column = Grid.GetColumn((BindableObject)sender);
+                var column = Grid.GetColumn((BindableObject)sender);
                 UpdateSliderAccordingToValue(column);
                 SelectedValue = column;
             }
@@ -467,7 +467,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Controls
             if (panUpdatedEventArgs.StatusType == GestureStatus.Completed)
             {
                 // gesture is finished, go back to nearest value
-                int value = Convert.ToInt32(Math.Round(SelectedValue));
+                var value = Convert.ToInt32(Math.Round(SelectedValue));
                 UpdateSliderAccordingToValue(value);
                 SelectedValue = value;
             }

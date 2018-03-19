@@ -28,14 +28,14 @@
                         <RelativeLayout HorizontalOptions="Fill" BackgroundColor="White" >
                             <ScrollView RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.9}"
                                         RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}" Margin="10">
-                                <StackLayout>
+                                <StackLayout HorizontalOptions="FillAndExpand" 
+                                             VerticalOptions="FillAndExpand">
                                     <StackLayout.GestureRecognizers>
                                         <TapGestureRecognizer Command="{Binding ToggleButtonVisibility}" />
                                     </StackLayout.GestureRecognizers>
                                     <controls1:CustomFontLabel Text="{Binding Text}"
                                                                FontFamilyName="{Binding FontFamily}"
                                                                TextColor="Black"
-                                                               HorizontalOptions="Center"
                                                                FontSize="16"
                                                                Margin="0,0,0,30" />
                                 </StackLayout>

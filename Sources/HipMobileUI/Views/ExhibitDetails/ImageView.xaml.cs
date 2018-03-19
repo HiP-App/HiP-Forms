@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views.ExhibitDetails;
 
@@ -19,9 +20,35 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views.ExhibitDetails
 {
     public partial class ImageView : IViewFor<ImageViewModel>
     {
+
+        private DeviceOrientation orientation;
+
         public ImageView()
         {
+            orientation = DeviceOrientation.Undefined;
             InitializeComponent();
+        }
+
+        /// <summary>
+        /// Size changed, determine if we need to update the layout.
+        /// </summary>
+        /// <param name="width">The new width.</param>
+        /// <param name="height">The new height.</param>
+        protected override void OnSizeAllocated(double width, double height)
+        {
+            if (width > height && orientation != DeviceOrientation.Landscape)
+            {
+                orientation = DeviceOrientation.Landscape;
+                BottomSheetView.BottomSheetVisible = false;
+
+            }
+            else if (width < height && orientation != DeviceOrientation.Portrait)
+            {
+                orientation = DeviceOrientation.Portrait;
+                BottomSheetView.BottomSheetVisible = true;
+            }
+
+            base.OnSizeAllocated(width, height);
         }
     }
 }
