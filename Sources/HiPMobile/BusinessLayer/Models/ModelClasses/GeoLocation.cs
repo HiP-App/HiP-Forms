@@ -17,6 +17,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
     public struct GeoLocation
     {
         public double Latitude { get; }
+        
         public double Longitude { get; }
 
         public GeoLocation(double latitude, double longitude) : this()

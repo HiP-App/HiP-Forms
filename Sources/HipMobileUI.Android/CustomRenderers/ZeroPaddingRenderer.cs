@@ -36,6 +36,5 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.CustomRenderers
             Control?.SetPadding(0, 0, 0, 0);
             Control?.SetBackgroundColor(new Color(224, 224, 224));
         }
-
     }
 }

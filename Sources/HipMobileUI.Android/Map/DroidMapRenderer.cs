@@ -16,6 +16,7 @@ using System;
 using System.Linq;
 using System.Threading;
 using Android.App;
+using Android.Content;
 using Android.OS;
 using Android.Support.V4.Content;
 using Android.Support.V4.Content.Res;
@@ -35,7 +36,6 @@ using PaderbornUniversity.SILab.Hip.Mobile.UI.Map;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 using System.Collections.Generic;
-using Android.Content;
 
 [assembly: ExportRenderer(typeof(OsmMap), typeof(DroidMapRenderer))]
 
