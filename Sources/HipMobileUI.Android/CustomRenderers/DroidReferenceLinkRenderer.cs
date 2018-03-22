@@ -13,6 +13,7 @@
 // limitations under the License.
 
 using System.ComponentModel;
+using Android.Content;
 using Android.OS;
 using Android.Text;
 using Android.Text.Method;
@@ -30,6 +31,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.CustomRenderers
     public class DroidReferenceLinkRenderer : LabelRenderer
     {
         private ReferenceLink referenceLink;
+
+        public DroidReferenceLinkRenderer(Context context) : base(context)
+        {
+        }
 
         protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e)
         {

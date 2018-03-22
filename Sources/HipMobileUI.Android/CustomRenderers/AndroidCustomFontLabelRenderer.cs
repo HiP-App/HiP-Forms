@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using Android.Content;
 using Android.Graphics;
 using PaderbornUniversity.SILab.Hip.Mobile.Droid.CustomRenderers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Controls;
@@ -24,6 +25,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.CustomRenderers
 {
     public class AndroidCustomFontLabelRenderer : LabelRenderer
     {
+        public AndroidCustomFontLabelRenderer(Context context) : base(context)
+        {
+        }
+
         protected override void OnElementChanged(ElementChangedEventArgs<Label> elementChangedEventArgs)
         {
             base.OnElementChanged(elementChangedEventArgs);

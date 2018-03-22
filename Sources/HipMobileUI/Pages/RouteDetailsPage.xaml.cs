@@ -12,11 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.DesignTime;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
+using System;
 using Xamarin.Forms;
-using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
 {
@@ -28,6 +28,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
         public RouteDetailsView()
         {
             InitializeComponent();
+            DesignMode.Initialize(this);
         }
 
         protected override void OnSizeAllocated(double width, double height)
