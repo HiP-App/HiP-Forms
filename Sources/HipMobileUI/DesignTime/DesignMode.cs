@@ -18,7 +18,6 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Appearance;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.AudioPlayer;
-using PaderbornUniversity.SILab.Hip.Mobile.UI.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.DesignTime.Data;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.DesignTime.Services;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
@@ -26,7 +25,6 @@ using PaderbornUniversity.SILab.Hip.Mobile.UI.Location;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Pages;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
-using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,7 +39,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.DesignTime
     public static class DesignMode
     {
         // view models to use during XAML preview
-        private static readonly Dictionary<Type, object> _viewModels = new Dictionary<Type, object>();
+        private static readonly Dictionary<Type, object> ViewModels = new Dictionary<Type, object>();
 
         /// <summary>
         /// Indicates whether the app is executed in design mode (i.e. by Xamarin.Forms Previewer).
@@ -78,7 +76,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.DesignTime
             if (viewForType != null)
             {
                 var viewModelType = viewForType.GenericTypeArguments[0];
-                view.BindingContext = _viewModels.TryGetValue(viewModelType, out var vm) ? vm : null;
+                view.BindingContext = ViewModels.TryGetValue(viewModelType, out var vm) ? vm : null;
             }
 
             // Xamarin.Forms previewer displays a dark page background by default,
@@ -172,7 +170,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.DesignTime
                 Duration = 17
             }));
 
-            void Add<T>(T viewModel) => _viewModels[typeof(T)] = viewModel;
+            void Add<T>(T viewModel) => ViewModels[typeof(T)] = viewModel;
         }
     }
 }
