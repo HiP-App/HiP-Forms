@@ -12,7 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System.IO;
 using FFImageLoading.Forms.Touch;
 using Foundation;
 using HockeyApp.iOS;
@@ -23,10 +22,12 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.AudioPlayer;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Contracts;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.DesignTime;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Location;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.NotificationPlayer;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels;
+using System.IO;
 using UIKit;
 using UserNotifications;
 using Xamarin.Forms;
@@ -53,11 +54,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios
             EarlyIoC.Register();
 
             var dataAccess = IoCManager.Resolve<IDataAccess>();
+
             if (Settings.ShouldDeleteDbOnLaunch)
             {
                 File.Delete(dataAccess.DatabasePath);
                 Settings.ShouldDeleteDbOnLaunch = false;
             }
+
+            dataAccess.CreateDatabase(0); // ensures the database exists and is up to date
 
             IoCManager.RegisterType<IImageDimension, IosImageDimensions>();
             IoCManager.RegisterType<IAppCloser, IosAppCloser>();
@@ -70,14 +74,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios
             // init other inversion of control classes
             IoCManager.RegisterInstance(typeof(IAudioPlayer), new IosAudioPlayer());
             IoCManager.RegisterInstance(typeof(INotificationPlayer), new IosNotificationPlayer());
-            IoCManager.RegisterType<IStatusBarController, IosStatusBarController>();
             IoCManager.RegisterInstance(typeof(ILocationManager), new LocationManager());
             IoCManager.RegisterInstance(typeof(IKeyProvider), new IosKeyProvider());
             IoCManager.RegisterInstance(typeof(IBarsColorsChanger), new IosBarsColorsChanger());
             IoCManager.RegisterInstance(typeof(IDbChangedHandler), new DbChangedHandler());
             IoCManager.RegisterInstance(typeof(INetworkAccessChecker), new IosNetworkAccessChecker());
             IoCManager.RegisterInstance(typeof(IStorageSizeProvider), new IosStorageSizeProvider());
-            IoCManager.RegisterType<IMediaFileManager, IosMediaFileManager>();
 
             // init crash manager
             var manager = BITHockeyManager.SharedHockeyManager;
@@ -89,8 +91,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios
             // init forms and third party libraries
             CachedImageRenderer.Init();
             Xamarin.Forms.Forms.Init();
-            Xamarin.FormsMaps.Init();
 
+            DesignMode.IsEnabled = false;
             LoadApplication(new App());
 
 #if ENABLE_TEST_CLOUD

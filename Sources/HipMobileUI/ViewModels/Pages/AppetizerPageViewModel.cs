@@ -12,20 +12,19 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System.Collections.Generic;
-using System.IO;
-using System.Windows.Input;
+using Acr.UserDialogs;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelConverters;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
+using System.Collections.Generic;
+using System.IO;
+using System.Windows.Input;
 using Xamarin.Forms;
 using Page = PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.Page;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.ModelClasses;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
-using Acr.UserDialogs;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 {
@@ -35,7 +34,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         private ImageSource image;
         private string text;
         private string headline;
-        private readonly IList<Page> pages;
+        private readonly ICollection<Page> pages;
         private bool nextVisible;
         private bool nextViewAvailable;
         private ICommand nextViewCommand;
@@ -54,7 +53,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         private const string ImgStarHalfFilled = "star_half_filled.png";
         private const string ImgStarFilled = "star_filled.png";
 
-        public AppetizerPageViewModel(string exhibitId) : this(ExhibitManager.GetExhibit(exhibitId)) { }
+        public AppetizerPageViewModel(string exhibitId) : this(DbManager.DataAccess.Exhibits().GetExhibit(exhibitId)) { }
 
         public AppetizerPageViewModel(Exhibit exhibit)
         {
@@ -67,9 +66,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             pages = exhibit.Pages;
 
             Headline = exhibit.Name;
-            Text = exhibit.Name;
+            Text = string.IsNullOrEmpty(exhibit.Description) ? exhibit.Name : exhibit.Description ;
 
-            if (pages.Count > 1 && Exhibit.DetailsDataLoaded)
+            if (pages != null && pages.Count > 1 && Exhibit.DetailsDataLoaded)
                 NextViewAvailable = true;
 
             SetExhibitImage();
@@ -82,8 +81,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
         private async void SetExhibitImage()
         {
-            var imageData = await exhibit.Image.GetDataAsync();
-            Image = imageData != null ? ImageSource.FromStream(() => new MemoryStream(imageData)) : ImageSource.FromStream(() => new MemoryStream(BackupData.BackupImageData));
+            var imageData = (exhibit.Image != null) ? await exhibit.Image.GetDataAsync() : null;
+            Image = imageData != null
+                ? ImageSource.FromStream(() => new MemoryStream(imageData))
+                : ImageSource.FromStream(() => new MemoryStream(BackupData.BackupImageData));
         }
 
         /// <summary>
@@ -97,7 +98,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                 if (exhibitUnblocked)
                 {
                     await Navigation.PushAsync(new ExhibitDetailsPageViewModel(Exhibit));
-
                 }
                 else
                 {
@@ -180,7 +180,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             if (IoCManager.Resolve<INetworkAccessChecker>().GetNetworkAccessStatus() != NetworkAccessStatus.NoAccess)
             {
                 await Navigation.PushAsync(new UserRatingPageViewModel(Exhibit));
-            } else
+            }
+            else
             {
                 UserDialogs.Instance.Alert(new AlertConfig()
                 {

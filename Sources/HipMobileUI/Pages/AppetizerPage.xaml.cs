@@ -11,6 +11,7 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+using PaderbornUniversity.SILab.Hip.Mobile.UI.DesignTime;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
@@ -25,6 +26,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
         public AppetizerPage()
         {
             InitializeComponent();
+            DesignMode.Initialize(this);
             orientation = DeviceOrientation.Undefined;
         }
 

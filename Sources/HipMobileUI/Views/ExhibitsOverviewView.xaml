@@ -38,10 +38,12 @@
                         <RowDefinition Height="0.5*" />
                         <RowDefinition Height="0*" />
                     </Grid.RowDefinitions>
-                    <map:OsmMap Grid.Row="0" x:Name="Map" ExhibitSet="{Binding DisplayedExhibitSet}"
-                                GpsLocation="{Binding Position, Converter={StaticResource PositionGeoLocationConverter}}"
+
+                    <map:OsmMap Grid.Row="0" x:Name="Map" ExhibitSet="{Binding RawExhibits}"
+                                GpsLocation="{Binding Position}"
                                 ShowDetailsRoute="False" />
-                    <ListView Grid.Row="1" ItemsSource="{Binding ExhibitsList}" HasUnevenRows="True" x:Name="List">
+
+                    <ListView Grid.Row="1" ItemsSource="{Binding Exhibits}" HasUnevenRows="True" x:Name="List">
                         <ListView.Behaviors>
                             <behaviors:ListViewTappedItemBehavior Command="{Binding ItemTappedCommand}"
                                                                   Converter="{StaticResource ItemTappedConverter}" />
@@ -74,9 +76,9 @@
                                         </controls1:FadeInImage>
                                         <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" Padding="5,5"
                                                      Grid.Row="0" Grid.Column="1">
-                                            <Label Text="{Binding ExhibitName}" VerticalOptions="CenterAndExpand" FontSize="16"
+                                            <Label Text="{Binding Exhibit.Name}" VerticalOptions="CenterAndExpand" FontSize="16"
                                                    LineBreakMode="WordWrap" FontAttributes="Bold"  Style="{DynamicResource Ssp-Regular}" />
-                                            <Label Text="{Binding FormatedDistance}"
+                                            <Label Text="{Binding FormattedDistance}"
                                                    IsVisible="{Binding Source={x:Reference ExhibitsOveriew}, Path=BindingContext.DisplayDistances}"
                                                    VerticalOptions="End" FontSize="14"
                                                    TextColor="Gray"  Style="{DynamicResource Ssp-Italic}"/>
@@ -90,7 +92,7 @@
                         </ListView.ItemTemplate>
                     </ListView>
                     <Label x:Name="Label" Grid.Row="2" Text="{helpers:Translate ExhibitsOverviewView_EmptyList}"
-                           IsVisible="{Binding ExhibitsList, Converter={StaticResource EmptyListConverter}}"
+                           IsVisible="{Binding Exhibits, Converter={StaticResource EmptyListConverter}}"
                            TextColor="Black" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="16"
                            Margin="5" />
                 </Grid>

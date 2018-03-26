@@ -12,10 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System.Collections.Generic;
+using JetBrains.Annotations;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.JoinClasses;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
+using System;
+using System.Collections.Generic;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
 {
@@ -24,80 +26,73 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
     /// </summary>
     public static class ExhibitManager
     {
-        private static readonly IDataAccess DataAccess = IoCManager.Resolve<IDataAccess>();
+        public static ReadExtensions Exhibits(this IReadOnlyDataAccess dataAccess) => new ReadExtensions(dataAccess);
 
-        /// <summary>
-        /// Gets an exhibitset with a specific id.
-        /// </summary>
-        /// <param name="id">The id of the exhibitset to be retrived.</param>
-        /// <returns>The exhibitSet with the given id. If it doesn't exist, null is returned.</returns>
-        public static ExhibitSet GetExhibitSet(string id)
+        public static ReadWriteExtensions Exhibits(this ITransactionDataAccess dataAccess) => new ReadWriteExtensions(dataAccess);
+
+        public class ReadExtensions
         {
-            if (!string.IsNullOrEmpty(id))
+            private readonly IReadOnlyDataAccess dataAccess;
+
+            public ReadExtensions(IReadOnlyDataAccess dataAccess)
             {
-                return DataAccess.GetItem<ExhibitSet>(id);
+                this.dataAccess = dataAccess ?? throw new ArgumentNullException(nameof(dataAccess));
             }
-            return null;
-        }
 
-        /// <summary>
-        /// Get all available exhibitsets.
-        /// </summary>
-        /// <returns>The enumerable of all available exibitsets.</returns>
-        public static IEnumerable<ExhibitSet> GetExhibitSets()
-        {
-            return DataAccess.GetItems<ExhibitSet>();
-        }
-
-        /// <summary>
-        /// Deletes the exhibitSet from the app.
-        /// </summary>
-        /// <param name="exhibitSet">The exhibitSet to be deleted.</param>
-        /// <returns>True, if deletion was succesful, false otherwise.</returns>
-        public static bool DeleteExhibitSet(ExhibitSet exhibitSet)
-        {
-            if (exhibitSet != null)
+            /// <summary>
+            /// Get an exhibit with a specific id including its image and the IDs of its pages.
+            /// </summary>
+            /// <param name="id">The id of the exhibit to be retrived.</param>
+            /// <returns>The exhibit with the given id. If no exhibit exists, null is returned.</returns>
+            public Exhibit GetExhibit(string id)
             {
-                return DataAccess.DeleteItem<ExhibitSet>(exhibitSet.Id);
+                if (!string.IsNullOrEmpty(id))
+                {
+                    return dataAccess.GetItem<Exhibit>(id,
+                        nameof(Exhibit.Image),
+                        nameof(Exhibit.PagesRefs) + '.' + nameof(JoinExhibitPage.Page) + '.' + nameof(Page.Audio));
+                }
+                return null;
             }
-            return true;
-        }
 
-        /// <summary>
-        /// Get an exhibit with a specific id.
-        /// </summary>
-        /// <param name="id">The id of the exhibit to be retrived.</param>
-        /// <returns>The exhibit with the given id. If no exhibit exists, null is returned.</returns>
-        public static Exhibit GetExhibit(string id)
-        {
-            if (!string.IsNullOrEmpty(id))
+            /// <summary>
+            /// Gets all available exhibits including their image and the IDs of their pages.
+            /// </summary>
+            /// <returns>The enumerable of all available exhibits.</returns>
+            public IEnumerable<Exhibit> GetExhibits()
             {
-                return DataAccess.GetItem<Exhibit>(id);
+                return dataAccess.GetItems<Exhibit>(
+                    nameof(Exhibit.Image),
+                    nameof(Exhibit.PagesRefs) + '.' + nameof(JoinExhibitPage.Page) + '.' + nameof(Page.Audio));
             }
-            return null;
         }
 
-        /// <summary>
-        /// Gets all available exhibits.
-        /// </summary>
-        /// <returns>The enumerable of all available exhibits.</returns>
-        public static IEnumerable<Exhibit> GetExhibits()
+        public class ReadWriteExtensions : ReadExtensions
         {
-            return DataAccess.GetItems<Exhibit>();
-        }
+            private readonly ITransactionDataAccess dataAccess;
 
-        /// <summary>
-        /// Deletes the exhibit from the app.
-        /// </summary>
-        /// <param name="exhibit">The exhibit to be deleted.</param>
-        /// <returns>True, if deletion was succesful, false otherwise.</returns>
-        public static bool DeleteExhibit(Exhibit exhibit)
-        {
-            if (exhibit != null)
+            public ReadWriteExtensions(ITransactionDataAccess dataAccess) : base(dataAccess)
             {
-                return DataAccess.DeleteItem<Exhibit>(exhibit.Id);
+                this.dataAccess = dataAccess ?? throw new ArgumentNullException(nameof(dataAccess));
             }
-            return true;
+
+            public void AddExhibit(Exhibit exhibit)
+            {
+                dataAccess.AddItem(exhibit);
+            }
+
+            /// <summary>
+            /// Deletes an exhibit.
+            /// </summary>
+            /// <param name="exhibit">The exhibit to be deleted. Passing null does nothing and returns true.</param>
+            /// <returns>True iff deletion was successful or <paramref name="exhibit"/> was null.</returns>
+            public bool DeleteExhibit([CanBeNull] Exhibit exhibit)
+            {
+                if (exhibit != null)
+                    dataAccess.DeleteItem(exhibit);
+
+                return true;
+            }
         }
     }
 }

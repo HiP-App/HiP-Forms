@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using PaderbornUniversity.SILab.Hip.Mobile.UI.DesignTime;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages.AudioTranscript;
 using System;
@@ -24,11 +25,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages.AudioTranscript
         public SourcesPage()
         {
             InitializeComponent();
+            DesignMode.Initialize(this);
         }
 
         void OnViewCellTapped(object sender, EventArgs e)
         {
-            ViewCell viewCell = (ViewCell) sender;
+            var viewCell = (ViewCell)sender;
             viewCell.ForceUpdateSize();
         }
     }

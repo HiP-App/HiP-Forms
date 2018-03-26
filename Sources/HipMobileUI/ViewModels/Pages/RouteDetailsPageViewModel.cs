@@ -12,16 +12,17 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System.Collections.ObjectModel;
-using System.IO;
-using System.Windows.Input;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.AudioPlayer;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Location;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
+using System.Collections.ObjectModel;
+using System.IO;
+using System.Windows.Input;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelConverters;
 using Xamarin.Forms;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
@@ -42,7 +43,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         /// and passes it to the alternative constructor.
         /// </summary>
         /// <param name="id">The ID of the route the ViewModel is created for.</param>
-        public RouteDetailsPageViewModel(string id) : this(RouteManager.GetRoute(id))
+        public RouteDetailsPageViewModel(string id) : this(DbManager.DataAccess.Routes().GetRoute(id))
         {
             // Intentionally left blank
         }
@@ -53,14 +54,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         /// <param name="route">The <see cref="Route"/> the ViewModel is created for.</param>
         public RouteDetailsPageViewModel(Route route)
         {
-            Title = route.Title;
+            Title = route.Name;
             Description = route.Audio?.Caption;
             Distance = string.Format(Strings.RouteDetailsPageViewModel_Distance, route.Distance);
             Duration = string.Format(Strings.RouteDetailsPageViewModel_Duration, route.Duration / 60);
             ReadOutCaption = Strings.RouteDetailsPage_PlayAudio;
-            Tags = new ObservableCollection<RouteTag>(route.RouteTags);
-            var data = route.Image.GetDataBlocking();
-            Image = ImageSource.FromStream(() => new MemoryStream(data));
+            Tags = new ObservableCollection<RouteTag>(route.Tags);
+            SetRouteImage(route);
             StartRouteCommand = new Command(StartRoute);
             StartDescriptionPlaybackCommand = new Command(StartDescriptionPlayback);
 
@@ -72,8 +72,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             // init the audio button
             audioPlayer = IoCManager.Resolve<IAudioPlayer>();
             audioPlayer.CurrentAudio = route.Audio;
-            audioPlayer.AudioTitle = route.Title;
+            audioPlayer.AudioTitle = route.Name;
             audioPlayer.IsPlayingChanged += AudioPlayerOnIsPlayingChanged;
+        }
+
+        private async void SetRouteImage(Route route)
+        {
+            var imageData = await route.Image.GetDataAsync();
+            Image = imageData != null ? ImageSource.FromStream(() => new MemoryStream(imageData)) : ImageSource.FromStream(() => new MemoryStream(BackupData.BackupImageData));
         }
 
         private void AudioPlayerOnIsPlayingChanged(bool newvalue)

@@ -67,7 +67,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Behaviors
             OnBindingContextChanged();
         }
 
-        internal void OnListViewItemTapped(object sender, ItemTappedEventArgs e)
+        public void OnListViewItemTapped(object sender, ItemTappedEventArgs e)
         {
             if (Command == null || e == null)
             {

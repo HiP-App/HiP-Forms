@@ -26,7 +26,7 @@ namespace HipMobileUI.UITests
     {
         [TestCase(Platform.Android, Category = "UITestAndroid")]
         [TestCase(Platform.iOS, Category = "UITestiOS")]
-        [Ignore]
+        [Ignore("Unknown reason")]
         public void AppLaunches_MainScreenHasTextBlue(Platform platform)
         {
             BeforeEachTest(platform);

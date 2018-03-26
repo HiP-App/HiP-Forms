@@ -15,6 +15,7 @@
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Windows.Input;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelConverters;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
@@ -44,7 +45,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         public RoutesOverviewListItemViewModel(Route route)
         {
             Route = route;
-            RouteTitle = Route.Title;
+            RouteTitle = Route.Name;
             RouteDescription = Route.Description;
             Duration = GetRouteDurationText(Route.Duration);
             Distance = GetRouteDistanceText(Route.Distance);
@@ -53,7 +54,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 
             Tags = new ObservableCollection<ImageSource>();
 
-            foreach (var tag in Route.RouteTags)
+            foreach (var tag in Route.Tags)
             {
                 // Required to reference first due to threading problems in Realm
                 byte[] currentTagImageData = tag.Image.GetDataBlocking();
@@ -61,21 +62,25 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
                 Tags.Add(ImageSource.FromStream(() => new MemoryStream(currentTagImageData)));
             }
 
-            // Required to reference first due to threading problems in Realm
-            var imageData = Route.Image.GetDataBlocking();
-            Image = ImageSource.FromStream(() => new MemoryStream(imageData));
+            SetRouteImage(route);
 
             DownloadCommand = new Command(OpenDownloadDialog);
         }
 
+        private async void SetRouteImage(Route route)
+        {
+            var imageData = await route.Image.GetDataAsync();
+            Image = imageData != null ? ImageSource.FromStream(() => new MemoryStream(imageData)) : ImageSource.FromStream(() => new MemoryStream(BackupData.BackupImageData));
+        }
+
         public ICommand DownloadCommand { get; set; }
 
-        internal string GetRouteDistanceText(double routeDistance)
+        public string GetRouteDistanceText(double routeDistance)
         {
             return string.Format(Strings.RoutesOverviewListItemViewModel_Distance, routeDistance);
         }
 
-        internal string GetRouteDurationText(int routeDuration)
+        public string GetRouteDurationText(int routeDuration)
         {
             var durationInMinutes = routeDuration / 60;
             return string.Format(Strings.RoutesOverviewListItemViewModel_Duration, durationInMinutes);

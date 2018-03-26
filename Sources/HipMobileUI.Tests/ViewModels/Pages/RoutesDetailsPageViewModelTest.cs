@@ -63,7 +63,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Pages
 
             route.Distance = 10;
             route.Duration = 3600;
-            route.Title = "Test Title";
+            route.Name = "Test Title";
             route.Image = image;
 
             var dataAccess = Substitute.For<IDataAccess>();

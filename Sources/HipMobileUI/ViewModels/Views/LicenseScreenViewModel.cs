@@ -39,13 +39,16 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             {
                 using (DbManager.StartTransaction())
                 {
-                    foreach (var exhibit in ExhibitManager.GetExhibits())
+                    foreach (var exhibit in DbManager.DataAccess.Exhibits().GetExhibits())
                     {
                         exhibit.Unlocked = true;
                     }
                 }
-                await Navigation.DisplayAlert(Strings.LicenseScreenViewModel_UnlockExhibits_Title,
-                                              Strings.LicenseScreenViewModel_UnlockExhibits_Text, Strings.Ok);
+
+                await Navigation.DisplayAlert(
+                    Strings.LicenseScreenViewModel_UnlockExhibits_Title,
+                    Strings.LicenseScreenViewModel_UnlockExhibits_Text,
+                    Strings.Ok);
             }
         }
 

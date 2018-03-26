@@ -16,7 +16,8 @@
 
 using System;
 using System.Linq;
-using Microsoft.Practices.Unity;
+using Unity;
+using Unity.Lifetime;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Common
 {
@@ -54,9 +55,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Common
 
         public static void Clear()
         {
-            foreach (var registration in Instance.Registrations
-                                                 .Where(p => p.RegisteredType == typeof(object)
-                                                             && p.LifetimeManagerType == typeof(ContainerControlledLifetimeManager)))
+            foreach (var registration in Instance.Registrations.Where(p => 
+                p.RegisteredType == typeof(object)
+                && p.LifetimeManager is ContainerControlledLifetimeManager))
             {
                 registration.LifetimeManager.RemoveValue();
             }

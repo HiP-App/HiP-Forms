@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System;
 using System.Collections.Generic;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 using Plugin.Geolocator;
@@ -90,7 +91,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Location
                 locator.PositionChanged += listener.LocationChanged;
                 if (needToStartLocator)
                 {
-                    locator.StartListeningAsync(AppSharedData.MinTimeBwUpdates, AppSharedData.MinDistanceChangeForUpdates);
+                    locator.StartListeningAsync(
+                        TimeSpan.FromMilliseconds(AppSharedData.MinTimeBwUpdates),
+                        AppSharedData.MinDistanceChangeForUpdates);
                 }
             }
         }

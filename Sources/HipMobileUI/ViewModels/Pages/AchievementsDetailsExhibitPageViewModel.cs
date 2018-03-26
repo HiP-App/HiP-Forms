@@ -1,7 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
@@ -20,11 +20,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
         public AchievementsDetailsExhibitPageViewModel(ExhibitsVisitedAchievement exhibitsVisitedAchievement)
         {
-            var dataAccess = IoCManager.Resolve<IDataAccess>();
-            var exhibits = dataAccess.GetItems<Exhibit>().ToList();
+            var exhibits = DbManager.DataAccess.Exhibits().GetExhibits().ToList();
             var visited = exhibits.Count(it => it.Unlocked);
             var total = exhibits.Count;
-            
+
             Exhibits = new ObservableCollection<ExhibitViewModel>(exhibits.Select(it => new ExhibitViewModel
             {
                 Name = it.Name,
@@ -35,7 +34,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             Score = $"{Strings.AchievementsScreenView_Score} {AppSharedData.CurrentAchievementsScore()}";
             VisitedText = string.Format(Strings.AchievementsDetailsExhibitView_VisitedMOfNExhibits, visited, total);
         }
-        
+
         private ObservableCollection<ExhibitViewModel> exhibits;
 
         public ObservableCollection<ExhibitViewModel> Exhibits
@@ -51,7 +50,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             get => visitedText;
             set => SetProperty(ref visitedText, value);
         }
-        
+
         private string score;
 
         public string Score

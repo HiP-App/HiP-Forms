@@ -15,9 +15,9 @@
 
 using NSubstitute;
 using NUnit.Framework;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses;
+using System.Threading.Tasks;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.ServiceAccessLayer.ContentApiAccesses
 {
@@ -34,7 +34,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.ServiceAccessLayer
         }
 
         [Test, Category("UnitTest")]
-        public async void GetUserRating()
+        public async Task GetUserRating()
         {
             var json = "{" +
                        "\"id\": 1," +

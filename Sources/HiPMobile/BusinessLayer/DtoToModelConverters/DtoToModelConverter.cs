@@ -13,9 +13,9 @@
 // limitations under the License.
 
 using JetBrains.Annotations;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
-using Realms;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
+using System;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelConverters
 {
@@ -25,35 +25,30 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelCo
     /// </summary>
     /// <typeparam name="TModelObject"></typeparam>
     /// <typeparam name="TDtoObject"></typeparam>
-    public abstract class DtoToModelConverter<TModelObject, TDtoObject> where TModelObject : RealmObject, IIdentifiable, new()
+    public abstract class DtoToModelConverter<TModelObject, TDtoObject> where TModelObject : class, IIdentifiable
     {
         /// <summary>
         /// Converts the given <paramref name="dto"/> to a new model object
         /// </summary>
-        /// <param name="dto"></param>
-        /// <returns></returns>
         public TModelObject Convert(TDtoObject dto)
         {
-            var modelObject = DbManager.CreateBusinessObject<TModelObject>();
-
+            var modelObject = CreateModelInstance(dto);
             Convert(dto, modelObject);
-
             return modelObject;
         }
 
         /// <summary>
-        /// Converts the given <paramref name="dto"/> to a new model object
+        /// Converts the given <paramref name="dto"/> to a new model object, deleting the entity first if it already exists.
         /// </summary>
-        /// <param name="dto"></param>
-        /// <param name="id">The ID to assign to the object.</param>
-        /// <param name="updateCurrent">If true, first removes any object of the same type with the id.</param>
-        /// <returns></returns>
-        public TModelObject Convert(TDtoObject dto, [NotNull] string id, bool updateCurrent = false)
+        public TModelObject ConvertReplacingExisting(TDtoObject dto, [NotNull] string id, ITransactionDataAccess dataAccess)
         {
-            var modelObject = DbManager.CreateBusinessObject<TModelObject>(id, updateCurrent);
+            // If an entity of the same type and ID already exists, delete it first
+            if (dataAccess.GetItem<TModelObject>(id) is TModelObject existing)
+                dataAccess.DeleteItem(existing);
 
+            var modelObject = CreateModelInstance(dto);
+            modelObject.Id = id ?? throw new ArgumentNullException(nameof(id));
             Convert(dto, modelObject);
-
             return modelObject;
         }
 
@@ -63,5 +58,27 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelCo
         /// <param name="dto"></param>
         /// <param name="existingModelObject"></param>
         public abstract void Convert(TDtoObject dto, TModelObject existingModelObject);
+
+        /// <summary>
+        /// Creates an empty instance of <typeparamref name="TModelObject"/>.
+        /// By default, this tries to use the parameterless constructor of <typeparamref name="TModelObject"/>.
+        /// This method only needs to be overridden if such a constructor is not available, e.g. if
+        /// <typeparamref name="TModelObject"/> is abstract and thus can't be constructed.
+        /// </summary>
+        /// <param name="dto"></param>
+        protected virtual TModelObject CreateModelInstance(TDtoObject dto)
+        {
+            try
+            {
+                return Activator.CreateInstance<TModelObject>();
+            }
+            catch (MissingMethodException e)
+            {
+                throw new InvalidOperationException(
+                    $"'{GetType().Name}' failed to create an instance of '{typeof(TModelObject).Name}' because the type " +
+                    $"does not have a parameterless constructor or is abstract. Consider adding a parameterless constructor " +
+                    $"or overriding '{nameof(CreateModelInstance)}'.", e);
+            }
+        }
     }
 }

@@ -20,6 +20,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:helpers="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;assembly=HipMobileUI"
              xmlns:views="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Views;assembly=HipMobileUI"
+             xmlns:authenticationApiAccess="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.AuthenticationApiAccess;assembly=HiPMobile"
              x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Views.LoginScreenView">
     <ContentView.Content>
         <views:NotificationExtensionView>
@@ -28,21 +29,25 @@
                     <Entry x:Name="EmailEntry"
                            Keyboard="Email"
                            VerticalOptions="End"
-                           Placeholder="{helpers:Translate LoginScreenView_Email}" Text="{Binding Email}" TextChanged="Entry_TextChanged" />
+                           Placeholder="{helpers:Translate LoginScreenView_Email}" Text="{Binding Email}"
+                           TextChanged="Entry_TextChanged" />
                     <Entry x:Name="PasswordEntry"
                            IsPassword="True" Placeholder="{helpers:Translate LoginScreenView_Password}"
                            Text="{Binding Password}" TextChanged="Entry_TextChanged" />
                     <Label x:Name="ErrorMessageLabel"
                            HorizontalOptions="Center" VerticalOptions="Start"
                            FontSize="Small" TextColor="Red" Text="{Binding ErrorMessage, Mode=TwoWay}" />
+                    <Button x:Name="DebugLoginButton"
+                            Text="{helpers:Translate LoginScreenView_Login_Debug}"
+                            FontSize="Small"
+                            IsVisible="{x:Static authenticationApiAccess:Constants.IsDebug}"
+                            Command="{Binding DebugLoginCommand}" />
                     <Button x:Name="RegisterButton"
-                           FontSize="Small" Text="{helpers:Translate LoginScreenView_Register}"
-                           Command="{Binding RegisterCommand}" >
-                    </Button>
+                            FontSize="Small" Text="{helpers:Translate LoginScreenView_Register}"
+                            Command="{Binding RegisterCommand}" />
                     <Button x:Name="ForgotPasswordButton"
-                           FontSize="Small" Text="{helpers:Translate LoginScreenView_Forgot_Password}"
-                           Command="{Binding ForgotPasswordCommand}" >
-                    </Button>
+                            FontSize="Small" Text="{helpers:Translate LoginScreenView_Forgot_Password}"
+                            Command="{Binding ForgotPasswordCommand}" />
                     <Button x:Name="LoginButton"
                             Text="{helpers:Translate LoginScreenView_Login}"
                             Command="{Binding LoginCommand}" />

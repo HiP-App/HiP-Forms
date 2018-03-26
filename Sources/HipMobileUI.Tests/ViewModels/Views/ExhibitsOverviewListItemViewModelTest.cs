@@ -29,7 +29,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Views
 {
     class ExhibitsOverviewListItemViewModelTest
     {
-        [TestFixtureSetUp]
+        [OneTimeSetUp]
         public void Init()
         {
             IoCManager.Clear();
@@ -51,7 +51,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Views
         {
             var sut = CreateSystemUnderTest();
 
-            Assert.AreEqual("Exhibit", sut.ExhibitName);
+            Assert.AreEqual("Exhibit", sut.Exhibit.Name);
             Assert.AreEqual(42, sut.Distance);
             Assert.NotNull(sut.Image);
         }
@@ -61,9 +61,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Views
         {
             var sut = CreateSystemUnderTest();
 
-            Assert.AreEqual("42 m", sut.FormatedDistance);
+            Assert.AreEqual("42 m", sut.FormattedDistance);
             sut.Distance = 42000;
-            Assert.AreEqual("42 km", sut.FormatedDistance);
+            Assert.AreEqual("42 km", sut.FormattedDistance);
         }
 
         #region HelperMethods
