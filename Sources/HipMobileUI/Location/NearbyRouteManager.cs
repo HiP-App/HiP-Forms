@@ -70,7 +70,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Location
                     }
                 }
 
-                await IoCManager.Resolve<INavigationService>().PushModalAsync(new RoutePreviewPageViewModel(r, this));
+                await IoCManager.Resolve<INavigationService>().PushModalAsync(new ExhibitRoutePreviewPageViewModel(r, this));
                 popupActive = true;
 
                 await DbManager.InTransactionAsync(transaction =>

@@ -1,4 +1,4 @@
-// Copyright (C) 2017 History in Paderborn App - Universit‰t Paderborn
+// Copyright (C) 2017 History in Paderborn App - Universit√§t Paderborn
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -13,6 +13,8 @@
 // limitations under the License.
 
 using System.ComponentModel;
+using Android.App;
+using Android.Content;
 using Android.Content.PM;
 using PaderbornUniversity.SILab.Hip.Mobile.Droid.CustomRenderers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
@@ -28,6 +30,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.CustomRenderers
     {
         private OrientationContentPage formsOrientationPage;
 
+        public AndroidOrientationPageRenderer(Context context) : base(context)
+        {
+        }
+        
         protected override void OnElementChanged(ElementChangedEventArgs<Page> e)
         {
             base.OnElementChanged(e);
@@ -58,15 +64,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.CustomRenderers
         {
             if (controller == OrientationController.LandscapeConstant)
             {
-                ((MainActivity) Context).RequestedOrientation = ScreenOrientation.Landscape;
+                ((Activity)Context).RequestedOrientation = ScreenOrientation.Landscape;
             }
             else if (controller == OrientationController.PortraitConstant)
             {
-                ((MainActivity) Context).RequestedOrientation = ScreenOrientation.Portrait;
+                ((Activity)Context).RequestedOrientation = ScreenOrientation.Portrait;
             }
             else
             {
-                ((MainActivity) Context).RequestedOrientation = ScreenOrientation.Sensor;
+                ((Activity)Context).RequestedOrientation = ScreenOrientation.Sensor;
             }
         }
 

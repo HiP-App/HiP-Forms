@@ -12,17 +12,17 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System.IO;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using System.Threading.Tasks;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
 using Plugin.Geolocator.Abstractions;
-using Xamarin.Forms;
+using System.IO;
 using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 {
@@ -31,7 +31,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         public ExhibitsOverviewListItemViewModel(Exhibit exhibit, double distance = -1)
         {
             Exhibit = exhibit;
-            ExhibitName = Exhibit.Name;
             Distance = distance;
             var data = Exhibit.Image.GetDataBlocking();
             Image = ImageSource.FromStream(() => new MemoryStream(data));
@@ -41,75 +40,50 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             DownloadCommand = new Command(OpenDownloadDialog);
         }
 
-        private Exhibit exhibit;
-        private string exhibitName;
         private double distance;
-        private ImageSource image;
         private bool isDownloadButtonVisible;
         private ExhibitRouteDownloadPageViewModel downloadPage;
 
         /// <summary>
-        /// The name of the exhibit.
+        /// The exhibit.
         /// </summary>
-        public string ExhibitName
-        {
-            get { return exhibitName; }
-            set { SetProperty(ref exhibitName, value); }
-        }
+        public Exhibit Exhibit { get; }
+
+        public ICommand DownloadCommand { get; }
+
+        /// <summary>
+        /// The appetizer image for the exhibit.
+        /// </summary>
+        public ImageSource Image { get; }
 
         /// <summary>
         /// The distance to the exhibit.
         /// </summary>
         public double Distance
         {
-            get { return distance; }
+            get => distance;
             set
             {
                 if (SetProperty(ref distance, value))
                 {
-                    OnPropertyChanged(nameof(FormatedDistance));
+                    OnPropertyChanged(nameof(FormattedDistance));
                 }
             }
         }
 
         /// <summary>
-        /// The appetizer image for teh exhibit.
+        /// The formatted distance string.
         /// </summary>
-        public ImageSource Image
-        {
-            get { return image; }
-            set { SetProperty(ref image, value); }
-        }
-
-        /// <summary>
-        /// The id of the exhibit.
-        /// </summary>
-        public Exhibit Exhibit
-        {
-            get { return exhibit; }
-            set { SetProperty(ref exhibit, value); }
-        }
-
-        /// <summary>
-        /// The Formated distance string.
-        /// </summary>
-        public string FormatedDistance
-        {
-            get
-            {
-                if (Distance < 1000)
-                {
-                    return $"{Distance:F0} m";
-                }
-
-                return $"{Distance / 1000:0.##} km";
-            }
-        }
+        
+        public string FormattedDistance => (Distance < 1000)
+                ? $"{Distance:F0} m"
+                : $"{Distance / 1000:0.##} km";
+            
 
         public bool IsDownloadButtonVisible
         {
-            get { return isDownloadButtonVisible; }
-            set { SetProperty(ref isDownloadButtonVisible, value); }
+            get => isDownloadButtonVisible;
+            set => SetProperty(ref isDownloadButtonVisible, value);
         }
 
         /// <summary>
@@ -118,7 +92,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         /// <param name="position">The new position from which the distance is measured.</param>
         public void UpdateDistance(Position position)
         {
-            Distance = MathUtil.CalculateDistance(exhibit.Location, new GeoLocation(position.Latitude, position.Longitude));
+            Distance = MathUtil.CalculateDistance(Exhibit.Location, new GeoLocation(position.Latitude, position.Longitude));
         }
 
         public async void OpenDetailsView(string id)
@@ -147,17 +121,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             IoCManager.Resolve<INavigationService>().PopAsync();
         }
 
-        public ICommand DownloadCommand { get; set; }
+        public override bool Equals(object obj) =>
+            obj is ExhibitsOverviewListItemViewModel otherItem &&
+            Exhibit.Name == otherItem.Exhibit.Name;
 
-        public override bool Equals(object obj)
-        {
-            var otherItem = obj as ExhibitsOverviewListItemViewModel;
-            if (otherItem != null)
-            {
-                return ExhibitName.Equals(otherItem.ExhibitName);
-            }
-
-            return Equals(obj);
-        }
+        public override int GetHashCode() => Exhibit.Name.GetHashCode();
     }
 }

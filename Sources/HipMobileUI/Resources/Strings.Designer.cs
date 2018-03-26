@@ -457,6 +457,24 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Exhibit nearby:.
+        /// </summary>
+        public static string ExhibitRoutePreviewPage_Exhibit_Nearby_Title {
+            get {
+                return ResourceManager.GetString("ExhibitRoutePreviewPage_Exhibit_Nearby_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Route nearby:.
+        /// </summary>
+        public static string ExhibitRoutePreviewPage_Route_Nearby_Title {
+            get {
+                return ResourceManager.GetString("ExhibitRoutePreviewPage_Route_Nearby_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No sights available. Download sights to get started!.
         /// </summary>
         public static string ExhibitsOverviewView_EmptyList {

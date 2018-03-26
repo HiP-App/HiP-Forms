@@ -34,6 +34,7 @@ using Acr.UserDialogs;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.NotificationPlayer;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.DesignTime;
 using TwinTechsForms.NControl.Android;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
@@ -91,6 +92,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
 
             UserDialogs.Init(() => (Activity)Forms.Context);
 
+            DesignMode.IsEnabled = false;
             LoadApplication(new App());
         }
 

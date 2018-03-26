@@ -16,6 +16,7 @@ using FFImageLoading.Forms;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Controls;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.DesignTime;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
@@ -33,6 +34,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
         public UserOnboardingPage()
         {
             InitializeComponent();
+            DesignMode.Initialize(this);
             orientation = DeviceOrientation.Undefined;
         }
 

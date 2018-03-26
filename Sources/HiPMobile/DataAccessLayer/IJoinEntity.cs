@@ -56,7 +56,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
         private readonly TEntity ownerEntity;
         private readonly ICollection<TJoinEntity> collection;
         private readonly JoinSide navigationTarget;
-        private static int target;
 
         public JoinCollectionFacade(TEntity ownerEntity, ICollection<TJoinEntity> collection, JoinSide navigationTarget)
         {
