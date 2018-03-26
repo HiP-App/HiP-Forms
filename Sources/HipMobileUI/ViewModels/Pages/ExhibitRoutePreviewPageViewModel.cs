@@ -46,12 +46,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         {
             this.route = route;
 
-            Question = Strings.ExhibitOrRouteNearby_Question_Part1 + " \"" + route.Title + "\" " + Strings.ExhibitOrRouteNearby_Question_Part2;
+            Question = Strings.ExhibitOrRouteNearby_Question_Part1 + " \"" + route.Name + "\" " + Strings.ExhibitOrRouteNearby_Question_Part2;
             SetImage(route.Image);
 
             NearbyRouteManager = nearbyRouteManager;
             ExhibitRouteNearby = Strings.ExhibitRoutePreviewPage_Route_Nearby_Title;
-            ExhibitRouteTitle = route.Title;
+            ExhibitRouteTitle = route.Name;
             Description = route.Description == "" ? route.Name : route.Description;
 
             Confirm = new Command(AcceptRoute);

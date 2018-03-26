@@ -88,7 +88,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Location
                     }
                     else
                     {
-                        var nv = new ExhibitPreviewPageViewModel(e, this);
+                        var nv = new ExhibitRoutePreviewPageViewModel(e, this);
                         await IoCManager.Resolve<INavigationService>().PushModalAsync(nv);
                     }
                 }
