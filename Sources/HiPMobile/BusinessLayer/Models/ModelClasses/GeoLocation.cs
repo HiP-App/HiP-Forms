@@ -17,6 +17,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
     public struct GeoLocation
     {
         public double Latitude { get; }
+        
         public double Longitude { get; }
 
         public GeoLocation(double latitude, double longitude) : this()
@@ -28,6 +29,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
         public static bool operator ==(GeoLocation a, GeoLocation b) => a.Equals(b);
 
         public static bool operator !=(GeoLocation a, GeoLocation b) => !a.Equals(b);
+
+        // Structs have default implementations of Equals and GetHashCode, but overriding
+        // == and != without overriding Equals and GetHashCode causes warnings.
+        public override bool Equals(object obj) => base.Equals(obj);
+
+        public override int GetHashCode() => base.GetHashCode();
     }
 }
 
