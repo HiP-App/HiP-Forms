@@ -871,4 +871,10 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   <data name="MainPage_LoggedIn" xml:space="preserve">
     <value>Angemeldet als:</value>
   </data>
+  <data name="ExhibitRoutePreviewPage_Exhibit_Nearby_Title" xml:space="preserve">
+    <value>Sehenswürdigkeit in der Nähe:</value>
+  </data>
+  <data name="ExhibitRoutePreviewPage_Route_Nearby_Title" xml:space="preserve">
+    <value>Route in der Nähe:</value>
+  </data>
 </root>
