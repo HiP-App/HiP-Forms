@@ -89,7 +89,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels
                     if (featureObserver.Last /* feature is enabled */)
                     {
                         await BackupData.WaitForInitAsync();
-                        var pending = AchievementManager.DequeuePendingAchievementNotifications();
+                        var pending = await AchievementManager.DequeuePendingAchievementNotifications();
                         AchievementNotification.QueueAchievementNotifications(pending);
                     }
                 }

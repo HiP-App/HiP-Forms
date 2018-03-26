@@ -16,6 +16,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using JetBrains.Annotations;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 
@@ -33,7 +34,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
         /// indirectly referenced items. All changes within the transaction are recorded and saved when the
         /// transaction is committed.
         /// Note: Changes are only detected within the scope of the transaction, i.e. if some item in the graph
-        /// already has unsaved changes at the time of calling <see cref="InTransaction{T}"/>, 
+        /// already has unsaved changes at the time of calling <see cref="InTransactionAsync{T}"/>, 
         /// these changes won't be detected and won't be saved.
         /// </summary>
         /// <param name="itemsToTrack">
@@ -48,7 +49,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
         /// The function that should be executed in the scope of the transaction.
         /// </param>
         /// <returns>The transaction object.</returns>
-        T InTransaction<T>([CanBeNull] IEnumerable<object> itemsToTrack, Func<BaseTransaction, T> func);
+        Task<T> InTransactionAsync<T>([CanBeNull] IEnumerable<object> itemsToTrack, Func<BaseTransaction, Task<T>> func);
         
         /// <summary>
         /// Gets the version number for the currently saved data.

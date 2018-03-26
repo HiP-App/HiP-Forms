@@ -73,7 +73,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Location
                 await IoCManager.Resolve<INavigationService>().PushModalAsync(new RoutePreviewPageViewModel(r, this));
                 popupActive = true;
 
-                DbManager.InTransaction(transaction => { r.LastTimeDismissed = now; });
+                await DbManager.InTransactionAsync(transaction =>
+                {
+                    r.LastTimeDismissed = now;
+                });
             }
         }
 

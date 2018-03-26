@@ -45,7 +45,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
 
         public async Task FetchBaseDataIntoDatabase(CancellationToken token, IProgressListener listener)
         {
-            var cancelled = await DbManager.InTransaction(async transaction =>
+            var cancelled = await DbManager.InTransactionAsync(async transaction =>
             {
                 var routes = transaction.DataAccess.Routes().GetRoutes().ToDictionary(x => x.IdForRestApi, x => x.Timestamp);
                 var exhibits = transaction.DataAccess.Exhibits().GetExhibits().ToDictionary(x => x.IdForRestApi, x => x.Timestamp);
@@ -94,7 +94,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
 
             if (!cancelled)
             {
-                await DbManager.InTransaction(async transaction =>
+                await DbManager.InTransactionAsync(async transaction =>
                 {
                     await dataToRemoveFetcher.FetchDataToDelete(token);
                     await dataToRemoveFetcher.CleanupRemovedData(transaction.DataAccess);

@@ -76,7 +76,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             if (token.IsCancellationRequested)
                 return;
 
-            await DbManager.InTransaction(async transaction =>
+            await DbManager.InTransactionAsync(async transaction =>
             {
                 var dataAccess = transaction.DataAccess;
                 await ProcessRoute(token, listener, dataAccess); // Download audio

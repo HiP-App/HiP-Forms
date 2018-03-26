@@ -13,16 +13,17 @@
 // limitations under the License.
 
 using System;
+using System.Threading.Tasks;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
 {
     // ReSharper disable once InconsistentNaming
     public static class IDataAccessExtensions
     {
-        /// <summary>Convenience overload for <see cref="IDataAccess.InTransaction{T}"/>
+        /// <summary>Convenience overload for <see cref="IDataAccess.InTransactionAsync{T}"/>
         /// without any tracked objects.
         /// </summary>
-        public static T InTransaction<T>(this IDataAccess dataAccess, Func<BaseTransaction, T> func) =>
-            dataAccess.InTransaction(null, func);
+        public static Task<T> InTransaction<T>(this IDataAccess dataAccess, Func<BaseTransaction, Task<T>> func) =>
+            dataAccess.InTransactionAsync(null, func);
     }
 }

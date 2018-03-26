@@ -58,7 +58,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
 
             listener.SetMaxProgress(totalSteps);
 
-            await DbManager.InTransaction(async transaction =>
+            await DbManager.InTransactionAsync(async transaction =>
             {
                 await ProcessPages(exhibitId, token, listener, transaction.DataAccess);
                 if (token.IsCancellationRequested)
@@ -75,7 +75,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             requiredMedia = exhibitPagesAndMediaContainer.RequiredMedia;
             pageItems = exhibitPagesAndMediaContainer.PageDtos;
 
-            await DbManager.InTransaction(async transaction =>
+            await DbManager.InTransactionAsync(async transaction =>
             {
                 await ProcessPages(exhibitId, token, listener, transaction.DataAccess);
                 if (token.IsCancellationRequested)

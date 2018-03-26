@@ -14,13 +14,13 @@
 
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.NotificationPlayer;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
@@ -56,7 +56,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Location
                 var dist = MathUtil.CalculateDistance(e.Location, gpsLocation);
                 if (dist < AppSharedData.ExhibitRadius)
                 {
-                    DbManager.InTransaction(transaction => { e.Unlocked = true; });
+                    await DbManager.InTransactionAsync(transaction =>
+                    {
+                        e.Unlocked = true;
+                    });
 
                     if (considerTimeouts)
                     {
@@ -71,7 +74,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Location
                         }
 
                         // update the time the dialog was last shown
-                        DbManager.InTransaction(transaction => { e.LastNearbyTime = now; });
+                        await DbManager.InTransactionAsync(transaction =>
+                        {
+                            e.LastNearbyTime = now;
+                        });
                     }
 
                     // Display popup page or local notification

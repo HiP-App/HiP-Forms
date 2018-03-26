@@ -13,6 +13,7 @@
 // limitations under the License.
 
 using System.IO;
+using System.Threading.Tasks;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
@@ -126,12 +127,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             await Navigation.PopAsync();
         }
 
-        public void SetDetailsAvailable(bool available)
+        public async Task SetDetailsAvailable(bool available)
         {
             if (!available)
                 return;
 
-            DbManager.InTransaction(transaction => { Exhibit.DetailsDataLoaded = true; });
+            await DbManager.InTransactionAsync(transaction => { Exhibit.DetailsDataLoaded = true; });
             IsDownloadButtonVisible = !Exhibit.DetailsDataLoaded;
         }
 

@@ -128,7 +128,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                             Strings.RouteDetailspageViewModel_Back, null, Strings.RouteDetailspageViewModel_ContinueRoute, Strings.RouteDetailspageViewModel_RestartRoute);
                 if (result.Equals(Strings.RouteDetailspageViewModel_RestartRoute))
                 {
-                    DetailsRoute.ResetRoute();
+                    await DetailsRoute.ResetRoute();
                 }
                 else if (result.Equals(Strings.RouteDetailspageViewModel_Back))
                 {

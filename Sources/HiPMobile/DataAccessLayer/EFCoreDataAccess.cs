@@ -19,6 +19,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
 {
@@ -123,10 +124,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
             }
         }
 
-        public T InTransaction<T>(IEnumerable<object> itemsToTrack, Func<BaseTransaction, T> func)
+        public async Task<T> InTransactionAsync<T>(IEnumerable<object> itemsToTrack, Func<BaseTransaction, Task<T>> func)
         {
             if (sharedDbContext != null)
-                throw new InvalidOperationException($"{nameof(InTransaction)} must not be called within the scope of a transaction");
+                throw new InvalidOperationException($"{nameof(InTransactionAsync)} must not be called within the scope of a transaction");
 
             var db = new AppDatabaseContext(QueryTrackingBehavior.TrackAll);
             db.AttachRange(itemsToTrack?.Distinct() ?? Enumerable.Empty<object>());
@@ -135,7 +136,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
             T value;
             try
             {
-                value = func.Invoke(transaction);
+                value = await func.Invoke(transaction);
                 transaction.Commit();
             }
             catch (Exception)

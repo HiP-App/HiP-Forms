@@ -17,6 +17,7 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
 using System;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -36,12 +37,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelCo
             await IsInitializedSema.WaitAsync();
             IsInitializedSema.Release();
         }
-        
+
         public static async Task Init()
         {
             // We do NOT use DbManager.StartTransaction() here because that would attach BackupImage & BackupImageTag
             // to the transaction and these properties are still null at this point.
-            await IoCManager.Resolve<IDataAccess>().InTransaction(Enumerable.Empty<object>(), async transaction =>
+            await IoCManager.Resolve<IDataAccess>().InTransactionAsync(Enumerable.Empty<object>(), async transaction =>
             {
                 var dataAccess = transaction.DataAccess;
                 var dataLoader = IoCManager.Resolve<IDataLoader>();
@@ -78,6 +79,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelCo
                 }
 
                 mockAudioData = dataLoader.LoadByteData("mockaudio.mp3");
+                return Task.CompletedTask;
             });
             IsInitializedSema.Release();
         }

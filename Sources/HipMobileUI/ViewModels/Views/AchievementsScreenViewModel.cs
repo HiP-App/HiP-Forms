@@ -38,7 +38,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 
             try
             {
-                await DbManager.InTransaction(async transaction =>
+                await DbManager.InTransactionAsync(async transaction =>
                 {
                     var newlyUnlocked = await IoCManager.Resolve<IAchievementFetcher>().UpdateAchievements(transaction.DataAccess);
                     AchievementNotification.QueueAchievementNotifications(newlyUnlocked);

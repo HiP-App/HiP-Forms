@@ -14,6 +14,7 @@
 
 using System.Collections.ObjectModel;
 using System.IO;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
@@ -98,12 +99,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             await Navigation.PopAsync();
         }
 
-        public void SetDetailsAvailable(bool available)
+        public async Task SetDetailsAvailable(bool available)
         {
             if (!available)
                 return;
 
-            DbManager.InTransaction(transaction => { Route.DetailsDataLoaded = true; });
+            await DbManager.InTransactionAsync(transaction =>
+            {
+                Route.DetailsDataLoaded = true;
+            });
 
             IsDownloadPanelVisible = !Route.DetailsDataLoaded;
         }

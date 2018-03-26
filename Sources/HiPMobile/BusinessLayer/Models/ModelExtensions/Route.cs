@@ -16,6 +16,7 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.JoinClasses;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 {
@@ -30,11 +31,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
         /// </summary>
         /// <param name="waypoint">The waypoint to move.</param>
         /// <returns>True, if the waypoint could be moved. False otherwise.</returns>
-        public bool MoveToPassiveSet(Waypoint waypoint)
+        public async Task<bool> MoveToPassiveSet(Waypoint waypoint)
         {
             if (waypoint != null)
             {
-                return DbManager.InTransaction(transaction =>
+                return await DbManager.InTransactionAsync(transaction =>
                 {
                     var exists = ActiveSet.Contains(waypoint);
                     waypoint.Visited = true;
@@ -48,9 +49,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
         /// <summary>
         /// Moves all waypoints from the passive set to the active set.
         /// </summary>
-        public void ResetRoute()
+        public async Task ResetRoute()
         {
-            DbManager.InTransaction(PassiveSet, transaction =>
+            await DbManager.InTransactionAsync(PassiveSet, transaction =>
             {
                 foreach (var waypoint in PassiveSet)
                 {

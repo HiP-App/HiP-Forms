@@ -22,6 +22,7 @@ using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 using Page = PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.Page;
@@ -210,12 +211,16 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             set { SetProperty(ref isDownloadButtonVisible, value); }
         }
 
-        public void SetDetailsAvailable(bool available)
+        public async Task SetDetailsAvailable(bool available)
         {
             if (!available)
                 return;
 
-            DbManager.InTransaction(transaction => { Exhibit.DetailsDataLoaded = true; });
+            await DbManager.InTransactionAsync(transaction =>
+            {
+                Exhibit.DetailsDataLoaded = true;
+                return Task.CompletedTask;
+            });
             IsDownloadButtonVisible = !Exhibit.DetailsDataLoaded;
 
             NextViewAvailable = pages.Count > 1;
