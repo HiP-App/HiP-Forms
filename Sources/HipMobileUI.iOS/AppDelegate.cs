@@ -12,7 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System.IO;
 using FFImageLoading.Forms.Touch;
 using Foundation;
 using HockeyApp.iOS;
@@ -23,10 +22,12 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.AudioPlayer;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Contracts;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.DesignTime;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Location;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.NotificationPlayer;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels;
+using System.IO;
 using UIKit;
 using UserNotifications;
 using Xamarin.Forms;
@@ -91,6 +92,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios
             CachedImageRenderer.Init();
             Xamarin.Forms.Forms.Init();
 
+            DesignMode.IsEnabled = false;
             LoadApplication(new App());
 
 #if ENABLE_TEST_CLOUD

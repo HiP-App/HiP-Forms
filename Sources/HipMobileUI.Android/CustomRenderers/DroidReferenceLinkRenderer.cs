@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System.ComponentModel;
+using Android.Content;
 using Android.OS;
 using Android.Text;
 using Android.Text.Method;
@@ -20,6 +20,7 @@ using Android.Text.Util;
 using PaderbornUniversity.SILab.Hip.Mobile.Droid.CustomRenderers;
 using PaderbornUniversity.SILab.Hip.Mobile.Droid.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Views;
+using System.ComponentModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
@@ -30,6 +31,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.CustomRenderers
     public class DroidReferenceLinkRenderer : LabelRenderer
     {
         private ReferenceLink referenceLink;
+
+        public DroidReferenceLinkRenderer(Context context) : base(context)
+        {
+        }
 
         protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e)
         {

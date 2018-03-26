@@ -19,7 +19,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Pages.ExhibitRouteDownloadPage"
-             Title="{Binding DownloadableName}"
+             Title="{Binding Downloadable.Name}"
              xmlns:effects="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Effects;assembly=HipMobileUI"
              xmlns:views="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Views;assembly=HipMobileUI"
              xmlns:helpers="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;assembly=HipMobileUI">
@@ -40,7 +40,7 @@
                         </Grid.RowDefinitions>
                         <!--The row and column definition is made in code to adjust them to the device orientation-->
                         <StackLayout Grid.Row="0" VerticalOptions="CenterAndExpand" Margin="20,20,20,20" >
-                            <Label IsVisible="{Binding DescriptionExists}" Text="{Binding DownloadableDescription}" FontSize="Medium" TextColor="{StaticResource PrimaryDarkColor}"
+                            <Label IsVisible="{Binding DescriptionExists}" Text="{Binding Downloadable.Description}" FontSize="Medium" TextColor="{StaticResource PrimaryDarkColor}"
                                    HorizontalTextAlignment="Center" FontAttributes="Bold" Style="{DynamicResource Ssp-SemiBold}"/>
                             <Label Text="{helpers:Translate ExhibitRouteDownloadPage_Download_Text}" FontSize="Medium" TextColor="Black"
                                    HorizontalTextAlignment="Center" Style="{DynamicResource Ssp-Regular}"/>
