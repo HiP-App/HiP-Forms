@@ -1,4 +1,4 @@
-// Copyright (C) 2017 History in Paderborn App - Universit‰t Paderborn
+// Copyright (C) 2017 History in Paderborn App - Universit√§t Paderborn
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,10 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System;
+using Android.Content;
 using Android.OS;
 using PaderbornUniversity.SILab.Hip.Mobile.Droid.CustomRenderers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Controls;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
@@ -28,6 +29,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.CustomRenderers
     {
         private Android.Support.Design.Widget.FloatingActionButton fab;
         private FloatingActionButton formsButton;
+
+        public FloatingActionButtonAndroidRenderer(Context context) : base(context)
+        {
+        }
 
         protected override void OnElementChanged(ElementChangedEventArgs<FloatingActionButton> e)
         {

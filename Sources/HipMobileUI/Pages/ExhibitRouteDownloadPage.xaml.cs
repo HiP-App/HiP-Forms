@@ -1,8 +1,8 @@
-﻿using System;
+﻿using PaderbornUniversity.SILab.Hip.Mobile.UI.DesignTime;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
-using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
+using System;
 using Xamarin.Forms;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
@@ -14,6 +14,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
         public ExhibitRouteDownloadPage()
         {
             InitializeComponent();
+            DesignMode.Initialize(this);
             orientation = DeviceOrientation.Undefined;
         }
 

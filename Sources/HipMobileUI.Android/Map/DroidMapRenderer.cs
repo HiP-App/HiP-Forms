@@ -16,6 +16,7 @@ using System;
 using System.Linq;
 using System.Threading;
 using Android.App;
+using Android.Content;
 using Android.OS;
 using Android.Support.V4.Content;
 using Android.Support.V4.Content.Res;
@@ -52,6 +53,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Map
         private RouteCalculator routeCalculator;
         private Marker userMarkerPosition;
 
+        public DroidMapRenderer(Context context) : base(context)
+        {
+        }
+
         public bool OnScroll(ScrollEvent p0)
         {
             return false;
@@ -69,7 +74,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Map
 
             if (Control == null)
             {
-                mapView = new MapView(Forms.Context, 11);
+                mapView = new MapView(Context, 11);
                 activity = Context as Activity;
                 routeCalculator = RouteCalculator.Instance;
                 SetNativeControl(mapView);

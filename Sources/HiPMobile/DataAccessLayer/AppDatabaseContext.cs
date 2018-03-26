@@ -100,7 +100,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
             {
                 SaveChanges();
             }
-            catch (System.Exception e)
+            catch (System.Exception)
             {
                 // Breakpoint useful for debugging because the Mono debugger for some reason doesn't
                 // break here when exceptions are thrown (e.g. when SaveChanges() detects a DB conflict)
