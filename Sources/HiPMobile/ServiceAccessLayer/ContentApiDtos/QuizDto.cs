@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos
 {
-    public class QuestionDto
+    public class QuizDto
     {
         [JsonProperty("status")]
         public string Status { get; private set; }
