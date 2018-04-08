@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using Android.Content;
 using PaderbornUniversity.SILab.Hip.Mobile.Droid.CustomRenderers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Controls;
 using Xamarin.Forms;
@@ -24,6 +25,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.CustomRenderers
 {
     public class ZeroPaddingRenderer : ButtonRenderer
     {
+        public ZeroPaddingRenderer(Context context) : base(context)
+        {
+        }
+
         protected override void OnElementChanged(ElementChangedEventArgs<Button> e)
         {
             base.OnElementChanged(e);
@@ -31,6 +36,5 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.CustomRenderers
             Control?.SetPadding(0, 0, 0, 0);
             Control?.SetBackgroundColor(new Color(224, 224, 224));
         }
-
     }
 }

@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using PaderbornUniversity.SILab.Hip.Mobile.UI.DesignTime;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
@@ -28,6 +29,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
         public LoadingPage()
         {
             InitializeComponent();
+            DesignMode.Initialize(this);
             deviceOrientation = DeviceOrientation.Undefined;
         }
 

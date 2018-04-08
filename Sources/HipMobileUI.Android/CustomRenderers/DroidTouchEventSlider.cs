@@ -1,4 +1,4 @@
-// Copyright (C) 2017 History in Paderborn App - Universit‰t Paderborn
+// Copyright (C) 2017 History in Paderborn App - Universit√§t Paderborn
 //  
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using Android.Content;
 using Android.Widget;
 using PaderbornUniversity.SILab.Hip.Mobile.Droid.CustomRenderers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Controls;
@@ -26,6 +27,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.CustomRenderers
     {
         private TouchEventSlider formsSlider;
         private bool areListenersAdded;
+
+        public DroidTouchEventSlider(Context context) : base(context)
+        {
+        }
 
         protected override void OnElementChanged(ElementChangedEventArgs<Slider> e)
         {

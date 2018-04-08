@@ -76,9 +76,9 @@
                                         </controls1:FadeInImage>
                                         <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" Padding="5,5"
                                                      Grid.Row="0" Grid.Column="1">
-                                            <Label Text="{Binding ExhibitName}" VerticalOptions="CenterAndExpand" FontSize="16"
+                                            <Label Text="{Binding Exhibit.Name}" VerticalOptions="CenterAndExpand" FontSize="16"
                                                    LineBreakMode="WordWrap" FontAttributes="Bold"  Style="{DynamicResource Ssp-Regular}" />
-                                            <Label Text="{Binding FormatedDistance}"
+                                            <Label Text="{Binding FormattedDistance}"
                                                    IsVisible="{Binding Source={x:Reference ExhibitsOveriew}, Path=BindingContext.DisplayDistances}"
                                                    VerticalOptions="End" FontSize="14"
                                                    TextColor="Gray"  Style="{DynamicResource Ssp-Italic}"/>

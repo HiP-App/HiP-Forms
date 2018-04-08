@@ -12,16 +12,17 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System.Collections.ObjectModel;
-using System.IO;
-using System.Windows.Input;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.AudioPlayer;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Location;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
+using System.Collections.ObjectModel;
+using System.IO;
+using System.Windows.Input;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelConverters;
 using Xamarin.Forms;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
@@ -59,8 +60,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             Duration = string.Format(Strings.RouteDetailsPageViewModel_Duration, route.Duration / 60);
             ReadOutCaption = Strings.RouteDetailsPage_PlayAudio;
             Tags = new ObservableCollection<RouteTag>(route.Tags);
-            var data = route.Image.GetDataBlocking();
-            Image = ImageSource.FromStream(() => new MemoryStream(data));
+            SetRouteImage(route);
             StartRouteCommand = new Command(StartRoute);
             StartDescriptionPlaybackCommand = new Command(StartDescriptionPlayback);
 
@@ -74,6 +74,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             audioPlayer.CurrentAudio = route.Audio;
             audioPlayer.AudioTitle = route.Name;
             audioPlayer.IsPlayingChanged += AudioPlayerOnIsPlayingChanged;
+        }
+
+        private async void SetRouteImage(Route route)
+        {
+            var imageData = await route.Image.GetDataAsync();
+            Image = imageData != null ? ImageSource.FromStream(() => new MemoryStream(imageData)) : ImageSource.FromStream(() => new MemoryStream(BackupData.BackupImageData));
         }
 
         private void AudioPlayerOnIsPlayingChanged(bool newvalue)
