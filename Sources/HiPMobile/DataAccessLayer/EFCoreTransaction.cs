@@ -18,9 +18,11 @@ using System;
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
 {
     // ReSharper disable once InconsistentNaming
-    class EFCoreTransaction : BaseTransaction
+    internal class EFCoreTransaction : BaseTransaction
     {
         private readonly AppDatabaseContext db;
+
+        private bool rolledBack = false;
 
         public override ITransactionDataAccess DataAccess { get; }
 
@@ -34,13 +36,16 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
 
         public override void Commit()
         {
-            ThrowIfDisposed();
+            if (rolledBack) return;
+
             db.SaveChangesAndDetach();
+            db.Dispose();
         }
 
         public override void Rollback()
         {
-            ThrowIfDisposed();
+            rolledBack = true;
+            db.Dispose();
         }
     }
 }

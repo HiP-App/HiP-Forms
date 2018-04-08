@@ -12,14 +12,18 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System;
 using System.Threading.Tasks;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
 {
-    public interface IDownloadableListItemViewModel
+    // ReSharper disable once InconsistentNaming
+    public static class IDataAccessExtensions
     {
-        void CloseDownloadPage();
-        void OpenDetailsView(string id);
-        Task SetDetailsAvailable(bool available);
+        /// <summary>Convenience overload for <see cref="IDataAccess.InTransactionAsync{T}"/>
+        /// without any tracked objects.
+        /// </summary>
+        public static Task<T> InTransaction<T>(this IDataAccess dataAccess, Func<BaseTransaction, Task<T>> func) =>
+            dataAccess.InTransactionAsync(null, func);
     }
 }

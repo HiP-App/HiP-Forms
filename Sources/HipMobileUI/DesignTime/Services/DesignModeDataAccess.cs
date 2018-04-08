@@ -12,10 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System;
 using JetBrains.Annotations;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.DesignTime.Services
 {
@@ -35,7 +37,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.DesignTime.Services
 
         public int GetVersion() => 0;
 
-        public BaseTransaction StartTransaction(IEnumerable<object> itemsToTrack = null) => null;
+        public Task<T> InTransactionAsync<T>(IEnumerable<object> itemsToTrack, Func<BaseTransaction, Task<T>> func) => 
+            Task.FromResult(default(T));
 
         T IReadOnlyDataAccess.GetItem<T>(string id, params string[] pathsToInclude) => null;
 
