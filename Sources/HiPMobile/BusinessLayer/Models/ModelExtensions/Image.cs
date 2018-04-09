@@ -14,10 +14,8 @@
 
 using System;
 using System.Threading.Tasks;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
-
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 {
@@ -73,43 +71,5 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
         /// </summary>
         /// <returns></returns>
         public virtual PreparedImageLoad PrepareImageLoad() => new PreparedImageLoad(DataPath, IdForRestApi);
-
-        private int ImageWidth { get; set; }
-
-        public int Width
-        {
-            get
-            {
-                if (ImageWidth != 0)
-                {
-                    return ImageWidth;
-                }
-                var w = imgDimension.GetDimensions(this)[0];
-                using (DbManager.StartTransaction())
-                {
-                    ImageWidth = w;
-                }
-                return w;
-            }
-        }
-
-        private int ImageHeight { get; set; }
-
-        public int Height
-        {
-            get
-            {
-                if (ImageHeight != 0)
-                {
-                    return ImageHeight;
-                }
-                var h = imgDimension.GetDimensions(this)[1];
-                using (DbManager.StartTransaction())
-                {
-                    ImageHeight = h;
-                }
-                return h;
-            }
-        }
     }
 }

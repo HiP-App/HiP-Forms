@@ -13,6 +13,7 @@
 // limitations under the License.
 
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
+using System.Threading.Tasks;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
@@ -73,9 +74,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         /// <summary>
         /// The formatted distance string.
         /// </summary>
+        
         public string FormattedDistance => (Distance < 1000)
-            ? $"{Distance:F0} m"
-            : $"{Distance / 1000:0.##} km";
+                ? $"{Distance:F0} m"
+                : $"{Distance / 1000:0.##} km";
+            
 
         public bool IsDownloadButtonVisible
         {
@@ -98,15 +101,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             await Navigation.PopAsync();
         }
 
-        public void SetDetailsAvailable(bool available)
+        public async Task SetDetailsAvailable(bool available)
         {
             if (!available)
                 return;
 
-            using (DbManager.StartTransaction())
-            {
-                Exhibit.DetailsDataLoaded = true;
-            }
+            await DbManager.InTransactionAsync(transaction => { Exhibit.DetailsDataLoaded = true; });
             IsDownloadButtonVisible = !Exhibit.DetailsDataLoaded;
         }
 
