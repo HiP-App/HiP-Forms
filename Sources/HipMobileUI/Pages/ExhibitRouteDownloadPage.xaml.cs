@@ -43,7 +43,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
                 OuterGrid.ColumnDefinitions.Clear();
                 OuterGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
                 OuterGrid.RowDefinitions.Clear();
-                //The image got a ratio of 9:7
+                // The image got a ratio of 9:7
                 var imageGridHeight = width / height / 9 * 7;
                 OuterGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(imageGridHeight, GridUnitType.Star) });
                 OuterGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1 - imageGridHeight, GridUnitType.Star) });
