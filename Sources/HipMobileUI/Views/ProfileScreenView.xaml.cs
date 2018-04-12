@@ -23,7 +23,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
         {
             base.OnSizeAllocated(width, height);
 
-            if (!(Math.Abs(width - thisWidth) > 0.4) && !(Math.Abs(height - thisHeight) > 0.4))
+            /*if (!(Math.Abs(width - thisWidth) > 0.4) && !(Math.Abs(height - thisHeight) > 0.4))
                 return;
 
             thisWidth = width;
@@ -86,7 +86,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
                 // Achievements
 
                 deviceOrientation = DeviceOrientation.Landscape;
-            }
+            }*/
         }
     }
 }

@@ -31,11 +31,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 
             Tabs = new ObservableCollection<string> { Strings.MainPageViewModel_OverviewPage, Strings.ProfileView_Statistic };
 
-            ChangeAppModeCommand = new Command(OnChangeAppModeTapped);
-            Logout = new Command(LogoutDummy);
+            //ChangeAppModeCommand = new Command(OnChangeAppModeTapped);
+            //Logout = new Command(LogoutDummy);
         }
 
-        public ICommand Logout { get; }
+        /*public ICommand Logout { get; }
         public ICommand ChangeAppModeCommand { get; }
 
         //public ImageSource Avatar => ImageSource.FromFile ("ic_account_circle.png");
@@ -61,7 +61,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
                 return;
             Settings.IsLoggedIn = false;
             mainPageViewModel.UpdateAccountViews();
-        }
+        }*/
 
         private ObservableCollection<string> tabs;
 
@@ -71,9 +71,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             set { SetProperty(ref tabs, value); }
         }
 
-        public string Character
+        /*public string Character
         {
             get { return Settings.AdventurerMode ? Strings.ProfileView_Adventurer : Strings.ProfileView_Professor; }
-        }
+        }*/
     }
 }
