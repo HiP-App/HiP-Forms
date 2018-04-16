@@ -69,6 +69,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
                 .HasValue<ImagePage>(PageType.ImagePage)
                 .HasValue<TimeSliderPage>(PageType.TimeSliderPage);
 
+            modelBuilder.Entity<Quiz>()
+                        .HasKey(q => q.Id);
+
             // configure composite primary keys of join tables
             // (see https://docs.microsoft.com/en-us/ef/core/modeling/keys)
             modelBuilder.Entity<JoinExhibitPage>()
