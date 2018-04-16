@@ -313,6 +313,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                 IoCManager.RegisterType<IRoutesApiAccess, RoutesApiAccess>();
                 IoCManager.RegisterType<ITagsApiAccess, TagsApiAccess>();
                 IoCManager.RegisterType<IAuthApiAccess, AuthApiAccess>();
+                IoCManager.RegisterType<IQuizApiAccess, QuizApiAccess>();
                 IoCManager.RegisterInstance(typeof(IUserRatingApiAccess), new UserRatingApiAccess(new ContentApiClient()));
             }
 
@@ -323,6 +324,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             IoCManager.RegisterType<PageConverter>();
             IoCManager.RegisterType<RouteConverter>();
             IoCManager.RegisterType<TagConverter>();
+            IoCManager.RegisterType<QuizConverter>();
 
             //init fetchers
             IoCManager.RegisterInstance(typeof(INewDataCenter), new NewDataCenter());

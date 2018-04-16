@@ -13,13 +13,18 @@
 // limitations under the License.
 
 using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 {
     public class NatalieQuiz : IIdentifiable
     {
         public string Question { get; set; }
+
+        [NotMapped]
         public String[] Answers { get; set; }
+
+        [NotMapped]
         public bool[] ACorrect { get; set; }
         public Image QuizImage { get; set; }
 

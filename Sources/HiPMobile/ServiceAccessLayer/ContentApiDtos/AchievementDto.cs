@@ -31,7 +31,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
         public string ThumbnailUrl { get; private set; }
 
         [JsonProperty("nextId")]
-        public int NextId { get; private set; }
+        public int? NextId { get; private set; }
 
         [JsonProperty("points")]
         public int Points { get; private set; }
