@@ -31,7 +31,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
         public DbSet<Media> Media { get; set; }
         public DbSet<AchievementBase> Achievements { get; set; }
         public DbSet<AchievementPendingNotification> AchievementPendingNotifications { get; set; }
-        public DbSet<NatalieQuiz> Quizzes { get; set; }
 
         public DbContextDebugView DebugView => new DbContextDebugView(this);
 
