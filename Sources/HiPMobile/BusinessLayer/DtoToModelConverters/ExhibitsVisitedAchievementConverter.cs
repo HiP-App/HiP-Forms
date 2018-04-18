@@ -24,7 +24,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelCo
             existingModelObject.Description = dto.Description;
             existingModelObject.Id = dto.Id.ToString();
             existingModelObject.ThumbnailUrl = dto.ThumbnailUrl;
-            existingModelObject.NextId = dto.NextId.ToString();
+            existingModelObject.NextId = dto.NextId?.ToString();
             existingModelObject.Title = dto.Title;
             existingModelObject.Count = dto.Count;
             existingModelObject.Points = dto.Points;
