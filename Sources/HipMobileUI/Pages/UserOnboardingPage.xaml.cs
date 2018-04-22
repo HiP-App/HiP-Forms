@@ -184,7 +184,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
             // main content
             StackLayout layout = new StackLayout() { Orientation = StackOrientation.Vertical, Padding = new Thickness(0, 80) };
             layout.SetBinding(BackgroundColorProperty, "BackgroundColor");
-            CachedImage image = new CachedImage() { VerticalOptions = LayoutOptions.CenterAndExpand, Aspect = Aspect.AspectFit, HorizontalOptions = LayoutOptions.FillAndExpand };
+            CachedImage image = new CachedImage() { VerticalOptions = LayoutOptions.FillAndExpand, Aspect = Aspect.AspectFit, HorizontalOptions = LayoutOptions.FillAndExpand };
             image.SetBinding(CachedImage.SourceProperty, "Image");
             StackLayout innerStack = new StackLayout() { Orientation = StackOrientation.Vertical, HorizontalOptions = LayoutOptions.CenterAndExpand };
             Label headline = new Label()
