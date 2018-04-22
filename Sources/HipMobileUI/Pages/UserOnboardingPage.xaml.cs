@@ -143,13 +143,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
         private View LoadLandscapeTemplate()
         {
             // main content
-            StackLayout outerStack = new StackLayout() { Orientation = StackOrientation.Horizontal, Padding = new Thickness(50, 50) };
+            StackLayout outerStack = new StackLayout() { Orientation = StackOrientation.Horizontal, Padding = new Thickness(0, 0) };
             outerStack.SetBinding(BackgroundColorProperty, "BackgroundColor");
-            CachedImage image = new CachedImage() { VerticalOptions = LayoutOptions.StartAndExpand, Aspect = Aspect.AspectFit, HorizontalOptions = LayoutOptions.StartAndExpand };
+            CachedImage image = new CachedImage() { VerticalOptions = LayoutOptions.FillAndExpand, Aspect = Aspect.AspectFit, HorizontalOptions = LayoutOptions.FillAndExpand };
             image.SetBinding(CachedImage.SourceProperty, "Image");
             StackLayout innerStack = new StackLayout()
             {
                 Orientation = StackOrientation.Vertical,
+                Padding = new Thickness(10, 50),
                 HorizontalOptions = LayoutOptions.EndAndExpand,
                 VerticalOptions = LayoutOptions.CenterAndExpand
             };
@@ -182,11 +183,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
         private View LoadPortraitTemplate()
         {
             // main content
-            StackLayout layout = new StackLayout() { Orientation = StackOrientation.Vertical, Padding = new Thickness(0, 80) };
+            StackLayout layout = new StackLayout() { Orientation = StackOrientation.Vertical, Padding = new Thickness(0, 0) };
             layout.SetBinding(BackgroundColorProperty, "BackgroundColor");
             CachedImage image = new CachedImage() { VerticalOptions = LayoutOptions.FillAndExpand, Aspect = Aspect.AspectFit, HorizontalOptions = LayoutOptions.FillAndExpand };
             image.SetBinding(CachedImage.SourceProperty, "Image");
-            StackLayout innerStack = new StackLayout() { Orientation = StackOrientation.Vertical, HorizontalOptions = LayoutOptions.CenterAndExpand };
+            StackLayout innerStack = new StackLayout() { Orientation = StackOrientation.Vertical, Padding = new Thickness(10, 0, 10, 80), HorizontalOptions = LayoutOptions.CenterAndExpand };
             Label headline = new Label()
             {
                 TextColor = Color.White,
