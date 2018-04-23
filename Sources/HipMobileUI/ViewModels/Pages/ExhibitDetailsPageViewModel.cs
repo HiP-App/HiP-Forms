@@ -195,7 +195,17 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                     {
                         AudioToolbar.AudioPlayer.Stop();
                     }
-                    Navigation.InsertPageBefore(new UserRatingPageViewModel(Exhibit), this);
+
+                    var quiz = DbManager.DataAccess.Quizzes().QuizForExhibit(exhibit.Id);
+
+                    if (quiz == null)
+                    {
+                        Navigation.InsertPageBefore(new UserRatingPageViewModel(Exhibit), this);
+                    }
+                    else
+                    {
+                        Navigation.InsertPageBefore(new QuizStartingPageViewModel(exhibit), this);
+                    }
                     await Navigation.PopAsync(false);
                 }
                 else

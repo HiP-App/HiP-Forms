@@ -21,7 +21,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
     public interface IQuizApiAccess
     {
 
-       Task<List<QuizDto>> GetQuestionsForExhibit(int exhibitId);
+       Task<List<QuizDto>> GetQuestionsForExhibitAsync(int exhibitId);
 
     }
 }

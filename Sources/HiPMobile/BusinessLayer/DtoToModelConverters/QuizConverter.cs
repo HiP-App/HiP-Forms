@@ -9,14 +9,14 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiD
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelConverters
 {
-    class QuizConverter : DtoToModelConverter<Quiz,QuizDto>
+    public class QuizConverter : DtoToModelConverter<Quiz,QuizDto>
     {
-        private readonly IReadOnlyDataAccess dataAccess = IoCManager.Resolve<IReadOnlyDataAccess>();
+        private readonly IReadOnlyDataAccess dataAccess = DbManager.DataAccess;
         public override void Convert(QuizDto dto, Quiz existingModelObject)
         {
             existingModelObject.Status = dto.Status;
             existingModelObject.Timestamp = dto.Timestamp;
-            existingModelObject.Id = dto.Id;
+            existingModelObject.Id = dto.Id.ToString();
             existingModelObject.Text = dto.Text;
             existingModelObject.Exhibit = dataAccess.Exhibits().GetExhibit(dto.ExhibitId.ToString());
             existingModelObject.Options = dto.Options;

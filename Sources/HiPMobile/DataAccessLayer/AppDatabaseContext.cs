@@ -31,7 +31,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
         public DbSet<Media> Media { get; set; }
         public DbSet<AchievementBase> Achievements { get; set; }
         public DbSet<AchievementPendingNotification> AchievementPendingNotifications { get; set; }
-        public DbSet<NatalieQuiz> Quizzes { get; set; }
 
         public DbContextDebugView DebugView => new DbContextDebugView(this);
 
@@ -69,6 +68,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
                 .HasValue<TextPage>(PageType.TextPage)
                 .HasValue<ImagePage>(PageType.ImagePage)
                 .HasValue<TimeSliderPage>(PageType.TimeSliderPage);
+
+            modelBuilder.Entity<Quiz>()
+                        .HasKey(q => q.Id);
 
             // configure composite primary keys of join tables
             // (see https://docs.microsoft.com/en-us/ef/core/modeling/keys)

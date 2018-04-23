@@ -132,7 +132,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                     continue;
 
                 var pagesAndMediaContainerForExhibit = pagesAndMediaForMissingExhibits.SingleOrDefault(x => x.ExhibitIdForRestApi == dbExhibit.IdForRestApi);
-                await fullExhibitDataFetcher.FetchFullExhibitDataIntoDatabaseWithFetchedPagesAndMedia(dbExhibit.Id, pagesAndMediaContainerForExhibit, token, listener);
+                await fullExhibitDataFetcher.FetchFullExhibitDataIntoDatabaseWithFetchedPagesAndMedia(dbExhibit.Id, pagesAndMediaContainerForExhibit, token, listener, dbExhibit.IdForRestApi);
                 if (token.IsCancellationRequested)
                     return;
                 pagesAndMediaForMissingExhibits.Remove(pagesAndMediaContainerForExhibit);

@@ -25,6 +25,8 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer;
 using Unity.Attributes;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers
@@ -36,6 +38,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
 
         [Dependency]
         public PageConverter PageConverter { private get; set; }
+
+        private QuizConverter QuizConverter { get; } = IoCManager.Resolve<QuizConverter>();
 
         public FullExhibitDataFetcher(IPagesApiAccess pagesApiAccess, IMediaDataFetcher mediaDataFetcher)
         {
@@ -61,6 +65,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             await DbManager.InTransactionAsync(async transaction =>
             {
                 await ProcessPages(exhibitId, token, listener, transaction.DataAccess);
+                await DownloadQuizes(idForRestApi);
+
                 if (token.IsCancellationRequested)
                 {
                     transaction.Rollback();
@@ -68,9 +74,25 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             });
         }
 
-        public async Task FetchFullExhibitDataIntoDatabaseWithFetchedPagesAndMedia(
-            string exhibitId, ExhibitPagesAndMediaContainer exhibitPagesAndMediaContainer,
-            CancellationToken token, IProgressListener listener)
+        private async Task DownloadQuizes(int exhibitId)
+        {
+            var quizApiAccess = IoCManager.Resolve<IQuizApiAccess>();
+            try
+            {
+                var quizDtos = await quizApiAccess.GetQuestionsForExhibitAsync(exhibitId);
+                foreach (var quizDto in quizDtos)
+                {
+                    QuizConverter.Convert(quizDto);
+                }
+            }
+            catch (NotFoundException)
+            {
+                // Don't crash if there are no questions
+                Debug.WriteLine($"No quiz found for exhibit {exhibitId}");
+            }
+        }
+
+        public async Task FetchFullExhibitDataIntoDatabaseWithFetchedPagesAndMedia(string exhibitId, ExhibitPagesAndMediaContainer exhibitPagesAndMediaContainer, CancellationToken token, IProgressListener listener, int dbExhibitIdForRestApi)
         {
             requiredMedia = exhibitPagesAndMediaContainer.RequiredMedia;
             pageItems = exhibitPagesAndMediaContainer.PageDtos;
@@ -78,6 +100,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             await DbManager.InTransactionAsync(async transaction =>
             {
                 await ProcessPages(exhibitId, token, listener, transaction.DataAccess);
+                await DownloadQuizes(dbExhibitIdForRestApi);
+
                 if (token.IsCancellationRequested)
                 {
                     transaction.Rollback();

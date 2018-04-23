@@ -20,9 +20,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
             this.apiClient = apiClient;
         }
 
-        public async Task<List<QuizDto>> GetQuestionsForExhibit(int exhibitId)
+        public async Task<List<QuizDto>> GetQuestionsForExhibitAsync(int exhibitId)
         {
-            var requestPath = $"/api/Exhibits/{exhibitId}/Questions";
+            var requestPath = $"/Exhibits/{exhibitId}/Questions";
             var json = await apiClient.GetResponseFromUrlAsString(requestPath);
             return JsonConvert.DeserializeObject<List<QuizDto>>(json);
         }

@@ -26,7 +26,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         private Exhibit exhibit;
         private String headline;
         private ICommand nextViewCommand;
-        private NatalieQuiz[] Quizzes;
         private String question;
         private String[] answers;
         private ImageSource quizImage;
