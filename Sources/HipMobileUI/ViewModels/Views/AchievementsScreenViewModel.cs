@@ -9,6 +9,7 @@ using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using Xamarin.Forms;
 using System.ComponentModel;
 using System.Diagnostics;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelConverters;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 
@@ -32,15 +33,16 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 
         private async Task UpdateAchievements()
         {
+            await BackupData.WaitForInitAsync();
             Achievements.Clear();
 
             try
             {
-                using (var transaction = DbManager.StartTransaction())
+                await DbManager.InTransactionAsync(async transaction =>
                 {
                     var newlyUnlocked = await IoCManager.Resolve<IAchievementFetcher>().UpdateAchievements(transaction.DataAccess);
                     AchievementNotification.QueueAchievementNotifications(newlyUnlocked);
-                }
+                });
 
                 foreach (var achievement in DbManager.DataAccess.Achievements().GetAchievements())
                 {

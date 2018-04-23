@@ -12,14 +12,24 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System.Threading.Tasks;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.DesignTime.Data
 {
     public class DesignModeDownloadableListItemViewModel : IDownloadableListItemViewModel
     {
-        public void CloseDownloadPage() { }
-        public void OpenDetailsView(string id) { }
-        public void SetDetailsAvailable(bool available) { }
+        public void CloseDownloadPage()
+        {
+        }
+
+        public void OpenDetailsView(string id)
+        {
+        }
+
+        public Task SetDetailsAvailable(bool available)
+        {
+            return Task.CompletedTask;
+        }
     }
 }

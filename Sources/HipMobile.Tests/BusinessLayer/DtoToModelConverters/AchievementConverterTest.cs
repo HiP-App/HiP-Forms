@@ -39,7 +39,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.BusinessLayer.DtoT
             var dataAccess = IoCManager.Resolve<IDataAccess>();
             var routeFinishedAchievementDto = new RouteFinishedAchievementDto(123, "title", "description", "imageUrl", 124, 25, 456);
 
-            using (var transaction = dataAccess.StartTransaction())
+            dataAccess.InTransaction<object>(transaction =>
             {
                 var routeFinishedAchievement = AchievementConverter.Convert(new List<AchievementDto>
                 {
@@ -51,10 +51,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.BusinessLayer.DtoT
                 Assert.AreEqual(routeFinishedAchievementDto.Description, routeFinishedAchievement.Description);
                 Assert.AreEqual(routeFinishedAchievementDto.ThumbnailUrl, routeFinishedAchievement.ThumbnailUrl);
                 Assert.AreEqual(routeFinishedAchievementDto.Title, routeFinishedAchievement.Title);
-                Assert.AreEqual(routeFinishedAchievementDto.NextId.ToString(), routeFinishedAchievement.NextId);
+                Assert.AreEqual(routeFinishedAchievementDto.NextId?.ToString(), routeFinishedAchievement.NextId);
                 Assert.AreEqual(routeFinishedAchievementDto.Points, routeFinishedAchievement.Points);
                 Assert.AreEqual(routeFinishedAchievementDto.RouteId, routeFinishedAchievement.RouteId);
-            }
+
+                return null;
+            });
         }
 
         [Test, Category("UnitTest")]
@@ -63,7 +65,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.BusinessLayer.DtoT
             var dataAccess = IoCManager.Resolve<IDataAccess>();
             var exhibitsVisitedAchievementDto = new ExhibitsVisitedAchievementDto(234, "title", "description", "imageUrl", 235, 10, 25);
 
-            using (var transaction = dataAccess.StartTransaction())
+            dataAccess.InTransaction<object>(transaction =>
             {
                 var exhibitsVisitedAchievement = AchievementConverter.Convert(new List<AchievementDto>
                 {
@@ -76,9 +78,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileTests.BusinessLayer.DtoT
                 Assert.AreEqual(exhibitsVisitedAchievementDto.ThumbnailUrl, exhibitsVisitedAchievement.ThumbnailUrl);
                 Assert.AreEqual(exhibitsVisitedAchievementDto.Title, exhibitsVisitedAchievement.Title);
                 Assert.AreEqual(exhibitsVisitedAchievementDto.Count, exhibitsVisitedAchievement.Count);
-                Assert.AreEqual(exhibitsVisitedAchievementDto.NextId.ToString(), exhibitsVisitedAchievement.NextId);
+                Assert.AreEqual(exhibitsVisitedAchievementDto.NextId?.ToString(), exhibitsVisitedAchievement.NextId);
                 Assert.AreEqual(exhibitsVisitedAchievementDto.Points, exhibitsVisitedAchievement.Points);
-            }
+
+                return null;
+            });
         }
     }
 }

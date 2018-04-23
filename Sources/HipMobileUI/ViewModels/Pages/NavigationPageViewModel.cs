@@ -21,7 +21,6 @@ using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Location;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
 using Plugin.Geolocator.Abstractions;
 using Xamarin.Forms;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
@@ -114,16 +113,16 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             nearbyExhibitManager.ExhibitVisitedEvent += ExhibitVisited;
         }
 
-        private void ExhibitVisited(object sender, Exhibit exhibit)
+        private async void ExhibitVisited(object sender, Exhibit exhibit)
         {
             var waypoint = DetailsRoute.Waypoints.First(wp => Equals(wp.Exhibit, exhibit));
-            var moved = DetailsRoute.MoveToPassiveSet(waypoint);
+            var moved = await DetailsRoute.MoveToPassiveSet(waypoint);
             if (moved)
             {
-                using (DbManager.StartTransaction(exhibit))
+                await DbManager.InTransactionAsync(transaction =>
                 {
                     exhibit.Unlocked = true;
-                }
+                });
                 OnPropertyChanged(nameof(DetailsRoute));
             }
         }
@@ -143,7 +142,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             }
         }
 
-        public override void OnDisappearing()
+        public override async void OnDisappearing()
         {
             base.OnDisappearing();
 
@@ -151,8 +150,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
             if (DetailsRoute.IsRouteFinished())
             {
-                DetailsRoute.ResetRoute();
+                await DetailsRoute.ResetRoute();
             }
+
             nearbyExhibitManager.ExhibitVisitedEvent -= ExhibitVisited;
         }
     }

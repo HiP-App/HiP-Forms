@@ -154,7 +154,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
             if (!cancellationTokenSource.IsCancellationRequested && isDownloadAllowed)
             {
-                downloadableListItemViewModel.SetDetailsAvailable(true);
+                await downloadableListItemViewModel.SetDetailsAvailable(true);
 
                 if (downloadableListItemViewModel.GetType() != typeof(AppetizerPageViewModel))
                     OpenDetailsView();
