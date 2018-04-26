@@ -36,7 +36,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Container
             header = new Grid();
             header.RowSpacing = 0;
             header.ColumnSpacing = 0;
-            header.RowDefinitions.Add(new RowDefinition { Height = new GridLength(30, GridUnitType.Absolute) });
+            header.RowDefinitions.Add(new RowDefinition { Height = new GridLength(45, GridUnitType.Absolute) });
 
             contentContainer = new ContentView() { HorizontalOptions = LayoutOptions.FillAndExpand, VerticalOptions = LayoutOptions.FillAndExpand };
 
@@ -174,7 +174,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Container
             var lbl = new Label
             {
                 Text = title,
-                FontSize = 15,
+                FontSize = 20,
                 VerticalOptions = LayoutOptions.FillAndExpand,
                 VerticalTextAlignment = TextAlignment.Center,
                 HorizontalOptions = LayoutOptions.FillAndExpand,
