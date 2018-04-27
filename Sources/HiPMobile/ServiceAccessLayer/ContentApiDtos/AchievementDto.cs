@@ -40,7 +40,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
         {
         }
 
-        public AchievementDto(int id, string title, string description, string thumbnailUrl, int nextId, int points)
+        public AchievementDto(int id, string title, string description, string thumbnailUrl, int? nextId, int points)
         {
             Id = id;
             Title = title;
@@ -61,7 +61,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
         {
         }
 
-        public RouteFinishedAchievementDto(int id, string title, string description, string thumbnailUrl, int nextId, int points, int routeId) :
+        public RouteFinishedAchievementDto(int id, string title, string description, string thumbnailUrl, int? nextId, int points, int routeId) :
             base(id, title, description, thumbnailUrl, nextId, points)
         {
             RouteId = routeId;
@@ -77,7 +77,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
         {
         }
 
-        public ExhibitsVisitedAchievementDto(int id, string title, string description, string thumbnailUrl, int nextId, int count, int points) :
+        public ExhibitsVisitedAchievementDto(int id, string title, string description, string thumbnailUrl, int? nextId, int count, int points) :
             base(id, title, description, thumbnailUrl, nextId, points)
         {
             Count = count;
