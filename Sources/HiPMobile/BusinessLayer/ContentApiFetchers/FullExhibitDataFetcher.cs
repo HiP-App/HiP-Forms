@@ -65,7 +65,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             await DbManager.InTransactionAsync(async transaction =>
             {
                 await ProcessPages(exhibitId, token, listener, transaction.DataAccess);
-                await DownloadQuizes(idForRestApi);
+                await DownloadQuizes(idForRestApi, transaction.DataAccess);
 
                 if (token.IsCancellationRequested)
                 {
@@ -74,16 +74,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             });
         }
 
-        private async Task DownloadQuizes(int exhibitId)
+        private async Task DownloadQuizes(int exhibitId, ITransactionDataAccess transactionDataAccess)
         {
             var quizApiAccess = IoCManager.Resolve<IQuizApiAccess>();
             try
             {
                 var quizDtos = await quizApiAccess.GetQuestionsForExhibitAsync(exhibitId);
-                foreach (var quizDto in quizDtos)
-                {
-                    QuizConverter.Convert(quizDto);
-                }
+                var quizzes = quizDtos.Select(QuizConverter.Convert);
+                transactionDataAccess.Quizzes().Add(quizzes);
             }
             catch (NotFoundException)
             {
@@ -100,7 +98,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             await DbManager.InTransactionAsync(async transaction =>
             {
                 await ProcessPages(exhibitId, token, listener, transaction.DataAccess);
-                await DownloadQuizes(dbExhibitIdForRestApi);
+                await DownloadQuizes(dbExhibitIdForRestApi, transaction.DataAccess);
 
                 if (token.IsCancellationRequested)
                 {

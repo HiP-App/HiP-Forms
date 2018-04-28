@@ -11,8 +11,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
     {
 
         public static ReadExtensions Quizzes(this IReadOnlyDataAccess dataAccess) => new ReadExtensions(dataAccess);
+        public static ReadWriteExtensions Quizzes(this ITransactionDataAccess dataAccess) => new ReadWriteExtensions(dataAccess);
 
-        public struct ReadExtensions
+        public class ReadExtensions
         {
             private readonly IReadOnlyDataAccess dataAccess;
 
@@ -25,6 +26,24 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
             {
                 return dataAccess.GetItems<Quiz>(nameof(Quiz.Exhibit), nameof(Quiz.Image))
                                  .SingleOrDefault(quiz => quiz.Exhibit.Id == exhibitId);
+            }
+        }
+
+        public class ReadWriteExtensions : ReadExtensions
+        {
+            private readonly ITransactionDataAccess dataAccess;
+
+            public ReadWriteExtensions(ITransactionDataAccess dataAccess) : base(dataAccess)
+            {
+                this.dataAccess = dataAccess;
+            }
+
+            public void Add(IEnumerable<Quiz> quizzes)
+            {
+                foreach (var quiz in quizzes)
+                {
+                    dataAccess.AddItem(quiz);
+                }
             }
         }
     }

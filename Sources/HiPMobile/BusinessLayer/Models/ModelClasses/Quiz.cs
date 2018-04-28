@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 {
@@ -15,6 +16,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 
         public Exhibit Exhibit { get; set; }
 
+        /**
+         * By convention, the first option is always the correct one.
+         */
         [NotMapped]
         public string[] Options
         {
@@ -22,6 +26,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 
             set
             {
+                Debug.Assert(value.Length == 4, "A quiz must have exactly 4 options.");
                 OptionA = value[0];
                 OptionB = value[1];
                 OptionC = value[2];
