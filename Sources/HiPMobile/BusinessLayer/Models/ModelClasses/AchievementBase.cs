@@ -12,6 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using JetBrains.Annotations;
+
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 {
     /// <remarks>
@@ -28,7 +30,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 
         public string ThumbnailUrl { get; set; }
 
-        public string NextId { get; set; }
+        [CanBeNull] public string NextId { get; set; }
 
         public bool IsUnlocked { get; set; }
 
