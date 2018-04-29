@@ -12,8 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using Xamarin.Forms;
 
@@ -25,13 +27,23 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         private string headline;
         private ICommand nextViewCommand;
         private ICommand startQuizCommand;
+        private string score;
 
         public QuizStartingPageViewModel(Exhibit e)
         {
             Exhibit = e;
             Headline = e.Name;
+            score = ComputeScoreString(e);
             NextViewCommand = new Command(async () => await GotoNextView());
             StartQuizCommand = new Command(async () => await GotoQuizView());
+        }
+
+        private static string ComputeScoreString(Exhibit exhibit)
+        {
+            var exhibitQuizScore = DbManager.DataAccess.GetItem<ExhibitQuizScore>(exhibit.Id);
+            var currentScore = exhibitQuizScore?.Score ?? 0;
+            var totalQuestions = DbManager.DataAccess.Quizzes().QuizzesForExhibit(exhibit.Id).Count();
+            return $"{currentScore}/{totalQuestions}";
         }
 
         private async Task GotoNextView()
@@ -42,7 +54,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
         private async Task GotoQuizView()
         {
-            await Navigation.PushAsync(new QuizPageViewModel(Exhibit));
+            Navigation.InsertPageBefore(new QuizPageViewModel(Exhibit), this);
+            await Navigation.PopAsync(false);
         }
 
         #region properties
@@ -72,6 +85,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         {
             get { return startQuizCommand; }
             set { SetProperty(ref startQuizCommand, value); }
+        }
+
+        public string Score
+        {
+            get => score;
+            set => SetProperty(ref score, value);
         }
 
         #endregion

@@ -13,19 +13,25 @@
 // limitations under the License.
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 {
-    public static class ExtensionMethods
+    public class ExhibitQuizScore : IIdentifiable
     {
-        public static IEnumerable<T> Shuffle<T>(this IEnumerable<T> enumerable)
+        public string Id { get; set; }
+        public Exhibit Exhibit { get; set; }
+        public int Score { get; set; }
+
+        [Obsolete("Only for Entity Framework")]
+        public ExhibitQuizScore()
         {
-            var r = new Random();
-            return enumerable.OrderBy(_ => r.Next());
         }
 
-        public static IEnumerable<T> WhereNotNull<T>(this IEnumerable<T> enumerable) => enumerable.Where(it => it != null);
+        public ExhibitQuizScore(Exhibit exhibit, int score)
+        {
+            Exhibit = exhibit;
+            Score = score;
+            Id = exhibit.Id;
+        }
     }
 }

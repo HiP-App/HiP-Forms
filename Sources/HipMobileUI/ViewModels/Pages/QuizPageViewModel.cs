@@ -29,6 +29,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
         private readonly Quiz[] quizzes;
         private int currentQuiz = -1;
+        private int score = 0;
 
         private Exhibit exhibit;
         private string headline;
@@ -79,7 +80,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             var selectedAnswer = answers[selectedAnswerIdx];
             var isAnswerCorrect = selectedAnswer == quizzes[currentQuiz].CorrectOption();
             backgroundColorSetter(isAnswerCorrect ? Color.Green : Color.DarkRed);
-            // TODO Persist score somewhere
+            if (isAnswerCorrect) score++;
 
             await Task.Delay(AnswerCorrectnessDisplayTimeMs);
 
@@ -89,6 +90,20 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             }
             else
             {
+                var existingScore = DbManager.DataAccess.GetItem<ExhibitQuizScore>(exhibit.Id);
+                // TODO Is it necessary to track this object?
+                await DbManager.InTransactionAsync(new[] { existingScore }.WhereNotNull(), transaction =>
+                {
+                    if (existingScore == null)
+                    {
+                        transaction.DataAccess.AddItem(new ExhibitQuizScore(exhibit, score));
+                    }
+                    else
+                    {
+                        existingScore.Score = Math.Max(existingScore.Score, score);
+                    }
+                });
+                Navigation.InsertPageBefore(new QuizStartingPageViewModel(exhibit), this);
                 await Navigation.PopAsync(false);
             }
         }
