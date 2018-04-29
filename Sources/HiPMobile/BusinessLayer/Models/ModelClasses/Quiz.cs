@@ -34,10 +34,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
             }
         }
 
-        string OptionA { get; set; }
-        string OptionB { get; set; }
-        string OptionC { get; set; }
-        string OptionD { get; set; }
+        public string OptionA { get; set; }
+        public string OptionB { get; set; }
+        public string OptionC { get; set; }
+        public string OptionD { get; set; }
 
         public Image Image { get; set; }
     }
