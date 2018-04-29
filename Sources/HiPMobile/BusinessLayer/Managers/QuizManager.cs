@@ -22,10 +22,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
                 this.dataAccess = dataAccess ?? throw new ArgumentNullException(nameof(dataAccess));
             }
 
-            public Quiz QuizForExhibit(string exhibitId)
+            public IEnumerable<Quiz> QuizzesForExhibit(string exhibitId)
             {
                 return dataAccess.GetItems<Quiz>(nameof(Quiz.Exhibit), nameof(Quiz.Image))
-                                 .SingleOrDefault(quiz => quiz.Exhibit.Id == exhibitId);
+                                 .Where(quiz => quiz.Exhibit.Id == exhibitId);
             }
         }
 

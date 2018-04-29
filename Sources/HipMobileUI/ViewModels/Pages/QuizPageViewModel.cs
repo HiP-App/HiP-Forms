@@ -13,49 +13,86 @@
 // limitations under the License.
 
 using System;
-using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using Xamarin.Forms;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 {
-    public class QuizPageViewModel: NavigationViewModel
+    public class QuizPageViewModel : NavigationViewModel
     {
+        private const int AnswerCorrectnessDisplayTimeMs = 3000;
+
+        private readonly Quiz[] quizzes;
+        private int currentQuiz = -1;
+
         private Exhibit exhibit;
-        private String headline;
-        private ICommand nextViewCommand;
-        private String question;
-        private String[] answers;
+        private string headline;
+        private ICommand answerACommand;
+        private ICommand answerBCommand;
+        private ICommand answerCCommand;
+        private ICommand answerDCommand;
+        private Color answerABackgroundColor = Color.Transparent;
+        private Color answerBBackgroundColor = Color.Transparent;
+        private Color answerCBackgroundColor = Color.Transparent;
+        private Color answerDBackgroundColor = Color.Transparent;
+        private string question;
+        private string[] answers;
         private ImageSource quizImage;
 
         public QuizPageViewModel(Exhibit e)
         {
+            quizzes = DbManager.DataAccess.Quizzes().QuizzesForExhibit(e.Id).Shuffle().ToArray();
 
             Exhibit = e;
             Headline = e.Name;
-            answers= new String[4];
-            SetQuiz();
-            NextViewCommand = new Command(async () => await GotoNextView());
+            LoadNextQuiz();
 
-        }
-        private async Task GotoNextView()
-        {
-            Navigation.InsertPageBefore(new UserRatingPageViewModel(Exhibit), this);
-            await Navigation.PopAsync(false);
+            AnswerACommand = new Command(async origin => await GotoNextView(0, bgColor => AnswerABackgroundColor = bgColor));
+            AnswerBCommand = new Command(async origin => await GotoNextView(1, bgColor => AnswerBBackgroundColor = bgColor));
+            AnswerCCommand = new Command(async origin => await GotoNextView(2, bgColor => AnswerCBackgroundColor = bgColor));
+            AnswerDCommand = new Command(async origin => await GotoNextView(3, bgColor => AnswerDBackgroundColor = bgColor));
         }
 
-        private void SetQuiz()
+        private void LoadNextQuiz()
         {
+            currentQuiz++;
+            var quiz = quizzes[currentQuiz];
+
+            answers = quiz.ShuffledOptions();
+            Question = quiz.Text;
+            AnswerABackgroundColor = Color.Transparent;
+            AnswerBBackgroundColor = Color.Transparent;
+            AnswerCBackgroundColor = Color.Transparent;
+            AnswerDBackgroundColor = Color.Transparent;
+            // TODO use actual image
             QuizImage = ImageSource.FromFile("quiz_default_picture.png");
-            Question = "This is a dummy question!";
-            Answer1 = "first answer";
-            Answer2 = "second answer";
-            Answer3 = "third answer";
-            Answer4 = "fourth answer";
         }
+
+        private async Task GotoNextView(int selectedAnswerIdx, Action<Color> backgroundColorSetter)
+        {
+            var selectedAnswer = answers[selectedAnswerIdx];
+            var isAnswerCorrect = selectedAnswer == quizzes[currentQuiz].CorrectOption();
+            backgroundColorSetter(isAnswerCorrect ? Color.Green : Color.DarkRed);
+
+            await Task.Delay(AnswerCorrectnessDisplayTimeMs);
+
+            if (currentQuiz + 1 < quizzes.Length)
+            {
+                LoadNextQuiz();
+            }
+            else
+            {
+                await Navigation.PopAsync(false);
+            }
+        }
+
         #region properties
+
         public Exhibit Exhibit
         {
             get { return exhibit; }
@@ -76,7 +113,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             get { return quizImage; }
             set { SetProperty(ref quizImage, value); }
         }
-        
+
         public string Question
         {
             get { return headline; }
@@ -100,16 +137,61 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             get { return answers[2]; }
             set { SetProperty(ref answers[2], value); }
         }
+
         public string Answer4
         {
             get { return answers[3]; }
             set { SetProperty(ref answers[3], value); }
         }
-        public ICommand NextViewCommand
+
+        public ICommand AnswerACommand
         {
-            get { return nextViewCommand; }
-            set { SetProperty(ref nextViewCommand, value); }
+            get { return answerACommand; }
+            set { SetProperty(ref answerACommand, value); }
         }
+
+        public ICommand AnswerBCommand
+        {
+            get { return answerBCommand; }
+            set { SetProperty(ref answerBCommand, value); }
+        }
+
+        public ICommand AnswerCCommand
+        {
+            get { return answerCCommand; }
+            set { SetProperty(ref answerCCommand, value); }
+        }
+
+        public ICommand AnswerDCommand
+        {
+            get { return answerDCommand; }
+            set { SetProperty(ref answerDCommand, value); }
+        }
+
+        public Color AnswerABackgroundColor
+        {
+            get => answerABackgroundColor;
+            set => SetProperty(ref answerABackgroundColor, value);
+        }
+
+        public Color AnswerBBackgroundColor
+        {
+            get => answerBBackgroundColor;
+            set => SetProperty(ref answerBBackgroundColor, value);
+        }
+
+        public Color AnswerCBackgroundColor
+        {
+            get => answerCBackgroundColor;
+            set => SetProperty(ref answerCBackgroundColor, value);
+        }
+
+        public Color AnswerDBackgroundColor
+        {
+            get => answerDBackgroundColor;
+            set => SetProperty(ref answerDBackgroundColor, value);
+        }
+
         #endregion
     }
 }

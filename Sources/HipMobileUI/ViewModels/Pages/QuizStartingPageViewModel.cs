@@ -12,7 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
@@ -20,10 +19,10 @@ using Xamarin.Forms;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 {
-    public class QuizStartingPageViewModel: NavigationViewModel
+    public class QuizStartingPageViewModel : NavigationViewModel
     {
         private Exhibit exhibit;
-        private String headline;
+        private string headline;
         private ICommand nextViewCommand;
         private ICommand startQuizCommand;
 
@@ -43,10 +42,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
         private async Task GotoQuizView()
         {
-            Navigation.InsertPageBefore(new QuizPageViewModel(Exhibit),this );
-            await Navigation.PopAsync(false);
+            await Navigation.PushAsync(new QuizPageViewModel(Exhibit));
         }
+
         #region properties
+
         public Exhibit Exhibit
         {
             get { return exhibit; }
@@ -67,11 +67,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             get { return nextViewCommand; }
             set { SetProperty(ref nextViewCommand, value); }
         }
+
         public ICommand StartQuizCommand
         {
             get { return startQuizCommand; }
             set { SetProperty(ref startQuizCommand, value); }
         }
+
         #endregion
     }
 }
