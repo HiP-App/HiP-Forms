@@ -26,15 +26,9 @@
     <ContentView.Content>
         <views:NotificationExtensionView>
             <views:NotificationExtensionView.ContentTemplate>
-                <Grid x:Name="Grid1" BackgroundColor="White">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1*" />
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="0.5*" />
-                        <RowDefinition Height="0.5*" />
-                    </Grid.RowDefinitions>
-                    <Grid Grid.Row="0" x:Name="Grid2">
+                <Grid x:Name="OuterGrid" BackgroundColor="White">
+                    <!--The row and column definition is made in code to adjust them to the device orientation-->
+                    <Grid x:Name="InnerGrid">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="1*" />
                         </Grid.RowDefinitions>
@@ -44,50 +38,59 @@
                         </Grid.ColumnDefinitions>
                         <AbsoluteLayout Grid.Column="0">
                             <BoxView AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.5,    0.5,    0.9,    0.5" BackgroundColor="{StaticResource DarkGrayColor}"/>
-                            <Image AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.5,   0.5,   0.85,    0.45" Aspect="AspectFit" Source="hiphop_transparent"/>
+                            <Image AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.5,   0.5,   0.85,    0.45" Aspect="AspectFit" Source="{Binding Avatar}">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                        Command="{Binding OnImageTappedCommand}"
+                                        NumberOfTapsRequired="1" />
+                                </Image.GestureRecognizers>
+                            </Image>
                         </AbsoluteLayout>
-                        <StackLayout x:Name="NameAndIcon" Grid.Column="1" Orientation="Vertical"
-                                 VerticalOptions="Center" >
-                            <Label Text="UserName" FontAttributes="Bold" FontSize="23"
+                        <StackLayout Grid.Column="1" Orientation="Vertical" Spacing="0"
+                                 VerticalOptions="Center">
+                            <Label Text="{Binding Username}" FontAttributes="Bold" FontSize="23"
                                HorizontalTextAlignment="Center" TextColor="{StaticResource DarkGrayColor}" Style="{DynamicResource Ssp-Regular}"/>
-                            <Label Text="Character" FontSize="18" HorizontalTextAlignment="Center"
+                            <Label Text="{Binding EMail}" FontSize="12" HorizontalTextAlignment="Center"
+                                   TextColor="{StaticResource DarkGrayColor}" Style="{DynamicResource Ssp-SemiBold}"/>
+                            <Label Text="{Binding Character}" FontSize="18" HorizontalTextAlignment="Center" Margin="0,10,0,0"
                                TextColor="{StaticResource PrimaryDarkColor}" Style="{DynamicResource Ssp-SemiBold}"/>
-                            <controls:ZeroPaddingButton FontSize="15" Command="{Binding Logout}" Text="Change Character" TextColor="Black" Margin="30,20,30,0" HeightRequest="30"/>
-                            <controls:ZeroPaddingButton FontSize="15" Command="{Binding Logout}" Text="Logout" TextColor="Black" Margin="40,10,40,0" HeightRequest="30"/>
+                            <controls:ZeroPaddingButton FontSize="15" Command="{Binding ChangeAppModeCommand}" Text="{helpers:Translate ProfileView_Button_Change_App_Mode}" TextColor="Black" Margin="30,15,30,0" HeightRequest="40"/>
+                            <controls:ZeroPaddingButton FontSize="15" Command="{Binding Logout}" Text="{helpers:Translate Logout}" TextColor="Black" Margin="40,10,40,0" HeightRequest="30"/>
                         </StackLayout>
                     </Grid>
-                    <container:TabContainerView Grid.Row="1" Tabs="{Binding Tabs}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
+                    <container:TabContainerView x:Name="TabContainer" Tabs="{Binding Tabs}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
                         <container:TabContainerView.TabViews>
-                            <StackLayout x:Name="Scores" Grid.Row="1" Spacing="30" Orientation="Vertical"
+                            <StackLayout Grid.Row="1" Spacing="30" Orientation="Vertical"
                                          VerticalOptions="StartAndExpand" Padding="40,20,40,20" >
                                 <StackLayout Orientation="Horizontal" VerticalOptions="Fill">
                                     <Label FontSize="23" Text="{helpers:Translate ProfileView_Overview_Score}"
                                            Style="{DynamicResource Ssp-Regular}" TextColor="Black" />
-                                    <Label FontSize="23" Text="420" TextColor="{StaticResource PrimaryDarkColor}" 
+                                    <Label FontSize="23" Text="{Binding Score}" TextColor="{StaticResource PrimaryDarkColor}" 
                                            Style="{DynamicResource Ssp-Regular}" />
                                 </StackLayout>
                                 <StackLayout Orientation="Horizontal" VerticalOptions="Fill">
                                     <Label FontSize="23" Text="{helpers:Translate ProfileView_Overview_Achievements}"
                                            TextColor="Black" Style="{DynamicResource Ssp-Regular}"/>
-                                    <Label FontSize="23" Text="12/30"
+                                    <Label FontSize="23" Text="{Binding AchievementCount}"
                                            TextColor="{StaticResource PrimaryDarkColor}" Style="{DynamicResource Ssp-Regular}"/>
-                                    <controls:ZeroPaddingButton Margin="20,0,0,0" Text="GO TO" TextColor="Black"  HeightRequest="25" WidthRequest="50"/>
+                                    <controls:ZeroPaddingButton Margin="20,0,0,0" Text="{helpers:Translate ProfileView_GoTo}" TextColor="Black"  
+                                                                Command="{Binding GoToAchievementsCommand}" HeightRequest="25" WidthRequest="50"/>
                                 </StackLayout>
                                 <StackLayout Orientation="Horizontal" VerticalOptions="Fill">
                                     <Label FontSize="23" Text="{helpers:Translate ProfileView_Overview_Progress}"
                                            TextColor="Black" Style="{DynamicResource Ssp-Regular}"/>
-                                    <Label FontSize="23" Text="10%"
+                                    <Label FontSize="23" Text="{Binding Completeness}"
                                            TextColor="{StaticResource PrimaryDarkColor}" Style="{DynamicResource Ssp-Regular}"/>
-                                    <Grid VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand" ColumnSpacing="0">
+                                    <Grid VerticalOptions="CenterAndExpand" WidthRequest="180" ColumnSpacing="0">
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="10" />
                                         </Grid.RowDefinitions>
                                         <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="0.5*" />
+                                            <ColumnDefinition Width="{Binding CompletenessBar}" />
                                             <ColumnDefinition Width="1*" />
                                         </Grid.ColumnDefinitions>
-                                        <BoxView Grid.Column="1" BackgroundColor="{StaticResource DarkGrayColor}" />
                                         <BoxView Grid.Column="0" BackgroundColor="{StaticResource PrimaryDarkColor}"/>
+                                        <BoxView Grid.Column="1" BackgroundColor="{StaticResource DarkGrayColor}" />
                                     </Grid>
                                 </StackLayout>
                             </StackLayout>

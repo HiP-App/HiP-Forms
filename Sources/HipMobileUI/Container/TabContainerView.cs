@@ -82,6 +82,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Container
 
             // replace current tabs with new ones
             tabBar.Children.Clear();
+            tabBar.ColumnDefinitions.Clear();
 
             for (int i = 0; i < newTabs.Count; i++)
             {
