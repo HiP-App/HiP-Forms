@@ -36,13 +36,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         private ICommand answerBCommand;
         private ICommand answerCCommand;
         private ICommand answerDCommand;
-        private Color answerABackgroundColor = Color.Transparent;
-        private Color answerBBackgroundColor = Color.Transparent;
-        private Color answerCBackgroundColor = Color.Transparent;
-        private Color answerDBackgroundColor = Color.Transparent;
+        private Color answerABackgroundColor = DefaultAnswerBackgroundColor;
+        private Color answerBBackgroundColor = DefaultAnswerBackgroundColor;
+        private Color answerCBackgroundColor = DefaultAnswerBackgroundColor;
+        private Color answerDBackgroundColor = DefaultAnswerBackgroundColor;
         private string question;
         private string[] answers;
         private ImageSource quizImage;
+        private static readonly Color DefaultAnswerBackgroundColor = Color.LightGray;
 
         public QuizPageViewModel(Exhibit e)
         {
@@ -65,10 +66,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
             answers = quiz.ShuffledOptions();
             Question = quiz.Text;
-            AnswerABackgroundColor = Color.Transparent;
-            AnswerBBackgroundColor = Color.Transparent;
-            AnswerCBackgroundColor = Color.Transparent;
-            AnswerDBackgroundColor = Color.Transparent;
+            AnswerABackgroundColor = DefaultAnswerBackgroundColor;
+            AnswerBBackgroundColor = DefaultAnswerBackgroundColor;
+            AnswerCBackgroundColor = DefaultAnswerBackgroundColor;
+            AnswerDBackgroundColor = DefaultAnswerBackgroundColor;
             // TODO use actual image
             QuizImage = ImageSource.FromFile("quiz_default_picture.png");
         }
@@ -78,6 +79,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             var selectedAnswer = answers[selectedAnswerIdx];
             var isAnswerCorrect = selectedAnswer == quizzes[currentQuiz].CorrectOption();
             backgroundColorSetter(isAnswerCorrect ? Color.Green : Color.DarkRed);
+            // TODO Persist score somewhere
 
             await Task.Delay(AnswerCorrectnessDisplayTimeMs);
 
