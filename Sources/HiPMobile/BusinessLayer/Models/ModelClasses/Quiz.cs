@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
@@ -16,7 +17,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
         public Exhibit Exhibit { get; set; }
 
         [NotMapped]
-        public string[] Options
+        public IReadOnlyList<string> Options
         {
             get => new[] { OptionA, OptionB, OptionC, OptionD };
 
