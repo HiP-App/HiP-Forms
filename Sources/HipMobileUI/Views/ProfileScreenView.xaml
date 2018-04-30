@@ -60,12 +60,12 @@
                     </Grid>
                     <container:TabContainerView x:Name="TabContainer" Tabs="{Binding Tabs}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
                         <container:TabContainerView.TabViews>
-                            <StackLayout Grid.Row="1" Spacing="30" Orientation="Vertical"
+                            <StackLayout Grid.Row="1" Spacing="25" Orientation="Vertical"
                                          VerticalOptions="StartAndExpand" Padding="40,20,40,20" >
                                 <StackLayout Orientation="Horizontal" VerticalOptions="Fill">
                                     <Label FontSize="23" Text="{helpers:Translate ProfileView_Overview_Score}"
                                            Style="{DynamicResource Ssp-Regular}" TextColor="Black" />
-                                    <Label FontSize="23" Text="{Binding Score}" TextColor="{StaticResource PrimaryDarkColor}" 
+                                    <Label FontSize="23" Text="{Binding Score}" TextColor="{StaticResource PrimaryDarkColor}"
                                            Style="{DynamicResource Ssp-Regular}" />
                                 </StackLayout>
                                 <StackLayout Orientation="Horizontal" VerticalOptions="Fill">
