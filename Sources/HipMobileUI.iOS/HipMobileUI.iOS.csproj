@@ -190,7 +190,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MaterialControls" Version="1.2.2" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.0.2" />
     <PackageReference Include="SkiaSharp.Views.Forms" Version="1.60.0" />
     <PackageReference Include="System.Reflection.Emit" Version="4.3.0">
       <ExcludeAssets>all</ExcludeAssets>
@@ -489,27 +489,21 @@
   <ItemGroup>
     <ImageAsset Include="Resources\MapAnnotations.xcassets\AppIcons.appiconset\Contents.json">
       <Visible>false</Visible>
-      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MapAnnotations.xcassets\CurrentLocation.imageset\Contents.json">
       <Visible>false</Visible>
-      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MapAnnotations.xcassets\CurrentLocation.imageset\ic_my_location.png">
       <Visible>false</Visible>
-      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MapAnnotations.xcassets\ExhibitLocation.imageset\Contents.json">
       <Visible>false</Visible>
-      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MapAnnotations.xcassets\ExhibitLocation.imageset\map-marker.png">
       <Visible>false</Visible>
-      <InProject>false</InProject>
     </ImageAsset>
     <ImageAsset Include="Resources\MapAnnotations.xcassets\LaunchImages.launchimage\Contents.json">
       <Visible>false</Visible>
-      <InProject>false</InProject>
     </ImageAsset>
   </ItemGroup>
   <ItemGroup>

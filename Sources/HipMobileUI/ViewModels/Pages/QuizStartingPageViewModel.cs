@@ -12,41 +12,54 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using Xamarin.Forms;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 {
-    public class QuizStartingPageViewModel: NavigationViewModel
+    public class QuizStartingPageViewModel : NavigationViewModel
     {
         private Exhibit exhibit;
-        private String headline;
+        private string headline;
         private ICommand nextViewCommand;
         private ICommand startQuizCommand;
+        private string score;
 
         public QuizStartingPageViewModel(Exhibit e)
         {
             Exhibit = e;
             Headline = e.Name;
+            score = ComputeScoreString(e);
             NextViewCommand = new Command(async () => await GotoNextView());
             StartQuizCommand = new Command(async () => await GotoQuizView());
+        }
+
+        private static string ComputeScoreString(Exhibit exhibit)
+        {
+            var exhibitQuizScore = DbManager.DataAccess.GetItem<ExhibitQuizScore>(exhibit.Id);
+            var currentScore = exhibitQuizScore?.Score ?? 0;
+            var totalQuestions = DbManager.DataAccess.Quizzes().QuizzesForExhibit(exhibit.Id).Count();
+            return $"{currentScore}/{totalQuestions}";
         }
 
         private async Task GotoNextView()
         {
             Navigation.InsertPageBefore(new UserRatingPageViewModel(Exhibit), this);
-            Navigation.PopAsync(false);
+            await Navigation.PopAsync(false);
         }
 
         private async Task GotoQuizView()
         {
-            Navigation.InsertPageBefore(new QuizPageViewModel(Exhibit),this );
-            Navigation.PopAsync(false);
+            Navigation.InsertPageBefore(new QuizPageViewModel(Exhibit), this);
+            await Navigation.PopAsync(false);
         }
+
         #region properties
+
         public Exhibit Exhibit
         {
             get { return exhibit; }
@@ -67,11 +80,19 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             get { return nextViewCommand; }
             set { SetProperty(ref nextViewCommand, value); }
         }
+
         public ICommand StartQuizCommand
         {
             get { return startQuizCommand; }
             set { SetProperty(ref startQuizCommand, value); }
         }
+
+        public string Score
+        {
+            get => score;
+            set => SetProperty(ref score, value);
+        }
+
         #endregion
     }
 }

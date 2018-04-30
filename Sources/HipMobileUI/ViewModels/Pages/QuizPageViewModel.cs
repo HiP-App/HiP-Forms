@@ -13,49 +13,103 @@
 // limitations under the License.
 
 using System;
-using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using Xamarin.Forms;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 {
-    public class QuizPageViewModel: NavigationViewModel
+    public class QuizPageViewModel : NavigationViewModel
     {
+        private const int AnswerCorrectnessDisplayTimeMs = 3000;
+
+        private readonly Quiz[] quizzes;
+        private int currentQuiz = -1;
+        private int score = 0;
+
         private Exhibit exhibit;
-        private String headline;
-        private ICommand nextViewCommand;
-        private String question;
-        private String[] answers;
+        private string headline;
+        private ICommand answerACommand;
+        private ICommand answerBCommand;
+        private ICommand answerCCommand;
+        private ICommand answerDCommand;
+        private Color answerABackgroundColor = DefaultAnswerBackgroundColor;
+        private Color answerBBackgroundColor = DefaultAnswerBackgroundColor;
+        private Color answerCBackgroundColor = DefaultAnswerBackgroundColor;
+        private Color answerDBackgroundColor = DefaultAnswerBackgroundColor;
+        private string question;
+        private string[] answers;
         private ImageSource quizImage;
+        private static readonly Color DefaultAnswerBackgroundColor = Color.LightGray;
 
         public QuizPageViewModel(Exhibit e)
         {
+            quizzes = DbManager.DataAccess.Quizzes().QuizzesForExhibit(e.Id).Shuffle().ToArray();
 
             Exhibit = e;
             Headline = e.Name;
-            answers= new String[4];
-            SetQuiz();
-            NextViewCommand = new Command(async () => await GotoNextView());
+            LoadNextQuiz();
 
-        }
-        private async Task GotoNextView()
-        {
-            Navigation.InsertPageBefore(new UserRatingPageViewModel(Exhibit), this);
-            Navigation.PopAsync(false);
+            AnswerACommand = new Command(async origin => await GotoNextView(0, bgColor => AnswerABackgroundColor = bgColor));
+            AnswerBCommand = new Command(async origin => await GotoNextView(1, bgColor => AnswerBBackgroundColor = bgColor));
+            AnswerCCommand = new Command(async origin => await GotoNextView(2, bgColor => AnswerCBackgroundColor = bgColor));
+            AnswerDCommand = new Command(async origin => await GotoNextView(3, bgColor => AnswerDBackgroundColor = bgColor));
         }
 
-        private void SetQuiz()
+        private void LoadNextQuiz()
         {
+            currentQuiz++;
+            var quiz = quizzes[currentQuiz];
+
+            answers = quiz.ShuffledOptions();
+            Question = quiz.Text;
+            AnswerABackgroundColor = DefaultAnswerBackgroundColor;
+            AnswerBBackgroundColor = DefaultAnswerBackgroundColor;
+            AnswerCBackgroundColor = DefaultAnswerBackgroundColor;
+            AnswerDBackgroundColor = DefaultAnswerBackgroundColor;
+            // TODO use actual image
             QuizImage = ImageSource.FromFile("quiz_default_picture.png");
-            Question = "This is a dummy question!";
-            Answer1 = "first answer";
-            Answer2 = "second answer";
-            Answer3 = "third answer";
-            Answer4 = "fourth answer";
         }
+
+        private async Task GotoNextView(int selectedAnswerIdx, Action<Color> backgroundColorSetter)
+        {
+            var selectedAnswer = answers[selectedAnswerIdx];
+            var isAnswerCorrect = selectedAnswer == quizzes[currentQuiz].CorrectOption();
+            backgroundColorSetter(isAnswerCorrect ? Color.Green : Color.DarkRed);
+            if (isAnswerCorrect) score++;
+
+            await Task.Delay(AnswerCorrectnessDisplayTimeMs);
+
+            if (currentQuiz + 1 < quizzes.Length)
+            {
+                LoadNextQuiz();
+            }
+            else
+            {
+                var existingScore = DbManager.DataAccess.GetItem<ExhibitQuizScore>(exhibit.Id);
+                // TODO Is it necessary to track this object?
+                await DbManager.InTransactionAsync(new[] { existingScore }.WhereNotNull(), transaction =>
+                {
+                    if (existingScore == null)
+                    {
+                        transaction.DataAccess.AddItem(new ExhibitQuizScore(exhibit, score));
+                    }
+                    else
+                    {
+                        existingScore.Score = Math.Max(existingScore.Score, score);
+                    }
+                });
+                Navigation.InsertPageBefore(new QuizStartingPageViewModel(exhibit), this);
+                await Navigation.PopAsync(false);
+            }
+        }
+
         #region properties
+
         public Exhibit Exhibit
         {
             get { return exhibit; }
@@ -76,7 +130,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             get { return quizImage; }
             set { SetProperty(ref quizImage, value); }
         }
-        
+
         public string Question
         {
             get { return headline; }
@@ -100,16 +154,61 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             get { return answers[2]; }
             set { SetProperty(ref answers[2], value); }
         }
+
         public string Answer4
         {
             get { return answers[3]; }
             set { SetProperty(ref answers[3], value); }
         }
-        public ICommand NextViewCommand
+
+        public ICommand AnswerACommand
         {
-            get { return nextViewCommand; }
-            set { SetProperty(ref nextViewCommand, value); }
+            get { return answerACommand; }
+            set { SetProperty(ref answerACommand, value); }
         }
+
+        public ICommand AnswerBCommand
+        {
+            get { return answerBCommand; }
+            set { SetProperty(ref answerBCommand, value); }
+        }
+
+        public ICommand AnswerCCommand
+        {
+            get { return answerCCommand; }
+            set { SetProperty(ref answerCCommand, value); }
+        }
+
+        public ICommand AnswerDCommand
+        {
+            get { return answerDCommand; }
+            set { SetProperty(ref answerDCommand, value); }
+        }
+
+        public Color AnswerABackgroundColor
+        {
+            get => answerABackgroundColor;
+            set => SetProperty(ref answerABackgroundColor, value);
+        }
+
+        public Color AnswerBBackgroundColor
+        {
+            get => answerBBackgroundColor;
+            set => SetProperty(ref answerBBackgroundColor, value);
+        }
+
+        public Color AnswerCBackgroundColor
+        {
+            get => answerCBackgroundColor;
+            set => SetProperty(ref answerCBackgroundColor, value);
+        }
+
+        public Color AnswerDBackgroundColor
+        {
+            get => answerDBackgroundColor;
+            set => SetProperty(ref answerDBackgroundColor, value);
+        }
+
         #endregion
     }
 }

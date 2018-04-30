@@ -72,6 +72,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
             modelBuilder.Entity<Quiz>()
                         .HasKey(q => q.Id);
 
+            modelBuilder.Entity<ExhibitQuizScore>()
+                        .HasKey(ecs => ecs.Id);
+
             // configure composite primary keys of join tables
             // (see https://docs.microsoft.com/en-us/ef/core/modeling/keys)
             modelBuilder.Entity<JoinExhibitPage>()

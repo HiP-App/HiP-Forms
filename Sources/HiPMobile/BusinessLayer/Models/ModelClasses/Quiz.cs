@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 {
@@ -16,6 +17,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 
         public Exhibit Exhibit { get; set; }
 
+        /**
+         * By convention, the first option is always the correct one.
+         */
         [NotMapped]
         public IReadOnlyList<string> Options
         {
@@ -23,6 +27,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 
             set
             {
+                Debug.Assert(value.Length == 4, "A quiz must have exactly 4 options.");
                 OptionA = value[0];
                 OptionB = value[1];
                 OptionC = value[2];
@@ -30,10 +35,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
             }
         }
 
-        string OptionA { get; set; }
-        string OptionB { get; set; }
-        string OptionC { get; set; }
-        string OptionD { get; set; }
+        public string OptionA { get; set; }
+        public string OptionB { get; set; }
+        public string OptionC { get; set; }
+        public string OptionD { get; set; }
 
         public Image Image { get; set; }
     }
