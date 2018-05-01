@@ -137,9 +137,6 @@
     <AndroidResource Include="Resources\drawable\ac_students.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\bonuspack_bubble_new.9.png" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable\btn_close.xml" />
   </ItemGroup>
   <ItemGroup>
