@@ -24,7 +24,7 @@
         <ContentPage Title="Menu" Padding="0" BackgroundColor="White">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="1*" />
                     <ColumnDefinition Width="30" />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
@@ -32,7 +32,11 @@
                     <RowDefinition Height="0.7*" />
                 </Grid.RowDefinitions>
                 <BoxView Grid.Row="0" Style="{DynamicResource BoxView}" Grid.ColumnSpan="2" />
-                <Image Grid.Row="0" Grid.Column="1" Source="ic_exit_to_app_white_24dp.png"/>
+                <Image Grid.Row="0" Grid.Column="1" Source="ic_exit_to_app_white_24dp.png" VerticalOptions="Start" IsVisible="{Binding UserNameDisplayed}">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding LogoutCommand}"/>
+                    </Image.GestureRecognizers>
+                </Image>
 
                 <Label Grid.Row="0" Text="{helpers:Translate MainPage_LoggedIn}" Grid.ColumnSpan="2"
                        TextColor="White" FontSize="Small"
