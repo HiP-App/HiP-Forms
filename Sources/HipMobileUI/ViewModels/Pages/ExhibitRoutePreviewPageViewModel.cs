@@ -13,19 +13,26 @@
 // limitations under the License.
 
 using System.IO;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelConverters;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Location;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
 using Xamarin.Forms;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 {
-    public class ExhibitRoutePreviewPageViewModel : NavigationViewModel
+    public class ExhibitRoutePreviewPageViewModel : NavigationViewModel, IDownloadableListItemViewModel
     {
         private readonly Exhibit exhibit;
         private readonly Route route;
+
+        private ExhibitRouteDownloadPageViewModel downloadPage;
 
         public ExhibitRoutePreviewPageViewModel(Exhibit exhibit, INearbyExhibitManager nearbyExhibitManager)
         {
@@ -84,15 +91,47 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             NearbyExhibitManager.InvokeExhibitVisitedEvent(exhibit);
         }
 
-        private void AcceptRoute()
+        private async void AcceptRoute()
         {
-            Navigation.ClearModalStack();
-            NearbyRouteManager.OpenRouteDetailsView(route.Id);
+            if (route.DetailsDataLoaded)
+            {
+                Navigation.ClearModalStack();
+                NearbyRouteManager.OpenRouteDetailsView(route.Id);
+            }
+            else
+            {
+                //await IoCManager.Resolve<INavigationService>().PushModalAsync(new ExhibitRouteDownloadPageViewModel(route, this));
+                await Navigation.PopModalAsync();
+                downloadPage = new ExhibitRouteDownloadPageViewModel(route, this);
+                await Navigation.PushAsync(downloadPage);
+            }
         }
 
         private async void Deny()
         {
             await Navigation.PopModalAsync();
+        }
+
+        public void CloseDownloadPage()
+        {
+            IoCManager.Resolve<INavigationService>().PopAsync();
+        }
+
+        public void OpenDetailsView(string id)
+        {
+            Navigation.ClearModalStack();
+            NearbyRouteManager.OpenRouteDetailsView(route.Id);
+        }
+
+        public async Task SetDetailsAvailable(bool available)
+        {
+            if (!available)
+                return;
+
+            await DbManager.InTransactionAsync(transaction =>
+            {
+                route.DetailsDataLoaded = true;
+            });
         }
     }
 }
