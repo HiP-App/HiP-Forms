@@ -27,7 +27,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 
             set
             {
-                Debug.Assert(value.Length == 4, "A quiz must have exactly 4 options.");
+                Debug.Assert(value.Count == 4, "A quiz must have exactly 4 options.");
                 OptionA = value[0];
                 OptionB = value[1];
                 OptionC = value[2];

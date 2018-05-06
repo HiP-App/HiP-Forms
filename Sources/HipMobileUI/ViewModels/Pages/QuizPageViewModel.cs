@@ -92,7 +92,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             {
                 var existingScore = DbManager.DataAccess.GetItem<ExhibitQuizScore>(exhibit.Id);
                 // TODO Is it necessary to track this object?
-                await DbManager.InTransactionAsync(new[] { existingScore }.WhereNotNull(), transaction =>
+                await DbManager.InTransactionAsync(new object[] { existingScore, exhibit }.WhereNotNull(), transaction =>
                 {
                     if (existingScore == null)
                     {
