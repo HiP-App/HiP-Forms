@@ -32,8 +32,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         private readonly Exhibit exhibit;
         private readonly Route route;
 
-        private ExhibitRouteDownloadPageViewModel downloadPage;
-
         public ExhibitRoutePreviewPageViewModel(Exhibit exhibit, INearbyExhibitManager nearbyExhibitManager)
         {
             this.exhibit = exhibit;
@@ -93,17 +91,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
         private async void AcceptRoute()
         {
+            await Navigation.ClearModalStack();
             if (route.DetailsDataLoaded)
             {
-                Navigation.ClearModalStack();
                 NearbyRouteManager.OpenRouteDetailsView(route.Id);
             }
             else
             {
-                //await IoCManager.Resolve<INavigationService>().PushModalAsync(new ExhibitRouteDownloadPageViewModel(route, this));
-                await Navigation.PopModalAsync();
-                downloadPage = new ExhibitRouteDownloadPageViewModel(route, this);
-                await Navigation.PushAsync(downloadPage);
+                await Navigation.PushAsync(new ExhibitRouteDownloadPageViewModel(route, this));
             }
         }
 
@@ -112,14 +107,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             await Navigation.PopModalAsync();
         }
 
-        public void CloseDownloadPage()
+        public async void CloseDownloadPage()
         {
-            IoCManager.Resolve<INavigationService>().PopAsync();
+            await Navigation.PopAsync();
         }
 
-        public void OpenDetailsView(string id)
+        public async void OpenDetailsView(string id)
         {
-            Navigation.ClearModalStack();
+            await Navigation.PopAsync();
             NearbyRouteManager.OpenRouteDetailsView(route.Id);
         }
 
