@@ -39,8 +39,8 @@
                         <RowDefinition Height="0*" />
                     </Grid.RowDefinitions>
 
-                    <AbsoluteLayout>
-                        <map:OsmMap Grid.Row="0" x:Name="Map" ExhibitSet="{Binding RawExhibits}"
+                    <AbsoluteLayout Grid.Row="0">
+                        <map:OsmMap  x:Name="Map" ExhibitSet="{Binding RawExhibits}"
                                 GpsLocation="{Binding Position}"
                                 ShowDetailsRoute="False" />
                         <controls1:FloatingActionButton AbsoluteLayout.LayoutFlags="PositionProportional"
