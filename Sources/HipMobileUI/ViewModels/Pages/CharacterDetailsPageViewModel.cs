@@ -64,9 +64,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         {
             PageTitle = AdventurerModeSelected ? "Adventurer" : "Professor";
             Image = AdventurerModeSelected ? ImageSource.FromFile("ic_adventurer.png") : ImageSource.FromFile("ic_professor.png");
-            MainScreenColor = AdventurerModeSelected ? "#FFE57F" : "#7FACFF";
-            SelectModeButton = AdventurerModeSelected ? "#FFE57F" : "#7FACFF";
-            ChangeModeButton = AdventurerModeSelected ? "#7FACFF" : "#FFE57F";
+            MainScreenColor = AdventurerModeSelected ? "#FFCC00" : "#0149D1"; //paint it dark yellow or dark blue
+            SelectModeButton = AdventurerModeSelected ? "#FFCC00" : "#0149D1"; //paint it dark yellow or dark blue
+            ChangeModeButton = AdventurerModeSelected ? "#0149D1" : "#FFCC00";  //paint it dark blue or dark yellow
             PageDetails = AdventurerModeSelected ? Strings.CharacterDetailsPage_Adventurer_Text : Strings.CharacterDetailsPage_Professor_Text;
 
         }

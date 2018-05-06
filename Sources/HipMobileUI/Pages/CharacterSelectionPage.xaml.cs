@@ -55,12 +55,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
 
             using (var paint = new SKPaint())
             {
-                canvas.Clear(new SKColor(127,172,255)); //paint it blue
+                canvas.Clear(new SKColor(1,73,209)); //paint it dark blue #0149D1
                 using (var pathStroke = new SKPaint
                 {
                     IsAntialias = true,
                     Style = SKPaintStyle.StrokeAndFill,
-                    Color = new SKColor(255, 229, 127),
+                    Color = new SKColor(255, 204, 0), //paint it dark yellow #FFCC00
                     StrokeWidth = 5
                 })
                 {

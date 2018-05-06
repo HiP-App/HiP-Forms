@@ -56,7 +56,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
             // Floating Action Button
             Button = new FloatingActionButton
             {
-                NormalColor = (Color) resources.GetResourceValue("SecondaryColor"),
+                NormalColor = (Color) resources.GetResourceValue("SecondaryDarkColor"),
                 RippleColor = (Color) resources.GetResourceValue("SecondaryDarkColor"),
                 Command = new Command(ButtonOnClicked),
                 Icon = "ic_keyboard_arrow_up",

@@ -22,11 +22,11 @@
              xmlns:converters1="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Converters;assembly=HipMobileUI">
     <Application.Resources>
         <ResourceDictionary>
-            <Color x:Key="PrimaryColor">#7FACFF</Color>
+            <Color x:Key="PrimaryColor">#0149D1</Color> <!--//paint it dark dark blue-->
             <Color x:Key="PrimaryDarkColor">#0149D1</Color>
-            <Color x:Key="SecondaryColor">#FFE57F</Color>
+            <Color x:Key="SecondaryColor">#FFCC00</Color> <!--//paint it dark yellow-->
             <Color x:Key="SecondaryDarkColor">#FFCC00</Color>
-            <Color x:Key="TertiaryColor">#FF937F</Color>
+            <Color x:Key="TertiaryColor">#FF937F</Color> <!--//paint it red-->
             <Color x:Key="TertiaryDarkColor">#F22F0C</Color>
             <Color x:Key="LightGrayColor">#05000000</Color>
             <Color x:Key="MediumGrayColor">#15000000</Color>
@@ -203,7 +203,7 @@
             </Style>
             <Style x:Key="Heading1StyleProfessorMode" TargetType="Label" BasedOn="{StaticResource Ssp-SemiBold}">
                 <Setter Property="FontSize" Value="Medium" />
-                <Setter Property="TextColor" Value="{StaticResource PrimaryColor}" />
+                <Setter Property="TextColor" Value="{StaticResource PrimaryDarkColor}" />
             </Style>
             <!--#endregion -->
 
@@ -212,7 +212,7 @@
                 <Setter Property="Color" Value="{StaticResource SecondaryDarkColor}"/>
             </Style>
             <Style x:Key="BoxViewProfessorMode" TargetType="BoxView">
-                <Setter Property="Color" Value="{StaticResource PrimaryColor}"/>
+                <Setter Property="Color" Value="{StaticResource PrimaryDarkColor}"/>
             </Style>
             <!--#endregion-->
 
@@ -221,7 +221,7 @@
                 <Setter Property="TextColor" Value="{StaticResource SecondaryDarkColor}"/>
             </Style>
             <Style x:Key="LabelProfessorMode" TargetType="Label">
-                <Setter Property="TextColor" Value="{StaticResource PrimaryColor}"/>
+                <Setter Property="TextColor" Value="{StaticResource PrimaryDarkColor}"/>
             </Style>
             <!--#endregion-->
 
@@ -230,7 +230,7 @@
                 <Setter Property="BackgroundColor" Value="{StaticResource SecondaryDarkColor}"/>
             </Style>
             <Style x:Key="ButtonProfessorMode" TargetType="Button">
-                <Setter Property="BackgroundColor" Value="{StaticResource PrimaryColor}"/>
+                <Setter Property="BackgroundColor" Value="{StaticResource PrimaryDarkColor}"/>
             </Style>
             <!--#endregion-->
 

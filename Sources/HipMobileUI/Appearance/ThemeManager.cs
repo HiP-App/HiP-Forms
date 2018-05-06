@@ -65,12 +65,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Appearance
 
         private void ChangeToAdventurerTheme()
         {
-            barsColorsChanger.ChangeToolbarColor(GetResourceColor("SecondaryDarkColor"), GetResourceColor("SecondaryColor"));
+            barsColorsChanger.ChangeToolbarColor(GetResourceColor("SecondaryDarkColor"), GetResourceColor("SecondaryDarkColor"));
         }
 
         private void ChangeToProfessorTheme()
         {
-            barsColorsChanger.ChangeToolbarColor(GetResourceColor("PrimaryDarkColor"), GetResourceColor("PrimaryColor"));
+            barsColorsChanger.ChangeToolbarColor(GetResourceColor("PrimaryDarkColor"), GetResourceColor("PrimaryDarkColor"));
         }
 
         private Color GetResourceColor(string color)
