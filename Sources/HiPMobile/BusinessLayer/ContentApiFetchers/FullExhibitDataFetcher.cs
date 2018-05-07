@@ -65,7 +65,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             await DbManager.InTransactionAsync(async transaction =>
             {
                 await ProcessPages(exhibitId, token, listener, transaction.DataAccess);
-                await DownloadQuizes(idForRestApi, transaction.DataAccess);
+                await DownloadQuizes(idForRestApi, token, transaction.DataAccess);
 
                 if (token.IsCancellationRequested)
                 {
@@ -74,13 +74,19 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             });
         }
 
-        private async Task DownloadQuizes(int exhibitId, ITransactionDataAccess transactionDataAccess)
+        private async Task DownloadQuizes(int exhibitId, CancellationToken token, ITransactionDataAccess transactionDataAccess)
         {
             var quizApiAccess = IoCManager.Resolve<IQuizApiAccess>();
             try
             {
                 var quizDtos = await quizApiAccess.GetQuestionsForExhibitAsync(exhibitId);
-                var quizzes = quizDtos.Select(QuizConverter.Convert);
+                var quizzes = quizDtos.Select(QuizConverter.Convert).ToList();
+                foreach (var quiz in quizzes)
+                {
+                    var quizImage = quiz.Image?.IdForRestApi;
+                    await mediaDataFetcher.FetchMedias(new[] { quizImage }.WhereNotNull().ToList(), token, null);
+                }
+
                 transactionDataAccess.Quizzes().Add(quizzes);
             }
             catch (NotFoundException)
@@ -90,7 +96,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             }
         }
 
-        public async Task FetchFullExhibitDataIntoDatabaseWithFetchedPagesAndMedia(string exhibitId, ExhibitPagesAndMediaContainer exhibitPagesAndMediaContainer, CancellationToken token, IProgressListener listener, int dbExhibitIdForRestApi)
+        public async Task FetchFullExhibitDataIntoDatabaseWithFetchedPagesAndMedia(string exhibitId, ExhibitPagesAndMediaContainer exhibitPagesAndMediaContainer,
+                                                                                   CancellationToken token, IProgressListener listener, int dbExhibitIdForRestApi)
         {
             requiredMedia = exhibitPagesAndMediaContainer.RequiredMedia;
             pageItems = exhibitPagesAndMediaContainer.PageDtos;
@@ -98,7 +105,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             await DbManager.InTransactionAsync(async transaction =>
             {
                 await ProcessPages(exhibitId, token, listener, transaction.DataAccess);
-                await DownloadQuizes(dbExhibitIdForRestApi, transaction.DataAccess);
+                await DownloadQuizes(dbExhibitIdForRestApi, token, transaction.DataAccess);
 
                 if (token.IsCancellationRequested)
                 {
