@@ -12,11 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System;
+using System.Linq;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.JoinClasses;
-using System.Linq;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
 {
@@ -72,9 +72,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
             modelBuilder.Entity<Quiz>()
                         .HasKey(q => q.Id);
 
-            modelBuilder.Entity<ExhibitQuizScore>()
-                        .HasKey(ecs => ecs.Id);
-
             // configure composite primary keys of join tables
             // (see https://docs.microsoft.com/en-us/ef/core/modeling/keys)
             modelBuilder.Entity<JoinExhibitPage>()
@@ -106,7 +103,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
             {
                 SaveChanges();
             }
-            catch (System.Exception)
+            catch (Exception)
             {
                 // Breakpoint useful for debugging because the Mono debugger for some reason doesn't
                 // break here when exceptions are thrown (e.g. when SaveChanges() detects a DB conflict)

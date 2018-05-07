@@ -90,19 +90,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             }
             else
             {
-                var existingScore = DbManager.DataAccess.GetItem<ExhibitQuizScore>(exhibit.Id);
-                // TODO Is it necessary to track this object?
-                await DbManager.InTransactionAsync(new object[] { existingScore, exhibit }.WhereNotNull(), transaction =>
-                {
-                    if (existingScore == null)
-                    {
-                        transaction.DataAccess.AddItem(new ExhibitQuizScore(exhibit, score));
-                    }
-                    else
-                    {
-                        existingScore.Score = Math.Max(existingScore.Score, score);
-                    }
-                });
+                var newHighScore = Math.Max(Settings.ExhibitScores.ScoreFor(exhibit) ?? score, score);
+                Settings.ExhibitScores.SaveScoreFor(exhibit, newHighScore);
                 Navigation.InsertPageBefore(new QuizStartingPageViewModel(exhibit), this);
                 await Navigation.PopAsync(false);
             }

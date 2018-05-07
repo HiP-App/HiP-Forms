@@ -17,6 +17,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using Xamarin.Forms;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
@@ -40,10 +41,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
         private static string ComputeScoreString(Exhibit exhibit)
         {
-            var exhibitQuizScore = DbManager.DataAccess.GetItem<ExhibitQuizScore>(exhibit.Id);
-            var currentScore = exhibitQuizScore?.Score ?? 0;
+            var score = Settings.ExhibitScores.ScoreFor(exhibit) ?? 0;
             var totalQuestions = DbManager.DataAccess.Quizzes().QuizzesForExhibit(exhibit.Id).Count();
-            return $"{currentScore}/{totalQuestions}";
+            return $"{score}/{totalQuestions}";
         }
 
         private async Task GotoNextView()
