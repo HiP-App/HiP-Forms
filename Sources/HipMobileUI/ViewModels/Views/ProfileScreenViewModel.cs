@@ -76,9 +76,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             }
         }
 
-        private async void GoToAchievements()
+        private void GoToAchievements()
         {
-            await Navigation.PushAsync(new AchievementsScreenViewModel());
+            mainPageViewModel.SwitchToAchievementsView();
         }
 
         async void LogoutDummy()
