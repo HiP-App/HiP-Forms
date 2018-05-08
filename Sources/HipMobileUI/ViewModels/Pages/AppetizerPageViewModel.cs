@@ -35,7 +35,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         private ImageSource image;
         private string text;
         private string headline;
-        private readonly ICollection<Page> pages;
         private bool nextVisible;
         private bool nextViewAvailable;
         private ICommand nextViewCommand;
@@ -66,12 +65,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 #else
             exhibitUnblocked = exhibit.Unlocked;
 #endif
-            pages = exhibit.Pages;
 
             Headline = exhibit.Name;
             Text = string.IsNullOrEmpty(exhibit.Description) ? exhibit.Name : exhibit.Description;
 
-            if (pages != null && pages.Count > 1 && Exhibit.DetailsDataLoaded)
+            if (Exhibit?.Pages != null && Exhibit.Pages.Count >= 1 && Exhibit.DetailsDataLoaded)
                 NextViewAvailable = true;
 
             SetExhibitImage();
@@ -96,7 +94,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         /// <returns></returns>
         private async void GotoNextView()
         {
-            if (pages.Count > 1)
+            if (Exhibit.Pages.Count >= 1)
             {
                 if (exhibitUnblocked)
                 {
@@ -137,10 +135,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             else
             {
                 var userRating = await IoCManager.Resolve<IUserRatingManager>().GetUserRatingAsync(exhibit.IdForRestApi);
-                if (userRating.Count > 0)
-                    RatingAverage = userRating.Average.ToString("0.#");
-                else
-                    RatingAverage = "-";
+                RatingAverage = userRating.Count > 0 ? userRating.Average.ToString("0.#") : "-";
                 SetStarImages(userRating.Average);
                 RatingCount = userRating.Count + " " + Strings.UserRating_Rate_Count;
             }
@@ -223,9 +218,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                 Exhibit.DetailsDataLoaded = true;
                 return Task.CompletedTask;
             });
-            IsDownloadButtonVisible = !Exhibit.DetailsDataLoaded;
 
-            NextViewAvailable = pages.Count > 1;
+            Exhibit = DbManager.DataAccess.Exhibits().GetExhibit(Exhibit.Id);
+            IsDownloadButtonVisible = !Exhibit.DetailsDataLoaded;
+            NextViewAvailable = Exhibit.Pages.Count >= 1;
         }
 
         private ExhibitRouteDownloadPageViewModel downloadPage;
