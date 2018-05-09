@@ -16,11 +16,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer
 {
     public static class ServerEndpoints
     {
-        private const string BaseUrl = "https://hip.eu.auth0.com/";
+        private const string BaseUrl = "https://docker-hip.cs.uni-paderborn.de/public/userstore/";
 
         public const string LoginUrl = BaseUrl + "oauth/token";
 
-        public const string RegisterUrl = BaseUrl + "dbconnections/signup";
+        public const string RegisterUrl = BaseUrl + "api/Users";
         public const string ForgotPasswordUrl = BaseUrl + "dbconnections/change_password";
 
         /// <summary>

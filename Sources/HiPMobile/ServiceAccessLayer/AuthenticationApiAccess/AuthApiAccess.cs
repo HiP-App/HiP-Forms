@@ -52,15 +52,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Authent
 
         public async Task<bool> Register(string username, string password)
         {
-            FormUrlEncodedContent content = new FormUrlEncodedContent(new[]
-            {
-                Constants.Connection,
-                Constants.BasicClientId,
-                new KeyValuePair<string, string>("email", username),
-                new KeyValuePair<string, string>("password", password)
-            });
+            var content = "{" +
+                          "\"email\": \"" + username + "\", " +
+                          "\"password\": \"" + password + "\"," +
+                          "\"firstName\": \"first" + "" + "\"," +
+                          "\"lastName\": \"last" + "" + "\"" +
+                          "}";
 
-            var result = await clientApiClient.PostRequestFormBased(ServerEndpoints.RegisterUrl, content);
+            var result = await clientApiClient.PostRequestBody(ServerEndpoints.RegisterUrl, content, false);
 
             if (result.StatusCode == HttpStatusCode.OK)
             {

@@ -52,7 +52,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer
         /// <param name="url">URL without basePath</param>
         /// <param name="body"></param>
         /// <returns></returns>
-        Task<HttpResponseMessage> PostRequestBody(string url, string body);
+        Task<HttpResponseMessage> PostRequestBody(string url, string body, bool prependBasePath = true);
 
         /// <summary>
         /// Post the specified body to finalUrl := basePath + url with the given access token as authentication.
@@ -61,6 +61,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer
         /// <param name="body"></param>
         /// <param name="accessToken"></param>
         /// <returns></returns>
-        Task<HttpResponseMessage> PostRequestBody(string url, string body, string accessToken);
+        Task<HttpResponseMessage> PostRequestBody(string url, string body, string accessToken, bool prependBasePath = true);
     }
 }
