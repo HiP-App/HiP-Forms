@@ -203,7 +203,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer
             return token;
         }
 
-        public async Task<HttpResponseMessage> PostRequestFormBased(string url, FormUrlEncodedContent content)
+        public async Task<HttpResponseMessage> PostRequestFormBased(string url, FormUrlEncodedContent content, bool prependBasePath = true)
         {
             using (var client = new HttpClient())
             {
@@ -211,7 +211,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer
                 // ReSharper disable AccessToDisposedClosure
                 var result = await TransientRetry.Do(async () =>
                                                      {
-                                                         var message = new HttpRequestMessage(HttpMethod.Post, basePath + url) { Content = content };
+                                                         var finalUrl = prependBasePath ? basePath + url : url;
+                                                         var message = new HttpRequestMessage(HttpMethod.Post, finalUrl) { Content = content };
                                                          message.Headers.Authorization = new AuthenticationHeaderValue("Bearer", (await GetTokenForDataStore()).AccessToken);
                                                          message.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                                                          try

@@ -31,7 +31,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Authent
                 new KeyValuePair<string, string>("password", password)
             });
 
-            var result = await clientApiClient.PostRequestFormBased(ServerEndpoints.LoginUrl, content);
+            var result = await clientApiClient.PostRequestFormBased(ServerEndpoints.LoginUrl, content, prependBasePath: false);
 
             string jsonPayload = await result.Content.ReadAsStringAsync();
 
@@ -78,7 +78,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Authent
                 new KeyValuePair<string, string>("email", username),
             });
 
-            var result = await clientApiClient.PostRequestFormBased(ServerEndpoints.ForgotPasswordUrl, content);
+            var result = await clientApiClient.PostRequestFormBased(ServerEndpoints.ForgotPasswordUrl, content, prependBasePath: false);
 
             if (result.IsSuccessStatusCode)
             {

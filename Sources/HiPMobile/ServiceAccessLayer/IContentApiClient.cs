@@ -44,7 +44,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer
         /// <returns>String result of the api call</returns>
         Task<byte[]> GetResponseFromUrlAsBytes(string urlPath);
 
-        Task<HttpResponseMessage> PostRequestFormBased(string url, FormUrlEncodedContent content);
+        Task<HttpResponseMessage> PostRequestFormBased(string url, FormUrlEncodedContent content, bool prependBasePath = true);
 
         /// <summary>
         /// Post the specified body to finalUrl := basePath + url with the standard token from https://hip.eu.auth0.com/oauth/token.

@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.User;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
@@ -88,12 +89,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 
         private void DisplayFirstNameMissingErrorMessage()
         {
-            // TODO
+            ErrorMessage = Strings.RegisterScreenView_Error_Missing_FirstName;
         }
 
         private void DisplayLastNameMissingErrorMessage()
         {
-            // TODO
+            ErrorMessage = Strings.RegisterScreenView_Error_Missing_LastName;
         }
 
         private void OnRegisterClicked()
@@ -108,10 +109,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
                 DisplayInvalidEmailErrorMessage();
             else if (Password != RepeatPassword)
                 DisplayPasswordMismatchErrorMessage();
-            // else if (string.IsNullOrWhiteSpace(firstName))
-            //    DisplayFirstNameMissingErrorMessage();
-            // else if (string.IsNullOrWhiteSpace(lastName))
-            //    DisplayLastNameMissingErrorMessage();
+            else if (string.IsNullOrWhiteSpace(firstName))
+                DisplayFirstNameMissingErrorMessage();
+            else if (string.IsNullOrWhiteSpace(lastName))
+                DisplayLastNameMissingErrorMessage();
             else
                 RegisterUser();
         }
