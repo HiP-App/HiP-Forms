@@ -19,119 +19,130 @@
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Views.ProfileScreenView"
-             xmlns:container1="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Container;assembly=HipMobileUI"
+             xmlns:container="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Container;assembly=HipMobileUI"
              xmlns:helpers="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;assembly=HipMobileUI"
+             xmlns:controls="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Controls;assembly=HipMobileUI"
              xmlns:views="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Views;assembly=HipMobileUI">
     <ContentView.Content>
         <views:NotificationExtensionView>
             <views:NotificationExtensionView.ContentTemplate>
-                <container1:TabContainerView Tabs="{Binding Tabs}" HorizontalOptions="FillAndExpand"
-                                             VerticalOptions="FillAndExpand" BackgroundColor="White">
-                    <container1:TabContainerView.TabViews>
-                        <Grid x:Name="OverviewGrid">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="1*" />
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="0.4*" />
-                                <RowDefinition Height="0.4*" />
-                                <RowDefinition Height="0.2*" />
-                            </Grid.RowDefinitions>
-
-                            <StackLayout x:Name="NameAndIcon" Grid.Row="0" Orientation="Vertical"
-                                         VerticalOptions="CenterAndExpand" Padding="5,15">
-                                <Image WidthRequest="200" HeightRequest="50" Aspect="AspectFit" Source="{Binding Avatar}" />
-                                <Label Text="{Binding Username}" FontAttributes="Bold" FontSize="20"
-                                       HorizontalTextAlignment="Center" TextColor="{StaticResource DarkGrayColor}" Style="{DynamicResource Ssp-Regular}"/>
-                                <Label Text="{Binding Character}" FontSize="15" HorizontalTextAlignment="Center" IsVisible="{Binding AppModeVisible}"
-                                       TextColor="{StaticResource PrimaryDarkColor}" Style="{DynamicResource Ssp-SemiBold}"/>
-                                <Label Text="{Binding EMail}" FontSize="10" HorizontalTextAlignment="Center" Margin="0" Style="{DynamicResource Ssp-Regular}"/>
+                <Grid x:Name="OuterGrid" BackgroundColor="White">
+                    <!--The row and column definition is made in code to adjust them to the device orientation-->
+                    <Grid x:Name="InnerGrid">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.4*" />
+                            <ColumnDefinition Width="0.6*" />
+                        </Grid.ColumnDefinitions>
+                        <AbsoluteLayout Grid.Column="0">
+                            <BoxView AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.5,    0.5,    0.9,    0.5" BackgroundColor="{StaticResource DarkGrayColor}"/>
+                            <Image AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.5,   0.5,   0.85,    0.45" Aspect="AspectFit" Source="{Binding Avatar}">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                        Command="{Binding OnImageTappedCommand}"
+                                        NumberOfTapsRequired="1" />
+                                </Image.GestureRecognizers>
+                            </Image>
+                        </AbsoluteLayout>
+                        <StackLayout Grid.Column="1" Orientation="Vertical" Spacing="0"
+                                 VerticalOptions="Center">
+                            <Label Text="{Binding Username}" FontAttributes="Bold" FontSize="23"
+                               HorizontalTextAlignment="Center" TextColor="{StaticResource DarkGrayColor}" Style="{DynamicResource Ssp-Regular}"/>
+                            <Label Text="{Binding EMail}" FontSize="12" HorizontalTextAlignment="Center"
+                                   TextColor="{StaticResource DarkGrayColor}" Style="{DynamicResource Ssp-SemiBold}"/>
+                            <Label Text="{Binding Character}" FontSize="18" HorizontalTextAlignment="Center" Margin="0,10,0,0"
+                               TextColor="{StaticResource PrimaryDarkColor}" Style="{DynamicResource Ssp-SemiBold}" IsVisible="{Binding AppModeVisible}"/>
+                            <controls:ZeroPaddingButton FontSize="15" Command="{Binding ChangeAppModeCommand}" Text="{helpers:Translate ProfileView_Button_Change_App_Mode}" 
+                                                        IsVisible="{Binding AppModeVisible}" TextColor="Black" Margin="30,15,30,0" HeightRequest="40"/>
+                            <controls:ZeroPaddingButton FontSize="15" Command="{Binding Logout}" Text="{helpers:Translate Logout}" TextColor="Black" Margin="40,10,40,0" HeightRequest="30"/>
+                        </StackLayout>
+                    </Grid>
+                    <container:TabContainerView x:Name="TabContainer" Tabs="{Binding Tabs}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
+                        <container:TabContainerView.TabViews>
+                            <StackLayout Grid.Row="1" Spacing="25" Orientation="Vertical"
+                                         VerticalOptions="StartAndExpand" Padding="40,20,40,20" >
+                                <StackLayout Orientation="Horizontal" VerticalOptions="Fill">
+                                    <Label FontSize="23" Text="{helpers:Translate ProfileView_Overview_Score}"
+                                           Style="{DynamicResource Ssp-Regular}" TextColor="Black" />
+                                    <Label FontSize="23" Text="{Binding Score}" TextColor="{StaticResource PrimaryDarkColor}"
+                                           Style="{DynamicResource Ssp-Regular}" />
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal" VerticalOptions="Fill">
+                                    <Label FontSize="23" Text="{helpers:Translate ProfileView_Overview_Achievements}"
+                                           TextColor="Black" Style="{DynamicResource Ssp-Regular}"/>
+                                    <Label FontSize="23" Text="{Binding AchievementCount}"
+                                           TextColor="{StaticResource PrimaryDarkColor}" Style="{DynamicResource Ssp-Regular}"/>
+                                    <controls:ZeroPaddingButton Margin="20,0,0,0" Text="{helpers:Translate ProfileView_GoTo}" TextColor="Black"  
+                                                                Command="{Binding GoToAchievementsCommand}" HeightRequest="25" WidthRequest="60"/>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal" VerticalOptions="Fill">
+                                    <Label FontSize="23" Text="{helpers:Translate ProfileView_Overview_Progress}"
+                                           TextColor="Black" Style="{DynamicResource Ssp-Regular}"/>
+                                    <Label FontSize="23" Text="{Binding Completeness}"
+                                           TextColor="{StaticResource PrimaryDarkColor}" Style="{DynamicResource Ssp-Regular}"/>
+                                    <Grid VerticalOptions="CenterAndExpand" WidthRequest="180" ColumnSpacing="0">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="10" />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="{Binding CompletenessBar}" />
+                                            <ColumnDefinition Width="1*" />
+                                        </Grid.ColumnDefinitions>
+                                        <BoxView Grid.Column="0" BackgroundColor="{StaticResource PrimaryDarkColor}"/>
+                                        <BoxView Grid.Column="1" BackgroundColor="{StaticResource DarkGrayColor}" />
+                                    </Grid>
+                                </StackLayout>
                             </StackLayout>
-                            <StackLayout x:Name="Scores" Grid.Row="1" Spacing="0" Orientation="Vertical"
-                                         VerticalOptions="StartAndExpand" Padding="5,5,5,0">
-                                <Label FontSize="14" Text="{helpers:Translate ProfileView_Overview_Score}" Margin="3,5,3,0"
-                                       HorizontalTextAlignment="Center" Style="{DynamicResource Ssp-Regular}"
-                                       TextColor="Black"
-                                       BackgroundColor="{StaticResource MediumGrayColor}" />
-                                <Label FontSize="25" Text="{Binding Score}" Margin="3,0" HorizontalTextAlignment="Center"
-                                       TextColor="{StaticResource PrimaryDarkColor}"
-                                       BackgroundColor="{StaticResource LightGrayColor}" Style="{DynamicResource Ssp-Regular}" />
-                                <Label FontSize="14" Text="{helpers:Translate ProfileView_Overview_Achievements}"
-                                       Margin="3,5,3,0" HorizontalTextAlignment="Center"
-                                       TextColor="Black"
+                            <ScrollView>
+                                <StackLayout HorizontalOptions="Fill" VerticalOptions="StartAndExpand" Spacing="0" Padding="3">
+                                    <!-- This could also be changed to use DataTemplates -->
+                                    <Label  FontSize="20" Text="Statistik 1" HorizontalTextAlignment="Start"
                                        BackgroundColor="{StaticResource MediumGrayColor}" Style="{DynamicResource Ssp-Regular}"/>
-                                <Label FontSize="25" Text="{Binding AchievementCount}" Margin="3,0"
-                                       HorizontalTextAlignment="Center"
-                                       TextColor="{StaticResource PrimaryDarkColor}"
+                                    <Label FontSize="20" Text="Statistik 2" HorizontalTextAlignment="Start"
                                        BackgroundColor="{StaticResource LightGrayColor}" Style="{DynamicResource Ssp-Regular}"/>
-                                <Label FontSize="14" Text="{helpers:Translate ProfileView_Overview_Progress}" Margin="3,5,3,0"
-                                       HorizontalTextAlignment="Center"
-                                       TextColor="Black"
+                                    <Label FontSize="20" Text="Statistik 3" HorizontalTextAlignment="Start"
                                        BackgroundColor="{StaticResource MediumGrayColor}" Style="{DynamicResource Ssp-Regular}"/>
-                                <Label FontSize="25" Text="{Binding Completeness}" Margin="3,0"
-                                       HorizontalTextAlignment="Center"
-                                       TextColor="{StaticResource PrimaryDarkColor}"
+                                    <Label FontSize="20" Text="Statistik 4" HorizontalTextAlignment="Start"
                                        BackgroundColor="{StaticResource LightGrayColor}" Style="{DynamicResource Ssp-Regular}"/>
-                            </StackLayout>
-                            <StackLayout x:Name="Logout" Grid.Row="2" HorizontalOptions="Center" VerticalOptions="End"
-                                         Padding="3">
-                                <Button WidthRequest="200" HeightRequest="40"
-                                        Command="{Binding ChangeAppModeCommand}" IsVisible="{Binding AppModeVisible}"
-                                        Text="{helpers:Translate ProfileView_Button_Change_App_Mode}"
-                                        TextColor="Black" />
-                                <Button WidthRequest="200" HeightRequest="40"
-                                        Command="{Binding Logout}" Text="{helpers:Translate Logout}"
-                                        TextColor="Black" />
-                            </StackLayout>
-                        </Grid>
-
-                        <ScrollView>
-                            <StackLayout HorizontalOptions="Fill" VerticalOptions="StartAndExpand" Spacing="0" Padding="3">
-                                <!-- This could also be changed to use DataTemplates -->
-                                <Label  FontSize="20" Text="Statistik 1" HorizontalTextAlignment="Start"
+                                    <Label FontSize="20" Text="Statistik 5" HorizontalTextAlignment="Start"
                                        BackgroundColor="{StaticResource MediumGrayColor}" Style="{DynamicResource Ssp-Regular}"/>
-                                <Label FontSize="20" Text="Statistik 2" HorizontalTextAlignment="Start"
+                                    <Label FontSize="20" Text="Statistik 6" HorizontalTextAlignment="Start"
                                        BackgroundColor="{StaticResource LightGrayColor}" Style="{DynamicResource Ssp-Regular}"/>
-                                <Label FontSize="20" Text="Statistik 3" HorizontalTextAlignment="Start"
+                                    <Label FontSize="20" Text="Statistik 7" HorizontalTextAlignment="Start"
                                        BackgroundColor="{StaticResource MediumGrayColor}" Style="{DynamicResource Ssp-Regular}"/>
-                                <Label FontSize="20" Text="Statistik 4" HorizontalTextAlignment="Start"
+                                    <Label FontSize="20" Text="Statistik 8" HorizontalTextAlignment="Start"
                                        BackgroundColor="{StaticResource LightGrayColor}" Style="{DynamicResource Ssp-Regular}"/>
-                                <Label FontSize="20" Text="Statistik 5" HorizontalTextAlignment="Start"
+                                    <Label FontSize="20" Text="Statistik 9" HorizontalTextAlignment="Start"
                                        BackgroundColor="{StaticResource MediumGrayColor}" Style="{DynamicResource Ssp-Regular}"/>
-                                <Label FontSize="20" Text="Statistik 6" HorizontalTextAlignment="Start"
+                                    <Label FontSize="20" Text="Statistik 10" HorizontalTextAlignment="Start"
                                        BackgroundColor="{StaticResource LightGrayColor}" Style="{DynamicResource Ssp-Regular}"/>
-                                <Label FontSize="20" Text="Statistik 7" HorizontalTextAlignment="Start"
+                                    <Label FontSize="20" Text="Statistik 11" HorizontalTextAlignment="Start"
                                        BackgroundColor="{StaticResource MediumGrayColor}" Style="{DynamicResource Ssp-Regular}"/>
-                                <Label FontSize="20" Text="Statistik 8" HorizontalTextAlignment="Start"
+                                    <Label FontSize="20" Text="Statistik 12" HorizontalTextAlignment="Start"
                                        BackgroundColor="{StaticResource LightGrayColor}" Style="{DynamicResource Ssp-Regular}"/>
-                                <Label FontSize="20" Text="Statistik 9" HorizontalTextAlignment="Start"
+                                    <Label FontSize="20" Text="Statistik 13" HorizontalTextAlignment="Start"
                                        BackgroundColor="{StaticResource MediumGrayColor}" Style="{DynamicResource Ssp-Regular}"/>
-                                <Label FontSize="20" Text="Statistik 10" HorizontalTextAlignment="Start"
+                                    <Label FontSize="20" Text="Statistik 14" HorizontalTextAlignment="Start"
                                        BackgroundColor="{StaticResource LightGrayColor}" Style="{DynamicResource Ssp-Regular}"/>
-                                <Label FontSize="20" Text="Statistik 11" HorizontalTextAlignment="Start"
+                                    <Label FontSize="20" Text="Statistik 15" HorizontalTextAlignment="Start"
                                        BackgroundColor="{StaticResource MediumGrayColor}" Style="{DynamicResource Ssp-Regular}"/>
-                                <Label FontSize="20" Text="Statistik 12" HorizontalTextAlignment="Start"
+                                    <Label FontSize="20" Text="Statistik 16" HorizontalTextAlignment="Start"
                                        BackgroundColor="{StaticResource LightGrayColor}" Style="{DynamicResource Ssp-Regular}"/>
-                                <Label FontSize="20" Text="Statistik 13" HorizontalTextAlignment="Start"
+                                    <Label FontSize="20" Text="Statistik 17" HorizontalTextAlignment="Start"
                                        BackgroundColor="{StaticResource MediumGrayColor}" Style="{DynamicResource Ssp-Regular}"/>
-                                <Label FontSize="20" Text="Statistik 14" HorizontalTextAlignment="Start"
+                                    <Label FontSize="20" Text="Statistik 18" HorizontalTextAlignment="Start"
                                        BackgroundColor="{StaticResource LightGrayColor}" Style="{DynamicResource Ssp-Regular}"/>
-                                <Label FontSize="20" Text="Statistik 15" HorizontalTextAlignment="Start"
+                                    <Label FontSize="20" Text="Statistik 19" HorizontalTextAlignment="Start"
                                        BackgroundColor="{StaticResource MediumGrayColor}" Style="{DynamicResource Ssp-Regular}"/>
-                                <Label FontSize="20" Text="Statistik 16" HorizontalTextAlignment="Start"
+                                    <Label FontSize="20" Text="Statistik 20" HorizontalTextAlignment="Start"
                                        BackgroundColor="{StaticResource LightGrayColor}" Style="{DynamicResource Ssp-Regular}"/>
-                                <Label FontSize="20" Text="Statistik 17" HorizontalTextAlignment="Start"
-                                       BackgroundColor="{StaticResource MediumGrayColor}" Style="{DynamicResource Ssp-Regular}"/>
-                                <Label FontSize="20" Text="Statistik 18" HorizontalTextAlignment="Start"
-                                       BackgroundColor="{StaticResource LightGrayColor}" Style="{DynamicResource Ssp-Regular}"/>
-                                <Label FontSize="20" Text="Statistik 19" HorizontalTextAlignment="Start"
-                                       BackgroundColor="{StaticResource MediumGrayColor}" Style="{DynamicResource Ssp-Regular}"/>
-                                <Label FontSize="20" Text="Statistik 20" HorizontalTextAlignment="Start"
-                                       BackgroundColor="{StaticResource LightGrayColor}" Style="{DynamicResource Ssp-Regular}"/>
-                            </StackLayout>
-                        </ScrollView>
-                    </container1:TabContainerView.TabViews>
-                </container1:TabContainerView>
+                                </StackLayout>
+                            </ScrollView>
+                        </container:TabContainerView.TabViews>
+                    </container:TabContainerView>
+                </Grid>
             </views:NotificationExtensionView.ContentTemplate>
         </views:NotificationExtensionView>
     </ContentView.Content>

@@ -24,6 +24,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
     public class ProfileScreenViewModel : NavigationViewModel
     {
         private readonly MainPageViewModel mainPageViewModel;
+        private GridLength completenessBar;
+        private ObservableCollection<string> tabs;
+
+        private int maxAchievementsCount;
+
+        private const string AdventurerImage = "ic_adventurer.png";
+        private const string ProfessorImage = "ic_professor.png";
 
         public ProfileScreenViewModel(MainPageViewModel mainPageVm)
         {
@@ -34,19 +41,19 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             AppModeVisible = !Settings.DisableAdventurerMode;
             ChangeAppModeCommand = new Command(OnChangeAppModeTapped);
             Logout = new Command(LogoutDummy);
+            GoToAchievementsCommand = new Command(GoToAchievements);
+            OnImageTappedCommand = new Command(OnImageTapped);
+
+            //Add maximum number of achievements here
+            maxAchievementsCount = 120;
+
+            SetCompletenessBarLength(Settings.Achievements);
         }
 
-        public ICommand Logout { get; }
-        public ICommand ChangeAppModeCommand { get; }
-
-        //public ImageSource Avatar => ImageSource.FromFile ("ic_account_circle.png");
-        public ImageSource Avatar => Settings.AdventurerMode ? ImageSource.FromFile("ic_adventurer.png") : ImageSource.FromFile("ic_professor.png");
-
-        public string Username => Settings.Username;
-        public string EMail => Settings.EMail;
-        public int Score => Settings.Score;
-        public string AchievementCount => Settings.Achievements + " / 30";
-        public string Completeness => Settings.Completeness + "%";
+        private void OnImageTapped()
+        {
+            //Add the selection for the different avatars here
+        }
 
         /// <summary>
         /// If the adventurer mode is disabled, hide the options for mode switching
@@ -66,6 +73,28 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             Navigation.StartNewLocalNavigationStack(new CharacterSelectionPageViewModel(this));
         }
 
+        private void SetCompletenessBarLength(int achievements)
+        {
+            if (achievements <= 0)
+            {
+                completenessBar = new GridLength(0, GridUnitType.Absolute);
+            }
+            else if (achievements >= maxAchievementsCount)
+            {
+                completenessBar = new GridLength(short.MaxValue, GridUnitType.Star);
+            }
+            else
+            {
+                var prop = (1 / (1 - (float)achievements / (float)maxAchievementsCount) - 1);
+                completenessBar = new GridLength(prop, GridUnitType.Star);
+            }
+        }
+
+        private void GoToAchievements()
+        {
+            mainPageViewModel.SwitchToAchievementsView();
+        }
+
         async void LogoutDummy()
         {
             var result = await Navigation.DisplayAlert(Strings.ProfileScreenViewModel_Dialog_Logout_Title
@@ -77,7 +106,24 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             mainPageViewModel.UpdateAccountViews();
         }
 
-        private ObservableCollection<string> tabs;
+        #region Properties
+        public ICommand Logout { get; }
+        public ICommand ChangeAppModeCommand { get; }
+        public ICommand GoToAchievementsCommand { get; }
+        public ICommand OnImageTappedCommand { get; }
+        public ImageSource Avatar => Settings.AdventurerMode ? ImageSource.FromFile(AdventurerImage) : ImageSource.FromFile(ProfessorImage);
+
+        public string Username => Settings.Username;
+        public string EMail => Settings.EMail;
+        public int Score => Settings.Score;
+        public string AchievementCount => Settings.Achievements + " / " + maxAchievementsCount;
+        public string Completeness => Settings.Completeness + "%";
+
+        public GridLength CompletenessBar
+        {
+            get { return completenessBar; }
+            set { SetProperty(ref completenessBar, value); }
+        }
 
         public ObservableCollection<string> Tabs
         {
@@ -89,5 +135,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         {
             get { return Settings.AdventurerMode ? Strings.ProfileView_Adventurer : Strings.ProfileView_Professor; }
         }
+        #endregion
     }
 }
