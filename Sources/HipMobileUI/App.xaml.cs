@@ -35,6 +35,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI
                 return;
 
             // Handle when your app starts
+            Settings.AdventurerMode = Settings.AdventurerMode && !Settings.DisableAdventurerMode;
 
             // set the first page that is shown
             var navigationService = IoCManager.Resolve<INavigationService>();

@@ -38,6 +38,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 
             Tabs = new ObservableCollection<string> { Strings.MainPageViewModel_OverviewPage, Strings.ProfileView_Statistic };
 
+            AppModeVisible = !Settings.DisableAdventurerMode;
             ChangeAppModeCommand = new Command(OnChangeAppModeTapped);
             Logout = new Command(LogoutDummy);
             GoToAchievementsCommand = new Command(GoToAchievements);
@@ -52,6 +53,19 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         private void OnImageTapped()
         {
             //Add the selection for the different avatars here
+        }
+
+        /// <summary>
+        /// If the adventurer mode is disabled, hide the options for mode switching
+        /// </summary>
+        private bool appModeVisible;
+        public bool AppModeVisible
+        {
+            get { return appModeVisible; }
+            set
+            {
+                SetProperty(ref appModeVisible, value);
+            }
         }
 
         private void OnChangeAppModeTapped()

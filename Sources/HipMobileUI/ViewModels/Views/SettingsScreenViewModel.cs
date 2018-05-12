@@ -36,6 +36,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             RemoveAllDownloads = new Command(RemoveAllDownloadsClicked);
             SelectCharacterCommand = new Command(OnSelectCharacterTapped);
             Size = BuildSizeDescription();
+            AppModeVisible = !Settings.DisableAdventurerMode;
         }
 
         public ICommand RemoveAllDownloads { get; }
@@ -65,6 +66,19 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             var dbSizeMb = IoCManager.Resolve<IStorageSizeProvider>().GetDatabaseSizeMb();
             var mediaSizeMb = IoCManager.Resolve<IMediaFileManager>().TotalSizeBytes / (1024 * 1024);
             return $"{dbSizeMb + mediaSizeMb} MB";
+        }
+
+        /// <summary>
+        /// If the adventurer mode is disabled, hide the options for mode switching
+        /// </summary>
+        private bool appModeVisible;
+        public bool AppModeVisible
+        {
+            get { return appModeVisible; }
+            set
+            {
+                SetProperty(ref appModeVisible, value);
+            }
         }
 
         /// <summary>
