@@ -74,7 +74,7 @@
                                     <Label FontSize="23" Text="{Binding AchievementCount}"
                                            TextColor="{StaticResource PrimaryDarkColor}" Style="{DynamicResource Ssp-Regular}"/>
                                     <controls:ZeroPaddingButton Margin="20,0,0,0" Text="{helpers:Translate ProfileView_GoTo}" TextColor="Black"  
-                                                                Command="{Binding GoToAchievementsCommand}" HeightRequest="25" WidthRequest="50"/>
+                                                                Command="{Binding GoToAchievementsCommand}" HeightRequest="25" WidthRequest="60"/>
                                 </StackLayout>
                                 <StackLayout Orientation="Horizontal" VerticalOptions="Fill">
                                     <Label FontSize="23" Text="{helpers:Translate ProfileView_Overview_Progress}"
