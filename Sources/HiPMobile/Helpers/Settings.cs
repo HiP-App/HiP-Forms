@@ -318,7 +318,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
         }
 
         /// <summary>
-        /// If set to true, the user cannot chose between the two modes.
+        /// If set to true, the user cannot choose between the two modes.
         /// </summary>
         public static bool DisableAdventurerMode = true;
     }
