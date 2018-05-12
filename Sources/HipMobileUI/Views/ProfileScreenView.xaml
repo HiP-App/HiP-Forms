@@ -43,7 +43,7 @@
                                 <Image WidthRequest="200" HeightRequest="50" Aspect="AspectFit" Source="{Binding Avatar}" />
                                 <Label Text="{Binding Username}" FontAttributes="Bold" FontSize="20"
                                        HorizontalTextAlignment="Center" TextColor="{StaticResource DarkGrayColor}" Style="{DynamicResource Ssp-Regular}"/>
-                                <Label Text="{Binding Character}" FontSize="15" HorizontalTextAlignment="Center"
+                                <Label Text="{Binding Character}" FontSize="15" HorizontalTextAlignment="Center" IsVisible="{Binding AppModeVisible}"
                                        TextColor="{StaticResource PrimaryDarkColor}" Style="{DynamicResource Ssp-SemiBold}"/>
                                 <Label Text="{Binding EMail}" FontSize="10" HorizontalTextAlignment="Center" Margin="0" Style="{DynamicResource Ssp-Regular}"/>
                             </StackLayout>
@@ -76,7 +76,7 @@
                             <StackLayout x:Name="Logout" Grid.Row="2" HorizontalOptions="Center" VerticalOptions="End"
                                          Padding="3">
                                 <Button WidthRequest="200" HeightRequest="40"
-                                        Command="{Binding ChangeAppModeCommand}"
+                                        Command="{Binding ChangeAppModeCommand}" IsVisible="{Binding AppModeVisible}"
                                         Text="{helpers:Translate ProfileView_Button_Change_App_Mode}"
                                         TextColor="Black" />
                                 <Button WidthRequest="200" HeightRequest="40"
