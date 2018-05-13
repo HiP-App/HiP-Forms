@@ -56,6 +56,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             Exhibit = exhibit;
             this.additionalInformation = additionalInformation;
             AdjustToolbarColor();
+            AudioPlayerOnAudioCompleted();
 
             // stop audio if necessary
             var player = IoCManager.Resolve<IAudioPlayer>();
@@ -65,9 +66,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             }
 
             // init the audio toolbar
-            AudioToolbar = new AudioToolbarViewModel(title);
+            AudioToolbar = new AudioToolbarViewModel(title);            
             AudioToolbar.AudioPlayer.AudioCompleted += AudioPlayerOnAudioCompleted;
-
+            //AudioPlayerOnAudioCompleted();
+            
             // init the current view
             currentViewIndex = 0;
             this.pages = pages.ToList();
@@ -79,7 +81,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             PreviousViewCommand = new Command(GotoPreviousView);
             ShowAudioToolbarCommand = new Command(SwitchAudioToolbarVisibleState);
             ShowAdditionalInformationCommand = new Command(ShowAdditionalInformation);
-
             var dbChangedHandler = IoCManager.Resolve<IDbChangedHandler>();
             dbChangedHandler.AddObserver(this);
         }
@@ -160,6 +161,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                                                            Strings.ExhibitDetailsPage_PageSwitch,
                                                            Strings.ExhibitDetailsPage_AgreeFeature, Strings.ExhibitDetailsPage_DisagreeFeature).ConfigureAwait(true);
                 Settings.AutoSwitchPage = result;
+ 
             }
 
             // aply automatic page switch if wanted and if the next page isn't the rating page
@@ -253,7 +255,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             OnPropertyChanged(nameof(PreviousViewAvailable));
             OnPropertyChanged(nameof(NextVisible));
             OnPropertyChanged(nameof(PreviousVisible));
-
+            
             // It's possible to get no audio data even if it should exist
             try
             {
