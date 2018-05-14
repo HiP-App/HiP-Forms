@@ -339,7 +339,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
             IoCManager.RegisterInstance(typeof(IUserManager), new UserManager());
             IoCManager.RegisterInstance(typeof(IUserRatingManager), new UserRatingManager());
-            IoCManager.RegisterInstance(typeof(IThemeManager), new ThemeManager());
             IoCManager.RegisterInstance(typeof(AchievementNotificationViewModel), new AchievementNotificationViewModel());
 
             var featureToggleRouter = await FeatureToggleRouter.CreateAsync();

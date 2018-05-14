@@ -13,6 +13,7 @@
 // limitations under the License.
 
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Appearance;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.DesignTime;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
@@ -39,6 +40,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI
 
             // setup content for being able to use consistent dynamic coloring
             IoCManager.RegisterInstance(typeof(ApplicationResourcesProvider), new ApplicationResourcesProvider(Application.Current.Resources.ToDictionary(x => x.Key, x => x.Value)));
+            IoCManager.RegisterInstance(typeof(IThemeManager), new ThemeManager());
 
             // set the first page that is shown
             var navigationService = IoCManager.Resolve<INavigationService>();
