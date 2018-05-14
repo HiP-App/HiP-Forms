@@ -20,9 +20,9 @@
                        FontSize="16"
                        HorizontalOptions="Center"/>
                     <Label Text="{Binding Score}" 
-                       FontSize="36"
+                       FontSize="50"
                        HorizontalOptions="CenterAndExpand" 
-                       VerticalOptions="FillAndExpand"/>
+                       VerticalOptions="CenterAndExpand"/>
                     <Label Text="Fragen richtig beantwortet" 
                        FontSize="16"
                        HorizontalOptions="Center"/>
