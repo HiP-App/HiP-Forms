@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelConverters;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
@@ -62,7 +63,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
 
             listener.SetMaxProgress(totalSteps);
 
-            await DbManager.InTransactionAsync(async transaction =>
+            // We need to attach all images since the quiz download may download existing images
+            var itemsToTrack = DbManager
+                               .DataAccess
+                               .GetItems<Image>()
+                               .Where(image => image.Id != BackupData.BackupImage.Id && image.Id != BackupData.BackupImageTag.Id);
+            await DbManager.InTransactionAsync(itemsToTrack, async transaction =>
             {
                 await ProcessPages(exhibitId, token, listener, transaction.DataAccess);
                 await DownloadQuizes(idForRestApi, token, transaction.DataAccess);

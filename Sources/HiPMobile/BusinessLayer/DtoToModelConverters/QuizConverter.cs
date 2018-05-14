@@ -18,7 +18,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelCo
             existingModelObject.Text = dto.Text;
             existingModelObject.Exhibit = dataAccess.Exhibits().GetExhibits().First(it => it.IdForRestApi == dto.ExhibitId);
             existingModelObject.Options = dto.Options;
-            existingModelObject.Image = dataAccess.GetItem<Image>(dto.Image.ToString());
+            existingModelObject.Image = dataAccess.GetItem<Image>(dto.Image?.ToString());
         }
     }
 }

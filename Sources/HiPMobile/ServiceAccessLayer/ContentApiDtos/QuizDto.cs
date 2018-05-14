@@ -24,7 +24,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
         public string[] Options { get; private set; }
 
         [JsonProperty("image")]
-        public int Image { get; private set; }
+        public int? Image { get; private set; }
 
     }
 }
