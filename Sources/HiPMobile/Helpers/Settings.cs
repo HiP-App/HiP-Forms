@@ -342,12 +342,17 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
         private static readonly string ShouldDeleteDbOnLaunchDefault = false.ToString();
 
         /// <summary>
-        /// Iff set to true, the IDataAccess database is deleted on next app launch.
+        /// If set to true, the IDataAccess database is deleted on next app launch.
         /// </summary>
         public static bool ShouldDeleteDbOnLaunch
         {
             get => bool.Parse(AppSettings.GetValueOrDefault(ShouldDeleteDbOnLaunchKey, ShouldDeleteDbOnLaunchDefault));
             set => AppSettings.AddOrUpdateValue(ShouldDeleteDbOnLaunchKey, value.ToString());
         }
+
+        /// <summary>
+        /// If set to true, the user cannot choose between the two modes.
+        /// </summary>
+        public static bool DisableAdventurerMode = true;
     }
 }

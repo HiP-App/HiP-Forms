@@ -52,6 +52,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Location
 
         public async void CheckNearRoute(IEnumerable<Route> routes, GeoLocation gpsLocation) // Optimize for later: just send non-visited routes
         {
+            //Do not show route previews in adventurer mode
+            if (Settings.AdventurerMode)
+                return;
+
             if (popupActive)
                 return;
 
