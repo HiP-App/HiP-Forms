@@ -48,7 +48,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         async void RegisterUser()
         {
             var user = new User(Email, password);
-            var userStatus = await IoCManager.Resolve<IUserManager>().Register(user);
+            var userStatus = await IoCManager.Resolve<IUserManager>().Register(user, FirstName, LastName);
             if (userStatus == UserStatus.Registered)
             {
                 mainPageViewModel.SwitchToLoginView();

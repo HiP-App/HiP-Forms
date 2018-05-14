@@ -50,13 +50,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Authent
             return token;
         }
 
-        public async Task<bool> Register(string username, string password)
+        public async Task<bool> Register(string username, string password, string firstname, string lastname)
         {
             var content = "{" +
                           "\"email\": \"" + username + "\", " +
                           "\"password\": \"" + password + "\"," +
-                          "\"firstName\": \"first" + "" + "\"," +
-                          "\"lastName\": \"last" + "" + "\"" +
+                          "\"firstName\": \"" + firstname + "\"," +
+                          "\"lastName\": \"" + lastname +  "\"" +
                           "}";
 
             var result = await clientApiClient.PostRequestBody(ServerEndpoints.RegisterUrl, content, false);
