@@ -18,6 +18,7 @@ using PaderbornUniversity.SILab.Hip.Mobile.UI.Appearance;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
@@ -25,14 +26,16 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
     public partial class ExhibitsOverviewView : IViewFor<ExhibitsOverviewViewModel>
     {
         private DeviceOrientation deviceOrientation;
-
+        
         public ExhibitsOverviewView()
         {
             InitializeComponent();
             deviceOrientation = DeviceOrientation.Undefined;
             IoCManager.Resolve<IThemeManager>().AdjustTopBarTheme();
+         
         }
 
+        public ICommand FocusGps { get; }
         protected override void OnSizeAllocated(double width, double height)
         {
             base.OnSizeAllocated(width, height);
