@@ -1,5 +1,4 @@
 ﻿using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
-using PaderbornUniversity.SILab.Hip.Mobile.UI.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.DesignTime;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
@@ -9,6 +8,7 @@ using SkiaSharp.Views.Forms;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Settings = PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers.Settings;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
 {
@@ -55,12 +55,17 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
 
             using (var paint = new SKPaint())
             {
-                canvas.Clear(new SKColor(1,73,209)); //paint it dark blue #0149D1
+                ApplicationResourcesProvider resources = IoCManager.Resolve<ApplicationResourcesProvider>();
+                //(Color darkColor = Settings.AdventurerMode ? (Color)resources.GetResourceValue("SecondaryDarkColor") : (Color)resources.GetResourceValue("PrimaryDarkColor"); //for painting it dark yellow or dark blue
+                //uint darkColor = Convert.ToUInt32(darkColorString.Substring(1), 16); //leaving out first char '#'
+                //Color darkColor = resources.GetResourceColorvalue("PrimaryDarkColor");
+
+                canvas.Clear(resources.TryGetResourceColorvalue("PrimaryDarkColor").ToSKColor());
                 using (var pathStroke = new SKPaint
                 {
                     IsAntialias = true,
                     Style = SKPaintStyle.StrokeAndFill,
-                    Color = new SKColor(255, 204, 0), //paint it dark yellow #FFCC00
+                    Color = resources.TryGetResourceColorvalue("SecondaryDarkColor").ToSKColor(),
                     StrokeWidth = 5
                 })
                 {

@@ -282,8 +282,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         private async Task InitIoCContainerAsync()
         {
             IoCManager.RegisterType<IDataLoader, EmbeddedResourceDataLoader>();
-            IoCManager.RegisterInstance(typeof(ApplicationResourcesProvider), new ApplicationResourcesProvider(Application.Current.Resources));
-
+            
             //init serviceaccesslayer
             IoCManager.RegisterInstance(typeof(IContentApiClient), new ContentApiClient());
             if (Constants.UseMockData)

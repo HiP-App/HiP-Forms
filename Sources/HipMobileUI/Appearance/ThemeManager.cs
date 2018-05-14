@@ -14,22 +14,23 @@
 
 using System.Collections.Generic;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 using Xamarin.Forms;
+using Settings = PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers.Settings;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Appearance
 {
     public interface IThemeManager
     {
         void UpdateViewStyle(ResourceDictionary resourceDictionary, IEnumerable<string> styleProperties);
-        void AdjustTopBarTheme();
+        void AdjustTheme();
+        void AdjustTheme(bool adventurererMode);
     }
 
     public class ThemeManager : IThemeManager
     {
-        private readonly ApplicationResourcesProvider resourceProvider = IoCManager.Resolve<ApplicationResourcesProvider>();
+        private ApplicationResourcesProvider resourceProvider = IoCManager.Resolve<ApplicationResourcesProvider>();
         private readonly IBarsColorsChanger barsColorsChanger = IoCManager.Resolve<IBarsColorsChanger>();
         private string modeSuffix;
 
@@ -55,7 +56,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Appearance
             return resourceProvider.GetResourceValue(propertyName + modeSuffix);
         }
 
-        public void AdjustTopBarTheme()
+        /// <summary>
+        /// Adjust Theme according to current value of PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers.Settings.
+        /// </summary>
+        public void AdjustTheme()
         {
             if (Settings.AdventurerMode)
                 ChangeToAdventurerTheme();
@@ -63,14 +67,33 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Appearance
                 ChangeToProfessorTheme();
         }
 
+        /// <summary>
+        /// Adjust Theme according to given value in <paramref name="adventurererMode"/>.
+        /// </summary>
+        /// <param name="adventurererMode">True if AdventurererMode theme should be enabled. False if ProfessorMode theme should be enabled.</param>
+        public void AdjustTheme(bool adventurererMode)
+        {
+            if (adventurererMode)
+                ChangeToAdventurerTheme();
+            else
+                ChangeToProfessorTheme();
+        }
+
         private void ChangeToAdventurerTheme()
         {
-            barsColorsChanger.ChangeToolbarColor(GetResourceColor("SecondaryDarkColor"), GetResourceColor("SecondaryDarkColor"));
+            //switching colors, so we can later still use the other colors (i.e. on switching the Mode)
+            resourceProvider.ChangeResourceValue("PrimaryColor", Color.FromHex("FFE57F")); //light yellow #FFE57F
+            resourceProvider.ChangeResourceValue("PrimaryDarkColor", Color.FromRgb(255, 204, 0)); //dark yellow; "#FFCC00"
+
+            barsColorsChanger.ChangeToolbarColor(GetResourceColor("PrimaryDarkColor"), GetResourceColor("PrimaryDarkColor"));   //repaint toolbar
         }
 
         private void ChangeToProfessorTheme()
         {
-            barsColorsChanger.ChangeToolbarColor(GetResourceColor("PrimaryDarkColor"), GetResourceColor("PrimaryDarkColor"));
+            resourceProvider.ChangeResourceValue("PrimaryColor", Color.FromRgb(127, 172, 255)); //default light blue; "#7facff"
+            resourceProvider.ChangeResourceValue("PrimaryDarkColor", Color.FromRgb(1, 73, 209)); //default dark blue; "#0149D1"
+
+            barsColorsChanger.ChangeToolbarColor(GetResourceColor("PrimaryDarkColor"), GetResourceColor("PrimaryDarkColor"));  //repaint toolbar
         }
 
         private Color GetResourceColor(string color)

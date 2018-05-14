@@ -15,10 +15,12 @@
 using System.Windows.Input;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using Xamarin.Forms;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Appearance;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
+using Settings = PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers.Settings;
+using System;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 {
@@ -62,13 +64,24 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
         private void UpdateView()
         {
+            //Settings.AdventurerMode = AdventurerModeSelected;
+            IoCManager.Resolve<IThemeManager>().AdjustTheme(AdventurerModeSelected);
+
+            Helpers.ApplicationResourcesProvider resources = IoCManager.Resolve<ApplicationResourcesProvider>();
+            //string color = AdventurerModeSelected ? (string)resources.GetResourceValue("SecondaryDarkColor") : (string)resources.GetResourceValue("PrimaryDarkColor"); //for painting it dark yellow or dark blue
+            //var color = AdventurerModeSelected ? resources.TryGetResourceColorvalue("PrimaryDarkColor") : resources.TryGetResourceColorvalue("SecondaryDarkColor"); //Settings.AdventurerMode not up to date if ChangeModeTapped and not yet selected
+            var color = resources.TryGetResourceColorvalue("PrimaryDarkColor");
+            int colorRed = (int)(color.R * 255);
+            int colorGreen = (int)(color.G * 255);
+            int colorBlue = (int)(color.B * 255);
+            string colorHex = String.Format("#{0:X2}{1:X2}{2:X2}", colorRed, colorGreen, colorBlue);
+
             PageTitle = AdventurerModeSelected ? "Adventurer" : "Professor";
             Image = AdventurerModeSelected ? ImageSource.FromFile("ic_adventurer.png") : ImageSource.FromFile("ic_professor.png");
-            MainScreenColor = AdventurerModeSelected ? "#FFCC00" : "#0149D1"; //paint it dark yellow or dark blue
-            SelectModeButton = AdventurerModeSelected ? "#FFCC00" : "#0149D1"; //paint it dark yellow or dark blue
-            ChangeModeButton = AdventurerModeSelected ? "#0149D1" : "#FFCC00";  //paint it dark blue or dark yellow
+            MainScreenColor = colorHex;
+            SelectModeButton = colorHex;
+            ChangeModeButton = colorHex;
             PageDetails = AdventurerModeSelected ? Strings.CharacterDetailsPage_Adventurer_Text : Strings.CharacterDetailsPage_Professor_Text;
-
         }
 
         private void AdjustThemeAndContinue()
@@ -77,7 +90,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
             // Make sure all related components are already initialized before adjusting theme
             if (Settings.InitialThemeSelected)
-                IoCManager.Resolve<IThemeManager>().AdjustTopBarTheme();
+                IoCManager.Resolve<IThemeManager>().AdjustTheme();
         }
 
         /// <summary>

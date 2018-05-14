@@ -14,9 +14,11 @@
 
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using Xamarin.Forms;
+using Settings = PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers.Settings;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 {
@@ -24,7 +26,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
     {
         public UserOnboardingPageViewModel()
         {
-            Color PrimaryDarkColor = Color.FromRgb(1, 73, 209); //paint it dark blue #0149D1
+            ApplicationResourcesProvider resourceProvider = IoCManager.Resolve<ApplicationResourcesProvider>();
+            Color PrimaryDarkColor = resourceProvider.TryGetResourceColorvalue("PrimaryColor"); //paint it light blue
             Pages = new ObservableCollection<UserOnboardingItemViewModel>
             {
                 new UserOnboardingItemViewModel(Strings.UserOnboarding_Explore_Title, Strings.UserOnboarding_Explore_Text, "ac_erkunden.jpg", PrimaryDarkColor),

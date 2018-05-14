@@ -282,7 +282,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         {
             SelectedViewModel = MainScreenViewModels.OfType<SettingsScreenViewModel>().SingleOrDefault();
 
-            IoCManager.Resolve<IThemeManager>().AdjustTopBarTheme();
+            IoCManager.Resolve<IThemeManager>().AdjustTheme();
         }
 
         private ObservableCollection<NavigationViewModel> mainScreenViewModels;
