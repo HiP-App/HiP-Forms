@@ -21,7 +21,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.DesignTime.Services
     public class DesignModeThemeManager : IThemeManager
     {
         public void AdjustTheme() { }
-        public void AdjustTheme(bool adventurerMode) { }
         public void UpdateViewStyle(ResourceDictionary resourceDictionary, IEnumerable<string> styleProperties) { }
     }
 }

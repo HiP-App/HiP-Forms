@@ -164,7 +164,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
 
 
         private const string AdventurerModeKey = "adventurer_mode_key";
-        private static readonly bool AdventurerModeDefault = true;
+        private static readonly bool AdventurerModeDefault = false; //need to be false, because initially loaded static PrimaryColors from Xamarin.Forms do match colors for ProfessorMode
 
         /// <summary>
         /// Indicates wether the app is in adventurer or professor mode.
@@ -173,7 +173,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
         /// </summary>
         public static bool AdventurerMode
         {
-            get => AppSettings.GetValueOrDefault(AdventurerModeKey, AdventurerModeDefault);
+            get => AppSettings.GetValueOrDefault(AdventurerModeKey, AdventurerModeDefault); //TODO all references (i.e. ThemeManager) should listen and react on Events.NotifyPropertyChanged instead of directly acessing Settings.AdventurerMode.
             set => AppSettings.AddOrUpdateValue(AdventurerModeKey, value);
         }
 

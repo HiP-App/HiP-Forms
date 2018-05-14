@@ -5,8 +5,6 @@ using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
 using SkiaSharp;
 using SkiaSharp.Views.Forms;
-using System;
-using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Settings = PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers.Settings;
 
@@ -56,16 +54,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
             using (var paint = new SKPaint())
             {
                 ApplicationResourcesProvider resources = IoCManager.Resolve<ApplicationResourcesProvider>();
-                //(Color darkColor = Settings.AdventurerMode ? (Color)resources.GetResourceValue("SecondaryDarkColor") : (Color)resources.GetResourceValue("PrimaryDarkColor"); //for painting it dark yellow or dark blue
-                //uint darkColor = Convert.ToUInt32(darkColorString.Substring(1), 16); //leaving out first char '#'
-                //Color darkColor = resources.GetResourceColorvalue("PrimaryDarkColor");
-
-                canvas.Clear(resources.TryGetResourceColorvalue("PrimaryDarkColor").ToSKColor());
+                canvas.Clear(resources.TryGetResourceColorvalue(Settings.AdventurerMode ? "SecondaryDarkColor" : "PrimaryDarkColor").ToSKColor()); //for painting it dark yellow or dark blue
                 using (var pathStroke = new SKPaint
                 {
                     IsAntialias = true,
                     Style = SKPaintStyle.StrokeAndFill,
-                    Color = resources.TryGetResourceColorvalue("SecondaryDarkColor").ToSKColor(),
+                    Color = resources.TryGetResourceColorvalue(Settings.AdventurerMode ? "PrimaryDarkColor" : "SecondaryDarkColor").ToSKColor(), //for painting it dark blue or dark yellow
                     StrokeWidth = 5
                 })
                 {

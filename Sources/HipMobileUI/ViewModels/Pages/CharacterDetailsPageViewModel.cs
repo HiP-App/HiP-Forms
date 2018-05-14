@@ -64,13 +64,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
         private void UpdateView()
         {
-            //Settings.AdventurerMode = AdventurerModeSelected;
-            IoCManager.Resolve<IThemeManager>().AdjustTheme(AdventurerModeSelected);
-
             Helpers.ApplicationResourcesProvider resources = IoCManager.Resolve<ApplicationResourcesProvider>();
-            //string color = AdventurerModeSelected ? (string)resources.GetResourceValue("SecondaryDarkColor") : (string)resources.GetResourceValue("PrimaryDarkColor"); //for painting it dark yellow or dark blue
-            //var color = AdventurerModeSelected ? resources.TryGetResourceColorvalue("PrimaryDarkColor") : resources.TryGetResourceColorvalue("SecondaryDarkColor"); //Settings.AdventurerMode not up to date if ChangeModeTapped and not yet selected
-            var color = resources.TryGetResourceColorvalue("PrimaryDarkColor");
+            Color color = resources.TryGetResourceColorvalue(((AdventurerModeSelected && Settings.AdventurerMode) | (!AdventurerModeSelected && !Settings.AdventurerMode)) ? "PrimaryDarkColor" : "SecondaryDarkColor"); //Settings.AdventurerMode not up to date if ChangeModeTapped and not yet selected
             int colorRed = (int)(color.R * 255);
             int colorGreen = (int)(color.G * 255);
             int colorBlue = (int)(color.B * 255);
