@@ -13,6 +13,8 @@
 // limitations under the License.
 
 using System;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -42,7 +44,25 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         private Color answerCBackgroundColor = DefaultAnswerBackgroundColor;
         private Color answerDBackgroundColor = DefaultAnswerBackgroundColor;
         private string question;
-        private string[] answers;
+
+        private string answer1;
+        private string answer2;
+        private string answer3;
+        private string answer4;
+
+        private string[] Answers
+        {
+            get => new[] { Answer1, Answer2, Answer3, Answer4 };
+            set
+            {
+                Debug.Assert(value.Length == 4, "A quiz must have exactly 4 options.");
+                Answer1 = value[0];
+                Answer2 = value[1];
+                Answer3 = value[2];
+                Answer4 = value[3];
+            }
+        }
+
         private ImageSource quizImage;
         private static readonly Color DefaultAnswerBackgroundColor = Color.LightGray;
 
@@ -60,24 +80,25 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             AnswerDCommand = new Command(async origin => await GotoNextView(3, bgColor => AnswerDBackgroundColor = bgColor));
         }
 
-        private void LoadNextQuiz()
+        private async void LoadNextQuiz()
         {
             currentQuiz++;
             var quiz = quizzes[currentQuiz];
 
-            answers = quiz.ShuffledOptions();
+            Answers = quiz.ShuffledOptions();
             Question = quiz.Text;
             AnswerABackgroundColor = DefaultAnswerBackgroundColor;
             AnswerBBackgroundColor = DefaultAnswerBackgroundColor;
             AnswerCBackgroundColor = DefaultAnswerBackgroundColor;
             AnswerDBackgroundColor = DefaultAnswerBackgroundColor;
-            // TODO use actual image
-            QuizImage = ImageSource.FromFile("quiz_default_picture.png");
+            var imageDataTask = quiz.Image?.GetDataAsync();
+            var imageData = imageDataTask != null ? await imageDataTask : null;
+            QuizImage = imageData != null ? ImageSource.FromStream(() => new MemoryStream(imageData)) : ImageSource.FromFile("quiz_default_picture.png");
         }
 
         private async Task GotoNextView(int selectedAnswerIdx, Action<Color> backgroundColorSetter)
         {
-            var selectedAnswer = answers[selectedAnswerIdx];
+            var selectedAnswer = Answers[selectedAnswerIdx];
             var isAnswerCorrect = selectedAnswer == quizzes[currentQuiz].CorrectOption();
             backgroundColorSetter(isAnswerCorrect ? Color.Green : Color.DarkRed);
             if (isAnswerCorrect) score++;
@@ -101,8 +122,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
         public Exhibit Exhibit
         {
-            get { return exhibit; }
-            set { SetProperty(ref exhibit, value); }
+            get => exhibit;
+            set => SetProperty(ref exhibit, value);
         }
 
         /// <summary>
@@ -110,68 +131,68 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         /// </summary>
         public string Headline
         {
-            get { return question; }
-            set { SetProperty(ref question, value); }
+            get => question;
+            set => SetProperty(ref question, value);
         }
 
         public ImageSource QuizImage
         {
-            get { return quizImage; }
-            set { SetProperty(ref quizImage, value); }
+            get => quizImage;
+            set => SetProperty(ref quizImage, value);
         }
 
         public string Question
         {
-            get { return headline; }
-            set { SetProperty(ref headline, value); }
+            get => headline;
+            set => SetProperty(ref headline, value);
         }
 
         public string Answer1
         {
-            get { return answers[0]; }
-            set { SetProperty(ref answers[0], value); }
+            get => answer1;
+            set => SetProperty(ref answer1, value);
         }
 
         public string Answer2
         {
-            get { return answers[1]; }
-            set { SetProperty(ref answers[1], value); }
+            get => answer2;
+            set => SetProperty(ref answer2, value);
         }
 
         public string Answer3
         {
-            get { return answers[2]; }
-            set { SetProperty(ref answers[2], value); }
+            get => answer3;
+            set => SetProperty(ref answer3, value);
         }
 
         public string Answer4
         {
-            get { return answers[3]; }
-            set { SetProperty(ref answers[3], value); }
+            get => answer4;
+            set => SetProperty(ref answer4, value);
         }
 
         public ICommand AnswerACommand
         {
-            get { return answerACommand; }
-            set { SetProperty(ref answerACommand, value); }
+            get => answerACommand;
+            set => SetProperty(ref answerACommand, value);
         }
 
         public ICommand AnswerBCommand
         {
-            get { return answerBCommand; }
-            set { SetProperty(ref answerBCommand, value); }
+            get => answerBCommand;
+            set => SetProperty(ref answerBCommand, value);
         }
 
         public ICommand AnswerCCommand
         {
-            get { return answerCCommand; }
-            set { SetProperty(ref answerCCommand, value); }
+            get => answerCCommand;
+            set => SetProperty(ref answerCCommand, value);
         }
 
         public ICommand AnswerDCommand
         {
-            get { return answerDCommand; }
-            set { SetProperty(ref answerDCommand, value); }
+            get => answerDCommand;
+            set => SetProperty(ref answerDCommand, value);
         }
 
         public Color AnswerABackgroundColor

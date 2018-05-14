@@ -6,8 +6,8 @@
              Title="{Binding Headline}">
     <ContentPage.Content>
         <StackLayout>
-            <Image Source="{Binding QuizImage}"
-                   Margin="10" />
+            <Image HorizontalOptions="FillAndExpand" Aspect="AspectFit"
+                   Source="{Binding QuizImage}" Margin="10" VerticalOptions="FillAndExpand" />
             <Label Text="{Binding Question}" HorizontalOptions="Center" FontSize="16" Margin="10" />
 
             <Grid Margin="10">

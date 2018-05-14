@@ -616,5 +616,8 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\info_bubble.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\quiz_default_picture.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>
