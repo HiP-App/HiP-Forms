@@ -63,8 +63,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             // update the settings to not show this page next time
             Settings.RepeatIntro = false;
 
-            // open the character selection page
-            Navigation.StartNewLocalNavigationStack(new CharacterSelectionPageViewModel(this));
+            if (Settings.DisableAdventurerMode)
+            {
+                Navigation.StartNewNavigationStack(new LoadingPageViewModel());
+            }
+            else
+            {
+                // open the character selection page
+                Navigation.StartNewLocalNavigationStack(new CharacterSelectionPageViewModel(this));
+            }
         }
 
         /// <summary>

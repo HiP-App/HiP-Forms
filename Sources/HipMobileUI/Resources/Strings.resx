@@ -472,9 +472,6 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   <data name="ExhibitNearby_ExhibitNearby" xml:space="preserve">
     <value>Sight nearby</value>
   </data>
-  <data name="RouteNearby" xml:space="preserve">
-    <value>Nearby route</value>
-  </data>
   <data name="ExhibitOrRouteNearby_Question_Part1" xml:space="preserve">
     <value>Would you like to have a closer look at</value>
   </data>
@@ -879,5 +876,8 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   </data>
   <data name="ExhibitRoutePreviewPage_Route_Nearby_Title" xml:space="preserve">
     <value>Route nearby:</value>
+  </data>
+  <data name="ProfileView_GoTo" xml:space="preserve">
+    <value>GO TO</value>
   </data>
 </root>

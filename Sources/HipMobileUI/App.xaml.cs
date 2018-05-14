@@ -37,6 +37,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI
                 return;
 
             // Handle when your app starts
+            Settings.AdventurerMode = Settings.AdventurerMode && !Settings.DisableAdventurerMode;
 
             // setup content for being able to use consistent dynamic coloring
             IoCManager.RegisterInstance(typeof(ApplicationResourcesProvider), new ApplicationResourcesProvider(Application.Current.Resources.ToDictionary(x => x.Key, x => x.Value)));
