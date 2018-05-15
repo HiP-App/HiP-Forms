@@ -34,7 +34,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Container
             var layout = new StackLayout() { Orientation = StackOrientation.Vertical, Padding = new Thickness(0, 0) };
 
             header = new Grid();
-            header.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+            header.RowSpacing = 0;
+            header.ColumnSpacing = 0;
+            header.RowDefinitions.Add(new RowDefinition { Height = new GridLength(45, GridUnitType.Absolute) });
 
             contentContainer = new ContentView() { HorizontalOptions = LayoutOptions.FillAndExpand, VerticalOptions = LayoutOptions.FillAndExpand };
 
@@ -58,7 +60,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Container
         /// </summary>
         public ObservableCollection<string> Tabs
         {
-            get { return (ObservableCollection<string>) GetValue(TabsProperty); }
+            get { return (ObservableCollection<string>)GetValue(TabsProperty); }
             set { SetValue(TabsProperty, value); }
         }
 
@@ -80,6 +82,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Container
 
             // replace current tabs with new ones
             tabBar.Children.Clear();
+            tabBar.ColumnDefinitions.Clear();
 
             for (int i = 0; i < newTabs.Count; i++)
             {
@@ -108,7 +111,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Container
         /// </summary>
         public string CurrentTab
         {
-            get { return (string) GetValue(CurrentTabProperty); }
+            get { return (string)GetValue(CurrentTabProperty); }
             set { SetValue(CurrentTabProperty, value); }
         }
 
@@ -128,7 +131,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Container
             // reset previous index
             if (oldvalue != null)
             {
-                var previousTabIndex = int.Parse((string) oldvalue);
+                var previousTabIndex = int.Parse((string)oldvalue);
                 var tab = tabBar.Children.ElementAt(TranslateTabIndexToLabelIndex(previousTabIndex));
                 UnhighlightTabLabel(tab as Label);
             }
@@ -136,7 +139,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Container
             // set new index
             if (newvalue != null)
             {
-                var currentTabIndex = int.Parse((string) newvalue);
+                var currentTabIndex = int.Parse((string)newvalue);
                 HighlightTabLabel(tabBar.Children.ElementAt(TranslateTabIndexToLabelIndex(currentTabIndex)) as Label);
 
                 SetDisplayedView(tabView, TranslateTabIndexToChildIndex(currentTabIndex));
@@ -155,7 +158,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Container
         /// </summary>
         public ObservableCollection<View> TabViews
         {
-            get { return (ObservableCollection<View>) GetValue(TabViewsProperty); }
+            get { return (ObservableCollection<View>)GetValue(TabViewsProperty); }
             set { SetValue(TabViewsProperty, value); }
         }
 
@@ -172,6 +175,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Container
             var lbl = new Label
             {
                 Text = title,
+                FontSize = 20,
                 VerticalOptions = LayoutOptions.FillAndExpand,
                 VerticalTextAlignment = TextAlignment.Center,
                 HorizontalOptions = LayoutOptions.FillAndExpand,
@@ -195,7 +199,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Container
         private static void HighlightTabLabel(Label tab)
         {
             var resources = IoCManager.Resolve<ApplicationResourcesProvider>();
-            tab.TextColor = (Color) resources.GetResourceValue("PrimaryColor");
+            tab.TextColor = (Color)resources.GetResourceValue("PrimaryColor");
         }
 
         /// <summary>
