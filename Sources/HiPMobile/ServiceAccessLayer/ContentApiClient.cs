@@ -56,7 +56,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer
             }
             catch (NetworkAccessFailedException e)
             {
-                if ((((WebException) e.InnerException).Response as HttpWebResponse)?.StatusCode == HttpStatusCode.Unauthorized)
+                if ((((WebException)e.InnerException).Response as HttpWebResponse)?.StatusCode == HttpStatusCode.Unauthorized)
                 {
                     // The token is expired, get a new one and retry
                     Settings.GenericToken = (await GetTokenForDataStore()).AccessToken;
@@ -104,7 +104,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer
             }
             catch (NetworkAccessFailedException e)
             {
-                if ((((WebException) e.InnerException).Response as HttpWebResponse)?.StatusCode == HttpStatusCode.Unauthorized)
+                if ((((WebException)e.InnerException).Response as HttpWebResponse)?.StatusCode == HttpStatusCode.Unauthorized)
                 {
                     // The token is expired, get a new one and retry
                     Settings.GenericToken = (await GetTokenForDataStore()).AccessToken;
@@ -119,12 +119,16 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer
 
         public async Task<HttpWebResponse> GetHttpWebResponse(string urlPath)
         {
-            //Get DataStoreToken
+            return await GetHttpWebResponse(urlPath, await GetOrFetchGenericToken());
+        }
+
+        public static async Task<string> GetOrFetchGenericToken()
+        {
             if (string.IsNullOrEmpty(Settings.GenericToken))
             {
                 Settings.GenericToken = (await GetTokenForDataStore()).AccessToken;
             }
-            return await GetHttpWebResponse(urlPath, Settings.GenericToken);
+            return Settings.GenericToken;
         }
 
         public async Task<HttpWebResponse> GetHttpWebResponse(string urlPath, string accessToken)
@@ -144,7 +148,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer
                     var request = WebRequest.Create(fullUrl) as HttpWebRequest;
                     request.Headers["Authorization"] = "Bearer " + accessToken;
                     request.Accept = "application/json";
-                    var response = (HttpWebResponse) await request.GetResponseAsync();
+                    var response = (HttpWebResponse)await request.GetResponseAsync();
 
                     switch (response.StatusCode)
                     {
@@ -182,7 +186,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer
             throw new ArgumentException("Unexpected error during fetching data");
         }
 
-        private async Task<Token> GetTokenForDataStore()
+        private static async Task<Token> GetTokenForDataStore()
         {
             var tokenPayload = new TokenPayload
             {
@@ -199,32 +203,59 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer
             return token;
         }
 
-        public async Task<HttpResponseMessage> PostRequestFormBased(string url, FormUrlEncodedContent content)
+        public async Task<HttpResponseMessage> PostRequestFormBased(string url, FormUrlEncodedContent content, bool prependBasePath = true)
         {
             using (var client = new HttpClient())
             {
                 // Lambda expression executed
                 // ReSharper disable AccessToDisposedClosure
-                var result = await TransientRetry.Do(() => client.PostAsync(url, content), new TimeSpan(0, 0, 0, 3));
+                var result = await TransientRetry.Do(async () =>
+                                                     {
+                                                         var finalUrl = prependBasePath ? basePath + url : url;
+                                                         var message = new HttpRequestMessage(HttpMethod.Post, finalUrl) { Content = content };
+                                                         message.Headers.Authorization = new AuthenticationHeaderValue("Bearer", (await GetTokenForDataStore()).AccessToken);
+                                                         message.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                                                         try
+                                                         {
+                                                             return client.SendAsync(message);
+                                                         }
+                                                         catch (WebException e)
+                                                         {
+                                                             if ((e.Response as HttpWebResponse)?.StatusCode == HttpStatusCode.Unauthorized)
+                                                             {
+                                                                 // The token is expired, get a new one and retry
+                                                                 Settings.GenericToken = (await GetTokenForDataStore()).AccessToken;
+                                                                 // ReSharper disable once AccessToDisposedClosure
+                                                                 return client.SendAsync(message);
+                                                             }
+
+                                                             throw;
+
+                                                         }
+
+
+                                                     }
+                                                     , new TimeSpan(0, 0, 0, 3));
                 // ReSharper restore AccessToDisposedClosure
-                return result;
+                return await result;
             }
         }
 
-        public async Task<HttpResponseMessage> PostRequestBody(string url, string body)
+        public async Task<HttpResponseMessage> PostRequestBody(string url, string body, bool prependBasePath = true)
         {
-            return await PostRequestBody(url, body, Settings.GenericToken);
+            return await PostRequestBody(url, body, Settings.GenericToken, prependBasePath);
         }
 
-        public async Task<HttpResponseMessage> PostRequestBody(string url, string body, string accessToken)
+        public async Task<HttpResponseMessage> PostRequestBody(string url, string body, string accessToken, bool prependBasePath = true)
         {
             using (var client = new HttpClient())
             {
                 // ReSharper disable once AccessToDisposedClosure
                 var result = await TransientRetry.Do(async () =>
                 {
+                    var finalUrl = prependBasePath ? basePath + url : url;
                     var content = new StringContent(body, Encoding.UTF8, "application/json");
-                    var message = new HttpRequestMessage(HttpMethod.Post, basePath + url) { Content = content };
+                    var message = new HttpRequestMessage(HttpMethod.Post, finalUrl) { Content = content };
                     message.Headers.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
                     message.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                     try
@@ -250,7 +281,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer
             }
         }
 
-        private async Task<HttpResponseMessage> PostJsonRequest(string url, string jsonContent)
+        private static async Task<HttpResponseMessage> PostJsonRequest(string url, string jsonContent)
         {
             try
             {
