@@ -59,9 +59,11 @@
                         </controls:FadeInImage.FadeInTime>
                     </controls:FadeInImage>
                     <StackLayout Grid.Row="2" Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                        <BoxView HeightRequest="8" Color="White" /> 
                         <BoxView HeightRequest="1" Color="{StaticResource DarkGrayColor}" />
+                        <BoxView HeightRequest="0.25" Color="White" />
                         <Label Text="{helpers:Translate Cancel}" FontSize="Large" TextColor="{StaticResource PrimaryDarkColor}"
-                               HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
+                               HorizontalOptions="Center" VerticalOptions="Center" />
                         <StackLayout.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding CancelCommand}" />
                         </StackLayout.GestureRecognizers>
