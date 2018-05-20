@@ -68,6 +68,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         public void LocationChanged(object sender, PositionEventArgs args)
         {
             Position = new GeoLocation(args.Position.Latitude, args.Position.Longitude);
+            GpsLocation = args.Position.ToGeoLocation();
 
             if (Exhibits == null)
                 return;
