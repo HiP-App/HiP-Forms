@@ -41,10 +41,10 @@
 
                     <AbsoluteLayout Grid.Row="0">
                         <map:OsmMap x:Name="Map" ExhibitSet="{Binding RawExhibits}"
-                                 GpsLocation="{Binding GpsLocation}"
-                                ShowDetailsRoute="False"
-                                    CenterCommand="{Binding MapFocusCommand, Mode=OneWayToSource}"
-                                    CenterCommandParameter="{Binding GpsLocation}"/>
+                                                         GpsLocation="{Binding GpsLocation}"
+                                                         ShowDetailsRoute="False"
+                                                         CenterCommand="{Binding MapFocusCommand, Mode=OneWayToSource}"
+                                                         CenterCommandParameter="{Binding GpsLocation}"/>
                         <controls1:FloatingActionButton AbsoluteLayout.LayoutFlags="PositionProportional"
                                                         AbsoluteLayout.LayoutBounds="0.9,0.9"
                                                         NormalColor="{StaticResource SecondaryColor}"
