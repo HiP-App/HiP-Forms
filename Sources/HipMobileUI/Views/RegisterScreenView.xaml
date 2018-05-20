@@ -21,7 +21,8 @@
              x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Views.RegisterScreenView"
              xmlns:local="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Behaviors"
              xmlns:helpers="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;assembly=HipMobileUI"
-             xmlns:views="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Views;assembly=HipMobileUI">
+             xmlns:views="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Views;assembly=HipMobileUI"
+             >
     <ContentView.Content>
         <views:NotificationExtensionView>
             <views:NotificationExtensionView.ContentTemplate>
