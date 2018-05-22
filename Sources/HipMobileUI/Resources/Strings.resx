@@ -619,6 +619,18 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   <data name="RegisterScreenView_Email" xml:space="preserve">
     <value>E-mail</value>
   </data>
+  <data name="RegisterScreenView_Error_Missing_FirstName">
+    <value>Please enter your first name</value>
+  </data>
+  <data name="RegisterScreenView_Error_Missing_LastName">
+    <value>Please enter your last name</value>
+  </data>
+  <data name="RegisterScreenView_FirstName">
+    <value>First name</value>
+  </data>
+  <data name="RegisterScreenView_LastName">
+    <value>Last name</value>
+  </data>
   <data name="RegisterScreenView_Password" xml:space="preserve">
     <value>Password</value>
   </data>
