@@ -15,7 +15,17 @@
 using Xamarin.Forms;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Contracts
+
 {
+    /// <summary>
+    /// Color statusBarColor, Color actionBarColor
+    /// </summary>
+    /// <param name="statusBarColor">
+    /// The color to set for status bar
+    /// </param>
+    /// <param name="actionBarColor">
+    /// The color to set for action bar
+    /// </param>
     public interface IBarsColorsChanger
     {
         void ChangeToolbarColor(Color statusBarColor, Color actionBarColor);

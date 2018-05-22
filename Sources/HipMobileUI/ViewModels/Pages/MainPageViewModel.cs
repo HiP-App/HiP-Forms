@@ -25,7 +25,6 @@ using PaderbornUniversity.SILab.Hip.Mobile.UI.Appearance;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
 using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore;
 using Xamarin.Forms;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
@@ -39,6 +38,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         private readonly LoginScreenViewModel loginScreenViewModel;
         private readonly RegisterScreenViewModel registerScreenViewModel;
         private readonly ForgotPasswordScreenViewModel forgotPasswordScreenViewModel;
+        private readonly AchievementsScreenViewModel achievementsScreenViewModel;
 
         private readonly IDisposable achievementsFeatureSubscription;
 
@@ -74,6 +74,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             loginScreenViewModel = menuConfiguration.GetLoginScreenViewModel();
             registerScreenViewModel = menuConfiguration.GetRegisterScreenViewModel();
             forgotPasswordScreenViewModel = menuConfiguration.GetForgotPasswordScreenViewModel();
+            achievementsScreenViewModel = menuConfiguration.GetAchievementsScreenViewModel();
 
             Settings.ChangeEvents.PropertyChanged += LoginChangedHandler;
             UpdateUserLogginInfo();
@@ -225,6 +226,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             {
                 return forgotPasswordScreenViewModel;
             }
+
+            public AchievementsScreenViewModel GetAchievementsScreenViewModel()
+            {
+                return achievementsScreenViewModel;
+            }
         }
 
         private void UpdateMenuConfiguration()
@@ -252,6 +258,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                 SwitchToProfileView();
             else
                 SwitchToLoginView();
+        }
+
+        public void SwitchToAchievementsView()
+        {
+            if (MainScreenViewModels.Contains(achievementsScreenViewModel))
+                MainScreenViewModels[MainScreenViewModels.IndexOf(achievementsScreenViewModel)] = achievementsScreenViewModel;
+            SelectedViewModel = achievementsScreenViewModel;
         }
 
         public void SwitchToProfileView()
@@ -282,7 +295,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         {
             SelectedViewModel = MainScreenViewModels.OfType<SettingsScreenViewModel>().SingleOrDefault();
 
-            IoCManager.Resolve<IThemeManager>().AdjustTopBarTheme();
+            IoCManager.Resolve<IThemeManager>().AdjustTheme();
         }
 
         private ObservableCollection<NavigationViewModel> mainScreenViewModels;

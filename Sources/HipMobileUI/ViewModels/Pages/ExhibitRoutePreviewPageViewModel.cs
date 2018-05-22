@@ -13,16 +13,21 @@
 // limitations under the License.
 
 using System.IO;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelConverters;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Location;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
 using Xamarin.Forms;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 {
-    public class ExhibitRoutePreviewPageViewModel : NavigationViewModel
+    public class ExhibitRoutePreviewPageViewModel : NavigationViewModel, IDownloadableListItemViewModel
     {
         private readonly Exhibit exhibit;
         private readonly Route route;
@@ -84,15 +89,44 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             NearbyExhibitManager.InvokeExhibitVisitedEvent(exhibit);
         }
 
-        private void AcceptRoute()
+        private async void AcceptRoute()
         {
-            Navigation.ClearModalStack();
-            NearbyRouteManager.OpenRouteDetailsView(route.Id);
+            await Navigation.ClearModalStack();
+            if (route.DetailsDataLoaded)
+            {
+                NearbyRouteManager.OpenRouteDetailsView(route.Id);
+            }
+            else
+            {
+                await Navigation.PushAsync(new ExhibitRouteDownloadPageViewModel(route, this));
+            }
         }
 
         private async void Deny()
         {
             await Navigation.PopModalAsync();
+        }
+
+        public async void CloseDownloadPage()
+        {
+            await Navigation.PopAsync();
+        }
+
+        public async void OpenDetailsView(string id)
+        {
+            await Navigation.PopAsync();
+            NearbyRouteManager.OpenRouteDetailsView(route.Id);
+        }
+
+        public async Task SetDetailsAvailable(bool available)
+        {
+            if (!available)
+                return;
+
+            await DbManager.InTransactionAsync(transaction =>
+            {
+                route.DetailsDataLoaded = true;
+            });
         }
     }
 }

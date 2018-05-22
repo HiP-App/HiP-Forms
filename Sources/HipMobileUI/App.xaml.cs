@@ -13,10 +13,12 @@
 // limitations under the License.
 
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Appearance;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.DesignTime;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
+using System.Linq;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Settings = PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers.Settings;
@@ -35,6 +37,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI
                 return;
 
             // Handle when your app starts
+            Settings.AdventurerMode = Settings.AdventurerMode && !Settings.DisableAdventurerMode;
+
+            // setup content for being able to use consistent dynamic coloring
+            IoCManager.RegisterInstance(typeof(ApplicationResourcesProvider), new ApplicationResourcesProvider(Application.Current.Resources.ToDictionary(x => x.Key, x => x.Value)));
+            IoCManager.RegisterInstance(typeof(IThemeManager), new ThemeManager());
 
             // set the first page that is shown
             var navigationService = IoCManager.Resolve<INavigationService>();

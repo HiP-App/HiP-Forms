@@ -20,7 +20,6 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.InteractiveSourc
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 using UIKit;
-using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Helpers
@@ -57,7 +56,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Helpers
                 sourcePositions.Add(source, finalPostion);
 
                 var resources = IoCManager.Resolve<ApplicationResourcesProvider>();
-                formattedTextWithSubstitutes.AddAttribute(UIStringAttributeKey.ForegroundColor, ((Color) resources.GetResourceValue("SecondaryColor")).ToUIColor(),
+                formattedTextWithSubstitutes.AddAttribute(UIStringAttributeKey.ForegroundColor, (resources.TryGetResourceColorvalue("SecondaryColor")).ToUIColor(),
                                                           new NSRange(finalPostion.Start, source.SubstituteText.Length));
             }
             textView.AttributedText = formattedTextWithSubstitutes;

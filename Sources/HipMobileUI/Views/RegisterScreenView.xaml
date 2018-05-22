@@ -25,10 +25,17 @@
     <ContentView.Content>
         <views:NotificationExtensionView>
             <views:NotificationExtensionView.ContentTemplate>
-                <Grid x:Name="Grid" Padding="10" HorizontalOptions="Fill" BackgroundColor="White">
+                <StackLayout x:Name="Grid" Padding="10" HorizontalOptions="Fill" BackgroundColor="White">
+                    <Entry x:Name="FirstNameEntry"
+                           Placeholder="{helpers:Translate RegisterScreenView_FirstName}" Text="{Binding FirstName, Mode=OneWayToSource}"
+                    >
+                    </Entry>
+                    <Entry x:Name="LastNameEntry"
+                           Placeholder="{helpers:Translate RegisterScreenView_LastName}" Text="{Binding LastName, Mode=OneWayToSource}"
+                    >
+                    </Entry>
                     <Entry x:Name="EmailEntry"
                            Keyboard="Email"
-                           VerticalOptions="End"
                            Placeholder="{helpers:Translate RegisterScreenView_Email}" Text="{Binding Email, Mode=OneWayToSource}">
                         <Entry.Behaviors>
                             <local:EmailValidationBehavior x:Name="ValidEmailBehavior" />
@@ -36,25 +43,22 @@
                     </Entry>
                     <Entry x:Name="PasswordEntry"
                            IsPassword="True"
-                           VerticalOptions="Center"
                            Placeholder="{helpers:Translate RegisterScreenView_Password}" Text="{Binding Password, Mode=OneWayToSource}" />
                     <Entry x:Name="RePasswordEntry"
                            IsPassword="True"
-                           VerticalOptions="Start"
                            Placeholder="{helpers:Translate RegisterScreenView_RepeatPassword}" Text="{Binding RepeatPassword, Mode=OneWayToSource}" />
                     <Label x:Name="ErrorMsgLabel"
-                           HorizontalOptions="Center" VerticalOptions="Start"
+                           HorizontalOptions="Center"
                            FontSize="Small" TextColor="{StaticResource TertiaryDarkColor}" Text="{Binding ErrorMessage, Mode=TwoWay}" Style="{DynamicResource Ssp-Regular}"/>
+                    <BoxView VerticalOptions="Fill"></BoxView>
                     <Button x:Name="ButtonView"
-                            VerticalOptions="End"
                             Text="{helpers:Translate RegisterScreenView_Register}"
                             Command="{Binding Register}" />
                     <Button x:Name="CancelButton"
-                            VerticalOptions="End"
                            Text="{helpers:Translate Cancel}" FontSize="Small" 
                            Command="{Binding ReturnCommand}">
                     </Button>
-                </Grid>
+                </StackLayout>
             </views:NotificationExtensionView.ContentTemplate>
         </views:NotificationExtensionView>
     </ContentView.Content>

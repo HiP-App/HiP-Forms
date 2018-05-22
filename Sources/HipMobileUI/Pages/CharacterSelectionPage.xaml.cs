@@ -1,14 +1,12 @@
 ﻿using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
-using PaderbornUniversity.SILab.Hip.Mobile.UI.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.DesignTime;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
 using SkiaSharp;
 using SkiaSharp.Views.Forms;
-using System;
-using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Settings = PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers.Settings;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
 {
@@ -55,12 +53,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
 
             using (var paint = new SKPaint())
             {
-                canvas.Clear(new SKColor(127,172,255)); //paint it blue
+                ApplicationResourcesProvider resources = IoCManager.Resolve<ApplicationResourcesProvider>();
+                canvas.Clear(resources.TryGetResourceColorvalue(Settings.AdventurerMode ? "SecondaryDarkColor" : "PrimaryDarkColor").ToSKColor()); //for painting it dark yellow or dark blue
                 using (var pathStroke = new SKPaint
                 {
                     IsAntialias = true,
                     Style = SKPaintStyle.StrokeAndFill,
-                    Color = new SKColor(255, 229, 127),
+                    Color = resources.TryGetResourceColorvalue(Settings.AdventurerMode ? "PrimaryDarkColor" : "SecondaryDarkColor").ToSKColor(), //for painting it dark blue or dark yellow
                     StrokeWidth = 5
                 })
                 {
