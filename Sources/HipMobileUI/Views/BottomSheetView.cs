@@ -20,6 +20,7 @@ using PaderbornUniversity.SILab.Hip.Mobile.UI.Controls;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 using Xamarin.Forms;
 using Rectangle = Xamarin.Forms.Rectangle;
+using Settings = PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers.Settings;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
 {
@@ -52,12 +53,20 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
         {
             mainContentView = new ContentView();
             BottomSheetContentView = new ContentView { BackgroundColor = Color.White };
+
+            String normalColor = "PrimaryDarkColor"; //paint it dark blue
+            String rippleColor = "PrimaryDarkColor";
             var resources = IoCManager.Resolve<ApplicationResourcesProvider>();
+            if (Settings.AdventurerMode) //paint it dark yellow
+            {
+                normalColor = "SecondaryDarkColor";
+                rippleColor = "SecondaryDarkColor";
+            }
             // Floating Action Button
             Button = new FloatingActionButton
             {
-                NormalColor = (Color) resources.GetResourceValue("SecondaryColor"),
-                RippleColor = (Color) resources.GetResourceValue("SecondaryDarkColor"),
+                NormalColor = resources.TryGetResourceColorvalue(normalColor),
+                RippleColor = resources.TryGetResourceColorvalue(rippleColor),
                 Command = new Command(ButtonOnClicked),
                 Icon = "ic_keyboard_arrow_up",
                 AutomationId = "Fab"

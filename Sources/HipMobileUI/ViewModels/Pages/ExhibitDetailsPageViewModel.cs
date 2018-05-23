@@ -92,7 +92,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             }
             else
             {
-                IoCManager.Resolve<IThemeManager>().AdjustTopBarTheme();
+                IoCManager.Resolve<IThemeManager>().AdjustTheme();
             }
         }
 

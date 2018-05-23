@@ -25,33 +25,56 @@ using PaderbornUniversity.SILab.Hip.Mobile.UI.Appearance;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
 using System.Collections.Generic;
+using Xamarin.Forms;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 {
     public class MainPageViewModel : NavigationViewModel
     {
+        private Command logoutCommand;
         private readonly MenuConfiguration menuConfiguration;
 
         private readonly ProfileScreenViewModel profileScreenViewModel;
         private readonly LoginScreenViewModel loginScreenViewModel;
         private readonly RegisterScreenViewModel registerScreenViewModel;
         private readonly ForgotPasswordScreenViewModel forgotPasswordScreenViewModel;
+        private readonly AchievementsScreenViewModel achievementsScreenViewModel;
 
         private readonly IDisposable achievementsFeatureSubscription;
 
+        public Command LogoutCommand
+        {
+            get => logoutCommand;
+            set => SetProperty(ref logoutCommand, value);
+        }
+
+        private async void LogoutAsync()
+        {
+            var result = await Navigation.DisplayAlert(Strings.ProfileScreenViewModel_Dialog_Logout_Title
+                                                       , Strings.ProfileScreenViewModel_Dialog_Logout_Message
+                                                       , Strings.Yes, Strings.No);
+            if (!result)
+                return;
+            Settings.IsLoggedIn = false;
+            UpdateAccountViews();
+
+        }
+
         public MainPageViewModel() : this(DbManager.DataAccess.Exhibits().GetExhibits().ToList())
         {
+            LogoutCommand = new Command(LogoutAsync);
         }
 
         private MainPageViewModel(IReadOnlyList<Exhibit> exhibits)
         {
             menuConfiguration = new MenuConfiguration(this, exhibits);
             UpdateMenuConfiguration();
-            
+
             profileScreenViewModel = MainScreenViewModels.OfType<ProfileScreenViewModel>().SingleOrDefault();
             loginScreenViewModel = menuConfiguration.GetLoginScreenViewModel();
             registerScreenViewModel = menuConfiguration.GetRegisterScreenViewModel();
             forgotPasswordScreenViewModel = menuConfiguration.GetForgotPasswordScreenViewModel();
+            achievementsScreenViewModel = menuConfiguration.GetAchievementsScreenViewModel();
 
             Settings.ChangeEvents.PropertyChanged += LoginChangedHandler;
             UpdateUserLogginInfo();
@@ -203,6 +226,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             {
                 return forgotPasswordScreenViewModel;
             }
+
+            public AchievementsScreenViewModel GetAchievementsScreenViewModel()
+            {
+                return achievementsScreenViewModel;
+            }
         }
 
         private void UpdateMenuConfiguration()
@@ -230,6 +258,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                 SwitchToProfileView();
             else
                 SwitchToLoginView();
+        }
+
+        public void SwitchToAchievementsView()
+        {
+            if (MainScreenViewModels.Contains(achievementsScreenViewModel))
+                MainScreenViewModels[MainScreenViewModels.IndexOf(achievementsScreenViewModel)] = achievementsScreenViewModel;
+            SelectedViewModel = achievementsScreenViewModel;
         }
 
         public void SwitchToProfileView()
@@ -260,7 +295,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         {
             SelectedViewModel = MainScreenViewModels.OfType<SettingsScreenViewModel>().SingleOrDefault();
 
-            IoCManager.Resolve<IThemeManager>().AdjustTopBarTheme();
+            IoCManager.Resolve<IThemeManager>().AdjustTheme();
         }
 
         private ObservableCollection<NavigationViewModel> mainScreenViewModels;

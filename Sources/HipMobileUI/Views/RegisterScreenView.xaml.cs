@@ -49,21 +49,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
                 if (deviceOrientation == DeviceOrientation.Portrait)
                     return;
 
-                Grid.RowDefinitions.Clear();
-                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.3, GridUnitType.Star) });
-                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.15, GridUnitType.Star) });
-                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.15, GridUnitType.Star) });
-                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.1, GridUnitType.Star) });
-                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.2, GridUnitType.Star) });
-                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.1, GridUnitType.Star) });
-
-                Grid.SetRow(EmailEntry, 0);
-                Grid.SetRow(PasswordEntry, 1);
-                Grid.SetRow(RePasswordEntry, 2);
-                Grid.SetRow(ErrorMsgLabel, 3);
-                Grid.SetRow(ButtonView, 4);
-                Grid.SetRow(CancelButton, 5);
-
                 deviceOrientation = DeviceOrientation.Portrait;
             }
             else if (width > height)
@@ -72,20 +57,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
                 if (deviceOrientation == DeviceOrientation.Landscape)
                     return;
 
-                Grid.RowDefinitions.Clear();
-                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.2, GridUnitType.Star) });
-                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.2, GridUnitType.Star) });
-                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.2, GridUnitType.Star) });
-                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.1, GridUnitType.Star) });
-                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.2, GridUnitType.Star) });
-                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.1, GridUnitType.Star) });
-
-                Grid.SetRow(EmailEntry, 0);
-                Grid.SetRow(PasswordEntry, 1);
-                Grid.SetRow(RePasswordEntry, 2);
-                Grid.SetRow(ErrorMsgLabel, 3);
-                Grid.SetRow(ButtonView, 4);
-                Grid.SetRow(CancelButton, 5);
+           
 
                 deviceOrientation = DeviceOrientation.Landscape;
             }

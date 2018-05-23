@@ -13,7 +13,6 @@
 // limitations under the License.
 
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Appearance;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
@@ -31,8 +30,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
         {
             InitializeComponent();
             deviceOrientation = DeviceOrientation.Undefined;
-            IoCManager.Resolve<IThemeManager>().AdjustTopBarTheme();
-         
+            IoCManager.Resolve<IThemeManager>().AdjustTheme();
         }
 
        
