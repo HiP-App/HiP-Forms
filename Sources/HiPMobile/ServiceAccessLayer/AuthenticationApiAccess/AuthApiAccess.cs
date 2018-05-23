@@ -31,7 +31,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Authent
                 new KeyValuePair<string, string>("password", password)
             });
 
-            var result = await clientApiClient.PostRequestFormBased(ServerEndpoints.LoginUrl, content);
+            var result = await clientApiClient.PostRequestFormBased(ServerEndpoints.LoginUrl, content, prependBasePath: false);
 
             string jsonPayload = await result.Content.ReadAsStringAsync();
 
@@ -50,17 +50,16 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Authent
             return token;
         }
 
-        public async Task<bool> Register(string username, string password)
+        public async Task<bool> Register(string username, string password, string firstname, string lastname)
         {
-            FormUrlEncodedContent content = new FormUrlEncodedContent(new[]
-            {
-                Constants.Connection,
-                Constants.BasicClientId,
-                new KeyValuePair<string, string>("email", username),
-                new KeyValuePair<string, string>("password", password)
-            });
+            var content = "{" +
+                          "\"email\": \"" + username + "\", " +
+                          "\"password\": \"" + password + "\"," +
+                          "\"firstName\": \"" + firstname + "\"," +
+                          "\"lastName\": \"" + lastname +  "\"" +
+                          "}";
 
-            var result = await clientApiClient.PostRequestFormBased(ServerEndpoints.RegisterUrl, content);
+            var result = await clientApiClient.PostRequestBody(ServerEndpoints.RegisterUrl, content, false);
 
             if (result.StatusCode == HttpStatusCode.OK)
             {
@@ -79,7 +78,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Authent
                 new KeyValuePair<string, string>("email", username),
             });
 
-            var result = await clientApiClient.PostRequestFormBased(ServerEndpoints.ForgotPasswordUrl, content);
+            var result = await clientApiClient.PostRequestFormBased(ServerEndpoints.ForgotPasswordUrl, content, prependBasePath: false);
 
             if (result.IsSuccessStatusCode)
             {

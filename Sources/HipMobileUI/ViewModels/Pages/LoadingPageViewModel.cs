@@ -32,7 +32,6 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Authenticat
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.FeatureToggleApiAccess;
-using PaderbornUniversity.SILab.Hip.Mobile.UI.Appearance;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Location;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
@@ -282,8 +281,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         private async Task InitIoCContainerAsync()
         {
             IoCManager.RegisterType<IDataLoader, EmbeddedResourceDataLoader>();
-            IoCManager.RegisterInstance(typeof(ApplicationResourcesProvider), new ApplicationResourcesProvider(Application.Current.Resources));
-
+            
             //init serviceaccesslayer
             IoCManager.RegisterInstance(typeof(IContentApiClient), new ContentApiClient());
             // ReSharper disable once ConditionIsAlwaysTrueOrFalse
@@ -345,7 +343,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
             IoCManager.RegisterInstance(typeof(IUserManager), new UserManager());
             IoCManager.RegisterInstance(typeof(IUserRatingManager), new UserRatingManager());
-            IoCManager.RegisterInstance(typeof(IThemeManager), new ThemeManager());
             IoCManager.RegisterInstance(typeof(AchievementNotificationViewModel), new AchievementNotificationViewModel());
 
             var featureToggleRouter = await FeatureToggleRouter.CreateAsync();

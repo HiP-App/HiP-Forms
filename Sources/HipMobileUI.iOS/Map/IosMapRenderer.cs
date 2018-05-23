@@ -26,7 +26,6 @@ using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Map;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
-using UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.JoinClasses;
@@ -316,7 +315,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Map
                 MKPolylineRenderer polylineRenderer;
                 if (polyline.Equals(currentSectionPolyLine))
                 {
-                    var color = ((Color)resources.GetResourceValue("SecondaryColor")).ToUIColor();
+                    var color = (resources.TryGetResourceColorvalue("SecondaryColor")).ToUIColor();
                     polylineRenderer = new MKPolylineRenderer(polyline)
                     {
                         FillColor = color,
@@ -326,7 +325,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios.Map
                 }
                 else
                 {
-                    var color = ((Color)resources.GetResourceValue("PrimaryColor")).ToUIColor();
+                    var color = (resources.TryGetResourceColorvalue("PrimaryColor")).ToUIColor();
                     polylineRenderer = new MKPolylineRenderer(polyline)
                     {
                         FillColor = color,
