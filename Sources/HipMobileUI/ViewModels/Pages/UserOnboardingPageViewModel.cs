@@ -14,9 +14,11 @@
 
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using Xamarin.Forms;
+using Settings = PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers.Settings;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 {
@@ -24,11 +26,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
     {
         public UserOnboardingPageViewModel()
         {
+            ApplicationResourcesProvider resourceProvider = IoCManager.Resolve<ApplicationResourcesProvider>();
+            Color PrimaryDarkColor = resourceProvider.TryGetResourceColorvalue("PrimaryColor"); //paint it light blue
             Pages = new ObservableCollection<UserOnboardingItemViewModel>
             {
-                new UserOnboardingItemViewModel(Strings.UserOnboarding_Explore_Title, Strings.UserOnboarding_Explore_Text, "ac_erkunden.jpg", Color.FromRgb(127,172,255)),
-                new UserOnboardingItemViewModel(Strings.UserOnboarding_Route_Title, Strings.UserOnboarding_Route_Text, "ac_route.jpg", Color.FromRgb(127,172,255), "ac_route2.jpg"),
-                new UserOnboardingItemViewModel(Strings.UserOnboarding_Students_Title, Strings.UserOnboarding_Students_Text, "ac_students", Color.FromRgb(127,172,255))
+                new UserOnboardingItemViewModel(Strings.UserOnboarding_Explore_Title, Strings.UserOnboarding_Explore_Text, "ac_erkunden.jpg", PrimaryDarkColor),
+                new UserOnboardingItemViewModel(Strings.UserOnboarding_Route_Title, Strings.UserOnboarding_Route_Text, "ac_route.jpg", PrimaryDarkColor, "ac_route2.jpg"),
+                new UserOnboardingItemViewModel(Strings.UserOnboarding_Students_Title, Strings.UserOnboarding_Students_Text, "ac_students", PrimaryDarkColor)
             };
             ContentOrientation = StackOrientation.Vertical;
             ForwardCommand = new Command(GotoNextPage);

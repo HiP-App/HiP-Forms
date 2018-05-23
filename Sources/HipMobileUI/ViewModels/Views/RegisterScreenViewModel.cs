@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.User;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
@@ -25,6 +26,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 {
     public class RegisterScreenViewModel : NavigationViewModel
     {
+        private string firstName;
+        private string lastName;
         private string email;
         private string password;
         private string repassword;
@@ -45,7 +48,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         async void RegisterUser()
         {
             var user = new User(Email, password);
-            var userStatus = await IoCManager.Resolve<IUserManager>().Register(user);
+            var userStatus = await IoCManager.Resolve<IUserManager>().Register(user, FirstName, LastName);
             if (userStatus == UserStatus.Registered)
             {
                 mainPageViewModel.SwitchToLoginView();
@@ -84,6 +87,16 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             ErrorMessage = Strings.RegisterScreenView_Error_Invalid_Email;
         }
 
+        private void DisplayFirstNameMissingErrorMessage()
+        {
+            ErrorMessage = Strings.RegisterScreenView_Error_Missing_FirstName;
+        }
+
+        private void DisplayLastNameMissingErrorMessage()
+        {
+            ErrorMessage = Strings.RegisterScreenView_Error_Missing_LastName;
+        }
+
         private void OnRegisterClicked()
         {
             if (string.IsNullOrWhiteSpace(Email) && (string.IsNullOrWhiteSpace(Password) || string.IsNullOrWhiteSpace(RepeatPassword)))
@@ -96,6 +109,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
                 DisplayInvalidEmailErrorMessage();
             else if (Password != RepeatPassword)
                 DisplayPasswordMismatchErrorMessage();
+            else if (string.IsNullOrWhiteSpace(firstName))
+                DisplayFirstNameMissingErrorMessage();
+            else if (string.IsNullOrWhiteSpace(lastName))
+                DisplayLastNameMissingErrorMessage();
             else
                 RegisterUser();
         }
@@ -109,6 +126,18 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         {
             get { return errorMessage; }
             set { SetProperty(ref errorMessage, value); }
+        }
+
+        public string FirstName
+        {
+            get => firstName;
+            set => SetProperty(ref firstName, value);
+        }
+
+        public string LastName
+        {
+            get => lastName;
+            set => SetProperty(ref lastName, value);
         }
 
         public string Email
