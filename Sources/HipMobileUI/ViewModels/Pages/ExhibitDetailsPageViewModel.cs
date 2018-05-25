@@ -56,7 +56,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             Exhibit = exhibit;
             this.additionalInformation = additionalInformation;
             AdjustToolbarColor();
-            AudioPlayerOnAudioCompleted();
 
             // stop audio if necessary
             var player = IoCManager.Resolve<IAudioPlayer>();
@@ -68,7 +67,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             // init the audio toolbar
             AudioToolbar = new AudioToolbarViewModel(title);            
             AudioToolbar.AudioPlayer.AudioCompleted += AudioPlayerOnAudioCompleted;
-            //AudioPlayerOnAudioCompleted();
             
             // init the current view
             currentViewIndex = 0;
