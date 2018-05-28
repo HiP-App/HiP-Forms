@@ -126,7 +126,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.DesignTime
         private static void ConfigureServicesLate()
         {
             // These services can only be registered after App.InitializerComponent()
-            IoCManager.RegisterInstance(typeof(ApplicationResourcesProvider), new ApplicationResourcesProvider(Application.Current.Resources));
+            IoCManager.RegisterInstance(typeof(ApplicationResourcesProvider), new ApplicationResourcesProvider(Application.Current.Resources.ToDictionary(x => x.Key, x => x.Value)));
         }
 
         private static void ConfigureViewModels()

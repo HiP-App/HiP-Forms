@@ -26,7 +26,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
 
             public event PropertyChangedEventHandler PropertyChanged;
         }
-        
+
         /// <summary>
         /// Some properties in this class notify this instance
         /// about changes to them.
@@ -164,7 +164,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
 
 
         private const string AdventurerModeKey = "adventurer_mode_key";
-        private static readonly bool AdventurerModeDefault = true;
+        private static readonly bool AdventurerModeDefault = false; //need to be false, because initially loaded static PrimaryColors from Xamarin.Forms do match colors for ProfessorMode
 
         /// <summary>
         /// Indicates wether the app is in adventurer or professor mode.
@@ -173,7 +173,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
         /// </summary>
         public static bool AdventurerMode
         {
-            get => AppSettings.GetValueOrDefault(AdventurerModeKey, AdventurerModeDefault);
+            get => AppSettings.GetValueOrDefault(AdventurerModeKey, AdventurerModeDefault); //TODO all references (i.e. ThemeManager) should listen and react on Events.NotifyPropertyChanged instead of directly acessing Settings.AdventurerMode.
             set => AppSettings.AddOrUpdateValue(AdventurerModeKey, value);
         }
 
@@ -307,14 +307,19 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
 
         private const string ShouldDeleteDbOnLaunchKey = "should_delete_db_on_launch_key";
         private static readonly string ShouldDeleteDbOnLaunchDefault = false.ToString();
-         
+
         /// <summary>
-        /// Iff set to true, the IDataAccess database is deleted on next app launch.
+        /// If set to true, the IDataAccess database is deleted on next app launch.
         /// </summary>
         public static bool ShouldDeleteDbOnLaunch
         {
             get => bool.Parse(AppSettings.GetValueOrDefault(ShouldDeleteDbOnLaunchKey, ShouldDeleteDbOnLaunchDefault));
             set => AppSettings.AddOrUpdateValue(ShouldDeleteDbOnLaunchKey, value.ToString());
         }
+
+        /// <summary>
+        /// If set to true, the user cannot choose between the two modes.
+        /// </summary>
+        public static bool DisableAdventurerMode = true;
     }
 }
