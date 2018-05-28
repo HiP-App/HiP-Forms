@@ -39,9 +39,18 @@
                         <RowDefinition Height="0*" />
                     </Grid.RowDefinitions>
 
-                    <map:OsmMap Grid.Row="0" x:Name="Map" ExhibitSet="{Binding RawExhibits}"
-                                GpsLocation="{Binding Position}"
-                                ShowDetailsRoute="False" />
+                    <AbsoluteLayout Grid.Row="0">
+                        <map:OsmMap x:Name="Map" ExhibitSet="{Binding RawExhibits}"
+                                                         GpsLocation="{Binding GpsLocation}"
+                                                         ShowDetailsRoute="False"
+                                                         CenterCommand="{Binding MapFocusCommand, Mode=OneWayToSource}"
+                                                         CenterCommandParameter="{Binding GpsLocation}"/>
+                        <controls1:FloatingActionButton AbsoluteLayout.LayoutFlags="PositionProportional"
+                                                        AbsoluteLayout.LayoutBounds="0.9,0.9"
+                                                        NormalColor="{StaticResource SecondaryColor}"
+                                                        RippleColor="{StaticResource SecondaryDarkColor}" Icon="ic_my_location_white"
+                                                        Command="{Binding FocusGps}" />
+                    </AbsoluteLayout>
 
                     <ListView Grid.Row="1" ItemsSource="{Binding Exhibits}" HasUnevenRows="True" x:Name="List">
                         <ListView.Behaviors>

@@ -25,7 +25,6 @@ using PaderbornUniversity.SILab.Hip.Mobile.UI.Appearance;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
 using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore;
 using Xamarin.Forms;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
@@ -296,7 +295,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         {
             SelectedViewModel = MainScreenViewModels.OfType<SettingsScreenViewModel>().SingleOrDefault();
 
-            IoCManager.Resolve<IThemeManager>().AdjustTopBarTheme();
+            IoCManager.Resolve<IThemeManager>().AdjustTheme();
         }
 
         private ObservableCollection<NavigationViewModel> mainScreenViewModels;
