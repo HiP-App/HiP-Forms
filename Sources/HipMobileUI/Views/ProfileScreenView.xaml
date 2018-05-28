@@ -33,10 +33,11 @@
                             <RowDefinition Height="1*" />
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="0.4*" />
+                             <ColumnDefinition Width="0.4*" />
                             <ColumnDefinition Width="0.6*" />
                         </Grid.ColumnDefinitions>
-                        <AbsoluteLayout Grid.Column="0">
+                        <!--first row-->
+                            <AbsoluteLayout Grid.Column="0">
                             <BoxView AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.5,    0.5,    0.9,    0.5" BackgroundColor="{StaticResource DarkGrayColor}"/>
                             <Image AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.5,   0.5,   0.85,    0.45" Aspect="AspectFit" Source="{Binding Avatar}">
                                 <Image.GestureRecognizers>
@@ -46,6 +47,7 @@
                                 </Image.GestureRecognizers>
                             </Image>
                         </AbsoluteLayout>
+                                        
                         <StackLayout Grid.Column="1" Orientation="Vertical" Spacing="0"
                                  VerticalOptions="Center">
                             <Label Text="{Binding Username}" FontAttributes="Bold" FontSize="23"
@@ -59,16 +61,18 @@
                             <controls:ZeroPaddingButton FontSize="15" Command="{Binding Logout}" Text="{helpers:Translate Logout}" TextColor="Black" Margin="40,10,40,0" HeightRequest="30"/>
                         </StackLayout>
                     </Grid>
-                    <container:TabContainerView x:Name="TabContainer" Tabs="{Binding Tabs}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
+
+                    <container:TabContainerView x:Name="TabContainer" Tabs="{Binding Tabs}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                         <container:TabContainerView.TabViews>
-                            <StackLayout Grid.Row="1" Spacing="25" Orientation="Vertical"
-                                         VerticalOptions="StartAndExpand" Padding="40,20,40,20" >
+                            <StackLayout Grid.Row="1" Spacing="17" Orientation="Vertical"
+                                         VerticalOptions="StartAndExpand" Padding="25,15,25,15" >
                                 <StackLayout Orientation="Horizontal" VerticalOptions="Fill">
                                     <Label FontSize="23" Text="{helpers:Translate ProfileView_Overview_Score}"
                                            Style="{DynamicResource Ssp-Regular}" TextColor="Black" />
                                     <Label FontSize="23" Text="{Binding Score}" TextColor="{StaticResource PrimaryDarkColor}"
                                            Style="{DynamicResource Ssp-Regular}" />
                                 </StackLayout>
+
                                 <StackLayout Orientation="Horizontal" VerticalOptions="Fill">
                                     <Label FontSize="23" Text="{helpers:Translate ProfileView_Overview_Achievements}"
                                            TextColor="Black" Style="{DynamicResource Ssp-Regular}"/>
@@ -77,12 +81,14 @@
                                     <controls:ZeroPaddingButton Margin="20,0,0,0" Text="{helpers:Translate ProfileView_GoTo}" TextColor="Black"  
                                                                 Command="{Binding GoToAchievementsCommand}" HeightRequest="25" WidthRequest="60"/>
                                 </StackLayout>
+
+                               <!--progressbar-->
                                 <StackLayout Orientation="Horizontal" VerticalOptions="Fill">
                                     <Label FontSize="23" Text="{helpers:Translate ProfileView_Overview_Progress}"
                                            TextColor="Black" Style="{DynamicResource Ssp-Regular}"/>
                                     <Label FontSize="23" Text="{Binding Completeness}"
                                            TextColor="{StaticResource PrimaryDarkColor}" Style="{DynamicResource Ssp-Regular}"/>
-                                    <Grid VerticalOptions="CenterAndExpand" WidthRequest="180" ColumnSpacing="0">
+                                    <Grid VerticalOptions="CenterAndExpand" WidthRequest="150" ColumnSpacing="0">
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="10" />
                                         </Grid.RowDefinitions>
