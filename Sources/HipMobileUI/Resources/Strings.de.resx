@@ -619,16 +619,16 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   <data name="RegisterScreenView_Email" xml:space="preserve">
     <value>E-Mail</value>
   </data>
-  <data name="RegisterScreenView_Error_Missing_FirstName">
+  <data name="RegisterScreenView_Error_Missing_FirstName" xml:space="preserve">
     <value>Bitte gib deinen Vornamen ein</value>
   </data>
-  <data name="RegisterScreenView_Error_Missing_LastName">
+  <data name="RegisterScreenView_Error_Missing_LastName" xml:space="preserve">
     <value>Bitte gib deinen Nachnamen ein</value>
   </data>
-  <data name="RegisterScreenView_FirstName">
+  <data name="RegisterScreenView_FirstName" xml:space="preserve">
     <value>Vorname</value>
   </data>
-  <data name="RegisterScreenView_LastName">
+  <data name="RegisterScreenView_LastName" xml:space="preserve">
     <value>Nachname</value>
   </data>
   <data name="RegisterScreenView_Password" xml:space="preserve">
@@ -891,5 +891,8 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   </data>
   <data name="ProfileView_GoTo" xml:space="preserve">
     <value>GEHE ZU</value>
+  </data>
+  <data name="AchievementsScreenView_Achievement_Count" xml:space="preserve">
+    <value> Erfolge abgeschlossen</value>
   </data>
 </root>
