@@ -299,7 +299,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Map
                 {
                     Title = osmMap.DetailsRoute.Name,
                     Width = 5f,
-                    Color = ((Color)resources.GetResourceValue("SecondaryColor")).ToAndroid(),
+                    Color = (resources.TryGetResourceColorvalue("SecondaryColor")).ToAndroid(),
                     //Color = Color.Orange,
                     Points = route.FirstSection.Select(geoLocation => new GeoPoint(geoLocation.Latitude, geoLocation.Longitude)).ToList(),
                     Geodesic = true
@@ -308,7 +308,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Map
                 {
                     Title = osmMap.DetailsRoute.Name,
                     Width = 5f,
-                    Color = ((Color)resources.GetResourceValue("PrimaryColor")).ToAndroid(),
+                    Color = (resources.TryGetResourceColorvalue("PrimaryColor")).ToAndroid(),
                     //Color = Color.Blue,
                     Points = route.NonFirstSections.Select(geoLocation => new GeoPoint(geoLocation.Latitude, geoLocation.Longitude)).ToList(),
                     Geodesic = true

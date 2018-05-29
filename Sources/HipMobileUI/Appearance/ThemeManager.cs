@@ -14,22 +14,36 @@
 
 using System.Collections.Generic;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 using Xamarin.Forms;
+using Settings = PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers.Settings;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Appearance
 {
     public interface IThemeManager
     {
         void UpdateViewStyle(ResourceDictionary resourceDictionary, IEnumerable<string> styleProperties);
-        void AdjustTopBarTheme();
+        void AdjustTheme();
     }
 
+    /// <summary>
+    /// <see cref="ThemeManager"/> is supposed to handle color changes during the switch between AdventurerMode 
+    /// and ProfessorMode (if <see cref="Settings.AdventurerMode"/> is false).
+    /// In <see cref="ThemeManager"/> the colors PrimaryColor, PrimaryDarkColor, SecondaryColor and SecondaryDarkColor 
+    /// get redefined with colors actually being used on runtime instead of the initially defined coloring in <see cref="App"/>.xaml.
+    /// 
+    /// Local decisions between Primary and Secondary coloring are done using <see cref="Settings.AdventurerMode"/> explicitly.
+    /// </summary>
     public class ThemeManager : IThemeManager
     {
-        private readonly ApplicationResourcesProvider resourceProvider = IoCManager.Resolve<ApplicationResourcesProvider>();
+        //actual coloring used during runtime
+        private static readonly Color adventurerModeColor = Color.FromHex("FFE57F"); //light yellow "#FFE57F"
+        private static readonly Color adventurerModeColorDarker = Color.FromRgb(255, 204, 0); //dark yellow; "#FFCC00"
+        private static readonly Color professorModeColor = Color.FromRgb(127, 172, 255); //default light blue; "#7facff"
+        private static readonly Color professorModeColorDarker = Color.FromRgb(1, 73, 209); //default dark blue; "#0149D1"
+
+        private ApplicationResourcesProvider resourceProvider = IoCManager.Resolve<ApplicationResourcesProvider>();
         private readonly IBarsColorsChanger barsColorsChanger = IoCManager.Resolve<IBarsColorsChanger>();
         private string modeSuffix;
 
@@ -55,27 +69,32 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Appearance
             return resourceProvider.GetResourceValue(propertyName + modeSuffix);
         }
 
-        public void AdjustTopBarTheme()
+        /// <summary>
+        /// Adjust Theme according to current value of <see cref="Settings.AdventurerMode"/>.
+        /// If true, the AdventurererMode will be enabled.
+        /// If false, the ProfessorMode will be enabled.
+        /// </summary>
+        public void AdjustTheme()
         {
             if (Settings.AdventurerMode)
-                ChangeToAdventurerTheme();
+            {
+                //switching colors, so we can later still use the other colors (i.e. on switching the Mode)
+                resourceProvider.ChangeResourceValue("PrimaryColor", adventurerModeColor);
+                resourceProvider.ChangeResourceValue("PrimaryDarkColor", adventurerModeColorDarker);
+                resourceProvider.ChangeResourceValue("SecondaryColor", professorModeColor);
+                resourceProvider.ChangeResourceValue("SecondaryDarkColor", professorModeColorDarker);
+            }
             else
-                ChangeToProfessorTheme();
-        }
+            {
+                //switching colors, so we can later still use the other colors (i.e. on switching the Mode)
+                resourceProvider.ChangeResourceValue("PrimaryColor", professorModeColor);
+                resourceProvider.ChangeResourceValue("PrimaryDarkColor", professorModeColorDarker);
+                resourceProvider.ChangeResourceValue("SecondaryColor", adventurerModeColor);
+                resourceProvider.ChangeResourceValue("SecondaryDarkColor", adventurerModeColorDarker);
+            }
 
-        private void ChangeToAdventurerTheme()
-        {
-            barsColorsChanger.ChangeToolbarColor(GetResourceColor("SecondaryDarkColor"), GetResourceColor("SecondaryColor"));
-        }
-
-        private void ChangeToProfessorTheme()
-        {
-            barsColorsChanger.ChangeToolbarColor(GetResourceColor("PrimaryDarkColor"), GetResourceColor("PrimaryColor"));
-        }
-
-        private Color GetResourceColor(string color)
-        {
-            return (Color)resourceProvider.GetResourceValue(color);
+            Color currentPrimaryDarkColor = resourceProvider.TryGetResourceColorvalue("PrimaryDarkColor");
+            barsColorsChanger.ChangeToolbarColor(currentPrimaryDarkColor, currentPrimaryDarkColor);   //repaint toolbar
         }
     }
 }

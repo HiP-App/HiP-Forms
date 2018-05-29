@@ -20,7 +20,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer
 
         public const string LoginUrl = BaseUrl + "oauth/token";
 
-        public const string RegisterUrl = BaseUrl + "dbconnections/signup";
+        public const string RegisterUrl = "https://docker-hip.cs.uni-paderborn.de/public/userstore/api/Users";
         public const string ForgotPasswordUrl = BaseUrl + "dbconnections/change_password";
 
         /// <summary>

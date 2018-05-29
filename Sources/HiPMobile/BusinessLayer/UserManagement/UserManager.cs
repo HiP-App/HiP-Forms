@@ -15,7 +15,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.UserManageme
     {
         Task<UserStatus> Login(User user);
         Task<UserStatus> Logout(User user);
-        Task<UserStatus> Register(User user);
+        Task<UserStatus> Register(User user, string Firstname, string Lastname);
         Task<UserStatus> ForgotPassword(User user);
     }
 
@@ -68,9 +68,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.UserManageme
             return UserStatus.LoggedOut;
         }
 
-        public async Task<UserStatus> Register(User user)
+        public async Task<UserStatus> Register(User user, string firstname, string lastname)
         {
-            var isRegistered = await AuthApiAccess.Register(user.Username, user.Password);
+            var isRegistered = await AuthApiAccess.Register(user.Username, user.Password, firstname, lastname);
 
             if (isRegistered)
             {
