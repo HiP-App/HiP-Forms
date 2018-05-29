@@ -21,38 +21,60 @@
              xmlns:helpers="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;assembly=HipMobileUI"
              xmlns:views="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Views;assembly=HipMobileUI"
              xmlns:authenticationApiAccess="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.AuthenticationApiAccess;assembly=HiPMobile"
+             xmlns:controls="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Controls;assembly=HipMobileUI"
              x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Views.LoginScreenView">
     <ContentView.Content>
         <views:NotificationExtensionView>
             <views:NotificationExtensionView.ContentTemplate>
-                <Grid x:Name="Grid" Padding="10" HorizontalOptions="Fill" BackgroundColor="White">
-                    <Entry x:Name="EmailEntry"
+               <Grid x:Name="Grid" HorizontalOptions="Fill" Padding="15" BackgroundColor="White" RowSpacing="0.5">
+                        <!--<Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>-->
+                        <!--<Grid.ColumnDefinitions>
+                      <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>-->
+
+                        <Entry x:Name="EmailEntry" 
                            Keyboard="Email"
                            VerticalOptions="End"
-                           Placeholder="{helpers:Translate LoginScreenView_Email}" Text="{Binding Email}"
+                           Placeholder="{helpers:Translate LoginScreenView_Email}"
+                           Text="{Binding Email}"
                            TextChanged="Entry_TextChanged" />
-                    <Entry x:Name="PasswordEntry"
-                           IsPassword="True" Placeholder="{helpers:Translate LoginScreenView_Password}"
-                           Text="{Binding Password}" TextChanged="Entry_TextChanged" />
-                    <Label x:Name="ErrorMessageLabel"
+
+                        <Entry x:Name="PasswordEntry" 
+                           IsPassword="True"
+                           Placeholder="{helpers:Translate LoginScreenView_Password}" 
+                           Text="{Binding Password}" 
+                           TextChanged="Entry_TextChanged"/>
+
+                        <Label x:Name="ErrorMessageLabel"
                            HorizontalOptions="Center" VerticalOptions="Start"
                            FontSize="Small" TextColor="Red" Text="{Binding ErrorMessage, Mode=TwoWay}" />
-                    <Button x:Name="DebugLoginButton"
+
+                        <Button x:Name="DebugLoginButton" 
                             Text="{helpers:Translate LoginScreenView_Login_Debug}"
                             FontSize="Small"
                             IsVisible="{x:Static authenticationApiAccess:Constants.IsDebug}"
                             Command="{Binding DebugLoginCommand}" />
-                    <Button x:Name="RegisterButton"
+
+                        <Button x:Name="RegisterButton"
                             FontSize="Small" Text="{helpers:Translate LoginScreenView_Register}"
                             Command="{Binding RegisterCommand}" />
-                    <Button x:Name="ForgotPasswordButton"
+
+                        <Button x:Name="ForgotPasswordButton"
                             FontSize="Small" Text="{helpers:Translate LoginScreenView_Forgot_Password}"
                             Command="{Binding ForgotPasswordCommand}" />
-                    <Button x:Name="LoginButton"
+
+                        <Button x:Name="LoginButton"
                             Text="{helpers:Translate LoginScreenView_Login}"
                             Command="{Binding LoginCommand}" />
-                </Grid>
-            </views:NotificationExtensionView.ContentTemplate>
+                    </Grid>
+                </views:NotificationExtensionView.ContentTemplate>
         </views:NotificationExtensionView>
     </ContentView.Content>
 </ContentView>
