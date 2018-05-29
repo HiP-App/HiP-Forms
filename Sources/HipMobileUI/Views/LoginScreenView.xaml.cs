@@ -57,13 +57,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
 
                 Grid.RowDefinitions.Clear();
                 Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.3, GridUnitType.Star) });
-                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.3, GridUnitType.Star) });
+                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.1, GridUnitType.Star) });
                 Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.3, GridUnitType.Star) });
                 // ReSharper disable once UnreachableCode
-                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(Constants.IsDebug ? 0.25 : 0, GridUnitType.Star) });
-                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.25, GridUnitType.Star) });
-                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.25, GridUnitType.Star) });
-                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.25, GridUnitType.Star) });
+                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(Constants.IsDebug ? 0.10 : 0, GridUnitType.Star) });
+                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.10, GridUnitType.Star) });
+                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.10, GridUnitType.Star) });
+                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.10, GridUnitType.Star) });
 
                 Grid.SetRow(EmailEntry, 0);
                 Grid.SetRow(PasswordEntry, 1);
@@ -83,12 +83,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
 
                 Grid.RowDefinitions.Clear();
                 Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.2, GridUnitType.Star) });
-                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.1, GridUnitType.Star) });
+                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.19, GridUnitType.Star) });
                 Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.1, GridUnitType.Star) });
                 // ReSharper disable once UnreachableCode
-                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(Constants.IsDebug ? 0.15 : 0, GridUnitType.Star) });
-                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.15, GridUnitType.Star) });
-                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.15, GridUnitType.Star) });
+                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(Constants.IsDebug ? 0.18 : 0, GridUnitType.Star) });
+                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.18, GridUnitType.Star) });
+                Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.18, GridUnitType.Star) });
                 Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.2, GridUnitType.Star) });
 
                 Grid.SetRow(EmailEntry, 0);
