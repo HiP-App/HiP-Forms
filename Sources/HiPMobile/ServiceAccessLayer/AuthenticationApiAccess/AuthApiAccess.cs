@@ -61,7 +61,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Authent
 
             var result = await clientApiClient.PostRequestBody(ServerEndpoints.RegisterUrl, content, false);
 
-            if (result.StatusCode == HttpStatusCode.OK)
+            if (result.StatusCode == HttpStatusCode.Created)
             {
                 return true;
             }
