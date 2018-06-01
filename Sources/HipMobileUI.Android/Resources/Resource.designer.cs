@@ -5250,6 +5250,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
 			// aapt resource value: 0x7f020059
 			public const int btn_close = 2130837593;
 			
+			// aapt resource value: 0x7f020059
+			public const int btn_close = 2130837593;
+			
 			// aapt resource value: 0x7f02005a
 			public const int design_bottom_navigation_item_background = 2130837594;
 			
@@ -6009,21 +6012,18 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
 			// aapt resource value: 0x7f020156
 			public const int notification_icon_background = 2130837846;
 			
-			// aapt resource value: 0x7f020164
-			public const int notification_template_icon_bg = 2130837860;
-			
 			// aapt resource value: 0x7f020165
 			public const int notification_template_icon_low_bg = 2130837861;
 			
 			// aapt resource value: 0x7f020157
 			public const int notification_tile_bg = 2130837847;
 			
+			// aapt resource value: 0x7f020157
+			public const int notification_tile_bg = 2130837847;
+			
 			// aapt resource value: 0x7f020158
 			public const int notify_panel_notification_icon_bg = 2130837848;
-			
-			// aapt resource value: 0x7f020159
-			public const int roundedbg = 2130837849;
-			
+						
 			// aapt resource value: 0x7f02015a
 			public const int roundedbgdark = 2130837850;
 			
