@@ -69,9 +69,12 @@
                 </ListView>
             </StackLayout>
             <ContentView HorizontalOptions="Fill" VerticalOptions="FillAndExpand" />
-            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="End" Orientation="Horizontal"
+            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="End" Orientation="Vertical"
                          BackgroundColor="{StaticResource PrimaryColor}" IsVisible="{Binding IsLoggedIn}"
 					   	 Padding="20">
+                <Label FontSize="24" Text="{Binding AchievementCount}" FontAttributes="Bold"					  	
+                       HorizontalTextAlignment="Center" VerticalOptions="Center"
+                       HorizontalOptions="CenterAndExpand" TextColor="White" Style="{DynamicResource Ssp-Light}"/>
                 <Label FontSize="24" Text="{Binding Score}" FontAttributes="Bold"					  	
                        HorizontalTextAlignment="Center" VerticalOptions="Center"
                        HorizontalOptions="CenterAndExpand" TextColor="White" Style="{DynamicResource Ssp-Light}"/>

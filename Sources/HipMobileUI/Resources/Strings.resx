@@ -892,4 +892,7 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   <data name="ProfileView_GoTo" xml:space="preserve">
     <value>GO TO</value>
   </data>
+  <data name="AchievementsScreenView_Achievement_Count" xml:space="preserve">
+    <value> Achievements unlocked</value>
+  </data>
 </root>
