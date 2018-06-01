@@ -148,12 +148,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
             return value;
         }
 
-        public int GetVersion() => 0;
+        public int GetVersion() => 1;
 
         public void DeleteDatabase()
         {
             using (var scope = Scope())
+            {
                 scope.Db.Database.EnsureDeleted();
+            }
         }
 
         public void CreateDatabase(int version)
@@ -167,9 +169,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
 
         private static IQueryable<T> BuildQuery<T>(IQueryable<T> dataSource, IEnumerable<string> pathsToInclude) where T : class
         {
-            foreach (var path in pathsToInclude)
-                dataSource = dataSource.Include(path);
-            return dataSource;
+            return pathsToInclude.Aggregate(dataSource, (current, path) => current.Include(path));
         }
 
         class DbScope : IDisposable
