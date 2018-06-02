@@ -65,7 +65,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             StartDescriptionPlaybackCommand = new Command(StartDescriptionPlayback);
 
             Tabs = new ObservableCollection<string> { Strings.RouteDetailsPageViewModel_Description, Strings.RouteDetailsPageViewModel_Map };
-            GpsLocation = IoCManager.Resolve<ILocationManager>().LastKnownLocation.ToGeoLocation();
+            GpsLocation = IoCManager.Resolve<ILocationManager>().LastKnownLocation?.ToGeoLocation() ?? new GeoLocation(0, 0);
             DetailsRoute = route;
             ShowDetailsRoute = true;
 
