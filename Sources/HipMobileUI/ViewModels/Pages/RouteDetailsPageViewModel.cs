@@ -74,8 +74,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             audioPlayer.CurrentAudio = route.Audio;
             audioPlayer.AudioTitle = route.Name;
             audioPlayer.IsPlayingChanged += AudioPlayerOnIsPlayingChanged;
-          
-
         }
 
         private async void SetRouteImage(Route route)
