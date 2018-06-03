@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelConverters;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
@@ -25,6 +26,8 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer;
 using Unity.Attributes;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers
@@ -36,6 +39,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
 
         [Dependency]
         public PageConverter PageConverter { private get; set; }
+
+        private QuizConverter QuizConverter { get; } = IoCManager.Resolve<QuizConverter>();
 
         public FullExhibitDataFetcher(IPagesApiAccess pagesApiAccess, IMediaDataFetcher mediaDataFetcher)
         {
@@ -58,9 +63,16 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
 
             listener.SetMaxProgress(totalSteps);
 
-            await DbManager.InTransactionAsync(async transaction =>
+            // We need to attach all images since the quiz download may download existing images
+            var itemsToTrack = DbManager
+                               .DataAccess
+                               .GetItems<Image>()
+                               .Where(image => image.Id != BackupData.BackupImage.Id && image.Id != BackupData.BackupImageTag.Id);
+            await DbManager.InTransactionAsync(itemsToTrack, async transaction =>
             {
                 await ProcessPages(exhibitId, token, listener, transaction.DataAccess);
+                await DownloadQuizes(idForRestApi, token, transaction.DataAccess);
+
                 if (token.IsCancellationRequested)
                 {
                     transaction.Rollback();
@@ -68,9 +80,30 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             });
         }
 
-        public async Task FetchFullExhibitDataIntoDatabaseWithFetchedPagesAndMedia(
-            string exhibitId, ExhibitPagesAndMediaContainer exhibitPagesAndMediaContainer,
-            CancellationToken token, IProgressListener listener)
+        private async Task DownloadQuizes(int exhibitId, CancellationToken token, ITransactionDataAccess transactionDataAccess)
+        {
+            var quizApiAccess = IoCManager.Resolve<IQuizApiAccess>();
+            try
+            {
+                var quizDtos = await quizApiAccess.GetQuestionsForExhibitAsync(exhibitId);
+                var quizzes = quizDtos.Select(QuizConverter.Convert).ToList();
+                foreach (var quiz in quizzes)
+                {
+                    var quizImage = quiz.Image?.IdForRestApi;
+                    await mediaDataFetcher.FetchMedias(new[] { quizImage }.WhereNotNull().ToList(), token, null);
+                }
+
+                transactionDataAccess.Quizzes().Add(quizzes);
+            }
+            catch (NotFoundException)
+            {
+                // Don't crash if there are no questions
+                Debug.WriteLine($"No quiz found for exhibit {exhibitId}");
+            }
+        }
+
+        public async Task FetchFullExhibitDataIntoDatabaseWithFetchedPagesAndMedia(string exhibitId, ExhibitPagesAndMediaContainer exhibitPagesAndMediaContainer,
+                                                                                   CancellationToken token, IProgressListener listener, int dbExhibitIdForRestApi)
         {
             requiredMedia = exhibitPagesAndMediaContainer.RequiredMedia;
             pageItems = exhibitPagesAndMediaContainer.PageDtos;
@@ -78,6 +111,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             await DbManager.InTransactionAsync(async transaction =>
             {
                 await ProcessPages(exhibitId, token, listener, transaction.DataAccess);
+                await DownloadQuizes(dbExhibitIdForRestApi, token, transaction.DataAccess);
+
                 if (token.IsCancellationRequested)
                 {
                     transaction.Rollback();
