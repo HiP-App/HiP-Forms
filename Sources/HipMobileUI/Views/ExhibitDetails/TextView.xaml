@@ -18,7 +18,7 @@
 
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Views.ExhibitDetails.TextView"
-             xmlns:controls1="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Controls;assembly=HipMobileUI"
+      
              xmlns:views1="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Views;assembly=HipMobileUI">
     <ContentView.Content>
         <views1:NotificationExtensionView>
@@ -33,11 +33,7 @@
                                     <StackLayout.GestureRecognizers>
                                         <TapGestureRecognizer Command="{Binding ToggleButtonVisibility}" />
                                     </StackLayout.GestureRecognizers>
-                                    <controls1:CustomFontLabel Text="{Binding Text}"
-                                                               FontFamilyName="{Binding FontFamily}"
-                                                               TextColor="Black"
-                                                               FontSize="16"
-                                                               Margin="0,0,0,30" />
+                                    
                                 </StackLayout>
                             </ScrollView>
                         </RelativeLayout>
