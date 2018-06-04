@@ -28,6 +28,7 @@ using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.NotificationPlayer;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels;
 using System.IO;
+using CarouselView.FormsPlugin.iOS;
 using UIKit;
 using UserNotifications;
 using Xamarin.Forms;
@@ -91,6 +92,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios
             // init forms and third party libraries
             CachedImageRenderer.Init();
             Xamarin.Forms.Forms.Init();
+            CarouselViewRenderer.Init();
 
             DesignMode.IsEnabled = false;
             LoadApplication(new App());

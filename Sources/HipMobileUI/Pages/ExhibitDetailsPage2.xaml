@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:abstractions="clr-namespace:CarouselView.FormsPlugin.Abstractions;assembly=CarouselView.FormsPlugin.Abstractions"
+             x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Pages.ExhibitDetailsPage2">
+    <ContentPage.Content>
+        <abstractions:CarouselViewControl Orientation="Horizontal" InterPageSpacing="10" Position="{Binding Position}"
+                                          ItemsSource="{Binding Pages}" VerticalOptions="FillAndExpand"
+                                          HorizontalOptions="FillAndExpand">
+            <abstractions:CarouselViewControl.ItemTemplate>
+                <DataTemplate>
+                    <Label VerticalOptions="FillAndExpand"
+                           HorizontalOptions="FillAndExpand" BackgroundColor="Aqua" Text="ABC" />
+                </DataTemplate>
+            </abstractions:CarouselViewControl.ItemTemplate>
+        </abstractions:CarouselViewControl>
+    </ContentPage.Content>
+</ContentPage>
