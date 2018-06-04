@@ -110,6 +110,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
 
                 if (scope.IsDbContextTransient)
                     scope.Db.SaveChangesAndDetach();
+                else
+                    scope.Db.SaveChanges();
             }
         }
 
@@ -121,6 +123,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
 
                 if (scope.IsDbContextTransient)
                     scope.Db.SaveChangesAndDetach();
+                else
+                    scope.Db.SaveChanges();
             }
         }
 
