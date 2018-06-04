@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+// Copyright (C) 2017 History in Paderborn App - Universität Paderborn
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+-->
+
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:container="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Container;assembly=HipMobileUI"
+             xmlns:controls="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Controls;assembly=HipMobileUI"
+             xmlns:helpers="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;assembly=HipMobileUI"
+             xmlns:views="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Views;assembly=HipMobileUI"
+             x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Views.ProfilePictureScreenView">
+    <ContentView.Content>
+        <views:NotificationExtensionView>
+            <views:NotificationExtensionView.ContentTemplate>
+                <Grid x:Name="OuterGrid" BackgroundColor="White">
+                    <!--Top for current and new avatar-->
+                    <!--The row and column definition is made in code to adjust them to the device orientation-->
+                    <Grid x:Name="InnerGrid">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0.1*" />
+                            <RowDefinition Height="0.8*" />
+                            <RowDefinition Height="0.1*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.5*" />
+                            <ColumnDefinition Width="0.5*" />
+                        </Grid.ColumnDefinitions>
+                        <!--first row-->
+                        <AbsoluteLayout Grid.Row="0" Grid.Column="0">
+                            <Label FontSize="23" Text="{helpers:Translate ProfileView_Overview_Score}"
+                                   Style="{DynamicResource Ssp-Regular}" TextColor="Black" />
+                        </AbsoluteLayout>
+                        <AbsoluteLayout Grid.Row="0" Grid.Column="1">
+                            <Label FontSize="23" Text="{helpers:Translate ProfileView_Overview_Score}"
+                                   Style="{DynamicResource Ssp-Regular}" TextColor="Black" />
+                        </AbsoluteLayout>
+
+                        <!--second row-->
+                        <AbsoluteLayout Grid.Row="1" Grid.Column="0">
+                            <!--current avatar-->
+                        
+                                <BoxView AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.5,    0.5,    0.9,    0.9" BackgroundColor="{StaticResource DarkGrayColor}"/>
+                                <Image AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.5,   0.5,   0.85,    0.45" Aspect="AspectFit" Source="{Binding Avatar}"/>
+                                   
+                                
+                            </AbsoluteLayout>
+                            <!--new avatar-->
+                            <AbsoluteLayout Grid.Row="1" Grid.Column="1">
+                                <BoxView AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.5,    0.5,    0.9,    0.9" BackgroundColor="{StaticResource DarkGrayColor}"/>
+                                <Image AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0.5,   0.5,   0.85,    0.45" Aspect="AspectFit" Source="{Binding Avatar}">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                            Command="{Binding OnImageTappedCommand}"
+                                            NumberOfTapsRequired="1" />
+                                    </Image.GestureRecognizers>
+                                </Image>
+                            </AbsoluteLayout>
+                      
+                        <!--thrid row-->
+                        <AbsoluteLayout Grid.Row="2" Grid.Column="0">
+                            <Label FontSize="23" Text="{helpers:Translate ProfileView_Overview_Score}"
+                                Style="{DynamicResource Ssp-Regular}" TextColor="Black" />
+                        </AbsoluteLayout>
+                        <AbsoluteLayout Grid.Row="2" Grid.Column="1">
+                            <Label FontSize="23" Text="{helpers:Translate ProfileView_Overview_Score}"
+                                Style="{DynamicResource Ssp-Regular}" TextColor="Black" />
+                        </AbsoluteLayout>
+                        
+                    </Grid>
+
+
+
+                    
+                    
+                    
+                    
+                    
+                    
+<!--
+                    <controls:ZeroPaddingButton Margin="20,0,0,0" Text="{helpers:Translate ProfileView_GoTo}" TextColor="Black"  
+                                                Command="{Binding GoToAchievementsCommand}" HeightRequest="25" WidthRequest="60"/>
+
+                    
+                            <ScrollView>
+                                <StackLayout HorizontalOptions="Fill" VerticalOptions="StartAndExpand" Spacing="0" Padding="3"> -->
+                                    <!-- This could also be changed to use DataTemplates --> <!--
+                                    <Label  FontSize="20" Text="Statistik 1" HorizontalTextAlignment="Start"
+                                       BackgroundColor="{StaticResource MediumGrayColor}" Style="{DynamicResource Ssp-Regular}"/>
+                                    <Label FontSize="20" Text="Statistik 2" HorizontalTextAlignment="Start"
+                                       BackgroundColor="{StaticResource LightGrayColor}" Style="{DynamicResource Ssp-Regular}"/>
+                                    <Label FontSize="20" Text="Statistik 3" HorizontalTextAlignment="Start"
+                                       BackgroundColor="{StaticResource MediumGrayColor}" Style="{DynamicResource Ssp-Regular}"/>
+                                    <Label FontSize="20" Text="Statistik 4" HorizontalTextAlignment="Start"
+                                       BackgroundColor="{StaticResource LightGrayColor}" Style="{DynamicResource Ssp-Regular}"/>
+                                    <Label FontSize="20" Text="Statistik 5" HorizontalTextAlignment="Start"
+                                       BackgroundColor="{StaticResource MediumGrayColor}" Style="{DynamicResource Ssp-Regular}"/>
+                                    <Label FontSize="20" Text="Statistik 6" HorizontalTextAlignment="Start"
+                                       BackgroundColor="{StaticResource LightGrayColor}" Style="{DynamicResource Ssp-Regular}"/>
+                                    <Label FontSize="20" Text="Statistik 7" HorizontalTextAlignment="Start"
+                                       BackgroundColor="{StaticResource MediumGrayColor}" Style="{DynamicResource Ssp-Regular}"/>
+                                    <Label FontSize="20" Text="Statistik 8" HorizontalTextAlignment="Start"
+                                       BackgroundColor="{StaticResource LightGrayColor}" Style="{DynamicResource Ssp-Regular}"/>
+                                    <Label FontSize="20" Text="Statistik 9" HorizontalTextAlignment="Start"
+                                       BackgroundColor="{StaticResource MediumGrayColor}" Style="{DynamicResource Ssp-Regular}"/>
+                                    <Label FontSize="20" Text="Statistik 10" HorizontalTextAlignment="Start"
+                                       BackgroundColor="{StaticResource LightGrayColor}" Style="{DynamicResource Ssp-Regular}"/>
+                                    <Label FontSize="20" Text="Statistik 11" HorizontalTextAlignment="Start"
+                                       BackgroundColor="{StaticResource MediumGrayColor}" Style="{DynamicResource Ssp-Regular}"/>
+                                    <Label FontSize="20" Text="Statistik 12" HorizontalTextAlignment="Start"
+                                       BackgroundColor="{StaticResource LightGrayColor}" Style="{DynamicResource Ssp-Regular}"/>
+                                    <Label FontSize="20" Text="Statistik 13" HorizontalTextAlignment="Start"
+                                       BackgroundColor="{StaticResource MediumGrayColor}" Style="{DynamicResource Ssp-Regular}"/>
+                                    <Label FontSize="20" Text="Statistik 14" HorizontalTextAlignment="Start"
+                                       BackgroundColor="{StaticResource LightGrayColor}" Style="{DynamicResource Ssp-Regular}"/>
+                                    <Label FontSize="20" Text="Statistik 15" HorizontalTextAlignment="Start"
+                                       BackgroundColor="{StaticResource MediumGrayColor}" Style="{DynamicResource Ssp-Regular}"/>
+                                    <Label FontSize="20" Text="Statistik 16" HorizontalTextAlignment="Start"
+                                       BackgroundColor="{StaticResource LightGrayColor}" Style="{DynamicResource Ssp-Regular}"/>
+                                    <Label FontSize="20" Text="Statistik 17" HorizontalTextAlignment="Start"
+                                       BackgroundColor="{StaticResource MediumGrayColor}" Style="{DynamicResource Ssp-Regular}"/>
+                                    <Label FontSize="20" Text="Statistik 18" HorizontalTextAlignment="Start"
+                                       BackgroundColor="{StaticResource LightGrayColor}" Style="{DynamicResource Ssp-Regular}"/>
+                                    <Label FontSize="20" Text="Statistik 19" HorizontalTextAlignment="Start"
+                                       BackgroundColor="{StaticResource MediumGrayColor}" Style="{DynamicResource Ssp-Regular}"/>
+                                    <Label FontSize="20" Text="Statistik 20" HorizontalTextAlignment="Start"
+                                       BackgroundColor="{StaticResource LightGrayColor}" Style="{DynamicResource Ssp-Regular}"/>
+                                </StackLayout>
+                            </ScrollView>
+                  -->
+                </Grid>
+            </views:NotificationExtensionView.ContentTemplate>
+        </views:NotificationExtensionView>
+    </ContentView.Content>
+</ContentView>

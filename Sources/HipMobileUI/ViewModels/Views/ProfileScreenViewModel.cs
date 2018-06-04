@@ -52,7 +52,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 
         private void OnImageTapped()
         {
-            //Add the selection for the different avatars here
+            GoToProfilePicture();
         }
 
         /// <summary>
@@ -93,6 +93,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         private void GoToAchievements()
         {
             mainPageViewModel.SwitchToAchievementsView();
+        }
+
+        private void GoToProfilePicture()
+        {
+            mainPageViewModel.SwitchToProfilePictureView();
         }
 
         async void LogoutDummy()
