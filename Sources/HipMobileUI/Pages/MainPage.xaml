@@ -55,7 +55,7 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <StackLayout Orientation="Horizontal" BackgroundColor="White" >
+                                <StackLayout Orientation="Horizontal" >
                                     <Image Source="{Binding Icon}" Margin="16,0,24,0" />
                                     <Label Text="{Binding Title}" VerticalTextAlignment="Center" FontSize="Small" Style="{DynamicResource Ssp-Regular}"/>
                                 </StackLayout>
