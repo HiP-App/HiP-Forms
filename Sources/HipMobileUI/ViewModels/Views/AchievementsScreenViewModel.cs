@@ -45,22 +45,22 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
                     AchievementNotification.QueueAchievementNotifications(newlyUnlocked);
                 });
 
-                //Every second time no achievements are received from the database
-                //If no achievements are received, this method is called again
-                var currentAchievements = DbManager.DataAccess.Achievements().GetAchievements();
-                if (currentAchievements.Any())
+                var achievementCounter = 0;
+                var unlockedCounter = 0;
+                foreach (var achievement in DbManager.DataAccess.Achievements().GetAchievements())
                 {
-                    foreach (var achievement in currentAchievements)
+                    Achievements.Add(AchievementViewModel.CreateFrom(achievement));
+
+                    if (achievement.IsUnlocked)
                     {
-                        Achievements.Add(AchievementViewModel.CreateFrom(achievement));
+                        unlockedCounter++;
                     }
 
-                    Score = $"{Strings.AchievementsScreenView_Score} {AppSharedData.CurrentAchievementsScore()}";
+                    achievementCounter++;
                 }
-                else
-                {
-                    await UpdateAchievements();
-                }
+
+                Score = $"{Strings.AchievementsScreenView_Score} {AppSharedData.CurrentAchievementsScore()}";
+                AchievementCount = $"{unlockedCounter + "/" + achievementCounter}{Strings.AchievementsScreenView_Achievement_Count}";
 
             }
             catch (Exception e)
@@ -101,6 +101,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         {
             get => isLoggedIn;
             set => SetProperty(ref isLoggedIn, value);
+        }
+
+        private string achievementCount;
+
+        public string AchievementCount
+        {
+            get => achievementCount;
+            set => SetProperty(ref achievementCount, value);
         }
     }
 }
