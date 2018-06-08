@@ -33,11 +33,8 @@
                                     <StackLayout.GestureRecognizers>
                                         <TapGestureRecognizer Command="{Binding ToggleButtonVisibility}" />
                                     </StackLayout.GestureRecognizers>
-                                    <controls1:CustomFontLabel Text="{Binding Text}"
-                                                               FontFamilyName="{Binding FontFamily}"
-                                                               TextColor="Black"
-                                                               FontSize="16"
-                                                               Margin="0,0,0,30" />
+                                    <Label Text="{Binding Text}"
+                                      TextColor="Black" FontSize="16" Margin="0,0,0,30" />
                                 </StackLayout>
                             </ScrollView>
                         </RelativeLayout>
