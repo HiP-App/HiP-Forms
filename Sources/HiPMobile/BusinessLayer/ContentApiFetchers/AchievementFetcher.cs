@@ -44,10 +44,23 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                 .Select(it => it.Id.ToString()).ToList();
 
             var achievements = AchievementConverter.Convert(achievementDtos, dataAccess).ToList();
+
             foreach (var unlocked in achievements.Where(it => unlockedAchievementIds.Contains(it.Id)))
+             {
+                 unlocked.IsUnlocked = true;
+             }
+
+            await DbManager.InTransactionAsync(transaction =>
             {
-                unlocked.IsUnlocked = true;
-            }
+                foreach (var achievement in achievements)
+                {
+                    if (dataAccess.GetItem<AchievementBase>(achievement.Id) == null)
+                    {
+                        transaction.DataAccess.AddItem(achievement);
+                    }
+                }
+            });
+
             return achievements.Where(it => it.IsUnlocked && !existingUnlocked.Contains(it.Id));
         }
     }

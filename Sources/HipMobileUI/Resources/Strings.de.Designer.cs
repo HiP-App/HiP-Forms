@@ -68,7 +68,18 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
                 return ResourceManager.GetString("AchievementsDetailsExhibitView_VisitedMOfNExhibits", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to Erfolge abgeschlossen
+        /// </summary>
+        public static string AchievementsScreenView_Achievement_Count
+        {
+            get
+            {
+                return ResourceManager.GetString("AchievementsScreenView_Achievement_Count", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Um Erfolge zu nutzen, musst du dich zunächst einloggen..
         /// </summary>

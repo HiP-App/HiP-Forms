@@ -5,6 +5,7 @@ using System.ComponentModel;
 using Plugin.Settings;
 using Plugin.Settings.Abstractions;
 using System.Runtime.CompilerServices;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
 {
@@ -17,9 +18,23 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
     {
         private static ISettings AppSettings => CrossSettings.Current;
 
+        public static class ExhibitScores
+        {
+            private const string FileName = "exhibit_scores";
+
+            public static int? ScoreFor(Exhibit exhibit)
+            {
+                var score = AppSettings.GetValueOrDefault(exhibit.Id, -1, FileName);
+                return score == -1 ? (int?) null : score;
+            }
+
+            public static void SaveScoreFor(Exhibit exhibit, int score) =>
+                AppSettings.AddOrUpdateValue(exhibit.Id, score, FileName);
+        }
+
         public sealed class Events : INotifyPropertyChanged
         {
-            public void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
+            public void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
             {
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
             }
@@ -40,7 +55,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
 
         #endregion
 
-
         public static string GeneralSettings
         {
             get => AppSettings.GetValueOrDefault(SettingsKey, SettingsDefault);
@@ -50,8 +64,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
         /// <summary>
         /// Sedtting for the database version.
         /// </summary>
+
         #region MyRegion
         private const string DatabaseVersionKey = "database_version_key";
+
         private static readonly int DatabaseVersionDefault = 0;
 
         public static int DatabaseVersion
@@ -59,17 +75,20 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
             get => AppSettings.GetValueOrDefault(DatabaseVersionKey, DatabaseVersionDefault);
             set => AppSettings.AddOrUpdateValue(DatabaseVersionKey, value);
         }
+
         #endregion
 
         /// <summary>
         /// Settings from the Settings Screen.
         /// </summary>
+
         #region SettingsScreen
 
         /// <summary>
         /// After end of audio playback, switch automatically to next page
         /// </summary>
         private const string AutoSwitchPageKey = "auto_switch_page_key";
+
         private static readonly bool AutoSwitchPageDefault = false;
 
         public static bool AutoSwitchPage
@@ -82,6 +101,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
         /// Automatically start audio playback for current page
         /// </summary>
         private const string AutoStartAudioKey = "auto_start_audio_key";
+
         private static readonly bool AutoStartAudioDefault = false;
 
         public static bool AutoStartAudio
@@ -94,6 +114,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
         /// Show hint for audio playback again
         /// </summary>
         private const string RepeatHintAudioKey = "repeat_hint_audio_key";
+
         private static readonly bool RepeatHintAudioDefault = true;
 
         public static bool RepeatHintAudio
@@ -106,6 +127,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
         /// Show hint for automatically switching to next page again
         /// </summary>
         private const string RepeatHintAutoPageSwitchKey = "repeat_hint_auto_page_switch_key";
+
         private static readonly bool RepeatHintAutoPageSwitchDefault = true;
 
         public static bool RepeatHintAutoPageSwitch
@@ -118,6 +140,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
         /// Show app introduction by restarting the app again
         /// </summary>
         private const string RepeatIntroKey = "repeat_intro_key";
+
         private static readonly bool RepeatIntroDefault = true;
 
         public static bool RepeatIntro
@@ -130,6 +153,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
         /// Always download new data if available
         /// </summary>
         private const string DownloadDataKey = "download_data_key";
+
         private static readonly bool DownloadDataDefault = true;
 
         public static bool AlwaysDownloadData
@@ -142,6 +166,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
         /// Font size used for the audio transcripts
         /// </summary>
         private const string AudioTranscriptFontSizeKey = "audio_transcript_font_size_key";
+
         private static readonly double AudioTranscriptFontSizeDefault = 19;
 
         public static double AudioTranscriptFontSize
@@ -154,6 +179,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
         /// Download data only over wifi
         /// </summary>
         private const string WifiOnlyKey = "wifi_only_key";
+
         private static readonly bool WifiOnlyDefault = true;
 
         public static bool WifiOnly
@@ -161,7 +187,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
             get => AppSettings.GetValueOrDefault(WifiOnlyKey, WifiOnlyDefault);
             set => AppSettings.AddOrUpdateValue(WifiOnlyKey, value);
         }
-
 
         private const string AdventurerModeKey = "adventurer_mode_key";
         private static readonly bool AdventurerModeDefault = false; //need to be false, because initially loaded static PrimaryColors from Xamarin.Forms do match colors for ProfessorMode
@@ -185,17 +210,20 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
             get => AppSettings.GetValueOrDefault(InitialThemeSelectedKey, InitialThemeSelectedDefault);
             set => AppSettings.AddOrUpdateValue(InitialThemeSelectedKey, value);
         }
+
         #endregion
 
         /// <summary>
         /// User data
         /// </summary>
+
         #region UserData
 
         /// <summary>
         /// Indicator flag if a user is logged in
         /// </summary>
         private const string IsLoggedInKey = "is_logged_in_key";
+
         private static readonly bool IsLoggedInDefault = false;
 
         public static bool IsLoggedIn
@@ -212,7 +240,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
         /// The username of the current user
         /// </summary>
         private const string UserNameKey = "username_key";
-        private static readonly string UsernameDefault = "";  //proper username
+
+        private static readonly string UsernameDefault = "";  //proper username 
 
         public static string Username
         {
@@ -224,7 +253,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
         /// The e-mail of the current user
         /// </summary>
         private const string EMailKey = "email_key";
-       private static readonly string EMailDefault = "";// get rid of this
+
+       private static readonly string EMailDefault = "";// get rid of this max@power.com
 
         public static string EMail
         {
@@ -236,6 +266,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
         /// The password of the current user
         /// </summary>
         private const string PasswordKey = "password_key";
+
         private static readonly string PasswordDefault = "";
 
         public static string Password
@@ -248,6 +279,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
         /// The access token returned from the auth api after a successful login
         /// </summary>
         private const string AccessTokenKey = "access_token_key";
+
         private static readonly string AccessTokenDefault = "";
 
         public static string AccessToken
@@ -265,12 +297,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
             set => AppSettings.AddOrUpdateValue(GenericTokenKey, value);
         }
 
-
-
         /// <summary>
         /// The score of the current user
         /// </summary>
         private const string ScoreKey = "score_key";
+
         private static readonly int ScoreDefault = 420;
 
         public static int Score
@@ -283,6 +314,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
         /// The number of gained achievements of the current user
         /// </summary>
         private const string AchievementsKey = "achievements_key";
+
         private static readonly int AchievementsDefault = 12;
 
         public static int Achievements
@@ -295,6 +327,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
         /// The part of everything you can do with the app as a percentage
         /// </summary>
         private const string CompletenessKey = "completeness_key";
+
         private static readonly int CompletenessDefault = 10;
 
         public static int Completeness

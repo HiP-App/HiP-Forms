@@ -11,3 +11,4 @@ packages/
 # JetBrains Rider
 *.iml
 .idea
+Sources/HipMobileUI.Android/Resources/Resource.designer.cs
