@@ -68,18 +68,16 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
                 return ResourceManager.GetString("AchievementsDetailsExhibitView_VisitedMOfNExhibits", resourceCulture);
             }
         }
-
+        
         /// <summary>
-        ///   Looks up a localized string similar to Achievements unlocked
+        ///   Looks up a localized string similar to  Achievements unlocked.
         /// </summary>
-        public static string AchievementsScreenView_Achievement_Count
-        {
-            get
-            {
+        public static string AchievementsScreenView_Achievement_Count {
+            get {
                 return ResourceManager.GetString("AchievementsScreenView_Achievement_Count", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to You have to sign up or register first before you can use the achievements..
         /// </summary>
@@ -1693,6 +1691,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The username input field is empty.
+        /// </summary>
+        public static string RegisterScreenView_Error_Missing_Username {
+            get {
+                return ResourceManager.GetString("RegisterScreenView_Error_Missing_Username", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Registration failed.
         /// </summary>
         public static string RegisterScreenView_Error_Register_Fail {
@@ -1743,6 +1750,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         public static string RegisterScreenView_RepeatPassword {
             get {
                 return ResourceManager.GetString("RegisterScreenView_RepeatPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Username.
+        /// </summary>
+        public static string RegisterScreenView_Username {
+            get {
+                return ResourceManager.GetString("RegisterScreenView_Username", resourceCulture);
             }
         }
         

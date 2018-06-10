@@ -42,12 +42,18 @@
                             <local:EmailValidationBehavior x:Name="ValidEmailBehavior" />
                         </Entry.Behaviors>
                     </Entry>
+                    
+                    <Entry x:Name="UsernameEntry"
+                           Placeholder="{helpers:Translate RegisterScreenView_Username}" 
+                           Text="{Binding Username, Mode=OneWayToSource}" />
+
                     <Entry x:Name="PasswordEntry"
                            IsPassword="True"
                            Placeholder="{helpers:Translate RegisterScreenView_Password}" Text="{Binding Password, Mode=OneWayToSource}" />
                     <Entry x:Name="RePasswordEntry"
                            IsPassword="True"
                            Placeholder="{helpers:Translate RegisterScreenView_RepeatPassword}" Text="{Binding RepeatPassword, Mode=OneWayToSource}" />
+                    
                     <Label x:Name="ErrorMsgLabel"
                            HorizontalOptions="Center"
                            FontSize="Small" TextColor="{StaticResource TertiaryDarkColor}" Text="{Binding ErrorMessage, Mode=TwoWay}" Style="{DynamicResource Ssp-Regular}"/>

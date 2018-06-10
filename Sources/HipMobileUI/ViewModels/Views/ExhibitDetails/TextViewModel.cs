@@ -47,12 +47,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views.ExhibitDetail
         /// <summary>
         /// Name of the font family to be used
         /// </summary>
+        /*
         public string FontFamily
         {
             get { return fontFamily; }
             set { SetProperty(ref fontFamily, value); }
         }
-
+        */
         /// <summary>
         /// Name of the font family to be used
         /// </summary>

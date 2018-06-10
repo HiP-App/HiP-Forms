@@ -892,7 +892,15 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   <data name="ProfileView_GoTo" xml:space="preserve">
     <value>GO TO</value>
   </data>
+
+  <data name="RegisterScreenView_Error_Missing_Username" xml:space="preserve">
+    <value>The username input field is empty</value>
+  </data>
+  <data name="RegisterScreenView_Username" xml:space="preserve">
+    <value>Username</value>
+</data>
   <data name="AchievementsScreenView_Achievement_Count" xml:space="preserve">
     <value> Achievements unlocked</value>
+
   </data>
 </root>

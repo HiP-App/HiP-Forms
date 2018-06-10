@@ -34,7 +34,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
         {
             this.db = db ?? throw new ArgumentNullException(nameof(db));
             DataAccess = new EFCoreDataAccess(db);
-            transaction = db.Database.BeginTransaction();
+           // transaction = db.Database.BeginTransaction();
         }
 
         public override void Commit()
@@ -42,14 +42,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
             if (rolledBack) return;
 
             db.SaveChangesAndDetach();
-            transaction.Commit();
+            //transaction.Commit();
             db.Dispose();
         }
 
         public override void Rollback()
         {
             rolledBack = true;
-            transaction.Rollback();
+            //transaction.Rollback();
             db.Dispose();
         }
     }

@@ -241,7 +241,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
         /// </summary>
         private const string UserNameKey = "username_key";
 
-        private static readonly string UsernameDefault = "Max Power";
+        private static readonly string UsernameDefault = "";  //proper username 
 
         public static string Username
         {
@@ -254,7 +254,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
         /// </summary>
         private const string EMailKey = "email_key";
 
-        private static readonly string EMailDefault = "max@power.com";
+       private static readonly string EMailDefault = "";// get rid of this max@power.com
 
         public static string EMail
         {
