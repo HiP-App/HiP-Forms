@@ -20,7 +20,7 @@
              Title="{Binding Title}"
              xmlns:customTriggers="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.CustomTriggers;assembly=HipMobileUI"
              xmlns:controls="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Controls;assembly=HipMobileUI"
-             xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations">
     <ContentPage.Content>
 
@@ -38,12 +38,14 @@
                             <ViewCell>
                                 <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" Padding="0"
                                              Margin="5,0" Spacing="0">
-                                    <controls:FadeInImage Source="{Binding Image}" WidthRequest="70" HeightRequest="70"
-                                                          VerticalOptions="Center" Margin="5" Aspect="AspectFit">
-                                        <forms:CachedImage.Transformations>
+                                    <!---CachedImage do not DownsampleToViewSize, as it becomes blurry-->
+                                    <ff:CachedImage Source="{Binding Image}" 
+                                                    WidthRequest="70" HeightRequest="70"
+                                                    VerticalOptions="Center" Margin="5" Aspect="AspectFit">
+                                        <ff:CachedImage.Transformations>
                                             <transformations:CircleTransformation />
-                                        </forms:CachedImage.Transformations>
-                                    </controls:FadeInImage>
+                                        </ff:CachedImage.Transformations>
+                                    </ff:CachedImage>
                                     <Label Text="{Binding Name}" HorizontalOptions="FillAndExpand"
                                            VerticalOptions="Fill" VerticalTextAlignment="Center" Margin="5,0"
                                            FontSize="18" LineBreakMode="WordWrap" Style="{DynamicResource Ssp-Regular}"/>
