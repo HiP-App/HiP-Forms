@@ -898,7 +898,7 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   </data>
   <data name="RegisterScreenView_Username" xml:space="preserve">
     <value>Username</value>
-
+</data>
   <data name="AchievementsScreenView_Achievement_Count" xml:space="preserve">
     <value> Achievements unlocked</value>
 
