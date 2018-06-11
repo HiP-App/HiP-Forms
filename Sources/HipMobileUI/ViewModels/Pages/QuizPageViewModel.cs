@@ -55,7 +55,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             get => new[] { Answer1, Answer2, Answer3, Answer4 };
             set
             {
-                Debug.Assert(value.Length == 4, "A quiz must have exactly 4 options.");
+                Debug2.Assert(value.Length == 4, "A quiz must have exactly 4 options.");
                 Answer1 = value[0];
                 Answer2 = value[1];
                 Answer3 = value[2];

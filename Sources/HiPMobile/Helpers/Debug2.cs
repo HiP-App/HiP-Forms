@@ -12,18 +12,18 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
-using System.Threading;
-using System.Threading.Tasks;
+using NUnit.Framework;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers.Contracts
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
 {
-    public interface IDataToRemoveFetcher
+    public static class Debug2
     {
-        Task FetchDataToDelete(CancellationToken token);
-
-        void CleanupRemovedData(ITransactionDataAccess dataAccess);
-
-        Task PruneMediaFilesAsync(IReadOnlyDataAccess dataAccess);
+        public static void Assert(bool condition, string message = "Assertion failed!")
+        {
+            if (!condition)
+            {
+                throw new AssertionException(message);
+            }
+        }
     }
 }

@@ -68,10 +68,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                                .DataAccess
                                .GetItems<Image>()
                                .Where(image => image.Id != BackupData.BackupImage.Id && image.Id != BackupData.BackupImageTag.Id);
-            await DbManager.InTransactionAsync(itemsToTrack, async transaction =>
+            await mediaDataFetcher.FetchMedias(requiredMedia, token, listener);
+            var quizzes = await DownloadQuizes(idForRestApi, token);
+            var mediaToFilePath = await mediaDataFetcher.WriteMediaToDiskAsync();
+            await DbManager.InTransactionAsync(itemsToTrack, transaction =>
             {
-                await ProcessPages(exhibitId, token, listener, transaction.DataAccess);
-                await DownloadQuizes(idForRestApi, token, transaction.DataAccess);
+                ProcessPages(exhibitId, token, transaction.DataAccess, mediaToFilePath);
+                transaction.DataAccess.Quizzes().Add(quizzes);
 
                 if (token.IsCancellationRequested)
                 {
@@ -80,7 +83,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             });
         }
 
-        private async Task DownloadQuizes(int exhibitId, CancellationToken token, ITransactionDataAccess transactionDataAccess)
+        private async Task<IReadOnlyCollection<Quiz>> DownloadQuizes(int exhibitId, CancellationToken token)
         {
             var quizApiAccess = IoCManager.Resolve<IQuizApiAccess>();
             try
@@ -93,12 +96,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                     await mediaDataFetcher.FetchMedias(new[] { quizImage }.WhereNotNull().ToList(), token, null);
                 }
 
-                transactionDataAccess.Quizzes().Add(quizzes);
+                return quizzes;
             }
             catch (NotFoundException)
             {
                 // Don't crash if there are no questions
                 Debug.WriteLine($"No quiz found for exhibit {exhibitId}");
+                return new Quiz[0];
             }
         }
 
@@ -108,10 +112,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             requiredMedia = exhibitPagesAndMediaContainer.RequiredMedia;
             pageItems = exhibitPagesAndMediaContainer.PageDtos;
 
-            await DbManager.InTransactionAsync(async transaction =>
+            var mediaToFilePath = await mediaDataFetcher.WriteMediaToDiskAsync();
+            await mediaDataFetcher.FetchMedias(requiredMedia, token, listener);
+            var quizzes = await DownloadQuizes(dbExhibitIdForRestApi, token);
+            await DbManager.InTransactionAsync(transaction =>
             {
-                await ProcessPages(exhibitId, token, listener, transaction.DataAccess);
-                await DownloadQuizes(dbExhibitIdForRestApi, token, transaction.DataAccess);
+                ProcessPages(exhibitId, token, transaction.DataAccess, mediaToFilePath);
+                transaction.DataAccess.Quizzes().Add(quizzes);
 
                 if (token.IsCancellationRequested)
                 {
@@ -160,10 +167,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             }
         }
 
-        private async Task ProcessPages(string exhibitId, CancellationToken token, IProgressListener listener, ITransactionDataAccess dataAccess)
+        private void ProcessPages(string exhibitId, CancellationToken token, ITransactionDataAccess dataAccess,
+                                  Dictionary<MediaDto, string> mediaToFilePath)
         {
-            await mediaDataFetcher.FetchMedias(requiredMedia, token, listener);
-            var fetchedMedia = await mediaDataFetcher.CombineMediasAndFiles(dataAccess);
+            var fetchedMedia = mediaDataFetcher.CombineMediasAndFiles(dataAccess, mediaToFilePath);
 
             if (token.IsCancellationRequested)
             {
@@ -237,7 +244,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
 
                         if (fetchedImages.Count > 0)
                         {
-                            Debug.Assert(timeSliderPage.SliderImages.Count == pageDto.Images.Count);
+                            Debug2.Assert(timeSliderPage.SliderImages.Count == pageDto.Images.Count);
                             for (var i = 0; i < timeSliderPage.SliderImages.Count; i++)
                             {
                                 var imageId = pageDto.Images[i].Image;

@@ -21,6 +21,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelConverters
 {
@@ -40,46 +41,68 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelCo
 
         public static async Task Init()
         {
-            // We do NOT use DbManager.StartTransaction() here because that would attach BackupImage & BackupImageTag
+            // We do NOT use DbManager.InTransactionAsync() here because that would attach BackupImage & BackupImageTag
             // to the transaction and these properties are still null at this point.
-            await IoCManager.Resolve<IDataAccess>().InTransactionAsync(Enumerable.Empty<object>(), async transaction =>
-            {
-                var dataAccess = transaction.DataAccess;
-                var dataLoader = IoCManager.Resolve<IDataLoader>();
-                var fileManager = IoCManager.Resolve<IMediaFileManager>();
+            var dataAccess = IoCManager.Resolve<IDataAccess>();
+            var fileManager = IoCManager.Resolve<IMediaFileManager>();
+            var dataLoader = IoCManager.Resolve<IDataLoader>();
 
-                backupImage = dataAccess.GetItems<Image>().SingleOrDefault(x => x.IdForRestApi == BackupImageIdForRestApi);
+            backupImage = dataAccess.GetItems<Image>().SingleOrDefault(x => x.IdForRestApi == BackupImageIdForRestApi);
+            backupImageTag = dataAccess.GetItems<Image>().SingleOrDefault(x => x.IdForRestApi == BackupImageTagIdForRestApi);
+            string backupImagePath;
+            if (backupImage == null)
+            {
+                backupImageData = dataLoader.LoadByteData("noImage.png");
+                backupImagePath = await fileManager.WriteMediaToDiskAsync(backupImageData, BackupImageIdForRestApi, BackupTimestamp);
+            }
+            else
+            {
+                backupImagePath = null;
+            }
+
+            string backupImageTagPath;
+            if (backupImageTag == null)
+            {
+                var backupImageDataTag = dataLoader.LoadByteData("noImageTag.jpg");
+                backupImageTagPath = await fileManager.WriteMediaToDiskAsync(backupImageDataTag, BackupImageTagIdForRestApi, BackupTimestamp);
+            }
+            else
+            {
+                backupImageTagPath = null;
+            }
+
+            await dataAccess.InTransactionAsync(Enumerable.Empty<object>(), transaction =>
+            {
+                var transactionDataAccess = transaction.DataAccess;
+
                 if (backupImage == null)
                 {
                     backupImageData = dataLoader.LoadByteData("noImage.png");
-                    var path = await fileManager.WriteMediaToDiskAsync(backupImageData, BackupImageIdForRestApi, BackupTimestamp);
 
-                    dataAccess.AddItem(backupImage = new Image
+                    Debug2.Assert(backupImagePath != null);
+                    transactionDataAccess.AddItem(backupImage = new Image
                     {
                         Title = "No Image",
                         Description = "Hier fehlt das Bild",
                         IdForRestApi = BackupImageIdForRestApi,
-                        DataPath = path
+                        DataPath = backupImagePath
                     });
                 }
 
-                backupImageTag = dataAccess.GetItems<Image>().SingleOrDefault(x => x.IdForRestApi == BackupImageTagIdForRestApi);
                 if (backupImageTag == null)
                 {
-                    var backupImageDataTag = dataLoader.LoadByteData("noImageTag.jpg");
-                    var path = await fileManager.WriteMediaToDiskAsync(backupImageDataTag, BackupImageTagIdForRestApi, BackupTimestamp);
-
-                    dataAccess.AddItem(backupImageTag = new Image
+                    Debug2.Assert(backupImageTagPath != null);
+                    transactionDataAccess.AddItem(backupImageTag = new Image
                     {
                         Title = "No Tag Image",
                         Description = "Hier fehlt das Tag-Bild",
                         IdForRestApi = BackupImageTagIdForRestApi,
-                        DataPath = path
+                        DataPath = backupImageTagPath
                     });
                 }
 
                 mockAudioData = dataLoader.LoadByteData("mockaudio.mp3");
-                return Task.CompletedTask;
+                return 0;
             });
             IsInitializedSema.Release();
         }

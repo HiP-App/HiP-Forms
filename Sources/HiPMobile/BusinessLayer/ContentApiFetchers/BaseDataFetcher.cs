@@ -45,44 +45,44 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
 
         public async Task FetchBaseDataIntoDatabase(CancellationToken token, IProgressListener listener)
         {
-            var cancelled = await DbManager.InTransactionAsync(async transaction =>
+            var routes = DbManager.DataAccess.Routes().GetRoutes().ToDictionary(x => x.IdForRestApi, x => x.Timestamp);
+            var exhibits = DbManager.DataAccess.Exhibits().GetExhibits().ToDictionary(x => x.IdForRestApi, x => x.Timestamp);
+
+            double totalSteps = await exhibitsBaseDataFetcher.FetchNeededDataForExhibits(exhibits);
+            totalSteps += await routesBaseDataFetcher.FetchNeededDataForRoutes(routes);
+
+            if (token.IsCancellationRequested)
             {
-                var routes = transaction.DataAccess.Routes().GetRoutes().ToDictionary(x => x.IdForRestApi, x => x.Timestamp);
-                var exhibits = transaction.DataAccess.Exhibits().GetExhibits().ToDictionary(x => x.IdForRestApi, x => x.Timestamp);
+                return;
+            }
 
-                double totalSteps = await exhibitsBaseDataFetcher.FetchNeededDataForExhibits(exhibits);
-                totalSteps += await routesBaseDataFetcher.FetchNeededDataForRoutes(routes);
+            listener.SetMaxProgress(totalSteps);
 
+            await exhibitsBaseDataFetcher.FetchMediaData(token, listener);
+            if (token.IsCancellationRequested)
+            {
+                return;
+            }
+
+            await routesBaseDataFetcher.FetchMediaData(token, listener);
+            if (token.IsCancellationRequested)
+            {
+                return;
+            }
+
+            var exhibitsMediaToFilePath = await exhibitsBaseDataFetcher.WriteMediaToDiskAsync();
+            var routesMediaToFilePath = await routesBaseDataFetcher.WriteMediaToDiskAsync();
+
+            var cancelled = await DbManager.InTransactionAsync(transaction =>
+            {
+                exhibitsBaseDataFetcher.ProcessExhibits(listener, transaction.DataAccess, exhibitsMediaToFilePath);
                 if (token.IsCancellationRequested)
                 {
                     transaction.Rollback();
                     return true;
                 }
 
-                listener.SetMaxProgress(totalSteps);
-
-                await exhibitsBaseDataFetcher.FetchMediaData(token, listener);
-                if (token.IsCancellationRequested)
-                {
-                    transaction.Rollback();
-                    return true;
-                }
-
-                await routesBaseDataFetcher.FetchMediaData(token, listener);
-                if (token.IsCancellationRequested)
-                {
-                    transaction.Rollback();
-                    return true;
-                }
-
-                await exhibitsBaseDataFetcher.ProcessExhibits(listener, transaction.DataAccess);
-                if (token.IsCancellationRequested)
-                {
-                    transaction.Rollback();
-                    return true;
-                }
-
-                await routesBaseDataFetcher.ProcessRoutes(listener, transaction.DataAccess);
+                routesBaseDataFetcher.ProcessRoutes(listener, transaction.DataAccess, routesMediaToFilePath);
                 if (token.IsCancellationRequested)
                 {
                     transaction.Rollback();
@@ -94,11 +94,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
 
             if (!cancelled)
             {
-                await DbManager.InTransactionAsync(async transaction =>
-                {
-                    await dataToRemoveFetcher.FetchDataToDelete(token);
-                    await dataToRemoveFetcher.CleanupRemovedData(transaction.DataAccess);
-                });
+                await dataToRemoveFetcher.FetchDataToDelete(token);
+                await DbManager.InTransactionAsync(transaction => { dataToRemoveFetcher.CleanupRemovedData(transaction.DataAccess); });
+                await dataToRemoveFetcher.PruneMediaFilesAsync(DbManager.DataAccess);
             }
         }
     }

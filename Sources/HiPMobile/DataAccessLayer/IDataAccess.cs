@@ -49,7 +49,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
         /// The function that should be executed in the scope of the transaction.
         /// </param>
         /// <returns>The transaction object.</returns>
-        Task<T> InTransactionAsync<T>([CanBeNull] IEnumerable<object> itemsToTrack, Func<BaseTransaction, Task<T>> func);
+        Task<T> InTransactionAsync<T>([CanBeNull] IEnumerable<object> itemsToTrack, Func<BaseTransaction, T> func);
         
         /// <summary>
         /// Gets the version number for the currently saved data.

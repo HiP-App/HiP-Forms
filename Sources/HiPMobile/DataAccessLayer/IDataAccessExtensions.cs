@@ -23,7 +23,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
         /// <summary>Convenience overload for <see cref="IDataAccess.InTransactionAsync{T}"/>
         /// without any tracked objects.
         /// </summary>
-        public static Task<T> InTransaction<T>(this IDataAccess dataAccess, Func<BaseTransaction, Task<T>> func) =>
+        public static Task<T> InTransaction<T>(this IDataAccess dataAccess, Func<BaseTransaction, T> func) =>
             dataAccess.InTransactionAsync(null, func);
     }
 }

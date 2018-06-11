@@ -76,10 +76,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             if (token.IsCancellationRequested)
                 return;
 
-            await DbManager.InTransactionAsync(async transaction =>
+            await FetchMediaData(token, listener);
+            var mediaToFilePath = await mediaDataFetcher.WriteMediaToDiskAsync();
+            await DbManager.InTransactionAsync(transaction =>
             {
                 var dataAccess = transaction.DataAccess;
-                await ProcessRoute(token, listener, dataAccess); // Download audio
+                ProcessRoute(token, dataAccess, mediaToFilePath); // Download audio
                 if (token.IsCancellationRequested)
                     transaction.Rollback();
             });
@@ -95,10 +97,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             return requiredMedia.Count;
         }
 
-        private async Task ProcessRoute(CancellationToken token, IProgressListener listener, ITransactionDataAccess dataAccess)
+        private void ProcessRoute(CancellationToken token, ITransactionDataAccess dataAccess, Dictionary<MediaDto, string> mediaToFilePath)
         {
-            await FetchMediaData(token, listener);
-            var fetchedMedia = await mediaDataFetcher.CombineMediasAndFiles(dataAccess);
+            var fetchedMedia = mediaDataFetcher.CombineMediasAndFiles(dataAccess, mediaToFilePath);
             if (token.IsCancellationRequested)
                 return;
 
@@ -132,7 +133,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                     continue;
 
                 var pagesAndMediaContainerForExhibit = pagesAndMediaForMissingExhibits.SingleOrDefault(x => x.ExhibitIdForRestApi == dbExhibit.IdForRestApi);
-                await fullExhibitDataFetcher.FetchFullExhibitDataIntoDatabaseWithFetchedPagesAndMedia(dbExhibit.Id, pagesAndMediaContainerForExhibit, token, listener, dbExhibit.IdForRestApi);
+                await fullExhibitDataFetcher.FetchFullExhibitDataIntoDatabaseWithFetchedPagesAndMedia(dbExhibit.Id, pagesAndMediaContainerForExhibit, token, listener,
+                                                                                                      dbExhibit.IdForRestApi);
                 if (token.IsCancellationRequested)
                     return;
                 pagesAndMediaForMissingExhibits.Remove(pagesAndMediaContainerForExhibit);

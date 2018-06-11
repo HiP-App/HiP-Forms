@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System.Diagnostics;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Appearance;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.DesignTime;
@@ -32,7 +33,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI
         public App()
         {
             DesignMode.Initialize(InitializeComponent);
-
+            
             if (DesignMode.IsEnabled)
                 return;
 

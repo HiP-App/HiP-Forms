@@ -16,10 +16,17 @@ using Microsoft.EntityFrameworkCore;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Reflection;
+using System.Runtime.InteropServices;
+using System.Threading;
 using System.Threading.Tasks;
+using AsyncBridge;
+using Microsoft.Extensions.Internal;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers.Threading;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
 {
@@ -37,6 +44,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
     public class EFCoreDataAccess : IDataAccess, ITransactionDataAccess
     {
         public static readonly string DbPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "db.sqlite");
+
+        private static readonly TaskScheduler DbThreadScheduler = new SingleThreadTaskScheduler();
+        private static bool isInTransaction = false;
 
         private readonly AppDatabaseContext sharedDbContext;
 
@@ -111,7 +121,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
                 if (scope.IsDbContextTransient)
                     scope.Db.SaveChangesAndDetach();
                 else
+                {
+                    var time = DateTime.Now;
                     scope.Db.SaveChanges();
+                    Debug.WriteLine($"Time ${DateTime.Now.Subtract(time).Milliseconds} ms");
+                }
             }
         }
 
@@ -128,28 +142,46 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
             }
         }
 
-        public async Task<T> InTransactionAsync<T>(IEnumerable<object> itemsToTrack, Func<BaseTransaction, Task<T>> func)
+        private static readonly object Lock = new object();
+        public Task<T> InTransactionAsync<T>(IEnumerable<object> itemsToTrack, Func<BaseTransaction, T> func)
         {
             if (sharedDbContext != null)
                 throw new InvalidOperationException($"{nameof(InTransactionAsync)} must not be called within the scope of a transaction");
 
-            var db = new AppDatabaseContext(QueryTrackingBehavior.TrackAll);
-            db.AttachRange(itemsToTrack?.Distinct() ?? Enumerable.Empty<object>());
-            var transaction = new EFCoreTransaction(db);
-
-            T value;
-            try
+            // TODO Dispatch this to a thread? What about calling InTransactionAsync from inside the transaction?
+            lock (Lock)
             {
-                value = await func.Invoke(transaction);
-                transaction.Commit();
-            }
-            catch (Exception)
-            {
-                transaction.Rollback();
-                throw;
-            }
+                var isInTransactionAlready = isInTransaction;
+                isInTransaction = true;
 
-            return value;
+                var db = new AppDatabaseContext(QueryTrackingBehavior.TrackAll);
+                db.AttachRange(itemsToTrack?.Distinct() ?? Enumerable.Empty<object>());
+                var transaction = new EFCoreTransaction(db, !isInTransactionAlready);
+
+                try
+                {
+                    var res = func.Invoke(transaction);
+
+                    transaction.Commit();
+                    if (!isInTransactionAlready)
+                    {
+                        isInTransaction = false;
+                    }
+
+                    return Task.FromResult(res);
+                }
+                catch (Exception e)
+                {
+                    Debug.WriteLine(e);
+                    transaction.Rollback();
+                    if (!isInTransactionAlready)
+                    {
+                        isInTransaction = false;
+                    }
+
+                    throw;
+                }
+            }
         }
 
         public int GetVersion() => 1;

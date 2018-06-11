@@ -47,7 +47,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
         /// The function that should be executed in the scope of the transaction.
         /// </param>
         /// <returns>The instance returned by func.</returns>
-        public static Task<T> InTransactionAsync<T>(IEnumerable<object> itemsToTrack, Func<BaseTransaction, Task<T>> func) =>
+        public static Task<T> InTransactionAsync<T>(IEnumerable<object> itemsToTrack, Func<BaseTransaction, T> func) =>
             IoCManager.Resolve<IDataAccess>().InTransactionAsync(itemsToTrack.Concat(new[] { BackupData.BackupImage, BackupData.BackupImageTag }), func);
 
         /// <summary>
@@ -63,7 +63,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
         /// The function that should be executed in the scope of the transaction.
         /// </param>
         /// <returns>The instance returned by func.</returns>
-        public static Task<T> InTransactionAsync<T>(object itemToTrack, Func<BaseTransaction, Task<T>> func) =>
+        public static Task<T> InTransactionAsync<T>(object itemToTrack, Func<BaseTransaction, T> func) =>
             InTransactionAsync(new[] { itemToTrack }, func);
 
         /// <summary>
@@ -73,104 +73,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
         /// The function that should be executed in the scope of the transaction.
         /// </param>
         /// <returns>The transaction object which can perform committing or rolling back.</returns>
-        public static Task<T> InTransactionAsync<T>(Func<BaseTransaction, Task<T>> func) =>
-            InTransactionAsync(Enumerable.Empty<object>(), func);
-
-        /// <summary>
-        /// Starts a new write transaction.
-        /// </summary>
-        /// <param name="itemsToTrack">
-        ///     Entities that should be added to the change tracker.
-        ///     See <see cref="IDataAccess.InTransactionAsync{T}"/> for an example scenario where this is needed.
-        ///     Note that <see cref="BackupData.BackupImage"/> and <see cref="BackupData.BackupImageTag"/> are included by default
-        ///     so they can be freely assigned to any other entity without being considered "new".
-        /// </param>
-        /// <param name="func">
-        /// The function that should be executed in the scope of the transaction.
-        /// </param>
-        /// <returns>The transaction object which can perform committing or rolling back.</returns>
-        public static Task InTransactionAsync(IEnumerable<object> itemsToTrack, Func<BaseTransaction, Task> func) =>
-            IoCManager.Resolve<IDataAccess>().InTransactionAsync<object>(itemsToTrack.Concat(new[] { BackupData.BackupImage, BackupData.BackupImageTag }), async transaction =>
-            {
-                await func.Invoke(transaction);
-                return Task.CompletedTask;
-            });
-
-        /// <summary>
-        /// Starts a new write transaction.
-        /// </summary>
-        /// <param name="itemToTrack">
-        /// Entitiy that should be added to the change tracker.
-        /// See <see cref="IDataAccess.InTransactionAsync{T}"/> for an example scenario where this is needed.
-        /// Note that <see cref="BackupData.BackupImage"/> and <see cref="BackupData.BackupImageTag"/> are included by default
-        /// so they can be freely assigned to any other entity without being considered "new".
-        /// </param>
-        /// <param name="func">
-        /// The function that should be executed in the scope of the transaction.
-        /// </param>
-        /// <returns>The transaction object which can perform committing or rolling back.</returns>
-        public static Task InTransactionAsync(object itemToTrack, Func<BaseTransaction, Task> func) =>
-            InTransactionAsync<object>(new[] { itemToTrack }, async transaction =>
-            {
-                await func.Invoke(transaction);
-                return Task.CompletedTask;
-            });
-
-        /// <summary>
-        /// Starts a new write transaction.
-        /// </summary>
-        /// <param name="func">
-        /// The function that should be executed in the scope of the transaction.
-        /// </param>
-        /// <returns>The instance returned by func.</returns>
-        public static Task InTransactionAsync(Func<BaseTransaction, Task> func) =>
-            InTransactionAsync<object>(Enumerable.Empty<object>(), async transaction =>
-            {
-                await func.Invoke(transaction);
-                return Task.CompletedTask;
-            });
-
-        /// <summary>
-        /// Starts a new write transaction.
-        /// </summary>
-        /// <param name="itemsToTrack">
-        ///     Entities that should be added to the change tracker.
-        ///     See <see cref="IDataAccess.InTransactionAsync{T}"/> for an example scenario where this is needed.
-        ///     Note that <see cref="BackupData.BackupImage"/> and <see cref="BackupData.BackupImageTag"/> are included by default
-        ///     so they can be freely assigned to any other entity without being considered "new".
-        /// </param>
-        /// <param name="func">
-        /// The function that should be executed in the scope of the transaction.
-        /// </param>
-        /// <returns>The instance returned by func.</returns>
-        public static Task<T> InTransactionAsync<T>(IEnumerable<object> itemsToTrack, Func<BaseTransaction, T> func) =>
-            InTransactionAsync(itemsToTrack, t => Task.FromResult(func(t)));
-
-        /// <summary>
-        /// Starts a new write transaction.
-        /// </summary>
-        /// <param name="itemToTrack">
-        /// Entitiy that should be added to the change tracker.
-        /// See <see cref="IDataAccess.InTransactionAsync{T}"/> for an example scenario where this is needed.
-        /// Note that <see cref="BackupData.BackupImage"/> and <see cref="BackupData.BackupImageTag"/> are included by default
-        /// so they can be freely assigned to any other entity without being considered "new".
-        /// </param>
-        /// <param name="func">
-        /// The function that should be executed in the scope of the transaction.
-        /// </param>
-        /// <returns>The instance returned by func.</returns>
-        public static Task<T> InTransactionAsync<T>(object itemToTrack, Func<BaseTransaction, T> func) =>
-            InTransactionAsync(itemToTrack, t => Task.FromResult(func(t)));
-
-        /// <summary>
-        /// Starts a new write transaction.
-        /// </summary>
-        /// <param name="func">
-        /// The function that should be executed in the scope of the transaction.
-        /// </param>
-        /// <returns>The transaction object which can perform committing or rolling back.</returns>
         public static Task<T> InTransactionAsync<T>(Func<BaseTransaction, T> func) =>
-            InTransactionAsync(t => Task.FromResult(func(t)));
+            InTransactionAsync(new object[0], func);
 
         /// <summary>
         /// Starts a new write transaction.
@@ -189,7 +93,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
             InTransactionAsync(itemsToTrack, t =>
             {
                 func(t);
-                return Task.CompletedTask;
+                return 0;
             });
 
         /// <summary>
@@ -209,7 +113,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
             InTransactionAsync(itemToTrack, t =>
             {
                 func(t);
-                return Task.CompletedTask;
+                return 0;
             });
 
         /// <summary>
@@ -223,7 +127,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
             InTransactionAsync(t =>
             {
                 func(t);
-                return Task.CompletedTask;
+                return 0;
             });
 
         /// <summary>
