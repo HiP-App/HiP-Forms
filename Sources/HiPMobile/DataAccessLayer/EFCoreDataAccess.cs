@@ -12,21 +12,16 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using Microsoft.EntityFrameworkCore;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Reflection;
-using System.Runtime.InteropServices;
-using System.Threading;
 using System.Threading.Tasks;
-using AsyncBridge;
-using Microsoft.Extensions.Internal;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers.Threading;
+using Microsoft.EntityFrameworkCore;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
+using SQLitePCL;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
 {
@@ -45,8 +40,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
     {
         public static readonly string DbPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "db.sqlite");
 
-        private static readonly TaskScheduler DbThreadScheduler = new SingleThreadTaskScheduler();
         private static bool isInTransaction = false;
+        private static readonly object Lock = new object();
 
         private readonly AppDatabaseContext sharedDbContext;
 
@@ -138,8 +133,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
             }
         }
 
-        private static readonly object Lock = new object();
-
         public T InTransaction<T>(IEnumerable<object> itemsToTrack, Func<BaseTransaction, T> func)
         {
             if (sharedDbContext != null)
@@ -194,7 +187,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
         {
             using (var scope = Scope())
             {
-                SQLitePCL.Batteries.Init();
+                Batteries.Init();
                 scope.Db.Database.EnsureCreated();
             }
         }
