@@ -46,7 +46,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
         ///     the database which, of course, would be wrong.
         /// </param>
         /// <param name="func">
-        ///     The function that should be executed in the scope of the transaction.
+        ///     The function that should be executed in the scope of the transaction. It shouldn't be asynchronous, as it is
+        /// illegal to use the DataAccess after InTransaction has returned. 
         /// </param>
         /// <returns>The transaction object.</returns>
         T InTransaction<T>([CanBeNull] IEnumerable<object> itemsToTrack, Func<BaseTransaction, T> func);
