@@ -56,7 +56,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Location
                 var dist = MathUtil.CalculateDistance(e.Location, gpsLocation);
                 if (dist < AppSharedData.ExhibitRadius)
                 {
-                    await DbManager.InTransactionAsync(transaction =>
+                    DbManager.InTransaction(transaction =>
                     {
                         e.Unlocked = true;
                     });
@@ -74,7 +74,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Location
                         }
 
                         // update the time the dialog was last shown
-                        await DbManager.InTransactionAsync(transaction =>
+                        DbManager.InTransaction(transaction =>
                         {
                             e.LastNearbyTime = now;
                         });

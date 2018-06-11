@@ -45,7 +45,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
 
            
 
-            return await DbManager.InTransactionAsync(transaction =>
+            return DbManager.InTransaction(transaction =>
             {
                 var achievements = AchievementConverter.Convert(achievementDtos, transaction.DataAccess).ToList();
                 foreach (var unlocked in achievements.Where(it => unlockedAchievementIds.Contains(it.Id)))

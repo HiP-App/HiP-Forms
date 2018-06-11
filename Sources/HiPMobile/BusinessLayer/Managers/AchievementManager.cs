@@ -64,7 +64,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
 
         public static async Task<IEnumerable<IAchievement>> DequeuePendingAchievementNotifications()
         {
-            return await DbManager.InTransactionAsync(transaction =>
+            return DbManager.InTransaction(transaction =>
             {
                 var dataAccess = transaction.DataAccess;
 
@@ -92,7 +92,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
                 return;
             }
 
-            await DbManager.InTransactionAsync(transaction =>
+            DbManager.InTransaction(transaction =>
             {
                 var dataAccess = transaction.DataAccess;
                 foreach (var achievement in newlyUnlocked)

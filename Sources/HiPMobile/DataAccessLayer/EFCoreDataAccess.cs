@@ -121,11 +121,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
                 if (scope.IsDbContextTransient)
                     scope.Db.SaveChangesAndDetach();
                 else
-                {
-                    var time = DateTime.Now;
                     scope.Db.SaveChanges();
-                    Debug.WriteLine($"Time ${DateTime.Now.Subtract(time).Milliseconds} ms");
-                }
             }
         }
 
@@ -143,12 +139,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
         }
 
         private static readonly object Lock = new object();
-        public Task<T> InTransactionAsync<T>(IEnumerable<object> itemsToTrack, Func<BaseTransaction, T> func)
+
+        public T InTransaction<T>(IEnumerable<object> itemsToTrack, Func<BaseTransaction, T> func)
         {
             if (sharedDbContext != null)
-                throw new InvalidOperationException($"{nameof(InTransactionAsync)} must not be called within the scope of a transaction");
+                throw new InvalidOperationException($"{nameof(InTransaction)} must not be called within the scope of a transaction");
 
-            // TODO Dispatch this to a thread? What about calling InTransactionAsync from inside the transaction?
             lock (Lock)
             {
                 var isInTransactionAlready = isInTransaction;
@@ -168,7 +164,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
                         isInTransaction = false;
                     }
 
-                    return Task.FromResult(res);
+                    return res;
                 }
                 catch (Exception e)
                 {

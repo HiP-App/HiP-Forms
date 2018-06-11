@@ -71,7 +71,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             await mediaDataFetcher.FetchMedias(requiredMedia, token, listener);
             var quizzes = await DownloadQuizes(idForRestApi, token);
             var mediaToFilePath = await mediaDataFetcher.WriteMediaToDiskAsync();
-            await DbManager.InTransactionAsync(itemsToTrack, transaction =>
+            DbManager.InTransaction(itemsToTrack, transaction =>
             {
                 ProcessPages(exhibitId, token, transaction.DataAccess, mediaToFilePath);
                 transaction.DataAccess.Quizzes().Add(quizzes);
@@ -115,7 +115,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             var mediaToFilePath = await mediaDataFetcher.WriteMediaToDiskAsync();
             await mediaDataFetcher.FetchMedias(requiredMedia, token, listener);
             var quizzes = await DownloadQuizes(dbExhibitIdForRestApi, token);
-            await DbManager.InTransactionAsync(transaction =>
+            DbManager.InTransaction(transaction =>
             {
                 ProcessPages(exhibitId, token, transaction.DataAccess, mediaToFilePath);
                 transaction.DataAccess.Quizzes().Add(quizzes);

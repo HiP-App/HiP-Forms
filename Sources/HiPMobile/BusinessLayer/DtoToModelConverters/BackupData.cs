@@ -71,7 +71,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelCo
                 backupImageTagPath = null;
             }
 
-            await dataAccess.InTransactionAsync(Enumerable.Empty<object>(), transaction =>
+            dataAccess.InTransaction(Enumerable.Empty<object>(), transaction =>
             {
                 var transactionDataAccess = transaction.DataAccess;
 

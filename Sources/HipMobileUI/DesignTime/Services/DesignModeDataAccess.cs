@@ -37,8 +37,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.DesignTime.Services
 
         public int GetVersion() => 0;
 
-        public Task<T> InTransactionAsync<T>(IEnumerable<object> itemsToTrack, Func<BaseTransaction, T> func) => 
-            Task.FromResult(default(T));
+        public T InTransaction<T>(IEnumerable<object> itemsToTrack, Func<BaseTransaction, T> func) =>
+            default(T);
 
         T IReadOnlyDataAccess.GetItem<T>(string id, params string[] pathsToInclude) => null;
 

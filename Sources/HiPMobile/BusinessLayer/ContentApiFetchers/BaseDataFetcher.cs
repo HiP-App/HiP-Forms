@@ -73,7 +73,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             var exhibitsMediaToFilePath = await exhibitsBaseDataFetcher.WriteMediaToDiskAsync();
             var routesMediaToFilePath = await routesBaseDataFetcher.WriteMediaToDiskAsync();
 
-            var cancelled = await DbManager.InTransactionAsync(transaction =>
+            var cancelled = DbManager.InTransaction(transaction =>
             {
                 exhibitsBaseDataFetcher.ProcessExhibits(listener, transaction.DataAccess, exhibitsMediaToFilePath);
                 if (token.IsCancellationRequested)
@@ -95,7 +95,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             if (!cancelled)
             {
                 await dataToRemoveFetcher.FetchDataToDelete(token);
-                await DbManager.InTransactionAsync(transaction => { dataToRemoveFetcher.CleanupRemovedData(transaction.DataAccess); });
+                DbManager.InTransaction(transaction => { dataToRemoveFetcher.CleanupRemovedData(transaction.DataAccess); });
                 await dataToRemoveFetcher.PruneMediaFilesAsync(DbManager.DataAccess);
             }
         }

@@ -78,7 +78,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
 
             await FetchMediaData(token, listener);
             var mediaToFilePath = await mediaDataFetcher.WriteMediaToDiskAsync();
-            await DbManager.InTransactionAsync(transaction =>
+            DbManager.InTransaction(transaction =>
             {
                 var dataAccess = transaction.DataAccess;
                 ProcessRoute(token, dataAccess, mediaToFilePath); // Download audio

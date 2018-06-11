@@ -39,7 +39,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
         /// </summary>
         /// <param name="itemsToTrack">
         ///     Entities that should be added to the change tracker.
-        ///     See <see cref="IDataAccess.InTransactionAsync{T}"/> for an example scenario where this is needed.
+        ///     See <see cref="IDataAccess.InTransaction{T}"/> for an example scenario where this is needed.
         ///     Note that <see cref="BackupData.BackupImage"/> and <see cref="BackupData.BackupImageTag"/> are included by default
         ///     so they can be freely assigned to any other entity without being considered "new".
         /// </param>
@@ -47,15 +47,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
         /// The function that should be executed in the scope of the transaction.
         /// </param>
         /// <returns>The instance returned by func.</returns>
-        public static Task<T> InTransactionAsync<T>(IEnumerable<object> itemsToTrack, Func<BaseTransaction, T> func) =>
-            IoCManager.Resolve<IDataAccess>().InTransactionAsync(itemsToTrack.Concat(new[] { BackupData.BackupImage, BackupData.BackupImageTag }), func);
+        public static T InTransaction<T>(IEnumerable<object> itemsToTrack, Func<BaseTransaction, T> func) =>
+            IoCManager.Resolve<IDataAccess>().InTransaction(itemsToTrack.Concat(new[] { BackupData.BackupImage, BackupData.BackupImageTag }), func);
 
         /// <summary>
         /// Starts a new write transaction.
         /// </summary>
         /// <param name="itemToTrack">
         /// Entitiy that should be added to the change tracker.
-        /// See <see cref="IDataAccess.InTransactionAsync{T}"/> for an example scenario where this is needed.
+        /// See <see cref="IDataAccess.InTransaction{T}"/> for an example scenario where this is needed.
         /// Note that <see cref="BackupData.BackupImage"/> and <see cref="BackupData.BackupImageTag"/> are included by default
         /// so they can be freely assigned to any other entity without being considered "new".
         /// </param>
@@ -63,8 +63,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
         /// The function that should be executed in the scope of the transaction.
         /// </param>
         /// <returns>The instance returned by func.</returns>
-        public static Task<T> InTransactionAsync<T>(object itemToTrack, Func<BaseTransaction, T> func) =>
-            InTransactionAsync(new[] { itemToTrack }, func);
+        public static T InTransaction<T>(object itemToTrack, Func<BaseTransaction, T> func) =>
+            InTransaction(new[] { itemToTrack }, func);
 
         /// <summary>
         /// Starts a new write transaction.
@@ -73,15 +73,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
         /// The function that should be executed in the scope of the transaction.
         /// </param>
         /// <returns>The transaction object which can perform committing or rolling back.</returns>
-        public static Task<T> InTransactionAsync<T>(Func<BaseTransaction, T> func) =>
-            InTransactionAsync(new object[0], func);
+        public static T InTransaction<T>(Func<BaseTransaction, T> func) =>
+            InTransaction(new object[0], func);
 
         /// <summary>
         /// Starts a new write transaction.
         /// </summary>
         /// <param name="itemsToTrack">
         ///     Entities that should be added to the change tracker.
-        ///     See <see cref="IDataAccess.InTransactionAsync{T}"/> for an example scenario where this is needed.
+        ///     See <see cref="IDataAccess.InTransaction{T}"/> for an example scenario where this is needed.
         ///     Note that <see cref="BackupData.BackupImage"/> and <see cref="BackupData.BackupImageTag"/> are included by default
         ///     so they can be freely assigned to any other entity without being considered "new".
         /// </param>
@@ -89,8 +89,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
         /// The function that should be executed in the scope of the transaction.
         /// </param>
         /// <returns>The transaction object which can perform committing or rolling back.</returns>
-        public static Task InTransactionAsync(IEnumerable<object> itemsToTrack, Action<BaseTransaction> func) =>
-            InTransactionAsync(itemsToTrack, t =>
+        public static void InTransaction(IEnumerable<object> itemsToTrack, Action<BaseTransaction> func) =>
+            InTransaction(itemsToTrack, t =>
             {
                 func(t);
                 return 0;
@@ -101,7 +101,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
         /// </summary>
         /// <param name="itemToTrack">
         /// Entitiy that should be added to the change tracker.
-        /// See <see cref="IDataAccess.InTransactionAsync{T}"/> for an example scenario where this is needed.
+        /// See <see cref="IDataAccess.InTransaction{T}"/> for an example scenario where this is needed.
         /// Note that <see cref="BackupData.BackupImage"/> and <see cref="BackupData.BackupImageTag"/> are included by default
         /// so they can be freely assigned to any other entity without being considered "new".
         /// </param>
@@ -109,8 +109,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
         /// The function that should be executed in the scope of the transaction.
         /// </param>
         /// <returns>The transaction object which can perform committing or rolling back.</returns>
-        public static Task InTransactionAsync(object itemToTrack, Action<BaseTransaction> func) =>
-            InTransactionAsync(itemToTrack, t =>
+        public static void InTransaction(object itemToTrack, Action<BaseTransaction> func) =>
+            InTransaction(itemToTrack, t =>
             {
                 func(t);
                 return 0;
@@ -123,8 +123,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
         /// The function that should be executed in the scope of the transaction.
         /// </param>
         /// <returns>The instance returned by func.</returns>
-        public static Task InTransactionAsync(Action<BaseTransaction> func) =>
-            InTransactionAsync(t =>
+        public static void InTransaction(Action<BaseTransaction> func) =>
+            InTransaction(t =>
             {
                 func(t);
                 return 0;
