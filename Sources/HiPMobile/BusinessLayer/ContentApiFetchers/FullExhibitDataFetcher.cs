@@ -83,7 +83,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             });
         }
 
-        private async Task<IReadOnlyCollection<Quiz>> DownloadQuizes(int exhibitId, CancellationToken token)
+        private async Task<IEnumerable<Quiz>> DownloadQuizes(int exhibitId, CancellationToken token)
         {
             var quizApiAccess = IoCManager.Resolve<IQuizApiAccess>();
             try
@@ -102,7 +102,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             {
                 // Don't crash if there are no questions
                 Debug.WriteLine($"No quiz found for exhibit {exhibitId}");
-                return new Quiz[0];
+                return Enumerable.Empty<Quiz>();
             }
         }
 

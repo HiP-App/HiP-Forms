@@ -18,6 +18,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
 {
     public static class Debug2
     {
+        // ReSharper disable once ParameterOnlyUsedForPreconditionCheck.Global
+        /// <summary>
+        /// Unlike Debug.Assert(...), this method actually throws an Exception if
+        /// the condition is not met.
+        /// </summary>
         public static void Assert(bool condition, string message = "Assertion failed!")
         {
             if (!condition)

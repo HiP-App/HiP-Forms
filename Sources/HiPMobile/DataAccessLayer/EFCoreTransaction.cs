@@ -54,11 +54,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
             if (rolledBack) return;
 
             db.SaveChangesAndDetach();
-            if (transaction != null)
-            {
-                var x = 0;
-            }
-
             transaction?.Commit();
             db.Dispose();
             isComplete = true;
@@ -67,11 +62,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
         public override void Rollback()
         {
             rolledBack = true;
-            if (transaction != null)
-            {
-                var x = 0;
-            }
-
             transaction?.Rollback();
             db.Dispose();
             isComplete = true;

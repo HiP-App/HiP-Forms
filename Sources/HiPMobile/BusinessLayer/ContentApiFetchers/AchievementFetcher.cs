@@ -16,7 +16,6 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetche
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelConverters;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses.Contracts;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,8 +41,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             var achievementDtos = await client.GetAchievements();
             var unlockedAchievementIds = (await client.GetUnlockedAchievements())
                 .Select(it => it.Id.ToString()).ToList();
-
-           
 
             return DbManager.InTransaction(transaction =>
             {

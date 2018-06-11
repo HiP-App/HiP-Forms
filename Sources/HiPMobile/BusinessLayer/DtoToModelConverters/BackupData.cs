@@ -41,7 +41,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelCo
 
         public static async Task Init()
         {
-            // We do NOT use DbManager.InTransactionAsync() here because that would attach BackupImage & BackupImageTag
+            // We do NOT use DbManager.InTransaction() here because that would attach BackupImage & BackupImageTag
             // to the transaction and these properties are still null at this point.
             var dataAccess = IoCManager.Resolve<IDataAccess>();
             var fileManager = IoCManager.Resolve<IMediaFileManager>();

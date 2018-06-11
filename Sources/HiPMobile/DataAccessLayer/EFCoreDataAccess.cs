@@ -18,7 +18,6 @@ using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using SQLitePCL;
@@ -138,8 +137,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
             if (sharedDbContext != null)
                 throw new InvalidOperationException($"{nameof(InTransaction)} must not be called within the scope of a transaction");
 
+            // WARNING: This lock needs to be reentrant, as otherwise nested transactions will cause a deadlock.
             lock (Lock)
             {
+                // Nested transactions are not supported by EF Core. As such, we inline them into the
+                // running transaction.
                 var isInTransactionAlready = isInTransaction;
                 isInTransaction = true;
 

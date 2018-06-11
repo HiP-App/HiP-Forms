@@ -44,7 +44,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
         ///     so they can be freely assigned to any other entity without being considered "new".
         /// </param>
         /// <param name="func">
-        /// The function that should be executed in the scope of the transaction.
+        /// The function that should be executed in the scope of the transaction. It shouldn't be asynchronous, as it is
+        /// illegal to use the DataAccess after InTransaction has returned. 
         /// </param>
         /// <returns>The instance returned by func.</returns>
         public static T InTransaction<T>(IEnumerable<object> itemsToTrack, Func<BaseTransaction, T> func) =>
@@ -60,7 +61,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
         /// so they can be freely assigned to any other entity without being considered "new".
         /// </param>
         /// <param name="func">
-        /// The function that should be executed in the scope of the transaction.
+        /// The function that should be executed in the scope of the transaction. It shouldn't be asynchronous, as it is
+        /// illegal to use the DataAccess after InTransaction has returned. 
         /// </param>
         /// <returns>The instance returned by func.</returns>
         public static T InTransaction<T>(object itemToTrack, Func<BaseTransaction, T> func) =>
@@ -70,11 +72,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
         /// Starts a new write transaction.
         /// </summary>
         /// <param name="func">
-        /// The function that should be executed in the scope of the transaction.
+        /// The function that should be executed in the scope of the transaction. It shouldn't be asynchronous, as it is
+        /// illegal to use the DataAccess after InTransaction has returned. 
         /// </param>
         /// <returns>The transaction object which can perform committing or rolling back.</returns>
         public static T InTransaction<T>(Func<BaseTransaction, T> func) =>
-            InTransaction(new object[0], func);
+            InTransaction(Enumerable.Empty<object>(), func);
 
         /// <summary>
         /// Starts a new write transaction.
@@ -86,7 +89,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
         ///     so they can be freely assigned to any other entity without being considered "new".
         /// </param>
         /// <param name="func">
-        /// The function that should be executed in the scope of the transaction.
+        /// The function that should be executed in the scope of the transaction. It shouldn't be asynchronous, as it is
+        /// illegal to use the DataAccess after InTransaction has returned. 
         /// </param>
         /// <returns>The transaction object which can perform committing or rolling back.</returns>
         public static void InTransaction(IEnumerable<object> itemsToTrack, Action<BaseTransaction> func) =>
@@ -106,7 +110,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
         /// so they can be freely assigned to any other entity without being considered "new".
         /// </param>
         /// <param name="func">
-        /// The function that should be executed in the scope of the transaction.
+        /// The function that should be executed in the scope of the transaction. It shouldn't be asynchronous, as it is
+        /// illegal to use the DataAccess after InTransaction has returned. 
         /// </param>
         /// <returns>The transaction object which can perform committing or rolling back.</returns>
         public static void InTransaction(object itemToTrack, Action<BaseTransaction> func) =>
@@ -120,7 +125,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
         /// Starts a new write transaction.
         /// </summary>
         /// <param name="func">
-        /// The function that should be executed in the scope of the transaction.
+        /// The function that should be executed in the scope of the transaction. It shouldn't be asynchronous, as it is
+        /// illegal to use the DataAccess after InTransaction has returned. 
         /// </param>
         /// <returns>The instance returned by func.</returns>
         public static void InTransaction(Action<BaseTransaction> func) =>

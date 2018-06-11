@@ -37,8 +37,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
 
         public async Task<bool> IsDatabaseUpToDate()
         {
-            bool anyExhibitChanged = await exhibitsBaseDataFetcher.AnyExhibitChanged(DbManager.DataAccess);
-            bool anyRouteChanged = await routesBaseDataFetcher.AnyRouteChanged(DbManager.DataAccess);
+            var anyExhibitChanged = await exhibitsBaseDataFetcher.AnyExhibitChanged(DbManager.DataAccess);
+            var anyRouteChanged = await routesBaseDataFetcher.AnyRouteChanged(DbManager.DataAccess);
 
             return !(anyExhibitChanged || anyRouteChanged);
         }
@@ -48,7 +48,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             var routes = DbManager.DataAccess.Routes().GetRoutes().ToDictionary(x => x.IdForRestApi, x => x.Timestamp);
             var exhibits = DbManager.DataAccess.Exhibits().GetExhibits().ToDictionary(x => x.IdForRestApi, x => x.Timestamp);
 
-            double totalSteps = await exhibitsBaseDataFetcher.FetchNeededDataForExhibits(exhibits);
+            var totalSteps = await exhibitsBaseDataFetcher.FetchNeededDataForExhibits(exhibits);
+            if (token.IsCancellationRequested)
+            {
+                return;
+            }
+            
             totalSteps += await routesBaseDataFetcher.FetchNeededDataForRoutes(routes);
 
             if (token.IsCancellationRequested)
@@ -95,7 +100,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             if (!cancelled)
             {
                 await dataToRemoveFetcher.FetchDataToDelete(token);
-                DbManager.InTransaction(transaction => { dataToRemoveFetcher.CleanupRemovedData(transaction.DataAccess); });
+                DbManager.InTransaction(transaction => dataToRemoveFetcher.CleanupRemovedData(transaction.DataAccess));
                 await dataToRemoveFetcher.PruneMediaFilesAsync(DbManager.DataAccess);
             }
         }
