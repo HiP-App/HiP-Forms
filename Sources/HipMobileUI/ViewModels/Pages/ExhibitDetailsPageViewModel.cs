@@ -47,8 +47,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         private bool hasAdditionalInformation;
         private bool buttonsVisible = true;
         private readonly bool additionalInformation;
+
         public ExhibitDetailsPageViewModel(string exhibitId) : this(DbManager.DataAccess.Exhibits().GetExhibit(exhibitId)) { }
+
         public ExhibitDetailsPageViewModel(Exhibit exhibit) : this(exhibit, exhibit.Pages, exhibit.Name) { }
+
         public ExhibitDetailsPageViewModel(Exhibit exhibit, ICollection<Page> pages, string title, bool additionalInformation = false)
         {
             Exhibit = exhibit;
@@ -77,6 +80,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             PreviousViewCommand = new Command(GotoPreviousView);
             ShowAudioToolbarCommand = new Command(SwitchAudioToolbarVisibleState);
             ShowAdditionalInformationCommand = new Command(ShowAdditionalInformation);
+
             var dbChangedHandler = IoCManager.Resolve<IDbChangedHandler>();
             dbChangedHandler.AddObserver(this);
         }
@@ -111,11 +115,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         private void StartDelayedToggling()
         {
             tokenSource = new CancellationTokenSource();
+
             var token = tokenSource.Token;
             Task.Run(() => ToggleVisibilityDelayed(token), token);
         }
 
         private const int NavigationButtonsToggleDelay = 2000;
+
         /// <summary>
         /// Toggles the visibility of then navigation buttons after <see cref="NavigationButtonsToggleDelay"/> milliseconds
         /// unless the task has been canceled using the token
@@ -142,7 +148,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             tokenSource?.Cancel();
         }
 
-         /// <summary>
+        /// <summary>
         /// Audio finished playing.
         /// </summary>
         private async void AudioPlayerOnAudioCompleted()
@@ -276,8 +282,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                 case PageType.ImagePage:
                 case PageType.TextPage:
                 case PageType.TimeSliderPage:
-                StartDelayedToggling();
-                break;
+                    StartDelayedToggling();
+                    break;
             }
 
             if (currentPage.Audio != null)
@@ -290,23 +296,26 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                     Settings.AutoStartAudio = result;
                     Settings.RepeatHintAudio = false;
 
+
                     if (Settings.RepeatHintAutoPageSwitch == result)
                     {
-                        // ask for preferred setting regarding automatic page switch
+                        // ask for preferred setting regarind automatic page switch
                         Settings.RepeatHintAutoPageSwitch = false;
                         var result1 = await Navigation.DisplayAlert(Strings.ExhibitDetailsPage_Hinweis,
-                                                                    Strings.ExhibitDetailsPage_PageSwitch,
-                                                                    Strings.ExhibitDetailsPage_AgreeFeature, Strings.ExhibitDetailsPage_DisagreeFeature).ConfigureAwait(true);
+                                                                   Strings.ExhibitDetailsPage_PageSwitch,
+                                                                   Strings.ExhibitDetailsPage_AgreeFeature, Strings.ExhibitDetailsPage_DisagreeFeature).ConfigureAwait(true);
                         Settings.AutoSwitchPage = result1;
                     }
                 }
-                    //play automatic audio, if wanted
-                    if (Settings.AutoStartAudio)
-                    {
-                        AudioToolbar.AudioPlayer.Play();
-                    }
+
+                //play automatic audio, if wanted
+                if (Settings.AutoStartAudio)
+                {
+                    AudioToolbar.AudioPlayer.Play();
                 }
+            }
         }
+
         /// <summary>
         /// Refreshs the availability of the pages depending on the changed database
         /// </summary>
@@ -315,7 +324,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             var exhibitId = Exhibit.Id;
             Exhibit = DbManager.DataAccess.Exhibits().GetExhibit(exhibitId);
             if (!Exhibit.DetailsDataLoaded)
-            return;
+                return;
             await SetCurrentView();
         }
 
@@ -325,26 +334,36 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         public override void OnDisappearing()
         {
             WillDisappear = true;
+
             base.OnDisappearing();
+
             AudioToolbar.AudioPlayer.AudioCompleted -= AudioPlayerOnAudioCompleted;
+
             //inform the audio toolbar to clean up
             AudioToolbar.OnDisappearing();
         }
+
         public override void OnHidden()
         {
             base.OnHidden();
+
             AudioToolbar.AudioPlayer.AudioCompleted -= AudioPlayerOnAudioCompleted;
+
             //inform the audio toolbar to clean up
             AudioToolbar.OnHidden();
         }
+
         public override void OnRevealed()
         {
             base.OnRevealed();
+
             AdjustToolbarColor();
             AudioToolbar.AudioPlayer.AudioCompleted += AudioPlayerOnAudioCompleted;
+
             //Register audio again
             AudioToolbar.OnRevealed();
         }
+
         #region properties
 
         /// <summary>
