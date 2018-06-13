@@ -40,7 +40,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
 
             var achievementDtos = await client.GetAchievements();
             var unlockedAchievementIds = (await client.GetUnlockedAchievements())
-                .Select(it => it.Id.ToString()).ToList();
+                .Select(it => it.Id.ToString())
+                .ToList();
 
             return DbManager.InTransaction(transaction =>
             {
