@@ -47,6 +47,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
                 OuterGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
                 OuterGrid.Children.Remove(InnerGrid);
                 OuterGrid.Children.Add(InnerGrid, 0, 0);
+                OuterGrid.Children.Add(PictureList, 1, 0);
             }
             else if (width < height && deviceOrientation != DeviceOrientation.Portrait)
             {
@@ -58,6 +59,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
                 OuterGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
                 OuterGrid.Children.Remove(InnerGrid);
                 OuterGrid.Children.Add(InnerGrid, 0, 0);
+                OuterGrid.Children.Add(PictureList, 0, 1);
             }
 
         }

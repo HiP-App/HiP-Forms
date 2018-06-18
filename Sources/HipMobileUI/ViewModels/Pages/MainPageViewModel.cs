@@ -184,7 +184,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                     Title = Strings.MainPageViewModel_LegalNotices,
                     Icon = "ic_gavel.png"
                 };
-                profilePictureScreenViewModel = new ProfilePictureScreenViewModel()
+                profilePictureScreenViewModel = new ProfilePictureScreenViewModel(mainPageViewModel)
                 {
                     Title = Strings.MainPageViewModel_Profile,
                     Icon = "ic_account_circle.png"
