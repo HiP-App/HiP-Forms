@@ -9,6 +9,7 @@ using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using Xamarin.Forms;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Linq;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelConverters;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
@@ -44,12 +45,23 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
                     AchievementNotification.QueueAchievementNotifications(newlyUnlocked);
                 });
 
+                var achievementCounter = 0;
+                var unlockedCounter = 0;
                 foreach (var achievement in DbManager.DataAccess.Achievements().GetAchievements())
                 {
                     Achievements.Add(AchievementViewModel.CreateFrom(achievement));
+
+                    if (achievement.IsUnlocked)
+                    {
+                        unlockedCounter++;
+                    }
+
+                    achievementCounter++;
                 }
 
                 Score = $"{Strings.AchievementsScreenView_Score} {AppSharedData.CurrentAchievementsScore()}";
+                AchievementCount = $"{unlockedCounter + "/" + achievementCounter}{Strings.AchievementsScreenView_Achievement_Count}";
+
             }
             catch (Exception e)
             {
@@ -89,6 +101,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         {
             get => isLoggedIn;
             set => SetProperty(ref isLoggedIn, value);
+        }
+
+        private string achievementCount;
+
+        public string AchievementCount
+        {
+            get => achievementCount;
+            set => SetProperty(ref achievementCount, value);
         }
     }
 }

@@ -18,18 +18,20 @@
 
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Views.ExhibitDetails.ImageView"
-             xmlns:controls1="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Controls;assembly=HipMobileUI"
-             xmlns:views1="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Views;assembly=HipMobileUI">
+             xmlns:views1="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Views;assembly=HipMobileUI"
+             xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms">
     <ContentView.Content>
         <views1:NotificationExtensionView>
             <views1:NotificationExtensionView.ContentTemplate>
                 <views1:BottomSheetView  x:Name="BottomSheetView" BottomSheetVisible="{Binding BottomSheetVisible}" >
                     <views1:BottomSheetView.MainContent>
-                        <controls1:FadeInImage Source="{Binding Image}" DownsampleToViewSize="True">
-                            <controls1:FadeInImage.GestureRecognizers>
+                        <!---CachedImage do not DownsampleToViewSize, as it becomes blurry-->
+                        <ff:CachedImage Source="{Binding Image}" 
+                                        VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                            <Image.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding ToggleButtonVisibility}" />
-                            </controls1:FadeInImage.GestureRecognizers>
-                        </controls1:FadeInImage>
+                            </Image.GestureRecognizers>
+                        </ff:CachedImage>
                     </views1:BottomSheetView.MainContent>
                     <views1:BottomSheetView.BottomSheet>
                         <StackLayout BackgroundColor="White">

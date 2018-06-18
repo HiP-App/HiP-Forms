@@ -19,6 +19,7 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
 {
@@ -230,28 +231,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
         /// </summary>
         public static void DeleteDatabase()
         {
-            InTransactionAsync(transaction =>
-            {
-                var dataAccess = transaction.DataAccess;
-
-                // delete from "cache" to see the changes instantly
-                var exhibits = dataAccess.Exhibits().GetExhibits();
-                foreach (var exhibit in exhibits)
-                {
-                    dataAccess.Exhibits().DeleteExhibit(exhibit);
-                }
-
-                var routes = dataAccess.Routes().GetRoutes();
-                foreach (var route in routes)
-                {
-                    dataAccess.Routes().DeleteRoute(route);
-                }
-
-                return Task.CompletedTask;
-            });
-
             IoCManager.Resolve<IDataAccess>().DeleteDatabase();
-            IoCManager.Resolve<IDbChangedHandler>().NotifyAll();
+            IoCManager.Resolve<IAppCloser>().RestartOrClose();
         }
     }
 }
