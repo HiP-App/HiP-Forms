@@ -65,9 +65,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             }
 
             // init the audio toolbar
-            AudioToolbar = new AudioToolbarViewModel(title);            
+            AudioToolbar = new AudioToolbarViewModel(title);
             AudioToolbar.AudioPlayer.AudioCompleted += AudioPlayerOnAudioCompleted;
-            
+
             // init the current view
             currentViewIndex = 0;
             this.pages = pages.ToList();
@@ -242,7 +242,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             OnPropertyChanged(nameof(PreviousViewAvailable));
             OnPropertyChanged(nameof(NextVisible));
             OnPropertyChanged(nameof(PreviousVisible));
-            
+
             // It's possible to get no audio data even if it should exist
             try
             {
