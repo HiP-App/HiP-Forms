@@ -69,20 +69,15 @@
                                             <ColumnDefinition Width="0,6*" />
                                             <ColumnDefinition Width="0,2*" />
                                         </Grid.ColumnDefinitions>
-                                        <controls1:FadeInImage Source="{Binding Image}" HorizontalOptions="Start"
-                                                               VerticalOptions="CenterAndExpand" DownsampleToViewSize="True"
-                                                               WidthRequest="70" HeightRequest="70" Grid.Row="0"
-                                                               Grid.Column="0">
-                                            <controls1:FadeInImage.FadeInTime>
-                                                <OnPlatform x:TypeArguments="x:Int32">
-                                                    <On Platform="Android" Value="500" />
-                                                    <On Platform="iOS" Value="0" />
-                                                </OnPlatform>
-                                            </controls1:FadeInImage.FadeInTime>
+                                        <!---CachedImage do not DownsampleToViewSize, as it becomes blurry-->
+                                        <ff:CachedImage Source="{Binding Image}"
+                                                        WidthRequest="70" HeightRequest="70" 
+                                                        HorizontalOptions="Start" VerticalOptions="CenterAndExpand"
+                                                        Grid.Row="0" Grid.Column="0">
                                             <ff:CachedImage.Transformations>
                                                 <ffTransformations:CircleTransformation />
                                             </ff:CachedImage.Transformations>
-                                        </controls1:FadeInImage>
+                                        </ff:CachedImage>
                                         <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" Padding="5,5"
                                                      Grid.Row="0" Grid.Column="1">
                                             <Label Text="{Binding Exhibit.Name}" VerticalOptions="CenterAndExpand" FontSize="16"
