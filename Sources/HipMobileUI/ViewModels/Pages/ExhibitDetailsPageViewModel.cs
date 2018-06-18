@@ -309,10 +309,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                     {
                         // ask for preferred setting regarind automatic page switch
                         Settings.RepeatHintAutoPageSwitch = false;
-                        var result1 = await Navigation.DisplayAlert(Strings.ExhibitDetailsPage_Hinweis,
+                        Settings.AutoSwitchPage = await Navigation.DisplayAlert(Strings.ExhibitDetailsPage_Hinweis,
                                                                    Strings.ExhibitDetailsPage_PageSwitch,
                                                                    Strings.ExhibitDetailsPage_AgreeFeature, Strings.ExhibitDetailsPage_DisagreeFeature).ConfigureAwait(true);
-                        Settings.AutoSwitchPage = result1;
                     }
                 }
 
