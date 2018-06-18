@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Pages.QuizStartingPage"
+             Title="{Binding Headline}">
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="White">
+            <AbsoluteLayout VerticalOptions="FillAndExpand">
+                <StackLayout
+                    AbsoluteLayout.LayoutFlags="SizeProportional" Margin="5"
+                    AbsoluteLayout.LayoutBounds="0,0,1,1"
+                    BackgroundColor="White">
+                    <Label Text="Quiz" 
+                       FontSize="36"
+                       VerticalOptions="Start" 
+                       HorizontalOptions="CenterAndExpand" 
+                       Margin="20"/>
+                    <Label/>
+                    <Label Text="Bisher hast du" 
+                       FontSize="16"
+                       HorizontalOptions="Center"/>
+                    <Label Text="{Binding Score}" 
+                       FontSize="50"
+                       HorizontalOptions="CenterAndExpand" 
+                       VerticalOptions="CenterAndExpand"/>
+                    <Label Text="Fragen richtig beantwortet" 
+                       FontSize="16"
+                       HorizontalOptions="Center"/>
+                </StackLayout>
+                <Button Image="ic_chevron_right"
+                        Command="{Binding NextViewCommand}"
+                        AbsoluteLayout.LayoutFlags="PositionProportional"
+                        AbsoluteLayout.LayoutBounds="1,0.5" BackgroundColor="#80D3D3D3"
+                        AutomationId="NextButton" />
+            </AbsoluteLayout>
+            <StackLayout VerticalOptions="End" HeightRequest="70" BackgroundColor="White">
+                <BoxView HeightRequest="1" Color="White" VerticalOptions="Start" />
+                <StackLayout Orientation="Horizontal" Padding="0,0,5,0">
+                    <Button Text="Quiz starten" 
+                            BackgroundColor="#80D3D3D3"
+                            Command="{Binding StartQuizCommand}"
+                            Margin="10"
+                            HorizontalOptions="FillAndExpand" 
+                            VerticalOptions="EndAndExpand"/>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
