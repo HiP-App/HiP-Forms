@@ -19,12 +19,14 @@ using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Windows.Input;
+using Android.Content.Res;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using Xamarin.Forms;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.UserApiFetchers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.UserApiAccesses;
+using Java.IO;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 {
@@ -196,17 +198,17 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACM
             AvatarPreview = chosenAvatar.Image;
         }
 
-        private PredefinedProfilePicture _chosenAvatar;
+        private PredefinedProfilePicture chosenAvatar;
         public PredefinedProfilePicture ChosenAvatar
         {
-            get { return _chosenAvatar; }
+            get { return chosenAvatar; }
             set
             {
-                _chosenAvatar = value;
-                if (_chosenAvatar == null)
+                chosenAvatar = value;
+                if (chosenAvatar == null)
                     return;
 
-               ChooseAvatar(_chosenAvatar);
+               ChooseAvatar(chosenAvatar);
 
                 ChosenAvatar = null;
             }
@@ -266,18 +268,18 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACM
         
 
 
-        private ImageSource _avatar;
+        private ImageSource avatar;
         public ImageSource Avatar
         {
-            get { return _avatar;}
-            set { _avatar = value; OnPropertyChanged(); }
+            get { return avatar;}
+            set { avatar = value; OnPropertyChanged(); }
         }
 
-        private ImageSource _avatarPreview;
+        private ImageSource avatarPreview;
         public ImageSource AvatarPreview
         {
-            get { return _avatarPreview; }
-            set { _avatarPreview = value; OnPropertyChanged(); }
+            get { return avatarPreview; }
+            set { avatarPreview = value; OnPropertyChanged(); }
         }
 
         public ObservableCollection<PredefinedProfilePicture> Avatars { get; set; }
@@ -288,14 +290,24 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACM
 
             //Where do I get the ID of the logged in user
             //Maybe via get /api/Users/Me?
-            var userId = 0;
+            String userId = @"";
+            String accessToken = @"";
 
 
+            
+            //Stream imageStream = new FileStream("drawable//" + Avatar1, FileMode.Open);
+            //InputStream stream = getAssets().open("image.png");
+            /*string content;
+            AssetManager assets = new AssetManager();
+            using (StreamReader sr = new StreamReader(assets.Open("read_asset.txt")))
+            {
+                content = sr.ReadToEnd();
+            }*/
 
-            //Stream imageStream = new FileStream(Avatar1, FileMode.Open);
+            //byte[] imageArray = System.IO.File.ReadAllBytes(@"ic_professor.png");
             //await client.PostProfilePicture(imageStream, userId);
 
-            var profilePicture = await fetcher.GetProfilePicture(userId);
+            var profilePicture = await fetcher.GetProfilePicture(userId, accessToken);
 
             Avatar = profilePicture == null ? ImageSource.FromFile("ic_professor.png") : ImageSource.FromStream(() => new MemoryStream(profilePicture.Data));
             AvatarPreview = ImageSource.FromFile("predefined_avatar_empty");

@@ -287,7 +287,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             
             //init serviceaccesslayer
             IoCManager.RegisterInstance(typeof(IContentApiClient), new ContentApiClient());
-            IoCManager.RegisterInstance(typeof(IContentApiClient), new UserApiClient());
+            //IoCManager.RegisterInstance(typeof(IContentApiClient), new UserApiClient());
             // ReSharper disable once ConditionIsAlwaysTrueOrFalse
 #pragma warning disable 162
             if (Constants.UseMockData)

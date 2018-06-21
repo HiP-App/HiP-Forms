@@ -16,7 +16,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 {
     public class ProfilePicture
     {
-        public int UserId { get; set; }
+        public string UserId { get; set; }
 
         public byte[] Data { get; set; }
     }

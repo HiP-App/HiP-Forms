@@ -27,17 +27,17 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.UserApi
 {
     public class ProfilePictureApiAccess
     {
-        private readonly IContentApiClient userApiClient;
+        private readonly UserApiClient userApiClient;
 
-        public ProfilePictureApiAccess(IContentApiClient userApiClient)
+        public ProfilePictureApiAccess(UserApiClient userApiClient)
         {
             this.userApiClient = userApiClient;
         }
 
-        public async Task<ProfilePicture> GetProfilePicture(int userId)
+        public async Task<ProfilePicture> GetProfilePicture(string userId, string accessToken)
         {
             string requestPath = $@"/{userId}/Photo";
-            var response = await userApiClient.GetResponseFromUrlAsBytes(requestPath);
+            var response = await userApiClient.GetResponseFromUrlAsBytes(requestPath, accessToken);
             if (response == null)
             {
                 return null;

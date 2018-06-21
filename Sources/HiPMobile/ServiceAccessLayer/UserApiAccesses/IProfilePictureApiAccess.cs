@@ -24,7 +24,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.UserApi
         /// Get the profilepicture for the given userId
         /// </summary>
         /// <param name="userId"></param>
+        /// <param name="accesToken"></param>
         /// <returns></returns>
-        Task<ProfilePicture> GetProfilePicture(int userId);
+        Task<ProfilePicture> GetProfilePicture(string userId, string accesToken);
     }
 }

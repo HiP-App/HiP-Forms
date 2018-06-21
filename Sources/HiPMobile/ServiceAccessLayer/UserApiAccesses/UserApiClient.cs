@@ -26,7 +26,7 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Authenticat
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.UserApiAccesses
 {
-    public class UserApiClient : IContentApiClient
+    public class UserApiClient
     {
         private const int MaxRetryCount = 5;
 
@@ -87,12 +87,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.UserApi
         /// Throws a <see cref="NotFoundException"/> if the requestes url was not found (Status 404)
         /// </summary>
         /// <param name="urlPath">Http request url path</param>
+        /// /// <param name="accessToken">Token for the user</param>
         /// <returns>Byte array result of the requested url</returns>
-        public async Task<byte[]> GetResponseFromUrlAsBytes(string urlPath)
+        public async Task<byte[]> GetResponseFromUrlAsBytes(string urlPath, string accessToken)
         {
             try
             {
-                var response = await GetHttpWebResponse(urlPath);
+                var response = await GetHttpWebResponse(urlPath, accessToken);
                 if (response.StatusCode == HttpStatusCode.NotFound)
                 {
                     return null;
@@ -116,7 +117,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.UserApi
                 {
                     // The token is expired, get a new one and retry
                     Settings.GenericToken = (await GetTokenForDataStore()).AccessToken;
-                    return await GetResponseFromUrlAsBytes(urlPath);
+                    return await GetResponseFromUrlAsBytes(urlPath, accessToken);
                 }
                 else
                 {

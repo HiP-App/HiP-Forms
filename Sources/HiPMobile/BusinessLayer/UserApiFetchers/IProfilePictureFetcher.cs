@@ -19,6 +19,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.UserApiFetch
 {
     public interface IProfilePictureFetcher
     {
-        Task<ProfilePicture> GetProfilePicture(int userId);
+        Task<ProfilePicture> GetProfilePicture(string userId, string accesToken);
     }
 }

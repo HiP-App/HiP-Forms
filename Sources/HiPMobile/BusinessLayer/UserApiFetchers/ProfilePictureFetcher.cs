@@ -26,9 +26,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.UserApiFetch
         {
             this.client = client;
         }
-        public async Task<ProfilePicture> GetProfilePicture(int userId)
+        public async Task<ProfilePicture> GetProfilePicture(string userId, string accessToken)
         {
-            ProfilePicture profilePicture = await client.GetProfilePicture(userId);
+            ProfilePicture profilePicture = await client.GetProfilePicture(userId, accessToken);
             if (profilePicture == null)
             {
                 return null;
