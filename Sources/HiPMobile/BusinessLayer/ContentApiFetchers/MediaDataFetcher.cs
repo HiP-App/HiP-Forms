@@ -115,11 +115,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                     ? audioConverter.ConvertReplacingExisting(mediaDto, mediaDto.Id.ToString(), dataAccess)
                     : imageConverter.ConvertReplacingExisting(mediaDto, mediaDto.Id.ToString(), dataAccess) as Media;
 
-                if (!mediaToFilePath.ContainsKey(mediaDto))
-                {
-                    Debug.Print("");
-                }
-
                 dbMedia.DataPath = mediaToFilePath.TryGetValueOrDefault(mediaDto) ??
                                    throw new NullReferenceException($"No file path for image {mediaDto.Id}");
 
