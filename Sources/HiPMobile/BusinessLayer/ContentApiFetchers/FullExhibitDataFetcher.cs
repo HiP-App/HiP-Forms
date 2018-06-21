@@ -112,8 +112,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             requiredMedia = exhibitPagesAndMediaContainer.RequiredMedia;
             pageItems = exhibitPagesAndMediaContainer.PageDtos;
 
-            var mediaToFilePath = await mediaDataFetcher.WriteMediaToDiskAsync();
             await mediaDataFetcher.FetchMedias(requiredMedia, token, listener);
+            var mediaToFilePath = await mediaDataFetcher.WriteMediaToDiskAsync();
             var quizzes = await DownloadQuizes(dbExhibitIdForRestApi, token);
             DbManager.InTransaction(transaction =>
             {
