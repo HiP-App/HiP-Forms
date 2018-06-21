@@ -58,7 +58,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             if (requiredImages.Any())
             {
                 var moreFetchedMedias = await FetchMediaDtos(requiredImages);
-                var moreFetchedFiles = await FetchFileDtos(fetchedMedias, token, progressListener);
+                var moreFetchedFiles = await FetchFileDtos(moreFetchedMedias, token, progressListener);
                 foreach (var moreFetchedMedia in moreFetchedMedias)
                 {
                     fetchedMedias.Add(moreFetchedMedia);
@@ -81,7 +81,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             var mediaToFilePath = new Dictionary<MediaDto, string>();
             foreach (var mediaDto in fetchedMedias)
             {
-                var file = fetchedFiles?.SingleOrDefault(x => x.MediaId == mediaDto.Id);
+                var file = fetchedFiles?.FirstOrDefault(x => x.MediaId == mediaDto.Id);
 
                 mediaToFilePath[mediaDto] = file == null
                     ? fileManager.PathForRestApiId(mediaDto.Id) // file is already downloaded, assign correct path
@@ -114,6 +114,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                 var dbMedia = isAudio
                     ? audioConverter.ConvertReplacingExisting(mediaDto, mediaDto.Id.ToString(), dataAccess)
                     : imageConverter.ConvertReplacingExisting(mediaDto, mediaDto.Id.ToString(), dataAccess) as Media;
+
+                if (!mediaToFilePath.ContainsKey(mediaDto))
+                {
+                    Debug.Print("");
+                }
 
                 dbMedia.DataPath = mediaToFilePath.TryGetValueOrDefault(mediaDto) ??
                                    throw new NullReferenceException($"No file path for image {mediaDto.Id}");
