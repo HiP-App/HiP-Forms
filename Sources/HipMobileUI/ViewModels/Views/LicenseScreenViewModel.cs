@@ -37,7 +37,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 
             if (tapCounter == 10)
             {
-                await DbManager.InTransactionAsync(transaction =>
+                DbManager.InTransaction(transaction =>
                 {
                     foreach (var exhibit in DbManager.DataAccess.Exhibits().GetExhibits())
                     {

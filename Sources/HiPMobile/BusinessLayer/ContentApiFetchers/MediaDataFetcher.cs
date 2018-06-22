@@ -12,6 +12,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using Itinero;
+using JetBrains.Annotations;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelConverters;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
@@ -22,13 +30,6 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using JetBrains.Annotations;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers
 {
@@ -47,8 +48,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             this.audioConverter = audioConverter;
         }
 
-        private IList<MediaDto> fetchedMedias;
-        private IList<FileDto> fetchedFiles;
+        private readonly IList<MediaDto> fetchedMedias = new List<MediaDto>();
+        private readonly IList<FileDto> fetchedFiles = new List<FileDto>();
 
         public async Task FetchMedias(IList<int?> mediaIds, CancellationToken token, [CanBeNull] IProgressListener progressListener)
         {
@@ -56,12 +57,41 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
 
             if (requiredImages.Any())
             {
-                fetchedMedias = await FetchMediaDtos(requiredImages);
-                fetchedFiles = await FetchFileDtos(fetchedMedias, token, progressListener);
+                var moreFetchedMedias = await FetchMediaDtos(requiredImages);
+                var moreFetchedFiles = await FetchFileDtos(moreFetchedMedias, token, progressListener);
+                foreach (var moreFetchedMedia in moreFetchedMedias)
+                {
+                    fetchedMedias.Add(moreFetchedMedia);
+                }
+
+                foreach (var moreFetchedFile in moreFetchedFiles)
+                {
+                    fetchedFiles.Add(moreFetchedFile);
+                }
             }
         }
 
-        public async Task<FetchedMediaData> CombineMediasAndFiles(ITransactionDataAccess dataAccess)
+        /// <summary>
+        /// Returns a map of Media objects to their file path to be set as the DataPath.
+        /// </summary>
+        /// <returns></returns>
+        public async Task<Dictionary<MediaDto, string>> WriteMediaToDiskAsync()
+        {
+            var fileManager = IoCManager.Resolve<IMediaFileManager>();
+            var mediaToFilePath = new Dictionary<MediaDto, string>();
+            foreach (var mediaDto in fetchedMedias)
+            {
+                var file = fetchedFiles?.FirstOrDefault(x => x.MediaId == mediaDto.Id);
+
+                mediaToFilePath[mediaDto] = file == null
+                    ? fileManager.PathForRestApiId(mediaDto.Id) // file is already downloaded, assign correct path
+                    : await fileManager.WriteMediaToDiskAsync(file.Data, mediaDto.Id, mediaDto.Timestamp); // new file was downloaded, store it
+            }
+
+            return mediaToFilePath;
+        }
+
+        public FetchedMediaData CombineMediasAndFiles(ITransactionDataAccess dataAccess, Dictionary<MediaDto, string> mediaToFilePath)
         {
             var fetchedData = new FetchedMediaData
             {
@@ -74,8 +104,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                 return fetchedData;
             }
 
-            var fileManager = IoCManager.Resolve<IMediaFileManager>();
-
             foreach (var mediaDto in fetchedMedias)
             {
                 var isAudio =
@@ -87,16 +115,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                     ? audioConverter.ConvertReplacingExisting(mediaDto, mediaDto.Id.ToString(), dataAccess)
                     : imageConverter.ConvertReplacingExisting(mediaDto, mediaDto.Id.ToString(), dataAccess) as Media;
 
-                var file = fetchedFiles?.SingleOrDefault(x => x.MediaId == mediaDto.Id);
-
-                dbMedia.DataPath = (file == null)
-                    ? fileManager.PathForRestApiId(mediaDto.Id) // file is already downloaded, assign correct path
-                    : await fileManager.WriteMediaToDiskAsync(file.Data, mediaDto.Id, dbMedia.Timestamp); // new file was downloaded, store it
+                dbMedia.DataPath = mediaToFilePath.TryGetValueOrDefault(mediaDto) ??
+                                   throw new NullReferenceException($"No file path for image {mediaDto.Id}");
 
                 if (isAudio)
-                    fetchedData.Audios.Add((Audio)dbMedia);
+                    fetchedData.Audios.Add((Audio) dbMedia);
                 else
-                    fetchedData.Images.Add((Image)dbMedia);
+                    fetchedData.Images.Add((Image) dbMedia);
             }
 
             return fetchedData;
@@ -136,6 +161,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                 {
                     file = new FileDto { Data = BackupData.BackupImageData, MediaId = mediaId };
                 }
+
                 files.Add(file);
                 progressListener?.ProgressOneStep();
             }

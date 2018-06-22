@@ -35,7 +35,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
         {
             if (waypoint != null)
             {
-                return await DbManager.InTransactionAsync(transaction =>
+                return DbManager.InTransaction(transaction =>
                 {
                     var exists = ActiveSet.Contains(waypoint);
                     waypoint.Visited = true;
@@ -51,7 +51,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
         /// </summary>
         public async Task ResetRoute()
         {
-            await DbManager.InTransactionAsync(PassiveSet, transaction =>
+            DbManager.InTransaction(PassiveSet, transaction =>
             {
                 foreach (var waypoint in PassiveSet)
                 {
