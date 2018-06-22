@@ -77,7 +77,6 @@
     <Compile Include="Contracts\DroidNetworkAccessChecker.cs" />
     <Compile Include="Contracts\DroidNotificationPlayer.cs" />
     <Compile Include="Contracts\DroidStorageSizeProvider.cs" />
-    <Compile Include="CustomRenderers\AndroidCustomFontLabelRenderer.cs" />
     <Compile Include="CustomRenderers\AndroidOrientationPageRenderer.cs" />
     <Compile Include="CustomRenderers\DroidHtmlLinkRenderer.cs" />
     <Compile Include="CustomRenderers\DroidReferenceLinkRenderer.cs" />
