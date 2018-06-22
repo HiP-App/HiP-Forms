@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
+using JetBrains.Annotations;
+using Newtonsoft.Json;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.FeatureToggling;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.User;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
@@ -8,6 +10,7 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.AuthenticationApiAccess;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Exceptions;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.UserApiAccesses;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.UserManagement
 {
@@ -38,6 +41,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.UserManageme
                 Settings.Username = user.Username;
                 Settings.Password = user.Password;
                 Settings.AccessToken = user.Token.AccessToken;
+
+                var currentUser = await GetCurrentUser(user.Token.AccessToken);
+                if (currentUser.Id != null)
+                {
+                    Settings.UserId = currentUser.Id;
+                    Settings.ProfilePicture = currentUser.ProfilePicture;
+                }
+                
+
                 await IoCManager.Resolve<IFeatureToggleRouter>().RefreshEnabledFeaturesAsync();
             }
 
@@ -110,5 +122,38 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.UserManageme
 
             return user.CurrentStatus;
         }
+
+        public async Task<CurrentUser> GetCurrentUser(string accessToken)
+        {
+            var path = "/Me";
+            UserApiClient userClient = new UserApiClient();
+            var response = await userClient.GetResponseFromUrlAsString(path, accessToken);
+            if (response != null)
+            {
+                return JsonConvert.DeserializeObject<CurrentUser>(response);
+            }
+
+            return new CurrentUser(null, null, null);
+        }
+    }
+
+    public class CurrentUser
+    {
+        [JsonProperty("id")]
+        public string Id { get; private set; }
+
+        [JsonProperty("email")]
+        public string EMail { get; private set; }
+
+        [JsonProperty("profilePicture")]
+        public string ProfilePicture { get; private set; }
+
+        public CurrentUser([CanBeNull] string id, [CanBeNull] string email, [CanBeNull] string profilePicture)
+        {
+            Id = id;
+            EMail = email;
+            ProfilePicture = profilePicture;
+        }
+
     }
 }

@@ -237,6 +237,19 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
         }
 
         /// <summary>
+        /// The íd of the current user
+        /// </summary>
+        private const string UserIdKey = "userId_key";
+
+        private static readonly string UserIdDefault = "";
+
+        public static string UserId
+        {
+            get => AppSettings.GetValueOrDefault(UserIdKey, UserIdDefault);
+            set => AppSettings.AddOrUpdateValue(UserIdKey, value);
+        }
+
+        /// <summary>
         /// The username of the current user
         /// </summary>
         private const string UserNameKey = "username_key";
@@ -334,6 +347,19 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
         {
             get => AppSettings.GetValueOrDefault(CompletenessKey, CompletenessDefault);
             set => AppSettings.AddOrUpdateValue(CompletenessKey, value);
+        }
+
+        /// <summary>
+        /// The íd of the current user
+        /// </summary>
+        private const string ProfilePictureKey = "profilePicture_key";
+
+        private static readonly string ProfilePictureDefault = "Max Power";
+
+        public static string ProfilePicture
+        {
+            get => AppSettings.GetValueOrDefault(ProfilePictureKey, ProfilePictureDefault);
+            set => AppSettings.AddOrUpdateValue(ProfilePictureKey, value);
         }
 
         #endregion
