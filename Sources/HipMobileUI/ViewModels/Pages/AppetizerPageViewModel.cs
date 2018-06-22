@@ -60,11 +60,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         public AppetizerPageViewModel(Exhibit exhibit)
         {
             Exhibit = exhibit;
-#if (DEBUG)
             exhibitUnblocked = true;
-#else
-            exhibitUnblocked = exhibit.Unlocked;
-#endif
 
             Headline = exhibit.Name;
             Text = string.IsNullOrEmpty(exhibit.Description) ? exhibit.Name : exhibit.Description;
