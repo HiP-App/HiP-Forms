@@ -49,6 +49,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
         private IList<RouteDto> updatedRoutes;
         private IList<RouteDto> newRoutes;
         private IList<RouteDto> fetchedChangedRoutes;
+        private FetchedMediaData fetchedMedia;
 
         public RoutesBaseDataFetcher(IMediaDataFetcher mediaDataFetcher, IRoutesApiAccess routesApiAccess, ITagsApiAccess tagsApiAccess)
         {
@@ -106,11 +107,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             await mediaDataFetcher.FetchMedias(requiredRouteImages, token, listener);
         }
 
-        private FetchedMediaData fetchedMedia;
-
-        public async Task ProcessRoutes(IProgressListener listener, ITransactionDataAccess dataAccess)
+        public Task<Dictionary<MediaDto, string>> WriteMediaToDiskAsync()
         {
-            fetchedMedia = await mediaDataFetcher.CombineMediasAndFiles(dataAccess);
+            return mediaDataFetcher.WriteMediaToDiskAsync();
+        }
+
+        public void ProcessRoutes(IProgressListener listener, ITransactionDataAccess dataAccess, Dictionary<MediaDto, string> mediaToFilePath)
+        {
+            fetchedMedia = mediaDataFetcher.CombineMediasAndFiles(dataAccess, mediaToFilePath);
 
             ProcessUpdatedRoutes(listener, dataAccess);
             ProcessNewRoutes(listener, dataAccess);

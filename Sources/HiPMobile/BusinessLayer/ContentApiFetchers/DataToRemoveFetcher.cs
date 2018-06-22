@@ -77,7 +77,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             allTags = await tagsApiAccess.GetIds();
         }
 
-        public async Task CleanupRemovedData(ITransactionDataAccess dataAccess)
+        public void CleanupRemovedData(ITransactionDataAccess dataAccess)
         {
             //Backup data fake id
             allMedias.Add(-1);
@@ -150,10 +150,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                 dataAccess.DeleteItem(page);
             }
 
-            await PruneMediaFilesAsync(dataAccess);
         }
 
-        private static async Task PruneMediaFilesAsync(IReadOnlyDataAccess dataAccess)
+        public async Task PruneMediaFilesAsync(IReadOnlyDataAccess dataAccess)
         {
             var fileManager = IoCManager.Resolve<IMediaFileManager>();
 

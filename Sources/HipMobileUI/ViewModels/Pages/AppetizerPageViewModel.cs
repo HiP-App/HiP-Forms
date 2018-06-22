@@ -209,7 +209,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             if (!available)
                 return;
 
-            await DbManager.InTransactionAsync(transaction =>
+            DbManager.InTransaction(transaction =>
             {
                 Exhibit.DetailsDataLoaded = true;
                 return Task.CompletedTask;

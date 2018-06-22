@@ -83,9 +83,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             await mediaDataFetcher.FetchMedias(requiredExhibitImages, token, listener);
         }
 
-        public async Task ProcessExhibits(IProgressListener listener, ITransactionDataAccess dataAccess)
+        public Task<Dictionary<MediaDto, string>> WriteMediaToDiskAsync()
         {
-            var fetchedMedia = await mediaDataFetcher.CombineMediasAndFiles(dataAccess);
+            return mediaDataFetcher.WriteMediaToDiskAsync();
+        }
+
+        public void ProcessExhibits(IProgressListener listener, ITransactionDataAccess dataAccess, Dictionary<MediaDto, string> mediaToFilePath)
+        {
+            var fetchedMedia = mediaDataFetcher.CombineMediasAndFiles(dataAccess, mediaToFilePath);
 
             ProcessUpdatedExhibits(listener, fetchedMedia, dataAccess);
             ProcessNewExhibits(listener, fetchedMedia, dataAccess);
