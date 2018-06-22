@@ -28,6 +28,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using JetBrains.Annotations;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers
 {
@@ -49,7 +50,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
         private IList<MediaDto> fetchedMedias;
         private IList<FileDto> fetchedFiles;
 
-        public async Task FetchMedias(IList<int?> mediaIds, CancellationToken token, IProgressListener progressListener)
+        public async Task FetchMedias(IList<int?> mediaIds, CancellationToken token, [CanBeNull] IProgressListener progressListener)
         {
             var requiredImages = mediaIds.Where(x => x.HasValue).Select(y => y.Value).Distinct().ToList();
 
@@ -107,7 +108,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             return medias.Items;
         }
 
-        private async Task<IList<FileDto>> FetchFileDtos(IList<MediaDto> mediaDtos, CancellationToken token, IProgressListener progressListener)
+        private async Task<IList<FileDto>> FetchFileDtos(IList<MediaDto> mediaDtos, CancellationToken token, [CanBeNull] IProgressListener progressListener)
         {
             var fileManager = IoCManager.Resolve<IMediaFileManager>();
             var files = new List<FileDto>();
@@ -136,7 +137,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                     file = new FileDto { Data = BackupData.BackupImageData, MediaId = mediaId };
                 }
                 files.Add(file);
-                progressListener.ProgressOneStep();
+                progressListener?.ProgressOneStep();
             }
 
             return files;

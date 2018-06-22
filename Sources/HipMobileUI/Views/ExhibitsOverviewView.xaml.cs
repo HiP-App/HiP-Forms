@@ -24,7 +24,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
     public partial class ExhibitsOverviewView : IViewFor<ExhibitsOverviewViewModel>
     {
         private DeviceOrientation deviceOrientation;
-
+        
         public ExhibitsOverviewView()
         {
             InitializeComponent();
@@ -32,6 +32,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
             IoCManager.Resolve<IThemeManager>().AdjustTheme();
         }
 
+       
         protected override void OnSizeAllocated(double width, double height)
         {
             base.OnSizeAllocated(width, height);

@@ -39,7 +39,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         private ObservableCollection<ExhibitsOverviewListItemViewModel> exhibits; // observable because items are reordered according to distance to user
         private bool displayDistances = false;
         private GeoLocation? position;
-
+        private GeoLocation gpsLocation;
+        private ICommand mapFocusCommand;
         public ExhibitsOverviewViewModel(IReadOnlyList<Exhibit> exhibits)
         {
             if (exhibits != null)
@@ -55,7 +56,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             nearbyRouteManager = IoCManager.Resolve<INearbyRouteManager>();
             var dbChangedHandler = IoCManager.Resolve<IDbChangedHandler>();
             dbChangedHandler.AddObserver(this);
-
+            FocusGps = new Command(FocusGpsClicked);
             DownloadUpdatedData();
         }
 
@@ -67,6 +68,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         public void LocationChanged(object sender, PositionEventArgs args)
         {
             Position = new GeoLocation(args.Position.Latitude, args.Position.Longitude);
+            GpsLocation = args.Position.ToGeoLocation();
 
             if (Exhibits == null)
                 return;
@@ -81,6 +83,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         /// Update the distances according to the new position.
         /// </summary>
         /// <param name="pos">The new position.</param>
+        /// 
+        private void FocusGpsClicked()
+        {
+            MapFocusCommand.Execute(GpsLocation);
+        }
+
         private void SetDistances(Position pos)
         {
             DisplayDistances = true;
@@ -156,6 +164,20 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         {
             get => position;
             set => SetProperty(ref position, value);
+        }
+
+        public ICommand FocusGps { get; }
+
+        public GeoLocation GpsLocation
+        {
+            get { return gpsLocation; }
+            set { SetProperty(ref gpsLocation, value); }
+        }
+
+        public ICommand MapFocusCommand
+        {
+            get { return mapFocusCommand; }
+            set { SetProperty(ref mapFocusCommand, value); }
         }
 
         /// <summary>

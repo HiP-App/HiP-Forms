@@ -190,7 +190,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MaterialControls" Version="1.2.2" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.0.2" />
     <PackageReference Include="SkiaSharp.Views.Forms" Version="1.60.0" />
     <PackageReference Include="System.Reflection.Emit" Version="4.3.0">
       <ExcludeAssets>all</ExcludeAssets>
@@ -484,6 +484,7 @@
   <ItemGroup>
     <BundleResource Include="Resources\unselected_circle.png" />
     <BundleResource Include="Resources\hiphop_transparent.jpg" />
+    <BundleResource Include="Resources\quiz_default_picture.png" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Resources\MapAnnotations.xcassets\AppIcons.appiconset\Contents.json">

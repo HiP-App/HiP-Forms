@@ -284,6 +284,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             
             //init serviceaccesslayer
             IoCManager.RegisterInstance(typeof(IContentApiClient), new ContentApiClient());
+            // ReSharper disable once ConditionIsAlwaysTrueOrFalse
+#pragma warning disable 162
             if (Constants.UseMockData)
             {
                 // We can use this since everything goes through the FeatureToggleRouter anyway,
@@ -311,8 +313,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                 IoCManager.RegisterType<IRoutesApiAccess, RoutesApiAccess>();
                 IoCManager.RegisterType<ITagsApiAccess, TagsApiAccess>();
                 IoCManager.RegisterType<IAuthApiAccess, AuthApiAccess>();
+                IoCManager.RegisterType<IQuizApiAccess, QuizApiAccess>();
                 IoCManager.RegisterInstance(typeof(IUserRatingApiAccess), new UserRatingApiAccess(new ContentApiClient()));
             }
+#pragma warning restore 162
 
             //init converters
             IoCManager.RegisterType<ExhibitConverter>();
@@ -321,6 +325,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             IoCManager.RegisterType<PageConverter>();
             IoCManager.RegisterType<RouteConverter>();
             IoCManager.RegisterType<TagConverter>();
+            IoCManager.RegisterType<QuizConverter>();
 
             //init fetchers
             IoCManager.RegisterInstance(typeof(INewDataCenter), new NewDataCenter());

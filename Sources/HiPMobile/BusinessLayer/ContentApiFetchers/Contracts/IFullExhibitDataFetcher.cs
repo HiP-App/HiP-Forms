@@ -30,10 +30,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
         /// <param name="pagesAndMediaContainer">Container for all pages and prefetched media related to the exhibit</param>
         /// <param name="token">For cancellation</param>
         /// <param name="listener">To update the progressbar of the downloadpage</param>
+        /// <param name="dbExhibitIdForRestApi"></param>
         /// <returns></returns>
-        Task FetchFullExhibitDataIntoDatabaseWithFetchedPagesAndMedia(
-            string exhibitId, ExhibitPagesAndMediaContainer pagesAndMediaContainer, CancellationToken token,
-            IProgressListener listener);
+        Task FetchFullExhibitDataIntoDatabaseWithFetchedPagesAndMedia(string exhibitId, ExhibitPagesAndMediaContainer pagesAndMediaContainer, CancellationToken token, IProgressListener listener, int dbExhibitIdForRestApi);
 
         /// <summary>
         /// Load pages for related exhibit and prefetch media of an exhibit for later use in a full route fetcher
