@@ -102,7 +102,6 @@
     <Compile Include="Contracts\IosNotificationPlayer.cs" />
     <Compile Include="Contracts\IosStorageSizeProvider.cs" />
     <Compile Include="CustomRenderers\FloatingActionButtonIosRenderer.cs" />
-    <Compile Include="CustomRenderers\IosCustomFontLabelRenderer.cs" />
     <Compile Include="CustomRenderers\IosHtmlLinkRenderer.cs" />
     <Compile Include="CustomRenderers\IosOrientationContentPageRenderer.cs" />
     <Compile Include="CustomRenderers\IosReferenceLinkRenderer.cs" />
