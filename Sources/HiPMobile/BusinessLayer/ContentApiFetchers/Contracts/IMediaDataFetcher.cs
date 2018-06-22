@@ -17,6 +17,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers.Contracts
 {
@@ -37,6 +38,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
         /// Combines media data and files, creating new image/audio entities in the database or updating existing ones.
         /// Must be called inside a database transaction.
         /// </summary>
-        Task<FetchedMediaData> CombineMediasAndFiles(ITransactionDataAccess dataAccess);
+        FetchedMediaData CombineMediasAndFiles(ITransactionDataAccess dataAccess, Dictionary<MediaDto, string> mediaToFilePath);
+
+        Task<Dictionary<MediaDto, string>> WriteMediaToDiskAsync();
     }
 }

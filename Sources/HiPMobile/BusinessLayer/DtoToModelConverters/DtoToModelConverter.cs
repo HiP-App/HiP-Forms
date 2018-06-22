@@ -42,11 +42,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelCo
         /// </summary>
         public TModelObject ConvertReplacingExisting(TDtoObject dto, [NotNull] string id, ITransactionDataAccess dataAccess)
         {
-            // If an entity of the same type and ID already exists, delete it first
-            if (dataAccess.GetItem<TModelObject>(id) is TModelObject existing)
-                dataAccess.DeleteItem(existing);
-
-            var modelObject = CreateModelInstance(dto);
+            var modelObject = dataAccess.GetItem<TModelObject>(id) ?? CreateModelInstance(dto);
             modelObject.Id = id ?? throw new ArgumentNullException(nameof(id));
             Convert(dto, modelObject);
             return modelObject;

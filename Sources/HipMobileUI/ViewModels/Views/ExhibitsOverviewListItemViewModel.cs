@@ -106,7 +106,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             if (!available)
                 return;
 
-            await DbManager.InTransactionAsync(transaction => { Exhibit.DetailsDataLoaded = true; });
+            DbManager.InTransaction(transaction => { Exhibit.DetailsDataLoaded = true; });
             IsDownloadButtonVisible = !Exhibit.DetailsDataLoaded;
         }
 

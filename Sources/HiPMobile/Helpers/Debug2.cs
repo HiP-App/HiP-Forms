@@ -12,18 +12,23 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System;
-using System.Threading.Tasks;
+using NUnit.Framework;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
 {
-    // ReSharper disable once InconsistentNaming
-    public static class IDataAccessExtensions
+    public static class Debug2
     {
-        /// <summary>Convenience overload for <see cref="IDataAccess.InTransaction{T}"/>
-        /// without any tracked objects.
+        // ReSharper disable once ParameterOnlyUsedForPreconditionCheck.Global
+        /// <summary>
+        /// Unlike Debug.Assert(...), this method actually throws an Exception if
+        /// the condition is not met.
         /// </summary>
-        public static T InTransaction<T>(this IDataAccess dataAccess, Func<BaseTransaction, T> func) =>
-            dataAccess.InTransaction(null, func);
+        public static void Assert(bool condition, string message = "Assertion failed!")
+        {
+            if (!condition)
+            {
+                throw new AssertionException(message);
+            }
+        }
     }
 }

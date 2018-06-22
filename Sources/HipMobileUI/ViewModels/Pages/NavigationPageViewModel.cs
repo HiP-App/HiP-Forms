@@ -119,7 +119,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             var moved = await DetailsRoute.MoveToPassiveSet(waypoint);
             if (moved)
             {
-                await DbManager.InTransactionAsync(transaction =>
+                DbManager.InTransaction(transaction =>
                 {
                     exhibit.Unlocked = true;
                 });

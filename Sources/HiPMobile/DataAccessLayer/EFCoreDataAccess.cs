@@ -12,14 +12,15 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using Microsoft.EntityFrameworkCore;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
+using SQLitePCL;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
 {
@@ -37,6 +38,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
     public class EFCoreDataAccess : IDataAccess, ITransactionDataAccess
     {
         public static readonly string DbPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "db.sqlite");
+
+        private static bool isInTransaction = false;
+        private static readonly object Lock = new object();
 
         private readonly AppDatabaseContext sharedDbContext;
 
@@ -128,28 +132,47 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
             }
         }
 
-        public async Task<T> InTransactionAsync<T>(IEnumerable<object> itemsToTrack, Func<BaseTransaction, Task<T>> func)
+        public T InTransaction<T>(IEnumerable<object> itemsToTrack, Func<BaseTransaction, T> func)
         {
             if (sharedDbContext != null)
-                throw new InvalidOperationException($"{nameof(InTransactionAsync)} must not be called within the scope of a transaction");
+                throw new InvalidOperationException($"{nameof(InTransaction)} must not be called within the scope of a transaction");
 
-            var db = new AppDatabaseContext(QueryTrackingBehavior.TrackAll);
-            db.AttachRange(itemsToTrack?.Distinct() ?? Enumerable.Empty<object>());
-            var transaction = new EFCoreTransaction(db);
-
-            T value;
-            try
+            // WARNING: This lock needs to be reentrant, as otherwise nested transactions will cause a deadlock.
+            lock (Lock)
             {
-                value = await func.Invoke(transaction);
-                transaction.Commit();
-            }
-            catch (Exception)
-            {
-                transaction.Rollback();
-                throw;
-            }
+                // Nested transactions are not supported by EF Core. As such, we inline them into the
+                // running transaction.
+                var isInTransactionAlready = isInTransaction;
+                isInTransaction = true;
 
-            return value;
+                var db = new AppDatabaseContext(QueryTrackingBehavior.TrackAll);
+                db.AttachRange(itemsToTrack?.Distinct() ?? Enumerable.Empty<object>());
+                var transaction = new EFCoreTransaction(db, !isInTransactionAlready);
+
+                try
+                {
+                    var res = func.Invoke(transaction);
+
+                    transaction.Commit();
+                    if (!isInTransactionAlready)
+                    {
+                        isInTransaction = false;
+                    }
+
+                    return res;
+                }
+                catch (Exception e)
+                {
+                    Debug.WriteLine(e);
+                    transaction.Rollback();
+                    if (!isInTransactionAlready)
+                    {
+                        isInTransaction = false;
+                    }
+
+                    throw;
+                }
+            }
         }
 
         public int GetVersion() => 1;
@@ -166,7 +189,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
         {
             using (var scope = Scope())
             {
-                SQLitePCL.Batteries.Init();
+                Batteries.Init();
                 scope.Db.Database.EnsureCreated();
             }
         }

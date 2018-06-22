@@ -16,6 +16,7 @@ using System;
 using System.Threading.Tasks;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 {
@@ -53,6 +54,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
         public virtual async Task<byte[]> GetDataAsync()
         {
             var dataPath = DataPath; // DO NOT INLINE! See method documentation.
+            Debug2.Assert(dataPath != null, $"dataPath is null for media with REST ID {IdForRestApi}");
             return await MediaCache.GetBytesAsync(
                 IdForRestApi,
                 async () => await fileManager.ReadFromDiskAsync(dataPath)
