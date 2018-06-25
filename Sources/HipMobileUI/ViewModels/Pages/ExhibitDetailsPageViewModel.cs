@@ -157,7 +157,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         private readonly IContainer container;
         private AudioToolbarViewModel AudioToolbar { get; }
 
-        private bool startedAutoPlay;
+        private bool firstVisible = true;
 
         private bool visible;
 
@@ -168,7 +168,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             {
                 if (value)
                 {
-                    StartAutoPlay();
+                  OnFirstVisible();
                 }
 
                 visible = value;
@@ -194,8 +194,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             {
                 player.Stop();
             }
-            
-            // TODO Only do heavy lifting in onvisible
 
             // init the audio toolbar
             AudioToolbar = new AudioToolbarViewModel(title, page.Audio != null);
@@ -216,15 +214,22 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                     SelectedView = new TimeSliderViewModel(timeSliderPage);
                     break;
             }
-
-            StartAutoPlay();
         }
 
-        private async void StartAutoPlay()
+        private async void OnFirstVisible()
         {
-            if (startedAutoPlay || page.Audio == null)
+            if (!firstVisible) return;
+            firstVisible = true;
+            
+            // TODO Heavy lifting should be done here
+
+            await StartAutoPlay();
+        }
+
+        private async Task StartAutoPlay()
+        {
+            if (page.Audio == null)
                 return;
-            startedAutoPlay = true;
 
             // ask if user wants automatic audio playback
             if (Settings.RepeatHintAudio)
