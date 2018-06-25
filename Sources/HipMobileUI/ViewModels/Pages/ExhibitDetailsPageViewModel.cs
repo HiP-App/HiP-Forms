@@ -101,7 +101,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         {
             this.exhibit = exhibit;
             Position = 0;
-            Pages = pages.Select(page => new ExhibitDetailsViewModel(exhibit, title, page, Navigation, this)).ToList();
+            Pages = pages.Select((page, i) => new ExhibitDetailsViewModel(exhibit, title, page, Navigation, this, i)).ToList();
 
             if (additionalInformation)
             {
@@ -155,7 +155,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         private readonly Page page;
         private readonly INavigationService navigation;
         private readonly IContainer container;
-        private AudioToolbarViewModel AudioToolbar { get; }
+        public AudioToolbarViewModel AudioToolbar { get; }
+        public int PageNumber { get; }
 
         private bool firstVisible = true;
 
@@ -168,7 +169,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             {
                 if (value)
                 {
-                  OnFirstVisible();
+                    OnFirstVisible();
                 }
 
                 visible = value;
@@ -182,12 +183,18 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
         public bool HasAdditionalInformationPages => page.AdditionalInformationPages?.Any() == true;
 
-        public ExhibitDetailsViewModel(Exhibit exhibit, string title, Page page, INavigationService navigation, IContainer container)
+        public ExhibitDetailsViewModel(Exhibit exhibit,
+                                       string title,
+                                       Page page,
+                                       INavigationService navigation,
+                                       IContainer container,
+                                       int pageNumber)
         {
             this.exhibit = exhibit;
             this.page = page;
             this.navigation = navigation;
             this.container = container;
+            PageNumber = pageNumber;
             // stop audio if necessary
             var player = IoCManager.Resolve<IAudioPlayer>();
             if (player.IsPlaying)
@@ -220,7 +227,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         {
             if (!firstVisible) return;
             firstVisible = true;
-            
+
             // TODO Heavy lifting should be done here
 
             await StartAutoPlay();
