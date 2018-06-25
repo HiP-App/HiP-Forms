@@ -35,6 +35,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         private bool isAudioPlaying;
         private readonly bool automaticallyStartNewAudio;
 
+        public bool IsVisible { get; }
         public IAudioPlayer AudioPlayer { get; private set; }
         public string ExhibitTitle { get; set; }
 
@@ -44,9 +45,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         /// </summary>
         /// <param name="automaticallyStartNewAudio"></param>
         /// <param name="exhibitTitle"></param>
-        public AudioToolbarViewModel(bool automaticallyStartNewAudio, string exhibitTitle)
+        public AudioToolbarViewModel(bool automaticallyStartNewAudio, string exhibitTitle, bool isVisible)
         {
             ExhibitTitle = exhibitTitle;
+            IsVisible = isVisible;
             PauseCommand = new Command(PauseAudio);
             PlayCommand = new Command(PlayAudio);
             CaptionCommand = new Command(ShowCaption);
@@ -63,7 +65,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         /// <summary>
         /// Creates a new audio toolbar viewmodel which does not automatically start new audio files
         /// </summary>
-        public AudioToolbarViewModel(string exhibitTitle) : this(false, exhibitTitle)
+        public AudioToolbarViewModel(string exhibitTitle, bool isVisible) : this(false, exhibitTitle, isVisible)
         {
         }
 

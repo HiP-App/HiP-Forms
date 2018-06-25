@@ -14,9 +14,9 @@
 
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using JetBrains.Annotations;
 using MvvmHelpers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
@@ -45,21 +45,42 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             get => position;
             set
             {
-                HasAdditionalInformation = pages != null && value < pages.Count && pages[value].HasAdditionalInformationPages;
+                var oldVisiblePage = position < pages.Count ? pages[position] : null;
+                var newVisiblePage = value < pages.Count ? pages[value] : null;
+
+                UpdatePageVisibilityStatus(oldVisiblePage, newVisiblePage);
                 SetProperty(ref position, value);
             }
         }
 
-        private List<ExhibitDetailsViewModel> pages;
+        private List<ExhibitDetailsViewModel> pages = new List<ExhibitDetailsViewModel>();
 
         public List<ExhibitDetailsViewModel> Pages
         {
             get => pages;
             set
             {
-                HasAdditionalInformation = value != null && position < value.Count && value[position].HasAdditionalInformationPages;
+                var oldVisiblePage = position < pages.Count ? pages[position] : null;
+                var newVisiblePage = position < value.Count ? value[position] : null;
+
+                UpdatePageVisibilityStatus(oldVisiblePage, newVisiblePage);
                 SetProperty(ref pages, value);
             }
+        }
+
+        private void UpdatePageVisibilityStatus([CanBeNull] ExhibitDetailsViewModel oldVisiblePage, [CanBeNull] ExhibitDetailsViewModel newVisiblePage)
+        {
+            if (oldVisiblePage != null)
+            {
+                oldVisiblePage.Visible = false;
+            }
+
+            if (newVisiblePage != null)
+            {
+                newVisiblePage.Visible = true;
+            }
+
+            HasAdditionalInformation = newVisiblePage?.HasAdditionalInformationPages == true;
         }
 
         public Command ShowAdditionalInformationCommand { get; }
@@ -136,7 +157,23 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         private readonly IContainer container;
         private AudioToolbarViewModel AudioToolbar { get; }
 
-        public bool AudioToolbarVisible => page.Audio != null;
+        private bool startedAutoPlay;
+
+        private bool visible;
+
+        public bool Visible
+        {
+            get => visible;
+            set
+            {
+                if (value)
+                {
+                    StartAutoPlay();
+                }
+
+                visible = value;
+            }
+        }
 
         private ExhibitSubviewViewModel selectedView;
 
@@ -165,7 +202,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             }
 
             // init the audio toolbar
-            AudioToolbar = new AudioToolbarViewModel(title);
+            AudioToolbar = new AudioToolbarViewModel(title, page.Audio != null);
             AudioToolbar.AudioPlayer.AudioCompleted += AudioPlayerOnAudioCompleted;
 
             PageManager.LoadPageDetails(page);
@@ -184,27 +221,28 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                     break;
             }
 
-            InitAsync();
+            StartAutoPlay();
         }
 
-        private async void InitAsync()
+        private async void StartAutoPlay()
         {
-            if (page.Audio != null)
-            {
-                // ask if user wants automatic audio playback
-                if (Settings.RepeatHintAudio)
-                {
-                    var result = await navigation.DisplayAlert(Strings.ExhibitDetailsPage_Hinweis, Strings.ExhibitDetailsPage_AudioPlay,
-                                                               Strings.ExhibitDetailsPage_AgreeFeature, Strings.ExhibitDetailsPage_DisagreeFeature);
-                    Settings.AutoStartAudio = result;
-                    Settings.RepeatHintAudio = false;
-                }
+            if (startedAutoPlay || page.Audio == null)
+                return;
+            startedAutoPlay = true;
 
-                //play automatic audio, if wanted
-                if (Settings.AutoStartAudio)
-                {
-                    AudioToolbar.AudioPlayer.Play();
-                }
+            // ask if user wants automatic audio playback
+            if (Settings.RepeatHintAudio)
+            {
+                var result = await navigation.DisplayAlert(Strings.ExhibitDetailsPage_Hinweis, Strings.ExhibitDetailsPage_AudioPlay,
+                                                           Strings.ExhibitDetailsPage_AgreeFeature, Strings.ExhibitDetailsPage_DisagreeFeature);
+                Settings.AutoStartAudio = result;
+                Settings.RepeatHintAudio = false;
+            }
+
+            //play automatic audio, if wanted
+            if (Settings.AutoStartAudio)
+            {
+                AudioToolbar.AudioPlayer.Play();
             }
         }
 

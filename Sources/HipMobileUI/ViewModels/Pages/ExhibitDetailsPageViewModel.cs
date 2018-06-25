@@ -63,7 +63,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             }
 
             // init the audio toolbar
-            AudioToolbar = new AudioToolbarViewModel(title);
+            AudioToolbar = new AudioToolbarViewModel(title, AudioToolbarVisible);
             AudioToolbar.AudioPlayer.AudioCompleted += AudioPlayerOnAudioCompleted;
 
             // init the current view

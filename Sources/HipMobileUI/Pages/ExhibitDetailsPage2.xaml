@@ -20,7 +20,7 @@
                                       HorizontalOptions="FillAndExpand">
         <abstractions:CarouselViewControl.ItemTemplate>
             <DataTemplate>
-                <StackLayout BackgroundColor="Red"> <!-- TODO Should be white -->
+                <StackLayout BackgroundColor="White">
                     <AbsoluteLayout VerticalOptions="FillAndExpand">
                         <ContentView x:Name="ContentView"
                                      Content="{Binding SelectedView, Converter={StaticResource ViewModelViewConverter}}"
@@ -34,6 +34,7 @@
                             <ContentView HorizontalOptions="FillAndExpand">
                                 <views:AudioToolbarView x:Name="AudioToolbar"
                                                         BindingContext="{Binding AudioToolbar}"
+                                                        IsVisible="{Binding IsVisible}"
                                                         HorizontalOptions="FillAndExpand" />
                             </ContentView>
                             <Label HorizontalOptions="End" VerticalOptions="End"
