@@ -175,16 +175,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             }
         }
 
-        private ExhibitSubviewViewModel selectedView;
-
         /// <summary>
         /// The currently displayed subview.
         /// </summary>
-        public ExhibitSubviewViewModel SelectedView
-        {
-            get => selectedView;
-            set => SetProperty(ref selectedView, value);
-        }
+        public ExhibitSubviewViewModel SelectedView { get; }
 
         public bool HasAdditionalInformationPages => page.AdditionalInformationPages?.Any() == true;
 
@@ -200,6 +194,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             {
                 player.Stop();
             }
+            
+            // TODO Only do heavy lifting in onvisible
 
             // init the audio toolbar
             AudioToolbar = new AudioToolbarViewModel(title, page.Audio != null);
