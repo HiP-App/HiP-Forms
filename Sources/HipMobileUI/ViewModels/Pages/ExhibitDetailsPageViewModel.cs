@@ -106,6 +106,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             if (additionalInformation)
             {
                 IoCManager.Resolve<IBarsColorsChanger>().ChangeToolbarColor(Color.FromRgb(128, 128, 128), Color.FromRgb(169, 169, 169));
+                // TODO Revert when coming back
             }
             else
             {
@@ -202,6 +203,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                 player.Stop();
             }
 
+            // TODO Reset audio on every swipe
             // init the audio toolbar
             AudioToolbar = new AudioToolbarViewModel(title, page.Audio != null);
             AudioToolbar.AudioPlayer.AudioCompleted += AudioPlayerOnAudioCompleted;
