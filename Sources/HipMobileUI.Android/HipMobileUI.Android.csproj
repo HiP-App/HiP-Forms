@@ -77,7 +77,6 @@
     <Compile Include="Contracts\DroidNetworkAccessChecker.cs" />
     <Compile Include="Contracts\DroidNotificationPlayer.cs" />
     <Compile Include="Contracts\DroidStorageSizeProvider.cs" />
-    <Compile Include="CustomRenderers\AndroidCustomFontLabelRenderer.cs" />
     <Compile Include="CustomRenderers\AndroidOrientationPageRenderer.cs" />
     <Compile Include="CustomRenderers\DroidHtmlLinkRenderer.cs" />
     <Compile Include="CustomRenderers\DroidReferenceLinkRenderer.cs" />
@@ -213,7 +212,7 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-hdpi\ic_exit_to_app_white_24dp.png" />
   </ItemGroup>
-    <ItemGroup>
+  <ItemGroup>
     <AndroidResource Include="Resources\drawable-mdpi\ic_exit_to_app_white_24dp.png" />
   </ItemGroup>
   <ItemGroup>

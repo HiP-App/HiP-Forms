@@ -18,6 +18,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
     {
         /// <summary>
         /// Gets an instance of <see cref="ITransactionDataAccess"/> that tracks changes of queried entities.
+        /// It may only be accessed in the scope of the transaction, i.e. before calling Commit and Rollback.
         /// </summary>
         public abstract ITransactionDataAccess DataAccess { get; }
 

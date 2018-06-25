@@ -18,6 +18,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers.Contracts
 {
@@ -44,13 +45,17 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
         /// Put the routes into the database
         /// </summary>
         /// <param name="listener"></param>
+        /// <param name="dataAccess"></param>
+        /// <param name="mediaToFilePath"></param>
         /// <returns></returns>
-        Task ProcessRoutes(IProgressListener listener, ITransactionDataAccess dataAccess);
+        void ProcessRoutes(IProgressListener listener, ITransactionDataAccess dataAccess, Dictionary<MediaDto, string> mediaToFilePath);
 
         /// <summary>
         /// Indicates whether any route was changed
         /// </summary>
         /// <returns></returns>
         Task<bool> AnyRouteChanged(IReadOnlyDataAccess dataAccess);
+        
+        Task<Dictionary<MediaDto, string>> WriteMediaToDiskAsync();
     }
 }

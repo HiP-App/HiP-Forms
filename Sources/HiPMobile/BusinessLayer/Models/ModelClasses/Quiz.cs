@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Diagnostics;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 {
@@ -27,7 +27,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 
             set
             {
-                Debug.Assert(value.Count == 4, "A quiz must have exactly 4 options.");
+                Debug2.Assert(value.Count == 4, "A quiz must have exactly 4 options.");
                 OptionA = value[0];
                 OptionB = value[1];
                 OptionC = value[2];

@@ -64,13 +64,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
 
         public static async Task<IEnumerable<IAchievement>> DequeuePendingAchievementNotifications()
         {
-            return await DbManager.InTransactionAsync(transaction =>
+            return DbManager.InTransaction(transaction =>
             {
                 var dataAccess = transaction.DataAccess;
 
                 var notifications = dataAccess.GetItems<AchievementPendingNotification>().ToList();
                 notifications.ForEach(dataAccess.DeleteItem);
-                return Task.FromResult(notifications.Select(it => it.Achievement));
+                return notifications.Select(it => it.Achievement);
             });
         }
 
@@ -79,22 +79,22 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
         /// </summary>
         public static async Task UpdateServerAndLocalState()
         {
-            await DbManager.InTransactionAsync(async transaction =>
+            await DbManager.DataAccess.Achievements().PostVisitedExhibitsToApi();
+            IEnumerable<AchievementBase> newlyUnlocked;
+            try
+            {
+                newlyUnlocked = await IoCManager.Resolve<IAchievementFetcher>().UpdateAchievements();
+            }
+            catch (Exception e)
+            {
+                // If this fails, we can just log, ignore and try again later
+                Debug.WriteLine(e);
+                return;
+            }
+
+            DbManager.InTransaction(transaction =>
             {
                 var dataAccess = transaction.DataAccess;
-                IEnumerable<AchievementBase> newlyUnlocked;
-                try
-                {
-                    await dataAccess.Achievements().PostVisitedExhibitsToApi();
-                    newlyUnlocked = await IoCManager.Resolve<IAchievementFetcher>().UpdateAchievements(dataAccess);
-                }
-                catch (Exception e)
-                {
-                    // If this fails, we can just log, ignore and try again later
-                    Debug.WriteLine(e);
-                    return;
-                }
-
                 foreach (var achievement in newlyUnlocked)
                 {
                     if (dataAccess.GetItem<AchievementPendingNotification>(achievement.Id) == null)
