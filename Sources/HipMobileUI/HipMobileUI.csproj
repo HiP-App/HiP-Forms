@@ -19,22 +19,22 @@
   <ItemGroup>
     <ProjectReference Include="..\HiPMobile\HiPMobile.csproj" />
   </ItemGroup>
-
   <ItemGroup>
     <Compile Update="Resources\Strings.Designer.cs">
-      <Generator></Generator>
+      <Generator>
+      </Generator>
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>Strings.resx</DependentUpon>
     </Compile>
   </ItemGroup>
-
   <ItemGroup>
     <EmbeddedResource Update="App.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\Strings.de.resx">
-      <Generator></Generator>
+      <Generator>
+      </Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\Strings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

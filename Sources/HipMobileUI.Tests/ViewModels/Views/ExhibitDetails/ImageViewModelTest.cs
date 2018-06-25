@@ -61,7 +61,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Views
             var imagePage = Substitute.For<ImagePage>();
             imagePage.Image = CreateImage();
 
-            return new ImageViewModel(imagePage, toggleAction);
+            return new ImageViewModel(imagePage);
         }
 
         private Image CreateImage()

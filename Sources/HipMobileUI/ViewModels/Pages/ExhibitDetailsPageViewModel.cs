@@ -47,8 +47,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         private bool buttonsVisible = true;
         private readonly bool additionalInformation;
 
-        public ExhibitDetailsPageViewModel(string exhibitId) : this(DbManager.DataAccess.Exhibits().GetExhibit(exhibitId)) { }
-
         public ExhibitDetailsPageViewModel(Exhibit exhibit) : this(exhibit, exhibit.Pages, exhibit.Name) { }
 
         public ExhibitDetailsPageViewModel(Exhibit exhibit, ICollection<Page> pages, string title, bool additionalInformation = false)
@@ -77,7 +75,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             // init commands     
             NextViewCommand = new Command(async () => await GotoNextView());
             PreviousViewCommand = new Command(GotoPreviousView);
-            ShowAudioToolbarCommand = new Command(SwitchAudioToolbarVisibleState);
             ShowAdditionalInformationCommand = new Command(ShowAdditionalInformation);
 
             var dbChangedHandler = IoCManager.Resolve<IDbChangedHandler>();
@@ -221,11 +218,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             }
         }
 
-        private void SwitchAudioToolbarVisibleState()
-        {
-            AudioToolbarVisible = !AudioToolbarVisible;
-        }
-
         /// <summary>
         /// Switch to the previous view.
         /// </summary>
@@ -281,13 +273,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             switch (currentPage)
             {
                 case ImagePage imagePage:
-                    SelectedView = new ImageViewModel(imagePage, ToggleVisibilityOfNavigationButtons);
+                    SelectedView = new ImageViewModel(imagePage);
                     break;
                 case TextPage textPage:
-                    SelectedView = new TextViewModel(textPage, ToggleVisibilityOfNavigationButtons);
+                    SelectedView = new TextViewModel(textPage);
                     break;
                 case TimeSliderPage timeSliderPage:
-                    SelectedView = new TimeSliderViewModel(timeSliderPage, ToggleVisibilityOfNavigationButtons);
+                    SelectedView = new TimeSliderViewModel(timeSliderPage);
                     break;
             }
 
@@ -422,11 +414,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         /// Indicator if navigation to next is visible
         /// </summary>
         public bool NextVisible => buttonsVisible && NextViewAvailable;
-
-        /// <summary>
-        /// Shows the audio toolbar
-        /// </summary>
-        public ICommand ShowAudioToolbarCommand { get; }
 
         /// <summary>
         /// Indicates whether the current page has audio available

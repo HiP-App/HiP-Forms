@@ -6,7 +6,7 @@ using Xamarin.Forms.Xaml;
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ExhibitDetailsPage2 : ContentPage, IViewFor<ExhibitDetailsPage2ViewModel>
+    public partial class ExhibitDetailsPage2 : OrientationContentPage, IViewFor<ExhibitDetailsPage2ViewModel>
     {
         public ExhibitDetailsPage2()
         {

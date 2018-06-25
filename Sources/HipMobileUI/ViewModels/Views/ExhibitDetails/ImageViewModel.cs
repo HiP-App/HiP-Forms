@@ -12,7 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System;
 using System.IO;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelConverters;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
@@ -20,14 +19,14 @@ using Xamarin.Forms;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views.ExhibitDetails
 {
-    public class ImageViewModel : ExhibitSubviewHiddeableNavigationViewModel
+    public class ImageViewModel : ExhibitSubviewViewModel
     {
         private ImageSource image;
         private string description;
         private string headline;
         private bool bottomSheetVisible;
 
-        public ImageViewModel(ImagePage page, Action toggleButtonVisibility) : base(toggleButtonVisibility)
+        public ImageViewModel(ImagePage page)
         {
             SetImage(page);
             Headline = page.Image.Title;

@@ -90,7 +90,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Views
             timesliderPage.Title = "A title";
             timesliderPage.Text = "A text";
 
-            return new TimeSliderViewModel(timesliderPage, action);
+            return new TimeSliderViewModel(timesliderPage);
         }
 
         private Image CreateImage(string description)

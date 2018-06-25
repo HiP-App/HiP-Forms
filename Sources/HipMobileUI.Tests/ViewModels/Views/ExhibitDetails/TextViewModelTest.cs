@@ -68,7 +68,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Views
             textPage.Title = Title;
             textPage.Description = Description;
 
-            return new TextViewModel(textPage, action);
+            return new TextViewModel(textPage);
         }
 
         #endregion
