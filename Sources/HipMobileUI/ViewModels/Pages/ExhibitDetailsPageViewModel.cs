@@ -76,7 +76,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             NextViewCommand = new Command(async () => await GotoNextView());
             PreviousViewCommand = new Command(GotoPreviousView);
             ShowAdditionalInformationCommand = new Command(ShowAdditionalInformation);
-
             var dbChangedHandler = IoCManager.Resolve<IDbChangedHandler>();
             dbChangedHandler.AddObserver(this);
         }
@@ -149,16 +148,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         /// </summary>
         private async void AudioPlayerOnAudioCompleted()
         {
-            if (Settings.RepeatHintAutoPageSwitch)
-            {
-                // ask for preferred setting regarind automatic page switch
-                Settings.RepeatHintAutoPageSwitch = false;
-                var result = await Navigation.DisplayAlert(Strings.ExhibitDetailsPage_Hinweis,
-                                                           Strings.ExhibitDetailsPage_PageSwitch,
-                                                           Strings.ExhibitDetailsPage_AgreeFeature, Strings.ExhibitDetailsPage_DisagreeFeature).ConfigureAwait(true);
-                Settings.AutoSwitchPage = result;
-            }
-
             // aply automatic page switch if wanted and if the next page isn't the rating page
             if (Settings.AutoSwitchPage && NextViewAvailable && currentViewIndex < pages.Count - 1)
             {
@@ -307,6 +296,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                                                                Strings.ExhibitDetailsPage_AgreeFeature, Strings.ExhibitDetailsPage_DisagreeFeature);
                     Settings.AutoStartAudio = result;
                     Settings.RepeatHintAudio = false;
+
+                    if (Settings.RepeatHintAutoPageSwitch == result)
+                    {
+                        // ask for preferred setting regarind automatic page switch
+                        Settings.RepeatHintAutoPageSwitch = false;
+                        Settings.AutoSwitchPage = await Navigation.DisplayAlert(Strings.ExhibitDetailsPage_Hinweis,
+                                                                   Strings.ExhibitDetailsPage_PageSwitch,
+                                                                   Strings.ExhibitDetailsPage_AgreeFeature, Strings.ExhibitDetailsPage_DisagreeFeature).ConfigureAwait(true);
+                    }
                 }
 
                 //play automatic audio, if wanted

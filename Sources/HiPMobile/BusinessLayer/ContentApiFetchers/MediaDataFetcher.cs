@@ -18,6 +18,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Itinero;
 using JetBrains.Annotations;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetchers.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelConverters;
@@ -47,8 +48,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             this.audioConverter = audioConverter;
         }
 
-        private IList<MediaDto> fetchedMedias;
-        private IList<FileDto> fetchedFiles;
+        private readonly IList<MediaDto> fetchedMedias = new List<MediaDto>();
+        private readonly IList<FileDto> fetchedFiles = new List<FileDto>();
 
         public async Task FetchMedias(IList<int?> mediaIds, CancellationToken token, [CanBeNull] IProgressListener progressListener)
         {
@@ -56,8 +57,17 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
 
             if (requiredImages.Any())
             {
-                fetchedMedias = await FetchMediaDtos(requiredImages);
-                fetchedFiles = await FetchFileDtos(fetchedMedias, token, progressListener);
+                var moreFetchedMedias = await FetchMediaDtos(requiredImages);
+                var moreFetchedFiles = await FetchFileDtos(moreFetchedMedias, token, progressListener);
+                foreach (var moreFetchedMedia in moreFetchedMedias)
+                {
+                    fetchedMedias.Add(moreFetchedMedia);
+                }
+
+                foreach (var moreFetchedFile in moreFetchedFiles)
+                {
+                    fetchedFiles.Add(moreFetchedFile);
+                }
             }
         }
 
@@ -71,7 +81,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             var mediaToFilePath = new Dictionary<MediaDto, string>();
             foreach (var mediaDto in fetchedMedias)
             {
-                var file = fetchedFiles?.SingleOrDefault(x => x.MediaId == mediaDto.Id);
+                var file = fetchedFiles?.FirstOrDefault(x => x.MediaId == mediaDto.Id);
 
                 mediaToFilePath[mediaDto] = file == null
                     ? fileManager.PathForRestApiId(mediaDto.Id) // file is already downloaded, assign correct path
@@ -105,7 +115,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
                     ? audioConverter.ConvertReplacingExisting(mediaDto, mediaDto.Id.ToString(), dataAccess)
                     : imageConverter.ConvertReplacingExisting(mediaDto, mediaDto.Id.ToString(), dataAccess) as Media;
 
-                dbMedia.DataPath = mediaToFilePath[mediaDto] ?? throw new NullReferenceException($"No file path for image {mediaDto.Id}");
+                dbMedia.DataPath = mediaToFilePath.TryGetValueOrDefault(mediaDto) ??
+                                   throw new NullReferenceException($"No file path for image {mediaDto.Id}");
 
                 if (isAudio)
                     fetchedData.Audios.Add((Audio) dbMedia);
