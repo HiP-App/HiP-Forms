@@ -101,7 +101,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         {
             this.exhibit = exhibit;
             Position = 0;
-            Pages = pages.Select((page, i) => new ExhibitDetailsViewModel(exhibit, title, page, Navigation, this, i)).ToList();
+            Pages = pages.Select((page, i) => new ExhibitDetailsViewModel(exhibit, title, page, Navigation, this, i + 1)).ToList();
 
             if (additionalInformation)
             {
