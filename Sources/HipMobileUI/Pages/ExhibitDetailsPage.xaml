@@ -7,7 +7,7 @@
                               xmlns:controls="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Controls;assembly=HipMobileUI"
                               xmlns:helpers="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;assembly=HipMobileUI"
                               xmlns:views="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Views;assembly=HipMobileUI"
-                              x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Pages.ExhibitDetailsPage2">
+                              x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Pages.ExhibitDetailsPage">
     <pages:OrientationContentPage.ToolbarItems>
         <controls:HideableToolbarItem x:Name="AdditionalInformationButton" Order="Primary"
                                       Command="{Binding ShowAdditionalInformationCommand}"

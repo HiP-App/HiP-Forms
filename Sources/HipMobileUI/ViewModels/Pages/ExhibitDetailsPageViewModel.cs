@@ -34,7 +34,7 @@ using Page = PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.Pa
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 {
-    public class ExhibitDetailsPage2ViewModel : NavigationViewModel, ExhibitDetailsViewModel.IContainer
+    public class ExhibitDetailsPageViewModel : NavigationViewModel, ExhibitDetailsViewModel.IContainer
     {
         private readonly Exhibit exhibit;
 
@@ -93,11 +93,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             set => SetProperty(ref hasAdditionalInformation, value);
         }
 
-        public ExhibitDetailsPage2ViewModel(Exhibit exhibit) : this(exhibit, exhibit.Pages, exhibit.Name)
+        public ExhibitDetailsPageViewModel(Exhibit exhibit) : this(exhibit, exhibit.Pages, exhibit.Name)
         {
         }
 
-        public ExhibitDetailsPage2ViewModel(Exhibit exhibit, IEnumerable<Page> pages, string title, bool additionalInformation = false)
+        public ExhibitDetailsPageViewModel(Exhibit exhibit, IEnumerable<Page> pages, string title, bool additionalInformation = false)
         {
             this.exhibit = exhibit;
             Position = 0;
@@ -250,7 +250,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         {
             if (!HasAdditionalInformationPages) throw new InvalidOperationException("Cannot show additional information as none are available!");
 
-            await navigation.PushAsync(new ExhibitDetailsPage2ViewModel(exhibit, page.AdditionalInformationPages, Strings.ExhibitDetailsPage_AdditionalInformation, true));
+            await navigation.PushAsync(new ExhibitDetailsPageViewModel(exhibit, page.AdditionalInformationPages, Strings.ExhibitDetailsPage_AdditionalInformation, true));
         }
 
         /// <summary>

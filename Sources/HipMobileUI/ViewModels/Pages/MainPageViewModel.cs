@@ -92,7 +92,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         private async void Test()
         {
             await Task.Delay(1500);
-            await Navigation.PushAsync(new ExhibitDetailsPage2ViewModel(DbManager.DataAccess.Exhibits().GetExhibits().First(it => (it.Pages?.Count ?? 0) > 0)));
+            await Navigation.PushAsync(new ExhibitDetailsPageViewModel(DbManager.DataAccess.Exhibits().GetExhibits().First(it => (it.Pages?.Count ?? 0) > 0)));
         }
 
         private class AchievementsVmHider : IObserver<bool>
