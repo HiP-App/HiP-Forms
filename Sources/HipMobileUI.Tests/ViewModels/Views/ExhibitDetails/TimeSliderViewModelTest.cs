@@ -64,17 +64,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Views
             Assert.IsTrue(sut.DisplayedText.Equals("69"));
         }
 
-        [Test, Category("UnitTest")]
-        public void ToggleButtonVisibility_ActionCalled()
-        {
-            var actionSub = Substitute.For<Action>();
-            var sut = CreateSystemUnderTest(actionSub);
-
-            sut.ToggleButtonVisibility.Execute(null);
-
-            actionSub.ReceivedWithAnyArgs().Invoke();
-        }
-
         #region Helper Methods
 
         public TimeSliderViewModel CreateSystemUnderTest(Action action)

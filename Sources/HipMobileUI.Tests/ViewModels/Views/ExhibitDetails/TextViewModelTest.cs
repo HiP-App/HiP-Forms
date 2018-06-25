@@ -42,17 +42,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Views
             Assert.AreEqual(Description, sut.Description);
         }
 
-        [Test, Category("UnitTest")]
-        public void ToggleButtonVisibility_ActionCalled()
-        {
-            var actionSub = Substitute.For<Action>();
-            var sut = CreateSystemUnderTest(actionSub);
-
-            sut.ToggleButtonVisibility.Execute(null);
-
-            actionSub.ReceivedWithAnyArgs().Invoke();
-        }
-
         #region Helper Methods
 
         private const string Title = "Title Test";
