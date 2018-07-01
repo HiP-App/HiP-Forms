@@ -1601,6 +1601,42 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to questions answered right.
+        /// </summary>
+        public static string QuizStartingPage_QuestionsAnsweredCorrect {
+            get {
+                return ResourceManager.GetString("QuizStartingPage_QuestionsAnsweredCorrect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Quiz.
+        /// </summary>
+        public static string QuizStartingPage_Quiz {
+            get {
+                return ResourceManager.GetString("QuizStartingPage_Quiz", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start quiz.
+        /// </summary>
+        public static string QuizStartingPage_StartQuiz {
+            get {
+                return ResourceManager.GetString("QuizStartingPage_StartQuiz", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Up to now, you have.
+        /// </summary>
+        public static string QuizStartingPage_UpToNow {
+            get {
+                return ResourceManager.GetString("QuizStartingPage_UpToNow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to An e-mail has been sent to you. Please confirm this e-mail to be able to log in..
         /// </summary>
         public static string RegisterScreenView_Alert_Description {
