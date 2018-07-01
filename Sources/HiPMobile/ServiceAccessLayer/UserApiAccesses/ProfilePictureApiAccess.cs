@@ -15,7 +15,9 @@
 using System;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
@@ -75,28 +77,40 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.UserApi
         }*/
 
 
-        public async Task<string> PostProfilePicture(Stream picture, int userId)
+        public async Task<string> PostProfilePicture(Stream picture, string userId, string accessToken)
         {
             var path = "https://docker-hip.cs.uni-paderborn.de/public/userstore/api";
             var requestPath = $@"/Users/{userId}/Photo";
             var completePath = path + requestPath;
 
             HttpContent fileStreamContent = new StreamContent(picture);
-            fileStreamContent.Headers.ContentDisposition = new System.Net.Http.Headers.ContentDispositionHeaderValue("form-data") { Name = "file", FileName = "profilePicture" };
-            fileStreamContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/octet-stream");
+            fileStreamContent.Headers.ContentDisposition = new ContentDispositionHeaderValue("formData") { Name = "file", FileName = "profilePicture" };
+            fileStreamContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
             using (var client = new HttpClient())
-            using (var formData = new MultipartFormDataContent())
             {
-                formData.Add(fileStreamContent);
-                var response = await client.PostAsync(completePath, formData);
-                var responseString = response.Content.ReadAsStringAsync().ToString();
-                return responseString;
+                client.BaseAddress = new Uri(path);
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+                using (var formData = new MultipartFormDataContent())
+                {
+                    formData.Add(fileStreamContent);
+                    //var response = await client.PostAsync(completePath, formData);
+                    var response = await client.PutAsync(requestPath, formData);
+                    if (response != null)
+                    {
+                        var responseString = response.Content.ReadAsStringAsync().ToString();
+                        return responseString;
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
             }
-
+                
         }
 
+ 
 
-        
     }
 
  

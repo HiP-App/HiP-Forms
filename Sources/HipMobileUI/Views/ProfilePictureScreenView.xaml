@@ -39,23 +39,61 @@
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
 
-                        <StackLayout Grid.Row="0" Grid.Column="0" Margin="10, 0, 2.5, 0">
+                        <!--<StackLayout Grid.Row="0" Grid.Column="0" Margin="10, 0, 2.5, 0">
                             <Label FontSize="23" Text="Current Avatar"
                                    Style="{DynamicResource Ssp-Regular}" TextColor="Black" HorizontalTextAlignment="Center" />
                             <Image Aspect="AspectFit" Source="{Binding Avatar}" />
                             <Button Text="Keep Avatar" Command="{Binding KeepAvatarCommand}" VerticalOptions="CenterAndExpand" HorizontalOptions="Fill" />
-                        </StackLayout>
-
-                        <StackLayout Grid.Row="0" Grid.Column="1" Margin="2.5, 0, 10, 0">
+                        </StackLayout> -->
+ 
+                        <!--<StackLayout Grid.Row="0" Grid.Column="1" Margin="2.5, 0, 10, 0">
                             <Label FontSize="23" Text="Preview"
                                    Style="{DynamicResource Ssp-Regular}" TextColor="Black" HorizontalTextAlignment="Center"/>
-                            <Image Aspect="AspectFit" Source="{Binding AvatarPreview}" />
+                            <Image  Aspect="Fill" Source="{Binding AvatarPreview}" VerticalOptions="FillAndExpand"/>
                             <Button Text="Save new Avatar" Command="{Binding SaveNewAvatarCommand}"  VerticalOptions="CenterAndExpand" HorizontalOptions="Fill" />
-                        </StackLayout>
+                        </StackLayout> -->
+                        <Grid Grid.Row="0" Grid.Column="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="0.1*" />
+                                <RowDefinition Height="0.7*" />
+                                <RowDefinition Height="0.2*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Label Grid.Row="0" Grid.Column="0" FontSize="23" Text="Current Avatar"
+                                   Style="{DynamicResource Ssp-Regular}" TextColor="Black" HorizontalTextAlignment="Center" />
+                            <Image Grid.Row="1" Grid.Column="0" Aspect="AspectFit" Source="{Binding Avatar}" VerticalOptions="CenterAndExpand" />
+                            <Button Grid.Row="2" Grid.Column="0" Text="Keep Avatar" Command="{Binding KeepAvatarCommand}" VerticalOptions="CenterAndExpand" HorizontalOptions="Fill" />
+                        </Grid>
+                        <Grid Grid.Row="0" Grid.Column="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="0.1*" />
+                                <RowDefinition Height="0.7*" />
+                                <RowDefinition Height="0.2*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Label Grid.Row="0" Grid.Column="0" FontSize="23" Text="Preview"
+                                   Style="{DynamicResource Ssp-Regular}" TextColor="Black" HorizontalTextAlignment="Center" />
+                            <Image Grid.Row="1" Grid.Column="0" Aspect="AspectFit" Source="{Binding AvatarPreview}" VerticalOptions="CenterAndExpand" />
+                            <Button Grid.Row="2" Grid.Column="0" Text="Save new Avatar" Command="{Binding SaveNewAvatarCommand}"  VerticalOptions="CenterAndExpand" HorizontalOptions="Fill" />
+                        </Grid>
 
                     </Grid>
+                    <Grid x:Name="InnerGridList">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0.8*" />
+                            <RowDefinition Height="0.2*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
 
-                    <ListView x:Name="PictureList"  Grid.Row="1" Grid.Column="0"
+                        <ListView x:Name="PictureList"  Grid.Row="0" Grid.Column="0"
                               ItemsSource="{Binding Avatars}"
                               VerticalOptions="FillAndExpand"
                               HasUnevenRows="true"
@@ -65,36 +103,47 @@
                               SelectedItem="{Binding ChosenAvatar, Mode=TwoWay}">
 
 
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
 
-                                <ViewCell>
+                                    <ViewCell>
 
-                                    <Grid>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="0.005*" />
-                                            <RowDefinition Height="0.99*" />
-                                            <RowDefinition Height="0.005*" />
-                                        </Grid.RowDefinitions>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="0.01*" />
-                                            <ColumnDefinition Width="0.19*" />
-                                            <ColumnDefinition Width="0.8*" />
-                                        </Grid.ColumnDefinitions>
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="0.005*" />
+                                                <RowDefinition Height="0.99*" />
+                                                <RowDefinition Height="0.005*" />
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="0.01*" />
+                                                <ColumnDefinition Width="0.19*" />
+                                                <ColumnDefinition Width="0.8*" />
+                                            </Grid.ColumnDefinitions>
 
-                                       <!-- <BoxView Grid.Row="1" Grid.Column="1" HeightRequest="80" BackgroundColor="Gray"/> -->
-                                        <Image Grid.Row="1" Grid.Column="1" HeightRequest="80" Aspect="AspectFit" Source="{Binding Image}" />
-                                        <Label Grid.Row="1" Grid.Column="2" Text="{Binding Title}" 
+                                            <!-- <BoxView Grid.Row="1" Grid.Column="1" HeightRequest="80" BackgroundColor="Gray"/> -->
+                                            <Image Grid.Row="1" Grid.Column="1" HeightRequest="80" Aspect="AspectFit" Source="{Binding Image}" />
+                                            <Label Grid.Row="1" Grid.Column="2" Text="{Binding Title}" 
                                                VerticalTextAlignment="Center"
                                                HorizontalTextAlignment="Start"
                                                LineBreakMode="NoWrap" 
                                                Style="{DynamicResource ListItemTextStyle}" 
                                                FontSize="16" />
-                                    </Grid>
-                                </ViewCell>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
+                                        </Grid>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                        <Button 
+                            x:Name="PickImage"
+                            Grid.Row="1" Grid.Column="0" 
+                            Text="Get Picture from Gallery" 
+                            Command="{Binding ImagePickerCommand}" 
+                            VerticalOptions="CenterAndExpand" 
+                            HorizontalOptions="Fill"
+                            IsEnabled="{Binding PickImageEnabled}">
+                            
+                        </Button>
+                    </Grid>
                 </Grid>
             </views:NotificationExtensionView.ContentTemplate>
         </views:NotificationExtensionView>

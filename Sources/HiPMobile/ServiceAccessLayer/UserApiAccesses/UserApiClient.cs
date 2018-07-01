@@ -41,18 +41,38 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.UserApi
 
         public async Task<string> GetResponseFromUrlAsString(string urlPath, string accessToken)
         {
-            var response = await GetHttpWebResponse(urlPath, accessToken);
-
-            if (response.StatusCode == HttpStatusCode.OK)
+            try
             {
-                using (var responseStream = response.GetResponseStream())
+                var response = await GetHttpWebResponse(urlPath, accessToken);
+
+                if (response.StatusCode == HttpStatusCode.OK)
                 {
-                    var reader = new StreamReader(responseStream, Encoding.UTF8);
-                    return reader.ReadToEnd();
+                    using (var responseStream = response.GetResponseStream())
+                    {
+                        if (responseStream != null)
+                        {
+                            var reader = new StreamReader(responseStream, Encoding.UTF8);
+                            return reader.ReadToEnd();
+                        }
+                    }
+                }
+
+                return null;
+            }
+            catch (NetworkAccessFailedException e)
+            {
+                if ((((WebException)e.InnerException).Response as HttpWebResponse)?.StatusCode == HttpStatusCode.Unauthorized)
+                {
+
+                    //Error Message
+                    return null;
+
+                }
+                else
+                {
+                    throw e;
                 }
             }
-
-            return null;
         }
 
         /// <summary>
@@ -80,37 +100,31 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.UserApi
                     {
                         using (var ms = new MemoryStream())
                         {
-                            responseStream.CopyTo(ms);
-                            return ms.ToArray();
+                            if (responseStream != null)
+                            {
+                                responseStream.CopyTo(ms);
+                                return ms.ToArray();
+                            }
                         }
                     }
                 }
-               
+
+                return null;
             }
             catch (NetworkAccessFailedException e)
             {
                 if ((((WebException)e.InnerException).Response as HttpWebResponse)?.StatusCode == HttpStatusCode.Unauthorized)
                 {
-                    // The token is expired, get a new one and retry
-                    Settings.GenericToken = (await GetTokenForDataStore()).AccessToken;
-                    return await GetResponseFromUrlAsBytes(urlPath, accessToken);
+                    
+                    //Error Message
+                    return null;
+
                 }
                 else
                 {
                     throw e;
                 }
             }
-        }
-
-      
-
-        public static async Task<string> GetOrFetchGenericToken()
-        {
-            if (string.IsNullOrEmpty(Settings.GenericToken))
-            {
-                Settings.GenericToken = (await GetTokenForDataStore()).AccessToken;
-            }
-            return Settings.GenericToken;
         }
 
         public async Task<HttpWebResponse> GetHttpWebResponse(string urlPath, string accessToken)
@@ -137,7 +151,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.UserApi
                         case HttpStatusCode.OK:
                             return response;
                         case HttpStatusCode.NotModified:
-                            return null;
+                            return response;
                         default:
                             throw new WebException($"Unexpected response status: {response.StatusCode}");
                     }
@@ -169,41 +183,5 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.UserApi
             throw new ArgumentException("Unexpected error during fetching data");
         }
 
-        private static async Task<Token> GetTokenForDataStore()
-        {
-            var tokenPayload = new TokenPayload
-            {
-                ClientId = Constants.DataStoreClientId,
-                ClientSecret = Constants.DataStoreClientSecret,
-                Audience = Constants.Audience,
-                GrantType = Constants.DataStoreGrantType
-            };
-
-            var content = JsonConvert.SerializeObject(tokenPayload);
-            var result = await PostJsonRequest(ServerEndpoints.DataStoreTokenUrl, content);
-            var jsonPayload = await result.Content.ReadAsStringAsync();
-            var token = JsonConvert.DeserializeObject<Token>(jsonPayload);
-            return token;
-        }
-
-        private static async Task<HttpResponseMessage> PostJsonRequest(string url, string jsonContent)
-        {
-            try
-            {
-                using (var client = new HttpClient())
-                {
-                    var content = new StringContent(jsonContent.ToString(), Encoding.UTF8, "application/json");
-                    // Lambda expression executed
-                    // ReSharper disable AccessToDisposedClosure
-                    var result = await TransientRetry.Do(() => client.PostAsync(url, content), new TimeSpan(0, 0, 0, 3));
-                    // ReSharper restore AccessToDisposedClosure
-                    return result;
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-        }
     }
 }

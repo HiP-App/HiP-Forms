@@ -13,6 +13,7 @@
 // limitations under the License.
 
 using System.IO;
+using System.Threading.Tasks;
 using Android.App;
 using Android.Content.PM;
 using Android.OS;
@@ -31,6 +32,7 @@ using Xamarin.Forms;
 using App = PaderbornUniversity.SILab.Hip.Mobile.UI.App;
 using MainPage = PaderbornUniversity.SILab.Hip.Mobile.UI.Pages.MainPage;
 using Acr.UserDialogs;
+using Android.Content;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.NotificationPlayer;
@@ -43,6 +45,17 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
         LaunchMode = LaunchMode.SingleTop, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
+        // Field, property, and method for Image Picker
+        public static readonly int PickImageId = 1000;
+        public static MainActivity Instance { get; private set; }
+        public TaskCompletionSource<Stream> PickImageTaskCompletionSource { set; get; }
+
+        public MainActivity()
+        {
+            Instance = this;
+        }
+        
+
         protected override void OnCreate(Bundle bundle)
         {
             var dataAccess = IoCManager.Resolve<IDataAccess>();
@@ -94,6 +107,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
 
             DesignMode.IsEnabled = false;
             LoadApplication(new App());
+
         }
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
@@ -128,6 +142,27 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
             {
                 var navigationViewModel = page.BindingContext as NavigationViewModel;
                 navigationViewModel?.OnDisappearing();
+            }
+        }
+
+        protected override void OnActivityResult(int requestCode, Result resultCode, Intent intent)
+        {
+            base.OnActivityResult(requestCode, resultCode, intent);
+
+            if (requestCode == PickImageId)
+            {
+                if ((resultCode == Result.Ok) && (intent != null))
+                {
+                    Android.Net.Uri uri = intent.Data;
+                    Stream stream = ContentResolver.OpenInputStream(uri);
+
+                    // Set the Stream as the completion of the Task
+                    PickImageTaskCompletionSource.SetResult(stream);
+                }
+                else
+                {
+                    PickImageTaskCompletionSource.SetResult(null);
+                }
             }
         }
     }

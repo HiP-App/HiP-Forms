@@ -98,5 +98,7 @@
 	<false/>
 	<key>CFBundleName</key>
 	<string>Historisches Paderborn</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Image Picker uses photo library</string>
 </dict>
 </plist>
