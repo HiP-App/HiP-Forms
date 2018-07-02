@@ -40,7 +40,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
 			global::AndroidHUD.Resource.Attribute.ahTextSize = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Attribute.ahTextSize;
 			global::AndroidHUD.Resource.Drawable.ic_errorstatus = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.ic_errorstatus;
 			global::AndroidHUD.Resource.Drawable.ic_successstatus = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.ic_successstatus;
-			global::AndroidHUD.Resource.Drawable.roundedbg = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.roundedbg;
 			global::AndroidHUD.Resource.Drawable.roundedbgdark = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Drawable.roundedbgdark;
 			global::AndroidHUD.Resource.Id.loadingImage = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.loadingImage;
 			global::AndroidHUD.Resource.Id.loadingProgressBar = global::PaderbornUniversity.SILab.Hip.Mobile.Droid.Resource.Id.loadingProgressBar;
@@ -5253,9 +5252,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
 			// aapt resource value: 0x7f020059
 			public const int btn_close = 2130837593;
 			
-			// aapt resource value: 0x7f020059
-			public const int btn_close = 2130837593;
-			
 			// aapt resource value: 0x7f02005a
 			public const int design_bottom_navigation_item_background = 2130837594;
 			
@@ -6020,9 +6016,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
 			
 			// aapt resource value: 0x7f020165
 			public const int notification_template_icon_low_bg = 2130837861;
-			
-			// aapt resource value: 0x7f020157
-			public const int notification_tile_bg = 2130837847;
 			
 			// aapt resource value: 0x7f020157
 			public const int notification_tile_bg = 2130837847;
