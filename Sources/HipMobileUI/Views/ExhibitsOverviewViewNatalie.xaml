@@ -25,7 +25,7 @@
                                               Command="{Binding FocusGps}" />
             </AbsoluteLayout>
 
-            <ContentView HorizontalOptions="FillAndExpand" VerticalOptions="End" HeightRequest="40">
+            <ContentView HorizontalOptions="FillAndExpand" VerticalOptions="End" HeightRequest="80">
                 <Label Text="Exhibit" />
             </ContentView>
         </StackLayout>
