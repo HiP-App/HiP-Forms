@@ -37,9 +37,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 		    }
 
 		    ItemTappedCommand = new Command(item => NavigateToExhibitDetails(item as ExhibitsOverviewListItemViewModel));
-
-
-
+            
             locationManager = IoCManager.Resolve<ILocationManager>();
 		    nearbyExhibitManager = IoCManager.Resolve<INearbyExhibitManager>();
 		    nearbyRouteManager = IoCManager.Resolve<INearbyRouteManager>();
@@ -48,16 +46,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 		    FocusGps = new Command(FocusGpsClicked);
 		    DownloadUpdatedData();
 		}
-
-        private async void NavigateToExhibitDetails(ExhibitsOverviewListItemViewModel item)
-        {
-            if (item != null)
-            {
-                await Navigation.PushAsync(new AppetizerPageViewModel(item.Exhibit));
-            }
-        }
-
-
+        /// <summary>
+        /// React to position changes.
+        /// </summary>
+        /// <param name="sender">The sender of the event.</param>
+        /// <param name="args">The event params.</param>
         public void LocationChanged(object sender, PositionEventArgs args)
         {
             Position = new GeoLocation(args.Position.Latitude, args.Position.Longitude);
@@ -71,6 +64,17 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             nearbyExhibitManager.CheckNearExhibit(exhibits.Select(vm => vm.Exhibit), args.Position.ToGeoLocation(), true, locationManager.ListeningInBackground);
             nearbyRouteManager.CheckNearRoute(DbManager.DataAccess.Routes().GetRoutes(), args.Position.ToGeoLocation());
         }
+
+        /// <summary>
+        /// Update the distances according to the new position.
+        /// </summary>
+        /// <param name="pos">The new position.</param>
+        /// 
+        private void FocusGpsClicked()
+        {
+            MapFocusCommand.Execute(GpsLocation);
+        }
+
         private void SetDistances(Position pos)
         {
             DisplayDistances = true;
@@ -81,28 +85,74 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             Exhibits.SortCollection(exhibit => exhibit.Distance);
         }
 
-
-
-        private void FocusGpsClicked()
+        /// <summary>
+        /// Called when the view was added to the visual tree.
+        /// </summary>
+        public override void OnAppearing()
         {
-            MapFocusCommand.Execute(GpsLocation);
+            base.OnAppearing();
+
+            locationManager.AddLocationListener(this);
         }
 
+        /// <summary>
+        /// Called when the view was removed from the visual tree.
+        /// </summary>
+        public override void OnDisappearing()
+        {
+            base.OnDisappearing();
+
+            locationManager.RemoveLocationListener(this);
+        }
+
+        /// <summary>
+        /// Open the exhibitdetails page.
+        /// </summary>
+        /// <param name="item"></param>
+        private async void NavigateToExhibitDetails(ExhibitsOverviewListItemViewModel item)
+        {
+            if (item != null)
+            {
+                await Navigation.PushAsync(new AppetizerPageViewModel(item.Exhibit));
+            }
+        }
+
+        /// <summary>
+        /// The list of displayed exhibits.
+        /// </summary>
+        public ObservableCollection<ExhibitsOverviewListItemViewModel> Exhibits
+        {
+            get => exhibits;
+            set => SetProperty(ref exhibits, value);
+        }
+
+        // Temporarily needed for OsmMap binding. TODO: No longer needed when merged with HIPM-868.
+        public IReadOnlyList<Exhibit> RawExhibits => Exhibits.Select(vm => vm.Exhibit).ToList();
+
+        /// <summary>
+        /// The command for tapping on exhibits.
+        /// </summary>
+        public ICommand ItemTappedCommand { get; }
+
+        /// <summary>
+        /// Whether to display the distance to exhibit.
+        /// </summary>
+        public bool DisplayDistances
+        {
+            get => displayDistances;
+            set => SetProperty(ref displayDistances, value);
+        }
+
+        /// <summary>
+        /// The geolocation of the user
+        /// </summary>
         public GeoLocation? Position
         {
             get => position;
             set => SetProperty(ref position, value);
         }
 
-        public ICommand ItemTappedCommand { get; }
-
         public ICommand FocusGps { get; }
-
-        public bool DisplayDistances
-        {
-            get => displayDistances;
-            set => SetProperty(ref displayDistances, value);
-        }
 
         public GeoLocation GpsLocation
         {
@@ -124,11 +174,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             Exhibits = new ObservableCollection<ExhibitsOverviewListItemViewModel>(
                 DbManager.DataAccess.Exhibits().GetExhibits().Select(ex => new ExhibitsOverviewListItemViewModel(ex)));
         }
-        public ObservableCollection<ExhibitsOverviewListItemViewModel> Exhibits
-        {
-            get => exhibits;
-            set => SetProperty(ref exhibits, value);
-        }
+
+        /// <summary>
+        /// Download updated data
+        /// </summary>
         private async void DownloadUpdatedData()
         {
             var newDataCenter = IoCManager.Resolve<INewDataCenter>();
@@ -140,7 +189,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             if (!Settings.AlwaysDownloadData)
             {
                 var result = await Navigation.DisplayActionSheet(Strings.DownloadData_Title, null, null,
-                                                                 Strings.Yes, Strings.No, Strings.DownloadData_Always);
+                    Strings.Yes, Strings.No, Strings.DownloadData_Always);
 
                 if (result == Strings.DownloadData_Always)
                 {
