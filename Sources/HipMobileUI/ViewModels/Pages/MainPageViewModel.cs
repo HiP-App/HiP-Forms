@@ -124,7 +124,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         /// </summary>
         private class MenuConfiguration
         {
-            private readonly ExhibitsOverviewViewModel exhibitsOverviewViewModel;
+            private readonly ExhibitsOverviewViewModelNatalie exhibitsOverviewViewModel;
             private readonly RoutesOverviewViewModel routesOverviewViewModel;
             private readonly LoginScreenViewModel loginScreenViewModel;
             private readonly ForgotPasswordScreenViewModel forgotPasswordScreenViewModel;
@@ -136,7 +136,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
             public MenuConfiguration(MainPageViewModel mainPageViewModel, IReadOnlyList<Exhibit> exhibitSet)
             {
-                exhibitsOverviewViewModel = new ExhibitsOverviewViewModel(exhibitSet)
+                exhibitsOverviewViewModel = new ExhibitsOverviewViewModelNatalie(exhibitSet)
                 {
                     Title = Strings.MainPageViewModel_OverviewPage,
                     Icon = "ic_home.png"
