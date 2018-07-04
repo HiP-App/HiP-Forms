@@ -29,7 +29,7 @@
                 <control:CarouselView ItemsSource="{Binding Exhibits}">
                     <control:CarouselView.ItemTemplate>
                         <DataTemplate>
-                            <Grid HorizontalOptions="FillAndExpand" Padding="10">
+                            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto" />
                                 </Grid.RowDefinitions>
@@ -38,7 +38,15 @@
                                     <ColumnDefinition Width="0,6*" />
                                     <ColumnDefinition Width="0,2*" />
                                 </Grid.ColumnDefinitions>
-                                
+                                <ff:CachedImage Source="{Binding Image}"
+                                                WidthRequest="80" HeightRequest="80" 
+                                                HorizontalOptions="Start" VerticalOptions="CenterAndExpand"
+                                                Grid.Row="0" Grid.Column="0">
+                                    <ff:CachedImage.Transformations>
+                                        <ffTransformations:CornersTransformation />
+                                    </ff:CachedImage.Transformations>
+                                </ff:CachedImage>
+
                                 <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" Padding="5,5"
                                                      Grid.Row="0" Grid.Column="1">
                                     <Label Text="{Binding Exhibit.Name}" VerticalOptions="CenterAndExpand" FontSize="16"
