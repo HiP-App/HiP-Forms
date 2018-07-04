@@ -29,8 +29,25 @@
                 <control:CarouselView ItemsSource="{Binding Exhibits}">
                     <control:CarouselView.ItemTemplate>
                         <DataTemplate>
-                            <Label Text="{Binding Exhibit.Name}" VerticalOptions="CenterAndExpand"/>
-                         </DataTemplate>
+                            <Grid HorizontalOptions="FillAndExpand" Padding="10">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0,2*" />
+                                    <ColumnDefinition Width="0,6*" />
+                                    <ColumnDefinition Width="0,2*" />
+                                </Grid.ColumnDefinitions>
+                                
+                                <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" Padding="5,5"
+                                                     Grid.Row="0" Grid.Column="1">
+                                    <Label Text="{Binding Exhibit.Name}" VerticalOptions="CenterAndExpand" FontSize="16"
+                                                   LineBreakMode="WordWrap" FontAttributes="Bold"  Style="{DynamicResource Ssp-Regular}" />
+
+                                </StackLayout>
+                                
+                            </Grid>
+                        </DataTemplate>
                     </control:CarouselView.ItemTemplate>
                 </control:CarouselView>
             </ContentView>
