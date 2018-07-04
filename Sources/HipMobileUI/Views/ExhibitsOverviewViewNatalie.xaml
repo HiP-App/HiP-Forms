@@ -26,7 +26,13 @@
             </AbsoluteLayout>
 
             <ContentView HorizontalOptions="FillAndExpand" VerticalOptions="End" HeightRequest="80">
-                <Label Text="Exhibit" />
+                <control:CarouselView ItemsSource="{Binding Exhibits}">
+                    <control:CarouselView.ItemTemplate>
+                        <DataTemplate>
+                            <Label Text="{Binding Exhibit.Name}" VerticalOptions="CenterAndExpand"/>
+                         </DataTemplate>
+                    </control:CarouselView.ItemTemplate>
+                </control:CarouselView>
             </ContentView>
         </StackLayout>
     </ContentView.Content>
