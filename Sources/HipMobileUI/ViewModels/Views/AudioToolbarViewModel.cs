@@ -31,42 +31,35 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         private ICommand pauseCommand;
         private ICommand playPauseCommand;
         private ICommand captionCommand;
+        private ICommand manualSeekCommand;
+        private double audioSliderProgress;
         private Audio currentAudio;
         private bool isAudioPlaying;
-        private readonly bool automaticallyStartNewAudio;
 
         public bool IsVisible { get; }
         public IAudioPlayer AudioPlayer { get; private set; }
         public string ExhibitTitle { get; set; }
 
-        /// <summary>
-        /// Creates a new audio toolbar viewmodel and specifies whether a new passed audio
-        /// will be played automatically
-        /// </summary>
-        /// <param name="automaticallyStartNewAudio"></param>
-        /// <param name="exhibitTitle"></param>
-        public AudioToolbarViewModel(bool automaticallyStartNewAudio, string exhibitTitle, bool isVisible)
+        public AudioToolbarViewModel(string exhibitTitle, bool isVisible)
         {
             ExhibitTitle = exhibitTitle;
             IsVisible = isVisible;
             PauseCommand = new Command(PauseAudio);
             PlayCommand = new Command(PlayAudio);
             CaptionCommand = new Command(ShowCaption);
+            ManualSeekCommand = new Command(ManualSeek);
 
             AudioPlayer = IoCManager.Resolve<IAudioPlayer>();
             AudioPlayer.AudioCompleted += AudioPlayerOnAudioCompleted;
             AudioPlayer.IsPlayingChanged += AudioPlayerOnIsPlayingChanged;
+            AudioPlayer.ProgressChanged += AudioPlayerOnProgressChanged;
 
             AudioPlayer.AudioTitle = exhibitTitle;
-
-            this.automaticallyStartNewAudio = automaticallyStartNewAudio;
         }
 
-        /// <summary>
-        /// Creates a new audio toolbar viewmodel which does not automatically start new audio files
-        /// </summary>
-        public AudioToolbarViewModel(string exhibitTitle, bool isVisible) : this(false, exhibitTitle, isVisible)
+        private void AudioPlayerOnProgressChanged(double newProgress)
         {
+            AudioSliderProgress = newProgress;
         }
 
         private void AudioPlayerOnIsPlayingChanged(bool value)
@@ -94,6 +87,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             Navigation.PushAsync(new AudioTranscriptViewModel(AudioPlayer.CurrentAudio.Caption, ExhibitTitle));
         }
 
+        private void ManualSeek(object value)
+        {
+            AudioPlayer.SeekTo((double) value);
+        }
+
         /// <summary>
         /// Sets a new audio file ready for play
         /// </summary>
@@ -106,11 +104,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
                 MaxAudioProgress = AudioPlayer.MaximumProgress;
             else
                 MaxAudioProgress = 1;
-            if (automaticallyStartNewAudio)
-            {
-                //Start audio
-                AudioPlayer.Play();
-            }
         }
 
         /// <summary>
@@ -156,8 +149,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         /// </summary>
         public double MaxAudioProgress
         {
-            get { return maxAudioProgress; }
-            set { SetProperty(ref maxAudioProgress, value); }
+            get => maxAudioProgress;
+            set => SetProperty(ref maxAudioProgress, value);
         }
 
         /// <summary>
@@ -165,8 +158,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         /// </summary>
         public ICommand PlayPauseCommand
         {
-            get { return IsAudioPlaying ? PauseCommand : PlayCommand; }
-            set { SetProperty(ref playPauseCommand, value); }
+            get => IsAudioPlaying ? PauseCommand : PlayCommand;
+            set => SetProperty(ref playPauseCommand, value);
         }
 
         /// <summary>
@@ -174,8 +167,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         /// </summary>
         public ICommand PlayCommand
         {
-            get { return playCommand; }
-            set { SetProperty(ref playCommand, value); }
+            get => playCommand;
+            set => SetProperty(ref playCommand, value);
         }
 
         /// <summary>
@@ -183,8 +176,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         /// </summary>
         public ICommand PauseCommand
         {
-            get { return pauseCommand; }
-            set { SetProperty(ref pauseCommand, value); }
+            get => pauseCommand;
+            set => SetProperty(ref pauseCommand, value);
         }
 
         /// <summary>
@@ -192,8 +185,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         /// </summary>
         public ICommand CaptionCommand
         {
-            get { return captionCommand; }
-            set { SetProperty(ref captionCommand, value); }
+            get => captionCommand;
+            set => SetProperty(ref captionCommand, value);
+        }
+
+        public ICommand ManualSeekCommand
+        {
+            get => manualSeekCommand;
+            set => SetProperty(ref manualSeekCommand, value);
         }
 
         /// <summary>
@@ -201,12 +200,18 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         /// </summary>
         public bool IsAudioPlaying
         {
-            get { return isAudioPlaying; }
+            get => isAudioPlaying;
             set
             {
                 SetProperty(ref isAudioPlaying, value);
                 PlayPauseCommand = value ? PauseCommand : PlayCommand;
             }
+        }
+
+        public double AudioSliderProgress
+        {
+            get => audioSliderProgress;
+            set => SetProperty(ref audioSliderProgress, value);
         }
 
         #endregion

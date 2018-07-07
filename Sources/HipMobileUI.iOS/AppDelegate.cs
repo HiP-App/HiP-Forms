@@ -73,7 +73,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios
             IoCManager.RegisterInstance(typeof(IViewCreator), NavigationService.Instance);
 
             // init other inversion of control classes
-            IoCManager.RegisterInstance(typeof(IAudioPlayer), new IosAudioPlayer());
+            IoCManager.RegisterType<IAudioPlayer, IosAudioPlayer>();
             IoCManager.RegisterInstance(typeof(INotificationPlayer), new IosNotificationPlayer());
             IoCManager.RegisterInstance(typeof(ILocationManager), new LocationManager());
             IoCManager.RegisterInstance(typeof(IKeyProvider), new IosKeyProvider());

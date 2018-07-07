@@ -73,7 +73,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
 
             // init other inversion of control classes
             IoCManager.RegisterInstance(typeof(IFabSizeCalculator), new AndroidFabSizeCalculator());
-            IoCManager.RegisterInstance(typeof(IAudioPlayer), new DroidAudioPlayer());
+            IoCManager.RegisterType<IAudioPlayer, DroidAudioPlayer>();
             IoCManager.RegisterInstance(typeof(INotificationPlayer), new DroidNotificationPlayer());
             IoCManager.RegisterInstance(typeof(ILocationManager), new LocationManager());
             IoCManager.RegisterInstance(typeof(IKeyProvider), new AndroidKeyProvider());

@@ -23,7 +23,6 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Appearance;
-using PaderbornUniversity.SILab.Hip.Mobile.UI.AudioPlayer;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Contracts;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
@@ -196,12 +195,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             this.navigation = navigation;
             this.container = container;
             PageNumber = pageNumber;
-            // stop audio if necessary
-            var player = IoCManager.Resolve<IAudioPlayer>();
-            if (player.IsPlaying)
-            {
-                player.Stop();
-            }
 
             // TODO Reset audio on every swipe
             // init the audio toolbar
