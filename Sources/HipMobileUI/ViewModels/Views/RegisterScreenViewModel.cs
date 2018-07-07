@@ -32,6 +32,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         private string password;
         private string repassword;
         private string errorMessage;
+        private string username;
         private readonly MainPageViewModel mainPageViewModel;
 
         public RegisterScreenViewModel(MainPageViewModel mainPageVm)

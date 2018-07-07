@@ -6,11 +6,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.User
     {
         public string Username { get; }
         public string Password { get; }
+        public string Email { get; }
 
-        public User(string username, string password)
+        public User(string username, string password, string email)
         {
-            Username = username;
+            Username = username; //taking email as a parameter
             Password = password;
+            Email = email;
+
         }
 
         public Token Token { get; internal set; }
