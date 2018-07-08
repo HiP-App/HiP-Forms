@@ -13,6 +13,8 @@
 // limitations under the License.
 
 using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -23,6 +25,8 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.AuthenticationApiAccess;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiDtos;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.UserApiAccesses
@@ -52,30 +56,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.UserApi
                     UserId = userId
                 };
             }
-            
+
         }
-
-        /*public async Task<string> PostProfilePicture(ProfilePicture profilePicture)
-        {
-            var userId = profilePicture.UserId;
-            var path = "https://docker-hip.cs.uni-paderborn.de/public/userstore/api";
-            var requestPath = $@"/Users/{userId}/Photo";
-            var completePath = path + requestPath;
-            Stream picture = new MemoryStream(profilePicture.Data);
-            HttpContent fileStreamContent = new StreamContent(picture);
-            fileStreamContent.Headers.ContentDisposition = new System.Net.Http.Headers.ContentDispositionHeaderValue("form-data") {Name = "file", FileName = "profilePicture"};
-            fileStreamContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/octet-stream");
-            using (var client = new HttpClient())
-            using (var formData = new MultipartFormDataContent())
-            {
-                formData.Add(fileStreamContent);
-                var response = await client.PostAsync(completePath, formData);
-                var responseString = response.Content.ReadAsStringAsync().ToString();
-                return responseString;
-            }
-       
-        }*/
-
 
         public async Task<string> PostProfilePicture(Stream picture, string userId, string accessToken)
         {
@@ -84,34 +66,26 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.UserApi
             var completePath = path + requestPath;
 
             HttpContent fileStreamContent = new StreamContent(picture);
-            fileStreamContent.Headers.ContentDisposition = new ContentDispositionHeaderValue("formData") { Name = "file", FileName = "profilePicture" };
-            fileStreamContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-            using (var client = new HttpClient())
+            //HttpContent fileStreamContent = new StreamContent(stream);
+
+            fileStreamContent.Headers.ContentDisposition = new ContentDispositionHeaderValue("form-data");
+            fileStreamContent.Headers.ContentDisposition.Name = "file";
+            fileStreamContent.Headers.ContentDisposition.FileName = "IMG_20180702_092034.jpg";
+            fileStreamContent.Headers.ContentType = new MediaTypeHeaderValue("multipart/form-data");
+
+            var client = new HttpClient();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+
+            var formData = new MultipartFormDataContent();
+            formData.Add(fileStreamContent);
+
+            var response = await client.PutAsync(completePath, formData);
+            if (response != null)
             {
-                client.BaseAddress = new Uri(path);
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
-                using (var formData = new MultipartFormDataContent())
-                {
-                    formData.Add(fileStreamContent);
-                    //var response = await client.PostAsync(completePath, formData);
-                    var response = await client.PutAsync(requestPath, formData);
-                    if (response != null)
-                    {
-                        var responseString = response.Content.ReadAsStringAsync().ToString();
-                        return responseString;
-                    }
-                    else
-                    {
-                        return null;
-                    }
-                }
+                var responseString = response.Content.ReadAsStringAsync().ToString();
+                return responseString;
             }
-                
+            return null;
         }
-
- 
-
     }
-
- 
 }

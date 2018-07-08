@@ -39,19 +39,7 @@
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
 
-                        <!--<StackLayout Grid.Row="0" Grid.Column="0" Margin="10, 0, 2.5, 0">
-                            <Label FontSize="23" Text="Current Avatar"
-                                   Style="{DynamicResource Ssp-Regular}" TextColor="Black" HorizontalTextAlignment="Center" />
-                            <Image Aspect="AspectFit" Source="{Binding Avatar}" />
-                            <Button Text="Keep Avatar" Command="{Binding KeepAvatarCommand}" VerticalOptions="CenterAndExpand" HorizontalOptions="Fill" />
-                        </StackLayout> -->
- 
-                        <!--<StackLayout Grid.Row="0" Grid.Column="1" Margin="2.5, 0, 10, 0">
-                            <Label FontSize="23" Text="Preview"
-                                   Style="{DynamicResource Ssp-Regular}" TextColor="Black" HorizontalTextAlignment="Center"/>
-                            <Image  Aspect="Fill" Source="{Binding AvatarPreview}" VerticalOptions="FillAndExpand"/>
-                            <Button Text="Save new Avatar" Command="{Binding SaveNewAvatarCommand}"  VerticalOptions="CenterAndExpand" HorizontalOptions="Fill" />
-                        </StackLayout> -->
+                
                         <Grid Grid.Row="0" Grid.Column="0">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="0.1*" />
@@ -84,6 +72,9 @@
                         </Grid>
 
                     </Grid>
+                    <Label x:Name="ErrorMessageLabel"
+                           FontSize="18" Text="{Binding ErrorMessage}"
+                           Style="{DynamicResource Ssp-Regular}" TextColor="Red" HorizontalTextAlignment="Center" />
                     <Grid x:Name="InnerGridList">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="0.8*" />

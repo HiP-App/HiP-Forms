@@ -38,6 +38,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 
         public bool PickImageEnabled { get; private set; }
 
+        private string errorMessage;
+
+        public string ErrorMessage
+        {
+            get { return errorMessage; }
+            set { errorMessage = value; OnPropertyChanged(); }
+        }
+
         //Attribute to choose an avatar from the list
         private PredefinedProfilePicture chosenAvatar;
         public PredefinedProfilePicture ChosenAvatar
@@ -70,7 +78,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             set { avatarPreview = value; OnPropertyChanged(); }
         }
 
-        public Stream ChosenAvatarStream { get; private set; }
+        public Byte[] ChosenAvatarBytes { get; private set; }
 
 
         public ProfilePictureScreenViewModel(MainPageViewModel mainPageViewModel)
@@ -96,16 +104,24 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 
         public async void SaveNewAvatar()
         {
-            await client.PostProfilePicture(ChosenAvatarStream, Settings.UserId, Settings.AccessToken);
+            if (ChosenAvatarBytes != null)
+            {
+                ErrorMessage = "";
 
-            var profilePicture = await fetcher.GetProfilePicture(Settings.UserId, Settings.AccessToken);
+                var imageStream = (Stream)new MemoryStream(ChosenAvatarBytes, 0, ChosenAvatarBytes.Length);
+                var result = await client.PostProfilePicture(imageStream, Settings.UserId, Settings.AccessToken);
 
-            var pictures = new PredefinedProfilePictureStrings();
-            var picture = Convert.FromBase64String(pictures.PredefinedAvatarDog);
-            ImageSource av = ImageSource.FromStream(() => new MemoryStream(picture));
-            //Avatar = profilePicture == null ? ImageSource.FromFile("ic_professor.png") : ImageSource.FromStream(() => new MemoryStream(profilePicture.Data));
-            Avatar = profilePicture == null ? av : ImageSource.FromStream(() => new MemoryStream(profilePicture.Data));
-            AvatarPreview = ImageSource.FromFile("predefined_avatar_empty");
+                var profilePicture = await fetcher.GetProfilePicture(Settings.UserId, Settings.AccessToken);
+
+                Avatar = profilePicture == null ? ImageSource.FromFile("ic_professor.png") : ImageSource.FromStream(() => new MemoryStream(profilePicture.Data));
+
+                AvatarPreview = ImageSource.FromFile("predefined_avatar_empty");
+                ChosenAvatarBytes = null;
+            }
+            else
+            {
+                ErrorMessage = "No Picture selected";
+            }
 
         }
 
@@ -122,8 +138,16 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 
             if (imageStream != null)
             {
+                
+                var memStream = new MemoryStream();
+                await imageStream.CopyToAsync(memStream);
+                ChosenAvatarBytes = memStream.ToArray();
+                imageStream = (Stream) new MemoryStream(ChosenAvatarBytes, 0, ChosenAvatarBytes.Length);
                 AvatarPreview = ImageSource.FromStream(() => imageStream);
-                ChosenAvatarStream = imageStream;
+                //ChosenAvatarStream = imageStream;
+                //ChosenAvatarStream = (Stream)new MemoryStream();
+                //imageStream.CopyTo(ChosenAvatarStream);
+
             }
 
             PickImageEnabled = true;
@@ -144,7 +168,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         {
             base.OnAppearing();
 
-            
+            ErrorMessage = "";
 
             var pictures = new PredefinedProfilePictureStrings();
             var picture = Convert.FromBase64String(pictures.PredefinedAvatarDog);

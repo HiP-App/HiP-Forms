@@ -46,6 +46,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
                 OuterGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
                 OuterGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
                 OuterGrid.Children.Remove(InnerGrid);
+                OuterGrid.Children.Remove(InnerGridList);
                 OuterGrid.Children.Add(InnerGrid, 0, 0);
                 OuterGrid.Children.Add(InnerGridList, 1, 0);
             }
@@ -55,11 +56,16 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
                 OuterGrid.ColumnDefinitions.Clear();
                 OuterGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
                 OuterGrid.RowDefinitions.Clear();
-                OuterGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
-                OuterGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
+                OuterGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.5, GridUnitType.Star) });
+                OuterGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.1, GridUnitType.Star) });
+                OuterGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.4, GridUnitType.Star) });
                 OuterGrid.Children.Remove(InnerGrid);
+                OuterGrid.Children.Remove(InnerGridList);
+                OuterGrid.Children.Remove(ErrorMessageLabel);
                 OuterGrid.Children.Add(InnerGrid, 0, 0);
-                OuterGrid.Children.Add(InnerGridList, 0, 1);
+                OuterGrid.Children.Add(ErrorMessageLabel, 0, 1);
+                OuterGrid.Children.Add(InnerGridList, 0, 2);
+                
             }
 
         }
