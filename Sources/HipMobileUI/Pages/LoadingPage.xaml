@@ -40,7 +40,7 @@
                     
                     <StackLayout Grid.Row="0" Orientation="Vertical" Spacing="0" HorizontalOptions="CenterAndExpand" Padding="20" Margin="15"
                                  VerticalOptions="CenterAndExpand">
-                        <Label Text="{Binding Text}" HorizontalTextAlignment="Center" FontSize ="20"
+                        <Label Text="{Binding Text}" HorizontalTextAlignment="Center" FontSize="20"
                                FontAttributes="Bold" Style="{DynamicResource Ssp-Bold}"/>
                         <Label Text="{Binding Subtext}" HorizontalTextAlignment="Center" FontSize="16" Style="{DynamicResource Ssp-Regular}" Margin="10"/>
                         <ProgressBar Progress="{Binding LoadingProgress}">
@@ -49,18 +49,17 @@
                             </ProgressBar.Effects>
                         </ProgressBar>
                         <Label Text="{Binding LoadingProgress, StringFormat='{0:p0}'}" HorizontalTextAlignment="Center" Margin="5"
-                               FontSize="Default" Style="{DynamicResource Ssp-Regular}" />
+                         FontSize="16" Style="{DynamicResource Ssp-Regular}" />
                     </StackLayout>
                     <Image Grid.Row="1" Source="hiphop_transparent" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" >
                     </Image>
-                    
-                    <StackLayout Grid.Row="2" Orientation="Vertical" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-                        <Button x:Name="CancelButton"
+
+                    <Button x:Name="CancelButton" Grid.Row="2" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"
                         Text="{helpers:Translate Cancel}"
                         FontSize="Medium"
-                        HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" 
-                        Command="{Binding CancelCommand}" />
-                    </StackLayout>
+                        Command="{Binding CancelCommand}">
+                    </Button>
+
                 </Grid>
             </StackLayout>
             <ActivityIndicator IsRunning="True" Color="{StaticResource PrimaryDarkColor}"
