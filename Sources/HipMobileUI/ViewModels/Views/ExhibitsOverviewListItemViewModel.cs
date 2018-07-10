@@ -35,6 +35,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             var data = Exhibit.Image.GetDataBlocking();
             Image = ImageSource.FromStream(() => new MemoryStream(data));
 
+            ItemTappedCommand = new Command(NavigateToExhibitDetails);
+
             IsDownloadButtonVisible = !Exhibit.DetailsDataLoaded;
 
             DownloadCommand = new Command(OpenDownloadDialog);
@@ -101,6 +103,16 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             await Navigation.PopAsync();
         }
 
+        /// <summary>
+        /// Open the exhibitdetails page.
+        /// </summary>
+        /// <param name="item"></param>
+        private async void NavigateToExhibitDetails()
+        {
+            await Navigation.PushAsync(new AppetizerPageViewModel(Exhibit));
+        }
+
+
         public async Task SetDetailsAvailable(bool available)
         {
             if (!available)
@@ -126,5 +138,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             Exhibit.Name == otherItem.Exhibit.Name;
 
         public override int GetHashCode() => Exhibit.Name.GetHashCode();
+        
+        /// <summary>
+        /// The command for tapping on exhibits.
+        /// </summary>
+        public ICommand ItemTappedCommand { get; }
     }
 }

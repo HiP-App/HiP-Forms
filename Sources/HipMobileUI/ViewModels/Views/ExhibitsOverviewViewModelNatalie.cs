@@ -37,8 +37,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 		            exhibits.Select(ex => new ExhibitsOverviewListItemViewModel(ex)));
 		    }
 
-		    ItemTappedCommand = new Command(item => NavigateToExhibitDetails(item as ExhibitsOverviewListItemViewModel));
-            
+		   
             locationManager = IoCManager.Resolve<ILocationManager>();
 		    nearbyExhibitManager = IoCManager.Resolve<INearbyExhibitManager>();
 		    nearbyRouteManager = IoCManager.Resolve<INearbyRouteManager>();
@@ -107,19 +106,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         }
 
         /// <summary>
-        /// Open the exhibitdetails page.
-        /// </summary>
-        /// <param name="item"></param>
-        private async void NavigateToExhibitDetails(ExhibitsOverviewListItemViewModel item)
-        {
-            Console.WriteLine("Klick");
-            if (item != null)
-            {
-                await Navigation.PushAsync(new AppetizerPageViewModel(item.Exhibit));
-            }
-        }
-
-        /// <summary>
         /// The list of displayed exhibits.
         /// </summary>
         public ObservableCollection<ExhibitsOverviewListItemViewModel> Exhibits
@@ -130,11 +116,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 
         // Temporarily needed for OsmMap binding. TODO: No longer needed when merged with HIPM-868.
         public IReadOnlyList<Exhibit> RawExhibits => Exhibits.Select(vm => vm.Exhibit).ToList();
-
-        /// <summary>
-        /// The command for tapping on exhibits.
-        /// </summary>
-        public ICommand ItemTappedCommand { get; }
 
         /// <summary>
         /// Whether to display the distance to exhibit.
