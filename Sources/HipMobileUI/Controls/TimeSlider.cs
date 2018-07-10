@@ -290,9 +290,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Controls
                 if (Texts.Count > 0)
                     gridRows++;
             }
+
+            var spaceLeft = width;
             for (var i = 0; i < gridColumns; i++)
             {
-                slider.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(ItemWidth) });
+                var itemWidth = Math.Min(spaceLeft, ItemWidth);
+                spaceLeft -= itemWidth;
+                slider.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(itemWidth) });
             }
             for (var i = 0; i < gridRows; i++)
             {
