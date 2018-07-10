@@ -96,11 +96,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         {
         }
 
-        public ExhibitDetailsPageViewModel(Exhibit exhibit, IEnumerable<Page> pages, string title, bool additionalInformation = false)
+        public ExhibitDetailsPageViewModel(Exhibit exhibit, ICollection<Page> pages, string title, bool additionalInformation = false)
         {
             this.exhibit = exhibit;
             Position = 0;
-            Pages = pages.Select((page, i) => new ExhibitDetailsViewModel(exhibit, title, page, Navigation, this, i + 1)).ToList();
+            Pages = pages.Select((page, i) => new ExhibitDetailsViewModel(exhibit, title, page, Navigation, this, $"{i + 1}/{pages.Count}")).ToList();
 
             if (additionalInformation)
             {
@@ -156,7 +156,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         private readonly INavigationService navigation;
         private readonly IContainer container;
         public AudioToolbarViewModel AudioToolbar { get; }
-        public int PageNumber { get; }
+        public string PageNumber { get; }
 
         private bool firstVisible = true;
 
@@ -193,7 +193,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                                        Page page,
                                        INavigationService navigation,
                                        IContainer container,
-                                       int pageNumber)
+                                       string pageNumber)
         {
             this.exhibit = exhibit;
             this.page = page;
