@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentHandling;
@@ -111,6 +112,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         /// <param name="item"></param>
         private async void NavigateToExhibitDetails(ExhibitsOverviewListItemViewModel item)
         {
+            Console.WriteLine("Klick");
             if (item != null)
             {
                 await Navigation.PushAsync(new AppetizerPageViewModel(item.Exhibit));
