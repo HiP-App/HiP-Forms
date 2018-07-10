@@ -76,7 +76,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Views
 
         #region Helper Methods
 
-        private ExhibitsOverviewViewModelNatalie CreateSystemUnderTest()
+        private ExhibitsOverviewViewModel CreateSystemUnderTest()
         {
             var exhibitList = new List<Exhibit>
             {
@@ -85,7 +85,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Views
                 CreateExhibit("Exhibit 3", 52.5, 7.5)
             };
 
-            return new ExhibitsOverviewViewModelNatalie(exhibitList);
+            return new ExhibitsOverviewViewModel(exhibitList);
         }
 
         private Exhibit CreateExhibit(string name, double latitude = 0, double longitude = 0)

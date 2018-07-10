@@ -36,14 +36,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             Image = ImageSource.FromStream(() => new MemoryStream(data));
 
             ItemTappedCommand = new Command(NavigateToExhibitDetails);
-
-            IsDownloadButtonVisible = !Exhibit.DetailsDataLoaded;
-
-            DownloadCommand = new Command(OpenDownloadDialog);
         }
 
         private double distance;
-        private bool isDownloadButtonVisible;
         private ExhibitRouteDownloadPageViewModel downloadPage;
 
         /// <summary>
@@ -51,7 +46,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         /// </summary>
         public Exhibit Exhibit { get; }
 
-        public ICommand DownloadCommand { get; }
 
         /// <summary>
         /// The appetizer image for the exhibit.
@@ -81,12 +75,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
                 ? $"{Distance:F0} m"
                 : $"{Distance / 1000:0.##} km";
             
-
-        public bool IsDownloadButtonVisible
-        {
-            get => isDownloadButtonVisible;
-            set => SetProperty(ref isDownloadButtonVisible, value);
-        }
 
         /// <summary>
         /// Update the displayed distance according to the position.
@@ -119,7 +107,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
                 return;
 
             DbManager.InTransaction(transaction => { Exhibit.DetailsDataLoaded = true; });
-            IsDownloadButtonVisible = !Exhibit.DetailsDataLoaded;
         }
 
         private async void OpenDownloadDialog()
