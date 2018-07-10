@@ -17,7 +17,7 @@ using System.Collections.Generic;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 {
-	public class ExhibitsOverviewViewModel : NavigationViewModel, ILocationListener, IDbChangedObserver
+    public class ExhibitsOverviewViewModel : NavigationViewModel, ILocationListener, IDbChangedObserver
     {
         private readonly ILocationManager locationManager;
         private readonly INearbyExhibitManager nearbyExhibitManager;
@@ -30,22 +30,22 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         private ICommand mapFocusCommand;
 
         public ExhibitsOverviewViewModel(IReadOnlyList<Exhibit> exhibits)
-		{
-		    if (exhibits != null)
-		    {
-		        Exhibits = new ObservableCollection<ExhibitsOverviewListItemViewModel>(
-		            exhibits.Select(ex => new ExhibitsOverviewListItemViewModel(ex)));
-		    }
+        {
+            if (exhibits != null)
+            {
+                Exhibits = new ObservableCollection<ExhibitsOverviewListItemViewModel>(
+                    exhibits.Select(ex => new ExhibitsOverviewListItemViewModel(ex)));
+            }
 
-		   
+
             locationManager = IoCManager.Resolve<ILocationManager>();
-		    nearbyExhibitManager = IoCManager.Resolve<INearbyExhibitManager>();
-		    nearbyRouteManager = IoCManager.Resolve<INearbyRouteManager>();
-		    var dbChangedHandler = IoCManager.Resolve<IDbChangedHandler>();
-		    dbChangedHandler.AddObserver(this);
-		    FocusGps = new Command(FocusGpsClicked);
-		    DownloadUpdatedData();
-		}
+            nearbyExhibitManager = IoCManager.Resolve<INearbyExhibitManager>();
+            nearbyRouteManager = IoCManager.Resolve<INearbyRouteManager>();
+            var dbChangedHandler = IoCManager.Resolve<IDbChangedHandler>();
+            dbChangedHandler.AddObserver(this);
+            FocusGps = new Command(FocusGpsClicked);
+            DownloadUpdatedData();
+        }
         /// <summary>
         /// React to position changes.
         /// </summary>

@@ -14,11 +14,11 @@ using Xamarin.Forms.Xaml;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
 {
-	public partial class ExhibitsOverviewView : IViewFor<ExhibitsOverviewViewModel>
+    public partial class ExhibitsOverviewView : IViewFor<ExhibitsOverviewViewModel>
     {
-		public ExhibitsOverviewView ()
-		{
-			InitializeComponent ();
-		}
-	}
+        public ExhibitsOverviewView()
+        {
+            InitializeComponent();
+        }
+    }
 }

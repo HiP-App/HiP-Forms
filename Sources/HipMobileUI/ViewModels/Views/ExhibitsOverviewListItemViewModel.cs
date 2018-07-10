@@ -70,11 +70,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         /// <summary>
         /// The formatted distance string.
         /// </summary>
-        
+
         public string FormattedDistance => (Distance < 1000)
                 ? $"{Distance:F0} m"
                 : $"{Distance / 1000:0.##} km";
-            
+
 
         /// <summary>
         /// Update the displayed distance according to the position.
@@ -125,7 +125,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             Exhibit.Name == otherItem.Exhibit.Name;
 
         public override int GetHashCode() => Exhibit.Name.GetHashCode();
-        
+
         /// <summary>
         /// The command for tapping on exhibits.
         /// </summary>
