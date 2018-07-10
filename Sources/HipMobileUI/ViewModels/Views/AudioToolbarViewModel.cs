@@ -114,6 +114,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             base.OnDisappearing();
 
             AudioPlayer.Stop();
+            IsAudioPlaying = false;
             AudioPlayer.AudioCompleted -= AudioPlayerOnAudioCompleted;
             AudioPlayer.IsPlayingChanged -= AudioPlayerOnIsPlayingChanged;
         }
@@ -125,6 +126,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         {
             base.OnHidden();
 
+            AudioPlayer.Stop();
             IsAudioPlaying = false;
             AudioPlayer.AudioCompleted -= AudioPlayerOnAudioCompleted;
             AudioPlayer.IsPlayingChanged -= AudioPlayerOnIsPlayingChanged;
@@ -137,7 +139,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         {
             base.OnRevealed();
 
-            AudioPlayer.CurrentAudio = currentAudio;
             AudioPlayer.AudioCompleted += AudioPlayerOnAudioCompleted;
             AudioPlayer.IsPlayingChanged += AudioPlayerOnIsPlayingChanged;
         }

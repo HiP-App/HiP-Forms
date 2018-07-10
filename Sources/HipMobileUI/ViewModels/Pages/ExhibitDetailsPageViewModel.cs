@@ -170,6 +170,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                 if (value)
                 {
                     OnFirstVisible();
+                    AudioToolbar.OnRevealed();
+                }
+                else
+                {
+                    AudioToolbar.OnDisappearing();
                 }
 
                 visible = value;
