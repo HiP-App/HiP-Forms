@@ -19,6 +19,7 @@
              x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Pages.AppetizerPage"
              xmlns:controls1="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Controls;assembly=HipMobileUI"
              xmlns:views="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Views;assembly=HipMobileUI"
+             xmlns:views1="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Views"
              Title="{Binding Headline}">
     <ContentPage.Content>
         <views:NotificationExtensionView>
@@ -41,20 +42,9 @@
                                     <controls1:CardView Grid.Column="0" HasShadow="False">
                                         <Label Text="{Binding Text}" TextColor="Black" FontSize="16" Style="{DynamicResource Ssp-Italic}"/>
                                     </controls1:CardView>
-                                    <StackLayout Grid.Column="1" Spacing="0">
-                                        <StackLayout.GestureRecognizers>
-                                            <TapGestureRecognizer Command="{Binding UserRatingCommand}" NumberOfTapsRequired="1" />
-                                        </StackLayout.GestureRecognizers>
-                                        <Label Text="{Binding RatingAverage}" FontAttributes="Bold" FontSize="24" VerticalOptions="Center" HorizontalOptions="Center" />
-                                        <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center" Spacing="5">
-                                            <Image WidthRequest="16" HeightRequest="16" Source="{Binding Star1}" VerticalOptions="Center"/>
-                                            <Image WidthRequest="16" HeightRequest="16" Source="{Binding Star2}" VerticalOptions="Center"/>
-                                            <Image WidthRequest="16" HeightRequest="16" Source="{Binding Star3}" VerticalOptions="Center"/>
-                                            <Image WidthRequest="16" HeightRequest="16" Source="{Binding Star4}" VerticalOptions="Center"/>
-                                            <Image WidthRequest="16" HeightRequest="16" Source="{Binding Star5}" VerticalOptions="Center"/>
-                                        </StackLayout>
-                                        <Label Text="{Binding RatingCount}" FontSize="12" HorizontalOptions="Center" VerticalOptions="Center" />
-                                    </StackLayout>
+                                    <ContentView Grid.Column="1" HorizontalOptions="FillAndExpand">
+                                        <views1:RatingView HorizontalOptions="FillAndExpand" BindingContext="{Binding Rating}" x:Name="Rating" />    
+                                    </ContentView>
                                 </Grid>
                             </ScrollView>
                             <Button Grid.Row="1" Margin="7" AbsoluteLayout.LayoutFlags="All"
