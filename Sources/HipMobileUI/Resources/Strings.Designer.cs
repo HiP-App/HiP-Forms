@@ -68,18 +68,16 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
                 return ResourceManager.GetString("AchievementsDetailsExhibitView_VisitedMOfNExhibits", resourceCulture);
             }
         }
-
+        
         /// <summary>
-        ///   Looks up a localized string similar to Achievements unlocked
+        ///   Looks up a localized string similar to  Achievements unlocked.
         /// </summary>
-        public static string AchievementsScreenView_Achievement_Count
-        {
-            get
-            {
+        public static string AchievementsScreenView_Achievement_Count {
+            get {
                 return ResourceManager.GetString("AchievementsScreenView_Achievement_Count", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to You have to sign up or register first before you can use the achievements..
         /// </summary>
@@ -1599,6 +1597,42 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         public static string ProfileView_Statistic {
             get {
                 return ResourceManager.GetString("ProfileView_Statistic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to questions answered right.
+        /// </summary>
+        public static string QuizStartingPage_QuestionsAnsweredCorrect {
+            get {
+                return ResourceManager.GetString("QuizStartingPage_QuestionsAnsweredCorrect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Quiz.
+        /// </summary>
+        public static string QuizStartingPage_Quiz {
+            get {
+                return ResourceManager.GetString("QuizStartingPage_Quiz", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start quiz.
+        /// </summary>
+        public static string QuizStartingPage_StartQuiz {
+            get {
+                return ResourceManager.GetString("QuizStartingPage_StartQuiz", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Up to now, you have.
+        /// </summary>
+        public static string QuizStartingPage_UpToNow {
+            get {
+                return ResourceManager.GetString("QuizStartingPage_UpToNow", resourceCulture);
             }
         }
         
