@@ -56,7 +56,7 @@
                                                      Grid.Row="0" Grid.Column="1">
                                             <Label Text="{Binding Exhibit.Name}" VerticalOptions="CenterAndExpand" FontSize="16"
                                                    LineBreakMode="WordWrap" FontAttributes="Bold" Style="{DynamicResource Ssp-Regular}" />
-
+                                            <Label Text="Rating is coming soon" VerticalOptions="CenterAndExpand" FontSize="14" />
                                         </StackLayout>
 
                                         <Label Grid.Row="0" Grid.Column="2" Text="{Binding FormattedDistance}" FontSize="16" />
