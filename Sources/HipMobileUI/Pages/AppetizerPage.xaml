@@ -27,7 +27,7 @@
                 <AbsoluteLayout x:Name="AbsoluteLayout">
                     <Grid x:Name="OuterGrid" AbsoluteLayout.LayoutBounds="1,1,1,1" AbsoluteLayout.LayoutFlags="All" BackgroundColor="White">
                         <!--The row and column definition is made in code to adjust them to the device orientation-->
-                        <Image x:Name="Image" Source="{Binding Image}" Grid.Row="0" Aspect="AspectFit" /> 
+                        <Image x:Name="Image" Source="{Binding Image}" Grid.Row="0" Aspect="AspectFit" />
                         <Grid x:Name="InnerGrid" Grid.Row="1" Grid.Column="0" RowSpacing="0" ColumnSpacing="0">
                             <!--The row and column definition is made in code to adjust them to the device orientation-->
                             <ScrollView Grid.Row="0" VerticalOptions="StartAndExpand">
@@ -43,7 +43,7 @@
                                         <Label Text="{Binding Text}" TextColor="Black" FontSize="16" Style="{DynamicResource Ssp-Italic}"/>
                                     </controls1:CardView>
                                     <ContentView Grid.Column="1" HorizontalOptions="FillAndExpand">
-                                        <views1:RatingView HorizontalOptions="FillAndExpand" BindingContext="{Binding Rating}" x:Name="Rating" />    
+                                        <views1:RatingView HorizontalOptions="FillAndExpand" BindingContext="{Binding Rating}" />
                                     </ContentView>
                                 </Grid>
                             </ScrollView>

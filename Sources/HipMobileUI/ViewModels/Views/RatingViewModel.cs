@@ -27,21 +27,21 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         private ImageSource star5;
         private string ratingCount;
 
-    
+
         private const string ImgStarEmpty = "star_empty.png";
         private const string ImgStarHalfFilled = "star_half_filled.png";
         private const string ImgStarFilled = "star_filled.png";
 
         public RatingViewModel(Exhibit exhibit, bool isRatingAvailable)
         {
-            
+
             Exhibit = exhibit;
             if (isRatingAvailable)
             {
                 UserRatingCommand = new Command(GoToUserRatingPage);
-                RefreshUserRating();
             }
-            
+
+            RefreshUserRating();
         }
 
 
