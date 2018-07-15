@@ -895,4 +895,25 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   <data name="AchievementsScreenView_Achievement_Count" xml:space="preserve">
     <value> Achievements unlocked</value>
   </data>
+  <data name="ProfilePictureScreenViewModel_CurrentAvatarLabel" xml:space="preserve">
+    <value>Current Avatar</value>
+  </data>
+  <data name="ProfilePictureScreenViewModel_Error_Selection" xml:space="preserve">
+    <value>No Picture selected</value>
+  </data>
+  <data name="ProfilePictureScreenViewModel_Error_Upload" xml:space="preserve">
+    <value>Upload failed. Try again.</value>
+  </data>
+  <data name="ProfilePictureScreenViewModel_KeepCurrentButton" xml:space="preserve">
+    <value>Keep current Avatar</value>
+  </data>
+  <data name="ProfilePictureScreenViewModel_PickImageButton" xml:space="preserve">
+    <value>Pick Avatar from your Gallery</value>
+  </data>
+  <data name="ProfilePictureScreenViewModel_PreviewAvatarLabel" xml:space="preserve">
+    <value>Preview</value>
+  </data>
+  <data name="ProfilePictureScreenViewModel_SaveNewButton" xml:space="preserve">
+    <value>Save new Avatar</value>
+  </data>
 </root>

@@ -41,12 +41,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.UserManageme
                 Settings.Username = user.Username;
                 Settings.Password = user.Password;
                 Settings.AccessToken = user.Token.AccessToken;
+                Settings.ProfilePicture = null;
 
                 var currentUser = await GetCurrentUser(user.Token.AccessToken);
                 if (currentUser.Id != null)
                 {
                     Settings.UserId = currentUser.Id;
-                    Settings.ProfilePicture = currentUser.ProfilePicture;
                 }
                 
 
@@ -133,7 +133,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.UserManageme
                 return JsonConvert.DeserializeObject<CurrentUser>(response);
             }
 
-            return new CurrentUser(null, null, null);
+            return new CurrentUser(null, null);
         }
     }
 
@@ -145,14 +145,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.UserManageme
         [JsonProperty("email")]
         public string EMail { get; private set; }
 
-        [JsonProperty("profilePicture")]
-        public string ProfilePicture { get; private set; }
-
-        public CurrentUser([CanBeNull] string id, [CanBeNull] string email, [CanBeNull] string profilePicture)
+        public CurrentUser([CanBeNull] string id, [CanBeNull] string email)
         {
             Id = id;
             EMail = email;
-            ProfilePicture = profilePicture;
         }
 
     }

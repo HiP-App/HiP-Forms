@@ -40,32 +40,64 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
             if (width > height && deviceOrientation != DeviceOrientation.Landscape)
             {
                 deviceOrientation = DeviceOrientation.Landscape;
-                OuterGrid.RowDefinitions.Clear();
-                OuterGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
-                OuterGrid.ColumnDefinitions.Clear();
-                OuterGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
-                OuterGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
-                OuterGrid.Children.Remove(InnerGrid);
-                OuterGrid.Children.Remove(InnerGridList);
-                OuterGrid.Children.Add(InnerGrid, 0, 0);
-                OuterGrid.Children.Add(InnerGridList, 1, 0);
+
+                MainGrid.RowDefinitions.Clear();
+                MainGrid.ColumnDefinitions.Clear();
+                MainGrid.Children.Clear();
+                LeftGrid.RowDefinitions.Clear();
+                LeftGrid.ColumnDefinitions.Clear();
+                LeftGrid.Children.Clear();
+                RightGrid.RowDefinitions.Clear();
+                RightGrid.ColumnDefinitions.Clear();
+                RightGrid.Children.Clear();
+
+                MainGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
+                MainGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+                MainGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+                MainGrid.Children.Add(LeftGrid, 0, 0);
+                MainGrid.Children.Add(RightGrid, 1, 0);
+
+                LeftGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.7, GridUnitType.Star) });
+                LeftGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.1, GridUnitType.Star) });
+                LeftGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.2, GridUnitType.Star) });
+                LeftGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+                LeftGrid.Children.Add(PictureGrid, 0, 0);
+                LeftGrid.Children.Add(ErrorMessageLabel, 0, 1);
+                LeftGrid.Children.Add(ButtonGrid, 0, 2);
+
+                RightGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.8, GridUnitType.Star) });
+                RightGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.2, GridUnitType.Star) });
+                RightGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+                RightGrid.Children.Add(PictureList, 0, 0);
+                RightGrid.Children.Add(PickImageButton, 0, 1);
             }
             else if (width < height && deviceOrientation != DeviceOrientation.Portrait)
             {
                 deviceOrientation = DeviceOrientation.Portrait;
-                OuterGrid.ColumnDefinitions.Clear();
-                OuterGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
-                OuterGrid.RowDefinitions.Clear();
-                OuterGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.5, GridUnitType.Star) });
-                OuterGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.1, GridUnitType.Star) });
-                OuterGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.4, GridUnitType.Star) });
-                OuterGrid.Children.Remove(InnerGrid);
-                OuterGrid.Children.Remove(InnerGridList);
-                OuterGrid.Children.Remove(ErrorMessageLabel);
-                OuterGrid.Children.Add(InnerGrid, 0, 0);
-                OuterGrid.Children.Add(ErrorMessageLabel, 0, 1);
-                OuterGrid.Children.Add(InnerGridList, 0, 2);
-                
+
+                MainGrid.RowDefinitions.Clear();
+                MainGrid.ColumnDefinitions.Clear();
+                MainGrid.Children.Clear();
+                LeftGrid.RowDefinitions.Clear();
+                LeftGrid.ColumnDefinitions.Clear();
+                LeftGrid.Children.Clear();
+                RightGrid.RowDefinitions.Clear();
+                RightGrid.ColumnDefinitions.Clear();
+                RightGrid.Children.Clear();
+
+                MainGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.4, GridUnitType.Star) });
+                MainGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.1, GridUnitType.Star) });
+                MainGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.3, GridUnitType.Star) });
+                MainGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.1, GridUnitType.Star) });
+                MainGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.1, GridUnitType.Star) });
+                MainGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+                MainGrid.Children.Add(PictureGrid, 0, 0);
+                MainGrid.Children.Add(ErrorMessageLabel, 0, 1);
+                MainGrid.Children.Add(PictureList, 0, 2);
+                MainGrid.Children.Add(PickImageButton, 0, 3);
+                MainGrid.Children.Add(ButtonGrid, 0, 4);
+
+
             }
 
         }

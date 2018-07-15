@@ -354,7 +354,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
         /// </summary>
         private const string ProfilePictureKey = "profilePicture_key";
 
-        private static readonly string ProfilePictureDefault = "Max Power";
+        private static readonly string ProfilePictureDefault = null;
 
         public static string ProfilePicture
         {

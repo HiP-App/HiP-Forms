@@ -12,9 +12,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Windows.Input;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.UserApiFetchers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.UserApiAccesses;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
 using Xamarin.Forms;
@@ -32,6 +37,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         private const string AdventurerImage = "ic_adventurer.png";
         private const string ProfessorImage = "ic_professor.png";
 
+        private ProfilePictureApiAccess client;
+        private ProfilePictureFetcher fetcher;
+
         public ProfileScreenViewModel(MainPageViewModel mainPageVm)
         {
             mainPageViewModel = mainPageVm;
@@ -48,6 +56,31 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             maxAchievementsCount = 120;
 
             SetCompletenessBarLength(Settings.Achievements);
+
+            client = new ProfilePictureApiAccess(new UserApiClient(ServerEndpoints.RegisterUrl));
+            fetcher = new ProfilePictureFetcher(client);
+        }
+
+        public override async void OnAppearing()
+        {
+            if (Settings.ProfilePicture == null)
+            {
+                var currentAvatar = await fetcher.GetProfilePicture(Settings.UserId, Settings.AccessToken);
+                if (currentAvatar != null)
+                {
+                    Settings.ProfilePicture = Convert.ToBase64String(currentAvatar.Data);
+                    Avatar =  ImageSource.FromStream(() => new MemoryStream(currentAvatar.Data));
+                    return;
+                }
+            }
+            else
+            {
+                var currentAvatarBytes = Convert.FromBase64String(Settings.ProfilePicture);
+                Avatar = ImageSource.FromStream(() => new MemoryStream(currentAvatarBytes));
+                return;
+            }
+
+            Avatar = Settings.AdventurerMode ? ImageSource.FromFile(AdventurerImage) : ImageSource.FromFile(ProfessorImage);
         }
 
         private void OnImageTapped()
@@ -116,7 +149,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         public ICommand ChangeAppModeCommand { get; }
         public ICommand GoToAchievementsCommand { get; }
         public ICommand OnImageTappedCommand { get; }
-        public ImageSource Avatar => Settings.AdventurerMode ? ImageSource.FromFile(AdventurerImage) : ImageSource.FromFile(ProfessorImage);
+
+        private ImageSource avatar;
+        public ImageSource Avatar
+        {
+            get { return avatar; }
+            set { avatar = value; OnPropertyChanged(); }
+        }
 
         public string Username => Settings.Username;
         public string EMail => Settings.EMail;

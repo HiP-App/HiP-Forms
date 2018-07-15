@@ -15,8 +15,8 @@
 using System;
 using System.Collections.ObjectModel;
 using System.IO;
+using System.Net;
 using System.Windows.Input;
-using Itinero.LocalGeo.Elevation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
 using Xamarin.Forms;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.UserApiFetchers;
@@ -24,7 +24,7 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.UserManagement;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.UserApiAccesses;
-
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 {
@@ -36,10 +36,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         public ICommand SaveNewAvatarCommand { get; }
         public ICommand ImagePickerCommand { get; }
 
+        private ProfilePictureApiAccess client;
+        private ProfilePictureFetcher fetcher;
+
+        private const string AdventurerImage = "ic_adventurer.png";
+        private const string ProfessorImage = "ic_professor.png";
+
         public bool PickImageEnabled { get; private set; }
 
         private string errorMessage;
-
         public string ErrorMessage
         {
             get { return errorMessage; }
@@ -99,6 +104,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 
         public void KeepAvatar()
         {
+            ChosenAvatarBytes = null;
             mainPageViewModel.SwitchToProfileView();
         }
 
@@ -111,16 +117,33 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
                 var imageStream = (Stream)new MemoryStream(ChosenAvatarBytes, 0, ChosenAvatarBytes.Length);
                 var result = await client.PostProfilePicture(imageStream, Settings.UserId, Settings.AccessToken);
 
-                var profilePicture = await fetcher.GetProfilePicture(Settings.UserId, Settings.AccessToken);
+                if (result.StatusCode == HttpStatusCode.NoContent)
+                {
+                    //Get uploaded picture to store it in the settings
+                    var profilePicture = await fetcher.GetProfilePicture(Settings.UserId, Settings.AccessToken);
 
-                Avatar = profilePicture == null ? ImageSource.FromFile("ic_professor.png") : ImageSource.FromStream(() => new MemoryStream(profilePicture.Data));
+                    if (profilePicture != null)
+                    {
+                        Settings.ProfilePicture = Convert.ToBase64String(profilePicture.Data);
+                        ChosenAvatarBytes = null;
+                        mainPageViewModel.SwitchToProfileView();
+                    }
+                    else
+                    {
+                        ErrorMessage = $"{Strings.ProfilePictureScreenViewModel_Error_Upload}";
+                    }
+                }
+                else
+                {
+                    ErrorMessage = $"{Strings.ProfilePictureScreenViewModel_Error_Upload}";
+                }
 
-                AvatarPreview = ImageSource.FromFile("predefined_avatar_empty");
-                ChosenAvatarBytes = null;
+                
+                
             }
             else
             {
-                ErrorMessage = "No Picture selected";
+                ErrorMessage = $"{Strings.ProfilePictureScreenViewModel_Error_Selection}";
             }
 
         }
@@ -144,25 +167,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
                 ChosenAvatarBytes = memStream.ToArray();
                 imageStream = (Stream) new MemoryStream(ChosenAvatarBytes, 0, ChosenAvatarBytes.Length);
                 AvatarPreview = ImageSource.FromStream(() => imageStream);
-                //ChosenAvatarStream = imageStream;
-                //ChosenAvatarStream = (Stream)new MemoryStream();
-                //imageStream.CopyTo(ChosenAvatarStream);
-
             }
 
             PickImageEnabled = true;
-            
         }
-
-
-
-
-        private ProfilePictureApiAccess client;
-        private ProfilePictureFetcher fetcher;
-
-        
-
-        public ObservableCollection<PredefinedProfilePicture> Avatars { get; set; }
 
         public override async void OnAppearing()
         {
@@ -170,24 +178,30 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 
             ErrorMessage = "";
 
-            var pictures = new PredefinedProfilePictureStrings();
-            var picture = Convert.FromBase64String(pictures.PredefinedAvatarDog);
-            ImageSource av = ImageSource.FromStream(() => new MemoryStream(picture));
-
-
-
-            //await client.PostProfilePicture(imageStream, userId);
-
-
-            var profilePicture = await fetcher.GetProfilePicture(Settings.UserId, Settings.AccessToken);
-
-            //Avatar = profilePicture == null ? ImageSource.FromFile("ic_professor.png") : ImageSource.FromStream(() => new MemoryStream(profilePicture.Data));
-            Avatar = profilePicture == null ? av : ImageSource.FromStream(() => new MemoryStream(profilePicture.Data));
             AvatarPreview = ImageSource.FromFile("predefined_avatar_empty");
 
+            if (Settings.ProfilePicture == null)
+            {
+                var currentAvatar = await fetcher.GetProfilePicture(Settings.UserId, Settings.AccessToken);
+                if (currentAvatar != null)
+                {
+                    Settings.ProfilePicture = Convert.ToBase64String(currentAvatar.Data);
+                    Avatar = ImageSource.FromStream(() => new MemoryStream(currentAvatar.Data));
+                    return;
+                }
+            }
+            else
+            {
+                var currentAvatarBytes = Convert.FromBase64String(Settings.ProfilePicture);
+                Avatar = ImageSource.FromStream(() => new MemoryStream(currentAvatarBytes));
+                return;
+            }
 
+            Avatar = Settings.AdventurerMode ? ImageSource.FromFile(AdventurerImage) : ImageSource.FromFile(ProfessorImage);
+            OnPropertyChanged();
         }
 
+        public ObservableCollection<PredefinedProfilePicture> Avatars { get; set; }
 
     }
 

@@ -68,18 +68,16 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
                 return ResourceManager.GetString("AchievementsDetailsExhibitView_VisitedMOfNExhibits", resourceCulture);
             }
         }
-
+        
         /// <summary>
-        ///   Looks up a localized string similar to Achievements unlocked
+        ///   Looks up a localized string similar to  Achievements unlocked.
         /// </summary>
-        public static string AchievementsScreenView_Achievement_Count
-        {
-            get
-            {
+        public static string AchievementsScreenView_Achievement_Count {
+            get {
                 return ResourceManager.GetString("AchievementsScreenView_Achievement_Count", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to You have to sign up or register first before you can use the achievements..
         /// </summary>
@@ -1500,6 +1498,69 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         public static string Ok {
             get {
                 return ResourceManager.GetString("Ok", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Current Avatar.
+        /// </summary>
+        public static string ProfilePictureScreenViewModel_CurrentAvatarLabel {
+            get {
+                return ResourceManager.GetString("ProfilePictureScreenViewModel_CurrentAvatarLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No Picture selected.
+        /// </summary>
+        public static string ProfilePictureScreenViewModel_Error_Selection {
+            get {
+                return ResourceManager.GetString("ProfilePictureScreenViewModel_Error_Selection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Upload failed. Try again..
+        /// </summary>
+        public static string ProfilePictureScreenViewModel_Error_Upload {
+            get {
+                return ResourceManager.GetString("ProfilePictureScreenViewModel_Error_Upload", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Keep current Avatar.
+        /// </summary>
+        public static string ProfilePictureScreenViewModel_KeepCurrentButton {
+            get {
+                return ResourceManager.GetString("ProfilePictureScreenViewModel_KeepCurrentButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pick Avatar from your Gallery.
+        /// </summary>
+        public static string ProfilePictureScreenViewModel_PickImageButton {
+            get {
+                return ResourceManager.GetString("ProfilePictureScreenViewModel_PickImageButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Preview.
+        /// </summary>
+        public static string ProfilePictureScreenViewModel_PreviewAvatarLabel {
+            get {
+                return ResourceManager.GetString("ProfilePictureScreenViewModel_PreviewAvatarLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save new Avatar.
+        /// </summary>
+        public static string ProfilePictureScreenViewModel_SaveNewButton {
+            get {
+                return ResourceManager.GetString("ProfilePictureScreenViewModel_SaveNewButton", resourceCulture);
             }
         }
         

@@ -1475,7 +1475,84 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
                 return ResourceManager.GetString("Ok", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to Aktueller Avatar.
+        /// </summary>
+        public static string ProfilePictureScreenViewModel_CurrentAvatarLabel
+        {
+            get
+            {
+                return ResourceManager.GetString("ProfilePictureScreenViewModel_CurrentAvatarLabel", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Vorschau.
+        /// </summary>
+        public static string ProfilePictureScreenViewModel_PreviewAvatarLabel
+        {
+            get
+            {
+                return ResourceManager.GetString("ProfilePictureScreenViewModel_PreviewAvatarLabel", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Speichere neuen Avatar.
+        /// </summary>
+        public static string ProfilePictureScreenViewModel_SaveNewButton
+        {
+            get
+            {
+                return ResourceManager.GetString("ProfilePictureScreenViewModel_SaveNewButton", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Behalte aktuellen Avatar.
+        /// </summary>
+        public static string ProfilePictureScreenViewModel_KeepCurrentButton
+        {
+            get
+            {
+                return ResourceManager.GetString("ProfilePictureScreenViewModel_KeepCurrentButton", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Wähle einen Avatar aus Deiner Gallerie.
+        /// </summary>
+        public static string ProfilePictureScreenViewModel_PickImageButton
+        {
+            get
+            {
+                return ResourceManager.GetString("ProfilePictureScreenViewModel_PickImageButton", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Upload fehlgeschlagen. Versuch es erneut..
+        /// </summary>
+        public static string ProfilePictureScreenViewModel_Error_Upload
+        {
+            get
+            {
+                return ResourceManager.GetString("ProfilePictureScreenViewModel_Error_Upload", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Kein Bild ausgewählt..
+        /// </summary>
+        public static string ProfilePictureScreenViewModel_Error_Selection
+        {
+            get
+            {
+                return ResourceManager.GetString("ProfilePictureScreenViewModel_Error_Selection", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Wollen Sie sich wirklich abmelden?.
         /// </summary>
