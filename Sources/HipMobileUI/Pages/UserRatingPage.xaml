@@ -34,12 +34,12 @@
                         <RowDefinition Height="0.4*" />
                         <RowDefinition Height="0.6*" />
                     </Grid.RowDefinitions>
-                    <ContentView Grid.Row="0">
-                        <StackLayout Orientation="Vertical" >
-                            <Label Text="{helpers:Translate UserRating_Average_Rating}" FontAttributes="Bold" FontSize="17" VerticalOptions="Center" HorizontalOptions="Center" Margin="0,0,0,10" Style="{DynamicResource Ssp-Regular}"/>
-                            <views:RatingView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BindingContext="{Binding Rating}"/>
-                        </StackLayout>
-                    </ContentView>
+
+                    <StackLayout Grid.Row="0" Orientation="Vertical" >
+                        <Label Text="{helpers:Translate UserRating_Average_Rating}" FontAttributes="Bold" FontSize="17" VerticalOptions="Center" HorizontalOptions="Center" Margin="0,0,0,10" Style="{DynamicResource Ssp-Regular}"/>
+                        <views:RatingView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BindingContext="{Binding Rating}"/>
+                    </StackLayout>
+
                     <StackLayout Grid.Row="1" Orientation="Vertical" Spacing="10" VerticalOptions="Center" Margin="20,0,20,0">
                         <Grid ColumnSpacing="0" HorizontalOptions="Start">
                             <Grid.RowDefinitions>
