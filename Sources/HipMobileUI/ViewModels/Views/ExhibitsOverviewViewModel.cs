@@ -1,18 +1,4 @@
-﻿// Copyright (C) 2016 History in Paderborn App - Universität Paderborn
-//  
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//  
-//      http://www.apache.org/licenses/LICENSE-2.0
-//  
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
-
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentHandling;
@@ -23,7 +9,6 @@ using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Location;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
-using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
 using Plugin.Geolocator.Abstractions;
 using Xamarin.Forms;
 using System.Collections.Generic;
@@ -41,6 +26,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         private GeoLocation? position;
         private GeoLocation gpsLocation;
         private ICommand mapFocusCommand;
+
         public ExhibitsOverviewViewModel(IReadOnlyList<Exhibit> exhibits)
         {
             if (exhibits != null)
@@ -49,7 +35,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
                     exhibits.Select(ex => new ExhibitsOverviewListItemViewModel(ex)));
             }
 
-            ItemTappedCommand = new Command(item => NavigateToExhibitDetails(item as ExhibitsOverviewListItemViewModel));
 
             locationManager = IoCManager.Resolve<ILocationManager>();
             nearbyExhibitManager = IoCManager.Resolve<INearbyExhibitManager>();
@@ -59,7 +44,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             FocusGps = new Command(FocusGpsClicked);
             DownloadUpdatedData();
         }
-
         /// <summary>
         /// React to position changes.
         /// </summary>
@@ -120,18 +104,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         }
 
         /// <summary>
-        /// Open the exhibitdetails page.
-        /// </summary>
-        /// <param name="item"></param>
-        private async void NavigateToExhibitDetails(ExhibitsOverviewListItemViewModel item)
-        {
-            if (item != null)
-            {
-                await Navigation.PushAsync(new AppetizerPageViewModel(item.Exhibit));
-            }
-        }
-
-        /// <summary>
         /// The list of displayed exhibits.
         /// </summary>
         public ObservableCollection<ExhibitsOverviewListItemViewModel> Exhibits
@@ -142,11 +114,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 
         // Temporarily needed for OsmMap binding. TODO: No longer needed when merged with HIPM-868.
         public IReadOnlyList<Exhibit> RawExhibits => Exhibits.Select(vm => vm.Exhibit).ToList();
-
-        /// <summary>
-        /// The command for tapping on exhibits.
-        /// </summary>
-        public ICommand ItemTappedCommand { get; }
 
         /// <summary>
         /// Whether to display the distance to exhibit.
