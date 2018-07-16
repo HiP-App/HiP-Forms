@@ -32,7 +32,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Controls
                                     propertyChanged: ImagePropertyChanged);
 
         public static readonly BindableProperty SelectedValueProperty =
-            BindableProperty.Create("SelectedValue", typeof(Double), typeof(TimeSlider), 0.0);
+            BindableProperty.Create("SelectedValue", typeof(int), typeof(TimeSlider), 0);
 
         public static readonly BindableProperty TextsProperty =
             BindableProperty.Create("Texts", typeof(ObservableCollection<string>), typeof(TimeSlider), new ObservableCollection<string>(), propertyChanged: TextsPropertyChanged);
@@ -104,9 +104,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Controls
         /// <summary>
         /// The currently selected value.
         /// </summary>
-        public double SelectedValue
+        public int SelectedValue
         {
-            get => (double) GetValue(SelectedValueProperty);
+            get => (int) GetValue(SelectedValueProperty);
             set => SetValue(SelectedValueProperty, value);
         }
 
@@ -306,17 +306,36 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Controls
         /// Animates the slider to the value.
         /// </summary>
         /// <param name="selectedValue">The value to animate to.</param>
-        private void UpdateSliderAccordingToValue(double selectedValue)
+        private void UpdateSliderAccordingToValue(int selectedValue)
         {
             var x = selectedValue * ItemWidth * -1;
             slider.TranslateTo(x, 0, 100);
-            var spaceLeft = Width - x - (Width / 2 + 2 - (double) ItemWidth / 2);
-            foreach (var colDef in slider.ColumnDefinitions)
+
+            slider.ColumnDefinitions[selectedValue].Width = ItemWidth;
+            var leftSpaceLeft = Width / 2 - (double) ItemWidth / 2;
+            var rightSpaceLeft = leftSpaceLeft;
+            var leftElement = selectedValue - 1;
+            var rightElement = selectedValue + 1;
+            while (leftElement >= 0 || rightElement < Images.Count)
             {
-                var nextWidth = Math.Min(ItemWidth, spaceLeft);
-                spaceLeft -= nextWidth;
-                colDef.Width = nextWidth;
+                if (leftElement >= 0)
+                {
+                    var nextWidth = Coerce(leftSpaceLeft, 0, ItemWidth);
+                    leftSpaceLeft -= nextWidth;
+                    slider.ColumnDefinitions[leftElement].Width = nextWidth;
+                }
+
+                if (rightElement < Images.Count)
+                {
+                    var nextWidth = Coerce(rightSpaceLeft, 0, ItemWidth);
+                    rightSpaceLeft -= nextWidth;
+                    slider.ColumnDefinitions[rightElement].Width = nextWidth;
+                }
+
+                leftElement--;
+                rightElement++;
             }
+
             slider.ForceLayout();
         }
 
@@ -335,5 +354,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Controls
                 disableTap = false;
             }
         }
+
+        private static double Coerce(double n, double min, double max) => n > max ? max : (n < min ? min : n);
     }
 }
