@@ -4,7 +4,8 @@
     {
         LoggedIn,
         LoggedOut,
-        IncorrectUserNameAndPassword,
+        //IncorrectUserNameAndPassword,
+        IncorrectEmailAndPassword,
         ServerError,
         NetworkConnectionFailed,
         Registered,

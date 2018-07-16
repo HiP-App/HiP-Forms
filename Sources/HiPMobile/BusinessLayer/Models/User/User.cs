@@ -8,7 +8,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.User
         public string Password { get; }
         public string Email { get; }
 
-        public User(string username, string password, string email)
+        public User(string email, string password, string username)
         {
             Username = username; //taking email as a parameter
             Password = password;

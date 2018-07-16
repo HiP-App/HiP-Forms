@@ -243,11 +243,18 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             UpdateUserLogginInfo();
         }
 
-        private void UpdateUserLogginInfo()
+       /* private void UpdateUserLogginInfo()
         {
             UserNameDisplayed = Settings.IsLoggedIn;
             UserName = Settings.IsLoggedIn ? Settings.Username : "";
+        }*/
+
+        private void UpdateUserLogginInfo()
+        {
+            EmailDisplayed = Settings.IsLoggedIn;
+            Email = Settings.IsLoggedIn ? Settings.EMail : "";
         }
+
 
         /// <summary>
         /// Call this method after a change to 'Settings.IsLoggedIn' to display the correct view.
@@ -320,19 +327,36 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             }
         }
 
-        private bool userNameDisplayed;
-        public bool UserNameDisplayed
+        //private bool userNameDisplayed;
+        private bool emailDisplayed;
+
+       /* public bool UserNameDisplayed
         {
             get => userNameDisplayed;
             set => SetProperty(ref userNameDisplayed, value);
+        }*/
+
+        public bool EmailDisplayed
+        {
+            get => emailDisplayed;
+            set => SetProperty(ref emailDisplayed, value);
         }
 
-        private string userName;
-        public string UserName
+        //private string userName;
+        private string email;
+
+        /*public string UserName
         {
             get => userName;
             set => SetProperty(ref userName, value);
+        }*/
+
+        public string Email
+        {
+            get => email;
+            set => SetProperty(ref email, value);
         }
+
 
         public override void OnDisappearing()
         {

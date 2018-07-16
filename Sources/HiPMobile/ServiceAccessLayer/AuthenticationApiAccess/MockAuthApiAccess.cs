@@ -19,15 +19,16 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Authent
 {
     public class MockAuthApiAccess: IAuthApiAccess
     {
-        public Task<Token> Login(string username, string password) => Task.FromResult(new Token
+        public Task<Token> Login(string email, string password) => Task.FromResult(new Token
         {
             AccessToken = "",
             IdToken = "",
             TokenType = ""
         });
 
-        public Task<bool> Register(string username, string password, string Firstname, string Lastname) => Task.FromResult(true);
+        public Task<bool> Register(string username, string password, string Firstname, string Lastname, string email) => Task.FromResult(true);
 
-        public Task<bool> ForgotPassword(string username) => Task.FromResult(true);
+        //public Task<bool> ForgotPassword(string username) => Task.FromResult(true);
+        public Task<bool> ForgotPassword(string email) => Task.FromResult(true);
     }
 }

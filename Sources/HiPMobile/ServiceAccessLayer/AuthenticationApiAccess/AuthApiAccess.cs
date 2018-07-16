@@ -18,7 +18,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Authent
             this.clientApiClient = clientApiClient;
         }
 
-        public async Task<Token> Login(string username, string password)
+        public async Task<Token> Login(string email, string password)
         {
             FormUrlEncodedContent content = new FormUrlEncodedContent(new[]
             {
@@ -27,8 +27,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Authent
                 Constants.MobileScope,
                 Constants.MobileClientId,
                 Constants.MobileClientSecret,
-                new KeyValuePair<string, string>("username", username),
-                new KeyValuePair<string, string>("password", password)
+              //  new KeyValuePair<string, string>("username", username),
+                new KeyValuePair<string, string>("password", password),
+                new KeyValuePair<string, string>("email", email)
+
             });
 
             var result = await clientApiClient.PostRequestFormBased(ServerEndpoints.LoginUrl, content, prependBasePath: false);
@@ -39,7 +41,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Authent
 
             if (result.StatusCode == HttpStatusCode.BadRequest || result.StatusCode == HttpStatusCode.NotFound || result.StatusCode == HttpStatusCode.Forbidden)
             {
-                throw new InvalidUserNamePassword();
+                //throw new InvalidUserNamePassword();
+                throw new InvalidEmailPassword();
             }
 
             if (result.StatusCode == HttpStatusCode.GatewayTimeout)
@@ -50,10 +53,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Authent
             return token;
         }
 
-        public async Task<bool> Register(string username, string password, string firstname, string lastname)
+        public async Task<bool> Register(string username, string password, string firstname, string lastname, string email)
         {
             var content = "{" +
-                          "\"email\": \"" + username + "\", " +
+                          "\"email\": \"" + email + "\", " +
+                          "\"usernname\": \"" + username + "\", " +
                           "\"password\": \"" + password + "\"," +
                           "\"firstName\": \"" + firstname + "\"," +
                           "\"lastName\": \"" + lastname +  "\"" +
@@ -69,13 +73,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Authent
             return false;
         }
 
-        public async Task<bool> ForgotPassword(string username)
+        public async Task<bool> ForgotPassword(string email)
         {
             FormUrlEncodedContent content = new FormUrlEncodedContent(new[]
             {
                 Constants.BasicClientId,
                 Constants.Connection,
-                new KeyValuePair<string, string>("email", username),
+                new KeyValuePair<string, string>("email", email),
             });
 
             var result = await clientApiClient.PostRequestFormBased(ServerEndpoints.ForgotPasswordUrl, content, prependBasePath: false);

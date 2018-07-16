@@ -1,4 +1,4 @@
-﻿using System;
+﻿/*using System;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Exceptions
 {
@@ -6,7 +6,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Excepti
     {
         public InvalidUserNamePassword()
         {
-        }
+        }   
 
         public InvalidUserNamePassword(string message)
             : base(message)
@@ -18,4 +18,4 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Excepti
         {
         }
     }
-}
+}*/
