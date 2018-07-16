@@ -14,7 +14,6 @@
 
 using System;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using FFImageLoading.Forms;
 using Xamarin.Forms;
 
@@ -41,12 +40,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Controls
         public static readonly BindableProperty ItemWidthProperty =
             BindableProperty.Create("ItemWidth", typeof(int), typeof(TimeSlider), 100, propertyChanged: ItemWidthPropertyChanged);
 
-        public static readonly BindableProperty SafezoneFractionProperty =
-            BindableProperty.Create("SafezoneFraction", typeof(double), typeof(TimeSlider), 0.5, propertyChanged: SafezonePropertyChanged);
-
-        public static readonly BindableProperty FadezoneFractionProperty =
-            BindableProperty.Create("FadezoneFraction", typeof(double), typeof(TimeSlider), 0.5, propertyChanged: SafezonePropertyChanged);
-
         public static readonly BindableProperty SelectorColorProperty =
             BindableProperty.Create("SelectorColor", typeof(Color), typeof(TimeSlider), Color.Blue, propertyChanged: SelectorColorPropertyChanged);
 
@@ -55,14 +48,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Controls
             if (oldValue != null && oldValue != newValue)
             {
                 ((TimeSlider) bindable).UpdateSeparatorColor();
-            }
-        }
-
-        private static void SafezonePropertyChanged(BindableObject bindable, object oldValue, object newValue)
-        {
-            if (oldValue != null && oldValue != newValue)
-            {
-                ((TimeSlider) bindable).RecalculateCaches();
             }
         }
 
@@ -83,24 +68,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Controls
         }
 
         /// <summary>
-        /// Recalculate the cached safgezonewidth and fadezonewidth.
-        /// </summary>
-        private void RecalculateCaches()
-        {
-            safezoneWidth = Convert.ToInt32(ItemWidth * SafezoneFraction);
-            fadezoneWidth = Convert.ToInt32(ItemWidth * FadezoneFraction);
-        }
-
-        /// <summary>
         /// Update the separator color.
         /// </summary>
         private void UpdateSeparatorColor()
         {
             box.Color = SeparatorColor;
         }
-
-        private int safezoneWidth = 50;
-        private int fadezoneWidth = 50;
 
         private static void ImagePropertyChanged(BindableObject bindable, object oldValue, object newValue)
         {
@@ -147,24 +120,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Controls
         }
 
         /// <summary>
-        /// How much of one subelement of the slider should be used for not fading between values.
-        /// </summary>
-        public double SafezoneFraction
-        {
-            get => (double) GetValue(SafezoneFractionProperty);
-            set => SetValue(SafezoneFractionProperty, value);
-        }
-
-        /// <summary>
-        /// How much of one subelement of the slider should be used for fading between values.
-        /// </summary>
-        public double FadezoneFraction
-        {
-            get => (double) GetValue(FadezoneFractionProperty);
-            set => SetValue(FadezoneFractionProperty, value);
-        }
-
-        /// <summary>
         /// The color of the separator indicating the currently selected value.
         /// </summary>
         public Color SeparatorColor
@@ -173,7 +128,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Controls
             set => SetValue(SelectorColorProperty, value);
         }
 
-        private double SliderX => slider.X + slider.TranslationX;
         private Grid slider;
         private BoxView box;
         private readonly TapGestureRecognizer tapGestureRecognizer;
@@ -206,7 +160,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Controls
             // the separator
             box = new BoxView { Color = SeparatorColor };
             // construct the slider
-            slider = new Grid() { ColumnSpacing = 0, RowSpacing = 0, BackgroundColor = Color.White };
+            slider = new Grid { ColumnSpacing = 0, RowSpacing = 0, BackgroundColor = Color.White };
         }
 
         /// <summary>
@@ -287,12 +241,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Controls
                     gridRows++;
             }
 
-            var spaceLeft = width;
             for (var i = 0; i < gridColumns; i++)
             {
-                var itemWidth = Math.Min(spaceLeft, ItemWidth);
-                spaceLeft -= itemWidth;
-                slider.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(itemWidth) });
+                slider.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(ItemWidth) });
             }
 
             for (var i = 0; i < gridRows; i++)
@@ -312,11 +263,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Controls
 
             if (Images != null)
             {
-                int i = 0;
+                var i = 0;
 
                 foreach (var imageSource in Images)
                 {
-                    var image = new CachedImage()
+                    var image = new CachedImage
                     {
                         Source = imageSource,
                         DownsampleToViewSize = true,
@@ -334,7 +285,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Controls
                 var i = 0;
                 foreach (var text in Texts)
                 {
-                    Label label = new Label() { Text = text, HorizontalOptions = LayoutOptions.Center, VerticalOptions = LayoutOptions.Center };
+                    var label = new Label { Text = text, HorizontalOptions = LayoutOptions.Center, VerticalOptions = LayoutOptions.Center };
                     label.GestureRecognizers.Add(tapGestureRecognizer);
                     slider.Children.Add(label, i, 1);
                     i++;
@@ -346,47 +297,27 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Controls
             timeSlider.Children.Add(box, new Rectangle(width / 2, 0, 2, height));
 
             SelectedValue = 0;
+            UpdateSliderAccordingToValue(SelectedValue);
 
             Content = parent;
         }
 
         /// <summary>
-        /// Calculate the selected value according to the slider position.
-        /// </summary>
-        /// <returns>The currently selected value.</returns>
-        private double CalculateSelectedValue()
-        {
-            var dx = box.X - (box.Width / 2) - SliderX;
-
-            if (dx < (double) fadezoneWidth / 2)
-            {
-                return 0;
-            }
-            else if (dx > slider.Width - (double) ItemWidth / 2)
-            {
-                return Images.Count - 1;
-            }
-            else
-            {
-                var result = Math.Floor((dx - (double) fadezoneWidth / 2) / (fadezoneWidth + safezoneWidth));
-                var mod = (dx - (double) fadezoneWidth / 2) % (fadezoneWidth + safezoneWidth);
-                if (mod > safezoneWidth)
-                {
-                    result += (mod - safezoneWidth) / fadezoneWidth;
-                }
-
-                return result;
-            }
-        }
-
-        /// <summary>
         /// Animates the slider to the value.
         /// </summary>
-        /// <param name="value">The value to animate to.</param>
+        /// <param name="selectedValue">The value to animate to.</param>
         private void UpdateSliderAccordingToValue(double selectedValue)
         {
-            var x = (selectedValue) * ItemWidth * (-1);
+            var x = selectedValue * ItemWidth * -1;
             slider.TranslateTo(x, 0, 100);
+            var spaceLeft = Width - x - (Width / 2 + 2 - (double) ItemWidth / 2);
+            foreach (var colDef in slider.ColumnDefinitions)
+            {
+                var nextWidth = Math.Min(ItemWidth, spaceLeft);
+                spaceLeft -= nextWidth;
+                colDef.Width = nextWidth;
+            }
+            slider.ForceLayout();
         }
 
         private void TapGestureRecognizerOnTapped(object sender, EventArgs eventArgs)
@@ -402,60 +333,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Controls
             {
                 // reenable tap recognizer for the next event
                 disableTap = false;
-            }
-        }
-
-        private void RecognizerOnPanUpdated(object sender, PanUpdatedEventArgs panUpdatedEventArgs)
-        {
-            if (Math.Abs(panUpdatedEventArgs.TotalX) > 1)
-            {
-                // disable the tap when detecting a swipe
-                disableTap = true;
-            }
-
-            double dx;
-            if (Device.RuntimePlatform == Device.Android)
-            {
-                // calculate the offset when the slider would be moved
-                dx = slider.TranslationX + panUpdatedEventArgs.TotalX;
-            }
-            else
-            {
-                // on ios the animations needs to be scaled
-                dx = slider.TranslationX + panUpdatedEventArgs.TotalX / 15;
-            }
-
-            if (slider.X + dx > box.X - box.Width / 2)
-            {
-                // indicator at the left side of the slider
-                dx = (double) ItemWidth / 2;
-            }
-            else if (slider.X + slider.Width + dx < box.X + box.Width / 2)
-            {
-                // indicator at the right side of the slider
-                dx = (double) ItemWidth / 2 - slider.Width;
-            }
-
-            if (Device.RuntimePlatform == Device.Android)
-            {
-                // use an animation for smooth scrolling
-                ViewExtensions.CancelAnimations(slider);
-                slider.TranslateTo(dx, 0, 50U);
-            }
-            else
-            {
-                // workaround for ios as it doesn't work with translation
-                slider.TranslationX = dx;
-            }
-
-            // set the new selected value
-            SelectedValue = CalculateSelectedValue();
-            if (panUpdatedEventArgs.StatusType == GestureStatus.Completed)
-            {
-                // gesture is finished, go back to nearest value
-                var value = Convert.ToInt32(Math.Round(SelectedValue));
-                UpdateSliderAccordingToValue(value);
-                SelectedValue = value;
             }
         }
     }
