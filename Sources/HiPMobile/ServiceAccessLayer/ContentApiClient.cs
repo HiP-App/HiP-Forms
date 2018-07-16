@@ -74,7 +74,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer
             var response = await GetHttpWebResponse(urlPath, accessToken);
             using (var responseStream = response.GetResponseStream())
             {
-                var reader = new StreamReader(responseStream, Encoding.UTF8);
+                var reader = new StreamReader(responseStream ?? throw new WebException($"{nameof(responseStream)} is null!"), Encoding.UTF8);
                 return reader.ReadToEnd();
             }
         }
@@ -178,7 +178,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer
 
                 using (var responseStream = errorResponse.GetResponseStream())
                 {
-                    var reader = new StreamReader(responseStream, Encoding.UTF8);
+                    var reader = new StreamReader(responseStream ?? throw new WebException($"{nameof(responseStream)} is null!"), Encoding.UTF8);
                     var exceptionMessage = reader.ReadToEnd();
                     throw new NetworkAccessFailedException(exceptionMessage, webException);
                 }

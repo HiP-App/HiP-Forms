@@ -26,13 +26,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
     {
         public UserOnboardingPageViewModel()
         {
-            ApplicationResourcesProvider resourceProvider = IoCManager.Resolve<ApplicationResourcesProvider>();
-            Color PrimaryDarkColor = resourceProvider.TryGetResourceColorvalue("PrimaryColor"); //paint it light blue
+            var resourceProvider = IoCManager.Resolve<ApplicationResourcesProvider>();
+            var primaryDarkColor = resourceProvider.TryGetResourceColorvalue("PrimaryColor"); //paint it light blue
             Pages = new ObservableCollection<UserOnboardingItemViewModel>
             {
-                new UserOnboardingItemViewModel(Strings.UserOnboarding_Explore_Title, Strings.UserOnboarding_Explore_Text, "ac_erkunden.jpg", PrimaryDarkColor),
-                new UserOnboardingItemViewModel(Strings.UserOnboarding_Route_Title, Strings.UserOnboarding_Route_Text, "ac_route.jpg", PrimaryDarkColor, "ac_route2.jpg"),
-                new UserOnboardingItemViewModel(Strings.UserOnboarding_Students_Title, Strings.UserOnboarding_Students_Text, "ac_students", PrimaryDarkColor)
+                new UserOnboardingItemViewModel(Strings.UserOnboarding_Explore_Title, Strings.UserOnboarding_Explore_Text, "ac_erkunden.jpg", primaryDarkColor),
+                new UserOnboardingItemViewModel(Strings.UserOnboarding_Route_Title, Strings.UserOnboarding_Route_Text, "ac_route.jpg", primaryDarkColor, "ac_route2.jpg"),
+                new UserOnboardingItemViewModel(Strings.UserOnboarding_Students_Title, Strings.UserOnboarding_Students_Text, "ac_students", primaryDarkColor)
             };
             ContentOrientation = StackOrientation.Vertical;
             ForwardCommand = new Command(GotoNextPage);
