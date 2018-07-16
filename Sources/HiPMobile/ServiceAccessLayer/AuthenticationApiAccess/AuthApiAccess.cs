@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Net;
 using System.Threading.Tasks;
 using System.Net.Http;
@@ -50,20 +51,26 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Authent
             return token;
         }
 
-        public async Task<bool> Register(string username, string password, string firstname, string lastname)
+        public async Task<bool> Register(string username, string password, string firstName, string lastName)
         {
             var content = "{" +
                           "\"email\": \"" + username + "\", " +
                           "\"password\": \"" + password + "\"," +
-                          "\"firstName\": \"" + firstname + "\"," +
-                          "\"lastName\": \"" + lastname +  "\"" +
+                          "\"firstName\": \"" + firstName + "\"," +
+                          "\"lastName\": \"" + lastName +  "\"" +
                           "}";
 
             var result = await clientApiClient.PostRequestBody(ServerEndpoints.RegisterUrl, content, false);
+          
 
             if (result.StatusCode == HttpStatusCode.Created)
             {
                 return true;
+            }
+            else
+            {
+                var resultContent = await result.Content.ReadAsStringAsync();
+                Debug.WriteLine(resultContent);
             }
 
             return false;
