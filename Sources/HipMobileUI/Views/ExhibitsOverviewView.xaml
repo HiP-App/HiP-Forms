@@ -54,9 +54,9 @@
 
                                         <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" Padding="5,5"
                                                      Grid.Row="0" Grid.Column="1">
-                                            <Label Text="{Binding Exhibit.Name}" VerticalOptions="CenterAndExpand" FontSize="16"
+                                            <Label Text="{Binding Exhibit.Name}" VerticalOptions="Center" FontSize="16"
                                                    LineBreakMode="WordWrap" FontAttributes="Bold" Style="{DynamicResource Ssp-Regular}" />
-                                            <Label Text="Rating is coming soon" VerticalOptions="CenterAndExpand" FontSize="14" />
+                                            <views:RatingView BindingContext="{Binding Rating}" HorizontalOptions="Start"/>
                                         </StackLayout>
                                         <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" Padding="5,5"
                                                      Grid.Row="0" Grid.Column="2">
