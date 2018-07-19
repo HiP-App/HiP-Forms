@@ -109,11 +109,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             DbManager.InTransaction(transaction => { Exhibit.DetailsDataLoaded = true; });
         }
 
-        private async void OpenDownloadDialog()
-        {
-            downloadPage = new ExhibitRouteDownloadPageViewModel(Exhibit, this);
-            await Navigation.PushAsync(downloadPage);
-        }
 
         public void CloseDownloadPage()
         {
