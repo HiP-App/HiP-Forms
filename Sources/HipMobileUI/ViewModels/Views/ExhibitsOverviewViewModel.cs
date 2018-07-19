@@ -34,7 +34,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
                 Exhibits = new ObservableCollection<ExhibitsOverviewListItemViewModel>(
                     exhibits.Select(ex => new ExhibitsOverviewListItemViewModel(ex)));
             }
-            
+
             locationManager = IoCManager.Resolve<ILocationManager>();
             nearbyExhibitManager = IoCManager.Resolve<INearbyExhibitManager>();
             nearbyRouteManager = IoCManager.Resolve<INearbyRouteManager>();
