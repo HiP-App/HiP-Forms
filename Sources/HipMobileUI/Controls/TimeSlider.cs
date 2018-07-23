@@ -336,6 +336,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Controls
                 rightElement++;
             }
 
+            // WIP TODO
+            var leftSpaceTaken = Width / 2 - (double) ItemWidth / 2 - leftSpaceLeft;
+            var newX = leftSpaceTaken + (double) ItemWidth / 2;
+            slider.TranslateTo(newX, 0, 100);
+            // WIP TODO
+
             slider.ForceLayout();
         }
 
