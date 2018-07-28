@@ -518,5 +518,8 @@
   <ItemGroup>
     <BundleResource Include="Resources\hiphop_transparent.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_directions_run.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

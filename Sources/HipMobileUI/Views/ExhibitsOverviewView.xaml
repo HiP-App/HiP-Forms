@@ -1,66 +1,40 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-
-<!--
-// Copyright (C) 2017 History in Paderborn App - Universität Paderborn
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//      http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
--->
-
-<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Views.ExhibitsOverviewView"
-             xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
-             xmlns:ffTransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
-             xmlns:behaviors="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Behaviors;assembly=HipMobileUI"
-             xmlns:controls1="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Controls;assembly=HipMobileUI"
              xmlns:views="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Views;assembly=HipMobileUI"
              xmlns:map="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Map;assembly=HipMobileUI"
-             xmlns:helpers="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;assembly=HipMobileUI"
-             x:Name="ExhibitsOveriew">
+             xmlns:controls1="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Controls;assembly=HipMobileUI"
+             xmlns:control="clr-namespace:Xamarin.Forms;assembly=Xamarin.Forms.CarouselView"
+             xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:ffTransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             x:Name="ExhibitsOverview">
+
     <ContentView.Content>
         <views:NotificationExtensionView>
             <views:NotificationExtensionView.ContentTemplate>
-                <Grid x:Name="Grid">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="0.5*" />
-                        <RowDefinition Height="0.5*" />
-                        <RowDefinition Height="0*" />
-                    </Grid.RowDefinitions>
-
-                    <AbsoluteLayout Grid.Row="0">
+                <StackLayout>
+                    <AbsoluteLayout VerticalOptions="FillAndExpand">
                         <map:OsmMap x:Name="Map" ExhibitSet="{Binding RawExhibits}"
-                                                         GpsLocation="{Binding GpsLocation}"
-                                                         ShowDetailsRoute="False"
-                                                         CenterCommand="{Binding MapFocusCommand, Mode=OneWayToSource}"
-                                                         CenterCommandParameter="{Binding GpsLocation}"/>
+                            GpsLocation="{Binding GpsLocation}"
+                            ShowDetailsRoute="False"
+                            CenterCommand="{Binding MapFocusCommand, Mode=OneWayToSource}"
+                            CenterCommandParameter="{Binding GpsLocation}"/>
                         <controls1:FloatingActionButton AbsoluteLayout.LayoutFlags="PositionProportional"
-                                                        AbsoluteLayout.LayoutBounds="0.9,0.9"
-                                                        NormalColor="{StaticResource SecondaryColor}"
-                                                        RippleColor="{StaticResource SecondaryDarkColor}" Icon="ic_my_location_white"
-                                                        Command="{Binding FocusGps}" />
+                                              AbsoluteLayout.LayoutBounds="0.9,0.9"
+                                              NormalColor="{StaticResource SecondaryColor}"
+                                              RippleColor="{StaticResource SecondaryDarkColor}" Icon="ic_my_location_white"
+                                              Command="{Binding FocusGps}" />
                     </AbsoluteLayout>
 
-                    <ListView Grid.Row="1" ItemsSource="{Binding Exhibits}" HasUnevenRows="True" x:Name="List">
-                        <ListView.Behaviors>
-                            <behaviors:ListViewTappedItemBehavior Command="{Binding ItemTappedCommand}"
-                                                                  Converter="{StaticResource ItemTappedConverter}" />
-                        </ListView.Behaviors>
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <ViewCell>
-                                    <Grid HorizontalOptions="FillAndExpand" Padding="10">
+                    <ContentView HorizontalOptions="FillAndExpand" VerticalOptions="End" HeightRequest="80">
+                        <control:CarouselView ItemsSource="{Binding Exhibits}">
+                            <control:CarouselView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                        <Grid.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding ItemTappedCommand}"/>
+                                        </Grid.GestureRecognizers>
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="Auto" />
                                         </Grid.RowDefinitions>
@@ -69,37 +43,33 @@
                                             <ColumnDefinition Width="0,6*" />
                                             <ColumnDefinition Width="0,2*" />
                                         </Grid.ColumnDefinitions>
-                                        <!---CachedImage do not DownsampleToViewSize, as it becomes blurry-->
                                         <ff:CachedImage Source="{Binding Image}"
-                                                        WidthRequest="70" HeightRequest="70" 
-                                                        HorizontalOptions="Start" VerticalOptions="CenterAndExpand"
-                                                        Grid.Row="0" Grid.Column="0">
+                                                WidthRequest="80" HeightRequest="80" 
+                                                HorizontalOptions="Start" VerticalOptions="CenterAndExpand"
+                                                Grid.Row="0" Grid.Column="0">
                                             <ff:CachedImage.Transformations>
-                                                <ffTransformations:CircleTransformation />
+                                                <ffTransformations:CornersTransformation />
                                             </ff:CachedImage.Transformations>
                                         </ff:CachedImage>
+
                                         <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" Padding="5,5"
                                                      Grid.Row="0" Grid.Column="1">
                                             <Label Text="{Binding Exhibit.Name}" VerticalOptions="CenterAndExpand" FontSize="16"
-                                                   LineBreakMode="WordWrap" FontAttributes="Bold"  Style="{DynamicResource Ssp-Regular}" />
-                                            <Label Text="{Binding FormattedDistance}"
-                                                   IsVisible="{Binding Source={x:Reference ExhibitsOveriew}, Path=BindingContext.DisplayDistances}"
-                                                   VerticalOptions="End" FontSize="14"
-                                                   TextColor="Gray"  Style="{DynamicResource Ssp-Italic}"/>
+                                                   LineBreakMode="WordWrap" FontAttributes="Bold" Style="{DynamicResource Ssp-Regular}" />
+                                            <Label Text="Rating is coming soon" VerticalOptions="CenterAndExpand" FontSize="14" />
                                         </StackLayout>
-                                        <Button Image="ic_file_download.png" BackgroundColor="White" Opacity="1"
-                                                IsVisible="{Binding IsDownloadButtonVisible}"
-                                                Command="{Binding DownloadCommand}" Grid.Row="0" Grid.Column="2" />
+                                        <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" Padding="5,5"
+                                                     Grid.Row="0" Grid.Column="2">
+                                            <Image Source="ic_directions_run.png" HeightRequest="48" WidthRequest="48" />
+                                            <Label  Text="{Binding FormattedDistance}" HorizontalOptions="Center" FontSize="12" />
+                                        </StackLayout>
+
                                     </Grid>
-                                </ViewCell>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-                    <Label x:Name="Label" Grid.Row="2" Text="{helpers:Translate ExhibitsOverviewView_EmptyList}"
-                           IsVisible="{Binding Exhibits, Converter={StaticResource EmptyListConverter}}"
-                           TextColor="Black" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="16"
-                           Margin="5" />
-                </Grid>
+                                </DataTemplate>
+                            </control:CarouselView.ItemTemplate>
+                        </control:CarouselView>
+                    </ContentView>
+                </StackLayout>
             </views:NotificationExtensionView.ContentTemplate>
         </views:NotificationExtensionView>
     </ContentView.Content>

@@ -895,4 +895,16 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   <data name="AchievementsScreenView_Achievement_Count" xml:space="preserve">
     <value> Achievements unlocked</value>
   </data>
+  <data name="QuizStartingPage_QuestionsAnsweredCorrect" xml:space="preserve">
+    <value>questions answered right</value>
+  </data>
+  <data name="QuizStartingPage_Quiz" xml:space="preserve">
+    <value>Quiz</value>
+  </data>
+  <data name="QuizStartingPage_StartQuiz" xml:space="preserve">
+    <value>Start quiz</value>
+  </data>
+  <data name="QuizStartingPage_UpToNow" xml:space="preserve">
+    <value>Up to now, you have</value>
+  </data>
 </root>
