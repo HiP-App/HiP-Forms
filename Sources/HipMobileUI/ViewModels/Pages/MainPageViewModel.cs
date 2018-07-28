@@ -85,16 +85,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                                                                                            MainScreenViewModels));
 
             UpdateAccountViews();
-
-            Test();
-        }
-
-        private async void Test()
-        {
-            await Task.Delay(1500);
-            var exhibit = DbManager.DataAccess.Exhibits().GetExhibits().FirstOrDefault(it => (it.Pages?.Count ?? 0) > 0);
-            if (exhibit == null) return;
-            await Navigation.PushAsync(new ExhibitDetailsPageViewModel(exhibit));
         }
 
         private class AchievementsVmHider : IObserver<bool>
