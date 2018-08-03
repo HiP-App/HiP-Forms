@@ -35,7 +35,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
                     exhibits.Select(ex => new ExhibitsOverviewListItemViewModel(ex)));
             }
 
-
             locationManager = IoCManager.Resolve<ILocationManager>();
             nearbyExhibitManager = IoCManager.Resolve<INearbyExhibitManager>();
             nearbyRouteManager = IoCManager.Resolve<INearbyRouteManager>();
@@ -80,7 +79,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             {
                 exhibit.UpdateDistance(pos);
             }
-            Exhibits.SortCollection(exhibit => exhibit.Distance);
         }
 
         /// <summary>
