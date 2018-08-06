@@ -34,6 +34,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             Distance = distance;
             var data = Exhibit.Image.GetDataBlocking();
             Image = ImageSource.FromStream(() => new MemoryStream(data));
+            Rating = new RatingViewModel(exhibit, false, false);
 
             ItemTappedCommand = new Command(NavigateToExhibitDetails);
         }
@@ -51,6 +52,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         /// The appetizer image for the exhibit.
         /// </summary>
         public ImageSource Image { get; }
+
+        public RatingViewModel Rating { get; }
 
         /// <summary>
         /// The distance to the exhibit.
@@ -109,11 +112,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             DbManager.InTransaction(transaction => { Exhibit.DetailsDataLoaded = true; });
         }
 
-        private async void OpenDownloadDialog()
-        {
-            downloadPage = new ExhibitRouteDownloadPageViewModel(Exhibit, this);
-            await Navigation.PushAsync(downloadPage);
-        }
 
         public void CloseDownloadPage()
         {

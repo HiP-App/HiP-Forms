@@ -75,7 +75,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             SetExhibitImage();
             SetUserRatingUi();
 
-            Rating = new RatingViewModel(exhibit, false);
+            Rating = new RatingViewModel(exhibit, false,true);
             SendRatingCommand = new Command(SendUserRating);
             SelectStarCommand = new Command(OnSelectStar);
         }
