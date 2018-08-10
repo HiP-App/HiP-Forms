@@ -26,13 +26,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         private ImageSource star4;
         private ImageSource star5;
         private string ratingCount;
-
-
+        private string horizontal;
+        private string vertical;
         private const string ImgStarEmpty = "star_empty.png";
         private const string ImgStarHalfFilled = "star_half_filled.png";
         private const string ImgStarFilled = "star_filled.png";
 
-        public RatingViewModel(Exhibit exhibit, bool isRatingAvailable)
+        public RatingViewModel(Exhibit exhibit, bool isRatingAvailable, bool isHorizontal)
         {
 
             Exhibit = exhibit;
@@ -41,6 +41,16 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
                 UserRatingCommand = new Command(GoToUserRatingPage);
             }
 
+            if (isHorizontal)
+            {
+                Horizontal = "True";
+                Vertical = "False";
+            }
+            else
+            {
+                Horizontal = "False";
+                Vertical = "True";
+            }
             RefreshUserRating();
         }
 
@@ -127,6 +137,17 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             set { SetProperty(ref exhibit, value); }
         }
 
+        public string Horizontal
+        {
+            get { return horizontal; }
+            set { SetProperty(ref horizontal, value); }
+        }
+
+        public string Vertical
+        {
+            get { return vertical; }
+            set { SetProperty(ref vertical, value); }
+        }
         public string RatingAverage
         {
             get { return ratingAverage; }

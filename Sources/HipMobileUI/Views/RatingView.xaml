@@ -2,20 +2,23 @@
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Views.RatingView">
-  <ContentView.Content>
-      <StackLayout>
-          <StackLayout.GestureRecognizers>
-              <TapGestureRecognizer Command="{Binding UserRatingCommand}" NumberOfTapsRequired="1" />
-          </StackLayout.GestureRecognizers>
-          <Label Text="{Binding RatingAverage}" FontAttributes="Bold" FontSize="24" VerticalOptions="Center" HorizontalOptions="Center" />
-          <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center" Spacing="5">
-              <Image WidthRequest="16" HeightRequest="16" Source="{Binding Star1}" VerticalOptions="Center"/>
-              <Image WidthRequest="16" HeightRequest="16" Source="{Binding Star2}" VerticalOptions="Center"/>
-              <Image WidthRequest="16" HeightRequest="16" Source="{Binding Star3}" VerticalOptions="Center"/>
-              <Image WidthRequest="16" HeightRequest="16" Source="{Binding Star4}" VerticalOptions="Center"/>
-              <Image WidthRequest="16" HeightRequest="16" Source="{Binding Star5}" VerticalOptions="Center"/>
-          </StackLayout>
-          <Label Text="{Binding RatingCount}" FontSize="12" HorizontalOptions="Center" VerticalOptions="Center" />
-      </StackLayout>
+    <ContentView.Content>
+        <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand" >
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding UserRatingCommand}" NumberOfTapsRequired="1" />
+                </StackLayout.GestureRecognizers>
+                <Label Text="{Binding RatingAverage}" IsVisible="{Binding Horizontal}" FontAttributes="Bold" FontSize="24" VerticalOptions="Center" HorizontalOptions="Center" />
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
+                <Label Text="{Binding RatingAverage}" IsVisible="{Binding Vertical}" FontSize="16" VerticalOptions="Start" HorizontalOptions="Center" />
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center" Spacing="5">
+                    <Image WidthRequest="16" HeightRequest="16" Source="{Binding Star1}" VerticalOptions="Center"/>
+                    <Image WidthRequest="16" HeightRequest="16" Source="{Binding Star2}" VerticalOptions="Center"/>
+                    <Image WidthRequest="16" HeightRequest="16" Source="{Binding Star3}" VerticalOptions="Center"/>
+                    <Image WidthRequest="16" HeightRequest="16" Source="{Binding Star4}" VerticalOptions="Center"/>
+                    <Image WidthRequest="16" HeightRequest="16" Source="{Binding Star5}" VerticalOptions="Center"/>
+                </StackLayout>
+            </StackLayout>
+            <Label Text="{Binding RatingCount}" FontSize="12" IsVisible="{Binding Horizontal}" HorizontalOptions="Center" VerticalOptions="Center" />
+        </StackLayout>
     </ContentView.Content>
 </ContentView>
