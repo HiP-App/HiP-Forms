@@ -11,5 +11,3 @@ packages/
 # JetBrains Rider
 *.iml
 .idea
-/Sources/HipMobileUI.Android/Resources/drawable-hdpi/ic_my_location(500).png
-/Sources/HipMobileUI.Android/Resources/drawable-hdpi/ic_my_location(new).png
