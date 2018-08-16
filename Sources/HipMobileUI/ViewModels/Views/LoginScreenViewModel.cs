@@ -70,8 +70,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         private void OnDebugLoginClicked()
         {
 #if DEBUG
-            //Email = Constants.DebugUsername;
-            Email = Constants.DebugEmail; 
+            Email = Constants.DebugEmail;
             Password = Constants.DebugPassword;
             PerformLogin();
 #else
