@@ -173,7 +173,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Map
             if (route != null && route.Waypoints.Any())
             {
                 var markerInfoWindow = new ViaPointInfoWindow(Resource.Layout.navigation_info_window, mapView);
-                var mapMarkerIcon = ContextCompat.GetDrawable(activity, Resource.Drawable.marker_blue);
+                var mapMarkerIcon = ContextCompat.GetDrawable(activity, Resource.Drawable.outline_location);
                 var setMarker = new SetMarker(mapView, markerInfoWindow);
 
                 foreach (var waypoint in route.Waypoints)
@@ -223,7 +223,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Map
             if (set != null)
             {
                 var markerInfoWindow = new ViaPointInfoWindow(Resource.Layout.navigation_info_window, mapView);
-                var mapMarkerIcon = ContextCompat.GetDrawable(activity, Resource.Drawable.marker_blue);
+                var mapMarkerIcon = ContextCompat.GetDrawable(activity, Resource.Drawable.outline_location);
                 var setMarker = new SetMarker(mapView, markerInfoWindow);
 
                 foreach (var e in set)
