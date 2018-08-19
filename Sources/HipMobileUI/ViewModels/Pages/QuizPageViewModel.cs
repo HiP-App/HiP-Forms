@@ -101,6 +101,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             var selectedAnswer = Answers[selectedAnswerIdx];
             var isAnswerCorrect = selectedAnswer == quizzes[currentQuiz].CorrectOption();
             backgroundColorSetter(isAnswerCorrect ? Color.Green : Color.DarkRed);
+
+            if (selectedAnswerIdx != 0)
+            {
+                AnswerABackgroundColor = Color.Green;
+            }
+
+
             if (isAnswerCorrect) score++;
 
             await Task.Delay(AnswerCorrectnessDisplayTimeMs);
