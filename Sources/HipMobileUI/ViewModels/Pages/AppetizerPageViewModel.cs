@@ -47,7 +47,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 #else
             exhibitUnblocked = exhibit.Unlocked;
 #endif
-            Rating = new RatingViewModel(exhibit, true);
+            Rating = new RatingViewModel(exhibit, true, true);
 
             Headline = exhibit.Name;
             Text = string.IsNullOrEmpty(exhibit.Description) ? exhibit.Name : exhibit.Description;

@@ -42,9 +42,7 @@
                                     <controls1:CardView Grid.Column="0" HasShadow="False">
                                         <Label Text="{Binding Text}" TextColor="Black" FontSize="16" Style="{DynamicResource Ssp-Italic}"/>
                                     </controls1:CardView>
-                                    
                                     <views1:RatingView Grid.Column="1" HorizontalOptions="FillAndExpand" BindingContext="{Binding Rating}" />
-                                   
                                 </Grid>
                             </ScrollView>
                             <Button Grid.Row="1" Margin="7" AbsoluteLayout.LayoutFlags="All"
