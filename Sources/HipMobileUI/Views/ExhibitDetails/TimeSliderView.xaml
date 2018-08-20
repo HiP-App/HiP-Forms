@@ -29,32 +29,34 @@
                         <Grid x:Name="ContentGrid" Margin="0,5,0,0">
                             <controls1:FadeoverImageView Grid.Row="0" Images="{Binding Images}"
                                                          SelectedValue="{Binding Source={x:Reference Slider}, Path=SelectedValue}"
-                                                         VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                                                         VerticalOptions="FillAndExpand"
+                                                         HorizontalOptions="FillAndExpand">
                                 <controls1:FadeoverImageView.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding ToggleButtonVisibility}" />
                                 </controls1:FadeoverImageView.GestureRecognizers>
                             </controls1:FadeoverImageView>
                             <ScrollView Grid.Row="1">
-                                <Label x:Name="ImageDescription" Text="{Binding DisplayedText}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" LineBreakMode="WordWrap" Margin="10,0,10,0" TextColor="{StaticResource DarkGrayColor}" Style="{DynamicResource Ssp-Regular}">
-                                    <Label.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding ToggleButtonVisibility}" />
-                                    </Label.GestureRecognizers>
-                                </Label>
+                                <Label x:Name="ImageDescription" Text="{Binding DisplayedText}"
+                                       HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"
+                                       LineBreakMode="WordWrap" Margin="10,0,10,0"
+                                       TextColor="{StaticResource DarkGrayColor}" Style="{DynamicResource Ssp-Regular}" />
                             </ScrollView>
                             <controls1:TimeSlider x:Name="Slider" Grid.Row="2" HorizontalOptions="FillAndExpand"
                                                   VerticalOptions="Center" HeightRequest="80" Images="{Binding Images}"
-                                                  Texts="{Binding Years}" ItemWidth="100" SafezoneFraction="0.3"
-                                                  FadezoneFraction="0.7" SeparatorColor="{StaticResource TertiaryColor}"
+                                                  Texts="{Binding Years}" ItemWidth="100"
+                                                  SeparatorColor="{StaticResource TertiaryColor}"
                                                   SelectedValue="{Binding SelectedValue, Mode=OneWayToSource}" />
                         </Grid>
                     </views1:BottomSheetView.MainContent>
                     <views1:BottomSheetView.BottomSheet>
                         <StackLayout BackgroundColor="White">
                             <BoxView Color="{StaticResource DarkGrayColor}" HeightRequest="1" />
-                            <StackLayout Margin="16,16" Spacing="15" >
-                                <Label Text="{Binding Headline}" TextColor="Black" FontSize="16" FontAttributes="Bold" Style="{DynamicResource Ssp-SemiBold}"/>
+                            <StackLayout Margin="16,16" Spacing="15">
+                                <Label Text="{Binding Headline}" TextColor="Black" FontSize="16" FontAttributes="Bold"
+                                       Style="{DynamicResource Ssp-SemiBold}" />
                                 <ScrollView>
-                                    <Label Text="{Binding Description}" TextColor="Black" FontSize="14" Style="{DynamicResource Ssp-Regular}"/>
+                                    <Label Text="{Binding Description}" TextColor="Black" FontSize="14"
+                                           Style="{DynamicResource Ssp-Regular}" />
                                 </ScrollView>
                             </StackLayout>
                         </StackLayout>
