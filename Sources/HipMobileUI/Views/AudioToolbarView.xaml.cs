@@ -13,8 +13,6 @@
 // limitations under the License.
 
 using System;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
-using PaderbornUniversity.SILab.Hip.Mobile.UI.AudioPlayer;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Controls;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
@@ -24,8 +22,32 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
 {
     public partial class AudioToolbarView : IViewFor<AudioToolbarViewModel>
     {
+        public static readonly BindableProperty ManualSeekCommandProperty = BindableProperty.Create(
+            nameof(ManualSeekCommand),
+            typeof(Command),
+            typeof(AudioToolbarView)
+        );
+
+        public static readonly BindableProperty AudioSliderProgressProperty = BindableProperty.Create(
+            nameof(AudioSliderProgress),
+            typeof(double),
+            typeof(AudioToolbarView),
+            0.0
+        );
+
+        public Command ManualSeekCommand
+        {
+            get => (Command) GetValue(ManualSeekCommandProperty);
+            set => SetValue(ManualSeekCommandProperty, value);
+        }
+
+        public double AudioSliderProgress
+        {
+            get => (double) GetValue(AudioSliderProgressProperty);
+            set => SetValue(AudioSliderProgressProperty, value);
+        }
+
         private bool manualInput;
-        private readonly IAudioPlayer audioPlayer;
 
         public AudioToolbarView()
         {
@@ -33,9 +55,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
 
             AudioSlider.TouchDown += AudioSliderOnTouchDown;
             AudioSlider.TouchUp += AudioSliderOnTouchUp;
-
-            audioPlayer = IoCManager.Resolve<IAudioPlayer>();
-            audioPlayer.ProgressChanged += AudioPlayerOnProgressChanged;
         }
 
         /// <summary>
@@ -56,8 +75,31 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
         private void AudioSliderOnTouchUp(object sender, EventArgs eventArgs)
         {
             var args = (ValueEventArgs) eventArgs;
-            audioPlayer.SeekTo(args.Value);
             manualInput = false;
+            ManualSeekCommand?.Execute(args.Value);
+        }
+
+        protected override void OnPropertyChanged(string propertyName = null)
+        {
+            base.OnPropertyChanged(propertyName);
+
+            switch (propertyName)
+            {
+                case nameof(AudioSliderProgress):
+                    AudioPlayerOnProgressChanged(AudioSliderProgress);
+                    break;
+            }
+        }
+
+        protected override void OnBindingContextChanged()
+        {
+            base.OnBindingContextChanged();
+
+            var manualSeekCommandBinding = new Binding(nameof(AudioToolbarViewModel.ManualSeekCommand)) { Source = this };
+            SetBinding(ManualSeekCommandProperty, manualSeekCommandBinding);
+            
+            var audioSliderProgressBinding = new Binding(nameof(AudioToolbarViewModel.AudioSliderProgress)) { Source = this };
+            SetBinding(AudioSliderProgressProperty, audioSliderProgressBinding);
         }
 
         /// <summary>

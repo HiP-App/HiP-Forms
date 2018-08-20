@@ -31,7 +31,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Views
         [TestCase(false), Category("UnitTest")]
         public void Creation_PropertiesFilled(bool automaticAudioStart)
         {
-            var sut = CreateSystemUnderTest(automaticAudioStart);
+            var sut = CreateSystemUnderTest();
             var audioPlayer = IoCManager.Resolve<IAudioPlayer>();
 
             Assert.IsTrue(Math.Abs(sut.MaxAudioProgress - 42) < 0.01);
@@ -110,7 +110,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Views
         [Test, Category("UnitTest")]
         public void OnDisappearing_Stopped()
         {
-            var sut = CreateSystemUnderTest(true);
+            var sut = CreateSystemUnderTest();
             var audioPlayer = IoCManager.Resolve<IAudioPlayer>();
 
             sut.OnDisappearing();
@@ -119,7 +119,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Views
 
         #region Helper Methods
 
-        private AudioToolbarViewModel CreateSystemUnderTest(bool automaticallyStartAudio = false)
+        private AudioToolbarViewModel CreateSystemUnderTest()
         {
             IoCManager.Clear();
             var audioPlayer = Substitute.For<IAudioPlayer>();
@@ -129,7 +129,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Views
             audioPlayer.MaximumProgress.Returns(42);
 
             var audio = Substitute.For<Audio>();
-            var viewmodel = new AudioToolbarViewModel(automaticallyStartAudio, "Title");
+            var viewmodel = new AudioToolbarViewModel("Title", true);
             viewmodel.SetNewAudioFile(audio);
 
             return viewmodel;

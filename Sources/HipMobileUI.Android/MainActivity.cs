@@ -31,6 +31,7 @@ using Xamarin.Forms;
 using App = PaderbornUniversity.SILab.Hip.Mobile.UI.App;
 using MainPage = PaderbornUniversity.SILab.Hip.Mobile.UI.Pages.MainPage;
 using Acr.UserDialogs;
+using CarouselView.FormsPlugin.Android;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.NotificationPlayer;
@@ -72,7 +73,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
 
             // init other inversion of control classes
             IoCManager.RegisterInstance(typeof(IFabSizeCalculator), new AndroidFabSizeCalculator());
-            IoCManager.RegisterInstance(typeof(IAudioPlayer), new DroidAudioPlayer());
+            IoCManager.RegisterType<IAudioPlayer, DroidAudioPlayer>();
             IoCManager.RegisterInstance(typeof(INotificationPlayer), new DroidNotificationPlayer());
             IoCManager.RegisterInstance(typeof(ILocationManager), new LocationManager());
             IoCManager.RegisterInstance(typeof(IKeyProvider), new AndroidKeyProvider());
@@ -89,8 +90,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
             CachedImageRenderer.Init(enableFastRenderer: true);
             Forms.Init(this, bundle);
             SvgImageViewRenderer.Init();
+            CarouselViewRenderer.Init();
 
-            UserDialogs.Init(() => (Activity)Forms.Context);
+            UserDialogs.Init(() => (Activity) Forms.Context);
 
             DesignMode.IsEnabled = false;
             LoadApplication(new App());

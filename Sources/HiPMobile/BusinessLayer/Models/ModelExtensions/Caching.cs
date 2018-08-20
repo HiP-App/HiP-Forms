@@ -60,8 +60,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
         /// <param name="value"></param>
         public delegate double WeightOfDelegate(TK key, TV value);
 
-        private readonly SemaphoreSlim sema = new SemaphoreSlim(1);
-
         private readonly IDictionary<TK, TV> store = new Dictionary<TK, TV>();
         private readonly IList<TK> lruList = new List<TK>();
 
@@ -87,28 +85,38 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
                 lruList.Insert(0, key);
                 return true;
             }
+
             return false;
         }
 
         private void Insert(TK key, TV value)
         {
-            var weight = weightOf(key, value);
-            while (totalWeight + weight > maxWeight)
+            lock (this)
             {
-                if (lruList.Count == 0)
+                if (store.Remove(key))
                 {
-                    throw new ArgumentException($"Element ({key}:{value}) has Weight={totalWeight} > MaxWeight={maxWeight}");
+                    lruList.Remove(key);
                 }
 
-                var oldestKey = lruList[lruList.Count - 1];
-                store.TryGetValue(oldestKey, out var oldestValue);
-                lruList.RemoveAt(lruList.Count - 1);
-                store.Remove(oldestKey);
-                totalWeight -= weightOf(oldestKey, oldestValue);
+                var weight = weightOf(key, value);
+                while (totalWeight + weight > maxWeight)
+                {
+                    if (lruList.Count == 0)
+                    {
+                        throw new ArgumentException($"Element ({key}:{value}) has Weight={totalWeight} > MaxWeight={maxWeight}");
+                    }
+
+                    var oldestKey = lruList[lruList.Count - 1];
+                    store.TryGetValue(oldestKey, out var oldestValue);
+                    lruList.RemoveAt(lruList.Count - 1);
+                    store.Remove(oldestKey);
+                    totalWeight -= weightOf(oldestKey, oldestValue);
+                }
+
+                store.Add(key, value);
+                lruList.Insert(0, key);
+                totalWeight += weight;
             }
-            store.Add(key, value);
-            lruList.Insert(0, key);
-            totalWeight += weight;
         }
 
         /// <summary>
@@ -117,22 +125,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
         /// </summary>
         public TV GetSync(TK key, Func<TK, TV> computer)
         {
-            sema.Wait();
-            try
+            if (TryGet(key, out var storeValue))
             {
-                if (TryGet(key, out var storeValue))
-                {
-                    return storeValue;
-                }
+                return storeValue;
+            }
 
-                var value = computer(key);
-                Insert(key, value);
-                return value;
-            }
-            finally
-            {
-                sema.Release();
-            }
+            var value = computer(key);
+            Insert(key, value);
+            return value;
         }
 
         /// <summary>
@@ -141,22 +141,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
         /// </summary>
         public async Task<TV> GetAsync(TK key, Func<TK, Task<TV>> computer)
         {
-            await sema.WaitAsync();
-            try
+            if (TryGet(key, out var storeValue))
             {
-                if (TryGet(key, out var storeValue))
-                {
-                    return storeValue;
-                }
+                return storeValue;
+            }
 
-                var value = await computer(key);
-                Insert(key, value);
-                return value;
-            }
-            finally
-            {
-                sema.Release();
-            }
+            var value = await computer(key);
+            Insert(key, value);
+            return value;
         }
     }
 }
