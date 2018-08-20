@@ -916,4 +916,7 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   <data name="ProfilePictureScreenViewModel_SaveNewButton" xml:space="preserve">
     <value>Speichere neuen Avatar</value>
   </data>
+  <data name="ProfilePictureScreenViewModel_NoError" xml:space="preserve">
+    <value>Wähle ein Bild aus der Liste oder aus Deiner Gallerie.</value>
+  </data>
 </root>

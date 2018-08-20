@@ -1554,6 +1554,17 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
 
         /// <summary>
+        ///   Looks up a localized string similar to Wähle ein Bild aus der Liste oder aus Deiner Gallerie..
+        /// </summary>
+        public static string ProfilePictureScreenViewModel_NoError
+        {
+            get
+            {
+                return ResourceManager.GetString("ProfilePictureScreenViewModel_NoError", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Wollen Sie sich wirklich abmelden?.
         /// </summary>
         public static string ProfileScreenViewModel_Dialog_Logout_Message {

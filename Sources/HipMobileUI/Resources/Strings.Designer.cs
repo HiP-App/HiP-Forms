@@ -1538,6 +1538,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Choose a picture from a list or from your Gallery..
+        /// </summary>
+        public static string ProfilePictureScreenViewModel_NoError {
+            get {
+                return ResourceManager.GetString("ProfilePictureScreenViewModel_NoError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Pick Avatar from your Gallery.
         /// </summary>
         public static string ProfilePictureScreenViewModel_PickImageButton {
