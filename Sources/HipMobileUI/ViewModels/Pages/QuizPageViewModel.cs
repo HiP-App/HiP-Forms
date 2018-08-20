@@ -63,7 +63,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                 Answer2 = value[1];
                 Answer3 = value[2];
                 Answer4 = value[3];
-
             }
         }
 
