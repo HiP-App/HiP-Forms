@@ -75,7 +75,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Controls
         private readonly List<CachedImage> displayedImages;
 
         /// <summary>
-        /// Forces the control to update its layout.
+        /// Forces the control to update its layout, by adding the Images via an AbsoluteLayout, 
+        /// with maximised properties (see <see cref="AbsoluteLayout.SetLayoutBounds"/> with a Rectangle of width and height of 1). 
         /// </summary>
         private void UpdateLayout()
         {
@@ -83,9 +84,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Controls
             displayedImages.Clear();
             foreach (ImageSource imageSource in Images)
             {
-                CachedImage img = new CachedImage() { Source = imageSource, Aspect = Aspect.AspectFit, DownsampleToViewSize = true };
-                AbsoluteLayout.SetLayoutFlags(img, AbsoluteLayoutFlags.PositionProportional);
-                AbsoluteLayout.SetLayoutBounds(img, new Rectangle(.5, .5, AbsoluteLayout.AutoSize, AbsoluteLayout.AutoSize));
+                CachedImage img = new CachedImage() { Source = imageSource, Aspect = Aspect.AspectFit }; // CachedImage do not DownsampleToViewSize, as it becomes blurry
+                AbsoluteLayout.SetLayoutFlags(img, AbsoluteLayoutFlags.All);
+                AbsoluteLayout.SetLayoutBounds(img, new Rectangle(0, 0, 1, 1));
                 layout.Children.Add(img);
                 displayedImages.Add(img);
             }
@@ -94,7 +95,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Controls
         }
 
         /// <summary>
-        /// Updates the images transparency according to teh selctedvalue.
+        /// Updates the images transparency according to the <see cref="SelectedValue"/>.
         /// </summary>
         private void UpdateTransparencies()
         {

@@ -59,7 +59,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Views
             Assert.AreNotSame(sut.Exhibits[0], sut.Exhibits[1]);
             Assert.AreNotSame(sut.Exhibits[0], sut.Exhibits[2]);
             Assert.AreNotSame(sut.Exhibits[1], sut.Exhibits[2]);
-            Assert.NotNull(sut.ItemTappedCommand);
             Assert.IsFalse(sut.DisplayDistances);
         }
 
@@ -70,7 +69,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.HipMobileUITests.ViewModels.Views
         {
             var sut = CreateSystemUnderTest();
 
-            sut.ItemTappedCommand.Execute(sut.Exhibits[item]);
             navservice.ReceivedWithAnyArgs().PushAsync(null);
         }
 

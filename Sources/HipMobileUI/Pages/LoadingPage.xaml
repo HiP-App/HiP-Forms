@@ -33,39 +33,33 @@
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="0.4*" />
-                        <RowDefinition Height="0.5*" />
+                        <RowDefinition Height="0.3*" />
+                        <RowDefinition Height="0.6*" />
                         <RowDefinition Height="0.1*" />
                     </Grid.RowDefinitions>
-                    <StackLayout Grid.Row="0" Orientation="Vertical" Spacing="20" HorizontalOptions="CenterAndExpand"
+                    
+                    <StackLayout Grid.Row="0" Orientation="Vertical" Spacing="0" HorizontalOptions="CenterAndExpand" Padding="20" Margin="15"
                                  VerticalOptions="CenterAndExpand">
                         <Label Text="{Binding Text}" HorizontalTextAlignment="Center" FontSize="20"
-                               FontAttributes="Bold" Style="{DynamicResource Ssp-Bold}" />
-                        <Label Text="{Binding Subtext}" HorizontalTextAlignment="Center" FontSize="16" Style="{DynamicResource Ssp-Regular}"/>
-                        <ProgressBar Progress="{Binding LoadingProgress}" Margin="20,0">
+                               FontAttributes="Bold" Style="{DynamicResource Ssp-Bold}"/>
+                        <Label Text="{Binding Subtext}" HorizontalTextAlignment="Center" FontSize="16" Style="{DynamicResource Ssp-Regular}" Margin="10"/>
+                        <ProgressBar Progress="{Binding LoadingProgress}">
                             <ProgressBar.Effects>
                                 <effects:ProgressBarColorEffect Color="{StaticResource PrimaryDarkColor}" />
                             </ProgressBar.Effects>
                         </ProgressBar>
-                        <Label Text="{Binding LoadingProgress, StringFormat='{0:p0}'}" HorizontalTextAlignment="Center"
-                               FontSize="16" Style="{DynamicResource Ssp-Regular}" />
+                        <Label Text="{Binding LoadingProgress, StringFormat='{0:p0}'}" HorizontalTextAlignment="Center" Margin="5"
+                         FontSize="16" Style="{DynamicResource Ssp-Regular}" />
                     </StackLayout>
-                    <controls:FadeInImage Grid.Row="1" Source="hiphop_transparent">
-                        <controls:FadeInImage.FadeInTime >
-                            <OnPlatform x:TypeArguments="x:Int32">
-                                <On Platform="Android" Value="500" />
-                                <On Platform="iOS" Value="0" />
-                            </OnPlatform>
-                        </controls:FadeInImage.FadeInTime>
-                    </controls:FadeInImage>
-                    <StackLayout Grid.Row="2" Orientation="Vertical" HorizontalOptions="FillAndExpand">
-                        <BoxView HeightRequest="1" Color="{StaticResource DarkGrayColor}" />
-                        <Label Text="{helpers:Translate Cancel}" FontSize="Large" TextColor="{StaticResource PrimaryDarkColor}"
-                               HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
-                        <StackLayout.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding CancelCommand}" />
-                        </StackLayout.GestureRecognizers>
-                    </StackLayout>
+                    <Image Grid.Row="1" Source="hiphop_transparent" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" >
+                    </Image>
+
+                    <Button x:Name="CancelButton" Grid.Row="2" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"
+                        Text="{helpers:Translate Cancel}"
+                        FontSize="Medium"
+                        Command="{Binding CancelCommand}">
+                    </Button>
+
                 </Grid>
             </StackLayout>
             <ActivityIndicator IsRunning="True" Color="{StaticResource PrimaryDarkColor}"

@@ -26,7 +26,7 @@ using System.Diagnostics;
 using System.Windows.Input;
 using Xamarin.Forms;
 using System.IO;
-using System.Collections.Generic;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 {
@@ -39,12 +39,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         private string headline;
         private ICommand sendRatingCommand;
         private ICommand selectStarCommand;
-
-        private ImageSource star1;
-        private ImageSource star2;
-        private ImageSource star3;
-        private ImageSource star4;
-        private ImageSource star5;
 
         private ImageSource ratingStar1;
         private ImageSource ratingStar2;
@@ -70,7 +64,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         private int lastRating;
 
         private const string ImgStarEmpty = "star_empty.png";
-        private const string ImgStarHalfFilled = "star_half_filled.png";
         private const string ImgStarFilled = "star_filled.png";
         #endregion
 
@@ -81,6 +74,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
             SetExhibitImage();
             SetUserRatingUi();
+
+            Rating = new RatingViewModel(exhibit, false,true);
             SendRatingCommand = new Command(SendUserRating);
             SelectStarCommand = new Command(OnSelectStar);
         }
@@ -98,7 +93,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             {
                 var userRating = await ratingManager.GetUserRatingAsync(exhibit.IdForRestApi);
                 SetAverageAndCountRating(userRating.Average.ToString("0.#"), userRating.Count);
-                SetStarImages(userRating.Average);
                 SetRatingBars(userRating, userRating.Count);
                 SetRatingStars(Settings.IsLoggedIn && userRating.Count > 0 ? await ratingManager.GetPreviousUserRatingAsync(exhibit.IdForRestApi) : 0);
 
@@ -107,7 +101,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             {
                 Debug.WriteLine(e);
                 SetAverageAndCountRating("-", 0);
-                SetStarImages(0);
                 SetRatingBars(ratingManager.InitializeEmptyUserRating(), 0);
                 SetRatingStars(0);
                 UserDialogs.Instance.Alert(new AlertConfig()
@@ -123,27 +116,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         {
             RatingAverage = count > 0 ? average : "-";
             RatingCount = count + " " + Strings.UserRating_Rate_Count;
-        }
-
-        private void SetStarImages(double average)
-        {
-            Star1 = average < 1 ? ImgStarEmpty : ImgStarFilled;
-            if (average < 1.25)
-                Star2 = ImgStarEmpty;
-            else
-                Star2 = (average >= 1.25 && average < 1.75) ? ImgStarHalfFilled : ImgStarFilled;
-            if (average < 2.25)
-                Star3 = ImgStarEmpty;
-            else
-                Star3 = (average >= 2.25 && average < 2.75) ? ImgStarHalfFilled : ImgStarFilled;
-            if (average < 3.25)
-                Star4 = ImgStarEmpty;
-            else
-                Star4 = (average >= 3.25 && average < 3.75) ? ImgStarHalfFilled : ImgStarFilled;
-            if (average < 4.25)
-                Star5 = ImgStarEmpty;
-            else
-                Star5 = (average >= 4.25 && average < 4.75) ? ImgStarHalfFilled : ImgStarFilled;
         }
 
         private void SetRatingBars(UserRating rating, int count)
@@ -343,36 +315,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             set { SetProperty(ref star5BarCount, value); }
         }
 
-        public ImageSource Star1
-        {
-            get { return star1; }
-            set { SetProperty(ref star1, value); }
-        }
-
-        public ImageSource Star2
-        {
-            get { return star2; }
-            set { SetProperty(ref star2, value); }
-        }
-
-        public ImageSource Star3
-        {
-            get { return star3; }
-            set { SetProperty(ref star3, value); }
-        }
-
-        public ImageSource Star4
-        {
-            get { return star4; }
-            set { SetProperty(ref star4, value); }
-        }
-
-        public ImageSource Star5
-        {
-            get { return star5; }
-            set { SetProperty(ref star5, value); }
-        }
-
         public ImageSource RatingStar1
         {
             get { return ratingStar1; }
@@ -424,5 +366,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         {
             await Navigation.PopAsync(false);
         }
+
+        public RatingViewModel Rating { get; }
+
     }
 }

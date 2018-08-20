@@ -1,9 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Migrations
 {
+    [SuppressMessage("ReSharper", "InconsistentNaming")]
     public partial class quiz : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)

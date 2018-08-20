@@ -34,14 +34,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             Distance = distance;
             var data = Exhibit.Image.GetDataBlocking();
             Image = ImageSource.FromStream(() => new MemoryStream(data));
+            Rating = new RatingViewModel(exhibit, false, false);
 
-            IsDownloadButtonVisible = !Exhibit.DetailsDataLoaded;
-
-            DownloadCommand = new Command(OpenDownloadDialog);
+            ItemTappedCommand = new Command(NavigateToExhibitDetails);
         }
 
         private double distance;
-        private bool isDownloadButtonVisible;
         private ExhibitRouteDownloadPageViewModel downloadPage;
 
         /// <summary>
@@ -49,12 +47,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         /// </summary>
         public Exhibit Exhibit { get; }
 
-        public ICommand DownloadCommand { get; }
 
         /// <summary>
         /// The appetizer image for the exhibit.
         /// </summary>
         public ImageSource Image { get; }
+
+        public RatingViewModel Rating { get; }
 
         /// <summary>
         /// The distance to the exhibit.
@@ -74,17 +73,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         /// <summary>
         /// The formatted distance string.
         /// </summary>
-        
+
         public string FormattedDistance => (Distance < 1000)
                 ? $"{Distance:F0} m"
                 : $"{Distance / 1000:0.##} km";
-            
 
-        public bool IsDownloadButtonVisible
-        {
-            get => isDownloadButtonVisible;
-            set => SetProperty(ref isDownloadButtonVisible, value);
-        }
 
         /// <summary>
         /// Update the displayed distance according to the position.
@@ -101,20 +94,24 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             await Navigation.PopAsync();
         }
 
+        /// <summary>
+        /// Open the exhibitdetails page.
+        /// </summary>
+        /// <param name="item"></param>
+        private async void NavigateToExhibitDetails()
+        {
+            await Navigation.PushAsync(new AppetizerPageViewModel(Exhibit));
+        }
+
+
         public async Task SetDetailsAvailable(bool available)
         {
             if (!available)
                 return;
 
-            await DbManager.InTransactionAsync(transaction => { Exhibit.DetailsDataLoaded = true; });
-            IsDownloadButtonVisible = !Exhibit.DetailsDataLoaded;
+            DbManager.InTransaction(transaction => { Exhibit.DetailsDataLoaded = true; });
         }
 
-        private async void OpenDownloadDialog()
-        {
-            downloadPage = new ExhibitRouteDownloadPageViewModel(Exhibit, this);
-            await Navigation.PushAsync(downloadPage);
-        }
 
         public void CloseDownloadPage()
         {
@@ -126,5 +123,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             Exhibit.Name == otherItem.Exhibit.Name;
 
         public override int GetHashCode() => Exhibit.Name.GetHashCode();
+
+        /// <summary>
+        /// The command for tapping on exhibits.
+        /// </summary>
+        public ICommand ItemTappedCommand { get; }
     }
 }

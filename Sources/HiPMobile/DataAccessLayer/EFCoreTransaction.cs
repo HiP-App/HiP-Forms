@@ -14,6 +14,7 @@
 
 using Microsoft.EntityFrameworkCore;
 using System;
+using Microsoft.EntityFrameworkCore.Storage;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
 {
@@ -23,15 +24,29 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
         private readonly AppDatabaseContext db;
 
         private bool rolledBack = false;
+        private bool isComplete = false;
+        private readonly IDbContextTransaction transaction;
+        private readonly ITransactionDataAccess dataAccess;
 
-        public override ITransactionDataAccess DataAccess { get; }
+        public override ITransactionDataAccess DataAccess
+        {
+            get
+            {
+                if (isComplete) throw new InvalidOperationException("This transaction has already been completed!");
+                return dataAccess;
+            }
+        }
 
         public DbContextDebugView DebugView => new DbContextDebugView(db);
 
-        public EFCoreTransaction(AppDatabaseContext db)
+        public EFCoreTransaction(AppDatabaseContext db, bool useNativeTransaction)
         {
             this.db = db ?? throw new ArgumentNullException(nameof(db));
-            DataAccess = new EFCoreDataAccess(db);
+            dataAccess = new EFCoreDataAccess(db);
+            if (useNativeTransaction)
+            {
+                transaction = db.Database.BeginTransaction();
+            }
         }
 
         public override void Commit()
@@ -39,13 +54,17 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer
             if (rolledBack) return;
 
             db.SaveChangesAndDetach();
+            transaction?.Commit();
             db.Dispose();
+            isComplete = true;
         }
 
         public override void Rollback()
         {
             rolledBack = true;
+            transaction?.Rollback();
             db.Dispose();
+            isComplete = true;
         }
     }
 }

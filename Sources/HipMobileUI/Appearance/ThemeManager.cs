@@ -38,12 +38,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Appearance
     public class ThemeManager : IThemeManager
     {
         //actual coloring used during runtime
-        private static readonly Color adventurerModeColor = Color.FromHex("FFE57F"); //light yellow "#FFE57F"
-        private static readonly Color adventurerModeColorDarker = Color.FromRgb(255, 204, 0); //dark yellow; "#FFCC00"
-        private static readonly Color professorModeColor = Color.FromRgb(127, 172, 255); //default light blue; "#7facff"
-        private static readonly Color professorModeColorDarker = Color.FromRgb(1, 73, 209); //default dark blue; "#0149D1"
+        private static readonly Color AdventurerModeColor = Color.FromHex("FFE57F"); //light yellow "#FFE57F"
+        private static readonly Color AdventurerModeColorDarker = Color.FromRgb(255, 204, 0); //dark yellow; "#FFCC00"
+        private static readonly Color ProfessorModeColor = Color.FromRgb(127, 172, 255); //default light blue; "#7facff"
+        private static readonly Color ProfessorModeColorDarker = Color.FromRgb(1, 73, 209); //default dark blue; "#0149D1"
 
-        private ApplicationResourcesProvider resourceProvider = IoCManager.Resolve<ApplicationResourcesProvider>();
+        private readonly ApplicationResourcesProvider resourceProvider = IoCManager.Resolve<ApplicationResourcesProvider>();
         private readonly IBarsColorsChanger barsColorsChanger = IoCManager.Resolve<IBarsColorsChanger>();
         private string modeSuffix;
 
@@ -79,18 +79,18 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Appearance
             if (Settings.AdventurerMode)
             {
                 //switching colors, so we can later still use the other colors (i.e. on switching the Mode)
-                resourceProvider.ChangeResourceValue("PrimaryColor", adventurerModeColor);
-                resourceProvider.ChangeResourceValue("PrimaryDarkColor", adventurerModeColorDarker);
-                resourceProvider.ChangeResourceValue("SecondaryColor", professorModeColor);
-                resourceProvider.ChangeResourceValue("SecondaryDarkColor", professorModeColorDarker);
+                resourceProvider.ChangeResourceValue("PrimaryColor", AdventurerModeColor);
+                resourceProvider.ChangeResourceValue("PrimaryDarkColor", AdventurerModeColorDarker);
+                resourceProvider.ChangeResourceValue("SecondaryColor", ProfessorModeColor);
+                resourceProvider.ChangeResourceValue("SecondaryDarkColor", ProfessorModeColorDarker);
             }
             else
             {
                 //switching colors, so we can later still use the other colors (i.e. on switching the Mode)
-                resourceProvider.ChangeResourceValue("PrimaryColor", professorModeColor);
-                resourceProvider.ChangeResourceValue("PrimaryDarkColor", professorModeColorDarker);
-                resourceProvider.ChangeResourceValue("SecondaryColor", adventurerModeColor);
-                resourceProvider.ChangeResourceValue("SecondaryDarkColor", adventurerModeColorDarker);
+                resourceProvider.ChangeResourceValue("PrimaryColor", ProfessorModeColor);
+                resourceProvider.ChangeResourceValue("PrimaryDarkColor", ProfessorModeColorDarker);
+                resourceProvider.ChangeResourceValue("SecondaryColor", AdventurerModeColor);
+                resourceProvider.ChangeResourceValue("SecondaryDarkColor", AdventurerModeColorDarker);
             }
 
             Color currentPrimaryDarkColor = resourceProvider.TryGetResourceColorvalue("PrimaryDarkColor");

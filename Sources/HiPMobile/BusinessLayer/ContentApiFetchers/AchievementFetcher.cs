@@ -16,7 +16,6 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFetche
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelConverters;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.ContentApiAccesses.Contracts;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,22 +32,34 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.ContentApiFe
             this.client = client;
         }
 
-        public async Task<IEnumerable<AchievementBase>> UpdateAchievements(ITransactionDataAccess dataAccess)
+        public async Task<IEnumerable<AchievementBase>> UpdateAchievements()
         {
-            var existingUnlocked = dataAccess.Achievements().GetAchievements()
+            var existingUnlocked = DbManager.DataAccess.Achievements().GetAchievements()
                 .Where(it => it.IsUnlocked)
                 .Select(it => it.Id);
 
             var achievementDtos = await client.GetAchievements();
             var unlockedAchievementIds = (await client.GetUnlockedAchievements())
-                .Select(it => it.Id.ToString()).ToList();
+                .Select(it => it.Id.ToString())
+                .ToList();
 
-            var achievements = AchievementConverter.Convert(achievementDtos, dataAccess).ToList();
-            foreach (var unlocked in achievements.Where(it => unlockedAchievementIds.Contains(it.Id)))
+            return DbManager.InTransaction(transaction =>
             {
-                unlocked.IsUnlocked = true;
-            }
-            return achievements.Where(it => it.IsUnlocked && !existingUnlocked.Contains(it.Id));
+                var achievements = AchievementConverter.Convert(achievementDtos, transaction.DataAccess).ToList();
+                foreach (var unlocked in achievements.Where(it => unlockedAchievementIds.Contains(it.Id)))
+                {
+                    unlocked.IsUnlocked = true;
+                }
+                foreach (var achievement in achievements)
+                {
+                    if (transaction.DataAccess.GetItem<AchievementBase>(achievement.Id) == null)
+                    {
+                        transaction.DataAccess.AddItem(achievement);
+                    }
+                }
+                return achievements.Where(it => it.IsUnlocked && !existingUnlocked.Contains(it.Id));
+            });
+           
         }
     }
 }

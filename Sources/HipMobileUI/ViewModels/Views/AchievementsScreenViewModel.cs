@@ -39,11 +39,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 
             try
             {
-                await DbManager.InTransactionAsync(async transaction =>
-                {
-                    var newlyUnlocked = await IoCManager.Resolve<IAchievementFetcher>().UpdateAchievements(transaction.DataAccess);
-                    AchievementNotification.QueueAchievementNotifications(newlyUnlocked);
-                });
+                var newlyUnlocked = await IoCManager.Resolve<IAchievementFetcher>().UpdateAchievements();
+                AchievementNotification.QueueAchievementNotifications(newlyUnlocked);
 
                 var achievementCounter = 0;
                 var unlockedCounter = 0;
@@ -61,7 +58,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 
                 Score = $"{Strings.AchievementsScreenView_Score} {AppSharedData.CurrentAchievementsScore()}";
                 AchievementCount = $"{unlockedCounter + "/" + achievementCounter}{Strings.AchievementsScreenView_Achievement_Count}";
-
             }
             catch (Exception e)
             {

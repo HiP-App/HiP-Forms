@@ -12,21 +12,23 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using Xamarin.Forms;
+using NUnit.Framework;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Controls
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
 {
-    public class CustomFontLabel : Label
+    public static class Debug2
     {
-        public static readonly BindableProperty FontFamilyNameProperty = BindableProperty.Create(nameof(FontFamilyName), typeof(string), typeof(CustomFontLabel));
-
+        // ReSharper disable once ParameterOnlyUsedForPreconditionCheck.Global
         /// <summary>
-        /// Font family which should be used for the label
+        /// Unlike Debug.Assert(...), this method actually throws an Exception if
+        /// the condition is not met.
         /// </summary>
-        public string FontFamilyName
+        public static void Assert(bool condition, string message = "Assertion failed!")
         {
-            get { return (string) GetValue(FontFamilyNameProperty); }
-            set { SetValue(FontFamilyNameProperty, value); }
+            if (!condition)
+            {
+                throw new AssertionException(message);
+            }
         }
     }
 }

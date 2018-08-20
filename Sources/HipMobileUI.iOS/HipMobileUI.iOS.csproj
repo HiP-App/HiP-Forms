@@ -103,7 +103,6 @@
     <Compile Include="Contracts\IosNotificationPlayer.cs" />
     <Compile Include="Contracts\IosStorageSizeProvider.cs" />
     <Compile Include="CustomRenderers\FloatingActionButtonIosRenderer.cs" />
-    <Compile Include="CustomRenderers\IosCustomFontLabelRenderer.cs" />
     <Compile Include="CustomRenderers\IosHtmlLinkRenderer.cs" />
     <Compile Include="CustomRenderers\IosOrientationContentPageRenderer.cs" />
     <Compile Include="CustomRenderers\IosReferenceLinkRenderer.cs" />
@@ -519,6 +518,9 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\hiphop_transparent.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_directions_run.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

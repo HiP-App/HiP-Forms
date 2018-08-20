@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Pages.QuizStartingPage"
+             xmlns:helpers="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;assembly=HipMobileUI" 
              Title="{Binding Headline}">
     <ContentPage.Content>
         <StackLayout BackgroundColor="White">
@@ -10,20 +11,20 @@
                     AbsoluteLayout.LayoutFlags="SizeProportional" Margin="5"
                     AbsoluteLayout.LayoutBounds="0,0,1,1"
                     BackgroundColor="White">
-                    <Label Text="Quiz" 
+                    <Label Text="{helpers:Translate QuizStartingPage_Quiz}"
                        FontSize="36"
-                       VerticalOptions="Start" 
+                       VerticalOptions="Start"
                        HorizontalOptions="CenterAndExpand" 
                        Margin="20"/>
                     <Label/>
-                    <Label Text="Bisher hast du" 
+                    <Label Text="{helpers:Translate QuizStartingPage_UpToNow}"
                        FontSize="16"
                        HorizontalOptions="Center"/>
                     <Label Text="{Binding Score}" 
                        FontSize="50"
                        HorizontalOptions="CenterAndExpand" 
                        VerticalOptions="CenterAndExpand"/>
-                    <Label Text="Fragen richtig beantwortet" 
+                    <Label Text="{helpers:Translate QuizStartingPage_QuestionsAnsweredCorrect}"
                        FontSize="16"
                        HorizontalOptions="Center"/>
                 </StackLayout>
@@ -36,7 +37,7 @@
             <StackLayout VerticalOptions="End" HeightRequest="70" BackgroundColor="White">
                 <BoxView HeightRequest="1" Color="White" VerticalOptions="Start" />
                 <StackLayout Orientation="Horizontal" Padding="0,0,5,0">
-                    <Button Text="Quiz starten" 
+                    <Button Text="{helpers:Translate QuizStartingPage_StartQuiz}"
                             BackgroundColor="#80D3D3D3"
                             Command="{Binding StartQuizCommand}"
                             Margin="10"
