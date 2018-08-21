@@ -28,9 +28,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Authent
                 Constants.MobileScope,
                 Constants.MobileClientId,
                 Constants.MobileClientSecret,
-              //  new KeyValuePair<string, string>("username", username),
+                //new KeyValuePair<string, string>("email", username),
                 new KeyValuePair<string, string>("password", password),
-                new KeyValuePair<string, string>("email", email)
+                new KeyValuePair<string, string>("username", email)  // server is taking variable username as email.
 
             });
 

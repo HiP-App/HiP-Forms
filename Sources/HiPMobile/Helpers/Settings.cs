@@ -239,7 +239,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
         /// <summary>
         /// The username of the current user
         /// </summary>
-        private const string UserNameKey = "username_key";
+        private const string UserNameKey  = "username_key";
 
         private static readonly string UsernameDefault = ""; //proper username instead of max@power.com
 
