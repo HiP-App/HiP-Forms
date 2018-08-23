@@ -28,8 +28,8 @@
                     </AbsoluteLayout>
 
                     <ContentView HorizontalOptions="FillAndExpand" VerticalOptions="End" HeightRequest="80">
-                        <control:CarouselView ItemsSource="{Binding Exhibits}">
-                            <control:CarouselView.ItemTemplate>
+                        <control:CarouselView ItemsSource="{Binding Exhibits}" x:Name="ExhibitCarousel" ItemSelected="ExhibitCarousel_OnItemSelected">
+                            <control:CarouselView.ItemTemplate >
                                 <DataTemplate>
                                     <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                                         <Grid.GestureRecognizers>
