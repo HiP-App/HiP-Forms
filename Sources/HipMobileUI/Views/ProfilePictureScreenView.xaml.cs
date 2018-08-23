@@ -51,14 +51,16 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
                 RightGrid.ColumnDefinitions.Clear();
                 RightGrid.Children.Clear();
 
+                CreatePredAvatarList();
+
                 MainGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
                 MainGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
                 MainGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
                 MainGrid.Children.Add(LeftGrid, 0, 0);
                 MainGrid.Children.Add(RightGrid, 1, 0);
 
-                LeftGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.7, GridUnitType.Star) });
-                LeftGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.1, GridUnitType.Star) });
+                LeftGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.65, GridUnitType.Star) });
+                LeftGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.15, GridUnitType.Star) });
                 LeftGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.2, GridUnitType.Star) });
                 LeftGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
                 LeftGrid.Children.Add(PictureGrid, 0, 0);
@@ -70,6 +72,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
                 RightGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
                 RightGrid.Children.Add(PictureList, 0, 0);
                 RightGrid.Children.Add(PickImageButton, 0, 1);
+
+
+
             }
             else if (width < height && deviceOrientation != DeviceOrientation.Portrait)
             {
@@ -85,9 +90,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
                 RightGrid.ColumnDefinitions.Clear();
                 RightGrid.Children.Clear();
 
+                CreatePredAvatarList();
+
+                MainGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.35, GridUnitType.Star) });
+                MainGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.05, GridUnitType.Star) });
                 MainGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.4, GridUnitType.Star) });
-                MainGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.1, GridUnitType.Star) });
-                MainGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.3, GridUnitType.Star) });
                 MainGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.1, GridUnitType.Star) });
                 MainGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0.1, GridUnitType.Star) });
                 MainGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
@@ -100,6 +107,83 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
 
             }
 
+        }
+
+        private void CreatePredAvatarList()
+        {
+
+            if (BindingContext is ProfilePictureScreenViewModel vm)
+            {
+                if (!vm.PredAvatarGridBuilt)
+                {
+                    PictureListGrid.Children.Clear();
+                    PictureListGrid.RowDefinitions.Clear();
+                    PictureListGrid.ColumnDefinitions.Clear();
+
+                    var avatarCount = vm.PredAvatarCount;
+                    var rowCount = (int)Math.Ceiling((double)avatarCount / 4);
+                    var columnCount = 3;
+                    var frame = new Frame();
+                    var converter = new ColorTypeConverter();
+                    var imageRow = 0;
+                    var imageColumn = 0;
+
+                    for (var i = 0; i < rowCount; i++)
+                    {
+                        PictureListGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
+                    }
+
+                    for (var i = 0; i < columnCount; i++)
+                    {
+                        PictureListGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+                    }
+
+                    for (var i = 0; i < vm.Avatars.Length; i++)
+                    {
+                        frame = new Frame
+                        {
+                            //Padding = 10,
+                            BackgroundColor = vm.HighlightColors[i],
+
+                            Content = new Image
+                            {
+                                Source = vm.Avatars[i].ImageSmall,
+                                HeightRequest = 100,
+                                WidthRequest = 100,
+                                Aspect = Aspect.AspectFit/*,
+
+                                GestureRecognizers = { new TapGestureRecognizer
+                                {
+                                    Command = vm.ImageTappedCommand,
+                                    CommandParameter = i,
+                                    NumberOfTapsRequired = 1
+                                }}*/
+                            },
+                            GestureRecognizers =
+                            {
+                                new TapGestureRecognizer
+                                {
+                                    Command = vm.ImageTappedCommand,
+                                    CommandParameter = i,
+                                    NumberOfTapsRequired = 1
+                                }
+                            }   
+                        };
+
+                        imageColumn = i;
+                        imageRow = 0;
+                        while (imageColumn >= columnCount)
+                        {
+                            imageColumn -= columnCount;
+                            imageRow++;
+                        }
+
+                        PictureListGrid.Children.Add(frame, imageColumn, imageRow);
+                        OnPropertyChanged();
+                        vm.PredAvatarGridBuilt = true;
+                    }
+                }  
+            }
         }
     }
 }

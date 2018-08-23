@@ -76,12 +76,12 @@
     <Compile Include="Contracts\AndroidFabSizeCalculator.cs" />
     <Compile Include="Contracts\AndroidImageDimensions.cs" />
     <Compile Include="Contracts\DroidAudioPlayer.cs" />
+    <Compile Include="Contracts\DroidAvatarImageResizer.cs" />
     <Compile Include="Contracts\DroidBarsColorsChanger.cs" />
     <Compile Include="Contracts\DroidImagePicker.cs" />
     <Compile Include="Contracts\DroidNetworkAccessChecker.cs" />
     <Compile Include="Contracts\DroidNotificationPlayer.cs" />
     <Compile Include="Contracts\DroidStorageSizeProvider.cs" />
-    <Compile Include="CustomRenderers\AndroidCustomFontLabelRenderer.cs" />
     <Compile Include="CustomRenderers\AndroidOrientationPageRenderer.cs" />
     <Compile Include="CustomRenderers\DroidHtmlLinkRenderer.cs" />
     <Compile Include="CustomRenderers\DroidReferenceLinkRenderer.cs" />
@@ -252,9 +252,6 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-hdpi\ic_more.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-hdpi\ic_my_location.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-hdpi\ic_my_location_white.png" />

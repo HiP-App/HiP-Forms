@@ -22,6 +22,7 @@
              xmlns:controls="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Controls;assembly=HipMobileUI"
              xmlns:helpers="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;assembly=HipMobileUI"
              xmlns:views="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Views;assembly=HipMobileUI"
+             xmlns:customTriggers="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.CustomTriggers;assembly=HipMobileUI"
              x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Views.ProfilePictureScreenView">
     <ContentView.Content>
         <views:NotificationExtensionView>
@@ -66,18 +67,29 @@
 
                     <Label x:Name="ErrorMessageLabel"
                        FontSize="18" Text="{Binding ErrorMessage}"
-                       Style="{DynamicResource Ssp-Regular}" TextColor="Red" HorizontalTextAlignment="Center" />
+                       Style="{DynamicResource Ssp-Regular}" TextColor="{Binding ErrorMessageColor}" HorizontalTextAlignment="Center" />
 
-                    <ListView x:Name="PictureList"  Grid.Row="0" Grid.Column="0"
+
+
+                    <!--<ListView x:Name="PictureList"
                               ItemsSource="{Binding Avatars}"
                               VerticalOptions="FillAndExpand"
                               HasUnevenRows="true"
                               IsPullToRefreshEnabled="false"
                               CachingStrategy="RecycleElement"
                               SeparatorVisibility="None" 
+                              
                               SelectedItem="{Binding ChosenAvatar, Mode=TwoWay}">
+                         
+                         <ListView.Triggers>
+                             <EventTrigger Event="ItemSelected">
+                                 <customTriggers:DeselectListViewItemAction />
+                             </EventTrigger>
+                         </ListView.Triggers>
+
                         <ListView.ItemTemplate>
                             <DataTemplate>
+
 
                                 <ViewCell>
 
@@ -88,33 +100,57 @@
                                             <RowDefinition Height="0.005*" />
                                         </Grid.RowDefinitions>
                                         <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="0.01*" />
-                                            <ColumnDefinition Width="0.19*" />
-                                            <ColumnDefinition Width="0.8*" />
+                                            <ColumnDefinition Width="0.335*" />
+                                            <ColumnDefinition Width="0.33*" />
+                                            <ColumnDefinition Width="0.335*" />
                                         </Grid.ColumnDefinitions>
 
-                                        <!-- <BoxView Grid.Row="1" Grid.Column="1" HeightRequest="80" BackgroundColor="Gray"/> -->
-                                        <Image Grid.Row="1" Grid.Column="1" HeightRequest="80" Aspect="AspectFit" Source="{Binding Image}" />
-                                        <Label Grid.Row="1" Grid.Column="2" Text="{Binding Title}" 
-                                               VerticalTextAlignment="Center"
-                                               HorizontalTextAlignment="Start"
-                                               LineBreakMode="NoWrap" 
-                                               Style="{DynamicResource ListItemTextStyle}" 
-                                               FontSize="16" />
+
+
+                                        <Image Grid.Row="1" Grid.Column="0" HeightRequest="80" Aspect="AspectFit" Source="{Binding Image1}">
+                                            <Image.GestureRecognizers>
+                                                <TapGestureRecognizer
+                                                    Command="{Binding ImageTappedCommand}"
+                                                    CommandParameter="1"
+                                                    NumberOfTapsRequired="1" />
+                                            </Image.GestureRecognizers>
+                                        </Image>
+
+                                        <Image Grid.Row="1" Grid.Column="1" HeightRequest="80" Aspect="AspectFit" Source="{Binding Image2}">
+                                            <Image.GestureRecognizers>
+                                                <TapGestureRecognizer
+                                                    Command="{Binding ImageTappedCommand}"
+                                                    CommandParameter="2"
+                                                    NumberOfTapsRequired="1" />
+                                            </Image.GestureRecognizers>
+                                        </Image>
+                                        <Image Grid.Row="1" Grid.Column="2" HeightRequest="80" Aspect="AspectFit" Source="{Binding Image3}">
+                                            <Image.GestureRecognizers>
+                                                <TapGestureRecognizer
+                                                    Command="{Binding ImageTappedCommand}"
+                                                    CommandParameter="3"
+                                                    NumberOfTapsRequired="1" />
+                                            </Image.GestureRecognizers>
+                                        </Image>
+
                                     </Grid>
                                 </ViewCell>
                             </DataTemplate>
                         </ListView.ItemTemplate>
-                    </ListView>
+                    </ListView> -->
+
+                    <ScrollView x:Name="PictureList" >
+                        <Grid x:Name="PictureListGrid"></Grid>
+
+                    </ScrollView>
 
                     <Button 
-                    x:Name="PickImageButton"
-                    Grid.Row="1" Grid.Column="0" 
-                    Text="{helpers:Translate ProfilePictureScreenViewModel_PickImageButton}" 
-                    Command="{Binding ImagePickerCommand}" 
-                    VerticalOptions="CenterAndExpand" 
-                    HorizontalOptions="Fill"
-                    IsEnabled="{Binding PickImageEnabled}"/>
+                        x:Name="PickImageButton"
+                        Text="{helpers:Translate ProfilePictureScreenViewModel_PickImageButton}" 
+                        Command="{Binding ImagePickerCommand}" 
+                        VerticalOptions="CenterAndExpand" 
+                        HorizontalOptions="Fill"
+                        IsEnabled="{Binding PickImageEnabled}"/>
 
                 </Grid>
             </views:NotificationExtensionView.ContentTemplate>
