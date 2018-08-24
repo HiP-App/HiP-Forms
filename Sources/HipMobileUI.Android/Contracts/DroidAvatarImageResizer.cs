@@ -25,13 +25,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Contracts
 {
     public class DroidAvatarImageResizer : IAvatarImageResizer
     {
+        private const int Quality = 10;
+
         public byte[] ResizeAvatar(byte[] avatar, float width, float height)
         {
             Bitmap avatarOriginal = BitmapFactory.DecodeByteArray(avatar, 0, avatar.Length);
             Bitmap avatarNew = Bitmap.CreateScaledBitmap(avatarOriginal, (int)width, (int)height, false);
 
             var stream = new MemoryStream();
-            avatarNew.Compress(Bitmap.CompressFormat.Png, 30, stream);
+            avatarNew.Compress(Bitmap.CompressFormat.Png, Quality, stream);
             var avatarNewBytes = stream.ToArray();
             return avatarNewBytes;
         }

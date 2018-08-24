@@ -16,7 +16,6 @@ using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
 using System;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.AuthenticationApiAccess;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -72,9 +71,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
                 RightGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
                 RightGrid.Children.Add(PictureList, 0, 0);
                 RightGrid.Children.Add(PickImageButton, 0, 1);
-
-
-
             }
             else if (width < height && deviceOrientation != DeviceOrientation.Portrait)
             {
@@ -103,15 +99,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
                 MainGrid.Children.Add(PictureList, 0, 2);
                 MainGrid.Children.Add(PickImageButton, 0, 3);
                 MainGrid.Children.Add(ButtonGrid, 0, 4);
-
-
             }
 
         }
 
         private void CreatePredAvatarList()
         {
-
             if (BindingContext is ProfilePictureScreenViewModel vm)
             {
                 if (!vm.PredAvatarGridBuilt)
@@ -123,8 +116,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
                     var avatarCount = vm.PredAvatarCount;
                     var rowCount = (int)Math.Ceiling((double)avatarCount / 4);
                     var columnCount = 3;
-                    var frame = new Frame();
-                    var converter = new ColorTypeConverter();
                     var imageRow = 0;
                     var imageColumn = 0;
 
@@ -140,9 +131,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
 
                     for (var i = 0; i < vm.Avatars.Length; i++)
                     {
-                        frame = new Frame
+                        var frame = new Frame
                         {
-                            //Padding = 10,
                             BackgroundColor = vm.HighlightColors[i],
 
                             Content = new Image
@@ -150,25 +140,26 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
                                 Source = vm.Avatars[i].ImageSmall,
                                 HeightRequest = 100,
                                 WidthRequest = 100,
-                                Aspect = Aspect.AspectFit/*,
+                                Aspect = Aspect.AspectFit
 
-                                GestureRecognizers = { new TapGestureRecognizer
-                                {
-                                    Command = vm.ImageTappedCommand,
-                                    CommandParameter = i,
-                                    NumberOfTapsRequired = 1
-                                }}*/
-                            },
-                            GestureRecognizers =
-                            {
-                                new TapGestureRecognizer
-                                {
-                                    Command = vm.ImageTappedCommand,
-                                    CommandParameter = i,
-                                    NumberOfTapsRequired = 1
-                                }
-                            }   
+                            }
                         };
+
+                        var gesture = new TapGestureRecognizer
+                        {
+                            NumberOfTapsRequired = 1,
+                            Command = vm.ImageTappedCommand,
+                            CommandParameter = i
+                        };
+                        gesture.Tapped += (sender, e) =>
+                        {
+                            vm.PredAvatarGridBuilt = false;
+                            CreatePredAvatarList();
+                        };
+                        if (frame.Content.GestureRecognizers != null)
+                        {
+                            frame.Content.GestureRecognizers.Add(gesture);
+                        }
 
                         imageColumn = i;
                         imageRow = 0;

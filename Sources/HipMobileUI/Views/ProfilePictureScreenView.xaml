@@ -18,11 +18,8 @@
 
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:container="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Container;assembly=HipMobileUI"
-             xmlns:controls="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Controls;assembly=HipMobileUI"
              xmlns:helpers="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;assembly=HipMobileUI"
              xmlns:views="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.Views;assembly=HipMobileUI"
-             xmlns:customTriggers="clr-namespace:PaderbornUniversity.SILab.Hip.Mobile.UI.CustomTriggers;assembly=HipMobileUI"
              x:Class="PaderbornUniversity.SILab.Hip.Mobile.UI.Views.ProfilePictureScreenView">
     <ContentView.Content>
         <views:NotificationExtensionView>
@@ -68,76 +65,6 @@
                     <Label x:Name="ErrorMessageLabel"
                        FontSize="18" Text="{Binding ErrorMessage}"
                        Style="{DynamicResource Ssp-Regular}" TextColor="{Binding ErrorMessageColor}" HorizontalTextAlignment="Center" />
-
-
-
-                    <!--<ListView x:Name="PictureList"
-                              ItemsSource="{Binding Avatars}"
-                              VerticalOptions="FillAndExpand"
-                              HasUnevenRows="true"
-                              IsPullToRefreshEnabled="false"
-                              CachingStrategy="RecycleElement"
-                              SeparatorVisibility="None" 
-                              
-                              SelectedItem="{Binding ChosenAvatar, Mode=TwoWay}">
-                         
-                         <ListView.Triggers>
-                             <EventTrigger Event="ItemSelected">
-                                 <customTriggers:DeselectListViewItemAction />
-                             </EventTrigger>
-                         </ListView.Triggers>
-
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-
-
-                                <ViewCell>
-
-                                    <Grid>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="0.005*" />
-                                            <RowDefinition Height="0.99*" />
-                                            <RowDefinition Height="0.005*" />
-                                        </Grid.RowDefinitions>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="0.335*" />
-                                            <ColumnDefinition Width="0.33*" />
-                                            <ColumnDefinition Width="0.335*" />
-                                        </Grid.ColumnDefinitions>
-
-
-
-                                        <Image Grid.Row="1" Grid.Column="0" HeightRequest="80" Aspect="AspectFit" Source="{Binding Image1}">
-                                            <Image.GestureRecognizers>
-                                                <TapGestureRecognizer
-                                                    Command="{Binding ImageTappedCommand}"
-                                                    CommandParameter="1"
-                                                    NumberOfTapsRequired="1" />
-                                            </Image.GestureRecognizers>
-                                        </Image>
-
-                                        <Image Grid.Row="1" Grid.Column="1" HeightRequest="80" Aspect="AspectFit" Source="{Binding Image2}">
-                                            <Image.GestureRecognizers>
-                                                <TapGestureRecognizer
-                                                    Command="{Binding ImageTappedCommand}"
-                                                    CommandParameter="2"
-                                                    NumberOfTapsRequired="1" />
-                                            </Image.GestureRecognizers>
-                                        </Image>
-                                        <Image Grid.Row="1" Grid.Column="2" HeightRequest="80" Aspect="AspectFit" Source="{Binding Image3}">
-                                            <Image.GestureRecognizers>
-                                                <TapGestureRecognizer
-                                                    Command="{Binding ImageTappedCommand}"
-                                                    CommandParameter="3"
-                                                    NumberOfTapsRequired="1" />
-                                            </Image.GestureRecognizers>
-                                        </Image>
-
-                                    </Grid>
-                                </ViewCell>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView> -->
 
                     <ScrollView x:Name="PictureList" >
                         <Grid x:Name="PictureListGrid"></Grid>
