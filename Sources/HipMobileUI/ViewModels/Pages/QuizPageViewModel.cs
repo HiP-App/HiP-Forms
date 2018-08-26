@@ -13,17 +13,13 @@
 // limitations under the License.
 
 using System;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Itinero.Attributes;
-using NUnit.Framework;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
-using SQLitePCL;
 using Xamarin.Forms;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
@@ -101,11 +97,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
         private async Task GotoNextView(int selectedAnswerIdx, Action<Color> backgroundColorSetter)
         {
-            var correctoption = quizzes[currentQuiz].CorrectOption();
+            var correctOption = quizzes[currentQuiz].CorrectOption();
             var selectedAnswer = Answers[selectedAnswerIdx];
-            for (int i = 0; i < Answers.Length; i++)
+            for (var i = 0; i < Answers.Length; i++)
             {
-                if (correctoption == Answers[i])
+                if (correctOption == Answers[i])
                 {
                     MarkCorrectOption(i);
                 }
@@ -131,25 +127,23 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             }
         }
 
-        void MarkCorrectOption(int index)
+        private void MarkCorrectOption(int index)
         {
-            if (index == 0)
+            switch (index)
             {
-                AnswerABackgroundColor = Color.Green;
+                case 0:
+                    AnswerABackgroundColor = Color.Green;
+                    break;
+                case 1:
+                    AnswerBBackgroundColor = Color.Green;
+                    break;
+                case 2:
+                    AnswerCBackgroundColor = Color.Green;
+                    break;
+                case 3:
+                    AnswerDBackgroundColor = Color.Green;
+                    break;
             }
-            else if (index == 1)
-            {
-                AnswerBBackgroundColor = Color.Green;
-            }
-            else if (index == 2)
-            {
-                AnswerCBackgroundColor = Color.Green;
-            }
-            else if (index == 3)
-            {
-                AnswerDBackgroundColor = Color.Green;
-            }
-
         }
 
         #region properties
