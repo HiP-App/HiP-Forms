@@ -22,9 +22,9 @@ using Xamarin.Forms;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views.ExhibitDetails
 {
-    public class TimeSliderViewModel : ExhibitSubviewHiddeableNavigationViewModel
+    public class TimeSliderViewModel : ExhibitSubviewViewModel
     {
-        public TimeSliderViewModel(TimeSliderPage timesliderPage, Action toggleButtonVisibility) : base(toggleButtonVisibility)
+        public TimeSliderViewModel(TimeSliderPage timesliderPage)
         {
             Images = new ObservableCollection<ImageSource>();
             Years = new ObservableCollection<string>();

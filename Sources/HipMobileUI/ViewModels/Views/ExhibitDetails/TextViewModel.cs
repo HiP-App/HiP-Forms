@@ -12,12 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using System;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views.ExhibitDetails
 {
-    public class TextViewModel : ExhibitSubviewHiddeableNavigationViewModel
+    public class TextViewModel : ExhibitSubviewViewModel
     {
         private string text;
         private string fontFamily;
@@ -25,7 +24,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views.ExhibitDetail
         private string headline;
         private bool bottomSheetVisible;
 
-        public TextViewModel(TextPage page, Action toggleButtonVisibility) : base(toggleButtonVisibility)
+        public TextViewModel(TextPage page)
         {
             Text = page.Text;
             // Legacy code: specific font families for text pages are no longer used
