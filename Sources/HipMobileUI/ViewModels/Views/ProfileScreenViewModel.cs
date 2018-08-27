@@ -16,7 +16,7 @@ using System;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Windows.Input;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.UserApiFetchers;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.UserManagement;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.UserApiAccesses;
@@ -38,7 +38,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         private const string ProfessorImage = "ic_professor.png";
 
         private ProfilePictureApiAccess client;
-        private ProfilePictureFetcher fetcher;
+        private ProfilePictureManager manager;
 
         public ProfileScreenViewModel(MainPageViewModel mainPageVm)
         {
@@ -58,14 +58,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             SetCompletenessBarLength(Settings.Achievements);
 
             client = new ProfilePictureApiAccess(new UserApiClient(ServerEndpoints.RegisterUrl));
-            fetcher = new ProfilePictureFetcher(client);
+            manager = new ProfilePictureManager(client);
         }
 
         public override async void OnAppearing()
         {
             if (Settings.ProfilePicture == null)
             {
-                var currentAvatar = await fetcher.GetProfilePicture(Settings.UserId, Settings.AccessToken);
+                var currentAvatar = await manager.GetProfilePicture(Settings.UserId, Settings.AccessToken);
                 if (currentAvatar != null)
                 {
                     Settings.ProfilePicture = Convert.ToBase64String(currentAvatar.Data);

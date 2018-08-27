@@ -33,4 +33,9 @@
     <PackageReference Include="Unity" Version="5.8.6" />
     <PackageReference Include="Xam.Plugins.Settings" Version="3.1.1" />
   </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Xamarin.Forms.Core">
+      <HintPath>..\..\..\..\..\Users\alex_\.nuget\packages\xamarin.forms\2.5.1.444934\lib\MonoAndroid10\Xamarin.Forms.Core.dll</HintPath>
+    </Reference>
+  </ItemGroup>
 </Project>

@@ -12,10 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using Newtonsoft.Json.Linq;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 
 
@@ -73,6 +76,43 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.UserApi
 
             var response = await client.PutAsync(completePath, formData);
             return response;
+        }
+
+        public async Task<PredProfilePicture[]> GetPredefinedProfilePictures(string accessToken)
+        {
+            var path = "https://docker-hip.cs.uni-paderborn.de/public/userstore/api";
+            var requestPath = "/Users/PredefinedAvatars";
+            var completePath = path + requestPath;
+            var response = await userApiClient.GetResponseFromUrlAsString(requestPath, accessToken);
+            var idArray = ParsePredefinedProfilePictures(response);
+            var predProfilePictures = new PredProfilePicture[idArray.Length];
+            for (var i = 0; i < idArray.Length; i++)
+            {
+                requestPath = $@"/Users/PredefinedAvatars/{idArray[i]}";
+                completePath = path + requestPath;
+                var pictureBytes = await userApiClient.GetResponseFromUrlAsBytes(requestPath, accessToken);
+                if (pictureBytes != null)
+                {
+                    var pictureString = Convert.ToBase64String(pictureBytes);
+                    predProfilePictures[i] = new PredProfilePicture(idArray[i], pictureString);
+                }
+            }
+
+            return predProfilePictures;
+        }
+
+        public static string[] ParsePredefinedProfilePictures(string json)
+        {
+            var predProfilePictureJsons = (JArray)JObject.Parse(json)["items"];
+            var length = predProfilePictureJsons.Count;
+            var idArray = new string[length];
+
+            for (var i = 0; i < length; i++)
+            {
+                idArray[i] = predProfilePictureJsons.ToString();
+            }
+
+            return idArray;
         }
     }
 }

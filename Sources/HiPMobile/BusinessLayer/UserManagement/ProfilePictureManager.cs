@@ -12,17 +12,19 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System.IO;
+using System.Net.Http;
 using System.Threading.Tasks;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.UserApiAccesses;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.UserApiFetchers
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.UserManagement
 {
-    public class ProfilePictureFetcher : IProfilePictureFetcher
+    public class ProfilePictureManager : IProfilePictureManager
     {
         private readonly ProfilePictureApiAccess client;
 
-        public ProfilePictureFetcher(ProfilePictureApiAccess client)
+        public ProfilePictureManager(ProfilePictureApiAccess client)
         {
             this.client = client;
         }
@@ -42,6 +44,18 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.UserApiFetch
                 };
             }
             
+        }
+
+        public async Task<PredProfilePicture[]> GetPredefinedProfilePictures(string accessToken)
+        {
+            PredProfilePicture[] predProfilePictures = await client.GetPredefinedProfilePictures(accessToken);
+            return new PredProfilePicture[1];
+        }
+
+        public async Task<HttpResponseMessage> PostProfilePicture(Stream picture, string userId, string accessToken)
+        {
+            var result = await client.PostProfilePicture(picture, userId, accessToken);
+            return result;
         }
     }
 }

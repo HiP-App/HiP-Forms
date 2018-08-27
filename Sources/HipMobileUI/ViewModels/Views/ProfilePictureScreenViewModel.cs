@@ -18,7 +18,6 @@ using System.Net;
 using System.Windows.Input;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
 using Xamarin.Forms;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.UserApiFetchers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.UserManagement;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
@@ -34,7 +33,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         private readonly MainPageViewModel mainPageViewModel;
         private readonly ApplicationResourcesProvider resourceProvider = IoCManager.Resolve<ApplicationResourcesProvider>();
         private readonly ProfilePictureApiAccess client;
-        private readonly ProfilePictureFetcher fetcher;
+        private readonly ProfilePictureManager manager;
 
         private const string AdventurerImage = "ic_adventurer.png";
         private const string ProfessorImage = "ic_professor.png";
@@ -55,7 +54,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 
             //For access to the Userstore
             client = new ProfilePictureApiAccess(new UserApiClient(ServerEndpoints.RegisterUrl));
-            fetcher = new ProfilePictureFetcher(client);
+            manager = new ProfilePictureManager(client);
 
             PickImageEnabled = true;
 
@@ -63,6 +62,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 
             MockPredAvatarList();
             ResizeAvatars();
+            
 
             PredAvatarGridBuilt = false;
 
@@ -72,8 +72,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         {
             base.OnAppearing();
 
+            //await manager.GetPredefinedProfilePictures(Settings.AccessToken);
+
             ErrorMessageColor = "Black";
             ErrorMessage = $"{Strings.ProfilePictureScreenViewModel_NoError}";
+
+            ChosenAvatarBytes = null;
+            ChosenAvatarId = null;
 
             AvatarPreview = ImageSource.FromFile("predefined_avatar_empty");
 
@@ -86,7 +91,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 
             if (Settings.ProfilePicture == null)
             {
-                var currentAvatar = await fetcher.GetProfilePicture(Settings.UserId, Settings.AccessToken);
+                var currentAvatar = await manager.GetProfilePicture(Settings.UserId, Settings.AccessToken);
                 if (currentAvatar != null)
                 {
                     Settings.ProfilePicture = Convert.ToBase64String(currentAvatar.Data);
@@ -106,7 +111,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 
         public void KeepAvatar()
         {
-            ChosenAvatarBytes = null;
             mainPageViewModel.SwitchToProfileView();
         }
 
@@ -118,12 +122,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
                 ErrorMessage = $"{Strings.ProfilePictureScreenViewModel_NoError}";
 
                 var imageStream = (Stream)new MemoryStream(ChosenAvatarBytes, 0, ChosenAvatarBytes.Length);
-                var result = await client.PostProfilePicture(imageStream, Settings.UserId, Settings.AccessToken);
+                var result = await manager.PostProfilePicture(imageStream, Settings.UserId, Settings.AccessToken);
 
                 if (result.StatusCode == HttpStatusCode.NoContent)
                 {
                     //Get uploaded picture to store it in the settings
-                    var profilePicture = await fetcher.GetProfilePicture(Settings.UserId, Settings.AccessToken);
+                    var profilePicture = await manager.GetProfilePicture(Settings.UserId, Settings.AccessToken);
 
                     if (profilePicture != null)
                     {
@@ -166,6 +170,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
                 var memStream = new MemoryStream();
                 await imageStream.CopyToAsync(memStream);
                 ChosenAvatarBytes = memStream.ToArray();
+                ChosenAvatarId = null;
                 imageStream = (Stream)new MemoryStream(ChosenAvatarBytes, 0, ChosenAvatarBytes.Length);
                 AvatarPreview = ImageSource.FromStream(() => imageStream);
                 ErrorMessageColor = "Black";
@@ -178,6 +183,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         public void ImageTapped(int image)
         {
             AvatarPreview = Avatars[image].ImageFull;
+            ChosenAvatarBytes = null;
+            //TODO Set ChosenAvatarID
             for (var i = 0; i < HighlightColors.Length; i++)
             {
                 HighlightColors[i] = Color.White;
@@ -209,6 +216,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
                 
                 Avatars[i] = new PredefinedProfilePicture(imageBytes, "picture");
             }
+        }
+
+        private void PredAvatarList(PredefinedProfilePicture[] pictures)
+        {
+
         }
 
         public ICommand KeepAvatarCommand { get; }
@@ -254,6 +266,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         }
 
         public byte[] ChosenAvatarBytes { get; private set; }
+
+        public string ChosenAvatarId { get; private set; }
 
         public PredefinedProfilePicture[] Avatars { get; set; }
 

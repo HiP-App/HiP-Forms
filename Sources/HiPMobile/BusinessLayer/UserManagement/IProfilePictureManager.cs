@@ -15,9 +15,9 @@
 using System.Threading.Tasks;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 
-namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.UserApiFetchers
+namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.UserManagement
 {
-    public interface IProfilePictureFetcher
+    public interface IProfilePictureManager
     {
         Task<ProfilePicture> GetProfilePicture(string userId, string accesToken);
     }
