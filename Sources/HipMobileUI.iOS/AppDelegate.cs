@@ -28,6 +28,7 @@ using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.NotificationPlayer;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels;
 using System.IO;
+using CarouselView.FormsPlugin.iOS;
 using UIKit;
 using UserNotifications;
 using Xamarin.Forms;
@@ -72,7 +73,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios
             IoCManager.RegisterInstance(typeof(IViewCreator), NavigationService.Instance);
 
             // init other inversion of control classes
-            IoCManager.RegisterInstance(typeof(IAudioPlayer), new IosAudioPlayer());
+            IoCManager.RegisterType<IAudioPlayer, IosAudioPlayer>();
             IoCManager.RegisterInstance(typeof(INotificationPlayer), new IosNotificationPlayer());
             IoCManager.RegisterInstance(typeof(ILocationManager), new LocationManager());
             IoCManager.RegisterInstance(typeof(IKeyProvider), new IosKeyProvider());
@@ -91,6 +92,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Ios
             // init forms and third party libraries
             CachedImageRenderer.Init();
             Xamarin.Forms.Forms.Init();
+            CarouselViewRenderer.Init();
 
             DesignMode.IsEnabled = false;
             LoadApplication(new App());
