@@ -35,11 +35,19 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.UserManageme
 
                 user.Token = await AuthApiAccess.Login(user.Email, user.Password);
                 user.CurrentStatus = UserStatus.LoggedIn;
-                Settings.Username = user.Username;
+                
                 Settings.Password = user.Password;
                 Settings.EMail = user.Email;
                 Settings.AccessToken = user.Token.AccessToken; 
                 await IoCManager.Resolve<IFeatureToggleRouter>().RefreshEnabledFeaturesAsync();
+
+                var currentUser = await AuthApiAccess.GetCurrentUser(user.Token.AccessToken);
+                if (currentUser.Id != null)
+                {
+                    Settings.Username = currentUser.Username;
+                    Settings.UserId = currentUser.Id;
+                   
+                }
             }
 
             catch (Exception ex)

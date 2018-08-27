@@ -237,11 +237,24 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
         }
 
         /// <summary>
+        /// The íd of the current user
+        /// </summary>
+        private const string UserIdKey = "userId_key";
+
+        private static readonly string UserIdDefault = "";
+
+        public static string UserId
+        {
+            get => AppSettings.GetValueOrDefault(UserIdKey, UserIdDefault);
+            set => AppSettings.AddOrUpdateValue(UserIdKey, value);
+        }
+        
+        /// <summary>
         /// The username of the current user
         /// </summary>
         private const string UserNameKey  = "username_key";
 
-        private static readonly string UsernameDefault = ""; //proper username instead of max@power.com
+        private static readonly string UsernameDefault = "abc"; //proper username instead of max@power.com
 
         public static string Username
         {
@@ -254,7 +267,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers
         /// </summary>
         private const string EMailKey = "email_key";
 
-        private static readonly string EMailDefault = "";
+        private static readonly string EMailDefault = "abc";
 
         public static string EMail
         {

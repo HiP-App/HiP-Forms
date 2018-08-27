@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.User;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.AuthApiDto;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.AuthenticationApiAccess
@@ -12,5 +13,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Authent
 
         //Task<bool> ForgotPassword(string username);
         Task<bool> ForgotPassword(string email);
+
+        Task<CurrentUser> GetCurrentUser(string accessToken);
+    
     }
 }

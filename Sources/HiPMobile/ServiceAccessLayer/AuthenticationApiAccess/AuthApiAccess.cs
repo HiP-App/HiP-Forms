@@ -7,6 +7,8 @@ using System.Net.Http;
 using Newtonsoft.Json;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.AuthApiDto;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Exceptions;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.UserApiAccesses;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.User;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.AuthenticationApiAccess
 {
@@ -58,14 +60,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Authent
         {
             var content = "{" +
                           "\"email\": \"" + email + "\", " +
-                          "\"usernname\": \"" + username + "\", " +
+                          "\"displayName\": \"" + username + "\", " +
                           "\"password\": \"" + password + "\"," +
                           "\"firstName\": \"" + firstName + "\"," +
                           "\"lastName\": \"" + lastName +  "\"" +
                           "}";
 
             var result = await clientApiClient.PostRequestBody(ServerEndpoints.RegisterUrl, content, false);
-          
 
             if (result.StatusCode == HttpStatusCode.Created)
             {
@@ -78,6 +79,17 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Authent
             }
 
             return false;
+        }
+        public async Task<CurrentUser> GetCurrentUser(string accessToken)
+        {
+            var path = "/Me";
+            UserApiClient userClient = new UserApiClient();
+            var response = await userClient.GetResponseFromUrlAsString(path, accessToken);
+            if (response != null)
+            {
+                return JsonConvert.DeserializeObject<CurrentUser>(response);
+            }
+            return new CurrentUser(null, null, null);
         }
 
         public async Task<bool> ForgotPassword(string email)

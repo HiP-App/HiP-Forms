@@ -13,6 +13,7 @@
 // limitations under the License.
 
 using System.Threading.Tasks;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.User;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.AuthApiDto;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.AuthenticationApiAccess
@@ -30,5 +31,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Authent
 
         //public Task<bool> ForgotPassword(string username) => Task.FromResult(true);
         public Task<bool> ForgotPassword(string email) => Task.FromResult(true);
+
+        public Task<CurrentUser> GetCurrentUser(string accessToken)
+        {
+            return Task.FromResult(new CurrentUser("id", "id@email.com", "username"));
+        }
     }
 }

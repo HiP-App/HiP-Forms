@@ -327,14 +327,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             }
         }
 
-        //private bool userNameDisplayed;
+        private bool userNameDisplayed;
         private bool emailDisplayed;
 
-       /* public bool UserNameDisplayed
+        public bool UserNameDisplayed
         {
             get => userNameDisplayed;
             set => SetProperty(ref userNameDisplayed, value);
-        }*/
+        }
 
         public bool EmailDisplayed
         {
@@ -342,22 +342,21 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             set => SetProperty(ref emailDisplayed, value);
         }
 
-        //private string userName;
+        private string userName;
         private string email;
 
-        /*public string UserName
+       public string UserName
         {
             get => userName;
             set => SetProperty(ref userName, value);
-        }*/
+        }
 
         public string Email
         {
             get => email;
             set => SetProperty(ref email, value);
         }
-
-
+        
         public override void OnDisappearing()
         {
             base.OnDisappearing();

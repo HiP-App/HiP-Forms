@@ -21,3 +21,4 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.User
         public UserStatus CurrentStatus { get; set; }
     }
 }
+ 
