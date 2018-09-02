@@ -163,15 +163,17 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.UserApi
                 var httpResponse = errorResponse as HttpWebResponse;
                 if (httpResponse != null && httpResponse.StatusCode == HttpStatusCode.NotFound)
                 {
-                    //throw new NotFoundException(fullUrl);
                     return httpResponse;
                 }
 
                 using (var responseStream = errorResponse.GetResponseStream())
                 {
-                    var reader = new StreamReader(responseStream, Encoding.UTF8);
-                    var exceptionMessage = reader.ReadToEnd();
-                    throw new NetworkAccessFailedException(exceptionMessage, webException);
+                    if (responseStream != null)
+                    {
+                        var reader = new StreamReader(responseStream, Encoding.UTF8);
+                        var exceptionMessage = reader.ReadToEnd();
+                        throw new NetworkAccessFailedException(exceptionMessage, webException);
+                    }
                 }
             }
             throw new ArgumentException("Unexpected error during fetching data");
