@@ -40,7 +40,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         private Route detailsRoute;
         private bool showDetailsRoute;
         private readonly IAudioPlayer audioPlayer;
-        private readonly AudioToolbarViewModel AudioToolbar;
+        private readonly AudioToolbarViewModel audioToolbar;
 
         /// <summary>
         /// Creates a new ViewModel for the route with the specified ID.
@@ -82,24 +82,24 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             }
 
             // init the audio toolbar
-            AudioToolbar = new AudioToolbarViewModel(route.Name, true);
+            audioToolbar = new AudioToolbarViewModel(route.Name, true);
 
             // It's possible to get no audio data even if it should exist
             try
             {
-                AudioToolbar.SetNewAudioFile(route.Audio);
+                audioToolbar.SetNewAudioFile(route.Audio);
             }
             catch (Exception e)
             {
                 Debug.WriteLine(e.Message);
                 Debug.WriteLine(e.StackTrace);
-                AudioToolbar.SetNewAudioFile(null);
+                audioToolbar.SetNewAudioFile(null);
             }
 
             //play automatic audio, if wanted
             if (Settings.AutoStartAudio)
             {
-                AudioToolbar.AudioPlayer.Play();
+                audioToolbar.AudioPlayer.Play();
             }
         }
 
@@ -114,13 +114,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         /// </summary>
         private void StartDescriptionPlayback()
         {
-            if (!AudioToolbar.AudioPlayer.IsPlaying)
+            if (!audioToolbar.AudioPlayer.IsPlaying)
             {
-                AudioToolbar.AudioPlayer.Play();
+                audioToolbar.AudioPlayer.Play();
             }
             else
             {
-                AudioToolbar.AudioPlayer.Pause();
+                audioToolbar.AudioPlayer.Pause();
             }
         }
 
@@ -169,7 +169,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         public override void OnDisappearing()
         {
             base.OnDisappearing();
-            AudioToolbar.OnDisappearing();
+            audioToolbar.OnDisappearing();
         }
 
         public override void OnRevealed()
@@ -177,7 +177,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             base.OnRevealed();
 
             //Register audio again
-            AudioToolbar.OnRevealed();
+            audioToolbar.OnRevealed();
         }
 
         public override void OnHidden()
@@ -185,7 +185,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             base.OnHidden();
 
             //inform the audio toolbar to clean up
-            AudioToolbar.OnHidden();
+            audioToolbar.OnHidden();
         }
 
         #region Properties
