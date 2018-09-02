@@ -6,12 +6,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Authent
 {
     public interface IAuthApiAccess
     {
-        ///Task<Token> Login(string username, string password);
         Task<Token> Login(string email, string password);
 
         Task<bool> Register(string username, string password, string firstName, string lastName, string email);
 
-        //Task<bool> ForgotPassword(string username);
         Task<bool> ForgotPassword(string email);
 
         Task<CurrentUser> GetCurrentUser(string accessToken);

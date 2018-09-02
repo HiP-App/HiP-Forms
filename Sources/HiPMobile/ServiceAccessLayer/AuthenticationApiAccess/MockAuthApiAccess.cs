@@ -29,7 +29,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Authent
 
         public Task<bool> Register(string username, string password, string firstName, string lastName, string email) => Task.FromResult(true);
 
-        //public Task<bool> ForgotPassword(string username) => Task.FromResult(true);
         public Task<bool> ForgotPassword(string email) => Task.FromResult(true);
 
         public Task<CurrentUser> GetCurrentUser(string accessToken)

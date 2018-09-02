@@ -96,7 +96,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 
             switch (userStatus)
             {
-                //case UserStatus.IncorrectUserNameAndPassword:
+                
                 case UserStatus.IncorrectEmailAndPassword:
                     DisplayWrongCredentialsErrorMessage();
                     break;

@@ -242,13 +242,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         {
             UpdateUserLogginInfo();
         }
-
-       /* private void UpdateUserLogginInfo()
-        {
-            UserNameDisplayed = Settings.IsLoggedIn;
-            UserName = Settings.IsLoggedIn ? Settings.Username : "";
-        }*/
-
+               
         private void UpdateUserLogginInfo()
         {
             EmailDisplayed = Settings.IsLoggedIn;

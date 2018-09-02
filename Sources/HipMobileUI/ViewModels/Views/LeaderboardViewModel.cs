@@ -48,13 +48,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 
     internal class Ranking
     {
-       /* public Ranking(int position, int points, string username)
-        {
-            Position = position;
-            Points = points;
-            Username = username;
-        } */
-        
+               
         public Ranking(int position, int points, string email)
         {
             Position = position;
@@ -66,7 +60,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 
         public int Points { get; set; }
 
-        //public string Username { get; set; }
         public string Email { get; set; }
 
     }

@@ -56,13 +56,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.UserManageme
                 {
                     user.CurrentStatus = UserStatus.NetworkConnectionFailed;
                 }
-
-               /* if (ex is InvalidUserNamePassword)
-                {
-                    user.CurrentStatus = UserStatus.IncorrectUserNameAndPassword;
-                    
-                }*/
-
                 if (ex is InvalidEmailPassword)
                 {
                      user.CurrentStatus = UserStatus.IncorrectEmailAndPassword;
