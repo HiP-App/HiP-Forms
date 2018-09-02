@@ -907,4 +907,10 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   <data name="QuizStartingPage_UpToNow" xml:space="preserve">
     <value>Bisher hast du</value>
   </data>
+  <data name="ExhibitDetailsPage_GoToQuiz" xml:space="preserve">
+    <value>Zum Quiz</value>
+  </data>
+  <data name="ExhibitDetailsPage_GoToRating" xml:space="preserve">
+    <value>Bewerten</value>
+  </data>
 </root>
