@@ -74,12 +74,18 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 
         private void PlayAudio()
         {
-            AudioPlayer.Play();
+            if (currentAudio != null) //please ensure AudioToolbar is not visible if no audio file is loaded
+            {
+                AudioPlayer.Play();
+            }
         }
 
         private void PauseAudio()
         {
-            AudioPlayer.Pause();
+            if (currentAudio != null) //please ensure AudioToolbar is not visible if no audio file is loaded
+            {
+                AudioPlayer.Pause();
+            }
         }
 
         private void ShowCaption()
