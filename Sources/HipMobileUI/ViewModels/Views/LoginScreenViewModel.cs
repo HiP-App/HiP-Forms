@@ -91,12 +91,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         private async void PerformLogin()
         {
             UserDialogs.Instance.ShowLoading(Strings.LoginScreenView_Dialog_Login, MaskType.Black);
-            UserStatus userStatus = await IoCManager.Resolve<IUserManager>().Login(new User(email, password));
+            UserStatus userStatus = await IoCManager.Resolve<IUserManager>().Login(new User(email, password,""));
             UserDialogs.Instance.HideLoading();
 
             switch (userStatus)
             {
-                case UserStatus.IncorrectUserNameAndPassword:
+                
+                case UserStatus.IncorrectEmailAndPassword:
                     DisplayWrongCredentialsErrorMessage();
                     break;
                 case UserStatus.LoggedIn:

@@ -913,4 +913,10 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   <data name="ExhibitDetailsPage_GoToRating" xml:space="preserve">
     <value>Bewerten</value>
   </data>
+  <data name="RegisterScreenView_Error_Missing_Username" xml:space="preserve">
+    <value>Das Benutzername-Eingabefeld ist leer</value>
+  </data>
+  <data name="RegisterScreenView_Username" xml:space="preserve">
+    <value>Benutzername</value>
+  </data>
 </root>

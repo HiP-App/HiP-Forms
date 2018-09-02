@@ -114,7 +114,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         public ImageSource Avatar => Settings.AdventurerMode ? ImageSource.FromFile(AdventurerImage) : ImageSource.FromFile(ProfessorImage);
 
         public string Username => Settings.Username;
-        public string EMail => Settings.EMail;
+        public string EMail => Settings.EMail; // displaying the correct email
         public int Score => Settings.Score;
         public string AchievementCount => Settings.Achievements + " / " + maxAchievementsCount;
         public string Completeness => Settings.Completeness + "%";

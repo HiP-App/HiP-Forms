@@ -32,6 +32,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         private string password;
         private string repassword;
         private string errorMessage;
+        private string username;
         private readonly MainPageViewModel mainPageViewModel;
 
         public RegisterScreenViewModel(MainPageViewModel mainPageVm)
@@ -47,7 +48,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 
         async void RegisterUser()
         {
-            var user = new User(Email, password);
+            var user = new User(email, password, username);
             var userStatus = await IoCManager.Resolve<IUserManager>().Register(user, FirstName, LastName);
             if (userStatus == UserStatus.Registered)
             {
@@ -97,7 +98,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             ErrorMessage = Strings.RegisterScreenView_Error_Missing_LastName;
         }
 
-        private void OnRegisterClicked()
+        private void DisplayUsernameMissingErrorMessage()
+        {
+            ErrorMessage = Strings.RegisterScreenView_Error_Missing_Username;
+        }
+    private void OnRegisterClicked()
         {
             if (string.IsNullOrWhiteSpace(Email) && (string.IsNullOrWhiteSpace(Password) || string.IsNullOrWhiteSpace(RepeatPassword)))
                 DisplayEmptyEmailAndPasswordErrorMessage();
@@ -113,6 +118,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
                 DisplayFirstNameMissingErrorMessage();
             else if (string.IsNullOrWhiteSpace(lastName))
                 DisplayLastNameMissingErrorMessage();
+            else if (string.IsNullOrWhiteSpace(username))
+                DisplayUsernameMissingErrorMessage();
             else
                 RegisterUser();
         }
@@ -144,6 +151,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         {
             get { return email; }
             set { SetProperty(ref email, value); }
+        }
+
+        public string Username
+        {
+             get { return username; }
+            set { SetProperty(ref username, value);}
         }
 
         public string Password

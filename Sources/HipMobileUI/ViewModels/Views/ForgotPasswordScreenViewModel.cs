@@ -58,7 +58,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 
         private async void SendResetPasswordEmail()
         {
-            var userStatus = await IoCManager.Resolve<IUserManager>().ForgotPassword(new User(Email, ""));
+            var userStatus = await IoCManager.Resolve<IUserManager>().ForgotPassword(new User(Email, "",""));
 
             if (userStatus == UserStatus.PasswordResetEmailSent)
             {
