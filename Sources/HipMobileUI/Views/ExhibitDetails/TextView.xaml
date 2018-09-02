@@ -24,19 +24,18 @@
         <views1:NotificationExtensionView>
             <views1:NotificationExtensionView.ContentTemplate>
                 <views1:BottomSheetView BottomSheetVisible="{Binding BottomSheetVisible}">
-                    <views1:BottomSheetView.MainContent >
-                        <RelativeLayout HorizontalOptions="Fill" BackgroundColor="White" >
-                            <ScrollView RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.9}"
-                                        RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}" Margin="10">
-                                <StackLayout HorizontalOptions="FillAndExpand" 
+                    <views1:BottomSheetView.MainContent>
+                        <RelativeLayout HorizontalOptions="Fill" BackgroundColor="White">
+                            <ScrollView
+                                RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.9}"
+                                RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}"
+                                Margin="10">
+                                <StackLayout HorizontalOptions="FillAndExpand"
                                              VerticalOptions="FillAndExpand">
-                                    <StackLayout.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding ToggleButtonVisibility}" />
-                                    </StackLayout.GestureRecognizers>
                                     <Label Text="{Binding Text}"
-                                                               TextColor="Black"
-                                                               FontSize="16"
-                                                               Margin="0,0,0,30" />
+                                           TextColor="Black"
+                                           FontSize="16"
+                                           Margin="0,0,0,30" />
                                 </StackLayout>
                             </ScrollView>
                         </RelativeLayout>
@@ -44,10 +43,12 @@
                     <views1:BottomSheetView.BottomSheet>
                         <StackLayout BackgroundColor="White">
                             <BoxView Color="{StaticResource DarkGrayColor}" HeightRequest="1" />
-                            <StackLayout Margin="16,16" Spacing="15" >
-                                <Label Text="{Binding Headline}" TextColor="Black" FontSize="16" FontAttributes="Bold" Style="{DynamicResource Ssp-SemiBold}"/>
+                            <StackLayout Margin="16,16" Spacing="15">
+                                <Label Text="{Binding Headline}" TextColor="Black" FontSize="16" FontAttributes="Bold"
+                                       Style="{DynamicResource Ssp-SemiBold}" />
                                 <ScrollView>
-                                    <Label Text="{Binding Description}" TextColor="Black" FontSize="14" Style="{DynamicResource Ssp-Regular}"/>
+                                    <Label Text="{Binding Description}" TextColor="Black" FontSize="14"
+                                           Style="{DynamicResource Ssp-Regular}" />
                                 </ScrollView>
                             </StackLayout>
                         </StackLayout>

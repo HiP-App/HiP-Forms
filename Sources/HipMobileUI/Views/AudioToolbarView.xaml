@@ -33,7 +33,7 @@
                        Source="ic_pause_black" HorizontalOptions="Center" VerticalOptions="Center" />
             </StackLayout>
             <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                <controls:TouchEventSlider x:Name="AudioSlider" Maximum="{Binding MaxAudioProgress}"
+                <controls:TouchEventSlider x:Name="AudioSlider" Maximum="{Binding MaxAudioProgress}" Value="{Binding AudioSliderProgress}"
                                            VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand" />
             </StackLayout>
             <StackLayout Orientation="Vertical" >
