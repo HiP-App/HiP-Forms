@@ -81,14 +81,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.UserApi
         public async Task<PredProfilePicture[]> GetPredefinedProfilePictures(string accessToken)
         {
             var path = "https://docker-hip.cs.uni-paderborn.de/public/userstore/api";
-            var requestPath = "/Users/PredefinedAvatars";
+            var requestPath = "/PredefinedAvatars";
             var completePath = path + requestPath;
             var response = await userApiClient.GetResponseFromUrlAsString(requestPath, accessToken);
             var idArray = ParsePredefinedProfilePictures(response);
             var predProfilePictures = new PredProfilePicture[idArray.Length];
             for (var i = 0; i < idArray.Length; i++)
             {
-                requestPath = $@"/Users/PredefinedAvatars/{idArray[i]}";
+                requestPath = $@"/PredefinedAvatars/{idArray[i]}";
                 completePath = path + requestPath;
                 var pictureBytes = await userApiClient.GetResponseFromUrlAsBytes(requestPath, accessToken);
                 if (pictureBytes != null)
@@ -103,13 +103,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.UserApi
 
         public static string[] ParsePredefinedProfilePictures(string json)
         {
-            var predProfilePictureJsons = (JArray)JObject.Parse(json)["items"];
+
+            var predProfilePictureJsons = JArray.Parse(json);
             var length = predProfilePictureJsons.Count;
             var idArray = new string[length];
 
             for (var i = 0; i < length; i++)
             {
-                idArray[i] = predProfilePictureJsons.ToString();
+                idArray[i] = predProfilePictureJsons[i].ToString();
             }
 
             return idArray;

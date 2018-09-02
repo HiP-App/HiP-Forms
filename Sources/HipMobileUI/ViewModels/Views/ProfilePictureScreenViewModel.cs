@@ -72,8 +72,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         {
             base.OnAppearing();
 
-            //await manager.GetPredefinedProfilePictures(Settings.AccessToken);
-
             ErrorMessageColor = "Black";
             ErrorMessage = $"{Strings.ProfilePictureScreenViewModel_NoError}";
 
@@ -107,11 +105,18 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             }
 
             OnPropertyChanged();
+
+            GetPredefinedProfilePictures();
         }
 
         public void KeepAvatar()
         {
             mainPageViewModel.SwitchToProfileView();
+        }
+
+        private async void GetPredefinedProfilePictures()
+        {
+            await manager.GetPredefinedProfilePictures(Settings.AccessToken);
         }
 
         public async void SaveNewAvatar()
