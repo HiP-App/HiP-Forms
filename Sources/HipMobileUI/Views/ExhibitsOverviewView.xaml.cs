@@ -15,7 +15,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
         {
             var viewModel = (ExhibitsOverviewListItemViewModel) e.SelectedItem;
             var exhibit = viewModel.Exhibit;
-            var name = exhibit.Name;
+            if (BindingContext is ExhibitsOverviewViewModel vm)
+            {
+
+                vm.ExhibitChanged(exhibit);
+            }
         }
     }
 }

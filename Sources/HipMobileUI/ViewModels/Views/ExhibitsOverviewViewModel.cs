@@ -12,6 +12,7 @@ using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using Plugin.Geolocator.Abstractions;
 using Xamarin.Forms;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 {
@@ -26,6 +27,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         private GeoLocation? position;
         private GeoLocation gpsLocation;
         private ICommand mapFocusCommand;
+        private Exhibit selectedExhibit;
 
         public ExhibitsOverviewViewModel(IReadOnlyList<Exhibit> exhibits)
         {
@@ -152,6 +154,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         {
             Exhibits = new ObservableCollection<ExhibitsOverviewListItemViewModel>(
                 DbManager.DataAccess.Exhibits().GetExhibits().Select(ex => new ExhibitsOverviewListItemViewModel(ex)));
+        }
+
+        public void ExhibitChanged(Exhibit exhibit)
+        {
+            selectedExhibit = exhibit;
+            Debug.WriteLine(selectedExhibit.Name);
+            //Todo add setting map markers 
         }
 
         /// <summary>

@@ -102,7 +102,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Map
                 osmMap.GpsLocationChanged += NewElementOnGpsLocationChanged;
                 NewElementOnGpsLocationChanged(e.NewElement.GpsLocation);
                 osmMap.ExhibitSetChanged += NewElementOnExhibitSetChanged;
-                NewElementOnExhibitSetChanged(e.NewElement.ExhibitSet);
+                NewElementOnExhibitSetChanged(e.NewElement.ExhibitSet, e.NewElement.SelectedExhibit);
                 osmMap.DetailsRouteChanged += NewElementOnDetailsRouteChanged;
                 NewElementOnDetailsRouteChanged(osmMap.DetailsRoute);
 
@@ -125,9 +125,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Map
         /// Displays all markers on Mainmap and updates it if set changes
         /// </summary>
         /// <param name="set"></param>
-        private void NewElementOnExhibitSetChanged(IReadOnlyList<Exhibit> set)
+        private void NewElementOnExhibitSetChanged(IReadOnlyList<Exhibit> set, Exhibit selectedExhibit)
         {
-            SetMainScreenMarkers(set);
+            SetMainScreenMarkers(set, selectedExhibit);
         }
 
         /// <summary>
@@ -211,7 +211,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Map
 
         //Here all Markers for the Exhibits in the Main Map are set
         //and some general stuff
-        private void SetMainScreenMarkers(IReadOnlyList<Exhibit> set)
+        private void SetMainScreenMarkers(IReadOnlyList<Exhibit> set, Exhibit selectedExhibit)
         {
             locationOverlay = new MyLocationOverlay(activity, mapView);
             var compassOverlay = new CompassOverlay(activity, mapView);
@@ -224,6 +224,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Map
             {
                 var markerInfoWindow = new ViaPointInfoWindow(Resource.Layout.navigation_info_window, mapView);
                 var mapMarkerIcon = ContextCompat.GetDrawable(activity, Resource.Drawable.outline_location);
+                var selectedMapMarkerIcon = ContextCompat.GetDrawable(activity, Resource.Drawable.selected_location);
                 var setMarker = new SetMarker(mapView, markerInfoWindow);
 
                 foreach (var e in set)
@@ -233,6 +234,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Map
                     var marker = setMarker.AddMarker(null, e.Name, e.Description, geoPoint, mapMarkerIcon, e.Id);
                     mapView.OverlayManager.Add(marker);
                 }
+
+                var selectedGeoPoint= new GeoPoint(selectedExhibit.Location.Latitude, selectedExhibit.Location.Longitude);
+                var selectedMarker = setMarker.AddMarker(null, selectedExhibit.Name, selectedExhibit.Description, selectedGeoPoint, selectedMapMarkerIcon, selectedExhibit.Id);
+                mapView.OverlayManager.Add(selectedMarker);
             }
 
             mapView.Invalidate();

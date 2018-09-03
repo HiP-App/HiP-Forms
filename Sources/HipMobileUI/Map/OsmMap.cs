@@ -21,6 +21,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Map
 {
     public class OsmMap : View
     {
+        private Exhibit selectedExhibit;
+
         public OsmMap()
         {
             CenterCommand = new Command(() => { CenterLocationCalled?.Invoke((GeoLocation)CenterCommandParameter); });
@@ -29,6 +31,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Map
         public static readonly BindableProperty ExhibitSetProperty =
             BindableProperty.Create(nameof(ExhibitSet), typeof(IReadOnlyList<Exhibit>), typeof(OsmMap), null, propertyChanged: ExhibitPropertyChanged);
 
+        public static readonly BindableProperty SelectedExhibitProperty= 
+            BindableProperty.Create(nameof(SelectedExhibit), typeof(Exhibit), typeof(OsmMap), null, propertyChanged:ExhibitPropertyChanged);
         public static readonly BindableProperty GpsLocationProperty =
             BindableProperty.Create(nameof(GpsLocation), typeof(GeoLocation?), typeof(OsmMap), null, propertyChanged: GpsLocationPropertyChanged);
 
@@ -61,6 +65,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Map
             set => SetValue(CenterCommandParameterProperty, value);
         }
 
+
         // Property accessor
         public IReadOnlyList<Exhibit> ExhibitSet
         {
@@ -68,6 +73,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Map
             set => SetValue(ExhibitSetProperty, value);
         }
 
+        public Exhibit SelectedExhibit
+        {
+            get => (Exhibit)GetValue(SelectedExhibitProperty);
+            set => SetValue(SelectedExhibitProperty, value);
+        }
         public GeoLocation? GpsLocation
         {
             get => (GeoLocation?)GetValue(GpsLocationProperty);
