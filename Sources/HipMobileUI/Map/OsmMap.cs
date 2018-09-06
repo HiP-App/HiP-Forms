@@ -25,14 +25,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Map
 
         public OsmMap()
         {
-            CenterCommand = new Command(() => { CenterLocationCalled?.Invoke((GeoLocation)CenterCommandParameter); });
+            CenterCommand = new Command(() => { CenterLocationCalled?.Invoke((GeoLocation) CenterCommandParameter); });
         }
 
         public static readonly BindableProperty ExhibitSetProperty =
             BindableProperty.Create(nameof(ExhibitSet), typeof(IReadOnlyList<Exhibit>), typeof(OsmMap), null, propertyChanged: ExhibitPropertyChanged);
 
-        public static readonly BindableProperty SelectedExhibitProperty= 
-            BindableProperty.Create(nameof(SelectedExhibit), typeof(Exhibit), typeof(OsmMap), null, propertyChanged:ExhibitPropertyChanged);
+        public static readonly BindableProperty SelectedExhibitProperty =
+            BindableProperty.Create(nameof(SelectedExhibit), typeof(Exhibit), typeof(OsmMap), null, propertyChanged: ExhibitPropertyChanged);
+
         public static readonly BindableProperty GpsLocationProperty =
             BindableProperty.Create(nameof(GpsLocation), typeof(GeoLocation?), typeof(OsmMap), null, propertyChanged: GpsLocationPropertyChanged);
 
@@ -44,7 +45,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Map
             BindableProperty.Create(nameof(ShowDetailsRoute), typeof(bool), typeof(OsmMap), false);
 
         //Set this to true if want to have the navigation
-        public static readonly BindableProperty ShowNavigationProperty = 
+        public static readonly BindableProperty ShowNavigationProperty =
             BindableProperty.Create(nameof(ShowNavigation), typeof(bool), typeof(OsmMap), false);
 
         public static BindableProperty CenterCommandProperty =
@@ -55,7 +56,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Map
 
         public ICommand CenterCommand
         {
-            get => (ICommand)GetValue(CenterCommandProperty);
+            get => (ICommand) GetValue(CenterCommandProperty);
             set => SetValue(CenterCommandProperty, value);
         }
 
@@ -65,40 +66,40 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Map
             set => SetValue(CenterCommandParameterProperty, value);
         }
 
-
         // Property accessor
         public IReadOnlyList<Exhibit> ExhibitSet
         {
-            get => (IReadOnlyList<Exhibit>)GetValue(ExhibitSetProperty);
+            get => (IReadOnlyList<Exhibit>) GetValue(ExhibitSetProperty);
             set => SetValue(ExhibitSetProperty, value);
         }
 
         public Exhibit SelectedExhibit
         {
-            get => (Exhibit)GetValue(SelectedExhibitProperty);
+            get => (Exhibit) GetValue(SelectedExhibitProperty);
             set => SetValue(SelectedExhibitProperty, value);
         }
+
         public GeoLocation? GpsLocation
         {
-            get => (GeoLocation?)GetValue(GpsLocationProperty);
+            get => (GeoLocation?) GetValue(GpsLocationProperty);
             set => SetValue(GpsLocationProperty, value);
         }
 
         public Route DetailsRoute
         {
-            get => (Route)GetValue(DetailsRouteProperty);
+            get => (Route) GetValue(DetailsRouteProperty);
             set => SetValue(DetailsRouteProperty, value);
         }
 
         public bool ShowDetailsRoute
         {
-            get => (bool)GetValue(ShowDetailsRouteProperty);
+            get => (bool) GetValue(ShowDetailsRouteProperty);
             set => SetValue(ShowDetailsRouteProperty, value);
         }
 
         public bool ShowNavigation
         {
-            get => (bool)GetValue(ShowNavigationProperty);
+            get => (bool) GetValue(ShowNavigationProperty);
             set => SetValue(ShowNavigationProperty, value);
         }
 
@@ -107,8 +108,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Map
             if (!Equals(oldValue, newValue))
             {
                 // inform all listeners that the ExhibitSet changed
-                var map = (OsmMap)bindable;
+                var map = (OsmMap) bindable;
                 map.ExhibitSetChanged?.Invoke(map.ExhibitSet);
+                map.SelectedExhibitChanged?.Invoke((Exhibit) newValue);
             }
         }
 
@@ -116,7 +118,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Map
         {
             if (!Equals(oldValue, newValue))
             {
-                var map = (OsmMap)bindable;
+                var map = (OsmMap) bindable;
                 map.GpsLocationChanged?.Invoke(map.GpsLocation);
             }
         }
@@ -125,7 +127,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Map
         {
             if (!Equals(oldValue, newValue))
             {
-                var map = (OsmMap)bindable;
+                var map = (OsmMap) bindable;
                 map.DetailsRouteChanged?.Invoke(map.DetailsRoute);
             }
         }
@@ -133,6 +135,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Map
         public delegate void ExhibitSetChangedHandler(IReadOnlyList<Exhibit> set);
 
         public event ExhibitSetChangedHandler ExhibitSetChanged;
+
+        public delegate void SelectedExhibitChangedHandler(Exhibit selectedExhibit);
+
+        public event SelectedExhibitChangedHandler SelectedExhibitChanged;
 
         public delegate void GpslocationChangedHandler(GeoLocation? location);
 

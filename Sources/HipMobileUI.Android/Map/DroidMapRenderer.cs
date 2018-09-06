@@ -94,6 +94,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Map
                 e.OldElement.ExhibitSetChanged -= NewElementOnExhibitSetChanged;
                 e.OldElement.GpsLocationChanged -= NewElementOnGpsLocationChanged;
                 e.OldElement.DetailsRouteChanged -= NewElementOnDetailsRouteChanged;
+                e.OldElement.SelectedExhibitChanged -= NewElementOnSelectedExhibitChanged;
             }
             if (e.NewElement != null)
             {
@@ -102,7 +103,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Map
                 osmMap.GpsLocationChanged += NewElementOnGpsLocationChanged;
                 NewElementOnGpsLocationChanged(e.NewElement.GpsLocation);
                 osmMap.ExhibitSetChanged += NewElementOnExhibitSetChanged;
-                NewElementOnExhibitSetChanged(e.NewElement.ExhibitSet, e.NewElement.SelectedExhibit);
+                NewElementOnExhibitSetChanged(e.NewElement.ExhibitSet);
+                osmMap.SelectedExhibitChanged += NewElementOnSelectedExhibitChanged;
+                NewElementOnSelectedExhibitChanged(e.NewElement.SelectedExhibit);
                 osmMap.DetailsRouteChanged += NewElementOnDetailsRouteChanged;
                 NewElementOnDetailsRouteChanged(osmMap.DetailsRoute);
 
@@ -124,8 +127,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Map
         /// <summary>
         /// Displays all markers on Mainmap and updates it if set changes
         /// </summary>
-        /// <param name="set"></param>
-        private void NewElementOnExhibitSetChanged(IReadOnlyList<Exhibit> set, Exhibit selectedExhibit)
+        private void NewElementOnExhibitSetChanged(IReadOnlyList<Exhibit> set)
+        {
+            // TODO You'll probably have to cache the selectedExhibit and the exhibit set in a property and call SetMainScreenMarkers
+            // TODO with the new set and the cached selectedExhibit. The same goes for NewElementOnSelectedExhibitChanged.
+            SetMainScreenMarkers(set, selectedExhibit);
+        }
+
+        private void NewElementOnSelectedExhibitChanged(Exhibit selectedExhibit)
         {
             SetMainScreenMarkers(set, selectedExhibit);
         }
