@@ -367,6 +367,24 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Go to Quiz.
+        /// </summary>
+        public static string ExhibitDetailsPage_GoToQuiz {
+            get {
+                return ResourceManager.GetString("ExhibitDetailsPage_GoToQuiz", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rate.
+        /// </summary>
+        public static string ExhibitDetailsPage_GoToRating {
+            get {
+                return ResourceManager.GetString("ExhibitDetailsPage_GoToRating", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Note.
         /// </summary>
         public static string ExhibitDetailsPage_Hinweis {

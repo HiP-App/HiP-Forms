@@ -100,7 +100,16 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         {
             this.exhibit = exhibit;
             Position = 0;
-            Pages = pages.Select((page, i) => new ExhibitDetailsViewModel(exhibit, title, page, Navigation, this, $"{i + 1}/{pages.Count}")).ToList();
+            var showGoToQuizButton = DbManager.DataAccess.Quizzes().QuizzesForExhibit(exhibit.Id).Any();
+            Pages = pages.Select((page, i) => new ExhibitDetailsViewModel(exhibit,
+                                                                          title,
+                                                                          page,
+                                                                          Navigation,
+                                                                          this,
+                                                                          $"{i + 1}/{pages.Count}",
+                                                                          i + 1 == pages.Count,
+                                                                          showGoToQuizButton))
+                         .ToList();
 
             if (additionalInformation)
             {
@@ -181,6 +190,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             }
         }
 
+        public bool ShowLastPageCallToAction { get; }
+
+        public bool ShowGoToQuizButton { get; }
+
         /// <summary>
         /// The currently displayed subview.
         /// </summary>
@@ -188,18 +201,28 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
         public bool HasAdditionalInformationPages => page.AdditionalInformationPages?.Any() == true;
 
+        public Command GoToQuizCommand { get; }
+
+        public Command GoToRatingCommand { get; }
+
         public ExhibitDetailsViewModel(Exhibit exhibit,
                                        string title,
                                        Page page,
                                        INavigationService navigation,
                                        IContainer container,
-                                       string pageNumber)
+                                       string pageNumber,
+                                       bool showLastPageCallToAction,
+                                       bool showGoToQuizButton)
         {
             this.exhibit = exhibit;
             this.page = page;
             this.navigation = navigation;
             this.container = container;
             PageNumber = pageNumber;
+            ShowLastPageCallToAction = showLastPageCallToAction;
+            ShowGoToQuizButton = showGoToQuizButton;
+            GoToQuizCommand = new Command(async () => await IoCManager.Resolve<INavigationService>().PushAsync(new QuizStartingPageViewModel(exhibit)));
+            GoToRatingCommand = new Command(async () => await IoCManager.Resolve<INavigationService>().PushAsync(new UserRatingPageViewModel(exhibit)));
 
             // TODO Reset audio on every swipe
             // init the audio toolbar

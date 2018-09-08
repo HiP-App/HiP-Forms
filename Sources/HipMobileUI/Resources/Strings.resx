@@ -907,6 +907,12 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   <data name="QuizStartingPage_UpToNow" xml:space="preserve">
     <value>Up to now, you have</value>
   </data>
+  <data name="ExhibitDetailsPage_GoToQuiz" xml:space="preserve">
+    <value>Go to Quiz</value>
+  </data>
+  <data name="ExhibitDetailsPage_GoToRating" xml:space="preserve">
+    <value>Rate</value>
+  </data>
   <data name="RegisterScreenView_Error_Missing_Username" xml:space="preserve">
     <value>The username input field is empty</value>
   </data>
