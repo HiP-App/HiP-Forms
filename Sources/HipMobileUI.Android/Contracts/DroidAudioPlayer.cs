@@ -107,22 +107,18 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Contracts
             if (currentAudio == null)
             {
                 Log.Error("DroidAudioPlayer", "MediaPlayer.Play() was called, but currentAudio=\"null\" (MUST be not null)");
-                //mediaPlayer.Prepare(); //would lead in most cases to an Java.Lang.IllegalStateException here; Better go on, but without Audio (--> robustness).
-                //mediaPlayerIsPrepared = true;
             }
-            else
+            if (!mediaPlayerIsPrepared)
             {
-                if (!mediaPlayerIsPrepared)
-                {
-                    Log.Debug("DroidAudioPlayer", "WRONG STATE: MediaPlayer.Play() was called without MediaPlayer.prepare() before! (and currentAudio=\"" + currentAudio + ")");
-                    Log.Debug("DroidAudioPlayer", "WRONG STATE: state mediaPlayer.IsPlaying:" + mediaPlayer.IsPlaying);
-                    mediaPlayer.Prepare();
-                    mediaPlayerIsPrepared = true;
-                }
-                mediaPlayer.Start(); //should be called after Prepare() (see MediaPlayer StateDiagram)
-                IsPlayingChanged?.Invoke(true);
-                StartUpdateTimer();
+                Log.Debug("DroidAudioPlayer", "WRONG STATE: MediaPlayer.Play() was called without MediaPlayer.prepare() before! (and currentAudio=\"" + currentAudio + ")");
+                Log.Debug("DroidAudioPlayer", "WRONG STATE: state mediaPlayer.IsPlaying:" + mediaPlayer.IsPlaying);
+                mediaPlayer.Prepare();
+                mediaPlayerIsPrepared = true;
             }
+
+            mediaPlayer.Start(); //should be called after Prepare() (see MediaPlayer StateDiagram)
+            IsPlayingChanged?.Invoke(true);
+            StartUpdateTimer();
         }
 
         public void Pause()
