@@ -26,7 +26,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers
 
         public static readonly int MinTimeBwUpdates = 10000; //(10 seconds)
         public static readonly int MinDistanceChangeForUpdates = 10; // 10 meters
-        public static readonly double ExhibitRadius = 20; // 20m
+        public static readonly double ExhibitRadius = 75; // 75m
         public static readonly double RouteRadius = 50; // 50m
         public static int MapZoomLevel = 15;
 
