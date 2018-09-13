@@ -52,6 +52,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Map
         private OsmMap osmMap;
         private RouteCalculator routeCalculator;
         private Marker userMarkerPosition;
+        private Exhibit selectedExhibit;
+        private IReadOnlyList<Exhibit> exhibitSet;
 
         public DroidMapRenderer(Context context) : base(context)
         {
@@ -131,14 +133,31 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Map
         {
             // TODO You'll probably have to cache the selectedExhibit and the exhibit set in a property and call SetMainScreenMarkers
             // TODO with the new set and the cached selectedExhibit. The same goes for NewElementOnSelectedExhibitChanged.
-            SetMainScreenMarkers(set, selectedExhibit);
+            ExhibitSet = set;
+            if (SelectedExhibit == null)
+            {
+                SelectedExhibit = set.ElementAt(0);
+                SetMainScreenMarkers(set, set.ElementAt(0));
+            }
+            else { SetMainScreenMarkers(set, selectedExhibit); }
+            
         }
-
-        private void NewElementOnSelectedExhibitChanged(Exhibit selectedExhibit)
+        public Exhibit SelectedExhibit
         {
-            SetMainScreenMarkers(set, selectedExhibit);
+            get { return selectedExhibit; }
+            set { selectedExhibit = value; }
+        }
+        private void NewElementOnSelectedExhibitChanged(Exhibit selectedExh)
+        {
+            this.selectedExhibit = selectedExh;
+            SetMainScreenMarkers(ExhibitSet, selectedExhibit);
         }
 
+        public IReadOnlyList<Exhibit> ExhibitSet
+        {
+            get { return exhibitSet; }
+            set { exhibitSet = value; }
+        }
         /// <summary>
         /// Everything regarding location changes is handled here
         /// </summary>
@@ -220,7 +239,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Map
 
         //Here all Markers for the Exhibits in the Main Map are set
         //and some general stuff
-        private void SetMainScreenMarkers(IReadOnlyList<Exhibit> set, Exhibit selectedExhibit)
+        private void SetMainScreenMarkers(IReadOnlyList<Exhibit> set, Exhibit selectedExh)
         {
             locationOverlay = new MyLocationOverlay(activity, mapView);
             var compassOverlay = new CompassOverlay(activity, mapView);
@@ -228,6 +247,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Map
             mapView.OverlayManager.Add(locationOverlay);
             mapView.OverlayManager.Add(compassOverlay);
 
+            SelectedExhibit = selectedExh;
+            ExhibitSet = set;
+            
             //Here all exhibit markers and bubbles are set if the Exhibit is not null
             if (set != null)
             {
@@ -244,8 +266,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Map
                     mapView.OverlayManager.Add(marker);
                 }
 
-                var selectedGeoPoint= new GeoPoint(selectedExhibit.Location.Latitude, selectedExhibit.Location.Longitude);
-                var selectedMarker = setMarker.AddMarker(null, selectedExhibit.Name, selectedExhibit.Description, selectedGeoPoint, selectedMapMarkerIcon, selectedExhibit.Id);
+                var selectedGeoPoint= new GeoPoint(SelectedExhibit.Location.Latitude, SelectedExhibit.Location.Longitude);
+                var selectedMarker = setMarker.AddMarker(null, SelectedExhibit.Name, SelectedExhibit.Description, selectedGeoPoint, selectedMapMarkerIcon, SelectedExhibit.Id);
                 mapView.OverlayManager.Add(selectedMarker);
             }
 

@@ -21,8 +21,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Map
 {
     public class OsmMap : View
     {
-        private Exhibit selectedExhibit;
-
+        
         public OsmMap()
         {
             CenterCommand = new Command(() => { CenterLocationCalled?.Invoke((GeoLocation) CenterCommandParameter); });

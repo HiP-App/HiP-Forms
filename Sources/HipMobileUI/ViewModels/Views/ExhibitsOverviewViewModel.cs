@@ -27,6 +27,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         private GeoLocation? position;
         private GeoLocation gpsLocation;
         private ICommand mapFocusCommand;
+        private ICommand selectedExhibitChangedCommand;
         private Exhibit selectedExhibit;
 
         public ExhibitsOverviewViewModel(IReadOnlyList<Exhibit> exhibits)
@@ -35,6 +36,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             {
                 Exhibits = new ObservableCollection<ExhibitsOverviewListItemViewModel>(
                     exhibits.Select(ex => new ExhibitsOverviewListItemViewModel(ex)));
+                SelectedExhibit = exhibits.ElementAt(0);
+                
             }
 
             locationManager = IoCManager.Resolve<ILocationManager>();
@@ -158,11 +161,23 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 
         public void ExhibitChanged(Exhibit exhibit)
         {
-            selectedExhibit = exhibit;
+            SelectedExhibit = exhibit;
             Debug.WriteLine(selectedExhibit.Name);
+            //if (exhibit != null) { SelectedExhibitChangedCommand.Execute(exhibit); }
+            
             //Todo add setting map markers 
         }
+        public Exhibit SelectedExhibit
+        {
+            get { return selectedExhibit; }
+            set { SetProperty(ref selectedExhibit,value);}
+        }
 
+        public ICommand SelectedExhibitChangedCommand
+        {
+            get { return selectedExhibitChangedCommand; }
+            set { SetProperty(ref selectedExhibitChangedCommand, value); }
+        }
         /// <summary>
         /// Download updated data
         /// </summary>
