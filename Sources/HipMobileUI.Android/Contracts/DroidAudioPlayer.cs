@@ -18,10 +18,7 @@ using System.Threading;
 using Android.App;
 using Android.Content;
 using Android.Media;
-using Android.OS;
-using Android.Support.V4.App;
 using Android.Util;
-using Android.Widget;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using Java.IO;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
@@ -40,6 +37,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Contracts
         private readonly MediaPlayer mediaPlayer;
         private Audio currentAudio;
         private Timer progressUpdateTimer;
+        private double maxProgress;
+        private bool mediaPlayerIsPrepared = false;
 
         public DroidAudioPlayer()
         {
@@ -52,7 +51,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Contracts
 
         public double CurrentProgress => mediaPlayer.CurrentPosition;
 
-        public double MaximumProgress => mediaPlayer.Duration;
+        public double MaximumProgress => maxProgress;
 
         public Audio CurrentAudio
         {
@@ -62,12 +61,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Contracts
                 currentAudio = value;
                 DismissNotification();
                 mediaPlayer.Stop();
+                mediaPlayerIsPrepared = false;
                 mediaPlayer.Reset();
                 if (value != null)
                 {
                     var path = CopyAudioToTemp(value);
                     mediaPlayer.SetDataSource(path);
                     mediaPlayer.Prepare();
+                    mediaPlayerIsPrepared = true;
+                    maxProgress = mediaPlayer.Duration; //should be called after Prepare() (see MediaPlayer StateDiagram)
                     ProgressChanged?.Invoke(0);
                 }
             }
@@ -82,36 +84,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Contracts
         private static readonly int AudioPlayerNotificationId = 14041993;
         private const string PlayPauseAction = "PaderbornUniversity.SILab.Hip.Mobile.Droid.PlayPause";
         private const string StopAction = "PaderbornUniversity.SILab.Hip.Mobile.Droid.Stop";
-
-        private void ShowNotification(bool setPlayImage)
-        {
-            var mainActivity = (MainActivity) CrossCurrentActivity.Current.Activity;
-
-            var builder = new NotificationCompat.Builder(mainActivity)
-                .SetOngoing(true)
-                .SetSmallIcon(Resource.Drawable.ic_headset_white);
-
-            var contentView = new RemoteViews(mainActivity.PackageName, Resource.Layout.audioNotificationView);
-
-            contentView.SetOnClickPendingIntent(Resource.Id.btnPlayPause, GetIntentForAction(PlayPauseAction));
-            contentView.SetOnClickPendingIntent(Resource.Id.btnStop, GetIntentForAction(StopAction));
-
-            contentView.SetTextViewText(Resource.Id.textViewTitle, AudioTitle);
-            contentView.SetImageViewResource(Resource.Id.btnPlayPause, setPlayImage ? Resource.Drawable.ic_pause : Resource.Drawable.ic_play_arrow);
-            contentView.SetProgressBar(Resource.Id.audio_progress_bar, mediaPlayer.Duration, mediaPlayer.CurrentPosition, false);
-
-            builder = builder.SetCustomContentView(contentView);
-
-            if (Build.VERSION.SdkInt >= BuildVersionCodes.Lollipop)
-            {
-                builder.SetVisibility((int) NotificationVisibility.Public);
-            }
-
-            // Finally, publish the notification
-            var notificationManager = (NotificationManager) mainActivity.GetSystemService(Context.NotificationService);
-            //notificationManager.Notify(AudioPlayerNotificationId, notificationBuilder.Build ());
-            notificationManager.Notify(AudioPlayerNotificationId, builder.Build());
-        }
 
         private PendingIntent GetIntentForAction(string action)
         {
@@ -132,11 +104,21 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Contracts
 
         public void Play()
         {
-            mediaPlayer.Start();
+            if (currentAudio == null)
+            {
+                Log.Error("DroidAudioPlayer", "MediaPlayer.Play() was called, but currentAudio=\"null\" (MUST be not null)");
+            }
+            if (!mediaPlayerIsPrepared)
+            {
+                Log.Debug("DroidAudioPlayer", "WRONG STATE: MediaPlayer.Play() was called without MediaPlayer.prepare() before! (and currentAudio=\"" + currentAudio + ")");
+                Log.Debug("DroidAudioPlayer", "WRONG STATE: state mediaPlayer.IsPlaying:" + mediaPlayer.IsPlaying);
+                mediaPlayer.Prepare();
+                mediaPlayerIsPrepared = true;
+            }
+
+            mediaPlayer.Start(); //should be called after Prepare() (see MediaPlayer StateDiagram)
             IsPlayingChanged?.Invoke(true);
             StartUpdateTimer();
-
-            ShowNotification(true);
         }
 
         public void Pause()
@@ -144,12 +126,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Contracts
             mediaPlayer.Pause();
             IsPlayingChanged?.Invoke(false);
             StopUpdateTimer();
-            ShowNotification(false);
         }
 
         public void Stop()
         {
             mediaPlayer.Stop();
+            mediaPlayerIsPrepared = false;
             StopUpdateTimer();
             IsPlayingChanged?.Invoke(false);
             DismissNotification();
@@ -161,6 +143,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Contracts
                 var path = CopyAudioToTemp(currentAudio);
                 mediaPlayer.SetDataSource(path);
                 mediaPlayer.Prepare();
+                mediaPlayerIsPrepared = true;
             }
         }
 
@@ -188,7 +171,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Contracts
         private void UpdateProgress(object state)
         {
             ProgressChanged?.Invoke(CurrentProgress);
-            ShowNotification(IsPlaying);
         }
 
         /// <summary>
@@ -211,7 +193,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Contracts
             }
             catch (IOException ioe)
             {
-                Log.Warn("AndroidMediaPlayer", "Could not write audio to temp file, exception message:" + ioe.Message);
+                Log.Warn("DroidAudioPlayer", "Could not write audio to temp file, exception message:" + ioe.Message);
             }
             return filepath;
         }

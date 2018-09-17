@@ -24,6 +24,10 @@ using System.IO;
 using System.Windows.Input;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelConverters;
 using Xamarin.Forms;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
+using System.Diagnostics;
+using System;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 {
@@ -36,6 +40,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         private Route detailsRoute;
         private bool showDetailsRoute;
         private readonly IAudioPlayer audioPlayer;
+        private readonly AudioToolbarViewModel audioToolbar;
 
         /// <summary>
         /// Creates a new ViewModel for the route with the specified ID.
@@ -69,11 +74,33 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             DetailsRoute = route;
             ShowDetailsRoute = true;
 
-            // init the audio button
-            audioPlayer = IoCManager.Resolve<IAudioPlayer>();
-            audioPlayer.CurrentAudio = route.Audio;
-            audioPlayer.AudioTitle = route.Name;
-            audioPlayer.IsPlayingChanged += AudioPlayerOnIsPlayingChanged;
+            // stop audio if necessary
+            var player = IoCManager.Resolve<IAudioPlayer>();
+            if (player.IsPlaying)
+            {
+                player.Stop();
+            }
+
+            // init the audio toolbar
+            audioToolbar = new AudioToolbarViewModel(route.Name, true);
+
+            // It's possible to get no audio data even if it should exist
+            try
+            {
+                audioToolbar.SetNewAudioFile(route.Audio);
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e.Message);
+                Debug.WriteLine(e.StackTrace);
+                audioToolbar.SetNewAudioFile(null);
+            }
+
+            //play automatic audio, if wanted
+            if (Settings.AutoStartAudio)
+            {
+                audioToolbar.AudioPlayer.Play();
+            }
         }
 
         private async void SetRouteImage(Route route)
@@ -82,23 +109,18 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             Image = imageData != null ? ImageSource.FromStream(() => new MemoryStream(imageData)) : ImageSource.FromStream(() => new MemoryStream(BackupData.BackupImageData));
         }
 
-        private void AudioPlayerOnIsPlayingChanged(bool newvalue)
-        {
-            ReadOutCaption = audioPlayer.IsPlaying ? Strings.RouteDetailsPage_PauseAudio : Strings.RouteDetailsPage_PlayAudio;
-        }
-
         /// <summary>
         /// Starts audio playback for the route's description.
         /// </summary>
         private void StartDescriptionPlayback()
         {
-            if (!audioPlayer.IsPlaying)
+            if (!audioToolbar.AudioPlayer.IsPlaying)
             {
-                audioPlayer.Play();
+                audioToolbar.AudioPlayer.Play();
             }
             else
             {
-                audioPlayer.Pause();
+                audioToolbar.AudioPlayer.Pause();
             }
         }
 
@@ -147,19 +169,23 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         public override void OnDisappearing()
         {
             base.OnDisappearing();
-
-            audioPlayer.Stop();
+            audioToolbar.OnDisappearing();
         }
 
         public override void OnRevealed()
         {
             base.OnRevealed();
 
-            if (audioPlayer.CurrentAudio == null || !audioPlayer.CurrentAudio.Id.Equals(DetailsRoute.Audio.Id))
-            {
-                // audio has been changed by exhibit details, reset it
-                audioPlayer.CurrentAudio = DetailsRoute.Audio;
-            }
+            //Register audio again
+            audioToolbar.OnRevealed();
+        }
+
+        public override void OnHidden()
+        {
+            base.OnHidden();
+
+            //inform the audio toolbar to clean up
+            audioToolbar.OnHidden();
         }
 
         #region Properties
