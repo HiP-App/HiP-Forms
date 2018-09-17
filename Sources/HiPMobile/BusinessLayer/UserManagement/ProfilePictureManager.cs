@@ -49,12 +49,18 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.UserManageme
         public async Task<PredProfilePicture[]> GetPredefinedProfilePictures(string accessToken)
         {
             PredProfilePicture[] predProfilePictures = await client.GetPredefinedProfilePictures(accessToken);
-            return new PredProfilePicture[1];
+            return predProfilePictures;
         }
 
-        public async Task<HttpResponseMessage> PostProfilePicture(Stream picture, string userId, string accessToken)
+        public async Task<HttpResponseMessage> PostProfilePicture(byte[] picture, string userId, string accessToken)
         {
             var result = await client.PostProfilePicture(picture, userId, accessToken);
+            return result;
+        }
+
+        public async Task<HttpResponseMessage> PostPredProfilePicture(string id, string userId, string accessToken)
+        {
+            var result = await client.PostPredProfilePicture(id, userId, accessToken);
             return result;
         }
     }

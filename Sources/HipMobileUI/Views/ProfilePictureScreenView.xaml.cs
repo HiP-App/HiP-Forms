@@ -31,11 +31,16 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
         {
             InitializeComponent();
             deviceOrientation = DeviceOrientation.Undefined;
+
+            MessagingCenter.Subscribe<ProfilePictureScreenViewModel>(this, "PredAvatarList", (sender) => { CreatePredAvatarList(); });
+
         }
+
 
         protected override void OnSizeAllocated(double width, double height)
         {
             base.OnSizeAllocated(width, height);
+
             if (width > height && deviceOrientation != DeviceOrientation.Landscape)
             {
                 deviceOrientation = DeviceOrientation.Landscape;
@@ -103,6 +108,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
 
         }
 
+
+        
+
         private void CreatePredAvatarList()
         {
             if (BindingContext is ProfilePictureScreenViewModel vm)
@@ -113,7 +121,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
                     PictureListGrid.RowDefinitions.Clear();
                     PictureListGrid.ColumnDefinitions.Clear();
 
-                    var avatarCount = vm.PredAvatarCount;
+                    var avatarCount = vm.PredAvatars.Length;
                     var rowCount = (int)Math.Ceiling((double)avatarCount / 4);
                     var columnCount = 3;
                     var imageRow = 0;
@@ -129,7 +137,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
                         PictureListGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
                     }
 
-                    for (var i = 0; i < vm.Avatars.Length; i++)
+                    for (var i = 0; i < vm.PredAvatars.Length; i++)
                     {
                         var frame = new Frame
                         {
@@ -137,7 +145,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Views
 
                             Content = new Image
                             {
-                                Source = vm.Avatars[i].ImageSmall,
+                                Source = vm.PredAvatars[i].ImageSmall,
                                 HeightRequest = 100,
                                 WidthRequest = 100,
                                 Aspect = Aspect.AspectFit

@@ -17,6 +17,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
@@ -52,20 +53,20 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.UserApi
 
         }
 
-        public async Task<HttpResponseMessage> PostProfilePicture(Stream picture, string userId, string accessToken)
+        public async Task<HttpResponseMessage> PostProfilePicture(byte[] picture, string userId, string accessToken)
         {
             var path = "https://docker-hip.cs.uni-paderborn.de/public/userstore/api";
             var requestPath = $@"/Users/{userId}/Photo";
             var completePath = path + requestPath;
 
-            HttpContent fileStreamContent = new StreamContent(picture);
+            var imageStream = new MemoryStream(picture, 0, picture.Length);
+
+            HttpContent fileStreamContent = new StreamContent(imageStream);
 
             fileStreamContent.Headers.ContentDisposition = new ContentDispositionHeaderValue("form-data");
             fileStreamContent.Headers.ContentDisposition.Name = "file";
 
-            //Filename???
-
-            fileStreamContent.Headers.ContentDisposition.FileName = "profilepicture";
+            fileStreamContent.Headers.ContentDisposition.FileName = $"{userId}_profilepicture";
             fileStreamContent.Headers.ContentType = new MediaTypeHeaderValue("multipart/form-data");
 
             var client = new HttpClient();
@@ -75,6 +76,27 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.UserApi
             formData.Add(fileStreamContent);
 
             var response = await client.PutAsync(completePath, formData);
+            return response;
+        }
+
+        public async Task<HttpResponseMessage> PostPredProfilePicture(string id, string userId, string accessToken)
+        {
+            var path = "https://docker-hip.cs.uni-paderborn.de/public/userstore/api";
+            var requestPath = $@"/Users/{userId}/Avatar?avatarId={id}";
+            var completePath = path + requestPath;
+
+            var client = new HttpClient();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+
+            HttpContent con = new StringContent(id, Encoding.UTF8, "application/json");
+            con.Headers.ContentDisposition = new ContentDispositionHeaderValue("query");
+            con.Headers.ContentDisposition.Name = "string";
+            con.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+            //var content = new StringContent(id.ToString(), Encoding.UTF8, "application/json");
+            var response = await client.PutAsync(completePath, con);
+
+
             return response;
         }
 
@@ -93,8 +115,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.UserApi
                 var pictureBytes = await userApiClient.GetResponseFromUrlAsBytes(requestPath, accessToken);
                 if (pictureBytes != null)
                 {
-                    var pictureString = Convert.ToBase64String(pictureBytes);
-                    predProfilePictures[i] = new PredProfilePicture(idArray[i], pictureString);
+                    predProfilePictures[i] = new PredProfilePicture(idArray[i], pictureBytes);
                 }
             }
 

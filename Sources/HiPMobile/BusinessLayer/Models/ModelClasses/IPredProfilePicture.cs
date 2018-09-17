@@ -18,6 +18,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
     {
         string Id { get; }
 
-        string ImageFullString { get; }
+        //string ImageFullString { get; }
     }
 }

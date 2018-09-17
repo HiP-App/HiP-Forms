@@ -20,17 +20,17 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
     public class PredProfilePicture : IPredProfilePicture
     {
         
-        public PredProfilePicture(string id, string data)
+        public PredProfilePicture(string id, byte[] data)
         {
             Id = id;
-            ImageFullString = data;
+            ImageFullBytes = data;
         }
 
         public string Id { get; }
 
-        public string ImageFullString { get; }
+        //public string ImageFullString { get; }
 
-        public string ImageSmallString { get; }
+       // public string ImageSmallString { get; }
 
         public ImageSource ImageFull { get; set; }
 

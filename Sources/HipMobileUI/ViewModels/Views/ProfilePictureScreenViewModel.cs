@@ -15,7 +15,9 @@
 using System;
 using System.IO;
 using System.Net;
+using System.Net.Http;
 using System.Windows.Input;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages;
 using Xamarin.Forms;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.UserManagement;
@@ -40,9 +42,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         private const int AvatarPixelHeight = 512;
         private const int AvatarPixelWidth = 512;
 
-        //TODO Only necessary until Download of pred. avatars is implemented
-        public int PredAvatarCount = 20;
-
         public ProfilePictureScreenViewModel(MainPageViewModel mainPageViewModel)
         {
             this.mainPageViewModel = mainPageViewModel;
@@ -60,17 +59,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 
             Avatar = Settings.AdventurerMode ? ImageSource.FromFile(AdventurerImage) : ImageSource.FromFile(ProfessorImage);
 
-            MockPredAvatarList();
-            ResizeAvatars();
-            
-
-            PredAvatarGridBuilt = false;
+            PredAvatarGridBuilt = true;
 
         }
 
         public override async void OnAppearing()
         {
             base.OnAppearing();
+
+            PredAvatarGridBuilt = true;
 
             ErrorMessageColor = "Black";
             ErrorMessage = $"{Strings.ProfilePictureScreenViewModel_NoError}";
@@ -80,12 +77,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 
             AvatarPreview = ImageSource.FromFile("predefined_avatar_empty");
 
-            for (var i = 0; i < PredAvatarCount; i++)
-            {
-                HighlightColors[i] = Color.White;
-            }
-
-            PredAvatarGridBuilt = false;
+            
 
             if (Settings.ProfilePicture == null)
             {
@@ -94,19 +86,18 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
                 {
                     Settings.ProfilePicture = Convert.ToBase64String(currentAvatar.Data);
                     Avatar = ImageSource.FromStream(() => new MemoryStream(currentAvatar.Data));
-                    return;
                 }
             }
             else
             {
                 var currentAvatarBytes = Convert.FromBase64String(Settings.ProfilePicture);
                 Avatar = ImageSource.FromStream(() => new MemoryStream(currentAvatarBytes));
-                return;
             }
 
             OnPropertyChanged();
-
-            GetPredefinedProfilePictures();
+            
+            PredAvatarList();
+            
         }
 
         public void KeepAvatar()
@@ -114,21 +105,34 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             mainPageViewModel.SwitchToProfileView();
         }
 
-        private async void GetPredefinedProfilePictures()
-        {
-            await manager.GetPredefinedProfilePictures(Settings.AccessToken);
-        }
-
         public async void SaveNewAvatar()
         {
-            if (ChosenAvatarBytes != null)
+            var result = new HttpResponseMessage();
+
+            if (ChosenAvatarBytes != null && ChosenAvatarId == null)
             {
                 ErrorMessageColor = "Black";
                 ErrorMessage = $"{Strings.ProfilePictureScreenViewModel_NoError}";
 
-                var imageStream = (Stream)new MemoryStream(ChosenAvatarBytes, 0, ChosenAvatarBytes.Length);
-                var result = await manager.PostProfilePicture(imageStream, Settings.UserId, Settings.AccessToken);
+               
+                result = await manager.PostProfilePicture(ChosenAvatarBytes, Settings.UserId, Settings.AccessToken);
+            }
+            else if (ChosenAvatarBytes == null && ChosenAvatarId != null)
+            {
+                ErrorMessageColor = "Black";
+                ErrorMessage = $"{Strings.ProfilePictureScreenViewModel_NoError}";
 
+                result = await manager.PostPredProfilePicture(ChosenAvatarId, Settings.UserId, Settings.AccessToken);
+            }
+            else
+            {
+                ErrorMessageColor = "Red";
+                ErrorMessage = $"{Strings.ProfilePictureScreenViewModel_Error_Selection}";
+                return;
+            }
+
+            if (result != null)
+            {
                 if (result.StatusCode == HttpStatusCode.NoContent)
                 {
                     //Get uploaded picture to store it in the settings
@@ -138,6 +142,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
                     {
                         Settings.ProfilePicture = Convert.ToBase64String(profilePicture.Data);
                         ChosenAvatarBytes = null;
+                        ChosenAvatarId = null;
                         mainPageViewModel.SwitchToProfileView();
                     }
                     else
@@ -151,16 +156,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
                     ErrorMessageColor = "Red";
                     ErrorMessage = $"{Strings.ProfilePictureScreenViewModel_Error_Upload}";
                 }
-
-
-
             }
+
             else
             {
                 ErrorMessageColor = "Red";
-                ErrorMessage = $"{Strings.ProfilePictureScreenViewModel_Error_Selection}";
+                ErrorMessage = $"{Strings.ProfilePictureScreenViewModel_Error_Upload}";
             }
-
         }
 
         public async void PickImageAsync()
@@ -187,9 +189,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 
         public void ImageTapped(int image)
         {
-            AvatarPreview = Avatars[image].ImageFull;
+            AvatarPreview = PredAvatars[image].ImageFull;
             ChosenAvatarBytes = null;
-            //TODO Set ChosenAvatarID
+            ChosenAvatarId = PredAvatars[image].Id;
             for (var i = 0; i < HighlightColors.Length; i++)
             {
                 HighlightColors[i] = Color.White;
@@ -197,35 +199,23 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             HighlightColors[image] = resourceProvider.TryGetResourceColorvalue("PrimaryColor"); ;
         }
 
-        public void ResizeAvatars()
+        private async void PredAvatarList()
         {
-            foreach (var avatar in Avatars)
+            PredAvatars = await manager.GetPredefinedProfilePictures(Settings.AccessToken);
+            HighlightColors = new Color[PredAvatars.Length];
+
+            for (var i = 0; i < PredAvatars.Length; i++)
             {
-                var avatarSmall = DependencyService.Get<IAvatarImageResizer>().ResizeAvatar(avatar.ImageFullBytes, AvatarPixelWidth, AvatarPixelHeight);
-                avatar.ImageSmallBytes = avatarSmall;
+                HighlightColors[i] = Color.White;
             }
 
-        }
-
-        private void MockPredAvatarList()
-        {
-            Avatars = new PredefinedProfilePicture[PredAvatarCount];
-            HighlightColors = new Color[PredAvatarCount];
-
-            var preds = new PredefinedProfilePictureStrings();
-            var imageString = preds.PredefinedAvatarDog;
-            var imageBytes = Convert.FromBase64String(imageString);
-
-            for (var i = 0; i < Avatars.Length; i++)
+            foreach (var avatar in PredAvatars)
             {
-                
-                Avatars[i] = new PredefinedProfilePicture(imageBytes, "picture");
+                avatar.ImageSmallBytes = DependencyService.Get<IAvatarImageResizer>().ResizeAvatar(avatar.ImageFullBytes, AvatarPixelWidth, AvatarPixelHeight);
             }
-        }
+            PredAvatarGridBuilt = false;
 
-        private void PredAvatarList(PredefinedProfilePicture[] pictures)
-        {
-
+            MessagingCenter.Send<ProfilePictureScreenViewModel>(this, "PredAvatarList");
         }
 
         public ICommand KeepAvatarCommand { get; }
@@ -274,7 +264,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 
         public string ChosenAvatarId { get; private set; }
 
-        public PredefinedProfilePicture[] Avatars { get; set; }
+        public PredProfilePicture[] PredAvatars { get; set; }
 
         private Color[] highlightColors;
         public Color[] HighlightColors
@@ -283,49 +273,5 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             set { highlightColors = value; OnPropertyChanged(); }
         }
 
-    }
-
-    public class PredefinedProfilePicture
-    {
-
-        public PredefinedProfilePicture(byte[] imageBytes, string title)
-        {
-            ImageFullBytes = imageBytes;
-            Title = title;
-        }
-
-        public ImageSource ImageFull { get; set; }
-
-        private byte[] imageFullBytes;
-        public byte[] ImageFullBytes
-        {
-            get
-            {
-                return imageFullBytes;
-            }
-            set
-            {
-                imageFullBytes = value;
-                ImageFull = ImageSource.FromStream(() => new MemoryStream(imageFullBytes));
-            }
-        }
-
-        public ImageSource ImageSmall { get; set; }
-
-        private byte[] imageSmallBytes;
-        public byte[] ImageSmallBytes
-        {
-            get
-            {
-                return imageSmallBytes;
-            }
-            set
-            {
-                imageSmallBytes = value;
-                ImageSmall = ImageSource.FromStream(() => new MemoryStream(imageSmallBytes));
-            }
-        }
-
-        public string Title { get; set; }
     }
 }

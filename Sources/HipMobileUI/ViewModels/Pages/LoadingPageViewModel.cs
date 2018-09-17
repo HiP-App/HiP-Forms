@@ -318,7 +318,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                 IoCManager.RegisterType<IAuthApiAccess, AuthApiAccess>();
                 IoCManager.RegisterType<IQuizApiAccess, QuizApiAccess>();
                 IoCManager.RegisterInstance(typeof(IUserRatingApiAccess), new UserRatingApiAccess(new ContentApiClient()));
-                //IoCManager.RegisterInstance(typeof(IProfilePictureApiAccess), new ProfilePictureApiAccess(new UserApiClient(ServerEndpoints.RegisterUrl)));
             }
 #pragma warning restore 162
 
@@ -341,7 +340,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             IoCManager.RegisterType<IBaseDataFetcher, BaseDataFetcher>();
             IoCManager.RegisterType<IFullRouteDataFetcher, FullRouteDataFetcher>();
             IoCManager.RegisterType<IAchievementFetcher, AchievementFetcher>();
-            //IoCManager.RegisterType<IProfilePictureFetcher, ProfilePictureFetcher>();
+
 
             IoCManager.RegisterInstance(typeof(INearbyExhibitManager), new NearbyExhibitManager());
             IoCManager.RegisterInstance(typeof(INearbyRouteManager), new NearbyRouteManager());
