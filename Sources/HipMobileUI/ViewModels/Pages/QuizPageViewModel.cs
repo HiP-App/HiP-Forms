@@ -13,7 +13,6 @@
 // limitations under the License.
 
 using System;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -98,9 +97,19 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
         private async Task GotoNextView(int selectedAnswerIdx, Action<Color> backgroundColorSetter)
         {
+            var correctOption = quizzes[currentQuiz].CorrectOption();
             var selectedAnswer = Answers[selectedAnswerIdx];
+            for (var i = 0; i < Answers.Length; i++)
+            {
+                if (correctOption == Answers[i])
+                {
+                    MarkCorrectOption(i);
+                }
+            }
+            
             var isAnswerCorrect = selectedAnswer == quizzes[currentQuiz].CorrectOption();
             backgroundColorSetter(isAnswerCorrect ? Color.Green : Color.DarkRed);
+           
             if (isAnswerCorrect) score++;
 
             await Task.Delay(AnswerCorrectnessDisplayTimeMs);
@@ -115,6 +124,25 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                 Settings.ExhibitScores.SaveScoreFor(exhibit, newHighScore);
                 Navigation.InsertPageBefore(new QuizStartingPageViewModel(exhibit), this);
                 await Navigation.PopAsync(false);
+            }
+        }
+
+        private void MarkCorrectOption(int index)
+        {
+            switch (index)
+            {
+                case 0:
+                    AnswerABackgroundColor = Color.Green;
+                    break;
+                case 1:
+                    AnswerBBackgroundColor = Color.Green;
+                    break;
+                case 2:
+                    AnswerCBackgroundColor = Color.Green;
+                    break;
+                case 3:
+                    AnswerDBackgroundColor = Color.Green;
+                    break;
             }
         }
 
