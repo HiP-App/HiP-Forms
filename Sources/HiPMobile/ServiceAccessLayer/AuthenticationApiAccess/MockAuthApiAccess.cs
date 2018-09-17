@@ -13,21 +13,27 @@
 // limitations under the License.
 
 using System.Threading.Tasks;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.User;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.AuthApiDto;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.AuthenticationApiAccess
 {
     public class MockAuthApiAccess: IAuthApiAccess
     {
-        public Task<Token> Login(string username, string password) => Task.FromResult(new Token
+        public Task<Token> Login(string email, string password) => Task.FromResult(new Token
         {
             AccessToken = "",
             IdToken = "",
             TokenType = ""
         });
 
-        public Task<bool> Register(string username, string password, string firstName, string lastName) => Task.FromResult(true);
+        public Task<bool> Register(string username, string password, string firstName, string lastName, string email) => Task.FromResult(true);
 
-        public Task<bool> ForgotPassword(string username) => Task.FromResult(true);
+        public Task<bool> ForgotPassword(string email) => Task.FromResult(true);
+
+        public Task<CurrentUser> GetCurrentUser(string accessToken)
+        {
+            return Task.FromResult(new CurrentUser("id", "id@email.com", "username"));
+        }
     }
 }

@@ -7,6 +7,8 @@ using System.Net.Http;
 using Newtonsoft.Json;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.AuthApiDto;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Exceptions;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.UserApiAccesses;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.User;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.AuthenticationApiAccess
 {
@@ -19,7 +21,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Authent
             this.clientApiClient = clientApiClient;
         }
 
-        public async Task<Token> Login(string username, string password)
+        public async Task<Token> Login(string email, string password)
         {
             FormUrlEncodedContent content = new FormUrlEncodedContent(new[]
             {
@@ -28,8 +30,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Authent
                 Constants.MobileScope,
                 Constants.MobileClientId,
                 Constants.MobileClientSecret,
-                new KeyValuePair<string, string>("username", username),
-                new KeyValuePair<string, string>("password", password)
+                new KeyValuePair<string, string>("password", password),
+                new KeyValuePair<string, string>("username", email) 
+
             });
 
             var result = await clientApiClient.PostRequestFormBased(ServerEndpoints.LoginUrl, content, prependBasePath: false);
@@ -40,7 +43,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Authent
 
             if (result.StatusCode == HttpStatusCode.BadRequest || result.StatusCode == HttpStatusCode.NotFound || result.StatusCode == HttpStatusCode.Forbidden)
             {
-                throw new InvalidUserNamePassword();
+                throw new InvalidEmailPassword();
             }
 
             if (result.StatusCode == HttpStatusCode.GatewayTimeout)
@@ -51,17 +54,17 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Authent
             return token;
         }
 
-        public async Task<bool> Register(string username, string password, string firstName, string lastName)
+        public async Task<bool> Register(string username, string password, string firstName, string lastName, string email)
         {
             var content = "{" +
-                          "\"email\": \"" + username + "\", " +
+                          "\"email\": \"" + email + "\", " +
+                          "\"displayName\": \"" + username + "\", " +
                           "\"password\": \"" + password + "\"," +
                           "\"firstName\": \"" + firstName + "\"," +
                           "\"lastName\": \"" + lastName +  "\"" +
                           "}";
 
             var result = await clientApiClient.PostRequestBody(ServerEndpoints.RegisterUrl, content, false);
-          
 
             if (result.StatusCode == HttpStatusCode.Created)
             {
@@ -75,14 +78,25 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Authent
 
             return false;
         }
+        public async Task<CurrentUser> GetCurrentUser(string accessToken)
+        {
+            var path = "/Me";
+            UserApiClient userClient = new UserApiClient();
+            var response = await userClient.GetResponseFromUrlAsString(path, accessToken);
+            if (response != null)
+            {
+                return JsonConvert.DeserializeObject<CurrentUser>(response);
+            }
+            return new CurrentUser(null, null, null);
+        }
 
-        public async Task<bool> ForgotPassword(string username)
+        public async Task<bool> ForgotPassword(string email)
         {
             FormUrlEncodedContent content = new FormUrlEncodedContent(new[]
             {
                 Constants.BasicClientId,
                 Constants.Connection,
-                new KeyValuePair<string, string>("email", username),
+                new KeyValuePair<string, string>("email", email),
             });
 
             var result = await clientApiClient.PostRequestFormBased(ServerEndpoints.ForgotPasswordUrl, content, prependBasePath: false);
