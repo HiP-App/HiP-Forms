@@ -36,21 +36,26 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.UserManageme
                     return user.CurrentStatus;
                 }
 
-                user.Token = await AuthApiAccess.Login(user.Username, user.Password);
+                user.Token = await AuthApiAccess.Login(user.Email, user.Password);
                 user.CurrentStatus = UserStatus.LoggedIn;
-                Settings.Username = user.Username;
-                Settings.Password = user.Password;
-                Settings.AccessToken = user.Token.AccessToken;
-                Settings.ProfilePicture = null;
-
-                var currentUser = await GetCurrentUser(user.Token.AccessToken);
-                if (currentUser.Id != null)
-                {
-                    Settings.UserId = currentUser.Id;
-                }
                 
+                Settings.Password = user.Password;
+
+                Settings.AccessToken = user.Token.AccessToken;
+
+                Settings.ProfilePicture = null;    
+
+                Settings.EMail = user.Email;
 
                 await IoCManager.Resolve<IFeatureToggleRouter>().RefreshEnabledFeaturesAsync();
+
+                var currentUser = await AuthApiAccess.GetCurrentUser(user.Token.AccessToken);
+                if (currentUser.Id != null)
+                {
+                    Settings.Username = currentUser.Username;
+                    Settings.UserId = currentUser.Id;
+                   
+                }
             }
 
             catch (Exception ex)
@@ -59,10 +64,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.UserManageme
                 {
                     user.CurrentStatus = UserStatus.NetworkConnectionFailed;
                 }
-
-                if (ex is InvalidUserNamePassword)
+                if (ex is InvalidEmailPassword)
                 {
-                    user.CurrentStatus = UserStatus.IncorrectUserNameAndPassword;
+                     user.CurrentStatus = UserStatus.IncorrectEmailAndPassword;
+
                 }
                 else
                 {
@@ -82,7 +87,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.UserManageme
 
         public async Task<UserStatus> Register(User user, string firstName, string lastName)
         {
-            var isRegistered = await AuthApiAccess.Register(user.Username, user.Password, firstName, lastName);
+            var isRegistered = await AuthApiAccess.Register(user.Username, user.Password, firstName, lastName, user.Email);
 
             if (isRegistered)
             {
@@ -108,7 +113,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.UserManageme
             }
             else
             {
-                var isResetPasswordEmailSent = await AuthApiAccess.ForgotPassword(user.Username);
+                var isResetPasswordEmailSent = await AuthApiAccess.ForgotPassword(user.Email);
 
                 if (isResetPasswordEmailSent)
                 {

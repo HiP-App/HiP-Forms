@@ -25,6 +25,7 @@ using PaderbornUniversity.SILab.Hip.Mobile.UI.Appearance;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
@@ -58,7 +59,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                 return;
             Settings.IsLoggedIn = false;
             UpdateAccountViews();
-
         }
 
         public MainPageViewModel() : this(DbManager.DataAccess.Exhibits().GetExhibits().ToList())
@@ -82,8 +82,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             UpdateUserLogginInfo();
 
             achievementsFeatureSubscription = IoCManager.Resolve<IFeatureToggleRouter>()
-                      .IsFeatureEnabled(FeatureId.Achievements)
-                      .Subscribe(new AchievementsVmHider(MainScreenViewModels.OfType<AchievementsScreenViewModel>().FirstOrDefault(), MainScreenViewModels));
+                                                        .IsFeatureEnabled(FeatureId.Achievements)
+                                                        .Subscribe(new AchievementsVmHider(MainScreenViewModels.OfType<AchievementsScreenViewModel>().FirstOrDefault(),
+                                                                                           MainScreenViewModels));
 
             UpdateAccountViews();
         }
@@ -196,7 +197,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             /// </summary>
             public ObservableCollection<NavigationViewModel> AdventurerCollection()
             {
-                return new ObservableCollection<NavigationViewModel> {
+                return new ObservableCollection<NavigationViewModel>
+                {
                     exhibitsOverviewViewModel,
                     profileScreenViewModel,
                     achievementsScreenViewModel,
@@ -210,7 +212,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             /// </summary>
             public ObservableCollection<NavigationViewModel> ProfessorCollection()
             {
-                return new ObservableCollection<NavigationViewModel> {
+                return new ObservableCollection<NavigationViewModel>
+                {
                     exhibitsOverviewViewModel,
                     routesOverviewViewModel,
                     profileScreenViewModel,
@@ -255,12 +258,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         {
             UpdateUserLogginInfo();
         }
-
+               
         private void UpdateUserLogginInfo()
         {
-            UserNameDisplayed = Settings.IsLoggedIn;
-            UserName = Settings.IsLoggedIn ? Settings.Username : "";
+            EmailDisplayed = Settings.IsLoggedIn;
+            Email = Settings.IsLoggedIn ? Settings.EMail : "";
         }
+
 
         /// <summary>
         /// Call this method after a change to 'Settings.IsLoggedIn' to display the correct view.
@@ -319,6 +323,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         }
 
         private ObservableCollection<NavigationViewModel> mainScreenViewModels;
+
         public ObservableCollection<NavigationViewModel> MainScreenViewModels
         {
             get => mainScreenViewModels;
@@ -326,6 +331,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         }
 
         private NavigationViewModel selectedViewModel;
+
         public NavigationViewModel SelectedViewModel
         {
             get => selectedViewModel;
@@ -346,6 +352,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             get => userNameDisplayed;
             set => SetProperty(ref userNameDisplayed, value);
         }
+        
+        private bool emailDisplayed;
+        public bool EmailDisplayed
+        {
+            get => emailDisplayed;
+            set => SetProperty(ref emailDisplayed, value);
+        }
 
         private string userName;
         public string UserName
@@ -353,7 +366,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             get => userName;
             set => SetProperty(ref userName, value);
         }
-
+        
+        private string email;
+        public string Email
+        {
+            get => email;
+            set => SetProperty(ref email, value);
+        }
+        
         public override void OnDisappearing()
         {
             base.OnDisappearing();

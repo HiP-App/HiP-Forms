@@ -1,11 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>PaderbornUniversity.SILab.Hip.Mobile.UI</RootNamespace>
   </PropertyGroup>
-
   <ItemGroup>
+    <PackageReference Include="CarouselView.FormsPlugin" Version="5.2.0" />
     <PackageReference Include="NETStandard.Library" version="2.0.2" />
     <PackageReference Include="Acr.UserDialogs" Version="7.0.1" />
     <PackageReference Include="HockeySDK.Xamarin" Version="5.1.2" NoWarn="NU1701" />
@@ -17,14 +16,13 @@
     <PackageReference Include="Xamarin.Forms" Version="2.5.1.444934" />
     <PackageReference Include="Xamarin.Forms.CarouselView" Version="2.3.0-pre2" NoWarn="NU1701" />
   </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\HiPMobile\HiPMobile.csproj" />
   </ItemGroup>
-
   <ItemGroup>
     <Compile Update="Resources\Strings.Designer.cs">
-      <Generator></Generator>
+      <Generator>
+      </Generator>
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>Strings.resx</DependentUpon>
@@ -36,13 +34,13 @@
       <DependentUpon>ProfilePictureScreenView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
-
   <ItemGroup>
     <EmbeddedResource Update="App.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\Strings.de.resx">
-      <Generator></Generator>
+      <Generator>
+      </Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\Strings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -60,5 +58,4 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
-  
 </Project>

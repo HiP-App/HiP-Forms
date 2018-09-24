@@ -1,149 +1,287 @@
 ﻿// Copyright (C) 2017 History in Paderborn App - Universität Paderborn
-// 
+//  
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-// 
-//       http://www.apache.org/licenses/LICENSE-2.0
-// 
+//  
+//      http://www.apache.org/licenses/LICENSE-2.0
+//  
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using Acr.UserDialogs;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using JetBrains.Annotations;
+using MvvmHelpers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common;
-using PaderbornUniversity.SILab.Hip.Mobile.Shared.Common.Contracts;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Appearance;
-using PaderbornUniversity.SILab.Hip.Mobile.UI.AudioPlayer;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Contracts;
+using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Resources;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views.ExhibitDetails;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Input;
 using Xamarin.Forms;
 using Page = PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models.Page;
-using Settings = PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers.Settings;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 {
-    public class ExhibitDetailsPageViewModel : NavigationViewModel, IDbChangedObserver
+    public class ExhibitDetailsPageViewModel : NavigationViewModel, ExhibitDetailsViewModel.IContainer
     {
-        private ExhibitSubviewViewModel selectedView;
-        private Exhibit exhibit;
-        private readonly IList<Page> pages;
-        private int currentViewIndex;
-        private bool audioToolbarVisible;
+        private readonly Exhibit exhibit;
+
+        private int position;
+
+        public int Position
+        {
+            get => position;
+            set
+            {
+                var oldVisiblePage = position < pages.Count ? pages[position] : null;
+                var newVisiblePage = value < pages.Count ? pages[value] : null;
+
+                UpdatePageVisibilityStatus(oldVisiblePage, newVisiblePage);
+                SetProperty(ref position, value);
+            }
+        }
+
+        private List<ExhibitDetailsViewModel> pages = new List<ExhibitDetailsViewModel>();
+
+        public List<ExhibitDetailsViewModel> Pages
+        {
+            get => pages;
+            set
+            {
+                var oldVisiblePage = position < pages.Count ? pages[position] : null;
+                var newVisiblePage = position < value.Count ? value[position] : null;
+
+                UpdatePageVisibilityStatus(oldVisiblePage, newVisiblePage);
+                SetProperty(ref pages, value);
+            }
+        }
+
+        private void UpdatePageVisibilityStatus([CanBeNull] ExhibitDetailsViewModel oldVisiblePage, [CanBeNull] ExhibitDetailsViewModel newVisiblePage)
+        {
+            if (oldVisiblePage != null)
+            {
+                oldVisiblePage.Visible = false;
+            }
+
+            if (newVisiblePage != null)
+            {
+                newVisiblePage.Visible = true;
+            }
+
+            HasAdditionalInformation = newVisiblePage?.HasAdditionalInformationPages == true;
+        }
+
+        public Command ShowAdditionalInformationCommand { get; }
+
         private bool hasAdditionalInformation;
-        private bool buttonsVisible = true;
-        private readonly bool additionalInformation;
 
-        public ExhibitDetailsPageViewModel(string exhibitId) : this(DbManager.DataAccess.Exhibits().GetExhibit(exhibitId)) { }
+        public bool HasAdditionalInformation
+        {
+            get => hasAdditionalInformation;
+            set => SetProperty(ref hasAdditionalInformation, value);
+        }
 
-        public ExhibitDetailsPageViewModel(Exhibit exhibit) : this(exhibit, exhibit.Pages, exhibit.Name) { }
+        public ExhibitDetailsPageViewModel(Exhibit exhibit) : this(exhibit, exhibit.Pages, exhibit.Name)
+        {
+        }
 
         public ExhibitDetailsPageViewModel(Exhibit exhibit, ICollection<Page> pages, string title, bool additionalInformation = false)
         {
-            Exhibit = exhibit;
-            this.additionalInformation = additionalInformation;
-            AdjustToolbarColor();
+            this.exhibit = exhibit;
+            Position = 0;
+            var showGoToQuizButton = DbManager.DataAccess.Quizzes().QuizzesForExhibit(exhibit.Id).Any();
+            Pages = pages.Select((page, i) => new ExhibitDetailsViewModel(exhibit,
+                                                                          title,
+                                                                          page,
+                                                                          Navigation,
+                                                                          this,
+                                                                          $"{i + 1}/{pages.Count}",
+                                                                          i + 1 == pages.Count,
+                                                                          showGoToQuizButton))
+                         .ToList();
 
-            // stop audio if necessary
-            var player = IoCManager.Resolve<IAudioPlayer>();
-            if (player.IsPlaying)
-            {
-                player.Stop();
-            }
-
-            // init the audio toolbar
-            AudioToolbar = new AudioToolbarViewModel(title);
-            AudioToolbar.AudioPlayer.AudioCompleted += AudioPlayerOnAudioCompleted;
-
-            // init the current view
-            currentViewIndex = 0;
-            this.pages = pages.ToList();
-            SetCurrentView().ConfigureAwait(true);
-            Title = title;
-
-            // init commands     
-            NextViewCommand = new Command(async () => await GotoNextView());
-            PreviousViewCommand = new Command(GotoPreviousView);
-            ShowAudioToolbarCommand = new Command(SwitchAudioToolbarVisibleState);
-            ShowAdditionalInformationCommand = new Command(ShowAdditionalInformation);
-            var dbChangedHandler = IoCManager.Resolve<IDbChangedHandler>();
-            dbChangedHandler.AddObserver(this);
-        }
-
-        private void AdjustToolbarColor()
-        {
             if (additionalInformation)
             {
                 IoCManager.Resolve<IBarsColorsChanger>().ChangeToolbarColor(Color.FromRgb(128, 128, 128), Color.FromRgb(169, 169, 169));
+                // TODO Revert when coming back
             }
             else
             {
                 IoCManager.Resolve<IThemeManager>().AdjustTheme();
             }
+
+            ShowAdditionalInformationCommand = new Command(ShowAdditionalInformation);
         }
 
-        private void ShowAdditionalInformation()
+        private async void ShowAdditionalInformation()
         {
-            var currentPage = pages[currentViewIndex];
-            if (currentPage.AdditionalInformationPages == null || !currentPage.AdditionalInformationPages.Any())
-                return;
-
-            Navigation.PushAsync(new ExhibitDetailsPageViewModel(Exhibit, currentPage.AdditionalInformationPages, Strings.ExhibitDetailsPage_AdditionalInformation, true));
+            await Pages[Position].ShowAdditionalInformation();
         }
 
-        private CancellationTokenSource tokenSource;
-        private bool willDisappear;
-
-        /// <summary>
-        /// Initializes the delayed toggling with possibility to cancel it using a tokenSource
-        /// </summary>
-        private void StartDelayedToggling()
+        public async Task TryGoToNextViewAsync()
         {
-            tokenSource = new CancellationTokenSource();
-
-            var token = tokenSource.Token;
-            Task.Run(() => ToggleVisibilityDelayed(token), token);
-        }
-
-        private const int NavigationButtonsToggleDelay = 2000;
-
-        /// <summary>
-        /// Toggles the visibility of then navigation buttons after <see cref="NavigationButtonsToggleDelay"/> milliseconds
-        /// unless the task has been canceled using the token
-        /// </summary>
-        /// <param name="token">Token for canceling the task</param>
-        private async Task ToggleVisibilityDelayed(CancellationToken token)
-        {
-            await Task.Delay(NavigationButtonsToggleDelay, token);
-            if (!token.IsCancellationRequested)
+            if (position + 1 < Pages.Count)
             {
-                ToggleVisibilityOfNavigationButtons();
+                Position++;
+            }
+            else
+            {
+                var quiz = DbManager.DataAccess.Quizzes().QuizzesForExhibit(exhibit.Id);
+
+                if (quiz.Any())
+                {
+                    Navigation.InsertPageBefore(new QuizStartingPageViewModel(exhibit), this);
+                }
+                else
+                {
+                    Navigation.InsertPageBefore(new UserRatingPageViewModel(exhibit), this);
+                }
+
+                await Navigation.PopAsync(false);
+            }
+        }
+    }
+
+    public class ExhibitDetailsViewModel : BaseViewModel
+    {
+        public interface IContainer
+        {
+            Task TryGoToNextViewAsync();
+        }
+
+        private readonly Exhibit exhibit;
+        private readonly Page page;
+        private readonly INavigationService navigation;
+        private readonly IContainer container;
+        public AudioToolbarViewModel AudioToolbar { get; }
+        public string PageNumber { get; }
+
+        private bool firstVisible = true;
+
+        private bool visible;
+
+        public bool Visible
+        {
+            get => visible;
+            set
+            {
+                if (value)
+                {
+                    OnFirstVisible();
+                    AudioToolbar.OnRevealed();
+                }
+                else
+                {
+                    AudioToolbar.OnDisappearing();
+                }
+
+                visible = value;
             }
         }
 
+        public bool ShowLastPageCallToAction { get; }
+
+        public bool ShowGoToQuizButton { get; }
+
         /// <summary>
-        /// Toggles the visibility of the navigation buttons if the next/previous page is available
-        /// Cancels the delayed task for toggling
+        /// The currently displayed subview.
         /// </summary>
-        private void ToggleVisibilityOfNavigationButtons()
+        public ExhibitSubviewViewModel SelectedView { get; }
+
+        public bool HasAdditionalInformationPages => page.AdditionalInformationPages?.Any() == true;
+
+        public Command GoToQuizCommand { get; }
+
+        public Command GoToRatingCommand { get; }
+
+        public ExhibitDetailsViewModel(Exhibit exhibit,
+                                       string title,
+                                       Page page,
+                                       INavigationService navigation,
+                                       IContainer container,
+                                       string pageNumber,
+                                       bool showLastPageCallToAction,
+                                       bool showGoToQuizButton)
         {
-            buttonsVisible = !buttonsVisible;
-            OnPropertyChanged(nameof(NextVisible));
-            OnPropertyChanged(nameof(PreviousVisible));
-            tokenSource?.Cancel();
+            this.exhibit = exhibit;
+            this.page = page;
+            this.navigation = navigation;
+            this.container = container;
+            PageNumber = pageNumber;
+            ShowLastPageCallToAction = showLastPageCallToAction;
+            ShowGoToQuizButton = showGoToQuizButton;
+            GoToQuizCommand = new Command(async () => await IoCManager.Resolve<INavigationService>().PushAsync(new QuizStartingPageViewModel(exhibit)));
+            GoToRatingCommand = new Command(async () => await IoCManager.Resolve<INavigationService>().PushAsync(new UserRatingPageViewModel(exhibit)));
+
+            // TODO Reset audio on every swipe
+            // init the audio toolbar
+            AudioToolbar = new AudioToolbarViewModel(title, page.Audio != null);
+            AudioToolbar.AudioPlayer.AudioCompleted += AudioPlayerOnAudioCompleted;
+
+            PageManager.LoadPageDetails(page);
+            AudioToolbar.SetNewAudioFile(page.Audio);
+
+            switch (page)
+            {
+                case ImagePage imagePage:
+                    SelectedView = new ImageViewModel(imagePage);
+                    break;
+                case TextPage textPage:
+                    SelectedView = new TextViewModel(textPage);
+                    break;
+                case TimeSliderPage timeSliderPage:
+                    SelectedView = new TimeSliderViewModel(timeSliderPage);
+                    break;
+            }
+        }
+
+        private async void OnFirstVisible()
+        {
+            if (!firstVisible) return;
+            firstVisible = true;
+
+            // TODO Heavy lifting should be done here
+
+            await StartAutoPlay();
+        }
+
+        private async Task StartAutoPlay()
+        {
+            if (page.Audio == null)
+                return;
+
+            // ask if user wants automatic audio playback
+            if (Settings.RepeatHintAudio)
+            {
+                var result = await navigation.DisplayAlert(Strings.ExhibitDetailsPage_Hinweis, Strings.ExhibitDetailsPage_AudioPlay,
+                                                           Strings.ExhibitDetailsPage_AgreeFeature, Strings.ExhibitDetailsPage_DisagreeFeature);
+                Settings.AutoStartAudio = result;
+                Settings.RepeatHintAudio = false;
+            }
+
+            //play automatic audio, if wanted
+            if (Settings.AutoStartAudio)
+            {
+                AudioToolbar.AudioPlayer.Play();
+            }
+        }
+
+        public async Task ShowAdditionalInformation()
+        {
+            if (!HasAdditionalInformationPages) throw new InvalidOperationException("Cannot show additional information as none are available!");
+
+            await navigation.PushAsync(new ExhibitDetailsPageViewModel(exhibit, page.AdditionalInformationPages, Strings.ExhibitDetailsPage_AdditionalInformation, true));
         }
 
         /// <summary>
@@ -151,328 +289,26 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         /// </summary>
         private async void AudioPlayerOnAudioCompleted()
         {
+            if (Settings.RepeatHintAutoPageSwitch)
+            {
+                // ask for preferred setting regarind automatic page switch
+                Settings.RepeatHintAutoPageSwitch = false;
+                var result = await navigation.DisplayAlert(Strings.ExhibitDetailsPage_Hinweis,
+                                                           Strings.ExhibitDetailsPage_PageSwitch,
+                                                           Strings.ExhibitDetailsPage_AgreeFeature, Strings.ExhibitDetailsPage_DisagreeFeature).ConfigureAwait(true);
+                Settings.AutoSwitchPage = result;
+            }
+
             // aply automatic page switch if wanted and if the next page isn't the rating page
-            if (Settings.AutoSwitchPage && NextViewAvailable && currentViewIndex < pages.Count - 1)
+            if (Settings.AutoSwitchPage)
             {
-                await GotoNextView();
-            }
-        }
-
-        /// <summary>
-        /// Go to the next available view.
-        /// </summary>
-        /// <returns></returns>
-        private async Task GotoNextView()
-        {
-            if (currentViewIndex < pages.Count - 1)
-            {
-                // stop audio
                 if (AudioToolbar.AudioPlayer.IsPlaying)
                 {
                     AudioToolbar.AudioPlayer.Stop();
                 }
-                // update the UI
-                currentViewIndex++;
-                await SetCurrentView();
-            }
-            else if (currentViewIndex == pages.Count - 1)
-            {
-                // stop audio
-                if (IoCManager.Resolve<INetworkAccessChecker>().GetNetworkAccessStatus() != NetworkAccessStatus.NoAccess)
-                {
-                    if (AudioToolbar.AudioPlayer.IsPlaying)
-                    {
-                        AudioToolbar.AudioPlayer.Stop();
-                    }
 
-                    var quiz = DbManager.DataAccess.Quizzes().QuizzesForExhibit(exhibit.Id);
-
-                    if (quiz.Any())
-                    {
-                        Navigation.InsertPageBefore(new QuizStartingPageViewModel(exhibit), this);
-                    }
-                    else
-                    {
-                        Navigation.InsertPageBefore(new UserRatingPageViewModel(Exhibit), this);
-                    }
-
-                    await Navigation.PopAsync(false);
-                }
-                else
-                {
-                    UserDialogs.Instance.Alert(new AlertConfig()
-                    {
-                        Title = Strings.UserRating_Dialog_Title_No_Internet,
-                        Message = Strings.UserRating_Dialog_Message_No_Internet,
-                        OkText = Strings.Ok
-                    });
-                }
+                await container.TryGoToNextViewAsync();
             }
         }
-
-        private void SwitchAudioToolbarVisibleState()
-        {
-            AudioToolbarVisible = !AudioToolbarVisible;
-        }
-
-        /// <summary>
-        /// Switch to the previous view.
-        /// </summary>
-        private async void GotoPreviousView()
-        {
-            if (currentViewIndex > 0)
-            {
-                // stop audio
-                if (AudioToolbar.AudioPlayer.IsPlaying)
-                {
-                    AudioToolbar.AudioPlayer.Stop();
-                }
-                // update UI
-                currentViewIndex--;
-                await SetCurrentView();
-            }
-            // Go back to appetizer page
-            else
-            {
-                await Navigation.PopAsync();
-            }
-        }
-
-        /// <summary>
-        /// Set the current view.
-        /// </summary>
-        /// <returns></returns>
-        private async Task SetCurrentView()
-        {
-            var currentPage = pages[currentViewIndex];
-            PageManager.LoadPageDetails(currentPage);
-            OnPropertyChanged(nameof(AudioAvailable));
-            AudioToolbarVisible = AudioAvailable;
-            OnPropertyChanged(nameof(Pagenumber));
-            OnPropertyChanged(nameof(NextViewAvailable));
-            OnPropertyChanged(nameof(PreviousViewAvailable));
-            OnPropertyChanged(nameof(NextVisible));
-            OnPropertyChanged(nameof(PreviousVisible));
-
-            // It's possible to get no audio data even if it should exist
-            try
-            {
-                AudioToolbar.SetNewAudioFile(currentPage.Audio);
-            }
-            catch (Exception e)
-            {
-                Debug.WriteLine(e.Message);
-                Debug.WriteLine(e.StackTrace);
-                AudioToolbar.SetNewAudioFile(null);
-                AudioToolbarVisible = false;
-            }
-
-            switch (currentPage)
-            {
-                case ImagePage imagePage:
-                    SelectedView = new ImageViewModel(imagePage, ToggleVisibilityOfNavigationButtons);
-                    break;
-                case TextPage textPage:
-                    SelectedView = new TextViewModel(textPage, ToggleVisibilityOfNavigationButtons);
-                    break;
-                case TimeSliderPage timeSliderPage:
-                    SelectedView = new TimeSliderViewModel(timeSliderPage, ToggleVisibilityOfNavigationButtons);
-                    break;
-            }
-
-            HasAdditionalInformation = currentPage.AdditionalInformationPages?.Any() == true;
-
-            //Cancel disabling navigation buttons caused by page selected before
-            tokenSource?.Cancel();
-
-            //Toggle navigation buttons visibility for specific pages
-            switch (currentPage.PageType)
-            {
-                case PageType.ImagePage:
-                case PageType.TextPage:
-                case PageType.TimeSliderPage:
-                    StartDelayedToggling();
-                    break;
-            }
-
-            if (currentPage.Audio != null)
-            {
-                // ask if user wants automatic audio playback
-                if (Settings.RepeatHintAudio)
-                {
-                    var result = await Navigation.DisplayAlert(Strings.ExhibitDetailsPage_Hinweis, Strings.ExhibitDetailsPage_AudioPlay,
-                                                               Strings.ExhibitDetailsPage_AgreeFeature, Strings.ExhibitDetailsPage_DisagreeFeature);
-                    Settings.AutoStartAudio = result;
-                    Settings.RepeatHintAudio = false;
-
-                    if (Settings.RepeatHintAutoPageSwitch == result)
-                    {
-                        // ask for preferred setting regarind automatic page switch
-                        Settings.RepeatHintAutoPageSwitch = false;
-                        Settings.AutoSwitchPage = await Navigation.DisplayAlert(Strings.ExhibitDetailsPage_Hinweis,
-                                                                   Strings.ExhibitDetailsPage_PageSwitch,
-                                                                   Strings.ExhibitDetailsPage_AgreeFeature, Strings.ExhibitDetailsPage_DisagreeFeature).ConfigureAwait(true);
-                    }
-                }
-
-                //play automatic audio, if wanted
-                if (Settings.AutoStartAudio)
-                {
-                    AudioToolbar.AudioPlayer.Play();
-                }
-            }
-        }
-
-        /// <summary>
-        /// Refreshs the availability of the pages depending on the changed database
-        /// </summary>
-        public async void DbChanged()
-        {
-            var exhibitId = Exhibit.Id;
-            Exhibit = DbManager.DataAccess.Exhibits().GetExhibit(exhibitId);
-            if (!Exhibit.DetailsDataLoaded)
-                return;
-            await SetCurrentView();
-        }
-
-        /// <summary>
-        /// Called when the page disappears.
-        /// </summary>
-        public override void OnDisappearing()
-        {
-            WillDisappear = true;
-
-            base.OnDisappearing();
-
-            AudioToolbar.AudioPlayer.AudioCompleted -= AudioPlayerOnAudioCompleted;
-
-            //inform the audio toolbar to clean up
-            AudioToolbar.OnDisappearing();
-        }
-
-        public override void OnHidden()
-        {
-            base.OnHidden();
-
-            AudioToolbar.AudioPlayer.AudioCompleted -= AudioPlayerOnAudioCompleted;
-
-            //inform the audio toolbar to clean up
-            AudioToolbar.OnHidden();
-        }
-
-        public override void OnRevealed()
-        {
-            base.OnRevealed();
-
-            AdjustToolbarColor();
-            AudioToolbar.AudioPlayer.AudioCompleted += AudioPlayerOnAudioCompleted;
-
-            //Register audio again
-            AudioToolbar.OnRevealed();
-        }
-
-        #region properties
-
-        /// <summary>
-        /// The exhibit for the details page.
-        /// </summary>
-        public Exhibit Exhibit
-        {
-            get => exhibit;
-            set => SetProperty(ref exhibit, value);
-        }
-
-        /// <summary>
-        /// The currently displayed subview.
-        /// </summary>
-        public ExhibitSubviewViewModel SelectedView
-        {
-            get => selectedView;
-            set => SetProperty(ref selectedView, value);
-        }
-
-        /// <summary>
-        /// The command for switching to the next view, if available.
-        /// </summary>
-        public ICommand NextViewCommand { get; }
-
-        /// <summary>
-        /// The command for switching to the previous view, if available.
-        /// </summary>
-        public ICommand PreviousViewCommand { get; }
-
-        /// <summary>
-        /// Indicator if a previous view is available.
-        /// </summary>
-        public bool PreviousViewAvailable => currentViewIndex > 0;
-
-        /// <summary>
-        /// Indicator if a next view is available.
-        /// </summary>
-        public bool NextViewAvailable => currentViewIndex < pages.Count;
-
-        /// <summary>
-        /// Indicator if navigation to previous is visible
-        /// </summary>
-        public bool PreviousVisible => buttonsVisible && PreviousViewAvailable;
-
-        /// <summary>
-        /// Indicator if navigation to next is visible
-        /// </summary>
-        public bool NextVisible => buttonsVisible && NextViewAvailable;
-
-        /// <summary>
-        /// Shows the audio toolbar
-        /// </summary>
-        public ICommand ShowAudioToolbarCommand { get; }
-
-        /// <summary>
-        /// Indicates whether the current page has audio available
-        /// </summary>
-        public bool AudioAvailable => pages[currentViewIndex].Audio != null;
-
-        /// <summary>
-        /// Indicates whether the audio toolbar is visible
-        /// </summary>
-        public bool AudioToolbarVisible
-        {
-            get => audioToolbarVisible;
-            set => SetProperty(ref audioToolbarVisible, value);
-        }
-
-        /// <summary>
-        /// Viewmodel of audio toolbar which can be shown on the details page
-        /// </summary>
-        public AudioToolbarViewModel AudioToolbar { get; }
-
-        /// <summary>
-        /// The page number
-        /// </summary>
-        public string Pagenumber => (currentViewIndex + 1) + " / " + pages.Count;
-
-        /// <summary>
-        /// Indicates whether there are additional informations for this page
-        /// </summary>
-        public bool HasAdditionalInformation
-        {
-            get => hasAdditionalInformation;
-            set => SetProperty(ref hasAdditionalInformation, value);
-        }
-
-        /// <summary>
-        /// Navigates to the additional Information
-        /// </summary>
-        public ICommand ShowAdditionalInformationCommand { get; }
-
-        /// <summary>
-        /// Value indicating that the view of this viewmodel will disappear.
-        /// </summary>
-        public bool WillDisappear
-        {
-            get => willDisappear;
-            set => SetProperty(ref willDisappear, value);
-        }
-
-        #endregion
     }
 }
