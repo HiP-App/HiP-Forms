@@ -60,6 +60,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="LiveXAML">
+      <Version>2.1.26</Version>
+    </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.0.2" />
     <PackageReference Include="TwinTechsForms.NControl.SvgImageView" Version="0.0.3" />
     <PackageReference Include="Xamarin.Android.Support.Design" Version="26.1.0.1" />
@@ -73,7 +76,9 @@
     <Compile Include="Contracts\AndroidFabSizeCalculator.cs" />
     <Compile Include="Contracts\AndroidImageDimensions.cs" />
     <Compile Include="Contracts\DroidAudioPlayer.cs" />
+    <Compile Include="Contracts\DroidAvatarImageResizer.cs" />
     <Compile Include="Contracts\DroidBarsColorsChanger.cs" />
+    <Compile Include="Contracts\DroidImagePicker.cs" />
     <Compile Include="Contracts\DroidNetworkAccessChecker.cs" />
     <Compile Include="Contracts\DroidNotificationPlayer.cs" />
     <Compile Include="Contracts\DroidStorageSizeProvider.cs" />

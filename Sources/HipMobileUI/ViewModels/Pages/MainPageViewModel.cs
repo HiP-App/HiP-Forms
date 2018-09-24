@@ -40,6 +40,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         private readonly RegisterScreenViewModel registerScreenViewModel;
         private readonly ForgotPasswordScreenViewModel forgotPasswordScreenViewModel;
         private readonly AchievementsScreenViewModel achievementsScreenViewModel;
+        private readonly ProfilePictureScreenViewModel profilePictureScreenViewModel;
 
         private readonly IDisposable achievementsFeatureSubscription;
 
@@ -75,6 +76,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             registerScreenViewModel = menuConfiguration.GetRegisterScreenViewModel();
             forgotPasswordScreenViewModel = menuConfiguration.GetForgotPasswordScreenViewModel();
             achievementsScreenViewModel = menuConfiguration.GetAchievementsScreenViewModel();
+            profilePictureScreenViewModel = menuConfiguration.GetProfilePictureScreenViewModel();
 
             Settings.ChangeEvents.PropertyChanged += LoginChangedHandler;
             UpdateUserLogginInfo();
@@ -134,6 +136,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             private readonly AchievementsScreenViewModel achievementsScreenViewModel;
             private readonly SettingsScreenViewModel settingsScreenViewModel;
             private readonly LicenseScreenViewModel licenseScreenViewModel;
+            private readonly ProfilePictureScreenViewModel profilePictureScreenViewModel;
 
             public MenuConfiguration(MainPageViewModel mainPageViewModel, IReadOnlyList<Exhibit> exhibitSet)
             {
@@ -181,6 +184,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                 {
                     Title = Strings.MainPageViewModel_LegalNotices,
                     Icon = "ic_gavel.png"
+                };
+                profilePictureScreenViewModel = new ProfilePictureScreenViewModel(mainPageViewModel)
+                {
+                    Title = Strings.MainPageViewModel_Profile,
+                    Icon = "ic_account_circle.png"
                 };
             }
 
@@ -234,6 +242,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             {
                 return achievementsScreenViewModel;
             }
+
+            public ProfilePictureScreenViewModel GetProfilePictureScreenViewModel()
+            {
+                return profilePictureScreenViewModel;
+            }
         }
 
         private void UpdateMenuConfiguration()
@@ -276,6 +289,13 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             if (MainScreenViewModels.Contains(loginScreenViewModel))
                 MainScreenViewModels[MainScreenViewModels.IndexOf(loginScreenViewModel)] = profileScreenViewModel;
             SelectedViewModel = profileScreenViewModel;
+        }
+
+        public void SwitchToProfilePictureView()
+        {
+            if (MainScreenViewModels.Contains(profilePictureScreenViewModel))
+                MainScreenViewModels[MainScreenViewModels.IndexOf(profilePictureScreenViewModel)] = profilePictureScreenViewModel;
+            SelectedViewModel = profilePictureScreenViewModel;
         }
 
         public void SwitchToLoginView()
