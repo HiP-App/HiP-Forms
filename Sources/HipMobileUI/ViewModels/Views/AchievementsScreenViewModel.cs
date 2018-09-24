@@ -13,6 +13,8 @@ using System.Linq;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.DtoToModelConverters;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.Navigation;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer;
+using System.Net;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
 {
@@ -36,38 +38,53 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         {
             await BackupData.WaitForInitAsync();
             Achievements.Clear();
-
-            try
+            if (IsLoggedIn) //current user is logged in to the server
             {
-                var newlyUnlocked = await IoCManager.Resolve<IAchievementFetcher>().UpdateAchievements();
-                AchievementNotification.QueueAchievementNotifications(newlyUnlocked);
-
-                var achievementCounter = 0;
-                var unlockedCounter = 0;
-                foreach (var achievement in DbManager.DataAccess.Achievements().GetAchievements())
+                try
                 {
-                    Achievements.Add(AchievementViewModel.CreateFrom(achievement));
+                    var newlyUnlocked = await IoCManager.Resolve<IAchievementFetcher>().UpdateAchievements();
+                    AchievementNotification.QueueAchievementNotifications(newlyUnlocked);
 
-                    if (achievement.IsUnlocked)
+                    var achievementCounter = 0;
+                    var unlockedCounter = 0;
+                    foreach (var achievement in DbManager.DataAccess.Achievements().GetAchievements())
                     {
-                        unlockedCounter++;
+                        Achievements.Add(AchievementViewModel.CreateFrom(achievement));
+
+                        if (achievement.IsUnlocked)
+                        {
+                            unlockedCounter++;
+                        }
+
+                        achievementCounter++;
                     }
 
-                    achievementCounter++;
+                    Score = $"{Strings.AchievementsScreenView_Score} {AppSharedData.CurrentAchievementsScore()}";
+                    AchievementCount = $"{unlockedCounter + "/" + achievementCounter}{Strings.AchievementsScreenView_Achievement_Count}";
                 }
+                catch (Exception e)
+                {
+                    Debug.WriteLine(e);
 
-                Score = $"{Strings.AchievementsScreenView_Score} {AppSharedData.CurrentAchievementsScore()}";
-                AchievementCount = $"{unlockedCounter + "/" + achievementCounter}{Strings.AchievementsScreenView_Achievement_Count}";
-            }
-            catch (Exception e)
-            {
-                Debug.WriteLine(e);
-                await IoCManager.Resolve<INavigationService>()
-                                .DisplayAlert(Strings.Alert_No_Internet_Title,
-                                              Strings.Alert_No_Internet_Description,
-                                              Strings.Alert_Confirm);
+                    if ((((WebException)e.InnerException).Response as HttpWebResponse)?.StatusCode == HttpStatusCode.InternalServerError)
+                    {
+                            await IoCManager.Resolve<INavigationService>()
+                                            .DisplayAlert(Strings.Alert_Server_Error_Title,
+                                                          Strings.Alert_Server_Error_Description,
+                                                          Strings.Alert_Confirm);
+                    }
+                    else
+                    {
+                        await IoCManager.Resolve<INavigationService>()
+                                        .DisplayAlert(Strings.Alert_Network_Error_Title,
+                                                      Strings.Alert_Network_Error_Description,
+                                                      Strings.Alert_Confirm);
+                    }
+
+                }
             }
         }
+
 
         public override async void OnAppearing()
         {

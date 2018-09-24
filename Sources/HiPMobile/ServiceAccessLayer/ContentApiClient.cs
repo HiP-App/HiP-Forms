@@ -42,7 +42,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer
         /// <summary>
         /// Returns json string if get was successful (Status 200)
         /// Returns null if the requested url returns not modified (Status 304)
-        /// Throws a <see cref="NetworkAccessFailedException"/> if the server is not reachable
+        /// Throws a <see cref="NetworkAccessFailedException"/> if there are problems with the connection to the server
         /// Throws an <see cref="ArgumentException"/> if there is an unexpected response code
         /// Throws a <see cref="NotFoundException"/> if the requestes url was not found (Status 404)
         /// </summary>
@@ -56,7 +56,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer
             }
             catch (NetworkAccessFailedException e)
             {
-                if ((((WebException)e.InnerException).Response as HttpWebResponse)?.StatusCode == HttpStatusCode.Unauthorized)
+                if ((((WebException)e.InnerException).Response as HttpWebResponse)?.StatusCode == HttpStatusCode.Unauthorized) //TODO: Do consistent exception handling in this class to return complete user-ready error exceptions to next layer, which then get delivered to user (AchievementsScreenViewModel should not handle HttpStatusCode.InternalServerError)
                 {
                     // The token is expired, get a new one and retry
                     Settings.GenericToken = (await GetTokenForDataStore()).AccessToken;
