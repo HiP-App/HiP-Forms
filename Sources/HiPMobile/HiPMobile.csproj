@@ -32,10 +32,6 @@
     <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="400.4.0-hip" />
     <PackageReference Include="Unity" Version="5.8.6" />
     <PackageReference Include="Xam.Plugins.Settings" Version="3.1.1" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="Xamarin.Forms.Core">
-      <HintPath>..\..\packages\xamarin.forms\2.5.1.444934\lib\MonoAndroid10\Xamarin.Forms.Core.dll</HintPath>
-    </Reference>
+	<PackageReference Include="Xamarin.Forms" Version="2.5.1" />
   </ItemGroup>
 </Project>
