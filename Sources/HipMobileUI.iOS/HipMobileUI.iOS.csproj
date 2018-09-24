@@ -96,6 +96,7 @@
     </Compile>
     <Compile Include="Contracts\IosAppCloser.cs" />
     <Compile Include="Contracts\IosAudioPlayer.cs" />
+    <Compile Include="Contracts\IosAvatarImageResizer.cs" />
     <Compile Include="Contracts\IosBarsColorsChanger.cs" />
     <Compile Include="Contracts\IosImageDimensions.cs" />
     <Compile Include="Contracts\IosImagePicker.cs" />
