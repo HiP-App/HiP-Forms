@@ -919,4 +919,28 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   <data name="RegisterScreenView_Username" xml:space="preserve">
     <value>Benutzername</value>
   </data>
+  <data name="ProfilePictureScreenViewModel_CurrentAvatarLabel" xml:space="preserve">
+    <value>Aktueller Avatar</value>
+  </data>
+  <data name="ProfilePictureScreenViewModel_Error_Selection" xml:space="preserve">
+    <value>Kein Bild ausgewählt.</value>
+  </data>
+  <data name="ProfilePictureScreenViewModel_Error_Upload" xml:space="preserve">
+    <value>Upload fehlgeschlagen. Versuch es erneut.</value>
+  </data>
+  <data name="ProfilePictureScreenViewModel_KeepCurrentButton" xml:space="preserve">
+    <value>Behalte aktuellen Avatar</value>
+  </data>
+  <data name="ProfilePictureScreenViewModel_PickImageButton" xml:space="preserve">
+    <value>Wähle einen Avatar aus Deiner Gallerie</value>
+  </data>
+  <data name="ProfilePictureScreenViewModel_PreviewAvatarLabel" xml:space="preserve">
+    <value>Vorschau</value>
+  </data>
+  <data name="ProfilePictureScreenViewModel_SaveNewButton" xml:space="preserve">
+    <value>Speichere neuen Avatar</value>
+  </data>
+  <data name="ProfilePictureScreenViewModel_NoError" xml:space="preserve">
+    <value>Wähle ein Bild aus der Liste oder aus Deiner Gallerie.</value>
+  </data>
 </root>

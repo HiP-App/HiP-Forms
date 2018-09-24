@@ -1520,6 +1520,78 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Current Avatar.
+        /// </summary>
+        public static string ProfilePictureScreenViewModel_CurrentAvatarLabel {
+            get {
+                return ResourceManager.GetString("ProfilePictureScreenViewModel_CurrentAvatarLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No Picture selected.
+        /// </summary>
+        public static string ProfilePictureScreenViewModel_Error_Selection {
+            get {
+                return ResourceManager.GetString("ProfilePictureScreenViewModel_Error_Selection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Upload failed. Try again..
+        /// </summary>
+        public static string ProfilePictureScreenViewModel_Error_Upload {
+            get {
+                return ResourceManager.GetString("ProfilePictureScreenViewModel_Error_Upload", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Keep current Avatar.
+        /// </summary>
+        public static string ProfilePictureScreenViewModel_KeepCurrentButton {
+            get {
+                return ResourceManager.GetString("ProfilePictureScreenViewModel_KeepCurrentButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choose a picture from a list or from your Gallery..
+        /// </summary>
+        public static string ProfilePictureScreenViewModel_NoError {
+            get {
+                return ResourceManager.GetString("ProfilePictureScreenViewModel_NoError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pick Avatar from your Gallery.
+        /// </summary>
+        public static string ProfilePictureScreenViewModel_PickImageButton {
+            get {
+                return ResourceManager.GetString("ProfilePictureScreenViewModel_PickImageButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Preview.
+        /// </summary>
+        public static string ProfilePictureScreenViewModel_PreviewAvatarLabel {
+            get {
+                return ResourceManager.GetString("ProfilePictureScreenViewModel_PreviewAvatarLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save new Avatar.
+        /// </summary>
+        public static string ProfilePictureScreenViewModel_SaveNewButton {
+            get {
+                return ResourceManager.GetString("ProfilePictureScreenViewModel_SaveNewButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Do you really want to logout?.
         /// </summary>
         public static string ProfileScreenViewModel_Dialog_Logout_Message {
