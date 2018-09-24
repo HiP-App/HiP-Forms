@@ -28,10 +28,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
 
         public string Id { get; }
 
-        //public string ImageFullString { get; }
-
-       // public string ImageSmallString { get; }
-
         public ImageSource ImageFull { get; set; }
 
         private byte[] imageFullBytes;
