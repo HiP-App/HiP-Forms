@@ -676,14 +676,14 @@ Verantwortlich für den Betrieb: Dr. Simon Oberthür</value>
   <data name="LoginScreenView_Dialog_Login" xml:space="preserve">
     <value>Sign in</value>
   </data>
-  <data name="Alert_No_Internet_Description" xml:space="preserve">
-    <value>We are not able to connect to the internet. Please check your network connection.</value>
+  <data name="Alert_Network_Error_Description" xml:space="preserve">
+    <value>We have network connection problems. Please check your internet connection.</value>
   </data>
   <data name="Alert_Confirm" xml:space="preserve">
     <value>Confirm</value>
   </data>
-  <data name="Alert_No_Internet_Title" xml:space="preserve">
-    <value>No network connection</value>
+  <data name="Alert_Network_Error_Title" xml:space="preserve">
+    <value>Network connection problems</value>
   </data>
   <data name="Alert_Server_Error_Description" xml:space="preserve">
     <value>A server error occurred. Please try again later.</value>

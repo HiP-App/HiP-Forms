@@ -106,20 +106,20 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to We are not able to connect to the internet. Please check your network connection..
+        ///   Looks up a localized string similar to We have network connection problems. Please check your internet connection..
         /// </summary>
-        public static string Alert_No_Internet_Description {
+        public static string Alert_Network_Error_Description {
             get {
-                return ResourceManager.GetString("Alert_No_Internet_Description", resourceCulture);
+                return ResourceManager.GetString("Alert_Network_Error_Description", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No network connection.
+        ///   Looks up a localized string similar to Network connection problems.
         /// </summary>
-        public static string Alert_No_Internet_Title {
+        public static string Alert_Network_Error_Title {
             get {
-                return ResourceManager.GetString("Alert_No_Internet_Title", resourceCulture);
+                return ResourceManager.GetString("Alert_Network_Error_Title", resourceCulture);
             }
         }
         

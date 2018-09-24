@@ -110,18 +110,18 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Wir konnten keine Verbindung mit dem Internet herstellen. Bitte überprüfe deine Netzwerkverbindung..
         /// </summary>
-        public static string Alert_No_Internet_Description {
+        public static string Alert_Network_Error_Description {
             get {
-                return ResourceManager.GetString("Alert_No_Internet_Description", resourceCulture);
+                return ResourceManager.GetString("Alert_Network_Error_Description", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Keine Netzwerkverbindung.
         /// </summary>
-        public static string Alert_No_Internet_Title {
+        public static string Alert_Network_Error_Title {
             get {
-                return ResourceManager.GetString("Alert_No_Internet_Title", resourceCulture);
+                return ResourceManager.GetString("Alert_Network_Error_Title", resourceCulture);
             }
         }
         
