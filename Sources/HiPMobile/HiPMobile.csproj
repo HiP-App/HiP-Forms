@@ -35,7 +35,7 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.Forms.Core">
-      <HintPath>..\..\..\..\..\Users\alex_\.nuget\packages\xamarin.forms\2.5.1.444934\lib\MonoAndroid10\Xamarin.Forms.Core.dll</HintPath>
+      <HintPath>..\..\packages\xamarin.forms\2.5.1.444934\lib\MonoAndroid10\Xamarin.Forms.Core.dll</HintPath>
     </Reference>
   </ItemGroup>
 </Project>
