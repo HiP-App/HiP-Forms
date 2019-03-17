@@ -101,6 +101,7 @@
     <Compile Include="Contracts\IosBarsColorsChanger.cs" />
     <Compile Include="Contracts\IosImageDimensions.cs" />
     <Compile Include="Contracts\IosImagePicker.cs" />
+    <Compile Include="Contracts\IosMediaToDiskManager.cs" />
     <Compile Include="Contracts\IosNetworkAccessChecker.cs" />
     <Compile Include="Contracts\IosNotificationPlayer.cs" />
     <Compile Include="Contracts\IosStorageSizeProvider.cs" />

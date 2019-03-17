@@ -58,6 +58,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models
         //Constructor
         public Route()
         {
+            DetailsDataLoaded = true;
         }
     }
 }

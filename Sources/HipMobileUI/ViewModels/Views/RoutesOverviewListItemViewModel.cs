@@ -51,7 +51,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             Duration = GetRouteDurationText(Route.Duration);
             Distance = GetRouteDistanceText(Route.Distance);
 
-            IsDownloadPanelVisible = !Route.DetailsDataLoaded;
+            IsDownloadPanelVisible = false;
 
             Tags = new ObservableCollection<ImageSource>();
 
@@ -114,7 +114,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
                 Route.DetailsDataLoaded = true;
             });
 
-            IsDownloadPanelVisible = !Route.DetailsDataLoaded;
+            IsDownloadPanelVisible = false;
         }
 
         private ImageSource image;

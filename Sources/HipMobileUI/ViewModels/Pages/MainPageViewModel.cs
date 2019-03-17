@@ -72,10 +72,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
             UpdateMenuConfiguration();
 
             profileScreenViewModel = MainScreenViewModels.OfType<ProfileScreenViewModel>().SingleOrDefault();
-            loginScreenViewModel = menuConfiguration.GetLoginScreenViewModel();
-            registerScreenViewModel = menuConfiguration.GetRegisterScreenViewModel();
-            forgotPasswordScreenViewModel = menuConfiguration.GetForgotPasswordScreenViewModel();
-            achievementsScreenViewModel = menuConfiguration.GetAchievementsScreenViewModel();
             profilePictureScreenViewModel = menuConfiguration.GetProfilePictureScreenViewModel();
 
             Settings.ChangeEvents.PropertyChanged += LoginChangedHandler;
@@ -129,11 +125,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         {
             private readonly ExhibitsOverviewViewModel exhibitsOverviewViewModel;
             private readonly RoutesOverviewViewModel routesOverviewViewModel;
-            private readonly LoginScreenViewModel loginScreenViewModel;
-            private readonly ForgotPasswordScreenViewModel forgotPasswordScreenViewModel;
-            private readonly RegisterScreenViewModel registerScreenViewModel;
-            private readonly ProfileScreenViewModel profileScreenViewModel;
-            private readonly AchievementsScreenViewModel achievementsScreenViewModel;
             private readonly SettingsScreenViewModel settingsScreenViewModel;
             private readonly LicenseScreenViewModel licenseScreenViewModel;
             private readonly ProfilePictureScreenViewModel profilePictureScreenViewModel;
@@ -149,31 +140,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                 {
                     Title = Strings.MainPageViewModel_Routes,
                     Icon = "ic_directions.png"
-                };
-                loginScreenViewModel = new LoginScreenViewModel(mainPageViewModel)
-                {
-                    Title = Strings.MainPageViewModel_Account,
-                    Icon = "ic_account_circle.png"
-                };
-                forgotPasswordScreenViewModel = new ForgotPasswordScreenViewModel(mainPageViewModel)
-                {
-                    Title = Strings.MainPageViewModel_Account,
-                    Icon = "ic_account_circle.png"
-                };
-                registerScreenViewModel = new RegisterScreenViewModel(mainPageViewModel)
-                {
-                    Title = Strings.MainPageViewModel_Account,
-                    Icon = "ic_account_circle.png"
-                };
-                profileScreenViewModel = new ProfileScreenViewModel(mainPageViewModel)
-                {
-                    Title = Strings.MainPageViewModel_Profile,
-                    Icon = "ic_account_circle.png"
-                };
-                achievementsScreenViewModel = new AchievementsScreenViewModel
-                {
-                    Title = Strings.MainPageViewModel_Achievements,
-                    Icon = "ic_equalizer.png"
                 };
                 settingsScreenViewModel = new SettingsScreenViewModel
                 {
@@ -200,8 +166,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                 return new ObservableCollection<NavigationViewModel>
                 {
                     exhibitsOverviewViewModel,
-                    profileScreenViewModel,
-                    achievementsScreenViewModel,
                     settingsScreenViewModel,
                     licenseScreenViewModel
                 };
@@ -216,31 +180,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                 {
                     exhibitsOverviewViewModel,
                     routesOverviewViewModel,
-                    profileScreenViewModel,
-                    achievementsScreenViewModel,
                     settingsScreenViewModel,
                     licenseScreenViewModel
                 };
-            }
-
-            public LoginScreenViewModel GetLoginScreenViewModel()
-            {
-                return loginScreenViewModel;
-            }
-
-            public RegisterScreenViewModel GetRegisterScreenViewModel()
-            {
-                return registerScreenViewModel;
-            }
-
-            public ForgotPasswordScreenViewModel GetForgotPasswordScreenViewModel()
-            {
-                return forgotPasswordScreenViewModel;
-            }
-
-            public AchievementsScreenViewModel GetAchievementsScreenViewModel()
-            {
-                return achievementsScreenViewModel;
             }
 
             public ProfilePictureScreenViewModel GetProfilePictureScreenViewModel()

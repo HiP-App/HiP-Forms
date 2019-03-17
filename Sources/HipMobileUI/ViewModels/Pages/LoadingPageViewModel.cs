@@ -146,7 +146,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
                 baseDataFetcher = IoCManager.Resolve<IBaseDataFetcher>();
 
-                var networkAccessStatus = IoCManager.Resolve<INetworkAccessChecker>().GetNetworkAccessStatus();
+                //var networkAccessStatus = IoCManager.Resolve<INetworkAccessChecker>().GetNetworkAccessStatus();
+                var networkAccessStatus = NetworkAccessStatus.NoAccess;
+                isDatabaseUpToDate = true;
 
                 if (networkAccessStatus != NetworkAccessStatus.NoAccess)
                 {
@@ -154,8 +156,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                 }
                 else
                 {
-                    errorTitle = Strings.LoadingPageViewModel_BaseData_DownloadFailed_Title;
-                    errorMessage = Strings.LoadingPageViewModel_BaseData_DatabaseUpToDateCheckFailed;
+
+                    var statusStream = await DependencyService.Get<IMediaToDiskManager>().WriteMediaToDisk();
+
+                    //errorTitle = Strings.LoadingPageViewModel_BaseData_DownloadFailed_Title;
+                    //errorMessage = Strings.LoadingPageViewModel_BaseData_DatabaseUpToDateCheckFailed;
                 }
 
                 if (!isDatabaseUpToDate)
@@ -175,7 +180,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                     await UpdateDatabase();
                 }
 
-                await AchievementManager.UpdateServerAndLocalState();
+                //await AchievementManager.UpdateServerAndLocalState();
             }
             catch (Exception e)
             {

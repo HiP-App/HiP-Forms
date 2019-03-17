@@ -157,9 +157,11 @@
                                VerticalOptions="Center" />
                         <BoxView Grid.Row="20" Grid.Column="0" Style="{StaticResource SettingsBoxViewStyle}" />
                         <Label Style="{StaticResource BasicTextStyle}"
+                               IsVisible="False"
                                Text="{helpers:Translate SettingsScreenView_RemoveAllDownloads_Text}"
                                HorizontalOptions="StartAndExpand" Grid.Row="21" Grid.Column="0" />
                         <Button Style="{DynamicResource Button}" 
+                                IsVisible="False"
                                 Text="{helpers:Translate SettingsScreenView_RemoveAllDownloadsButton_Text}"
                                 TextColor="White"
                                 Command="{Binding RemoveAllDownloads}" HorizontalOptions="End" VerticalOptions="Center"

@@ -42,6 +42,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             Routes = new ObservableCollection<RoutesOverviewListItemViewModel>();
             foreach (var route in DbManager.DataAccess.Routes().GetRoutes())
             {
+                route.DetailsDataLoaded = true;
                 Routes.Add(new RoutesOverviewListItemViewModel(route));
             }
 

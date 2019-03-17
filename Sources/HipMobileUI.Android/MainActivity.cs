@@ -34,11 +34,14 @@ using MainPage = PaderbornUniversity.SILab.Hip.Mobile.UI.Pages.MainPage;
 using Acr.UserDialogs;
 using Android.Content;
 using CarouselView.FormsPlugin.Android;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
+using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.Helpers;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.NotificationPlayer;
 using PaderbornUniversity.SILab.Hip.Mobile.UI.DesignTime;
 using TwinTechsForms.NControl.Android;
+using Environment = System.Environment;
 
 namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
 {
@@ -55,7 +58,20 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
         {
             Instance = this;
         }
-        
+
+        private void ReadWriteStream(Stream readStream, Stream writeStream)
+        {
+            int length = 256;
+            byte[] buffer = new byte[length];
+            int bytesRead = readStream.Read(buffer, 0, length);
+            while (bytesRead > 0)
+            {
+                writeStream.Write(buffer, 0, bytesRead);
+                bytesRead = readStream.Read(buffer, 0, length);
+            }
+            readStream.Close();
+            writeStream.Close();
+        }
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -67,7 +83,11 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
                 Settings.ShouldDeleteDbOnLaunch = false;
             }
 
+            
+
             dataAccess.CreateDatabase(0); // ensures the database exists and is up to date
+
+           
 
             IoCManager.RegisterType<IImageDimension, AndroidImageDimensions>();
             IoCManager.RegisterType<IAppCloser, AndroidAppCloser>();
@@ -105,10 +125,18 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
             SvgImageViewRenderer.Init();
             CarouselViewRenderer.Init();
 
+           
             UserDialogs.Init(() => (Activity) Forms.Context);
 
             DesignMode.IsEnabled = false;
             LoadApplication(new App());
+
+            var dbPath = dataAccess.DatabasePath;
+
+            FileStream writeStream = new FileStream(dbPath, FileMode.OpenOrCreate, FileAccess.Write);
+
+            var database = Resources.OpenRawResource(Resource.Raw.database);
+            ReadWriteStream(database, writeStream);
 
         }
 
