@@ -79,7 +79,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers
         /// </summary>
         public static async Task UpdateServerAndLocalState()
         {
-            await DbManager.DataAccess.Achievements().PostVisitedExhibitsToApi();
+            //await DbManager.DataAccess.Achievements().PostVisitedExhibitsToApi();
             IEnumerable<AchievementBase> newlyUnlocked;
             try
             {

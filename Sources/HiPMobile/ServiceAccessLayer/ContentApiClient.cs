@@ -277,7 +277,14 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer
                         }
                     }
                 }, new TimeSpan(0, 0, 0, 3));
-                return await result;
+                try
+                {
+                    return await result;
+                }
+                catch (Exception e)
+                {
+                    return null;
+                }
             }
         }
 
