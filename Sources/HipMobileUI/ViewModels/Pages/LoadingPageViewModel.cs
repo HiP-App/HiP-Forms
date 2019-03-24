@@ -174,8 +174,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
 
                     await UpdateDatabase();
                 }
-
-                await AchievementManager.UpdateServerAndLocalState();
+                //Achievements are currently not working
+                //await AchievementManager.UpdateServerAndLocalState();
             }
             catch (Exception e)
             {

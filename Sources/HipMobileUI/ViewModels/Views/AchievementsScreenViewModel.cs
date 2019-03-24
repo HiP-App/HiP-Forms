@@ -25,13 +25,15 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             IsLoggedIn = Settings.IsLoggedIn;
             Achievements = new ObservableCollection<AchievementViewModel>();
             Settings.ChangeEvents.PropertyChanged += LoginChangedHandler;
-            Device.BeginInvokeOnMainThread(async () => await UpdateAchievements());
+            //Achievements are currently not working
+            //Device.BeginInvokeOnMainThread(async () => await UpdateAchievements());
         }
 
         private async void LoginChangedHandler(object o, PropertyChangedEventArgs args)
         {
             IsLoggedIn = Settings.IsLoggedIn;
-            await UpdateAchievements();
+            //Achievements are currently not working
+            //await UpdateAchievements();
         }
 
         private async Task UpdateAchievements()
@@ -89,7 +91,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
         public override async void OnAppearing()
         {
             base.OnAppearing();
-            await UpdateAchievements();
+            //Achievements are currently not working
+            //await UpdateAchievements();
         }
 
         private ObservableCollection<AchievementViewModel> achievements;
