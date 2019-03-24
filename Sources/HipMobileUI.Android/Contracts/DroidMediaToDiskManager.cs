@@ -32,39 +32,43 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Contracts
 
             var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
             var mediaFolderPath = Path.Combine(documentsPath, "Media");
-            if (!Environment.GetFolderPath(Environment.SpecialFolder.Personal).Contains("Media"))
+            if (!Directory.Exists(mediaFolderPath))
             {
                 Directory.CreateDirectory(mediaFolderPath);
             }
-
+          
             var filePath = mediaFolderPath;
             var resId = 0;
             var negI = 0;
+            FileStream writeStream;
 
             for (int i = -2; i <= 155; i++)
             {
                 filePath = Path.Combine(mediaFolderPath, i.ToString());
-                FileStream writeStream = new FileStream(filePath, FileMode.OpenOrCreate, FileAccess.Write);
 
-                resId = 0;
-
-                if (i < 0)
+                if (!File.Exists(filePath))
                 {
-                    negI= i * -1;
-                    resId = MainActivity.Instance.Resources.GetIdentifier("media_m" + negI.ToString(), "raw", MainActivity.Instance.PackageName);
-                }
-                else
-                {
+                    writeStream = new FileStream(filePath, FileMode.OpenOrCreate, FileAccess.Write);
 
-                    resId = MainActivity.Instance.Resources.GetIdentifier("media_" + i.ToString(), "raw", MainActivity.Instance.PackageName);
-                }
+                    resId = 0;
 
-                if (resId != 0)
-                {
-                    var mediaFile = MainActivity.Instance.Resources.OpenRawResource(resId);
-                    ReadWriteStream(mediaFile, writeStream);
-                }
-                
+                    if (i < 0)
+                    {
+                        negI = i * -1;
+                        resId = MainActivity.Instance.Resources.GetIdentifier("media_m" + negI.ToString(), "raw", MainActivity.Instance.PackageName);
+                    }
+                    else
+                    {
+
+                        resId = MainActivity.Instance.Resources.GetIdentifier("media_" + i.ToString(), "raw", MainActivity.Instance.PackageName);
+                    }
+
+                    if (resId != 0)
+                    {
+                        var mediaFile = MainActivity.Instance.Resources.OpenRawResource(resId);
+                        ReadWriteStream(mediaFile, writeStream);
+                    }
+                }       
             }
             
             return null;

@@ -93,8 +93,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.Location
                     }
                 }
             }
-
-            await AchievementManager.UpdateServerAndLocalState();
         }
 
         public void InvokeExhibitVisitedEvent(Exhibit exhibit)

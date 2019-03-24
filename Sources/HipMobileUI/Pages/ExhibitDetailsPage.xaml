@@ -39,6 +39,7 @@
                                     Grid.Column="0"
                                     Command="{Binding GoToQuizCommand}" />
                             <Button Text="{helpers:Translate ExhibitDetailsPage_GoToRating}"
+                                    IsVisible="False"
                                     VerticalOptions="Start"
                                     Grid.Column="1"
                                     HorizontalOptions="FillAndExpand" Command="{Binding GoToRatingCommand}" />
