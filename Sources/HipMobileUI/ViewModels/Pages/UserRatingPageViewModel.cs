@@ -103,12 +103,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
                 SetAverageAndCountRating("-", 0);
                 SetRatingBars(ratingManager.InitializeEmptyUserRating(), 0);
                 SetRatingStars(0);
-                UserDialogs.Instance.Alert(new AlertConfig()
+                /*UserDialogs.Instance.Alert(new AlertConfig()
                 {
                     Title = Strings.UserRating_Dialog_Title_No_Internet,
                     Message = Strings.UserRating_Dialog_Message_No_Internet,
                     OkText = Strings.Ok
-                });
+                });*/
             }
         }
 
@@ -189,7 +189,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         {
             if (IoCManager.Resolve<INetworkAccessChecker>().GetNetworkAccessStatus() == NetworkAccessStatus.NoAccess)
             {
-                ShowDialog(Strings.UserRating_Dialog_Title_No_Internet, Strings.UserRating_Dialog_Message_No_Internet);
+                //ShowDialog(Strings.UserRating_Dialog_Title_No_Internet, Strings.UserRating_Dialog_Message_No_Internet);
             }
             else if (!Settings.IsLoggedIn)
             {

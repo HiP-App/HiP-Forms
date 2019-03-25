@@ -33,7 +33,9 @@ using App = PaderbornUniversity.SILab.Hip.Mobile.UI.App;
 using MainPage = PaderbornUniversity.SILab.Hip.Mobile.UI.Pages.MainPage;
 using Acr.UserDialogs;
 using Android.Content;
+using Android.Content.Res;
 using CarouselView.FormsPlugin.Android;
+using Org.Osmdroid.Tileprovider.Constants;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Managers;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.BusinessLayer.Models;
 using PaderbornUniversity.SILab.Hip.Mobile.Shared.DataAccessLayer;
@@ -115,6 +117,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid
             IoCManager.RegisterInstance(typeof(INetworkAccessChecker), new DroidNetworkAccessChecker());
             IoCManager.RegisterInstance(typeof(IStorageSizeProvider), new DroidStorageSizeProvider());
 
+            
             // setup crash reporting
             IKeyProvider keyProvider = IoCManager.Resolve<IKeyProvider>();
             CrashManager.Register(this, keyProvider.GetKeyByName("hockeyapp.android"));

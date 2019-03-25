@@ -176,6 +176,8 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer
                     throw new NotFoundException(fullUrl);
                 }
 
+                //Todo NullReferenceException
+                //if(errorResponse != null) but then it might throw the ArgumentException anyway
                 using (var responseStream = errorResponse.GetResponseStream())
                 {
                     var reader = new StreamReader(responseStream ?? throw new WebException($"{nameof(responseStream)} is null!"), Encoding.UTF8);

@@ -63,12 +63,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             }
             else
             {
-                UserDialogs.Instance.Alert(new AlertConfig()
+                /*UserDialogs.Instance.Alert(new AlertConfig()
                 {
                     Title = Strings.UserRating_Dialog_Title_No_Internet,
                     Message = Strings.UserRating_Dialog_Message_No_Internet,
                     OkText = Strings.Ok
-                });
+                });*/
             }
         }
         private async void RefreshUserRating()
@@ -78,12 +78,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
                 RatingAverage = "-";
                 SetStarImages(0);
                 RatingCount = "- " + Strings.UserRating_Rate_Count;
-                UserDialogs.Instance.Alert(new AlertConfig()
+                /*UserDialogs.Instance.Alert(new AlertConfig()
                 {
                     Title = Strings.UserRating_Dialog_Title_No_Internet,
                     Message = Strings.UserRating_Dialog_Message_No_Internet,
                     OkText = Strings.Ok
-                });
+                });*/
             }
             else
             {

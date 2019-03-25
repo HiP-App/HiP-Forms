@@ -104,10 +104,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
                     Settings.IsLoggedIn = true;
                     break;
                 case UserStatus.NetworkConnectionFailed:
-                    UserDialogs.Instance.Alert(Strings.Alert_Network_Error_Description, Strings.Alert_Network_Error_Title);
+                    //UserDialogs.Instance.Alert(Strings.Alert_Network_Error_Description, Strings.Alert_Network_Error_Title);
                     break;
                 case UserStatus.ServerError:
-                    UserDialogs.Instance.Alert(Strings.Alert_Server_Error_Description, Strings.Alert_Server_Error_Title);
+                    //UserDialogs.Instance.Alert(Strings.Alert_Server_Error_Description, Strings.Alert_Server_Error_Title);
                     break;
                 case UserStatus.UnknownError:
                     UserDialogs.Instance.Alert(Strings.Alert_Unknown_Error_Description, Strings.Alert_Unknown_Error_Title);

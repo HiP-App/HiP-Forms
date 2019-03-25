@@ -67,7 +67,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Views
             }
             else if (userStatus == UserStatus.NetworkConnectionFailed)
             {
-                UserDialogs.Instance.Alert(Strings.ForgotPasswordScreenView_Alert_No_Connection_Description, Strings.ForgotPasswordScreenView_Alert_No_Connection_Title);
+                //UserDialogs.Instance.Alert(Strings.ForgotPasswordScreenView_Alert_No_Connection_Description, Strings.ForgotPasswordScreenView_Alert_No_Connection_Title);
             }
             else
             {

@@ -30,9 +30,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Feature
 
         public async Task<IList<FeatureDto>> GetEnabledFeaturesAsync()
         {
-            const string requestPath = "/Features/IsEnabled";
+            /*const string requestPath = "/Features/IsEnabled";
             var json = await contentApiClient.GetResponseFromUrlAsString(requestPath);
-            return JsonConvert.DeserializeObject<IList<FeatureDto>>(json);
+            return JsonConvert.DeserializeObject<IList<FeatureDto>>(json);*/
+            return null;
         }
     }
 }
