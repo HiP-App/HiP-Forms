@@ -72,19 +72,18 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Map
         protected override void OnElementChanged(ElementChangedEventArgs<OsmMap> e)
         {
             base.OnElementChanged(e);
-           
 
             if (Control == null)
             {
-                System.Diagnostics.Debug.WriteLine("MapRenderer");
                 mapView = new MapView(Context, 11);
-                
                 activity = Context as Activity;
                 routeCalculator = RouteCalculator.Instance;
                 SetNativeControl(mapView);
                 
+                //Add UserAgent via Proxy to access OSM
                 ITileSource source = new XYTileSource("Mapnik", ResourceProxyString.Mapnik, 0, 19, 256, ".png", new string[]{ "https://hip.cs.upb.de:643/" });
                 mapView.SetTileSource(source);
+
                 mapView.SetMultiTouchControls(true);
                 mapView.TilesScaledToDpi = true;
 
@@ -122,7 +121,6 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Map
         /// <param name="location"></param>
         private void CenterMap(GeoLocation? location)
         {
-            System.Diagnostics.Debug.WriteLine("onCenterMap");
             mapController.SetCenter(location != null
                 ? new GeoPoint(location.Value.Latitude, location.Value.Longitude)
                 : new GeoPoint(AppSharedData.PaderbornCenter.Latitude, AppSharedData.PaderbornCenter.Longitude));
@@ -290,7 +288,7 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Map
         {
             if (disposed)
                 return;
-           
+
             //Cleanup route if drawn before
             if (currentRouteOverlay != null)
                 mapView.OverlayManager.Remove(currentRouteOverlay);
