@@ -125,9 +125,6 @@
                         <!-- Labels for Impressum -->
                         <Label Style="{DynamicResource Heading1Style}"
                                Text="{helpers:Translate LicenseScreenView_Impressum_Title}" Margin="0,20,0,0">
-                            <Label.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding UnlockExhibits}" />
-                            </Label.GestureRecognizers>
                         </Label>
                         <BoxView Style="{StaticResource LicenseBoxViewStyle}"/>
                         <views1:HtmlLink Text="{helpers:Translate LicenseScreenView_Impressum_Text}" />

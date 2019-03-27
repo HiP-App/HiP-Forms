@@ -36,6 +36,7 @@ using PaderbornUniversity.SILab.Hip.Mobile.UI.Map;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 using System.Collections.Generic;
+using Org.Osmdroid.Tileprovider.Tilesource;
 
 [assembly: ExportRenderer(typeof(OsmMap), typeof(DroidMapRenderer))]
 
@@ -78,6 +79,10 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Droid.Map
                 activity = Context as Activity;
                 routeCalculator = RouteCalculator.Instance;
                 SetNativeControl(mapView);
+                
+                //Add UserAgent via Proxy to access OSM
+                ITileSource source = new XYTileSource("Mapnik", ResourceProxyString.Mapnik, 0, 19, 256, ".png", new string[]{ "https://hip.cs.upb.de:643/" });
+                mapView.SetTileSource(source);
 
                 mapView.SetMultiTouchControls(true);
                 mapView.TilesScaledToDpi = true;

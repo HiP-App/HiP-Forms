@@ -42,11 +42,9 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.UI.ViewModels.Pages
         public AppetizerPageViewModel(Exhibit exhibit)
         {
             Exhibit = exhibit;
-#if (DEBUG)
+
             exhibitUnblocked = true;
-#else
-            exhibitUnblocked = exhibit.Unlocked;
-#endif
+
             Rating = new RatingViewModel(exhibit, true, true);
 
             Headline = exhibit.Name;
