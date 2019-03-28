@@ -34,16 +34,12 @@ namespace PaderbornUniversity.SILab.Hip.Mobile.Shared.ServiceAccessLayer.Content
 
         public async Task<UserRatingDto> GetUserRatingAsync(int idForRestApi)
         {
-            var url = RequestPath + idForRestApi;
-            var json = await contentApiClient.GetResponseFromUrlAsString(url);
-            return JsonConvert.DeserializeObject<UserRatingDto>(json);
+            return new UserRatingDto();
         }
 
         public async Task<int> GetPreviousUserRatingAsync(int idForRestApi)
         {
-            var url = RequestPath + "My/" + idForRestApi;
-            var json = await contentApiClient.GetResponseFromUrlAsString(url, Settings.AccessToken);
-            return int.Parse(json);
+            return 1;
         }
 
         public async Task<bool> SendUserRatingAsync(int idForRestApi, int rating)
